@@ -1,0 +1,5 @@
+\mainpage
+
+##############################
+HighMap library documentation!
+##############################

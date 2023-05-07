@@ -69,7 +69,7 @@ public:
    * @param value Scalar value.
    * @return Array Reference to the current object.
    */
-  Array operator*(const float value); ///< @overload
+  Array operator*(const float value);
 
   /**
    * @brief Multiplication overloading (element-wise product by another array).
@@ -77,7 +77,7 @@ public:
    * @param array Another Array.
    * @return Array
    */
-  Array operator*(const Array &array); ///< @overload
+  Array operator*(const Array &array);
 
   /**
    * @brief Multiplication overloading (left multiply by a scalar).
@@ -86,20 +86,89 @@ public:
    * @param array Another Array.
    * @return Array Reference to the resulting object.
    */
-  friend Array operator*(const float value, const Array &array); ///< @overload
+  friend Array operator*(const float value, const Array &array);
 
-  Array        operator/(const float value);                     ///< @overload
-  Array        operator/(const Array &array);                    ///< @overload
-  friend Array operator/(const float value, const Array &array); ///< @overload
+  /**
+   * @brief Division overloading (right divide by a scalar).
+   *
+   * @param value Scalar value.
+   * @return Array Reference to the current object.
+   */
+  Array operator/(const float value);
 
-  Array        operator+(const float value);                     ///< @overload
-  Array        operator+(const Array &array);                    ///< @overload
-  friend Array operator+(const float value, const Array &array); ///< @overload
+  /**
+   * @brief Division overloading (element-wise division by another array).
+   *
+   * @param array Another Array.
+   * @return Array
+   */
+  Array operator/(const Array &array);
 
-  Array        operator-();
-  Array        operator-(const float value);                     ///< @overload
-  Array        operator-(const Array &array);                    ///< @overload
-  friend Array operator-(const float value, const Array &array); ///< @overload
+  /**
+   * @brief Division overloading (left divide by a scalar).
+   *
+   * @param value Scalar value.
+   * @param array Another Array.
+   * @return Array Reference to the resulting object.
+   */
+  friend Array operator/(const float value, const Array &array);
+
+  /**
+   * @brief Addition overloading (right add by a scalar).
+   *
+   * @param value Scalar value.
+   * @return Array Reference to the current object.
+   */
+  Array operator+(const float value);
+
+  /**
+   * @brief Addition overloading (element-wise addition by another array).
+   *
+   * @param array Another Array.
+   * @return Array
+   */
+  Array operator+(const Array &array);
+
+  /**
+   * @brief Addition overloading (left add by a scalar).
+   *
+   * @param value Scalar value.
+   * @param array Another Array.
+   * @return Array Reference to the resulting object.
+   */
+  friend Array operator+(const float value, const Array &array);
+
+  /**
+   * @brief Unary minus overloading.
+   *
+   * @return Array Reference to the current object.
+   */
+  Array operator-();
+
+  /**
+   * @brief Subtraction overloading (right substract by a scalar).
+   *
+   * @param value Scalar value.
+   * @return Array Reference to the current object.
+   */
+  Array operator-(const float value);
+
+  /**
+   * @brief Subtraction overloading (element-wise substract by another array).
+   *
+   * @param array Another Array.
+   * @return Array
+   */
+  Array operator-(const Array &array);
+
+  /**
+   * @brief Subtraction overloading (left substract by a scalar).
+   *
+   * @param value Scalar value.
+   * @param array Another Array.
+   * @return Array Reference to the resulting object.
+   */
+  friend Array operator-(const float value, const Array &array);
 
   /**
    * @brief Call overloading, return array value at index (i, j).
