@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.24)
 
 project(highmap)
 
@@ -8,14 +8,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Ofast -ffast-math -funroll-all-lo
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 
-file(GLOB SOURCES
-  main.cpp
-  "${PROJECT_SOURCE_DIR}/src/*.cpp"
-  )
+# --- Tests
 
-add_executable(main ${SOURCES})
-
-target_include_directories(main
-  PRIVATE 
-  ${PROJECT_SOURCE_DIR}/include
-  )
+add_subdirectory(${PROJECT_SOURCE_DIR}/tests)
