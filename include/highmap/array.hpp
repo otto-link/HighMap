@@ -12,6 +12,9 @@
 
 #include <vector>
 
+namespace hmap
+{
+
 /**
  * @brief Array class, helper to manipulate 2D float array with "(i, j)"
  * indexing.
@@ -20,6 +23,18 @@
 class Array
 {
 public:
+  /**
+   * @brief Array shape {ni, nj}.
+   *
+   */
+  std::vector<int> shape;
+
+  /**
+   * @brief Vector for data storage, size shape[0] * shape[1].
+   *
+   */
+  std::vector<float> vector;
+
   /**
    * @brief Construct a new Array object.
    *
@@ -46,9 +61,9 @@ public:
    *
    * @return std::vector<float> Vector of size shape[0] * shape[1].
    */
-  inline std::vector<float> get_vector()
+  std::vector<float> get_vector()
   {
-    return vector;
+    return this->vector;
   }
 
   //----------------------------------------
@@ -61,7 +76,7 @@ public:
    * @param value Scalar value.
    * @return Array Reference to the current object.
    */
-  Array operator=(const float value);
+  Array operator=(float value);
 
   /**
    * @brief Multiplication overloading (right multiply by a scalar).
@@ -69,7 +84,7 @@ public:
    * @param value Scalar value.
    * @return Array Reference to the current object.
    */
-  Array operator*(const float value);
+  Array operator*(float value);
 
   /**
    * @brief Multiplication overloading (element-wise product by another array).
@@ -77,7 +92,7 @@ public:
    * @param array Another Array.
    * @return Array
    */
-  Array operator*(const Array &array);
+  Array operator*(Array &array);
 
   /**
    * @brief Multiplication overloading (left multiply by a scalar).
@@ -86,7 +101,7 @@ public:
    * @param array Another Array.
    * @return Array Reference to the resulting object.
    */
-  friend Array operator*(const float value, const Array &array);
+  friend Array operator*(float value, Array &array);
 
   /**
    * @brief Division overloading (right divide by a scalar).
@@ -94,7 +109,7 @@ public:
    * @param value Scalar value.
    * @return Array Reference to the current object.
    */
-  Array operator/(const float value);
+  Array operator/(float value);
 
   /**
    * @brief Division overloading (element-wise division by another array).
@@ -102,7 +117,7 @@ public:
    * @param array Another Array.
    * @return Array
    */
-  Array operator/(const Array &array);
+  Array operator/(Array &array);
 
   /**
    * @brief Division overloading (left divide by a scalar).
@@ -111,7 +126,7 @@ public:
    * @param array Another Array.
    * @return Array Reference to the resulting object.
    */
-  friend Array operator/(const float value, const Array &array);
+  friend Array operator/(float value, Array &array);
 
   /**
    * @brief Addition overloading (right add by a scalar).
@@ -119,7 +134,7 @@ public:
    * @param value Scalar value.
    * @return Array Reference to the current object.
    */
-  Array operator+(const float value);
+  Array operator+(float value);
 
   /**
    * @brief Addition overloading (element-wise addition by another array).
@@ -127,7 +142,7 @@ public:
    * @param array Another Array.
    * @return Array
    */
-  Array operator+(const Array &array);
+  Array operator+(Array &array);
 
   /**
    * @brief Addition overloading (left add by a scalar).
@@ -136,7 +151,7 @@ public:
    * @param array Another Array.
    * @return Array Reference to the resulting object.
    */
-  friend Array operator+(const float value, const Array &array);
+  friend Array operator+(float value, Array &array);
 
   /**
    * @brief Unary minus overloading.
@@ -151,7 +166,7 @@ public:
    * @param value Scalar value.
    * @return Array Reference to the current object.
    */
-  Array operator-(const float value);
+  Array operator-(float value);
 
   /**
    * @brief Subtraction overloading (element-wise substract by another array).
@@ -159,7 +174,7 @@ public:
    * @param array Another Array.
    * @return Array
    */
-  Array operator-(const Array &array);
+  Array operator-(Array &array);
 
   /**
    * @brief Subtraction overloading (left substract by a scalar).
@@ -168,7 +183,7 @@ public:
    * @param array Another Array.
    * @return Array Reference to the resulting object.
    */
-  friend Array operator-(const float value, const Array &array);
+  friend Array operator-(float value, Array &array);
 
   /**
    * @brief Call overloading, return array value at index (i, j).
@@ -181,17 +196,6 @@ public:
   {
     return this->vector[i * this->shape[1] + j];
   }
-
-private:
-  /**
-   * @brief Array shape {ni, nj}.
-   *
-   */
-  std::vector<int> shape;
-
-  /**
-   * @brief Vector for data storage, size shape[0] * shape[1].
-   *
-   */
-  std::vector<float> vector;
 };
+
+} // namespace hmap
