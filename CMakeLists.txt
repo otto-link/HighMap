@@ -9,4 +9,5 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Ofast -ffast-math -funroll-all-lo
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/doc)
+add_subdirectory(${PROJECT_SOURCE_DIR}/examples)
 add_subdirectory(${PROJECT_SOURCE_DIR}/tests)

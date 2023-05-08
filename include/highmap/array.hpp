@@ -39,6 +39,11 @@ public:
    * @brief Construct a new Array object.
    *
    * @param shape Array shape {ni, nj}.
+   *
+   * **Example**
+   * @include ex_array.cpp
+   *
+   *
    */
   Array(std::vector<int> shape);
 
