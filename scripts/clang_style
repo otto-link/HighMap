@@ -9,3 +9,5 @@ BinPackParameters: false
 BreakBeforeBraces: Allman
 
 ColumnLimit: 80
+
+PenaltyReturnTypeOnItsOwnLine : 1000
