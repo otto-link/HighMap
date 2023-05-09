@@ -10,6 +10,8 @@
  */
 #pragma once
 
+#include <algorithm>
+#include <numeric>
 #include <vector>
 
 namespace hmap
@@ -200,6 +202,65 @@ public:
   inline float &operator()(int i, int j)
   {
     return this->vector[i * this->shape[1] + j];
+  }
+
+  //----------------------------------------
+  // methods
+  //----------------------------------------
+
+  /**
+   * @brief Return the value of the greastest element in the array.
+   *
+   * @return float
+   */
+  inline float max()
+  {
+    return *std::max_element(this->vector.begin(), this->vector.end());
+  }
+
+  /**
+   * @brief Return the value of the smallest element in the array.
+   *
+   * @return float
+   */
+  inline float min()
+  {
+    return *std::min_element(this->vector.begin(), this->vector.end());
+  }
+
+  /**
+   * @brief Normalize array values so that the array sum is equal to 1.
+   *
+   */
+  inline void normalize()
+  {
+    float sum = this->sum();
+
+    std::transform(this->vector.begin(),
+                   this->vector.end(),
+                   this->vector.begin(),
+                   [&sum](float v) { return v / sum; });
+  }
+
+  /**
+   * @brief Return the peak-to-peak amplitude (i.e. max - min) of the array
+   * values.
+   *
+   * @return float
+   */
+  inline float ptp()
+  {
+    return this->max() - this->min();
+  }
+
+  /**
+   * @brief Return of the array values.
+   *
+   * @return float
+   */
+  inline float sum()
+  {
+    return std::accumulate(this->vector.begin(), this->vector.end(), 0.f);
   }
 };
 

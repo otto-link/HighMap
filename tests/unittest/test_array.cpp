@@ -116,3 +116,20 @@ TEST(ArrayClass, OverloadsSub)
       EXPECT_FLOAT_EQ(v, 0.f);
   }
 }
+
+TEST(ArrayClass, Methods)
+{
+  const std::vector<int> shape = {NI, NJ};
+  hmap::Array            a = hmap::Array(shape);
+
+  a(1, 1) = -1.f;
+  a(2, 1) = 2.f;
+
+  EXPECT_FLOAT_EQ(a.min(), -1.f);
+  EXPECT_FLOAT_EQ(a.max(), 2.f);
+  EXPECT_FLOAT_EQ(a.ptp(), 3.f);
+  EXPECT_FLOAT_EQ(a.sum(), 1.f);
+
+  a.normalize();
+  EXPECT_FLOAT_EQ(a.sum(), 1.f);
+}
