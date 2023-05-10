@@ -16,7 +16,7 @@ This project is licensed under the GNU General Public License v3.0.
 
 ### Documentation
 
-# Development roadmap
+## Development roadmap
 
 - Heightmap generation and alteration
   - [ ] procedural noise (Perlin, fractal...)
