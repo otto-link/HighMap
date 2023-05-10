@@ -12,6 +12,7 @@
 
 #include <algorithm>
 #include <numeric>
+#include <string>
 #include <vector>
 
 namespace hmap
@@ -262,6 +263,17 @@ public:
   {
     return std::accumulate(this->vector.begin(), this->vector.end(), 0.f);
   }
+
+  /**
+   * @brief Export array as png image file.
+   *
+   * @param fname File name.
+   * @param cmap Colormap (@see cmap).
+   *
+   * **Example**
+   * @include ex_perlin.cpp
+   */
+  void to_png(std::string fname, int cmap);
 };
 
 } // namespace hmap

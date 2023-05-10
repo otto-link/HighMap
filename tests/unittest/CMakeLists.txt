@@ -18,12 +18,6 @@ add_executable(
   unittest
   ${SOURCES}
   )
-
-target_include_directories(
-  unittest
-  PUBLIC 
-  ${PROJECT_SOURCE_DIR}/include
-  )
   
 target_link_libraries(
   unittest
