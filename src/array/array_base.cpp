@@ -37,7 +37,7 @@ Array Array::operator*(Array &array)
   return array_out;
 }
 
-Array operator*(float value, Array &array) // friend function
+Array operator*(float value, const Array &array) // friend function
 {
   Array array_out = Array(array.shape);
 
@@ -69,7 +69,7 @@ Array Array::operator/(Array &array)
   return array_out;
 }
 
-Array operator/(float value, Array &array) // friend function
+Array operator/(float value, const Array &array) // friend function
 {
   Array array_out = Array(array.shape);
 
@@ -101,7 +101,7 @@ Array Array::operator+(Array &array)
   return array_out;
 }
 
-Array operator+(float value, Array &array) // friend function
+Array operator+(float value, const Array &array) // friend function
 {
   Array array_out = Array(array.shape);
 
@@ -142,7 +142,7 @@ Array Array::operator-(Array &array)
   return array_out;
 }
 
-Array operator-(float value, Array &array) // friend function
+Array operator-(float value, const Array &array) // friend function
 {
   Array array_out = Array(array.shape);
 

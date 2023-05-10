@@ -109,7 +109,7 @@ public:
    * @param array Another Array.
    * @return Array Reference to the resulting object.
    */
-  friend Array operator*(float value, Array &array);
+  friend Array operator*(float value, const Array &array);
 
   /**
    * @brief Division overloading (right divide by a scalar).
@@ -134,7 +134,7 @@ public:
    * @param array Another Array.
    * @return Array Reference to the resulting object.
    */
-  friend Array operator/(float value, Array &array);
+  friend Array operator/(float value, const Array &array);
 
   /**
    * @brief Addition overloading (right add by a scalar).
@@ -159,7 +159,7 @@ public:
    * @param array Another Array.
    * @return Array Reference to the resulting object.
    */
-  friend Array operator+(float value, Array &array);
+  friend Array operator+(float value, const Array &array);
 
   /**
    * @brief Unary minus overloading.
@@ -191,7 +191,7 @@ public:
    * @param array Another Array.
    * @return Array Reference to the resulting object.
    */
-  friend Array operator-(float value, Array &array);
+  friend Array operator-(float value, const Array &array);
 
   /**
    * @brief Call overloading, return array value at index (i, j).
