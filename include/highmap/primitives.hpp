@@ -21,7 +21,7 @@ namespace hmap
  * @param shape Array shape.
  * @return Array New array.
  */
-hmap::Array cone(std::vector<int> shape);
+Array cone(std::vector<int> shape);
 
 /**
  * @brief Return a cone with a given height and talus (output array shape is
@@ -31,7 +31,7 @@ hmap::Array cone(std::vector<int> shape);
  * @param talus Cone talus.
  * @return Array
  */
-hmap::Array cone_talus(float height, float talus);
+Array cone_talus(float height, float talus);
 
 /**
  * @brief Return an array based on a plane equation.
@@ -51,10 +51,10 @@ hmap::Array cone_talus(float height, float talus);
  * **Result**
  * @image html ex_plane.png
  */
-hmap::Array plane(std::vector<int>   shape,
-                  float              talus,
-                  float              yaw_angle,
-                  std::vector<float> xyz_center);
+Array plane(std::vector<int>   shape,
+            float              talus,
+            float              yaw_angle,
+            std::vector<float> xyz_center);
 
 /**
  * @brief Return a constant value array.
@@ -63,6 +63,6 @@ hmap::Array plane(std::vector<int>   shape,
  * @param value Filling value.
  * @return Array New array.
  */
-hmap::Array constant(std::vector<int> shape, float value = 0.f);
+Array constant(std::vector<int> shape, float value = 0.f);
 
 } // namespace hmap

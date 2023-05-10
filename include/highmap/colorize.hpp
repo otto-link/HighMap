@@ -36,9 +36,6 @@ enum cmap : int
  * @return std::vector<uint8_t> Vector containing colors (size : shape[0] *
  * shape[1] * 3 channels for RGB).
  */
-std::vector<uint8_t> colorize(hmap::Array &array,
-                              float        vmin,
-                              float        vmax,
-                              int          cmap);
+std::vector<uint8_t> colorize(Array &array, float vmin, float vmax, int cmap);
 
 } // namespace hmap
