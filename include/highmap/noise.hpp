@@ -43,7 +43,6 @@ namespace hmap
  *
  * **Result**
  * @image html ex_fbm_perlin.png
- *
  */
 
 Array fbm_perlin(std::vector<int>   shape,
@@ -82,7 +81,6 @@ Array fbm_perlin(std::vector<int>   shape,
  * @image html ex_multifractal_perlin.png
  *
  * @see {@link fbm_perlin}
- *
  */
 Array multifractal_perlin(std::vector<int>   shape,
                           std::vector<float> kw,
@@ -116,7 +114,6 @@ Array multifractal_perlin(std::vector<int>   shape,
  * @image html ex_perlin.png
  *
  * @see {@link fbm_perlin}
- *
  */
 hmap::Array perlin(std::vector<int>   shape,
                    std::vector<float> kw,
@@ -139,7 +136,6 @@ hmap::Array perlin(std::vector<int>   shape,
  * @image html ex_white.png
  *
  * @see {@link white_sparse}
- *
  */
 Array white(std::vector<int> shape, float a, float b, uint seed);
 
@@ -161,7 +157,6 @@ Array white(std::vector<int> shape, float a, float b, uint seed);
  * @image html ex_white_sparse.png
  *
  * @see {@link white}
- *
  */
 Array white_sparse(std::vector<int> shape,
                    float            a,
