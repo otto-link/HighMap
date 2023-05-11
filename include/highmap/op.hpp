@@ -64,6 +64,24 @@ void clamp_min(Array &array, float vmin);
 void clamp_max(Array &array, float vmax);
 
 /**
+ * @brief Return the Euclidean distance transform.
+ *
+ * Exact transform based on Meijster et al. algorithm @cite Meijster2000.
+ *
+ * @param array Input array to be transformed, will be converted into binary: 1
+ * wherever input equates to True, 0 elsewhere.
+ * @return Array Reference to the output array.
+ *
+ * **Example**
+ * @include ex_distance_transform.cpp
+ *
+ * **Result**
+ * @image html ex_distance_transform0.png
+ * @image html ex_distance_transform1.png
+ */
+Array distance_transform(Array &array);
+
+/**
  * @brief Linear extrapolation of values at the borders (i = 0, j = 0, ...)
  * based on inner values.
  *
