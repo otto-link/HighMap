@@ -246,6 +246,27 @@ void remap(Array &array,
 void remap(Array &array, float vmin = 0, float vmax = 1); ///< @overload
 
 /**
+ * @brief Enforce values at the boundaries of the array.
+ *
+ * @param array Input array.
+ * @param values Value at the borders {east, west, south, north}.
+ * @param buffer_sizes Buffer size at the borders {east, west, south, north}.
+ *
+ * **Example**
+ * @include ex_set_borders.cpp
+ *
+ * **Result**
+ * @image html ex_set_borders.png
+ */
+void set_borders(Array             &array,
+                 std::vector<float> border_values,
+                 std::vector<int>   buffer_sizes);
+
+void set_borders(Array &array,
+                 float  border_values,
+                 int    buffer_sizes); ///< @overload
+
+/**
  * @brief Apply sharpening filter (based on Laplace operator).
  *
  * @param array Input array.
