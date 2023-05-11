@@ -18,6 +18,40 @@ namespace hmap
 {
 
 /**
+ * @brief Return the approximate hypothenuse of two numbers.
+ *
+ * @param a a
+ * @param b a
+ * @return float ~sqrt(a**2 + b**2)
+ */
+inline float approx_hypot(float a, float b)
+{
+  a = std::abs(a);
+  b = std::abs(b);
+  if (a > b)
+    std::swap(a, b);
+  return 0.414 * a + b;
+}
+
+/**
+ * @brief Return the approximate inverse square root of a number.
+ *
+ * @param a a
+ * @return float ~1/sqrt(a)
+ */
+inline float approx_rsqrt(float a)
+{
+  union
+  {
+    float    f;
+    uint32_t i;
+  } conv = {.f = a};
+  conv.i = 0x5f3759df - (conv.i >> 1);
+  conv.f *= 1.5F - (a * 0.5F * conv.f * conv.f);
+  return conv.f;
+}
+
+/**
  * @brief Return the square root of the sum of the squares of the two input
  * arrays.
  *
