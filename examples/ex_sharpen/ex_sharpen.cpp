@@ -12,6 +12,9 @@ int main(void)
   int                      seed = 1;
 
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
+  auto        z0 = z;
+
   hmap::sharpen(z);
-  z.to_png("ex_sharpen.png", hmap::cmap::gray);
+
+  hstack(z0, z).to_png("ex_sharpen.png", hmap::cmap::gray);
 }
