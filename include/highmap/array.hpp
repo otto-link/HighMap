@@ -431,6 +431,13 @@ public:
   }
 
   /**
+   * @brief Export array a raw binary file.
+   *
+   * @param fname File name.
+   */
+  void to_file(std::string fname);
+
+  /**
    * @brief Export array as png image file.
    *
    * @param fname File name.

@@ -190,6 +190,15 @@ Array gradient_y(Array &array);
 Array gradient_talus(Array &array);
 
 /**
+ * @brief Apply a low-pass Laplace filter.
+ *
+ * @param array Input array (elements expected to be in [0, 1]).
+ * @param sigma Filtering intensity, in [0, 1].
+ * @param iterations Number of iterations.
+ */
+void laplace(Array &array, float sigma = 0.2, int iterations = 3);
+
+/**
  * @brief Return the element-wise maximum of two arrays.
  *
  * @param array1 First array.

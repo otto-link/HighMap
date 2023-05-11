@@ -1,4 +1,5 @@
 #include <cstdint>
+#include <fstream>
 #include <iostream>
 #include <memory>
 #include <string>
@@ -21,6 +22,18 @@ void Array::infos(std::string msg)
   std::cout << " - min: " << this->min() << std::endl;
   std::cout << " - max: " << this->max() << std::endl;
   std::cout << " - ptp: " << this->ptp() << std::endl;
+}
+
+void Array::to_file(std::string fname)
+{
+  std::ofstream f;
+  f.open(fname, std::ios::binary);
+
+  for (auto &v : this->vector)
+  {
+    f.write(reinterpret_cast<const char *>(&v), sizeof(float));
+  }
+  f.close();
 }
 
 void Array::to_png(std::string fname, int cmap)
