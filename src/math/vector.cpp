@@ -41,4 +41,15 @@ std::vector<float> linspace_jitted(float start,
   return v;
 }
 
+std::vector<float> random_vector(float min, float max, int num, int seed)
+{
+  std::vector<float>                    v(num);
+  std::mt19937                          gen(seed);
+  std::uniform_real_distribution<float> dis(min, max);
+
+  for (auto &v : v)
+    v = dis(gen);
+  return v;
+}
+
 } // namespace hmap
