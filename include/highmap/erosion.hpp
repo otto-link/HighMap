@@ -14,6 +14,26 @@ namespace hmap
 {
 
 /**
+ * @brief Fill the depressions of the heightmap using the Planchon-Darboux
+ * algorithm.
+ *
+ * Fill heightmap depressions to ensure that every cell can be connected to the
+ * boundaries following a downward slope @cite Planchon2002.
+ *
+ * @param z Input array.
+ * @param iterations Number of iterations.
+ * @param epsilon
+ *
+ * **Example**
+ * @include ex_depression_filling.cpp
+ *
+ * **Result**
+ * @image html ex_depression_filling0.png
+ * @image html ex_depression_filling1.png
+ */
+void depression_filling(Array &z, int iterations = 1000, float epsilon = 1e-4f);
+
+/**
  * @brief Apply thermal weathering erosion.
  *
  * @todo optimize memory usage (to avoid large constant arrays).

@@ -431,6 +431,23 @@ public:
   }
 
   /**
+   * @brief Set the value of a slice {i1, i2, j1, j2} of data.
+   *
+   * @param idx Slice extent indices: {i1, i2, j1, j2}.
+   * @param value New value.
+   */
+  inline void set_slice(std::vector<int> idx, float value)
+  {
+    for (int i = idx[0]; i < idx[1]; i++)
+    {
+      for (int j = idx[2]; j < idx[3]; j++)
+      {
+        (*this)(i, j) = value;
+      }
+    }
+  }
+
+  /**
    * @brief Export array a raw binary file.
    *
    * @param fname File name.
