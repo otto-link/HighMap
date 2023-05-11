@@ -406,6 +406,21 @@ public:
   }
 
   /**
+   * @brief Return a resampled array of shape 'new_shape' using bilinear
+   * interpolation.
+   *
+   * @param new_shape Target shape.
+   * @return Array Resampled array.
+   *
+   * **Example**
+   * @include ex_resample_to_shape.cpp
+   *
+   * **Result**
+   * @image html ex_resample_to_shape.png
+   */
+  Array resample_to_shape(std::vector<int> new_shape);
+
+  /**
    * @brief Return of the array values.
    *
    * @return float
