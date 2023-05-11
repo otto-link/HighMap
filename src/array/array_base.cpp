@@ -25,7 +25,7 @@ Array Array::operator*(float value)
   return *this;
 }
 
-Array Array::operator*(Array &array)
+Array Array::operator*(const Array &array)
 {
   Array array_out = Array(array.shape);
 
@@ -57,7 +57,7 @@ Array Array::operator/(float value)
   return *this;
 }
 
-Array Array::operator/(Array &array)
+Array Array::operator/(const Array &array)
 {
   Array array_out = Array(array.shape);
 
@@ -89,7 +89,7 @@ Array Array::operator+(float value)
   return *this;
 }
 
-Array Array::operator+(Array &array)
+Array Array::operator+(const Array &array)
 {
   Array array_out = Array(array.shape);
 
@@ -130,7 +130,7 @@ Array Array::operator-(float value)
   return *this;
 }
 
-Array Array::operator-(Array &array)
+Array Array::operator-(const Array &array)
 {
   Array array_out = Array(array.shape);
 
@@ -142,7 +142,7 @@ Array Array::operator-(Array &array)
   return array_out;
 }
 
-Array operator-(float value, const Array &array) // friend function
+Array operator-(const float value, const Array &array) // friend function
 {
   Array array_out = Array(array.shape);
 
