@@ -120,6 +120,31 @@ void hydraulic_particle(Array &z,
                         float  evap_rate = 0.001f); ///< @overload
 
 /**
+ * @brief Perform sediment deposition combined with thermal erosion.
+ *
+ * @todo deposition map
+ *
+ * @param z Input array.
+ * @param talus Talus limit.
+ * @param max_deposition Maximum height of sediment deposition.
+ * @param iterations Number of iterations.
+ * @param thermal_erosion_subiterations Number of thermal erosion iterations for
+ * each pass.
+ * 
+ * **Example**
+ * @include ex_sediment_deposition.cpp
+ *
+ * **Result**
+ * @image html ex_sediment_deposition0.png
+ * @image html ex_sediment_deposition1.png
+ */
+void sediment_deposition(Array &z,
+                         Array &talus,
+                         float  max_deposition = 0.01,
+                         int    iterations = 5,
+                         int    thermal_subiterations = 10);
+
+/**
  * @brief Stratify the heightmap by creating a series of layers with elevations
  * corrected by a gamma factor.
  *
