@@ -75,6 +75,73 @@ void hydraulic_musgrave(Array &z,
                         float  evap_rate = 0.01f); ///< @overload
 
 /**
+ * @brief Apply hydraulic erosion using a particle based procedure.
+ *
+ * Adapted from @cite Beyer2015 and @cite Hjulstroem1935.
+ *
+ * @param z Input array.
+ * @param moisture_map Moisture map (quantity of rain), expected to be in [0,
+ * 1].
+ * @param seed Random seed number.
+ * @param nparticles Number of particles.
+ * @param c_radius Particle radius in pixel(s) (>= 0).
+ * @param c_capacity Sediment capacity.
+ * @param c_deposition Deposition coefficient.
+ * @param c_erosion Erosion coefficient.
+ * @param drag_rate Drag rate.
+ * @param evap_rate Particle evaporation rate.
+ *
+ * **Example**
+ * @include ex_hydraulic_particle.cpp
+ *
+ * **Result**
+ * @image html ex_hydraulic_particle0.png
+ * @image html ex_hydraulic_particle1.png
+ */
+void hydraulic_particle(Array &z,
+                        Array &moisture_map,
+                        int    nparticles,
+                        int    seed,
+                        int    c_radius = 0,
+                        float  c_capacity = 20.f,
+                        float  c_erosion = 0.05f,
+                        float  c_deposition = 0.05f,
+                        float  drag_rate = 0.001f,
+                        float  evap_rate = 0.001f);
+
+void hydraulic_particle(Array &z,
+                        int    nparticles,
+                        int    seed,
+                        int    c_radius = 0,
+                        float  c_capacity = 20.f,
+                        float  c_erosion = 0.05f,
+                        float  c_deposition = 0.05f,
+                        float  drag_rate = 0.001f,
+                        float  evap_rate = 0.001f); ///< @overload
+
+/**
+ * @brief Stratify the heightmap by creating a series of layers with elevations
+ * corrected by a gamma factor.
+ *
+ * @param z Input array.
+ * @param hs Layer elevations. For 'n' layers, 'n + 1' values must be provided.
+ * @param gamma Layer gamma correction factors, 'n' values.
+ *
+ * @see gamma_correction.
+ *
+ * **Example**
+ * @include ex_stratify.cpp
+ *
+ * **Result**
+ * @image html ex_stratify0.png
+ * @image html ex_stratify1.png
+ */
+void stratify(Array &z, std::vector<float> hs, std::vector<float> gamma);
+void stratify(Array             &z,
+              std::vector<float> hs,
+              float              gamma = 0.5f); ///< @overload
+
+/**
  * @brief Apply thermal weathering erosion.
  *
  * @todo optimize memory usage (to avoid large constant arrays).
@@ -115,28 +182,6 @@ void thermal(Array &z,
              int    iterations = 50,
              float  ct = 0.4,
              bool   post_filtering = true); ///< @overload
-
-/**
- * @brief Stratify the heightmap by creating a series of layers with elevations
- * corrected by a gamma factor.
- *
- * @param z Input array.
- * @param hs Layer elevations. For 'n' layers, 'n + 1' values must be provided.
- * @param gamma Layer gamma correction factors, 'n' values.
- *
- * @see gamma_correction.
- *
- * **Example**
- * @include ex_stratify.cpp
- *
- * **Result**
- * @image html ex_stratify0.png
- * @image html ex_stratify1.png
- */
-void stratify(Array &z, std::vector<float> hs, std::vector<float> gamma);
-void stratify(Array             &z,
-              std::vector<float> hs,
-              float              gamma = 0.5f); ///< @overload
 
 /**
  * @brief Apply thermal weathering erosion with automatic determination of the
