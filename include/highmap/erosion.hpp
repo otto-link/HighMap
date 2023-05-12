@@ -34,6 +34,47 @@ namespace hmap
 void depression_filling(Array &z, int iterations = 1000, float epsilon = 1e-4f);
 
 /**
+ * @brief Apply cell-based hydraulic erosion/deposition of Musgrave et al.
+ * (1989).
+ *
+ * A simple grid-based erosion technique was published by Musgrave, Kolb, and
+ * Mace in 1989 @cite Musgrave1989.
+ *
+ * @param z Input array.
+ * @param moisture_map Moisture map (quantity of rain), expected to be in [0,
+ * 1].
+ * @param iterations Number of iterations.
+ * @param c_capacity Sediment capacity.
+ * @param c_deposition Deposition coefficient.
+ * @param c_erosion Erosion coefficient.
+ * @param water_level Water level.
+ * @param evap_rate Water evaporation rate.
+ *
+ * **Example**
+ * @include ex_hydraulic_musgrave.cpp
+ *
+ * **Result**
+ * @image html ex_hydraulic_musgrave0.png
+ * @image html ex_hydraulic_musgrave1.png
+ */
+void hydraulic_musgrave(Array &z,
+                        Array &moisture_map,
+                        int    iterations = 100,
+                        float  c_capacity = 1.f,
+                        float  c_erosion = 0.1f,
+                        float  c_deposition = 0.1f,
+                        float  water_level = 0.01f,
+                        float  evap_rate = 0.01f);
+
+void hydraulic_musgrave(Array &z,
+                        int    iterations = 100,
+                        float  c_capacity = 1.f,
+                        float  c_erosion = 0.1f,
+                        float  c_deposition = 0.1f,
+                        float  water_level = 0.01f,
+                        float  evap_rate = 0.01f); ///< @overload
+
+/**
  * @brief Apply thermal weathering erosion.
  *
  * @todo optimize memory usage (to avoid large constant arrays).
