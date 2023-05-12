@@ -117,6 +117,28 @@ void thermal(Array &z,
              bool   post_filtering = true); ///< @overload
 
 /**
+ * @brief Stratify the heightmap by creating a series of layers with elevations
+ * corrected by a gamma factor.
+ *
+ * @param z Input array.
+ * @param hs Layer elevations. For 'n' layers, 'n + 1' values must be provided.
+ * @param gamma Layer gamma correction factors, 'n' values.
+ *
+ * @see gamma_correction.
+ *
+ * **Example**
+ * @include ex_stratify.cpp
+ *
+ * **Result**
+ * @image html ex_stratify0.png
+ * @image html ex_stratify1.png
+ */
+void stratify(Array &z, std::vector<float> hs, std::vector<float> gamma);
+void stratify(Array             &z,
+              std::vector<float> hs,
+              float              gamma = 0.5f); ///< @overload
+
+/**
  * @brief Apply thermal weathering erosion with automatic determination of the
  * bedrock.
  *
