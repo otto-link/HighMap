@@ -199,6 +199,16 @@ Array gradient_talus(Array &array);
 void laplace(Array &array, float sigma = 0.2, int iterations = 3);
 
 /**
+ * @brief Return the linear interpolation between two arrays by a parameter t.
+ *
+ * @param array1 First array.
+ * @param array2 Second array.
+ * @param t Interpolation parameter (in [0, 1]).
+ * @return Array Interpolated array.
+ */
+Array lerp(Array &array1, Array &array2, Array &t);
+
+/**
  * @brief Return the element-wise maximum of two arrays.
  *
  * @param array1 First array.
@@ -307,5 +317,22 @@ void set_borders(Array &array,
  * @image html ex_sharpen.png
  */
 void sharpen(Array &array, float ratio = 1.f);
+
+/**
+ * @brief Steepen array values by applying a nonlinear convection operator in a
+ * given direction (see to Burger's equarion for instance).
+ *
+ * @todo verify results.
+ *
+ * @param array Input array (elements expected to be in [-1, 1]).
+ * @param angle Steepening direction (in degrees).
+ * @param iterations Number of iterations.
+ * @param dt "Time step", can be chosen smaller than 1 for fine tuning of the
+ * steepening effect.
+ */
+void steepen_convective(Array &array,
+                        float  angle,
+                        int    iterations = 1,
+                        float  dt = 1);
 
 } // namespace hmap

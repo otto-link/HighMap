@@ -130,7 +130,7 @@ void hydraulic_particle(Array &z,
  * @param iterations Number of iterations.
  * @param thermal_erosion_subiterations Number of thermal erosion iterations for
  * each pass.
- * 
+ *
  * **Example**
  * @include ex_sediment_deposition.cpp
  *

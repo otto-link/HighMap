@@ -65,4 +65,19 @@ void sharpen(Array &array, float ratio)
   array = (1.f - ratio) * array + ratio * lp;
 }
 
+void steepen_convective(Array &array, float angle, int iterations, float dt)
+{
+  for (int it = 0; it < iterations; it++)
+  {
+    float alpha = angle / 180.f * M_PI;
+    float ca = std::cos(alpha);
+    float sa = std::sin(alpha);
+
+    Array dx = gradient_x(array);
+    Array dy = gradient_y(array);
+
+    array = array + dt * (ca * dx + sa * dy);
+  }
+}
+
 } // namespace hmap
