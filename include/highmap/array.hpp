@@ -92,7 +92,7 @@ public:
    * @param value Scalar value.
    * @return Array Reference to the current object.
    */
-  Array operator*(float value);
+  Array operator*(const float value);
 
   /**
    * @brief Multiplication overloading (element-wise product by another array).
@@ -109,7 +109,7 @@ public:
    * @param array Another Array.
    * @return Array Reference to the resulting object.
    */
-  friend Array operator*(float value, const Array &array);
+  friend Array operator*(const float value, const Array &array);
 
   /**
    * @brief Division overloading (right divide by a scalar).
@@ -117,7 +117,7 @@ public:
    * @param value Scalar value.
    * @return Array Reference to the current object.
    */
-  Array operator/(float value);
+  Array operator/(const float value);
 
   /**
    * @brief Division overloading (element-wise division by another array).
@@ -134,7 +134,7 @@ public:
    * @param array Another Array.
    * @return Array Reference to the resulting object.
    */
-  friend Array operator/(float value, const Array &array);
+  friend Array operator/(const float value, const Array &array);
 
   /**
    * @brief Addition overloading (right add by a scalar).
@@ -142,7 +142,7 @@ public:
    * @param value Scalar value.
    * @return Array Reference to the current object.
    */
-  Array operator+(float value);
+  Array operator+(const float value);
 
   /**
    * @brief Addition overloading (element-wise addition by another array).
@@ -159,7 +159,7 @@ public:
    * @param array Another Array.
    * @return Array Reference to the resulting object.
    */
-  friend Array operator+(float value, const Array &array);
+  friend Array operator+(const float value, const Array &array);
 
   /**
    * @brief Unary minus overloading.
@@ -174,7 +174,7 @@ public:
    * @param value Scalar value.
    * @return Array Reference to the current object.
    */
-  Array operator-(float value);
+  Array operator-(const float value);
 
   /**
    * @brief Subtraction overloading (element-wise substract by another array).
@@ -191,7 +191,7 @@ public:
    * @param array Another Array.
    * @return Array Reference to the resulting object.
    */
-  friend Array operator-(float value, const Array &array);
+  friend Array operator-(const float value, const Array &array);
 
   /**
    * @brief Call overloading, return array value at index (i, j).

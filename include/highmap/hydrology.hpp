@@ -32,6 +32,28 @@ namespace hmap
 Array flow_accumulation_d8(Array &z);
 
 /**
+ * @brief Return flow accumulation in each cell using the multiple flow
+ * direction model \cite Qin2007
+ *
+ * @param z  Input array.
+ * @param talus_ref Reference talus used to localy define the flow-partition
+ * exponent: small value of talus_ref will lead to thinner flow stream (@see
+ * flow_direction_dinf). The maximum talus value of the heighmap can be used as
+ * a reference.
+ * @return Array
+ *
+ * **Example**
+ * @include ex_flow_accumulation_dinf.cpp
+ *
+ * **Result**
+ * @image html ex_flow_accumulation_dinf0.png
+ * @image html ex_flow_accumulation_dinf1.png
+ *
+ * @see flow_direction_dinf, flow_accumulation_d8
+ */
+Array flow_accumulation_dinf(Array &z, float talus_ref);
+
+/**
  * @brief Return the direction of flow from each cell to its downslope neighbor
  * using the D8 model @cite Greenlee1987.
  *
@@ -48,5 +70,17 @@ Array flow_accumulation_d8(Array &z);
  * @see flow_accumulation_d8
  */
 Array flow_direction_d8(Array &z);
+
+/**
+ * @brief Return flow direction in each cell and for each directions using the
+ * multiple flow direction model \cite Qin2007
+ *
+ * @param z Input array.
+ * @param talus_ref Reference talus used to localy define the flow-partition
+ * exponent. Small value of talus_ref will lead to thinner flow stream. The
+ * maximum talus value of the heighmap can be used as a reference.
+ * @return std::vector<Array> Weight for each flow directions at every cells.
+ */
+std::vector<Array> flow_direction_dinf(Array &z, float talus_ref);
 
 } // namespace hmap

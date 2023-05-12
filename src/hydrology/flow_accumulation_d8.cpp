@@ -8,9 +8,6 @@
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 
-namespace hmap
-{
-
 // neighbor pattern search based on D8 flow direction neighborhood
 // coding
 
@@ -22,6 +19,9 @@ namespace hmap
 #define DJ {0, -1, -1, -1, 0, 1, 1, 1}
 #define C  {1.f, M_SQRT1_2, 1.f, M_SQRT1_2, 1.f, M_SQRT1_2, 1.f, M_SQRT1_2}
 // clang-format on
+
+namespace hmap
+{
 
 Array flow_accumulation_d8(Array &z)
 {
