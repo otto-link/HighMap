@@ -1,4 +1,3 @@
-
 #include <cmath>
 
 #include "highmap/array.hpp"

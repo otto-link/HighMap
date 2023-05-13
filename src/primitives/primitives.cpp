@@ -6,9 +6,9 @@
 namespace hmap
 {
 
-hmap::Array cone(std::vector<int> shape)
+Array cone(std::vector<int> shape)
 {
-  hmap::Array array = hmap::Array(shape);
+  Array array = Array(shape);
 
   int ri = (int)(0.5f * ((float)shape[0] - 1.f));
   int rj = (int)(0.5f * ((float)shape[1] - 1.f));
@@ -27,14 +27,14 @@ hmap::Array cone(std::vector<int> shape)
   return array;
 }
 
-hmap::Array cone_talus(float height, float talus)
+Array cone_talus(float height, float talus)
 {
   // define output array size so that starting from an amplitude h,
   // zero is indeed reached with provided slope (talus) over the
   // half-width of the domain (since we build a cone)
   int n = std::max(1, (int)(2.f * height / talus));
 
-  hmap::Array array = hmap::Array({n, n});
+  Array array = Array({n, n});
 
   if (n > 0)
     array = height * cone({n, n});
@@ -44,9 +44,27 @@ hmap::Array cone_talus(float height, float talus)
   return array;
 }
 
-hmap::Array constant(std::vector<int> shape, float value)
+Array disk(std::vector<int> shape)
 {
-  hmap::Array array = hmap::Array(shape);
+  Array array = Array(shape);
+
+  int ri = (int)(0.5f * ((float)shape[0] - 1.f));
+  int rj = (int)(0.5f * ((float)shape[1] - 1.f));
+
+  for (int i = 0; i < array.shape[0]; i++)
+  {
+    for (int j = 0; j < array.shape[1]; j++)
+    {
+      if ((i - ri) * (i - ri) + (j - rj) * (j - rj) <= ri * rj)
+        array(i, j) = 1.f;
+    }
+  }
+  return array;
+}
+
+Array constant(std::vector<int> shape, float value)
+{
+  Array array = Array(shape);
   for (auto &v : array.vector)
     v = value;
   return array;
@@ -57,7 +75,7 @@ Array plane(std::vector<int>   shape,
             float              yaw_angle,
             std::vector<float> xyz_center)
 {
-  hmap::Array array = hmap::Array(shape);
+  Array array = Array(shape);
   return array;
 }
 

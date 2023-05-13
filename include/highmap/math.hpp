@@ -48,6 +48,71 @@ inline float approx_rsqrt(float a)
 }
 
 /**
+ * @brief Return the convolution product of the array with a 1D kernel (row, 'i'
+ * direction).
+ *
+ * @param array Input array.
+ * @param kernel Kernel (1D).
+ * @return Array Convolution result.
+ *
+ * **Example**
+ * @include ex_convolve1d_ij.cpp
+ *
+ * **Result**
+ * @image html ex_convolve1d_ij0.png
+ * @image html ex_convolve1d_ij1.png
+ *
+ * @see {@link convolve1d_j}
+ */
+Array convolve1d_i(Array &array, const std::vector<float> &kernel);
+
+/**
+ * @brief Return the convolution product of the array with a 1D kernel (column,
+ * 'j' direction).
+ *
+ * @param array Input array.
+ * @param kernel Kernel (1D).
+ * @return Array Convolution result.
+ *
+ * **Example**
+ * @include ex_convolve1d_ij.cpp
+ *
+ * **Result**
+ * @image html ex_convolve1d_ij0.png
+ * @image html ex_convolve1d_ij1.png
+ *
+ * @see {@link convolve1d_i}
+ */
+Array convolve1d_j(Array &array, const std::vector<float> &kernel);
+
+Array convolve2d(Array &array, Array &kernel);
+
+Array convolve2d_truncated(Array &array, Array &kernel);
+
+/**
+ * @brief Return the approximate convolution product of the array with a
+ * Singular Value Decomposition (SVD) of a kernel.
+ *
+ * See reference @cite McGraw2014 and this post
+ * https://bartwronski.com/2020/02/03/separate-your-filters-svd-and-low-rank-approximation-of-image-filters/
+ *
+ * @param z Input array.
+ * @param kernel Kernel array.
+ * @param rank Approximation rank: the first 'rank' singular values/vectors are
+ * used to approximate the convolution product.
+ * @return Array Convolution result.
+ *
+ * **Example**
+ * @include ex_convolve2d_svd.cpp
+ *
+ * **Result**
+ * @image html ex_convolve2d_svd0.png
+ * @image html ex_convolve2d_svd1.png
+ * @image html ex_convolve2d_svd2.png
+ */
+Array convolve2d_svd(Array &z, Array &kernel, int rank = 3);
+
+/**
  * @brief Return the square root of the sum of the squares of the two input
  * arrays.
  *

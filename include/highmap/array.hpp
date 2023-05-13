@@ -11,6 +11,8 @@
 #pragma once
 
 #include <algorithm>
+#include <iomanip>
+#include <iostream>
 #include <numeric>
 #include <string>
 #include <vector>
@@ -210,6 +212,20 @@ public:
   //----------------------------------------
 
   /**
+   * @brief Return a column 'j' as a std::vector.
+   *
+   * @param j Colunm index.
+   * @return std::vector<float>
+   */
+  inline std::vector<float> col_to_vector(int j)
+  {
+    std::vector<float> vec(this->shape[0]);
+    for (int i = 0; i < this->shape[0]; i++)
+      vec[i] = (*this)(i, j);
+    return vec;
+  }
+
+  /**
    * @brief Distribute a value 'amount' around the cell (i, j) using a
    * deposition kernel.
    *
@@ -395,6 +411,23 @@ public:
   }
 
   /**
+   * @brief Print vector values to stdout.
+   *
+   */
+  inline void print()
+  {
+    std::cout << std::fixed << std::setprecision(6) << std::setfill('0');
+    for (int j = shape[1] - 1; j > -1; j--)
+    {
+      for (int i = 0; i < shape[0]; i++)
+      {
+        std::cout << std::setw(5) << (*this)(i, j) << " ";
+      }
+      std::cout << std::endl;
+    }
+  }
+
+  /**
    * @brief Return the peak-to-peak amplitude (i.e. max - min) of the array
    * values.
    *
@@ -419,6 +452,20 @@ public:
    * @image html ex_resample_to_shape.png
    */
   Array resample_to_shape(std::vector<int> new_shape);
+
+  /**
+   * @brief Return a column 'i' as a std::vector.
+   *
+   * @param i Row index.
+   * @return std::vector<float>
+   */
+  inline std::vector<float> row_to_vector(int i)
+  {
+    std::vector<float> vec(this->shape[1]);
+    for (int j = 0; j < this->shape[1]; j++)
+      vec[j] = (*this)(i, j);
+    return vec;
+  }
 
   /**
    * @brief Return of the array values.

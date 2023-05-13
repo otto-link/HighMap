@@ -137,6 +137,16 @@ void gain(Array &array, float gain);
 void gamma_correction(Array &array, float gamma);
 
 /**
+ * @brief Return an array with buffers at the boundaries (values filled by
+ * symmetry).
+ *
+ * @param array Input array.
+ * @param buffers Buffer size {east, west, south, north}.
+ * @return Array New array with buffers.
+ */
+Array generate_buffered_array(Array &array, std::vector<int> buffers);
+
+/**
  * @brief Return the polar angle of the gradient of an array.
  *
  * @param array Input array.
@@ -334,5 +344,14 @@ void steepen_convective(Array &array,
                         float  angle,
                         int    iterations = 1,
                         float  dt = 1);
+
+/**
+ * @brief Use symmetry for to fill values at the domain borders, over a given
+ * buffer depth.
+ *
+ * @param array Input array.
+ * @param buffer_sizes Buffer size at the borders {east, west, south, north}.
+ */
+void sym_borders(Array &array, std::vector<int> buffer_sizes);
 
 } // namespace hmap

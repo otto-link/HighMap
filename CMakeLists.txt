@@ -17,4 +17,3 @@ include_directories(
 add_subdirectory(${PROJECT_SOURCE_DIR}/doc)
 add_subdirectory(${PROJECT_SOURCE_DIR}/examples)
 add_subdirectory(${PROJECT_SOURCE_DIR}/tests)
-

@@ -34,6 +34,14 @@ Array cone(std::vector<int> shape);
 Array cone_talus(float height, float talus);
 
 /**
+ * @brief Return a disk foot-print.
+ *
+ * @param shape Array shape.
+ * @return Array New array.
+ */
+Array disk(std::vector<int> shape);
+
+/**
  * @brief Return an array based on a plane equation.
  *
  * @todo TO BE DONE.

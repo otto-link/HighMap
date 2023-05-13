@@ -41,6 +41,39 @@ void fill_borders(Array &array)
   }
 }
 
+Array generate_buffered_array(Array &array, std::vector<int> buffers)
+{
+  Array array_out = Array({array.shape[0] + buffers[0] + buffers[1],
+                           array.shape[1] + buffers[2] + buffers[3]});
+
+  for (int i = 0; i < array.shape[0]; i++)
+    for (int j = 0; j < array.shape[1]; j++)
+      array_out(i + buffers[0], j + buffers[2]) = array(i, j);
+
+  int i1 = buffers[0];
+  int i2 = buffers[1];
+  int j1 = buffers[2];
+  int j2 = buffers[3];
+
+  for (int i = 0; i < i1; i++)
+    for (int j = j1; j < array_out.shape[1] - j2; j++)
+      array_out(i, j) = array_out(2 * i1 - i, j);
+
+  for (int i = array_out.shape[0] - i2; i < array_out.shape[0]; i++)
+    for (int j = j1; j < array_out.shape[1] - j2; j++)
+      array_out(i, j) = array_out(2 * (array_out.shape[0] - i2) - i - 1, j);
+
+  for (int i = 0; i < array_out.shape[0]; i++)
+    for (int j = 0; j < j1; j++)
+      array_out(i, j) = array_out(i, 2 * j1 - j);
+
+  for (int i = 0; i < array_out.shape[0]; i++)
+    for (int j = array_out.shape[1] - j2; j < array_out.shape[1]; j++)
+      array_out(i, j) = array_out(i, 2 * (array_out.shape[1] - j2) - j - 1);
+
+  return array_out;
+}
+
 void set_borders(Array             &array,
                  std::vector<float> border_values,
                  std::vector<int>   buffer_sizes)
@@ -95,6 +128,47 @@ void set_borders(Array &array, float border_values, int buffer_sizes)
                            buffer_sizes,
                            buffer_sizes};
   set_borders(array, bv, bs);
+}
+
+void sym_borders(Array &array, std::vector<int> buffer_sizes)
+{
+  const int i1 = buffer_sizes[0];
+  const int i2 = buffer_sizes[1];
+  const int j1 = buffer_sizes[2];
+  const int j2 = buffer_sizes[3];
+
+  // fill-in the blanks...
+  for (int i = 0; i < i1; i++)
+  {
+    for (int j = j1; j < array.shape[1] - j2; j++)
+    {
+      array(i, j) = array(2 * i1 - i, j);
+    }
+  }
+
+  for (int i = array.shape[0] - i2; i < array.shape[0]; i++)
+  {
+    for (int j = j1; j < array.shape[1] - j2; j++)
+    {
+      array(i, j) = array(2 * (array.shape[0] - i2) - i - 1, j);
+    }
+  }
+
+  for (int i = 0; i < array.shape[0]; i++)
+  {
+    for (int j = 0; j < j1; j++)
+    {
+      array(i, j) = array(i, 2 * j1 - j);
+    }
+  }
+
+  for (int i = 0; i < array.shape[0]; i++)
+  {
+    for (int j = array.shape[1] - j2; j < array.shape[1]; j++)
+    {
+      array(i, j) = array(i, 2 * (array.shape[1] - j2) - j - 1);
+    }
+  }
 }
 
 } // namespace hmap
