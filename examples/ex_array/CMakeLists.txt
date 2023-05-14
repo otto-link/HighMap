@@ -1,6 +1,2 @@
-file(GLOB_RECURSE SOURCES
-  ex_array.cpp
-  "${PROJECT_SOURCE_DIR}/src/*.cpp"
-  )
-
-add_executable(ex_array ${SOURCES})
+add_executable(ex_array ex_array.cpp)
+target_link_libraries(ex_array highmap)

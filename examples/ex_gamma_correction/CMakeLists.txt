@@ -1,6 +1,2 @@
-file(GLOB_RECURSE SOURCES
-  ex_gamma_correction.cpp
-  "${PROJECT_SOURCE_DIR}/src/*.cpp"
-  )
-
-add_executable(ex_gamma_correction ${SOURCES})
+add_executable(ex_gamma_correction ex_gamma_correction.cpp)
+target_link_libraries(ex_gamma_correction highmap)

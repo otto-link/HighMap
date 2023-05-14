@@ -1,6 +1,2 @@
-file(GLOB_RECURSE SOURCES
-  ex_thermal.cpp
-  "${PROJECT_SOURCE_DIR}/src/*.cpp"
-  )
-
-add_executable(ex_thermal ${SOURCES})
+add_executable(ex_thermal ex_thermal.cpp)
+target_link_libraries(ex_thermal highmap)

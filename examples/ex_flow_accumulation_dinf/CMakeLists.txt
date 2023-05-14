@@ -1,6 +1,2 @@
-file(GLOB_RECURSE SOURCES
-  ex_flow_accumulation_dinf.cpp
-  "${PROJECT_SOURCE_DIR}/src/*.cpp"
-  )
-
-add_executable(ex_flow_accumulation_dinf ${SOURCES})
+add_executable(ex_flow_accumulation_dinf ex_flow_accumulation_dinf.cpp)
+target_link_libraries(ex_flow_accumulation_dinf highmap)

@@ -1,6 +1,2 @@
-file(GLOB_RECURSE SOURCES
-  ex_sharpen.cpp
-  "${PROJECT_SOURCE_DIR}/src/*.cpp"
-  )
-
-add_executable(ex_sharpen ${SOURCES})
+add_executable(ex_sharpen ex_sharpen.cpp)
+target_link_libraries(ex_sharpen highmap)

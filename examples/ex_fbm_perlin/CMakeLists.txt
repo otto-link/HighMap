@@ -1,6 +1,2 @@
-file(GLOB_RECURSE SOURCES
-  ex_fbm_perlin.cpp
-  "${PROJECT_SOURCE_DIR}/src/*.cpp"
-  )
-
-add_executable(ex_fbm_perlin ${SOURCES})
+add_executable(ex_fbm_perlin ex_fbm_perlin.cpp)
+target_link_libraries(ex_fbm_perlin highmap)

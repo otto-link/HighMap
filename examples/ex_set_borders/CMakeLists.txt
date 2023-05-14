@@ -1,6 +1,2 @@
-file(GLOB_RECURSE SOURCES
-  ex_set_borders.cpp
-  "${PROJECT_SOURCE_DIR}/src/*.cpp"
-  )
-
-add_executable(ex_set_borders ${SOURCES})
+add_executable(ex_set_borders ex_set_borders.cpp)
+target_link_libraries(ex_set_borders highmap)

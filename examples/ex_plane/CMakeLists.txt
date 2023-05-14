@@ -1,6 +1,2 @@
-file(GLOB_RECURSE SOURCES
-  ex_plane.cpp
-  "${PROJECT_SOURCE_DIR}/src/*.cpp"
-  )
-
-add_executable(ex_plane ${SOURCES})
+add_executable(ex_plane ex_plane.cpp)
+target_link_libraries(ex_plane highmap)

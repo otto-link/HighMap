@@ -10,7 +10,6 @@ enable_testing()
 
 file(GLOB_RECURSE SOURCES
   main.cpp
-  "${PROJECT_SOURCE_DIR}/src/*.cpp"
   "${PROJECT_SOURCE_DIR}/tests/unittest/*.cpp"
   )
   
@@ -21,6 +20,7 @@ add_executable(
   
 target_link_libraries(
   unittest
+  highmap
   gtest
   gtest_main
 )
