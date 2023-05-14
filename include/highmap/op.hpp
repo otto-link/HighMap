@@ -311,6 +311,22 @@ void remap(Array &array,
 void remap(Array &array, float vmin = 0, float vmax = 1); ///< @overload
 
 /**
+ * @brief Return rugosity estimate (based on the skewness).
+ *
+ * @param z Input array.
+ * @param ir Square kernel footprint radius.
+ * @return Array Resulting array.
+ *
+ * **Example**
+ * @include ex_rugosity.cpp
+ *
+ * **Result**
+ * @image html ex_rugosity0.png
+ * @image html ex_rugosity1.png
+ */
+Array rugosity(Array &z, int ir);
+
+/**
  * @brief Enforce values at the boundaries of the array.
  *
  * @param array Input array.
