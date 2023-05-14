@@ -225,6 +225,24 @@ Array maximum_local(Array &array, int ir);
 Array maximum_smooth(Array &array1, Array &array2, float k = 0.2);
 
 /**
+ * @brief Return the 'local mean' based on a mean filter.
+ *
+ * @param array Input array.
+ * @param ir Square kernel footprint radius.
+ * @return Array Resulting array.
+ *
+ * **Example**
+ * @include ex_mean_local.cpp
+ *
+ * **Result**
+ * @image html ex_mean_local0.png
+ * @image html ex_mean_local1.png
+ *
+ * @see {@link maximum_local}, {@link minimum_local}
+ */
+Array mean_local(Array &array, int ir);
+
+/**
  * @brief Return the element-wise minimum of two arrays.
  *
  * @param array1 First array.

@@ -89,6 +89,43 @@ Array maximum_local(Array &array, int ir)
   return array_out;
 }
 
+Array mean_local(Array &array, int ir)
+{
+  Array array_out = Array(array.shape);
+  Array array_tmp = Array(array.shape);
+
+  // row
+  for (int i = 0; i < array.shape[0]; i++)
+  {
+    int i1 = std::max(0, i - ir);
+    int i2 = std::min(array.shape[0], i + ir + 1);
+
+    for (int j = 0; j < array.shape[1]; j++)
+    {
+      float sum = 0.f;
+      for (int u = i1; u < i2; u++)
+        sum += array(u, j);
+      array_tmp(i, j) = sum / (float)(i2 - i1);
+    }
+  }
+
+  // column
+  for (int j = 0; j < array.shape[1]; j++)
+  {
+    int j1 = std::max(0, j - ir);
+    int j2 = std::min(array.shape[1], j + ir + 1);
+    for (int i = 0; i < array.shape[0]; i++)
+    {
+      float sum = 0.f;
+      for (int v = j1; v < j2; v++)
+        sum += array_tmp(i, v);
+      array_out(i, j) = sum / (float)(j2 - j1);
+    }
+  }
+
+  return array_out;
+}
+
 Array minimum_local(Array &array, int ir)
 {
   Array array_out = Array(array.shape);

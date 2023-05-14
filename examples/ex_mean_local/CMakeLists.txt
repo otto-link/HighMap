@@ -1,0 +1,2 @@
+add_executable(ex_mean_local ex_mean_local.cpp)
+target_link_libraries(ex_mean_local highmap)
