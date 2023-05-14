@@ -50,6 +50,104 @@ void laplace(Array &array, float sigma, int iterations)
   }
 }
 
+Array maximum_local1d_i(Array &array, int ir)
+{
+  Array array_out = Array(array.shape);
+
+  for (int i = 0; i < array.shape[0]; i++)
+  {
+    int i1 = std::max(0, i - ir);
+    int i2 = std::min(array.shape[0], i + ir + 1);
+
+    for (int j = 0; j < array.shape[1]; j++)
+    {
+      float max = array(i, j);
+      for (int u = i1; u < i2; u++)
+        if (array(u, j) > max)
+          max = array(u, j);
+      array_out(i, j) = max;
+    }
+  }
+  return array_out;
+}
+
+Array maximum_local1d_j(Array &array, int ir)
+{
+  Array array_out = Array(array.shape);
+
+  for (int j = 0; j < array.shape[1]; j++)
+  {
+    int j1 = std::max(0, j - ir);
+    int j2 = std::min(array.shape[1], j + ir + 1);
+    for (int i = 0; i < array.shape[0]; i++)
+    {
+      float max = array(i, j);
+      for (int v = j1; v < j2; v++)
+        if (array(i, v) > max)
+          max = array(i, v);
+      array_out(i, j) = max;
+    }
+  }
+  return array_out;
+}
+
+Array maximum_local(Array &array, int ir)
+{
+  Array array_out = Array(array.shape);
+  array_out = maximum_local1d_i(array, ir);
+  array_out = maximum_local1d_j(array_out, ir);
+  return array_out;
+}
+
+Array minimum_local1d_i(Array &array, int ir)
+{
+  Array array_out = Array(array.shape);
+
+  for (int i = 0; i < array.shape[0]; i++)
+  {
+    int i1 = std::max(0, i - ir);
+    int i2 = std::min(array.shape[0], i + ir + 1);
+
+    for (int j = 0; j < array.shape[1]; j++)
+    {
+      float min = 1e9;
+      for (int u = i1; u < i2; u++)
+        if (array(u, j) < min)
+          min = array(u, j);
+      array_out(i, j) = min;
+    }
+  }
+  return array_out;
+}
+
+Array minimum_local1d_j(Array &array, int ir)
+{
+  Array array_out = Array(array.shape);
+
+  for (int j = 0; j < array.shape[1]; j++)
+  {
+    int j1 = std::max(0, j - ir);
+    int j2 = std::min(array.shape[1], j + ir + 1);
+    for (int i = 0; i < array.shape[0]; i++)
+    {
+      float min = 1e9;
+      for (int v = j1; v < j2; v++)
+        if (array(i, v) < min)
+          min = array(i, v);
+      array_out(i, j) = min;
+    }
+  }
+  return array_out;
+}
+
+Array minimum_local(Array &array, int ir)
+{
+  Array array_out = Array(array.shape);
+  array_out = minimum_local1d_i(array, ir);
+  array_out = minimum_local1d_j(array_out, ir);
+  return array_out;
+}
+
 void sharpen(Array &array, float ratio)
 {
   Array lp = Array(array.shape);

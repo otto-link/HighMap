@@ -233,7 +233,7 @@ std::vector<float> linspace_jitted(float start,
  * @param exp Exponent.
  * @return Array Reference to the current object.
  */
-Array pow(Array &array, float exp);
+Array pow(const Array &array, float exp);
 
 /**
  * @brief Generate a vector filled with random values.

@@ -21,7 +21,7 @@ Array lerp(Array &array1, Array &array2, Array &t)
   return array1 * (1.f - t) + array2 * t;
 }
 
-Array pow(Array &array, float exp)
+Array pow(const Array &array, float exp)
 {
   Array array_out = Array(array.shape);
   std::transform(array.vector.begin(),

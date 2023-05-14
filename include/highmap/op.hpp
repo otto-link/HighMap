@@ -137,6 +137,21 @@ void gain(Array &array, float gain);
 void gamma_correction(Array &array, float gamma);
 
 /**
+ * @brief Return the Gaussian curvature @cite Kurita1992.
+ *
+ * @param z Input array.
+ * @return Array Resulting array.
+ *
+ * **Example**
+ * @include ex_curvature_gaussian.cpp
+ *
+ * **Result**
+ * @image html ex_curvature_gaussian0.png
+ * @image html ex_curvature_gaussian1.png
+ */
+Array curvature_gaussian(Array &z);
+
+/**
  * @brief Return an array with buffers at the boundaries (values filled by
  * symmetry).
  *
