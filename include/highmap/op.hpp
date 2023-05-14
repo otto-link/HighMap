@@ -175,6 +175,49 @@ Array lerp(Array &array1, Array &array2, Array &t);
 Array maximum(Array &array1, Array &array2);
 
 /**
+ * @brief Return the 'local maxima' based on a maximum filter along the 'i'
+ * direction (row).
+ *
+ * @param array Input array.
+ * @param ir Square kernel footprint radius.
+ * @return Array Resulting array.
+ *
+ * @see {@link minimum_local}, {@link maximum_local}
+ */
+Array maximum_local1d_i(Array &array, int ir);
+
+/**
+ * @brief Return the 'local maxima' based on a maximum filter along the 'j'
+ * direction (column).
+ *
+ * @param array Input array.
+ * @param ir Square kernel footprint radius.
+ * @return Array Resulting array.
+ *
+ * @see {@link minimum_local}, {@link maximum_local}
+ */
+Array maximum_local1d_j(Array &array, int ir);
+
+/**
+ * @brief Return the 'local maxima' based on a maximum filter.
+ *
+ * @param array Input array.
+ * @param ir Square kernel footprint radius.
+ * @return Array Resulting array.
+ *
+ * **Example**
+ * @include ex_maximum_local.cpp
+ *
+ * **Result**
+ * @image html ex_maximum_local0.png
+ * @image html ex_maximum_local1.png
+ * @image html ex_maximum_local2.png
+ *
+ * @see {@link minimum_local}
+ */
+Array maximum_local(Array &array, int ir);
+
+/**
  * @brief Return the polynomial cubic smooth element-wise maximum of two arrays.
  *
  * Smoothly blend the two arrays to get rid of the discontinuity of the
@@ -198,6 +241,49 @@ Array maximum_smooth(Array &array1, Array &array2, float k = 0.2);
  * @return Array Element-wise minimum array.
  */
 Array minimum(Array &array1, Array &array2);
+
+/**
+ * @brief Return the 'local minima' based on a minimum filter along the 'i'
+ * direction (row).
+ *
+ * @param array Input array.
+ * @param ir Square kernel footprint radius.
+ * @return Array Resulting array.
+ *
+ * @see {@link minimum_local}, {@link maximum_local}
+ */
+Array minimum_local1d_i(Array &array, int ir);
+
+/**
+ * @brief Return the 'local minima' based on a minimum filter along the 'j'
+ * direction (column).
+ *
+ * @param array Input array.
+ * @param ir Square kernel footprint radius.
+ * @return Array Resulting array.
+ *
+ * @see {@link minimum_local}, {@link maximum_local}
+ */
+Array minimum_local1d_j(Array &array, int ir);
+
+/**
+ * @brief Return the 'local maxima' based on a maximum filter.
+ *
+ * @param array Input array.
+ * @param ir Square kernel footprint radius.
+ * @return Array Resulting array.
+ *
+ * **Example**
+ * @include ex_maximum_local.cpp
+ *
+ * **Result**
+ * @image html ex_maximum_local0.png
+ * @image html ex_maximum_local1.png
+ * @image html ex_maximum_local2.png
+ *
+ * @see {@link minimum_local}
+ */
+Array minimum_local(Array &array, int ir);
 
 /**
  * @brief Return the polynomial cubic smooth element-wise minimum of two arrays.

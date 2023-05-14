@@ -21,16 +21,15 @@ file(
 )
 
 add_library(
-  highmap SHARED
+  ${PROJECT_NAME} STATIC # SHARED
   ${SOURCES}
 )
 
 target_include_directories(
   ${PROJECT_NAME}
   PUBLIC
-    $<INSTALL_INTERFACE:include/highmap>
-  PRIVATE
     ${PROJECT_SOURCE_DIR}/include
+  PRIVATE
     ${PROJECT_SOURCE_DIR}/external/FastNoiseLite/include
     ${PROJECT_SOURCE_DIR}/external/stb_image/include
     ${PROJECT_SOURCE_DIR}/src
