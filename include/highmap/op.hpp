@@ -190,30 +190,6 @@ Array lerp(Array &array1, Array &array2, Array &t);
 Array maximum(Array &array1, Array &array2);
 
 /**
- * @brief Return the 'local maxima' based on a maximum filter along the 'i'
- * direction (row).
- *
- * @param array Input array.
- * @param ir Square kernel footprint radius.
- * @return Array Resulting array.
- *
- * @see {@link minimum_local}, {@link maximum_local}
- */
-Array maximum_local1d_i(Array &array, int ir);
-
-/**
- * @brief Return the 'local maxima' based on a maximum filter along the 'j'
- * direction (column).
- *
- * @param array Input array.
- * @param ir Square kernel footprint radius.
- * @return Array Resulting array.
- *
- * @see {@link minimum_local}, {@link maximum_local}
- */
-Array maximum_local1d_j(Array &array, int ir);
-
-/**
  * @brief Return the 'local maxima' based on a maximum filter.
  *
  * @param array Input array.
@@ -256,30 +232,6 @@ Array maximum_smooth(Array &array1, Array &array2, float k = 0.2);
  * @return Array Element-wise minimum array.
  */
 Array minimum(Array &array1, Array &array2);
-
-/**
- * @brief Return the 'local minima' based on a minimum filter along the 'i'
- * direction (row).
- *
- * @param array Input array.
- * @param ir Square kernel footprint radius.
- * @return Array Resulting array.
- *
- * @see {@link minimum_local}, {@link maximum_local}
- */
-Array minimum_local1d_i(Array &array, int ir);
-
-/**
- * @brief Return the 'local minima' based on a minimum filter along the 'j'
- * direction (column).
- *
- * @param array Input array.
- * @param ir Square kernel footprint radius.
- * @return Array Resulting array.
- *
- * @see {@link minimum_local}, {@link maximum_local}
- */
-Array minimum_local1d_j(Array &array, int ir);
 
 /**
  * @brief Return the 'local maxima' based on a maximum filter.
