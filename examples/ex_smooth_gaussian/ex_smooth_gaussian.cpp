@@ -10,13 +10,13 @@ int main(void)
   const std::vector<int>   shape = {256, 256};
   const std::vector<float> res = {4.f, 4.f};
   int                      seed = 1;
-  int                      radius = 5;
+  int                      radius = 10;
 
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
-  hmap::Array zmin = hmap::minimum_local(z, radius);
-  hmap::Array zmax = hmap::maximum_local(z, radius);
+  hmap::Array z0 = z;
 
-  z.to_png("ex_maximum_local0.png", hmap::cmap::gray);
-  zmin.to_png("ex_maximum_local1.png", hmap::cmap::gray);
-  zmax.to_png("ex_maximum_local2.png", hmap::cmap::gray);
+  hmap::smooth_gaussian(z, radius);
+
+  z0.to_png("ex_smooth_gaussian0.png", hmap::cmap::gray);
+  z.to_png("ex_smooth_gaussian1.png", hmap::cmap::gray);
 }

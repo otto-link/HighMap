@@ -380,6 +380,21 @@ void steepen_convective(Array &array,
                         float  dt = 1);
 
 /**
+ * @brief Apply Gaussian filtering to the array.
+ *
+ * @param array Input array.
+ * @param ir Gaussian half-width.
+ *
+ * **Example**
+ * @include ex_smooth_gaussian.cpp
+ *
+ * **Result**
+ * @image html ex_smooth_gaussian0.png
+ * @image html ex_smooth_gaussian1.png
+ */
+void smooth_gaussian(Array &array, int ir);
+
+/**
  * @brief Use symmetry for to fill values at the domain borders, over a given
  * buffer depth.
  *

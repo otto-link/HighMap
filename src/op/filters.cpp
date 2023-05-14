@@ -4,6 +4,10 @@
 #include "highmap/math.hpp"
 #include "highmap/op.hpp"
 
+#define NSIGMA 2
+
+#include <iostream>
+
 namespace hmap
 {
 
@@ -179,6 +183,34 @@ void sharpen(Array &array, float ratio)
   }
   extrapolate_borders(lp);
   array = (1.f - ratio) * array + ratio * lp;
+}
+
+void smooth_gaussian(Array &array, int ir)
+{
+  // define Gaussian kernel (we keep NSIGMA standard deviations of the
+  // kernel support)
+  const int          nk = NSIGMA * (2 * ir + 1);
+  std::vector<float> k(nk);
+
+  float sum = 0.f;
+  float sig2 = (float)(ir * ir);
+  float x0 = (float)nk / 2.f;
+  for (int i = 0; i < nk; i++)
+  {
+    float x = (float)i - x0;
+    k[i] = std::exp(-0.5f * std::pow(x, 2.f) / sig2);
+    sum += k[i];
+  }
+
+  // normalize
+  for (int i = 0; i < nk; i++)
+  {
+    k[i] /= sum;
+  }
+
+  // eventually convolve
+  array = convolve1d_i(array, k);
+  array = convolve1d_j(array, k);
 }
 
 void steepen_convective(Array &array, float angle, int iterations, float dt)

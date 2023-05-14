@@ -1,0 +1,2 @@
+add_executable(ex_smooth_gaussian ex_smooth_gaussian.cpp)
+target_link_libraries(ex_smooth_gaussian highmap)
