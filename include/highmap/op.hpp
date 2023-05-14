@@ -389,8 +389,7 @@ void steepen_convective(Array &array,
  * @include ex_smooth_gaussian.cpp
  *
  * **Result**
- * @image html ex_smooth_gaussian0.png
- * @image html ex_smooth_gaussian1.png
+ * @image html ex_smooth_gaussian.png
  */
 void smooth_gaussian(Array &array, int ir);
 

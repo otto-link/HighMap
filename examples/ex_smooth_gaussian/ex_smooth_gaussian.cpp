@@ -2,6 +2,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/colorize.hpp"
+#include "highmap/io.hpp"
 #include "highmap/noise.hpp"
 #include "highmap/op.hpp"
 
@@ -17,6 +18,5 @@ int main(void)
 
   hmap::smooth_gaussian(z, radius);
 
-  z0.to_png("ex_smooth_gaussian0.png", hmap::cmap::gray);
-  z.to_png("ex_smooth_gaussian1.png", hmap::cmap::gray);
+  hmap::export_banner_png("ex_smooth_gaussian.png", {z0, z}, hmap::cmap::gray);
 }
