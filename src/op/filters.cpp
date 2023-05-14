@@ -6,8 +6,6 @@
 
 #define NSIGMA 2
 
-#include <iostream>
-
 namespace hmap
 {
 
@@ -183,6 +181,32 @@ void sharpen(Array &array, float ratio)
   }
   extrapolate_borders(lp);
   array = (1.f - ratio) * array + ratio * lp;
+}
+
+void smooth_cpulse(Array &array, int ir)
+{
+  // define kernel
+  const int          nk = 2 * ir + 1;
+  std::vector<float> k(nk);
+
+  float sum = 0.f;
+  float x0 = (float)nk / 2.f;
+  for (int i = 0; i < nk; i++)
+  {
+    float x = std::abs((float)i - x0) / (float)ir;
+    k[i] = 1.f - x * x * (3.f - 2.f * x);
+    sum += k[i];
+  }
+
+  // normalize
+  for (int i = 0; i < nk; i++)
+  {
+    k[i] /= sum;
+  }
+
+  // eventually convolve
+  array = convolve1d_i(array, k);
+  array = convolve1d_j(array, k);
 }
 
 void smooth_gaussian(Array &array, int ir)

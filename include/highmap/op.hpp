@@ -380,6 +380,26 @@ void steepen_convective(Array &array,
                         float  dt = 1);
 
 /**
+ * @brief Apply filtering to the array using convolution with a cubic pulse.
+ *
+ * Can be used as an alternative (with a much smaller support) to Gaussian
+ * smoothing. For direct comparison with Gaussian smoothing, 'ir' needs to be
+ * twice larger.
+ *
+ * @param array Input array.
+ * @param ir Pulse radius (half-width is half this radius).
+ *
+ * **Example**
+ * @include ex_smooth_cpulse.cpp
+ *
+ * **Result**
+ * @image html ex_smooth_cpulse.png
+ *
+ * @see {@link smooth_gaussian}
+ */
+void smooth_cpulse(Array &array, int ir);
+
+/**
  * @brief Apply Gaussian filtering to the array.
  *
  * @param array Input array.

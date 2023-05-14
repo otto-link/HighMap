@@ -1,0 +1,2 @@
+add_executable(ex_smooth_cpulse ex_smooth_cpulse.cpp)
+target_link_libraries(ex_smooth_cpulse highmap)
