@@ -147,59 +147,6 @@ void gamma_correction(Array &array, float gamma);
 Array generate_buffered_array(Array &array, std::vector<int> buffers);
 
 /**
- * @brief Return the polar angle of the gradient of an array.
- *
- * @param array Input array.
- * @param downward If set set true, return the polar angle of the downward
- * slope.
- * @return Array Gradient angle, in radians, in [-\pi, \pi].
- */
-Array gradient_angle(Array &array, bool downward = false);
-
-/**
- * @brief Return the gradient norm of an array.
- *
- * @param array Inupt array.
- * @return Array Gradient norm.
- *
- * **Example**
- * @include ex_gradient_norm.cpp
- *
- * **Result**
- * @image html ex_gradient_norm.png
- */
-Array gradient_norm(Array &array);
-
-/**
- * @brief Return the gradient in the 'x' (or 'i' index) of an array.
- *
- * @param array Inupt array.
- * @return Array Gradient.
- */
-Array gradient_x(Array &array);
-
-/**
- * @brief Return the gradient in the 'y' (or 'j' index) of an array.
- *
- * @param array Inupt array.
- * @return Array Gradient.
- */
-Array gradient_y(Array &array);
-
-/**
- * @brief Return the gradient talus slope of an array.
- *
- * Talus slope is locally define as the largest elevation difference between a
- * cell and its first neighbors.
- *
- * @see Thermal erosion: {@link thermal}.
- *
- * @param array Inupt array.
- * @return Array Gradient.
- */
-Array gradient_talus(Array &array);
-
-/**
  * @brief Apply a low-pass Laplace filter.
  *
  * @param array Input array (elements expected to be in [0, 1]).
