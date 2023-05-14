@@ -28,8 +28,7 @@ namespace hmap
  * @include ex_depression_filling.cpp
  *
  * **Result**
- * @image html ex_depression_filling0.png
- * @image html ex_depression_filling1.png
+ * @image html ex_depression_filling.png
  */
 void depression_filling(Array &z, int iterations = 1000, float epsilon = 1e-4f);
 
@@ -54,8 +53,7 @@ void depression_filling(Array &z, int iterations = 1000, float epsilon = 1e-4f);
  * @include ex_hydraulic_musgrave.cpp
  *
  * **Result**
- * @image html ex_hydraulic_musgrave0.png
- * @image html ex_hydraulic_musgrave1.png
+ * @image html ex_hydraulic_musgrave.png
  */
 void hydraulic_musgrave(Array &z,
                         Array &moisture_map,
@@ -95,8 +93,7 @@ void hydraulic_musgrave(Array &z,
  * @include ex_hydraulic_particle.cpp
  *
  * **Result**
- * @image html ex_hydraulic_particle0.png
- * @image html ex_hydraulic_particle1.png
+ * @image html ex_hydraulic_particle.png
  */
 void hydraulic_particle(Array &z,
                         Array &moisture_map,
@@ -135,8 +132,7 @@ void hydraulic_particle(Array &z,
  * @include ex_sediment_deposition.cpp
  *
  * **Result**
- * @image html ex_sediment_deposition0.png
- * @image html ex_sediment_deposition1.png
+ * @image html ex_sediment_deposition.png
  */
 void sediment_deposition(Array &z,
                          Array &talus,
@@ -158,8 +154,7 @@ void sediment_deposition(Array &z,
  * @include ex_stratify.cpp
  *
  * **Result**
- * @image html ex_stratify0.png
- * @image html ex_stratify1.png
+ * @image html ex_stratify.png
  */
 void stratify(Array &z, std::vector<float> hs, std::vector<float> gamma);
 void stratify(Array             &z,
@@ -186,8 +181,7 @@ void stratify(Array             &z,
  * @include ex_thermal.cpp
  *
  * **Result**
- * @image html ex_thermal0.png
- * @image html ex_thermal1.png
+ * @image html ex_thermal.png
  */
 void thermal(Array &z,
              Array &talus,
@@ -226,8 +220,7 @@ void thermal(Array &z,
  * @include ex_thermal_auto_bedrock.cpp
  *
  * **Result**
- * @image html ex_thermal_auto_bedrock0.png
- * @image html ex_thermal_auto_bedrock1.png
+ * @image html ex_thermal_auto_bedrock.png
  */
 void thermal_auto_bedrock(Array &z,
                           Array &talus,

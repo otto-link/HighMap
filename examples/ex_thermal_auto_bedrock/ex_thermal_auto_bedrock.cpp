@@ -3,8 +3,8 @@
 #include "highmap/array.hpp"
 #include "highmap/colorize.hpp"
 #include "highmap/erosion.hpp"
+#include "highmap/io.hpp"
 #include "highmap/noise.hpp"
-#include "highmap/op.hpp"
 
 int main(void)
 {
@@ -15,8 +15,9 @@ int main(void)
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
   auto        z0 = z;
 
-  hmap::thermal_auto_bedrock(z, 0.3f / shape[0]);
+  hmap::thermal_auto_bedrock(z, 0.1f / shape[0]);
 
-  z0.to_png("ex_thermal_auto_bedrock0.png", hmap::cmap::gray);
-  z.to_png("ex_thermal_auto_bedrock1.png", hmap::cmap::gray);
+  hmap::export_banner_png("ex_thermal_auto_bedrock.png",
+                          {z0, z},
+                          hmap::cmap::gray);
 }

@@ -3,6 +3,7 @@
 #include "highmap/array.hpp"
 #include "highmap/colorize.hpp"
 #include "highmap/erosion.hpp"
+#include "highmap/io.hpp"
 #include "highmap/noise.hpp"
 
 int main(void)
@@ -16,6 +17,7 @@ int main(void)
 
   hmap::depression_filling(z);
 
-  z0.to_png("ex_depression_filling0.png", hmap::cmap::gray);
-  z.to_png("ex_depression_filling1.png", hmap::cmap::gray);
+  hmap::export_banner_png("ex_depression_filling.png",
+                          {z0, z},
+                          hmap::cmap::gray);
 }

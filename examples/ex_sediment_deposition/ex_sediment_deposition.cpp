@@ -3,6 +3,7 @@
 #include "highmap/array.hpp"
 #include "highmap/colorize.hpp"
 #include "highmap/erosion.hpp"
+#include "highmap/io.hpp"
 #include "highmap/noise.hpp"
 #include "highmap/primitives.hpp"
 
@@ -19,6 +20,7 @@ int main(void)
   auto talus = hmap::constant(shape, 0.2f / (float)shape[0]);
   hmap::sediment_deposition(z, talus);
 
-  z0.to_png("ex_sediment_deposition0.png", hmap::cmap::gray);
-  z.to_png("ex_sediment_deposition1.png", hmap::cmap::gray);
+  hmap::export_banner_png("ex_sediment_deposition.png",
+                          {z0, z},
+                          hmap::cmap::gray);
 }

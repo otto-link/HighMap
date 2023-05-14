@@ -3,6 +3,7 @@
 #include "highmap/array.hpp"
 #include "highmap/colorize.hpp"
 #include "highmap/erosion.hpp"
+#include "highmap/io.hpp"
 #include "highmap/math.hpp"
 #include "highmap/noise.hpp"
 
@@ -23,6 +24,5 @@ int main(void)
 
   hmap::stratify(z, hs, gs);
 
-  z0.to_png("ex_stratify0.png", hmap::cmap::gray);
-  z.to_png("ex_stratify1.png", hmap::cmap::gray);
+  hmap::export_banner_png("ex_stratify.png", {z0, z}, hmap::cmap::gray);
 }

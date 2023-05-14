@@ -3,6 +3,7 @@
 #include "highmap/array.hpp"
 #include "highmap/colorize.hpp"
 #include "highmap/erosion.hpp"
+#include "highmap/io.hpp"
 #include "highmap/noise.hpp"
 
 int main(void)
@@ -16,6 +17,5 @@ int main(void)
 
   hmap::thermal(z, 0.1f / shape[0]);
 
-  z0.to_png("ex_thermal0.png", hmap::cmap::gray);
-  z.to_png("ex_thermal1.png", hmap::cmap::gray);
+  hmap::export_banner_png("ex_thermal.png", {z0, z}, hmap::cmap::gray);
 }
