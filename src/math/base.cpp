@@ -5,6 +5,26 @@
 namespace hmap
 {
 
+Array atan(const Array &array)
+{
+  Array array_out = Array(array.shape);
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array_out.vector.begin(),
+                 [](float v) { return std::atan(v); });
+  return array_out;
+}
+
+Array cos(const Array &array)
+{
+  Array array_out = Array(array.shape);
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array_out.vector.begin(),
+                 [](float v) { return std::cos(v); });
+  return array_out;
+}
+
 Array hypot(Array &array1, Array &array2)
 {
   Array array_out = Array(array1.shape);
@@ -28,6 +48,16 @@ Array pow(const Array &array, float exp)
                  array.vector.end(),
                  array_out.vector.begin(),
                  [&exp](float v) { return std::pow(v, exp); });
+  return array_out;
+}
+
+Array sin(const Array &array)
+{
+  Array array_out = Array(array.shape);
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array_out.vector.begin(),
+                 [](float v) { return std::sin(v); });
   return array_out;
 }
 

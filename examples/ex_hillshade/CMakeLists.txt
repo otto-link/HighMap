@@ -1,0 +1,2 @@
+add_executable(ex_hillshade ex_hillshade.cpp)
+target_link_libraries(ex_hillshade highmap)

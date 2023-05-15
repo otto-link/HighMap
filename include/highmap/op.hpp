@@ -162,6 +162,27 @@ Array curvature_gaussian(Array &z);
 Array generate_buffered_array(Array &array, std::vector<int> buffers);
 
 /**
+ * @brief Return the shaded relief map (or hillshading).
+ *
+ * @param z Input array.
+ * @param azimuth Sun azimuth ('direction').
+ * @param zenith Sun zenith ('elevation').
+ * @param talus_ref Reference talus used to normalize gradient computations. May
+ * be useful when working with true angles.
+ * @return Array Resulting array.
+ *
+ * **Example**
+ * @include ex_hillshade.cpp
+ *
+ * **Result**
+ * @image html ex_hillshade0.png
+ * @image html ex_hillshade1.png
+ *
+ * @see {@link topographic_shading}
+ */
+Array hillshade(Array &z, float azimuth, float zenith, float talus_ref = 1.f);
+
+/**
  * @brief Apply a low-pass Laplace filter.
  *
  * @param array Input array (elements expected to be in [0, 1]).
@@ -421,5 +442,29 @@ void smooth_gaussian(Array &array, int ir);
  * @param buffer_sizes Buffer size at the borders {east, west, south, north}.
  */
 void sym_borders(Array &array, std::vector<int> buffer_sizes);
+
+/**
+ * @brief Return the topographic shadow intensity in [-1, 1].
+ *
+ * @param z Input array.
+ * @param azimuth Sun azimuth ('direction').
+ * @param zenith Sun zenith ('elevation').
+ * @param talus_ref Reference talus used to normalize gradient computations. May
+ * be useful when working with true angles.
+ * @return Array Resulting array.
+ *
+ * **Example**
+ * @include ex_hillshade.cpp
+ *
+ * **Result**
+ * @image html ex_hillshade0.png
+ * @image html ex_hillshade1.png
+ *
+ * @see {@link hillshade}
+ */
+Array topographic_shading(Array &z,
+                          float  azimuth,
+                          float  zenith,
+                          float  talus_ref = 1.f);
 
 } // namespace hmap

@@ -48,6 +48,14 @@ inline float approx_rsqrt(float a)
 }
 
 /**
+ * @brief Return the arctan of the array elements.
+ *
+ * @param array Input array.
+ * @return Array Reference to the current object.
+ */
+Array atan(const Array &array);
+
+/**
  * @brief Return the convolution product of the array with a 1D kernel (row, 'i'
  * direction).
  *
@@ -131,6 +139,14 @@ Array convolve2d_truncated(Array &array, Array &kernel);
  * @image html ex_convolve2d_svd2.png
  */
 Array convolve2d_svd(Array &z, Array &kernel, int rank = 3);
+
+/**
+ * @brief Return the cosine of the array elements.
+ *
+ * @param array Input array.
+ * @return Array Reference to the current object.
+ */
+Array cos(const Array &array);
 
 /**
  * @brief Return the polar angle of the gradient of an array.
@@ -245,5 +261,13 @@ Array pow(const Array &array, float exp);
  * @return std::vector<float>
  */
 std::vector<float> random_vector(float min, float max, int num, int seed);
+
+/**
+ * @brief Return the sine of the array elements.
+ *
+ * @param array Input array.
+ * @return Array Reference to the current object.
+ */
+Array sin(const Array &array);
 
 } // namespace hmap
