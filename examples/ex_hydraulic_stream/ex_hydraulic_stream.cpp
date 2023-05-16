@@ -2,8 +2,8 @@
 #include "highmap/colorize.hpp"
 #include "highmap/erosion.hpp"
 #include "highmap/io.hpp"
-#include "highmap/noise.hpp"
 #include "highmap/op.hpp"
+#include "highmap/primitives.hpp"
 
 int main(void)
 {

@@ -4,7 +4,7 @@
 #include "highmap/colorize.hpp"
 #include "highmap/io.hpp"
 #include "highmap/math.hpp"
-#include "highmap/noise.hpp"
+#include "highmap/primitives.hpp"
 
 int main(void)
 {

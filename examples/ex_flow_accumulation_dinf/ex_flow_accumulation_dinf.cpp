@@ -4,8 +4,8 @@
 #include "highmap/colorize.hpp"
 #include "highmap/hydrology.hpp"
 #include "highmap/math.hpp"
-#include "highmap/noise.hpp"
 #include "highmap/op.hpp"
+#include "highmap/primitives.hpp"
 
 int main(void)
 {

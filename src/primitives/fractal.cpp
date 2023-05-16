@@ -3,7 +3,6 @@
 #include "FastNoiseLite.h"
 
 #include "highmap/array.hpp"
-#include "highmap/noise.hpp"
 #include "highmap/primitives.hpp"
 
 namespace hmap
