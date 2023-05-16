@@ -10,7 +10,22 @@ This project is licensed under the GNU General Public License v3.0.
 
 ## Getting started
 
-### Installation
+### Building
+
+Build by making a build directory (i.e. `build/`), run `cmake` in that dir, and then use `make` to build the desired target.
+
+Example:
+``` bash
+mkdir build && cd build
+cmake ..
+make
+```
+
+Simple examples are provided for most of the functions, for instance:
+```
+bin/./ex_fbm_perlin
+eog ex_fbm_perlin.png
+```
 
 ### Usage examples
 
@@ -19,17 +34,17 @@ This project is licensed under the GNU General Public License v3.0.
 ## Development roadmap
 
 - Heightmap generation and alteration
-  - [ ] procedural noise (Perlin, fractal...)
+  - [X] procedural noise (Perlin, fractal...)
   - controlled generation
     - [ ] terrain surface from a set of points (thinplate interpolation)
     - [ ] terrain surface from a sketch / splatmap
     - [ ] shape-conservative pointwise modifications (i.e. enforce elevation at some locations while keeping the overall shape of the heightmap)
 - Physics-based mechanisms
   - erosion / deposition
-    - [ ] thermal
-    - [ ] hydraulic
-    - [ ] sediment deposition
-    - [ ] wind / in progress
+    - [X] thermal
+    - [X] hydraulic
+    - [X] sediment deposition
+    - [ ] wind
   - hydrology
     - [ ] surface water system (stream and pool maps)
     - [ ] downcutting (vertical erosion of stream's bed or valley's floor)
