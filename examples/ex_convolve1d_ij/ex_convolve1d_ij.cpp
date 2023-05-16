@@ -2,6 +2,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/colorize.hpp"
+#include "highmap/io.hpp"
 #include "highmap/math.hpp"
 #include "highmap/noise.hpp"
 
@@ -19,6 +20,5 @@ int main(void)
   auto zc = hmap::convolve1d_i(z, k);
   zc = hmap::convolve1d_j(zc, k);
 
-  z.to_png("ex_convolve1d_ij0.png", hmap::cmap::gray);
-  zc.to_png("ex_convolve1d_ij1.png", hmap::cmap::gray);
+  hmap::export_banner_png("ex_convolve1d_ij.png", {z, zc}, hmap::cmap::gray);
 }

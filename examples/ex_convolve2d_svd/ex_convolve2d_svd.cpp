@@ -2,6 +2,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/colorize.hpp"
+#include "highmap/io.hpp"
 #include "highmap/math.hpp"
 #include "highmap/noise.hpp"
 #include "highmap/primitives.hpp"
@@ -24,7 +25,7 @@ int main(void)
   // exact convolution
   auto zc = hmap::convolve2d(z, kernel);
 
-  z.to_png("ex_convolve2d_svd0.png", hmap::cmap::gray);
-  zs.to_png("ex_convolve2d_svd1.png", hmap::cmap::gray);
-  zc.to_png("ex_convolve2d_svd2.png", hmap::cmap::gray);
+  hmap::export_banner_png("ex_convolve2d_svd.png",
+                          {z, zs, zc},
+                          hmap::cmap::gray);
 }

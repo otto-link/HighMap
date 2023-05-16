@@ -67,8 +67,7 @@ Array atan(const Array &array);
  * @include ex_convolve1d_ij.cpp
  *
  * **Result**
- * @image html ex_convolve1d_ij0.png
- * @image html ex_convolve1d_ij1.png
+ * @image html ex_convolve1d_ij.png
  *
  * @see {@link convolve1d_j}
  */
@@ -86,8 +85,7 @@ Array convolve1d_i(Array &array, const std::vector<float> &kernel);
  * @include ex_convolve1d_ij.cpp
  *
  * **Result**
- * @image html ex_convolve1d_ij0.png
- * @image html ex_convolve1d_ij1.png
+ * @image html ex_convolve1d_ij.png
  *
  * @see {@link convolve1d_i}
  */
@@ -134,9 +132,7 @@ Array convolve2d_truncated(Array &array, Array &kernel);
  * @include ex_convolve2d_svd.cpp
  *
  * **Result**
- * @image html ex_convolve2d_svd0.png
- * @image html ex_convolve2d_svd1.png
- * @image html ex_convolve2d_svd2.png
+ * @image html ex_convolve2d_svd.png
  */
 Array convolve2d_svd(Array &z, Array &kernel, int rank = 3);
 
