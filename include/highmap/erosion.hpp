@@ -117,6 +117,28 @@ void hydraulic_particle(Array &z,
                         float  evap_rate = 0.001f); ///< @overload
 
 /**
+ * @brief Apply hydraulic erosion using based on a flow accumulation map.
+ *
+ * @param z Input array.
+ * @param z_bedrock Lower elevation limit.
+ * @param c_erosion Erosion coefficient.
+ * @param talus_ref Reference talus used to localy define the flow-partition
+ * exponent (see {@link flow_accumulation_dinf}).
+ * @param clipping_ratio Flow accumulation clipping ratio.
+ *
+ * **Example**
+ * @include ex_hydraulic_stream.cpp
+ *
+ * **Result**
+ * @image html ex_hydraulic_stream.png
+ */
+void hydraulic_stream(Array &z,
+                      Array &z_bedrock,
+                      float  c_erosion,
+                      float  talus_ref,
+                      float  clipping_ratio = 10.f);
+
+/**
  * @brief Perform sediment deposition combined with thermal erosion.
  *
  * @todo deposition map

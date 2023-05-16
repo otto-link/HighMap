@@ -1,0 +1,2 @@
+add_executable(ex_hydraulic_stream ex_hydraulic_stream.cpp)
+target_link_libraries(ex_hydraulic_stream highmap)

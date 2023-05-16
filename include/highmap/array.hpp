@@ -468,6 +468,16 @@ public:
   }
 
   /**
+   * @brief Return the array size (number of elements).
+   *
+   * @return int
+   */
+  inline int size()
+  {
+    return this->shape[0] * this->shape[1];
+  }
+
+  /**
    * @brief Return of the array values.
    *
    * @return float
