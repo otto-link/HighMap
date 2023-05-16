@@ -8,7 +8,7 @@
 #include "stb_image_write.h"
 
 #include "highmap/array.hpp"
-#include "highmap/colorize.hpp"
+#include "highmap/io.hpp"
 
 namespace hmap
 {

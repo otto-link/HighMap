@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "highmap/array.hpp"
-#include "highmap/colorize.hpp"
+#include "highmap/io.hpp"
 
 // helper - convert value to color range [0, 255]
 #define V2C(v, vmin, vmax)                                                     \

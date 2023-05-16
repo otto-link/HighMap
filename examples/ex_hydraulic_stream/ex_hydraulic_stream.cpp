@@ -1,5 +1,4 @@
 #include "highmap/array.hpp"
-#include "highmap/colorize.hpp"
 #include "highmap/erosion.hpp"
 #include "highmap/io.hpp"
 #include "highmap/op.hpp"
