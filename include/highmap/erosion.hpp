@@ -117,6 +117,42 @@ void hydraulic_particle(Array &z,
                         float  evap_rate = 0.001f); ///< @overload
 
 /**
+ * @brief Apply multiscale hydraulic erosion using a particle based procedure.
+ *
+ * @param z Input array.
+ * @param moisture_map Moisture map (quantity of rain), expected to be in [0,
+ * 1].
+ * @param particle_density The number of particles simulated equals the particle
+ * density multiplied by the heightmap size = shape[0]*shape[1].
+ * @param scales List of scales, for instance, with `{16.f, 8.f, 4.f, 2.f}`,
+ * hydraulic erosion is performed at scales 1/16th, 1/8th, ...
+ * @param seed Random seed number.
+ * @param c_radius Particle radius in pixel(s) (>= 0).
+ * @param c_capacity Sediment capacity.
+ * @param c_deposition Deposition coefficient.
+ * @param c_erosion Erosion coefficient.
+ * @param drag_rate Drag rate.
+ * @param evap_rate Particle evaporation rate.
+ *
+ * **Example**
+ * @include ex_hydraulic_particle_multiscale.cpp
+ *
+ * **Result**
+ * @image html ex_hydraulic_particle_multiscale.png
+ */
+void hydraulic_particle_multiscale(Array             &z,
+                                   Array             &moisture_map,
+                                   float              particle_density,
+                                   std::vector<float> scales,
+                                   int                seed,
+                                   int                c_radius = 0,
+                                   float              c_capacity = 20.f,
+                                   float              c_erosion = 0.05f,
+                                   float              c_deposition = 0.05f,
+                                   float              drag_rate = 0.001f,
+                                   float              evap_rate = 0.001f);
+
+/**
  * @brief Apply hydraulic erosion using based on a flow accumulation map.
  *
  * @param z Input array.
@@ -179,6 +215,7 @@ void sediment_deposition(Array &z,
  * @image html ex_stratify.png
  */
 void stratify(Array &z, std::vector<float> hs, std::vector<float> gamma);
+
 void stratify(Array             &z,
               std::vector<float> hs,
               float              gamma = 0.5f); ///< @overload
