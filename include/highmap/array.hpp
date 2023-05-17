@@ -102,7 +102,7 @@ public:
    * @param array Another Array.
    * @return Array
    */
-  Array operator*(const Array &array);
+  Array operator*(const Array &array) const;
 
   /**
    * @brief Multiplication overloading (left multiply by a scalar).
@@ -127,7 +127,7 @@ public:
    * @param array Another Array.
    * @return Array
    */
-  Array operator/(const Array &array);
+  Array operator/(const Array &array) const;
 
   /**
    * @brief Division overloading (left divide by a scalar).
@@ -152,7 +152,7 @@ public:
    * @param array Another Array.
    * @return Array
    */
-  Array operator+(const Array &array);
+  Array operator+(const Array &array) const;
 
   /**
    * @brief Addition overloading (left add by a scalar).
@@ -184,7 +184,7 @@ public:
    * @param array Another Array.
    * @return Array
    */
-  Array operator-(const Array &array);
+  Array operator-(const Array &array) const;
 
   /**
    * @brief Subtraction overloading (left substract by a scalar).

@@ -25,7 +25,7 @@ Array Array::operator*(const float value)
   return *this;
 }
 
-Array Array::operator*(const Array &array)
+Array Array::operator*(const Array &array) const
 {
   Array array_out = Array(array.shape);
 
@@ -57,7 +57,7 @@ Array Array::operator/(const float value)
   return *this;
 }
 
-Array Array::operator/(const Array &array)
+Array Array::operator/(const Array &array) const
 {
   Array array_out = Array(array.shape);
 
@@ -89,7 +89,7 @@ Array Array::operator+(const float value)
   return *this;
 }
 
-Array Array::operator+(const Array &array)
+Array Array::operator+(const Array &array) const
 {
   Array array_out = Array(array.shape);
 
@@ -130,7 +130,7 @@ Array Array::operator-(const float value)
   return *this;
 }
 
-Array Array::operator-(const Array &array)
+Array Array::operator-(const Array &array) const
 {
   Array array_out = Array(array.shape);
 

@@ -1,10 +1,10 @@
 #include <cmath>
 
+#include "macrologger.h"
+
 #include "highmap/array.hpp"
 #include "highmap/hydrology.hpp"
 #include "highmap/op.hpp"
-
-#include <iostream>
 
 namespace hmap
 {
@@ -15,6 +15,8 @@ void hydraulic_stream(Array &z,
                       float  talus_ref,
                       float  clipping_ratio)
 {
+  LOG_DEBUG("in");
+
   // use flow accumulation to determine erosion intensity
   Array facc = flow_accumulation_dinf(z, talus_ref);
 

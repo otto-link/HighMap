@@ -27,8 +27,8 @@ Array Array::resample_to_shape(std::vector<int> new_shape)
 
   // interpolation grid scaled to the starting grid to ease seeking of
   // the reference (i, j) indices during bilinear interpolation
-  std::vector<float> x = linspace(0.f, (float)this->shape[0], new_shape[0]);
-  std::vector<float> y = linspace(0.f, (float)this->shape[1], new_shape[1]);
+  std::vector<float> x = linspace(0.f, (float)this->shape[0] - 1, new_shape[0]);
+  std::vector<float> y = linspace(0.f, (float)this->shape[1] - 1, new_shape[1]);
 
   for (int i = 0; i < new_shape[0]; i++)
   {

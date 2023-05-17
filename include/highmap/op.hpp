@@ -67,11 +67,50 @@ inline float approx_rsqrt(float a)
 Array atan(const Array &array);
 
 /**
+ * @brief Return the 'overlay' blending of two arrays.
+ *
+ * See for instance https://en.wikipedia.org/wiki/Blend_modes.
+ *
+ * @warning Array values are expected to be in [0, 1].
+ *
+ * @param array1 1st array.
+ * @param array2 2nd array.
+ * @return Array Reference to the resulting object.
+ *
+ * **Example**
+ * @include ex_blend.cpp
+ *
+ * **Result**
+ * @image html ex_blend0.png
+ * @image html ex_blend1.png
+ *
+ * @see {@link blend_overlay}, {@link blend_soft}
+ */
+Array blend_overlay(const Array &array1, const Array &array2);
+
+/**
+ * @brief Return the 'soft' blending of two arrays.
+ *
+ * Based on <a
+ * href=http://www.pegtop.net/delphi/articles/blendmodes/softlight.htm>Pegtop
+ * soft light mode</a>.
+ *
+ * @warning Array values are expected to be in [0, 1].
+ *
+ * @param array1 1st array.
+ * @param array2 2nd array.
+ * @return Array Reference to the resulting object.
+ *
+ * @see {@link blend_overlay}, {@link blend_soft}
+ */
+Array blend_soft(const Array &array1, const Array &array2);
+
+/**
  * @brief Clamp array elements to a target range.
  *
  * @todo Smooth clamping.
  *
- * @param array Input array (elements expected to be in [0, 1]).
+ * @param array Input array.
  * @param vmin Lower bound of the clamping range.
  * @param vmax Upper bound of the clamping range.
  *
