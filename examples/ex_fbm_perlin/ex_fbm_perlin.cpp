@@ -9,5 +9,7 @@ int main(void)
   int                      seed = 1;
 
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
-  z.to_png("ex_fbm_perlin.png", hmap::cmap::gray);
+
+  z.to_png("ex_fbm_perlin.png", hmap::cmap::terrain);
+  z.to_file("out.bin");
 }

@@ -23,8 +23,12 @@ namespace hmap
  */
 enum cmap : int
 {
-  gray = 1, ///< gray
-  jet = 2   ///< jet
+  gray = 1,          ///< gray
+  hot = 2,           ///< gray
+  jet = 3,           ///< jet
+  nipy_spectral = 4, ///< nipy_spectral
+  terrain = 5,       ///< terrain
+  viridis = 6        ///< viridis
 };
 
 /**
