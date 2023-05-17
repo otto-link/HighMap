@@ -23,12 +23,13 @@ namespace hmap
  */
 enum cmap : int
 {
-  gray = 1,          ///< gray
-  hot = 2,           ///< gray
-  jet = 3,           ///< jet
-  nipy_spectral = 4, ///< nipy_spectral
-  terrain = 5,       ///< terrain
-  viridis = 6        ///< viridis
+  bone = 1,          ///< bone
+  gray = 2,          ///< gray
+  hot = 3,           ///< hot
+  jet = 4,           ///< jet
+  nipy_spectral = 5, ///< nipy_spectral
+  terrain = 6,       ///< terrain
+  viridis = 7        ///< viridis
 };
 
 /**
@@ -49,6 +50,9 @@ std::vector<uint8_t> colorize(Array &array,
                               int    cmap,
                               bool   hillshading);
 
-void export_banner_png(std::string fname, std::vector<Array> arrays, int cmap);
+void export_banner_png(std::string        fname,
+                       std::vector<Array> arrays,
+                       int                cmap,
+                       bool               hillshading = false);
 
 } // namespace hmap

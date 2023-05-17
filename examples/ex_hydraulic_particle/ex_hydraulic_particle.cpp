@@ -17,5 +17,6 @@ int main(void)
 
   hmap::export_banner_png("ex_hydraulic_particle.png",
                           {z0, z},
-                          hmap::cmap::gray);
+                          hmap::cmap::terrain,
+                          true);
 }

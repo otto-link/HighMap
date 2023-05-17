@@ -15,5 +15,7 @@ int main(void)
 
   hmap::smooth_gaussian(z, radius);
 
-  hmap::export_banner_png("ex_smooth_gaussian.png", {z0, z}, hmap::cmap::gray);
+  hmap::export_banner_png("ex_smooth_gaussian.png",
+                          {z0, z},
+                          hmap::cmap::viridis);
 }

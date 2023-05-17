@@ -32,21 +32,30 @@ std::vector<uint8_t> colorize(hmap::Array &array,
   switch (cmap)
   {
 
+  case cmap::bone:
+  case -cmap::bone:
+  {
+    std::vector<std::vector<float>> c = {
+        {0.000f, 0.000f, 0.000f},
+        {0.080f, 0.080f, 0.111f},
+        {0.159f, 0.159f, 0.221f},
+        {0.239f, 0.239f, 0.332f},
+        {0.318f, 0.318f, 0.443f},
+        {0.398f, 0.427f, 0.523f},
+        {0.477f, 0.536f, 0.602f},
+        {0.557f, 0.646f, 0.682f},
+        {0.636f, 0.755f, 0.761f},
+        {0.751f, 0.841f, 0.841f},
+        {0.876f, 0.920f, 0.920f},
+        {1.000f, 1.000f, 1.000f},
+    };
+    colors = c;
+  }
+  break;
+
   case cmap::gray:
   case -cmap::gray:
   {
-    std::vector<float>              v = {0.000f,
-                                         0.091f,
-                                         0.182f,
-                                         0.273f,
-                                         0.364f,
-                                         0.455f,
-                                         0.545f,
-                                         0.636f,
-                                         0.727f,
-                                         0.818f,
-                                         0.909f,
-                                         1.000f};
     std::vector<std::vector<float>> c = {
         {0.000f, 0.000f, 0.000f},
         {0.091f, 0.091f, 0.091f},
@@ -61,7 +70,6 @@ std::vector<uint8_t> colorize(hmap::Array &array,
         {0.909f, 0.909f, 0.909f},
         {1.000f, 1.000f, 1.000f},
     };
-    color_bounds = v;
     colors = c;
   }
   break;
@@ -69,18 +77,6 @@ std::vector<uint8_t> colorize(hmap::Array &array,
   case cmap::hot:
   case -cmap::hot:
   {
-    std::vector<float>              v = {0.000f,
-                                         0.091f,
-                                         0.182f,
-                                         0.273f,
-                                         0.364f,
-                                         0.455f,
-                                         0.545f,
-                                         0.636f,
-                                         0.727f,
-                                         0.818f,
-                                         0.909f,
-                                         1.000f};
     std::vector<std::vector<float>> c = {
         {0.042f, 0.000f, 0.000f},
         {0.280f, 0.000f, 0.000f},
@@ -95,7 +91,6 @@ std::vector<uint8_t> colorize(hmap::Array &array,
         {1.000f, 1.000f, 0.642f},
         {1.000f, 1.000f, 1.000f},
     };
-    color_bounds = v;
     colors = c;
   }
   break;
@@ -103,18 +98,6 @@ std::vector<uint8_t> colorize(hmap::Array &array,
   case cmap::jet:
   case -cmap::jet:
   {
-    std::vector<float>              v = {0.000f,
-                                         0.091f,
-                                         0.182f,
-                                         0.273f,
-                                         0.364f,
-                                         0.455f,
-                                         0.545f,
-                                         0.636f,
-                                         0.727f,
-                                         0.818f,
-                                         0.909f,
-                                         1.000f};
     std::vector<std::vector<float>> c = {
         {0.000f, 0.000f, 0.500f},
         {0.000f, 0.000f, 0.913f},
@@ -129,7 +112,6 @@ std::vector<uint8_t> colorize(hmap::Array &array,
         {0.913f, 0.003f, 0.000f},
         {0.500f, 0.000f, 0.000f},
     };
-    color_bounds = v;
     colors = c;
   }
   break;
@@ -137,18 +119,6 @@ std::vector<uint8_t> colorize(hmap::Array &array,
   case cmap::nipy_spectral:
   case -cmap::nipy_spectral:
   {
-    std::vector<float>              v = {0.000f,
-                                         0.091f,
-                                         0.182f,
-                                         0.273f,
-                                         0.364f,
-                                         0.455f,
-                                         0.545f,
-                                         0.636f,
-                                         0.727f,
-                                         0.818f,
-                                         0.909f,
-                                         1.000f};
     std::vector<std::vector<float>> c = {
         {0.000f, 0.000f, 0.000f},
         {0.521f, 0.000f, 0.588f},
@@ -163,7 +133,6 @@ std::vector<uint8_t> colorize(hmap::Array &array,
         {0.855f, 0.000f, 0.000f},
         {0.800f, 0.800f, 0.800f},
     };
-    color_bounds = v;
     colors = c;
   }
   break;
@@ -171,18 +140,6 @@ std::vector<uint8_t> colorize(hmap::Array &array,
   case cmap::terrain:
   case -cmap::terrain:
   {
-    std::vector<float>              v = {0.000f,
-                                         0.091f,
-                                         0.182f,
-                                         0.273f,
-                                         0.364f,
-                                         0.455f,
-                                         0.545f,
-                                         0.636f,
-                                         0.727f,
-                                         0.818f,
-                                         0.909f,
-                                         1.000f};
     std::vector<std::vector<float>> c = {
         {0.200f, 0.200f, 0.600f},
         {0.079f, 0.442f, 0.842f},
@@ -197,7 +154,6 @@ std::vector<uint8_t> colorize(hmap::Array &array,
         {0.818f, 0.767f, 0.756f},
         {1.000f, 1.000f, 1.000f},
     };
-    color_bounds = v;
     colors = c;
   }
   break;
@@ -205,18 +161,6 @@ std::vector<uint8_t> colorize(hmap::Array &array,
   case cmap::viridis:
   case -cmap::viridis:
   {
-    std::vector<float>              v = {0.000f,
-                                         0.091f,
-                                         0.182f,
-                                         0.273f,
-                                         0.364f,
-                                         0.455f,
-                                         0.545f,
-                                         0.636f,
-                                         0.727f,
-                                         0.818f,
-                                         0.909f,
-                                         1.000f};
     std::vector<std::vector<float>> c = {
         {0.267f, 0.005f, 0.329f},
         {0.283f, 0.131f, 0.449f},
@@ -231,20 +175,22 @@ std::vector<uint8_t> colorize(hmap::Array &array,
         {0.762f, 0.876f, 0.137f},
         {0.993f, 0.906f, 0.144f},
     };
-    color_bounds = v;
     colors = c;
   }
   break;
   }
 
+  color_bounds = linspace(0.f, 1.f, (int)colors.size());
+
   // -- add hillshading (if requested)
   Array hs = constant(array.shape, 1.f);
   if (hillshading)
   {
+    LOG_DEBUG("hillshading activated");
     hs = hillshade(array,
                    180.f,
                    45.f,
-                   10.f * array.ptp() / (float)array.shape[0]);
+                   10.f * array.ptp() / (float)array.shape[1]);
     remap(hs);
   }
 

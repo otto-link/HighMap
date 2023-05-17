@@ -14,6 +14,6 @@ int main(void)
   hmap::clamp_min(z, 0.f);
   auto d = hmap::distance_transform(z);
 
-  z.to_png("ex_distance_transform0.png", hmap::cmap::gray);
-  d.to_png("ex_distance_transform1.png", hmap::cmap::gray);
+  z.to_png("ex_distance_transform0.png", hmap::cmap::viridis);
+  d.to_png("ex_distance_transform1.png", hmap::cmap::viridis);
 }

@@ -13,6 +13,6 @@ int main(void)
 
   auto facc = hmap::flow_accumulation_d8(z);
 
-  z.to_png("ex_flow_accumulation_d80.png", hmap::cmap::gray);
-  facc.to_png("ex_flow_accumulation_d81.png", hmap::cmap::gray);
+  z.to_png("ex_flow_accumulation_d80.png", hmap::cmap::terrain, true);
+  facc.to_png("ex_flow_accumulation_d81.png", hmap::cmap::hot);
 }

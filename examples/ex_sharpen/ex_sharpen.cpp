@@ -14,5 +14,5 @@ int main(void)
 
   hmap::sharpen(z);
 
-  hstack(z0, z).to_png("ex_sharpen.png", hmap::cmap::gray);
+  hstack(z0, z).to_png("ex_sharpen.png", hmap::cmap::viridis);
 }

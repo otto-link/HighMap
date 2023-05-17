@@ -9,5 +9,5 @@ int main(void)
   int                    seed = 1;
 
   hmap::Array z = hmap::white_sparse(shape, 0.f, 1.f, density, seed);
-  z.to_png("ex_white_sparse.png", hmap::cmap::gray);
+  z.to_png("ex_white_sparse.png", hmap::cmap::viridis);
 }

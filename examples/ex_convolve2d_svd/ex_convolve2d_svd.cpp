@@ -21,7 +21,10 @@ int main(void)
   // exact convolution
   auto zc = hmap::convolve2d(z, kernel);
 
+  remap(zs);
+  remap(zc);
+
   hmap::export_banner_png("ex_convolve2d_svd.png",
                           {z, zs, zc},
-                          hmap::cmap::gray);
+                          hmap::cmap::viridis);
 }

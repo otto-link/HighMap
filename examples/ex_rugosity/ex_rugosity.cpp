@@ -13,6 +13,6 @@ int main(void)
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
   hmap::Array c = hmap::rugosity(z, ir);
 
-  z.to_png("ex_rugosity0.png", hmap::cmap::gray);
-  c.to_png("ex_rugosity1.png", hmap::cmap::gray);
+  z.to_png("ex_rugosity0.png", hmap::cmap::viridis);
+  c.to_png("ex_rugosity1.png", hmap::cmap::viridis);
 }

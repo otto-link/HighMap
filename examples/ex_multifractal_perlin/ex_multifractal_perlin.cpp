@@ -9,5 +9,5 @@ int main(void)
   int                      seed = 1;
 
   hmap::Array z = hmap::multifractal_perlin(shape, res, seed);
-  z.to_png("ex_multifractal_perlin.png", hmap::cmap::gray);
+  z.to_png("ex_multifractal_perlin.png", hmap::cmap::terrain, true);
 }

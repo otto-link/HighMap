@@ -11,5 +11,5 @@ int main(void)
 
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
   hmap::clamp(z, -0.1f, 0.1f);
-  z.to_png("ex_clamp.png", hmap::cmap::gray);
+  z.to_png("ex_clamp.png", hmap::cmap::viridis);
 }

@@ -14,7 +14,7 @@ int main(void)
   hmap::Array zmin = hmap::minimum_local(z, radius);
   hmap::Array zmax = hmap::maximum_local(z, radius);
 
-  z.to_png("ex_maximum_local0.png", hmap::cmap::gray);
-  zmin.to_png("ex_maximum_local1.png", hmap::cmap::gray);
-  zmax.to_png("ex_maximum_local2.png", hmap::cmap::gray);
+  z.to_png("ex_maximum_local0.png", hmap::cmap::viridis);
+  zmin.to_png("ex_maximum_local1.png", hmap::cmap::viridis);
+  zmax.to_png("ex_maximum_local2.png", hmap::cmap::viridis);
 }

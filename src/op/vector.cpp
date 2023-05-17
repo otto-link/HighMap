@@ -10,7 +10,7 @@ std::vector<float> linspace(float start, float stop, int num)
 
   for (int i = 0; i < num; i++)
   {
-    float dv = (stop - start) / (float)num;
+    float dv = (stop - start) / (float)(num - 1);
     v[i] = start + (float)i * dv;
   }
 

@@ -14,5 +14,5 @@ int main(void)
 
   hmap::thermal(z, 0.1f / shape[0]);
 
-  hmap::export_banner_png("ex_thermal.png", {z0, z}, hmap::cmap::gray);
+  hmap::export_banner_png("ex_thermal.png", {z0, z}, hmap::cmap::terrain, true);
 }

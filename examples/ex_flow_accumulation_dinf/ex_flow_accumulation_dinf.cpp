@@ -11,8 +11,6 @@ int main(void)
   int                      seed = 1;
 
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
-  hmap::set_borders(z, z.min(), 100);
-
   hmap::Array talus = hmap::gradient_talus(z);
 
   auto facc = hmap::flow_accumulation_dinf(z, talus.max());
@@ -20,6 +18,6 @@ int main(void)
   // very high values are less relevant
   hmap::clamp_max(facc, 100.f);
 
-  z.to_png("ex_flow_accumulation_dinf0.png", hmap::cmap::gray);
-  facc.to_png("ex_flow_accumulation_dinf1.png", hmap::cmap::gray);
+  z.to_png("ex_flow_accumulation_dinf0.png", hmap::cmap::terrain, true);
+  facc.to_png("ex_flow_accumulation_dinf1.png", hmap::cmap::hot);
 }

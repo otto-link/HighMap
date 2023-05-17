@@ -12,6 +12,6 @@ int main(void)
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
   hmap::Array c = hmap::curvature_gaussian(z);
 
-  z.to_png("ex_curvature_gaussian0.png", hmap::cmap::gray);
-  c.to_png("ex_curvature_gaussian1.png", hmap::cmap::gray);
+  z.to_png("ex_curvature_gaussian0.png", hmap::cmap::viridis);
+  c.to_png("ex_curvature_gaussian1.png", hmap::cmap::viridis);
 }

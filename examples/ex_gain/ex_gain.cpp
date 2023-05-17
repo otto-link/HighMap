@@ -12,5 +12,5 @@ int main(void)
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
   hmap::remap(z);
   hmap::gain(z, 2.f);
-  z.to_png("ex_gain.png", hmap::cmap::gray);
+  z.to_png("ex_gain.png", hmap::cmap::viridis);
 }

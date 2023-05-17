@@ -16,5 +16,6 @@ int main(void)
 
   hmap::export_banner_png("ex_depression_filling.png",
                           {z0, z},
-                          hmap::cmap::gray);
+                          hmap::cmap::terrain,
+                          true);
 }

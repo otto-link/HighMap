@@ -12,5 +12,5 @@ int main(void)
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
 
   auto dz = hmap::gradient_norm(z);
-  dz.to_png("ex_gradient_norm.png", hmap::cmap::gray);
+  dz.to_png("ex_gradient_norm.png", hmap::cmap::viridis);
 }

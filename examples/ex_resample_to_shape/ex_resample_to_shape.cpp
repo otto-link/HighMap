@@ -12,5 +12,5 @@ int main(void)
 
   auto zr = z.resample_to_shape({32, 32});
 
-  zr.to_png("ex_resample_to_shape.png", hmap::cmap::gray);
+  zr.to_png("ex_resample_to_shape.png", hmap::cmap::viridis);
 }

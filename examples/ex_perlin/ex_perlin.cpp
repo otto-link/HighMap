@@ -9,5 +9,5 @@ int main(void)
   int                      seed = 1;
 
   hmap::Array z = hmap::perlin(shape, res, seed);
-  z.to_png("ex_perlin.png", hmap::cmap::gray);
+  z.to_png("ex_perlin.png", hmap::cmap::viridis);
 }

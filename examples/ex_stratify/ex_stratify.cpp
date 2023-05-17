@@ -21,5 +21,8 @@ int main(void)
 
   hmap::stratify(z, hs, gs);
 
-  hmap::export_banner_png("ex_stratify.png", {z0, z}, hmap::cmap::gray);
+  hmap::export_banner_png("ex_stratify.png",
+                          {z0, z},
+                          hmap::cmap::terrain,
+                          true);
 }
