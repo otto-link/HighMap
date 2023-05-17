@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "highmap/array.hpp"
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"

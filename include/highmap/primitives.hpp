@@ -81,7 +81,6 @@ Array disk(std::vector<int> shape);
  * **Result**
  * @image html ex_fbm_perlin.png
  */
-
 Array fbm_perlin(std::vector<int>   shape,
                  std::vector<float> kw,
                  uint               seed,

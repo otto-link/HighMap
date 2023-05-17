@@ -1,9 +1,6 @@
-#include <iostream>
-
 #include "highmap/array.hpp"
 #include "highmap/hydrology.hpp"
 #include "highmap/io.hpp"
-#include "highmap/math.hpp"
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 

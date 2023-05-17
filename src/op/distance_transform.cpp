@@ -1,5 +1,5 @@
 #include "highmap/array.hpp"
-#include "highmap/math.hpp"
+#include "highmap/op.hpp"
 
 float f(int i, float gi)
 {

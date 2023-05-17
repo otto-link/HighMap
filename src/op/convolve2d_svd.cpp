@@ -3,7 +3,6 @@
 #include <gsl/gsl_matrix.h>
 
 #include "highmap/array.hpp"
-#include "highmap/math.hpp"
 #include "highmap/op.hpp"
 
 namespace hmap

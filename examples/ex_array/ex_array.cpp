@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "highmap/array.hpp"
 
 int main(void)

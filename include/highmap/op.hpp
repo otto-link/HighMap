@@ -25,6 +25,48 @@ namespace hmap
 void almost_unit_identity(Array &array);
 
 /**
+ * @brief Return the approximate hypothenuse of two numbers.
+ *
+ * @param a a
+ * @param b a
+ * @return float ~sqrt(a**2 + b**2)
+ */
+inline float approx_hypot(float a, float b)
+{
+  a = std::abs(a);
+  b = std::abs(b);
+  if (a > b)
+    std::swap(a, b);
+  return 0.414 * a + b;
+}
+
+/**
+ * @brief Return the approximate inverse square root of a number.
+ *
+ * @param a a
+ * @return float ~1/sqrt(a)
+ */
+inline float approx_rsqrt(float a)
+{
+  union
+  {
+    float    f;
+    uint32_t i;
+  } conv = {.f = a};
+  conv.i = 0x5f3759df - (conv.i >> 1);
+  conv.f *= 1.5F - (a * 0.5F * conv.f * conv.f);
+  return conv.f;
+}
+
+/**
+ * @brief Return the arctan of the array elements.
+ *
+ * @param array Input array.
+ * @return Array Reference to the current object.
+ */
+Array atan(const Array &array);
+
+/**
  * @brief Clamp array elements to a target range.
  *
  * @todo Smooth clamping.
@@ -62,6 +104,110 @@ void clamp_min(Array &array, float vmin);
  * @see {@link clamp}, {@link clamp_lower_bound}
  */
 void clamp_max(Array &array, float vmax);
+
+/**
+ * @brief Return the convolution product of the array with a 1D kernel (row, 'i'
+ * direction).
+ *
+ * @param array Input array.
+ * @param kernel Kernel (1D).
+ * @return Array Convolution result.
+ *
+ * **Example**
+ * @include ex_convolve1d_ij.cpp
+ *
+ * **Result**
+ * @image html ex_convolve1d_ij.png
+ *
+ * @see {@link convolve1d_j}
+ */
+Array convolve1d_i(Array &array, const std::vector<float> &kernel);
+
+/**
+ * @brief Return the convolution product of the array with a 1D kernel (column,
+ * 'j' direction).
+ *
+ * @param array Input array.
+ * @param kernel Kernel (1D).
+ * @return Array Convolution result.
+ *
+ * **Example**
+ * @include ex_convolve1d_ij.cpp
+ *
+ * **Result**
+ * @image html ex_convolve1d_ij.png
+ *
+ * @see {@link convolve1d_i}
+ */
+Array convolve1d_j(Array &array, const std::vector<float> &kernel);
+
+/**
+ * @brief Return the convolution product of the array with a given kernel. The
+ * output has the same shape as the input (symmetry boundary conditions).
+ *
+ * @param array Input array.
+ * @param kernel Kernel array.
+ * @return Array Convolution result.
+ *
+ * **Example**
+ * @include ex_convolve2d_svd.cpp
+ */
+Array convolve2d(Array &array, Array &kernel);
+
+/**
+ * @brief Return the convolution product of the array with a given kernel. The
+ * output has a smaller size than the input.
+ *
+ * @param array Input array.
+ * @param kernel Kernel array.
+ * @return Array Convolution result (shape: {array.shape[0] - kernel.shape[0],
+ * array.shape[1] - kernel.shape[1]}).
+ */
+Array convolve2d_truncated(Array &array, Array &kernel);
+
+/**
+ * @brief Return the approximate convolution product of the array with a
+ * Singular Value Decomposition (SVD) of a kernel.
+ *
+ * See reference @cite McGraw2014 and this post
+ * https://bartwronski.com/2020/02/03/separate-your-filters-svd-and-low-rank-approximation-of-image-filters/
+ *
+ * @param z Input array.
+ * @param kernel Kernel array.
+ * @param rank Approximation rank: the first 'rank' singular values/vectors are
+ * used to approximate the convolution product.
+ * @return Array Convolution result.
+ *
+ * **Example**
+ * @include ex_convolve2d_svd.cpp
+ *
+ * **Result**
+ * @image html ex_convolve2d_svd.png
+ */
+Array convolve2d_svd(Array &z, Array &kernel, int rank = 3);
+
+/**
+ * @brief Return the cosine of the array elements.
+ *
+ * @param array Input array.
+ * @return Array Reference to the current object.
+ */
+Array cos(const Array &array);
+
+/**
+ * @brief Return the Gaussian curvature @cite Kurita1992.
+ *
+ * @param z Input array.
+ * @return Array Resulting array.
+ *
+ * **Example**
+ * @include ex_curvature_gaussian.cpp
+ *
+ * **Result**
+ * @image html ex_curvature_gaussian0.png
+ * @image html ex_curvature_gaussian1.png
+ */
+Array curvature_gaussian(Array &z);
 
 /**
  * @brief Return the Euclidean distance transform.
@@ -137,21 +283,6 @@ void gain(Array &array, float gain);
 void gamma_correction(Array &array, float gamma);
 
 /**
- * @brief Return the Gaussian curvature @cite Kurita1992.
- *
- * @param z Input array.
- * @return Array Resulting array.
- *
- * **Example**
- * @include ex_curvature_gaussian.cpp
- *
- * **Result**
- * @image html ex_curvature_gaussian0.png
- * @image html ex_curvature_gaussian1.png
- */
-Array curvature_gaussian(Array &z);
-
-/**
  * @brief Return an array with buffers at the boundaries (values filled by
  * symmetry).
  *
@@ -160,6 +291,59 @@ Array curvature_gaussian(Array &z);
  * @return Array New array with buffers.
  */
 Array generate_buffered_array(Array &array, std::vector<int> buffers);
+
+/**
+ * @brief Return the polar angle of the gradient of an array.
+ *
+ * @param array Input array.
+ * @param downward If set set true, return the polar angle of the downward
+ * slope.
+ * @return Array Gradient angle, in radians, in [-\pi, \pi].
+ */
+Array gradient_angle(Array &array, bool downward = false);
+
+/**
+ * @brief Return the gradient norm of an array.
+ *
+ * @param array Inupt array.
+ * @return Array Gradient norm.
+ *
+ * **Example**
+ * @include ex_gradient_norm.cpp
+ *
+ * **Result**
+ * @image html ex_gradient_norm.png
+ */
+Array gradient_norm(Array &array);
+
+/**
+ * @brief Return the gradient in the 'x' (or 'i' index) of an array.
+ *
+ * @param array Inupt array.
+ * @return Array Gradient.
+ */
+Array gradient_x(Array &array);
+
+/**
+ * @brief Return the gradient in the 'y' (or 'j' index) of an array.
+ *
+ * @param array Inupt array.
+ * @return Array Gradient.
+ */
+Array gradient_y(Array &array);
+
+/**
+ * @brief Return the gradient talus slope of an array.
+ *
+ * Talus slope is locally define as the largest elevation difference between a
+ * cell and its first neighbors.
+ *
+ * @see Thermal erosion: {@link thermal}.
+ *
+ * @param array Inupt array.
+ * @return Array Gradient.
+ */
+Array gradient_talus(Array &array);
 
 /**
  * @brief Return the shaded relief map (or hillshading).
@@ -183,6 +367,18 @@ Array generate_buffered_array(Array &array, std::vector<int> buffers);
 Array hillshade(Array &z, float azimuth, float zenith, float talus_ref = 1.f);
 
 /**
+ * @brief Return the square root of the sum of the squares of the two input
+ * arrays.
+ *
+ * @relates Map
+ *
+ * @param array1 First array.
+ * @param array2 Second array.
+ * @return Array Hypothenuse.
+ */
+Array hypot(Array &array1, Array &array2);
+
+/**
  * @brief Apply a low-pass Laplace filter.
  *
  * @param array Input array (elements expected to be in [0, 1]).
@@ -200,6 +396,36 @@ void laplace(Array &array, float sigma = 0.2, int iterations = 3);
  * @return Array Interpolated array.
  */
 Array lerp(Array &array1, Array &array2, Array &t);
+
+/**
+ * @brief Return evenly spaced numbers over a specified interval.
+ *
+ * @see linspace_jittered
+ *
+ * @param start Starting value.
+ * @param stop End value.
+ * @param num Number of values.
+ * @return std::vector<float> Values.
+ */
+std::vector<float> linspace(float start, float stop, int num);
+
+/**
+ * @brief Return noised spaced numbers over a specified interval.
+ *
+ * @see linspace
+ *
+ * @param start Starting value.
+ * @param stop End value.
+ * @param num Number of values.
+ * @param ratio Jittering ratio with respect to an evenly spaced grid.
+ * @param seed Random seed number.
+ * @return std::vector<float> Values
+ */
+std::vector<float> linspace_jitted(float start,
+                                   float stop,
+                                   int   num,
+                                   float ratio,
+                                   int   seed);
 
 /**
  * @brief Return the element-wise maximum of two arrays.
@@ -308,6 +534,25 @@ Array minimum_local(Array &array, int ir);
 Array minimum_smooth(Array &array1, Array &array2, float k = 0.2);
 
 /**
+ * @brief Return the array elements raised to the power 'exp'.
+ *
+ * @param exp Exponent.
+ * @return Array Reference to the current object.
+ */
+Array pow(const Array &array, float exp);
+
+/**
+ * @brief Generate a vector filled with random values.
+ *
+ * @param min Lower bound of random distribution.
+ * @param max Upper bound of random distribution.
+ * @param num Number of values.
+ * @param seed Random seed number.
+ * @return std::vector<float>
+ */
+std::vector<float> random_vector(float min, float max, int num, int seed);
+
+/**
  * @brief Remap array elements from a starting range to a target range.
  *
  * By default the starting range is taken to be [min(), max()] of the input
@@ -382,6 +627,14 @@ void set_borders(Array &array,
  * @image html ex_sharpen.png
  */
 void sharpen(Array &array, float ratio = 1.f);
+
+/**
+ * @brief Return the sine of the array elements.
+ *
+ * @param array Input array.
+ * @return Array Reference to the current object.
+ */
+Array sin(const Array &array);
 
 /**
  * @brief Steepen array values by applying a nonlinear convection operator in a
