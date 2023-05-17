@@ -236,6 +236,13 @@ void smooth_gaussian(Array &array, int ir)
   array = convolve1d_j(array, k);
 }
 
+void smooth_sharp(Array &array, int ir)
+{
+  Array array_smooth = array;
+  smooth_cpulse(array_smooth, ir);
+  array = maximum(array, array_smooth);
+}
+
 void steepen_convective(Array &array, float angle, int iterations, float dt)
 {
   for (int it = 0; it < iterations; it++)

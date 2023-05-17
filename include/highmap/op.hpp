@@ -743,6 +743,22 @@ void smooth_cpulse(Array &array, int ir);
 void smooth_gaussian(Array &array, int ir);
 
 /**
+ * @brief Apply cubic pulse while preserving some sharpness.
+ *
+ * @param array Input array.
+ * @param ir Pulse radius.
+ *
+ * **Example**
+ * @include ex_smooth_sharp.cpp
+ *
+ * **Result**
+ * @image html ex_smooth_sharp.png
+ *
+ * @see {@link smooth_cpulse}
+ */
+void smooth_sharp(Array &array, int ir);
+
+/**
  * @brief Use symmetry for to fill values at the domain borders, over a given
  * buffer depth.
  *
