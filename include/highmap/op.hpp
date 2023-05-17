@@ -67,7 +67,7 @@ inline float approx_rsqrt(float a)
 Array atan(const Array &array);
 
 /**
- * @brief Return the 'overlay' blending of two arrays.
+ * @brief Return the 'exclusion' blending of two arrays.
  *
  * See for instance https://en.wikipedia.org/wiki/Blend_modes.
  *
@@ -83,8 +83,24 @@ Array atan(const Array &array);
  * **Result**
  * @image html ex_blend0.png
  * @image html ex_blend1.png
+ * @image html ex_blend2.png
  *
- * @see {@link blend_overlay}, {@link blend_soft}
+ * @see {@link blend_exclusion}, {@link blend_overlay}, {@link blend_soft}
+ */
+Array blend_exclusion(const Array &array1, const Array &array2);
+
+/**
+ * @brief Return the 'overlay' blending of two arrays.
+ *
+ * See for instance https://en.wikipedia.org/wiki/Blend_modes.
+ *
+ * @warning Array values are expected to be in [0, 1].
+ *
+ * @param array1 1st array.
+ * @param array2 2nd array.
+ * @return Array Reference to the resulting object.
+ *
+ * @see {@link blend_exclusion}, {@link blend_overlay}, {@link blend_soft}
  */
 Array blend_overlay(const Array &array1, const Array &array2);
 
@@ -101,7 +117,7 @@ Array blend_overlay(const Array &array1, const Array &array2);
  * @param array2 2nd array.
  * @return Array Reference to the resulting object.
  *
- * @see {@link blend_overlay}, {@link blend_soft}
+ * @see {@link blend_exclusion}, {@link blend_overlay}, {@link blend_soft}
  */
 Array blend_soft(const Array &array1, const Array &array2);
 

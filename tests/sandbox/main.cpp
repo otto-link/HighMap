@@ -15,8 +15,6 @@ int main(void)
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
   hmap::remap(z);
 
-  hmap::hydraulic_particle_multiscale(z, z, 0.1, {16.f, 8.f, 4.f, 2.f}, seed);
-
   z.to_png("out.png", hmap::cmap::terrain, true);
   z.to_file("out.bin");
 }

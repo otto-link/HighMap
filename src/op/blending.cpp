@@ -8,6 +8,13 @@
 namespace hmap
 {
 
+Array blend_exclusion(const Array &array1, const Array &array2)
+{
+  Array array_out = Array(array1.shape);
+  array_out = 0.5f - 2.f * (-0.5f + array1) * (-0.5f + array2);
+  return array_out;
+}
+
 Array blend_overlay(const Array &array1, const Array &array2)
 {
   Array array_out = Array(array1.shape);
