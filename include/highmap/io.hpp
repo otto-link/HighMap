@@ -18,11 +18,13 @@ namespace hmap
 /**
  * @brief Colormaps.
  *
+ * @note Use the inverse value of the cmap to reverse it. For instance
+ * `hmap::cmap::gray` and `-hmap::cmap::gray`.
  */
 enum cmap : int
 {
-  gray = 0, ///< gray
-  jet = 1   ///< jet
+  gray = 1, ///< gray
+  jet = 2   ///< jet
 };
 
 /**
@@ -32,7 +34,7 @@ enum cmap : int
  * @param array Input array.
  * @param vmin Lower bound for scaling to array [0, 1].
  * @param vmax Upper bound for scaling to array [0, 1]
- * @param cmap Colormap (@see cmap).
+ * @param cmap Colormap (see {@link cmap}).
  * @return std::vector<uint8_t> Vector containing colors (size : shape[0] *
  * shape[1] * 3 channels for RGB).
  */
