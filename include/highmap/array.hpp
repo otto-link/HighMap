@@ -516,11 +516,12 @@ public:
    *
    * @param fname File name.
    * @param cmap Colormap (@see cmap).
+   * @param hillshading Activate hillshading.
    *
    * **Example**
    * @include ex_perlin.cpp
    */
-  void to_png(std::string fname, int cmap);
+  void to_png(std::string fname, int cmap, bool hillshading = false);
 
   /**
    * @brief Return stacked arrays in sequence vertically (row wise).

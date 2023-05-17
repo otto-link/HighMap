@@ -6,6 +6,8 @@
 
 #include "highmap/array.hpp"
 #include "highmap/io.hpp"
+#include "highmap/op.hpp"
+#include "highmap/primitives.hpp"
 
 // helper - convert value to color range [0, 255]
 #define V2C_8BIT(v, vmin, vmax)                                                \
@@ -17,7 +19,8 @@ namespace hmap
 std::vector<uint8_t> colorize(hmap::Array &array,
                               float        vmin,
                               float        vmax,
-                              int          cmap)
+                              int          cmap,
+                              bool         hillshading)
 {
   std::vector<uint8_t> data(IMG_CHANNELS * array.shape[0] * array.shape[1]);
 
@@ -234,6 +237,17 @@ std::vector<uint8_t> colorize(hmap::Array &array,
   break;
   }
 
+  // -- add hillshading (if requested)
+  Array hs = constant(array.shape, 1.f);
+  if (hillshading)
+  {
+    hs = hillshade(array,
+                   180.f,
+                   45.f,
+                   10.f * array.ptp() / (float)array.shape[0]);
+    remap(hs);
+  }
+
   // -- define data
 
   const int nc = (int)color_bounds.size();
@@ -264,7 +278,10 @@ std::vector<uint8_t> colorize(hmap::Array &array,
         float t =
             (v - color_bounds[ic]) / (color_bounds[ic + 1] - color_bounds[ic]);
         for (int p = 0; p < 3; p++)
+        {
           rgb[p] = (1.f - t) * colors[ic][p] + t * colors[ic + 1][p];
+          rgb[p] *= hs(i, j); // hillshading
+        }
       }
 
       data[++k] = V2C_8BIT(rgb[0], 0.f, 1.f);
