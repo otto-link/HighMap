@@ -22,7 +22,8 @@ Array biweight(std::vector<int> shape)
       float xi = ((float)i - ri) / ((float)(ri + 1));
       float yi = ((float)j - rj) / ((float)(rj + 1));
       float r2 = xi * xi + yi * yi;
-      array(i, j) = std::max(0.f, (1.f - r2) * (1.f - r2));
+      if (r2 < 1.f)
+        array(i, j) = (1.f - r2) * (1.f - r2);
     }
   }
   return array;
@@ -114,7 +115,8 @@ Array smooth_cosine(std::vector<int> shape)
       float xi = (float)i - ri;
       float yi = (float)j - rj;
       float r = M_PI * std::hypot(xi / float(ri + 1), yi / float(rj + 1));
-      array(i, j) = std::max(0.f, 0.5f + 0.5f * std::cos(r));
+      if (r < M_PI)
+        array(i, j) = 0.5f + 0.5f * std::cos(r);
     }
   }
   return array;
