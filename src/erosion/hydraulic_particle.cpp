@@ -7,16 +7,13 @@
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 
-#define DT 1.f // 1.f
+#define DT 0.5f
 #define VOLUME_INIT 1.f
 #define VOLUME_MIN 0.01f
 #define SPAWN_MOISTURE_LOW_LIMIT 0.1f
-#define VELOCITY_INIT 0.00f
+#define VELOCITY_INIT 0.f
 #define VELOCITY_MIN 0.001f
 #define GRADIENT_MIN 0.0001f
-#define LAPLACE_PERIOD 10000
-#define LAPLACE_SIGMA 0.05f
-#define LAPLACE_ITERATIONS 1
 
 namespace hmap
 {
@@ -121,7 +118,6 @@ void hydraulic_particle(Array &z,
 
         if (delta_sc > 0.f) // - EROSION -
         {
-          // clamp erosion amount to avoid instabilities
           float amount = c_erosion * delta_sc;
           s += amount;
 
@@ -147,18 +143,9 @@ void hydraulic_particle(Array &z,
 
       volume *= (1 - dt * evap_rate);
     }
-
-    // apply low-pass filtering to smooth spurious spatial
-    // oscillations
-    if (ip % LAPLACE_PERIOD == 0)
-    {
-      fill_borders(z); // more stable
-      laplace(z, LAPLACE_SIGMA, LAPLACE_ITERATIONS);
-    }
   }
 
-  extrapolate_borders(z); // look nicer
-  laplace(z, LAPLACE_SIGMA, LAPLACE_ITERATIONS);
+  extrapolate_borders(z);
 }
 
 //----------------------------------------------------------------------
