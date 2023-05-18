@@ -45,10 +45,11 @@ void hydraulic_particle(Array &z,
   // define erosion kernel
   const int ir = c_radius;
   const int nk = 2 * ir + 1;
-  Array     kernel = cone({nk, nk});
+  Array     kernel = cone({nk, 1});
 
   // normalize
   kernel = kernel / kernel.sum();
+  std::vector<float> kernel_vec = kernel.vector;
 
   // --- main loop
   for (int ip = 0; ip < nparticles; ip++)
@@ -130,7 +131,7 @@ void hydraulic_particle(Array &z,
                    (j < nj - ir - 1))
           {
             // kernel-based erosion
-            z.depose_amount_kernel(i, j, kernel, -amount);
+            z.depose_amount_kernel(i, j, kernel_vec, -amount);
           }
         }
         else // - DEPOSITION -

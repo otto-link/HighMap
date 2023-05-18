@@ -227,26 +227,26 @@ public:
 
   /**
    * @brief Distribute a value 'amount' around the cell (i, j) using a
-   * deposition kernel.
+   * a 1D deposition kernel (applied to both direction).
    *
    * @param i Index.
    * @param j Index.
-   * @param kernel Deposition kernel, must have an odd number of elements in
-   * each direction.
+   * @param kernel Deposition kernel (1D), must have an odd number of elements.
    * @param amount Amount to be deposited.
    */
-  inline void depose_amount_kernel(int i, int j, Array &kernel, float amount)
+  inline void depose_amount_kernel(int                 i,
+                                   int                 j,
+                                   std::vector<float> &kernel,
+                                   float               amount)
   {
-    const int ir = (kernel.shape[0] - 1) / 2;
-    const int jr = (kernel.shape[1] - 1) / 2;
+    const int nk = (int)kernel.size();
+    const int ir = (nk - 1) / 2;
 
-    for (int p = 0; p < kernel.shape[0]; p++)
-    {
-      for (int q = 0; q < kernel.shape[1]; q++)
-      {
-        (*this)(i + p - ir, j + q - jr) += amount * kernel(p, q);
-      }
-    }
+    for (int p = 0; p < nk; p++)
+      (*this)(i + p - ir, j) += amount * kernel[p];
+
+    for (int p = 0; p < nk; p++)
+      (*this)(i, j + p - ir) += amount * kernel[p];
   }
 
   /**
