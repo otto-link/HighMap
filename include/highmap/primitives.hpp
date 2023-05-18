@@ -13,6 +13,8 @@
 namespace hmap
 {
 
+Array biweight(std::vector<int> shape);
+
 /**
  * @brief Return a cone.
  *
@@ -178,6 +180,8 @@ Array plane(std::vector<int>   shape,
             float              talus,
             float              yaw_angle,
             std::vector<float> xyz_center);
+
+Array smooth_cosine(std::vector<int> shape);
 
 /**
  * @brief Return an array filled with white noise.
