@@ -45,7 +45,7 @@ void hydraulic_particle(Array &z,
   // define erosion kernel
   const int ir = c_radius;
   const int nk = 2 * ir + 1;
-  Array kernel = smooth_cosine({nk, 1});
+  Array     kernel = smooth_cosine({nk, 1});
 
   kernel.normalize();
   std::vector<float> kernel_vec = kernel.vector;
