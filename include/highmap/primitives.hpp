@@ -13,6 +13,14 @@
 namespace hmap
 {
 
+/**
+ * @brief Return a biweight kernel.
+ *
+ * See https://en.wikipedia.org/wiki/Kernel_%28statistics%29.
+ *
+ * @param shape Array shape.
+ * @return Array New array.
+ */
 Array biweight(std::vector<int> shape);
 
 /**
@@ -181,7 +189,23 @@ Array plane(std::vector<int>   shape,
             float              yaw_angle,
             std::vector<float> xyz_center);
 
+/**
+ * @brief
+ *
+ * @param shape
+ * @return Array
+ */
 Array smooth_cosine(std::vector<int> shape);
+
+/**
+ * @brief Return a tricube kernel.
+ *
+ * See https://en.wikipedia.org/wiki/Kernel_%28statistics%29.
+ *
+ * @param shape Array shape.
+ * @return Array New array.
+ */
+Array tricube(std::vector<int> shape);
 
 /**
  * @brief Return an array filled with white noise.

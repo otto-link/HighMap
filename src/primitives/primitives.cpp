@@ -3,7 +3,10 @@
 #include <cmath>
 #include <vector>
 
+#include "macrologger.h"
+
 #include "highmap/array.hpp"
+#include "highmap/op.hpp"
 
 namespace hmap
 {
@@ -117,6 +120,27 @@ Array smooth_cosine(std::vector<int> shape)
       float r = M_PI * std::hypot(xi / float(ri + 1), yi / float(rj + 1));
       if (r < M_PI)
         array(i, j) = 0.5f + 0.5f * std::cos(r);
+    }
+  }
+  return array;
+}
+
+Array tricube(std::vector<int> shape)
+{
+  Array array = Array(shape);
+
+  int ri = (int)(0.5f * ((float)shape[0] - 1.f));
+  int rj = (int)(0.5f * ((float)shape[1] - 1.f));
+
+  for (int i = 0; i < array.shape[0]; i++)
+  {
+    for (int j = 0; j < array.shape[1]; j++)
+    {
+      float xi = (float)i - ri;
+      float yi = (float)j - rj;
+      float r = std::hypot(xi / float(ri + 1), yi / float(rj + 1));
+      if (r < 1.f)
+        array(i, j) = std::pow(1.f - std::pow(r, 3.f), 3.f);
     }
   }
   return array;
