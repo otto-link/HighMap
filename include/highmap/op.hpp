@@ -436,7 +436,7 @@ Array hypot(Array &array1, Array &array2);
 /**
  * @brief Apply a low-pass Laplace filter.
  *
- * @param array Input array (elements expected to be in [0, 1]).
+ * @param array Input array.
  * @param sigma Filtering intensity, in [0, 1].
  * @param iterations Number of iterations.
  */
@@ -481,6 +481,23 @@ std::vector<float> linspace_jitted(float start,
                                    int   num,
                                    float ratio,
                                    int   seed);
+
+/**
+ * @brief Apply a low-pass high-order filter (5, 7 or 9th-order).
+ *
+ * @param array Input array.
+ * @param order Filter order (5, 7 or 9).
+ * @param sigma Filtering intensity, in [0, 1].
+ *
+ * **Example**
+ * @include ex_low_pass_high_order.cpp
+ *
+ * **Result**
+ * @image html ex_low_pass_high_order.png
+ *
+ * @see {@link laplace}
+ */
+void low_pass_high_order(Array &array, int order = 9, float sigma = 1.f);
 
 /**
  * @brief Return the element-wise maximum of two arrays.

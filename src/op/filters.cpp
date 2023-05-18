@@ -51,6 +51,48 @@ void laplace(Array &array, float sigma, int iterations)
   }
 }
 
+void low_pass_high_order(Array &array, int order, float sigma)
+{
+  Array df = array;
+
+  // filtering coefficients
+  std::vector<float> kernel;
+
+  switch (order)
+  {
+  case (5):
+    kernel = {0.0625f, -0.25f, 0.375f, -0.25f, 0.0625f};
+    break;
+
+  case (7):
+    kernel = {-0.015625f,
+              0.09375f,
+              -0.234375f,
+              0.3125f,
+              -0.234375f,
+              0.09375f,
+              -0.015625f};
+    break;
+
+  case (9):
+    kernel = {0.00390625f,
+              -0.03125f,
+              0.109375f,
+              -0.21875f,
+              0.2734375f,
+              -0.21875f,
+              0.109375f,
+              -0.03125f,
+              0.00390625f};
+    break;
+  }
+
+  df = convolve1d_i(df, kernel);
+  df = convolve1d_j(df, kernel);
+
+  array = array - sigma * df;
+}
+
 Array maximum_local(Array &array, int ir)
 {
   Array array_out = Array(array.shape);
