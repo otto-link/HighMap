@@ -146,7 +146,7 @@ void clamp(Array &array, float vmin = 0, float vmax = 1);
  * @param array Input array.
  * @param vmin Lower bound.
  *
- * @see {@link clamp}, {@link clamp_upper_bound}
+ * @see {@link clamp}, {@link clamp_max}
  */
 void clamp_min(Array &array, float vmin);
 
@@ -156,7 +156,7 @@ void clamp_min(Array &array, float vmin);
  * @param array Input array.
  * @param vmin Upper bound.
  *
- * @see {@link clamp}, {@link clamp_lower_bound}
+ * @see {@link clamp}, {@link clamp_min}
  */
 void clamp_max(Array &array, float vmax);
 
@@ -760,7 +760,9 @@ void smooth_cpulse(Array &array, int ir);
 void smooth_gaussian(Array &array, int ir);
 
 /**
- * @brief Apply cubic pulse while preserving some sharpness.
+ * @brief Apply cubic pulse smoothing while preserving some sharpness.
+ *
+ * "Cheap" version of {@link thermal_auto_bedrock}.
  *
  * @param array Input array.
  * @param ir Pulse radius.
@@ -771,7 +773,7 @@ void smooth_gaussian(Array &array, int ir);
  * **Result**
  * @image html ex_smooth_sharp.png
  *
- * @see {@link smooth_cpulse}
+ * @see {@link smooth_cpulse}, {@link thermal_auto_bedrock}
  */
 void smooth_sharp(Array &array, int ir);
 
