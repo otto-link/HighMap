@@ -79,7 +79,9 @@ void hydraulic_particle(Array &z,
       int i = ix;
       int j = jy;
 
-      // surface normal \nabla z = (-dz/dx, -dz/dy, 1)
+      // surface normal \nabla z = (-dz/dx, -dz/dy, 1), not normalized
+      // since its norm is already very close to one, assuming 'z'
+      // scales with unity
       float nx = -z.get_gradient_x_at(i, j);
       float ny = -z.get_gradient_y_at(i, j);
 
@@ -116,30 +118,20 @@ void hydraulic_particle(Array &z,
         float dz = z(i, j) - z(ix, jy);
         float sc = std::max(0.f, c_capacity * volume * vnorm * dz);
         float delta_sc = dt * (sc - s);
+        float amount;
 
-        if (delta_sc > 0.f) // - EROSION -
-        {
-          float amount = c_erosion * delta_sc;
-          s += amount;
+        if (delta_sc > 0.f)
+          amount = c_erosion * delta_sc; // erosion
+        else
+          amount = c_deposition * delta_sc; // deposition
 
-          if (ir == 0)
-          {
-            // pixel-based erosion
-            z(i, j) -= amount;
-          }
-          else if ((i > ir) and (i < ni - ir - 1) and (j > ir) and
-                   (j < nj - ir - 1))
-          {
-            // kernel-based erosion
-            z.depose_amount_kernel(i, j, kernel, -amount);
-          }
-        }
-        else // - DEPOSITION -
-        {
-          float amount = c_deposition * delta_sc;
-          s += amount;
-          z(i, j) -= amount;
-        }
+        s += amount;
+
+        if (ir == 0)
+          z(i, j) -= amount; // pixel-based
+        else if ((i > ir) and (i < ni - ir - 1) and (j > ir) and
+                 (j < nj - ir - 1))
+          z.depose_amount_kernel(i, j, kernel, -amount); // kernel-based
       }
 
       volume *= (1 - dt * evap_rate);
