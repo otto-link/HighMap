@@ -103,7 +103,7 @@ void hydraulic_particle(Array &z,
                         float  c_capacity = 20.f,
                         float  c_erosion = 0.05f,
                         float  c_deposition = 0.01f,
-                        float  drag_rate = 0.001f,
+                        float  drag_rate = 0.01f,
                         float  evap_rate = 0.001f);
 
 void hydraulic_particle(Array &z,
@@ -113,7 +113,7 @@ void hydraulic_particle(Array &z,
                         float  c_capacity = 20.f,
                         float  c_erosion = 0.05f,
                         float  c_deposition = 0.01f,
-                        float  drag_rate = 0.001f,
+                        float  drag_rate = 0.01f,
                         float  evap_rate = 0.001f); ///< @overload
 
 /**
@@ -149,7 +149,7 @@ void hydraulic_particle_multiscale(Array             &z,
                                    float              c_capacity = 20.f,
                                    float              c_erosion = 0.05f,
                                    float              c_deposition = 0.01f,
-                                   float              drag_rate = 0.001f,
+                                   float              drag_rate = 0.01f,
                                    float              evap_rate = 0.001f);
 
 /**
