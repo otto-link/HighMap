@@ -52,6 +52,7 @@ void hydraulic_particle(Array &z,
 
   // --- main loop
 
+#pragma omp parallel for
   for (int ip = 0; ip < nparticles; ip++)
   {
     float x = 0.f;

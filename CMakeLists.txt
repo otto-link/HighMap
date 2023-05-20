@@ -6,6 +6,10 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Ofast -ffast-math -funroll-all-loops -funsafe-loop-optimizations -funsafe-math-optimizations -frounding-math -march=native -DLOG_LEVEL=3")
 
+find_package(OpenMP REQUIRED)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+
+
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 
 #--------------------------------------------------------------
@@ -32,7 +36,7 @@ target_include_directories(${PROJECT_NAME}
 set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${PROJECT_VERSION})
 
 find_package(GSL REQUIRED COMPONENTS gsl gslcblas)
-target_link_libraries(${PROJECT_NAME} GSL::gsl GSL::gslcblas)
+target_link_libraries(${PROJECT_NAME} GSL::gsl GSL::gslcblas OpenMP::OpenMP_CXX)
 
 #--------------------------------------------------------------
 # everything else...
