@@ -606,6 +606,23 @@ Array minimum_local(Array &array, int ir);
 Array minimum_smooth(Array &array1, Array &array2, float k = 0.2);
 
 /**
+ * @brief Return the mixing of a set of arrays based on a parameter `t`.
+ *
+ * @warning Values of array `t` are expected to be in [0, 1].
+ *
+ * @param t Mixing coefficient, define locally, in [0, 1].
+ * @param arrays Input arrays.
+ * @return Array Resulting array.
+ *
+ * **Example**
+ * @include ex_mixer.cpp
+ *
+ * **Result**
+ * @image html ex_mixer.png
+ */
+Array mixer(Array t, std::vector<Array> arrays);
+
+/**
  * @brief Return the array elements raised to the power 'exp'.
  *
  * @param exp Exponent.

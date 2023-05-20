@@ -38,4 +38,29 @@ Array blend_soft(const Array &array1, const Array &array2)
   return array_out;
 }
 
+Array mixer(Array t, std::vector<Array> arrays)
+{
+  Array      array_out = Array(t.shape);
+  const uint n = arrays.size();
+
+  for (uint k = 0; k < n; k++)
+  {
+    float r0 = (float)k / (float)(n - 1);
+
+    for (int i = 0; i < t.shape[0]; i++)
+    {
+      for (int j = 0; j < t.shape[1]; j++)
+      {
+        float ta = 1.f - std::fabs(t(i, j) - r0);
+        if (ta >= 0.f)
+        {
+          float ts = ta * ta * (3.f - 2.f * ta);
+          array_out(i, j) += ts * arrays[k](i, j);
+        }
+      }
+    }
+  }
+  return array_out;
+}
+
 } // namespace hmap
