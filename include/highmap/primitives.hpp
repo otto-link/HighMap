@@ -251,4 +251,31 @@ Array white_sparse(std::vector<int> shape,
                    float            density,
                    uint             seed);
 
+/**
+ * @brief Return an array filled with Worley (cellular) noise.
+ *
+ * The function is just a wrapper based of the library <a
+ * href=https://github.com/Auburn/FastNoiseLite>FastNoiseLite</a>, theoretical
+ * details are available in the original paper of Perlin et al. @cite
+ * Worley1996.
+ *
+ * @param shape Array shape.
+ * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
+ * a unit domain.
+ * @param seed Random seed number.
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
+ * domain.
+ * @return Array Worley noise.
+ *
+ * **Example**
+ * @include ex_worley.cpp
+ *
+ * **Result**
+ * @image html ex_worley.png
+ */
+hmap::Array worley(std::vector<int>   shape,
+                   std::vector<float> kw,
+                   uint               seed,
+                   std::vector<float> shift = {0.f, 0.f});
+
 } // namespace hmap
