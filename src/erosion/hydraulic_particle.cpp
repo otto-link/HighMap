@@ -1,11 +1,12 @@
 #include <random>
 
-#include "macrologger.h"
-
 #include "highmap/array.hpp"
 #include "highmap/erosion.hpp"
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
+
+#include "highmap/dbg.hpp"
+#include "macrologger.h"
 
 #define DT 0.5f
 #define VOLUME_INIT 1.f
@@ -49,9 +50,8 @@ void hydraulic_particle(Array &z,
 
   kernel.normalize();
 
-  LOG_DEBUG("initialization ok, radius: %d", ir);
-
   // --- main loop
+
   for (int ip = 0; ip < nparticles; ip++)
   {
     float x = 0.f;
@@ -131,7 +131,9 @@ void hydraulic_particle(Array &z,
           z(i, j) -= amount; // pixel-based
         else if ((i > ir) and (i < ni - ir - 1) and (j > ir) and
                  (j < nj - ir - 1))
+        {
           z.depose_amount_kernel(i, j, kernel, -amount); // kernel-based
+        }
       }
 
       volume *= (1 - dt * evap_rate);

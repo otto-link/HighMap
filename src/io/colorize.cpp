@@ -186,7 +186,6 @@ std::vector<uint8_t> colorize(hmap::Array &array,
   Array hs = constant(array.shape, 1.f);
   if (hillshading)
   {
-    LOG_DEBUG("hillshading activated");
     hs = hillshade(array,
                    180.f,
                    45.f,
