@@ -832,7 +832,7 @@ Array topographic_shading(Array &z,
  *
  * @todo test higher order interpolations
  *
- * @param array
+ * @param array Input array.
  * @param dx Translation following 'i' direction, (scale is 1:1, dx = 1 => 1
  * pixel).
  * @param dy Translation following 'j' direction, (scale is 1:1, dy = 1 => 1
@@ -845,5 +845,17 @@ Array topographic_shading(Array &z,
  * @image html ex_warp.png
  */
 void warp(Array &array, Array &dx, Array &dy);
+
+/**
+ * @brief Apply a warping effect to the array with displacements based on fbm
+ * noise.
+ *
+ * @param array Input array.
+ * @param scale Warping scale (scale is 1:1, scale = 1 => 1 pixel).
+ * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
+ * a unit domain.
+ * @param seed Random seed number.
+ */
+void warp_fbm(Array &array, float scale, std::vector<float> kw, uint seed);
 
 } // namespace hmap

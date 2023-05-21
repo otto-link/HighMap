@@ -4,6 +4,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/op.hpp"
+#include "highmap/primitives.hpp"
 
 namespace hmap
 {
@@ -35,6 +36,15 @@ void warp(Array &array, Array &dx, Array &dy)
       array(i, j) = array_buffered(ip, jp);
     }
   }
+}
+
+void warp_fbm(Array &array, float scale, std::vector<float> kw, uint seed)
+{
+  Array dx = fbm_perlin(array.shape, kw, seed);
+  Array dy = fbm_perlin(array.shape, kw, seed++);
+  remap(dx, -scale, scale);
+  remap(dy, -scale, scale);
+  warp(array, dx, dy);
 }
 
 } // namespace hmap
