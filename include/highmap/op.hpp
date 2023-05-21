@@ -827,4 +827,23 @@ Array topographic_shading(Array &z,
                           float  zenith,
                           float  talus_ref = 1.f);
 
+/**
+ * @brief Apply a warping effect to the array.
+ *
+ * @todo test higher order interpolations
+ *
+ * @param array
+ * @param dx Translation following 'i' direction, (scale is 1:1, dx = 1 => 1
+ * pixel).
+ * @param dy Translation following 'j' direction, (scale is 1:1, dy = 1 => 1
+ * pixel).
+ *
+ * **Example**
+ * @include ex_warp.cpp
+ *
+ * **Result**
+ * @image html ex_warp.png
+ */
+void warp(Array &array, Array &dx, Array &dy);
+
 } // namespace hmap
