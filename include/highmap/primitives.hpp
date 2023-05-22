@@ -44,6 +44,15 @@ Array cone(std::vector<int> shape);
 Array cone_talus(float height, float talus);
 
 /**
+ * @brief Return a cone with a smooth landing (zero derivative at the cone
+ * bottom).
+ *
+ * @param shape Array shape.
+ * @return Array New array.
+ */
+Array cone_smooth(std::vector<int> shape);
+
+/**
  * @brief Return a constant value array.
  *
  * @param shape Array shape.

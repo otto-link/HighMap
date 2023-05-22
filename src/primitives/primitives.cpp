@@ -52,6 +52,13 @@ Array cone(std::vector<int> shape)
   return array;
 }
 
+Array cone_smooth(std::vector<int> shape)
+{
+  Array array = cone(shape);
+  almost_unit_identity(array);
+  return array;
+}
+
 Array cone_talus(float height, float talus)
 {
   // define output array size so that starting from an amplitude h,

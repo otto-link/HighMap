@@ -66,6 +66,14 @@ inline float approx_rsqrt(float a)
  */
 Array atan(const Array &array);
 
+inline float bilinear_interp(float f00, float f10, float f01, float f11, float u, float v)
+{
+  float a10 = f10 - f00;
+  float a01 = f01 - f00;
+  float a11 = f11 - f10 - f01 + f00;
+  return f00 + a10 * u + a01 * v + a11 * u * v;
+}
+
 /**
  * @brief Return the 'exclusion' blending of two arrays.
  *
@@ -451,6 +459,8 @@ void laplace(Array &array, float sigma = 0.2, int iterations = 3);
  * @return Array Interpolated array.
  */
 Array lerp(Array &array1, Array &array2, Array &t);
+
+Array lerp(Array &array1, Array &array2, float t); ///< @overload
 
 /**
  * @brief Return evenly spaced numbers over a specified interval.
