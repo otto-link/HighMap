@@ -51,8 +51,6 @@ void thermal(Array &z,
     std::rotate(dj.begin(), dj.begin() + 1, dj.end());
     std::rotate(c.begin(), c.begin() + 1, c.end());
 
-    LOG_DEBUG("%d", it);
-
     for (int i = 1; i < z.shape[0] - 1; i++)
     {
       for (int j = 1; j < z.shape[1] - 1; j++)
@@ -83,7 +81,6 @@ void thermal(Array &z,
               float amount =
                   std::min(ct * (dmax - talus(i, j) * c[k]) * dz[k] / dsum,
                            z(i, j) - bedrock(i, j));
-              // float amount = ct * (dmax - talus(i, j) * c[k]) * dz[k] / dsum;
               z(ia, ja) += amount;
             }
           }
