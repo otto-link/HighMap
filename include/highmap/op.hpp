@@ -66,7 +66,12 @@ inline float approx_rsqrt(float a)
  */
 Array atan(const Array &array);
 
-inline float bilinear_interp(float f00, float f10, float f01, float f11, float u, float v)
+inline float bilinear_interp(float f00,
+                             float f10,
+                             float f01,
+                             float f11,
+                             float u,
+                             float v)
 {
   float a10 = f10 - f00;
   float a01 = f01 - f00;

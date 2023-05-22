@@ -7,6 +7,8 @@
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 
+#include "macrologger.h"
+
 // neighbor pattern search based on Moore pattern and define diagonal
 // weight coefficients ('c' corresponds to a weight coefficient
 // applied to take into account the longer distance for diagonal
@@ -43,13 +45,13 @@ void thermal(Array &z,
   // main loop
   for (int it = 0; it < iterations; it++)
   {
-    Array z_next = z;
-
     // modify neighbor search at each iterations to limit numerical
     // artifacts
     std::rotate(di.begin(), di.begin() + 1, di.end());
     std::rotate(dj.begin(), dj.begin() + 1, dj.end());
     std::rotate(c.begin(), c.begin() + 1, c.end());
+
+    LOG_DEBUG("%d", it);
 
     for (int i = 1; i < z.shape[0] - 1; i++)
     {
@@ -58,35 +60,36 @@ void thermal(Array &z,
         if (z(i, j) > bedrock(i, j))
         {
           // loop over the neighbors
-          float dmax = 0.f;
-          int   ia = -1;
-          int   ja = -1;
+          float              dmax = 0.f;
+          float              dsum = 0.f;
+          std::vector<float> dz(nb);
 
           for (uint k = 0; k < nb; k++)
           {
-            // elevation difference between the two cells
-            float delta =
-                z(i, j) - z(i + di[k], j + dj[k]) - talus(i, j) * c[k];
-            if (delta > dmax)
+            dz[k] = z(i, j) - z(i + di[k], j + dj[k]);
+            if (dz[k] > talus(i, j) * c[k])
             {
-              dmax = delta;
-              ia = i + di[k];
-              ja = j + dj[k];
+              dsum += dz[k];
+              dmax = std::max(dmax, dz[k]);
             }
           }
 
-          if (ia >= 0)
+          if (dmax > 0.f)
           {
-            float amount = std::min(ct * dmax, z(i, j) - bedrock(i, j));
-            z_next(i, j) -= amount;
-            z_next(ia, ja) += amount;
+            for (uint k = 0; k < nb; k++)
+            {
+              int   ia = i + di[k];
+              int   ja = j + dj[k];
+              float amount =
+                  std::min(ct * (dmax - talus(i, j) * c[k]) * dz[k] / dsum,
+                           z(i, j) - bedrock(i, j));
+              // float amount = ct * (dmax - talus(i, j) * c[k]) * dz[k] / dsum;
+              z(ia, ja) += amount;
+            }
           }
         }
       }
     }
-
-    // move on to the next iteration
-    z = z_next;
   }
 
   // clean-up: fix boundaries, remove spurious oscillations and make

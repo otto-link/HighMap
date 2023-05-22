@@ -223,6 +223,9 @@ void stratify(Array             &z,
 /**
  * @brief Apply thermal weathering erosion.
  *
+ * Based on averaging over first neighbors, see \cite Olsen2004. Refer to \cite
+ * Musgrave1989 for the original formulation.
+ *
  * @todo optimize memory usage (to avoid large constant arrays).
  *
  * Thermal erosion refers to the process in which surface sediment weakens
@@ -245,20 +248,20 @@ void stratify(Array             &z,
 void thermal(Array &z,
              Array &talus,
              Array &bedrock,
-             int    iterations = 50,
-             float  ct = 0.4,
+             int    iterations = 10,
+             float  ct = 0.5,
              bool   post_filtering = true);
 
 void thermal(Array &array,
              Array &talus,
-             int    iterations = 50,
-             float  ct = 0.4,
+             int    iterations = 10,
+             float  ct = 0.5,
              bool   post_filtering = true); ///< @overload
 
 void thermal(Array &z,
              float  talus,
-             int    iterations = 50,
-             float  ct = 0.4,
+             int    iterations = 10,
+             float  ct = 0.5,
              bool   post_filtering = true); ///< @overload
 
 /**
@@ -283,14 +286,14 @@ void thermal(Array &z,
  */
 void thermal_auto_bedrock(Array &z,
                           Array &talus,
-                          int    iterations = 50,
-                          float  ct = 0.4,
+                          int    iterations = 10,
+                          float  ct = 0.5,
                           bool   post_filtering = true);
 
 void thermal_auto_bedrock(Array &z,
                           float  talus,
-                          int    iterations = 50,
-                          float  ct = 0.4,
+                          int    iterations = 10,
+                          float  ct = 0.5,
                           bool   post_filtering = true); ///< @overload
 
 } // namespace hmap
