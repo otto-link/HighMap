@@ -10,6 +10,23 @@
  */
 #pragma once
 
+#define _USE_MATH_DEFINES
+#include <cmath>
+
+// neighbor pattern search based on Moore pattern and define diagonal
+// weight coefficients ('c' corresponds to a weight coefficient
+// applied to take into account the longer distance for diagonal
+// comparison between cells)
+
+// 6 2 8
+// 1 . 4
+// 5 3 7
+// clang-format off
+#define DI {-1, 0, 0, 1, -1, -1, 1, 1}
+#define DJ {0, 1, -1, 0, -1, 1, -1, 1}
+#define C  {1.f, 1.f, 1.f, 1.f, M_SQRT2, M_SQRT2, M_SQRT2, M_SQRT2}
+// clang-format on
+
 namespace hmap
 {
 
