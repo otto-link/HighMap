@@ -57,7 +57,6 @@ void thermal(Array &z,
       {
         if (z(i, j) > bedrock(i, j))
         {
-          // loop over the neighbors
           float              dmax = 0.f;
           float              dsum = 0.f;
           std::vector<float> dz(nb);
