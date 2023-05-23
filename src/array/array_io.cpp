@@ -17,13 +17,13 @@ namespace hmap
 
 void Array::infos(std::string msg)
 {
-  std::cout << "array info: " << msg << std::endl;
-  std::cout << " - address: " << this << std::endl;
-  std::cout << " - shape: {" << this->shape[0] << ", " << this->shape[1] << "}"
-            << std::endl;
-  std::cout << " - min: " << this->min() << std::endl;
-  std::cout << " - max: " << this->max() << std::endl;
-  std::cout << " - ptp: " << this->ptp() << std::endl;
+  std::cout << msg << " ";
+  std::cout << "address: " << this << ", ";
+  std::cout << "shape: {" << this->shape[0] << ", " << this->shape[1] << "}"
+            << ", ";
+  std::cout << "min: " << this->min() << ", ";
+  std::cout << "max: " << this->max() << ", ";
+  std::cout << "ptp: " << this->ptp() << std::endl;
 }
 
 void Array::to_file(std::string fname)
