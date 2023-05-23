@@ -23,6 +23,9 @@
 #define C  {1.f, 1.f, 1.f, 1.f, M_SQRT2, M_SQRT2, M_SQRT2, M_SQRT2}
 // clang-format on
 
+#define LAPLACE_SIGMA 0.2f
+#define LAPLACE_ITERATIONS 1
+
 namespace hmap
 {
 
@@ -30,12 +33,7 @@ namespace hmap
 // Main operator
 //----------------------------------------------------------------------
 
-void thermal(Array &z,
-             Array &talus,
-             Array &bedrock,
-             int    iterations,
-             float  ct,
-             bool   post_filtering)
+void thermal(Array &z, Array &talus, Array &bedrock, int iterations, float ct)
 {
   std::vector<int>   di = DI;
   std::vector<int>   dj = DJ;
@@ -95,42 +93,90 @@ void thermal(Array &z,
   z = maximum(z, bedrock);
 }
 
+void thermal_flatten(Array &z, Array &talus, Array &bedrock, int iterations)
+{
+  std::vector<int>   di = DI;
+  std::vector<int>   dj = DJ;
+  std::vector<float> c = C;
+  const uint         nb = di.size();
+
+  // main loop
+  for (int it = 0; it < iterations; it++)
+  {
+    // modify neighbor search at each iterations to limit numerical
+    // artifacts
+    std::rotate(di.begin(), di.begin() + 1, di.end());
+    std::rotate(dj.begin(), dj.begin() + 1, dj.end());
+    std::rotate(c.begin(), c.begin() + 1, c.end());
+
+    for (int i = 1; i < z.shape[0] - 1; i++)
+    {
+      for (int j = 1; j < z.shape[1] - 1; j++)
+      {
+        if (z(i, j) > bedrock(i, j))
+        {
+          float dmax = 0.f;
+          int   ka = -1;
+
+          for (uint k = 0; k < nb; k++)
+          {
+            float dz = z(i, j) - z(i + di[k], j + dj[k]);
+            if (dz > dmax)
+            {
+              dmax = dz;
+              ka = k;
+            }
+          }
+
+          if (dmax > 0.f and dmax < talus(i, j))
+          {
+            float amount = 0.5f * dmax * c[ka];
+            z(i, j) -= amount;
+            z(i + di[ka], j + dj[ka]) += amount;
+          }
+        }
+      }
+    }
+  }
+
+  // clean-up: fix boundaries, remove spurious oscillations and make
+  // sure final elevation is not lower than the bedrock
+  extrapolate_borders(z);
+  laplace(z, LAPLACE_SIGMA, LAPLACE_ITERATIONS);
+  z = maximum(z, bedrock);
+}
+
 //----------------------------------------------------------------------
 // Overloading
 //----------------------------------------------------------------------
 
 // no bedrock
-void thermal(Array &z,
-             Array &talus,
-             int    iterations,
-             float  ct,
-             bool   post_filtering)
+void thermal(Array &z, Array &talus, int iterations, float ct)
 {
   Array bedrock = constant(z.shape, z.min() - z.ptp());
-  thermal(z, talus, bedrock, iterations, ct, post_filtering);
+  thermal(z, talus, bedrock, iterations, ct);
 }
 
 // uniform talus limit, no bedrock
-void thermal(Array &z,
-             float  talus,
-             int    iterations,
-             float  ct,
-             bool   post_filtering)
+void thermal(Array &z, float talus, int iterations, float ct)
 {
   Array talus_map = constant(z.shape, talus);
   Array bedrock = constant(z.shape, z.min() - z.ptp());
-  thermal(z, talus_map, bedrock, iterations, ct, post_filtering);
+  thermal(z, talus_map, bedrock, iterations, ct);
+}
+
+void thermal_flatten(Array &z, float talus, int iterations)
+{
+  Array talus_map = constant(z.shape, talus);
+  Array bedrock = constant(z.shape, z.min() - z.ptp());
+  thermal_flatten(z, talus_map, bedrock, iterations);
 }
 
 //----------------------------------------------------------------------
 // Macros
 //----------------------------------------------------------------------
 
-void thermal_auto_bedrock(Array &z,
-                          Array &talus,
-                          int    iterations,
-                          float  ct,
-                          bool   post_filtering)
+void thermal_auto_bedrock(Array &z, Array &talus, int iterations, float ct)
 {
   Array z_init = z; // backup initial map
   Array bedrock = constant(z.shape, z.min() - z.ptp());
@@ -138,7 +184,7 @@ void thermal_auto_bedrock(Array &z,
   int ncycle = 10;
   for (int ic = 0; ic < ncycle; ic++) // thermal weathering cycles
   {
-    thermal(z, talus, bedrock, iterations / ncycle, ct, post_filtering);
+    thermal(z, talus, bedrock, iterations / ncycle, ct);
 
     // only keep what's above the initial ground level
     z = maximum(z_init, z);
@@ -155,14 +201,10 @@ void thermal_auto_bedrock(Array &z,
   }
 }
 
-void thermal_auto_bedrock(Array &z,
-                          float  talus,
-                          int    iterations,
-                          float  ct,
-                          bool   post_filtering)
+void thermal_auto_bedrock(Array &z, float talus, int iterations, float ct)
 {
   Array talus_map = constant(z.shape, talus);
-  thermal_auto_bedrock(z, talus_map, iterations, ct, post_filtering);
+  thermal_auto_bedrock(z, talus_map, iterations, ct);
 }
 
 } // namespace hmap

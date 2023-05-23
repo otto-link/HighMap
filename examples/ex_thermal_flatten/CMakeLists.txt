@@ -1,0 +1,2 @@
+add_executable(ex_thermal_flatten ex_thermal_flatten.cpp)
+target_link_libraries(ex_thermal_flatten highmap)

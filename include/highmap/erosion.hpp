@@ -249,20 +249,17 @@ void thermal(Array &z,
              Array &talus,
              Array &bedrock,
              int    iterations = 10,
-             float  ct = 0.5,
-             bool   post_filtering = true);
+             float  ct = 0.5);
 
 void thermal(Array &array,
              Array &talus,
              int    iterations = 10,
-             float  ct = 0.5,
-             bool   post_filtering = true); ///< @overload
+             float  ct = 0.5); ///< @overload
 
 void thermal(Array &z,
              float  talus,
              int    iterations = 10,
-             float  ct = 0.5,
-             bool   post_filtering = true); ///< @overload
+             float  ct = 0.5); ///< @overload
 
 /**
  * @brief Apply thermal weathering erosion with automatic determination of the
@@ -287,13 +284,32 @@ void thermal(Array &z,
 void thermal_auto_bedrock(Array &z,
                           Array &talus,
                           int    iterations = 10,
-                          float  ct = 0.5,
-                          bool   post_filtering = true);
+                          float  ct = 0.5);
 
 void thermal_auto_bedrock(Array &z,
                           float  talus,
                           int    iterations = 10,
-                          float  ct = 0.5,
-                          bool   post_filtering = true); ///< @overload
+                          float  ct = 0.5); ///< @overload
+
+/**
+ * @brief Apply modified thermal weathering of Olsen.
+ *
+ * Based on the algorithm of Olsen \cite Olsen2004, which "causes slopes steeper
+ * than the talus threshold to remain unaffected while flatter areas are
+ * levelled out".
+ *
+ * @param z Input array.
+ * @param talus Local talus limit.
+ * @param iterations Number of iterations.
+ *
+ * **Example**
+ * @include ex_thermal_flatten.cpp
+ *
+ * **Result**
+ * @image html ex_thermal_flatten.png
+ */
+void thermal_flatten(Array &z, Array &talus, int iterations = 10);
+
+void thermal_flatten(Array &z, float talus, int iterations = 10); ///< @overload
 
 } // namespace hmap
