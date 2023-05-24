@@ -11,7 +11,7 @@ target_link_libraries({} {})
 if __name__ == '__main__':
 
     for p in PATHS:
-        exdirs = glob.glob(p + '/ex_*')
+        exdirs = glob.glob(p + '/*')
 
         for d in exdirs:
             if os.path.isdir(d):

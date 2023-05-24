@@ -1,0 +1,2 @@
+add_executable(ug_combined_erosions ug_combined_erosions.cpp)
+target_link_libraries(ug_combined_erosions highmap)
