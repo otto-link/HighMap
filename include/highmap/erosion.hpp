@@ -49,6 +49,8 @@ namespace hmap
  */
 void depression_filling(Array &z, int iterations = 1000, float epsilon = 1e-4f);
 
+void hydraulic_benes(Array &z, int iterations);
+
 /**
  * @brief Apply cell-based hydraulic erosion/deposition of Musgrave et al.
  * (1989).

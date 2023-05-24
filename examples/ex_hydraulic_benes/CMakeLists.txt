@@ -1,0 +1,2 @@
+add_executable(ex_hydraulic_benes ex_hydraulic_benes.cpp)
+target_link_libraries(ex_hydraulic_benes highmap)
