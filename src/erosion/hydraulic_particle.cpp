@@ -72,19 +72,22 @@ void hydraulic_particle(Array &z,
 
     float volume = VOLUME_INIT * moisture_map((int)x, (int)y);
 
-    int ix = (int)x;
-    int jy = (int)y;
+    int i_next = (int)x;
+    int j_next = (int)y;
 
     while (volume > VOLUME_MIN)
     {
-      int i = ix;
-      int j = jy;
+      int   i = i_next;
+      int   j = j_next;
+      float u = x - (float)i_next;
+      float v = y - (float)j_next;
+      float z_old = z.get_value_bilinear_at(i, j, u, v);
 
       // surface normal \nabla z = (-dz/dx, -dz/dy, 1), not normalized
       // since its norm is already very close to one, assuming 'z'
       // scales with unity
-      float nx = -z.get_gradient_x_at(i, j);
-      float ny = -z.get_gradient_y_at(i, j);
+      float nx = -z.get_gradient_x_bilinear_at(i, j, u, v);
+      float ny = -z.get_gradient_y_bilinear_at(i, j, u, v);
 
       if (approx_hypot(nx, ny) < GRADIENT_MIN)
         break;
@@ -107,33 +110,37 @@ void hydraulic_particle(Array &z,
       y += dt * vy;
 
       // perform erosion / deposition
-      ix = (int)x;
-      jy = (int)y;
+      i_next = (int)x;
+      j_next = (int)y;
 
-      if ((i != ix) or (j != jy))
-      {
-        if ((ix < 1) or (ix > ni - 2) or (jy < 1) or (jy > nj - 2))
-          break;
+      float u_next = x - (float)i_next;
+      float v_next = y - (float)j_next;
 
-        // particle sediment capacity
-        float dz = z(i, j) - z(ix, jy);
-        float sc = std::max(0.f, c_capacity * volume * vnorm * dz);
-        float delta_sc = dt * (sc - s);
-        float amount;
+      if ((i_next < 1) or (i_next > ni - 2) or (j_next < 1) or
+          (j_next > nj - 2))
+        break;
 
-        if (delta_sc > 0.f)
-          amount = c_erosion * delta_sc; // erosion
-        else
-          amount = c_deposition * delta_sc; // deposition
+      float z_next = z.get_value_bilinear_at(i_next, j_next, u_next, v_next);
 
-        s += amount;
+      // particle sediment capacity
+      float dz = z_old - z_next;
+      float sc = std::max(0.f, c_capacity * volume * vnorm * dz);
+      float delta_sc = dt * (sc - s);
+      float amount;
 
-        if (ir == 0)
-          z(i, j) -= amount; // pixel-based
-        else if ((i > ir) and (i < ni - ir - 1) and (j > ir) and
-                 (j < nj - ir - 1))
-          z.depose_amount_kernel(i, j, kernel, -amount); // kernel-based
-      }
+      if (delta_sc > 0.f)
+        amount = c_erosion * delta_sc; // erosion
+      else
+        amount = c_deposition * delta_sc; // deposition
+
+      s += amount;
+
+      if (ir == 0)
+        z.depose_amount_bilinear_at(i, j, u, v, -amount);
+      else if ((i > ir) and (i < ni - ir - 1) and (j > ir) and
+               (j < nj - ir - 1))
+        // kernel-based - VERY SLOW
+        z.depose_amount_kernel_bilinear_at(i, j, u, v, ir, -amount);
 
       volume *= (1 - dt * evap_rate);
     }

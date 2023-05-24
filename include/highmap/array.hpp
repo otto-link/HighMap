@@ -11,6 +11,7 @@
 #pragma once
 
 #include <algorithm>
+#include <cmath>
 #include <iomanip>
 #include <iostream>
 #include <numeric>
@@ -226,6 +227,54 @@ public:
   }
 
   /**
+   * @brief Distribute a value 'amount' around the four cells (i, j), (i + 1,
+   * j), (i, j + 1), (i + 1, j + 1) by "reversing" the bilinear interpolation.
+   *
+   * @param i Index.
+   * @param j Index.
+   * @param u 'u' interpolation parameter, expected to be in [0, 1[.
+   * @param v 'v' interpolation parameter, expected to be in [0, 1[.
+   * @param amount Amount to be deposited.
+   */
+  inline void depose_amount_bilinear_at(int   i,
+                                        int   j,
+                                        float u,
+                                        float v,
+                                        float amount)
+  {
+    (*this)(i, j) += amount * (1 - u) * (1 - v);
+    (*this)(i + 1, j) += amount * u * (1 - v);
+    (*this)(i, j + 1) += amount * (1 - u) * v;
+    (*this)(i + 1, j + 1) += amount * u * v;
+  }
+
+  inline void depose_amount_kernel_bilinear_at(int   i,
+                                               int   j,
+                                               float u,
+                                               float v,
+                                               int   ir,
+                                               float amount)
+  {
+    Array kernel = Array({2 * ir + 1, 2 * ir + 1});
+
+    // compute kernel first
+    for (int p = -ir; p < ir + 1; p++)
+    {
+      for (int q = -ir; q < ir + 1; q++)
+      {
+        float x = (float)p - u;
+        float y = (float)q - v;
+        float r = std::max(0.f, 1.f - std::hypot(x, y));
+        kernel(p + ir, q + ir) = r;
+      }
+    }
+    kernel.normalize();
+
+    // perform deposition
+    this->depose_amount_kernel_at(i, j, kernel, amount);
+  }
+
+  /**
    * @brief Distribute a value 'amount' around the cell (i, j) using a
    * a 1D deposition kernel (applied to both direction).
    *
@@ -234,7 +283,7 @@ public:
    * @param kernel Deposition kernel (1D), must have an odd number of elements.
    * @param amount Amount to be deposited.
    */
-  inline void depose_amount_kernel(int i, int j, Array &kernel, float amount)
+  inline void depose_amount_kernel_at(int i, int j, Array &kernel, float amount)
   {
     const int ir = (kernel.shape[0] - 1) / 2;
     const int jr = (kernel.shape[1] - 1) / 2;
@@ -292,8 +341,8 @@ public:
    *
    * @param i Index, expected to be in [1, shape[0] - 2].
    * @param j Index, expected to be in [1, shape[1] - 2].
-   * @param x 'x' coordinate, expected to be in [i, i + 1].
-   * @param y 'y' coordinate, expected to be in [j, j + 1].
+   * @param u 'u' interpolation parameter, expected to be in [0, 1[.
+   * @param v 'v' interpolation parameter, expected to be in [0, 1[.
    * @return float
    */
   inline float get_gradient_x_bilinear_at(int i, int j, float u, float v)
@@ -319,8 +368,8 @@ public:
    *
    * @param i Index, expected to be in [1, shape[0] - 2].
    * @param j Index, expected to be in [1, shape[1] - 2].
-   * @param x 'x' coordinate, expected to be in [i, i + 1].
-   * @param y 'y' coordinate, expected to be in [j, j + 1].
+   * @param u 'u' interpolation parameter, expected to be in [0, 1[.
+   * @param v 'v' interpolation parameter, expected to be in [0, 1[.
    * @return float
    */
   inline float get_gradient_y_bilinear_at(int i, int j, float u, float v)
@@ -346,8 +395,8 @@ public:
    *
    * @param i Index, expected to be in [0, shape[0] - 2].
    * @param j Index, expected to be in [0, shape[1] - 2].
-   * @param x 'x' coordinate, expected to be in [i, i + 1].
-   * @param y 'y' coordinate, expected to be in [j, j + 1].
+   * @param u 'u' interpolation parameter, expected to be in [0, 1[.
+   * @param v 'v' interpolation parameter, expected to be in [0, 1[.
    * @return float
    */
   inline float get_value_bilinear_at(int i, int j, float u, float v)
