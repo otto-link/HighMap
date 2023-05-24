@@ -8,7 +8,7 @@
 #include "highmap/dbg.hpp"
 #include "macrologger.h"
 
-#define DT 0.5f
+#define DT 1.f
 #define VOLUME_INIT 1.f
 #define VOLUME_MIN 0.01f
 #define SPAWN_MOISTURE_LOW_LIMIT 0.1f
@@ -132,9 +132,7 @@ void hydraulic_particle(Array &z,
           z(i, j) -= amount; // pixel-based
         else if ((i > ir) and (i < ni - ir - 1) and (j > ir) and
                  (j < nj - ir - 1))
-        {
           z.depose_amount_kernel(i, j, kernel, -amount); // kernel-based
-        }
       }
 
       volume *= (1 - dt * evap_rate);
