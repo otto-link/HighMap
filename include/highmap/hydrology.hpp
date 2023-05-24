@@ -37,7 +37,7 @@ Array flow_accumulation_d8(Array &z);
  *
  * @param z  Input array.
  * @param talus_ref Reference talus used to localy define the flow-partition
- * exponent: small value of talus_ref will lead to thinner flow stream (@see
+ * exponent: small values of `talus_ref` will lead to thinner flow streams (@see
  * flow_direction_dinf). The maximum talus value of the heighmap can be used as
  * a reference.
  * @return Array
@@ -77,7 +77,7 @@ Array flow_direction_d8(Array &z);
  *
  * @param z Input array.
  * @param talus_ref Reference talus used to localy define the flow-partition
- * exponent. Small value of talus_ref will lead to thinner flow stream. The
+ * exponent. Small values of `talus_ref` will lead to thinner flow streams. The
  * maximum talus value of the heighmap can be used as a reference.
  * @return std::vector<Array> Weight for each flow directions at every cells.
  */

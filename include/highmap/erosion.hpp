@@ -217,7 +217,10 @@ void hydraulic_particle_multiscale(Array             &z,
  * @param z_bedrock Lower elevation limit.
  * @param c_erosion Erosion coefficient.
  * @param talus_ref Reference talus used to localy define the flow-partition
- * exponent (see {@link flow_accumulation_dinf}).
+ * exponent (small values of `talus_ref` will lead to thinner flow streams, see
+ * {@link flow_accumulation_dinf}).
+ * @param ir Kernel radius. If `ir > 1`, a cone kernel is used to carv channel
+ * flow erosion.
  * @param clipping_ratio Flow accumulation clipping ratio.
  *
  * **Example**
@@ -230,6 +233,7 @@ void hydraulic_stream(Array &z,
                       Array &z_bedrock,
                       float  c_erosion,
                       float  talus_ref,
+                      int    ir = 1,
                       float  clipping_ratio = 10.f);
 
 /**
