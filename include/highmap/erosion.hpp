@@ -49,18 +49,57 @@ namespace hmap
  */
 void depression_filling(Array &z, int iterations = 1000, float epsilon = 1e-4f);
 
-void hydraulic_benes(Array &z, int iterations);
+/**
+ * @brief Apply cell-based hydraulic erosion/deposition based on Benes et al.
+ * procedure.
+ *
+ * See @cite Benes2002 and @cite Olsen2004.
+ *
+ * @param z Input array.
+ * @param rain_map Moisture map (quantity of rain), expected to be in [0, 1].
+ * @param iterations Number of iterations.
+ * @param c_capacity Sediment capacity.
+ * @param c_deposition Deposition coefficient.
+ * @param c_erosion Erosion coefficient.
+ * @param water_level Water level.
+ * @param evap_rate Water evaporation rate.
+ * @param rain_rate Rain relaxation rate.
+ *
+ * **Example**
+ * @include ex_hydraulic_benes.cpp
+ *
+ * **Result**
+ * @image html ex_hydraulic_benes.png
+ */
+void hydraulic_benes(Array &z,
+                     Array &rain_map,
+                     int    iterations = 50,
+                     float  c_capacity = 40.f,
+                     float  c_erosion = 0.2f,
+                     float  c_deposition = 0.8f,
+                     float  water_level = 0.005f,
+                     float  evap_rate = 0.01f,
+                     float  rain_rate = 0.5f);
+
+void hydraulic_benes(Array &z,
+                     int    iterations = 50,
+                     float  c_capacity = 40.f,
+                     float  c_erosion = 0.2f,
+                     float  c_deposition = 0.8f,
+                     float  water_level = 0.005f,
+                     float  evap_rate = 0.01f,
+                     float  rain_rate = 0.5f); ///< @overload
 
 /**
  * @brief Apply cell-based hydraulic erosion/deposition of Musgrave et al.
  * (1989).
  *
- * A simple grid-based erosion technique was published by Musgrave, Kolb, and
- * Mace in 1989 @cite Musgrave1989.
+ * A simple grid-based erosion technique was published by Musgrave, Kolb,
+ * and Mace in 1989 @cite Musgrave1989.
  *
  * @param z Input array.
- * @param moisture_map Moisture map (quantity of rain), expected to be in [0,
- * 1].
+ * @param moisture_map Moisture map (quantity of rain), expected to be in
+ * [0, 1].
  * @param iterations Number of iterations.
  * @param c_capacity Sediment capacity.
  * @param c_deposition Deposition coefficient.
