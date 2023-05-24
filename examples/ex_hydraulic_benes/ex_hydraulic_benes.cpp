@@ -10,7 +10,6 @@ int main(void)
   const std::vector<float> res = {2.f, 2.f};
   int                      seed = 1;
 
-  // hmap::Array z = hmap::fbm_perlin(shape, res, seed);
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
   auto        z0 = z;
 

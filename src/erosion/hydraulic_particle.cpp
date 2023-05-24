@@ -124,7 +124,7 @@ void hydraulic_particle(Array &z,
 
       // particle sediment capacity
       float dz = z_old - z_next;
-      float sc = std::max(0.f, c_capacity * volume * vnorm * dz);
+      float sc = c_capacity * volume * vnorm * dz;
       float delta_sc = dt * (sc - s);
       float amount;
 
