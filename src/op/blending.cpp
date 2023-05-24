@@ -15,6 +15,21 @@ Array blend_exclusion(const Array &array1, const Array &array2)
   return array_out;
 }
 
+Array blend_negate(const Array &array1, const Array &array2)
+{
+  Array array_out = Array(array1.shape);
+
+  auto lambda = [](float a, float b) { return a < b ? a : 2.f * b - a; };
+
+  std::transform(array1.vector.begin(),
+                 array1.vector.end(),
+                 array2.vector.begin(),
+                 array_out.vector.begin(),
+                 lambda);
+
+  return array_out;
+}
+
 Array blend_overlay(const Array &array1, const Array &array2)
 {
   Array array_out = Array(array1.shape);

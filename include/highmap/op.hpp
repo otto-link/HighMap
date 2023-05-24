@@ -97,10 +97,24 @@ inline float bilinear_interp(float f00,
  * @image html ex_blend0.png
  * @image html ex_blend1.png
  * @image html ex_blend2.png
+ * @image html ex_blend3.png
  *
- * @see {@link blend_exclusion}, {@link blend_overlay}, {@link blend_soft}
+ * @see {@link blend_exclusion}, {@link blend_negate}, {@link blend_overlay},
+ * {@link blend_soft}
  */
 Array blend_exclusion(const Array &array1, const Array &array2);
+
+/**
+ * @brief Return the 'negate' blending of two arrays.
+ *
+ * @param array1 1st array.
+ * @param array2 2nd array.
+ * @return Array Reference to the resulting object.
+ *
+ * @see {@link blend_exclusion}, {@link blend_negate}, {@link blend_overlay},
+ * {@link blend_soft}
+ */
+Array blend_negate(const Array &array1, const Array &array2);
 
 /**
  * @brief Return the 'overlay' blending of two arrays.
@@ -113,7 +127,8 @@ Array blend_exclusion(const Array &array1, const Array &array2);
  * @param array2 2nd array.
  * @return Array Reference to the resulting object.
  *
- * @see {@link blend_exclusion}, {@link blend_overlay}, {@link blend_soft}
+ * @see {@link blend_exclusion}, {@link blend_negate}, {@link blend_overlay},
+ * {@link blend_soft}
  */
 Array blend_overlay(const Array &array1, const Array &array2);
 
@@ -130,9 +145,18 @@ Array blend_overlay(const Array &array1, const Array &array2);
  * @param array2 2nd array.
  * @return Array Reference to the resulting object.
  *
- * @see {@link blend_exclusion}, {@link blend_overlay}, {@link blend_soft}
+ * @see {@link blend_exclusion}, {@link blend_negate}, {@link blend_overlay},
+ * {@link blend_soft}
  */
 Array blend_soft(const Array &array1, const Array &array2);
+
+/**
+ * @brief Set to zero any value lower than `vmin`.
+ *
+ * @param array Input array.
+ * @param vmin Lower bound.
+ */
+void chop(Array &array, float vmin);
 
 /**
  * @brief Clamp array elements to a target range.

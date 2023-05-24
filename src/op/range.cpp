@@ -11,6 +11,16 @@ void almost_unit_identity(Array &array)
   array = (2.f - array) * array * array;
 }
 
+void chop(Array &array, float vmin)
+{
+  auto lambda = [&vmin](float x) { return x > vmin ? x : 0.f; };
+
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array.vector.begin(),
+                 lambda);
+}
+
 void clamp(Array &array, float vmin, float vmax)
 {
   auto lambda = [&vmin, &vmax](float x) { return std::clamp(x, vmin, vmax); };

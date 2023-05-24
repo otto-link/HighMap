@@ -15,6 +15,7 @@ int main(void)
   hmap::remap(z2);
 
   auto z_exclusion = hmap::blend_exclusion(z1, z2);
+  auto z_negate = hmap::blend_negate(z1, z2);
   auto z_overlay = hmap::blend_overlay(z1, z2);
   auto z_soft = hmap::blend_soft(z1, z2);
 
@@ -23,10 +24,14 @@ int main(void)
                           hmap::cmap::viridis);
 
   hmap::export_banner_png("ex_blend1.png",
-                          {z1, z2, z_overlay},
+                          {z1, z2, z_negate},
                           hmap::cmap::viridis);
 
   hmap::export_banner_png("ex_blend2.png",
+                          {z1, z2, z_overlay},
+                          hmap::cmap::viridis);
+
+  hmap::export_banner_png("ex_blend3.png",
                           {z1, z2, z_soft},
                           hmap::cmap::viridis);
 }
