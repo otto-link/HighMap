@@ -62,6 +62,44 @@ Array cone_smooth(std::vector<int> shape);
 Array constant(std::vector<int> shape, float value = 0.f);
 
 /**
+ * @brief Return a crater-shaped heightmap.
+ *
+ * @param shape Array shape.
+ * @param radius Crater radius at the ridge.
+ * @param sigma_inner Inner half-width.
+ * @param sigma_outer Outer half-width.
+ * @param z_bottom Bottom elevation (ridge is at elevation `1`).
+ * @param noise Displacement noise.
+ * @param noise_amp_r Radial noise absolute scale (in pixels).
+ * @param noise_ratio_z Vertical noise relative scale (in [0, 1]).
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
+ * domain.
+ * @return Array Resulting array.
+ *
+ * **Example**
+ * @include ex_crater.cpp
+ *
+ * **Result**
+ * @image html ex_crater.png
+ */
+Array crater(std::vector<int>   shape,
+             float              radius,
+             float              sigma_inner,
+             float              sigma_outer,
+             float              z_bottom,
+             Array             &noise,
+             float              noise_amp_r,
+             float              noise_ratio_z,
+             std::vector<float> shift = {0.f, 0.f});
+
+Array crater(std::vector<int>   shape,
+             float              radius,
+             float              sigma_inner,
+             float              sigma_outer,
+             float              z_bottom,
+             std::vector<float> shift = {0.f, 0.f}); ///< @overload
+
+/**
  * @brief Return a disk foot-print.
  *
  * @param shape Array shape.
@@ -145,6 +183,31 @@ Array multifractal_perlin(std::vector<int>   shape,
                           float              lacunarity = 2.f,
                           float              offset = 1.f,
                           std::vector<float> shift = {0, 0});
+
+/**
+ * @brief Return a crater-shaped heightmap.
+ *
+ * @param shape Array shape.
+ * @param radius Peak outer radius.
+ * @param noise Displacement noise.
+ * @param noise_amp_r Radial noise absolute scale (in pixels).
+ * @param noise_ratio_z Vertical noise relative scale (in [0, 1]).
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
+ * domain.
+ * @return Array Resulting array.
+ *
+ * **Example**
+ * @include ex_peak.cpp
+ *
+ * **Result**
+ * @image html ex_peak.png
+ */
+Array peak(std::vector<int>   shape,
+           float              radius,
+           Array             &noise,
+           float              noise_r_amp,
+           float              noise_z_ratio,
+           std::vector<float> shift = {0, 0});
 
 /**
  * @brief Return an array filled with Perlin noise.
