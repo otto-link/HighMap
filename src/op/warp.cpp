@@ -26,11 +26,13 @@ void warp(Array &array, const Array &dx, const Array &dy)
       float x = (float)i + dx(i, j);
       float y = (float)j + dy(i, j);
 
-      // nearest grid point
-      int ip = (int)x + i1;
-      int jp = (int)y + j1;
+      // nearest grid point (and bilinear interpolation parameters)
+      int   ip = (int)x + i1;
+      int   jp = (int)y + j1;
+      float u = x - (float)(ip - i1);
+      float v = y - (float)(jp - j1);
 
-      array(i, j) = array_buffered(ip, jp);
+      array(i, j) = array_buffered.get_value_bilinear_at(ip, jp, u, v);
     }
   }
 }

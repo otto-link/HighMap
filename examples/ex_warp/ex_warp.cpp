@@ -15,9 +15,9 @@ int main(void)
   hmap::Array dx = hmap::fbm_perlin(shape, {4.f, 4.f}, seed + 1);
   hmap::Array dy = hmap::fbm_perlin(shape, {4.f, 4.f}, seed + 2);
 
-  // adjust warping maximum displacement to +- 5 pixels in both
+  // adjust warping maximum displacement to +- 64 pixels in both
   // directions
-  float scale = 64.f;
+  float scale = 32.f;
   remap(dx, -scale, scale);
   remap(dy, -scale, scale);
 
