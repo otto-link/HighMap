@@ -9,7 +9,7 @@
 namespace hmap
 {
 
-void warp(Array &array, Array &dx, Array &dy)
+void warp(Array &array, const Array &dx, const Array &dy)
 {
   int i1 = std::max(0, -(int)dx.min());
   int i2 = std::max(0, (int)dx.max());

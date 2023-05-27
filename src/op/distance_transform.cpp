@@ -14,7 +14,7 @@ int sep(int i, int u, float gi, float gu)
 namespace hmap
 {
 
-Array distance_transform(Array &array)
+Array distance_transform(const Array &array)
 {
   Array dt = Array(array.shape); // output distance
   Array g = Array(array.shape);

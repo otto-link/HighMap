@@ -187,6 +187,8 @@ void clamp(Array &array, float vmin = 0, float vmax = 1);
  */
 void clamp_min(Array &array, float vmin);
 
+void clamp_min_smooth(Array &array, float vmin, float k = 0.2f);
+
 /**
  * @brief Clamp array values larger than a given bound.
  *
@@ -196,6 +198,8 @@ void clamp_min(Array &array, float vmin);
  * @see {@link clamp}, {@link clamp_min}
  */
 void clamp_max(Array &array, float vmax);
+
+void clamp_max_smooth(Array &array, float vmin, float k = 0.2f);
 
 /**
  * @brief Return the convolution product of the array with a 1D kernel (row, 'i'
@@ -213,7 +217,7 @@ void clamp_max(Array &array, float vmax);
  *
  * @see {@link convolve1d_j}
  */
-Array convolve1d_i(Array &array, const std::vector<float> &kernel);
+Array convolve1d_i(const Array &array, const std::vector<float> &kernel);
 
 /**
  * @brief Return the convolution product of the array with a 1D kernel (column,
@@ -231,7 +235,7 @@ Array convolve1d_i(Array &array, const std::vector<float> &kernel);
  *
  * @see {@link convolve1d_i}
  */
-Array convolve1d_j(Array &array, const std::vector<float> &kernel);
+Array convolve1d_j(const Array &array, const std::vector<float> &kernel);
 
 /**
  * @brief Return the convolution product of the array with a given kernel. The
@@ -244,7 +248,7 @@ Array convolve1d_j(Array &array, const std::vector<float> &kernel);
  * **Example**
  * @include ex_convolve2d_svd.cpp
  */
-Array convolve2d(Array &array, Array &kernel);
+Array convolve2d(const Array &array, const Array &kernel);
 
 /**
  * @brief Return the convolution product of the array with a given kernel. The
@@ -255,7 +259,7 @@ Array convolve2d(Array &array, Array &kernel);
  * @return Array Convolution result (shape: {array.shape[0] - kernel.shape[0],
  * array.shape[1] - kernel.shape[1]}).
  */
-Array convolve2d_truncated(Array &array, Array &kernel);
+Array convolve2d_truncated(const Array &array, const Array &kernel);
 
 /**
  * @brief Return the approximate convolution product of the array with a
@@ -276,7 +280,7 @@ Array convolve2d_truncated(Array &array, Array &kernel);
  * **Result**
  * @image html ex_convolve2d_svd.png
  */
-Array convolve2d_svd(Array &z, Array &kernel, int rank = 3);
+Array convolve2d_svd(const Array &z, const Array &kernel, int rank = 3);
 
 /**
  * @brief Return the cosine of the array elements.
@@ -299,7 +303,7 @@ Array cos(const Array &array);
  * @image html ex_curvature_gaussian0.png
  * @image html ex_curvature_gaussian1.png
  */
-Array curvature_gaussian(Array &z);
+Array curvature_gaussian(const Array &z);
 
 /**
  * @brief Return the Euclidean distance transform.
@@ -317,7 +321,7 @@ Array curvature_gaussian(Array &z);
  * @image html ex_distance_transform0.png
  * @image html ex_distance_transform1.png
  */
-Array distance_transform(Array &array);
+Array distance_transform(const Array &array);
 
 /**
  * @brief Linear extrapolation of values at the borders (i = 0, j = 0, ...)
@@ -382,7 +386,7 @@ void gamma_correction(Array &array, float gamma);
  * @param buffers Buffer size {east, west, south, north}.
  * @return Array New array with buffers.
  */
-Array generate_buffered_array(Array &array, std::vector<int> buffers);
+Array generate_buffered_array(const Array &array, std::vector<int> buffers);
 
 /**
  * @brief Return the polar angle of the gradient of an array.
@@ -392,7 +396,7 @@ Array generate_buffered_array(Array &array, std::vector<int> buffers);
  * slope.
  * @return Array Gradient angle, in radians, in [-\pi, \pi].
  */
-Array gradient_angle(Array &array, bool downward = false);
+Array gradient_angle(const Array &array, bool downward = false);
 
 /**
  * @brief Return the gradient norm of an array.
@@ -406,7 +410,7 @@ Array gradient_angle(Array &array, bool downward = false);
  * **Result**
  * @image html ex_gradient_norm.png
  */
-Array gradient_norm(Array &array);
+Array gradient_norm(const Array &array);
 
 /**
  * @brief Return the gradient in the 'x' (or 'i' index) of an array.
@@ -414,7 +418,7 @@ Array gradient_norm(Array &array);
  * @param array Inupt array.
  * @return Array Gradient.
  */
-Array gradient_x(Array &array);
+Array gradient_x(const Array &array);
 
 /**
  * @brief Return the gradient in the 'y' (or 'j' index) of an array.
@@ -422,7 +426,7 @@ Array gradient_x(Array &array);
  * @param array Inupt array.
  * @return Array Gradient.
  */
-Array gradient_y(Array &array);
+Array gradient_y(const Array &array);
 
 /**
  * @brief Return the gradient talus slope of an array.
@@ -435,7 +439,7 @@ Array gradient_y(Array &array);
  * @param array Inupt array.
  * @return Array Gradient.
  */
-Array gradient_talus(Array &array);
+Array gradient_talus(const Array &array);
 
 /**
  * @brief Return the shaded relief map (or hillshading).
@@ -456,7 +460,10 @@ Array gradient_talus(Array &array);
  *
  * @see {@link topographic_shading}
  */
-Array hillshade(Array &z, float azimuth, float zenith, float talus_ref = 1.f);
+Array hillshade(const Array &z,
+                float        azimuth,
+                float        zenith,
+                float        talus_ref = 1.f);
 
 /**
  * @brief Return the square root of the sum of the squares of the two input
@@ -468,7 +475,7 @@ Array hillshade(Array &z, float azimuth, float zenith, float talus_ref = 1.f);
  * @param array2 Second array.
  * @return Array Hypothenuse.
  */
-Array hypot(Array &array1, Array &array2);
+Array hypot(const Array &array1, const Array &array2);
 
 /**
  * @brief Apply a low-pass Laplace filter.
@@ -487,9 +494,9 @@ void laplace(Array &array, float sigma = 0.2, int iterations = 3);
  * @param t Interpolation parameter (in [0, 1]).
  * @return Array Interpolated array.
  */
-Array lerp(Array &array1, Array &array2, Array &t);
+Array lerp(const Array &array1, const Array &array2, const Array &t);
 
-Array lerp(Array &array1, Array &array2, float t); ///< @overload
+Array lerp(const Array &array1, const Array &array2, float t); ///< @overload
 
 /**
  * @brief Return evenly spaced numbers over a specified interval.
@@ -545,7 +552,7 @@ void low_pass_high_order(Array &array, int order = 9, float sigma = 1.f);
  * @param array2 Second array.
  * @return Array Element-wise maximum array.
  */
-Array maximum(Array &array1, Array &array2);
+Array maximum(const Array &array1, const Array &array2);
 
 /**
  * @brief Return the 'local maxima' based on a maximum filter.
@@ -564,7 +571,7 @@ Array maximum(Array &array1, Array &array2);
  *
  * @see {@link minimum_local}
  */
-Array maximum_local(Array &array, int ir);
+Array maximum_local(const Array &array, int ir);
 
 /**
  * @brief Return the polynomial cubic smooth element-wise maximum of two arrays.
@@ -580,7 +587,7 @@ Array maximum_local(Array &array, int ir);
  *
  * @see {@link minimum_smooth}, {@link minimum}, {@link maximum}
  */
-Array maximum_smooth(Array &array1, Array &array2, float k = 0.2);
+Array maximum_smooth(const Array &array1, const Array &array2, float k = 0.2);
 
 /**
  * @brief Return the 'local mean' based on a mean filter.
@@ -598,7 +605,7 @@ Array maximum_smooth(Array &array1, Array &array2, float k = 0.2);
  *
  * @see {@link maximum_local}, {@link minimum_local}
  */
-Array mean_local(Array &array, int ir);
+Array mean_local(const Array &array, int ir);
 
 /**
  * @brief Return the element-wise minimum of two arrays.
@@ -607,7 +614,7 @@ Array mean_local(Array &array, int ir);
  * @param array2 Second array.
  * @return Array Element-wise minimum array.
  */
-Array minimum(Array &array1, Array &array2);
+Array minimum(const Array &array1, const Array &array2);
 
 /**
  * @brief Return the 'local maxima' based on a maximum filter.
@@ -626,7 +633,7 @@ Array minimum(Array &array1, Array &array2);
  *
  * @see {@link minimum_local}
  */
-Array minimum_local(Array &array, int ir);
+Array minimum_local(const Array &array, int ir);
 
 /**
  * @brief Return the polynomial cubic smooth element-wise minimum of two arrays.
@@ -642,7 +649,7 @@ Array minimum_local(Array &array, int ir);
  *
  * @see {@link maximum_smooth}, {@link minimum}, {@link maximum}
  */
-Array minimum_smooth(Array &array1, Array &array2, float k = 0.2);
+Array minimum_smooth(const Array &array1, const Array &array2, float k = 0.2);
 
 /**
  * @brief Return the mixing of a set of arrays based on a parameter `t`.
@@ -659,7 +666,7 @@ Array minimum_smooth(Array &array1, Array &array2, float k = 0.2);
  * **Result**
  * @image html ex_mixer.png
  */
-Array mixer(Array t, std::vector<Array> arrays);
+Array mixer(const Array t, const std::vector<Array> arrays);
 
 /**
  * @brief Return the array elements raised to the power 'exp'.
@@ -701,7 +708,8 @@ void remap(Array &array,
            float  vmin,
            float  vmax,
            float  from_min,
-           float  from_max);                               ///< @overload
+           float  from_max); ///< @overload
+
 void remap(Array &array, float vmin = 0, float vmax = 1); ///< @overload
 
 /**
@@ -718,7 +726,7 @@ void remap(Array &array, float vmin = 0, float vmax = 1); ///< @overload
  * @image html ex_rugosity0.png
  * @image html ex_rugosity1.png
  */
-Array rugosity(Array &z, int ir);
+Array rugosity(const Array &z, int ir);
 
 /**
  * @brief Enforce values at the boundaries of the array.
@@ -861,10 +869,10 @@ void sym_borders(Array &array, std::vector<int> buffer_sizes);
  *
  * @see {@link hillshade}
  */
-Array topographic_shading(Array &z,
-                          float  azimuth,
-                          float  zenith,
-                          float  talus_ref = 1.f);
+Array topographic_shading(const Array &z,
+                          float        azimuth,
+                          float        zenith,
+                          float        talus_ref = 1.f);
 
 /**
  * @brief Apply a warping effect to the array.
@@ -883,7 +891,7 @@ Array topographic_shading(Array &z,
  * **Result**
  * @image html ex_warp.png
  */
-void warp(Array &array, Array &dx, Array &dy);
+void warp(Array &array, const Array &dx, const Array &dy);
 
 /**
  * @brief Apply a warping effect to the array with displacements based on fbm

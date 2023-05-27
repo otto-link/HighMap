@@ -53,7 +53,7 @@ Array blend_soft(const Array &array1, const Array &array2)
   return array_out;
 }
 
-Array mixer(Array t, std::vector<Array> arrays)
+Array mixer(const Array t, const std::vector<Array> arrays)
 {
   Array      array_out = Array(t.shape);
   const uint n = arrays.size();

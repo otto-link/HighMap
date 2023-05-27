@@ -41,7 +41,7 @@ void fill_borders(Array &array)
   }
 }
 
-Array generate_buffered_array(Array &array, std::vector<int> buffers)
+Array generate_buffered_array(const Array &array, std::vector<int> buffers)
 {
   Array array_out = Array({array.shape[0] + buffers[0] + buffers[1],
                            array.shape[1] + buffers[2] + buffers[3]});

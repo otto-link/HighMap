@@ -9,7 +9,7 @@
 namespace hmap
 {
 
-Array hillshade(Array &z, float azimuth, float zenith, float talus_ref)
+Array hillshade(const Array &z, float azimuth, float zenith, float talus_ref)
 {
   float azimuth_rad = M_PI * azimuth / 180.f;
   float zenith_rad = M_PI * zenith / 180.f;
@@ -24,10 +24,10 @@ Array hillshade(Array &z, float azimuth, float zenith, float talus_ref)
   return sh;
 }
 
-Array topographic_shading(Array &z,
-                          float  azimuth,
-                          float  zenith,
-                          float  talus_ref)
+Array topographic_shading(const Array &z,
+                          float        azimuth,
+                          float        zenith,
+                          float        talus_ref)
 {
   const float azimuth_rad = M_PI * azimuth / 180.f;
   const float zenith_rad = M_PI * zenith / 180.f;

@@ -6,7 +6,7 @@
 namespace hmap
 {
 
-Array gradient_angle(Array &array, bool downward)
+Array gradient_angle(const Array &array, bool downward)
 {
   Array dx = gradient_x(array);
   Array dy = gradient_y(array);
@@ -27,7 +27,7 @@ Array gradient_angle(Array &array, bool downward)
   return alpha;
 }
 
-Array gradient_norm(Array &array)
+Array gradient_norm(const Array &array)
 {
   Array dx = gradient_x(array);
   Array dy = gradient_x(array);
@@ -35,7 +35,7 @@ Array gradient_norm(Array &array)
   return dm;
 }
 
-Array gradient_x(Array &array)
+Array gradient_x(const Array &array)
 {
   Array dm = Array(array.shape);
 
@@ -58,7 +58,7 @@ Array gradient_x(Array &array)
   return dm;
 }
 
-Array gradient_y(Array &array)
+Array gradient_y(const Array &array)
 {
   Array dm = Array(array.shape);
 
@@ -81,7 +81,7 @@ Array gradient_y(Array &array)
   return dm;
 }
 
-Array gradient_talus(Array &array)
+Array gradient_talus(const Array &array)
 {
   Array talus = Array(array.shape);
 

@@ -16,13 +16,15 @@ Array Array::operator=(float value)
   return *this;
 }
 
-Array Array::operator*(const float value)
+Array Array::operator*(const float value) const
 {
+  Array array_out = Array(this->shape);
+
   std::transform(this->vector.begin(),
                  this->vector.end(),
-                 this->vector.begin(),
+                 array_out.vector.begin(),
                  [&value](float v) { return v * value; });
-  return *this;
+  return array_out;
 }
 
 Array Array::operator*(const Array &array) const
@@ -48,13 +50,15 @@ Array operator*(const float value, const Array &array) // friend function
   return array_out;
 }
 
-Array Array::operator/(const float value)
+Array Array::operator/(const float value) const
 {
+  Array array_out = Array(this->shape);
+
   std::transform(this->vector.begin(),
                  this->vector.end(),
-                 this->vector.begin(),
+                 array_out.vector.begin(),
                  [&value](float v) { return v / value; });
-  return *this;
+  return array_out;
 }
 
 Array Array::operator/(const Array &array) const
@@ -80,13 +84,15 @@ Array operator/(const float value, const Array &array) // friend function
   return array_out;
 }
 
-Array Array::operator+(const float value)
+Array Array::operator+(const float value) const
 {
+  Array array_out = Array(this->shape);
+
   std::transform(this->vector.begin(),
                  this->vector.end(),
-                 this->vector.begin(),
+                 array_out.vector.begin(),
                  [&value](float v) { return v + value; });
-  return *this;
+  return array_out;
 }
 
 Array Array::operator+(const Array &array) const
@@ -112,22 +118,26 @@ Array operator+(const float value, const Array &array) // friend function
   return array_out;
 }
 
-Array Array::operator-()
+Array Array::operator-() const
 {
+  Array array_out = Array(this->shape);
+
   std::transform(this->vector.begin(),
                  this->vector.end(),
-                 this->vector.begin(),
+                 array_out.vector.begin(),
                  [](float v) { return -v; });
-  return *this;
+  return array_out;
 }
 
-Array Array::operator-(const float value)
+Array Array::operator-(float value) const
 {
+  Array array_out = Array(this->shape);
+
   std::transform(this->vector.begin(),
                  this->vector.end(),
-                 this->vector.begin(),
-                 [&value](float v) { return v - value; });
-  return *this;
+                 array_out.vector.begin(),
+                 [&value](float v) { return v / value; });
+  return array_out;
 }
 
 Array Array::operator-(const Array &array) const
@@ -142,7 +152,7 @@ Array Array::operator-(const Array &array) const
   return array_out;
 }
 
-Array operator-(const float value, const Array &array) // friend function
+const Array operator-(const float value, const Array &array) // friend function
 {
   Array array_out = Array(array.shape);
 

@@ -5,7 +5,7 @@
 namespace hmap
 {
 
-Array curvature_gaussian(Array &z)
+Array curvature_gaussian(const Array &z)
 {
   Array k = Array(z.shape); // output
   Array zx = gradient_x(z);
@@ -18,7 +18,7 @@ Array curvature_gaussian(Array &z)
   return k;
 }
 
-Array rugosity(Array &z, int ir)
+Array rugosity(const Array &z, int ir)
 {
   hmap::Array z_avg = Array(z.shape);
   hmap::Array z_std = Array(z.shape);

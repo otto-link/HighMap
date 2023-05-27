@@ -6,7 +6,8 @@
 namespace hmap
 {
 
-Array convolve1d_i(Array &array, const std::vector<float> &kernel) // private
+Array convolve1d_i(const Array              &array,
+                   const std::vector<float> &kernel) // private
 {
   Array array_out = Array(array.shape);
 
@@ -35,7 +36,8 @@ Array convolve1d_i(Array &array, const std::vector<float> &kernel) // private
   return array_out;
 }
 
-Array convolve1d_j(Array &array, const std::vector<float> &kernel) // private
+Array convolve1d_j(const Array              &array,
+                   const std::vector<float> &kernel) // private
 {
   Array array_out = Array(array.shape);
 
@@ -65,7 +67,7 @@ Array convolve1d_j(Array &array, const std::vector<float> &kernel) // private
   return array_out;
 }
 
-Array convolve2d(Array &array, Array &kernel)
+Array convolve2d(const Array &array, const Array &kernel)
 {
   const int i1 = (int)ceil(0.5f * (float)kernel.shape[0]);
   const int i2 = kernel.shape[0] - i1;
@@ -78,7 +80,7 @@ Array convolve2d(Array &array, Array &kernel)
   return array_out;
 }
 
-Array convolve2d_truncated(Array &array, Array &kernel)
+Array convolve2d_truncated(const Array &array, const Array &kernel)
 {
   Array array_out = Array(
       {array.shape[0] - kernel.shape[0], array.shape[1] - kernel.shape[1]});

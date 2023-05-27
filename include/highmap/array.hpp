@@ -95,13 +95,13 @@ public:
    * @param value Scalar value.
    * @return Array Reference to the current object.
    */
-  Array operator*(const float value);
+  Array operator*(const float value) const;
 
   /**
    * @brief Multiplication overloading (element-wise product by another array).
    *
    * @param array Another Array.
-   * @return Array
+   * @return Array Reference to the resulting object.
    */
   Array operator*(const Array &array) const;
 
@@ -120,7 +120,7 @@ public:
    * @param value Scalar value.
    * @return Array Reference to the current object.
    */
-  Array operator/(const float value);
+  Array operator/(const float value) const;
 
   /**
    * @brief Division overloading (element-wise division by another array).
@@ -145,7 +145,7 @@ public:
    * @param value Scalar value.
    * @return Array Reference to the current object.
    */
-  Array operator+(const float value);
+  Array operator+(const float value) const;
 
   /**
    * @brief Addition overloading (element-wise addition by another array).
@@ -169,7 +169,7 @@ public:
    *
    * @return Array Reference to the current object.
    */
-  Array operator-();
+  Array operator-() const;
 
   /**
    * @brief Subtraction overloading (right substract by a scalar).
@@ -177,7 +177,7 @@ public:
    * @param value Scalar value.
    * @return Array Reference to the current object.
    */
-  Array operator-(const float value);
+  Array operator-(const float value) const;
 
   /**
    * @brief Subtraction overloading (element-wise substract by another array).
@@ -194,7 +194,7 @@ public:
    * @param array Another Array.
    * @return Array Reference to the resulting object.
    */
-  friend Array operator-(const float value, const Array &array);
+  friend const Array operator-(const float value, const Array &array);
 
   /**
    * @brief Call overloading, return array value at index (i, j).
@@ -204,6 +204,11 @@ public:
    * @return float& Array value at index (i, j).
    */
   inline float &operator()(int i, int j)
+  {
+    return this->vector[i * this->shape[1] + j];
+  }
+
+  inline const float &operator()(int i, int j) const ///< @overload
   {
     return this->vector[i * this->shape[1] + j];
   }
@@ -429,7 +434,7 @@ public:
    *
    * @return float
    */
-  inline float max()
+  inline float max() const
   {
     return *std::max_element(this->vector.begin(), this->vector.end());
   }
@@ -439,7 +444,7 @@ public:
    *
    * @return float
    */
-  inline float min()
+  inline float min() const
   {
     return *std::min_element(this->vector.begin(), this->vector.end());
   }
@@ -481,7 +486,7 @@ public:
    *
    * @return float
    */
-  inline float ptp()
+  inline float ptp() const
   {
     return this->max() - this->min();
   }

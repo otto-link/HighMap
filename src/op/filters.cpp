@@ -93,7 +93,7 @@ void low_pass_high_order(Array &array, int order, float sigma)
   array = array - sigma * df;
 }
 
-Array maximum_local(Array &array, int ir)
+Array maximum_local(const Array &array, int ir)
 {
   Array array_out = Array(array.shape);
   Array array_tmp = Array(array.shape);
@@ -132,7 +132,7 @@ Array maximum_local(Array &array, int ir)
   return array_out;
 }
 
-Array mean_local(Array &array, int ir)
+Array mean_local(const Array &array, int ir)
 {
   Array array_out = Array(array.shape);
   Array array_tmp = Array(array.shape);
@@ -169,7 +169,7 @@ Array mean_local(Array &array, int ir)
   return array_out;
 }
 
-Array minimum_local(Array &array, int ir)
+Array minimum_local(const Array &array, int ir)
 {
   Array array_out = Array(array.shape);
   Array array_tmp = Array(array.shape);

@@ -8,7 +8,7 @@
 namespace hmap
 {
 
-Array convolve2d_svd(Array &array, Array &kernel, int rank)
+Array convolve2d_svd(const Array &array, const Array &kernel, int rank)
 {
   Array array_out = Array(array.shape);
 

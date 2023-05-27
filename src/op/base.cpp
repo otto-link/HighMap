@@ -25,7 +25,7 @@ Array cos(const Array &array)
   return array_out;
 }
 
-Array hypot(Array &array1, Array &array2)
+Array hypot(const Array &array1, const Array &array2)
 {
   Array array_out = Array(array1.shape);
   std::transform(array1.vector.begin(),
@@ -36,14 +36,16 @@ Array hypot(Array &array1, Array &array2)
   return array_out;
 }
 
-Array lerp(Array &array1, Array &array2, Array &t)
+Array lerp(const Array &array1, const Array &array2, const Array &t)
 {
-  return array1 * (1.f - t) + array2 * t;
+  Array array_out = array1 * (1.f - t) + array2 * t;
+  return array_out;
 }
 
-Array lerp(Array &array1, Array &array2, float t)
+Array lerp(const Array &array1, const Array &array2, const float t)
 {
-  return array1 * (1.f - t) + array2 * t;
+  Array array_out = array1 * (1.f - t) + array2 * t;
+  return array_out;
 }
 
 Array pow(const Array &array, float exp)
