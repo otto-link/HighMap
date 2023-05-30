@@ -236,6 +236,8 @@ void hydraulic_stream(Array &z,
                       int    ir = 1,
                       float  clipping_ratio = 10.f);
 
+void hydraulic_vpipes(Array &z);
+
 /**
  * @brief Perform sediment deposition combined with thermal erosion.
  *

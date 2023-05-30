@@ -171,4 +171,22 @@ void sym_borders(Array &array, std::vector<int> buffer_sizes)
   }
 }
 
+void zeroed_borders(Array &array)
+{
+  const int ni = array.shape[0];
+  const int nj = array.shape[1];
+
+  for (int j = 0; j < nj; j++)
+  {
+    array(0, j) = 0.f;
+    array(ni - 1, j) = 0.f;
+  }
+
+  for (int i = 0; i < ni; i++)
+  {
+    array(i, 0) = 0.f;
+    array(i, nj - 1) = 0.f;
+  }
+}
+
 } // namespace hmap

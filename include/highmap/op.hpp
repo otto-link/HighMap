@@ -905,4 +905,13 @@ void warp(Array &array, const Array &dx, const Array &dy);
  */
 void warp_fbm(Array &array, float scale, std::vector<float> kw, uint seed);
 
+/**
+ * @brief Fill values at the borders (i = 0, j = 0, ...) with zeros.
+ *
+ * @param array Input array.
+ *
+ * @see {@link fill_borders}
+ */
+void zeroed_borders(Array &array);
+
 } // namespace hmap

@@ -6,6 +6,7 @@
 #include <string>
 
 #define STB_IMAGE_WRITE_IMPLEMENTATION
+#include "macrologger.h"
 #include "stb_image_write.h"
 
 #include "highmap/array.hpp"
@@ -22,12 +23,13 @@ void Array::infos(std::string msg)
   std::cout << "shape: {" << this->shape[0] << ", " << this->shape[1] << "}"
             << ", ";
   std::cout << "min: " << this->min() << ", ";
-  std::cout << "max: " << this->max() << ", ";
-  std::cout << "ptp: " << this->ptp() << std::endl;
+  std::cout << "max: " << this->max();
+  std::cout << std::endl;
 }
 
 void Array::to_file(std::string fname)
 {
+  LOG_DEBUG("writing binary file");
   std::ofstream f;
   f.open(fname, std::ios::binary);
 

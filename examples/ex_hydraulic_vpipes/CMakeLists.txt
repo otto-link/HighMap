@@ -1,0 +1,2 @@
+add_executable(ex_hydraulic_vpipes ex_hydraulic_vpipes.cpp)
+target_link_libraries(ex_hydraulic_vpipes highmap)
