@@ -13,8 +13,9 @@ int main(void)
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
   hmap::Array zmin = hmap::minimum_local(z, radius);
   hmap::Array zmax = hmap::maximum_local(z, radius);
+  hmap::Array zdisk = hmap::maximum_local_disk(z, radius);
 
-  z.to_png("ex_maximum_local0.png", hmap::cmap::viridis);
-  zmin.to_png("ex_maximum_local1.png", hmap::cmap::viridis);
-  zmax.to_png("ex_maximum_local2.png", hmap::cmap::viridis);
+  hmap::export_banner_png("ex_maximum_local.png",
+                          {z, zmin, zmax, zdisk},
+                          hmap::cmap::viridis);
 }

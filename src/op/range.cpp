@@ -74,6 +74,73 @@ Array maximum(const Array &array1, const Array &array2)
   return array_out;
 }
 
+Array maximum_local(const Array &array, int ir)
+{
+  Array array_out = Array(array.shape);
+  Array array_tmp = Array(array.shape);
+
+  // row
+  for (int i = 0; i < array.shape[0]; i++)
+  {
+    int i1 = std::max(0, i - ir);
+    int i2 = std::min(array.shape[0], i + ir + 1);
+
+    for (int j = 0; j < array.shape[1]; j++)
+    {
+      float max = array(i, j);
+      for (int u = i1; u < i2; u++)
+        if (array(u, j) > max)
+          max = array(u, j);
+      array_tmp(i, j) = max;
+    }
+  }
+
+  // column
+  for (int j = 0; j < array.shape[1]; j++)
+  {
+    int j1 = std::max(0, j - ir);
+    int j2 = std::min(array.shape[1], j + ir + 1);
+    for (int i = 0; i < array.shape[0]; i++)
+    {
+      float max = array_tmp(i, j);
+      for (int v = j1; v < j2; v++)
+        if (array_tmp(i, v) > max)
+          max = array_tmp(i, v);
+      array_out(i, j) = max;
+    }
+  }
+
+  return array_out;
+}
+
+Array maximum_local_disk(const Array &array, int ir)
+{
+  Array array_out = array;
+
+  int ni = array.shape[0];
+  int nj = array.shape[1];
+
+  for (int i = 0; i < ni; i++)
+  {
+    int p1 = std::max(0, i - ir) - i;
+    int p2 = std::min(ni, i + ir) - i;
+    for (int j = 0; j < nj; j++)
+    {
+      int q1 = std::max(0, j - ir) - j;
+      int q2 = std::min(nj, j + ir) - j;
+      for (int p = p1; p < p2; p++)
+        for (int q = q1; q < q2; q++)
+        {
+          float r2 = (float)(p * p + q * q) / (float)ir;
+          if (r2 <= 1.f)
+            array_out(i, j) = std::max(array_out(i, j), array(i + p, j + q));
+        }
+    }
+  }
+
+  return array_out;
+}
+
 Array maximum_smooth(const Array &array1, const Array &array2, float k)
 {
   Array array_out = Array(array1.shape);
@@ -92,6 +159,43 @@ Array maximum_smooth(const Array &array1, const Array &array2, float k)
   return array_out;
 }
 
+Array mean_local(const Array &array, int ir)
+{
+  Array array_out = Array(array.shape);
+  Array array_tmp = Array(array.shape);
+
+  // row
+  for (int i = 0; i < array.shape[0]; i++)
+  {
+    int i1 = std::max(0, i - ir);
+    int i2 = std::min(array.shape[0], i + ir + 1);
+
+    for (int j = 0; j < array.shape[1]; j++)
+    {
+      float sum = 0.f;
+      for (int u = i1; u < i2; u++)
+        sum += array(u, j);
+      array_tmp(i, j) = sum / (float)(i2 - i1);
+    }
+  }
+
+  // column
+  for (int j = 0; j < array.shape[1]; j++)
+  {
+    int j1 = std::max(0, j - ir);
+    int j2 = std::min(array.shape[1], j + ir + 1);
+    for (int i = 0; i < array.shape[0]; i++)
+    {
+      float sum = 0.f;
+      for (int v = j1; v < j2; v++)
+        sum += array_tmp(i, v);
+      array_out(i, j) = sum / (float)(j2 - j1);
+    }
+  }
+
+  return array_out;
+}
+
 Array minimum(const Array &array1, const Array &array2)
 {
   Array array_out = Array(array1.shape);
@@ -101,6 +205,16 @@ Array minimum(const Array &array1, const Array &array2)
                  array_out.vector.begin(),
                  [](float a, float b) { return std::min(a, b); });
   return array_out;
+}
+
+Array minimum_local(const Array &array, int ir)
+{
+  return -maximum_local(-array, ir);
+}
+
+Array minimum_local_disk(const Array &array, int ir)
+{
+  return -maximum_local_disk(-array, ir);
 }
 
 Array minimum_smooth(const Array &array1, const Array &array2, float k)

@@ -565,13 +565,29 @@ Array maximum(const Array &array1, const Array &array2);
  * @include ex_maximum_local.cpp
  *
  * **Result**
- * @image html ex_maximum_local0.png
- * @image html ex_maximum_local1.png
- * @image html ex_maximum_local2.png
+ * @image html ex_maximum_local.png
  *
- * @see {@link minimum_local}
+ * @see {@link maximum_local_disk}, {@link minimum_local}
  */
 Array maximum_local(const Array &array, int ir);
+
+/**
+ * @brief Return the 'local maxima' based on a maximum filter using a disk
+ * kernel.
+ *
+ * @param array Input array.
+ * @param ir Disk kernel footprint radius.
+ * @return Array Resulting array.
+ *
+ * **Example**
+ * @include ex_maximum_local.cpp
+ *
+ * **Result**
+ * @image html ex_maximum_local.png
+ *
+ * @see {@link maximum_local}, {@link minimum_local_disk}, {@link minimum_local}
+ */
+Array maximum_local_disk(const Array &array, int ir);
 
 /**
  * @brief Return the polynomial cubic smooth element-wise maximum of two arrays.
@@ -617,7 +633,7 @@ Array mean_local(const Array &array, int ir);
 Array minimum(const Array &array1, const Array &array2);
 
 /**
- * @brief Return the 'local maxima' based on a maximum filter.
+ * @brief Return the 'local minima' based on a maximum filter.
  *
  * @param array Input array.
  * @param ir Square kernel footprint radius.
@@ -627,13 +643,29 @@ Array minimum(const Array &array1, const Array &array2);
  * @include ex_maximum_local.cpp
  *
  * **Result**
- * @image html ex_maximum_local0.png
- * @image html ex_maximum_local1.png
- * @image html ex_maximum_local2.png
+ * @image html ex_maximum_local.png
  *
  * @see {@link minimum_local}
  */
 Array minimum_local(const Array &array, int ir);
+
+/**
+ * @brief Return the 'local minima' based on a maximum filter using a disk
+ * kernel.
+ *
+ * @param array Input array.
+ * @param ir Disk kernel footprint radius.
+ * @return Array Resulting array.
+ *
+ * **Example**
+ * @include ex_maximum_local.cpp
+ *
+ * **Result**
+ * @image html ex_maximum_local.png
+ *
+ * @see {@link maximum_local}, {@link maximum_local_disk}, {@link minimum_local}
+ */
+Array minimum_local_disk(const Array &array, int ir);
 
 /**
  * @brief Return the polynomial cubic smooth element-wise minimum of two arrays.
