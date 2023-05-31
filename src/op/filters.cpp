@@ -285,6 +285,17 @@ void smooth_sharp(Array &array, int ir)
   array = maximum(array, array_smooth);
 }
 
+void steepen(Array &array, float scale, int ir)
+{
+  Array dx = gradient_x(array) * ((float)array.shape[0] * -scale);
+  Array dy = gradient_y(array) * ((float)array.shape[1] * -scale);
+
+  smooth_cpulse(dx, ir);
+  smooth_cpulse(dy, ir);
+
+  warp(array, dx, dy);
+}
+
 void steepen_convective(Array &array, float angle, int iterations, float dt)
 {
   for (int it = 0; it < iterations; it++)

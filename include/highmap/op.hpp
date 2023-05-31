@@ -773,6 +773,21 @@ void sharpen(Array &array, float ratio = 1.f);
 Array sin(const Array &array);
 
 /**
+ * @brief Steepen (or flatten) the array map.
+ *
+ * @param array Input array.
+ * @param scale Filter amplitude.
+ * @param ir Filtering radius of the array gradients.
+ *
+ * **Example**
+ * @include ex_steepen.cpp
+ *
+ * **Result**
+ * @image html ex_steepen.png
+ */
+void steepen(Array &array, float scale, int ir = 8);
+
+/**
  * @brief Steepen array values by applying a nonlinear convection operator in a
  * given direction (see to Burger's equarion for instance).
  *
