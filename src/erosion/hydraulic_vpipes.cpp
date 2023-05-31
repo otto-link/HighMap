@@ -43,7 +43,7 @@ void hydraulic_vpipes(Array &z)
   float c_deposition = 0.2f;
 
   float g = 1.f;
-  float pipe_length = 1.f; // / (float)std::min(z.shape[0], z.shape[1]);
+  float pipe_length = 1.f;
 
   // local
   int ni = z.shape[0];
@@ -57,15 +57,13 @@ void hydraulic_vpipes(Array &z)
   Array fT = Array(z.shape);
   Array fB = Array(z.shape);
 
-  float talus_scaling = (float)(4 * std::min(z.shape[0], z.shape[1]));
+  float talus_scaling = (float)(1 * std::min(z.shape[0], z.shape[1]));
 
   Array tmp = Array(z.shape);
 
   for (int it = 0; it < iterations; it++)
   {
     LOG_DEBUG("iteration: %d", it);
-
-    // LOG_DEBUG("d sum: %g", d.sum());
 
     // --- water increase
     Array d1 = (1.f - dt * rain_rate) * d + dt * rain_rate * rain_map;
@@ -166,7 +164,7 @@ void hydraulic_vpipes(Array &z)
       for (int j = 1; j < nj - 1; j++)
       {
         // sin(alpha), sin of tilt angle
-        float salpha = talus(i, j) / approx_hypot(1.f, talus(i, j));
+        float salpha = std::max(0.1f, talus(i, j) / approx_hypot(1.f, talus(i, j)));
         float sc = c_capacity * approx_hypot(u(i, j), v(i, j)) * salpha;
         float delta_sc = sc - s(i, j);
         float amount;
