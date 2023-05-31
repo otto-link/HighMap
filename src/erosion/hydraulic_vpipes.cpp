@@ -18,16 +18,19 @@ namespace hmap
 
 void hydraulic_vpipes(Array &z)
 {
+  // mainly Isheden2022
+  // Chiba1998 Isheden2022 Mei2007 Stava2008
+
   // https://www.diva-portal.org/smash/get/diva2:1646074/FULLTEXT01.pdf
 
   // parameters
-  Array rain_map = 0.01f * constant(z.shape, 1.f);
+  Array rain_map = 0.05f * constant(z.shape, 1.f);
 
   // Array rain_map = z;
   // remap(rain_map, 0.f, 0.01f);
 
   float dt = 0.5f;
-  int   iterations = 30;
+  int   iterations = 40;
 
   float evap_rate = 1e-2f;
   float rain_rate = 1e-2f; // 1e-2f;
@@ -35,11 +38,9 @@ void hydraulic_vpipes(Array &z)
   // float evap_rate = 0.5f;
   // float rain_rate = 0.f; // 1e-2f;
 
-  float c_capacity = 2.f;
-  float c_erosion = 0.05f;
-  float c_deposition = 0.9f;
-  float c_sediment_transport = 1.f;
-  float c_sediment_climb_factor = 0.5f;
+  float c_capacity = 1.f;
+  float c_erosion = 0.2f;
+  float c_deposition = 0.2f;
 
   float g = 1.f;
   float pipe_length = 1.f; // / (float)std::min(z.shape[0], z.shape[1]);
@@ -55,6 +56,8 @@ void hydraulic_vpipes(Array &z)
   Array fR = Array(z.shape);
   Array fT = Array(z.shape);
   Array fB = Array(z.shape);
+
+  float talus_scaling = (float)(4 * std::min(z.shape[0], z.shape[1]));
 
   Array tmp = Array(z.shape);
 
@@ -156,11 +159,15 @@ void hydraulic_vpipes(Array &z)
 
     // --- erosion and deposition
     Array s1 = s;
+    Array talus = talus_scaling * gradient_norm(z + d2);
+    laplace(talus, 0.1f, 1);
 
     for (int i = 1; i < ni - 1; i++)
       for (int j = 1; j < nj - 1; j++)
       {
-        float sc = c_capacity * std::hypot(u(i, j), v(i, j));
+        // sin(alpha), sin of tilt angle
+        float salpha = talus(i, j) / approx_hypot(1.f, talus(i, j));
+        float sc = c_capacity * approx_hypot(u(i, j), v(i, j)) * salpha;
         float delta_sc = sc - s(i, j);
         float amount;
 
@@ -177,90 +184,29 @@ void hydraulic_vpipes(Array &z)
     extrapolate_borders(z);
 
     // --- sediment transport
-    {
-      Array sL = Array(z.shape);
-      Array sR = Array(z.shape);
-      Array sT = Array(z.shape);
-      Array sB = Array(z.shape);
+    for (int i = 1; i < ni - 1; i++)
+      for (int j = 1; j < nj - 1; j++)
+      {
+        // sediment convection
+        float x = (float)i - dt * u(i, j);
+        float y = (float)j - dt * v(i, j);
 
-      for (int i = 0; i < ni - 1; i++)
-        for (int j = 0; j < nj; j++)
-        {
-          float rz = std::abs(z(i, j) / (z(i + 1, j) + EPS));
-          sL(i, j) =
-              s1(i, j) * dt * (-u(i, j)) * fL(i, j) * rz * c_sediment_transport;
-          if (rz < 1.f)
-            sL(i, j) *= c_sediment_climb_factor;
-        }
+        // bilinear interpolation parameters
+        int   ip = (int)x;
+        int   jp = (int)y;
+        float u = x - (float)ip;
+        float v = y - (float)jp;
 
-      for (int i = 1; i < ni; i++)
-        for (int j = 0; j < nj; j++)
-        {
-          float rz = std::abs(z(i, j) / (z(i - 1, j) + EPS));
-          sR(i, j) =
-              s1(i, j) * dt * u(i, j) * fR(i, j) * rz * c_sediment_transport;
-          if (rz < 1.f)
-            sR(i, j) *= c_sediment_climb_factor;
-        }
+        s(i, j) = s1.get_value_bilinear_at(ip, jp, u, v);
+      }
 
-      for (int i = 0; i < ni; i++)
-        for (int j = 1; j < nj; j++)
-        {
-          float rz = std::abs(z(i, j) / (z(i, j - 1) + EPS));
-          sT(i, j) =
-              s1(i, j) * dt * v(i, j) * fT(i, j) * rz * c_sediment_transport;
-          if (rz < 1.f)
-            sT(i, j) *= c_sediment_climb_factor;
-        }
-
-      for (int i = 0; i < ni; i++)
-        for (int j = 0; j < nj - 1; j++)
-        {
-          float rz = std::abs(z(i, j) / (z(i, j + 1) + EPS));
-          sB(i, j) =
-              s1(i, j) * dt * (-v(i, j)) * fB(i, j) * rz * c_sediment_transport;
-          if (rz < 1.f)
-            sB(i, j) *= c_sediment_climb_factor;
-        }
-
-      // normalize
-      for (int i = 1; i < ni - 1; i++)
-        for (int j = 1; j < nj - 1; j++)
-        {
-          float ts = sL(i, j) + sR(i, j) + sT(i, j) + sB(i, j);
-          float k = std::min(1.f, s1(i, j) / (ts + EPS));
-
-          sL(i, j) *= k;
-          sR(i, j) *= k;
-          sT(i, j) *= k;
-          sB(i, j) *= k;
-        }
-
-      extrapolate_borders(sL);
-      extrapolate_borders(sR);
-      extrapolate_borders(sT);
-      extrapolate_borders(sB);
-
-      for (int i = 1; i < ni - 1; i++)
-        for (int j = 1; j < nj - 1; j++)
-        {
-          float ds =
-              dt * (sR(i - 1, j) + sT(i, j - 1) + sL(i + 1, j) + sB(i, j + 1) -
-                    sL(i, j) - sR(i, j) - sT(i, j) - sB(i, j));
-          s(i, j) = s1(i, j) + ds;
-        }
-
-      extrapolate_borders(s);
-
-    } // sed transport
+    extrapolate_borders(s);
 
     // --- flow evaporation
     d = d2 * (1.f - dt * evap_rate);
 
     clamp_min(d, 0.f);
     clamp_min(s, 0.f);
-
-    // low_pass_high_order(z, 9, 0.1f);
 
   } // it
 

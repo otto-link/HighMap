@@ -11,7 +11,7 @@ int main(void)
   int                      seed = 2;
 
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
-  hmap::remap(z, 0.5f, 1.f);
+  hmap::remap(z);
   auto z0 = z;
 
   z0.to_png("ex_hydraulic_vpipes0.png", hmap::cmap::terrain);
