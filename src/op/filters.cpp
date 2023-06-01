@@ -93,6 +93,29 @@ void low_pass_high_order(Array &array, int order, float sigma)
   array = array - sigma * df;
 }
 
+void recast_canyon(Array &array, const Array &vcut, float gamma)
+{
+  auto lambda = [&gamma](float a, float b)
+  { return a > b ? a : b * std::pow(a / b, gamma); };
+
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 vcut.vector.begin(),
+                 array.vector.begin(),
+                 lambda);
+}
+
+void recast_canyon(Array &array, float vcut, float gamma)
+{
+  auto lambda = [&vcut, &gamma](float a)
+  { return a > vcut ? a : vcut * std::pow(a / vcut, gamma); };
+
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array.vector.begin(),
+                 lambda);
+}
+
 void recast_peak(Array &array, int ir, float gamma, float k)
 {
   Array ac = array;

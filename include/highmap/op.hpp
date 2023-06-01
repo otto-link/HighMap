@@ -731,6 +731,23 @@ Array pow(const Array &array, float exp);
 std::vector<float> random_vector(float min, float max, int num, int seed);
 
 /**
+ * @brief Transform heightmap to give a "canyon" like appearance.
+ *
+ * @param array Input array.
+ * @param vcut Canyon top elevation.
+ * @param gamma Gamma factor (> 0) (@see {@link gamma_correction}).
+ *
+ * **Example**
+ * @include ex_recast.cpp
+ *
+ * **Result**
+ * @image html ex_recast.png
+ */
+void recast_canyon(Array &array, const Array &vcut, float gamma = 4.f);
+
+void recast_canyon(Array &array, float vcut, float gamma); ///< @overload
+
+/**
  * @brief Transform heightmap to give a "peak" like appearance.
  *
  * @param array Input array.
@@ -767,7 +784,7 @@ void remap(Array &array,
            float  vmin,
            float  vmax,
            float  from_min,
-           float  from_max); ///< @overload
+           float  from_max);
 
 void remap(Array &array, float vmin = 0, float vmax = 1); ///< @overload
 
