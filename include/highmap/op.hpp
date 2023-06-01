@@ -66,6 +66,17 @@ inline float approx_rsqrt(float a)
  */
 Array atan(const Array &array);
 
+/**
+ * @brief Return the bilinear interpolated value based on four input values.
+ *
+ * @param f00 Value at (u, v) = (0, 0).
+ * @param f10 Value at (u, v) = (1, 0).
+ * @param f01 Value at (u, v) = (0, 1).
+ * @param f11 Value at (u, v) = (1, 1).
+ * @param u 'u' interpolation parameter, expected to be in [0, 1[.
+ * @param v 'v' interpolation parameter, expected to be in [0, 1[.
+ * @return float
+ */
 inline float bilinear_interp(float f00,
                              float f10,
                              float f01,
@@ -718,6 +729,22 @@ Array pow(const Array &array, float exp);
  * @return std::vector<float>
  */
 std::vector<float> random_vector(float min, float max, int num, int seed);
+
+/**
+ * @brief Transform heightmap to give a "peak" like appearance.
+ *
+ * @param array Input array.
+ * @param ir Filter radius.
+ * @param gamma Gamma factor (> 0) (@see {@link gamma_correction}).
+ * @param k Smoothing parameter (> 0).
+ *
+ * **Example**
+ * @include ex_recast.cpp
+ *
+ * **Result**
+ * @image html ex_recast.png
+ */
+void recast_peak(Array &array, int ir, float gamma = 2.f, float k = 0.1f);
 
 /**
  * @brief Remap array elements from a starting range to a target range.

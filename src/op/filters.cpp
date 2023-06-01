@@ -93,6 +93,15 @@ void low_pass_high_order(Array &array, int order, float sigma)
   array = array - sigma * df;
 }
 
+void recast_peak(Array &array, int ir, float gamma, float k)
+{
+  Array ac = array;
+  smooth_cpulse(ac, ir);
+  array = maximum_smooth(array, ac, k);
+  clamp_min(array, 0.f);
+  array = ac * pow(array, gamma);
+}
+
 void sharpen(Array &array, float ratio)
 {
   Array lp = Array(array.shape);
