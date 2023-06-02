@@ -123,11 +123,11 @@ Array maximum_local_disk(const Array &array, int ir)
   for (int i = 0; i < ni; i++)
   {
     int p1 = std::max(0, i - ir) - i;
-    int p2 = std::min(ni, i + ir) - i;
+    int p2 = std::min(ni, i + ir + 1) - i;
     for (int j = 0; j < nj; j++)
     {
       int q1 = std::max(0, j - ir) - j;
-      int q2 = std::min(nj, j + ir) - j;
+      int q2 = std::min(nj, j + ir + 1) - j;
       for (int p = p1; p < p2; p++)
         for (int q = q1; q < q2; q++)
         {

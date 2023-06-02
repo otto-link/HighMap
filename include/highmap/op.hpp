@@ -200,7 +200,7 @@ void clamp_min(Array &array, float vmin);
 
 /**
  * @brief Clamp array values lower than a given bound with a smooth transition.
- * 
+ *
  * @param array Input array.
  * @param vmin Lower bound.
  * @param k Smoothing parameter in [0, 1].
@@ -219,7 +219,7 @@ void clamp_max(Array &array, float vmax);
 
 /**
  * @brief Clamp array values larger than a given bound with a smooth transition.
- * 
+ *
  * @param array Input array.
  * @param vmax Upper bound.
  * @param k Smoothing parameter in [0, 1].

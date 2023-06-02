@@ -11,6 +11,9 @@ int main(void)
 
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
 
+  hmap::remap(z);
+  z.infos();
+
   int  ir = 32;
   auto z1 = z;
   hmap::expand(z1, ir);
