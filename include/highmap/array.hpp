@@ -87,7 +87,35 @@ public:
    * @param value Scalar value.
    * @return Array Reference to the current object.
    */
-  Array operator=(float value);
+  Array operator=(const float value);
+
+  /**
+   * @brief Division-assignment overloading (scalar).
+   *
+   * @param value Scalar value.
+   */
+  Array operator*=(const float value);
+
+  /**
+   * @brief Division-assignment overloading (scalar).
+   *
+   * @param value Scalar value.
+   */
+  Array operator/=(const float value);
+
+  /**
+   * @brief Division-assignment overloading (scalar).
+   *
+   * @param value Scalar value.
+   */
+  Array operator+=(const float value);
+
+  /**
+   * @brief Division-assignment overloading (scalar).
+   *
+   * @param value Scalar value.
+   */
+  Array operator-=(const float value);
 
   /**
    * @brief Multiplication overloading (right multiply by a scalar).

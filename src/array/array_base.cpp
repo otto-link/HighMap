@@ -10,9 +10,45 @@ Array::Array(std::vector<int> shape) : shape(shape)
   this->vector.resize(this->shape[0] * this->shape[1]);
 }
 
-Array Array::operator=(float value)
+Array Array::operator=(const float value)
 {
   std::fill(this->vector.begin(), this->vector.end(), value);
+  return *this;
+}
+
+Array Array::operator*=(const float value)
+{
+  std::transform(this->vector.begin(),
+                 this->vector.end(),
+                 this->vector.begin(),
+                 [&value](float v) { return v * value; });
+  return *this;
+}
+
+Array Array::operator/=(const float value)
+{
+  std::transform(this->vector.begin(),
+                 this->vector.end(),
+                 this->vector.begin(),
+                 [&value](float v) { return v / value; });
+  return *this;
+}
+
+Array Array::operator+=(const float value)
+{
+  std::transform(this->vector.begin(),
+                 this->vector.end(),
+                 this->vector.begin(),
+                 [&value](float v) { return v + value; });
+  return *this;
+}
+
+Array Array::operator-=(const float value)
+{
+  std::transform(this->vector.begin(),
+                 this->vector.end(),
+                 this->vector.begin(),
+                 [&value](float v) { return v - value; });
   return *this;
 }
 

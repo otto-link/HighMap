@@ -1,0 +1,2 @@
+add_executable(ex_bump_field ex_bump_field.cpp)
+target_link_libraries(ex_bump_field highmap)

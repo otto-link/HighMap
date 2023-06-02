@@ -7,6 +7,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/op.hpp"
+#include "highmap/primitives.hpp"
 
 namespace hmap
 {
@@ -30,6 +31,26 @@ Array biweight(std::vector<int> shape)
     }
   }
   return array;
+}
+
+Array bump_field(std::vector<int> shape,
+                 float            kw,
+                 uint             seed,
+                 float            shape_factor)
+{
+  Array z = Array(shape);
+  float density = kw * kw / (float)(shape[0] * shape[1]);
+  float rmax = shape_factor * (float)std::min(shape[0], shape[1]) / kw;
+
+  z = white_sparse(shape, 0.f, 1.f, density, seed);
+  z = distance_transform(z);
+
+  clamp_max(z, rmax);
+  z /= rmax;
+  z.infos();
+  z = 1.f - z * z * (2.f - z);
+
+  return z;
 }
 
 Array cone(std::vector<int> shape)

@@ -23,6 +23,11 @@ namespace hmap
  */
 Array biweight(std::vector<int> shape);
 
+Array bump_field(std::vector<int> shape,
+                 float            kw,
+                 uint             seed,
+                 float            shape_factor = 2.f);
+
 /**
  * @brief Return a cone.
  *
