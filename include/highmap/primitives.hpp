@@ -23,6 +23,21 @@ namespace hmap
  */
 Array biweight(std::vector<int> shape);
 
+/**
+ * @brief Return a "bump field".
+ *
+ * @param shape Array shape.
+ * @param kw Noise wavenumber with respect to a unit domain.
+ * @param seed Random seed number.
+ * @param shape_factor Shape factor (> 0). Larger values lead to flatter bumps.
+ * @return Array New array.
+ * 
+ * **Example**
+ * @include ex_bump_field.cpp
+ *
+ * **Result**
+ * @image html ex_bump_field.png
+ */
 Array bump_field(std::vector<int> shape,
                  float            kw,
                  uint             seed,

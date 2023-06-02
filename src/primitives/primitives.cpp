@@ -47,7 +47,6 @@ Array bump_field(std::vector<int> shape,
 
   clamp_max(z, rmax);
   z /= rmax;
-  z.infos();
   z = 1.f - z * z * (2.f - z);
 
   return z;
