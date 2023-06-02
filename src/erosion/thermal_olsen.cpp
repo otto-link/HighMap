@@ -15,7 +15,10 @@ namespace hmap
 // Main operator
 //----------------------------------------------------------------------
 
-void thermal_flatten(Array &z, Array &talus, Array &bedrock, int iterations)
+void thermal_flatten(Array       &z,
+                     const Array &talus,
+                     const Array &bedrock,
+                     int          iterations)
 {
   std::vector<int>   di = DI;
   std::vector<int>   dj = DJ;

@@ -14,7 +14,11 @@ namespace hmap
 // Main operator
 //----------------------------------------------------------------------
 
-void thermal(Array &z, Array &talus, Array &bedrock, int iterations, float ct)
+void thermal(Array       &z,
+             const Array &talus,
+             const Array &bedrock,
+             int          iterations,
+             float        ct)
 {
   std::vector<int>   di = DI;
   std::vector<int>   dj = DJ;
@@ -79,7 +83,7 @@ void thermal(Array &z, Array &talus, Array &bedrock, int iterations, float ct)
 //----------------------------------------------------------------------
 
 // no bedrock
-void thermal(Array &z, Array &talus, int iterations, float ct)
+void thermal(Array &z, const Array &talus, int iterations, float ct)
 {
   Array bedrock = constant(z.shape, z.min() - z.ptp());
   thermal(z, talus, bedrock, iterations, ct);
@@ -97,7 +101,10 @@ void thermal(Array &z, float talus, int iterations, float ct)
 // Macros
 //----------------------------------------------------------------------
 
-void thermal_auto_bedrock(Array &z, Array &talus, int iterations, float ct)
+void thermal_auto_bedrock(Array       &z,
+                          const Array &talus,
+                          int          iterations,
+                          float        ct)
 {
   Array z_init = z; // backup initial map
   Array bedrock = constant(z.shape, z.min() - z.ptp());

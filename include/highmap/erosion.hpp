@@ -309,16 +309,16 @@ void stratify(Array             &z,
  * **Result**
  * @image html ex_thermal.png
  */
-void thermal(Array &z,
-             Array &talus,
-             Array &bedrock,
-             int    iterations = 10,
-             float  ct = 0.5);
+void thermal(Array       &z,
+             const Array &talus,
+             const Array &bedrock,
+             int          iterations = 10,
+             float        ct = 0.5);
 
-void thermal(Array &array,
-             Array &talus,
-             int    iterations = 10,
-             float  ct = 0.5); ///< @overload
+void thermal(Array       &array,
+             const Array &talus,
+             int          iterations = 10,
+             float        ct = 0.5); ///< @overload
 
 void thermal(Array &z,
              float  talus,
@@ -345,10 +345,10 @@ void thermal(Array &z,
  * **Result**
  * @image html ex_thermal_auto_bedrock.png
  */
-void thermal_auto_bedrock(Array &z,
-                          Array &talus,
-                          int    iterations = 10,
-                          float  ct = 0.5);
+void thermal_auto_bedrock(Array       &z,
+                          const Array &talus,
+                          int          iterations = 10,
+                          float        ct = 0.5);
 
 void thermal_auto_bedrock(Array &z,
                           float  talus,
@@ -372,7 +372,7 @@ void thermal_auto_bedrock(Array &z,
  * **Result**
  * @image html ex_thermal_flatten.png
  */
-void thermal_flatten(Array &z, Array &talus, int iterations = 10);
+void thermal_flatten(Array &z, const Array &talus, int iterations = 10);
 
 void thermal_flatten(Array &z, float talus, int iterations = 10); ///< @overload
 
