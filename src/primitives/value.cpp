@@ -5,18 +5,16 @@
 namespace hmap
 {
 
-Array perlin(std::vector<int>   shape,
-             std::vector<float> kw,
-             uint               seed,
-             std::vector<float> shift)
+Array value_noise(std::vector<int>   shape,
+                  std::vector<float> kw,
+                  uint               seed,
+                  std::vector<float> shift)
 {
   Array         array = Array(shape);
   FastNoiseLite noise(seed);
 
-  // frequency is taken into account in the coordinate systems (to
-  // allow different wavelength in both directions)
   noise.SetFrequency(1.0f);
-  noise.SetNoiseType(FastNoiseLite::NoiseType_Perlin);
+  noise.SetNoiseType(FastNoiseLite::NoiseType_Value);
 
   for (int i = 0; i < array.shape[0]; i++)
   {

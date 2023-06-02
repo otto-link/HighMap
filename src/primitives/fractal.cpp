@@ -8,16 +8,16 @@
 namespace hmap
 {
 
-hmap::Array fbm_perlin(std::vector<int>   shape,
-                       std::vector<float> kw,
-                       uint               seed,
-                       int                octaves,
-                       float              persistence,
-                       float              lacunarity,
-                       float              offset,
-                       std::vector<float> shift)
+Array fbm_perlin(std::vector<int>   shape,
+                 std::vector<float> kw,
+                 uint               seed,
+                 int                octaves,
+                 float              persistence,
+                 float              lacunarity,
+                 float              offset,
+                 std::vector<float> shift)
 {
-  hmap::Array   array = hmap::Array(shape);
+  Array         array = Array(shape);
   FastNoiseLite noise(seed);
 
   // frequency is taken into account in the coordinate systems (to
@@ -43,29 +43,7 @@ hmap::Array fbm_perlin(std::vector<int>   shape,
   return array;
 }
 
-hmap::Array multifractal_perlin(std::vector<int>   shape,
-                                std::vector<float> kw,
-                                uint               seed,
-                                int                octaves,
-                                float              persistence,
-                                float              lacunarity,
-                                float              offset,
-                                std::vector<float> shift)
-{
-  hmap::Array array = hmap::constant(shape, 1.f);
-  for (int k = 0; k < octaves; k++)
-  {
-    // pretty much the same as fBm but with a product instead of a
-    // sum...
-    float       ck = std::pow(lacunarity, k);
-    hmap::Array array_k =
-        offset + hmap::perlin(shape, {ck * kw[0], ck * kw[1]}, seed, shift);
-    array = array * std::pow(persistence, k) * array_k;
-  }
-  return array;
-}
-
-hmap::Array ridged_perlin(std::vector<int>   shape,
+Array multifractal_perlin(std::vector<int>   shape,
                           std::vector<float> kw,
                           uint               seed,
                           int                octaves,
@@ -74,7 +52,29 @@ hmap::Array ridged_perlin(std::vector<int>   shape,
                           float              offset,
                           std::vector<float> shift)
 {
-  hmap::Array   array = hmap::Array(shape);
+  Array array = constant(shape, 1.f);
+  for (int k = 0; k < octaves; k++)
+  {
+    // pretty much the same as fBm but with a product instead of a
+    // sum...
+    float ck = std::pow(lacunarity, k);
+    Array array_k =
+        offset + perlin(shape, {ck * kw[0], ck * kw[1]}, seed, shift);
+    array = array * std::pow(persistence, k) * array_k;
+  }
+  return array;
+}
+
+Array ridged_perlin(std::vector<int>   shape,
+                    std::vector<float> kw,
+                    uint               seed,
+                    int                octaves,
+                    float              persistence,
+                    float              lacunarity,
+                    float              offset,
+                    std::vector<float> shift)
+{
+  Array         array = Array(shape);
   FastNoiseLite noise(seed);
 
   noise.SetFrequency(1.0f);

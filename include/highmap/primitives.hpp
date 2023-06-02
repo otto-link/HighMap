@@ -340,6 +340,31 @@ Array smooth_cosine(std::vector<int> shape);
 Array tricube(std::vector<int> shape);
 
 /**
+ * @brief Return an array filled with value noise.
+ *
+ * The function is just a wrapper based of the library <a
+ * href=https://github.com/Auburn/FastNoiseLite>FastNoiseLite</a>.
+ *
+ * @param shape Array shape.
+ * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
+ * a unit domain.
+ * @param seed Random seed number.
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
+ * domain.
+ * @return Array Value noise.
+ *
+ * **Example**
+ * @include ex_value_noise.cpp
+ *
+ * **Result**
+ * @image html ex_value_noise.png
+ */
+Array value_noise(std::vector<int>   shape,
+                  std::vector<float> kw,
+                  uint               seed,
+                  std::vector<float> shift = {0, 0});
+
+/**
  * @brief Return an array filled with white noise.
  *
  * @param shape Array shape.
