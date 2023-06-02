@@ -58,9 +58,9 @@ void clamp_max(Array &array, float vmax)
                  lambda);
 }
 
-void clamp_max_smooth(Array &array, float vmin, float k)
+void clamp_max_smooth(Array &array, float vmax, float k)
 {
-  array = minimum_smooth(array, constant(array.shape, vmin), k);
+  array = minimum_smooth(array, constant(array.shape, vmax), k);
 }
 
 Array maximum(const Array &array1, const Array &array2)

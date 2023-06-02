@@ -120,6 +120,14 @@ Array crater(std::vector<int>   shape,
              std::vector<float> shift = {0.f, 0.f}); ///< @overload
 
 /**
+ * @brief Return a cubic pulse kernel.
+ *
+ * @param shape Array shape.
+ * @return Array New array.
+ */
+Array cubic_pulse(std::vector<int> shape);
+
+/**
  * @brief Return a disk foot-print.
  *
  * @param shape Array shape.

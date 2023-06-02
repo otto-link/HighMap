@@ -15,12 +15,10 @@ namespace hmap
 Array biweight(std::vector<int> shape)
 {
   Array array = Array(shape);
-
-  int ri = (int)(0.5f * ((float)shape[0] - 1.f));
-  int rj = (int)(0.5f * ((float)shape[1] - 1.f));
+  int   ri = (int)(0.5f * ((float)shape[0] - 1.f));
+  int   rj = (int)(0.5f * ((float)shape[1] - 1.f));
 
   for (int i = 0; i < array.shape[0]; i++)
-  {
     for (int j = 0; j < array.shape[1]; j++)
     {
       float xi = ((float)i - ri) / ((float)(ri + 1));
@@ -29,7 +27,7 @@ Array biweight(std::vector<int> shape)
       if (r2 < 1.f)
         array(i, j) = (1.f - r2) * (1.f - r2);
     }
-  }
+
   return array;
 }
 
@@ -55,12 +53,10 @@ Array bump_field(std::vector<int> shape,
 Array cone(std::vector<int> shape)
 {
   Array array = Array(shape);
-
-  int ri = (int)(0.5f * ((float)shape[0] - 1.f));
-  int rj = (int)(0.5f * ((float)shape[1] - 1.f));
+  int   ri = (int)(0.5f * ((float)shape[0] - 1.f));
+  int   rj = (int)(0.5f * ((float)shape[1] - 1.f));
 
   for (int i = 0; i < array.shape[0]; i++)
-  {
     for (int j = 0; j < array.shape[1]; j++)
     {
       float xi = (float)i - ri;
@@ -68,7 +64,7 @@ Array cone(std::vector<int> shape)
       float r = std::hypot(xi / float(ri + 1), yi / float(rj + 1));
       array(i, j) = std::max(0.f, 1.f - r);
     }
-  }
+
   return array;
 }
 
@@ -84,8 +80,7 @@ Array cone_talus(float height, float talus)
   // define output array size so that starting from an amplitude h,
   // zero is indeed reached with provided slope (talus) over the
   // half-width of the domain (since we build a cone)
-  int n = std::max(1, (int)(2.f * height / talus));
-
+  int   n = std::max(1, (int)(2.f * height / talus));
   Array array = Array({n, n});
 
   if (n > 0)
@@ -96,21 +91,39 @@ Array cone_talus(float height, float talus)
   return array;
 }
 
+Array cubic_pulse(std::vector<int> shape)
+{
+  Array array = Array(shape);
+  int   ri = (int)(0.5f * ((float)shape[0] - 1.f));
+  int   rj = (int)(0.5f * ((float)shape[1] - 1.f));
+
+  for (int i = 0; i < array.shape[0]; i++)
+    for (int j = 0; j < array.shape[1]; j++)
+    {
+      float xi = (float)i - ri;
+      float yi = (float)j - rj;
+      float r = std::hypot(xi / float(ri + 1), yi / float(rj + 1));
+
+      if (r < 1.f)
+        array(i, j) = 1.f - r * r * (3.f - 2.f * r);
+    }
+
+  return array;
+}
+
 Array disk(std::vector<int> shape)
 {
   Array array = Array(shape);
-
-  int ri = (int)(0.5f * ((float)shape[0] - 1.f));
-  int rj = (int)(0.5f * ((float)shape[1] - 1.f));
+  int   ri = (int)(0.5f * ((float)shape[0] - 1.f));
+  int   rj = (int)(0.5f * ((float)shape[1] - 1.f));
 
   for (int i = 0; i < array.shape[0]; i++)
-  {
     for (int j = 0; j < array.shape[1]; j++)
     {
       if ((i - ri) * (i - ri) + (j - rj) * (j - rj) <= ri * rj)
         array(i, j) = 1.f;
     }
-  }
+
   return array;
 }
 
@@ -134,12 +147,10 @@ Array plane(std::vector<int>   shape,
 Array smooth_cosine(std::vector<int> shape)
 {
   Array array = Array(shape);
-
-  int ri = (int)(0.5f * ((float)shape[0] - 1.f));
-  int rj = (int)(0.5f * ((float)shape[1] - 1.f));
+  int   ri = (int)(0.5f * ((float)shape[0] - 1.f));
+  int   rj = (int)(0.5f * ((float)shape[1] - 1.f));
 
   for (int i = 0; i < array.shape[0]; i++)
-  {
     for (int j = 0; j < array.shape[1]; j++)
     {
       float xi = (float)i - ri;
@@ -148,19 +159,17 @@ Array smooth_cosine(std::vector<int> shape)
       if (r < M_PI)
         array(i, j) = 0.5f + 0.5f * std::cos(r);
     }
-  }
+
   return array;
 }
 
 Array tricube(std::vector<int> shape)
 {
   Array array = Array(shape);
-
-  int ri = (int)(0.5f * ((float)shape[0] - 1.f));
-  int rj = (int)(0.5f * ((float)shape[1] - 1.f));
+  int   ri = (int)(0.5f * ((float)shape[0] - 1.f));
+  int   rj = (int)(0.5f * ((float)shape[1] - 1.f));
 
   for (int i = 0; i < array.shape[0]; i++)
-  {
     for (int j = 0; j < array.shape[1]; j++)
     {
       float xi = (float)i - ri;
@@ -169,7 +178,7 @@ Array tricube(std::vector<int> shape)
       if (r < 1.f)
         array(i, j) = std::pow(1.f - std::pow(r, 3.f), 3.f);
     }
-  }
+
   return array;
 }
 

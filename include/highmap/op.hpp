@@ -198,19 +198,33 @@ void clamp(Array &array, float vmin = 0, float vmax = 1);
  */
 void clamp_min(Array &array, float vmin);
 
+/**
+ * @brief Clamp array values lower than a given bound with a smooth transition.
+ * 
+ * @param array Input array.
+ * @param vmin Lower bound.
+ * @param k Smoothing parameter in [0, 1].
+ */
 void clamp_min_smooth(Array &array, float vmin, float k = 0.2f);
 
 /**
  * @brief Clamp array values larger than a given bound.
  *
  * @param array Input array.
- * @param vmin Upper bound.
+ * @param vmax Upper bound.
  *
  * @see {@link clamp}, {@link clamp_min}
  */
 void clamp_max(Array &array, float vmax);
 
-void clamp_max_smooth(Array &array, float vmin, float k = 0.2f);
+/**
+ * @brief Clamp array values larger than a given bound with a smooth transition.
+ * 
+ * @param array Input array.
+ * @param vmax Upper bound.
+ * @param k Smoothing parameter in [0, 1].
+ */
+void clamp_max_smooth(Array &array, float vmax, float k = 0.2f);
 
 /**
  * @brief Return the convolution product of the array with a 1D kernel (row, 'i'
@@ -333,6 +347,22 @@ Array curvature_gaussian(const Array &z);
  * @image html ex_distance_transform1.png
  */
 Array distance_transform(const Array &array);
+
+/**
+ * @brief Apply expanding, or "inflating", to emphasize the bulk of the terrain.
+ *
+ * @param array Input array.
+ * @param ir Filter radius.
+ *
+ * **Example**
+ * @include ex_expand.cpp
+ *
+ * **Result**
+ * @image html ex_expand.png
+ *
+ * @see {@link ex_shrink}
+ */
+void expand(Array &array, int ir);
 
 /**
  * @brief Linear extrapolation of values at the borders (i = 0, j = 0, ...)
@@ -839,6 +869,22 @@ void set_borders(Array &array,
  * @image html ex_sharpen.png
  */
 void sharpen(Array &array, float ratio = 1.f);
+
+/**
+ * @brief Apply shrinking, or "deflating", to emphasize the ridges.
+ *
+ * @param array Input array.
+ * @param ir Filter radius.
+ *
+ * **Example**
+ * @include ex_expand.cpp
+ *
+ * **Result**
+ * @image html ex_expand.png
+ *
+ * @see {@link ex_expand}
+ */
+void shrink(Array &array, int ir);
 
 /**
  * @brief Return the sine of the array elements.

@@ -2,11 +2,40 @@
 
 #include "highmap/array.hpp"
 #include "highmap/op.hpp"
+#include "highmap/primitives.hpp"
 
 #define NSIGMA 2
 
 namespace hmap
 {
+
+void expand(Array &array, int ir)
+{
+  Array array_new = array;
+  int   ni = array.shape[0];
+  int   nj = array.shape[1];
+  Array k = cubic_pulse({2 * ir + 1, 2 * ir + 1});
+
+  for (int i = 0; i < ni; i++)
+  {
+    int p1 = std::max(0, i - ir) - i;
+    int p2 = std::min(ni, i + ir) - i;
+    for (int j = 0; j < nj; j++)
+    {
+      int q1 = std::max(0, j - ir) - j;
+      int q2 = std::min(nj, j + ir) - j;
+      for (int p = p1; p < p2; p++)
+        for (int q = q1; q < q2; q++)
+        {
+          float v = array(i + p, j + q) * k(p + ir, q + ir);
+          if (v > array_new(i, j))
+            array_new(i, j) = v;
+        }
+    }
+  }
+
+  array = array_new;
+}
 
 void gain(Array &array, float gain)
 {
@@ -139,6 +168,34 @@ void sharpen(Array &array, float ratio)
   }
   extrapolate_borders(lp);
   array = (1.f - ratio) * array + ratio * lp;
+}
+
+void shrink(Array &array, int ir)
+{
+  Array array_new = array;
+  int   ni = array.shape[0];
+  int   nj = array.shape[1];
+  Array k = cubic_pulse({2 * ir + 1, 2 * ir + 1});
+
+  for (int i = 0; i < ni; i++)
+  {
+    int p1 = std::max(0, i - ir) - i;
+    int p2 = std::min(ni, i + ir) - i;
+    for (int j = 0; j < nj; j++)
+    {
+      int q1 = std::max(0, j - ir) - j;
+      int q2 = std::min(nj, j + ir) - j;
+      for (int p = p1; p < p2; p++)
+        for (int q = q1; q < q2; q++)
+        {
+          float v = array(i + p, j + q) * k(p + ir, q + ir);
+          if (v < array_new(i, j))
+            array_new(i, j) = v;
+        }
+    }
+  }
+
+  array = array_new;
 }
 
 void smooth_cpulse(Array &array, int ir)
