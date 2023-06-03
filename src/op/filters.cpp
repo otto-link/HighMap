@@ -289,7 +289,7 @@ void smooth_fill_holes(Array &array, int ir)
   make_binary(mask);
 
   int ic = (int)((float)ir / 2.f);
-  if (ic > 0)
+  if (ic > 1)
     smooth_cpulse(mask, ic);
 
   array = lerp(array, array_smooth, mask);
