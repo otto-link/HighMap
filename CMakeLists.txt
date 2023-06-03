@@ -28,6 +28,7 @@ target_include_directories(${PROJECT_NAME}
                              ${PROJECT_SOURCE_DIR}/include
                            PRIVATE
                              ${PROJECT_SOURCE_DIR}/external/FastNoiseLite/include
+                             ${PROJECT_SOURCE_DIR}/external/libInterpolate/include
                              ${PROJECT_SOURCE_DIR}/external/macro-logger/include
                              ${PROJECT_SOURCE_DIR}/external/stb_image/include
                              ${PROJECT_SOURCE_DIR}/external/xsimd/include
@@ -37,6 +38,10 @@ set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${PROJECT_VERSION})
 
 find_package(GSL REQUIRED COMPONENTS gsl gslcblas)
 target_link_libraries(${PROJECT_NAME} GSL::gsl GSL::gslcblas OpenMP::OpenMP_CXX)
+
+find_package(Eigen3 REQUIRED) # required by libInterpolate
+include_directories(${EIGEN3_INCLUDE_DIRS})
+target_link_libraries(${PROJECT_NAME} Eigen3::Eigen)
 
 #--------------------------------------------------------------
 # everything else...

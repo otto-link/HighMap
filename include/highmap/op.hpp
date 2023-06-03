@@ -796,6 +796,26 @@ void recast_canyon(Array &array, float vcut, float gamma); ///< @overload
 void recast_peak(Array &array, int ir, float gamma = 2.f, float k = 0.1f);
 
 /**
+ * @brief Apply a curve adjustment filter to the array.
+ *
+ * The curve is monotically interpolated and values outside the input range avec
+ * clipped.
+ *
+ * @param array Input array.
+ * @param t Input value of the correction curve.
+ * @param v Output value of the correction curve.
+ *
+ * **Example**
+ * @include ex_recurve.cpp
+ *
+ * **Result**
+ * @image html ex_recurve.png
+ */
+void recurve(Array                    &array,
+             const std::vector<float> &t,
+             const std::vector<float> &v);
+
+/**
  * @brief Remap array elements from a starting range to a target range.
  *
  * By default the starting range is taken to be [min(), max()] of the input

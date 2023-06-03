@@ -1,5 +1,6 @@
 #include <cmath>
 
+#include "Interpolate.hpp"
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
@@ -151,6 +152,21 @@ void recast_peak(Array &array, int ir, float gamma, float k)
   array = maximum_smooth(array, ac, k);
   clamp_min(array, 0.f);
   array = ac * pow(array, gamma);
+}
+
+void recurve(Array                    &array,
+             const std::vector<float> &t,
+             const std::vector<float> &v)
+{
+  _1D::MonotonicInterpolator<float> interp;
+  interp.setData(t, v);
+
+  auto lambda = [&interp](float a) { return interp(a); };
+
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array.vector.begin(),
+                 lambda);
 }
 
 void sharpen(Array &array, float ratio)

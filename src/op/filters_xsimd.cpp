@@ -1,11 +1,10 @@
 #include <cmath>
 
+#include "Interpolate.hpp"
 #include "macrologger.h"
 #include "xsimd.hpp"
 
 #include "highmap/array.hpp"
-#include "highmap/op.hpp"
-#include "highmap/primitives.hpp"
 
 namespace xs = xsimd;
 
