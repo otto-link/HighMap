@@ -91,6 +91,15 @@ inline float bilinear_interp(float f00,
 }
 
 /**
+ * @brief Apply of "binary" filter to the array values to get array values only
+ * equal to 0 or 1.
+ *
+ * @param array Input array.
+ * @param threshold Threshold value above which an array value is set to 1.
+ */
+void make_binary(Array &array, float threshold = 0.f);
+
+/**
  * @brief Return the 'exclusion' blending of two arrays.
  *
  * See for instance https://en.wikipedia.org/wiki/Blend_modes.
@@ -327,8 +336,25 @@ Array cos(const Array &array);
  * **Result**
  * @image html ex_curvature_gaussian0.png
  * @image html ex_curvature_gaussian1.png
+ * @image html ex_curvature_gaussian2.png
  */
 Array curvature_gaussian(const Array &z);
+
+/**
+ * @brief Return the mean curvature @cite Kurita1992.
+ *
+ * @param z Input array.
+ * @return Array Resulting array.
+ *
+ * **Example**
+ * @include ex_curvature_gaussian.cpp
+ *
+ * **Result**
+ * @image html ex_curvature_gaussian0.png
+ * @image html ex_curvature_gaussian1.png
+ * @image html ex_curvature_gaussian2.png
+ */
+Array curvature_mean(const Array &z);
 
 /**
  * @brief Return the Euclidean distance transform.
@@ -1001,6 +1027,38 @@ void smooth_gaussian(Array &array, int ir);
  * @see {@link smooth_cpulse}, {@link thermal_auto_bedrock}
  */
 void smooth_fill(Array &array, int ir, float k = 0.1f);
+
+/**
+ * @brief Apply smoothing to smear peaks (elliptic convexe surfaces).
+ *
+ * @param array Input array.
+ * @param ir Filter radius.
+ *
+ * **Example**
+ * @include ex_smooth_fill_holes.cpp
+ *
+ * **Result**
+ * @image html ex_smooth_fill_holes.png
+ *
+ * @see {@link smooth_fill_holes}
+ */
+void smooth_fill_smear_peaks(Array &array, int ir);
+
+/**
+ * @brief Apply smoothing to fill holes (elliptic concave surfaces).
+ *
+ * @param array Input array.
+ * @param ir Filter radius.
+ *
+ * **Example**
+ * @include ex_smooth_fill_holes.cpp
+ *
+ * **Result**
+ * @image html ex_smooth_fill_holes.png
+ *
+ * @see {@link smooth_smear_peaks}
+ */
+void smooth_fill_holes(Array &array, int ir);
 
 /**
  * @brief Use symmetry for to fill values at the domain borders, over a given

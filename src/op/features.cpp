@@ -18,6 +18,20 @@ Array curvature_gaussian(const Array &z)
   return k;
 }
 
+Array curvature_mean(const Array &z)
+{
+  Array h = Array(z.shape); // output
+  Array zx = gradient_x(z);
+  Array zy = gradient_y(z);
+  Array zxx = gradient_x(zx);
+  Array zxy = gradient_y(zx);
+  Array zyy = gradient_y(zy);
+
+  h = (zxx * (1.f + zy * zy) - 2.f * zxy * zx * zy + zyy * (1.f + zx * zx)) *
+      0.5f / pow(1.f + zx * zx + zy * zy, 1.5f);
+  return h;
+}
+
 Array rugosity(const Array &z, int ir)
 {
   hmap::Array z_avg = Array(z.shape);

@@ -1,0 +1,2 @@
+add_executable(ex_smooth_fill_holes ex_smooth_fill_holes.cpp)
+target_link_libraries(ex_smooth_fill_holes highmap)

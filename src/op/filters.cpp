@@ -122,6 +122,17 @@ void low_pass_high_order(Array &array, int order, float sigma)
   array = array - sigma * df;
 }
 
+void make_binary(Array &array, float threshold)
+{
+  auto lambda = [&threshold](float a)
+  { return std::abs(a) > threshold ? 1.f : 0.f; };
+
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array.vector.begin(),
+                 lambda);
+}
+
 void recast_canyon(Array &array, const Array &vcut, float gamma)
 {
   auto lambda = [&gamma](float a, float b)
@@ -250,6 +261,38 @@ void smooth_fill(Array &array, int ir, float k)
   Array array_smooth = array;
   smooth_cpulse(array_smooth, ir);
   array = maximum_smooth(array, array_smooth, k);
+}
+
+void smooth_fill_smear_peaks(Array &array, int ir)
+{
+  Array array_smooth = mean_local(array, ir);
+
+  // mask based on concave regions
+  Array mask = curvature_mean(array_smooth);
+  clamp_max(mask, 0.f);
+  make_binary(mask);
+
+  int ic = (int)((float)ir / 2.f);
+  if (ic > 0)
+    smooth_cpulse(mask, ic);
+
+  array = lerp(array, array_smooth, mask);
+}
+
+void smooth_fill_holes(Array &array, int ir)
+{
+  Array array_smooth = mean_local(array, ir);
+
+  // mask based on concave regions
+  Array mask = curvature_mean(array_smooth);
+  clamp_min(mask, 0.f);
+  make_binary(mask);
+
+  int ic = (int)((float)ir / 2.f);
+  if (ic > 0)
+    smooth_cpulse(mask, ic);
+
+  array = lerp(array, array_smooth, mask);
 }
 
 void steepen(Array &array, float scale, int ir)
