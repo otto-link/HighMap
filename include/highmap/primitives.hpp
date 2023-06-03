@@ -201,6 +201,30 @@ Array gabor(std::vector<int> shape,
             float            footprint_threshold = 0.05f);
 
 /**
+ * @brief
+ *
+ * @param shape Array shape.
+ * @param kw Kernel wavenumber, with respect to a unit domain.
+ * @param angle Kernel angle (in degree).
+ * @param width Kernel width (in pixels).
+ * @param density Spot noise density.
+ * @param seed Random seed number.
+ * @return Array New array.
+ *
+ * **Example**
+ * @include ex_gabor_noise.cpp
+ *
+ * **Result**
+ * @image html ex_gabor_noise.png
+ */
+Array gabor_noise(std::vector<int> shape,
+                  float            kw,
+                  float            angle,
+                  int              width,
+                  float            density,
+                  uint             seed);
+
+/**
  * @brief Return an array filled with an product-multifractal Perlin noise.
  *
  * Multifractals do not combine noise functions additively, as the fBM does, but

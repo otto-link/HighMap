@@ -1,0 +1,2 @@
+add_executable(ex_gabor_noise ex_gabor_noise.cpp)
+target_link_libraries(ex_gabor_noise highmap)
