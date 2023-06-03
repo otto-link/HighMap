@@ -141,6 +141,30 @@ Array plane(std::vector<int>   shape,
             std::vector<float> xyz_center)
 {
   Array array = Array(shape);
+  // TODO !!!
+  return array;
+}
+
+Array gabor(std::vector<int> shape,
+            float            kw,
+            float            angle,
+            float            footprint_threshold)
+{
+  Array array = Array(shape);
+
+  std::vector<float> x = linspace(-1.f, 1.f, array.shape[0]);
+  std::vector<float> y = linspace(-1.f, 1.f, array.shape[1]);
+
+  float width = std::sqrt(-0.5f * M_PI / std::log(footprint_threshold));
+  float iw2 = 1.f / (width * width);
+  float ca = std::cos(angle / 180.f * M_PI);
+  float sa = std::sin(angle / 180.f * M_PI);
+
+  for (int i = 0; i < array.shape[0]; i++)
+    for (int j = 0; j < array.shape[1]; j++)
+      array(i, j) = std::exp(-M_PI * (x[i] * x[i] + y[j] * y[j]) * 0.5f * iw2) *
+                    std::cos(kw * (x[i] * ca + y[j] * sa));
+
   return array;
 }
 

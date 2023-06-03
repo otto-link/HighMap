@@ -176,6 +176,31 @@ Array fbm_perlin(std::vector<int>   shape,
                  std::vector<float> shift = {0, 0});
 
 /**
+ * @brief Return a Gabor kernel of a given shape.
+ *
+ *   Kernel width is deduced from the array shape: the kernel footprint
+ *   is limited to where envelop is larger than the value
+ *   `footprint_threshold`.
+ *
+ * @param shape Array shape.
+ * @param kw Kernel wavenumber, with respect to a unit domain.
+ * @param angle Kernel angle (in degree).
+ * @param footprint_threshold The kernel footprint is limited where envelop is
+ * larger than the value `footprint_threshold`.
+ * @return Array New array.
+ *
+ * **Example**
+ * @include ex_gabor.cpp
+ *
+ * **Result**
+ * @image html ex_gabor.png
+ */
+Array gabor(std::vector<int> shape,
+            float            kw,
+            float            angle,
+            float            footprint_threshold = 0.05f);
+
+/**
  * @brief Return an array filled with an product-multifractal Perlin noise.
  *
  * Multifractals do not combine noise functions additively, as the fBM does, but
