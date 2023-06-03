@@ -245,11 +245,11 @@ void smooth_gaussian(Array &array, int ir)
   array = convolve1d_j(array, k);
 }
 
-void smooth_sharp(Array &array, int ir)
+void smooth_fill(Array &array, int ir, float k)
 {
   Array array_smooth = array;
   smooth_cpulse(array_smooth, ir);
-  array = maximum(array, array_smooth);
+  array = maximum_smooth(array, array_smooth, k);
 }
 
 void steepen(Array &array, float scale, int ir)

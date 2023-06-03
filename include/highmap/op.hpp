@@ -983,22 +983,24 @@ void smooth_cpulse(Array &array, int ir);
 void smooth_gaussian(Array &array, int ir);
 
 /**
- * @brief Apply cubic pulse smoothing while preserving some sharpness.
+ * @brief Apply cubic pulse smoothing to fill lower flat regions while
+ * preserving some sharpness.
  *
  * "Cheap" version of {@link thermal_auto_bedrock}.
  *
  * @param array Input array.
  * @param ir Pulse radius.
+ * @param k Transition smoothing parameter in [0, 1].
  *
  * **Example**
- * @include ex_smooth_sharp.cpp
+ * @include ex_smooth_fill.cpp
  *
  * **Result**
- * @image html ex_smooth_sharp.png
+ * @image html ex_smooth_fill.png
  *
  * @see {@link smooth_cpulse}, {@link thermal_auto_bedrock}
  */
-void smooth_sharp(Array &array, int ir);
+void smooth_fill(Array &array, int ir, float k = 0.1f);
 
 /**
  * @brief Use symmetry for to fill values at the domain borders, over a given
