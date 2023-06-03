@@ -458,6 +458,18 @@ public:
   void infos(std::string msg = "");
 
   /**
+   * @brief Return the linear index corresponding to the (i, j) cell.
+   *
+   * @param i 'i' index.
+   * @param j 'j' index.
+   * @return int Linear index.
+   */
+  inline int linear_index(int i, int j)
+  {
+    return i * this->shape[1] + j;
+  }
+
+  /**
    * @brief Return the value of the greastest element in the array.
    *
    * @return float
@@ -553,7 +565,7 @@ public:
    *
    * @return int
    */
-  inline int size()
+  inline int size() const
   {
     return this->shape[0] * this->shape[1];
   }

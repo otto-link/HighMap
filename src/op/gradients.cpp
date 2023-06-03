@@ -41,9 +41,7 @@ Array gradient_x(const Array &array)
 
   for (int i = 1; i < array.shape[0] - 1; i++)
     for (int j = 0; j < array.shape[1]; j++)
-    {
       dm(i, j) = 0.5f * (array(i + 1, j) - array(i - 1, j));
-    }
 
   // east and west boundaries
   for (int j = 0; j < array.shape[1]; j++)
@@ -62,9 +60,7 @@ Array gradient_y(const Array &array)
 
   for (int i = 0; i < array.shape[0]; i++)
     for (int j = 1; j < array.shape[1] - 1; j++)
-    {
       dm(i, j) = 0.5f * (array(i, j + 1) - array(i, j - 1));
-    }
 
   // south and north boundaries
   for (int i = 0; i < array.shape[0]; i++)

@@ -19,11 +19,11 @@ void gamma_correction_xsimd(Array &array, float gamma)
   uint   size = array.size();
   b_type v_gamma = gamma; // store exponent as a vector
 
-  for (uint i = 0; i < size; i += inc)
+  for (uint k = 0; k < size; k += inc)
   {
-    b_type v = b_type::load_unaligned(&(array.vector)[i]);
+    b_type v = b_type::load_unaligned(&(array.vector)[k]);
     v = xs::pow(v, v_gamma);
-    v.store_unaligned(&(array.vector)[i]);
+    v.store_unaligned(&(array.vector)[k]);
   }
 }
 
