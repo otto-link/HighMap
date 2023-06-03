@@ -1,0 +1,2 @@
+add_executable(ex_white_density_map ex_white_density_map.cpp)
+target_link_libraries(ex_white_density_map highmap)

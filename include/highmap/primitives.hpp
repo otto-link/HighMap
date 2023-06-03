@@ -441,6 +441,21 @@ Array value_noise(std::vector<int>   shape,
 Array white(std::vector<int> shape, float a, float b, uint seed);
 
 /**
+ * @brief Return an array filled `1` with a probability based on a density map.
+ *
+ * @param density_map Density map.
+ * @param seed Random number seed.
+ * @return Array New array.
+ *
+ * **Example**
+ * @include ex_white_density_map.cpp
+ *
+ * **Result**
+ * @image html ex_white_density_map.png
+ */
+Array white_density_map(const Array &density_map, uint seed);
+
+/**
  * @brief Return an array sparsely filled with white noise.
  *
  * @param shape Array shape.
