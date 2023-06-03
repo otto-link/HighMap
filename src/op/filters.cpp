@@ -56,7 +56,6 @@ void gain(Array &array, float gain)
 void gamma_correction(Array &array, float gamma)
 {
   auto lambda = [&gamma](float x) { return std::pow(x, gamma); };
-
   std::transform(array.vector.begin(),
                  array.vector.end(),
                  array.vector.begin(),

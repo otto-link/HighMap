@@ -419,6 +419,8 @@ void gain(Array &array, float gain);
  */
 void gamma_correction(Array &array, float gamma);
 
+void gamma_correction_xsimd(Array &array, float gamma);
+
 /**
  * @brief Return an array with buffers at the boundaries (values filled by
  * symmetry).

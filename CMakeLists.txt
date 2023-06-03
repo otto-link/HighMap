@@ -9,7 +9,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Ofast -ffast-math -funroll-all-lo
 find_package(OpenMP REQUIRED)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
 
-
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 
 #--------------------------------------------------------------
@@ -31,6 +30,7 @@ target_include_directories(${PROJECT_NAME}
                              ${PROJECT_SOURCE_DIR}/external/FastNoiseLite/include
                              ${PROJECT_SOURCE_DIR}/external/macro-logger/include
                              ${PROJECT_SOURCE_DIR}/external/stb_image/include
+                             ${PROJECT_SOURCE_DIR}/external/xsimd/include
                              ${PROJECT_SOURCE_DIR}/src)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${PROJECT_VERSION})
