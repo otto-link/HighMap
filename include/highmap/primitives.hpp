@@ -176,6 +176,40 @@ Array fbm_perlin(std::vector<int>   shape,
                  std::vector<float> shift = {0, 0});
 
 /**
+ * @brief Return an array filled with an hybrid multifractal Worley noise.
+ *
+ * The function is just a wrapper based of the library <a
+ * href=https://github.com/Auburn/FastNoiseLite>FastNoiseLite</a>, theoretical
+ * details are available in the original paper of Musgrave et al. @cite
+ * Musgrave1989.
+ *
+ * @param shape Array shape.
+ * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
+ * a unit domain.
+ * @param seed Random seed number.
+ * @param octaves Number of octaves.
+ * @param persistence 'Persistence' is a multiplier that determines how quickly
+ * the amplitude diminishes for each successive octave: choose 'persistence'
+ * close to 0 for a smooth noise, and close 1 for a rougher noise texture.
+ * @param lacunarity Defines the wavenumber ratio between each octaves.
+ * @param offset Offset applied to the noise function to move its range at each
+ * octaves. Increasing the offset allows the rough peaks to rise and the valley
+ * areas to lower and become smoother. For offset = 0, the function returns the
+ * standard fractal brownian motion noise.
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
+ * domain.
+ * @return Array Fractal noise.
+ */
+Array fbm_worley(std::vector<int>   shape,
+                 std::vector<float> kw,
+                 uint               seed,
+                 int                octaves = 8,
+                 float              persistence = 0.5f,
+                 float              lacunarity = 2.f,
+                 float              offset = 0.5f,
+                 std::vector<float> shift = {0.f, 0.f});
+
+/**
  * @brief Return a Gabor kernel of a given shape.
  *
  *   Kernel width is deduced from the array shape: the kernel footprint

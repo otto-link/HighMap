@@ -3,6 +3,7 @@
 #include "FastNoiseLite.h"
 
 #include "highmap/array.hpp"
+#include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 
 namespace hmap
@@ -31,7 +32,6 @@ Array fbm_perlin(std::vector<int>   shape,
   noise.SetFractalWeightedStrength(offset);
 
   for (int i = 0; i < array.shape[0]; i++)
-  {
     for (int j = 0; j < array.shape[1]; j++)
     {
       float ki = kw[0] / (float)shape[0];
@@ -39,7 +39,6 @@ Array fbm_perlin(std::vector<int>   shape,
       array(i, j) =
           noise.GetNoise(ki * (float)i + shift[0], kj * (float)j + shift[1]);
     }
-  }
   return array;
 }
 
@@ -86,7 +85,6 @@ Array ridged_perlin(std::vector<int>   shape,
   noise.SetFractalWeightedStrength(offset);
 
   for (int i = 0; i < array.shape[0]; i++)
-  {
     for (int j = 0; j < array.shape[1]; j++)
     {
       float ki = kw[0] / (float)shape[0];
@@ -94,7 +92,38 @@ Array ridged_perlin(std::vector<int>   shape,
       array(i, j) =
           noise.GetNoise(ki * (float)i + shift[0], kj * (float)j + shift[1]);
     }
-  }
+  return array;
+}
+
+Array fbm_worley(std::vector<int>   shape,
+                 std::vector<float> kw,
+                 uint               seed,
+                 int                octaves,
+                 float              persistence,
+                 float              lacunarity,
+                 float              offset,
+                 std::vector<float> shift)
+{
+  Array         array = Array(shape);
+  FastNoiseLite noise(seed);
+
+  noise.SetFrequency(1.0f);
+  noise.SetNoiseType(FastNoiseLite::NoiseType_Cellular);
+  noise.SetCellularReturnType(FastNoiseLite::CellularReturnType_Distance);
+  noise.SetFractalOctaves(octaves);
+  noise.SetFractalLacunarity(lacunarity);
+  noise.SetFractalGain(persistence);
+  noise.SetFractalType(FastNoiseLite::FractalType_FBm);
+  noise.SetFractalWeightedStrength(offset);
+
+  for (int i = 0; i < array.shape[0]; i++)
+    for (int j = 0; j < array.shape[1]; j++)
+    {
+      float ki = kw[0] / (float)shape[0];
+      float kj = kw[1] / (float)shape[1];
+      array(i, j) =
+          noise.GetNoise(ki * (float)i + shift[0], kj * (float)j + shift[1]);
+    }
   return array;
 }
 

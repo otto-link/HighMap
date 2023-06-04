@@ -317,7 +317,7 @@ void steepen_convective(Array &array, float angle, int iterations, float dt)
     Array dx = gradient_x(array);
     Array dy = gradient_y(array);
 
-    array = array + dt * (ca * dx + sa * dy);
+    array = array - dt * (ca * dx + sa * dy);
   }
 }
 
