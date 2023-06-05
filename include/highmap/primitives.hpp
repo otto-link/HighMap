@@ -152,6 +152,7 @@ Array disk(std::vector<int> shape);
  * the amplitude diminishes for each successive octave: choose 'persistence'
  * close to 0 for a smooth noise, and close 1 for a rougher noise texture.
  * @param lacunarity Defines the wavenumber ratio between each octaves.
+ * @param weigth Octave weighting.
  * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
  * domain.
  * @return Array Fractal noise.
@@ -168,6 +169,7 @@ Array fbm_perlin(std::vector<int>   shape,
                  int                octaves = 8,
                  float              persistence = 0.5f,
                  float              lacunarity = 2.f,
+                 float              weight = 0.7f,
                  std::vector<float> shift = {0, 0});
 
 /**
@@ -187,6 +189,7 @@ Array fbm_perlin(std::vector<int>   shape,
  * the amplitude diminishes for each successive octave: choose 'persistence'
  * close to 0 for a smooth noise, and close 1 for a rougher noise texture.
  * @param lacunarity Defines the wavenumber ratio between each octaves.
+ * @param weigth Octave weighting.
  * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
  * domain.
  * @return Array Fractal noise.
@@ -197,6 +200,7 @@ Array fbm_worley(std::vector<int>   shape,
                  int                octaves = 8,
                  float              persistence = 0.5f,
                  float              lacunarity = 2.f,
+                 float              weight = 0.7f,
                  std::vector<float> shift = {0.f, 0.f});
 
 /**
@@ -263,12 +267,18 @@ Array gabor_noise(std::vector<int> shape,
  * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
  * domain.
  * @return Array Factal noise
+ *
+ * **Example**
+ * @include ex_hybrid_fbm_perlin.cpp
+ *
+ * **Result**
+ * @image html ex_hybrid_fbm_perlin.png
  */
 Array hybrid_fbm_perlin(std::vector<int>   shape,
                         std::vector<float> kw,
                         uint               seed,
                         int                octaves = 8,
-                        float              persistence = 0.5f,
+                        float              persistence = 0.9f,
                         float              lacunarity = 2.f,
                         float              offset = 0.5f,
                         std::vector<float> shift = {0.f, 0.f});
@@ -408,6 +418,7 @@ Array plane(std::vector<int>   shape,
  * octaves. Increasing the offset allows the rough peaks to rise and the valley
  * areas to lower and become smoother. For offset = 0, the function returns the
  * standard fractal brownian motion noise.
+ * @param weigth Octave weighting.
  * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
  * domain.
  * @return Array Fractal noise.
@@ -424,6 +435,7 @@ Array ridged_perlin(std::vector<int>   shape,
                     int                octaves = 8,
                     float              persistence = 0.5f,
                     float              lacunarity = 2.f,
+                    float              weight = 0.7f,
                     std::vector<float> shift = {0, 0});
 
 /**

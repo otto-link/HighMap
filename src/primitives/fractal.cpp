@@ -16,6 +16,7 @@ Array fbm_perlin(std::vector<int>   shape,
                  int                octaves,
                  float              persistence,
                  float              lacunarity,
+                 float              weight,
                  std::vector<float> shift)
 {
   Array         array = Array(shape);
@@ -29,6 +30,7 @@ Array fbm_perlin(std::vector<int>   shape,
   noise.SetFractalLacunarity(lacunarity);
   noise.SetFractalGain(persistence);
   noise.SetFractalType(FastNoiseLite::FractalType_FBm);
+  noise.SetFractalWeightedStrength(weight);
 
   for (int i = 0; i < array.shape[0]; i++)
     for (int j = 0; j < array.shape[1]; j++)
@@ -48,6 +50,7 @@ Array fbm_worley(std::vector<int>   shape,
                  int                octaves,
                  float              persistence,
                  float              lacunarity,
+                 float              weight,
                  std::vector<float> shift)
 {
   Array         array = Array(shape);
@@ -60,6 +63,7 @@ Array fbm_worley(std::vector<int>   shape,
   noise.SetFractalLacunarity(lacunarity);
   noise.SetFractalGain(persistence);
   noise.SetFractalType(FastNoiseLite::FractalType_FBm);
+  noise.SetFractalWeightedStrength(weight);
 
   for (int i = 0; i < array.shape[0]; i++)
     for (int j = 0; j < array.shape[1]; j++)
@@ -135,6 +139,7 @@ Array ridged_perlin(std::vector<int>   shape,
                     int                octaves,
                     float              persistence,
                     float              lacunarity,
+                    float              weight,
                     std::vector<float> shift)
 {
   Array         array = Array(shape);
@@ -146,6 +151,7 @@ Array ridged_perlin(std::vector<int>   shape,
   noise.SetFractalLacunarity(lacunarity);
   noise.SetFractalGain(persistence);
   noise.SetFractalType(FastNoiseLite::FractalType_Ridged);
+  noise.SetFractalWeightedStrength(weight);
 
   for (int i = 0; i < array.shape[0]; i++)
     for (int j = 0; j < array.shape[1]; j++)
