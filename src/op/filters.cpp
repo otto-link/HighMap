@@ -180,6 +180,16 @@ void recurve(Array                    &array,
                  lambda);
 }
 
+void recurve_s(Array &array)
+{
+  auto lambda = [](float a) { return a * a * (3.f - 2.f * a); };
+
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array.vector.begin(),
+                 lambda);
+}
+
 void sharpen(Array &array, float ratio)
 {
   Array lp = Array(array.shape);

@@ -5,6 +5,16 @@
 namespace hmap
 {
 
+Array abs(const Array &array)
+{
+  Array array_out = Array(array.shape);
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array_out.vector.begin(),
+                 [](float v) { return std::abs(v); });
+  return array_out;
+}
+
 Array atan(const Array &array)
 {
   Array array_out = Array(array.shape);

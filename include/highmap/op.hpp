@@ -14,6 +14,14 @@ namespace hmap
 {
 
 /**
+ * @brief Return the absolute value of the array elements.
+ *
+ * @param array Input array.
+ * @return Array Output array.
+ */
+Array abs(const Array &array);
+
+/**
  * @brief Apply the almost unit identity function.
  *
  * Function that maps the unit interval to itself with zero derivative at 0 and
@@ -840,6 +848,13 @@ void recast_peak(Array &array, int ir, float gamma = 2.f, float k = 0.1f);
 void recurve(Array                    &array,
              const std::vector<float> &t,
              const std::vector<float> &v);
+
+/**
+ * @brief Apply a curve adjustment filter using a smooth "S-shape" curve.
+ *
+ * @param array Input array.
+ */
+void recurve_s(Array &array);
 
 /**
  * @brief Remap array elements from a starting range to a target range.

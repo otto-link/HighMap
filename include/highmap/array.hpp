@@ -96,12 +96,16 @@ public:
    */
   Array operator*=(const float value);
 
+  Array operator*=(const Array &array); ///< @overload
+
   /**
    * @brief Division-assignment overloading (scalar).
    *
    * @param value Scalar value.
    */
   Array operator/=(const float value);
+
+  Array operator/=(const Array &array); ///< @overload
 
   /**
    * @brief Division-assignment overloading (scalar).
@@ -110,12 +114,16 @@ public:
    */
   Array operator+=(const float value);
 
+  Array operator+=(const Array &array); ///< @overload
+
   /**
    * @brief Division-assignment overloading (scalar).
    *
    * @param value Scalar value.
    */
   Array operator-=(const float value);
+
+  Array operator-=(const Array &array); ///< @overload
 
   /**
    * @brief Multiplication overloading (right multiply by a scalar).

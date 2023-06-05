@@ -25,12 +25,32 @@ Array Array::operator*=(const float value)
   return *this;
 }
 
+Array Array::operator*=(const Array &array)
+{
+  std::transform(this->vector.begin(),
+                 this->vector.end(),
+                 array.vector.begin(),
+                 this->vector.begin(),
+                 [](float v, float a) { return v * a; });
+  return *this;
+}
+
 Array Array::operator/=(const float value)
 {
   std::transform(this->vector.begin(),
                  this->vector.end(),
                  this->vector.begin(),
                  [&value](float v) { return v / value; });
+  return *this;
+}
+
+Array Array::operator/=(const Array &array)
+{
+  std::transform(this->vector.begin(),
+                 this->vector.end(),
+                 array.vector.begin(),
+                 this->vector.begin(),
+                 [](float v, float a) { return v / a; });
   return *this;
 }
 
@@ -43,12 +63,32 @@ Array Array::operator+=(const float value)
   return *this;
 }
 
+Array Array::operator+=(const Array &array)
+{
+  std::transform(this->vector.begin(),
+                 this->vector.end(),
+                 array.vector.begin(),
+                 this->vector.begin(),
+                 [](float v, float a) { return v + a; });
+  return *this;
+}
+
 Array Array::operator-=(const float value)
 {
   std::transform(this->vector.begin(),
                  this->vector.end(),
                  this->vector.begin(),
                  [&value](float v) { return v - value; });
+  return *this;
+}
+
+Array Array::operator-=(const Array &array)
+{
+  std::transform(this->vector.begin(),
+                 this->vector.end(),
+                 array.vector.begin(),
+                 this->vector.begin(),
+                 [](float v, float a) { return v - a; });
   return *this;
 }
 
