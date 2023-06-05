@@ -1,5 +1,6 @@
 #include "highmap/array.hpp"
 #include "highmap/io.hpp"
+#include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 
 int main(void)
@@ -8,7 +9,14 @@ int main(void)
   const std::vector<float> res = {2.f, 2.f};
   int                      seed = 1;
 
-  hmap::Array z = hmap::hybrid_fbm_perlin(shape, res, seed);
+  hmap::Array z1 = hmap::fbm_perlin(shape, res, seed);
+  hmap::Array z2 = hmap::hybrid_fbm_perlin(shape, res, seed);
 
-  z.to_png("ex_hybrid_fbm_perlin.png", hmap::cmap::terrain, true);
+  hmap::remap(z1);
+  hmap::remap(z2);
+
+  hmap::export_banner_png("ex_hybrid_fbm_perlin.png",
+                          {z1, z2},
+                          hmap::cmap::terrain,
+                          true);
 }
