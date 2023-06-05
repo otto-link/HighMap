@@ -65,18 +65,30 @@ void gamma_correction(Array &array, float gamma)
 
 void laplace(Array &array, float sigma, int iterations)
 {
-  Array lp = Array(array.shape);
-
   for (int it = 0; it < iterations; it++)
   {
-    for (int i = 1; i < array.shape[0] - 1; i++)
-      for (int j = 1; j < array.shape[1] - 1; j++)
-      {
-        lp(i, j) = 4.f * array(i, j) - array(i + 1, j) - array(i - 1, j) -
-                   array(i, j - 1) - array(i, j + 1);
-      }
-    extrapolate_borders(lp);
-    array = array - sigma * lp;
+    Array delta = laplacian(array);
+    array += sigma * delta;
+  }
+}
+
+void laplace_edge_preserving(Array &array,
+                             float  talus,
+                             float  sigma,
+                             int    iterations)
+{
+  for (int it = 0; it < iterations; it++)
+  {
+    Array c = gradient_norm(array);
+    c = 1.f / (1.f + c * c / (talus * talus));
+
+    Array dcx = gradient_x(c);
+    Array dcy = gradient_y(c);
+    Array dzx = gradient_x(array);
+    Array dzy = gradient_y(array);
+    Array delta = laplacian(array);
+
+    array += sigma * (dcx * dzx + dcy * dzy + c * delta);
   }
 }
 

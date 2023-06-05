@@ -560,8 +560,44 @@ Array hypot(const Array &array1, const Array &array2);
  * @param array Input array.
  * @param sigma Filtering intensity, in [0, 1].
  * @param iterations Number of iterations.
+ *
+ * **Example**
+ * @include ex_laplace.cpp
+ *
+ * **Result**
+ * @image html ex_laplace.png
  */
-void laplace(Array &array, float sigma = 0.2, int iterations = 3);
+void laplace(Array &array, float sigma = 0.2f, int iterations = 3);
+
+/**
+ * @brief Apply a low-pass anisotropic Laplace filter.
+ *
+ * See https://en.wikipedia.org/wiki/Anisotropic_diffusion.
+ *
+ * @param array Input array.
+ * @param talus Talus limit for edge sensitivity (gradient above this value are
+ * less affected by the filering).
+ * @param sigma Filtering intensity, in [0, 1].
+ * @param iterations Number of iterations.
+ *
+ * **Example**
+ * @include ex_laplace.cpp
+ *
+ * **Result**
+ * @image html ex_laplace.png
+ */
+void laplace_edge_preserving(Array &array,
+                             float  talus,
+                             float  sigma = 0.2f,
+                             int    iterations = 3);
+
+/**
+ * @brief Return the Laplacian of the input array.
+ *
+ * @param array Input array.
+ * @return Array Laplacian array.
+ */
+Array laplacian(const Array &array);
 
 /**
  * @brief Return the linear interpolation between two arrays by a parameter t.
