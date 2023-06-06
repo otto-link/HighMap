@@ -55,9 +55,9 @@ Array fbm_perlin(std::vector<int>   shape,
     {
       float ki = kw[0] / (float)shape[0];
       float kj = kw[1] / (float)shape[1];
-
-      array(i, j) =
+      float v =
           noise.GetNoise(ki * (float)i + shift[0], kj * (float)j + shift[1]);
+      array(i, j) = v;
     }
   return array;
 }
@@ -68,7 +68,7 @@ Array fbm_perlin_advanced(std::vector<int>   shape,
                           int                octaves,
                           float              persistence,
                           float              lacunarity,
-                          float              weight,
+                          Array             &weight,
                           float              clamp_min,
                           float              clamp_k,
                           std::vector<float> shift)
@@ -100,7 +100,8 @@ Array fbm_perlin_advanced(std::vector<int>   shape,
         float value = noise.GetNoise(ki * ((float)i + shift0[0]),
                                      kj * ((float)j + shift0[1]));
         sum += value * amp;
-        amp *= (1.f - weight) + weight * std::min(value + 1.f, 2.f) * 0.5f;
+        amp *= (1.f - weight(i, j)) +
+               weight(i, j) * std::min(value + 1.f, 2.f) * 0.5f;
 
         ki *= lacunarity;
         kj *= lacunarity;

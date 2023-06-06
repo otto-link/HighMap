@@ -27,8 +27,18 @@ int main(void)
   std::cout << "seed: " << seed << std::endl;
 
   timer.start("fbm");
-  hmap::Array z = hmap::fbm_perlin(shape, res, seed, 12);
+  hmap::Array z = hmap::fbm_perlin(shape, res, seed, 4);
   timer.stop("fbm");
+
+  auto  zf = z; // hmap::perlin(shape, res, seed);
+  float talus = 4.f / shape[0];
+
+  timer.start("inv 2");
+  auto c = hmap::select_gradient_exp(zf, talus, 1.f / shape[0]);
+  timer.stop("inv 2");
+
+  auto weight = c; // hmap::constant(shape, 0.5f);
+  hmap::remap(weight, 1.f, 0.f);
 
   timer.start("fbm a");
   hmap::Array za = hmap::fbm_perlin_advanced(shape,
@@ -37,9 +47,10 @@ int main(void)
                                              12,
                                              0.5f,
                                              2.f,
-                                             0.7f,
-                                             0.f,
+                                             weight,
+                                             -1.f,
                                              0.5f);
+  // za = c;
   timer.stop("fbm a");
 
   // hmap::remap(z);
@@ -98,5 +109,5 @@ int main(void)
 
   z.to_png("out.png", hmap::cmap::terrain, true);
   z0.to_png("out0.png", hmap::cmap::terrain, true);
-  z.to_file("out.bin");
+  za.to_file("out.bin");
 }

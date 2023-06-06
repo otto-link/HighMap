@@ -175,10 +175,10 @@ Array fbm_perlin(std::vector<int>   shape,
 Array fbm_perlin_advanced(std::vector<int>   shape,
                           std::vector<float> kw,
                           uint               seed,
-                          int                octaves = 8,
-                          float              persistence = 0.5f,
-                          float              lacunarity = 2.f,
-                          float              weight = 0.7f,
+                          int                octaves,
+                          float              persistence,
+                          float              lacunarity,
+                          Array             &weight,
                           float              clamp_min = -1.f,
                           float              clamp_k = 0.5f,
                           std::vector<float> shift = {0.1f, 0});
@@ -380,10 +380,38 @@ Array peak(std::vector<int>   shape,
  *
  * @see {@link fbm_perlin}
  */
-hmap::Array perlin(std::vector<int>   shape,
-                   std::vector<float> kw,
-                   uint               seed,
-                   std::vector<float> shift = {0, 0});
+Array perlin(std::vector<int>   shape,
+             std::vector<float> kw,
+             uint               seed,
+             std::vector<float> shift = {0, 0});
+
+/**
+ * @brief Return an array filled with Perlin "billow" noise.
+ *
+ * @param shape Array shape.
+ * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
+ * a unit domain.
+ * @param seed Random seed number.
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
+ * domain.
+ * @return Array Perlin billow noise.
+ *
+ * **Example**
+ * @include ex_perlin.cpp
+ *
+ * **Result**
+ * @image html ex_perlin.png
+ *
+ */
+Array perlin_billow(std::vector<int>   shape,
+                    std::vector<float> kw,
+                    uint               seed,
+                    std::vector<float> shift = {0, 0});
+
+Array perlin_mix(std::vector<int>   shape,
+                 std::vector<float> kw,
+                 uint               seed,
+                 std::vector<float> shift = {0, 0});
 
 /**
  * @brief Return an array based on a plane equation.
@@ -573,9 +601,9 @@ Array white_sparse(std::vector<int> shape,
  * **Result**
  * @image html ex_worley.png
  */
-hmap::Array worley(std::vector<int>   shape,
-                   std::vector<float> kw,
-                   uint               seed,
-                   std::vector<float> shift = {0.f, 0.f});
+Array worley(std::vector<int>   shape,
+             std::vector<float> kw,
+             uint               seed,
+             std::vector<float> shift = {0.f, 0.f});
 
 } // namespace hmap

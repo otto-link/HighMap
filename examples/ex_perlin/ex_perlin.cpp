@@ -8,6 +8,9 @@ int main(void)
   const std::vector<float> res = {4.f, 4.f};
   int                      seed = 1;
 
-  hmap::Array z = hmap::perlin(shape, res, seed);
-  z.to_png("ex_perlin.png", hmap::cmap::viridis);
+  auto z1 = hmap::perlin(shape, res, seed);
+  auto z2 = hmap::perlin_billow(shape, res, seed);
+  auto z3 = hmap::perlin_mix(shape, res, seed);
+
+  hmap::export_banner_png("ex_perlin.png", {z1, z2, z3}, hmap::cmap::viridis);
 }
