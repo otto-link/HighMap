@@ -6,6 +6,14 @@
 namespace hmap
 {
 
+Array select_blob_log(const Array &array, int ir)
+{
+  Array c = array;
+  smooth_cpulse(c, ir);
+  c = -laplacian(c);
+  return c;
+}
+
 Array select_gradient_exp(const Array &array,
                           float        talus_center,
                           float        talus_sigma)

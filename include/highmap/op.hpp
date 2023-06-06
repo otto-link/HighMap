@@ -946,6 +946,48 @@ void remap(Array &array, float vmin = 0, float vmax = 1); ///< @overload
 Array rugosity(const Array &z, int ir);
 
 /**
+ * @brief Return blob detection using the Laplacian of Gaussian (LoG) approach.
+ *
+ * @param array Input array.
+ * @param ir Kernel radius.
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_select_blob.cpp
+ *
+ * **Result**
+ * @image html ex_select_blob0.png
+ * @image html ex_select_blob1.png
+ */
+Array select_blob_log(const Array &array, int ir);
+
+/**
+ * @brief Return an array weighted (exponantial decay) by the gradient norm of
+ * the input array.
+ *
+ * @param array Input array.
+ * @param talus_center Reference talus.
+ * @param talus_sigma Talus half-width.
+ * @return Array Output array.
+ */
+Array select_gradient_exp(const Array &array,
+                          float        talus_center,
+                          float        talus_sigma);
+
+/**
+ * @brief Return an array weighted (square inverse) by the gradient norm of the
+ * input array.
+ *
+ * @param array Input array.
+ * @param talus_center Reference talus.
+ * @param talus_sigma Talus half-width.
+ * @return Array Output array.
+ */
+Array select_gradient_inv(const Array &array,
+                          float        talus_center,
+                          float        talus_sigma);
+
+/**
  * @brief Enforce values at the boundaries of the array.
  *
  * @param array Input array.
@@ -1004,41 +1046,6 @@ void shrink(Array &array, int ir);
  * @return Array Reference to the current object.
  */
 Array sin(const Array &array);
-
-/**
- * @brief Return an array weighted (exponantial decay) by the gradient norm of
- * the input array: low gradient norms are retained.
- *
- * @param array Input array.
- * @param talus Reference talus.
- * @return Array Output array.
- */
-
-/**
- * @brief Return an array weighted (exponantial decay) by the gradient norm of
- * the input array.
- *
- * @param array Input array.
- * @param talus_center Reference talus.
- * @param talus_sigma Talus half-width.
- * @return Array Output array.
- */
-Array select_gradient_exp(const Array &array,
-                          float        talus_center,
-                          float        talus_sigma);
-
-/**
- * @brief Return an array weighted (square inverse) by the gradient norm of the
- * input array.
- *
- * @param array Input array.
- * @param talus_center Reference talus.
- * @param talus_sigma Talus half-width.
- * @return Array Output array.
- */
-Array select_gradient_inv(const Array &array,
-                          float        talus_center,
-                          float        talus_sigma);
 
 /**
  * @brief Steepen (or flatten) the array map.

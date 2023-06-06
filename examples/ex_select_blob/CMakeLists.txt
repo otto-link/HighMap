@@ -1,0 +1,2 @@
+add_executable(ex_select_blob ex_select_blob.cpp)
+target_link_libraries(ex_select_blob highmap)
