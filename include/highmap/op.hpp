@@ -383,6 +383,14 @@ Array curvature_mean(const Array &z);
 Array distance_transform(const Array &array);
 
 /**
+ * @brief Return the exponantial of the array elements.
+ *
+ * @param array Input array.
+ * @return Array Reference to the current object.
+ */
+Array exp(const Array &array);
+
+/**
  * @brief Apply expanding, or "inflating", to emphasize the bulk of the terrain.
  *
  * @param array Input array.
@@ -996,6 +1004,26 @@ void shrink(Array &array, int ir);
  * @return Array Reference to the current object.
  */
 Array sin(const Array &array);
+
+/**
+ * @brief Return an array weighted (exponantial decay) by the gradient norm of
+ * the input array.
+ *
+ * @param array Input array.
+ * @param talus Reference talus.
+ * @return Array Output array.
+ */
+Array select_gradient_norm_exp(const Array &array, float talus);
+
+/**
+ * @brief Return an array weighted (squared inverse) by the gradient norm of the
+ * input array.
+ *
+ * @param array Input array.
+ * @param talus Reference talus.
+ * @return Array Output array.
+ */
+Array select_gradient_norm_inv(const Array &array, float talus);
 
 /**
  * @brief Steepen (or flatten) the array map.
