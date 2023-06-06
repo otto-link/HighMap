@@ -1007,23 +1007,38 @@ Array sin(const Array &array);
 
 /**
  * @brief Return an array weighted (exponantial decay) by the gradient norm of
+ * the input array: low gradient norms are retained.
+ *
+ * @param array Input array.
+ * @param talus Reference talus.
+ * @return Array Output array.
+ */
+
+/**
+ * @brief Return an array weighted (exponantial decay) by the gradient norm of
  * the input array.
  *
  * @param array Input array.
- * @param talus Reference talus.
+ * @param talus_center Reference talus.
+ * @param talus_sigma Talus half-width.
  * @return Array Output array.
  */
-Array select_gradient_norm_exp(const Array &array, float talus);
+Array select_gradient_exp(const Array &array,
+                          float        talus_center,
+                          float        talus_sigma);
 
 /**
- * @brief Return an array weighted (squared inverse) by the gradient norm of the
+ * @brief Return an array weighted (square inverse) by the gradient norm of the
  * input array.
  *
  * @param array Input array.
- * @param talus Reference talus.
+ * @param talus_center Reference talus.
+ * @param talus_sigma Talus half-width.
  * @return Array Output array.
  */
-Array select_gradient_norm_inv(const Array &array, float talus);
+Array select_gradient_inv(const Array &array,
+                          float        talus_center,
+                          float        talus_sigma);
 
 /**
  * @brief Steepen (or flatten) the array map.

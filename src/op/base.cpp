@@ -35,6 +35,16 @@ Array cos(const Array &array)
   return array_out;
 }
 
+Array exp(const Array &array)
+{
+  Array array_out = Array(array.shape);
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array_out.vector.begin(),
+                 [](float v) { return std::exp(v); });
+  return array_out;
+}
+
 Array hypot(const Array &array1, const Array &array2)
 {
   Array array_out = Array(array1.shape);
