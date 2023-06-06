@@ -31,7 +31,15 @@ int main(void)
   timer.stop("fbm");
 
   timer.start("fbm a");
-  hmap::Array za = hmap::fbm_perlin_advanced(shape, res, seed, 12);
+  hmap::Array za = hmap::fbm_perlin_advanced(shape,
+                                             res,
+                                             seed,
+                                             12,
+                                             0.5f,
+                                             2.f,
+                                             0.7f,
+                                             0.f,
+                                             0.5f);
   timer.stop("fbm a");
 
   // hmap::remap(z);

@@ -179,6 +179,8 @@ Array fbm_perlin_advanced(std::vector<int>   shape,
                           float              persistence = 0.5f,
                           float              lacunarity = 2.f,
                           float              weight = 0.7f,
+                          float              clamp_min = -1.f,
+                          float              clamp_k = 0.5f,
                           std::vector<float> shift = {0.1f, 0});
 
 /**

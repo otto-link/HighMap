@@ -7,6 +7,10 @@
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 
+//----------------------------------------------------------------------
+// Helper(s)
+//----------------------------------------------------------------------
+
 float compute_fractal_bounding(int octaves, float persistence)
 {
   float amp = persistence;
@@ -18,6 +22,10 @@ float compute_fractal_bounding(int octaves, float persistence)
   }
   return 1.f / amp_fractal;
 }
+
+//----------------------------------------------------------------------
+// Main operator(s)
+//----------------------------------------------------------------------
 
 namespace hmap
 {
@@ -61,6 +69,8 @@ Array fbm_perlin_advanced(std::vector<int>   shape,
                           float              persistence,
                           float              lacunarity,
                           float              weight,
+                          float              clamp_min,
+                          float              clamp_k,
                           std::vector<float> shift)
 {
   Array         array = Array(shape);
@@ -98,6 +108,8 @@ Array fbm_perlin_advanced(std::vector<int>   shape,
       }
       array(i, j) = sum;
     }
+
+  clamp_min_smooth(array, clamp_min, clamp_k);
 
   return array;
 }
