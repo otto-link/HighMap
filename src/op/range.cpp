@@ -74,6 +74,16 @@ Array maximum(const Array &array1, const Array &array2)
   return array_out;
 }
 
+Array maximum(const Array &array1, const float value)
+{
+  Array array_out = Array(array1.shape);
+  std::transform(array1.vector.begin(),
+                 array1.vector.end(),
+                 array_out.vector.begin(),
+                 [&value](float a) { return std::max(a, value); });
+  return array_out;
+}
+
 Array maximum_local(const Array &array, int ir)
 {
   Array array_out = Array(array.shape);
@@ -204,6 +214,16 @@ Array minimum(const Array &array1, const Array &array2)
                  array2.vector.begin(),
                  array_out.vector.begin(),
                  [](float a, float b) { return std::min(a, b); });
+  return array_out;
+}
+
+Array minimum(const Array &array1, const float value)
+{
+  Array array_out = Array(array1.shape);
+  std::transform(array1.vector.begin(),
+                 array1.vector.end(),
+                 array_out.vector.begin(),
+                 [&value](float a) { return std::min(a, value); });
   return array_out;
 }
 

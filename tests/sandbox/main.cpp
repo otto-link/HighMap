@@ -1,6 +1,8 @@
 #include <iostream>
 #include <time.h>
 
+// #include <xsimd.hpp>
+
 #include "highmap/array.hpp"
 #include "highmap/erosion.hpp"
 #include "highmap/io.hpp"
@@ -11,134 +13,82 @@
 
 int main(void)
 {
+
   hmap::Timer timer = hmap::Timer();
 
-  // const std::vector<int>   shape = {1024, 1024};
+  // const std::vector<int>   shape = {2048, 2048};
+  // const std::vector<int> shape = {1024, 1024};
   const std::vector<int>   shape = {512, 512};
-  const std::vector<float> res = {3.f, 3.f};
-  int                      seed = 3;
+  const std::vector<float> res = {2.f, 2.f};
+  int                      seed = 2;
 
-  seed = (int)time(NULL);
+  // seed = (int)time(NULL);
 
   std::cout << "seed: " << seed << std::endl;
 
-  hmap::Array z = hmap::fbm_perlin(shape, res, seed);
-  hmap::Array z1 = hmap::fbm_perlin(shape, res, seed);
-  hmap::Array z2 = hmap::worley(shape, res, seed + 1);
+  timer.start("fbm");
+  hmap::Array z = hmap::fbm_perlin(shape, res, seed, 12);
+  timer.stop("fbm");
 
-  // z1 = z1 + 0.5f;
-  // z2 = z2 + 1.f;
-
-  remap(z1, 0.f, 0.7f);
-  warp_fbm(z1, 32.f, {4.f, 4.f}, seed + 1);
-
-  remap(z2, 0.2, 1.);
-  gamma_correction(z2, 0.5);
-  warp_fbm(z2, 64.f, {4.f, 4.f}, seed);
-  z2 = z2 * hmap::biweight(shape);
-
-  // low_pass_high_order(z2, 5);
-
-  auto zm = maximum_smooth(z1, z2, 0.05f);
-
-  z2 = zm * hmap::biweight(shape);
-
-  // z2 = z2 + 0.1f * z1 * hmap::smooth_cosine(shape);
-
-  remap(z2);
-  // gamma_correction(z2, 2.f);
-
-  // hmap::hydraulic_benes(z2, 10);
-
-  z = z2;
-
-  // warp_fbm(z2, 128.f, res, seed);
-  // z2 = z2 * hmap::tricube(shape);
-
-  // z1.infos();
-  // z2.infos();
-
-  // z = hmap::minimum_smooth(z1, z2, 0.01f);
-  // // z = hmap::blend_overlay(z2, z1);
-
-  remap(z, 0, 1);
-
-  auto z0 = z;
-
-  z = hmap::fbm_perlin(shape, res, seed);
-  remap(z);
-  z = z * hmap::biweight(shape) + 0.05f * z;
-
-  // // z = z + hmap::smooth_cosine(shape);
-  // z = z + 2.f * hmap::biweight(shape);
-
-  // // auto dx = hmap::fbm_perlin(shape, res, seed + 1);
-  // // auto dy = hmap::fbm_perlin(shape, res, seed + 2);
-
-  // // float scale = 128.f;
-  // // remap(dx, -scale, scale);
-  // // remap(dy, -scale, scale);
-
-  // // hmap::remap(z);
-  // // dx = dx * z;
-  // // dy = dy * z;
-  // // warp(z, dx, dy);
-
-  // // timer.start("worley");
-  // // auto w = hmap::worley(shape, {1.f, 2.f}, seed);
-  // // remap(w);
-  // // z = z + 2.f * w;
-  // // timer.stop("worley");
-
-  // // hmap::set_borders(z, 0.f, 124);
-
-  // // timer.start("stratify");
-  // // int  ns = 10;
-  // // auto hs = hmap::linspace_jitted(z.min(), z.max(), ns, 0.9f, seed);
-  // // auto gs = hmap::random_vector(0.2, 0.8, ns - 1, seed);
-  // // hmap::stratify(z, hs, gs);
-  // // timer.stop("stratify");
+  timer.start("fbm a");
+  hmap::Array za = hmap::fbm_perlin_advanced(shape, res, seed, 12);
+  timer.stop("fbm a");
 
   // hmap::remap(z);
-  // auto z0 = z;
+  // hmap::remap(za);
+  auto z0 = za;
 
-  // // timer.start("thermal");
-  // // hmap::thermal(z, 0.1f * z.ptp() / shape[0], 100);
-  // // timer.stop("thermal");
+  // hmap::laplace_edge_preserving(z, 2.f / shape[0], 0.2f, 10);
 
-  hmap::Array z_bedrock = hmap::Array(shape);
+  z.infos();
+  za.infos();
 
-  z0 = z;
+  // hmap::recurve_s(za);
 
-  for (int k = 0; k < 4; k++)
-  {
-    timer.start("cycle");
+  // // hmap::smooth_fill(z, 32);
+  // // hmap::warp_fbm(z, 16.f, {4.f, 4.f}, seed);
 
-    // timer.start("thermal");
-    // hmap::thermal_auto_bedrock(z, 0.8f * z.ptp() / shape[0], 1);
-    // timer.stop("thermal");
+  // if (false)
+  // {
+  //   int ir = 32;
 
-    timer.start("stream");
-    z_bedrock = hmap::minimum_local(z, 11);
-    hmap::hydraulic_stream(z, z_bedrock, 0.001f, 0.01f / shape[0]);
-    timer.stop("stream");
+  //   auto zf = z;
+  //   hmap::smooth_cpulse(zf, ir);
 
-    timer.start("hydraulic_particle");
-    float nparticles = (int)(0.1f * z.shape[0] * z.shape[1]);
-    hmap::hydraulic_particle(z, z, nparticles, seed, 0, 30., 0.2, 0.5, 0.01);
-    timer.stop("hydraulic_particle");
+  //   auto  dx = hmap::Array(shape);
+  //   auto  dy = hmap::Array(shape);
+  //   auto  da = hmap::gradient_angle(z);
+  //   float alpha = 0.f / 180.f * 3.14f;
 
-    timer.stop("cycle");
+  //   for (int i = 0; i < z.shape[0]; i++)
+  //     for (int j = 0; j < z.shape[1]; j++)
+  //     {
+  //       float c = std::abs(std::cos(alpha - da(i, j)));
+  //       dx(i, j) = -c * zf(i, j) * std::cos(alpha);
+  //       dy(i, j) = -c * zf(i, j) * std::sin(alpha);
+  //     }
 
-    z.to_png("out.png", hmap::cmap::terrain, true);
-  }
+  //   smooth_cpulse(dx, ir);
+  //   smooth_cpulse(dy, ir);
 
-  // hmap::thermal_auto_bedrock(z, 0.1f * z.ptp() / shape[0], 5);
+  //   dx *= 64.f;
+  //   dy *= 64.f;
 
-  // z = lerp(z0, z, 0.5f);
+  //   dx.infos();
 
-  // // z = hmap::blend_soft(z0, z);
+  //   hmap::warp(z, dx, dy);
+  // }
+
+  // hmap::remap(z);
+  // // hmap::recurve(z, {0.f, 0.5f, 1.f}, {0.f, 0.2f, 1.f});
+
+  // // timer.start("fill");
+  // // hmap::smooth_fill_holes(z, 4);
+  // // timer.stop("fill");
+
+  // z.infos();
 
   z.to_png("out.png", hmap::cmap::terrain, true);
+  z0.to_png("out0.png", hmap::cmap::terrain, true);
   z.to_file("out.bin");
 }

@@ -667,6 +667,8 @@ void low_pass_high_order(Array &array, int order = 9, float sigma = 1.f);
  */
 Array maximum(const Array &array1, const Array &array2);
 
+Array maximum(const Array &array1, const float value); ///< @overload
+
 /**
  * @brief Return the 'local maxima' based on a maximum filter.
  *
@@ -744,6 +746,8 @@ Array mean_local(const Array &array, int ir);
  * @return Array Element-wise minimum array.
  */
 Array minimum(const Array &array1, const Array &array2);
+
+Array minimum(const Array &array1, const float value); ///< @overload
 
 /**
  * @brief Return the 'local minima' based on a maximum filter.

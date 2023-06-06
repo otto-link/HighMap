@@ -7,6 +7,18 @@
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 
+float compute_fractal_bounding(int octaves, float persistence)
+{
+  float amp = persistence;
+  float amp_fractal = 1.0f;
+  for (int i = 1; i < octaves; i++)
+  {
+    amp_fractal += amp;
+    amp *= persistence;
+  }
+  return 1.f / amp_fractal;
+}
+
 namespace hmap
 {
 
@@ -22,8 +34,6 @@ Array fbm_perlin(std::vector<int>   shape,
   Array         array = Array(shape);
   FastNoiseLite noise(seed);
 
-  // frequency is taken into account in the coordinate systems (to
-  // allow different wavelength in both directions)
   noise.SetFrequency(1.0f);
   noise.SetNoiseType(FastNoiseLite::NoiseType_Perlin);
   noise.SetFractalOctaves(octaves);
@@ -41,6 +51,54 @@ Array fbm_perlin(std::vector<int>   shape,
       array(i, j) =
           noise.GetNoise(ki * (float)i + shift[0], kj * (float)j + shift[1]);
     }
+  return array;
+}
+
+Array fbm_perlin_advanced(std::vector<int>   shape,
+                          std::vector<float> kw,
+                          uint               seed,
+                          int                octaves,
+                          float              persistence,
+                          float              lacunarity,
+                          float              weight,
+                          std::vector<float> shift)
+{
+  Array         array = Array(shape);
+  FastNoiseLite noise(seed);
+
+  noise.SetFrequency(1.0f);
+  noise.SetNoiseType(FastNoiseLite::NoiseType_Perlin);
+
+  float amp0 = compute_fractal_bounding(octaves, persistence);
+  float ki0 = kw[0] / (float)shape[0];
+  float kj0 = kw[1] / (float)shape[1];
+
+  std::vector<float> shift0 = {shift[0] / ki0, shift[1] / kj0};
+
+  for (int i = 0; i < array.shape[0]; i++)
+    for (int j = 0; j < array.shape[1]; j++)
+    {
+      float sum = 0.f;
+      float amp = amp0;
+      float ki = ki0;
+      float kj = kj0;
+      int   kseed = seed;
+
+      for (int k = 0; k < octaves; k++)
+      {
+        noise.SetSeed(kseed++);
+        float value = noise.GetNoise(ki * ((float)i + shift0[0]),
+                                     kj * ((float)j + shift0[1]));
+        sum += value * amp;
+        amp *= (1.f - weight) + weight * std::min(value + 1.f, 2.f) * 0.5f;
+
+        ki *= lacunarity;
+        kj *= lacunarity;
+        amp *= persistence;
+      }
+      array(i, j) = sum;
+    }
+
   return array;
 }
 
