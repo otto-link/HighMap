@@ -34,9 +34,9 @@ Array fbm_perlin(std::vector<int>   shape,
                  std::vector<float> kw,
                  uint               seed,
                  int                octaves,
+                 float              weight,
                  float              persistence,
                  float              lacunarity,
-                 float              weight,
                  std::vector<float> shift)
 {
   Array         array = Array(shape);
@@ -66,11 +66,9 @@ Array fbm_perlin_advanced(std::vector<int>   shape,
                           std::vector<float> kw,
                           uint               seed,
                           int                octaves,
+                          const Array       &weight,
                           float              persistence,
                           float              lacunarity,
-                          Array             &weight,
-                          float              clamp_min,
-                          float              clamp_k,
                           std::vector<float> shift)
 {
   Array         array = Array(shape);
@@ -110,8 +108,6 @@ Array fbm_perlin_advanced(std::vector<int>   shape,
       array(i, j) = sum;
     }
 
-  clamp_min_smooth(array, clamp_min, clamp_k);
-
   return array;
 }
 
@@ -119,9 +115,9 @@ Array fbm_worley(std::vector<int>   shape,
                  std::vector<float> kw,
                  uint               seed,
                  int                octaves,
+                 float              weight,
                  float              persistence,
                  float              lacunarity,
-                 float              weight,
                  std::vector<float> shift)
 {
   Array         array = Array(shape);

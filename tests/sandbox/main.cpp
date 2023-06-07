@@ -17,7 +17,7 @@ int main(void)
   hmap::Timer timer = hmap::Timer();
 
   // const std::vector<int>   shape = {2048, 2048};
-  // const std::vector<int> shape = {1024, 1024};
+  // const std::vector<int>   shape = {1024, 1024};
   const std::vector<int>   shape = {512, 512};
   const std::vector<float> res = {2.f, 2.f};
   int                      seed = 2;
@@ -27,31 +27,34 @@ int main(void)
   std::cout << "seed: " << seed << std::endl;
 
   timer.start("fbm");
-  hmap::Array z = hmap::fbm_perlin(shape, res, seed, 4);
+  hmap::Array z = hmap::fbm_perlin(shape, res, seed, 3);
   timer.stop("fbm");
+  hmap::remap(z);
 
-  auto  zf = z; // hmap::perlin(shape, res, seed);
   float talus = 4.f / shape[0];
 
   timer.start("inv 2");
-  auto c = hmap::select_gradient_exp(zf, talus, 1.f / shape[0]);
+  auto c = hmap::select_gradient_exp(z, talus, 1.f / shape[0]);
   timer.stop("inv 2");
 
   auto weight = c; // hmap::constant(shape, 0.5f);
+  weight *= z;
   hmap::remap(weight, 1.f, 0.f);
 
   timer.start("fbm a");
-  hmap::Array za = hmap::fbm_perlin_advanced(shape,
-                                             res,
-                                             seed,
-                                             12,
-                                             0.5f,
-                                             2.f,
-                                             weight,
-                                             -1.f,
-                                             0.5f);
+  hmap::Array za = hmap::fbm_perlin_advanced(shape, res, seed, 12, weight);
   // za = c;
+
   timer.stop("fbm a");
+
+  hmap::remap(za);
+  // hmap::recast_peak(za, 32, 1.f);
+  hmap::recurve_smoothstep_rational(za, 0.5f);
+
+  // z = hmap::fbm_perlin(shape, res, seed, 12, 1.f);
+  // hmap::smooth_fill_holes(z, 32);
+
+  // hmap::hydraulic_vpipes(za);
 
   // hmap::remap(z);
   // hmap::remap(za);
