@@ -1,0 +1,2 @@
+add_executable(ex_recurve_xxx ex_recurve_xxx.cpp)
+target_link_libraries(ex_recurve_xxx highmap)

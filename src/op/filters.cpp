@@ -192,9 +192,45 @@ void recurve(Array                    &array,
                  lambda);
 }
 
+void recurve_bexp(Array &array, float tau)
+{
+  float c = -1.f / tau;
+  auto  lambda = [&c](float a) { return 1.f - std::exp(c * a); };
+
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array.vector.begin(),
+                 lambda);
+}
+
+void recurve_exp(Array &array, float tau)
+{
+  float c = -1.f / tau;
+  auto  lambda = [&c](float a) { return std::exp(c * (1.f - a)); };
+
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array.vector.begin(),
+                 lambda);
+}
+
 void recurve_s(Array &array)
 {
   auto lambda = [](float a) { return a * a * (3.f - 2.f * a); };
+
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array.vector.begin(),
+                 lambda);
+}
+
+void recurve_smoothstep_rational(Array &array, float n)
+{
+  auto lambda = [&n](float a)
+  {
+    float an = std::pow(a, n);
+    return an / (an + std::pow(1.f - a, n));
+  };
 
   std::transform(array.vector.begin(),
                  array.vector.end(),

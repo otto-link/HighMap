@@ -864,6 +864,8 @@ void recast_canyon(Array &array, float vcut, float gamma); ///< @overload
 /**
  * @brief Transform heightmap to give a "peak" like appearance.
  *
+ * @warning Array values are expected to be in [0, 1].
+ *
  * @param array Input array.
  * @param ir Filter radius.
  * @param gamma Gamma factor (> 0) (@see {@link gamma_correction}).
@@ -898,11 +900,69 @@ void recurve(Array                    &array,
              const std::vector<float> &v);
 
 /**
- * @brief Apply a curve adjustment filter using a smooth "S-shape" curve.
+ * @brief Apply a curve adjustment filter using a "bumpy exponential-shape"
+ * curve.
+ *
+ * @warning Array values are expected to be in [0, 1].
  *
  * @param array Input array.
+ * @param tau Exponential decay.
+ *
+ * **Example**
+ * @include ex_recurve_xxx.cpp
+ *
+ * **Result**
+ * @image html ex_recurve_xxx.png
+ */
+void recurve_bexp(Array &array, float tau = 0.5f);
+
+/**
+ * @brief Apply a curve adjustment filter using a "sharp exponential-shape"
+ * curve.
+ *
+ * @warning Array values are expected to be in [0, 1].
+ *
+ * @param array Input array.
+ * @param tau Exponential decay.
+ *
+ * **Example**
+ * @include ex_recurve_xxx.cpp
+ *
+ * **Result**
+ * @image html ex_recurve_xxx.png
+ */
+void recurve_exp(Array &array, float tau = 0.5f);
+
+/**
+ * @brief Apply a curve adjustment filter using a smooth "S-shape" curve.
+ *
+ * @warning Array values are expected to be in [0, 1].
+ *
+ * @param array Input array.
+ *
+ * **Example**
+ * @include ex_recurve_xxx.cpp
+ *
+ * **Result**
+ * @image html ex_recurve_xxx.png
  */
 void recurve_s(Array &array);
+
+/**
+ * @brief Apply a curve adjustment filter using a nth-order smoothstep curve.
+ *
+ * @warning Array values are expected to be in [0, 1].
+ *
+ * @param array Input array.
+ * @param n Smoothstep order (in [0, inf[).
+ *
+ * **Example**
+ * @include ex_recurve_xxx.cpp
+ *
+ * **Result**
+ * @image html ex_recurve_xxx.png
+ */
+void recurve_smoothstep_rational(Array &array, float n);
 
 /**
  * @brief Remap array elements from a starting range to a target range.
