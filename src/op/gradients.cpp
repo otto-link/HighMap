@@ -30,7 +30,7 @@ Array gradient_angle(const Array &array, bool downward)
 Array gradient_norm(const Array &array)
 {
   Array dx = gradient_x(array);
-  Array dy = gradient_x(array);
+  Array dy = gradient_y(array);
   Array dm = hypot(dx, dy);
   return dm;
 }
