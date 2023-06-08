@@ -238,7 +238,7 @@ Array gabor(std::vector<int> shape,
             float            footprint_threshold = 0.05f);
 
 /**
- * @brief
+ * @brief Return a sparse Gabor noise.
  *
  * @param shape Array shape.
  * @param kw Kernel wavenumber, with respect to a unit domain.
@@ -484,6 +484,27 @@ Array ridged_perlin(std::vector<int>   shape,
 Array smooth_cosine(std::vector<int> shape);
 
 /**
+ * @brief Return a step function (Heaviside with an optional talus slope at the
+ * transition).
+ *
+ * @param shape Array shape.
+ * @param angle Overall rotation angle (in degree).
+ * @param talus Talus slope.
+ * @param shift Shift {xs, ys} for each directions.
+ * @return Array New array.
+ *
+ * **Example**
+ * @include ex_step.cpp
+ *
+ * **Result**
+ * @image html ex_step.png
+ */
+Array step(std::vector<int>   shape,
+           float              angle,
+           float              talus,
+           std::vector<float> shift = {0.f, 0.f});
+
+/**
  * @brief Return a tricube kernel.
  *
  * See https://en.wikipedia.org/wiki/Kernel_%28statistics%29.
@@ -516,7 +537,69 @@ Array tricube(std::vector<int> shape);
 Array value_noise(std::vector<int>   shape,
                   std::vector<float> kw,
                   uint               seed,
-                  std::vector<float> shift = {0, 0});
+                  std::vector<float> shift = {0.f, 0.f});
+
+/**
+ * @brief Return a sine wave.
+ *
+ * @param shape Array shape.
+ * @param kw Wavenumber with respect to a unit domain.
+ * @param angle Overall rotation angle (in degree).
+ * @param shift Shift {xs, ys} for each directions.
+ * @return Array New array.
+ *
+ * **Example**
+ * @include ex_wave.cpp
+ *
+ * **Result**
+ * @image html ex_wave.png
+ */
+Array wave_sine(std::vector<int>   shape,
+                float              kw,
+                float              angle,
+                std::vector<float> shift = {0.f, 0.f});
+
+/**
+ * @brief Return a square wave.
+ *
+ * @param shape Array shape.
+ * @param kw Wavenumber with respect to a unit domain.
+ * @param angle Overall rotation angle (in degree).
+ * @param shift Shift {xs, ys} for each directions.
+ * @return Array New array.
+ *
+ * **Example**
+ * @include ex_wave.cpp
+ *
+ * **Result**
+ * @image html ex_wave.png
+ */
+Array wave_square(std::vector<int>   shape,
+                  float              kw,
+                  float              angle,
+                  std::vector<float> shift = {0.f, 0.f});
+
+/**
+ * @brief Return a triangular wave.
+ *
+ * @param shape Array shape.
+ * @param kw Wavenumber with respect to a unit domain.
+ * @param angle Overall rotation angle (in degree).
+ * @param slant_ratio Relative location of the triangle apex, in [0, 1].
+ * @param shift Shift {xs, ys} for each directions.
+ * @return Array New array.
+ *
+ * **Example**
+ * @include ex_wave.cpp
+ *
+ * **Result**
+ * @image html ex_wave.png
+ */
+Array wave_triangular(std::vector<int>   shape,
+                      float              kw,
+                      float              angle,
+                      float              slant_ratio,
+                      std::vector<float> shift = {0.f, 0.f});
 
 /**
  * @brief Return an array filled with white noise.

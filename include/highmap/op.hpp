@@ -1286,8 +1286,16 @@ void warp(Array &array, const Array &dx, const Array &dy);
  * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
  * a unit domain.
  * @param seed Random seed number.
+ * @param octaves Number of octaves.
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
+ * domain.
  */
-void warp_fbm(Array &array, float scale, std::vector<float> kw, uint seed);
+void warp_fbm(Array             &array,
+              float              scale,
+              std::vector<float> kw,
+              uint               seed,
+              int                octaves = 8,
+              std::vector<float> shift = {0.f, 0.f});
 
 /**
  * @brief Fill values at the borders (i = 0, j = 0, ...) with zeros.

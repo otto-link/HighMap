@@ -26,6 +26,11 @@ int main(void)
 
   std::cout << "seed: " << seed << std::endl;
 
+  timer.start("step");
+  for (int i = 0; i < 50; i++)
+    hmap::step(shape, 0.f, 4.f / shape[0]);
+  timer.stop("step");
+
   timer.start("fbm");
   hmap::Array z = hmap::fbm_perlin(shape, res, seed, 3);
   timer.stop("fbm");

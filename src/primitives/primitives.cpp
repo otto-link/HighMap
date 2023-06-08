@@ -183,4 +183,101 @@ Array tricube(std::vector<int> shape)
   return array;
 }
 
+Array step(std::vector<int>   shape,
+           float              angle,
+           float              talus,
+           std::vector<float> shift)
+{
+  Array              array = Array(shape);
+  std::vector<float> x = linspace(-0.5f + shift[0], 0.5f + shift[0], shape[0]);
+  std::vector<float> y = linspace(-0.5f + shift[1], 0.5f + shift[1], shape[1]);
+
+  // talus value for a unit square domain
+  float talus_n = talus * float(std::max(shape[0], shape[1]));
+  float ca = std::cos(angle / 180.f * M_PI);
+  float sa = std::sin(angle / 180.f * M_PI);
+  float dt = 0.5f / talus_n;
+
+  for (int i = 0; i < array.shape[0]; i++)
+    for (int j = 0; j < array.shape[1]; j++)
+    {
+      float t = ca * x[i] + sa * y[j];
+      if (t > dt)
+        array(i, j) = 1.f;
+      else if (t > -dt)
+        array(i, j) = talus_n * (t + dt);
+    }
+
+  return array;
+}
+
+Array wave_sine(std::vector<int>   shape,
+                float              kw,
+                float              angle,
+                std::vector<float> shift)
+{
+  Array              array = Array(shape);
+  std::vector<float> x = linspace(0.f + shift[0], 1.f + shift[0], shape[0]);
+  std::vector<float> y = linspace(0.f + shift[1], 1.f + shift[1], shape[1]);
+  float              ca = std::cos(angle / 180.f * M_PI);
+  float              sa = std::sin(angle / 180.f * M_PI);
+
+  for (int i = 0; i < array.shape[0]; i++)
+    for (int j = 0; j < array.shape[1]; j++)
+    {
+      float t = ca * x[i] + sa * y[j];
+      array(i, j) = std::cos(2.f * M_PI * kw * t);
+    }
+
+  return array;
+}
+
+Array wave_square(std::vector<int>   shape,
+                  float              kw,
+                  float              angle,
+                  std::vector<float> shift)
+{
+  Array              array = Array(shape);
+  std::vector<float> x = linspace(0.f + shift[0], 1.f + shift[0], shape[0]);
+  std::vector<float> y = linspace(0.f + shift[1], 1.f + shift[1], shape[1]);
+  float              ca = std::cos(angle / 180.f * M_PI);
+  float              sa = std::sin(angle / 180.f * M_PI);
+
+  for (int i = 0; i < array.shape[0]; i++)
+    for (int j = 0; j < array.shape[1]; j++)
+    {
+      float t = ca * x[i] + sa * y[j];
+      array(i, j) = 2.f * (int)(kw * t) - (int)(2.f * kw * t) + 1.f;
+    }
+
+  return array;
+}
+
+Array wave_triangular(std::vector<int>   shape,
+                      float              kw,
+                      float              angle,
+                      float              slant_ratio,
+                      std::vector<float> shift)
+{
+  Array              array = Array(shape);
+  std::vector<float> x = linspace(0.f + shift[0], 1.f + shift[0], shape[0]);
+  std::vector<float> y = linspace(0.f + shift[1], 1.f + shift[1], shape[1]);
+  float              ca = std::cos(angle / 180.f * M_PI);
+  float              sa = std::sin(angle / 180.f * M_PI);
+
+  for (int i = 0; i < array.shape[0]; i++)
+    for (int j = 0; j < array.shape[1]; j++)
+    {
+      float t = ca * x[i] + sa * y[j];
+      array(i, j) = kw * t - (int)(kw * t);
+
+      if (array(i, j) < slant_ratio)
+        array(i, j) /= slant_ratio;
+      else
+        array(i, j) = 1.f - (array(i, j) - slant_ratio) / (1.f - slant_ratio);
+    }
+
+  return array;
+}
+
 } // namespace hmap

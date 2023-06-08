@@ -37,10 +37,33 @@ void warp(Array &array, const Array &dx, const Array &dy)
   }
 }
 
-void warp_fbm(Array &array, float scale, std::vector<float> kw, uint seed)
+void warp_fbm(Array             &array,
+              float              scale,
+              std::vector<float> kw,
+              uint               seed,
+              int                octaves,
+              std::vector<float> shift)
 {
-  Array dx = fbm_perlin(array.shape, kw, seed);
-  Array dy = fbm_perlin(array.shape, kw, seed++);
+  float weight = 0.f;
+  float persistence = 0.5f;
+  float lacunarity = 2.f;
+
+  Array dx = fbm_perlin(array.shape,
+                        kw,
+                        seed,
+                        octaves,
+                        weight,
+                        persistence,
+                        lacunarity,
+                        shift);
+  Array dy = fbm_perlin(array.shape,
+                        kw,
+                        seed++,
+                        octaves,
+                        weight,
+                        persistence,
+                        lacunarity,
+                        shift);
   remap(dx, -scale, scale);
   remap(dy, -scale, scale);
   warp(array, dx, dy);
