@@ -8,15 +8,15 @@
 namespace hmap
 {
 
-Array crater(std::vector<int>   shape,
-             float              radius,
-             float              sigma_inner,
-             float              sigma_outer,
-             float              z_bottom,
-             Array             &noise,
-             float              noise_r_amp,
-             float              noise_z_ratio,
-             std::vector<float> shift)
+Array caldera(std::vector<int>   shape,
+              float              radius,
+              float              sigma_inner,
+              float              sigma_outer,
+              float              z_bottom,
+              Array             &noise,
+              float              noise_r_amp,
+              float              noise_z_ratio,
+              std::vector<float> shift)
 {
   Array z = Array(shape);
   int   ic = (int)((0.5f - shift[0]) * z.shape[0]);
@@ -45,23 +45,23 @@ Array crater(std::vector<int>   shape,
   return z;
 }
 
-Array crater(std::vector<int>   shape,
-             float              radius,
-             float              sigma_inner,
-             float              sigma_outer,
-             float              z_bottom,
-             std::vector<float> shift)
+Array caldera(std::vector<int>   shape,
+              float              radius,
+              float              sigma_inner,
+              float              sigma_outer,
+              float              z_bottom,
+              std::vector<float> shift)
 {
   Array noise = constant(shape, 0.f);
-  Array z = crater(shape,
-                   radius,
-                   sigma_inner,
-                   sigma_outer,
-                   z_bottom,
-                   noise,
-                   0.f,
-                   0.f,
-                   shift);
+  Array z = caldera(shape,
+                    radius,
+                    sigma_inner,
+                    sigma_outer,
+                    z_bottom,
+                    noise,
+                    0.f,
+                    0.f,
+                    shift);
   return z;
 }
 
