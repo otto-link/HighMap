@@ -1,12 +1,15 @@
 #include <vector>
 
+#include "macrologger.h"
+
 #include "highmap/array.hpp"
 #include "highmap/op.hpp"
 
 namespace hmap
+
 {
 
-Array hstack(Array &array1, Array &array2) // friend function
+Array hstack(const Array &array1, const Array &array2) // friend function
 {
   Array array_out = Array({array1.shape[0] + array2.shape[0], array1.shape[1]});
 
@@ -45,7 +48,7 @@ Array Array::resample_to_shape(std::vector<int> new_shape)
   return array_out;
 }
 
-Array vstack(Array &array1, Array &array2) // friend function
+Array vstack(const Array &array1, const Array &array2) // friend function
 {
   Array array_out = Array({array1.shape[0], array1.shape[1] + array2.shape[1]});
 
@@ -55,7 +58,7 @@ Array vstack(Array &array1, Array &array2) // friend function
       array_out(i, j) = array1(i, j);
 
     for (int j = 0; j < array2.shape[1]; j++)
-      array_out(i, j + array1.shape[0]) = array2(i, j);
+      array_out(i, j + array1.shape[1]) = array2(i, j);
   }
 
   return array_out;

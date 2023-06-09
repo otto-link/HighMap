@@ -457,7 +457,7 @@ public:
    * @param array2 2st array.
    * @return Array Reference to the resulting object.
    */
-  friend Array hstack(Array &array1, Array &array2);
+  friend Array hstack(const Array &array1, const Array &array2);
 
   /**
    * @brief Display a bunch of infos on the array.
@@ -631,7 +631,7 @@ public:
    * @param array2 2st array.
    * @return Array Reference to the resulting object.
    */
-  friend Array vstack(Array &array1, Array &array2);
+  friend Array vstack(const Array &array1, const Array &array2);
 };
 
 } // namespace hmap

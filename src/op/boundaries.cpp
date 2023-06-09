@@ -74,6 +74,37 @@ Array generate_buffered_array(const Array &array, std::vector<int> buffers)
   return array_out;
 }
 
+void make_periodic(Array &array, int nbuffer)
+{
+  int ni = array.shape[0];
+  int nj = array.shape[1];
+
+  Array a1 = array;
+  for (int i = 0; i < nbuffer; i++)
+  {
+    float r = 0.5f * (float)i / ((float)nbuffer - 1.f);
+    for (int j = 0; j < nj; j++)
+    {
+      a1(i, j) = (0.5f + r) * array(i, j) + (0.5f - r) * array(ni - 1 - i, j);
+      a1(ni - 1 - i, j) =
+          (0.5f + r) * array(ni - 1 - i, j) + (0.5f - r) * array(i, j);
+    }
+  }
+
+  Array a2 = a1;
+  for (int j = 0; j < nbuffer; j++)
+  {
+    float r = 0.5f * (float)j / ((float)nbuffer - 1);
+    for (int i = 0; i < ni; i++)
+    {
+      a2(i, j) = (0.5 + r) * a1(i, j) + (0.5 - r) * a1(i, nj - 1 - j);
+      a2(i, nj - 1 - j) = (0.5 + r) * a1(i, nj - 1 - j) + (0.5 - r) * a1(i, j);
+    }
+  }
+
+  array = a2;
+}
+
 void set_borders(Array             &array,
                  std::vector<float> border_values,
                  std::vector<int>   buffer_sizes)

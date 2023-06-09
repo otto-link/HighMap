@@ -1,3 +1,5 @@
+#define _USE_MATH_DEFINES
+
 #include <cmath>
 
 #include "highmap/array.hpp"
@@ -11,6 +13,19 @@ Array select_blob_log(const Array &array, int ir)
   Array c = array;
   smooth_cpulse(c, ir);
   c = -laplacian(c);
+  return c;
+}
+
+Array select_gradient_angle(const Array &array, float angle)
+{
+  Array c = gradient_angle(array);
+  float alpha = angle / 180.f * M_PI;
+
+  for (int i = 0; i < array.shape[0]; i++)
+    for (int j = 0; j < array.shape[1]; j++)
+    {
+      c(i, j) = std::max(0.f, std::cos(alpha + c(i, j)));
+    }
   return c;
 }
 

@@ -667,6 +667,23 @@ std::vector<float> linspace_jitted(float start,
 void low_pass_high_order(Array &array, int order = 9, float sigma = 1.f);
 
 /**
+ * @brief Make the array periodic in both directions.
+ *
+ * @param array Input array.
+ * @param nbuffer Transition width at the boundaries.
+ *
+ * **Example**
+ * @include ex_make_periodic.cpp
+ *
+ * **Result**
+ * @image html ex_make_periodic0.png
+ *
+ * Tiled
+ * @image html ex_make_periodic1.png
+ */
+void make_periodic(Array &array, int nbuffer);
+
+/**
  * @brief Return the element-wise maximum of two arrays.
  *
  * @param array1 First array.
@@ -1020,6 +1037,16 @@ Array rugosity(const Array &z, int ir);
  * @image html ex_select_blob1.png
  */
 Array select_blob_log(const Array &array, int ir);
+
+/**
+ * @brief Return an array weighted by the gap between the gradient angle and a
+ * given angle.
+ *
+ * @param array Input array.
+ * @param angle Reference angle.
+ * @return Array Output array.
+ */
+Array select_gradient_angle(const Array &array, float angle);
 
 /**
  * @brief Return an array weighted (exponantial decay) by the gradient norm of

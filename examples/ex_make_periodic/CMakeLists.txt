@@ -1,0 +1,2 @@
+add_executable(ex_make_periodic ex_make_periodic.cpp)
+target_link_libraries(ex_make_periodic highmap)
