@@ -31,6 +31,15 @@ int main(void)
   timer.stop("fbm");
   hmap::remap(z);
 
+  z = hmap::crater(shape, 64, 0.1f, 32);
+
+  z.infos();
+
+  // z = hmap::maximum_smooth(z, hmap::crater(shape, 64, 0.3f, 24, 0.75f, {0.1f,
+  // 0.1f}), 0.1f);
+
+  // hmap::warp_fbm(z, 16.f, {4.f, 4.f}, seed);
+
   // float talus = 4.f / shape[0];
 
   // timer.start("inv 2");

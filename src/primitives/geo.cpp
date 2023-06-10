@@ -74,8 +74,6 @@ Array crater(std::vector<int>   shape,
   int   ic = (int)((0.5f - shift[0]) * z.shape[0]);
   int   jc = (int)((0.5f - shift[1]) * z.shape[1]);
 
-  // float inv_r2 = 1.f / (radius * radius);
-
   for (int i = 0; i < z.shape[0]; i++)
     for (int j = 0; j < z.shape[1]; j++)
     {
