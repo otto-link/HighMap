@@ -120,6 +120,30 @@ Array cone_smooth(std::vector<int> shape);
 Array constant(std::vector<int> shape, float value = 0.f);
 
 /**
+ * @brief Return a crater-shaped heightmap.
+ *
+ * @param shape Array shape.
+ * @param radius Crater radius.
+ * @param lip_decay Ejecta lip decay.
+ * @param lip_height_ratio Controls the ejecta lip relative height, in [0, 1].
+ * @param depth Crater depth.
+ * @param shift Shift {xs, ys} for each directions.
+ * @return Array New array.
+ *
+ * **Example**
+ * @include ex_crater.cpp
+ *
+ * **Result**
+ * @image html ex_crater.png
+ */
+Array crater(std::vector<int>   shape,
+             float              radius,
+             float              depth,
+             float              lip_decay,
+             float              lip_height_ratio = 0.5f,
+             std::vector<float> shift = {0.f, 0.f});
+
+/**
  * @brief Return a cubic pulse kernel.
  *
  * @param shape Array shape.

@@ -26,7 +26,6 @@ Array caldera(std::vector<int>   shape,
   float so2 = sigma_outer * sigma_outer;
 
   for (int i = 0; i < z.shape[0]; i++)
-  {
     for (int j = 0; j < z.shape[1]; j++)
     {
       float r = std::hypot((float)(i - ic), (float)(j - jc)) - radius;
@@ -37,10 +36,9 @@ Array caldera(std::vector<int>   shape,
         z(i, j) = z_bottom + std::exp(-0.5f * r * r / si2) * (1 - z_bottom);
       else
         z(i, j) = 1 / (1 + r * r / so2);
-    }
-  }
 
-  z = z * (1.f + noise_z_ratio * (2.f * noise - 1.f));
+      z(i, j) *= 1.f + noise_z_ratio * (2.f * noise(i, j) - 1.f);
+    }
 
   return z;
 }
@@ -65,6 +63,34 @@ Array caldera(std::vector<int>   shape,
   return z;
 }
 
+Array crater(std::vector<int>   shape,
+             float              radius,
+             float              depth,
+             float              lip_decay,
+             float              lip_height_ratio,
+             std::vector<float> shift)
+{
+  Array z = Array(shape);
+  int   ic = (int)((0.5f - shift[0]) * z.shape[0]);
+  int   jc = (int)((0.5f - shift[1]) * z.shape[1]);
+
+  // float inv_r2 = 1.f / (radius * radius);
+
+  for (int i = 0; i < z.shape[0]; i++)
+    for (int j = 0; j < z.shape[1]; j++)
+    {
+      float r = std::hypot((float)(i - ic), (float)(j - jc));
+
+      z(i, j) = std::min(r * r / (radius * radius),
+                         1.f + lip_height_ratio *
+                                   std::exp(-(r - radius) / lip_decay));
+      z(i, j) -= 1.f;
+      z(i, j) *= depth;
+    }
+
+  return z;
+}
+
 Array peak(std::vector<int>   shape,
            float              radius,
            Array             &noise,
@@ -77,7 +103,6 @@ Array peak(std::vector<int>   shape,
   int   jc = (int)((0.5f - shift[1]) * z.shape[1]);
 
   for (int i = 0; i < z.shape[0]; i++)
-  {
     for (int j = 0; j < z.shape[1]; j++)
     {
       float r = std::hypot((float)(i - ic), (float)(j - jc)) / radius;
@@ -85,10 +110,9 @@ Array peak(std::vector<int>   shape,
 
       if (r < 1.f)
         z(i, j) = 1.f - r * r * (3.f - 2.f * r);
-    }
-  }
 
-  z = z * (1.f + noise_z_ratio * (2.f * noise - 1.f));
+      z(i, j) *= 1.f + noise_z_ratio * (2.f * noise(i, j) - 1.f);
+    }
 
   return z;
 }
