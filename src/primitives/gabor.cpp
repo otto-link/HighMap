@@ -31,8 +31,12 @@ Array gabor(std::vector<int> shape,
 
   for (int i = 0; i < array.shape[0]; i++)
     for (int j = 0; j < array.shape[1]; j++)
-      array(i, j) = std::exp(-M_PI * (x[i] * x[i] + y[j] * y[j]) * 0.5f * iw2) *
-                    std::cos(kw * (x[i] * ca + y[j] * sa));
+      array(i, j) =
+          std::exp(-M_PI * (x[i] * x[i] + y[j] * y[j]) * 0.5f * iw2) *
+          std::cos(
+              M_PI * kw *
+              (x[i] * ca +
+               y[j] * sa)); // "kw" and not "2 kw" since the domain is [-1, 1]
 
   return array;
 }

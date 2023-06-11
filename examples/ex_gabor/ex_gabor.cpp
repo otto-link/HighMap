@@ -5,7 +5,7 @@
 int main(void)
 {
   const std::vector<int> shape = {256, 256};
-  float                  kw = 15.f;
+  float                  kw = 4.f;
   float                  angle = 30.f;
 
   hmap::Array z = hmap::gabor(shape, kw, angle);

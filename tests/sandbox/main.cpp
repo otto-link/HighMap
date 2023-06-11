@@ -36,8 +36,10 @@ int main(void)
   auto noise = 0.1f * hmap::fbm_perlin(shape, res, seed, 8, 0.f);
 
   timer.start("wtri");
-  z = hmap::wave_triangular(shape, 4.f, 30.f, 0.8f, &noise);
+  z = hmap::gabor_triangular(shape, 8.f, 0.f, 0.8f);
   timer.stop("wtri");
+
+  z = hmap::gabor_triangular_noise(shape, 4.f, 30.f, 0.8f, 64, 0.05f, seed);
 
   // set_borders(z, 0.f, 256);
 

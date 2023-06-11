@@ -285,6 +285,20 @@ Array gabor_noise(std::vector<int> shape,
                   float            density,
                   uint             seed);
 
+Array gabor_triangular(std::vector<int> shape,
+                       float            kw,
+                       float            angle,
+                       float            slant_ratio,
+                       float            footprint_threshold = 0.05f);
+
+Array gabor_triangular_noise(std::vector<int> shape,
+                             float            kw,
+                             float            angle,
+                             float            slant_ratio,
+                             int              width,
+                             float            density,
+                             uint             seed);
+
 /**
  * @param shape Array shape.
  * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
