@@ -31,7 +31,14 @@ int main(void)
   timer.stop("fbm");
   hmap::remap(z);
 
-  z = hmap::crater(shape, 64, 0.1f, 32);
+  // z = hmap::crater(shape, 64, 0.1f, 32);
+
+  timer.start("wtri");
+  auto noise = 0.1f * hmap::fbm_perlin(shape, res, seed, 8, 0.f);
+  z = hmap::wave_triangular(shape, 4.f, 30.f, 0.8f, &noise);
+  timer.stop("wtri");
+
+  // set_borders(z, 0.f, 256);
 
   z.infos();
 

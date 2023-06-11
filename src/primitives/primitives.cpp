@@ -186,6 +186,7 @@ Array tricube(std::vector<int> shape)
 Array step(std::vector<int>   shape,
            float              angle,
            float              talus,
+           Array             *p_noise,
            std::vector<float> shift)
 {
   Array              array = Array(shape);
@@ -198,15 +199,30 @@ Array step(std::vector<int>   shape,
   float sa = std::sin(angle / 180.f * M_PI);
   float dt = 0.5f / talus_n;
 
-  for (int i = 0; i < array.shape[0]; i++)
-    for (int j = 0; j < array.shape[1]; j++)
-    {
-      float t = ca * x[i] + sa * y[j];
-      if (t > dt)
-        array(i, j) = 1.f;
-      else if (t > -dt)
-        array(i, j) = talus_n * (t + dt);
-    }
+  if (p_noise != nullptr)
+  {
+    for (int i = 0; i < array.shape[0]; i++)
+      for (int j = 0; j < array.shape[1]; j++)
+      {
+        float t = ca * x[i] + sa * y[j] + (*p_noise)(i, j);
+        if (t > dt)
+          array(i, j) = 1.f;
+        else if (t > -dt)
+          array(i, j) = talus_n * (t + dt);
+      }
+  }
+  else
+  {
+    for (int i = 0; i < array.shape[0]; i++)
+      for (int j = 0; j < array.shape[1]; j++)
+      {
+        float t = ca * x[i] + sa * y[j];
+        if (t > dt)
+          array(i, j) = 1.f;
+        else if (t > -dt)
+          array(i, j) = talus_n * (t + dt);
+      }
+  }
 
   return array;
 }
@@ -214,6 +230,7 @@ Array step(std::vector<int>   shape,
 Array wave_sine(std::vector<int>   shape,
                 float              kw,
                 float              angle,
+                Array             *p_noise,
                 std::vector<float> shift)
 {
   Array              array = Array(shape);
@@ -222,12 +239,24 @@ Array wave_sine(std::vector<int>   shape,
   float              ca = std::cos(angle / 180.f * M_PI);
   float              sa = std::sin(angle / 180.f * M_PI);
 
-  for (int i = 0; i < array.shape[0]; i++)
-    for (int j = 0; j < array.shape[1]; j++)
-    {
-      float t = ca * x[i] + sa * y[j];
-      array(i, j) = std::cos(2.f * M_PI * kw * t);
-    }
+  if (p_noise != nullptr)
+  {
+    for (int i = 0; i < array.shape[0]; i++)
+      for (int j = 0; j < array.shape[1]; j++)
+      {
+        float t = ca * x[i] + sa * y[j] + (*p_noise)(i, j);
+        array(i, j) = std::cos(2.f * M_PI * kw * t);
+      }
+  }
+  else
+  {
+    for (int i = 0; i < array.shape[0]; i++)
+      for (int j = 0; j < array.shape[1]; j++)
+      {
+        float t = ca * x[i] + sa * y[j];
+        array(i, j) = std::cos(2.f * M_PI * kw * t);
+      }
+  }
 
   return array;
 }
@@ -235,6 +264,7 @@ Array wave_sine(std::vector<int>   shape,
 Array wave_square(std::vector<int>   shape,
                   float              kw,
                   float              angle,
+                  Array             *p_noise,
                   std::vector<float> shift)
 {
   Array              array = Array(shape);
@@ -243,12 +273,24 @@ Array wave_square(std::vector<int>   shape,
   float              ca = std::cos(angle / 180.f * M_PI);
   float              sa = std::sin(angle / 180.f * M_PI);
 
-  for (int i = 0; i < array.shape[0]; i++)
-    for (int j = 0; j < array.shape[1]; j++)
-    {
-      float t = ca * x[i] + sa * y[j];
-      array(i, j) = 2.f * (int)(kw * t) - (int)(2.f * kw * t) + 1.f;
-    }
+  if (p_noise != nullptr)
+  {
+    for (int i = 0; i < array.shape[0]; i++)
+      for (int j = 0; j < array.shape[1]; j++)
+      {
+        float t = ca * x[i] + sa * y[j] + (*p_noise)(i, j);
+        array(i, j) = 2.f * (int)(kw * t) - (int)(2.f * kw * t) + 1.f;
+      }
+  }
+  else
+  {
+    for (int i = 0; i < array.shape[0]; i++)
+      for (int j = 0; j < array.shape[1]; j++)
+      {
+        float t = ca * x[i] + sa * y[j];
+        array(i, j) = 2.f * (int)(kw * t) - (int)(2.f * kw * t) + 1.f;
+      }
+  }
 
   return array;
 }
@@ -257,6 +299,7 @@ Array wave_triangular(std::vector<int>   shape,
                       float              kw,
                       float              angle,
                       float              slant_ratio,
+                      Array             *p_noise,
                       std::vector<float> shift)
 {
   Array              array = Array(shape);
@@ -265,17 +308,34 @@ Array wave_triangular(std::vector<int>   shape,
   float              ca = std::cos(angle / 180.f * M_PI);
   float              sa = std::sin(angle / 180.f * M_PI);
 
-  for (int i = 0; i < array.shape[0]; i++)
-    for (int j = 0; j < array.shape[1]; j++)
-    {
-      float t = ca * x[i] + sa * y[j];
-      array(i, j) = kw * t - (int)(kw * t);
+  if (p_noise != nullptr)
+  {
+    for (int i = 0; i < array.shape[0]; i++)
+      for (int j = 0; j < array.shape[1]; j++)
+      {
+        float t = ca * x[i] + sa * y[j] + (*p_noise)(i, j);
 
-      if (array(i, j) < slant_ratio)
-        array(i, j) /= slant_ratio;
-      else
-        array(i, j) = 1.f - (array(i, j) - slant_ratio) / (1.f - slant_ratio);
-    }
+        array(i, j) = kw * t - (int)(kw * t);
+        if (array(i, j) < slant_ratio)
+          array(i, j) /= slant_ratio;
+        else
+          array(i, j) = 1.f - (array(i, j) - slant_ratio) / (1.f - slant_ratio);
+      }
+  }
+  else
+  {
+    for (int i = 0; i < array.shape[0]; i++)
+      for (int j = 0; j < array.shape[1]; j++)
+      {
+        float t = ca * x[i] + sa * y[j];
+
+        array(i, j) = kw * t - (int)(kw * t);
+        if (array(i, j) < slant_ratio)
+          array(i, j) /= slant_ratio;
+        else
+          array(i, j) = 1.f - (array(i, j) - slant_ratio) / (1.f - slant_ratio);
+      }
+  }
 
   return array;
 }

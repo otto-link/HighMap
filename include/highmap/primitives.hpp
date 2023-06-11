@@ -514,6 +514,8 @@ Array smooth_cosine(std::vector<int> shape);
  * @param shape Array shape.
  * @param angle Overall rotation angle (in degree).
  * @param talus Talus slope.
+ * @param p_noise Reference to the input noise array used for domain warping
+ * (NOT in pixels, with respect to a unit domain).
  * @param shift Shift {xs, ys} for each directions.
  * @return Array New array.
  *
@@ -526,6 +528,7 @@ Array smooth_cosine(std::vector<int> shape);
 Array step(std::vector<int>   shape,
            float              angle,
            float              talus,
+           Array             *p_noise = nullptr,
            std::vector<float> shift = {0.f, 0.f});
 
 /**
@@ -569,6 +572,8 @@ Array value_noise(std::vector<int>   shape,
  * @param shape Array shape.
  * @param kw Wavenumber with respect to a unit domain.
  * @param angle Overall rotation angle (in degree).
+ * @param p_noise Reference to the input noise array used for domain warping
+ * (NOT in pixels, with respect to a unit domain).
  * @param shift Shift {xs, ys} for each directions.
  * @return Array New array.
  *
@@ -576,11 +581,13 @@ Array value_noise(std::vector<int>   shape,
  * @include ex_wave.cpp
  *
  * **Result**
- * @image html ex_wave.png
+ * @image html ex_wave0.png
+ * @image html ex_wave1.png
  */
 Array wave_sine(std::vector<int>   shape,
                 float              kw,
                 float              angle,
+                Array             *p_noise = nullptr,
                 std::vector<float> shift = {0.f, 0.f});
 
 /**
@@ -589,6 +596,8 @@ Array wave_sine(std::vector<int>   shape,
  * @param shape Array shape.
  * @param kw Wavenumber with respect to a unit domain.
  * @param angle Overall rotation angle (in degree).
+ * @param p_noise Reference to the input noise array used for domain warping
+ * (NOT in pixels, with respect to a unit domain).
  * @param shift Shift {xs, ys} for each directions.
  * @return Array New array.
  *
@@ -596,11 +605,13 @@ Array wave_sine(std::vector<int>   shape,
  * @include ex_wave.cpp
  *
  * **Result**
- * @image html ex_wave.png
+ * @image html ex_wave0.png
+ * @image html ex_wave1.png
  */
 Array wave_square(std::vector<int>   shape,
                   float              kw,
                   float              angle,
+                  Array             *p_noise = nullptr,
                   std::vector<float> shift = {0.f, 0.f});
 
 /**
@@ -610,6 +621,8 @@ Array wave_square(std::vector<int>   shape,
  * @param kw Wavenumber with respect to a unit domain.
  * @param angle Overall rotation angle (in degree).
  * @param slant_ratio Relative location of the triangle apex, in [0, 1].
+ * @param p_noise Reference to the input noise array used for domain warping
+ * (NOT in pixels, with respect to a unit domain).
  * @param shift Shift {xs, ys} for each directions.
  * @return Array New array.
  *
@@ -617,12 +630,14 @@ Array wave_square(std::vector<int>   shape,
  * @include ex_wave.cpp
  *
  * **Result**
- * @image html ex_wave.png
+ * @image html ex_wave0.png
+ * @image html ex_wave1.png
  */
 Array wave_triangular(std::vector<int>   shape,
                       float              kw,
                       float              angle,
                       float              slant_ratio,
+                      Array             *p_noise = nullptr,
                       std::vector<float> shift = {0.f, 0.f});
 
 /**
