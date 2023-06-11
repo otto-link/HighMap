@@ -17,52 +17,53 @@
 
 #include "highmap/op.hpp"
 
-namespace hmap{
+namespace hmap
+{
 
 class LUTFunction1D
 {
 public:
   LUTFunction1D(std::function<float(float)> function,
-                float lbound,
-                float ubound,
-                int   nvalues)
+                float                       lbound,
+                float                       ubound,
+                int                         nvalues)
       : function(function), lbound(lbound), ubound(ubound), nvalues(nvalues)
   {
     std::vector<float> xv = linspace(lbound, ubound, nvalues);
     values.resize(nvalues);
-    
+
     for (int k = 0; k < nvalues; k++)
-      {
-	values[k] = function(xv[k]);
-      }
+    {
+      values[k] = function(xv[k]);
+    }
 
     // factors to retrieve the index
     a = 1.f / (ubound - lbound);
     b = -lbound / (ubound - lbound);
-  }; 
+  };
 
   inline float value_linear(float x)
   {
     float kf = (float)(nvalues - 1) * (a * x + b);
-    int k = (int) kf;
-    float u = kf - (float) k;
+    int   k = (int)kf;
+    float u = kf - (float)k;
     return (1.f - u) * values[k] + u * values[k + 1];
   }
-  
+
   inline float value_nearest(float x)
   {
-    int k = (int) ((float)(nvalues - 1) * (a * x + b));
+    int k = (int)((float)(nvalues - 1) * (a * x + b));
     return values[k];
   }
-  
+
 private:
   std::function<float(float)> function;
-  float lbound;
-  float ubound;
-  float a;
-  float b;
-  int   nvalues;
-  std::vector<float> values;
+  float                       lbound;
+  float                       ubound;
+  float                       a;
+  float                       b;
+  int                         nvalues;
+  std::vector<float>          values;
 };
 
-}
+} // namespace hmap

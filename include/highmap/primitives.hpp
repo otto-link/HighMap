@@ -354,7 +354,7 @@ Array multifractal_perlin(std::vector<int>   shape,
                           std::vector<float> shift = {0, 0});
 
 /**
- * @brief Return a crater-shaped heightmap.
+ * @brief Return a peak-shaped heightmap.
  *
  * @param shape Array shape.
  * @param radius Peak outer radius.

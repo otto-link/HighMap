@@ -194,35 +194,30 @@ Array step(std::vector<int>   shape,
   std::vector<float> y = linspace(-0.5f + shift[1], 0.5f + shift[1], shape[1]);
 
   // talus value for a unit square domain
-  float talus_n = talus * float(std::max(shape[0], shape[1]));
+  float talus_n = talus * (float)std::max(shape[0], shape[1]);
   float ca = std::cos(angle / 180.f * M_PI);
   float sa = std::sin(angle / 180.f * M_PI);
   float dt = 0.5f / talus_n;
 
+  auto lambda = [&dt, &talus_n](float x)
+  {
+    if (x > dt)
+      x = 1.f;
+    else if (x > -dt)
+      x = talus_n * (x + dt);
+    else
+      x = 0.f;
+    return x;
+  };
+
   if (p_noise != nullptr)
-  {
     for (int i = 0; i < array.shape[0]; i++)
       for (int j = 0; j < array.shape[1]; j++)
-      {
-        float t = ca * x[i] + sa * y[j] + (*p_noise)(i, j);
-        if (t > dt)
-          array(i, j) = 1.f;
-        else if (t > -dt)
-          array(i, j) = talus_n * (t + dt);
-      }
-  }
+        array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_noise)(i, j));
   else
-  {
     for (int i = 0; i < array.shape[0]; i++)
       for (int j = 0; j < array.shape[1]; j++)
-      {
-        float t = ca * x[i] + sa * y[j];
-        if (t > dt)
-          array(i, j) = 1.f;
-        else if (t > -dt)
-          array(i, j) = talus_n * (t + dt);
-      }
-  }
+        array(i, j) = lambda(ca * x[i] + sa * y[j]);
 
   return array;
 }
@@ -239,24 +234,16 @@ Array wave_sine(std::vector<int>   shape,
   float              ca = std::cos(angle / 180.f * M_PI);
   float              sa = std::sin(angle / 180.f * M_PI);
 
+  auto lambda = [&kw](float x) { return std::cos(2.f * M_PI * kw * x); };
+
   if (p_noise != nullptr)
-  {
     for (int i = 0; i < array.shape[0]; i++)
       for (int j = 0; j < array.shape[1]; j++)
-      {
-        float t = ca * x[i] + sa * y[j] + (*p_noise)(i, j);
-        array(i, j) = std::cos(2.f * M_PI * kw * t);
-      }
-  }
+        array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_noise)(i, j));
   else
-  {
     for (int i = 0; i < array.shape[0]; i++)
       for (int j = 0; j < array.shape[1]; j++)
-      {
-        float t = ca * x[i] + sa * y[j];
-        array(i, j) = std::cos(2.f * M_PI * kw * t);
-      }
-  }
+        array(i, j) = lambda(ca * x[i] + sa * y[j]);
 
   return array;
 }
@@ -273,24 +260,17 @@ Array wave_square(std::vector<int>   shape,
   float              ca = std::cos(angle / 180.f * M_PI);
   float              sa = std::sin(angle / 180.f * M_PI);
 
+  auto lambda = [&kw](float x)
+  { return 2.f * (int)(kw * x) - (int)(2.f * kw * x) + 1.f; };
+
   if (p_noise != nullptr)
-  {
     for (int i = 0; i < array.shape[0]; i++)
       for (int j = 0; j < array.shape[1]; j++)
-      {
-        float t = ca * x[i] + sa * y[j] + (*p_noise)(i, j);
-        array(i, j) = 2.f * (int)(kw * t) - (int)(2.f * kw * t) + 1.f;
-      }
-  }
+        array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_noise)(i, j));
   else
-  {
     for (int i = 0; i < array.shape[0]; i++)
       for (int j = 0; j < array.shape[1]; j++)
-      {
-        float t = ca * x[i] + sa * y[j];
-        array(i, j) = 2.f * (int)(kw * t) - (int)(2.f * kw * t) + 1.f;
-      }
-  }
+        array(i, j) = lambda(ca * x[i] + sa * y[j]);
 
   return array;
 }
@@ -308,34 +288,24 @@ Array wave_triangular(std::vector<int>   shape,
   float              ca = std::cos(angle / 180.f * M_PI);
   float              sa = std::sin(angle / 180.f * M_PI);
 
+  auto lambda = [&kw, &slant_ratio](float x)
+  {
+    x = kw * x - (int)(kw * x);
+    if (x < slant_ratio)
+      x /= slant_ratio;
+    else
+      x = 1.f - (x - slant_ratio) / (1.f - slant_ratio);
+    return x;
+  };
+
   if (p_noise != nullptr)
-  {
     for (int i = 0; i < array.shape[0]; i++)
       for (int j = 0; j < array.shape[1]; j++)
-      {
-        float t = ca * x[i] + sa * y[j] + (*p_noise)(i, j);
-
-        array(i, j) = kw * t - (int)(kw * t);
-        if (array(i, j) < slant_ratio)
-          array(i, j) /= slant_ratio;
-        else
-          array(i, j) = 1.f - (array(i, j) - slant_ratio) / (1.f - slant_ratio);
-      }
-  }
+        array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_noise)(i, j));
   else
-  {
     for (int i = 0; i < array.shape[0]; i++)
       for (int j = 0; j < array.shape[1]; j++)
-      {
-        float t = ca * x[i] + sa * y[j];
-
-        array(i, j) = kw * t - (int)(kw * t);
-        if (array(i, j) < slant_ratio)
-          array(i, j) /= slant_ratio;
-        else
-          array(i, j) = 1.f - (array(i, j) - slant_ratio) / (1.f - slant_ratio);
-      }
-  }
+        array(i, j) = lambda(ca * x[i] + sa * y[j]);
 
   return array;
 }
