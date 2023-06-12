@@ -50,6 +50,30 @@ namespace hmap
 void depression_filling(Array &z, int iterations = 1000, float epsilon = 1e-4f);
 
 /**
+ * @brief Apply an algerbic formula based on the local gradient to perform
+ * erosion/deposition.
+ *
+ * @param z Input array.
+ * @param talus_ref Reference talus.
+ * @param ir Smoothing prefilter radius.
+ * @param c_erosion Erosion coefficient.
+ * @param c_deposition Deposition coefficient.
+ * @param iterations Number of iterations.
+ *
+ * **Example**
+ * @include ex_hydraulic_algebric.cpp
+ *
+ * **Result**
+ * @image html ex_hydraulic_algebric.png
+ */
+void hydraulic_algebric(Array &z,
+                        float  talus_ref,
+                        int    ir,
+                        float  c_erosion = 0.05f,
+                        float  c_deposition = 0.05f,
+                        int    iterations = 1);
+
+/**
  * @brief Apply cell-based hydraulic erosion/deposition based on Benes et al.
  * procedure.
  *

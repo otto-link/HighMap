@@ -1,0 +1,2 @@
+add_executable(ex_hydraulic_algebric ex_hydraulic_algebric.cpp)
+target_link_libraries(ex_hydraulic_algebric highmap)

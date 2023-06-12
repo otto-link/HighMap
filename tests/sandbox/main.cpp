@@ -35,13 +35,11 @@ int main(void)
 
   // z = hmap::crater(shape, 64, 0.1f, 32);
 
-  auto noise = 0.1f * hmap::fbm_perlin(shape, res, seed, 8, 0.f);
+  auto dn = hmap::gradient_talus(z);
 
-  auto dn = hmap::gradient_norm(z);
-
-  timer.start("h diff");
-  hmap::hydraulic_diffusion(z, 0.2f, 1.05f * dn.max(), 50);
-  timer.stop("h diff");
+  timer.start("h alg");
+  hmap::hydraulic_algebric(z, 0.2f * dn.max(), 16, 0.05f, 0.05f, 1);
+  timer.stop("h alg");
 
   z.infos();
 

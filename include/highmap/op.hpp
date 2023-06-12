@@ -498,6 +498,21 @@ Array gradient_angle(const Array &array, bool downward = false);
 Array gradient_norm(const Array &array);
 
 /**
+ * @brief Return the gradient talus slope of an array.
+ *
+ * Talus slope is locally define as the largest elevation difference between a
+ * cell and its first neighbors.
+ *
+ * @see Thermal erosion: {@link thermal}.
+ *
+ * @param array Inupt array.
+ * @return Array Gradient.
+ */
+Array gradient_talus(const Array &array);
+
+void gradient_talus(const Array &array, Array &talus); ///< @overload
+
+/**
  * @brief Return the gradient in the 'x' (or 'i' index) of an array.
  *
  * @param array Inupt array.
@@ -516,19 +531,6 @@ void gradient_x(const Array &array, Array &dx); ///< @overload
 Array gradient_y(const Array &array);
 
 void gradient_y(const Array &array, Array &dy); ///< @overload
-
-/**
- * @brief Return the gradient talus slope of an array.
- *
- * Talus slope is locally define as the largest elevation difference between a
- * cell and its first neighbors.
- *
- * @see Thermal erosion: {@link thermal}.
- *
- * @param array Inupt array.
- * @return Array Gradient.
- */
-Array gradient_talus(const Array &array);
 
 /**
  * @brief Return the shaded relief map (or hillshading).

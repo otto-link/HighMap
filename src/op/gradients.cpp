@@ -37,21 +37,9 @@ Array gradient_norm(const Array &array)
 
 Array gradient_x(const Array &array)
 {
-  Array dm = Array(array.shape);
-
-  for (int i = 1; i < array.shape[0] - 1; i++)
-    for (int j = 0; j < array.shape[1]; j++)
-      dm(i, j) = 0.5f * (array(i + 1, j) - array(i - 1, j));
-
-  // east and west boundaries
-  for (int j = 0; j < array.shape[1]; j++)
-  {
-    dm(0, j) = array(1, j) - array(0, j);
-    dm(array.shape[0] - 1, j) =
-        array(array.shape[0] - 1, j) - array(array.shape[0] - 2, j);
-  }
-
-  return dm;
+  Array dx = Array(array.shape);
+  gradient_x(array, dx);
+  return dx;
 }
 
 void gradient_x(const Array &array, Array &dx)
@@ -70,21 +58,9 @@ void gradient_x(const Array &array, Array &dx)
 
 Array gradient_y(const Array &array)
 {
-  Array dm = Array(array.shape);
-
-  for (int i = 0; i < array.shape[0]; i++)
-    for (int j = 1; j < array.shape[1] - 1; j++)
-      dm(i, j) = 0.5f * (array(i, j + 1) - array(i, j - 1));
-
-  // south and north boundaries
-  for (int i = 0; i < array.shape[0]; i++)
-  {
-    dm(i, 0) = array(i, 1) - array(i, 0);
-    dm(i, array.shape[1] - 1) =
-        array(i, array.shape[1] - 1) - array(i, array.shape[1] - 2);
-  }
-
-  return dm;
+  Array dy = Array(array.shape);
+  gradient_y(array, dy);
+  return dy;
 }
 
 void gradient_y(const Array &array, Array &dy)
@@ -104,7 +80,12 @@ void gradient_y(const Array &array, Array &dy)
 Array gradient_talus(const Array &array)
 {
   Array talus = Array(array.shape);
+  gradient_talus(array, talus);
+  return talus;
+}
 
+void gradient_talus(const Array &array, Array &talus)
+{
   for (int i = 1; i < talus.shape[0] - 1; i += 2)
     for (int j = 0; j < talus.shape[1]; j++)
     {
@@ -122,8 +103,6 @@ Array gradient_talus(const Array &array)
       talus(i, j - 1) = std::max(talus(i, j - 1), talus(i, j));
       talus(i, j + 1) = d;
     }
-
-  return talus;
 }
 
 Array laplacian(const Array &array)
