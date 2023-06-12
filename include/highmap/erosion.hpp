@@ -91,6 +91,27 @@ void hydraulic_benes(Array &z,
                      float  rain_rate = 0.5f); ///< @overload
 
 /**
+ * @brief Apply cell-based hydraulic erosion using a nonlinear diffusion model.
+ *
+ * See @cite Roering2001.
+ *
+ * @param z Input array.
+ * @param c_diffusion Diffusion coefficient.
+ * @param talus Reference talus (must be higher than the maximum talus of the
+ * map).
+ * @param iterations Number of iterations.
+ *
+ * **Example**
+ * @include ex_hydraulic_diffusion.cpp
+ *
+ * **Result**
+ * @image html ex_hydraulic_diffusion.png
+ */
+void hydraulic_diffusion(Array &z,
+                         float  c_diffusion,
+                         float  talus,
+                         int    iterations);
+/**
  * @brief Apply cell-based hydraulic erosion/deposition of Musgrave et al.
  * (1989).
  *

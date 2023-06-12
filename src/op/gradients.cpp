@@ -54,6 +54,20 @@ Array gradient_x(const Array &array)
   return dm;
 }
 
+void gradient_x(const Array &array, Array &dx)
+{
+  for (int i = 1; i < array.shape[0] - 1; i++)
+    for (int j = 0; j < array.shape[1]; j++)
+      dx(i, j) = 0.5f * (array(i + 1, j) - array(i - 1, j));
+
+  for (int j = 0; j < array.shape[1]; j++)
+  {
+    dx(0, j) = array(1, j) - array(0, j);
+    dx(array.shape[0] - 1, j) =
+        array(array.shape[0] - 1, j) - array(array.shape[0] - 2, j);
+  }
+}
+
 Array gradient_y(const Array &array)
 {
   Array dm = Array(array.shape);
@@ -71,6 +85,20 @@ Array gradient_y(const Array &array)
   }
 
   return dm;
+}
+
+void gradient_y(const Array &array, Array &dy)
+{
+  for (int i = 0; i < array.shape[0]; i++)
+    for (int j = 1; j < array.shape[1] - 1; j++)
+      dy(i, j) = 0.5f * (array(i, j + 1) - array(i, j - 1));
+
+  for (int i = 0; i < array.shape[0]; i++)
+  {
+    dy(i, 0) = array(i, 1) - array(i, 0);
+    dy(i, array.shape[1] - 1) =
+        array(i, array.shape[1] - 1) - array(i, array.shape[1] - 2);
+  }
 }
 
 Array gradient_talus(const Array &array)

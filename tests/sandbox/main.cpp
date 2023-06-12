@@ -27,21 +27,21 @@ int main(void)
   std::cout << "seed: " << seed << std::endl;
 
   timer.start("fbm");
-  hmap::Array z = hmap::fbm_perlin(shape, res, seed, 3);
+  hmap::Array z = hmap::fbm_perlin(shape, res, seed, 8);
   timer.stop("fbm");
   hmap::remap(z);
+
+  auto z0 = z;
 
   // z = hmap::crater(shape, 64, 0.1f, 32);
 
   auto noise = 0.1f * hmap::fbm_perlin(shape, res, seed, 8, 0.f);
 
-  timer.start("wtri");
-  z = hmap::gabor_triangular(shape, 8.f, 0.f, 0.8f);
-  timer.stop("wtri");
+  auto dn = hmap::gradient_norm(z);
 
-  z = hmap::gabor_triangular_noise(shape, 4.f, 30.f, 0.8f, 64, 0.05f, seed);
-
-  // set_borders(z, 0.f, 256);
+  timer.start("h diff");
+  hmap::hydraulic_diffusion(z, 0.2f, 1.05f * dn.max(), 50);
+  timer.stop("h diff");
 
   z.infos();
 
@@ -77,7 +77,6 @@ int main(void)
 
   // // hmap::remap(z);
   // // hmap::remap(za);
-  auto z0 = z;
 
   // // hmap::laplace_edge_preserving(z, 2.f / shape[0], 0.2f, 10);
 

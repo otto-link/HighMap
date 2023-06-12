@@ -1,0 +1,2 @@
+add_executable(ex_hydraulic_diffusion ex_hydraulic_diffusion.cpp)
+target_link_libraries(ex_hydraulic_diffusion highmap)

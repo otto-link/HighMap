@@ -505,6 +505,8 @@ Array gradient_norm(const Array &array);
  */
 Array gradient_x(const Array &array);
 
+void gradient_x(const Array &array, Array &dx); ///< @overload
+
 /**
  * @brief Return the gradient in the 'y' (or 'j' index) of an array.
  *
@@ -512,6 +514,8 @@ Array gradient_x(const Array &array);
  * @return Array Gradient.
  */
 Array gradient_y(const Array &array);
+
+void gradient_y(const Array &array, Array &dy); ///< @overload
 
 /**
  * @brief Return the gradient talus slope of an array.

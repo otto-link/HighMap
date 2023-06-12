@@ -14,6 +14,28 @@
   url         = {https://hal.science/hal-01713196},
 }
 
+@Article{Band1986,
+  author    = {Lawrence E. Band},
+  journal   = {Water Resources Research},
+  title     = {Topographic Partition of Watersheds with Digital Elevation Models},
+  year      = {1986},
+  month     = jan,
+  number    = {1},
+  pages     = {15--24},
+  volume    = {22},
+  doi       = {10.1029/wr022i001p00015},
+  publisher = {American Geophysical Union ({AGU})},
+  url       = {https://doi.org/10.1029/wr022i001p00015},
+}
+
+@InProceedings{Benes2002,
+  author    = {Bedrich Benes and Rafael Forsbach},
+  booktitle = {International Conference in Central Europe on Computer Graphics and Visualization},
+  title     = {Visual Simulation of Hydraulic Erosion},
+  year      = {2002},
+  url       = {https://www.semanticscholar.org/paper/Visual-Simulation-of-Hydraulic-Erosion-Benes-Forsbach/22ceec965b5d69a26a089d70e03aafef7e07f91f},
+}
+
 @MastersThesis{Beyer2015,
   author = {Beyer, Hans Theobald},
   school = {Technische Universität München},
@@ -33,6 +55,20 @@
   url       = {https://doi.org/10.1145/1278780.1278807},
 }
 
+@Article{Chiba1998,
+  author    = {N. Chiba and K. Muraoka and K. Fujita},
+  journal   = {The Journal of Visualization and Computer Animation},
+  title     = {An erosion model based on velocity fields for the visual simulation of mountain scenery},
+  year      = {1998},
+  month     = oct,
+  number    = {4},
+  pages     = {185--194},
+  volume    = {9},
+  doi       = {10.1002/(sici)1099-1778(1998100)9:4<185::aid-vis178>3.0.co;2-2},
+  publisher = {Wiley},
+  url       = {https://data.exppad.com/public/papers/An Erosion Model Based on Velocity Fields for the Visual Simulation of Mountain Scenery.pdf},
+}
+
 @InProceedings{Cook2005,
   author    = {Robert L. Cook and Tony DeRose},
   booktitle = {{ACM} {SIGGRAPH} 2005 Papers on - {SIGGRAPH} {\textquotesingle}05},
@@ -42,6 +78,50 @@
   doi       = {10.1145/1186822.1073264},
   url       = {https://doi.org/10.1145/1186822.1073264},
 }
+
+@InProceedings{Cristea2015,
+  author    = {Cristea, Adrian and Liarokapis, Fotis},
+  booktitle = {2015 7th International Conference on Games and Virtual Worlds for Serious Applications (VS-Games)},
+  title     = {Fractal Nature - Generating Realistic Terrains for Games},
+  year      = {2015},
+  pages     = {1--8},
+  doi       = {10.1109/VS-GAMES.2015.7295776},
+  url       = {https://doi.org/10.1109/VS-GAMES.2015.7295776},
+}
+
+{Derzapf2011,
+  author    = {E. Derzapf and B. Ganster and M. Guthe and R. Klein},
+  journal   = {Computer Graphics Forum},
+  title     = {River Networks for Instant Procedural Planets},
+  year      = {2011},
+  month     = sep,
+  number    = {7},
+  pages     = {2031--2040},
+  volume    = {30},
+  doi       = {10.1111/j.1467-8659.2011.02052.x},
+  publisher = {Wiley},
+  url       = {https://doi.org/10.1111/j.1467-8659.2011.02052.x},
+
+@PhdThesis{Dachsbacher2006,
+  author = {Dachsbacher, Carsten},
+  title  = {Interactive Terrain Rendering: Towards Realism with Procedural Models and Graphics Hardware},
+  year   = {2006},
+  month  = may,
+  url    = {https://nbn-resolving.org/urn:nbn:de:bvb:29-opus-3545},
+}
+
+{Derzapf2011,
+  author    = {E. Derzapf and B. Ganster and M. Guthe and R. Klein},
+  journal   = {Computer Graphics Forum},
+  title     = {River Networks for Instant Procedural Planets},
+  year      = {2011},
+  month     = sep,
+  number    = {7},
+  pages     = {2031--2040},
+  volume    = {30},
+  doi       = {10.1111/j.1467-8659.2011.02052.x},
+  publisher = {Wiley},
+  url       = {https://doi.org/10.1111/j.1467-8659.2011.02052.x},
 
 @PhdThesis{Dachsbacher2006,
   author = {Dachsbacher, Carsten},
@@ -162,6 +242,19 @@
   url       = {https://doi.org/10.1111/j.1467-8659.2010.01806.x},
 }
 
+@MastersThesis{Isheden2022,
+  author      = {Isheden, Sebastian},
+  school      = {KTH, School of Electrical Engineering and Computer Science (EECS)},
+  title       = {Hydraulic Erosion Simulation on the GPU for 3D terrains},
+  year        = {2022},
+  abstract    = {Erosion is the action of various natural processes, such as water flow, wind and gravity, that displaces material from one area to another. Creating physically-based models of these complex phenomena has been a major challenge in creating realistic terrain in video games in a fast way, without having a 3D artist model the terrain by hand. There has also been an increasing interest in representing terrain in a more complex way using 3D data, to support more interesting terrains which can contain overhangs, arches and caves. With this new terrain representation there is also a need for new models for terrain generation and modification, to handle the difference in data representation. Combining the work of previous hydraulic erosion models (erosion caused by running water), this thesis proposes a new approach to hydraulic erosion on 3D-SDF data. An efficient shallow-water model combined with making an approximation of the 3D data into multiple “layers” are the main components of this model. The number of layers relates to how the 3D model can represent 3D features such as overhangs and arches. This also enables the model to be mapped to the GPU, for efficient simulation speeds. A performance comparison was carried out on the 3D erosion model, both comparing the difference on the CPU and GPU, as well as the performance compared to it’s 2D counterpart. The terrains were rendered using OpenGL, and the simulation on the GPU was implemented using CUDA. The 3D model took about 2.8 times longer than it’s 2D counterpart for a terrain of size 1024x1024 with 2 layers, with degrading results as the layers needed to represent the 3D terrain increase. The simulation was around 10-15 times faster on the GPU compared to the single core CPU version, also with degrading results as the amount of layers increase. This thesis thus provides a simple and efficient hydraulic erosion model that can be used on 3D-SDF data, which supports overhangs and arches. },
+  institution = {KTH, School of Electrical Engineering and Computer Science (EECS)},
+  keywords    = {Hydraulic Erosion, 3D erosion, CUDA, erosion, simulation, Vatten Erosion, 3D erosion, CUDA, erosion, simulering},
+  number      = {2022:53},
+  pages       = {58},
+  series      = {TRITA-EECS-EX},
+}
+
 @InProceedings{Kurita1992,
   author    = {Kurita, T. and Boulanger, P.},
   booktitle = {Proc. of IAPR Workshop on Machine Vision Applications (MVA'92)},
@@ -262,6 +355,17 @@
   url       = {https://doi.org/10.1109/pg.2007.15},
 }
 
+@InCollection{Meijster2000,
+  author    = {A. Meijster and J. B. T. M. Roerdink and W. H. Hesselink},
+  booktitle = {Mathematical Morphology and its Applications to Image and Signal Processing},
+  publisher = {Kluwer Academic Publishers},
+  title     = {A General Algorithm for Computing Distance Transforms in Linear Time},
+  year      = {2000},
+  pages     = {331--340},
+  doi       = {10.1007/0-306-47025-x_36},
+  url       = {https://doi.org/10.1007/0-306-47025-x_36},
+}
+
 @Misc{Molinero2020,
   author        = {Carlos Molinero and Alberto Hernando},
   title         = {A model for the generation of road networks},
@@ -321,6 +425,20 @@
   url       = {https://doi.org/10.1145/325165.325247},
 }
 
+@Article{Planchon2002,
+  author    = {Olivier Planchon and Fr{\'{e}}d{\'{e}}ric Darboux},
+  journal   = {{CATENA}},
+  title     = {A fast, simple and versatile algorithm to fill the depressions of digital elevation models},
+  year      = {2002},
+  month     = jan,
+  number    = {2-3},
+  pages     = {159--176},
+  volume    = {46},
+  doi       = {10.1016/s0341-8162(01)00164-3},
+  publisher = {Elsevier {BV}},
+  url       = {https://doi.org/10.1016/s0341-8162(01)00164-3},
+}
+
 @Article{Qin2007,
   author    = {C. Qin and A.-X. Zhu and T. Pei and B. Li and C. Zhou and L. Yang},
   journal   = {International Journal of Geographical Information Science},
@@ -333,6 +451,16 @@
   doi       = {10.1080/13658810601073240},
   publisher = {Informa {UK} Limited},
   url       = {https://doi.org/10.1080/13658810601073240},
+}
+
+@Article{Roering2001,
+  author  = {Roering, Josh and Kirchner, James and Sklar, Leonard and Dietrich, William},
+  journal = {Geology},
+  title   = {Hillslope evolution by nonlinear creep and landsliding: An experimental study},
+  year    = {2001},
+  month   = feb,
+  volume  = {29},
+  doi     = {10.1130/0091-7613(2001)029<0143:HEBNCA>2.0.CO;2},
 }
 
 @Article{Roudier1993,
@@ -368,6 +496,18 @@
   month     = jun,
   pages     = {25--34},
   url       = {http://graphics.tudelft.nl/Publications-new/2009/SDGTB09a},
+}
+
+@Misc{Stava2008,
+  author    = {Stava, Ondrej and Benes, Bedrich and Brisbin, Matthew and Krivanek, Jaroslav},
+  title     = {Interactive Terrain Modeling Using Hydraulic Erosion},
+  year      = {2008},
+  doi       = {10.2312/SCA/SCA08/201-210},
+  journal   = {Eurographics/SIGGRAPH Symposium on Computer Animation},
+  keywords  = {Categories and Subject Descriptors (according to ACM CCS): I.3.5 [Computer Graphics]: Computational Geometry and Object Modeling - Physically based modeling; I.3.7 [Computer Graphics]: Three-Dimensional Graphics and Realism - Animation;},
+  language  = {en},
+  publisher = {The Eurographics Association},
+  url       = {http://diglib.eg.org/handle/10.2312/SCA.SCA08.201-210},
 }
 
 @InProceedings{Szeliski1989,
