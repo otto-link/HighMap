@@ -349,22 +349,6 @@ void smooth_fill(Array &array, int ir, float k)
   array = maximum_smooth(array, array_smooth, k);
 }
 
-void smooth_fill_smear_peaks(Array &array, int ir)
-{
-  Array array_smooth = mean_local(array, ir);
-
-  // mask based on concave regions
-  Array mask = curvature_mean(array_smooth);
-  clamp_max(mask, 0.f);
-  make_binary(mask);
-
-  int ic = (int)((float)ir / 2.f);
-  if (ic > 0)
-    smooth_cpulse(mask, ic);
-
-  array = lerp(array, array_smooth, mask);
-}
-
 void smooth_fill_holes(Array &array, int ir)
 {
   Array array_smooth = mean_local(array, ir);
@@ -376,6 +360,22 @@ void smooth_fill_holes(Array &array, int ir)
 
   int ic = (int)((float)ir / 2.f);
   if (ic > 1)
+    smooth_cpulse(mask, ic);
+
+  array = lerp(array, array_smooth, mask);
+}
+
+void smooth_fill_smear_peaks(Array &array, int ir)
+{
+  Array array_smooth = mean_local(array, ir);
+
+  // mask based on concave regions
+  Array mask = curvature_mean(array_smooth);
+  clamp_max(mask, 0.f);
+  make_binary(mask);
+
+  int ic = (int)((float)ir / 2.f);
+  if (ic > 0)
     smooth_cpulse(mask, ic);
 
   array = lerp(array, array_smooth, mask);

@@ -22,7 +22,7 @@ int main(void)
   const std::vector<float> res = {2.f, 2.f};
   int                      seed = 2;
 
-  seed = (int)time(NULL);
+  // seed = (int)time(NULL);
 
   std::cout << "seed: " << seed << std::endl;
 
