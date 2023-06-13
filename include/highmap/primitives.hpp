@@ -435,6 +435,15 @@ Array perlin_mix(std::vector<int>   shape,
                  uint               seed,
                  std::vector<float> shift = {0, 0});
 
+Array pingpong_perlin(std::vector<int>   shape,
+                      std::vector<float> kw,
+                      uint               seed,
+                      int                octaves = 8,
+                      float              weight = 0.7f,
+                      float              persistence = 0.5f,
+                      float              lacunarity = 2.f,
+                      std::vector<float> shift = {0, 0});
+
 /**
  * @brief Return an array based on a plane equation.
  *
@@ -471,6 +480,7 @@ Array plane(std::vector<int>   shape,
  * a unit domain.
  * @param seed Random seed number.
  * @param octaves Number of octaves.
+ * @param weigth Octave weighting.
  * @param persistence 'Persistence' is a multiplier that determines how quickly
  * the amplitude diminishes for each successive octave: choose 'persistence'
  * close to 0 for a smooth noise, and close 1 for a rougher noise texture.
@@ -479,7 +489,6 @@ Array plane(std::vector<int>   shape,
  * octaves. Increasing the offset allows the rough peaks to rise and the valley
  * areas to lower and become smoother. For offset = 0, the function returns the
  * standard fractal brownian motion noise.
- * @param weigth Octave weighting.
  * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
  * domain.
  * @return Array Fractal noise.
@@ -494,9 +503,9 @@ Array ridged_perlin(std::vector<int>   shape,
                     std::vector<float> kw,
                     uint               seed,
                     int                octaves = 8,
+                    float              weight = 0.7f,
                     float              persistence = 0.5f,
                     float              lacunarity = 2.f,
-                    float              weight = 0.7f,
                     std::vector<float> shift = {0, 0});
 
 /**

@@ -17,7 +17,7 @@ int main(void)
   hmap::Timer timer = hmap::Timer();
 
   // const std::vector<int>   shape = {2048, 2048};
-  // const std::vector<int>   shape = {1024, 1024};
+  // const std::vector<int> shape = {1024, 1024};
   const std::vector<int>   shape = {512, 512};
   const std::vector<float> res = {2.f, 2.f};
   int                      seed = 2;
@@ -33,13 +33,29 @@ int main(void)
 
   auto z0 = z;
 
-  // z = hmap::crater(shape, 64, 0.1f, 32);
+  auto zr = hmap::fbm_perlin(shape, {32.f, 32.f}, seed, 8, 0.f);
+  // hmap::remap(zr, -1.f, 1.f);
 
-  auto dn = hmap::gradient_talus(z);
+  // zr = 1.f - zr;
+  // hmap::expand(zr, 4);
+  // hmap::gamma_correction(zr, 0.5f);
 
-  timer.start("h alg");
-  hmap::hydraulic_algebric(z, 0.2f * dn.max(), 16, 0.05f, 0.05f, 1);
-  timer.stop("h alg");
+  hmap::gamma_correction_local(zr, 0.5f, 8);
+  hmap::gamma_correction_local(zr, 0.5f, 2);
+
+  auto c = hmap::select_gradient_exp(z, 4.f / shape[0], 1.f / shape[0]);
+  hmap::make_binary(c, 0.5f);
+  hmap::smooth_cpulse(c, 16);
+
+  // z = zr;
+  z += 0.2f * zr * c;
+  // z = c;
+
+  // auto dn = hmap::gradient_talus(z);
+
+  // timer.start("h alg");
+  // hmap::hydraulic_algebric(z, 0.2f * dn.max(), 16, 0.05f, 0.05f, 1);
+  // timer.stop("h alg");
 
   z.infos();
 
@@ -71,7 +87,7 @@ int main(void)
   // // z = hmap::fbm_perlin(shape, res, seed, 12, 1.f);
   // // hmap::smooth_fill_holes(z, 32);
 
-  // // hmap::hydraulic_vpipes(za);
+  // hmap::hydraulic_vpipes(z);
 
   // // hmap::remap(z);
   // // hmap::remap(za);

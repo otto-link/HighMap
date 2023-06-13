@@ -63,6 +63,34 @@ void gamma_correction(Array &array, float gamma)
                  lambda);
 }
 
+void gamma_correction_local(Array &array, float gamma, int ir, float k)
+{
+  Array amin = minimum_local(array, ir);
+  Array amax = maximum_local(array, ir);
+
+  if (k != 0) // with smoothing
+  {
+    for (int i = 0; i < array.shape[0]; i++)
+      for (int j = 0; j < array.shape[1]; j++)
+      {
+        float v = (array(i, j) - amin(i, j)) / (amax(i, j) - amin(i, j));
+        v = std::sqrt(v * v + k);
+        array(i, j) =
+            std::pow(v, gamma) * (amax(i, j) - amin(i, j)) + amin(i, j);
+      }
+  }
+  else // without smoothing
+  {
+    for (int i = 0; i < array.shape[0]; i++)
+      for (int j = 0; j < array.shape[1]; j++)
+      {
+        float v = (array(i, j) - amin(i, j)) / (amax(i, j) - amin(i, j));
+        array(i, j) =
+            std::pow(v, gamma) * (amax(i, j) - amin(i, j)) + amin(i, j);
+      }
+  }
+}
+
 void laplace(Array &array, float sigma, int iterations)
 {
   for (int it = 0; it < iterations; it++)

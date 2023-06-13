@@ -1,0 +1,2 @@
+add_executable(ex_gamma_correction_local ex_gamma_correction_local.cpp)
+target_link_libraries(ex_gamma_correction_local highmap)

@@ -200,13 +200,45 @@ Array multifractal_perlin(std::vector<int>   shape,
   return array;
 }
 
+Array pingpong_perlin(std::vector<int>   shape,
+                      std::vector<float> kw,
+                      uint               seed,
+                      int                octaves,
+                      float              weight,
+                      float              persistence,
+                      float              lacunarity,
+                      std::vector<float> shift)
+{
+  Array         array = Array(shape);
+  FastNoiseLite noise(seed);
+
+  noise.SetFrequency(1.0f);
+  noise.SetNoiseType(FastNoiseLite::NoiseType_Perlin);
+  noise.SetFractalOctaves(octaves);
+  noise.SetFractalLacunarity(lacunarity);
+  noise.SetFractalGain(persistence);
+  noise.SetFractalType(FastNoiseLite::FractalType_PingPong);
+  noise.SetFractalWeightedStrength(weight);
+
+  for (int i = 0; i < array.shape[0]; i++)
+    for (int j = 0; j < array.shape[1]; j++)
+    {
+      float ki = kw[0] / (float)shape[0];
+      float kj = kw[1] / (float)shape[1];
+      float v =
+          noise.GetNoise(ki * (float)i + shift[0], kj * (float)j + shift[1]);
+      array(i, j) = v;
+    }
+  return array;
+}
+
 Array ridged_perlin(std::vector<int>   shape,
                     std::vector<float> kw,
                     uint               seed,
                     int                octaves,
+                    float              weight,
                     float              persistence,
                     float              lacunarity,
-                    float              weight,
                     std::vector<float> shift)
 {
   Array         array = Array(shape);
