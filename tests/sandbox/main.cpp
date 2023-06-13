@@ -22,7 +22,7 @@ int main(void)
   const std::vector<float> res = {2.f, 2.f};
   int                      seed = 2;
 
-  // seed = (int)time(NULL);
+  seed = (int)time(NULL);
 
   std::cout << "seed: " << seed << std::endl;
 
@@ -34,11 +34,9 @@ int main(void)
   auto z0 = z;
 
   auto zr = hmap::fbm_perlin(shape, {32.f, 32.f}, seed, 8, 0.f);
-  // hmap::remap(zr, -1.f, 1.f);
 
-  // zr = 1.f - zr;
-  // hmap::expand(zr, 4);
-  // hmap::gamma_correction(zr, 0.5f);
+  // hmap::remap(z);
+  // hmap::maximum_smooth(z, 0.5f, 0.2f);
 
   hmap::gamma_correction_local(zr, 0.5f, 8);
   hmap::gamma_correction_local(zr, 0.5f, 2);
@@ -47,9 +45,10 @@ int main(void)
   hmap::make_binary(c, 0.5f);
   hmap::smooth_cpulse(c, 16);
 
-  // z = zr;
-  z += 0.2f * zr * c;
-  // z = c;
+  z += 0.1f * zr * c;
+
+  // hmap::Array z_bedrock = hmap::minimum_local(z, 11);
+  // hmap::hydraulic_stream(z, z_bedrock, 0.01f, 5.f / shape[0]);
 
   // auto dn = hmap::gradient_talus(z);
 

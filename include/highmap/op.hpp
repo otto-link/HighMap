@@ -770,6 +770,8 @@ Array maximum_local_disk(const Array &array, int ir);
  */
 Array maximum_smooth(const Array &array1, const Array &array2, float k = 0.2);
 
+void maximum_smooth(Array &array, float vmax, float k); ///< @overload
+
 /**
  * @brief Return the 'local mean' based on a mean filter.
  *
@@ -849,6 +851,8 @@ Array minimum_local_disk(const Array &array, int ir);
  * @see {@link maximum_smooth}, {@link minimum}, {@link maximum}
  */
 Array minimum_smooth(const Array &array1, const Array &array2, float k = 0.2);
+
+void minimum_smooth(Array &array, float vmin, float k); ///< @overload
 
 /**
  * @brief Return the mixing of a set of arrays based on a parameter `t`.

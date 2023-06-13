@@ -169,6 +169,20 @@ Array maximum_smooth(const Array &array1, const Array &array2, float k)
   return array_out;
 }
 
+void maximum_smooth(Array &array, float vmax, float k)
+{
+  auto lambda = [&vmax, &k](float a)
+  {
+    float h = std::max(k - std::abs(a - vmax), 0.f) / k;
+    return std::max(a, vmax) + std::pow(h, 3) * k / 6.f;
+  };
+
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array.vector.begin(),
+                 lambda);
+}
+
 Array mean_local(const Array &array, int ir)
 {
   Array array_out = Array(array.shape);
@@ -253,6 +267,20 @@ Array minimum_smooth(const Array &array1, const Array &array2, float k)
                  array_out.vector.begin(),
                  lambda);
   return array_out;
+}
+
+void minimum_smooth(Array &array, float vmin, float k)
+{
+  auto lambda = [&vmin, &k](float a)
+  {
+    float h = std::max(k - std::abs(a - vmin), 0.f) / k;
+    return std::min(a, vmin) - std::pow(h, 3) * k / 6.f;
+  };
+
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array.vector.begin(),
+                 lambda);
 }
 
 void remap(Array &array, float vmin, float vmax)
