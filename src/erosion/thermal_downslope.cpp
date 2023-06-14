@@ -16,6 +16,7 @@ void thermal_downslope(Array &z,
                        float  talus,
                        uint   seed,
                        float  noise_ratio,
+                       float  zmin,
                        float  zmax)
 {
   std::mt19937                          gen(seed);
@@ -42,7 +43,7 @@ void thermal_downslope(Array &z,
     for (int j = 2; j < z.shape[1] - 2; j++)
     {
       float rd = dis(gen);
-      if ((z(i, j) < zmax * rd) and (tz(i, j) <= talus))
+      if ((z(i, j) > zmin) and (z(i, j) < zmax * rd) and (tz(i, j) <= talus))
       {
         queue_i.push_back(i);
         queue_j.push_back(j);

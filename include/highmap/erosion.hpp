@@ -407,6 +407,7 @@ void thermal_auto_bedrock(Array &z,
  * @param talus Talus limit.
  * @param seed Random seed number.
  * @param noise_ratio Noise amplitude ratio (for talus and elevation limit).
+ * @param zmin Elevation lower limit.
  * @param zmax Elevation upper limit.
  *
  * **Example**
@@ -419,6 +420,7 @@ void thermal_downslope(Array &z,
                        float  talus,
                        uint   seed,
                        float  noise_ratio = 0.5f,
+                       float  zmin = -1.f,
                        float  zmax = 0.5f);
 
 /**

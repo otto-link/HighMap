@@ -48,9 +48,9 @@ int main(void)
   z += 0.1f * zr * c;
 
   hmap::remap(z);
-  timer.start("thermal_downslope");
-  hmap::thermal_downslope(z, 3.f / shape[0], seed, 0.5f, 0.5f);
-  timer.stop("thermal_downslope");
+  // timer.start("thermal_downslope");
+  // hmap::thermal_downslope(z, 3.f / shape[0], seed, 0.5f, 0.5f);
+  // timer.stop("thermal_downslope");
 
   // hmap::smooth_fill(z, 96);
   // hmap::smooth_fill_smear_peaks(z, 2);
