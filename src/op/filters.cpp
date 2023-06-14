@@ -1,9 +1,11 @@
 #include <cmath>
+#include <random>
 
 #include "Interpolate.hpp"
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/erosion.hpp"
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 

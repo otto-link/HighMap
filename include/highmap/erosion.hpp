@@ -401,6 +401,27 @@ void thermal_auto_bedrock(Array &z,
                           float  ct = 0.5); ///< @overload
 
 /**
+ * @brief Apply a slope creation filter based on thermal weathering.
+ *
+ * @param z Input array.
+ * @param talus Talus limit.
+ * @param seed Random seed number.
+ * @param noise_ratio Noise amplitude ratio (for talus and elevation limit).
+ * @param zmax Elevation upper limit.
+ *
+ * **Example**
+ * @include ex_thermal_downslope.cpp
+ *
+ * **Result**
+ * @image html ex_thermal_downslope.png
+ */
+void thermal_downslope(Array &z,
+                       float  talus,
+                       uint   seed,
+                       float  noise_ratio = 0.5f,
+                       float  zmax = 0.5f);
+
+/**
  * @brief Apply modified thermal weathering of Olsen.
  *
  * Based on the algorithm of Olsen \cite Olsen2004, which "causes slopes steeper

@@ -18,7 +18,8 @@ int main(void)
 
   // const std::vector<int>   shape = {2048, 2048};
   // const std::vector<int> shape = {1024, 1024};
-  const std::vector<int>   shape = {512, 512};
+  const std::vector<int> shape = {512, 512};
+  // const std::vector<int>   shape = {256, 256};
   const std::vector<float> res = {2.f, 2.f};
   int                      seed = 2;
 
@@ -29,15 +30,14 @@ int main(void)
   timer.start("fbm");
   hmap::Array z = hmap::fbm_perlin(shape, res, seed, 8);
   timer.stop("fbm");
-  hmap::remap(z);
+  // hmap::remap(z);
 
   auto z0 = z;
 
-  auto zr = hmap::fbm_perlin(shape, {32.f, 32.f}, seed, 8, 0.f);
-
-  // hmap::remap(z);
   // hmap::maximum_smooth(z, 0.5f, 0.2f);
+  // hmap::remap(z);
 
+  auto zr = hmap::fbm_perlin(shape, {32.f, 32.f}, seed, 8, 0.f);
   hmap::gamma_correction_local(zr, 0.5f, 8);
   hmap::gamma_correction_local(zr, 0.5f, 2);
 
@@ -46,6 +46,15 @@ int main(void)
   hmap::smooth_cpulse(c, 16);
 
   z += 0.1f * zr * c;
+
+  hmap::remap(z);
+  timer.start("thermal_downslope");
+  hmap::thermal_downslope(z, 3.f / shape[0], seed, 0.5f, 0.5f);
+  timer.stop("thermal_downslope");
+
+  // hmap::smooth_fill(z, 96);
+  // hmap::smooth_fill_smear_peaks(z, 2);
+  // hmap::smooth_fill_holes(z, 2);
 
   // hmap::Array z_bedrock = hmap::minimum_local(z, 11);
   // hmap::hydraulic_stream(z, z_bedrock, 0.01f, 5.f / shape[0]);

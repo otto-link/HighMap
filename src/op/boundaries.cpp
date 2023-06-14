@@ -5,22 +5,24 @@
 namespace hmap
 {
 
-void extrapolate_borders(Array &array)
+void extrapolate_borders(Array &array, int nbuffer)
 {
   const int ni = array.shape[0];
   const int nj = array.shape[1];
 
   for (int j = 0; j < nj; j++)
-  {
-    array(0, j) = 2.f * array(1, j) - array(2, j);
-    array(ni - 1, j) = 2.f * array(ni - 2, j) - array(ni - 3, j);
-  }
+    for (int k = nbuffer - 1; k > -1; k--)
+    {
+      array(k, j) = 2.f * array(k + 1, j) - array(k + 2, j);
+      array(ni - 1 - k, j) = 2.f * array(ni - 2 - k, j) - array(ni - 3 - k, j);
+    }
 
   for (int i = 0; i < ni; i++)
-  {
-    array(i, 0) = 2.f * array(i, 1) - array(i, 2);
-    array(i, nj - 1) = 2.f * array(i, nj - 2) - array(i, nj - 3);
-  }
+    for (int k = nbuffer - 1; k > -1; k--)
+    {
+      array(i, k) = 2.f * array(i, k + 1) - array(i, k + 2);
+      array(i, nj - 1 - k) = 2.f * array(i, nj - 2 - k) - array(i, nj - 3 - k);
+    }
 }
 
 void fill_borders(Array &array)

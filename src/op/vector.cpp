@@ -1,5 +1,10 @@
+#include <algorithm>
+#include <list>
+#include <numeric>
 #include <random>
 #include <vector>
+
+#include "macrologger.h"
 
 namespace hmap
 {

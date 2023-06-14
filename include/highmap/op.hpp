@@ -411,11 +411,12 @@ void expand(Array &array, int ir);
  * based on inner values.
  *
  * @param array Input array.
+ * @param nbuffer Buffer depth.
  *
  * @see {@link fill_borders}
  *
  */
-void extrapolate_borders(Array &array);
+void extrapolate_borders(Array &array, int nbuffer = 1);
 
 /**
  * @brief Fill values at the borders (i = 0, j = 0, ...) based on 1st neighbor
@@ -1250,22 +1251,6 @@ void smooth_gaussian(Array &array, int ir);
 void smooth_fill(Array &array, int ir, float k = 0.1f);
 
 /**
- * @brief Apply smoothing to smear peaks (elliptic convexe surfaces).
- *
- * @param array Input array.
- * @param ir Filter radius.
- *
- * **Example**
- * @include ex_smooth_fill_holes.cpp
- *
- * **Result**
- * @image html ex_smooth_fill_holes.png
- *
- * @see {@link smooth_fill_holes}
- */
-void smooth_fill_smear_peaks(Array &array, int ir);
-
-/**
  * @brief Apply smoothing to fill holes (elliptic concave surfaces).
  *
  * @param array Input array.
@@ -1280,6 +1265,22 @@ void smooth_fill_smear_peaks(Array &array, int ir);
  * @see {@link smooth_smear_peaks}
  */
 void smooth_fill_holes(Array &array, int ir);
+
+/**
+ * @brief Apply smoothing to smear peaks (elliptic convexe surfaces).
+ *
+ * @param array Input array.
+ * @param ir Filter radius.
+ *
+ * **Example**
+ * @include ex_smooth_fill_holes.cpp
+ *
+ * **Result**
+ * @image html ex_smooth_fill_holes.png
+ *
+ * @see {@link smooth_fill_holes}
+ */
+void smooth_fill_smear_peaks(Array &array, int ir);
 
 /**
  * @brief Use symmetry for to fill values at the domain borders, over a given
