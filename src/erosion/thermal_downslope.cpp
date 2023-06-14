@@ -68,13 +68,10 @@ void thermal_downslope(Array &z,
 
     for (uint k = 0; k < nb; k++) // loop over neighbors
     {
-      int p = i + di[k];
-      int q = j + dj[k];
-      // LOG_DEBUG("oka");
+      int   p = i + di[k];
+      int   q = j + dj[k];
       float rd = dis(gen);
       float h = z(i, j) - c[k] * talus * rd;
-      // LOG_DEBUG("okb.1");
-      // LOG_DEBUG("okb %d %d %g", p, q, z(p, q));
 
       if (h > z(p, q))
       {
@@ -83,6 +80,7 @@ void thermal_downslope(Array &z,
         size_t r = 0;
         if (queue_z.size() > 0)
           r = upperbound_right(queue_z, z(p, q));
+
         queue_i.insert(queue_i.begin() + r, p);
         queue_j.insert(queue_j.begin() + r, q);
         queue_z.insert(queue_z.begin() + r, z(p, q));
