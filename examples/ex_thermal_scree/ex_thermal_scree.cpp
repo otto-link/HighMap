@@ -11,11 +11,17 @@ int main(void)
   int                      seed = 1;
 
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
-  auto        z0 = z;
+  hmap ::remap(z);
+  auto z0 = z;
 
-  hmap::thermal_flatten(z, 8.f / shape[0], 10);
+  float talus = 2.f / shape[0];
+  float noise_ratio = 0.5f;
+  float zmin = -5.f; // == no limit
+  float zmax = 0.5f;
 
-  hmap::export_banner_png("ex_thermal_flatten.png",
+  hmap::thermal_scree(z, talus, seed, noise_ratio, zmin, zmax);
+
+  hmap::export_banner_png("ex_thermal_scree.png",
                           {z0, z},
                           hmap::cmap::terrain,
                           true);

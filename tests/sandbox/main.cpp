@@ -5,6 +5,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/erosion.hpp"
+#include "highmap/hydrology.hpp"
 #include "highmap/io.hpp"
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
@@ -30,14 +31,15 @@ int main(void)
   timer.start("fbm");
   hmap::Array z = hmap::fbm_perlin(shape, res, seed, 8);
   timer.stop("fbm");
-  // hmap::remap(z);
 
+  // hmap::set_borders(z, z.min(), shape[0] / 2);
+  hmap::smooth_fill(z, shape[0] / 4);
+
+  hmap::remap(z);
   auto z0 = z;
 
-  // hmap::maximum_smooth(z, 0.5f, 0.2f);
-  // hmap::remap(z);
-
   auto zr = hmap::fbm_perlin(shape, {32.f, 32.f}, seed, 8, 0.f);
+  // hmap::warp_fbm(zr, 8.f, {16.f, 16.f}, seed, 1);
   hmap::gamma_correction_local(zr, 0.5f, 8);
   hmap::gamma_correction_local(zr, 0.5f, 2);
 
@@ -48,16 +50,46 @@ int main(void)
   z += 0.1f * zr * c;
 
   hmap::remap(z);
-  // timer.start("thermal_downslope");
-  // hmap::thermal_downslope(z, 3.f / shape[0], seed, 0.5f, 0.5f);
-  // timer.stop("thermal_downslope");
+  // timer.start("thermal_scree");
+  // hmap::thermal_scree(z, 3.f / shape[0], seed, 0.5f, 0.5f);
+  // timer.stop("thermal_scree");
 
   // hmap::smooth_fill(z, 96);
   // hmap::smooth_fill_smear_peaks(z, 2);
   // hmap::smooth_fill_holes(z, 2);
 
+  // --- erosion / dinf + thermal downslope
+  if (false)
+  {
+    float talus_ref = 100.f / shape[0];
+    auto  dinf = hmap::flow_accumulation_dinf(z, talus_ref);
+    dinf = hmap::log10(dinf);
+
+    hmap::remap(dinf);
+
+    float talus = 16.f / shape[0];
+    hmap::thermal_scree(dinf, talus, seed, 0.5f, 0.f, 2.f * dinf.max(), false);
+
+    // hmap::warp_fbm(dinf, 8.f, {16.f, 16.f}, seed, 1);
+    z -= 0.2f * dinf * pow(z, 0.5f);
+
+    // hmap::smooth_fill(z, 8);
+  }
+
+  // z = zr;
+
+  //
+  // c = hmap::select_gradient_exp(z, 4.f / shape[0], 1.f / shape[0]);
+  // hmap::make_binary(c, 0.5f);
+  // hmap::smooth_cpulse(c, 16);
+  // z += 0.1f * zr * c;
+
+  // hmap::hydraulic_particle(z, 80000, seed);
+
+  // z = dinf;
+
   // hmap::Array z_bedrock = hmap::minimum_local(z, 11);
-  // hmap::hydraulic_stream(z, z_bedrock, 0.01f, 5.f / shape[0]);
+  // hmap::hydraulic_stream(z, z_bedrock, 0.005f, 5.f / shape[0]);
 
   // auto dn = hmap::gradient_talus(z);
 
