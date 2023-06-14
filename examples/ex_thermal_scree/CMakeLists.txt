@@ -1,2 +1,2 @@
-add_executable(ex_thermal_downslope ex_thermal_downslope.cpp)
-target_link_libraries(ex_thermal_downslope highmap)
+add_executable(ex_thermal_scree ex_thermal_scree.cpp)
+target_link_libraries(ex_thermal_scree highmap)
