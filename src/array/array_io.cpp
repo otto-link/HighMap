@@ -16,7 +16,7 @@
 namespace hmap
 {
 
-void Array::infos(std::string msg)
+void Array::infos(std::string msg) const
 {
   std::cout << msg << " ";
   std::cout << "address: " << this << ", ";

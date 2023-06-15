@@ -463,7 +463,7 @@ public:
    * @brief Display a bunch of infos on the array.
    *
    */
-  void infos(std::string msg = "");
+  void infos(std::string msg = "") const;
 
   /**
    * @brief Return the linear index corresponding to the (i, j) cell.

@@ -50,15 +50,14 @@ Array fbm_perlin(std::vector<int>   shape,
   noise.SetFractalType(FastNoiseLite::FractalType_FBm);
   noise.SetFractalWeightedStrength(weight);
 
+  float ki = kw[0] / (float)shape[0];
+  float kj = kw[1] / (float)shape[1];
+
   for (int i = 0; i < array.shape[0]; i++)
     for (int j = 0; j < array.shape[1]; j++)
-    {
-      float ki = kw[0] / (float)shape[0];
-      float kj = kw[1] / (float)shape[1];
-      float v =
+      array(i, j) =
           noise.GetNoise(ki * (float)i + shift[0], kj * (float)j + shift[1]);
-      array(i, j) = v;
-    }
+
   return array;
 }
 

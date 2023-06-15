@@ -68,6 +68,16 @@ Array lerp(const Array &array1, const Array &array2, const float t)
   return array_out;
 }
 
+Array log10(const Array &array)
+{
+  Array array_out = Array(array.shape);
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array_out.vector.begin(),
+                 [](float v) { return std::log10(v); });
+  return array_out;
+}
+
 Array pow(const Array &array, float exp)
 {
   Array array_out = Array(array.shape);

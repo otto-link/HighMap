@@ -99,15 +99,6 @@ inline float bilinear_interp(float f00,
 }
 
 /**
- * @brief Apply of "binary" filter to the array values to get array values only
- * equal to 0 or 1.
- *
- * @param array Input array.
- * @param threshold Threshold value above which an array value is set to 1.
- */
-void make_binary(Array &array, float threshold = 0.f);
-
-/**
  * @brief Return the 'exclusion' blending of two arrays.
  *
  * See for instance https://en.wikipedia.org/wiki/Blend_modes.
@@ -676,6 +667,14 @@ std::vector<float> linspace_jitted(float start,
                                    int   seed);
 
 /**
+ * @brief Return the log10 of the array elements.
+ *
+ * @param array Input array.
+ * @return Array Reference to the current object.
+ */
+Array log10(const Array &array);
+
+/**
  * @brief Apply a low-pass high-order filter (5, 7 or 9th-order).
  *
  * @param array Input array.
@@ -691,6 +690,15 @@ std::vector<float> linspace_jitted(float start,
  * @see {@link laplace}
  */
 void low_pass_high_order(Array &array, int order = 9, float sigma = 1.f);
+
+/**
+ * @brief Apply of "binary" filter to the array values to get array values only
+ * equal to 0 or 1.
+ *
+ * @param array Input array.
+ * @param threshold Threshold value above which an array value is set to 1.
+ */
+void make_binary(Array &array, float threshold = 0.f);
 
 /**
  * @brief Make the array periodic in both directions.
@@ -1051,6 +1059,8 @@ void remap(Array &array, float vmin = 0, float vmax = 1); ///< @overload
  * @image html ex_rugosity1.png
  */
 Array rugosity(const Array &z, int ir);
+
+Array skeleton_middle(const Array &array);
 
 /**
  * @brief Return blob detection using the Laplacian of Gaussian (LoG) approach.
