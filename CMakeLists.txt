@@ -4,7 +4,7 @@ project(highmap VERSION 0.0.1 LANGUAGES CXX DESCRIPTION "C++ library to generate
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Ofast -ffast-math -funroll-all-loops -funsafe-loop-optimizations -funsafe-math-optimizations -frounding-math -march=native -mtune=native -DLOG_LEVEL=3")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Ofast -ffast-math -funroll-all-loops -funsafe-loop-optimizations -funsafe-math-optimizations -frounding-math -march=native -mtune=native -pthread -DLOG_LEVEL=3")
 
 find_package(OpenMP REQUIRED)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
@@ -27,6 +27,7 @@ target_include_directories(${PROJECT_NAME}
                            PUBLIC
                              ${PROJECT_SOURCE_DIR}/include
                            PRIVATE
+                             # ${PROJECT_SOURCE_DIR}/external/FastNoise2/include/FastNoise
                              ${PROJECT_SOURCE_DIR}/external/FastNoiseLite/include
                              ${PROJECT_SOURCE_DIR}/external/libInterpolate/include
                              ${PROJECT_SOURCE_DIR}/external/macro-logger/include
@@ -42,6 +43,11 @@ target_link_libraries(${PROJECT_NAME} GSL::gsl GSL::gslcblas OpenMP::OpenMP_CXX)
 find_package(Eigen3 REQUIRED) # required by libInterpolate
 include_directories(${EIGEN3_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} Eigen3::Eigen)
+
+# set(FASTNOISE2_NOISETOOL OFF CACHE BOOL "Build Noise Tool" FORCE)
+# add_subdirectory(external/FastNoise2)
+# target_compile_options(FastNoise PRIVATE -Wmaybe-uninitialized -Wunknown-pragmas)
+# target_link_libraries(${PROJECT_NAME} FastNoise)
 
 #--------------------------------------------------------------
 # everything else...
