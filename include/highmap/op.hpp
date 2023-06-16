@@ -934,6 +934,15 @@ void recast_canyon(Array &array, float vcut, float gamma); ///< @overload
  */
 void recast_peak(Array &array, int ir, float gamma = 2.f, float k = 0.1f);
 
+void recast_rocky_slopes(Array &array,
+                         float  talus,
+                         int    ir,
+                         float  amplitude,
+                         uint   seed,
+                         float  kw,
+                         float  gamma = 0.5f,
+                         Array *p_noise = nullptr);
+
 /**
  * @brief Apply a curve adjustment filter to the array.
  *
@@ -1088,6 +1097,8 @@ Array select_blob_log(const Array &array, int ir);
  */
 Array select_gradient_angle(const Array &array, float angle);
 
+Array select_gradient_binary(const Array &array, float talus_center);
+
 /**
  * @brief Return an array weighted (exponantial decay) by the gradient norm of
  * the input array.
@@ -1198,12 +1209,14 @@ void steepen(Array &array, float scale, int ir = 8);
  * @param array Input array (elements expected to be in [-1, 1]).
  * @param angle Steepening direction (in degrees).
  * @param iterations Number of iterations.
+ * @param ir Smoothing radius of the array values before differentiation.
  * @param dt "Time step", can be chosen smaller than 1 for fine tuning of the
  * steepening effect.
  */
 void steepen_convective(Array &array,
                         float  angle,
                         int    iterations = 1,
+                        int    ir = 0,
                         float  dt = 1);
 
 /**

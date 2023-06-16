@@ -23,9 +23,16 @@ Array select_gradient_angle(const Array &array, float angle)
 
   for (int i = 0; i < array.shape[0]; i++)
     for (int j = 0; j < array.shape[1]; j++)
-    {
       c(i, j) = std::max(0.f, std::cos(alpha + c(i, j)));
-    }
+  return c;
+}
+
+Array select_gradient_binary(const Array &array, float talus_center)
+{
+  Array c = gradient_norm(array);
+  for (int i = 0; i < array.shape[0]; i++)
+    for (int j = 0; j < array.shape[1]; j++)
+      c(i, j) = c(i, j) > talus_center ? 1.f : 0.f;
   return c;
 }
 

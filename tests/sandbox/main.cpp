@@ -24,7 +24,7 @@ int main(void)
   const std::vector<float> res = {2.f, 2.f};
   int                      seed = 2;
 
-  // seed = (int)time(NULL);
+  seed = (int)time(NULL);
 
   std::cout << "seed: " << seed << std::endl;
 
@@ -35,19 +35,18 @@ int main(void)
   // hmap::set_borders(z, z.min(), shape[0] / 2);
   hmap::smooth_fill(z, shape[0] / 4);
 
+  // hmap::remap(z);
+  // hmap::steepen_convective(z, 0.f, 20, 8);
+
   hmap::remap(z);
   auto z0 = z;
 
-  auto zr = hmap::fbm_perlin(shape, {32.f, 32.f}, seed, 8, 0.f);
-  // hmap::warp_fbm(zr, 8.f, {16.f, 16.f}, seed, 1);
-  hmap::gamma_correction_local(zr, 0.5f, 8);
-  hmap::gamma_correction_local(zr, 0.5f, 2);
-
-  auto c = hmap::select_gradient_exp(z, 4.f / shape[0], 1.f / shape[0]);
-  hmap::make_binary(c, 0.5f);
-  hmap::smooth_cpulse(c, 16);
-
-  z += 0.1f * zr * c;
+  // --- add cliff noise
+  {
+    timer.start("cliff noise");
+    hmap::recast_rocky_slopes(z, 2.5f / shape[0], 8, 0.1f, seed, 16.f, 0.5f);
+    timer.stop("cliff noise");
+  }
 
   hmap::remap(z);
   // timer.start("thermal_scree");

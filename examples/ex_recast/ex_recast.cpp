@@ -26,10 +26,18 @@ int main(void)
     hmap::recast_canyon(z2, zcut, gamma);
   }
 
-  z2.to_file("out.bin");
+  auto z3 = z;
+  {
+    float talus = 2.f / shape[0];
+    int   ir = 4;
+    float amplitude = 0.2f;
+    float kw = 16.f;
+    float gamma = 0.5f;
+    hmap::recast_rocky_slopes(z3, talus, ir, amplitude, seed, kw, gamma);
+  }
 
   hmap::export_banner_png("ex_recast.png",
-                          {z, z1, z2},
+                          {z, z1, z2, z3},
                           hmap::cmap::terrain,
                           true);
 }

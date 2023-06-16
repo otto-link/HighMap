@@ -207,6 +207,34 @@ void recast_peak(Array &array, int ir, float gamma, float k)
   array = ac * pow(array, gamma);
 }
 
+void recast_rocky_slopes(Array &array,
+                         float  talus,
+                         int    ir,
+                         float  amplitude,
+                         uint   seed,
+                         float  kw,
+                         float  gamma,
+                         Array *p_noise)
+{
+  // slope-based criteria
+  Array c = select_gradient_binary(array, talus);
+  smooth_cpulse(c, ir);
+
+  if (!p_noise)
+  {
+    Array noise = fbm_perlin(array.shape, {kw, kw}, seed, 4, 0.f);
+    gamma_correction_local(noise, gamma, ir);
+    {
+      int ir2 = (int)(ir / 4.f);
+      if (ir2 > 1)
+        gamma_correction_local(noise, gamma, ir2);
+    }
+    array += amplitude * noise * c;
+  }
+  else
+    array += amplitude * (*p_noise) * c;
+}
+
 void recurve(Array                    &array,
              const std::vector<float> &t,
              const std::vector<float> &v)
@@ -394,18 +422,33 @@ void steepen(Array &array, float scale, int ir)
   warp(array, dx, dy);
 }
 
-void steepen_convective(Array &array, float angle, int iterations, float dt)
+void steepen_convective(Array &array,
+                        float  angle,
+                        int    iterations,
+                        int    ir,
+                        float  dt)
 {
+  Array dx = Array(array.shape);
+  Array dy = Array(array.shape);
+  float alpha = angle / 180.f * M_PI;
+  float ca = std::cos(alpha);
+  float sa = std::sin(alpha);
+
   for (int it = 0; it < iterations; it++)
   {
-    float alpha = angle / 180.f * M_PI;
-    float ca = std::cos(alpha);
-    float sa = std::sin(alpha);
-
-    Array dx = gradient_x(array);
-    Array dy = gradient_y(array);
-
-    array = array - dt * (ca * dx + sa * dy);
+    if (ir > 0)
+    {
+      Array array_filtered = array;
+      smooth_cpulse(array_filtered, ir);
+      gradient_x(array_filtered, dx);
+      gradient_y(array_filtered, dy);
+    }
+    else
+    {
+      gradient_x(array, dx);
+      gradient_y(array, dy);
+    }
+    array *= 1.f - dt * (ca * dx + sa * dy); // == du / dt = - u * du / dx
   }
 }
 
