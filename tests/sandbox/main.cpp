@@ -24,13 +24,21 @@ int main(void)
   const std::vector<float> res = {2.f, 2.f};
   int                      seed = 2;
 
-  seed = (int)time(NULL);
+  // seed = (int)time(NULL);
 
   std::cout << "seed: " << seed << std::endl;
 
   timer.start("fbm");
   hmap::Array z = hmap::fbm_perlin(shape, res, seed, 8);
   timer.stop("fbm");
+
+  // for (int i = 0; i < shape[0]; i++)
+  //     for (int j = 0; j < shape[1]; j++)
+  // 	z(i, j) += 1.f * (float) i / (float) (shape[0] - 1);
+
+  // auto noise = z;
+  // hmap::remap(noise, 0.f, 0.2f);
+  // z += 2.f * hmap::step(shape, 15.f, 3.f / shape[0], &noise);
 
   // hmap::set_borders(z, z.min(), shape[0] / 2);
   hmap::smooth_fill(z, shape[0] / 4);
@@ -42,6 +50,7 @@ int main(void)
   auto z0 = z;
 
   // --- add cliff noise
+  if (false)
   {
     timer.start("cliff noise");
     hmap::recast_rocky_slopes(z, 2.5f / shape[0], 8, 0.1f, seed, 16.f, 0.5f);
@@ -58,21 +67,31 @@ int main(void)
   // hmap::smooth_fill_holes(z, 2);
 
   // --- erosion / dinf + thermal downslope
-  if (false)
+  if (true)
   {
-    float talus_ref = 100.f / shape[0];
+    timer.start("hydraulic ridge");
+
+    float talus_ref = 10.f / shape[0];
     auto  dinf = hmap::flow_accumulation_dinf(z, talus_ref);
     dinf = hmap::log10(dinf);
-
+    hmap::clamp_max(dinf, 2.5f);
     hmap::remap(dinf);
+    dinf = pow(dinf, 0.5f);
 
     float talus = 16.f / shape[0];
-    hmap::thermal_scree(dinf, talus, seed, 0.5f, 0.f, 2.f * dinf.max(), false);
+    hmap::thermal_scree(dinf,
+                        talus,
+                        seed,
+                        0.5f,
+                        0.f,
+                        2.f * dinf.max(),
+                        0.05f,
+                        0.1f,
+                        false);
 
-    // hmap::warp_fbm(dinf, 8.f, {16.f, 16.f}, seed, 1);
-    z -= 0.2f * dinf * pow(z, 0.5f);
+    z -= 0.5f * dinf;
 
-    // hmap::smooth_fill(z, 8);
+    timer.stop("hydraulic ridge");
   }
 
   // z = zr;

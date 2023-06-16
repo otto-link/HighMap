@@ -23,6 +23,23 @@ void chop(Array &array, float vmin)
                  lambda);
 }
 
+void chop_max_smooth(Array &array, float vmax)
+{
+  auto lambda = [&vmax](float x)
+  {
+    if (x > vmax)
+      x = 0.f;
+    else if (x > 0.5f * vmax)
+      x = vmax - x;
+    return x;
+  };
+
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array.vector.begin(),
+                 lambda);
+}
+
 void clamp(Array &array, float vmin, float vmax)
 {
   auto lambda = [&vmin, &vmax](float x) { return std::clamp(x, vmin, vmax); };

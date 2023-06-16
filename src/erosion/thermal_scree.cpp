@@ -19,6 +19,8 @@ void thermal_scree(Array &z,
                    float  noise_ratio,
                    float  zmin,
                    float  zmax,
+                   float  landing_talus_ratio,
+                   float  landing_width_ratio,
                    bool   talus_constraint)
 {
   std::mt19937                          gen(seed);
@@ -75,37 +77,82 @@ void thermal_scree(Array &z,
   reindex_vector(queue_j, idx);
   reindex_vector(queue_z, idx);
 
-  // filling
-  while (queue_i.size() > 0)
+  // fill
+  if (landing_talus_ratio == 1.f) // --- filling / without soft-landing
   {
-    int i = queue_i.back();
-    int j = queue_j.back();
-
-    queue_i.pop_back();
-    queue_j.pop_back();
-    queue_z.pop_back();
-
-    for (uint k = 0; k < nb; k++) // loop over neighbors
+    while (queue_i.size() > 0)
     {
-      int   p = i + di[k];
-      int   q = j + dj[k];
-      float rd = dis(gen);
-      float h = z(i, j) - c[k] * talus * rd;
+      int i = queue_i.back();
+      int j = queue_j.back();
 
-      if (h > z(p, q))
+      queue_i.pop_back();
+      queue_j.pop_back();
+      queue_z.pop_back();
+
+      for (uint k = 0; k < nb; k++) // loop over neighbors
       {
-        z(p, q) = h;
+        int   p = i + di[k];
+        int   q = j + dj[k];
+        float rd = dis(gen);
+        float h = z(i, j) - c[k] * talus * rd;
 
-        size_t r = 0;
-        if (queue_z.size() > 0)
-          r = upperbound_right(queue_z, z(p, q));
+        if (h > z(p, q))
+        {
+          z(p, q) = h;
 
-        queue_i.insert(queue_i.begin() + r, p);
-        queue_j.insert(queue_j.begin() + r, q);
-        queue_z.insert(queue_z.begin() + r, z(p, q));
+          // sorting should be performed to insert this new cells at the
+          // right position but it is much faster to put it at the end
+          // (and does not change much the result)
+          queue_i.push_back(p);
+          queue_j.push_back(q);
+          queue_z.push_back(z(p, q));
+        }
       }
     }
   }
+  else // --- filling / with soft-landing
+  {
+    Array z0 = z;
+
+    while (queue_i.size() > 0)
+    {
+      int i = queue_i.back();
+      int j = queue_j.back();
+
+      queue_i.pop_back();
+      queue_j.pop_back();
+      queue_z.pop_back();
+
+      for (uint k = 0; k < nb; k++) // loop over neighbors
+      {
+        int   p = i + di[k];
+        int   q = j + dj[k];
+        float rd = dis(gen);
+
+        float dz = c[k] * talus * rd;
+        dz *= landing_talus_ratio +
+              (1.f - landing_talus_ratio) *
+                  std::min(1.f,
+                           landing_width_ratio * std::abs(z(i, j) - z0(p, q)) /
+                               talus);
+        float h = z(i, j) - dz;
+
+        if (h > z(p, q))
+        {
+          z(p, q) = h;
+
+          // sorting should be performed to insert this new cells at the
+          // right position but it is much faster to put it at the end
+          // (and does not change much the result)
+          queue_i.push_back(p);
+          queue_j.push_back(q);
+          queue_z.push_back(z(p, q));
+        }
+      }
+    }
+  }
+
+  // clean-up boundaries
   extrapolate_borders(z, 2);
 }
 

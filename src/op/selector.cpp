@@ -8,6 +8,38 @@
 namespace hmap
 {
 
+Array select_gt(const Array &array, float value)
+{
+  Array c = array;
+  for (int i = 0; i < array.shape[0]; i++)
+    for (int j = 0; j < array.shape[1]; j++)
+      c(i, j) = c(i, j) > value ? 1.f : 0.f;
+  return c;
+}
+
+Array select_itv(const Array &array, float value1, float value2)
+{
+  Array c = array;
+  for (int i = 0; i < array.shape[0]; i++)
+    for (int j = 0; j < array.shape[1]; j++)
+    {
+      if ((c(i, j) > value1) and (c(i, j) < value2))
+        c(i, j) = 1.f;
+      else
+        c(i, j) = 0.f;
+    }
+  return c;
+}
+
+Array select_lt(const Array &array, float value)
+{
+  Array c = array;
+  for (int i = 0; i < array.shape[0]; i++)
+    for (int j = 0; j < array.shape[1]; j++)
+      c(i, j) = c(i, j) < value ? 1.f : 0.f;
+  return c;
+}
+
 Array select_blob_log(const Array &array, int ir)
 {
   Array c = array;

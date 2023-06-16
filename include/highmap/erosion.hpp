@@ -430,6 +430,10 @@ void thermal_flatten(Array &z, float talus, int iterations = 10); ///< @overload
  * @param noise_ratio Noise amplitude ratio (for talus and elevation limit).
  * @param zmin Elevation lower limit.
  * @param zmax Elevation upper limit.
+ * @param landing_talus_ratio Talus value (as a ratio) at the scree landing (set
+ * to 1 for no effect).
+ * @param landing_width_ratio Landing relative extent, in [0, 1] (small values
+ * lead to large landing).
  * @param talus_constraint Use talus constraint when populating the initial
  * queue.
  *
@@ -445,6 +449,8 @@ void thermal_scree(Array &z,
                    float  noise_ratio = 0.5f,
                    float  zmin = -1.f,
                    float  zmax = 0.5f,
+                   float  landing_talus_ratio = 1.f,
+                   float  landing_width_ratio = 0.25f,
                    bool   talus_constraint = true);
 
 } // namespace hmap

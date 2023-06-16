@@ -178,6 +178,15 @@ Array blend_soft(const Array &array1, const Array &array2);
 void chop(Array &array, float vmin);
 
 /**
+ * @brief Set to zero any value lower than `vmax` and apply a linear decrease
+ * slope between `vmax / 2` and `vmax`.
+ *
+ * @param array Input array.
+ * @param vmax Upper bound.
+ */
+void chop_max_smooth(Array &array, float vmax);
+
+/**
  * @brief Clamp array elements to a target range.
  *
  * @todo Smooth clamping.
@@ -946,7 +955,7 @@ void recast_peak(Array &array, int ir, float gamma = 2.f, float k = 0.1f);
  * @param gamma Gamma correction coefficent (for rocks)
  * @param p_noise Reference to the input noise used for rock features (overrides
  * default generator).
- * 
+ *
  * **Example**
  * @include ex_recast.cpp
  *
@@ -1089,6 +1098,64 @@ void remap(Array &array, float vmin = 0, float vmax = 1); ///< @overload
 Array rugosity(const Array &z, int ir);
 
 Array skeleton_middle(const Array &array);
+
+/**
+ * @brief Return an array with elements equal to 1 where input elements are
+ * larger than `value`.
+ *
+ * @param array Input array.
+ * @param value Criteria value.
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_select.cpp
+ *
+ * **Result**
+ * @image html ex_select0.png
+ * @image html ex_select1.png
+ * @image html ex_select2.png
+ * @image html ex_select3.png
+ */
+Array select_gt(const Array &array, float value);
+
+/**
+ * @brief Return an array with elements equal to 1 where input elements are
+ * within the bounds provided.
+ *
+ * @param array Input array.
+ * @param value1 Lower bound.
+ * @param value2 Upper bound.
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_select.cpp
+ *
+ * **Result**
+ * @image html ex_select0.png
+ * @image html ex_select1.png
+ * @image html ex_select2.png
+ * @image html ex_select3.png
+ */
+Array select_itv(const Array &array, float value1, float value2);
+
+/**
+ * @brief Return an array with elements equal to 1 where input elements are
+ * smaller than `value`.
+ *
+ * @param array Input array.
+ * @param value Criteria value.
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_select.cpp
+ *
+ * **Result**
+ * @image html ex_select0.png
+ * @image html ex_select1.png
+ * @image html ex_select2.png
+ * @image html ex_select3.png
+ */
+Array select_lt(const Array &array, float value);
 
 /**
  * @brief Return blob detection using the Laplacian of Gaussian (LoG) approach.
