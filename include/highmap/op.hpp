@@ -934,6 +934,25 @@ void recast_canyon(Array &array, float vcut, float gamma); ///< @overload
  */
 void recast_peak(Array &array, int ir, float gamma = 2.f, float k = 0.1f);
 
+/**
+ * @brief Transform heightmap by adding "rock-like" features at higher slopes.
+ *
+ * @param array Input array.
+ * @param talus Talus limit.
+ * @param ir Filter radius.
+ * @param amplitude Filter amplitude.
+ * @param seed Random number seed.
+ * @param kw Noise wavenumber with respect to a unit domain (for rocks).
+ * @param gamma Gamma correction coefficent (for rocks)
+ * @param p_noise Reference to the input noise used for rock features (overrides
+ * default generator).
+ * 
+ * **Example**
+ * @include ex_recast.cpp
+ *
+ * **Result**
+ * @image html ex_recast.png
+ */
 void recast_rocky_slopes(Array &array,
                          float  talus,
                          int    ir,
