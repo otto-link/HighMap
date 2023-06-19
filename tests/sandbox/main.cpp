@@ -5,6 +5,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/erosion.hpp"
+#include "highmap/geometry.hpp"
 #include "highmap/hydrology.hpp"
 #include "highmap/io.hpp"
 #include "highmap/op.hpp"
@@ -17,10 +18,11 @@ int main(void)
 
   hmap::Timer timer = hmap::Timer();
 
-  // const std::vector<int>   shape = {2048, 2048};
+  // const std::vector<int> shape = {2048, 2048};
   // const std::vector<int> shape = {1024, 1024};
   const std::vector<int> shape = {512, 512};
-  // const std::vector<int>   shape = {256, 256};
+  // const std::vector<int> shape = {256, 256};
+  // const std::vector<int> shape = {32, 32};
   const std::vector<float> res = {2.f, 2.f};
   int                      seed = 2;
 
@@ -32,14 +34,6 @@ int main(void)
   hmap::Array z = hmap::fbm_perlin(shape, res, seed, 8);
   timer.stop("fbm");
 
-  // for (int i = 0; i < shape[0]; i++)
-  //     for (int j = 0; j < shape[1]; j++)
-  // 	z(i, j) += 1.f * (float) i / (float) (shape[0] - 1);
-
-  // auto noise = z;
-  // hmap::remap(noise, 0.f, 0.2f);
-  // z += 2.f * hmap::step(shape, 15.f, 3.f / shape[0], &noise);
-
   // hmap::set_borders(z, z.min(), shape[0] / 2);
   hmap::smooth_fill(z, shape[0] / 4);
 
@@ -49,6 +43,44 @@ int main(void)
   hmap::remap(z);
   auto z0 = z;
 
+  // --- points
+  if (true)
+  {
+    hmap::Point p1 = hmap::Point(0.f, 1.f);
+    hmap::Point p2 = hmap::Point(1.f, 3.f, 2.f);
+    hmap::Point p3 = hmap::Point(-0.5f, 4.f, 3.f);
+
+    // hmap::Cloud cloud = hmap::Cloud({p1, p2});
+    // cloud.add_point(p1);
+    // cloud.add_point(p2);
+
+    // hmap::Cloud cloud = hmap::Cloud({1.f, 2.f}, {0.f, 1.f}, {5.f, 4.f});
+
+    std::vector<float> bbox = {-1.f, 2.f, 2.f, 5.f};
+
+    hmap::Path path = hmap::Path(5, 1, bbox, true);
+    // hmap::Path path = hmap::Path({p1, p2, p3}, true);
+
+    path.reorder_nns();
+    // path.divide();
+    // path.uniform_resampling();
+
+    // path.divide();
+    // path.divide();
+    // path.divide();
+
+    path.fractalize(2, seed, 0.2f, 0.f);
+
+    // path.print();
+
+    path.to_csv("path.csv");
+
+    z = 0.f;
+    path.to_array(z, {-1.5f, 2.5f, 1.5f, 5.5f});
+
+    z.infos();
+  }
+
   // --- add cliff noise
   if (false)
   {
@@ -57,7 +89,7 @@ int main(void)
     timer.stop("cliff noise");
   }
 
-  hmap::remap(z);
+  // hmap::remap(z);
   // timer.start("thermal_scree");
   // hmap::thermal_scree(z, 3.f / shape[0], seed, 0.5f, 0.5f);
   // timer.stop("thermal_scree");
@@ -67,14 +99,15 @@ int main(void)
   // hmap::smooth_fill_holes(z, 2);
 
   // --- erosion / dinf + thermal downslope
-  if (true)
+  if (false)
   {
     timer.start("hydraulic ridge");
 
     float talus_ref = 10.f / shape[0];
     auto  dinf = hmap::flow_accumulation_dinf(z, talus_ref);
     dinf = hmap::log10(dinf);
-    hmap::clamp_max(dinf, 2.5f);
+    // hmap::clamp_max(dinf, 2.5f);
+    hmap::minimum_smooth(dinf, 2.5f, 2.5f);
     hmap::remap(dinf);
     dinf = pow(dinf, 0.5f);
 
@@ -89,28 +122,21 @@ int main(void)
                         0.1f,
                         false);
 
-    z -= 0.5f * dinf;
+    z -= 0.9f * dinf;
 
     timer.stop("hydraulic ridge");
   }
 
-  // z = zr;
+  // hmap::smooth_fill(z, shape[0] / 16);
 
-  //
-  // c = hmap::select_gradient_exp(z, 4.f / shape[0], 1.f / shape[0]);
-  // hmap::make_binary(c, 0.5f);
-  // hmap::smooth_cpulse(c, 16);
-  // z += 0.1f * zr * c;
+  // hmap::hydraulic_vpipes(z);
 
-  // hmap::hydraulic_particle(z, 80000, seed);
-
-  // z = dinf;
+  // hmap::hydraulic_particle(z, 100000, seed);
 
   // hmap::Array z_bedrock = hmap::minimum_local(z, 11);
   // hmap::hydraulic_stream(z, z_bedrock, 0.005f, 5.f / shape[0]);
 
   // auto dn = hmap::gradient_talus(z);
-
   // timer.start("h alg");
   // hmap::hydraulic_algebric(z, 0.2f * dn.max(), 16, 0.05f, 0.05f, 1);
   // timer.stop("h alg");
@@ -200,7 +226,9 @@ int main(void)
 
   // // z.infos();
 
-  z.to_png("out.png", hmap::cmap::terrain, true);
+  z.to_png("out.png", hmap::cmap::terrain, false);
   z0.to_png("out0.png", hmap::cmap::terrain, true);
   z.to_file("out.bin");
+
+  z.to_png("hmap.png", hmap::cmap::gray, false);
 }

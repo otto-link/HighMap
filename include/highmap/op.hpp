@@ -709,6 +709,8 @@ void low_pass_high_order(Array &array, int order = 9, float sigma = 1.f);
  */
 void make_binary(Array &array, float threshold = 0.f);
 
+void make_binary_xsimd(Array &array, float threshold = 0.f);
+
 /**
  * @brief Make the array periodic in both directions.
  *
