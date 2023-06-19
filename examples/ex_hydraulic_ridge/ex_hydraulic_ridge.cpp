@@ -14,16 +14,17 @@ int main(void)
 
   float talus = 16.f / shape[0];
   float intensity = 0.5f;
+  float erosion_factor = 1.5f;
 
   // no smoothing
   auto  z1 = z;
   float smoothing_factor = 1.f;
-  hmap::hydraulic_ridge(z1, talus, intensity, smoothing_factor);
+  hmap::hydraulic_ridge(z1, talus, intensity, erosion_factor, smoothing_factor);
 
   // lots of smoothing
   auto z2 = z;
   smoothing_factor = 0.05f;
-  hmap::hydraulic_ridge(z2, talus, intensity, smoothing_factor);
+  hmap::hydraulic_ridge(z2, talus, intensity, erosion_factor, smoothing_factor);
 
   // can be combined with thermal erosion to yield smoother valley
   // bottoms

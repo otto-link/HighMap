@@ -13,15 +13,15 @@ namespace hmap
 void hydraulic_ridge(Array &z,
                      float  talus,
                      float  intensity,
+                     float  erosion_factor,
                      float  smoothing_factor,
                      float  noise_ratio,
                      uint   seed)
 {
   // erosion depth
-  float ze_max = 2.5f;
   Array ze = flow_accumulation_dinf(z, talus);
   ze = log10(ze);
-  minimum_smooth(ze, ze_max, ze_max);
+  minimum_smooth(ze, erosion_factor, erosion_factor);
   remap(ze);
 
   float landing_width_ratio = 0.1f;
@@ -31,7 +31,7 @@ void hydraulic_ridge(Array &z,
                 seed,
                 noise_ratio,
                 0.f, // ze_min
-                2.f * ze_max,
+                2.f * erosion_factor,
                 smoothing_factor,
                 landing_width_ratio,
                 false);

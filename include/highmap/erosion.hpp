@@ -261,6 +261,8 @@ void hydraulic_particle_multiscale(Array             &z,
  * @param z Input array.
  * @param talus Ridge talus.
  * @param intensity Erosion intensity in [0, 1].
+ * @param erosion_factor Erosion factor, generally in ]0, 10]. Smaller values
+ * tend to flatten the map.
  * @param smoothing_factor Smooothing factor in ]0, 1] (1 for no smoothing).
  * @param noise_ratio Ridge talus noise ratio in [0, 1].
  * @param seed Random seed number (only useful when `noise_ratio != 0`).
@@ -274,6 +276,7 @@ void hydraulic_particle_multiscale(Array             &z,
 void hydraulic_ridge(Array &z,
                      float  talus,
                      float  intensity = 0.5f,
+                     float  erosion_factor = 1.5f,
                      float  smoothing_factor = 0.f,
                      float  noise_ratio = 0.f,
                      uint   seed = 1);
