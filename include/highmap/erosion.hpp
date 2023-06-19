@@ -256,6 +256,29 @@ void hydraulic_particle_multiscale(Array             &z,
                                    float              evap_rate = 0.001f);
 
 /**
+ * @brief Apply large-scale hydraulic erosion to produce "deep" ridges.
+ *
+ * @param z Input array.
+ * @param talus Ridge talus.
+ * @param intensity Erosion intensity in [0, 1].
+ * @param smoothing_factor Smooothing factor in ]0, 1] (1 for no smoothing).
+ * @param noise_ratio Ridge talus noise ratio in [0, 1].
+ * @param seed Random seed number (only useful when `noise_ratio != 0`).
+ *
+ * **Example**
+ * @include ex_hydraulic_ridge.cpp
+ *
+ * **Result**
+ * @image html ex_hydraulic_ridge.png
+ */
+void hydraulic_ridge(Array &z,
+                     float  talus,
+                     float  intensity = 0.5f,
+                     float  smoothing_factor = 0.f,
+                     float  noise_ratio = 0.f,
+                     uint   seed = 1);
+
+/**
  * @brief Apply hydraulic erosion using based on a flow accumulation map.
  *
  * @param z Input array.

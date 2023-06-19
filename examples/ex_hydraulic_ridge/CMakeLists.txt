@@ -1,0 +1,2 @@
+add_executable(ex_hydraulic_ridge ex_hydraulic_ridge.cpp)
+target_link_libraries(ex_hydraulic_ridge highmap)
