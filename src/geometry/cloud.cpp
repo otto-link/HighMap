@@ -3,6 +3,9 @@
 #include <iomanip>
 #include <string>
 
+#include "delaunator.hpp"
+#include "macrologger.h"
+
 #include "highmap/geometry.hpp"
 
 namespace hmap
@@ -76,6 +79,26 @@ void Cloud::to_csv(std::string fname)
   for (auto &p : this->points)
     f << p.x << "," << p.y << "," << p.v << std::endl;
   f.close();
+}
+
+Graph Cloud::to_graph_delaunay()
+{
+  std::vector<float>     coords = this->get_xy();
+  delaunator::Delaunator d(coords);
+
+  Graph graph = Graph(*this);
+
+  for (std::size_t e = 0; e < d.triangles.size(); e++)
+  {
+    int i = d.halfedges[e];
+    if (((int)e > i) or (i == -1))
+    {
+      int next_he = (e % 3 == 2) ? e - 2 : e + 1;
+      graph.add_edge({(int)d.triangles[e], (int)d.triangles[next_he]});
+    }
+  }
+
+  return graph;
 }
 
 } // namespace hmap

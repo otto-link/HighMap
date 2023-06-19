@@ -20,6 +20,8 @@
 namespace hmap
 {
 
+class Graph;
+
 /**
  * @brief Point class, to manipulate points in 2D.
  *
@@ -177,6 +179,22 @@ public:
     return x;
   }
 
+  /** Get the points coordinates of a single vector (x0, y0, x1, y1,...).
+   * @brief Get the xy object
+   *
+   * @return std::vector<float> Coordinates.
+   */
+  std::vector<float> get_xy()
+  {
+    std::vector<float> xy = {};
+    for (auto &p : this->points)
+    {
+      xy.push_back(p.x);
+      xy.push_back(p.y);
+    }
+    return xy;
+  }
+
   /**
    * @brief Get the `y` of the points.
    *
@@ -234,6 +252,86 @@ public:
    * @param fname File name.
    */
   void to_csv(std::string fname);
+
+  /**
+   * @brief Convert a cloud to a graph using Delaunay triangulation.
+   *
+   * @return Graph
+   */
+  Graph to_graph_delaunay();
+};
+
+/**
+ * @brief Graph class, to manipulate graph in 2D.
+ *
+ * **Example**
+ * @include ex_graph.cpp
+ *
+ * **Result**
+ * @image html ex_graph0.png
+ */
+* / class Graph : public Cloud
+{
+public:
+  /**
+   * @brief Edges of the graph.
+   *
+   */
+  std::vector<std::vector<int>> edges = {};
+
+  /**
+   * @brief Construct a new Graph object.
+   *
+   */
+  Graph() : Cloud(){};
+
+  /**
+   * @brief Construct a new Graph object based on a cloud of points.
+   *
+   * @param cloud
+   */
+  Graph(Cloud cloud) : Cloud(cloud){};
+
+  /**
+   * @brief Get the length of all the edge lengths.
+   *
+   * @return std::vector<float>
+   */
+  std::vector<float> get_edge_lengths();
+
+  /**
+   * @brief Get the number of edges.
+   *
+   * @return size_t
+   */
+  size_t get_nedges()
+  {
+    return this->edges.size();
+  }
+
+  /**
+   * @brief Add an edge.
+   *
+   * @param edge Edge indices {point #1, point #2}.
+   */
+  void add_edge(std::vector<int> edge)
+  {
+    this->edges.push_back(edge);
+  }
+
+  /**
+   * @brief Print some data.
+   *
+   */
+  void print();
+
+  /**
+   * @brief Export graph as png image file.
+   *
+   * @param fname File name.
+   * @param shape Image resolution.
+   */
+  void to_png(std::string fname, std::vector<int> shape = {512, 512});
 };
 
 /**
@@ -353,6 +451,14 @@ public:
    * @param bbox Bounding box of the array.
    */
   void to_array(Array &array, std::vector<float> bbox);
+
+  /**
+   * @brief Export path as png image file.
+   *
+   * @param fname File name.
+   * @param shape Image resolution.
+   */
+  void to_png(std::string fname, std::vector<int> shape = {512, 512});
 
   /**
    * @brief Resample the path in order to get fairly uniform distance between

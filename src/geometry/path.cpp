@@ -7,7 +7,9 @@
 
 #include "macrologger.h"
 
+#include "highmap/array.hpp"
 #include "highmap/geometry.hpp"
+#include "highmap/io.hpp"
 
 namespace hmap
 {
@@ -166,6 +168,13 @@ void Path::to_array(Array &array, std::vector<float> bbox)
   }
 
   cloud.to_array(array, bbox);
+}
+
+void Path::to_png(std::string fname, std::vector<int> shape)
+{
+  Array array = Array(shape);
+  this->to_array(array, this->get_bbox());
+  array.to_png(fname, cmap::gray, false);
 }
 
 } // namespace hmap
