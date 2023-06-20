@@ -15,6 +15,7 @@ int main(void)
   hmap::Cloud cloud = hmap::Cloud(npoints, seed, bbox);
   hmap::Graph graph = cloud.to_graph_delaunay();
 
+  graph.print();
   graph.to_png("ex_graph0.png");
   graph.to_csv("ex_graph.csv");
 }

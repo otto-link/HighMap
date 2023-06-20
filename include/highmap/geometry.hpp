@@ -270,7 +270,7 @@ public:
  * **Result**
  * @image html ex_graph0.png
  */
-* / class Graph : public Cloud
+class Graph : public Cloud
 {
 public:
   /**
@@ -278,6 +278,12 @@ public:
    *
    */
   std::vector<std::vector<int>> edges = {};
+
+  /**
+   * @brief Edge weights.
+   *
+   */
+  std::vector<float> weights = {};
 
   /**
    * @brief Construct a new Graph object.
@@ -293,11 +299,19 @@ public:
   Graph(Cloud cloud) : Cloud(cloud){};
 
   /**
+   * @brief Get the length of edge `k`.
+   *
+   * @param k Edge index.
+   * @return float Euclidian length.
+   */
+  float get_edge_length(int k);
+
+  /**
    * @brief Get the length of all the edge lengths.
    *
    * @return std::vector<float>
    */
-  std::vector<float> get_edge_lengths();
+  std::vector<float> get_lengths();
 
   /**
    * @brief Get the number of edges.
@@ -313,11 +327,20 @@ public:
    * @brief Add an edge.
    *
    * @param edge Edge indices {point #1, point #2}.
+   * @param weight Edge weight (if not provided, the Euclidian distance between
+   * the edge point is used as a default weight);
    */
+  void add_edge(std::vector<int> edge, float weight)
+  {
+    this->edges.push_back(edge);
+    this->weights.push_back(weight);
+  }
+
   void add_edge(std::vector<int> edge)
   {
     this->edges.push_back(edge);
-  }
+    this->weights.push_back(this->get_edge_length(this->get_nedges() - 1));
+  } ///< @overload
 
   /**
    * @brief Print some data.

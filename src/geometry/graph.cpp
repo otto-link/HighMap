@@ -9,7 +9,13 @@
 namespace hmap
 {
 
-std::vector<float> Graph::get_edge_lengths()
+float Graph::get_edge_length(int k)
+{
+  return distance(this->points[this->edges[k][0]],
+                  this->points[this->edges[k][1]]);
+}
+
+std::vector<float> Graph::get_lengths()
 {
   std::vector<float> lengths = {};
   for (size_t k = 0; k < this->get_nedges(); k++)
@@ -32,12 +38,13 @@ void Graph::print()
     std::cout << std::endl;
   }
 
-  std::cout << "Edges:" << std::endl;
+  std::cout << "Edges: (index, {pt1, pt2}, weight)" << std::endl;
   for (size_t k = 0; k < this->get_nedges(); k++)
   {
     std::cout << std::setw(6) << k;
     std::cout << " {" << this->edges[k][0] << ", ";
-    std::cout << this->edges[k][1] << "}";
+    std::cout << this->edges[k][1] << "} ";
+    std::cout << std::setw(12) << this->weights[k];
     std::cout << std::endl;
   }
 }
