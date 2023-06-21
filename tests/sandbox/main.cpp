@@ -46,39 +46,23 @@ int main(void)
   // --- points
   if (true)
   {
-    hmap::Point p1 = hmap::Point(0.f, 1.f);
-    hmap::Point p2 = hmap::Point(1.f, 3.f, 2.f);
-    hmap::Point p3 = hmap::Point(-0.5f, 4.f, 3.f);
-
-    // hmap::Cloud cloud = hmap::Cloud({p1, p2});
-    // cloud.add_point(p1);
-    // cloud.add_point(p2);
-
-    // hmap::Cloud cloud = hmap::Cloud({1.f, 2.f}, {0.f, 1.f}, {5.f, 4.f});
-
     std::vector<float> bbox = {-1.f, 2.f, 2.f, 5.f};
 
-    hmap::Path path = hmap::Path(5, 1, bbox, true);
-    // hmap::Path path = hmap::Path({p1, p2, p3}, true);
-
-    path.reorder_nns();
-    // path.divide();
-    // path.uniform_resampling();
-
-    // path.divide();
-    // path.divide();
-    // path.divide();
-
-    // path.fractalize(2, seed, 0.2f, 0.f);
-
-    hmap::Cloud cloud = hmap::Cloud(10, 1, bbox);
+    hmap::Cloud cloud = hmap::Cloud(15, 1, bbox);
     hmap::Graph graph = cloud.to_graph_delaunay();
+
+    graph.print();
 
     graph.to_png("tmp.png");
     graph.to_csv("path.csv");
 
-    // z = 0.f;
-    // path.to_array(z, {-1.5f, 2.5f, 1.5f, 5.5f});
+    graph.update_adjacency_matrix();
+    graph.update_connectivity();
+    std::vector<int> path = graph.dijkstra(0, 4);
+
+    std::cout << "Path:\n";
+    for (auto &p : path)
+      std::cout << p << "\n";
 
     z.infos();
   }

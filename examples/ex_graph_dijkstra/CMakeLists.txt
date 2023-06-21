@@ -1,0 +1,2 @@
+add_executable(ex_graph_dijkstra ex_graph_dijkstra.cpp)
+target_link_libraries(ex_graph_dijkstra highmap)

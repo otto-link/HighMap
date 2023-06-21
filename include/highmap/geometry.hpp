@@ -208,6 +208,17 @@ public:
     return y;
   }
 
+  /**
+   * @brief Set the values assigned to the points.
+   *
+   * @param new_values New values.
+   */
+  void set_values(std::vector<float> new_values)
+  {
+    for (size_t k = 0; k < this->get_npoints(); k++)
+      this->points[k].v = new_values[k];
+  }
+
   //----------------------------------------
   // methods
   //----------------------------------------
@@ -286,6 +297,18 @@ public:
   std::vector<float> weights = {};
 
   /**
+   * @brief Store point connectivity.
+   *
+   */
+  std::vector<std::vector<int>> connectivity = {};
+
+  /**
+   * @brief Adjacency matrix.
+   *
+   */
+  Array adjacency_matrix = Array({0, 0});
+
+  /**
    * @brief Construct a new Graph object.
    *
    */
@@ -343,6 +366,19 @@ public:
   } ///< @overload
 
   /**
+   * @brief Return the route between tow points of the graph using the
+   * Dijkstra's algorithm.
+   *
+   * @param source_point_index Starting point index.
+   * @param target_point_index Ending point index.
+   * @return std::vector<int> List of point indices.
+   *
+   *  * **Example**
+   * @include ex_graph_dijkstra.cpp
+   */
+  std::vector<int> dijkstra(int source_point_index, int target_point_index);
+
+  /**
    * @brief Print some data.
    *
    */
@@ -355,6 +391,18 @@ public:
    * @param shape Image resolution.
    */
   void to_png(std::string fname, std::vector<int> shape = {512, 512});
+
+  /**
+   * @brief Update the adjacency matrix.
+   *
+   */
+  void update_adjacency_matrix();
+
+  /**
+   * @brief Update point connectivity.
+   *
+   */
+  void update_connectivity();
 };
 
 /**
