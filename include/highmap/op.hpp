@@ -1028,6 +1028,22 @@ void recurve_bexp(Array &array, float tau = 0.5f);
 void recurve_exp(Array &array, float tau = 0.5f);
 
 /**
+ * @brief Apply a curve adjustment filter using Kumaraswamy's cumulative
+ * distribution function.
+ *
+ * @param array Input array.
+ * @param a 'Parameter a', drives curve shape close to `0`.
+ * @param b 'Parameter b', drives curve shape close to `1`.
+ *
+ * **Example**
+ * @include ex_recurve_xxx.cpp
+ *
+ * **Result**
+ * @image html ex_recurve_xxx.png
+ */
+void recurve_kura(Array &array, float a, float b);
+
+/**
  * @brief Apply a curve adjustment filter using a smooth "S-shape" curve.
  *
  * @warning Array values are expected to be in [0, 1].

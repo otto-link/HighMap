@@ -272,6 +272,17 @@ void recurve_exp(Array &array, float tau)
                  lambda);
 }
 
+void recurve_kura(Array &array, float a, float b)
+{
+  auto lambda = [&a, &b](float v)
+  { return 1.f - std::pow(1.f - std::pow(v, a), b); };
+
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array.vector.begin(),
+                 lambda);
+}
+
 void recurve_s(Array &array)
 {
   auto lambda = [](float a) { return a * a * (3.f - 2.f * a); };
