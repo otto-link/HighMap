@@ -1,0 +1,2 @@
+add_executable(ex_graph_minimum_spanning_tree_prim ex_graph_minimum_spanning_tree_prim.cpp)
+target_link_libraries(ex_graph_minimum_spanning_tree_prim highmap)

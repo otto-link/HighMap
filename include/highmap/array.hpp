@@ -77,6 +77,17 @@ public:
     return this->vector;
   }
 
+  /**
+   * @brief Set the array shape.
+   *
+   * @param new_shape New shape.
+   */
+  void set_shape(std::vector<int> new_shape)
+  {
+    this->shape = shape;
+    this->vector.resize(this->shape[0] * this->shape[1]);
+  }
+
   //----------------------------------------
   // overload
   //----------------------------------------

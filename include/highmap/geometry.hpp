@@ -321,6 +321,8 @@ public:
    */
   Graph(Cloud cloud) : Cloud(cloud){};
 
+  Graph(std::vector<Point> points) : Cloud(points){};
+
   /**
    * @brief Get the length of edge `k`.
    *
@@ -377,6 +379,20 @@ public:
    * @include ex_graph_dijkstra.cpp
    */
   std::vector<int> dijkstra(int source_point_index, int target_point_index);
+
+  /**
+   * @brief Return a "minimum spanning tree" graph using Prim's algorithm.
+   *
+   * @return Graph MST graph.
+   *
+   * **Example**
+   * @include ex_graph_minimum_spanning_tree_prim.cpp
+   *
+   * **Result**
+   * @image html ex_graph_minimum_spanning_tree_prim0.png
+   * @image html ex_graph_minimum_spanning_tree_prim1.png
+   */
+  Graph minimum_spanning_tree_prim();
 
   /**
    * @brief Print some data.

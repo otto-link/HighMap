@@ -95,6 +95,56 @@ std::vector<float> Graph::get_lengths()
   return lengths;
 }
 
+Graph Graph::minimum_spanning_tree_prim()
+{
+  std::vector<int>   parent(this->get_npoints());
+  std::vector<float> key(this->get_npoints());
+  std::vector<bool>  is_point_in_mst(this->get_npoints());
+
+  for (size_t i = 0; i < this->get_npoints(); i++)
+  {
+    key[i] = std::numeric_limits<float>::max();
+    is_point_in_mst[i] = false;
+  }
+
+  // starting point
+  key[0] = 0.f;
+  parent[0] = -1;
+
+  for (size_t i = 0; i < this->get_npoints() - 1; i++)
+  {
+    // find point with smallest 'key' while not being in the MS tree
+    int   k = 0;
+    float key_max = std::numeric_limits<float>::max();
+    for (size_t p = 0; p < key.size(); p++)
+      if ((key[p] < key_max) and (is_point_in_mst[p] == false))
+      {
+        key_max = key[p];
+        k = p;
+      }
+
+    is_point_in_mst[k] = true;
+
+    for (size_t p = 0; p < this->get_npoints(); p++)
+    {
+      if ((this->adjacency_matrix(k, p) > 0.f) and
+          (is_point_in_mst[p] == false) and
+          (this->adjacency_matrix(k, p) < key[p]))
+      {
+        parent[p] = k;
+        key[p] = this->adjacency_matrix(k, p);
+      }
+    }
+  }
+
+  // build output graph
+  Graph graph = Graph(this->points);
+  for (size_t i = 1; i < this->get_npoints(); i++)
+    graph.add_edge({(int)i, parent[i]});
+
+  return graph;
+}
+
 void Graph::print()
 {
   std::cout << "Points:" << std::endl;

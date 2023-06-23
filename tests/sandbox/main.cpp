@@ -51,7 +51,7 @@ int main(void)
     hmap::Cloud cloud = hmap::Cloud(15, 1, bbox);
     hmap::Graph graph = cloud.to_graph_delaunay();
 
-    graph.print();
+    // graph.print();
 
     graph.to_png("tmp.png");
     graph.to_csv("path.csv");
@@ -63,6 +63,10 @@ int main(void)
     std::cout << "Path:\n";
     for (auto &p : path)
       std::cout << p << "\n";
+
+    graph = graph.minimum_spanning_tree_prim();
+
+    graph.to_png("graph.png");
 
     z.infos();
   }
