@@ -412,6 +412,16 @@ public:
    */
   void print();
 
+  void to_array(Array &array, std::vector<float> bbox);
+
+  void to_array_fractalize(Array             &array,
+                           std::vector<float> bbox,
+                           int                iterations,
+                           uint               seed,
+                           float              sigma = 0.3f,
+                           int                orientation = 0.f,
+                           float              persistence = 1.f);
+
   /**
    * @brief Export graph as png image file.
    *
@@ -544,6 +554,21 @@ public:
   void reorder_nns(int start_index = 0);
 
   /**
+   * @brief Resample the path based to get (approximately) a `delta` distance
+   * between points.
+   *
+   * @param delta Target distance between the points.
+   */
+  void resample(float delta);
+
+  /**
+   * @brief Resample the path in order to get fairly uniform distance between
+   * each consecutive points.
+   *
+   */
+  void resample_uniform();
+
+  /**
    * @brief Project cloud points to an array.
    *
    * @param array Input array.
@@ -558,13 +583,6 @@ public:
    * @param shape Image resolution.
    */
   void to_png(std::string fname, std::vector<int> shape = {512, 512});
-
-  /**
-   * @brief Resample the path in order to get fairly uniform distance between
-   * each consecutive points.
-   *
-   */
-  void uniform_resampling();
 };
 
 /**

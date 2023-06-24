@@ -84,7 +84,7 @@ public:
    */
   void set_shape(std::vector<int> new_shape)
   {
-    this->shape = shape;
+    this->shape = new_shape;
     this->vector.resize(this->shape[0] * this->shape[1]);
   }
 

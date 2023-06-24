@@ -46,9 +46,10 @@ int main(void)
   // --- points
   if (true)
   {
-    std::vector<float> bbox = {-1.f, 2.f, 2.f, 5.f};
+    std::vector<float> bbox = {0.f, 1.f, 0.f, 1.f};
 
-    hmap::Cloud cloud = hmap::Cloud(15, 1, bbox);
+    hmap::Cloud cloud = hmap::Cloud(100, 1, {0.f, 1.f, 0.25f, 0.75f});
+    cloud.to_csv("path.csv");
     hmap::Graph graph = cloud.to_graph_delaunay();
 
     // graph.print();
@@ -58,6 +59,7 @@ int main(void)
 
     graph.update_adjacency_matrix();
     graph.update_connectivity();
+
     std::vector<int> path = graph.dijkstra(0, 4);
 
     std::cout << "Path:\n";
@@ -68,6 +70,24 @@ int main(void)
     graph = graph.minimum_spanning_tree_prim();
 
     graph.to_png("graph.png");
+
+    z = 0.f;
+    graph.to_array_fractalize(z, bbox, 4, seed);
+    hmap::remap(z);
+
+    hmap::thermal_scree(z,
+                        10.f / shape[0],
+                        seed,
+                        0.5f,
+                        -1.f,
+                        5.f,
+                        0.1f,
+                        0.2f,
+                        false);
+
+    z = -z;
+
+    hmap::maximum_smooth(z, -0.8f, 0.2f);
 
     z.infos();
   }

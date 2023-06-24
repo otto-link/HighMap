@@ -168,17 +168,52 @@ void Graph::print()
   }
 }
 
-void Graph::to_png(std::string fname, std::vector<int> shape)
+void Graph::to_array(Array &array, std::vector<float> bbox)
 {
-  Array array = Array(shape);
-
   for (std::size_t k = 0; k < this->get_nedges(); k++)
   {
     Point p1 = this->points[this->edges[k][0]];
     Point p2 = this->points[this->edges[k][1]];
     Path  path = Path({p1, p2});
-    path.to_array(array, this->get_bbox());
+    path.to_array(array, bbox);
   }
+}
+
+void Graph::to_array_fractalize(Array             &array,
+                                std::vector<float> bbox,
+                                int                iterations,
+                                uint               seed,
+                                float              sigma,
+                                int                orientation,
+                                float              persistence)
+{
+  // find smallest edge length
+  float dmin = std::numeric_limits<float>::max();
+
+  for (size_t k = 0; k < this->get_nedges(); k++)
+  {
+    float dist = this->get_edge_length(k);
+    if (dist < dmin)
+      dmin = dist;
+  }
+
+  // fractalize and project to array
+  for (std::size_t k = 0; k < this->get_nedges(); k++)
+  {
+    Point p1 = this->points[this->edges[k][0]];
+    Point p2 = this->points[this->edges[k][1]];
+    Path  path = Path({p1, p2});
+
+    path.resample(dmin);
+    path.fractalize(iterations, seed, sigma, orientation, persistence);
+    path.to_array(array, bbox);
+  }
+}
+
+void Graph::to_png(std::string fname, std::vector<int> shape)
+{
+  Array array = Array(shape);
+  this->to_array(array, this->get_bbox());
   array.to_png(fname, cmap::gray, false);
 }
 

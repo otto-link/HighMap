@@ -35,8 +35,6 @@ void Path::fractalize(int   iterations,
   std::mt19937                    gen(seed);
   std::normal_distribution<float> dis(0.f, sigma);
 
-  this->uniform_resampling();
-
   for (int it = 0; it < iterations; it++)
   {
     // add a mid point between each points and shuffle the position of
@@ -103,7 +101,33 @@ void Path::reorder_nns(int start_index)
   this->points = points;
 }
 
-void Path::uniform_resampling()
+void Path::resample(float delta)
+{
+  // redivide each edge
+  size_t ks = this->closed ? 0 : 1;
+
+  for (size_t k = 0; k < this->get_npoints() - ks; k++)
+  {
+    size_t knext = k + 1 < this->get_npoints() ? k + 1 : 0;
+    float  dist = distance(this->points[k], this->points[knext]);
+    int    ndiv = (int)(dist / delta);
+    Point  p1 = this->points[k];
+    Point  p2 = this->points[knext];
+
+    if (ndiv > 1)
+    {
+      for (int i = 1; i < ndiv; i++)
+      {
+        float r = (float)i / (float)ndiv;
+        Point p = lerp(p1, p2, r);
+        this->points.insert(this->points.begin() + k + i, p);
+      }
+      k += ndiv - 1;
+    }
+  }
+}
+
+void Path::resample_uniform()
 {
   // determine smallest distance between two consecutive points (and
   // store distances because there are used for the interpolation
@@ -119,26 +143,7 @@ void Path::uniform_resampling()
       dmin = dist;
   }
 
-  // redivide each edge
-  for (size_t k = 0; k < this->get_npoints() - ks; k++)
-  {
-    size_t knext = k + 1 < this->get_npoints() ? k + 1 : 0;
-    float  dist = distance(this->points[k], this->points[knext]);
-    int    ndiv = (int)(dist / dmin);
-    Point  p1 = this->points[k];
-    Point  p2 = this->points[knext];
-
-    if (ndiv > 1)
-    {
-      for (int i = 1; i < ndiv; i++)
-      {
-        float r = (float)i / (float)ndiv;
-        Point p = lerp(p1, p2, r);
-        this->points.insert(this->points.begin() + k + i, p);
-      }
-      k += ndiv - 1;
-    }
-  }
+  this->resample(dmin);
 }
 
 void Path::to_array(Array &array, std::vector<float> bbox)

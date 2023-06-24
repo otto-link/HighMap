@@ -103,8 +103,9 @@ Graph Cloud::to_graph_delaunay()
 {
   std::vector<float>     coords = this->get_xy();
   delaunator::Delaunator d(coords);
-
+  LOG_DEBUG("ok a");
   Graph graph = Graph(*this);
+  LOG_DEBUG("ok b");
 
   for (std::size_t e = 0; e < d.triangles.size(); e++)
   {
@@ -115,7 +116,7 @@ Graph Cloud::to_graph_delaunay()
       graph.add_edge({(int)d.triangles[e], (int)d.triangles[next_he]});
     }
   }
-
+  LOG_DEBUG("ok");
   // store convex hull indices
   graph.convex_hull = {(int)d.hull_start};
 
@@ -125,7 +126,7 @@ Graph Cloud::to_graph_delaunay()
     graph.convex_hull.push_back(inext);
     inext = d.hull_next[graph.convex_hull.back()];
   }
-
+  LOG_DEBUG("ok");
   return graph;
 }
 

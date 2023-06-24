@@ -31,6 +31,8 @@ int main(void)
   // fractalize
   int   iterations = 4;
   float sigma = 0.3f;
+
+  path.resample_uniform(); // to ensure a "uniform" output
   path.fractalize(iterations, seed, sigma);
 
   hmap::Array z3 = hmap::Array(shape);
