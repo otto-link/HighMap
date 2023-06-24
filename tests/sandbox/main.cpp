@@ -64,6 +64,7 @@ int main(void)
     for (auto &p : path)
       std::cout << p << "\n";
 
+    graph.set_values_from_chull_distance();
     graph = graph.minimum_spanning_tree_prim();
 
     graph.to_png("graph.png");

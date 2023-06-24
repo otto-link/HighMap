@@ -225,6 +225,12 @@ public:
       this->points[k].v = new_values[k];
   }
 
+  /**
+   * @brief Set the values distance from chull object
+   *
+   */
+  void set_values_from_chull_distance();
+
   //----------------------------------------
   // methods
   //----------------------------------------

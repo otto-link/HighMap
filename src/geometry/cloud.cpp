@@ -53,6 +53,24 @@ void Cloud::remap_xy(std::vector<float> bbox_new)
   }
 }
 
+void Cloud::set_values_from_chull_distance()
+{
+  for (size_t i = 0; i < this->get_npoints(); i++)
+  {
+    float dmax = std::numeric_limits<float>::max();
+    for (size_t k = 0; k < this->convex_hull.size(); k++)
+    {
+      float dist =
+          distance(this->points[i], this->points[this->convex_hull[k]]);
+      if (dist < dmax)
+      {
+        dmax = dist;
+        this->points[i].v = dist;
+      }
+    }
+  }
+}
+
 void Cloud::to_array(Array &array, std::vector<float> bbox)
 {
   int   ni = array.shape[0];
@@ -96,6 +114,16 @@ Graph Cloud::to_graph_delaunay()
       int next_he = (e % 3 == 2) ? e - 2 : e + 1;
       graph.add_edge({(int)d.triangles[e], (int)d.triangles[next_he]});
     }
+  }
+
+  // store convex hull indices
+  graph.convex_hull = {(int)d.hull_start};
+
+  int inext = d.hull_next[graph.convex_hull.back()];
+  while (inext != graph.convex_hull[0])
+  {
+    graph.convex_hull.push_back(inext);
+    inext = d.hull_next[graph.convex_hull.back()];
   }
 
   return graph;
