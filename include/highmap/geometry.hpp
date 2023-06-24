@@ -78,6 +78,12 @@ public:
   std::vector<Point> points = {};
 
   /**
+   * @brief Indices of points on the convex hull, counter-clockwise.
+   *
+   */
+  std::vector<int> convex_hull = {};
+
+  /**
    * @brief Construct a new Cloud object.
    *
    */
@@ -173,9 +179,9 @@ public:
    */
   std::vector<float> get_x()
   {
-    std::vector<float> x = {};
-    for (auto &p : this->points)
-      x.push_back(p.x);
+    std::vector<float> x(this->get_npoints());
+    for (size_t i = 0; i < this->get_npoints(); i++)
+      x[i] = this->points[i].x;
     return x;
   }
 
@@ -186,11 +192,11 @@ public:
    */
   std::vector<float> get_xy()
   {
-    std::vector<float> xy = {};
-    for (auto &p : this->points)
+    std::vector<float> xy(2 * this->get_npoints());
+    for (size_t i = 0; i < this->get_npoints(); i++)
     {
-      xy.push_back(p.x);
-      xy.push_back(p.y);
+      xy[2 * i] = this->points[i].x;
+      xy[2 * i + 1] = this->points[i].y;
     }
     return xy;
   }
@@ -202,9 +208,9 @@ public:
    */
   std::vector<float> get_y()
   {
-    std::vector<float> y = {};
-    for (auto &p : this->points)
-      y.push_back(p.y);
+    std::vector<float> y(this->get_npoints());
+    for (size_t i = 0; i < this->get_npoints(); i++)
+      y[i] = this->points[i].y;
     return y;
   }
 
