@@ -173,6 +173,19 @@ public:
   }
 
   /**
+   * @brief Get the values assigned of the points.
+   *
+   * @return std::vector<float> Values
+   */
+  std::vector<float> get_values()
+  {
+    std::vector<float> v(this->get_npoints());
+    for (size_t i = 0; i < this->get_npoints(); i++)
+      v[i] = this->points[i].v;
+    return v;
+  }
+
+  /**
    * @brief Get the `x` of the points.
    *
    * @return std::vector<float> `x` values.
@@ -226,6 +239,14 @@ public:
   }
 
   /**
+   * @brief Set the values using values of an underlying array.
+   *
+   * @param array Input array.
+   * @param bbox Array bounding box.
+   */
+  void set_values_from_array(const Array &array, std::vector<float> bbox);
+
+  /**
    * @brief Set the values distance from chull object
    *
    */
@@ -246,6 +267,16 @@ public:
   }
 
   /**
+   * @brief Get the values from an underlying array at location `(x, y)`.
+   *
+   * @param array Input array.
+   * @param bbox Array bounding box.
+   * @return std::vector<float> Values.
+   */
+  std::vector<float> interpolate_values_from_array(const Array       &array,
+                                                   std::vector<float> bbox);
+
+  /**
    * @brief Print some data.
    *
    */
@@ -260,6 +291,16 @@ public:
    * @param ymax New `ymax`.
    */
   void remap_xy(std::vector<float> bbox_new);
+
+  /**
+   * @brief Remove a point from the cloud.
+   *
+   * @param point_idx Point index.
+   */
+  void remove_point(int point_idx)
+  {
+    this->points.erase(this->points.begin() + point_idx);
+  }
 
   /**
    * @brief Project cloud points to an array.
@@ -334,6 +375,8 @@ public:
   Graph(Cloud cloud) : Cloud(cloud){};
 
   Graph(std::vector<Point> points) : Cloud(points){};
+
+  Graph(std::vector<float> x, std::vector<float> y) : Cloud(x, y){};
 
   /**
    * @brief Get the length of edge `k`.
@@ -412,8 +455,36 @@ public:
    */
   void print();
 
+  /**
+   * @brief Remove orphan points from the graph.
+   *
+   * Orphan points are points not connected to any edge.
+   *
+   * @return Graph New graph without orphan points.
+   */
+  Graph remove_orphan_points();
+
+  /**
+   * @brief Project graph to an array.
+   *
+   * @param array Input array.
+   * @param bbox Bounding box of the array.
+   */
   void to_array(Array &array, std::vector<float> bbox);
 
+  /**
+   * @brief Fractalize graph edge and project to an array.
+   *
+   * @param array Input array.
+   * @param bbox Bounding box of the array.
+   * @param iterations Number of iterations.
+   * @param seed Random seed number.
+   * @param sigma Half-width of the random Gaussian displacement, normalized by
+   * the distance between points.
+   * @param orientation Displacement orientation (0 for random inward/outward
+   * displacement, 1 to inflate the path and -1 to deflate the path).
+   * @param persistence Noise persistence (with iteration number).
+   */
   void to_array_fractalize(Array             &array,
                            std::vector<float> bbox,
                            int                iterations,
@@ -421,6 +492,14 @@ public:
                            float              sigma = 0.3f,
                            int                orientation = 0.f,
                            float              persistence = 1.f);
+
+  /**
+   * @brief Export graph to csv files.
+   *
+   * @param fname_xy Filename for the node `(x, y)` coordinates.
+   * @param fname_adjacency Filename for the adjacency matrix.
+   */
+  void to_csv(std::string fname_xy, std::string fname_adjacency);
 
   /**
    * @brief Export graph as png image file.
@@ -613,5 +692,24 @@ Point lerp(const Point &p1, const Point &p2, const float t);
  * @return float Euclidian distance.
  */
 float distance(const Point &p1, const Point &p2);
+
+/**
+ * @brief Generate a random grid.
+ *
+ * @param x `x` coordinates (output).
+ * @param y `y` coordinates (output).
+ * @param seed Random seed number.
+ * @param bbox Bounding box.
+ */
+void random_grid(std::vector<float> &x,
+                 std::vector<float> &y,
+                 uint                seed,
+                 std::vector<float>  bbox = {0.f, 1.f, 0.f, 1.f});
+
+void random_grid_jittered(std::vector<float> &x,
+                          std::vector<float> &y,
+                          float               scale,
+                          uint                seed,
+                          std::vector<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 } // namespace hmap

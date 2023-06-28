@@ -24,6 +24,32 @@ Cloud::Cloud(int npoints, uint seed, std::vector<float> bbox)
   this->remap_xy(bbox);
 };
 
+std::vector<float> Cloud::interpolate_values_from_array(const Array &array,
+                                                        std::vector<float> bbox)
+{
+  std::vector<float> v_out(this->get_npoints());
+  float              ax = (float)(array.shape[0] - 1) / (bbox[1] - bbox[0]);
+  float bx = (float)(array.shape[0] - 1) * (-bbox[0]) / (bbox[1] - bbox[0]);
+  float ay = (float)(array.shape[1] - 1) / (bbox[3] - bbox[2]);
+  float by = (float)(array.shape[1] - 1) * (-bbox[2]) / (bbox[3] - bbox[2]);
+
+  for (size_t k = 0; k < this->get_npoints(); k++)
+  {
+    float x = ax * this->points[k].x + bx;
+    float y = ay * this->points[k].y + by;
+    int   i = (int)x;
+    int   j = (int)y;
+
+    if ((i > -1) and (i < array.shape[0]) and (j > -1) and (j < array.shape[1]))
+    {
+      float u = x - (float)i;
+      float v = y - (float)j;
+      v_out[k] = array.get_value_bilinear_at(i, j, u, v);
+    }
+  }
+  return v_out;
+}
+
 void Cloud::print()
 {
   std::cout << "Points:" << std::endl;
@@ -50,6 +76,29 @@ void Cloud::remap_xy(std::vector<float> bbox_new)
           bbox_new[0];
     p.y = (p.y - bbox[2]) / (bbox[3] - bbox[2]) * (bbox_new[3] - bbox_new[2]) +
           bbox_new[2];
+  }
+}
+
+void Cloud::set_values_from_array(const Array &array, std::vector<float> bbox)
+{
+  float ax = (float)(array.shape[0] - 1) / (bbox[1] - bbox[0]);
+  float bx = (float)(array.shape[0] - 1) * (-bbox[0]) / (bbox[1] - bbox[0]);
+  float ay = (float)(array.shape[1] - 1) / (bbox[3] - bbox[2]);
+  float by = (float)(array.shape[1] - 1) * (-bbox[2]) / (bbox[3] - bbox[2]);
+
+  for (size_t k = 0; k < this->get_npoints(); k++)
+  {
+    float x = ax * this->points[k].x + bx;
+    float y = ay * this->points[k].y + by;
+    int   i = (int)x;
+    int   j = (int)y;
+
+    if ((i > -1) and (i < array.shape[0]) and (j > -1) and (j < array.shape[1]))
+    {
+      float u = x - (float)i;
+      float v = y - (float)j;
+      this->points[k].v = array.get_value_bilinear_at(i, j, u, v);
+    }
   }
 }
 
@@ -103,9 +152,7 @@ Graph Cloud::to_graph_delaunay()
 {
   std::vector<float>     coords = this->get_xy();
   delaunator::Delaunator d(coords);
-  LOG_DEBUG("ok a");
-  Graph graph = Graph(*this);
-  LOG_DEBUG("ok b");
+  Graph                  graph = Graph(*this);
 
   for (std::size_t e = 0; e < d.triangles.size(); e++)
   {
@@ -116,7 +163,7 @@ Graph Cloud::to_graph_delaunay()
       graph.add_edge({(int)d.triangles[e], (int)d.triangles[next_he]});
     }
   }
-  LOG_DEBUG("ok");
+
   // store convex hull indices
   graph.convex_hull = {(int)d.hull_start};
 
@@ -126,7 +173,7 @@ Graph Cloud::to_graph_delaunay()
     graph.convex_hull.push_back(inext);
     inext = d.hull_next[graph.convex_hull.back()];
   }
-  LOG_DEBUG("ok");
+
   return graph;
 }
 

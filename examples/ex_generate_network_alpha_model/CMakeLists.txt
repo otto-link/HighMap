@@ -1,0 +1,2 @@
+add_executable(ex_generate_network_alpha_model ex_generate_network_alpha_model.cpp)
+target_link_libraries(ex_generate_network_alpha_model highmap)

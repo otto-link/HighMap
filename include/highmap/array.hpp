@@ -451,7 +451,7 @@ public:
    * @param v 'v' interpolation parameter, expected to be in [0, 1[.
    * @return float
    */
-  inline float get_value_bilinear_at(int i, int j, float u, float v)
+  inline float get_value_bilinear_at(int i, int j, float u, float v) const
   {
     float a10 = (*this)(i + 1, j) - (*this)(i, j);
     float a01 = (*this)(i, j + 1) - (*this)(i, j);

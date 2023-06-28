@@ -17,5 +17,7 @@ int main(void)
 
   graph.print();
   graph.to_png("ex_graph0.png");
-  graph.to_csv("ex_graph.csv");
+
+  graph.update_adjacency_matrix();
+  graph.to_csv("ex_graph_nodes.csv", "ex_graph_adj.csv");
 }

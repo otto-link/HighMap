@@ -21,7 +21,7 @@ size_t upperbound_right(const std::vector<float> &v, float value)
   return idx;
 }
 
-std::vector<size_t> sort_indexes(const std::vector<float> &v)
+std::vector<size_t> argsort(const std::vector<float> &v)
 {
   // https://stackoverflow.com/questions/1577475
   std::vector<size_t> idx(v.size());

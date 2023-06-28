@@ -179,7 +179,7 @@ void Path::to_png(std::string fname, std::vector<int> shape)
 {
   Array array = Array(shape);
   this->to_array(array, this->get_bbox());
-  array.to_png(fname, cmap::gray, false);
+  array.to_png(fname, cmap::inferno, false);
 }
 
 } // namespace hmap

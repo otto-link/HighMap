@@ -10,6 +10,7 @@
 #include "highmap/io.hpp"
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
+#include "highmap/roads.hpp"
 
 #include "highmap/dbg.hpp"
 
@@ -23,7 +24,7 @@ int main(void)
   const std::vector<int> shape = {512, 512};
   // const std::vector<int> shape = {256, 256};
   // const std::vector<int> shape = {32, 32};
-  const std::vector<float> res = {2.f, 2.f};
+  const std::vector<float> res = {4.f, 4.f};
   int                      seed = 2;
 
   // seed = (int)time(NULL);
@@ -43,56 +44,45 @@ int main(void)
   hmap::remap(z);
   auto z0 = z;
 
-  // --- points
   if (true)
   {
-    std::vector<float> bbox = {0.f, 1.f, 0.f, 1.f};
+    std::vector<float> bbox = {1.f, 2.f, -0.5f, 0.5f};
 
-    hmap::Cloud cloud = hmap::Cloud(100, 1, {0.f, 1.f, 0.25f, 0.75f});
-    cloud.to_csv("path.csv");
-    hmap::Graph graph = cloud.to_graph_delaunay();
+    hmap::Cloud cloud = hmap::Cloud(10, seed, {1.1f, 1.9f, -0.4, 0.4f});
 
-    // graph.print();
+    // std::vector<float> x = {1.40f, 1.90f, 1.10f};
+    // std::vector<float> y = {-0.40f, 0.10f, 0.40f};
+    // std::vector<float> v = {0.50f, 0.50f, 1.00f};
+    // hmap::Cloud        cloud = hmap::Cloud(x, y, v);
 
-    graph.to_png("tmp.png");
-    graph.to_csv("path.csv");
+    auto mask = z;
+    hmap::chop(mask, 0.5f);
+    mask *= 100.f;
+    mask.to_png("mask.png", hmap::cmap::viridis);
 
-    graph.update_adjacency_matrix();
-    graph.update_connectivity();
+    timer.start("alpha model");
+    hmap::Graph network = hmap::generate_network_alpha_model(cloud.get_x(),
+                                                             cloud.get_y(),
+                                                             cloud.get_values(),
+                                                             bbox,
+                                                             z,
+                                                             seed,
+                                                             0.7f,
+                                                             50 * 50,
+                                                             0.f,
+                                                             &mask);
 
-    std::vector<int> path = graph.dijkstra(0, 4);
+    timer.stop("alpha model");
 
-    std::cout << "Path:\n";
-    for (auto &p : path)
-      std::cout << p << "\n";
+    // network.print();
+    network.update_adjacency_matrix();
+    network.to_csv("nodes.csv", "adj.csv");
 
-    graph.set_values_from_chull_distance();
-    graph = graph.minimum_spanning_tree_prim();
-
-    graph.to_png("graph.png");
-
-    z = 0.f;
-    graph.to_array_fractalize(z, bbox, 4, seed);
-    hmap::remap(z);
-
-    hmap::thermal_scree(z,
-                        10.f / shape[0],
-                        seed,
-                        0.5f,
-                        -1.f,
-                        5.f,
-                        0.1f,
-                        0.2f,
-                        false);
-
-    z = -z;
-
-    hmap::maximum_smooth(z, -0.8f, 0.2f);
-
-    z.infos();
+    network.set_values_from_array(z, bbox);
+    network.to_png("tmp1.png");
   }
 
-  z.to_png("out.png", hmap::cmap::terrain, false);
+  z.to_png("out.png", hmap::cmap::inferno, false);
   z0.to_png("out0.png", hmap::cmap::terrain, true);
   z.to_file("out.bin");
 

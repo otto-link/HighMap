@@ -19,7 +19,7 @@ namespace hmap
 
 size_t upperbound_right(const std::vector<float> &v, float value);
 
-std::vector<size_t> sort_indexes(const std::vector<float> &v);
+std::vector<size_t> argsort(const std::vector<float> &v);
 
 template <typename T>
 void reindex_vector(std::vector<T> &v, std::vector<size_t> &idx)

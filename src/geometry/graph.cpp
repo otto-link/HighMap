@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <fstream>
 #include <iostream>
 #include <limits>
 #include <list>
@@ -168,13 +169,62 @@ void Graph::print()
   }
 }
 
+Graph Graph::remove_orphan_points()
+{
+  Graph            graph_out = Graph();
+  std::vector<int> new_point_idx(this->get_npoints());
+
+  // fill vector with '-1' to keep track of which points have already
+  // been added
+  std::fill(new_point_idx.begin(), new_point_idx.end(), -1);
+
+  this->update_connectivity();
+
+  for (size_t k = 0; k < this->get_npoints(); k++)
+  {
+    if (this->connectivity[k].size() > 0)
+    {
+      // current point is connected to at least one other node =>
+      // add it
+      if (new_point_idx[k] == -1)
+      {
+        graph_out.add_point(this->points[k]);
+        new_point_idx[k] = graph_out.get_npoints() - 1;
+      }
+
+      for (size_t r = 0; r < this->connectivity[k].size(); r++)
+      {
+        int j = this->connectivity[k][r];
+        if ((j > (int)k) and (new_point_idx[j] == -1))
+        {
+          graph_out.add_point(this->points[j]);
+          new_point_idx[j] = graph_out.get_npoints() - 1;
+        }
+      }
+    }
+  }
+
+  // rebuild connectivity
+  for (size_t k = 0; k < this->get_nedges(); k++)
+  {
+    int k1 = new_point_idx[this->edges[k][0]];
+    int k2 = new_point_idx[this->edges[k][1]];
+    graph_out.add_edge({k1, k2}, this->weights[k]);
+  }
+
+  return graph_out;
+}
+
 void Graph::to_array(Array &array, std::vector<float> bbox)
 {
   for (std::size_t k = 0; k < this->get_nedges(); k++)
   {
     Point p1 = this->points[this->edges[k][0]];
     Point p2 = this->points[this->edges[k][1]];
-    Path  path = Path({p1, p2});
+    p1.v = this->weights[k]; // to color edges by their weight
+    p2.v = this->weights[k];
+
+    Path path = Path({p1, p2});
     path.to_array(array, bbox);
   }
 }
@@ -210,24 +260,51 @@ void Graph::to_array_fractalize(Array             &array,
   }
 }
 
+void Graph::to_csv(std::string fname_xy, std::string fname_adjacency)
+{
+  std::fstream f;
+
+  f.open(fname_xy, std::ios::out);
+  for (auto &p : this->points)
+    f << p.x << "," << p.y << "," << p.v << std::endl;
+  f.close();
+
+  f.open(fname_adjacency, std::ios::out);
+  for (int i = 0; i < this->adjacency_matrix.shape[0]; i++)
+  {
+    for (int j = 0; j < this->adjacency_matrix.shape[1] - 1; j++)
+      f << this->adjacency_matrix(i, j) << ",";
+
+    f << this->adjacency_matrix(i, this->adjacency_matrix.shape[1] - 1);
+    f << std::endl;
+  }
+  f.close();
+}
+
 void Graph::to_png(std::string fname, std::vector<int> shape)
 {
   Array array = Array(shape);
   this->to_array(array, this->get_bbox());
-  array.to_png(fname, cmap::gray, false);
+  array.to_png(fname, cmap::inferno, false);
 }
 
 void Graph::update_adjacency_matrix()
 {
-  Array mat = Array({(int)this->get_nedges(), (int)this->get_nedges()});
+  // reshape if needed
+  std::vector<int> new_shape = {(int)this->get_npoints(),
+                                (int)this->get_npoints()};
+  if ((new_shape[0] != this->adjacency_matrix.shape[0]) and
+      (new_shape[1] != this->adjacency_matrix.shape[1]))
+    this->adjacency_matrix.set_shape(new_shape);
 
+  // fill matrix
   for (std::size_t k = 0; k < this->get_nedges(); k++)
   {
-    mat(this->edges[k][0], this->edges[k][1]) = this->weights[k];
-    mat(this->edges[k][1], this->edges[k][0]) = this->weights[k];
+    this->adjacency_matrix(this->edges[k][0], this->edges[k][1]) =
+        this->weights[k];
+    this->adjacency_matrix(this->edges[k][1], this->edges[k][0]) =
+        this->weights[k];
   }
-
-  this->adjacency_matrix = mat;
 }
 
 void Graph::update_connectivity()

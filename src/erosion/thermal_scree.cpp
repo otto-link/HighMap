@@ -72,7 +72,7 @@ void thermal_scree(Array &z,
   }
 
   // sort queue by elevation
-  std::vector<size_t> idx = sort_indexes(queue_z);
+  std::vector<size_t> idx = argsort(queue_z);
   reindex_vector(queue_i, idx);
   reindex_vector(queue_j, idx);
   reindex_vector(queue_z, idx);

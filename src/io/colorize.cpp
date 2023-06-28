@@ -9,10 +9,6 @@
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 
-// helper - convert value to color range [0, 255]
-#define V2C_8BIT(v, vmin, vmax)                                                \
-  (uint8_t) std::floor(255 * ((v - vmin) / (vmax - vmin)))
-
 namespace hmap
 {
 
@@ -95,6 +91,27 @@ std::vector<uint8_t> colorize(hmap::Array &array,
   }
   break;
 
+  case cmap::inferno:
+  case -cmap::inferno:
+  {
+    std::vector<std::vector<float>> c = {
+        {0.001f, 0.000f, 0.014f},
+        {0.077f, 0.042f, 0.206f},
+        {0.225f, 0.036f, 0.388f},
+        {0.373f, 0.074f, 0.432f},
+        {0.522f, 0.128f, 0.420f},
+        {0.665f, 0.182f, 0.370f},
+        {0.797f, 0.255f, 0.287f},
+        {0.902f, 0.364f, 0.184f},
+        {0.969f, 0.516f, 0.063f},
+        {0.988f, 0.683f, 0.072f},
+        {0.961f, 0.859f, 0.298f},
+        {0.988f, 0.998f, 0.645f},
+    };
+    colors = c;
+  }
+  break;
+
   case cmap::jet:
   case -cmap::jet:
   {
@@ -132,6 +149,27 @@ std::vector<uint8_t> colorize(hmap::Array &array,
         {1.000f, 0.382f, 0.000f},
         {0.855f, 0.000f, 0.000f},
         {0.800f, 0.800f, 0.800f},
+    };
+    colors = c;
+  }
+  break;
+
+  case cmap::seismic:
+  case -cmap::seismic:
+  {
+    std::vector<std::vector<float>> c = {
+        {0.000f, 0.000f, 0.300f},
+        {0.000f, 0.000f, 0.555f},
+        {0.000f, 0.000f, 0.809f},
+        {0.091f, 0.091f, 1.000f},
+        {0.455f, 0.455f, 1.000f},
+        {0.818f, 0.818f, 1.000f},
+        {1.000f, 0.818f, 0.818f},
+        {1.000f, 0.455f, 0.455f},
+        {1.000f, 0.091f, 0.091f},
+        {0.864f, 0.000f, 0.000f},
+        {0.682f, 0.000f, 0.000f},
+        {0.500f, 0.000f, 0.000f},
     };
     colors = c;
   }
@@ -198,14 +236,20 @@ std::vector<uint8_t> colorize(hmap::Array &array,
   const int nc = (int)color_bounds.size();
   int       k = -1;
 
+  float a = 0.f;
+  float b = 0.f;
+  if (vmin != vmax)
+  {
+    a = 1.f / (vmax - vmin);
+    b = -vmin / (vmax - vmin);
+  }
+
   // reorganize things to get an image with (i, j) used as (x, y)
   // coordinates, i.e. with (0, 0) at the bottom left
   for (int j = array.shape[1] - 1; j > -1; j--)
-  {
-
     for (int i = 0; i < array.shape[0]; i++)
     {
-      float              v = (array(i, j) - vmin) / (vmax - vmin);
+      float              v = a * array(i, j) + b;
       std::vector<float> rgb(3);
 
       // reverse colormap if requested
@@ -229,11 +273,10 @@ std::vector<uint8_t> colorize(hmap::Array &array,
         }
       }
 
-      data[++k] = V2C_8BIT(rgb[0], 0.f, 1.f);
-      data[++k] = V2C_8BIT(rgb[1], 0.f, 1.f);
-      data[++k] = V2C_8BIT(rgb[2], 0.f, 1.f);
+      data[++k] = (uint8_t)std::floor(255 * rgb[0]);
+      data[++k] = (uint8_t)std::floor(255 * rgb[1]);
+      data[++k] = (uint8_t)std::floor(255 * rgb[2]);
     }
-  }
 
   return data;
 }

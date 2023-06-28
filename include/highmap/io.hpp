@@ -26,10 +26,12 @@ enum cmap : int
   bone = 1,          ///< bone
   gray = 2,          ///< gray
   hot = 3,           ///< hot
-  jet = 4,           ///< jet
-  nipy_spectral = 5, ///< nipy_spectral
-  terrain = 6,       ///< terrain
-  viridis = 7        ///< viridis
+  inferno = 4,       ///< inferno
+  jet = 5,           ///< jet
+  nipy_spectral = 6, ///< nipy_spectral
+  seismic = 7,       ///< seismic
+  terrain = 8,       ///< terrain
+  viridis = 9        ///< viridis
 };
 
 /**
