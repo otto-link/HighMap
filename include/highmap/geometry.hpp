@@ -12,6 +12,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <map>
 #include <random>
 #include <vector>
 
@@ -359,7 +360,7 @@ public:
    * @brief Adjacency matrix.
    *
    */
-  Array adjacency_matrix = Array({0, 0});
+  std::map<std::pair<int, int>, float> adjacency_matrix;
 
   /**
    * @brief Construct a new Graph object.

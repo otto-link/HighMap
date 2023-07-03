@@ -2,8 +2,6 @@
 
 #include "highmap/array.hpp"
 #include "highmap/geometry.hpp"
-
-#include "highmap/dbg.hpp"
 #include "op/vector_utils.hpp"
 
 namespace hmap
@@ -46,7 +44,6 @@ Graph generate_network_alpha_model(std::vector<float> xc,
 
   //--- road weights
 
-  // TODO optimize memory usage, use sparse matrix
   Array is_road = Array({(int)graph.get_npoints(), (int)graph.get_npoints()});
 
   // define number of trips between each cities
@@ -81,9 +78,9 @@ Graph generate_network_alpha_model(std::vector<float> xc,
       if (j > (int)i)
       {
         float dz = graph.points[i].v - graph.points[j].v;
-        graph.adjacency_matrix(i, j) += std::abs(dz) * dz_weight;
-        graph.adjacency_matrix(i, j) += local_weight[i] + local_weight[j];
-        graph.adjacency_matrix(j, i) = graph.adjacency_matrix(i, j);
+        graph.adjacency_matrix[{i, j}] += std::abs(dz) * dz_weight;
+        graph.adjacency_matrix[{i, j}] += local_weight[i] + local_weight[j];
+        graph.adjacency_matrix[{i, j}] = graph.adjacency_matrix[{i, j}];
       }
     }
 
@@ -115,8 +112,8 @@ Graph generate_network_alpha_model(std::vector<float> xc,
         int j = graph.connectivity[i][r];
         if ((j > (int)i) and (is_road(i, j) == 1))
         {
-          graph.adjacency_matrix(i, j) *= alpha;
-          graph.adjacency_matrix(j, i) = graph.adjacency_matrix(i, j);
+          graph.adjacency_matrix[{i, j}] *= alpha;
+          graph.adjacency_matrix[{j, i}] = graph.adjacency_matrix[{i, j}];
         }
       }
   }

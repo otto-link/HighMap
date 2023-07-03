@@ -54,7 +54,7 @@ std::vector<int> Graph::dijkstra(int source_point_index, int target_point_index)
 
       if (found)
       {
-        float alt = dist[i] + this->adjacency_matrix(i, k);
+        float alt = dist[i] + this->adjacency_matrix[{i, k}];
         if (alt < dist[k]) // alternative route is better
         {
           dist[k] = alt;
@@ -128,12 +128,12 @@ Graph Graph::minimum_spanning_tree_prim()
 
     for (size_t p = 0; p < this->get_npoints(); p++)
     {
-      if ((this->adjacency_matrix(k, p) > 0.f) and
+      if ((this->adjacency_matrix[{k, p}] > 0.f) and
           (is_point_in_mst[p] == false) and
-          (this->adjacency_matrix(k, p) < key[p]))
+          (this->adjacency_matrix[{k, p}] < key[p]))
       {
         parent[p] = k;
-        key[p] = this->adjacency_matrix(k, p);
+        key[p] = this->adjacency_matrix[{k, p}];
       }
     }
   }
@@ -270,14 +270,21 @@ void Graph::to_csv(std::string fname_xy, std::string fname_adjacency)
   f.close();
 
   f.open(fname_adjacency, std::ios::out);
-  for (int i = 0; i < this->adjacency_matrix.shape[0]; i++)
+  for (int i = 0; i < (int)this->get_npoints(); i++)
   {
-    for (int j = 0; j < this->adjacency_matrix.shape[1] - 1; j++)
-      f << this->adjacency_matrix(i, j) << ",";
+    for (int j = 0; j < (int)this->get_npoints(); j++)
+    {
+      float v = 0.f;
+      if (this->adjacency_matrix.count({i, j}))
+        v = this->adjacency_matrix[{i, j}];
+      f << v;
 
-    f << this->adjacency_matrix(i, this->adjacency_matrix.shape[1] - 1);
+      if (j < (int)this->get_npoints() - 1)
+        f << ",";
+    }
     f << std::endl;
   }
+
   f.close();
 }
 
@@ -293,16 +300,14 @@ void Graph::update_adjacency_matrix()
   // reshape if needed
   std::vector<int> new_shape = {(int)this->get_npoints(),
                                 (int)this->get_npoints()};
-  if ((new_shape[0] != this->adjacency_matrix.shape[0]) and
-      (new_shape[1] != this->adjacency_matrix.shape[1]))
-    this->adjacency_matrix.set_shape(new_shape);
+  this->adjacency_matrix.clear();
 
   // fill matrix
   for (std::size_t k = 0; k < this->get_nedges(); k++)
   {
-    this->adjacency_matrix(this->edges[k][0], this->edges[k][1]) =
+    this->adjacency_matrix[{this->edges[k][0], this->edges[k][1]}] =
         this->weights[k];
-    this->adjacency_matrix(this->edges[k][1], this->edges[k][0]) =
+    this->adjacency_matrix[{this->edges[k][1], this->edges[k][0]}] =
         this->weights[k];
   }
 }
