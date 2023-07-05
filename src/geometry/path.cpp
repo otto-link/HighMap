@@ -5,6 +5,7 @@
 #include <list>
 #include <random>
 
+#include "bezier.h"
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
@@ -14,12 +15,79 @@
 namespace hmap
 {
 
+void Path::bezier(float curvature_ratio, int edge_divisions)
+{
+  // backup 2nd point for closed path
+  Point p_bckp = this->points[1];
+
+  size_t ks = this->closed ? 0 : 1; // trick to handle closed contours
+  for (size_t k = 0; k < this->get_npoints() - ks; k++)
+  {
+    size_t kp1 = (k + 1) % this->get_npoints();
+
+    // start point
+    Bezier::Point p1 = Bezier::Point(this->points[k].x, this->points[k].y);
+
+    // control #1
+    float x2 = (1.f - curvature_ratio) * this->points[k].x +
+               curvature_ratio * this->points[kp1].x;
+    float y2 = (1.f - curvature_ratio) * this->points[k].y +
+               curvature_ratio * this->points[kp1].y;
+
+    Bezier::Point p2 = Bezier::Point(x2, y2);
+
+    // control #2
+    Bezier::Point p3 = Bezier::Point();
+
+    if ((k == this->get_npoints() - ks - 1) and (this->closed == false))
+      p3 = p2;
+    else
+    {
+      size_t kp2 = (k + 2) % this->get_npoints();
+
+      Point point_kp2 = Point();
+      if (kp2 == 1)
+        point_kp2 = p_bckp;
+      else
+        point_kp2 = this->points[kp2];
+
+      float x3 = 2.f * this->points[kp1].x -
+                 (1.f - curvature_ratio) * this->points[kp1].x -
+                 curvature_ratio * point_kp2.x;
+      float y3 = 2.f * this->points[kp1].y -
+                 (1.f - curvature_ratio) * this->points[kp1].y -
+                 curvature_ratio * point_kp2.y;
+
+      p3 = Bezier::Point(x3, y3);
+    }
+
+    // end point
+    Bezier::Point p4 = Bezier::Point(this->points[kp1].x, this->points[kp1].y);
+
+    // Bezier curve
+    std::vector<Bezier::Point> xy = {p1, p2, p3, p4};
+    Bezier::Bezier<3>          cubicBezier(xy);
+
+    for (int i = 1; i < edge_divisions - 1; i++)
+    {
+      float         s = (float)i / (float)(edge_divisions - 1);
+      Bezier::Point p = cubicBezier.valueAt(s);
+
+      float v = (1. - s) * this->points[k].v + s * this->points[kp1].v;
+      Point pc = Point(p.x, p.y, v);
+
+      this->points.insert(this->points.begin() + k + 1, pc);
+      ++k;
+    }
+  }
+}
+
 void Path::divide()
 {
   size_t ks = this->closed ? 0 : 1; // trick to handle closed contours
   for (size_t k = 0; k < this->get_npoints() - ks; k++)
   {
-    size_t knext = k + 1 < this->get_npoints() ? k + 1 : 0;
+    size_t knext = (k + 1) % this->get_npoints();
     Point  p = lerp(this->points[k], this->points[knext], 0.5f);
     this->points.insert(this->points.begin() + k + 1, p);
     ++k;
@@ -44,7 +112,7 @@ void Path::fractalize(int   iterations,
     size_t ks = this->closed ? 0 : 1;
     for (size_t k = 1; k < this->get_npoints() - ks; k += 2)
     {
-      size_t knext = k + 1 < this->get_npoints() ? k + 1 : 0;
+      size_t knext = (k + 1) % this->get_npoints();
 
       float amp = dis(gen);
       float alpha = angle(this->points[k - 1], this->points[knext]) + M_PI_2;
@@ -108,7 +176,7 @@ void Path::resample(float delta)
 
   for (size_t k = 0; k < this->get_npoints() - ks; k++)
   {
-    size_t knext = k + 1 < this->get_npoints() ? k + 1 : 0;
+    size_t knext = (k + 1) % this->get_npoints();
     float  dist = distance(this->points[k], this->points[knext]);
     int    ndiv = (int)(dist / delta);
     Point  p1 = this->points[k];
@@ -137,7 +205,7 @@ void Path::resample_uniform()
   size_t ks = this->closed ? 0 : 1;
   for (size_t k = 0; k < this->get_npoints() - ks; k++)
   {
-    size_t knext = k + 1 < this->get_npoints() ? k + 1 : 0;
+    size_t knext = (k + 1) % this->get_npoints();
     float  dist = distance(this->points[k], this->points[knext]);
     if (dist < dmin)
       dmin = dist;
@@ -159,7 +227,7 @@ void Path::to_array(Array &array, std::vector<float> bbox)
   size_t ks = this->closed ? 0 : 1;
   for (size_t k = 0; k < this->get_npoints() - ks; k++)
   {
-    size_t knext = k + 1 < this->get_npoints() ? k + 1 : 0;
+    size_t knext = (k + 1) % this->get_npoints();
     int    npixels =
         (int)std::ceil(distance(this->points[k], this->points[knext]) * ppu) +
         1;

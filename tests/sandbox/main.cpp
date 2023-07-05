@@ -48,38 +48,20 @@ int main(void)
   {
     std::vector<float> bbox = {1.f, 2.f, -0.5f, 0.5f};
 
-    hmap::Cloud cloud = hmap::Cloud(10, seed, {1.1f, 1.9f, -0.4, 0.4f});
+    // hmap::Cloud cloud = hmap::Cloud(10, seed, {1.1f, 1.9f, -0.4, 0.4f});
 
-    // std::vector<float> x = {1.40f, 1.90f, 1.10f};
-    // std::vector<float> y = {-0.40f, 0.10f, 0.40f};
-    // std::vector<float> v = {0.50f, 0.50f, 1.00f};
-    // hmap::Cloud        cloud = hmap::Cloud(x, y, v);
+    hmap::Path path = hmap::Path(10, ++seed, {1.1f, 1.9f, -0.4, 0.4f});
+    path.reorder_nns();
+    path.closed = true;
 
-    auto mask = z;
-    hmap::chop(mask, 0.5f);
-    mask *= 100.f;
-    mask.to_png("mask.png", hmap::cmap::viridis);
+    path.to_png("path0.png");
 
-    timer.start("alpha model");
-    hmap::Graph network = hmap::generate_network_alpha_model(cloud.get_x(),
-                                                             cloud.get_y(),
-                                                             cloud.get_values(),
-                                                             bbox,
-                                                             z,
-                                                             seed,
-                                                             0.7f,
-                                                             50 * 50,
-                                                             0.f,
-                                                             &mask);
+    path.bezier(0.5f, 20);
 
-    timer.stop("alpha model");
+    path.to_png("path.png");
 
-    // network.print();
-    network.update_adjacency_matrix();
-    network.to_csv("nodes.csv", "adj.csv");
-
-    network.set_values_from_array(z, bbox);
-    network.to_png("tmp1.png");
+    z = 0.f;
+    path.to_array(z, bbox);
   }
 
   z.to_png("out.png", hmap::cmap::inferno, false);

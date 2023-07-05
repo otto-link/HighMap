@@ -59,10 +59,9 @@ public:
   {
   }
 
-  bool operator==(Point const &p) const
+  Point() : x(0.f), y(0.f), v(0.f)
   {
-    return (x == p.x) && (y == p.y);
-  }
+  } ///< @overload
 };
 
 /**
@@ -600,6 +599,22 @@ public:
   //----------------------------------------
   // methods
   //----------------------------------------
+
+  /**
+   * @brief "Smooth" the path using Bezier curves.
+   *
+   * @param curvature_ratio Amount of curvature (usually in [-1, 1] and commonly
+   * > 0).
+   * @param edge_divisions Edge sub-divisions of each Bezier curves.
+   *
+   *
+   * **Example**
+   * @include ex_path_bezier.cpp
+   *
+   * **Result**
+   * @image html ex_path_bezier.png
+   */
+  void bezier(float curvature_ratio = 0.3f, int edge_divisions = 10);
 
   /**
    * @brief Divide path by adding a point in-between each pair of consecutive
