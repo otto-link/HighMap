@@ -44,7 +44,10 @@ int main(void)
   hmap::remap(z);
   auto z0 = z;
 
-  if (true)
+  auto sh = hmap::shadow_grid(z, 1.f / shape[0]);
+  sh.to_png("out_sh.png", hmap::cmap::inferno, false);
+
+  if (false)
   {
     std::vector<float> bbox = {1.f, 2.f, -0.5f, 0.5f};
 

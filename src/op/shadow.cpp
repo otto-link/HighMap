@@ -41,4 +41,21 @@ Array topographic_shading(const Array &z,
   return sh;
 }
 
+Array shadow_grid(const Array &z, float shadow_talus)
+{
+  Array sh = Array(z.shape);
+
+  for (int j = 0; j < z.shape[1]; j++)
+    sh(0, j) = z(0, j);
+
+  for (int i = 1; i < z.shape[0]; i++)
+    for (int j = 0; j < z.shape[1]; j++)
+      sh(i, j) = std::max(z(i, j), sh(i - 1, j) - shadow_talus);
+
+  sh -= z;
+  sh *= -1.f;
+
+  return sh;
+}
+
 } // namespace hmap

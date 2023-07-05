@@ -1251,6 +1251,15 @@ void set_borders(Array &array,
                  int    buffer_sizes); ///< @overload
 
 /**
+ * @brief
+ *
+ * @param z Input array.
+ * @param shadow_talus Shadow talus.
+ * @return Array Resulting array.
+ */
+Array shadow_grid(const Array &z, float shadow_talus);
+
+/**
  * @brief Apply sharpening filter (based on Laplace operator).
  *
  * @param array Input array.
