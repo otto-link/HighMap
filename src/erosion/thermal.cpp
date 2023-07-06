@@ -60,9 +60,9 @@ void thermal(Array       &z,
             {
               int   ia = i + di[k];
               int   ja = j + dj[k];
-              float amount =
-                  std::min(ct * (dmax - talus(i, j) * c[k]) * dz[k] / dsum,
-                           z(i, j) - bedrock(i, j));
+              float amount = std::min(ct * (dmax - talus(i, j) * c[k]) * dz[k] /
+                                          dsum,
+                                      z(i, j) - bedrock(i, j));
               z(ia, ja) += amount;
             }
           }

@@ -88,8 +88,8 @@ void make_periodic(Array &array, int nbuffer)
     for (int j = 0; j < nj; j++)
     {
       a1(i, j) = (0.5f + r) * array(i, j) + (0.5f - r) * array(ni - 1 - i, j);
-      a1(ni - 1 - i, j) =
-          (0.5f + r) * array(ni - 1 - i, j) + (0.5f - r) * array(i, j);
+      a1(ni - 1 - i, j) = (0.5f + r) * array(ni - 1 - i, j) +
+                          (0.5f - r) * array(i, j);
     }
   }
 

@@ -61,8 +61,8 @@ void hydraulic_musgrave(Array &z,
         {
           int   p = i + di[k];
           int   q = j + dj[k];
-          float dw =
-              std::min(w(i, j), (w(i, j) + z(i, j) - w(p, q) - z(p, q)) * c[k]);
+          float dw = std::min(w(i, j),
+                              (w(i, j) + z(i, j) - w(p, q) - z(p, q)) * c[k]);
 
           if (dw <= 0.f)
           {

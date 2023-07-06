@@ -264,8 +264,8 @@ std::vector<uint8_t> colorize(hmap::Array &array,
       }
       else
       {
-        float t =
-            (v - color_bounds[ic]) / (color_bounds[ic + 1] - color_bounds[ic]);
+        float t = (v - color_bounds[ic]) /
+                  (color_bounds[ic + 1] - color_bounds[ic]);
         for (int p = 0; p < 3; p++)
         {
           rgb[p] = (1.f - t) * colors[ic][p] + t * colors[ic + 1][p];

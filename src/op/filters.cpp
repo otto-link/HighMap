@@ -77,8 +77,8 @@ void gamma_correction_local(Array &array, float gamma, int ir, float k)
       {
         float v = (array(i, j) - amin(i, j)) / (amax(i, j) - amin(i, j));
         v = std::sqrt(v * v + k);
-        array(i, j) =
-            std::pow(v, gamma) * (amax(i, j) - amin(i, j)) + amin(i, j);
+        array(i, j) = std::pow(v, gamma) * (amax(i, j) - amin(i, j)) +
+                      amin(i, j);
       }
   }
   else // without smoothing
@@ -87,8 +87,8 @@ void gamma_correction_local(Array &array, float gamma, int ir, float k)
       for (int j = 0; j < array.shape[1]; j++)
       {
         float v = (array(i, j) - amin(i, j)) / (amax(i, j) - amin(i, j));
-        array(i, j) =
-            std::pow(v, gamma) * (amax(i, j) - amin(i, j)) + amin(i, j);
+        array(i, j) = std::pow(v, gamma) * (amax(i, j) - amin(i, j)) +
+                      amin(i, j);
       }
   }
 }

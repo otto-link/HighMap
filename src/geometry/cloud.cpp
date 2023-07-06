@@ -109,8 +109,8 @@ void Cloud::set_values_from_chull_distance()
     float dmax = std::numeric_limits<float>::max();
     for (size_t k = 0; k < this->convex_hull.size(); k++)
     {
-      float dist =
-          distance(this->points[i], this->points[this->convex_hull[k]]);
+      float dist = distance(this->points[i],
+                            this->points[this->convex_hull[k]]);
       if (dist < dmax)
       {
         dmax = dist;

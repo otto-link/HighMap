@@ -44,10 +44,10 @@ public:
   {
     std::chrono::high_resolution_clock::time_point t1 =
         std::chrono::high_resolution_clock::now();
-    this->total +=
-        (float)std::chrono::duration_cast<std::chrono::nanoseconds>(t1 - t0)
-            .count() *
-        1e-6f;
+    this->total += (float)std::chrono::duration_cast<std::chrono::nanoseconds>(
+                       t1 - t0)
+                       .count() *
+                   1e-6f;
   }
 
 private:

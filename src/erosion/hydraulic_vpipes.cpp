@@ -132,9 +132,9 @@ void hydraulic_vpipes(Array &z)
       for (int i = 1; i < ni - 1; i++)
         for (int j = 1; j < nj - 1; j++)
         {
-          float dv =
-              dt * (fR(i - 1, j) + fT(i, j - 1) + fL(i + 1, j) + fB(i, j + 1) -
-                    fL(i, j) - fR(i, j) - fT(i, j) - fB(i, j));
+          float dv = dt *
+                     (fR(i - 1, j) + fT(i, j - 1) + fL(i + 1, j) +
+                      fB(i, j + 1) - fL(i, j) - fR(i, j) - fT(i, j) - fB(i, j));
           d2(i, j) = d1(i, j) + dv / (pipe_length * pipe_length);
         }
 
@@ -164,8 +164,8 @@ void hydraulic_vpipes(Array &z)
       for (int j = 1; j < nj - 1; j++)
       {
         // sin(alpha), sin of tilt angle
-        float salpha =
-            std::max(0.1f, talus(i, j) / approx_hypot(1.f, talus(i, j)));
+        float salpha = std::max(0.1f,
+                                talus(i, j) / approx_hypot(1.f, talus(i, j)));
         float sc = c_capacity * approx_hypot(u(i, j), v(i, j)) * salpha;
         float delta_sc = sc - s(i, j);
         float amount;

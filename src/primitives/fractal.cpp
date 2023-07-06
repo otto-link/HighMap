@@ -55,8 +55,8 @@ Array fbm_perlin(std::vector<int>   shape,
 
   for (int i = 0; i < array.shape[0]; i++)
     for (int j = 0; j < array.shape[1]; j++)
-      array(i, j) =
-          noise.GetNoise(ki * (float)i + shift[0], kj * (float)j + shift[1]);
+      array(i, j) = noise.GetNoise(ki * (float)i + shift[0],
+                                   kj * (float)j + shift[1]);
 
   return array;
 }
@@ -136,8 +136,8 @@ Array fbm_worley(std::vector<int>   shape,
     {
       float ki = kw[0] / (float)shape[0];
       float kj = kw[1] / (float)shape[1];
-      array(i, j) =
-          noise.GetNoise(ki * (float)i + shift[0], kj * (float)j + shift[1]);
+      array(i, j) = noise.GetNoise(ki * (float)i + shift[0],
+                                   kj * (float)j + shift[1]);
     }
   return array;
 }
@@ -224,8 +224,8 @@ Array pingpong_perlin(std::vector<int>   shape,
     {
       float ki = kw[0] / (float)shape[0];
       float kj = kw[1] / (float)shape[1];
-      float v =
-          noise.GetNoise(ki * (float)i + shift[0], kj * (float)j + shift[1]);
+      float v = noise.GetNoise(ki * (float)i + shift[0],
+                               kj * (float)j + shift[1]);
       array(i, j) = v;
     }
   return array;
@@ -256,8 +256,8 @@ Array ridged_perlin(std::vector<int>   shape,
     {
       float ki = kw[0] / (float)shape[0];
       float kj = kw[1] / (float)shape[1];
-      array(i, j) =
-          noise.GetNoise(ki * (float)i + shift[0], kj * (float)j + shift[1]);
+      array(i, j) = noise.GetNoise(ki * (float)i + shift[0],
+                                   kj * (float)j + shift[1]);
     }
   return array;
 }

@@ -54,8 +54,8 @@ Graph generate_network_alpha_model(std::vector<float> xc,
   for (size_t i = 0; i < nc; i++)
     for (size_t j = i + 1; j < nc; j++)
     {
-      float dist =
-          (xc[i] - xc[j]) * (xc[i] - xc[j]) + (yc[i] - yc[j]) * (yc[i] - yc[j]);
+      float dist = (xc[i] - xc[j]) * (xc[i] - xc[j]) +
+                   (yc[i] - yc[j]) * (yc[i] - yc[j]);
 
       ntrips.push_back(size[i] * size[j] / (1.f + dist));
       trips_istart.push_back(i);

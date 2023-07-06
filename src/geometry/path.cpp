@@ -228,9 +228,9 @@ void Path::to_array(Array &array, std::vector<float> bbox)
   for (size_t k = 0; k < this->get_npoints() - ks; k++)
   {
     size_t knext = (k + 1) % this->get_npoints();
-    int    npixels =
-        (int)std::ceil(distance(this->points[k], this->points[knext]) * ppu) +
-        1;
+    int    npixels = (int)std::ceil(
+                      distance(this->points[k], this->points[knext]) * ppu) +
+                  1;
 
     for (int i = 0; i < npixels; i++)
     {

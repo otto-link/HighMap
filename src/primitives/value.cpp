@@ -22,8 +22,8 @@ Array value_noise(std::vector<int>   shape,
     {
       float ki = kw[0] / (float)shape[0];
       float kj = kw[1] / (float)shape[1];
-      array(i, j) =
-          noise.GetNoise(ki * (float)i + shift[0], kj * (float)j + shift[1]);
+      array(i, j) = noise.GetNoise(ki * (float)i + shift[0],
+                                   kj * (float)j + shift[1]);
     }
   }
   return array;
