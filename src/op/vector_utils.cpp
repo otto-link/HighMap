@@ -9,6 +9,17 @@
 namespace hmap
 {
 
+std::vector<size_t> argsort(const std::vector<float> &v)
+{
+  // https://stackoverflow.com/questions/1577475
+  std::vector<size_t> idx(v.size());
+  std::iota(idx.begin(), idx.end(), 0);
+  std::stable_sort(idx.begin(),
+                   idx.end(),
+                   [&v](size_t i1, size_t i2) { return v[i1] < v[i2]; });
+  return idx;
+}
+
 size_t upperbound_right(const std::vector<float> &v, float value)
 {
   size_t idx = 0;
@@ -18,17 +29,6 @@ size_t upperbound_right(const std::vector<float> &v, float value)
       idx = k;
       break;
     }
-  return idx;
-}
-
-std::vector<size_t> argsort(const std::vector<float> &v)
-{
-  // https://stackoverflow.com/questions/1577475
-  std::vector<size_t> idx(v.size());
-  std::iota(idx.begin(), idx.end(), 0);
-  std::stable_sort(idx.begin(),
-                   idx.end(),
-                   [&v](size_t i1, size_t i2) { return v[i1] < v[i2]; });
   return idx;
 }
 

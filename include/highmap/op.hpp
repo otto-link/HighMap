@@ -556,8 +556,8 @@ void gradient_y(const Array &array, Array &dy); ///< @overload
  * @brief Return the shaded relief map (or hillshading).
  *
  * @param z Input array.
- * @param azimuth Sun azimuth ('direction').
- * @param zenith Sun zenith ('elevation').
+ * @param azimuth Sun azimuth ('direction'), in degrees.
+ * @param zenith Sun zenith ('elevation'), in degrees.
  * @param talus_ref Reference talus used to normalize gradient computations. May
  * be useful when working with true angles.
  * @return Array Resulting array.
@@ -1251,13 +1251,29 @@ void set_borders(Array &array,
                  int    buffer_sizes); ///< @overload
 
 /**
- * @brief
+ * @brief Return the shadow intensity using a grid-based technic.
  *
  * @param z Input array.
  * @param shadow_talus Shadow talus.
  * @return Array Resulting array.
  */
 Array shadow_grid(const Array &z, float shadow_talus);
+
+/**
+ * @brief Return the crude shadows from a height map.
+ *
+ * See https://www.shadertoy.com/view/Xlsfzl.
+ *
+ * @param z Input array.
+ * @param azimuth Light azimuth ('direction'), in degress.
+ * @param zenith Light zenith ('elevation'), in degrees.
+ * @param distance Light distance.
+ * @return Array Resulting array.
+ */
+Array shadow_heightmap(const Array &z,
+                       float        azimuth = 180.f,
+                       float        zenith = 45.f,
+                       float        distance = 0.2f);
 
 /**
  * @brief Apply sharpening filter (based on Laplace operator).

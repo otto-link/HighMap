@@ -35,17 +35,25 @@ int main(void)
   hmap::Array z = hmap::fbm_perlin(shape, res, seed, 8);
   timer.stop("fbm");
 
+  // for (int i = 0; i < z.shape[0]; i++)
+  //   for (int j = 0; j < z.shape[1]; j++)
+  //   {
+  //     float x = (float)i / (z.shape[0] - 1);
+  //     float y = (float)j / (z.shape[1] - 1);
+  //     float r2 = (x - 0.5f) * (x - 0.5f) + (y - 0.5f) * (y - 0.5f);
+  //     z(i, j) = std::exp(-r2 / 2 / 0.1f / 0.1f);
+  //   }
+
+  z.infos();
+
   // hmap::set_borders(z, z.min(), shape[0] / 2);
-  hmap::smooth_fill(z, shape[0] / 4);
+  // hmap::smooth_fill(z, shape[0] / 4);
 
   // hmap::remap(z);
   // hmap::steepen_convective(z, 0.f, 20, 8);
 
   hmap::remap(z);
   auto z0 = z;
-
-  auto sh = hmap::shadow_grid(z, 1.f / shape[0]);
-  sh.to_png("out_sh.png", hmap::cmap::inferno, false);
 
   if (false)
   {
@@ -67,7 +75,8 @@ int main(void)
     path.to_array(z, bbox);
   }
 
-  z.to_png("out.png", hmap::cmap::inferno, false);
+  z.to_png("out.png", hmap::cmap::gray, false);
+
   z0.to_png("out0.png", hmap::cmap::terrain, true);
   z.to_file("out.bin");
 

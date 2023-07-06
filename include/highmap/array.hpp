@@ -361,7 +361,7 @@ public:
    * @param j Index, expected to be in [1, shape[1] - 2].
    * @return float
    */
-  inline float get_gradient_x_at(int i, int j)
+  inline float get_gradient_x_at(int i, int j) const
   {
     return 0.5f * ((*this)(i + 1, j) - (*this)(i - 1, j));
   }
@@ -378,7 +378,7 @@ public:
    * @param j Index, expected to be in [1, shape[1] - 2].
    * @return float
    */
-  inline float get_gradient_y_at(int i, int j)
+  inline float get_gradient_y_at(int i, int j) const
   {
     return 0.5f * ((*this)(i, j + 1) - (*this)(i, j - 1));
   }
@@ -397,7 +397,7 @@ public:
    * @param v 'v' interpolation parameter, expected to be in [0, 1[.
    * @return float
    */
-  inline float get_gradient_x_bilinear_at(int i, int j, float u, float v)
+  inline float get_gradient_x_bilinear_at(int i, int j, float u, float v) const
   {
     float f00 = (*this)(i, j) - (*this)(i - 1, j);
     float f10 = (*this)(i + 1, j) - (*this)(i, j);
@@ -424,7 +424,7 @@ public:
    * @param v 'v' interpolation parameter, expected to be in [0, 1[.
    * @return float
    */
-  inline float get_gradient_y_bilinear_at(int i, int j, float u, float v)
+  inline float get_gradient_y_bilinear_at(int i, int j, float u, float v) const
   {
     float f00 = (*this)(i, j) - (*this)(i, j - 1);
     float f10 = (*this)(i + 1, j) - (*this)(i + 1, j - 1);
@@ -437,6 +437,8 @@ public:
 
     return f00 + a10 * u + a01 * v + a11 * u * v;
   }
+
+  std::vector<float> get_normal_at(int i, int j) const;
 
   /**
    * @brief Return the array value at the location (x, y) near the index (i, j)

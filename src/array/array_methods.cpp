@@ -9,6 +9,21 @@ namespace hmap
 
 {
 
+std::vector<float> Array::get_normal_at(int i, int j) const
+{
+  std::vector<float> normal(3);
+
+  normal[0] = -this->get_gradient_x_at(i, j);
+  normal[1] = -this->get_gradient_y_at(i, j);
+  normal[2] = 1.f;
+
+  float inv_norm = std::hypot(normal[0], normal[1], normal[2]);
+  for (auto &n : normal)
+    n /= inv_norm;
+
+  return normal;
+}
+
 Array hstack(const Array &array1, const Array &array2) // friend function
 {
   Array array_out = Array({array1.shape[0] + array2.shape[0], array1.shape[1]});
