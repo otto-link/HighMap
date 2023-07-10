@@ -27,6 +27,19 @@ void Array::infos(std::string msg) const
   std::cout << std::endl;
 }
 
+void Array::print()
+{
+  std::cout << std::fixed << std::setprecision(6) << std::setfill('0');
+  for (int j = shape[1] - 1; j > -1; j--)
+  {
+    for (int i = 0; i < shape[0]; i++)
+    {
+      std::cout << std::setw(5) << (*this)(i, j) << " ";
+    }
+    std::cout << std::endl;
+  }
+}
+
 void Array::to_file(std::string fname)
 {
   LOG_DEBUG("writing binary file");
