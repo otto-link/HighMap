@@ -55,4 +55,15 @@ Array rugosity(const Array &z, int ir)
   return z_skw;
 }
 
+Array valley_width(const Array &z, int ir)
+{
+  Array vw = z;
+  if (ir > 0)
+    smooth_cpulse(vw, ir);
+
+  vw = curvature_mean(-vw);
+  vw = distance_transform(vw);
+  return vw;
+}
+
 } // namespace hmap

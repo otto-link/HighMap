@@ -370,7 +370,7 @@ Array curvature_mean(const Array &z);
  * Exact transform based on Meijster et al. algorithm @cite Meijster2000.
  *
  * @param array Input array to be transformed, will be converted into binary: 1
- * wherever input equates to True, 0 elsewhere.
+ * wherever input is greater than 0, 0 elsewhere.
  * @return Array Reference to the output array.
  *
  * **Example**
@@ -1466,6 +1466,23 @@ Array topographic_shading(const Array &z,
                           float        azimuth,
                           float        zenith,
                           float        talus_ref = 1.f);
+
+/**
+ * @brief Return the "valley width", corresponding to the distance to the
+ * concave region frontier (in this concave frontier).
+ *
+ * @param z Input array.
+ * @param ir Filter radius.
+ * @return Array Resulting array.
+ *
+ * **Example**
+ * @include ex_valley_width.cpp
+ *
+ * **Result**
+ * @image html ex_valley_width0.png
+ * @image html ex_valley_width1.png
+ */
+Array valley_width(const Array &z, int ir = 0);
 
 /**
  * @brief Apply a warping effect to the array.

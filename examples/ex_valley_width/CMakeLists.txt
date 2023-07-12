@@ -1,0 +1,2 @@
+add_executable(ex_valley_width ex_valley_width.cpp)
+target_link_libraries(ex_valley_width highmap)
