@@ -220,6 +220,10 @@ std::vector<uint8_t> colorize(hmap::Array &array,
 
   color_bounds = linspace(0.f, 1.f, (int)colors.size());
 
+  // reverse colormap if requested
+  if (cmap < 0)
+    std::reverse(std::begin(colors), std::end(colors));
+  
   // -- add hillshading (if requested)
   Array hs = constant(array.shape, 1.f);
   if (hillshading)
@@ -251,11 +255,6 @@ std::vector<uint8_t> colorize(hmap::Array &array,
     {
       float              v = a * array(i, j) + b;
       std::vector<float> rgb(3);
-
-      // reverse colormap if requested
-      if (cmap < 0)
-        v = 1.f - v;
-
       int ic = (int)(v * (float)(nc - 1));
 
       if (ic == nc - 1)

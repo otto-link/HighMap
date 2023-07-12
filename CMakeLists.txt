@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.24)
+cmake_minimum_required(VERSION 3.22)
 
 project(highmap VERSION 0.0.1 LANGUAGES CXX DESCRIPTION "C++ library to generate two-dimensional terrain heightmaps for software rendering or video games.")
 
