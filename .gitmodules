@@ -4,3 +4,6 @@
 [submodule "external/macro-logger"]
 	path = external/macro-logger
 	url = git@github.com:dmcrodrigues/macro-logger.git
+[submodule "external/bezier"]
+	path = external/bezier
+	url = git@github.com:oysteinmyrmo/bezier.git
