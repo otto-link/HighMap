@@ -238,7 +238,7 @@ std::vector<uint8_t> colorize(hmap::Array &array,
   // -- define data
 
   const int nc = (int)color_bounds.size();
-  int       k = -1;
+  int       k = 0;
 
   float a = 0.f;
   float b = 0.f;
@@ -272,9 +272,9 @@ std::vector<uint8_t> colorize(hmap::Array &array,
         }
       }
 
-      data[++k] = (uint8_t)std::floor(255 * rgb[0]);
-      data[++k] = (uint8_t)std::floor(255 * rgb[1]);
-      data[++k] = (uint8_t)std::floor(255 * rgb[2]);
+      data[k++] = (uint8_t)std::floor(255 * rgb[0]);
+      data[k++] = (uint8_t)std::floor(255 * rgb[1]);
+      data[k++] = (uint8_t)std::floor(255 * rgb[2]);
     }
 
   return data;
