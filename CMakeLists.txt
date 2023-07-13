@@ -32,7 +32,7 @@ target_include_directories(${PROJECT_NAME}
                              # ${PROJECT_SOURCE_DIR}/external/FastNoise2/include/FastNoise
                              ${PROJECT_SOURCE_DIR}/external/FastNoiseLite/include
                              ${PROJECT_SOURCE_DIR}/external/libInterpolate/include
-                             ${PROJECT_SOURCE_DIR}/external/macro-logger/include
+                             ${PROJECT_SOURCE_DIR}/external/macro-logger
                              ${PROJECT_SOURCE_DIR}/external/stb
                              ${PROJECT_SOURCE_DIR}/external/xsimd/include
                              ${PROJECT_SOURCE_DIR}/src)
