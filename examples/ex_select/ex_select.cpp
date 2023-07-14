@@ -19,6 +19,6 @@ int main(void)
   hmap::Array c2 = hmap::select_lt(z, 0.5f);
   c2.to_png("ex_select2.png", hmap::cmap::gray);
 
-  hmap::Array c3 = hmap::select_itv(z, 0.25f, 0.75f);
+  hmap::Array c3 = hmap::select_interval(z, 0.25f, 0.75f);
   c3.to_png("ex_select3.png", hmap::cmap::gray);
 }

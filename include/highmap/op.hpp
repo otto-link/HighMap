@@ -1154,7 +1154,7 @@ Array select_gt(const Array &array, float value);
  * @image html ex_select2.png
  * @image html ex_select3.png
  */
-Array select_itv(const Array &array, float value1, float value2);
+Array select_interval(const Array &array, float value1, float value2);
 
 /**
  * @brief Return an array with elements equal to 1 where input elements are

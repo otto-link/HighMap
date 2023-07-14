@@ -17,7 +17,7 @@ Array select_gt(const Array &array, float value)
   return c;
 }
 
-Array select_itv(const Array &array, float value1, float value2)
+Array select_interval(const Array &array, float value1, float value2)
 {
   Array c = array;
   for (int i = 0; i < array.shape[0]; i++)
