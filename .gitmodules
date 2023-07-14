@@ -11,5 +11,5 @@
 	path = external/FastNoiseLite
 	url = git@github.com:Auburn/FastNoiseLite.git
 [submodule "FastNoiseLite"]
-	path = FastNoiseLite
+	path = external/FastNoiseLite
 	url = git@github.com:Auburn/FastNoiseLite.git
