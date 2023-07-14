@@ -30,7 +30,7 @@ target_include_directories(${PROJECT_NAME}
                              ${PROJECT_SOURCE_DIR}/external/bezier/include
                              ${PROJECT_SOURCE_DIR}/external/delaunator/include
                              # ${PROJECT_SOURCE_DIR}/external/FastNoise2/include/FastNoise
-                             ${PROJECT_SOURCE_DIR}/external/FastNoiseLite/include
+                             ${PROJECT_SOURCE_DIR}/external/FastNoiseLite/Cpp
                              ${PROJECT_SOURCE_DIR}/external/libInterpolate/include
                              ${PROJECT_SOURCE_DIR}/external/macro-logger
                              ${PROJECT_SOURCE_DIR}/external/stb

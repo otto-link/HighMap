@@ -7,3 +7,6 @@
 [submodule "external/bezier"]
 	path = external/bezier
 	url = git@github.com:oysteinmyrmo/bezier.git
+[submodule "external/FastNoiseLite"]
+	path = external/FastNoiseLite
+	url = git@github.com:Auburn/FastNoiseLite.git
