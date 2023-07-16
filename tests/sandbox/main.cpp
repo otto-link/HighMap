@@ -57,31 +57,29 @@ int main(void)
 
   if (true)
   {
+    z = 0.f;
     std::vector<float> bbox = {1.f, 2.f, -0.5f, 0.5f};
 
     // hmap::Cloud cloud = hmap::Cloud(10, seed, {1.1f, 1.9f, -0.4, 0.4f});
 
-    hmap::Path path = hmap::Path(10, ++seed, {1.1f, 1.9f, -0.4, 0.4f});
+    hmap::Path path = hmap::Path(4, ++seed, {1.3f, 1.7f, -0.2, 0.2f});
     path.reorder_nns();
     path.closed = true;
-    // path.closed = false;
+    path.closed = false;
 
-    // auto s = path.get_cumulative_distance();
-    auto s = path.get_arc_length();
-    auto x = path.get_x();
-    auto dp = hmap::gradient1d(x);
-    hmap::laplace1d(dp);
- 
+    path.to_array(z, bbox);
+
     path.to_png("path0.png");
 
-    path.bezier(0.5f, 20);
+    path.bezier(0.5f, 40);
+    path.to_png("path1.png");
 
-    for (auto &v : dp)
-      std::cout << v << "\n";
+    path.to_array(z, bbox);
 
-    path.to_png("path.png");
+    path.meanderize(0.2f, 0.2f, 1);
 
-    z = 0.f;
+    path.to_png("path2.png");
+
     path.to_array(z, bbox);
   }
 
@@ -89,6 +87,4 @@ int main(void)
 
   z0.to_png("out0.png", hmap::cmap::terrain, true);
   z.to_file("out.bin");
-
-  z.to_png("hmap.png", hmap::cmap::gray, false);
 }

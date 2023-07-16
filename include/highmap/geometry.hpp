@@ -626,7 +626,6 @@ public:
    * > 0).
    * @param edge_divisions Edge sub-divisions of each Bezier curves.
    *
-   *
    * **Example**
    * @include ex_path_bezier.cpp
    *
@@ -659,6 +658,30 @@ public:
                   float sigma = 0.3f,
                   int   orientation = 0,
                   float persistence = 1.f);
+
+  /**
+   * @brief Add "meanders" to the path using a deformation based on a
+   * combination of the local tangent and normal vectors.
+   *
+   * See https://roberthodgin.com/project/meander.
+   *
+   * @param radius Meander reference radius.
+   * @param tangent_contribution Tangent contribution to the meander, in [0, 1].
+   * @param iterations Number of iterations.
+   * @param transition_length_ratio Transition to preserve starting and ending
+   * parts of the curve.
+   *
+   *
+   * **Example**
+   * @include ex_path_meanderize.cpp
+   *
+   * **Result**
+   * @image html ex_path_meanderize.png
+   */
+  void meanderize(float radius,
+                  float tangent_contribution,
+                  int   iterations = 1,
+                  float transition_length_ratio = 0.2f);
 
   /**
    * @brief Reorder points using a nearest neighbor search.

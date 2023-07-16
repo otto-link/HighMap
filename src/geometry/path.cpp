@@ -11,6 +11,7 @@
 #include "highmap/array.hpp"
 #include "highmap/geometry.hpp"
 #include "highmap/io.hpp"
+#include "highmap/op.hpp"
 
 namespace hmap
 {
@@ -150,6 +151,76 @@ std::vector<float> Path::get_cumulative_distance()
   }
 
   return dacc;
+}
+
+void Path::meanderize(float radius,
+                      float tangent_contribution,
+                      int   iterations,
+                      float transition_length_ratio)
+{
+  float sigma = 0.5f;
+  int   laplace_iterations = 3;
+
+  for (int it = 0; it < iterations; it++)
+  {
+    std::vector<float> s = this->get_cumulative_distance();
+    std::vector<float> ds = gradient1d(s);
+
+    std::vector<float> tx = gradient1d(this->get_x());
+    std::vector<float> ty = gradient1d(this->get_y());
+    laplace1d(tx, sigma, laplace_iterations);
+    laplace1d(ty, sigma, laplace_iterations);
+
+    std::vector<float> nx = gradient1d(tx);
+    std::vector<float> ny = gradient1d(ty);
+    laplace1d(nx, sigma, laplace_iterations);
+    laplace1d(ny, sigma, laplace_iterations);
+
+    // scaling of the normal vector
+    float scale_n = 0.f;
+    for (size_t i = 0; i < this->get_npoints(); i++)
+    {
+      float d = std::hypot(nx[i], ny[i]);
+      if (d > scale_n)
+        scale_n = d;
+    }
+    scale_n = 1.f / scale_n;
+
+    for (size_t i = 0; i < this->get_npoints(); i++)
+    {
+      // normalize
+      float scale_t = 1.f / ds[i];
+      tx[i] *= scale_t;
+      ty[i] *= scale_t;
+
+      nx[i] *= scale_n;
+      ny[i] *= scale_n;
+
+      float cx = tangent_contribution * tx[i] -
+                 (1.f - tangent_contribution) * nx[i];
+      float cy = tangent_contribution * ty[i] -
+                 (1.f - tangent_contribution) * ny[i];
+
+      // apply a shape factor to preserve starting and ending parts of
+      // the curve
+      float shape_factor = 1.f;
+      float smax = s.back();
+      if (s[i] < smax * transition_length_ratio)
+        shape_factor = s[i] / (smax * transition_length_ratio);
+      else if (s[i] > smax * (1.f - transition_length_ratio))
+        shape_factor = 1.f - (s[i] / smax - 1.f + transition_length_ratio) /
+                                 transition_length_ratio;
+
+      // smooth transitions
+      shape_factor = shape_factor * shape_factor * (3.f - 2.f * shape_factor);
+
+      this->points[i].x += cx * radius * shape_factor;
+      this->points[i].y += cy * radius * shape_factor;
+    }
+
+    // remesh to maintain the same distance between points
+    this->resample(s.back() / (float)(this->get_npoints() - 1));
+  }
 }
 
 void Path::reorder_nns(int start_index)

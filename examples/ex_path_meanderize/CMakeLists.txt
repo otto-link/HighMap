@@ -1,0 +1,2 @@
+add_executable(ex_path_meanderize ex_path_meanderize.cpp)
+target_link_libraries(ex_path_meanderize highmap)
