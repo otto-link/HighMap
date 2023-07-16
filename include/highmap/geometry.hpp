@@ -600,8 +600,19 @@ public:
   // getters / setters
   //----------------------------------------
 
+  /**
+   * @brief Get the arc length of the path (i.e. cumulative distance normalized
+   * in [0, 1]).
+   *
+   * @return std::vector<float>
+   */
   std::vector<float> get_arc_length();
 
+  /**
+   * @brief Get the cumulative distance of the path (defined at each points).
+   *
+   * @return std::vector<float> Cumulative distance.
+   */
   std::vector<float> get_cumulative_distance();
 
   //----------------------------------------
