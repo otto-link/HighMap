@@ -27,7 +27,7 @@ int main(void)
   }
   path.to_array(z3, bbox);
 
-  hmap::export_banner_png("ex_path_manderize.png",
+  hmap::export_banner_png("ex_path_meanderize.png",
                           {z1, z2, z3},
                           hmap::cmap::inferno);
 }
