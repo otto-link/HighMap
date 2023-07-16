@@ -128,6 +128,30 @@ void Path::fractalize(int   iterations,
   }
 }
 
+std::vector<float> Path::get_arc_length()
+{
+  std::vector<float> s = this->get_cumulative_distance();
+  // normalize in [0, 1]
+  for (auto &v : s)
+    v /= s.back();
+  return s;
+}
+
+std::vector<float> Path::get_cumulative_distance()
+{
+  size_t             ke = this->closed ? 1 : 0;
+  std::vector<float> dacc(this->get_npoints() + ke);
+
+  for (size_t k = 1; k < this->get_npoints() + ke; k++)
+  {
+    size_t knext = (k + 1) % this->get_npoints();
+    float  dist = distance(this->points[k - 1], this->points[knext]);
+    dacc[k] = dacc[k - 1] + dist;
+  }
+
+  return dacc;
+}
+
 void Path::reorder_nns(int start_index)
 {
   // new path indices

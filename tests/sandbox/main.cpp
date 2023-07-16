@@ -55,7 +55,7 @@ int main(void)
   hmap::remap(z);
   auto z0 = z;
 
-  if (false)
+  if (true)
   {
     std::vector<float> bbox = {1.f, 2.f, -0.5f, 0.5f};
 
@@ -64,10 +64,17 @@ int main(void)
     hmap::Path path = hmap::Path(10, ++seed, {1.1f, 1.9f, -0.4, 0.4f});
     path.reorder_nns();
     path.closed = true;
+    // path.closed = false;
+
+    // auto s = path.get_cumulative_distance();
+    auto s = path.get_arc_length();
 
     path.to_png("path0.png");
 
     path.bezier(0.5f, 20);
+
+    for (auto &v : s)
+      std::cout << v << "\n";
 
     path.to_png("path.png");
 

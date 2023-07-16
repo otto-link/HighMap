@@ -597,6 +597,14 @@ public:
       : Cloud(x, y, v), closed(closed){};
 
   //----------------------------------------
+  // getters / setters
+  //----------------------------------------
+
+  std::vector<float> get_arc_length();
+
+  std::vector<float> get_cumulative_distance();
+
+  //----------------------------------------
   // methods
   //----------------------------------------
 
