@@ -494,6 +494,14 @@ void gamma_correction_local(Array &array, float gamma, int ir, float k = 0.1f);
 Array generate_buffered_array(const Array &array, std::vector<int> buffers);
 
 /**
+ * @brief Return the gradient of a vector.
+ *
+ * @param v Input vector.
+ * @return std::vector<float> Vector gradient.
+ */
+std::vector<float> gradient1d(const std::vector<float> &v);
+
+/**
  * @brief Return the polar angle of the gradient of an array.
  *
  * @param array Input array.
@@ -506,7 +514,7 @@ Array gradient_angle(const Array &array, bool downward = false);
 /**
  * @brief Return the gradient norm of an array.
  *
- * @param array Inupt array.
+ * @param array Input array.
  * @return Array Gradient norm.
  *
  * **Example**
@@ -525,7 +533,7 @@ Array gradient_norm(const Array &array);
  *
  * @see Thermal erosion: {@link thermal}.
  *
- * @param array Inupt array.
+ * @param array Input array.
  * @return Array Gradient.
  */
 Array gradient_talus(const Array &array);
@@ -535,7 +543,7 @@ void gradient_talus(const Array &array, Array &talus); ///< @overload
 /**
  * @brief Return the gradient in the 'x' (or 'i' index) of an array.
  *
- * @param array Inupt array.
+ * @param array Input array.
  * @return Array Gradient.
  */
 Array gradient_x(const Array &array);
@@ -545,7 +553,7 @@ void gradient_x(const Array &array, Array &dx); ///< @overload
 /**
  * @brief Return the gradient in the 'y' (or 'j' index) of an array.
  *
- * @param array Inupt array.
+ * @param array Input array.
  * @return Array Gradient.
  */
 Array gradient_y(const Array &array);
@@ -602,6 +610,15 @@ Array hypot(const Array &array1, const Array &array2);
  * @image html ex_laplace.png
  */
 void laplace(Array &array, float sigma = 0.2f, int iterations = 3);
+
+/**
+ * @brief Apply a low-pass Laplace filter to a vector.
+ *
+ * @param v Input vector.
+ * @param sigma Filtering intensity, in [0, 1].
+ * @param iterations Number of iterations.
+ */
+void laplace1d(std::vector<float> &v, float sigma = 0.5f, int iterations = 1);
 
 /**
  * @brief Apply a low-pass anisotropic Laplace filter.

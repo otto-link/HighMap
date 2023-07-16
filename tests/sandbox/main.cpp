@@ -68,12 +68,15 @@ int main(void)
 
     // auto s = path.get_cumulative_distance();
     auto s = path.get_arc_length();
-
+    auto x = path.get_x();
+    auto dp = hmap::gradient1d(x);
+    hmap::laplace1d(dp);
+ 
     path.to_png("path0.png");
 
     path.bezier(0.5f, 20);
 
-    for (auto &v : s)
+    for (auto &v : dp)
       std::cout << v << "\n";
 
     path.to_png("path.png");
