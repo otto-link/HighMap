@@ -1,0 +1,2 @@
+add_executable(ex_kmeans_clustering ex_kmeans_clustering.cpp)
+target_link_libraries(ex_kmeans_clustering highmap)

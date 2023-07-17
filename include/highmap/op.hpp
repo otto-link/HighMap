@@ -619,6 +619,26 @@ Array hillshade(const Array &z,
 Array hypot(const Array &array1, const Array &array2);
 
 /**
+ * @brief Return the labelling of each cell of the array based on a k-means
+ * clustering, with two arrays of input data.
+ *
+ * @param array1 Input array #1.
+ * @param array2 Input array #2.
+ * @param nclusters Number of clusters.
+ * @return Array Resulting label array.
+ *
+ * **Example**
+ * @include ex_kmeans_clustering.cpp
+ *
+ * **Result**
+ * @image html ex_kmeans_clustering0.png
+ * @image html ex_kmeans_clustering1.png
+ */
+Array kmeans_clustering2(const Array &array1,
+                         const Array &array2,
+                         int          nclusters);
+
+/**
  * @brief Apply a low-pass Laplace filter.
  *
  * @param array Input array.

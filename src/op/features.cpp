@@ -1,5 +1,6 @@
 #include <map>
 
+#include "dkm.hpp"
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
@@ -140,6 +141,37 @@ Array curvature_mean(const Array &z)
   h = (zxx * (1.f + zy * zy) - 2.f * zxy * zx * zy + zyy * (1.f + zx * zx)) *
       0.5f / pow(1.f + zx * zx + zy * zy, 1.5f);
   return h;
+}
+
+Array kmeans_clustering2(const Array &array1,
+                         const Array &array2,
+                         int          nclusters)
+{
+  std::vector<int> shape = {array1.shape[0], array1.shape[1]};
+  Array            kmeans = Array(shape); // output
+
+  // recast data
+  std::vector<std::array<float, 2>> data = {};
+  data.resize(shape[0] * shape[1]);
+
+  for (int i = 0; i < shape[0]; i++)
+    for (int j = 0; j < shape[1]; j++)
+    {
+      int k = i + j * shape[0];
+      data[k][0] = array1(i, j);
+      data[k][1] = array2(i, j);
+    }
+
+  auto dkm = dkm::kmeans_lloyd(data, nclusters);
+
+  for (size_t k = 0; k < std::get<1>(dkm).size(); k++)
+  {
+    int j = int(k / shape[0]);
+    int i = k - j * shape[0];
+    kmeans(i, j) = std::get<1>(dkm)[k];
+  }
+
+  return kmeans;
 }
 
 Array rugosity(const Array &z, int ir)

@@ -19,7 +19,7 @@ include(GNUInstallDirs)
 
 file(GLOB_RECURSE SOURCES
      main.cpp
-     "${PROJECT_SOURCE_DIR}/src/*.cpp")
+     ${PROJECT_SOURCE_DIR}/src/*.cpp)
 
 add_library(${PROJECT_NAME} STATIC ${SOURCES})
 
@@ -29,6 +29,7 @@ target_include_directories(${PROJECT_NAME}
                            PRIVATE
                              ${PROJECT_SOURCE_DIR}/external/bezier/include
                              ${PROJECT_SOURCE_DIR}/external/delaunator/include
+                             ${PROJECT_SOURCE_DIR}/external/dkm/include
                              # ${PROJECT_SOURCE_DIR}/external/FastNoise2/include/FastNoise
                              ${PROJECT_SOURCE_DIR}/external/FastNoiseLite/Cpp
                              ${PROJECT_SOURCE_DIR}/external/libInterpolate
