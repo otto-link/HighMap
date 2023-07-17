@@ -5,7 +5,7 @@
 
 int main(void)
 {
-  const std::vector<int>   shape = {1024, 1024};
+  const std::vector<int>   shape = {256, 256};
   const std::vector<float> res = {4.f, 4.f};
   uint                     seed = 5;
 
