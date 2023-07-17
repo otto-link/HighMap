@@ -10,9 +10,3 @@
 [submodule "external/FastNoiseLite"]
 	path = external/FastNoiseLite
 	url = git@github.com:Auburn/FastNoiseLite.git
-[submodule "FastNoiseLite"]
-	path = external/FastNoiseLite
-	url = git@github.com:Auburn/FastNoiseLite.git
-[submodule "external/libInterpolate"]
-	path = external/libInterpolate
-	url = git@github.com:CD3/libInterpolate.git
