@@ -69,6 +69,17 @@ void Array::depose_amount_kernel_at(int i, int j, Array &kernel, float amount)
   }
 }
 
+Array Array::extract_slice(std::vector<int> idx)
+{
+  Array array_out = Array({idx[1] - idx[0], idx[3] - idx[2]});
+
+  for (int i = idx[0]; i < idx[1]; i++)
+    for (int j = idx[2]; j < idx[3]; j++)
+      array_out(i - idx[0], j - idx[2]) = (*this)(i, j);
+
+  return array_out;
+}
+
 float Array::get_gradient_x_at(int i, int j) const
 {
   return 0.5f * ((*this)(i + 1, j) - (*this)(i - 1, j));

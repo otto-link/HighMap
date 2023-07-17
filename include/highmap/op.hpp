@@ -244,6 +244,28 @@ void clamp_max(Array &array, float vmax);
 void clamp_max_smooth(Array &array, float vmax, float k = 0.2f);
 
 /**
+ * @brief Return the connected-component labelling of the array.
+ *
+ * See https://en.wikipedia.org/wiki/Connected-component_labeling.
+ *
+ * @param array Input array.
+ * @param surface_threshold Surface threshold (in number of pixels): if not set
+ * to zero, components with a surface smaller than the threshold are removed.
+ * @param background_value Background value.
+ * @return Array Resulting array.
+ *
+ * **Example**
+ * @include ex_connected_components.cpp
+ *
+ * **Result**
+ * @image html ex_connected_components0.png
+ * @image html ex_connected_components1.png
+ */
+Array connected_components(const Array &array,
+                           float        surface_threshold = 0.f,
+                           float        background_value = 0.f);
+
+/**
  * @brief Return the convolution product of the array with a 1D kernel (row, 'i'
  * direction).
  *

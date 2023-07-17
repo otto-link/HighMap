@@ -1,0 +1,2 @@
+add_executable(ex_connected_components ex_connected_components.cpp)
+target_link_libraries(ex_connected_components highmap)
