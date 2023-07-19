@@ -4,6 +4,7 @@
 // #include <xsimd.hpp>
 
 #include "highmap/array.hpp"
+#include "highmap/colormaps.hpp"
 #include "highmap/erosion.hpp"
 #include "highmap/geometry.hpp"
 #include "highmap/hydrology.hpp"
@@ -44,18 +45,30 @@ int main(void)
   //     z(i, j) = std::exp(-r2 / 2 / 0.1f / 0.1f);
   //   }
 
+  z += 0.5f * hmap::cubic_pulse(shape);
+
   z.infos();
 
-  // hmap::set_borders(z, z.min(), shape[0] / 2);
-  // hmap::smooth_fill(z, shape[0] / 4);
+  hmap::set_borders(z, z.min(), shape[0] / 2);
+  hmap::smooth_fill(z, shape[0] / 4);
 
   // hmap::remap(z);
   // hmap::steepen_convective(z, 0.f, 20, 8);
 
   hmap::remap(z);
+  // hmap::hydraulic_ridge(z, 10.f / shape[0], 0.15f);
+
+  // hmap::Array z_bedrock = hmap::minimum_local(z, 8);
+  // hmap::hydraulic_stream(z, z_bedrock, 0.05f, 0.001f / shape[0]);
+
+  // hmap::remap(z);
+  // hmap::thermal_scree(z, 3.f / shape[0], seed, 0.5f, -1.f, 0.3f);
+
+  hmap::hydraulic_particle(z, 100000, 1);
+
   auto z0 = z;
 
-  if (true)
+  if (false)
   {
     z = 0.f;
     std::vector<float> bbox = {1.f, 2.f, -0.5f, 0.5f};
@@ -82,6 +95,23 @@ int main(void)
 
     path.to_array(z, bbox);
   }
+
+  //   std::vector<uint32_t> data = {
+  // #include "tmp"
+  //   };
+
+  // hmap::Clut3D clut = hmap::Clut3D({32, 32, 32}, data);
+  hmap::Clut3D clut = hmap::Clut3D({32, 32, 32}, "sahara.bin");
+
+  timer.start("colorize");
+  auto img = colorize_trivariate(z,
+                                 hmap::gradient_x(z),
+                                 hmap::gradient_y(z),
+                                 clut,
+                                 true);
+  timer.stop("colorize");
+
+  hmap::write_png_8bit("clut.png", img, shape);
 
   z.to_png("out.png", hmap::cmap::gray, false);
 

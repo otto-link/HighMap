@@ -8,9 +8,10 @@
  * @copyright Copyright (c) 2023
  *
  */
-
 #pragma once
 #define IMG_CHANNELS 3
+
+#include "highmap/colormaps.hpp"
 
 namespace hmap
 {
@@ -52,9 +53,46 @@ std::vector<uint8_t> colorize(Array &array,
                               int    cmap,
                               bool   hillshading);
 
+/**
+ * @brief Convert 3 array element values to a color data (3 channels RGB in [0,
+ * 255]) use a multivariate colormap.
+ *
+ * @param c0 First array.
+ * @param c1 Second array.
+ * @param c2 Third array.
+ * @param clut Colormap Lookup Table object.
+ * @param hillshading Activate hillshading.
+ * @return std::vector<uint8_t> Vector containing colors (size : shape[0] *
+ * shape[1] * 3 channels for RGB).
+ */
+std::vector<uint8_t> colorize_trivariate(const Array &c0,
+                                         const Array &c1,
+                                         const Array &c2,
+                                         Clut3D      &clut,
+                                         bool         hillshading);
+
+/**
+ * @brief Export a set of arrays as banner png image file.
+ *
+ * @param fname File name.
+ * @param arrays Arrays.
+ * @param cmap Colormap.
+ * @param hillshading Activate hillshading.
+ */
 void export_banner_png(std::string        fname,
                        std::vector<Array> arrays,
                        int                cmap,
                        bool               hillshading = false);
+
+/**
+ * @brief Export an 8bit image to a png file.
+ *
+ * @param fname File name.
+ * @param img Image data.
+ * @param shape Image shape.
+ */
+void write_png_8bit(std::string           fname,
+                    std::vector<uint8_t> &img,
+                    std::vector<int>      shape);
 
 } // namespace hmap
