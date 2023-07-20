@@ -17,25 +17,6 @@ namespace hmap
 {
 
 /**
- * @brief Colormaps.
- *
- * @note Use the inverse value of the cmap to reverse it. For instance
- * `hmap::cmap::gray` and `-hmap::cmap::gray`.
- */
-enum cmap : int
-{
-  bone = 1,          ///< bone
-  gray = 2,          ///< gray
-  hot = 3,           ///< hot
-  inferno = 4,       ///< inferno
-  jet = 5,           ///< jet
-  nipy_spectral = 6, ///< nipy_spectral
-  seismic = 7,       ///< seismic
-  terrain = 8,       ///< terrain
-  viridis = 9        ///< viridis
-};
-
-/**
  * @brief Convert array element values to a color data (3 channels RGB in [0,
  * 255]).
  *
@@ -47,11 +28,11 @@ enum cmap : int
  * @return std::vector<uint8_t> Vector containing colors (size : shape[0] *
  * shape[1] * 3 channels for RGB).
  */
-std::vector<uint8_t> colorize(Array &array,
-                              float  vmin,
-                              float  vmax,
-                              int    cmap,
-                              bool   hillshading);
+std::vector<uint8_t> colorize(const Array &array,
+                              float        vmin,
+                              float        vmax,
+                              int          cmap,
+                              bool         hillshading);
 
 /**
  * @brief Convert 3 array element values to a color data (3 channels RGB in [0,
