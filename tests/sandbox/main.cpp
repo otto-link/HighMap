@@ -1,41 +1,24 @@
-#include <iostream>
-#include <time.h>
-
-// #include <xsimd.hpp>
-
 #include "highmap/array.hpp"
+<<<<<<< HEAD
 #include "highmap/colormaps.hpp"
 #include "highmap/erosion.hpp"
 #include "highmap/geometry.hpp"
 #include "highmap/hydrology.hpp"
+=======
+>>>>>>> 8d392f8 (Clean sandbox example for the main branch)
 #include "highmap/io.hpp"
-#include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
-#include "highmap/roads.hpp"
-
-#include "highmap/dbg.hpp"
 
 int main(void)
 {
 
-  hmap::Timer timer = hmap::Timer();
-
-  // const std::vector<int> shape = {2048, 2048};
-  // const std::vector<int> shape = {1024, 1024};
-  const std::vector<int> shape = {512, 512};
-  // const std::vector<int> shape = {256, 256};
-  // const std::vector<int> shape = {32, 32};
+  const std::vector<int>   shape = {512, 512};
   const std::vector<float> res = {4.f, 4.f};
   int                      seed = 2;
 
-  // seed = (int)time(NULL);
-
-  std::cout << "seed: " << seed << std::endl;
-
-  timer.start("fbm");
   hmap::Array z = hmap::fbm_perlin(shape, res, seed, 8);
-  timer.stop("fbm");
 
+<<<<<<< HEAD
   // for (int i = 0; i < z.shape[0]; i++)
   //   for (int j = 0; j < z.shape[1]; j++)
   //   {
@@ -117,4 +100,7 @@ int main(void)
 
   z0.to_png("out0.png", hmap::cmap::terrain, true);
   z.to_file("out.bin");
+=======
+  z.to_png("out.png", hmap::cmap::gray);
+>>>>>>> 8d392f8 (Clean sandbox example for the main branch)
 }
