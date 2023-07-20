@@ -1,0 +1,2 @@
+add_executable(ex_colormaps ex_colormaps.cpp)
+target_link_libraries(ex_colormaps highmap)
