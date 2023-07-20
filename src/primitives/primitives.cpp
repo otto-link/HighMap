@@ -135,6 +135,25 @@ Array constant(std::vector<int> shape, float value)
   return array;
 }
 
+Array gaussian_pulse(std::vector<int>   shape,
+                     float              sigma,
+                     std::vector<float> shift)
+{
+  Array array = Array(shape);
+  int   ic = (int)((0.5f - shift[0]) * shape[0]);
+  int   jc = (int)((0.5f - shift[1]) * shape[1]);
+
+  float s2 = 1.f / (sigma * sigma);
+  for (int i = 0; i < shape[0]; i++)
+    for (int j = 0; j < shape[1]; j++)
+    {
+      float r2 = (float)((i - ic) * (i - ic) + (j - jc) * (j - jc));
+      array(i, j) = std::exp(-0.5f * r2 * s2);
+    }
+
+  return array;
+}
+
 Array plane(std::vector<int>   shape,
             float              talus,
             float              yaw_angle,

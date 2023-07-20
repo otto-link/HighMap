@@ -286,6 +286,19 @@ Array gabor_noise(std::vector<int> shape,
                   uint             seed);
 
 /**
+ * @brief Return a gaussian pulse kernel.
+ *
+ * @param shape Array shape.
+ * @param sigma Gaussian sigma (in pixels).
+ * @param shift Shift {xs, ys} for each directions, with respect to a unit
+ * domain.
+ * @return Array
+ */
+Array gaussian_pulse(std::vector<int>   shape,
+                     float              sigma,
+                     std::vector<float> shift = {0.f, 0.f});
+
+/**
  * @param shape Array shape.
  * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
  * a unit domain.
