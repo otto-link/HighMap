@@ -1,0 +1,2 @@
+add_executable(ex_colormaps_trivariate ex_colormaps_trivariate.cpp)
+target_link_libraries(ex_colormaps_trivariate highmap)
