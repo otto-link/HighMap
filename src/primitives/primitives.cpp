@@ -137,6 +137,7 @@ Array constant(std::vector<int> shape, float value)
 
 Array gaussian_pulse(std::vector<int>   shape,
                      float              sigma,
+                     Array             *p_noise,
                      std::vector<float> shift)
 {
   Array array = Array(shape);
@@ -144,12 +145,27 @@ Array gaussian_pulse(std::vector<int>   shape,
   int   jc = (int)((0.5f - shift[1]) * shape[1]);
 
   float s2 = 1.f / (sigma * sigma);
-  for (int i = 0; i < shape[0]; i++)
-    for (int j = 0; j < shape[1]; j++)
-    {
-      float r2 = (float)((i - ic) * (i - ic) + (j - jc) * (j - jc));
-      array(i, j) = std::exp(-0.5f * r2 * s2);
-    }
+
+  if (!p_noise)
+  {
+    for (int i = 0; i < shape[0]; i++)
+      for (int j = 0; j < shape[1]; j++)
+      {
+        float r2 = (float)((i - ic) * (i - ic) + (j - jc) * (j - jc));
+        array(i, j) = std::exp(-0.5f * r2 * s2);
+      }
+  }
+  else
+  {
+    for (int i = 0; i < shape[0]; i++)
+      for (int j = 0; j < shape[1]; j++)
+      {
+        float r2 = (float)((i - ic) * (i - ic) + (j - jc) * (j - jc)) +
+                   (*p_noise)(i, j) * (*p_noise)(i, j) * (float)shape[0] *
+                       (float)shape[1];
+        array(i, j) = std::exp(-0.5f * r2 * s2);
+      }
+  }
 
   return array;
 }

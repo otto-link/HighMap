@@ -290,12 +290,15 @@ Array gabor_noise(std::vector<int> shape,
  *
  * @param shape Array shape.
  * @param sigma Gaussian sigma (in pixels).
+ * @param p_noise Reference to the input noise array used for domain warping
+ * (NOT in pixels, with respect to a unit domain).
  * @param shift Shift {xs, ys} for each directions, with respect to a unit
  * domain.
  * @return Array
  */
 Array gaussian_pulse(std::vector<int>   shape,
                      float              sigma,
+                     Array             *p_noise = nullptr,
                      std::vector<float> shift = {0.f, 0.f});
 
 /**
@@ -733,6 +736,8 @@ Array white_sparse(std::vector<int> shape,
  * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
  * a unit domain.
  * @param seed Random seed number.
+ * @param p_noise Reference to the input noise array used for domain warping
+ * (NOT in pixels, with respect to a unit domain).
  * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
  * domain.
  * @return Array Worley noise.
@@ -746,6 +751,7 @@ Array white_sparse(std::vector<int> shape,
 Array worley(std::vector<int>   shape,
              std::vector<float> kw,
              uint               seed,
+             Array             *p_noise = nullptr,
              std::vector<float> shift = {0.f, 0.f});
 
 } // namespace hmap

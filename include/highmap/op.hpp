@@ -1037,7 +1037,7 @@ void recast_rocky_slopes(Array &array,
 /**
  * @brief Apply a curve adjustment filter to the array.
  *
- * The curve is monotically interpolated and values outside the input range avec
+ * The curve is monotically interpolated and values outside the input range are
  * clipped.
  *
  * @param array Input array.
