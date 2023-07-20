@@ -625,6 +625,7 @@ Array hypot(const Array &array1, const Array &array2);
  * @param array1 Input array #1.
  * @param array2 Input array #2.
  * @param nclusters Number of clusters.
+ * @param seed Random seed number.
  * @return Array Resulting label array.
  *
  * **Example**
@@ -636,7 +637,8 @@ Array hypot(const Array &array1, const Array &array2);
  */
 Array kmeans_clustering2(const Array &array1,
                          const Array &array2,
-                         int          nclusters);
+                         int          nclusters,
+                         uint         seed = 1);
 
 /**
  * @brief Apply a low-pass Laplace filter.

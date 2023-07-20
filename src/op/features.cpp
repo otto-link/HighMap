@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <map>
 
 #include "dkm.hpp"
@@ -145,7 +146,8 @@ Array curvature_mean(const Array &z)
 
 Array kmeans_clustering2(const Array &array1,
                          const Array &array2,
-                         int          nclusters)
+                         int          nclusters,
+                         uint         seed)
 {
   std::vector<int> shape = {array1.shape[0], array1.shape[1]};
   Array            kmeans = Array(shape); // output
@@ -162,14 +164,51 @@ Array kmeans_clustering2(const Array &array1,
       data[k][1] = array2(i, j);
     }
 
-  auto dkm = dkm::kmeans_lloyd(data, nclusters);
+  dkm::clustering_parameters<float> parameters =
+      dkm::clustering_parameters<float>(nclusters);
+  parameters.set_random_seed(seed);
+  auto dkm = dkm::kmeans_lloyd(data, parameters);
+
+  // modify labelling to ensure it remains fairly consistent when the
+  // data are modified (centroid are sorted by their coordinates)
+  std::vector<int>                  isort(nclusters);
+  std::vector<std::array<float, 2>> centroids = std::get<0>(dkm);
+
+  stable_sort(centroids.begin(),
+              centroids.end(),
+              [](std::array<float, 2> p1, std::array<float, 2> p2)
+              {
+                if (p1[1] < p2[1])
+                  return true;
+                else
+                  return (p1[0] < p2[0]);
+              });
+
+  stable_sort(centroids.begin(),
+              centroids.end(),
+              [](std::array<float, 2> p1, std::array<float, 2> p2)
+              {
+                if (p1[0] < p2[0])
+                  return true;
+                else
+                  return (p1[1] < p2[1]);
+              });
+
+  // TODO dirty
+  for (int i = 0; i < nclusters; i++)
+    for (int j = 0; j < nclusters; j++)
+      if ((centroids[i][0] == std::get<0>(dkm)[j][0]) &
+          (centroids[i][1] == std::get<0>(dkm)[j][1]))
+        isort[i] = j;
 
   for (size_t k = 0; k < std::get<1>(dkm).size(); k++)
   {
     int j = int(k / shape[0]);
     int i = k - j * shape[0];
-    kmeans(i, j) = std::get<1>(dkm)[k];
+    kmeans(i, j) = isort[std::get<1>(dkm)[k]];
   }
+
+  kmeans.infos();
 
   return kmeans;
 }
