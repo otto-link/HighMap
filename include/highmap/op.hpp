@@ -1176,7 +1176,21 @@ void remap(Array &array, float vmin = 0, float vmax = 1); ///< @overload
  */
 Array rugosity(const Array &z, int ir);
 
-Array skeleton_middle(const Array &array);
+/**
+ * @brief Return blob detection using the Laplacian of Gaussian (LoG) approach.
+ *
+ * @param array Input array.
+ * @param ir Kernel radius.
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_select_blob.cpp
+ *
+ * **Result**
+ * @image html ex_select_blob0.png
+ * @image html ex_select_blob1.png
+ */
+Array select_blob_log(const Array &array, int ir);
 
 /**
  * @brief Return an array with elements equal to 1 where input elements are
@@ -1237,22 +1251,6 @@ Array select_interval(const Array &array, float value1, float value2);
 Array select_lt(const Array &array, float value);
 
 /**
- * @brief Return blob detection using the Laplacian of Gaussian (LoG) approach.
- *
- * @param array Input array.
- * @param ir Kernel radius.
- * @return Array Output array.
- *
- * **Example**
- * @include ex_select_blob.cpp
- *
- * **Result**
- * @image html ex_select_blob0.png
- * @image html ex_select_blob1.png
- */
-Array select_blob_log(const Array &array, int ir);
-
-/**
  * @brief Return an array weighted by the gap between the gradient angle and a
  * given angle.
  *
@@ -1262,6 +1260,14 @@ Array select_blob_log(const Array &array, int ir);
  */
 Array select_gradient_angle(const Array &array, float angle);
 
+/**
+ * @brief Return an array filled with 1 where the gradient is larger than a
+ * given value and 0 elsewhere.
+ *
+ * @param array Input array.
+ * @param talus_center Reference talus.
+ * @return Array Output array.
+ */
 Array select_gradient_binary(const Array &array, float talus_center);
 
 /**
@@ -1289,6 +1295,27 @@ Array select_gradient_exp(const Array &array,
 Array select_gradient_inv(const Array &array,
                           float        talus_center,
                           float        talus_sigma);
+
+/**
+ * @brief Return an array filled with 1 at the blending transition between two
+ * arrays, and 0 elsewhere.
+ *
+ * @param array1 Input array 1.
+ * @param array2 Input array 2.
+ * @param array_blend Blending of array 1 and 2 to analyze.
+ * @return Array Resulting array
+ *
+ * **Example**
+ * @include ex_select_transitions.cpp
+ *
+ * **Result**
+ * @image html ex_select_transitions0.png
+ * @image html ex_select_transitions1.png
+ * @image html ex_select_transitions2.png
+ */
+Array select_transitions(const Array &array1,
+                         const Array &array2,
+                         const Array &array_blend);
 
 /**
  * @brief Enforce values at the boundaries of the array.
@@ -1374,6 +1401,8 @@ void shrink(Array &array, int ir);
  * @return Array Reference to the current object.
  */
 Array sin(const Array &array);
+
+Array skeleton_middle(const Array &array); // TODO: remove ?
 
 /**
  * @brief Steepen (or flatten) the array map.

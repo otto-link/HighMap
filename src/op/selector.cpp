@@ -4,6 +4,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/op.hpp"
+#include "highmap/primitives.hpp"
 
 namespace hmap
 {
@@ -86,6 +87,67 @@ Array select_gradient_inv(const Array &array,
   c -= talus_center;
   c = 1.f / (1.f + c * c / (talus_sigma * talus_sigma));
   return c;
+}
+
+Array select_transitions(const Array &array1,
+                         const Array &array2,
+                         const Array &array_blend)
+{
+  // set the whole mask to 1 and look for "non-transitioning" regions
+  Array mask = Array(array1.shape, 1.f);
+
+  for (int i = 0; i < array1.shape[0] - 1; i++)
+    for (int j = 0; j < array1.shape[1] - 1; j++)
+    {
+      if ((array_blend(i, j) == array1(i, j)) &
+          (array_blend(i + 1, j) == array1(i + 1, j)) &
+          (array_blend(i, j) == array1(i, j)) &
+          (array_blend(i, j + 1) == array1(i, j + 1)))
+        mask(i, j) = 0.f;
+
+      else if ((array_blend(i, j) == array2(i, j)) &
+               (array_blend(i + 1, j) == array2(i + 1, j)) &
+               (array_blend(i, j) == array2(i, j)) &
+               (array_blend(i, j + 1) == array2(i, j + 1)))
+        mask(i, j) = 0.f;
+    }
+
+  // boundaries
+  for (int j = 0; j < array1.shape[1]; j++)
+  {
+    int i = array1.shape[0] - 1;
+
+    if ((array_blend(i, j) == array1(i, j)) &
+        (array_blend(i - 1, j) == array1(i - 1, j)) &
+        (array_blend(i, j) == array1(i, j)) &
+        (array_blend(i, j + 1) == array1(i, j + 1)))
+      mask(i, j) = 0.f;
+
+    else if ((array_blend(i, j) == array2(i, j)) &
+             (array_blend(i - 1, j) == array2(i - 1, j)) &
+             (array_blend(i, j) == array2(i, j)) &
+             (array_blend(i, j + 1) == array2(i, j + 1)))
+      mask(i, j) = 0.f;
+  }
+
+  for (int i = 0; i < array1.shape[0]; i++)
+  {
+    int j = array1.shape[1] - 1;
+
+    if ((array_blend(i, j) == array1(i, j)) &
+        (array_blend(i + 1, j) == array1(i + 1, j)) &
+        (array_blend(i, j) == array1(i, j)) &
+        (array_blend(i, j - 1) == array1(i, j - 1)))
+      mask(i, j) = 0.f;
+
+    else if ((array_blend(i, j) == array2(i, j)) &
+             (array_blend(i + 1, j) == array2(i + 1, j)) &
+             (array_blend(i, j) == array2(i, j)) &
+             (array_blend(i, j - 1) == array2(i, j - 1)))
+      mask(i, j) = 0.f;
+  }
+
+  return mask;
 }
 
 } // namespace hmap

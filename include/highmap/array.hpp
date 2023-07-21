@@ -45,6 +45,7 @@ public:
    * @brief Construct a new Array object.
    *
    * @param shape Array shape {ni, nj}.
+   * @param value Array filling value at creation.
    *
    * **Example**
    * @include ex_array.cpp
@@ -52,6 +53,8 @@ public:
    *
    */
   Array(std::vector<int> shape);
+
+  Array(std::vector<int> shape, float value); ///< @overload
 
   //----------------------------------------
   // accessors

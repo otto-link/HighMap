@@ -10,6 +10,12 @@ Array::Array(std::vector<int> shape) : shape(shape)
   this->vector.resize(this->shape[0] * this->shape[1]);
 }
 
+Array::Array(std::vector<int> shape, float value) : shape(shape)
+{
+  this->vector.resize(this->shape[0] * this->shape[1]);
+  std::fill(this->vector.begin(), this->vector.end(), value);
+}
+
 std::vector<int> Array::get_shape()
 {
   return shape;

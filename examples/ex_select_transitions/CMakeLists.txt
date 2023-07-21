@@ -1,0 +1,2 @@
+add_executable(ex_select_transitions ex_select_transitions.cpp)
+target_link_libraries(ex_select_transitions highmap)
