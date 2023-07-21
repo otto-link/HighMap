@@ -576,6 +576,8 @@ Array tricube(std::vector<int> shape);
  * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
  * a unit domain.
  * @param seed Random seed number.
+ * @param p_noise Reference to the input noise array used for domain warping
+ * (NOT in pixels, with respect to a unit domain).
  * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
  * domain.
  * @return Array Value noise.
@@ -589,7 +591,31 @@ Array tricube(std::vector<int> shape);
 Array value_noise(std::vector<int>   shape,
                   std::vector<float> kw,
                   uint               seed,
+                  Array             *p_noise = nullptr,
                   std::vector<float> shift = {0.f, 0.f});
+
+/**
+ * @brief Return an array filled with value noise based on linear interpolation.
+ *
+ * @param shape Array shape.
+ * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
+ * a unit domain.
+ * @param seed Random seed number.
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
+ * domain.
+ * @return Array Value noise.
+ *
+ * **Example**
+ * @include ex_value_noise_linear.cpp
+ *
+ * **Result**
+ * @image html ex_value_noise_linear.png
+ */
+Array value_noise_linear(std::vector<int>   shape,
+                         std::vector<float> kw,
+                         uint               seed,
+                         Array             *p_noise = nullptr,
+                         std::vector<float> shift = {0.f, 0.f});
 
 /**
  * @brief Return a sine wave.

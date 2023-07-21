@@ -9,7 +9,7 @@
 namespace hmap
 {
 
-void warp(Array &array, const Array &dx, const Array &dy)
+void warp(Array &array, const Array &dx, const Array &dy, float scale)
 {
   int i1 = std::max(0, -(int)dx.min());
   int i2 = std::max(0, (int)dx.max());
@@ -19,12 +19,11 @@ void warp(Array &array, const Array &dx, const Array &dy)
   Array array_buffered = generate_buffered_array(array, {i1, i2, j1, j2});
 
   for (int i = 0; i < array.shape[0]; i++)
-  {
     for (int j = 0; j < array.shape[1]; j++)
     {
       // warped position
-      float x = (float)i + dx(i, j);
-      float y = (float)j + dy(i, j);
+      float x = (float)i + dx(i, j) * scale;
+      float y = (float)j + dy(i, j) * scale;
 
       // nearest grid point (and bilinear interpolation parameters)
       int   ip = (int)x + i1;
@@ -34,7 +33,6 @@ void warp(Array &array, const Array &dx, const Array &dy)
 
       array(i, j) = array_buffered.get_value_bilinear_at(ip, jp, u, v);
     }
-  }
 }
 
 void warp_fbm(Array             &array,

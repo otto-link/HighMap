@@ -1555,6 +1555,7 @@ Array valley_width(const Array &z, int ir = 0);
  * pixel).
  * @param dy Translation following 'j' direction, (scale is 1:1, dy = 1 => 1
  * pixel).
+ * @param scale Scaling applied to dx and and dy.
  *
  * **Example**
  * @include ex_warp.cpp
@@ -1562,7 +1563,7 @@ Array valley_width(const Array &z, int ir = 0);
  * **Result**
  * @image html ex_warp.png
  */
-void warp(Array &array, const Array &dx, const Array &dy);
+void warp(Array &array, const Array &dx, const Array &dy, float scale = 1.f);
 
 /**
  * @brief Apply a warping effect to the array with displacements based on fbm
