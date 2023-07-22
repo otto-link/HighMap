@@ -180,6 +180,64 @@ Array plane(std::vector<int>   shape,
   return array;
 }
 
+Array slope_x(std::vector<int>   shape,
+              float              talus,
+              Array             *p_noise,
+              std::vector<float> shift)
+{
+  Array array = Array(shape);
+
+  if (!p_noise)
+  {
+    for (int i = 0; i < array.shape[0]; i++)
+    {
+      float h = talus * ((float)i + shift[0] * (float)shape[0]);
+      for (int j = 0; j < array.shape[1]; j++)
+        array(i, j) = h;
+    }
+  }
+  else
+  {
+    for (int i = 0; i < array.shape[0]; i++)
+      for (int j = 0; j < array.shape[1]; j++)
+      {
+        float h = talus *
+                  ((float)i + ((*p_noise)(i, j) + shift[0]) * (float)shape[0]);
+        array(i, j) = h;
+      }
+  }
+  return array;
+}
+
+Array slope_y(std::vector<int>   shape,
+              float              talus,
+              Array             *p_noise,
+              std::vector<float> shift)
+{
+  Array array = Array(shape);
+
+  if (!p_noise)
+  {
+    for (int j = 0; j < array.shape[1]; j++)
+    {
+      float h = talus * ((float)j + shift[1] * (float)shape[1]);
+      for (int i = 0; i < array.shape[0]; i++)
+        array(i, j) = h;
+    }
+  }
+  else
+  {
+    for (int i = 0; i < array.shape[0]; i++)
+      for (int j = 0; j < array.shape[1]; j++)
+      {
+        float h = talus *
+                  ((float)j + ((*p_noise)(i, j) + shift[1]) * (float)shape[1]);
+        array(i, j) = h;
+      }
+  }
+  return array;
+}
+
 Array smooth_cosine(std::vector<int> shape)
 {
   Array array = Array(shape);

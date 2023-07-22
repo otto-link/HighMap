@@ -525,6 +525,50 @@ Array ridged_perlin(std::vector<int>   shape,
                     std::vector<float> shift = {0, 0});
 
 /**
+ * @brief Return an array corresponding to a slope in the x direction.
+ *
+ * @param shape Array shape.
+ * @param talus Slope talus.
+ * @param p_noise Reference to the input noise array used for domain warping
+ * (NOT in pixels, with respect to a unit domain).
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
+ * domain.
+ * @return Array New array.
+ *
+ * **Example**
+ * @include ex_slope.cpp
+ *
+ * **Result**
+ * @image html ex_slope.png
+ */
+Array slope_x(std::vector<int>   shape,
+              float              talus,
+              Array             *p_noise = nullptr,
+              std::vector<float> shift = {0, 0});
+
+/**
+ * @brief Return an array corresponding to a slope in the y direction.
+ *
+ * @param shape Array shape.
+ * @param talus Slope talus.
+ * @param p_noise Reference to the input noise array used for domain warping
+ * (NOT in pixels, with respect to a unit domain).
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
+ * domain.
+ * @return Array New array.
+ *
+ * **Example**
+ * @include ex_slope.cpp
+ *
+ * **Result**
+ * @image html ex_slope.png
+ */
+Array slope_y(std::vector<int>   shape,
+              float              talus,
+              Array             *p_noise = nullptr,
+              std::vector<float> shift = {0, 0});
+
+/**
  * @brief Return a smooth cosine kernel.
  *
  * @param shape Array shape.
