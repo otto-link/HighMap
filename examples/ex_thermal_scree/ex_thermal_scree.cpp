@@ -1,8 +1,4 @@
-#include "highmap/array.hpp"
-#include "highmap/erosion.hpp"
-#include "highmap/io.hpp"
-#include "highmap/op.hpp"
-#include "highmap/primitives.hpp"
+#include "highmap.hpp"
 
 int main(void)
 {
@@ -15,15 +11,17 @@ int main(void)
   auto z0 = z;
 
   float talus = 2.f / shape[0];
-  float noise_ratio = 0.5f;
-  float zmin = -5.f; // == no limit
   float zmax = 0.5f;
+  float noise_ratio = 0.5f;
 
-  hmap::thermal_scree(z, talus, seed, noise_ratio, zmin, zmax);
+  hmap::thermal_scree(z, talus, seed, zmax, noise_ratio);
+
+  auto             zf = z0;
+  std::vector<int> shape_coarse = {64, 64};
+  hmap::thermal_scree_fast(zf, shape_coarse, talus, seed, zmax, noise_ratio);
 
   hmap::export_banner_png("ex_thermal_scree.png",
-                          {z0, z},
+                          {z0, z, zf},
                           hmap::cmap::terrain,
                           true);
-  z.to_file("out.bin");
 }

@@ -29,9 +29,9 @@ void hydraulic_ridge(Array &z,
   thermal_scree(ze,
                 talus,
                 seed,
-                noise_ratio,
                 0.f, // ze_min
                 2.f * erosion_factor,
+                noise_ratio,
                 smoothing_factor,
                 landing_width_ratio,
                 false);

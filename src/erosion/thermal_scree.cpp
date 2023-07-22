@@ -13,12 +13,16 @@
 namespace hmap
 {
 
+//----------------------------------------------------------------------
+// Main operator
+//----------------------------------------------------------------------
+
 void thermal_scree(Array &z,
                    float  talus,
                    uint   seed,
-                   float  noise_ratio,
-                   float  zmin,
                    float  zmax,
+                   float  zmin,
+                   float  noise_ratio,
                    float  landing_talus_ratio,
                    float  landing_width_ratio,
                    bool   talus_constraint)
@@ -154,6 +158,81 @@ void thermal_scree(Array &z,
 
   // clean-up boundaries
   extrapolate_borders(z, 2);
+}
+
+void thermal_scree_fast(Array           &z,
+                        std::vector<int> shape_coarse,
+                        float            talus,
+                        uint             seed,
+                        float            zmax,
+                        float            zmin,
+                        float            noise_ratio,
+                        float            landing_talus_ratio,
+                        float            landing_width_ratio,
+                        bool             talus_constraint)
+{
+  Array z_coarse = z.resample_to_shape(shape_coarse);
+
+  // apply the algorithm on the coarser mesh (and ajust the talus
+  // value)
+  float talus_coarse = talus * std::max(z.shape[0] / shape_coarse[0],
+                                        z.shape[1] / shape_coarse[1]);
+
+  thermal_scree(z_coarse,
+                talus_coarse,
+                seed,
+                zmax,
+                zmin,
+                noise_ratio,
+                landing_talus_ratio,
+                landing_width_ratio,
+                talus_constraint);
+
+  // revert back to the original resolution but keep initial
+  // smallscale details
+  z_coarse = z_coarse.resample_to_shape(z.shape);
+
+  z = maximum(z, z_coarse);
+}
+
+//----------------------------------------------------------------------
+// Overloading
+//----------------------------------------------------------------------
+
+void thermal_scree(Array &z,
+                   float  talus,
+                   uint   seed,
+                   float  zmax,
+                   float  noise_ratio)
+{
+  thermal_scree(z,
+                talus,
+                seed,
+                zmax,
+                z.min(),
+                noise_ratio,
+                1.f, // landing talus = talus => deactivate smooth landing
+                0.f,
+                false);
+}
+
+void thermal_scree_fast(Array           &z,
+                        std::vector<int> shape_coarse,
+                        float            talus,
+                        uint             seed,
+                        float            zmax,
+                        float            noise_ratio)
+{
+  thermal_scree_fast(z,
+                     shape_coarse,
+                     talus,
+                     seed,
+                     zmax,
+                     z.min(),
+                     noise_ratio,
+                     1.f, // landing talus = talus => deactivate smooth landing
+                     0.f,
+                     false);
 }
 
 } // namespace hmap

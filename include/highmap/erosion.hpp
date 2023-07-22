@@ -453,9 +453,9 @@ void thermal_flatten(Array &z, float talus, int iterations = 10); ///< @overload
  * @param z Input array.
  * @param talus Talus limit.
  * @param seed Random seed number.
- * @param noise_ratio Noise amplitude ratio (for talus and elevation limit).
- * @param zmin Elevation lower limit.
  * @param zmax Elevation upper limit.
+ * @param zmin Elevation lower limit.
+ * @param noise_ratio Noise amplitude ratio (for talus and elevation limit).
  * @param landing_talus_ratio Talus value (as a ratio) at the scree landing (set
  * to 1 for no effect).
  * @param landing_width_ratio Landing relative extent, in [0, 1] (small values
@@ -472,11 +472,59 @@ void thermal_flatten(Array &z, float talus, int iterations = 10); ///< @overload
 void thermal_scree(Array &z,
                    float  talus,
                    uint   seed,
-                   float  noise_ratio = 0.5f,
-                   float  zmin = -1.f,
-                   float  zmax = 0.5f,
+                   float  zmax,
+                   float  zmin,
+                   float  noise_ratio,
                    float  landing_talus_ratio = 1.f,
                    float  landing_width_ratio = 0.25f,
                    bool   talus_constraint = true);
+
+void thermal_scree(Array &z,
+                   float  talus,
+                   uint   seed,
+                   float  zmax,
+                   float  noise_ratio); ///< @overload
+
+/**
+ * @brief Apply thermal weathering erosion simulating scree deposition,
+ * performed on a coarse mesh to optimize restitution time.
+ *
+ * @param z Input array.
+ * @param shape_coarse Array coarser shape used for the solver.
+ * @param talus Talus limit.
+ * @param seed Random seed number.
+ * @param zmax Elevation upper limit.
+ * @param zmin Elevation lower limit.
+ * @param noise_ratio Noise amplitude ratio (for talus and elevation limit).
+ * @param landing_talus_ratio Talus value (as a ratio) at the scree landing (set
+ * to 1 for no effect).
+ * @param landing_width_ratio Landing relative extent, in [0, 1] (small values
+ * lead to large landing).
+ * @param talus_constraint Use talus constraint when populating the initial
+ * queue.
+ *
+ * **Example**
+ * @include ex_thermal_scree.cpp
+ *
+ * **Result**
+ * @image html ex_thermal_scree.png
+ */
+void thermal_scree_fast(Array           &z,
+                        std::vector<int> shape_coarse,
+                        float            talus,
+                        uint             seed,
+                        float            zmax,
+                        float            zmin,
+                        float            noise_ratio,
+                        float            landing_talus_ratio,
+                        float            landing_width_ratio,
+                        bool             talus_constraint);
+
+void thermal_scree_fast(Array           &z,
+                        std::vector<int> shape_coarse,
+                        float            talus,
+                        uint             seed,
+                        float            zmax,
+                        float            noise_ratio); ///< @overload
 
 } // namespace hmap
