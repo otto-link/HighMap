@@ -75,7 +75,7 @@ void thermal(Array       &z,
   // sure final elevation is not lower than the bedrock
   extrapolate_borders(z);
   laplace(z);
-  z = maximum(z, bedrock);
+  clamp_min(z, bedrock);
 }
 
 //----------------------------------------------------------------------
@@ -115,7 +115,7 @@ void thermal_auto_bedrock(Array       &z,
     thermal(z, talus, bedrock, iterations / ncycle, ct);
 
     // only keep what's above the initial ground level
-    z = maximum(z_init, z);
+    clamp_min(z, z_init);
 
     // define the bedrock elevation: it is equal to the initial
     // elevation if the elevation after thermal erosion is lower. If

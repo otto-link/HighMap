@@ -192,7 +192,7 @@ void thermal_scree_fast(Array           &z,
   // smallscale details
   z_coarse = z_coarse.resample_to_shape(z.shape);
 
-  z = maximum(z, z_coarse);
+  clamp_min(z, z_coarse);
 }
 
 //----------------------------------------------------------------------

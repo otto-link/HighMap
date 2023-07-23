@@ -215,6 +215,8 @@ void clamp(Array &array, float vmin = 0, float vmax = 1);
  */
 void clamp_min(Array &array, float vmin);
 
+void clamp_min(Array &array, const Array &vmin); ///< @overload
+
 /**
  * @brief Clamp array values lower than a given bound with a smooth transition.
  *
@@ -223,6 +225,10 @@ void clamp_min(Array &array, float vmin);
  * @param k Smoothing parameter in [0, 1].
  */
 void clamp_min_smooth(Array &array, float vmin, float k = 0.2f);
+
+void clamp_min_smooth(Array       &array,
+                      const Array &vmin,
+                      float        k = 0.2f); ///< @overload
 
 /**
  * @brief Clamp array values larger than a given bound.
@@ -234,6 +240,8 @@ void clamp_min_smooth(Array &array, float vmin, float k = 0.2f);
  */
 void clamp_max(Array &array, float vmax);
 
+void clamp_max(Array &array, const Array &vmax); ///< @overload
+
 /**
  * @brief Clamp array values larger than a given bound with a smooth transition.
  *
@@ -242,6 +250,10 @@ void clamp_max(Array &array, float vmax);
  * @param k Smoothing parameter in [0, 1].
  */
 void clamp_max_smooth(Array &array, float vmax, float k = 0.2f);
+
+void clamp_max_smooth(Array       &array,
+                      const Array &vmax,
+                      float        k = 0.2f); ///< @overload
 
 /**
  * @brief Return the connected-component labelling of the array.
@@ -851,8 +863,6 @@ Array maximum_local_disk(const Array &array, int ir);
  */
 Array maximum_smooth(const Array &array1, const Array &array2, float k = 0.2);
 
-void maximum_smooth(Array &array, float vmax, float k); ///< @overload
-
 /**
  * @brief Return the 'local mean' based on a mean filter.
  *
@@ -932,8 +942,6 @@ Array minimum_local_disk(const Array &array, int ir);
  * @see {@link maximum_smooth}, {@link minimum}, {@link maximum}
  */
 Array minimum_smooth(const Array &array1, const Array &array2, float k = 0.2);
-
-void minimum_smooth(Array &array, float vmin, float k); ///< @overload
 
 /**
  * @brief Return the mixing of a set of arrays based on a parameter `t`.

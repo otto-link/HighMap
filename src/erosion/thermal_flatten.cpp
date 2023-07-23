@@ -68,7 +68,7 @@ void thermal_flatten(Array       &z,
   // sure final elevation is not lower than the bedrock
   extrapolate_borders(z);
   laplace(z, LAPLACE_SIGMA, LAPLACE_ITERATIONS);
-  z = maximum(z, bedrock);
+  clamp_min(z, bedrock);
 }
 
 //----------------------------------------------------------------------

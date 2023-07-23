@@ -21,7 +21,7 @@ void hydraulic_ridge(Array &z,
   // erosion depth
   Array ze = flow_accumulation_dinf(z, talus);
   ze = log10(ze);
-  minimum_smooth(ze, erosion_factor, erosion_factor);
+  clamp_max_smooth(ze, erosion_factor, erosion_factor);
   remap(ze);
 
   float landing_width_ratio = 0.1f;
