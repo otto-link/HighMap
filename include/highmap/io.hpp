@@ -35,6 +35,16 @@ std::vector<uint8_t> colorize(const Array &array,
                               bool         hillshading);
 
 /**
+ * @brief Convert array element values to a grayscale image data (1 channels in
+ * [0, 255]).
+ *
+ * @param array Input array.
+ * @return std::vector<uint8_t> Vector containing colors (size : shape[0] *
+ * shape[1] * 1 channel).
+ */
+std::vector<uint8_t> colorize_grayscale(const Array &array);
+
+/**
  * @brief Convert 3 array element values to a color data (3 channels RGB in [0,
  * 255]) use a multivariate colormap.
  *

@@ -182,6 +182,35 @@ std::vector<uint8_t> colorize(const hmap::Array &array,
   return img;
 }
 
+std::vector<uint8_t> colorize_grayscale(const Array &array)
+{
+  // create image
+  std::vector<uint8_t> img(array.shape[0] * array.shape[1]);
+
+  // normalization factors
+  float a = 0.f;
+  float b = 0.f;
+  float vmin = array.min();
+  float vmax = array.max();
+
+  if (vmin != vmax)
+  {
+    a = 1.f / (vmax - vmin);
+    b = -vmin / (vmax - vmin);
+  }
+
+  int k = 0;
+
+  for (int j = array.shape[1] - 1; j > -1; j--)
+    for (int i = 0; i < array.shape[0]; i++)
+    {
+      float v = a * array(i, j) + b;
+      img[k++] = (uint8_t)(v * 255.f);
+    }
+
+  return img;
+}
+
 std::vector<uint8_t> colorize_trivariate(const Array &c0,
                                          const Array &c1,
                                          const Array &c2,
