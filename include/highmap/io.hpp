@@ -39,10 +39,20 @@ std::vector<uint8_t> colorize(const Array &array,
  * [0, 255]).
  *
  * @param array Input array.
+ * @param step Steps for i and j indices, to take every "step" data.
  * @return std::vector<uint8_t> Vector containing colors (size : shape[0] *
  * shape[1] * 1 channel).
  */
-std::vector<uint8_t> colorize_grayscale(const Array &array);
+
+/**
+ * @brief
+ *
+ * @param array
+ * @param step
+ * @return std::vector<uint8_t>
+ */
+std::vector<uint8_t> colorize_grayscale(const Array     &array,
+                                        std::vector<int> step = {1, 1});
 
 /**
  * @brief Convert 3 array element values to a color data (3 channels RGB in [0,

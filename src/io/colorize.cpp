@@ -182,7 +182,8 @@ std::vector<uint8_t> colorize(const hmap::Array &array,
   return img;
 }
 
-std::vector<uint8_t> colorize_grayscale(const Array &array)
+std::vector<uint8_t> colorize_grayscale(const Array     &array,
+                                        std::vector<int> step)
 {
   // create image
   std::vector<uint8_t> img(array.shape[0] * array.shape[1]);
@@ -201,8 +202,8 @@ std::vector<uint8_t> colorize_grayscale(const Array &array)
 
   int k = 0;
 
-  for (int j = array.shape[1] - 1; j > -1; j--)
-    for (int i = 0; i < array.shape[0]; i++)
+  for (int j = array.shape[1] - 1; j > -1; j -= step[1])
+    for (int i = 0; i < array.shape[0]; i += step[0])
     {
       float v = a * array(i, j) + b;
       img[k++] = (uint8_t)(v * 255.f);
