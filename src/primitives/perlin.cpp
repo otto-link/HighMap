@@ -21,8 +21,8 @@ Array perlin(std::vector<int>   shape,
     {
       float ki = kw[0] / (float)shape[0];
       float kj = kw[1] / (float)shape[1];
-      array(i, j) = noise.GetNoise(ki * (float)i + shift[0],
-                                   kj * (float)j + shift[1]);
+      array(i, j) = noise.GetNoise(ki * ((float)i + shift[0]),
+                                   kj * ((float)j + shift[1]));
     }
   return array;
 }
@@ -43,8 +43,8 @@ Array perlin_billow(std::vector<int>   shape,
     {
       float ki = kw[0] / (float)shape[0];
       float kj = kw[1] / (float)shape[1];
-      array(i, j) = 2.f * std::abs(noise.GetNoise(ki * (float)i + shift[0],
-                                                  kj * (float)j + shift[1])) -
+      array(i, j) = 2.f * std::abs(noise.GetNoise(ki * ((float)i + shift[0]),
+                                                  kj * ((float)j + shift[1]))) -
                     1.f;
     }
   return array;
@@ -66,8 +66,8 @@ Array perlin_mix(std::vector<int>   shape,
     {
       float ki = kw[0] / (float)shape[0];
       float kj = kw[1] / (float)shape[1];
-      float value = noise.GetNoise(ki * (float)i + shift[0],
-                                   kj * (float)j + shift[1]);
+      float value = noise.GetNoise(ki * ((float)i + shift[0]),
+                                   kj * ((float)j + shift[1]));
 
       array(i, j) = 0.5f * value + std::abs(value) - 0.5f;
     }
