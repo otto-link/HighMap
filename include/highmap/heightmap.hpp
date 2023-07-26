@@ -47,11 +47,17 @@ public:
   std::vector<Tile>  tiles = {};
   std::vector<int>   shape_tile = {};
 
-  HeightMap(std::vector<int> shape, std::vector<float> bbox);
+  HeightMap(std::vector<int>   shape,
+            std::vector<float> bbox,
+            std::vector<int>   tiling);
 
-  HeightMap(std::vector<int> shape, std::vector<int> tiling);
+  HeightMap(std::vector<int> shape, std::vector<float> bbox); /// @overload
 
-  HeightMap(std::vector<int> shape); // @overload
+  HeightMap(std::vector<int> shape, std::vector<int> tiling); /// @overload
+
+  HeightMap(std::vector<int> shape); /// @overload
+
+  HeightMap(); /// @overload
 
   //----------------------------------------
   // accessors
@@ -61,9 +67,28 @@ public:
   // methods
   //----------------------------------------
 
+  /**
+   * @brief Get the number of tiles
+   *
+   * @return size_t Number of tiles.
+   */
   size_t get_ntiles();
 
+  /**
+   * @brief Get the tile linear index.
+   *
+   * @param i Tile i index.
+   * @param j Tile j index
+   * @return int Linear index.
+   */
   int get_tile_index(int i, int j);
+
+  /**
+   * @brief Set the array shape.
+   *
+   * @param new_shape New shape.
+   */
+  void set_shape(std::vector<int> new_shape);
 
   /**
    * @brief Print some informations about the object.
@@ -93,10 +118,20 @@ public:
    */
   void remap(float vmin = 0.f, float vmax = 1.f);
 
-  Array to_array();
+  /**
+   * @brief Return the heightmap as an array.
+   *
+   * @param shape_export Array shape.
+   * @return Array Resulting array.
+   */
+  Array to_array(std::vector<int> shape_export);
 
-  Array to_array(std::vector<int> shape_export); // @overload
+  Array to_array(); // @overload
 
+  /**
+   * @brief Update tile parameters.
+   *
+   */
   void update_tile_parameters();
 
 private:
@@ -124,6 +159,6 @@ void transform(HeightMap                            &h1,
 void transform(HeightMap                            &h1,
                HeightMap                            &h2,
                HeightMap                            &h3,
-               std::function<void(Array &, Array &)> binary_op);
+               std::function<void(Array &, Array &, Array &)> ternary_op);
 
 } // namespace hmap

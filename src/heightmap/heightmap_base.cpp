@@ -6,7 +6,10 @@
 namespace hmap
 {
 
-HeightMap::HeightMap(std::vector<int> shape) : shape(shape)
+HeightMap::HeightMap(std::vector<int>   shape,
+                     std::vector<float> bbox,
+                     std::vector<int>   tiling)
+    : shape(shape), bbox(bbox), tiling(tiling)
 {
   this->update_tile_parameters();
 }
@@ -23,6 +26,16 @@ HeightMap::HeightMap(std::vector<int> shape, std::vector<float> bbox)
   this->update_tile_parameters();
 }
 
+HeightMap::HeightMap(std::vector<int> shape) : shape(shape)
+{
+  this->update_tile_parameters();
+}
+
+HeightMap::HeightMap() : shape({0, 0})
+{
+  this->update_tile_parameters();
+}
+  
 size_t HeightMap::get_ntiles()
 {
   return this->tiles.size();
@@ -33,6 +46,12 @@ int HeightMap::get_tile_index(int i, int j)
   return i + j * this->tiling[0];
 }
 
+void HeightMap::set_shape(std::vector<int> new_shape)
+{
+  this->shape = new_shape;
+  this->update_tile_parameters();
+}
+  
 void HeightMap::infos()
 {
   std::cout << "Heightmap, ";
