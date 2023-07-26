@@ -35,7 +35,7 @@ HeightMap::HeightMap() : shape({0, 0})
 {
   this->update_tile_parameters();
 }
-  
+
 size_t HeightMap::get_ntiles()
 {
   return this->tiles.size();
@@ -51,7 +51,13 @@ void HeightMap::set_shape(std::vector<int> new_shape)
   this->shape = new_shape;
   this->update_tile_parameters();
 }
-  
+
+void HeightMap::set_tiling(std::vector<int> new_tiling)
+{
+  this->tiling = new_tiling;
+  this->update_tile_parameters();
+}
+
 void HeightMap::infos()
 {
   std::cout << "Heightmap, ";

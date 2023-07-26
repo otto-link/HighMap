@@ -84,11 +84,18 @@ public:
   int get_tile_index(int i, int j);
 
   /**
-   * @brief Set the array shape.
+   * @brief Set the heightmap shape.
    *
    * @param new_shape New shape.
    */
   void set_shape(std::vector<int> new_shape);
+
+  /**
+   * @brief Set the tiling setup.
+   *
+   * @param new_tiling New tiling.
+   */
+  void set_tiling(std::vector<int> new_tiling);
 
   /**
    * @brief Print some informations about the object.
@@ -156,9 +163,9 @@ void transform(HeightMap                            &h1,
                HeightMap                            &h2,
                std::function<void(Array &, Array &)> binary_op);
 
-void transform(HeightMap                            &h1,
-               HeightMap                            &h2,
-               HeightMap                            &h3,
+void transform(HeightMap                                     &h1,
+               HeightMap                                     &h2,
+               HeightMap                                     &h3,
                std::function<void(Array &, Array &, Array &)> ternary_op);
 
 } // namespace hmap
