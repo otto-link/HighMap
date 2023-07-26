@@ -17,7 +17,7 @@ int main(void)
 
   hmap::remap(noise);
 
-  hmap::Array z = hmap::peak(shape, radius, noise, noise_r_amp, noise_z_ratio);
+  hmap::Array z = hmap::peak(shape, radius, &noise, noise_r_amp, noise_z_ratio);
 
   z.to_png("ex_peak.png", hmap::cmap::terrain, true);
 }

@@ -42,6 +42,7 @@ public:
   std::vector<int>   shape;
   std::vector<float> bbox = {0.f, 1.f, 0.f, 1.f};
   std::vector<int>   tiling = {1, 1};
+  std::vector<float> tile_scale = {1.f, 1.f};
   int                ntiles;
   std::vector<Tile>  tiles = {};
   std::vector<int>   shape_tile = {};
@@ -68,10 +69,20 @@ public:
    * @brief Print some informations about the object.
    *
    */
-  void infos() const;
+  void infos();
 
+  /**
+   * @brief Return the value of the smallest element in the heightmap data.
+   *
+   * @return float
+   */
   float min();
 
+  /**
+   * @brief Return the value of the greatest element in the heightmap data.
+   *
+   * @return float
+   */
   float max();
 
   /**
@@ -82,15 +93,6 @@ public:
    */
   void remap(float vmin = 0.f, float vmax = 1.f);
 
-  /**
-   * @brief Rescale a pair of wavenumbers according to the heightmap tiling
-   * configuration.
-   *
-   * @param kw Global wavenumbers (for the whole heightmap)
-   * @return std::vector<float> Wavenumbers for the tile.
-   */
-  std::vector<float> rescale_kw(std::vector<float> kw);
-
   Array to_array();
 
   Array to_array(std::vector<int> shape_export); // @overload
@@ -99,6 +101,12 @@ public:
 
 private:
 };
+
+void fill(
+    HeightMap &h,
+    HeightMap &noise,
+    std::function<Array(std::vector<int>, std::vector<float>, Array *p_noise)>
+        nullary_op); // shape and shift and noise
 
 void fill(HeightMap &h,
           std::function<Array(std::vector<int>, std::vector<float>)>

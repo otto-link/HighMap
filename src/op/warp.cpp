@@ -53,6 +53,7 @@ void warp_fbm(Array             &array,
                         weight,
                         persistence,
                         lacunarity,
+                        nullptr,
                         shift);
   Array dy = fbm_perlin(array.shape,
                         kw,
@@ -61,6 +62,7 @@ void warp_fbm(Array             &array,
                         weight,
                         persistence,
                         lacunarity,
+                        nullptr,
                         shift);
   remap(dx, -scale, scale);
   remap(dy, -scale, scale);

@@ -31,7 +31,7 @@ int main(void)
                                  sigma_inner,
                                  sigma_outer,
                                  z_bottom,
-                                 noise,
+                                 &noise,
                                  noise_r_amp,
                                  noise_z_ratio);
 
