@@ -14,32 +14,49 @@ Array caldera(std::vector<int>   shape,
               float              sigma_inner,
               float              sigma_outer,
               float              z_bottom,
-              Array             &noise,
+              Array             *p_noise,
               float              noise_r_amp,
               float              noise_z_ratio,
-              std::vector<float> shift)
+              std::vector<float> shift,
+              std::vector<float> scale)
 {
   Array z = Array(shape);
-  int   ic = (int)((0.5f - shift[0]) * z.shape[0]);
-  int   jc = (int)((0.5f - shift[1]) * z.shape[1]);
+  int   ic = (int)((0.5f - shift[0]) / scale[0] * z.shape[0]);
+  int   jc = (int)((0.5f - shift[1]) / scale[1] * z.shape[1]);
 
   float si2 = sigma_inner * sigma_inner;
   float so2 = sigma_outer * sigma_outer;
 
-  for (int i = 0; i < z.shape[0]; i++)
-    for (int j = 0; j < z.shape[1]; j++)
-    {
-      float r = std::hypot((float)(i - ic), (float)(j - jc)) - radius;
+  if (p_noise)
+  {
+    for (int i = 0; i < z.shape[0]; i++)
+      for (int j = 0; j < z.shape[1]; j++)
+      {
+        float r = std::hypot((float)(i - ic), (float)(j - jc)) - radius;
 
-      r += noise_r_amp * (2 * noise(i, j) - 1);
+        r += noise_r_amp * (2 * (*p_noise)(i, j) - 1);
 
-      if (r < 0.f)
-        z(i, j) = z_bottom + std::exp(-0.5f * r * r / si2) * (1 - z_bottom);
-      else
-        z(i, j) = 1 / (1 + r * r / so2);
+        if (r < 0.f)
+          z(i, j) = z_bottom + std::exp(-0.5f * r * r / si2) * (1 - z_bottom);
+        else
+          z(i, j) = 1 / (1 + r * r / so2);
 
-      z(i, j) *= 1.f + noise_z_ratio * (2.f * noise(i, j) - 1.f);
-    }
+        z(i, j) *= 1.f + noise_z_ratio * (2.f * (*p_noise)(i, j) - 1.f);
+      }
+  }
+  else
+  {
+    for (int i = 0; i < z.shape[0]; i++)
+      for (int j = 0; j < z.shape[1]; j++)
+      {
+        float r = std::hypot((float)(i - ic), (float)(j - jc)) - radius;
+
+        if (r < 0.f)
+          z(i, j) = z_bottom + std::exp(-0.5f * r * r / si2) * (1 - z_bottom);
+        else
+          z(i, j) = 1 / (1 + r * r / so2);
+      }
+  }
 
   return z;
 }
@@ -49,7 +66,8 @@ Array caldera(std::vector<int>   shape,
               float              sigma_inner,
               float              sigma_outer,
               float              z_bottom,
-              std::vector<float> shift)
+              std::vector<float> shift,
+              std::vector<float> scale)
 {
   Array noise = constant(shape, 0.f);
   Array z = caldera(shape,
@@ -57,10 +75,11 @@ Array caldera(std::vector<int>   shape,
                     sigma_inner,
                     sigma_outer,
                     z_bottom,
-                    noise,
+                    nullptr,
                     0.f,
                     0.f,
-                    shift);
+                    shift,
+                    scale);
   return z;
 }
 
@@ -69,49 +88,85 @@ Array crater(std::vector<int>   shape,
              float              depth,
              float              lip_decay,
              float              lip_height_ratio,
-             std::vector<float> shift)
+             Array             *p_noise,
+             std::vector<float> shift,
+             std::vector<float> scale)
 {
   Array z = Array(shape);
-  int   ic = (int)((0.5f - shift[0]) * z.shape[0]);
-  int   jc = (int)((0.5f - shift[1]) * z.shape[1]);
+  int   ic = (int)((0.5f - shift[0]) / scale[0] * z.shape[0]);
+  int   jc = (int)((0.5f - shift[1]) / scale[1] * z.shape[1]);
 
-  for (int i = 0; i < z.shape[0]; i++)
-    for (int j = 0; j < z.shape[1]; j++)
-    {
-      float r = std::hypot((float)(i - ic), (float)(j - jc));
+  if (!p_noise)
+  {
+    for (int i = 0; i < z.shape[0]; i++)
+      for (int j = 0; j < z.shape[1]; j++)
+      {
+        float r = std::hypot((float)(i - ic), (float)(j - jc));
 
-      z(i, j) = std::min(r * r / (radius * radius),
-                         1.f + lip_height_ratio *
-                                   std::exp(-(r - radius) / lip_decay));
-      z(i, j) -= 1.f;
-      z(i, j) *= depth;
-    }
+        z(i, j) = std::min(r * r / (radius * radius),
+                           1.f + lip_height_ratio *
+                                     std::exp(-(r - radius) / lip_decay));
+        z(i, j) -= 1.f;
+        z(i, j) *= depth;
+      }
+  }
+  else
+  {
+    for (int i = 0; i < z.shape[0]; i++)
+      for (int j = 0; j < z.shape[1]; j++)
+      {
+        float r = std::hypot((float)(i - ic), (float)(j - jc));
+        r += (*p_noise)(i, j) *
+             std::min(shape[0] / scale[0], shape[1] / scale[1]);
+
+        z(i, j) = std::min(r * r / (radius * radius),
+                           1.f + lip_height_ratio *
+                                     std::exp(-(r - radius) / lip_decay));
+        z(i, j) -= 1.f;
+        z(i, j) *= depth;
+      }
+  }
 
   return z;
 }
 
 Array peak(std::vector<int>   shape,
            float              radius,
-           Array             &noise,
+           Array             *p_noise,
            float              noise_r_amp,
            float              noise_z_ratio,
-           std::vector<float> shift)
+           std::vector<float> shift,
+           std::vector<float> scale)
 {
   Array z = Array(shape);
-  int   ic = (int)((0.5f - shift[0]) * z.shape[0]);
-  int   jc = (int)((0.5f - shift[1]) * z.shape[1]);
+  int   ic = (int)((0.5f - shift[0]) / scale[0] * z.shape[0]);
+  int   jc = (int)((0.5f - shift[1]) / scale[1] * z.shape[1]);
 
-  for (int i = 0; i < z.shape[0]; i++)
-    for (int j = 0; j < z.shape[1]; j++)
-    {
-      float r = std::hypot((float)(i - ic), (float)(j - jc)) / radius;
-      r += r * noise_r_amp / radius * (2 * noise(i, j) - 1);
+  if (!p_noise)
+  {
+    for (int i = 0; i < z.shape[0]; i++)
+      for (int j = 0; j < z.shape[1]; j++)
+      {
+        float r = std::hypot((float)(i - ic), (float)(j - jc)) / radius;
 
-      if (r < 1.f)
-        z(i, j) = 1.f - r * r * (3.f - 2.f * r);
+        if (r < 1.f)
+          z(i, j) = 1.f - r * r * (3.f - 2.f * r);
+      }
+  }
+  else
+  {
+    for (int i = 0; i < z.shape[0]; i++)
+      for (int j = 0; j < z.shape[1]; j++)
+      {
+        float r = std::hypot((float)(i - ic), (float)(j - jc)) / radius;
+        r += r * noise_r_amp / radius * (2 * (*p_noise)(i, j) - 1);
 
-      z(i, j) *= 1.f + noise_z_ratio * (2.f * noise(i, j) - 1.f);
-    }
+        if (r < 1.f)
+          z(i, j) = 1.f - r * r * (3.f - 2.f * r);
+
+        z(i, j) *= 1.f + noise_z_ratio * (2.f * (*p_noise)(i, j) - 1.f);
+      }
+  }
 
   return z;
 }

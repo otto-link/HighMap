@@ -37,7 +37,9 @@ Array fbm_perlin(std::vector<int>   shape,
                  float              weight,
                  float              persistence,
                  float              lacunarity,
-                 std::vector<float> shift)
+                 Array             *p_noise,
+                 std::vector<float> shift,
+                 std::vector<float> scale)
 {
   Array         array = Array(shape);
   FastNoiseLite noise(seed);
@@ -50,13 +52,24 @@ Array fbm_perlin(std::vector<int>   shape,
   noise.SetFractalType(FastNoiseLite::FractalType_FBm);
   noise.SetFractalWeightedStrength(weight);
 
-  float ki = kw[0] / (float)shape[0];
-  float kj = kw[1] / (float)shape[1];
+  float ki = kw[0] / (float)shape[0] * scale[0];
+  float kj = kw[1] / (float)shape[1] * scale[1];
 
-  for (int i = 0; i < array.shape[0]; i++)
-    for (int j = 0; j < array.shape[1]; j++)
-      array(i, j) = noise.GetNoise(ki * (float)i + shift[0],
-                                   kj * (float)j + shift[1]);
+  if (!p_noise)
+  {
+    for (int i = 0; i < array.shape[0]; i++)
+      for (int j = 0; j < array.shape[1]; j++)
+        array(i, j) = noise.GetNoise(ki * (float)i + kw[0] * shift[0],
+                                     kj * (float)j + kw[1] * shift[1]);
+  }
+  else
+  {
+    for (int i = 0; i < array.shape[0]; i++)
+      for (int j = 0; j < array.shape[1]; j++)
+        array(i, j) = noise.GetNoise(ki * (float)i + kw[0] * shift[0] +
+                                         (*p_noise)(i, j),
+                                     kj * (float)j + kw[1] * shift[1]);
+  }
 
   return array;
 }
@@ -117,7 +130,9 @@ Array fbm_worley(std::vector<int>   shape,
                  float              weight,
                  float              persistence,
                  float              lacunarity,
-                 std::vector<float> shift)
+                 Array             *p_noise,
+                 std::vector<float> shift,
+                 std::vector<float> scale)
 {
   Array         array = Array(shape);
   FastNoiseLite noise(seed);
@@ -131,14 +146,24 @@ Array fbm_worley(std::vector<int>   shape,
   noise.SetFractalType(FastNoiseLite::FractalType_FBm);
   noise.SetFractalWeightedStrength(weight);
 
-  for (int i = 0; i < array.shape[0]; i++)
-    for (int j = 0; j < array.shape[1]; j++)
-    {
-      float ki = kw[0] / (float)shape[0];
-      float kj = kw[1] / (float)shape[1];
-      array(i, j) = noise.GetNoise(ki * (float)i + shift[0],
-                                   kj * (float)j + shift[1]);
-    }
+  float ki = kw[0] / (float)shape[0] * scale[0];
+  float kj = kw[1] / (float)shape[1] * scale[1];
+
+  if (!p_noise)
+  {
+    for (int i = 0; i < array.shape[0]; i++)
+      for (int j = 0; j < array.shape[1]; j++)
+        array(i, j) = noise.GetNoise(ki * (float)i + kw[0] * shift[0],
+                                     kj * (float)j + kw[1] * shift[1]);
+  }
+  else
+  {
+    for (int i = 0; i < array.shape[0]; i++)
+      for (int j = 0; j < array.shape[1]; j++)
+        array(i, j) = noise.GetNoise(ki * (float)i + kw[0] * shift[0] +
+                                         (*p_noise)(i, j),
+                                     kj * (float)j + kw[1] * shift[1]);
+  }
   return array;
 }
 
@@ -166,7 +191,8 @@ Array hybrid_fbm_perlin(std::vector<int>   shape,
   {
     float ck = std::pow(lacunarity, k);
     float ak = std::pow(persistence, k);
-    Array noise = perlin(shape, {ck * kw[0], ck * kw[1]}, seed++, shift);
+    Array noise =
+        perlin(shape, {ck * kw[0], ck * kw[1]}, seed++, nullptr, shift);
     noise += offset;
     noise *= ak;
     weight *= noise;
@@ -185,7 +211,8 @@ Array multifractal_perlin(std::vector<int>   shape,
                           float              persistence,
                           float              lacunarity,
                           float              offset,
-                          std::vector<float> shift)
+                          std::vector<float> shift,
+                          std::vector<float> scale)
 {
   Array array = constant(shape, 1.f);
   for (int k = 0; k < octaves; k++)
@@ -193,7 +220,9 @@ Array multifractal_perlin(std::vector<int>   shape,
     // pretty much the same as fBm but with a product instead of a
     // sum...
     float ck = std::pow(lacunarity, k);
-    Array noise = offset + perlin(shape, {ck * kw[0], ck * kw[1]}, seed, shift);
+    Array noise =
+        offset +
+        perlin(shape, {ck * kw[0], ck * kw[1]}, seed, nullptr, shift, scale);
     array = array * std::pow(persistence, k) * noise;
   }
   return array;
@@ -206,7 +235,9 @@ Array pingpong_perlin(std::vector<int>   shape,
                       float              weight,
                       float              persistence,
                       float              lacunarity,
-                      std::vector<float> shift)
+                      Array             *p_noise,
+                      std::vector<float> shift,
+                      std::vector<float> scale)
 {
   Array         array = Array(shape);
   FastNoiseLite noise(seed);
@@ -219,15 +250,24 @@ Array pingpong_perlin(std::vector<int>   shape,
   noise.SetFractalType(FastNoiseLite::FractalType_PingPong);
   noise.SetFractalWeightedStrength(weight);
 
-  for (int i = 0; i < array.shape[0]; i++)
-    for (int j = 0; j < array.shape[1]; j++)
-    {
-      float ki = kw[0] / (float)shape[0];
-      float kj = kw[1] / (float)shape[1];
-      float v = noise.GetNoise(ki * (float)i + shift[0],
-                               kj * (float)j + shift[1]);
-      array(i, j) = v;
-    }
+  float ki = kw[0] / (float)shape[0] * scale[0];
+  float kj = kw[1] / (float)shape[1] * scale[1];
+
+  if (!p_noise)
+  {
+    for (int i = 0; i < array.shape[0]; i++)
+      for (int j = 0; j < array.shape[1]; j++)
+        array(i, j) = noise.GetNoise(ki * (float)i + kw[0] * shift[0],
+                                     kj * (float)j + kw[1] * shift[1]);
+  }
+  else
+  {
+    for (int i = 0; i < array.shape[0]; i++)
+      for (int j = 0; j < array.shape[1]; j++)
+        array(i, j) = noise.GetNoise(ki * (float)i + kw[0] * shift[0] +
+                                         (*p_noise)(i, j),
+                                     kj * (float)j + kw[1] * shift[1]);
+  }
   return array;
 }
 
@@ -238,7 +278,9 @@ Array ridged_perlin(std::vector<int>   shape,
                     float              weight,
                     float              persistence,
                     float              lacunarity,
-                    std::vector<float> shift)
+                    Array             *p_noise,
+                    std::vector<float> shift,
+                    std::vector<float> scale)
 {
   Array         array = Array(shape);
   FastNoiseLite noise(seed);
@@ -251,14 +293,24 @@ Array ridged_perlin(std::vector<int>   shape,
   noise.SetFractalType(FastNoiseLite::FractalType_Ridged);
   noise.SetFractalWeightedStrength(weight);
 
-  for (int i = 0; i < array.shape[0]; i++)
-    for (int j = 0; j < array.shape[1]; j++)
-    {
-      float ki = kw[0] / (float)shape[0];
-      float kj = kw[1] / (float)shape[1];
-      array(i, j) = noise.GetNoise(ki * (float)i + shift[0],
-                                   kj * (float)j + shift[1]);
-    }
+  float ki = kw[0] / (float)shape[0] * scale[0];
+  float kj = kw[1] / (float)shape[1] * scale[1];
+
+  if (!p_noise)
+  {
+    for (int i = 0; i < array.shape[0]; i++)
+      for (int j = 0; j < array.shape[1]; j++)
+        array(i, j) = noise.GetNoise(ki * (float)i + kw[0] * shift[0],
+                                     kj * (float)j + kw[1] * shift[1]);
+  }
+  else
+  {
+    for (int i = 0; i < array.shape[0]; i++)
+      for (int j = 0; j < array.shape[1]; j++)
+        array(i, j) = noise.GetNoise(ki * (float)i + kw[0] * shift[0] +
+                                         (*p_noise)(i, j),
+                                     kj * (float)j + kw[1] * shift[1]);
+  }
   return array;
 }
 

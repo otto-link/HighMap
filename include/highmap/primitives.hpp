@@ -51,11 +51,12 @@ Array bump_field(std::vector<int> shape,
  * @param sigma_inner Inner half-width.
  * @param sigma_outer Outer half-width.
  * @param z_bottom Bottom elevation (ridge is at elevation `1`).
- * @param noise Displacement noise.
+ * @param p_noise Displacement noise.
  * @param noise_amp_r Radial noise absolute scale (in pixels).
  * @param noise_ratio_z Vertical noise relative scale (in [0, 1]).
  * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
  * domain.
+ * @param scale Domain scaling, in [0, 1].
  * @return Array Resulting array.
  *
  * **Example**
@@ -69,17 +70,19 @@ Array caldera(std::vector<int>   shape,
               float              sigma_inner,
               float              sigma_outer,
               float              z_bottom,
-              Array             &noise,
+              Array             *p_noise,
               float              noise_amp_r,
               float              noise_ratio_z,
-              std::vector<float> shift = {0.f, 0.f});
+              std::vector<float> shift = {0.f, 0.f},
+              std::vector<float> scale = {1.f, 1.f});
 
 Array caldera(std::vector<int>   shape,
               float              radius,
               float              sigma_inner,
               float              sigma_outer,
               float              z_bottom,
-              std::vector<float> shift = {0.f, 0.f}); ///< @overload
+              std::vector<float> shift = {0.f, 0.f},
+              std::vector<float> scale = {1.f, 1.f}); ///< @overload
 
 /**
  * @brief Return a cone.
@@ -127,7 +130,9 @@ Array constant(std::vector<int> shape, float value = 0.f);
  * @param lip_decay Ejecta lip decay.
  * @param lip_height_ratio Controls the ejecta lip relative height, in [0, 1].
  * @param depth Crater depth.
+ * @param p_noise Displacement noise.
  * @param shift Shift {xs, ys} for each directions.
+ * @param scale Domain scaling, in [0, 1].
  * @return Array New array.
  *
  * **Example**
@@ -141,7 +146,9 @@ Array crater(std::vector<int>   shape,
              float              depth,
              float              lip_decay,
              float              lip_height_ratio = 0.5f,
-             std::vector<float> shift = {0.f, 0.f});
+             Array             *p_noise = nullptr,
+             std::vector<float> shift = {0.f, 0.f},
+             std::vector<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return a cubic pulse kernel.
@@ -177,8 +184,11 @@ Array disk(std::vector<int> shape);
  * close to 0 for a smooth noise, and close 1 for a rougher noise texture.
  * @param lacunarity Defines the wavenumber ratio between each octaves.
  * @param weigth Octave weighting.
+ * @param p_noise Reference to the input noise array used for domain warping
+ * (NOT in pixels, with respect to a unit domain).
  * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
  * domain.
+ * @param scale Domain scaling, in [0, 1].
  * @return Array Fractal noise.
  *
  * **Example**
@@ -194,7 +204,9 @@ Array fbm_perlin(std::vector<int>   shape,
                  float              weight = 0.7f,
                  float              persistence = 0.5f,
                  float              lacunarity = 2.f,
-                 std::vector<float> shift = {0.f, 0.f});
+                 Array             *p_noise = nullptr,
+                 std::vector<float> shift = {0.f, 0.f},
+                 std::vector<float> scale = {1.f, 1.f});
 
 Array fbm_perlin_advanced(std::vector<int>   shape,
                           std::vector<float> kw,
@@ -223,8 +235,11 @@ Array fbm_perlin_advanced(std::vector<int>   shape,
  * close to 0 for a smooth noise, and close 1 for a rougher noise texture.
  * @param lacunarity Defines the wavenumber ratio between each octaves.
  * @param weigth Octave weighting.
+ * @param p_noise Reference to the input noise array used for domain warping
+ * (NOT in pixels, with respect to a unit domain).
  * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
  * domain.
+ * @param scale Domain scaling, in [0, 1].
  * @return Array Fractal noise.
  */
 Array fbm_worley(std::vector<int>   shape,
@@ -234,7 +249,9 @@ Array fbm_worley(std::vector<int>   shape,
                  float              weight = 0.7f,
                  float              persistence = 0.5f,
                  float              lacunarity = 2.f,
-                 std::vector<float> shift = {0.f, 0.f});
+                 Array             *p_noise = nullptr,
+                 std::vector<float> shift = {0.f, 0.f},
+                 std::vector<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return a Gabor kernel of a given shape.
@@ -299,7 +316,8 @@ Array gabor_noise(std::vector<int> shape,
 Array gaussian_pulse(std::vector<int>   shape,
                      float              sigma,
                      Array             *p_noise = nullptr,
-                     std::vector<float> shift = {0.f, 0.f});
+                     std::vector<float> shift = {0.f, 0.f},
+                     std::vector<float> scale = {1.f, 1.f});
 
 /**
  * @param shape Array shape.
@@ -350,6 +368,7 @@ Array hybrid_fbm_perlin(std::vector<int>   shape,
  * @param seed Random seed number.
  * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
  * domain.
+ * @param scale Domain scaling, in [0, 1].
  * @return Array
  *
  * **Example**
@@ -367,18 +386,21 @@ Array multifractal_perlin(std::vector<int>   shape,
                           float              persistence = 0.5f,
                           float              lacunarity = 2.f,
                           float              offset = 1.f,
-                          std::vector<float> shift = {0, 0});
+                          std::vector<float> shift = {0.f, 0.f},
+                          std::vector<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return a peak-shaped heightmap.
  *
  * @param shape Array shape.
  * @param radius Peak outer radius.
- * @param noise Displacement noise.
+ * @param p_noise Reference to the input noise array used for domain warping
+ * (NOT in pixels, with respect to a unit domain).
  * @param noise_amp_r Radial noise absolute scale (in pixels).
  * @param noise_ratio_z Vertical noise relative scale (in [0, 1]).
  * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
  * domain.
+ * @param scale Domain scaling, in [0, 1].
  * @return Array Resulting array.
  *
  * **Example**
@@ -389,10 +411,11 @@ Array multifractal_perlin(std::vector<int>   shape,
  */
 Array peak(std::vector<int>   shape,
            float              radius,
-           Array             &noise,
+           Array             *p_noise,
            float              noise_r_amp,
            float              noise_z_ratio,
-           std::vector<float> shift = {0, 0});
+           std::vector<float> shift = {0.f, 0.f},
+           std::vector<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return an array filled with Perlin noise.
@@ -406,8 +429,11 @@ Array peak(std::vector<int>   shape,
  * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
  * a unit domain.
  * @param seed Random seed number.
+ * @param p_noise Reference to the input noise array used for domain warping
+ * (NOT in pixels, with respect to a unit domain).
  * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
  * domain.
+ * @param scale Domain scaling, in [0, 1].
  * @return Array Perlin noise.
  *
  * **Example**
@@ -421,7 +447,9 @@ Array peak(std::vector<int>   shape,
 Array perlin(std::vector<int>   shape,
              std::vector<float> kw,
              uint               seed,
-             std::vector<float> shift = {0, 0});
+             Array             *p_noise = nullptr,
+             std::vector<float> shift = {0.f, 0.f},
+             std::vector<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return an array filled with Perlin "billow" noise.
@@ -430,8 +458,11 @@ Array perlin(std::vector<int>   shape,
  * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
  * a unit domain.
  * @param seed Random seed number.
+ * @param p_noise Reference to the input noise array used for domain warping
+ * (NOT in pixels, with respect to a unit domain).
  * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
  * domain.
+ * @param scale Domain scaling, in [0, 1].
  * @return Array Perlin billow noise.
  *
  * **Example**
@@ -444,12 +475,30 @@ Array perlin(std::vector<int>   shape,
 Array perlin_billow(std::vector<int>   shape,
                     std::vector<float> kw,
                     uint               seed,
-                    std::vector<float> shift = {0, 0});
+                    Array             *p_noise = nullptr,
+                    std::vector<float> shift = {0.f, 0.f},
+                    std::vector<float> scale = {1.f, 1.f});
 
+/**
+ * @brief Return an array filled with "mix" Perlin noise.
+ *
+ * @param shape Array shape.
+ * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
+ * a unit domain.
+ * @param seed Random seed number.
+ * @param p_noise Reference to the input noise array used for domain warping
+ * (NOT in pixels, with respect to a unit domain).
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
+ * domain.
+ * @param scale Domain scaling, in [0, 1].
+ * @return Array Perlin billow noise.
+ */
 Array perlin_mix(std::vector<int>   shape,
                  std::vector<float> kw,
                  uint               seed,
-                 std::vector<float> shift = {0, 0});
+                 Array             *p_noise = nullptr,
+                 std::vector<float> shift = {0.f, 0.f},
+                 std::vector<float> scale = {1.f, 1.f});
 
 Array pingpong_perlin(std::vector<int>   shape,
                       std::vector<float> kw,
@@ -458,7 +507,9 @@ Array pingpong_perlin(std::vector<int>   shape,
                       float              weight = 0.7f,
                       float              persistence = 0.5f,
                       float              lacunarity = 2.f,
-                      std::vector<float> shift = {0, 0});
+                      Array             *p_noise = nullptr,
+                      std::vector<float> shift = {0.f, 0.f},
+                      std::vector<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return an array based on a plane equation.
@@ -505,8 +556,11 @@ Array plane(std::vector<int>   shape,
  * octaves. Increasing the offset allows the rough peaks to rise and the valley
  * areas to lower and become smoother. For offset = 0, the function returns the
  * standard fractal brownian motion noise.
+ * @param p_noise Reference to the input noise array used for domain warping
+ * (NOT in pixels, with respect to a unit domain).
  * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
  * domain.
+ * @param scale Domain scaling, in [0, 1].
  * @return Array Fractal noise.
  *
  * **Example**
@@ -522,7 +576,9 @@ Array ridged_perlin(std::vector<int>   shape,
                     float              weight = 0.7f,
                     float              persistence = 0.5f,
                     float              lacunarity = 2.f,
-                    std::vector<float> shift = {0, 0});
+                    Array             *p_noise = nullptr,
+                    std::vector<float> shift = {0.f, 0.f},
+                    std::vector<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return an array corresponding to a slope in the x direction.
@@ -533,6 +589,7 @@ Array ridged_perlin(std::vector<int>   shape,
  * (NOT in pixels, with respect to a unit domain).
  * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
  * domain.
+ * @param scale Domain scaling, in [0, 1].
  * @return Array New array.
  *
  * **Example**
@@ -544,7 +601,8 @@ Array ridged_perlin(std::vector<int>   shape,
 Array slope_x(std::vector<int>   shape,
               float              talus,
               Array             *p_noise = nullptr,
-              std::vector<float> shift = {0, 0});
+              std::vector<float> shift = {0.f, 0.f},
+              std::vector<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return an array corresponding to a slope in the y direction.
@@ -555,6 +613,7 @@ Array slope_x(std::vector<int>   shape,
  * (NOT in pixels, with respect to a unit domain).
  * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
  * domain.
+ * @param scale Domain scaling, in [0, 1].
  * @return Array New array.
  *
  * **Example**
@@ -566,7 +625,8 @@ Array slope_x(std::vector<int>   shape,
 Array slope_y(std::vector<int>   shape,
               float              talus,
               Array             *p_noise = nullptr,
-              std::vector<float> shift = {0, 0});
+              std::vector<float> shift = {0.f, 0.f},
+              std::vector<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return a smooth cosine kernel.
@@ -586,6 +646,7 @@ Array smooth_cosine(std::vector<int> shape);
  * @param p_noise Reference to the input noise array used for domain warping
  * (NOT in pixels, with respect to a unit domain).
  * @param shift Shift {xs, ys} for each directions.
+ * @param scale Domain scaling, in [0, 1].
  * @return Array New array.
  *
  * **Example**
@@ -598,7 +659,8 @@ Array step(std::vector<int>   shape,
            float              angle,
            float              talus,
            Array             *p_noise = nullptr,
-           std::vector<float> shift = {0.f, 0.f});
+           std::vector<float> shift = {0.f, 0.f},
+           std::vector<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return a tricube kernel.
@@ -624,6 +686,7 @@ Array tricube(std::vector<int> shape);
  * (NOT in pixels, with respect to a unit domain).
  * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
  * domain.
+ * @param scale Domain scaling, in [0, 1].
  * @return Array Value noise.
  *
  * **Example**
@@ -636,7 +699,8 @@ Array value_noise(std::vector<int>   shape,
                   std::vector<float> kw,
                   uint               seed,
                   Array             *p_noise = nullptr,
-                  std::vector<float> shift = {0.f, 0.f});
+                  std::vector<float> shift = {0.f, 0.f},
+                  std::vector<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return an array filled with value noise based on linear interpolation.
@@ -645,8 +709,11 @@ Array value_noise(std::vector<int>   shape,
  * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
  * a unit domain.
  * @param seed Random seed number.
+ * @param p_noise Reference to the input noise array used for domain warping
+ * (NOT in pixels, with respect to a unit domain).
  * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
  * domain.
+ * @param scale Domain scaling, in [0, 1].
  * @return Array Value noise.
  *
  * **Example**
@@ -659,7 +726,8 @@ Array value_noise_linear(std::vector<int>   shape,
                          std::vector<float> kw,
                          uint               seed,
                          Array             *p_noise = nullptr,
-                         std::vector<float> shift = {0.f, 0.f});
+                         std::vector<float> shift = {0.f, 0.f},
+                         std::vector<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return a sine wave.
@@ -670,6 +738,7 @@ Array value_noise_linear(std::vector<int>   shape,
  * @param p_noise Reference to the input noise array used for domain warping
  * (NOT in pixels, with respect to a unit domain).
  * @param shift Shift {xs, ys} for each directions.
+ * @param scale Domain scaling, in [0, 1].
  * @return Array New array.
  *
  * **Example**
@@ -683,7 +752,8 @@ Array wave_sine(std::vector<int>   shape,
                 float              kw,
                 float              angle,
                 Array             *p_noise = nullptr,
-                std::vector<float> shift = {0.f, 0.f});
+                std::vector<float> shift = {0.f, 0.f},
+                std::vector<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return a square wave.
@@ -694,6 +764,7 @@ Array wave_sine(std::vector<int>   shape,
  * @param p_noise Reference to the input noise array used for domain warping
  * (NOT in pixels, with respect to a unit domain).
  * @param shift Shift {xs, ys} for each directions.
+ * @param scale Domain scaling, in [0, 1].
  * @return Array New array.
  *
  * **Example**
@@ -707,7 +778,8 @@ Array wave_square(std::vector<int>   shape,
                   float              kw,
                   float              angle,
                   Array             *p_noise = nullptr,
-                  std::vector<float> shift = {0.f, 0.f});
+                  std::vector<float> shift = {0.f, 0.f},
+                  std::vector<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return a triangular wave.
@@ -719,6 +791,7 @@ Array wave_square(std::vector<int>   shape,
  * @param p_noise Reference to the input noise array used for domain warping
  * (NOT in pixels, with respect to a unit domain).
  * @param shift Shift {xs, ys} for each directions.
+ * @param scale Domain scaling, in [0, 1].
  * @return Array New array.
  *
  * **Example**
@@ -733,7 +806,8 @@ Array wave_triangular(std::vector<int>   shape,
                       float              angle,
                       float              slant_ratio,
                       Array             *p_noise = nullptr,
-                      std::vector<float> shift = {0.f, 0.f});
+                      std::vector<float> shift = {0.f, 0.f},
+                      std::vector<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return an array filled with white noise.
@@ -810,6 +884,7 @@ Array white_sparse(std::vector<int> shape,
  * (NOT in pixels, with respect to a unit domain).
  * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
  * domain.
+ * @param scale Domain scaling, in [0, 1].
  * @return Array Worley noise.
  *
  * **Example**
@@ -822,6 +897,7 @@ Array worley(std::vector<int>   shape,
              std::vector<float> kw,
              uint               seed,
              Array             *p_noise = nullptr,
-             std::vector<float> shift = {0.f, 0.f});
+             std::vector<float> shift = {0.f, 0.f},
+             std::vector<float> scale = {1.f, 1.f});
 
 } // namespace hmap
