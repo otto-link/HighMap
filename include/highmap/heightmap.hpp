@@ -118,12 +118,20 @@ public:
   float max();
 
   /**
-   * @brief Remap heightmap values.
+   * @brief Remap heightmap elements from a starting range to a target range.
    *
+   * By default the starting range is taken to be [min(), max()] of the input
+   * array.
+   *
+   * @param array Input array.
    * @param vmin The lower bound of the range to remap to.
    * @param vmax The lower bound of the range to remap to.
+   * @param from_min The lower bound of the range to remap from.
+   * @param from_max The upper bound of the range to remap from.
    */
   void remap(float vmin = 0.f, float vmax = 1.f);
+
+  void remap(float vmin, float vmax, float from_min, float from_max);
 
   /**
    * @brief Return the heightmap as an array.

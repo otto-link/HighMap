@@ -102,6 +102,13 @@ void HeightMap::remap(float vmin, float vmax)
             { hmap::remap(x, vmin, vmax, hmin, hmax); });
 }
 
+void HeightMap::remap(float vmin, float vmax, float from_min, float from_max)
+{
+  transform(*this,
+            [vmin, vmax, from_min, from_max](Array &x)
+            { hmap::remap(x, vmin, vmax, from_min, from_max); });
+}
+
 Array HeightMap::to_array()
 {
   return this->to_array(this->shape);
