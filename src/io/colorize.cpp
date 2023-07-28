@@ -186,7 +186,7 @@ std::vector<uint8_t> colorize_grayscale(const Array     &array,
                                         std::vector<int> step)
 {
   // create image
-  std::vector<uint8_t> img(array.shape[0] * array.shape[1]);
+  std::vector<uint8_t> img(array.shape[0] * array.shape[1] / step[0] / step[1]);
 
   // normalization factors
   float a = 0.f;
@@ -207,6 +207,49 @@ std::vector<uint8_t> colorize_grayscale(const Array     &array,
     {
       float v = a * array(i, j) + b;
       img[k++] = (uint8_t)(v * 255.f);
+    }
+
+  return img;
+}
+
+std::vector<uint8_t> colorize_histogram(const Array     &array,
+                                        std::vector<int> step)
+{
+  // create image
+  std::vector<uint8_t> img(array.shape[0] * array.shape[1] / step[0] / step[1]);
+
+  // normalization factors
+  float a = 0.f;
+  float b = 0.f;
+  float vmin = array.min();
+  float vmax = array.max();
+
+  if (vmin != vmax)
+  {
+    a = 1.f / (vmax - vmin) * (float)(array.shape[0] / step[0] - 1);
+    b = -vmin / (vmax - vmin) * (float)(array.shape[0] / step[0] - 1);
+  }
+
+  // compute histogram
+  std::vector<int> hist(array.shape[0] / step[0]);
+  for (int i = 0; i < array.shape[0]; i += step[0])
+    for (int j = 0; j < array.shape[1]; j += step[1])
+      hist[(int)(a * array(i, j) + b)] += 1;
+
+  int hmax = *std::max_element(hist.begin(), hist.end());
+  for (auto &v : hist)
+    v = (int)((float)v / (float)hmax * (float)(array.shape[1] / step[1] - 1));
+
+  // create histogram image
+  int k = 0;
+
+  for (int j = array.shape[1] / step[1] - 1; j > -1; j--)
+    for (int i = 0; i < array.shape[0] / step[0]; i++)
+    {
+      if (j < hist[i])
+        img[k++] = 255;
+      else
+        img[k++] = 0;
     }
 
   return img;

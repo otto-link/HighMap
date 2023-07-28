@@ -54,6 +54,9 @@ std::vector<uint8_t> colorize(const Array &array,
 std::vector<uint8_t> colorize_grayscale(const Array     &array,
                                         std::vector<int> step = {1, 1});
 
+std::vector<uint8_t> colorize_histogram(const Array     &array,
+                                        std::vector<int> step = {1, 1});
+
 /**
  * @brief Convert 3 array element values to a color data (3 channels RGB in [0,
  * 255]) use a multivariate colormap.
