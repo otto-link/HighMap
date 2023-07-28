@@ -88,7 +88,7 @@ int main(void)
   //     });
 
   // peak
-  if (true)
+  if (false)
   {
     hmap::fill(h,
                noise,
