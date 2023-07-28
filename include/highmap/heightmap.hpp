@@ -19,15 +19,42 @@ namespace hmap
 class Tile : public Array
 {
 public:
+  /**
+   * @brief Tile shift in each direction, assuming the global domain is a unit
+   * square.
+   *
+   * For example, if the tiling is {4, 2}, the shift of tile {3, 2} is {0.75,
+   * 0.5}.
+   */
   std::vector<float> shift;
+
+  /**
+   * @brief Tile bounding box {xmin, xmax, ymin, ymax}.
+   *
+   */
   std::vector<float> bbox;
 
-  Tile();
-
+  /**
+   * @brief Construct a new Tile object.
+   *
+   * @param shape Shape.
+   * @param shift Shift.
+   */
   Tile(std::vector<int> shape, std::vector<float> shift);
 
+  Tile(); /// @overload
+
+  /**
+   * @brief Assignment overloading (array).
+   *
+   * @param array
+   */
   void operator=(const Array &array);
 
+  /**
+   * @brief Print some informations about the object.
+   *
+   */
   void infos() const;
 };
 
@@ -39,14 +66,57 @@ public:
 class HeightMap
 {
 public:
-  std::vector<int>   shape;
-  std::vector<float> bbox = {0.f, 1.f, 0.f, 1.f};
-  std::vector<int>   tiling = {1, 1};
-  std::vector<float> tile_scale = {1.f, 1.f};
-  int                ntiles;
-  std::vector<Tile>  tiles = {};
-  std::vector<int>   shape_tile = {};
+  /**
+   * @brief Heightmap global shape.
+   *
+   */
+  std::vector<int> shape;
 
+  /**
+   * @brief Heightmap bounding box {xmin, xmax, ymin, ymax}.
+   *
+   */
+  std::vector<float> bbox = {0.f, 1.f, 0.f, 1.f};
+
+  /**
+   * @brief Tiling setup (number of tiles in each direction).
+   *
+   */
+  std::vector<int> tiling = {1, 1};
+
+  /**
+   * @brief Scale of each tile in each direction, assuming the global domain is
+   * a unit square.
+   *
+   * For example, if the tiling is {4, 2}, the scale is {0.25, 0.5}.
+   */
+  std::vector<float> tile_scale = {1.f, 1.f};
+
+  /**
+   * @brief Total number of tiles.
+   *
+   */
+  int ntiles;
+
+  /**
+   * @brief Tile storage.
+   *
+   */
+  std::vector<Tile> tiles = {};
+
+  /**
+   * @brief Shape of individual tile.
+   *
+   */
+  std::vector<int> shape_tile = {};
+
+  /**
+   * @brief Construct a new HeightMap object.
+   *
+   * @param shape Shape.
+   * @param bbox Bounding box.
+   * @param tiling Tiling setup.
+   */
   HeightMap(std::vector<int>   shape,
             std::vector<float> bbox,
             std::vector<int>   tiling);
