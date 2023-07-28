@@ -33,6 +33,15 @@ public:
   std::vector<float> shift;
 
   /**
+   * @brief Scale of the tile in each direction, assuming the global domain is
+   * a unit square.
+   *
+   * For example, if the tiling is {4, 2} without overlap, the scale is {0.25,
+   * 0.5}.
+   */
+  std::vector<float> scale;
+
+  /**
    * @brief Tile bounding box {xmin, xmax, ymin, ymax}.
    *
    */
@@ -44,7 +53,9 @@ public:
    * @param shape Shape.
    * @param shift Shift.
    */
-  Tile(std::vector<int> shape, std::vector<float> shift);
+  Tile(std::vector<int>   shape,
+       std::vector<float> shift,
+       std::vector<float> scale);
 
   Tile(); /// @overload
 
@@ -89,18 +100,10 @@ public:
   std::vector<int> tiling = {1, 1};
 
   /**
-   * @brief Scale of each tile in each direction, assuming the global domain is
-   * a unit square.
-   *
-   * For example, if the tiling is {4, 2}, the scale is {0.25, 0.5}.
-   */
-  std::vector<float> tile_scale = {1.f, 1.f};
-
-  /**
-   * @brief Total number of tiles.
+   * @brief Tile overlapping, in [0, 1[.
    *
    */
-  int ntiles;
+  float overlap = 0.f;
 
   /**
    * @brief Tile storage.
@@ -109,21 +112,25 @@ public:
   std::vector<Tile> tiles = {};
 
   /**
-   * @brief Shape of individual tile.
-   *
-   */
-  std::vector<int> shape_tile = {};
-
-  /**
    * @brief Construct a new HeightMap object.
    *
    * @param shape Shape.
    * @param bbox Bounding box.
    * @param tiling Tiling setup.
+   * @param overlap Tile overlapping.
    */
   HeightMap(std::vector<int>   shape,
             std::vector<float> bbox,
-            std::vector<int>   tiling);
+            std::vector<int>   tiling,
+            float              overlap);
+
+  HeightMap(std::vector<int> shape,
+            std::vector<int> tiling,
+            float            overlap); /// @overload
+
+  HeightMap(std::vector<int>   shape,
+            std::vector<float> bbox,
+            std::vector<int>   tiling); /// @overload
 
   HeightMap(std::vector<int> shape, std::vector<float> bbox); /// @overload
 
@@ -178,18 +185,20 @@ public:
   void infos();
 
   /**
-   * @brief Return the value of the smallest element in the heightmap data.
-   *
-   * @return float
-   */
-  float min();
-
-  /**
    * @brief Return the value of the greatest element in the heightmap data.
    *
    * @return float
    */
   float max();
+
+  void smooth_overlap_buffers();
+
+  /**
+   * @brief Return the value of the smallest element in the heightmap data.
+   *
+   * @return float
+   */
+  float min();
 
   /**
    * @brief Remap heightmap elements from a starting range to a target range.
@@ -226,15 +235,18 @@ public:
 private:
 };
 
-void fill(
-    HeightMap &h,
-    HeightMap &noise,
-    std::function<Array(std::vector<int>, std::vector<float>, Array *p_noise)>
-        nullary_op); // shape and shift and noise
+void fill(HeightMap &h,
+          HeightMap &noise,
+          std::function<Array(std::vector<int>,
+                              std::vector<float>,
+                              std::vector<float>,
+                              Array *p_noise)>
+              nullary_op); // shape, shift, scale and noise
 
 void fill(HeightMap &h,
-          std::function<Array(std::vector<int>, std::vector<float>)>
-              nullary_op); // shape and shift
+          std::function<
+              Array(std::vector<int>, std::vector<float>, std::vector<float>)>
+              nullary_op); // shape, shift and scale
 
 void fill(HeightMap                             &h,
           std::function<Array(std::vector<int>)> nullary_op); // shape only
