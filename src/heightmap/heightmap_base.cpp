@@ -123,6 +123,7 @@ void HeightMap::smooth_overlap_buffers()
           r = r * r * (3.f - 2.f * r);
           int pbuf = tiles[k].shape[0] - 2 * delta_buffer_i + p;
           tiles[kn](p, q) = (1.f - r) * tiles[k](pbuf, q) + r * tiles[kn](p, q);
+          tiles[k](pbuf, q) = tiles[kn](p, q);
         }
     }
 
@@ -140,6 +141,7 @@ void HeightMap::smooth_overlap_buffers()
           r = r * r * (3.f - 2.f * r);
           int qbuf = tiles[k].shape[1] - 2 * delta_buffer_j + q;
           tiles[kn](p, q) = (1.f - r) * tiles[k](p, qbuf) + r * tiles[kn](p, q);
+          tiles[k](p, qbuf) = tiles[kn](p, q);
         }
     }
 }
