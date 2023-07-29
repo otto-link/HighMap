@@ -11,6 +11,34 @@
 namespace hmap
 {
 
+void expand_grid(std::vector<float> &x,
+                 std::vector<float> &y,
+                 std::vector<float> &value,
+                 std::vector<float>  bbox)
+{
+  size_t n = x.size();
+  x.resize(9 * n);
+  y.resize(9 * n);
+  value.resize(9 * n);
+
+  float lx = bbox[1] - bbox[0];
+  float ly = bbox[3] - bbox[2];
+
+  int kshift = 0;
+  for (int i = -1; i < 2; i++)
+    for (int j = -1; j < 2; j++)
+      if ((i != 0) or (j != 0))
+      {
+        kshift++;
+        for (size_t k = 0; k < n; k++)
+        {
+          x[k + kshift * n] = x[k] + (float)i * lx;
+          y[k + kshift * n] = y[k] + (float)j * ly;
+          value[k + kshift * n] = value[k];
+        }
+      }
+}
+
 void random_grid(std::vector<float> &x,
                  std::vector<float> &y,
                  uint                seed,
@@ -24,6 +52,24 @@ void random_grid(std::vector<float> &x,
   {
     x[k] = dis(gen) * (bbox[1] - bbox[0]) + bbox[0];
     y[k] = dis(gen) * (bbox[3] - bbox[2]) + bbox[2];
+  }
+}
+
+void random_grid(std::vector<float> &x,
+                 std::vector<float> &y,
+                 std::vector<float> &value,
+                 uint                seed,
+                 std::vector<float>  bbox)
+{
+  std::mt19937                          gen(seed);
+  std::uniform_real_distribution<float> dis(0.f, 1.f);
+  size_t                                n = x.size();
+
+  for (size_t k = 0; k < n; k++)
+  {
+    x[k] = dis(gen) * (bbox[1] - bbox[0]) + bbox[0];
+    y[k] = dis(gen) * (bbox[3] - bbox[2]) + bbox[2];
+    value[k] = dis(gen);
   }
 }
 

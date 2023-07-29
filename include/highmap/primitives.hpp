@@ -707,6 +707,33 @@ Array value_noise(std::vector<int>   shape,
                   std::vector<float> scale = {1.f, 1.f});
 
 /**
+ * @brief Return an array filled with value noise based on linear Delaunay
+ * interpolation of a set of random points.
+ *
+ * @param shape Array shape.
+ * @param kw Noise reference wavenumber.
+ * @param seed Random seed number.
+ * @param p_noise Reference to the input noise array used for domain warping
+ * (NOT in pixels, with respect to a unit domain).
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
+ * domain.
+ * @param scale Domain scaling, in [0, 1].
+ * @return Array Value noise.
+ *
+ * **Example**
+ * @include ex_value_noise_delaunay.cpp
+ *
+ * **Result**
+ * @image html ex_value_noise_delaunay.png
+ */
+Array value_noise_delaunay(std::vector<int>   shape,
+                           float              kw,
+                           uint               seed,
+                           Array             *p_noise = nullptr,
+                           std::vector<float> shift = {0.f, 0.f},
+                           std::vector<float> scale = {1.f, 1.f});
+
+/**
  * @brief Return an array filled with value noise based on linear interpolation.
  *
  * @param shape Array shape.

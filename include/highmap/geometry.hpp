@@ -756,17 +756,38 @@ Point lerp(const Point &p1, const Point &p2, const float t);
 float distance(const Point &p1, const Point &p2);
 
 /**
+ * @brief Expand grid by translating and copying the values of the current
+ * bounding box to the 8 first neighboring bounding boxes.
+ *
+ * @param x `x` coordinates.
+ * @param y `y` coordinates.
+ * @param value values.
+ * @param bbox Bounding box.
+ */
+void expand_grid(std::vector<float> &x,
+                 std::vector<float> &y,
+                 std::vector<float> &value,
+                 std::vector<float>  bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
  * @brief Generate a random grid.
  *
- * @param x `x` coordinates (output).
- * @param y `y` coordinates (output).
+ * @param x[out] `x` coordinates (output).
+ * @param y[out] `y` coordinates (output).
+ * @param value[out] Random value, in [0, 1], at (x, y).
  * @param seed Random seed number.
  * @param bbox Bounding box.
  */
 void random_grid(std::vector<float> &x,
                  std::vector<float> &y,
+                 std::vector<float> &value,
                  uint                seed,
                  std::vector<float>  bbox = {0.f, 1.f, 0.f, 1.f});
+
+void random_grid(std::vector<float> &x,
+                 std::vector<float> &y,
+                 uint                seed,
+                 std::vector<float>  bbox = {0.f, 1.f, 0.f, 1.f}); /// @overload
 
 void random_grid_jittered(std::vector<float> &x,
                           std::vector<float> &y,
