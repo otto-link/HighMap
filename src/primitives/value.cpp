@@ -98,11 +98,45 @@ Array value_noise_linear(std::vector<int>   shape,
                          std::vector<float> shift,
                          std::vector<float> scale)
 {
+  Array array = Array(shape);
+
+  // --- Generate random values on a regular coarse grid
   std::vector<int> shape_base = {(int)kw[0] + 1, (int)kw[1] + 1};
-  // TODO fix discontinuities
-  Array array = value_noise(shape_base, kw, seed, nullptr, shift, scale);
-  // TODO add noise
-  return array.resample_to_shape(shape);
+  Array            values = value_noise(shape_base, kw, seed);
+
+  // corresponding grids
+  Array xv = Array(shape_base);
+  Array yv = Array(shape_base);
+
+  for (int i = 0; i < shape_base[0]; i++)
+    for (int j = 0; j < shape_base[1]; j++)
+    {
+      xv(i, j) = (float)i / (float)(shape_base[0] - 1);
+      yv(i, j) = (float)j / (float)(shape_base[1] - 1);
+    }
+
+  // --- Interpolate
+  _2D::BilinearInterpolator<float> interp;
+  interp.setData(xv.vector, yv.vector, values.vector);
+
+  // array grid
+  std::vector<float> xg = linspace(shift[0], shift[0] + scale[0], shape[0]);
+  std::vector<float> yg = linspace(shift[1], shift[1] + scale[1], shape[1]);
+
+  if (!p_noise)
+  {
+    for (int i = 0; i < shape[0]; i++)
+      for (int j = 0; j < shape[1]; j++)
+        array(i, j) = interp(xg[i], yg[j]);
+  }
+  else
+  {
+    for (int i = 0; i < shape[0]; i++)
+      for (int j = 0; j < shape[1]; j++)
+        array(i, j) = interp(xg[i] + (*p_noise)(i, j), yg[j]);
+  }
+
+  return array;
 }
 
 } // namespace hmap
