@@ -18,7 +18,6 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 include(GNUInstallDirs)
 
 file(GLOB_RECURSE SOURCES
-     main.cpp
      ${PROJECT_SOURCE_DIR}/src/*.cpp)
 
 add_library(${PROJECT_NAME} STATIC ${SOURCES})
@@ -32,7 +31,7 @@ target_include_directories(${PROJECT_NAME}
                              ${PROJECT_SOURCE_DIR}/external/dkm/include
                              # ${PROJECT_SOURCE_DIR}/external/FastNoise2/include/FastNoise
                              ${PROJECT_SOURCE_DIR}/external/FastNoiseLite/Cpp
-                             ${PROJECT_SOURCE_DIR}/external/libInterpolate
+                             ${PROJECT_SOURCE_DIR}/external/libInterpolate/src/libInterpolate
                              ${PROJECT_SOURCE_DIR}/external/macro-logger
                              ${PROJECT_SOURCE_DIR}/external/stb
                              ${PROJECT_SOURCE_DIR}/external/xsimd/include
