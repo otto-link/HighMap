@@ -1,6 +1,8 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
+#include <future>
+#include <thread>
 
 #include "macrologger.h"
 
@@ -97,10 +99,15 @@ void HeightMap::infos()
 
 float HeightMap::max()
 {
-  // retrieve the max for each tile
-  std::vector<float> max_tiles;
-  for (auto &t : this->tiles)
-    max_tiles.push_back(t.max());
+  std::vector<float>              max_tiles(this->get_ntiles());
+  std::vector<std::future<float>> futures(this->get_ntiles());
+
+  for (decltype(futures)::size_type i = 0; i < this->get_ntiles(); ++i)
+    futures[i] = std::async(&Tile::max, tiles[i]);
+
+  for (decltype(futures)::size_type i = 0; i < this->get_ntiles(); ++i)
+    max_tiles[i] = futures[i].get();
+
   return *std::max_element(max_tiles.begin(), max_tiles.end());
 }
 
@@ -148,12 +155,15 @@ void HeightMap::smooth_overlap_buffers()
 
 float HeightMap::min()
 {
-  // retrieve the min for each tile
-  std::vector<float> min_tiles;
-  // transform(*this, [&min_tiles](Array &x) { min_tiles.push_back(x.min()); });
-  // // TODO mem issue
-  for (auto &t : this->tiles)
-    min_tiles.push_back(t.min());
+  std::vector<float>              min_tiles(this->get_ntiles());
+  std::vector<std::future<float>> futures(this->get_ntiles());
+
+  for (decltype(futures)::size_type i = 0; i < this->get_ntiles(); ++i)
+    futures[i] = std::async(&Tile::min, tiles[i]);
+
+  for (decltype(futures)::size_type i = 0; i < this->get_ntiles(); ++i)
+    min_tiles[i] = futures[i].get();
+
   return *std::min_element(min_tiles.begin(), min_tiles.end());
 }
 
