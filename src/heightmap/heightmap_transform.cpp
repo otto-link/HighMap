@@ -49,12 +49,12 @@ void fill(HeightMap                               &h,
   //   t = nullary_op(t.shape, t.shift);
 }
 
-void fill(HeightMap                                 &h,
-          HeightMap                                 &noise,
+void fill(HeightMap                          &h,
+          HeightMap                          &noise,
           std::function<Array(std::vector<int>,
                               std::vector<float>,
                               std::vector<float>,
-                              hmap::Array *p_noise)> nullary_op)
+                              hmap::Array *)> nullary_op)
 {
   LOG_DEBUG("nullary (shape, size, p_noise)");
   size_t                          nthreads = h.get_ntiles();
@@ -66,6 +66,31 @@ void fill(HeightMap                                 &h,
                             h.tiles[i].shift,
                             h.tiles[i].scale,
                             &noise.tiles[i]);
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+    h.tiles[i] = futures[i].get();
+}
+
+void fill(HeightMap                          &h,
+          HeightMap                          &noise_x,
+          HeightMap                          &noise_y,
+          std::function<Array(std::vector<int>,
+                              std::vector<float>,
+                              std::vector<float>,
+                              hmap::Array *,
+                              hmap::Array *)> nullary_op)
+{
+  LOG_DEBUG("nullary (shape, size, p_noise, p_noise)");
+  size_t                          nthreads = h.get_ntiles();
+  std::vector<std::future<Array>> futures(nthreads);
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+    futures[i] = std::async(nullary_op,
+                            h.tiles[i].shape,
+                            h.tiles[i].shift,
+                            h.tiles[i].scale,
+                            &noise_x.tiles[i],
+                            &noise_y.tiles[i]);
 
   for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
     h.tiles[i] = futures[i].get();

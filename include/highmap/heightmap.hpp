@@ -237,6 +237,16 @@ private:
 };
 
 void fill(HeightMap &h,
+          HeightMap &noise_x,
+          HeightMap &noise_y,
+          std::function<Array(std::vector<int>,
+                              std::vector<float>,
+                              std::vector<float>,
+                              Array *p_noise_x,
+                              Array *p_noise_y)>
+              nullary_op); // shape, shift, scale, noise_x, noise_y
+
+void fill(HeightMap &h,
           HeightMap &noise,
           std::function<Array(std::vector<int>,
                               std::vector<float>,

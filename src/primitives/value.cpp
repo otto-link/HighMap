@@ -17,7 +17,8 @@ namespace hmap
 Array value_noise(std::vector<int>   shape,
                   std::vector<float> kw,
                   uint               seed,
-                  Array             *p_noise,
+                  Array             *p_noise_x,
+                  Array             *p_noise_y,
                   std::vector<float> shift,
                   std::vector<float> scale)
 {
@@ -27,31 +28,22 @@ Array value_noise(std::vector<int>   shape,
   noise.SetFrequency(1.0f);
   noise.SetNoiseType(FastNoiseLite::NoiseType_Value);
 
-  float ki = kw[0] / (float)shape[0] * scale[0];
-  float kj = kw[1] / (float)shape[1] * scale[1];
-
-  if (!p_noise)
-  {
-    for (int i = 0; i < array.shape[0]; i++)
-      for (int j = 0; j < array.shape[1]; j++)
-        array(i, j) = noise.GetNoise(ki * (float)i + kw[0] * shift[0],
-                                     kj * (float)j + kw[1] * shift[1]);
-  }
-  else
-  {
-    for (int i = 0; i < array.shape[0]; i++)
-      for (int j = 0; j < array.shape[1]; j++)
-        array(i, j) = noise.GetNoise(ki * (float)i + kw[0] * shift[0] +
-                                         (*p_noise)(i, j),
-                                     kj * (float)j + kw[1] * shift[1]);
-  }
+  array = helper_get_noise(array,
+                           kw,
+                           p_noise_x,
+                           p_noise_y,
+                           shift,
+                           scale,
+                           [&noise](float x, float y)
+                           { return noise.GetNoise(x, y); });
   return array;
 }
 
 Array value_noise_delaunay(std::vector<int>   shape,
                            float              kw,
                            uint               seed,
-                           Array             *p_noise,
+                           Array             *p_noise_x,
+                           Array             *p_noise_y,
                            std::vector<float> shift,
                            std::vector<float> scale)
 {
@@ -75,17 +67,30 @@ Array value_noise_delaunay(std::vector<int>   shape,
   std::vector<float> xg = linspace(shift[0], shift[0] + scale[0], shape[0]);
   std::vector<float> yg = linspace(shift[1], shift[1] + scale[1], shape[1]);
 
-  if (!p_noise)
+  if ((!p_noise_x) and (!p_noise_y))
   {
     for (int i = 0; i < shape[0]; i++)
       for (int j = 0; j < shape[1]; j++)
         array(i, j) = interp(xg[i], yg[j]);
   }
-  else
+  else if (p_noise_x and (!p_noise_y))
   {
     for (int i = 0; i < shape[0]; i++)
       for (int j = 0; j < shape[1]; j++)
-        array(i, j) = interp(xg[i] + (*p_noise)(i, j), yg[j]);
+        array(i, j) = interp(xg[i] + (*p_noise_x)(i, j), yg[j]);
+  }
+  else if ((!p_noise_x) and p_noise_y)
+  {
+    for (int i = 0; i < shape[0]; i++)
+      for (int j = 0; j < shape[1]; j++)
+        array(i, j) = interp(xg[i], yg[j] + (*p_noise_y)(i, j));
+  }
+  else if (p_noise_x and p_noise_y)
+  {
+    for (int i = 0; i < shape[0]; i++)
+      for (int j = 0; j < shape[1]; j++)
+        array(i, j) = interp(xg[i] + (*p_noise_x)(i, j),
+                             yg[j] + (*p_noise_y)(i, j));
   }
 
   return array;
@@ -94,7 +99,8 @@ Array value_noise_delaunay(std::vector<int>   shape,
 Array value_noise_linear(std::vector<int>   shape,
                          std::vector<float> kw,
                          uint               seed,
-                         Array             *p_noise,
+                         Array             *p_noise_x,
+                         Array             *p_noise_y,
                          std::vector<float> shift,
                          std::vector<float> scale)
 {
@@ -123,17 +129,30 @@ Array value_noise_linear(std::vector<int>   shape,
   std::vector<float> xg = linspace(shift[0], shift[0] + scale[0], shape[0]);
   std::vector<float> yg = linspace(shift[1], shift[1] + scale[1], shape[1]);
 
-  if (!p_noise)
+  if ((!p_noise_x) and (!p_noise_y))
   {
     for (int i = 0; i < shape[0]; i++)
       for (int j = 0; j < shape[1]; j++)
         array(i, j) = interp(xg[i], yg[j]);
   }
-  else
+  else if (p_noise_x and (!p_noise_y))
   {
     for (int i = 0; i < shape[0]; i++)
       for (int j = 0; j < shape[1]; j++)
-        array(i, j) = interp(xg[i] + (*p_noise)(i, j), yg[j]);
+        array(i, j) = interp(xg[i] + (*p_noise_x)(i, j), yg[j]);
+  }
+  else if ((!p_noise_x) and p_noise_y)
+  {
+    for (int i = 0; i < shape[0]; i++)
+      for (int j = 0; j < shape[1]; j++)
+        array(i, j) = interp(xg[i], yg[j] + (*p_noise_y)(i, j));
+  }
+  else if (p_noise_x and p_noise_y)
+  {
+    for (int i = 0; i < shape[0]; i++)
+      for (int j = 0; j < shape[1]; j++)
+        array(i, j) = interp(xg[i] + (*p_noise_x)(i, j),
+                             yg[j] + (*p_noise_y)(i, j));
   }
 
   return array;
