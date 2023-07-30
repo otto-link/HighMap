@@ -7,12 +7,15 @@
 namespace hmap
 {
 
-Tile::Tile() : Array({0, 0}), shift({0.f, 0.f}), scale({0.f, 0.f}){};
+Tile::Tile()
+    : Array({0, 0}), shift({0.f, 0.f}), scale({0.f, 0.f}),
+      bbox({0.f, 0.f, 0.f, 0.f}){};
 
 Tile::Tile(std::vector<int>   shape,
            std::vector<float> shift,
-           std::vector<float> scale)
-    : Array(shape), shift(shift), scale(scale)
+           std::vector<float> scale,
+           std::vector<float> bbox)
+    : Array(shape), shift(shift), scale(scale), bbox(bbox)
 {
 }
 

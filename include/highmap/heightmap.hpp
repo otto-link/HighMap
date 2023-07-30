@@ -55,7 +55,8 @@ public:
    */
   Tile(std::vector<int>   shape,
        std::vector<float> shift,
-       std::vector<float> scale);
+       std::vector<float> scale,
+       std::vector<float> bbox);
 
   Tile(); /// @overload
 

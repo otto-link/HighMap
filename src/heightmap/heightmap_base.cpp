@@ -209,6 +209,9 @@ void HeightMap::update_tile_parameters()
 {
   tiles.resize(this->tiling[0] * this->tiling[1]);
 
+  float lx = this->bbox[1] - this->bbox[0];
+  float ly = this->bbox[3] - this->bbox[2];
+
   // what the buffers extent to the tile domain at both frontiers
   // (added two times for the tile surrounded by other tiles)
   int delta_buffer_i = (int)(this->overlap * this->shape[0] / this->tiling[0]);
@@ -232,38 +235,30 @@ void HeightMap::update_tile_parameters()
       if (jt < this->tiling[1] - 1)
         buffer_j += delta_buffer_j;
 
-      // tile shape
+      // geometry: shape, shift and scale
       std::vector<int> tile_shape = {
           this->shape[0] / this->tiling[0] + buffer_i,
           this->shape[1] / this->tiling[1] + buffer_j};
 
-      // shifts
-      float shift_x = (float)it / (float)this->tiling[0];
-      float shift_y = (float)jt / (float)this->tiling[1];
+      std::vector<float> shift = {(float)it / (float)this->tiling[0],
+                                  (float)jt / (float)this->tiling[1]};
 
       // take into account buffers
       if (it > 0)
-        shift_x -= (float)delta_buffer_i / (float)this->shape[0];
+        shift[0] -= (float)delta_buffer_i / (float)this->shape[0];
       if (jt > 0)
-        shift_y -= (float)delta_buffer_j / (float)this->shape[1];
+        shift[1] -= (float)delta_buffer_j / (float)this->shape[1];
 
-      // tile size and scale
-      std::vector<float> tile_scale = {
-          (float)tile_shape[0] / (float)this->shape[0],
-          (float)tile_shape[1] / (float)this->shape[1]};
+      std::vector<float> scale = {(float)tile_shape[0] / (float)this->shape[0],
+                                  (float)tile_shape[1] / (float)this->shape[1]};
 
-      // TODO bbox
-      float lx_tile = (this->bbox[1] - this->bbox[0]) / (float)this->tiling[0];
-      float ly_tile = (this->bbox[3] - this->bbox[2]) / (float)this->tiling[1];
+      std::vector<float> tile_bbox = {
+          this->bbox[0] + shift[0] * lx,
+          this->bbox[0] + (shift[0] + scale[0]) * lx,
+          this->bbox[2] + shift[1] * ly,
+          this->bbox[2] + (shift[1] + scale[1]) * ly};
 
-      // tiles[k].bbox = {this->bbox[0] + (float)it * lx_tile,
-      //                  this->bbox[0] + (float)(it + 1) * lx_tile,
-      //                  this->bbox[2] + (float)jt * ly_tile,
-      //                  this->bbox[2] + (float)(jt + 1) * ly_tile};
-
-      tiles[k] = Tile(tile_shape, {shift_x, shift_y}, tile_scale);
-
-      tiles[k].bbox = {-1.f, -1.f, -1.f, -1.f}; // TODO bbox
+      tiles[k] = Tile(tile_shape, shift, scale, tile_bbox);
     }
 }
 
