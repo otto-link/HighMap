@@ -192,6 +192,10 @@ public:
    */
   float max();
 
+  /**
+   * @brief Smooth the transitions between each tiles (when overlap > 0).
+   *
+   */
   void smooth_overlap_buffers();
 
   /**
