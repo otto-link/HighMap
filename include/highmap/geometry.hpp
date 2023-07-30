@@ -789,6 +789,15 @@ void random_grid(std::vector<float> &x,
                  uint                seed,
                  std::vector<float>  bbox = {0.f, 1.f, 0.f, 1.f}); /// @overload
 
+/**
+ * @brief Generate a jittered random grid.
+ *
+ * @param x[out] `x` coordinates (output).
+ * @param y[out] `y` coordinates (output).
+ * @param scale Jittering scale, in [0, 1].
+ * @param seed Random seed number.
+ * @param bbox Bounding box.
+ */
 void random_grid_jittered(std::vector<float> &x,
                           std::vector<float> &y,
                           float               scale,
