@@ -73,6 +73,38 @@ void random_grid(std::vector<float> &x,
   }
 }
 
+void random_grid_density(std::vector<float> &x,
+                         std::vector<float> &y,
+                         Array              &density,
+                         uint                seed,
+                         std::vector<float>  bbox)
+{
+  std::mt19937                          gen(seed);
+  std::uniform_real_distribution<float> dis(0.f, 1.f);
+  size_t                                n = x.size();
+
+  size_t k = 0;
+  while (k < n)
+  {
+    // take a random point within the grid and pick a random value:
+    // if the value is smaller than the local density, the point is kept,
+    // if not, try again...
+    float xr = dis(gen);
+    float yr = dis(gen);
+    float rd = dis(gen);
+
+    int i = (int)(xr * (density.shape[0] - 1));
+    int j = (int)(yr * (density.shape[1] - 1));
+
+    if (rd < density(i, j))
+    {
+      x[k] = xr * (bbox[1] - bbox[0]) + bbox[0];
+      y[k] = yr * (bbox[3] - bbox[2]) + bbox[2];
+      k++;
+    }
+  }
+}
+
 void random_grid_jittered(std::vector<float> &x,
                           std::vector<float> &y,
                           float               scale,

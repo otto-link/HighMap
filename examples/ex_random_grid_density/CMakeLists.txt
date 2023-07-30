@@ -1,0 +1,2 @@
+add_executable(ex_random_grid_density ex_random_grid_density.cpp)
+target_link_libraries(ex_random_grid_density highmap)

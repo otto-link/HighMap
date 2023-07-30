@@ -115,12 +115,13 @@ public:
    *
    * @param x Point `x` coordinates.
    * @param y Point `y` coordinates.
+   * @param default_value Default value associated to the point.
    */
-  Cloud(std::vector<float> x, std::vector<float> y)
+  Cloud(std::vector<float> x, std::vector<float> y, float default_value = 0.f)
   {
     for (size_t k = 0; k < x.size(); k++)
     {
-      Point p(x[k], y[k]);
+      Point p(x[k], y[k], default_value);
       this->add_point(p);
     }
   };
@@ -788,6 +789,21 @@ void random_grid(std::vector<float> &x,
                  std::vector<float> &y,
                  uint                seed,
                  std::vector<float>  bbox = {0.f, 1.f, 0.f, 1.f}); /// @overload
+
+/**
+ * @brief
+ *
+ * @param x
+ * @param y
+ * @param density
+ * @param seed
+ * @param bbox
+ */
+void random_grid_density(std::vector<float> &x,
+                         std::vector<float> &y,
+                         Array              &density,
+                         uint                seed,
+                         std::vector<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Generate a jittered random grid.
