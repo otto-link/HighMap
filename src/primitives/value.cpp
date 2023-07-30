@@ -1,6 +1,7 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
+#include <cmath>
 
 #include "FastNoiseLite.h"
 #include "Interpolate.hpp"
@@ -106,8 +107,26 @@ Array value_noise_linear(std::vector<int>   shape,
 {
   Array array = Array(shape);
 
-  // --- Generate random values on a regular coarse grid
-  std::vector<int> shape_base = {(int)kw[0] + 1, (int)kw[1] + 1};
+  // --- Generate random values on a regular coarse grid (adjust
+  // --- extent according to the input noise in order to avoid "holes"
+  // --- in the data for large noise displacement)
+  std::vector<float> bbox = {0.f, 1.f, 0.f, 1.f}; // bounding box
+
+  if (p_noise_x)
+  {
+    bbox[0] -= 1.f;
+    bbox[1] += 1.f;
+  }
+  if (p_noise_y)
+  {
+    bbox[2] -= 1.f;
+    bbox[3] += 1.f;
+  }
+
+  float lx = bbox[1] - bbox[0];
+  float ly = bbox[3] - bbox[2];
+
+  std::vector<int> shape_base = {(int)(kw[0] * lx + 1), (int)(kw[1] * ly + 1)};
   Array            values = value_noise(shape_base, kw, seed);
 
   // corresponding grids
@@ -117,8 +136,8 @@ Array value_noise_linear(std::vector<int>   shape,
   for (int i = 0; i < shape_base[0]; i++)
     for (int j = 0; j < shape_base[1]; j++)
     {
-      xv(i, j) = (float)i / (float)(shape_base[0] - 1);
-      yv(i, j) = (float)j / (float)(shape_base[1] - 1);
+      xv(i, j) = bbox[0] + lx * (float)i / (float)(shape_base[0] - 1);
+      yv(i, j) = bbox[2] + ly * (float)j / (float)(shape_base[1] - 1);
     }
 
   // --- Interpolate
