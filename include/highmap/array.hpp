@@ -309,6 +309,39 @@ public:
   Array extract_slice(std::vector<int> idx);
 
   /**
+   * @brief Find the lowest elevation difference path between two points in a
+   * 2d-array.
+   *
+   * @see @cite Dijkstra1971 and
+   * https://math.stackexchange.com/questions/3088292.
+   *
+   * @param ij_start Starting point (i, j) position.
+   * @param ij_end Ending point (i, j) position.
+   * @param i_path[out] Shortest path 'i' indices.
+   * @param j_path[out] Shortest path 'j' indices.
+   * @param distance_exponent Exponent of the distance calculation between two
+   * points. Increasing the "distance exponent" of the cost function increases
+   * the cost of elevation gaps: path then tends to stay at the same elevation
+   * if possible (i.e. reduce the overall cumulative elevation gain).
+   * @param step Steps for i and j indices, to accelerate computation by using
+   * only every "step" data.
+   *
+   * **Example**
+   * @include ex_find_path_dijkstra.cpp
+   *
+   * **Result**
+   * @image html ex_find_path_dijkstra0.png
+   * @image html ex_find_path_dijkstra1.png
+   *
+   */
+  void find_path_dijkstra(std::vector<int>  ij_start,
+                          std::vector<int>  ij_end,
+                          std::vector<int> &i_path,
+                          std::vector<int> &j_path,
+                          float             distance_exponent = 0.5f,
+                          std::vector<int>  step = {1, 1});
+
+  /**
    * @brief Return the gradient in the 'x' (or 'i' index) of at the index (i,
    * j).
    *

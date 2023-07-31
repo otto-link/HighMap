@@ -1,0 +1,2 @@
+add_executable(ex_find_path_dijkstra ex_find_path_dijkstra.cpp)
+target_link_libraries(ex_find_path_dijkstra highmap)

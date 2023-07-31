@@ -87,6 +87,64 @@ void Path::bezier(float curvature_ratio, int edge_divisions)
   }
 }
 
+void Path::dijkstra(Array             &array,
+                    std::vector<float> bbox,
+                    int                edge_divisions,
+                    float              distance_exponent)
+{
+  size_t ks = this->closed ? 0 : 1; // trick to handle closed contours
+  for (size_t k = 0; k < this->get_npoints() - ks; k++)
+  {
+    size_t knext = (k + 1) % this->get_npoints();
+
+    std::vector<int> ij_start = {
+        (int)((this->points[k].x - bbox[0]) / (bbox[1] - bbox[0]) *
+              (array.shape[0] - 1)),
+        (int)((this->points[k].y - bbox[2]) / (bbox[3] - bbox[2]) *
+              (array.shape[1] - 1))};
+
+    std::vector<int> ij_end = {
+        (int)((this->points[knext].x - bbox[0]) / (bbox[1] - bbox[0]) *
+              (array.shape[0] - 1)),
+        (int)((this->points[knext].y - bbox[2]) / (bbox[3] - bbox[2]) *
+              (array.shape[1] - 1))};
+
+    // float dist = distance(this->points[k], this->points[knext]);
+    float dist_idx = std::hypot((float)(ij_start[0] - ij_end[0]),
+                                (float)(ij_start[1] - ij_end[1]));
+
+    int              div = std::max(1, (int)(dist_idx / edge_divisions));
+    std::vector<int> step = {div, div};
+
+    std::vector<int> ip, jp;
+    array.find_path_dijkstra(ij_start, ij_end, ip, jp, distance_exponent, step);
+
+    // backup cuurrent edge informations before adding points to this edge
+    Point p1 = this->points[k];
+    Point p2 = this->points[knext];
+
+    for (size_t r = 1; r < ip.size() - 1; r++)
+    {
+      float x = (float)ip[r] / (float)(array.shape[0] - 1) *
+                    (bbox[1] - bbox[0]) +
+                bbox[0];
+      float y = (float)jp[r] / (float)(array.shape[1] - 1) *
+                    (bbox[3] - bbox[2]) +
+                bbox[2];
+
+      // use distance to start and end points to determine value at the added
+      // point (barycentric value)
+      float d1 = std::hypot(x - p1.x, y - p1.y);
+      float d2 = std::hypot(x - p2.x, y - p2.y);
+      float v = (d2 * p1.v + d1 * p2.v) / (d1 + d2);
+
+      Point p = Point(x, y, v);
+      this->points.insert(this->points.begin() + k + 1, p);
+      ++k;
+    }
+  }
+}
+
 void Path::divide()
 {
   size_t ks = this->closed ? 0 : 1; // trick to handle closed contours

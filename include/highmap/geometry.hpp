@@ -640,6 +640,28 @@ public:
   void bezier(float curvature_ratio = 0.3f, int edge_divisions = 10);
 
   /**
+   * @brief Divide path by adding point based on the lowest elevation difference
+   * path between each ends of the egdes.
+   *
+   * @param array Elevation map.
+   * @param bbox Domain bounding box.
+   * @param edge_divisions Edge sub-divisions.
+   * @param distance_exponent Distance exponent of the dijkstra weight function.
+   *
+   * **Example**
+   * @include ex_path_dijkstra.cpp
+   *
+   * **Result**
+   * @image html ex_path_dijkstra.png
+   *
+   * @see {@link Array::find_path_dijkstra}
+   */
+  void dijkstra(Array             &array,
+                std::vector<float> bbox,
+                int                edge_divisions = 10,
+                float              distance_exponent = 0.5f);
+
+  /**
    * @brief Divide path by adding a point in-between each pair of consecutive
    * points.
    *
