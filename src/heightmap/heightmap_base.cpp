@@ -205,8 +205,6 @@ Array HeightMap::to_array(std::vector<int> shape_export)
       int i1 = (int)(tiles[k].shift[0] * this->shape[0]);
       int j1 = (int)(tiles[k].shift[1] * this->shape[1]);
 
-      LOG_DEBUG("%d %d %d %d", i1, j1, tiles[k].shape[0], tiles[k].shape[1]);
-
       for (int p = 0; p < tiles[k].shape[0]; p += step[0])
         for (int q = 0; q < tiles[k].shape[1]; q += step[1])
           array((p + i1) / step[0], (q + j1) / step[1]) = tiles[k](p, q);

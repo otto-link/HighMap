@@ -50,7 +50,7 @@ void fill(HeightMap                               &h,
 }
 
 void fill(HeightMap                          &h,
-          HeightMap                          &noise,
+          HeightMap                          *p_noise,
           std::function<Array(std::vector<int>,
                               std::vector<float>,
                               std::vector<float>,
@@ -65,15 +65,15 @@ void fill(HeightMap                          &h,
                             h.tiles[i].shape,
                             h.tiles[i].shift,
                             h.tiles[i].scale,
-                            &noise.tiles[i]);
+                            &p_noise->tiles[i]);
 
   for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
     h.tiles[i] = futures[i].get();
 }
 
 void fill(HeightMap                          &h,
-          HeightMap                          &noise_x,
-          HeightMap                          &noise_y,
+          HeightMap                          *p_noise_x,
+          HeightMap                          *p_noise_y,
           std::function<Array(std::vector<int>,
                               std::vector<float>,
                               std::vector<float>,
@@ -84,13 +84,20 @@ void fill(HeightMap                          &h,
   size_t                          nthreads = h.get_ntiles();
   std::vector<std::future<Array>> futures(nthreads);
 
+  LOG_DEBUG("pointer: %p", (void *)p_noise_y);
+
   for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+  {
+    Array *p_nx = (p_noise_x == nullptr) ? nullptr : &p_noise_x->tiles[i];
+    Array *p_ny = (p_noise_y == nullptr) ? nullptr : &p_noise_y->tiles[i];
+
     futures[i] = std::async(nullary_op,
                             h.tiles[i].shape,
                             h.tiles[i].shift,
                             h.tiles[i].scale,
-                            &noise_x.tiles[i],
-                            &noise_y.tiles[i]);
+                            p_nx,
+                            p_ny);
+  }
 
   for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
     h.tiles[i] = futures[i].get();
