@@ -467,6 +467,49 @@ void extrapolate_borders(Array &array, int nbuffer = 1);
 void fill_borders(Array &array);
 
 /**
+ * @brief Fill values with a given downslope talus starting from the cell with
+ * highest values.
+ *
+ * @param z Input array.
+ * @param talus Downslope talus.
+ * @param seed Random seed number.
+ * @param noise_ratio Noise ratio (used to avoid grid orientation artifacts).
+ *
+ * **Example**
+ * @include ex_fill_talus.cpp
+ *
+ * **Result**
+ * @image html ex_fill_talus.png
+ *
+ * @see {@link thermal_scree}, {@link thermal_scree_fast}
+ */
+void fill_talus(Array &z, float talus, uint seed, float noise_ratio = 0.2f);
+
+/**
+ * @brief Fill values with a given downslope talus starting from the cell with
+ * highest values, performed on a coarse mesh to optimize restitution time.
+ *
+ * @param z Input array.
+ * @param shape_coarse  Array coarser shape used for the solver.
+ * @param talus Downslope talus.
+ * @param seed Random seed number.
+ * @param noise_ratio Noise ratio (used to avoid grid orientation artifacts).
+ *
+ * **Example**
+ * @include ex_fill_talus.cpp
+ *
+ * **Result**
+ * @image html ex_fill_talus.png
+ *
+ * @see {@link thermal_scree}, {@link thermal_scree_fast}
+ */
+void fill_talus_fast(Array    &z,
+                     Vec2<int> shape_coarse,
+                     float     talus,
+                     uint      seed,
+                     float     noise_ratio = 0.2f);
+
+/**
  * @brief Apply a gain correction of the array elements.
  *
  * Gain correction is based on a power law.
