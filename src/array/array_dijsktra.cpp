@@ -17,6 +17,7 @@ void Array::find_path_dijkstra(Vec2<int>         ij_start,
                                Vec2<int>         ij_end,
                                std::vector<int> &i_path,
                                std::vector<int> &j_path,
+                               float             elevation_ratio,
                                float             distance_exponent,
                                Vec2<int>         step)
 {
@@ -72,10 +73,17 @@ void Array::find_path_dijkstra(Vec2<int>         ij_start,
 
       if ((p > 0) and (p < shape_coarse.x) and (q > 0) and (q < shape_coarse.y))
       {
-        float dist = distance[i * shape_coarse.y + j] +
-                     std::pow(std::abs((*this)(i * step.x, j * step.y) -
-                                       (*this)(p * step.x, q * step.y)),
-                              distance_exponent);
+        // previous cumulative value
+        float dist = distance[i * shape_coarse.y + j];
+
+        // elevation difference contribution
+        dist += (1.f - elevation_ratio) *
+                std::pow(std::abs((*this)(i * step.x, j * step.y) -
+                                  (*this)(p * step.x, q * step.y)),
+                         distance_exponent);
+
+        // aboslute elevation contribution
+        dist += elevation_ratio * std::abs((*this)(p * step.x, q * step.y));
 
         if (distance[p * shape_coarse.y + q] == 0.f)
           if ((mask[p * shape_coarse.y + q] == false) or

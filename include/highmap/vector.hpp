@@ -38,7 +38,7 @@ template <typename T> struct Vec2
   {
     return ((this->x != other_vec.x) or (this->y != other_vec.y));
   }
-  
+
   Vec2 operator/=(const T value)
   {
     this->x /= value;

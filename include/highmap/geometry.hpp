@@ -646,7 +646,10 @@ public:
    *
    * @param array Elevation map.
    * @param bbox Domain bounding box.
-   * @param edge_divisions Edge sub-divisions.
+   * @param edge_divisions Edge sub-divisions (set to 0 for a division based on
+   * the array shape).
+   * @param elevation_ratio Balance between absolute elevation and elevation
+   * difference in the cost function.
    * @param distance_exponent Distance exponent of the dijkstra weight function.
    *
    * **Example**
@@ -659,7 +662,8 @@ public:
    */
   void dijkstra(Array      &array,
                 Vec4<float> bbox,
-                int         edge_divisions = 10,
+                int         edge_divisions = 0,
+                float       elevation_ratio = 0.f,
                 float       distance_exponent = 0.5f);
 
   /**
@@ -732,6 +736,13 @@ public:
    *
    */
   void resample_uniform();
+
+  /**
+   * @brief Subsample the path by keeping only every n-th point.
+   *
+   * @param step Keep every 'step' points.
+   */
+  void subsample(int step);
 
   /**
    * @brief Project cloud points to an array.
