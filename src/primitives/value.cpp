@@ -126,8 +126,9 @@ Array value_noise_linear(std::vector<int>   shape,
   float lx = bbox[1] - bbox[0];
   float ly = bbox[3] - bbox[2];
 
-  std::vector<int> shape_base = {(int)(kw[0] * lx + 1), (int)(kw[1] * ly + 1)};
-  Array            values = value_noise(shape_base, kw, seed);
+  std::vector<float> kw_base = {kw[0] * lx, kw[1] * ly};
+  std::vector<int>   shape_base = {(int)kw_base[0] + 1, (int)kw_base[1] + 1};
+  Array              values = value_noise(shape_base, kw_base, seed);
 
   // corresponding grids
   Array xv = Array(shape_base);
