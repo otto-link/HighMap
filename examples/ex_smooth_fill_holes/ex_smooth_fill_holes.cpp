@@ -5,10 +5,10 @@
 
 int main(void)
 {
-  const std::vector<int>   shape = {256, 256};
-  const std::vector<float> res = {2.f, 2.f};
-  int                      seed = 1;
-  int                      radius = 2;
+  hmap::Vec2<int>   shape = {256, 256};
+  hmap::Vec2<float> res = {2.f, 2.f};
+  int               seed = 1;
+  int               radius = 2;
 
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
 

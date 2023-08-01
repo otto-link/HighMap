@@ -24,7 +24,7 @@ void Array::infos(std::string msg) const
 {
   std::cout << "Array: " << msg << " ";
   std::cout << "address: " << this << ", ";
-  std::cout << "shape: {" << this->shape[0] << ", " << this->shape[1] << "}"
+  std::cout << "shape: {" << this->shape.x << ", " << this->shape.y << "}"
             << ", ";
   std::cout << "min: " << this->min() << ", ";
   std::cout << "max: " << this->max();
@@ -34,9 +34,9 @@ void Array::infos(std::string msg) const
 void Array::print()
 {
   std::cout << std::fixed << std::setprecision(6) << std::setfill('0');
-  for (int j = shape[1] - 1; j > -1; j--)
+  for (int j = shape.y - 1; j > -1; j--)
   {
-    for (int i = 0; i < shape[0]; i++)
+    for (int i = 0; i < shape.x; i++)
     {
       std::cout << std::setw(5) << (*this)(i, j) << " ";
     }
@@ -59,7 +59,7 @@ void Array::to_file(std::string fname)
 
 void Array::to_png(std::string fname, int cmap, bool hillshading)
 {
-  std::vector<uint8_t> data(IMG_CHANNELS * this->shape[0] * this->shape[1]);
+  std::vector<uint8_t> data(IMG_CHANNELS * this->shape.x * this->shape.y);
   const float          vmin = this->min();
   const float          vmax = this->max();
 
@@ -67,11 +67,11 @@ void Array::to_png(std::string fname, int cmap, bool hillshading)
 
   // row and column are permutted
   stbi_write_png(fname.c_str(),
-                 this->shape[0],
-                 this->shape[1],
+                 this->shape.x,
+                 this->shape.y,
                  IMG_CHANNELS,
                  data.data(),
-                 IMG_CHANNELS * this->shape[0]);
+                 IMG_CHANNELS * this->shape.x);
 }
 
 } // namespace hmap

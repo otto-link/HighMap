@@ -21,8 +21,8 @@ namespace hmap
 void expand(Array &array, int ir)
 {
   Array array_new = array;
-  int   ni = array.shape[0];
-  int   nj = array.shape[1];
+  int   ni = array.shape.x;
+  int   nj = array.shape.y;
   Array k = cubic_pulse({2 * ir + 1, 2 * ir + 1});
 
   for (int i = 0; i < ni; i++)
@@ -76,8 +76,8 @@ void gamma_correction_local(Array &array, float gamma, int ir, float k)
 
   if (k != 0) // with smoothing
   {
-    for (int i = 0; i < array.shape[0]; i++)
-      for (int j = 0; j < array.shape[1]; j++)
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
       {
         float v = (array(i, j) - amin(i, j)) / (amax(i, j) - amin(i, j));
         v = std::sqrt(v * v + k);
@@ -87,8 +87,8 @@ void gamma_correction_local(Array &array, float gamma, int ir, float k)
   }
   else // without smoothing
   {
-    for (int i = 0; i < array.shape[0]; i++)
-      for (int j = 0; j < array.shape[1]; j++)
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
       {
         float v = (array(i, j) - amin(i, j)) / (amax(i, j) - amin(i, j));
         array(i, j) = std::pow(v, gamma) * (amax(i, j) - amin(i, j)) +
@@ -315,8 +315,8 @@ void sharpen(Array &array, float ratio)
 {
   Array lp = Array(array.shape);
 
-  for (int i = 1; i < array.shape[0] - 1; i++)
-    for (int j = 1; j < array.shape[1] - 1; j++)
+  for (int i = 1; i < array.shape.x - 1; i++)
+    for (int j = 1; j < array.shape.y - 1; j++)
     {
       lp(i, j) = 5.f * array(i, j) - array(i + 1, j) - array(i - 1, j) -
                  array(i, j - 1) - array(i, j + 1);
@@ -428,8 +428,8 @@ void smooth_fill_smear_peaks(Array &array, int ir)
 
 void steepen(Array &array, float scale, int ir)
 {
-  Array dx = gradient_x(array) * ((float)array.shape[0] * -scale);
-  Array dy = gradient_y(array) * ((float)array.shape[1] * -scale);
+  Array dx = gradient_x(array) * ((float)array.shape.x * -scale);
+  Array dy = gradient_y(array) * ((float)array.shape.y * -scale);
 
   smooth_cpulse(dx, ir);
   smooth_cpulse(dy, ir);

@@ -2,14 +2,14 @@
 
 int main(void)
 {
-  const std::vector<int>   shape = {256, 256};
-  const std::vector<float> res = {2.f, 2.f};
-  int                      seed = 1;
-  hmap::Array              z = hmap::fbm_perlin(shape, res, seed);
+  hmap::Vec2<int>   shape = {256, 256};
+  hmap::Vec2<float> res = {2.f, 2.f};
+  int               seed = 1;
+  hmap::Array       z = hmap::fbm_perlin(shape, res, seed);
   hmap::remap(z);
 
-  std::vector<float> bbox = {1.f, 2.f, -0.5f, 0.5f};
-  hmap::Path         path = hmap::Path(3, seed, {1.2f, 1.8f, -0.3, 0.3f});
+  hmap::Vec4<float> bbox = {1.f, 2.f, -0.5f, 0.5f};
+  hmap::Path        path = hmap::Path(3, seed, {1.2f, 1.8f, -0.3, 0.3f});
   path.reorder_nns();
   path.closed = false;
 

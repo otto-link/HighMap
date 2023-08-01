@@ -21,6 +21,7 @@
 #include <vector>
 
 #include "highmap/array.hpp"
+#include "highmap/vector.hpp"
 
 namespace hmap
 {
@@ -100,7 +101,7 @@ public:
    * @param seed Random seed number.
    * @param bbox Bounding box.
    */
-  Cloud(int npoints, uint seed, std::vector<float> bbox = {0.f, 1.f, 0.f, 1.f});
+  Cloud(int npoints, uint seed, Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
   /**
    * @brief Construct a new Cloud object based on a list of points.
@@ -152,11 +153,11 @@ public:
    *
    * @return std::vector<float> Bounding box `[xmin, xmax, ymin, ymax]`.
    */
-  std::vector<float> get_bbox()
+  Vec4<float> get_bbox()
   {
     std::vector<float> x = this->get_x();
     std::vector<float> y = this->get_y();
-    std::vector<float> bbox(4);
+    Vec4<float>        bbox;
     {
       float xmin = *std::min_element(x.begin(), x.end());
       float xmax = *std::max_element(x.begin(), x.end());
@@ -249,7 +250,7 @@ public:
    * @param array Input array.
    * @param bbox Array bounding box.
    */
-  void set_values_from_array(const Array &array, std::vector<float> bbox);
+  void set_values_from_array(const Array &array, Vec4<float> bbox);
 
   /**
    * @brief Set the values distance from chull object
@@ -276,10 +277,10 @@ public:
    *
    * @param array Input array.
    * @param bbox Array bounding box.
-   * @return std::vector<float> Values.
+   * @return Vec4<float> Values.
    */
-  std::vector<float> interpolate_values_from_array(const Array       &array,
-                                                   std::vector<float> bbox);
+  std::vector<float> interpolate_values_from_array(const Array &array,
+                                                   Vec4<float>  bbox);
 
   /**
    * @brief Print some data.
@@ -295,7 +296,7 @@ public:
    * @param ymin New `ymin`.
    * @param ymax New `ymax`.
    */
-  void remap_xy(std::vector<float> bbox_new);
+  void remap_xy(Vec4<float> bbox_new);
 
   /**
    * @brief Remove a point from the cloud.
@@ -313,7 +314,7 @@ public:
    * @param array Input array.
    * @param bbox Bounding box of the array.
    */
-  void to_array(Array &array, std::vector<float> bbox = {0.f, 1.f, 0.f, 1.f});
+  void to_array(Array &array, Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
   /**
    * @brief Export data to a csv file.
@@ -475,7 +476,7 @@ public:
    * @param array Input array.
    * @param bbox Bounding box of the array.
    */
-  void to_array(Array &array, std::vector<float> bbox);
+  void to_array(Array &array, Vec4<float> bbox);
 
   /**
    * @brief Fractalize graph edge and project to an array.
@@ -490,13 +491,13 @@ public:
    * displacement, 1 to inflate the path and -1 to deflate the path).
    * @param persistence Noise persistence (with iteration number).
    */
-  void to_array_fractalize(Array             &array,
-                           std::vector<float> bbox,
-                           int                iterations,
-                           uint               seed,
-                           float              sigma = 0.3f,
-                           int                orientation = 0.f,
-                           float              persistence = 1.f);
+  void to_array_fractalize(Array      &array,
+                           Vec4<float> bbox,
+                           int         iterations,
+                           uint        seed,
+                           float       sigma = 0.3f,
+                           int         orientation = 0.f,
+                           float       persistence = 1.f);
 
   /**
    * @brief Export graph to csv files.
@@ -512,7 +513,7 @@ public:
    * @param fname File name.
    * @param shape Image resolution.
    */
-  void to_png(std::string fname, std::vector<int> shape = {512, 512});
+  void to_png(std::string fname, Vec2<int> shape = {512, 512});
 
   /**
    * @brief Update the adjacency matrix.
@@ -560,10 +561,10 @@ public:
    * @param bbox Bounding box.
    * @param closed Open/close path.
    */
-  Path(int                npoints,
-       uint               seed,
-       std::vector<float> bbox = {0.f, 1.f, 0.f, 1.f},
-       bool               closed = false)
+  Path(int         npoints,
+       uint        seed,
+       Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f},
+       bool        closed = false)
       : Cloud(npoints, seed, bbox), closed(closed){};
 
   /**
@@ -656,10 +657,10 @@ public:
    *
    * @see {@link Array::find_path_dijkstra}
    */
-  void dijkstra(Array             &array,
-                std::vector<float> bbox,
-                int                edge_divisions = 10,
-                float              distance_exponent = 0.5f);
+  void dijkstra(Array      &array,
+                Vec4<float> bbox,
+                int         edge_divisions = 10,
+                float       distance_exponent = 0.5f);
 
   /**
    * @brief Divide path by adding a point in-between each pair of consecutive
@@ -738,7 +739,7 @@ public:
    * @param array Input array.
    * @param bbox Bounding box of the array.
    */
-  void to_array(Array &array, std::vector<float> bbox);
+  void to_array(Array &array, Vec4<float> bbox);
 
   /**
    * @brief Export path as png image file.
@@ -746,7 +747,7 @@ public:
    * @param fname File name.
    * @param shape Image resolution.
    */
-  void to_png(std::string fname, std::vector<int> shape = {512, 512});
+  void to_png(std::string fname, Vec2<int> shape = {512, 512});
 };
 
 /**
@@ -790,7 +791,7 @@ float distance(const Point &p1, const Point &p2);
 void expand_grid(std::vector<float> &x,
                  std::vector<float> &y,
                  std::vector<float> &value,
-                 std::vector<float>  bbox = {0.f, 1.f, 0.f, 1.f});
+                 Vec4<float>         bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Generate a random grid.
@@ -805,12 +806,12 @@ void random_grid(std::vector<float> &x,
                  std::vector<float> &y,
                  std::vector<float> &value,
                  uint                seed,
-                 std::vector<float>  bbox = {0.f, 1.f, 0.f, 1.f});
+                 Vec4<float>         bbox = {0.f, 1.f, 0.f, 1.f});
 
 void random_grid(std::vector<float> &x,
                  std::vector<float> &y,
                  uint                seed,
-                 std::vector<float>  bbox = {0.f, 1.f, 0.f, 1.f}); /// @overload
+                 Vec4<float>         bbox = {0.f, 1.f, 0.f, 1.f}); /// @overload
 
 /**
  * @brief
@@ -825,7 +826,7 @@ void random_grid_density(std::vector<float> &x,
                          std::vector<float> &y,
                          Array              &density,
                          uint                seed,
-                         std::vector<float>  bbox = {0.f, 1.f, 0.f, 1.f});
+                         Vec4<float>         bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Generate a jittered random grid.
@@ -840,6 +841,6 @@ void random_grid_jittered(std::vector<float> &x,
                           std::vector<float> &y,
                           float               scale,
                           uint                seed,
-                          std::vector<float>  bbox = {0.f, 1.f, 0.f, 1.f});
+                          Vec4<float>         bbox = {0.f, 1.f, 0.f, 1.f});
 
 } // namespace hmap

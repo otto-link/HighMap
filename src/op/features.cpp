@@ -25,8 +25,8 @@ Array connected_components(const Array &array,
   const size_t           nb = di.size();
 
   // padding: one cell with a non-background value on the borders
-  const int npi = array.shape[0] + 2;
-  const int npj = array.shape[1] + 2;
+  const int npi = array.shape.x + 2;
+  const int npj = array.shape.y + 2;
 
   Array labels = Array({npi, npj});
   Array array_pad = generate_buffered_array(array, {1, 1, 1, 1});
@@ -113,8 +113,8 @@ Array connected_components(const Array &array,
 
   // --- remove component with a "small" surface
   if (surface_threshold > 0.f)
-    for (int i = 0; i < labels.shape[0]; i++)
-      for (int j = 0; j < labels.shape[1]; j++)
+    for (int i = 0; i < labels.shape.x; i++)
+      for (int j = 0; j < labels.shape.y; j++)
         if (labels_surface[labels(i, j)] < surface_threshold)
           labels(i, j) = background_value;
 
@@ -153,17 +153,17 @@ Array kmeans_clustering2(const Array &array1,
                          int          nclusters,
                          uint         seed)
 {
-  std::vector<int> shape = {array1.shape[0], array1.shape[1]};
-  Array            kmeans = Array(shape); // output
+  Vec2<int> shape = array1.shape;
+  Array     kmeans = Array(shape); // output
 
   // recast data
   std::vector<std::array<float, 2>> data = {};
-  data.resize(shape[0] * shape[1]);
+  data.resize(shape.x * shape.y);
 
-  for (int i = 0; i < shape[0]; i++)
-    for (int j = 0; j < shape[1]; j++)
+  for (int i = 0; i < shape.x; i++)
+    for (int j = 0; j < shape.y; j++)
     {
-      int k = i + j * shape[0];
+      int k = i + j * shape.x;
       data[k][0] = array1(i, j);
       data[k][1] = array2(i, j);
     }
@@ -207,8 +207,8 @@ Array kmeans_clustering2(const Array &array1,
 
   for (size_t k = 0; k < std::get<1>(dkm).size(); k++)
   {
-    int j = int(k / shape[0]);
-    int i = k - j * shape[0];
+    int j = int(k / shape.x);
+    int i = k - j * shape.x;
     kmeans(i, j) = isort[std::get<1>(dkm)[k]];
   }
 

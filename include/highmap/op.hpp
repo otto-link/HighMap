@@ -529,7 +529,7 @@ void gamma_correction_local(Array &array, float gamma, int ir, float k = 0.1f);
  * @param buffers Buffer size {east, west, south, north}.
  * @return Array New array with buffers.
  */
-Array generate_buffered_array(const Array &array, std::vector<int> buffers);
+Array generate_buffered_array(const Array &array, Vec4<int> buffers);
 
 /**
  * @brief Return the gradient of a vector.
@@ -1342,9 +1342,9 @@ Array select_transitions(const Array &array1,
  * **Result**
  * @image html ex_set_borders.png
  */
-void set_borders(Array             &array,
-                 std::vector<float> border_values,
-                 std::vector<int>   buffer_sizes);
+void set_borders(Array      &array,
+                 Vec4<float> border_values,
+                 Vec4<int>   buffer_sizes);
 
 void set_borders(Array &array,
                  float  border_values,
@@ -1543,7 +1543,7 @@ void smooth_fill_smear_peaks(Array &array, int ir);
  * @param array Input array.
  * @param buffer_sizes Buffer size at the borders {east, west, south, north}.
  */
-void sym_borders(Array &array, std::vector<int> buffer_sizes);
+void sym_borders(Array &array, Vec4<int> buffer_sizes);
 
 /**
  * @brief Return the topographic shadow intensity in [-1, 1].
@@ -1619,12 +1619,12 @@ void warp(Array &array, const Array &dx, const Array &dy, float scale = 1.f);
  * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
  * domain.
  */
-void warp_fbm(Array             &array,
-              float              scale,
-              std::vector<float> kw,
-              uint               seed,
-              int                octaves = 8,
-              std::vector<float> shift = {0.f, 0.f});
+void warp_fbm(Array      &array,
+              float       scale,
+              Vec2<float> kw,
+              uint        seed,
+              int         octaves = 8,
+              Vec2<float> shift = {0.f, 0.f});
 
 /**
  * @brief Fill values at the borders (i = 0, j = 0, ...) with zeros.

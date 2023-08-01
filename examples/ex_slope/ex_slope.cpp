@@ -2,13 +2,13 @@
 
 int main(void)
 {
-  const std::vector<int>   shape = {256, 256};
-  const std::vector<float> res = {4.f, 4.f};
-  int                      seed = 1;
+  hmap::Vec2<int>   shape = {256, 256};
+  hmap::Vec2<float> res = {4.f, 4.f};
+  int               seed = 1;
 
   hmap::Array noise = 0.2f * hmap::fbm_perlin(shape, res, seed);
 
-  float       talus = 1.f / shape[0];
+  float       talus = 1.f / shape.x;
   hmap::Array sx = hmap::slope_x(shape, talus);
   hmap::Array sy = hmap::slope_y(shape, talus);
 

@@ -57,9 +57,9 @@ void hydraulic_musgrave(Array &z,
     std::rotate(dj.begin(), dj.begin() + 1, dj.end());
     std::rotate(c.begin(), c.begin() + 1, c.end());
 
-    for (int i = 1; i < z.shape[0] - 1; i++)
+    for (int i = 1; i < z.shape.x - 1; i++)
     {
-      for (int j = 1; j < z.shape[1] - 1; j++)
+      for (int j = 1; j < z.shape.y - 1; j++)
       {
         for (uint k = 0; k < nb; k++) // loop over 1st neighbors
         {

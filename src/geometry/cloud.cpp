@@ -15,7 +15,7 @@
 namespace hmap
 {
 
-Cloud::Cloud(int npoints, uint seed, std::vector<float> bbox)
+Cloud::Cloud(int npoints, uint seed, Vec4<float> bbox)
 {
   std::mt19937                          gen(seed);
   std::uniform_real_distribution<float> dis;
@@ -29,13 +29,13 @@ Cloud::Cloud(int npoints, uint seed, std::vector<float> bbox)
 };
 
 std::vector<float> Cloud::interpolate_values_from_array(const Array &array,
-                                                        std::vector<float> bbox)
+                                                        Vec4<float>  bbox)
 {
   std::vector<float> v_out(this->get_npoints());
-  float              ax = (float)(array.shape[0] - 1) / (bbox[1] - bbox[0]);
-  float bx = (float)(array.shape[0] - 1) * (-bbox[0]) / (bbox[1] - bbox[0]);
-  float ay = (float)(array.shape[1] - 1) / (bbox[3] - bbox[2]);
-  float by = (float)(array.shape[1] - 1) * (-bbox[2]) / (bbox[3] - bbox[2]);
+  float              ax = (float)(array.shape.x - 1) / (bbox.b - bbox.a);
+  float bx = (float)(array.shape.x - 1) * (-bbox.a) / (bbox.b - bbox.a);
+  float ay = (float)(array.shape.y - 1) / (bbox.d - bbox.c);
+  float by = (float)(array.shape.y - 1) * (-bbox.c) / (bbox.d - bbox.c);
 
   for (size_t k = 0; k < this->get_npoints(); k++)
   {
@@ -44,7 +44,7 @@ std::vector<float> Cloud::interpolate_values_from_array(const Array &array,
     int   i = (int)x;
     int   j = (int)y;
 
-    if ((i > -1) and (i < array.shape[0]) and (j > -1) and (j < array.shape[1]))
+    if ((i > -1) and (i < array.shape.x) and (j > -1) and (j < array.shape.y))
     {
       float u = x - (float)i;
       float v = y - (float)j;
@@ -66,29 +66,29 @@ void Cloud::print()
     std::cout << std::endl;
   }
 
-  std::vector<float> bbox = this->get_bbox();
-  std::cout << "   bounding box: {" << bbox[0] << ", " << bbox[1] << ", "
-            << bbox[2] << ", " << bbox[3] << "}" << std::endl;
+  Vec4<float> bbox = this->get_bbox();
+  std::cout << "   bounding box: {" << bbox.a << ", " << bbox.b << ", "
+            << bbox.c << ", " << bbox.d << "}" << std::endl;
 }
 
-void Cloud::remap_xy(std::vector<float> bbox_new)
+void Cloud::remap_xy(Vec4<float> bbox_new)
 {
-  std::vector<float> bbox = this->get_bbox();
+  Vec4<float> bbox = this->get_bbox();
   for (auto &p : this->points)
   {
-    p.x = (p.x - bbox[0]) / (bbox[1] - bbox[0]) * (bbox_new[1] - bbox_new[0]) +
-          bbox_new[0];
-    p.y = (p.y - bbox[2]) / (bbox[3] - bbox[2]) * (bbox_new[3] - bbox_new[2]) +
-          bbox_new[2];
+    p.x = (p.x - bbox.a) / (bbox.b - bbox.a) * (bbox_new.b - bbox_new.a) +
+          bbox_new.a;
+    p.y = (p.y - bbox.c) / (bbox.d - bbox.c) * (bbox_new.d - bbox_new.c) +
+          bbox_new.c;
   }
 }
 
-void Cloud::set_values_from_array(const Array &array, std::vector<float> bbox)
+void Cloud::set_values_from_array(const Array &array, Vec4<float> bbox)
 {
-  float ax = (float)(array.shape[0] - 1) / (bbox[1] - bbox[0]);
-  float bx = (float)(array.shape[0] - 1) * (-bbox[0]) / (bbox[1] - bbox[0]);
-  float ay = (float)(array.shape[1] - 1) / (bbox[3] - bbox[2]);
-  float by = (float)(array.shape[1] - 1) * (-bbox[2]) / (bbox[3] - bbox[2]);
+  float ax = (float)(array.shape.x - 1) / (bbox.b - bbox.a);
+  float bx = (float)(array.shape.x - 1) * (-bbox.a) / (bbox.b - bbox.a);
+  float ay = (float)(array.shape.y - 1) / (bbox.d - bbox.c);
+  float by = (float)(array.shape.y - 1) * (-bbox.c) / (bbox.d - bbox.c);
 
   for (size_t k = 0; k < this->get_npoints(); k++)
   {
@@ -97,7 +97,7 @@ void Cloud::set_values_from_array(const Array &array, std::vector<float> bbox)
     int   i = (int)x;
     int   j = (int)y;
 
-    if ((i > -1) and (i < array.shape[0]) and (j > -1) and (j < array.shape[1]))
+    if ((i > -1) and (i < array.shape.x) and (j > -1) and (j < array.shape.y))
     {
       float u = x - (float)i;
       float v = y - (float)j;
@@ -124,14 +124,14 @@ void Cloud::set_values_from_chull_distance()
   }
 }
 
-void Cloud::to_array(Array &array, std::vector<float> bbox)
+void Cloud::to_array(Array &array, Vec4<float> bbox)
 {
-  int   ni = array.shape[0];
-  int   nj = array.shape[1];
-  float ai = (ni - 1) / (bbox[1] - bbox[0]);
-  float bi = -bbox[0] * (ni - 1) / (bbox[1] - bbox[0]);
-  float aj = (nj - 1) / (bbox[3] - bbox[2]);
-  float bj = -bbox[2] * (nj - 1) / (bbox[3] - bbox[2]);
+  int   ni = array.shape.x;
+  int   nj = array.shape.y;
+  float ai = (ni - 1) / (bbox.b - bbox.a);
+  float bi = -bbox.a * (ni - 1) / (bbox.b - bbox.a);
+  float aj = (nj - 1) / (bbox.d - bbox.c);
+  float bj = -bbox.c * (nj - 1) / (bbox.d - bbox.c);
 
   for (auto &p : this->points)
   {

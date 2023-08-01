@@ -10,13 +10,13 @@
 namespace hmap
 {
 
-hmap::Array worley(std::vector<int>   shape,
-                   std::vector<float> kw,
-                   uint               seed,
-                   Array             *p_noise_x,
-                   Array             *p_noise_y,
-                   std::vector<float> shift,
-                   std::vector<float> scale)
+hmap::Array worley(Vec2<int>   shape,
+                   Vec2<float> kw,
+                   uint        seed,
+                   Array      *p_noise_x,
+                   Array      *p_noise_y,
+                   Vec2<float> shift,
+                   Vec2<float> scale)
 {
   hmap::Array   array = hmap::Array(shape);
   FastNoiseLite noise(seed);

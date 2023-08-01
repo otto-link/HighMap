@@ -5,9 +5,9 @@
 
 int main(void)
 {
-  const std::vector<int>   shape = {256, 256};
-  const std::vector<float> res = {4.f, 4.f};
-  int                      seed = 1;
+  hmap::Vec2<int>   shape = {256, 256};
+  hmap::Vec2<float> res = {4.f, 4.f};
+  int               seed = 1;
 
   hmap::Array z = hmap::white(shape, 0.f, 1.f, seed);
   hmap::Array kernel = hmap::disk({32, 32});

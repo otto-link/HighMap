@@ -8,6 +8,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/op.hpp"
+#include "highmap/vector.hpp"
 
 namespace hmap
 
@@ -15,8 +16,8 @@ namespace hmap
 
 std::vector<float> Array::col_to_vector(int j)
 {
-  std::vector<float> vec(this->shape[0]);
-  for (int i = 0; i < this->shape[0]; i++)
+  std::vector<float> vec(this->shape.x);
+  for (int i = 0; i < this->shape.x; i++)
     vec[i] = (*this)(i, j);
   return vec;
 }
@@ -61,25 +62,25 @@ void Array::depose_amount_kernel_bilinear_at(int   i,
 
 void Array::depose_amount_kernel_at(int i, int j, Array &kernel, float amount)
 {
-  const int ir = (kernel.shape[0] - 1) / 2;
-  const int jr = (kernel.shape[1] - 1) / 2;
+  const int ir = (kernel.shape.x - 1) / 2;
+  const int jr = (kernel.shape.y - 1) / 2;
 
-  for (int p = 0; p < kernel.shape[0]; p++)
+  for (int p = 0; p < kernel.shape.x; p++)
   {
-    for (int q = 0; q < kernel.shape[1]; q++)
+    for (int q = 0; q < kernel.shape.y; q++)
     {
       (*this)(i + p - ir, j + q - jr) += amount * kernel(p, q);
     }
   }
 }
 
-Array Array::extract_slice(std::vector<int> idx)
+Array Array::extract_slice(Vec4<int> idx)
 {
-  Array array_out = Array({idx[1] - idx[0], idx[3] - idx[2]});
+  Array array_out = Array({idx.b - idx.a, idx.d - idx.c});
 
-  for (int i = idx[0]; i < idx[1]; i++)
-    for (int j = idx[2]; j < idx[3]; j++)
-      array_out(i - idx[0], j - idx[2]) = (*this)(i, j);
+  for (int i = idx.a; i < idx.b; i++)
+    for (int j = idx.c; j < idx.d; j++)
+      array_out(i - idx.a, j - idx.c) = (*this)(i, j);
 
   return array_out;
 }
@@ -122,17 +123,16 @@ float Array::get_gradient_y_bilinear_at(int i, int j, float u, float v) const
   return f00 + a10 * u + a01 * v + a11 * u * v;
 }
 
-std::vector<float> Array::get_normal_at(int i, int j) const
+Vec3<float> Array::get_normal_at(int i, int j) const
 {
-  std::vector<float> normal(3);
+  Vec3<float> normal;
 
-  normal[0] = -this->get_gradient_x_at(i, j);
-  normal[1] = -this->get_gradient_y_at(i, j);
-  normal[2] = 1.f;
+  normal.x = -this->get_gradient_x_at(i, j);
+  normal.y = -this->get_gradient_y_at(i, j);
+  normal.z = 1.f;
 
-  float inv_norm = std::hypot(normal[0], normal[1], normal[2]);
-  for (auto &n : normal)
-    n /= inv_norm;
+  float norm = std::hypot(normal.x, normal.y, normal.z);
+  normal /= norm;
 
   return normal;
 }
@@ -149,22 +149,22 @@ float Array::get_value_bilinear_at(int i, int j, float u, float v) const
 
 Array hstack(const Array &array1, const Array &array2) // friend function
 {
-  Array array_out = Array({array1.shape[0] + array2.shape[0], array1.shape[1]});
+  Array array_out = Array({array1.shape.x + array2.shape.x, array1.shape.y});
 
-  for (int i = 0; i < array1.shape[0]; i++)
-    for (int j = 0; j < array1.shape[1]; j++)
+  for (int i = 0; i < array1.shape.x; i++)
+    for (int j = 0; j < array1.shape.y; j++)
       array_out(i, j) = array1(i, j);
 
-  for (int i = 0; i < array2.shape[0]; i++)
-    for (int j = 0; j < array1.shape[1]; j++)
-      array_out(i + array1.shape[0], j) = array2(i, j);
+  for (int i = 0; i < array2.shape.x; i++)
+    for (int j = 0; j < array1.shape.y; j++)
+      array_out(i + array1.shape.x, j) = array2(i, j);
 
   return array_out;
 }
 
 int Array::linear_index(int i, int j)
 {
-  return i * this->shape[1] + j;
+  return i * this->shape.y + j;
 }
 
 float Array::max() const
@@ -192,19 +192,19 @@ float Array::ptp() const
   return this->max() - this->min();
 }
 
-Array Array::resample_to_shape(std::vector<int> new_shape)
+Array Array::resample_to_shape(Vec2<int> new_shape)
 {
   Array array_out = Array(new_shape);
 
   // interpolation grid scaled to the starting grid to ease seeking of
   // the reference (i, j) indices during bilinear interpolation
-  std::vector<float> x = linspace(0.f, (float)this->shape[0] - 1, new_shape[0]);
-  std::vector<float> y = linspace(0.f, (float)this->shape[1] - 1, new_shape[1]);
+  std::vector<float> x = linspace(0.f, (float)this->shape.x - 1, new_shape.x);
+  std::vector<float> y = linspace(0.f, (float)this->shape.y - 1, new_shape.y);
 
-  for (int i = 0; i < new_shape[0]; i++)
+  for (int i = 0; i < new_shape.x; i++)
   {
     int iref = (int)x[i];
-    for (int j = 0; j < new_shape[1]; j++)
+    for (int j = 0; j < new_shape.y; j++)
     {
       int   jref = (int)y[j];
       float u = x[i] - (float)iref;
@@ -218,22 +218,22 @@ Array Array::resample_to_shape(std::vector<int> new_shape)
 
 std::vector<float> Array::row_to_vector(int i)
 {
-  std::vector<float> vec(this->shape[1]);
-  for (int j = 0; j < this->shape[1]; j++)
+  std::vector<float> vec(this->shape.y);
+  for (int j = 0; j < this->shape.y; j++)
     vec[j] = (*this)(i, j);
   return vec;
 }
 
-void Array::set_slice(std::vector<int> idx, float value)
+void Array::set_slice(Vec4<int> idx, float value)
 {
-  for (int i = idx[0]; i < idx[1]; i++)
-    for (int j = idx[2]; j < idx[3]; j++)
+  for (int i = idx.a; i < idx.b; i++)
+    for (int j = idx.c; j < idx.d; j++)
       (*this)(i, j) = value;
 }
 
 int Array::size() const
 {
-  return this->shape[0] * this->shape[1];
+  return this->shape.x * this->shape.y;
 }
 
 float Array::sum()
@@ -243,15 +243,15 @@ float Array::sum()
 
 Array vstack(const Array &array1, const Array &array2) // friend function
 {
-  Array array_out = Array({array1.shape[0], array1.shape[1] + array2.shape[1]});
+  Array array_out = Array({array1.shape.x, array1.shape.y + array2.shape.y});
 
-  for (int i = 0; i < array1.shape[0]; i++)
+  for (int i = 0; i < array1.shape.x; i++)
   {
-    for (int j = 0; j < array1.shape[1]; j++)
+    for (int j = 0; j < array1.shape.y; j++)
       array_out(i, j) = array1(i, j);
 
-    for (int j = 0; j < array2.shape[1]; j++)
-      array_out(i, j + array1.shape[1]) = array2(i, j);
+    for (int j = 0; j < array2.shape.y; j++)
+      array_out(i, j + array1.shape.y) = array2(i, j);
   }
 
   return array_out;

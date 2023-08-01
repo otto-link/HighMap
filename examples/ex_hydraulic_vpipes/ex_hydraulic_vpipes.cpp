@@ -6,9 +6,9 @@
 
 int main(void)
 {
-  const std::vector<int>   shape = {512, 512};
-  const std::vector<float> res = {2.f, 2.f};
-  int                      seed = 2;
+  hmap::Vec2<int>   shape = {512, 512};
+  hmap::Vec2<float> res = {2.f, 2.f};
+  int               seed = 2;
 
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
   hmap::remap(z);

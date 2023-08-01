@@ -16,6 +16,7 @@
 #define IMG_CHANNELS 3
 
 #include "highmap/colormaps.hpp"
+#include "highmap/vector.hpp"
 
 namespace hmap
 {
@@ -55,11 +56,11 @@ std::vector<uint8_t> colorize(const Array &array,
  * @param step
  * @return std::vector<uint8_t>
  */
-std::vector<uint8_t> colorize_grayscale(const Array     &array,
-                                        std::vector<int> step = {1, 1});
+std::vector<uint8_t> colorize_grayscale(const Array &array,
+                                        Vec2<int>    step = {1, 1});
 
-std::vector<uint8_t> colorize_histogram(const Array     &array,
-                                        std::vector<int> step = {1, 1});
+std::vector<uint8_t> colorize_histogram(const Array &array,
+                                        Vec2<int>    step = {1, 1});
 
 /**
  * @brief Convert 3 array element values to a color data (3 channels RGB in [0,
@@ -101,6 +102,6 @@ void export_banner_png(std::string        fname,
  */
 void write_png_8bit(std::string           fname,
                     std::vector<uint8_t> &img,
-                    std::vector<int>      shape);
+                    Vec2<int>             shape);
 
 } // namespace hmap

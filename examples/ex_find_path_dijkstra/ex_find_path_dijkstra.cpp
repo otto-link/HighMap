@@ -4,16 +4,16 @@
 
 int main(void)
 {
-  const std::vector<int>   shape = {256, 256};
-  const std::vector<float> res = {2.f, 2.f};
-  int                      seed = 2;
+  hmap::Vec2<int>   shape = {256, 256};
+  hmap::Vec2<float> res = {2.f, 2.f};
+  int               seed = 2;
 
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
   z.to_png("ex_find_path_dijkstra0.png", hmap::cmap::terrain, true);
   hmap::remap(z);
 
-  std::vector<int> ij_start = {10, 20};
-  std::vector<int> ij_end = {200, 240};
+  hmap::Vec2<int> ij_start = {10, 20};
+  hmap::Vec2<int> ij_end = {200, 240};
 
   std::vector<int> i, j;
 

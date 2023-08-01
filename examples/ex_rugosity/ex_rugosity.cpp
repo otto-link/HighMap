@@ -5,10 +5,10 @@
 
 int main(void)
 {
-  const std::vector<int>   shape = {256, 256};
-  const std::vector<float> res = {4.f, 4.f};
-  int                      seed = 1;
-  int                      ir = 5;
+  hmap::Vec2<int>   shape = {256, 256};
+  hmap::Vec2<float> res = {4.f, 4.f};
+  int               seed = 1;
+  int               ir = 5;
 
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
   hmap::Array c = hmap::rugosity(z, ir);

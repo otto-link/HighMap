@@ -5,9 +5,9 @@
 
 int main(void)
 {
-  const std::vector<int> shape = {256, 256};
-  float                  angle = 30.f;
-  float                  talus = 4.f / shape[0];
+  hmap::Vec2<int> shape = {256, 256};
+  float           angle = 30.f;
+  float           talus = 4.f / shape.x;
 
   float kw = 4.f;
   uint  seed = 1;

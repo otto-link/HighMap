@@ -5,7 +5,7 @@
 
 int main(void)
 {
-  const std::vector<int> shape = {256, 256};
+  hmap::Vec2<int> shape = {256, 256};
 
   float radius = 48.f;
   float sigma_inner = 8.f;
@@ -17,8 +17,8 @@ int main(void)
       hmap::caldera(shape, radius, sigma_inner, sigma_outer, z_bottom);
 
   // with noise
-  const std::vector<float> res = {4.f, 4.f};
-  int                      seed = 1;
+  hmap::Vec2<float> res = {4.f, 4.f};
+  int               seed = 1;
 
   hmap::Array noise = hmap::fbm_perlin(shape, res, seed);
   float       noise_r_amp = 8.f;    // pixels

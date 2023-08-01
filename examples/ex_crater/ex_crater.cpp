@@ -5,7 +5,7 @@
 
 int main(void)
 {
-  const std::vector<int> shape = {256, 256};
+  hmap::Vec2<int> shape = {256, 256};
 
   float radius = 48.f;
   float sigma_outer = 32.f;

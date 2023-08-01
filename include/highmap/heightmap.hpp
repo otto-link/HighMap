@@ -16,6 +16,7 @@
 #include <functional>
 
 #include "highmap/array.hpp"
+#include "highmap/vector.hpp"
 
 namespace hmap
 {
@@ -30,7 +31,7 @@ public:
    * For example, if the tiling is {4, 2}, the shift of tile {3, 2} is {0.75,
    * 0.5}.
    */
-  std::vector<float> shift;
+  Vec2<float> shift;
 
   /**
    * @brief Scale of the tile in each direction, assuming the global domain is
@@ -39,13 +40,13 @@ public:
    * For example, if the tiling is {4, 2} without overlap, the scale is {0.25,
    * 0.5}.
    */
-  std::vector<float> scale;
+  Vec2<float> scale;
 
   /**
    * @brief Tile bounding box {xmin, xmax, ymin, ymax}.
    *
    */
-  std::vector<float> bbox;
+  Vec4<float> bbox;
 
   /**
    * @brief Construct a new Tile object.
@@ -53,10 +54,7 @@ public:
    * @param shape Shape.
    * @param shift Shift.
    */
-  Tile(std::vector<int>   shape,
-       std::vector<float> shift,
-       std::vector<float> scale,
-       std::vector<float> bbox);
+  Tile(Vec2<int> shape, Vec2<float> shift, Vec2<float> scale, Vec4<float> bbox);
 
   Tile(); /// @overload
 
@@ -86,19 +84,19 @@ public:
    * @brief Heightmap global shape.
    *
    */
-  std::vector<int> shape;
+  Vec2<int> shape;
 
   /**
    * @brief Heightmap bounding box {xmin, xmax, ymin, ymax}.
    *
    */
-  std::vector<float> bbox = {0.f, 1.f, 0.f, 1.f};
+  Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f};
 
   /**
    * @brief Tiling setup (number of tiles in each direction).
    *
    */
-  std::vector<int> tiling = {1, 1};
+  Vec2<int> tiling = {1, 1};
 
   /**
    * @brief Tile overlapping, in [0, 1[.
@@ -120,24 +118,19 @@ public:
    * @param tiling Tiling setup.
    * @param overlap Tile overlapping.
    */
-  HeightMap(std::vector<int>   shape,
-            std::vector<float> bbox,
-            std::vector<int>   tiling,
-            float              overlap);
+  HeightMap(Vec2<int> shape, Vec4<float> bbox, Vec2<int> tiling, float overlap);
 
-  HeightMap(std::vector<int> shape,
-            std::vector<int> tiling,
-            float            overlap); /// @overload
+  HeightMap(Vec2<int> shape, Vec2<int> tiling,
+            float overlap); /// @overload
 
-  HeightMap(std::vector<int>   shape,
-            std::vector<float> bbox,
-            std::vector<int>   tiling); /// @overload
+  HeightMap(Vec2<int> shape, Vec4<float> bbox,
+            Vec2<int> tiling); /// @overload
 
-  HeightMap(std::vector<int> shape, std::vector<float> bbox); /// @overload
+  HeightMap(Vec2<int> shape, Vec4<float> bbox); /// @overload
 
-  HeightMap(std::vector<int> shape, std::vector<int> tiling); /// @overload
+  HeightMap(Vec2<int> shape, Vec2<int> tiling); /// @overload
 
-  HeightMap(std::vector<int> shape); /// @overload
+  HeightMap(Vec2<int> shape); /// @overload
 
   HeightMap(); /// @overload
 
@@ -170,14 +163,14 @@ public:
    *
    * @param new_shape New shape.
    */
-  void set_shape(std::vector<int> new_shape);
+  void set_shape(Vec2<int> new_shape);
 
   /**
    * @brief Set the tiling setup.
    *
    * @param new_tiling New tiling.
    */
-  void set_tiling(std::vector<int> new_tiling);
+  void set_tiling(Vec2<int> new_tiling);
 
   /**
    * @brief Print some informations about the object.
@@ -227,7 +220,7 @@ public:
    * @param shape_export Array shape.
    * @return Array Resulting array.
    */
-  Array to_array(std::vector<int> shape_export);
+  Array to_array(Vec2<int> shape_export);
 
   Array to_array(); // @overload
 
@@ -243,28 +236,27 @@ private:
 void fill(HeightMap &h,
           HeightMap *p_noise_x,
           HeightMap *p_noise_y,
-          std::function<Array(std::vector<int>,
-                              std::vector<float>,
-                              std::vector<float>,
+          std::function<Array(Vec2<int>,
+                              Vec2<float>,
+                              Vec2<float>,
                               Array *p_noise_x,
                               Array *p_noise_y)>
               nullary_op); // shape, shift, scale, noise_x, noise_y
 
 void fill(HeightMap &h,
           HeightMap *p_noise,
-          std::function<Array(std::vector<int>,
-                              std::vector<float>,
-                              std::vector<float>,
+          std::function<Array(Vec2<int>,
+                              Vec2<float>,
+                              Vec2<float>,
                               Array *p_noise)>
               nullary_op); // shape, shift, scale and noise
 
 void fill(HeightMap &h,
-          std::function<
-              Array(std::vector<int>, std::vector<float>, std::vector<float>)>
+          std::function<Array(Vec2<int>, Vec2<float>, Vec2<float>)>
               nullary_op); // shape, shift and scale
 
-void fill(HeightMap                             &h,
-          std::function<Array(std::vector<int>)> nullary_op); // shape only
+void fill(HeightMap                      &h,
+          std::function<Array(Vec2<int>)> nullary_op); // shape only
 
 void transform(HeightMap &h, std::function<void(Array &)> unary_op);
 

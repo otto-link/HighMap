@@ -22,8 +22,8 @@ void warp(Array &array, const Array &dx, const Array &dy, float scale)
 
   Array array_buffered = generate_buffered_array(array, {i1, i2, j1, j2});
 
-  for (int i = 0; i < array.shape[0]; i++)
-    for (int j = 0; j < array.shape[1]; j++)
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
     {
       // warped position
       float x = (float)i + dx(i, j) * scale;
@@ -39,12 +39,12 @@ void warp(Array &array, const Array &dx, const Array &dy, float scale)
     }
 }
 
-void warp_fbm(Array             &array,
-              float              scale,
-              std::vector<float> kw,
-              uint               seed,
-              int                octaves,
-              std::vector<float> shift)
+void warp_fbm(Array      &array,
+              float       scale,
+              Vec2<float> kw,
+              uint        seed,
+              int         octaves,
+              Vec2<float> shift)
 {
   float weight = 0.f;
   float persistence = 0.5f;

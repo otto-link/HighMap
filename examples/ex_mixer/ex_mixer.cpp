@@ -5,8 +5,8 @@
 
 int main(void)
 {
-  const std::vector<int> shape = {128, 128};
-  int                    seed = 1;
+  hmap::Vec2<int> shape = {128, 128};
+  int             seed = 1;
 
   hmap::Array z1 = hmap::perlin(shape, {8.f, 8.f}, seed);
   hmap::Array z2 = hmap::fbm_perlin(shape, {4.f, 4.f}, seed + 1);

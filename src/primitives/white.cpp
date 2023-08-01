@@ -9,7 +9,7 @@
 namespace hmap
 {
 
-Array white(std::vector<int> shape, float a, float b, uint seed)
+Array white(Vec2<int> shape, float a, float b, uint seed)
 {
   Array                                 array = Array(shape);
   std::mt19937                          gen(seed);
@@ -27,8 +27,8 @@ Array white_density_map(const Array &density_map, uint seed)
   std::mt19937                          gen(seed);
   std::uniform_real_distribution<float> dis(0.f, 1.f);
 
-  for (int i = 0; i < density_map.shape[0]; i++)
-    for (int j = 0; j < density_map.shape[1]; j++)
+  for (int i = 0; i < density_map.shape.x; i++)
+    for (int j = 0; j < density_map.shape.y; j++)
     {
       float r = dis(gen);
       if (r < density_map(i, j))
@@ -37,11 +37,7 @@ Array white_density_map(const Array &density_map, uint seed)
   return array;
 }
 
-Array white_sparse(std::vector<int> shape,
-                   float            a,
-                   float            b,
-                   float            density,
-                   uint             seed)
+Array white_sparse(Vec2<int> shape, float a, float b, float density, uint seed)
 {
   Array                                 array = Array(shape);
   std::mt19937                          gen(seed);

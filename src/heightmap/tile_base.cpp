@@ -8,13 +8,12 @@ namespace hmap
 {
 
 Tile::Tile()
-    : Array({0, 0}), shift({0.f, 0.f}), scale({0.f, 0.f}),
-      bbox({0.f, 0.f, 0.f, 0.f}){};
+    : Array(), shift(0.f, 0.f), scale(0.f, 0.f), bbox(0.f, 0.f, 0.f, 0.f){};
 
-Tile::Tile(std::vector<int>   shape,
-           std::vector<float> shift,
-           std::vector<float> scale,
-           std::vector<float> bbox)
+Tile::Tile(Vec2<int>   shape,
+           Vec2<float> shift,
+           Vec2<float> scale,
+           Vec4<float> bbox)
     : Array(shape), shift(shift), scale(scale), bbox(bbox)
 {
 }
@@ -28,11 +27,11 @@ void Tile::infos() const
 {
   std::cout << "Tile, ";
   std::cout << "address: " << this << ", ";
-  std::cout << "shape: {" << this->shape[0] << ", " << this->shape[1] << "}, ";
-  std::cout << "shift: {" << this->shift[0] << ", " << this->shift[1] << "}, ";
-  std::cout << "scale: {" << this->scale[0] << ", " << this->scale[1] << "}, ";
-  std::cout << "bbox: {" << this->bbox[0] << ", " << this->bbox[1] << ", "
-            << this->bbox[2] << ", " << this->bbox[3] << "}, ";
+  std::cout << "shape: {" << this->shape.x << ", " << this->shape.y << "}, ";
+  std::cout << "shift: {" << this->shift.x << ", " << this->shift.y << "}, ";
+  std::cout << "scale: {" << this->scale.x << ", " << this->scale.y << "}, ";
+  std::cout << "bbox: {" << this->bbox.a << ", " << this->bbox.b << ", "
+            << this->bbox.c << ", " << this->bbox.d << "}, ";
   std::cout << std::endl;
 }
 

@@ -24,3 +24,4 @@
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 #include "highmap/roads.hpp"
+#include "highmap/vector.hpp"

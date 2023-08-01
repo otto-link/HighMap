@@ -14,10 +14,10 @@ Array skeleton_middle(const Array &array)
   Array v = array;
   make_binary(v, 0.f); // reduce array values to {0, 1}
 
-  for (int i = 0; i < v.shape[0]; i++)
+  for (int i = 0; i < v.shape.x; i++)
   {
     int j1 = 0;
-    for (int j = 0; j < v.shape[1] - 1; j++)
+    for (int j = 0; j < v.shape.y - 1; j++)
     {
       float dv = (v(i, j + 1) - v(i, j));
 
@@ -28,10 +28,10 @@ Array skeleton_middle(const Array &array)
     }
   }
 
-  // for (int j = 0; j < v.shape[1]; j++)
+  // for (int j = 0; j < v.shape.y; j++)
   //   {
   //     int i1 = 0;
-  //     for (int i = 0; i < v.shape[0] - 1; i++)
+  //     for (int i = 0; i < v.shape.x - 1; i++)
   // 	{
   // 	  float dv = (v(i + 1, j) - v(i, j));
 

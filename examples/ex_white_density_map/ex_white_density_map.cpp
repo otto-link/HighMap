@@ -5,8 +5,8 @@
 
 int main(void)
 {
-  const std::vector<int> shape = {256, 256};
-  int                    seed = 1;
+  hmap::Vec2<int> shape = {256, 256};
+  int             seed = 1;
 
   hmap::Array dmap = hmap::fbm_perlin(shape, {2.f, 2.f}, seed);
   hmap::remap(dmap);

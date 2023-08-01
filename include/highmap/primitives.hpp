@@ -15,15 +15,17 @@
 #pragma once
 #include <functional>
 
+#include "highmap/vector.hpp"
+
 namespace hmap
 {
 
 Array helper_get_noise(Array                             &array,
-                       std::vector<float>                 kw,
+                       Vec2<float>                        kw,
                        Array                             *p_noise_x,
                        Array                             *p_noise_y,
-                       std::vector<float>                 shift,
-                       std::vector<float>                 scale,
+                       Vec2<float>                        shift,
+                       Vec2<float>                        scale,
                        std::function<float(float, float)> noise_fct);
 
 /**
@@ -34,7 +36,7 @@ Array helper_get_noise(Array                             &array,
  * @param shape Array shape.
  * @return Array New array.
  */
-Array biweight(std::vector<int> shape);
+Array biweight(Vec2<int> shape);
 
 /**
  * @brief Return a "bump field".
@@ -52,10 +54,10 @@ Array biweight(std::vector<int> shape);
  * **Result**
  * @image html ex_bump_field.png
  */
-Array bump_field(std::vector<int> shape,
-                 float            kw,
-                 uint             seed,
-                 float            shape_factor = 2.f);
+Array bump_field(Vec2<int> shape,
+                 float     kw,
+                 uint      seed,
+                 float     shape_factor = 2.f);
 
 /**
  * @brief Return a caldera-shaped heightmap.
@@ -79,24 +81,24 @@ Array bump_field(std::vector<int> shape,
  * **Result**
  * @image html ex_caldera.png
  */
-Array caldera(std::vector<int>   shape,
-              float              radius,
-              float              sigma_inner,
-              float              sigma_outer,
-              float              z_bottom,
-              Array             *p_noise,
-              float              noise_amp_r,
-              float              noise_ratio_z,
-              std::vector<float> shift = {0.f, 0.f},
-              std::vector<float> scale = {1.f, 1.f});
+Array caldera(Vec2<int>   shape,
+              float       radius,
+              float       sigma_inner,
+              float       sigma_outer,
+              float       z_bottom,
+              Array      *p_noise,
+              float       noise_amp_r,
+              float       noise_ratio_z,
+              Vec2<float> shift = {0.f, 0.f},
+              Vec2<float> scale = {1.f, 1.f});
 
-Array caldera(std::vector<int>   shape,
-              float              radius,
-              float              sigma_inner,
-              float              sigma_outer,
-              float              z_bottom,
-              std::vector<float> shift = {0.f, 0.f},
-              std::vector<float> scale = {1.f, 1.f}); ///< @overload
+Array caldera(Vec2<int>   shape,
+              float       radius,
+              float       sigma_inner,
+              float       sigma_outer,
+              float       z_bottom,
+              Vec2<float> shift = {0.f, 0.f},
+              Vec2<float> scale = {1.f, 1.f}); ///< @overload
 
 /**
  * @brief Return a cone.
@@ -106,7 +108,7 @@ Array caldera(std::vector<int>   shape,
  * @param shape Array shape.
  * @return Array New array.
  */
-Array cone(std::vector<int> shape);
+Array cone(Vec2<int> shape);
 
 /**
  * @brief Return a cone with a given height and talus (output array shape is
@@ -125,7 +127,7 @@ Array cone_talus(float height, float talus);
  * @param shape Array shape.
  * @return Array New array.
  */
-Array cone_smooth(std::vector<int> shape);
+Array cone_smooth(Vec2<int> shape);
 
 /**
  * @brief Return a constant value array.
@@ -134,7 +136,7 @@ Array cone_smooth(std::vector<int> shape);
  * @param value Filling value.
  * @return Array New array.
  */
-Array constant(std::vector<int> shape, float value = 0.f);
+Array constant(Vec2<int> shape, float value = 0.f);
 
 /**
  * @brief Return a crater-shaped heightmap.
@@ -155,14 +157,14 @@ Array constant(std::vector<int> shape, float value = 0.f);
  * **Result**
  * @image html ex_crater.png
  */
-Array crater(std::vector<int>   shape,
-             float              radius,
-             float              depth,
-             float              lip_decay,
-             float              lip_height_ratio = 0.5f,
-             Array             *p_noise = nullptr,
-             std::vector<float> shift = {0.f, 0.f},
-             std::vector<float> scale = {1.f, 1.f});
+Array crater(Vec2<int>   shape,
+             float       radius,
+             float       depth,
+             float       lip_decay,
+             float       lip_height_ratio = 0.5f,
+             Array      *p_noise = nullptr,
+             Vec2<float> shift = {0.f, 0.f},
+             Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return a cubic pulse kernel.
@@ -170,7 +172,7 @@ Array crater(std::vector<int>   shape,
  * @param shape Array shape.
  * @return Array New array.
  */
-Array cubic_pulse(std::vector<int> shape);
+Array cubic_pulse(Vec2<int> shape);
 
 /**
  * @brief Return a disk foot-print.
@@ -178,7 +180,7 @@ Array cubic_pulse(std::vector<int> shape);
  * @param shape Array shape.
  * @return Array New array.
  */
-Array disk(std::vector<int> shape);
+Array disk(Vec2<int> shape);
 
 /**
  * @brief Return an array filled with an hybrid multifractal Perlin noise.
@@ -212,26 +214,26 @@ Array disk(std::vector<int> shape);
  * **Result**
  * @image html ex_fbm_perlin.png
  */
-Array fbm_perlin(std::vector<int>   shape,
-                 std::vector<float> kw,
-                 uint               seed,
-                 int                octaves = 8,
-                 float              weight = 0.7f,
-                 float              persistence = 0.5f,
-                 float              lacunarity = 2.f,
-                 Array             *p_noise_x = nullptr,
-                 Array             *p_noise_y = nullptr,
-                 std::vector<float> shift = {0.f, 0.f},
-                 std::vector<float> scale = {1.f, 1.f});
+Array fbm_perlin(Vec2<int>   shape,
+                 Vec2<float> kw,
+                 uint        seed,
+                 int         octaves = 8,
+                 float       weight = 0.7f,
+                 float       persistence = 0.5f,
+                 float       lacunarity = 2.f,
+                 Array      *p_noise_x = nullptr,
+                 Array      *p_noise_y = nullptr,
+                 Vec2<float> shift = {0.f, 0.f},
+                 Vec2<float> scale = {1.f, 1.f});
 
-Array fbm_perlin_advanced(std::vector<int>   shape,
-                          std::vector<float> kw,
-                          uint               seed,
-                          int                octaves,
-                          const Array       &weight,
-                          float              persistence = 0.5f,
-                          float              lacunarity = 2.f,
-                          std::vector<float> shift = {0.f, 0.f});
+Array fbm_perlin_advanced(Vec2<int>    shape,
+                          Vec2<float>  kw,
+                          uint         seed,
+                          int          octaves,
+                          const Array &weight,
+                          float        persistence = 0.5f,
+                          float        lacunarity = 2.f,
+                          Vec2<float>  shift = {0.f, 0.f});
 
 /**
  * @brief Return an array filled with an hybrid multifractal Worley noise.
@@ -259,17 +261,17 @@ Array fbm_perlin_advanced(std::vector<int>   shape,
  * @param scale Domain scaling, in [0, 1].
  * @return Array Fractal noise.
  */
-Array fbm_worley(std::vector<int>   shape,
-                 std::vector<float> kw,
-                 uint               seed,
-                 int                octaves = 8,
-                 float              weight = 0.7f,
-                 float              persistence = 0.5f,
-                 float              lacunarity = 2.f,
-                 Array             *p_noise_x = nullptr,
-                 Array             *p_noise_y = nullptr,
-                 std::vector<float> shift = {0.f, 0.f},
-                 std::vector<float> scale = {1.f, 1.f});
+Array fbm_worley(Vec2<int>   shape,
+                 Vec2<float> kw,
+                 uint        seed,
+                 int         octaves = 8,
+                 float       weight = 0.7f,
+                 float       persistence = 0.5f,
+                 float       lacunarity = 2.f,
+                 Array      *p_noise_x = nullptr,
+                 Array      *p_noise_y = nullptr,
+                 Vec2<float> shift = {0.f, 0.f},
+                 Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return a Gabor kernel of a given shape.
@@ -291,10 +293,10 @@ Array fbm_worley(std::vector<int>   shape,
  * **Result**
  * @image html ex_gabor.png
  */
-Array gabor(std::vector<int> shape,
-            float            kw,
-            float            angle,
-            float            footprint_threshold = 0.05f);
+Array gabor(Vec2<int> shape,
+            float     kw,
+            float     angle,
+            float     footprint_threshold = 0.05f);
 
 /**
  * @brief Return a sparse Gabor noise.
@@ -313,12 +315,12 @@ Array gabor(std::vector<int> shape,
  * **Result**
  * @image html ex_gabor_noise.png
  */
-Array gabor_noise(std::vector<int> shape,
-                  float            kw,
-                  float            angle,
-                  int              width,
-                  float            density,
-                  uint             seed);
+Array gabor_noise(Vec2<int> shape,
+                  float     kw,
+                  float     angle,
+                  int       width,
+                  float     density,
+                  uint      seed);
 
 /**
  * @brief Return a gaussian pulse kernel.
@@ -331,11 +333,11 @@ Array gabor_noise(std::vector<int> shape,
  * domain.
  * @return Array
  */
-Array gaussian_pulse(std::vector<int>   shape,
-                     float              sigma,
-                     Array             *p_noise = nullptr,
-                     std::vector<float> shift = {0.f, 0.f},
-                     std::vector<float> scale = {1.f, 1.f});
+Array gaussian_pulse(Vec2<int>   shape,
+                     float       sigma,
+                     Array      *p_noise = nullptr,
+                     Vec2<float> shift = {0.f, 0.f},
+                     Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @param shape Array shape.
@@ -360,14 +362,14 @@ Array gaussian_pulse(std::vector<int>   shape,
  * **Result**
  * @image html ex_hybrid_fbm_perlin.png
  */
-Array hybrid_fbm_perlin(std::vector<int>   shape,
-                        std::vector<float> kw,
-                        uint               seed,
-                        int                octaves = 8,
-                        float              persistence = 0.9f,
-                        float              lacunarity = 2.f,
-                        float              offset = 0.5f,
-                        std::vector<float> shift = {0.f, 0.f});
+Array hybrid_fbm_perlin(Vec2<int>   shape,
+                        Vec2<float> kw,
+                        uint        seed,
+                        int         octaves = 8,
+                        float       persistence = 0.9f,
+                        float       lacunarity = 2.f,
+                        float       offset = 0.5f,
+                        Vec2<float> shift = {0.f, 0.f});
 
 /**
  * @brief Return an array filled with an product-multifractal Perlin noise.
@@ -398,15 +400,15 @@ Array hybrid_fbm_perlin(std::vector<int>   shape,
  *
  * @see {@link fbm_perlin}
  */
-Array multifractal_perlin(std::vector<int>   shape,
-                          std::vector<float> kw,
-                          uint               seed,
-                          int                octaves = 8,
-                          float              persistence = 0.5f,
-                          float              lacunarity = 2.f,
-                          float              offset = 1.f,
-                          std::vector<float> shift = {0.f, 0.f},
-                          std::vector<float> scale = {1.f, 1.f});
+Array multifractal_perlin(Vec2<int>   shape,
+                          Vec2<float> kw,
+                          uint        seed,
+                          int         octaves = 8,
+                          float       persistence = 0.5f,
+                          float       lacunarity = 2.f,
+                          float       offset = 1.f,
+                          Vec2<float> shift = {0.f, 0.f},
+                          Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return a peak-shaped heightmap.
@@ -428,13 +430,13 @@ Array multifractal_perlin(std::vector<int>   shape,
  * **Result**
  * @image html ex_peak.png
  */
-Array peak(std::vector<int>   shape,
-           float              radius,
-           Array             *p_noise,
-           float              noise_r_amp,
-           float              noise_z_ratio,
-           std::vector<float> shift = {0.f, 0.f},
-           std::vector<float> scale = {1.f, 1.f});
+Array peak(Vec2<int>   shape,
+           float       radius,
+           Array      *p_noise,
+           float       noise_r_amp,
+           float       noise_z_ratio,
+           Vec2<float> shift = {0.f, 0.f},
+           Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return an array filled with Perlin noise.
@@ -463,13 +465,13 @@ Array peak(std::vector<int>   shape,
  *
  * @see {@link fbm_perlin}
  */
-Array perlin(std::vector<int>   shape,
-             std::vector<float> kw,
-             uint               seed,
-             Array             *p_noise_x = nullptr,
-             Array             *p_noise_y = nullptr,
-             std::vector<float> shift = {0.f, 0.f},
-             std::vector<float> scale = {1.f, 1.f});
+Array perlin(Vec2<int>   shape,
+             Vec2<float> kw,
+             uint        seed,
+             Array      *p_noise_x = nullptr,
+             Array      *p_noise_y = nullptr,
+             Vec2<float> shift = {0.f, 0.f},
+             Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return an array filled with Perlin "billow" noise.
@@ -492,13 +494,13 @@ Array perlin(std::vector<int>   shape,
  * @image html ex_perlin.png
  *
  */
-Array perlin_billow(std::vector<int>   shape,
-                    std::vector<float> kw,
-                    uint               seed,
-                    Array             *p_noise_x = nullptr,
-                    Array             *p_noise_y = nullptr,
-                    std::vector<float> shift = {0.f, 0.f},
-                    std::vector<float> scale = {1.f, 1.f});
+Array perlin_billow(Vec2<int>   shape,
+                    Vec2<float> kw,
+                    uint        seed,
+                    Array      *p_noise_x = nullptr,
+                    Array      *p_noise_y = nullptr,
+                    Vec2<float> shift = {0.f, 0.f},
+                    Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return an array filled with "mix" Perlin noise.
@@ -514,25 +516,25 @@ Array perlin_billow(std::vector<int>   shape,
  * @param scale Domain scaling, in [0, 1].
  * @return Array Perlin billow noise.
  */
-Array perlin_mix(std::vector<int>   shape,
-                 std::vector<float> kw,
-                 uint               seed,
-                 Array             *p_noise_x = nullptr,
-                 Array             *p_noise_y = nullptr,
-                 std::vector<float> shift = {0.f, 0.f},
-                 std::vector<float> scale = {1.f, 1.f});
+Array perlin_mix(Vec2<int>   shape,
+                 Vec2<float> kw,
+                 uint        seed,
+                 Array      *p_noise_x = nullptr,
+                 Array      *p_noise_y = nullptr,
+                 Vec2<float> shift = {0.f, 0.f},
+                 Vec2<float> scale = {1.f, 1.f});
 
-Array pingpong_perlin(std::vector<int>   shape,
-                      std::vector<float> kw,
-                      uint               seed,
-                      int                octaves = 8,
-                      float              weight = 0.7f,
-                      float              persistence = 0.5f,
-                      float              lacunarity = 2.f,
-                      Array             *p_noise_x = nullptr,
-                      Array             *p_noise_y = nullptr,
-                      std::vector<float> shift = {0.f, 0.f},
-                      std::vector<float> scale = {1.f, 1.f});
+Array pingpong_perlin(Vec2<int>   shape,
+                      Vec2<float> kw,
+                      uint        seed,
+                      int         octaves = 8,
+                      float       weight = 0.7f,
+                      float       persistence = 0.5f,
+                      float       lacunarity = 2.f,
+                      Array      *p_noise_x = nullptr,
+                      Array      *p_noise_y = nullptr,
+                      Vec2<float> shift = {0.f, 0.f},
+                      Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return an array based on a plane equation.
@@ -552,10 +554,10 @@ Array pingpong_perlin(std::vector<int>   shape,
  * **Result**
  * @image html ex_plane.png
  */
-Array plane(std::vector<int>   shape,
-            float              talus,
-            float              yaw_angle,
-            std::vector<float> xyz_center);
+Array plane(Vec2<int>   shape,
+            float       talus,
+            float       yaw_angle,
+            Vec3<float> xyz_center);
 
 /**
  * @brief Return an array filled with a ridged hybrid multifractal Perlin
@@ -594,17 +596,17 @@ Array plane(std::vector<int>   shape,
  * **Result**
  * @image html ex_ridged_perlin.png
  */
-Array ridged_perlin(std::vector<int>   shape,
-                    std::vector<float> kw,
-                    uint               seed,
-                    int                octaves = 8,
-                    float              weight = 0.7f,
-                    float              persistence = 0.5f,
-                    float              lacunarity = 2.f,
-                    Array             *p_noise_x = nullptr,
-                    Array             *p_noise_y = nullptr,
-                    std::vector<float> shift = {0.f, 0.f},
-                    std::vector<float> scale = {1.f, 1.f});
+Array ridged_perlin(Vec2<int>   shape,
+                    Vec2<float> kw,
+                    uint        seed,
+                    int         octaves = 8,
+                    float       weight = 0.7f,
+                    float       persistence = 0.5f,
+                    float       lacunarity = 2.f,
+                    Array      *p_noise_x = nullptr,
+                    Array      *p_noise_y = nullptr,
+                    Vec2<float> shift = {0.f, 0.f},
+                    Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return an array corresponding to a slope in the x direction.
@@ -624,11 +626,11 @@ Array ridged_perlin(std::vector<int>   shape,
  * **Result**
  * @image html ex_slope.png
  */
-Array slope_x(std::vector<int>   shape,
-              float              talus,
-              Array             *p_noise = nullptr,
-              std::vector<float> shift = {0.f, 0.f},
-              std::vector<float> scale = {1.f, 1.f});
+Array slope_x(Vec2<int>   shape,
+              float       talus,
+              Array      *p_noise = nullptr,
+              Vec2<float> shift = {0.f, 0.f},
+              Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return an array corresponding to a slope in the y direction.
@@ -648,11 +650,11 @@ Array slope_x(std::vector<int>   shape,
  * **Result**
  * @image html ex_slope.png
  */
-Array slope_y(std::vector<int>   shape,
-              float              talus,
-              Array             *p_noise = nullptr,
-              std::vector<float> shift = {0.f, 0.f},
-              std::vector<float> scale = {1.f, 1.f});
+Array slope_y(Vec2<int>   shape,
+              float       talus,
+              Array      *p_noise = nullptr,
+              Vec2<float> shift = {0.f, 0.f},
+              Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return a smooth cosine kernel.
@@ -660,7 +662,7 @@ Array slope_y(std::vector<int>   shape,
  * @param shape Array shape.
  * @return Array New array.
  */
-Array smooth_cosine(std::vector<int> shape);
+Array smooth_cosine(Vec2<int> shape);
 
 /**
  * @brief Return a step function (Heaviside with an optional talus slope at
@@ -681,12 +683,12 @@ Array smooth_cosine(std::vector<int> shape);
  * **Result**
  * @image html ex_step.png
  */
-Array step(std::vector<int>   shape,
-           float              angle,
-           float              talus,
-           Array             *p_noise = nullptr,
-           std::vector<float> shift = {0.f, 0.f},
-           std::vector<float> scale = {1.f, 1.f});
+Array step(Vec2<int>   shape,
+           float       angle,
+           float       talus,
+           Array      *p_noise = nullptr,
+           Vec2<float> shift = {0.f, 0.f},
+           Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return a tricube kernel.
@@ -696,7 +698,7 @@ Array step(std::vector<int>   shape,
  * @param shape Array shape.
  * @return Array New array.
  */
-Array tricube(std::vector<int> shape);
+Array tricube(Vec2<int> shape);
 
 /**
  * @brief Return an array filled with value noise.
@@ -721,13 +723,13 @@ Array tricube(std::vector<int> shape);
  * **Result**
  * @image html ex_value_noise.png
  */
-Array value_noise(std::vector<int>   shape,
-                  std::vector<float> kw,
-                  uint               seed,
-                  Array             *p_noise_x = nullptr,
-                  Array             *p_noise_y = nullptr,
-                  std::vector<float> shift = {0.f, 0.f},
-                  std::vector<float> scale = {1.f, 1.f});
+Array value_noise(Vec2<int>   shape,
+                  Vec2<float> kw,
+                  uint        seed,
+                  Array      *p_noise_x = nullptr,
+                  Array      *p_noise_y = nullptr,
+                  Vec2<float> shift = {0.f, 0.f},
+                  Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return an array filled with value noise based on linear Delaunay
@@ -749,13 +751,13 @@ Array value_noise(std::vector<int>   shape,
  * **Result**
  * @image html ex_value_noise_delaunay.png
  */
-Array value_noise_delaunay(std::vector<int>   shape,
-                           float              kw,
-                           uint               seed,
-                           Array             *p_noise_x = nullptr,
-                           Array             *p_noise_y = nullptr,
-                           std::vector<float> shift = {0.f, 0.f},
-                           std::vector<float> scale = {1.f, 1.f});
+Array value_noise_delaunay(Vec2<int>   shape,
+                           float       kw,
+                           uint        seed,
+                           Array      *p_noise_x = nullptr,
+                           Array      *p_noise_y = nullptr,
+                           Vec2<float> shift = {0.f, 0.f},
+                           Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return an array filled with value noise based on linear
@@ -778,13 +780,13 @@ Array value_noise_delaunay(std::vector<int>   shape,
  * **Result**
  * @image html ex_value_noise_linear.png
  */
-Array value_noise_linear(std::vector<int>   shape,
-                         std::vector<float> kw,
-                         uint               seed,
-                         Array             *p_noise_x = nullptr,
-                         Array             *p_noise_y = nullptr,
-                         std::vector<float> shift = {0.f, 0.f},
-                         std::vector<float> scale = {1.f, 1.f});
+Array value_noise_linear(Vec2<int>   shape,
+                         Vec2<float> kw,
+                         uint        seed,
+                         Array      *p_noise_x = nullptr,
+                         Array      *p_noise_y = nullptr,
+                         Vec2<float> shift = {0.f, 0.f},
+                         Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return a sine wave.
@@ -805,12 +807,12 @@ Array value_noise_linear(std::vector<int>   shape,
  * @image html ex_wave0.png
  * @image html ex_wave1.png
  */
-Array wave_sine(std::vector<int>   shape,
-                float              kw,
-                float              angle,
-                Array             *p_noise = nullptr,
-                std::vector<float> shift = {0.f, 0.f},
-                std::vector<float> scale = {1.f, 1.f});
+Array wave_sine(Vec2<int>   shape,
+                float       kw,
+                float       angle,
+                Array      *p_noise = nullptr,
+                Vec2<float> shift = {0.f, 0.f},
+                Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return a square wave.
@@ -831,12 +833,12 @@ Array wave_sine(std::vector<int>   shape,
  * @image html ex_wave0.png
  * @image html ex_wave1.png
  */
-Array wave_square(std::vector<int>   shape,
-                  float              kw,
-                  float              angle,
-                  Array             *p_noise = nullptr,
-                  std::vector<float> shift = {0.f, 0.f},
-                  std::vector<float> scale = {1.f, 1.f});
+Array wave_square(Vec2<int>   shape,
+                  float       kw,
+                  float       angle,
+                  Array      *p_noise = nullptr,
+                  Vec2<float> shift = {0.f, 0.f},
+                  Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return a triangular wave.
@@ -858,13 +860,13 @@ Array wave_square(std::vector<int>   shape,
  * @image html ex_wave0.png
  * @image html ex_wave1.png
  */
-Array wave_triangular(std::vector<int>   shape,
-                      float              kw,
-                      float              angle,
-                      float              slant_ratio,
-                      Array             *p_noise = nullptr,
-                      std::vector<float> shift = {0.f, 0.f},
-                      std::vector<float> scale = {1.f, 1.f});
+Array wave_triangular(Vec2<int>   shape,
+                      float       kw,
+                      float       angle,
+                      float       slant_ratio,
+                      Array      *p_noise = nullptr,
+                      Vec2<float> shift = {0.f, 0.f},
+                      Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return an array filled with white noise.
@@ -883,7 +885,7 @@ Array wave_triangular(std::vector<int>   shape,
  *
  * @see {@link white_sparse}
  */
-Array white(std::vector<int> shape, float a, float b, uint seed);
+Array white(Vec2<int> shape, float a, float b, uint seed);
 
 /**
  * @brief Return an array filled `1` with a probability based on a density
@@ -920,11 +922,7 @@ Array white_density_map(const Array &density_map, uint seed);
  *
  * @see {@link white}
  */
-Array white_sparse(std::vector<int> shape,
-                   float            a,
-                   float            b,
-                   float            density,
-                   uint             seed);
+Array white_sparse(Vec2<int> shape, float a, float b, float density, uint seed);
 
 /**
  * @brief Return an array filled with Worley (cellular) noise.
@@ -951,12 +949,12 @@ Array white_sparse(std::vector<int> shape,
  * **Result**
  * @image html ex_worley.png
  */
-Array worley(std::vector<int>   shape,
-             std::vector<float> kw,
-             uint               seed,
-             Array             *p_noise_x = nullptr,
-             Array             *p_noise_y = nullptr,
-             std::vector<float> shift = {0.f, 0.f},
-             std::vector<float> scale = {1.f, 1.f});
+Array worley(Vec2<int>   shape,
+             Vec2<float> kw,
+             uint        seed,
+             Array      *p_noise_x = nullptr,
+             Array      *p_noise_y = nullptr,
+             Vec2<float> shift = {0.f, 0.f},
+             Vec2<float> scale = {1.f, 1.f});
 
 } // namespace hmap

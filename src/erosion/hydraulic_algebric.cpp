@@ -34,8 +34,8 @@ void hydraulic_algebric(Array &z,
     else
       gradient_talus(z, talus);
 
-    for (int i = 0; i < z.shape[0]; i++)
-      for (int j = 0; j < z.shape[1]; j++)
+    for (int i = 0; i < z.shape.x; i++)
+      for (int j = 0; j < z.shape.y; j++)
       {
         if (talus(i, j) > talus_ref)
           z(i, j) -= c_erosion * (talus(i, j) / talus_ref - 1.f);

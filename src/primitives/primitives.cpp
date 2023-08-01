@@ -16,14 +16,14 @@
 namespace hmap
 {
 
-Array biweight(std::vector<int> shape)
+Array biweight(Vec2<int> shape)
 {
   Array array = Array(shape);
-  int   ri = (int)(0.5f * ((float)shape[0] - 1.f));
-  int   rj = (int)(0.5f * ((float)shape[1] - 1.f));
+  int   ri = (int)(0.5f * ((float)shape.x - 1.f));
+  int   rj = (int)(0.5f * ((float)shape.y - 1.f));
 
-  for (int i = 0; i < array.shape[0]; i++)
-    for (int j = 0; j < array.shape[1]; j++)
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
     {
       float xi = ((float)i - ri) / ((float)(ri + 1));
       float yi = ((float)j - rj) / ((float)(rj + 1));
@@ -35,14 +35,11 @@ Array biweight(std::vector<int> shape)
   return array;
 }
 
-Array bump_field(std::vector<int> shape,
-                 float            kw,
-                 uint             seed,
-                 float            shape_factor)
+Array bump_field(Vec2<int> shape, float kw, uint seed, float shape_factor)
 {
   Array z = Array(shape);
-  float density = kw * kw / (float)(shape[0] * shape[1]);
-  float rmax = shape_factor * (float)std::min(shape[0], shape[1]) / kw;
+  float density = kw * kw / (float)(shape.x * shape.y);
+  float rmax = shape_factor * (float)std::min(shape.x, shape.y) / kw;
 
   z = white_sparse(shape, 0.f, 1.f, density, seed);
   z = distance_transform(z);
@@ -54,14 +51,14 @@ Array bump_field(std::vector<int> shape,
   return z;
 }
 
-Array cone(std::vector<int> shape)
+Array cone(Vec2<int> shape)
 {
   Array array = Array(shape);
-  int   ri = (int)(0.5f * ((float)shape[0] - 1.f));
-  int   rj = (int)(0.5f * ((float)shape[1] - 1.f));
+  int   ri = (int)(0.5f * ((float)shape.x - 1.f));
+  int   rj = (int)(0.5f * ((float)shape.y - 1.f));
 
-  for (int i = 0; i < array.shape[0]; i++)
-    for (int j = 0; j < array.shape[1]; j++)
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
     {
       float xi = (float)i - ri;
       float yi = (float)j - rj;
@@ -72,7 +69,7 @@ Array cone(std::vector<int> shape)
   return array;
 }
 
-Array cone_smooth(std::vector<int> shape)
+Array cone_smooth(Vec2<int> shape)
 {
   Array array = cone(shape);
   almost_unit_identity(array);
@@ -95,14 +92,14 @@ Array cone_talus(float height, float talus)
   return array;
 }
 
-Array cubic_pulse(std::vector<int> shape)
+Array cubic_pulse(Vec2<int> shape)
 {
   Array array = Array(shape);
-  int   ri = (int)(0.5f * ((float)shape[0] - 1.f));
-  int   rj = (int)(0.5f * ((float)shape[1] - 1.f));
+  int   ri = (int)(0.5f * ((float)shape.x - 1.f));
+  int   rj = (int)(0.5f * ((float)shape.y - 1.f));
 
-  for (int i = 0; i < array.shape[0]; i++)
-    for (int j = 0; j < array.shape[1]; j++)
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
     {
       float xi = (float)i - ri;
       float yi = (float)j - rj;
@@ -115,14 +112,14 @@ Array cubic_pulse(std::vector<int> shape)
   return array;
 }
 
-Array disk(std::vector<int> shape)
+Array disk(Vec2<int> shape)
 {
   Array array = Array(shape);
-  int   ri = (int)(0.5f * ((float)shape[0] - 1.f));
-  int   rj = (int)(0.5f * ((float)shape[1] - 1.f));
+  int   ri = (int)(0.5f * ((float)shape.x - 1.f));
+  int   rj = (int)(0.5f * ((float)shape.y - 1.f));
 
-  for (int i = 0; i < array.shape[0]; i++)
-    for (int j = 0; j < array.shape[1]; j++)
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
     {
       if ((i - ri) * (i - ri) + (j - rj) * (j - rj) <= ri * rj)
         array(i, j) = 1.f;
@@ -131,7 +128,7 @@ Array disk(std::vector<int> shape)
   return array;
 }
 
-Array constant(std::vector<int> shape, float value)
+Array constant(Vec2<int> shape, float value)
 {
   Array array = Array(shape);
   for (auto &v : array.vector)
@@ -139,23 +136,23 @@ Array constant(std::vector<int> shape, float value)
   return array;
 }
 
-Array gaussian_pulse(std::vector<int>   shape,
-                     float              sigma,
-                     Array             *p_noise,
-                     std::vector<float> shift,
-                     std::vector<float> scale)
+Array gaussian_pulse(Vec2<int>   shape,
+                     float       sigma,
+                     Array      *p_noise,
+                     Vec2<float> shift,
+                     Vec2<float> scale)
 {
   Array array = Array(shape);
 
-  int ic = (int)((0.5f - shift[0]) / scale[0] * shape[0]);
-  int jc = (int)((0.5f - shift[1]) / scale[1] * shape[1]);
+  int ic = (int)((0.5f - shift.x) / scale.x * shape.x);
+  int jc = (int)((0.5f - shift.y) / scale.y * shape.y);
 
   float s2 = 1.f / (sigma * sigma);
 
   if (!p_noise)
   {
-    for (int i = 0; i < shape[0]; i++)
-      for (int j = 0; j < shape[1]; j++)
+    for (int i = 0; i < shape.x; i++)
+      for (int j = 0; j < shape.y; j++)
       {
         float r2 = (float)((i - ic) * (i - ic) + (j - jc) * (j - jc));
         array(i, j) = std::exp(-0.5f * r2 * s2);
@@ -163,11 +160,10 @@ Array gaussian_pulse(std::vector<int>   shape,
   }
   else
   {
-    float noise_factor = (float)shape[0] * (float)shape[1] / scale[0] /
-                         scale[1];
+    float noise_factor = (float)shape.x * (float)shape.y / scale.x / scale.y;
 
-    for (int i = 0; i < shape[0]; i++)
-      for (int j = 0; j < shape[1]; j++)
+    for (int i = 0; i < shape.x; i++)
+      for (int j = 0; j < shape.y; j++)
       {
         float r2 = (float)((i - ic) * (i - ic) + (j - jc) * (j - jc)) +
                    (*p_noise)(i, j) * (*p_noise)(i, j) * noise_factor;
@@ -178,84 +174,84 @@ Array gaussian_pulse(std::vector<int>   shape,
   return array;
 }
 
-Array plane(std::vector<int>   shape,
-            float              talus,
-            float              yaw_angle,
-            std::vector<float> xyz_center)
+Array plane(Vec2<int>   shape,
+            float       talus,
+            float       yaw_angle,
+            Vec3<float> xyz_center)
 {
   Array array = Array(shape);
   // TODO !!!
   return array;
 }
 
-Array slope_x(std::vector<int>   shape,
-              float              talus,
-              Array             *p_noise,
-              std::vector<float> shift,
-              std::vector<float> scale)
+Array slope_x(Vec2<int>   shape,
+              float       talus,
+              Array      *p_noise,
+              Vec2<float> shift,
+              Vec2<float> scale)
 {
   Array array = Array(shape);
 
   if (!p_noise)
   {
-    for (int i = 0; i < array.shape[0]; i++)
+    for (int i = 0; i < array.shape.x; i++)
     {
-      float h = talus * ((float)i + shift[0] / scale[0] * (float)shape[0]);
-      for (int j = 0; j < array.shape[1]; j++)
+      float h = talus * ((float)i + shift.x / scale.x * (float)shape.x);
+      for (int j = 0; j < array.shape.y; j++)
         array(i, j) = h;
     }
   }
   else
   {
-    for (int i = 0; i < array.shape[0]; i++)
-      for (int j = 0; j < array.shape[1]; j++)
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
       {
-        float h = talus * ((float)i + (shift[0] + (*p_noise)(i, j)) / scale[0] *
-                                          (float)shape[0]);
+        float h = talus * ((float)i + (shift.x + (*p_noise)(i, j)) / scale.x *
+                                          (float)shape.x);
         array(i, j) = h;
       }
   }
   return array;
 }
 
-Array slope_y(std::vector<int>   shape,
-              float              talus,
-              Array             *p_noise,
-              std::vector<float> shift,
-              std::vector<float> scale)
+Array slope_y(Vec2<int>   shape,
+              float       talus,
+              Array      *p_noise,
+              Vec2<float> shift,
+              Vec2<float> scale)
 {
   Array array = Array(shape);
 
   if (!p_noise)
   {
-    for (int j = 0; j < array.shape[1]; j++)
+    for (int j = 0; j < array.shape.y; j++)
     {
-      float h = talus * ((float)j + shift[1] / scale[1] * (float)shape[1]);
-      for (int i = 0; i < array.shape[0]; i++)
+      float h = talus * ((float)j + shift.y / scale.y * (float)shape.y);
+      for (int i = 0; i < array.shape.x; i++)
         array(i, j) = h;
     }
   }
   else
   {
-    for (int i = 0; i < array.shape[0]; i++)
-      for (int j = 0; j < array.shape[1]; j++)
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
       {
-        float h = talus * ((float)j + (shift[1] + (*p_noise)(i, j)) / scale[1] *
-                                          (float)shape[1]);
+        float h = talus * ((float)j + (shift.y + (*p_noise)(i, j)) / scale.y *
+                                          (float)shape.y);
         array(i, j) = h;
       }
   }
   return array;
 }
 
-Array smooth_cosine(std::vector<int> shape)
+Array smooth_cosine(Vec2<int> shape)
 {
   Array array = Array(shape);
-  int   ri = (int)(0.5f * ((float)shape[0] - 1.f));
-  int   rj = (int)(0.5f * ((float)shape[1] - 1.f));
+  int   ri = (int)(0.5f * ((float)shape.x - 1.f));
+  int   rj = (int)(0.5f * ((float)shape.y - 1.f));
 
-  for (int i = 0; i < array.shape[0]; i++)
-    for (int j = 0; j < array.shape[1]; j++)
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
     {
       float xi = (float)i - ri;
       float yi = (float)j - rj;
@@ -267,14 +263,14 @@ Array smooth_cosine(std::vector<int> shape)
   return array;
 }
 
-Array tricube(std::vector<int> shape)
+Array tricube(Vec2<int> shape)
 {
   Array array = Array(shape);
-  int   ri = (int)(0.5f * ((float)shape[0] - 1.f));
-  int   rj = (int)(0.5f * ((float)shape[1] - 1.f));
+  int   ri = (int)(0.5f * ((float)shape.x - 1.f));
+  int   rj = (int)(0.5f * ((float)shape.y - 1.f));
 
-  for (int i = 0; i < array.shape[0]; i++)
-    for (int j = 0; j < array.shape[1]; j++)
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
     {
       float xi = (float)i - ri;
       float yi = (float)j - rj;
@@ -286,23 +282,23 @@ Array tricube(std::vector<int> shape)
   return array;
 }
 
-Array step(std::vector<int>   shape,
-           float              angle,
-           float              talus,
-           Array             *p_noise,
-           std::vector<float> shift,
-           std::vector<float> scale)
+Array step(Vec2<int>   shape,
+           float       angle,
+           float       talus,
+           Array      *p_noise,
+           Vec2<float> shift,
+           Vec2<float> scale)
 {
   Array              array = Array(shape);
-  std::vector<float> x = linspace(-0.5f + shift[0],
-                                  -0.5f + scale[0] + shift[0],
-                                  shape[0]);
-  std::vector<float> y = linspace(-0.5f + shift[1],
-                                  -0.5f + scale[1] + shift[1],
-                                  shape[1]);
+  std::vector<float> x = linspace(-0.5f + shift.x,
+                                  -0.5f + scale.x + shift.x,
+                                  shape.x);
+  std::vector<float> y = linspace(-0.5f + shift.y,
+                                  -0.5f + scale.y + shift.y,
+                                  shape.y);
 
   // talus value for a unit square domain
-  float talus_n = talus * std::max(shape[0] / scale[0], shape[1] / scale[1]);
+  float talus_n = talus * std::max(shape.x / scale.x, shape.y / scale.y);
   float ca = std::cos(angle / 180.f * M_PI);
   float sa = std::sin(angle / 180.f * M_PI);
   float dt = 0.5f / talus_n;
@@ -319,62 +315,54 @@ Array step(std::vector<int>   shape,
   };
 
   if (p_noise != nullptr)
-    for (int i = 0; i < array.shape[0]; i++)
-      for (int j = 0; j < array.shape[1]; j++)
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
         array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_noise)(i, j));
   else
-    for (int i = 0; i < array.shape[0]; i++)
-      for (int j = 0; j < array.shape[1]; j++)
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
         array(i, j) = lambda(ca * x[i] + sa * y[j]);
 
   return array;
 }
 
-Array wave_sine(std::vector<int>   shape,
-                float              kw,
-                float              angle,
-                Array             *p_noise,
-                std::vector<float> shift,
-                std::vector<float> scale)
+Array wave_sine(Vec2<int>   shape,
+                float       kw,
+                float       angle,
+                Array      *p_noise,
+                Vec2<float> shift,
+                Vec2<float> scale)
 {
   Array              array = Array(shape);
-  std::vector<float> x = linspace(0.f + shift[0],
-                                  scale[0] + shift[0],
-                                  shape[0]);
-  std::vector<float> y = linspace(0.f + shift[1],
-                                  scale[1] + shift[1],
-                                  shape[1]);
+  std::vector<float> x = linspace(0.f + shift.x, scale.x + shift.x, shape.x);
+  std::vector<float> y = linspace(0.f + shift.y, scale.y + shift.y, shape.y);
   float              ca = std::cos(angle / 180.f * M_PI);
   float              sa = std::sin(angle / 180.f * M_PI);
 
   auto lambda = [&kw](float x) { return std::cos(2.f * M_PI * kw * x); };
 
   if (p_noise != nullptr)
-    for (int i = 0; i < array.shape[0]; i++)
-      for (int j = 0; j < array.shape[1]; j++)
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
         array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_noise)(i, j));
   else
-    for (int i = 0; i < array.shape[0]; i++)
-      for (int j = 0; j < array.shape[1]; j++)
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
         array(i, j) = lambda(ca * x[i] + sa * y[j]);
 
   return array;
 }
 
-Array wave_square(std::vector<int>   shape,
-                  float              kw,
-                  float              angle,
-                  Array             *p_noise,
-                  std::vector<float> shift,
-                  std::vector<float> scale)
+Array wave_square(Vec2<int>   shape,
+                  float       kw,
+                  float       angle,
+                  Array      *p_noise,
+                  Vec2<float> shift,
+                  Vec2<float> scale)
 {
   Array              array = Array(shape);
-  std::vector<float> x = linspace(0.f + shift[0],
-                                  scale[0] + shift[0],
-                                  shape[0]);
-  std::vector<float> y = linspace(0.f + shift[1],
-                                  scale[1] + shift[1],
-                                  shape[1]);
+  std::vector<float> x = linspace(0.f + shift.x, scale.x + shift.x, shape.x);
+  std::vector<float> y = linspace(0.f + shift.y, scale.y + shift.y, shape.y);
   float              ca = std::cos(angle / 180.f * M_PI);
   float              sa = std::sin(angle / 180.f * M_PI);
 
@@ -382,32 +370,28 @@ Array wave_square(std::vector<int>   shape,
   { return 2.f * (int)(kw * x) - (int)(2.f * kw * x) + 1.f; };
 
   if (p_noise != nullptr)
-    for (int i = 0; i < array.shape[0]; i++)
-      for (int j = 0; j < array.shape[1]; j++)
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
         array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_noise)(i, j));
   else
-    for (int i = 0; i < array.shape[0]; i++)
-      for (int j = 0; j < array.shape[1]; j++)
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
         array(i, j) = lambda(ca * x[i] + sa * y[j]);
 
   return array;
 }
 
-Array wave_triangular(std::vector<int>   shape,
-                      float              kw,
-                      float              angle,
-                      float              slant_ratio,
-                      Array             *p_noise,
-                      std::vector<float> shift,
-                      std::vector<float> scale)
+Array wave_triangular(Vec2<int>   shape,
+                      float       kw,
+                      float       angle,
+                      float       slant_ratio,
+                      Array      *p_noise,
+                      Vec2<float> shift,
+                      Vec2<float> scale)
 {
   Array              array = Array(shape);
-  std::vector<float> x = linspace(0.f + shift[0],
-                                  scale[0] + shift[0],
-                                  shape[0]);
-  std::vector<float> y = linspace(0.f + shift[1],
-                                  scale[1] + shift[1],
-                                  shape[1]);
+  std::vector<float> x = linspace(0.f + shift.x, scale.x + shift.x, shape.x);
+  std::vector<float> y = linspace(0.f + shift.y, scale.y + shift.y, shape.y);
   float              ca = std::cos(angle / 180.f * M_PI);
   float              sa = std::sin(angle / 180.f * M_PI);
 
@@ -422,12 +406,12 @@ Array wave_triangular(std::vector<int>   shape,
   };
 
   if (p_noise != nullptr)
-    for (int i = 0; i < array.shape[0]; i++)
-      for (int j = 0; j < array.shape[1]; j++)
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
         array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_noise)(i, j));
   else
-    for (int i = 0; i < array.shape[0]; i++)
-      for (int j = 0; j < array.shape[1]; j++)
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
         array(i, j) = lambda(ca * x[i] + sa * y[j]);
 
   return array;
@@ -438,46 +422,46 @@ Array wave_triangular(std::vector<int>   shape,
 //----------------------------------------------------------------------
 
 Array helper_get_noise(Array                             &array,
-                       std::vector<float>                 kw,
+                       Vec2<float>                        kw,
                        Array                             *p_noise_x,
                        Array                             *p_noise_y,
-                       std::vector<float>                 shift,
-                       std::vector<float>                 scale,
+                       Vec2<float>                        shift,
+                       Vec2<float>                        scale,
                        std::function<float(float, float)> noise_fct)
 {
-  float ki = kw[0] / (float)array.shape[0] * scale[0];
-  float kj = kw[1] / (float)array.shape[1] * scale[1];
+  float ki = kw.x / (float)array.shape.x * scale.x;
+  float kj = kw.y / (float)array.shape.y * scale.y;
 
   if ((!p_noise_x) and (!p_noise_y)) // no noise
-    for (int i = 0; i < array.shape[0]; i++)
-      for (int j = 0; j < array.shape[1]; j++)
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
       {
-        float x = ki * (float)i + kw[0] * shift[0];
-        float y = kj * (float)j + kw[1] * shift[1];
+        float x = ki * (float)i + kw.x * shift.x;
+        float y = kj * (float)j + kw.y * shift.y;
         array(i, j) = noise_fct(x, y);
       }
   else if (p_noise_x and (!p_noise_y)) // noise x only
-    for (int i = 0; i < array.shape[0]; i++)
-      for (int j = 0; j < array.shape[1]; j++)
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
       {
-        float x = ki * (float)i + kw[0] * shift[0] + (*p_noise_x)(i, j);
-        float y = kj * (float)j + kw[1] * shift[1];
+        float x = ki * (float)i + kw.x * shift.x + (*p_noise_x)(i, j);
+        float y = kj * (float)j + kw.y * shift.y;
         array(i, j) = noise_fct(x, y);
       }
   else if ((!p_noise_x) and p_noise_y) // noise y only
-    for (int i = 0; i < array.shape[0]; i++)
-      for (int j = 0; j < array.shape[1]; j++)
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
       {
-        float x = ki * (float)i + kw[0] * shift[0];
-        float y = kj * (float)j + kw[1] * shift[1] + (*p_noise_y)(i, j);
+        float x = ki * (float)i + kw.x * shift.x;
+        float y = kj * (float)j + kw.y * shift.y + (*p_noise_y)(i, j);
         array(i, j) = noise_fct(x, y);
       }
   else if (p_noise_x and p_noise_y) // noise x and y
-    for (int i = 0; i < array.shape[0]; i++)
-      for (int j = 0; j < array.shape[1]; j++)
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
       {
-        float x = ki * (float)i + kw[0] * shift[0] + (*p_noise_x)(i, j);
-        float y = kj * (float)j + kw[1] * shift[1] + (*p_noise_y)(i, j);
+        float x = ki * (float)i + kw.x * shift.x + (*p_noise_x)(i, j);
+        float y = kj * (float)j + kw.y * shift.y + (*p_noise_y)(i, j);
         array(i, j) = noise_fct(x, y);
       }
   return array;

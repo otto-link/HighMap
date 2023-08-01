@@ -5,9 +5,9 @@
 
 int main(void)
 {
-  const std::vector<int>   shape = {256, 256};
-  const std::vector<float> res = {4.f, 4.f};
-  int                      seed = 1;
+  hmap::Vec2<int>   shape = {256, 256};
+  hmap::Vec2<float> res = {4.f, 4.f};
+  int               seed = 1;
 
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
 
@@ -18,7 +18,7 @@ int main(void)
   hmap::laplace(z1, sigma, iterations);
 
   auto  z2 = z;
-  float talus = 1.f / (float)shape[0];
+  float talus = 1.f / (float)shape.x;
   hmap::laplace_edge_preserving(z2, talus, sigma, iterations);
 
   hmap::export_banner_png("ex_laplace.png",

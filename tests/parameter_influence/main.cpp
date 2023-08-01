@@ -27,9 +27,9 @@ int main(void)
 {
   hmap::Timer timer = hmap::Timer();
 
-  const std::vector<int>   shape = {512, 512};
-  const std::vector<float> res = {4.f, 4.f};
-  int                      seed = 1;
+  const hmap::Vec2<int>   shape = {512, 512};
+  const hmap::Vec2<float> res = {4.f, 4.f};
+  int                     seed = 1;
 
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
   hmap::remap(z);

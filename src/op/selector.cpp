@@ -16,8 +16,8 @@ namespace hmap
 Array select_gt(const Array &array, float value)
 {
   Array c = array;
-  for (int i = 0; i < array.shape[0]; i++)
-    for (int j = 0; j < array.shape[1]; j++)
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
       c(i, j) = c(i, j) > value ? 1.f : 0.f;
   return c;
 }
@@ -25,8 +25,8 @@ Array select_gt(const Array &array, float value)
 Array select_interval(const Array &array, float value1, float value2)
 {
   Array c = array;
-  for (int i = 0; i < array.shape[0]; i++)
-    for (int j = 0; j < array.shape[1]; j++)
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
     {
       if ((c(i, j) > value1) and (c(i, j) < value2))
         c(i, j) = 1.f;
@@ -39,8 +39,8 @@ Array select_interval(const Array &array, float value1, float value2)
 Array select_lt(const Array &array, float value)
 {
   Array c = array;
-  for (int i = 0; i < array.shape[0]; i++)
-    for (int j = 0; j < array.shape[1]; j++)
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
       c(i, j) = c(i, j) < value ? 1.f : 0.f;
   return c;
 }
@@ -58,8 +58,8 @@ Array select_gradient_angle(const Array &array, float angle)
   Array c = gradient_angle(array);
   float alpha = angle / 180.f * M_PI;
 
-  for (int i = 0; i < array.shape[0]; i++)
-    for (int j = 0; j < array.shape[1]; j++)
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
       c(i, j) = std::max(0.f, std::cos(alpha + c(i, j)));
   return c;
 }
@@ -67,8 +67,8 @@ Array select_gradient_angle(const Array &array, float angle)
 Array select_gradient_binary(const Array &array, float talus_center)
 {
   Array c = gradient_norm(array);
-  for (int i = 0; i < array.shape[0]; i++)
-    for (int j = 0; j < array.shape[1]; j++)
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
       c(i, j) = c(i, j) > talus_center ? 1.f : 0.f;
   return c;
 }
@@ -100,8 +100,8 @@ Array select_transitions(const Array &array1,
   // set the whole mask to 1 and look for "non-transitioning" regions
   Array mask = Array(array1.shape, 1.f);
 
-  for (int i = 0; i < array1.shape[0] - 1; i++)
-    for (int j = 0; j < array1.shape[1] - 1; j++)
+  for (int i = 0; i < array1.shape.x - 1; i++)
+    for (int j = 0; j < array1.shape.y - 1; j++)
     {
       if ((array_blend(i, j) == array1(i, j)) &
           (array_blend(i + 1, j) == array1(i + 1, j)) &
@@ -117,9 +117,9 @@ Array select_transitions(const Array &array1,
     }
 
   // boundaries
-  for (int j = 0; j < array1.shape[1]; j++)
+  for (int j = 0; j < array1.shape.y; j++)
   {
-    int i = array1.shape[0] - 1;
+    int i = array1.shape.x - 1;
 
     if ((array_blend(i, j) == array1(i, j)) &
         (array_blend(i - 1, j) == array1(i - 1, j)) &
@@ -134,9 +134,9 @@ Array select_transitions(const Array &array1,
       mask(i, j) = 0.f;
   }
 
-  for (int i = 0; i < array1.shape[0]; i++)
+  for (int i = 0; i < array1.shape.x; i++)
   {
-    int j = array1.shape[1] - 1;
+    int j = array1.shape.y - 1;
 
     if ((array_blend(i, j) == array1(i, j)) &
         (array_blend(i + 1, j) == array1(i + 1, j)) &

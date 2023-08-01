@@ -48,15 +48,15 @@ Array gradient_x(const Array &array)
 
 void gradient_x(const Array &array, Array &dx)
 {
-  for (int i = 1; i < array.shape[0] - 1; i++)
-    for (int j = 0; j < array.shape[1]; j++)
+  for (int i = 1; i < array.shape.x - 1; i++)
+    for (int j = 0; j < array.shape.y; j++)
       dx(i, j) = 0.5f * (array(i + 1, j) - array(i - 1, j));
 
-  for (int j = 0; j < array.shape[1]; j++)
+  for (int j = 0; j < array.shape.y; j++)
   {
     dx(0, j) = array(1, j) - array(0, j);
-    dx(array.shape[0] - 1, j) = array(array.shape[0] - 1, j) -
-                                array(array.shape[0] - 2, j);
+    dx(array.shape.x - 1, j) = array(array.shape.x - 1, j) -
+                               array(array.shape.x - 2, j);
   }
 }
 
@@ -69,15 +69,15 @@ Array gradient_y(const Array &array)
 
 void gradient_y(const Array &array, Array &dy)
 {
-  for (int i = 0; i < array.shape[0]; i++)
-    for (int j = 1; j < array.shape[1] - 1; j++)
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 1; j < array.shape.y - 1; j++)
       dy(i, j) = 0.5f * (array(i, j + 1) - array(i, j - 1));
 
-  for (int i = 0; i < array.shape[0]; i++)
+  for (int i = 0; i < array.shape.x; i++)
   {
     dy(i, 0) = array(i, 1) - array(i, 0);
-    dy(i, array.shape[1] - 1) = array(i, array.shape[1] - 1) -
-                                array(i, array.shape[1] - 2);
+    dy(i, array.shape.y - 1) = array(i, array.shape.y - 1) -
+                               array(i, array.shape.y - 2);
   }
 }
 
@@ -90,8 +90,8 @@ Array gradient_talus(const Array &array)
 
 void gradient_talus(const Array &array, Array &talus)
 {
-  for (int i = 1; i < talus.shape[0] - 1; i += 2)
-    for (int j = 0; j < talus.shape[1]; j++)
+  for (int i = 1; i < talus.shape.x - 1; i += 2)
+    for (int j = 0; j < talus.shape.y; j++)
     {
       float d = std::abs(array(i, j) - array(i + 1, j));
       talus(i, j) = std::max(talus(i, j), d);
@@ -99,8 +99,8 @@ void gradient_talus(const Array &array, Array &talus)
       talus(i + 1, j) = d;
     }
 
-  for (int i = 0; i < talus.shape[0]; i++)
-    for (int j = 1; j < talus.shape[1] - 1; j += 2)
+  for (int i = 0; i < talus.shape.x; i++)
+    for (int j = 1; j < talus.shape.y - 1; j += 2)
     {
       float d = std::abs(array(i, j) - array(i, j + 1));
       talus(i, j) = std::max(talus(i, j), d);
@@ -113,8 +113,8 @@ Array laplacian(const Array &array)
 {
   Array delta = Array(array.shape);
 
-  for (int i = 1; i < array.shape[0] - 1; i++)
-    for (int j = 1; j < array.shape[1] - 1; j++)
+  for (int i = 1; i < array.shape.x - 1; i++)
+    for (int j = 1; j < array.shape.y - 1; j++)
       delta(i, j) = -4.f * array(i, j) + array(i + 1, j) + array(i - 1, j) +
                     array(i, j - 1) + array(i, j + 1);
 

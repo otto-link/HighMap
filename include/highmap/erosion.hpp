@@ -17,6 +17,8 @@
 #define _USE_MATH_DEFINES
 #include <cmath>
 
+#include "highmap/vector.hpp"
+
 // neighbor pattern search based on Moore pattern and define diagonal
 // weight coefficients ('c' corresponds to a weight coefficient
 // applied to take into account the longer distance for diagonal
@@ -513,22 +515,22 @@ void thermal_scree(Array &z,
  * **Result**
  * @image html ex_thermal_scree.png
  */
-void thermal_scree_fast(Array           &z,
-                        std::vector<int> shape_coarse,
-                        float            talus,
-                        uint             seed,
-                        float            zmax,
-                        float            zmin,
-                        float            noise_ratio,
-                        float            landing_talus_ratio,
-                        float            landing_width_ratio,
-                        bool             talus_constraint);
+void thermal_scree_fast(Array    &z,
+                        Vec2<int> shape_coarse,
+                        float     talus,
+                        uint      seed,
+                        float     zmax,
+                        float     zmin,
+                        float     noise_ratio,
+                        float     landing_talus_ratio,
+                        float     landing_width_ratio,
+                        bool      talus_constraint);
 
-void thermal_scree_fast(Array           &z,
-                        std::vector<int> shape_coarse,
-                        float            talus,
-                        uint             seed,
-                        float            zmax,
-                        float            noise_ratio); ///< @overload
+void thermal_scree_fast(Array    &z,
+                        Vec2<int> shape_coarse,
+                        float     talus,
+                        uint      seed,
+                        float     zmax,
+                        float     noise_ratio); ///< @overload
 
 } // namespace hmap

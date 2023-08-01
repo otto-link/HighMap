@@ -87,34 +87,34 @@ void Path::bezier(float curvature_ratio, int edge_divisions)
   }
 }
 
-void Path::dijkstra(Array             &array,
-                    std::vector<float> bbox,
-                    int                edge_divisions,
-                    float              distance_exponent)
+void Path::dijkstra(Array      &array,
+                    Vec4<float> bbox,
+                    int         edge_divisions,
+                    float       distance_exponent)
 {
   size_t ks = this->closed ? 0 : 1; // trick to handle closed contours
   for (size_t k = 0; k < this->get_npoints() - ks; k++)
   {
     size_t knext = (k + 1) % this->get_npoints();
 
-    std::vector<int> ij_start = {
-        (int)((this->points[k].x - bbox[0]) / (bbox[1] - bbox[0]) *
-              (array.shape[0] - 1)),
-        (int)((this->points[k].y - bbox[2]) / (bbox[3] - bbox[2]) *
-              (array.shape[1] - 1))};
+    Vec2<int> ij_start = Vec2<int>(
+        (int)((this->points[k].x - bbox.a) / (bbox.b - bbox.a) *
+              (array.shape.x - 1)),
+        (int)((this->points[k].y - bbox.c) / (bbox.d - bbox.c) *
+              (array.shape.y - 1)));
 
-    std::vector<int> ij_end = {
-        (int)((this->points[knext].x - bbox[0]) / (bbox[1] - bbox[0]) *
-              (array.shape[0] - 1)),
-        (int)((this->points[knext].y - bbox[2]) / (bbox[3] - bbox[2]) *
-              (array.shape[1] - 1))};
+    Vec2<int> ij_end = Vec2<int>(
+        (int)((this->points[knext].x - bbox.a) / (bbox.b - bbox.a) *
+              (array.shape.x - 1)),
+        (int)((this->points[knext].y - bbox.c) / (bbox.d - bbox.c) *
+              (array.shape.y - 1)));
 
     // float dist = distance(this->points[k], this->points[knext]);
-    float dist_idx = std::hypot((float)(ij_start[0] - ij_end[0]),
-                                (float)(ij_start[1] - ij_end[1]));
+    float dist_idx = std::hypot((float)(ij_start.x - ij_end.x),
+                                (float)(ij_start.y - ij_end.y));
 
-    int              div = std::max(1, (int)(dist_idx / edge_divisions));
-    std::vector<int> step = {div, div};
+    int       div = std::max(1, (int)(dist_idx / edge_divisions));
+    Vec2<int> step = Vec2<int>(div, div);
 
     std::vector<int> ip, jp;
     array.find_path_dijkstra(ij_start, ij_end, ip, jp, distance_exponent, step);
@@ -125,12 +125,10 @@ void Path::dijkstra(Array             &array,
 
     for (size_t r = 1; r < ip.size() - 1; r++)
     {
-      float x = (float)ip[r] / (float)(array.shape[0] - 1) *
-                    (bbox[1] - bbox[0]) +
-                bbox[0];
-      float y = (float)jp[r] / (float)(array.shape[1] - 1) *
-                    (bbox[3] - bbox[2]) +
-                bbox[2];
+      float x = (float)ip[r] / (float)(array.shape.x - 1) * (bbox.b - bbox.a) +
+                bbox.a;
+      float y = (float)jp[r] / (float)(array.shape.y - 1) * (bbox.d - bbox.c) +
+                bbox.c;
 
       // use distance to start and end points to determine value at the added
       // point (barycentric value)
@@ -371,12 +369,12 @@ void Path::resample_uniform()
   this->resample(dmin);
 }
 
-void Path::to_array(Array &array, std::vector<float> bbox)
+void Path::to_array(Array &array, Vec4<float> bbox)
 {
   // number of pixels per unit length
-  float lx = bbox[1] - bbox[0];
-  float ly = bbox[3] - bbox[2];
-  float ppu = std::max(array.shape[0] / lx, array.shape[1] / ly);
+  float lx = bbox.b - bbox.a;
+  float ly = bbox.d - bbox.c;
+  float ppu = std::max(array.shape.x / lx, array.shape.y / ly);
 
   // create a temporary cloud with the right points density (= 1 ppu)
   Cloud cloud = Cloud(points);
@@ -400,7 +398,7 @@ void Path::to_array(Array &array, std::vector<float> bbox)
   cloud.to_array(array, bbox);
 }
 
-void Path::to_png(std::string fname, std::vector<int> shape)
+void Path::to_png(std::string fname, Vec2<int> shape)
 {
   Array array = Array(shape);
   this->to_array(array, this->get_bbox());

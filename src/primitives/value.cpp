@@ -11,17 +11,18 @@
 #include "highmap/io.hpp"
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
+#include "highmap/vector.hpp"
 
 namespace hmap
 {
 
-Array value_noise(std::vector<int>   shape,
-                  std::vector<float> kw,
-                  uint               seed,
-                  Array             *p_noise_x,
-                  Array             *p_noise_y,
-                  std::vector<float> shift,
-                  std::vector<float> scale)
+Array value_noise(Vec2<int>   shape,
+                  Vec2<float> kw,
+                  uint        seed,
+                  Array      *p_noise_x,
+                  Array      *p_noise_y,
+                  Vec2<float> shift,
+                  Vec2<float> scale)
 {
   Array         array = Array(shape);
   FastNoiseLite noise(seed);
@@ -40,15 +41,15 @@ Array value_noise(std::vector<int>   shape,
   return array;
 }
 
-Array value_noise_delaunay(std::vector<int>   shape,
-                           float              kw,
-                           uint               seed,
-                           Array             *p_noise_x,
-                           Array             *p_noise_y,
-                           std::vector<float> shift,
-                           std::vector<float> scale)
+Array value_noise_delaunay(Vec2<int>   shape,
+                           float       kw,
+                           uint        seed,
+                           Array      *p_noise_x,
+                           Array      *p_noise_y,
+                           Vec2<float> shift,
+                           Vec2<float> scale)
 {
-  Array array = Array(shape);
+  Array array = Array({shape.x, shape.y});
 
   // --- Generate 'n' random grid points
   int n = (int)(kw * kw);
@@ -65,31 +66,31 @@ Array value_noise_delaunay(std::vector<int>   shape,
   interp.setData(x, y, value);
 
   // array grid
-  std::vector<float> xg = linspace(shift[0], shift[0] + scale[0], shape[0]);
-  std::vector<float> yg = linspace(shift[1], shift[1] + scale[1], shape[1]);
+  std::vector<float> xg = linspace(shift.x, shift.x + scale.x, shape.x);
+  std::vector<float> yg = linspace(shift.y, shift.y + scale.y, shape.y);
 
   if ((!p_noise_x) and (!p_noise_y))
   {
-    for (int i = 0; i < shape[0]; i++)
-      for (int j = 0; j < shape[1]; j++)
+    for (int i = 0; i < shape.x; i++)
+      for (int j = 0; j < shape.y; j++)
         array(i, j) = interp(xg[i], yg[j]);
   }
   else if (p_noise_x and (!p_noise_y))
   {
-    for (int i = 0; i < shape[0]; i++)
-      for (int j = 0; j < shape[1]; j++)
+    for (int i = 0; i < shape.x; i++)
+      for (int j = 0; j < shape.y; j++)
         array(i, j) = interp(xg[i] + (*p_noise_x)(i, j), yg[j]);
   }
   else if ((!p_noise_x) and p_noise_y)
   {
-    for (int i = 0; i < shape[0]; i++)
-      for (int j = 0; j < shape[1]; j++)
+    for (int i = 0; i < shape.x; i++)
+      for (int j = 0; j < shape.y; j++)
         array(i, j) = interp(xg[i], yg[j] + (*p_noise_y)(i, j));
   }
   else if (p_noise_x and p_noise_y)
   {
-    for (int i = 0; i < shape[0]; i++)
-      for (int j = 0; j < shape[1]; j++)
+    for (int i = 0; i < shape.x; i++)
+      for (int j = 0; j < shape.y; j++)
         array(i, j) = interp(xg[i] + (*p_noise_x)(i, j),
                              yg[j] + (*p_noise_y)(i, j));
   }
@@ -97,48 +98,48 @@ Array value_noise_delaunay(std::vector<int>   shape,
   return array;
 }
 
-Array value_noise_linear(std::vector<int>   shape,
-                         std::vector<float> kw,
-                         uint               seed,
-                         Array             *p_noise_x,
-                         Array             *p_noise_y,
-                         std::vector<float> shift,
-                         std::vector<float> scale)
+Array value_noise_linear(Vec2<int>   shape,
+                         Vec2<float> kw,
+                         uint        seed,
+                         Array      *p_noise_x,
+                         Array      *p_noise_y,
+                         Vec2<float> shift,
+                         Vec2<float> scale)
 {
   Array array = Array(shape);
 
   // --- Generate random values on a regular coarse grid (adjust
   // --- extent according to the input noise in order to avoid "holes"
   // --- in the data for large noise displacement)
-  std::vector<float> bbox = {0.f, 1.f, 0.f, 1.f}; // bounding box
+  Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f}; // bounding box
 
   if (p_noise_x)
   {
-    bbox[0] -= 1.f;
-    bbox[1] += 1.f;
+    bbox.a -= 1.f;
+    bbox.b += 1.f;
   }
   if (p_noise_y)
   {
-    bbox[2] -= 1.f;
-    bbox[3] += 1.f;
+    bbox.c -= 1.f;
+    bbox.d += 1.f;
   }
 
-  float lx = bbox[1] - bbox[0];
-  float ly = bbox[3] - bbox[2];
+  float lx = bbox.b - bbox.a;
+  float ly = bbox.d - bbox.c;
 
-  std::vector<float> kw_base = {kw[0] * lx, kw[1] * ly};
-  std::vector<int>   shape_base = {(int)kw_base[0] + 1, (int)kw_base[1] + 1};
-  Array              values = value_noise(shape_base, kw_base, seed);
+  Vec2<float> kw_base = Vec2<float>(kw.x * lx, kw.y * ly);
+  Vec2<int>   shape_base = Vec2<int>((int)kw_base.x + 1, (int)kw_base.y + 1);
+  Array       values = value_noise(shape_base, kw_base, seed);
 
   // corresponding grids
   Array xv = Array(shape_base);
   Array yv = Array(shape_base);
 
-  for (int i = 0; i < shape_base[0]; i++)
-    for (int j = 0; j < shape_base[1]; j++)
+  for (int i = 0; i < shape_base.x; i++)
+    for (int j = 0; j < shape_base.y; j++)
     {
-      xv(i, j) = bbox[0] + lx * (float)i / (float)(shape_base[0] - 1);
-      yv(i, j) = bbox[2] + ly * (float)j / (float)(shape_base[1] - 1);
+      xv(i, j) = bbox.a + lx * (float)i / (float)(shape_base.x - 1);
+      yv(i, j) = bbox.c + ly * (float)j / (float)(shape_base.y - 1);
     }
 
   // --- Interpolate
@@ -146,31 +147,31 @@ Array value_noise_linear(std::vector<int>   shape,
   interp.setData(xv.vector, yv.vector, values.vector);
 
   // array grid
-  std::vector<float> xg = linspace(shift[0], shift[0] + scale[0], shape[0]);
-  std::vector<float> yg = linspace(shift[1], shift[1] + scale[1], shape[1]);
+  std::vector<float> xg = linspace(shift.x, shift.x + scale.x, shape.x);
+  std::vector<float> yg = linspace(shift.y, shift.y + scale.y, shape.y);
 
   if ((!p_noise_x) and (!p_noise_y))
   {
-    for (int i = 0; i < shape[0]; i++)
-      for (int j = 0; j < shape[1]; j++)
+    for (int i = 0; i < shape.x; i++)
+      for (int j = 0; j < shape.y; j++)
         array(i, j) = interp(xg[i], yg[j]);
   }
   else if (p_noise_x and (!p_noise_y))
   {
-    for (int i = 0; i < shape[0]; i++)
-      for (int j = 0; j < shape[1]; j++)
+    for (int i = 0; i < shape.x; i++)
+      for (int j = 0; j < shape.y; j++)
         array(i, j) = interp(xg[i] + (*p_noise_x)(i, j), yg[j]);
   }
   else if ((!p_noise_x) and p_noise_y)
   {
-    for (int i = 0; i < shape[0]; i++)
-      for (int j = 0; j < shape[1]; j++)
+    for (int i = 0; i < shape.x; i++)
+      for (int j = 0; j < shape.y; j++)
         array(i, j) = interp(xg[i], yg[j] + (*p_noise_y)(i, j));
   }
   else if (p_noise_x and p_noise_y)
   {
-    for (int i = 0; i < shape[0]; i++)
-      for (int j = 0; j < shape[1]; j++)
+    for (int i = 0; i < shape.x; i++)
+      for (int j = 0; j < shape.y; j++)
         array(i, j) = interp(xg[i] + (*p_noise_x)(i, j),
                              yg[j] + (*p_noise_y)(i, j));
   }

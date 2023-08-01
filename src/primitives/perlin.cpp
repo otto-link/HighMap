@@ -10,13 +10,13 @@
 namespace hmap
 {
 
-Array perlin(std::vector<int>   shape,
-             std::vector<float> kw,
-             uint               seed,
-             Array             *p_noise_x,
-             Array             *p_noise_y,
-             std::vector<float> shift,
-             std::vector<float> scale)
+Array perlin(Vec2<int>   shape,
+             Vec2<float> kw,
+             uint        seed,
+             Array      *p_noise_x,
+             Array      *p_noise_y,
+             Vec2<float> shift,
+             Vec2<float> scale)
 {
   Array         array = Array(shape);
   FastNoiseLite noise(seed);
@@ -35,13 +35,13 @@ Array perlin(std::vector<int>   shape,
   return array;
 }
 
-Array perlin_billow(std::vector<int>   shape,
-                    std::vector<float> kw,
-                    uint               seed,
-                    Array             *p_noise_x,
-                    Array             *p_noise_y,
-                    std::vector<float> shift,
-                    std::vector<float> scale)
+Array perlin_billow(Vec2<int>   shape,
+                    Vec2<float> kw,
+                    uint        seed,
+                    Array      *p_noise_x,
+                    Array      *p_noise_y,
+                    Vec2<float> shift,
+                    Vec2<float> scale)
 {
   Array         array = Array(shape);
   FastNoiseLite noise(seed);
@@ -61,13 +61,13 @@ Array perlin_billow(std::vector<int>   shape,
   return array;
 }
 
-Array perlin_mix(std::vector<int>   shape,
-                 std::vector<float> kw,
-                 uint               seed,
-                 Array             *p_noise_x,
-                 Array             *p_noise_y,
-                 std::vector<float> shift,
-                 std::vector<float> scale)
+Array perlin_mix(Vec2<int>   shape,
+                 Vec2<float> kw,
+                 uint        seed,
+                 Array      *p_noise_x,
+                 Array      *p_noise_y,
+                 Vec2<float> shift,
+                 Vec2<float> scale)
 {
   Array         array = Array(shape);
   FastNoiseLite noise(seed);

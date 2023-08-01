@@ -34,17 +34,17 @@ float compute_fractal_bounding(int octaves, float persistence)
 namespace hmap
 {
 
-Array fbm_perlin(std::vector<int>   shape,
-                 std::vector<float> kw,
-                 uint               seed,
-                 int                octaves,
-                 float              weight,
-                 float              persistence,
-                 float              lacunarity,
-                 Array             *p_noise_x,
-                 Array             *p_noise_y,
-                 std::vector<float> shift,
-                 std::vector<float> scale)
+Array fbm_perlin(Vec2<int>   shape,
+                 Vec2<float> kw,
+                 uint        seed,
+                 int         octaves,
+                 float       weight,
+                 float       persistence,
+                 float       lacunarity,
+                 Array      *p_noise_x,
+                 Array      *p_noise_y,
+                 Vec2<float> shift,
+                 Vec2<float> scale)
 {
   Array         array = Array(shape);
   FastNoiseLite noise(seed);
@@ -68,14 +68,14 @@ Array fbm_perlin(std::vector<int>   shape,
   return array;
 }
 
-Array fbm_perlin_advanced(std::vector<int>   shape,
-                          std::vector<float> kw,
-                          uint               seed,
-                          int                octaves,
-                          const Array       &weight,
-                          float              persistence,
-                          float              lacunarity,
-                          std::vector<float> shift)
+Array fbm_perlin_advanced(Vec2<int>    shape,
+                          Vec2<float>  kw,
+                          uint         seed,
+                          int          octaves,
+                          const Array &weight,
+                          float        persistence,
+                          float        lacunarity,
+                          Vec2<float>  shift)
 {
   Array         array = Array(shape);
   FastNoiseLite noise(seed);
@@ -84,13 +84,13 @@ Array fbm_perlin_advanced(std::vector<int>   shape,
   noise.SetNoiseType(FastNoiseLite::NoiseType_Perlin);
 
   float amp0 = compute_fractal_bounding(octaves, persistence);
-  float ki0 = kw[0] / (float)shape[0];
-  float kj0 = kw[1] / (float)shape[1];
+  float ki0 = kw.x / (float)shape.x;
+  float kj0 = kw.y / (float)shape.y;
 
-  std::vector<float> shift0 = {shift[0] / ki0, shift[1] / kj0};
+  Vec2<float> shift0 = Vec2<float>(shift.x / ki0, shift.y / kj0);
 
-  for (int i = 0; i < array.shape[0]; i++)
-    for (int j = 0; j < array.shape[1]; j++)
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
     {
       float sum = 0.f;
       float amp = amp0;
@@ -101,8 +101,8 @@ Array fbm_perlin_advanced(std::vector<int>   shape,
       for (int k = 0; k < octaves; k++)
       {
         noise.SetSeed(kseed++);
-        float value = noise.GetNoise(ki * ((float)i + shift0[0]),
-                                     kj * ((float)j + shift0[1]));
+        float value = noise.GetNoise(ki * ((float)i + shift0.x),
+                                     kj * ((float)j + shift0.y));
         sum += value * amp;
         amp *= (1.f - weight(i, j)) +
                weight(i, j) * std::min(value + 1.f, 2.f) * 0.5f;
@@ -117,17 +117,17 @@ Array fbm_perlin_advanced(std::vector<int>   shape,
   return array;
 }
 
-Array fbm_worley(std::vector<int>   shape,
-                 std::vector<float> kw,
-                 uint               seed,
-                 int                octaves,
-                 float              weight,
-                 float              persistence,
-                 float              lacunarity,
-                 Array             *p_noise_x,
-                 Array             *p_noise_y,
-                 std::vector<float> shift,
-                 std::vector<float> scale)
+Array fbm_worley(Vec2<int>   shape,
+                 Vec2<float> kw,
+                 uint        seed,
+                 int         octaves,
+                 float       weight,
+                 float       persistence,
+                 float       lacunarity,
+                 Array      *p_noise_x,
+                 Array      *p_noise_y,
+                 Vec2<float> shift,
+                 Vec2<float> scale)
 {
   Array         array = Array(shape);
   FastNoiseLite noise(seed);
@@ -152,14 +152,14 @@ Array fbm_worley(std::vector<int>   shape,
   return array;
 }
 
-Array hybrid_fbm_perlin(std::vector<int>   shape,
-                        std::vector<float> kw,
-                        uint               seed,
-                        int                octaves,
-                        float              persistence,
-                        float              lacunarity,
-                        float              offset,
-                        std::vector<float> shift)
+Array hybrid_fbm_perlin(Vec2<int>   shape,
+                        Vec2<float> kw,
+                        uint        seed,
+                        int         octaves,
+                        float       persistence,
+                        float       lacunarity,
+                        float       offset,
+                        Vec2<float> shift)
 {
   Array         array = Array(shape);
   Array         weight = constant(shape, 1.f);
@@ -176,12 +176,8 @@ Array hybrid_fbm_perlin(std::vector<int>   shape,
   {
     float ck = std::pow(lacunarity, k);
     float ak = std::pow(persistence, k);
-    Array noise = perlin(shape,
-                         {ck * kw[0], ck * kw[1]},
-                         seed++,
-                         nullptr,
-                         nullptr,
-                         shift);
+    Array noise =
+        perlin(shape, {ck * kw.x, ck * kw.y}, seed++, nullptr, nullptr, shift);
     noise += offset;
     noise *= ak;
     weight *= noise;
@@ -193,15 +189,15 @@ Array hybrid_fbm_perlin(std::vector<int>   shape,
   return array / scaling;
 }
 
-Array multifractal_perlin(std::vector<int>   shape,
-                          std::vector<float> kw,
-                          uint               seed,
-                          int                octaves,
-                          float              persistence,
-                          float              lacunarity,
-                          float              offset,
-                          std::vector<float> shift,
-                          std::vector<float> scale)
+Array multifractal_perlin(Vec2<int>   shape,
+                          Vec2<float> kw,
+                          uint        seed,
+                          int         octaves,
+                          float       persistence,
+                          float       lacunarity,
+                          float       offset,
+                          Vec2<float> shift,
+                          Vec2<float> scale)
 {
   Array array = constant(shape, 1.f);
   for (int k = 0; k < octaves; k++)
@@ -210,7 +206,7 @@ Array multifractal_perlin(std::vector<int>   shape,
     // sum...
     float ck = std::pow(lacunarity, k);
     Array noise = offset + perlin(shape,
-                                  {ck * kw[0], ck * kw[1]},
+                                  {ck * kw.x, ck * kw.y},
                                   seed,
                                   nullptr,
                                   nullptr,
@@ -221,17 +217,17 @@ Array multifractal_perlin(std::vector<int>   shape,
   return array;
 }
 
-Array pingpong_perlin(std::vector<int>   shape,
-                      std::vector<float> kw,
-                      uint               seed,
-                      int                octaves,
-                      float              weight,
-                      float              persistence,
-                      float              lacunarity,
-                      Array             *p_noise_x,
-                      Array             *p_noise_y,
-                      std::vector<float> shift,
-                      std::vector<float> scale)
+Array pingpong_perlin(Vec2<int>   shape,
+                      Vec2<float> kw,
+                      uint        seed,
+                      int         octaves,
+                      float       weight,
+                      float       persistence,
+                      float       lacunarity,
+                      Array      *p_noise_x,
+                      Array      *p_noise_y,
+                      Vec2<float> shift,
+                      Vec2<float> scale)
 {
   Array         array = Array(shape);
   FastNoiseLite noise(seed);
@@ -255,17 +251,17 @@ Array pingpong_perlin(std::vector<int>   shape,
   return array;
 }
 
-Array ridged_perlin(std::vector<int>   shape,
-                    std::vector<float> kw,
-                    uint               seed,
-                    int                octaves,
-                    float              weight,
-                    float              persistence,
-                    float              lacunarity,
-                    Array             *p_noise_x,
-                    Array             *p_noise_y,
-                    std::vector<float> shift,
-                    std::vector<float> scale)
+Array ridged_perlin(Vec2<int>   shape,
+                    Vec2<float> kw,
+                    uint        seed,
+                    int         octaves,
+                    float       weight,
+                    float       persistence,
+                    float       lacunarity,
+                    Array      *p_noise_x,
+                    Array      *p_noise_y,
+                    Vec2<float> shift,
+                    Vec2<float> scale)
 {
   Array         array = Array(shape);
   FastNoiseLite noise(seed);

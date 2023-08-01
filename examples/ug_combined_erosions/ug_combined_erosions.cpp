@@ -6,9 +6,9 @@
 
 int main(void)
 {
-  const std::vector<int>   shape = {1024, 1024};
-  const std::vector<float> res = {3.f, 3.f};
-  int                      seed = 3;
+  hmap::Vec2<int>   shape = {1024, 1024};
+  hmap::Vec2<float> res = {3.f, 3.f};
+  int               seed = 3;
 
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
   remap(z, 0.1f, 1.f);
@@ -20,9 +20,9 @@ int main(void)
   for (int k = 0; k < 4; k++)
   {
     z_bedrock = hmap::minimum_local(z, 11);
-    hmap::hydraulic_stream(z, z_bedrock, 0.005f, 10.f / shape[0]);
+    hmap::hydraulic_stream(z, z_bedrock, 0.005f, 10.f / shape.x);
 
-    float nparticles = (int)(0.1f * z.shape[0] * z.shape[1]);
+    float nparticles = (int)(0.1f * z.shape.x * z.shape.y);
     hmap::hydraulic_particle(z, z, nparticles, seed, 0, 20., 0.1, 0.5, 0.01);
   }
 

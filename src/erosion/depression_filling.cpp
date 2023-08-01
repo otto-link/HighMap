@@ -30,13 +30,13 @@ void depression_filling(Array &z, int iterations, float epsilon)
   const uint         nb = di.size();
 
   Array z_new = z;
-  z_new.set_slice({1, z.shape[0] - 1, 1, z.shape[1] - 1}, 1e6f);
+  z_new.set_slice({1, z.shape.x - 1, 1, z.shape.y - 1}, 1e6f);
 
   for (int it = 0; it < iterations; it++)
   {
-    for (int i = 1; i < z.shape[0] - 1; i++)
+    for (int i = 1; i < z.shape.x - 1; i++)
     {
-      for (int j = 1; j < z.shape[1] - 1; j++)
+      for (int j = 1; j < z.shape.y - 1; j++)
       {
         if (z_new(i, j) > z(i, j))
         {

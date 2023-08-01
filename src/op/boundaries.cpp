@@ -11,8 +11,8 @@ namespace hmap
 
 void extrapolate_borders(Array &array, int nbuffer)
 {
-  const int ni = array.shape[0];
-  const int nj = array.shape[1];
+  const int ni = array.shape.x;
+  const int nj = array.shape.y;
 
   for (int j = 0; j < nj; j++)
     for (int k = nbuffer - 1; k > -1; k--)
@@ -31,8 +31,8 @@ void extrapolate_borders(Array &array, int nbuffer)
 
 void fill_borders(Array &array)
 {
-  const int ni = array.shape[0];
-  const int nj = array.shape[1];
+  const int ni = array.shape.x;
+  const int nj = array.shape.y;
 
   for (int j = 0; j < nj; j++)
   {
@@ -47,43 +47,43 @@ void fill_borders(Array &array)
   }
 }
 
-Array generate_buffered_array(const Array &array, std::vector<int> buffers)
+Array generate_buffered_array(const Array &array, Vec4<int> buffers)
 {
-  Array array_out = Array({array.shape[0] + buffers[0] + buffers[1],
-                           array.shape[1] + buffers[2] + buffers[3]});
+  Array array_out = Array({array.shape.x + buffers.a + buffers.b,
+                           array.shape.y + buffers.c + buffers.d});
 
-  for (int i = 0; i < array.shape[0]; i++)
-    for (int j = 0; j < array.shape[1]; j++)
-      array_out(i + buffers[0], j + buffers[2]) = array(i, j);
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
+      array_out(i + buffers.a, j + buffers.c) = array(i, j);
 
-  int i1 = buffers[0];
-  int i2 = buffers[1];
-  int j1 = buffers[2];
-  int j2 = buffers[3];
+  int i1 = buffers.a;
+  int i2 = buffers.b;
+  int j1 = buffers.c;
+  int j2 = buffers.d;
 
   for (int i = 0; i < i1; i++)
-    for (int j = j1; j < array_out.shape[1] - j2; j++)
+    for (int j = j1; j < array_out.shape.y - j2; j++)
       array_out(i, j) = array_out(2 * i1 - i, j);
 
-  for (int i = array_out.shape[0] - i2; i < array_out.shape[0]; i++)
-    for (int j = j1; j < array_out.shape[1] - j2; j++)
-      array_out(i, j) = array_out(2 * (array_out.shape[0] - i2) - i - 1, j);
+  for (int i = array_out.shape.x - i2; i < array_out.shape.x; i++)
+    for (int j = j1; j < array_out.shape.y - j2; j++)
+      array_out(i, j) = array_out(2 * (array_out.shape.x - i2) - i - 1, j);
 
-  for (int i = 0; i < array_out.shape[0]; i++)
+  for (int i = 0; i < array_out.shape.x; i++)
     for (int j = 0; j < j1; j++)
       array_out(i, j) = array_out(i, 2 * j1 - j);
 
-  for (int i = 0; i < array_out.shape[0]; i++)
-    for (int j = array_out.shape[1] - j2; j < array_out.shape[1]; j++)
-      array_out(i, j) = array_out(i, 2 * (array_out.shape[1] - j2) - j - 1);
+  for (int i = 0; i < array_out.shape.x; i++)
+    for (int j = array_out.shape.y - j2; j < array_out.shape.y; j++)
+      array_out(i, j) = array_out(i, 2 * (array_out.shape.y - j2) - j - 1);
 
   return array_out;
 }
 
 void make_periodic(Array &array, int nbuffer)
 {
-  int ni = array.shape[0];
-  int nj = array.shape[1];
+  int ni = array.shape.x;
+  int nj = array.shape.y;
 
   Array a1 = array;
   for (int i = 0; i < nbuffer; i++)
@@ -111,87 +111,83 @@ void make_periodic(Array &array, int nbuffer)
   array = a2;
 }
 
-void set_borders(Array             &array,
-                 std::vector<float> border_values,
-                 std::vector<int>   buffer_sizes)
+void set_borders(Array      &array,
+                 Vec4<float> border_values,
+                 Vec4<int>   buffer_sizes)
 {
   // west
-  for (int i = 0; i < buffer_sizes[0]; i++)
-    for (int j = 0; j < array.shape[1]; j++)
+  for (int i = 0; i < buffer_sizes.a; i++)
+    for (int j = 0; j < array.shape.y; j++)
     {
-      float r = (float)i / (float)buffer_sizes[0];
+      float r = (float)i / (float)buffer_sizes.a;
       r = r * r * (3.f - 2.f * r);
-      array(i, j) = (1.f - r) * border_values[0] + r * array(i, j);
+      array(i, j) = (1.f - r) * border_values.a + r * array(i, j);
     }
 
   // east
-  for (int i = array.shape[0] - buffer_sizes[1]; i < array.shape[0]; i++)
-    for (int j = 0; j < array.shape[1]; j++)
+  for (int i = array.shape.x - buffer_sizes.b; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
     {
-      float r = 1.f - (float)(i - array.shape[0] + buffer_sizes[1]) /
-                          (float)buffer_sizes[1];
+      float r = 1.f - (float)(i - array.shape.x + buffer_sizes.b) /
+                          (float)buffer_sizes.b;
       r = r * r * (3.f - 2.f * r);
-      array(i, j) = (1.f - r) * border_values[1] + r * array(i, j);
+      array(i, j) = (1.f - r) * border_values.b + r * array(i, j);
     }
 
   // south
-  for (int i = 0; i < array.shape[0]; i++)
-    for (int j = 0; j < buffer_sizes[2]; j++)
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < buffer_sizes.c; j++)
     {
-      float r = (float)j / (float)buffer_sizes[2];
+      float r = (float)j / (float)buffer_sizes.c;
       r = r * r * (3.f - 2.f * r);
-      array(i, j) = (1.f - r) * border_values[2] + r * array(i, j);
+      array(i, j) = (1.f - r) * border_values.c + r * array(i, j);
     }
 
   // north
-  for (int i = 0; i < array.shape[0]; i++)
-    for (int j = array.shape[1] - buffer_sizes[3]; j < array.shape[1]; j++)
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = array.shape.y - buffer_sizes.d; j < array.shape.y; j++)
     {
-      float r = 1.f - (float)(j - array.shape[1] + buffer_sizes[3]) /
-                          (float)buffer_sizes[3];
+      float r = 1.f - (float)(j - array.shape.y + buffer_sizes.d) /
+                          (float)buffer_sizes.d;
       r = r * r * (3.f - 2.f * r);
-      array(i, j) = (1.f - r) * border_values[3] + r * array(i, j);
+      array(i, j) = (1.f - r) * border_values.d + r * array(i, j);
     }
 }
 
 void set_borders(Array &array, float border_values, int buffer_sizes)
 {
-  std::vector<float> bv = {border_values,
-                           border_values,
-                           border_values,
-                           border_values};
-  std::vector<int>   bs = {buffer_sizes,
-                           buffer_sizes,
-                           buffer_sizes,
-                           buffer_sizes};
+  Vec4<float> bv =
+      Vec4<float>(border_values, border_values, border_values, border_values);
+  Vec4<int> bs =
+      Vec4<int>(buffer_sizes, buffer_sizes, buffer_sizes, buffer_sizes);
   set_borders(array, bv, bs);
 }
 
-void sym_borders(Array &array, std::vector<int> buffer_sizes)
+void sym_borders(Array &array, Vec4<int> buffer_sizes)
 {
-  const int i1 = buffer_sizes[0];
-  const int i2 = buffer_sizes[1];
-  const int j1 = buffer_sizes[2];
-  const int j2 = buffer_sizes[3];
+  const int i1 = buffer_sizes.a;
+  const int i2 = buffer_sizes.b;
+  const int j1 = buffer_sizes.c;
+  const int j2 = buffer_sizes.d;
 
   // fill-in the blanks...
   for (int i = 0; i < i1; i++)
   {
-    for (int j = j1; j < array.shape[1] - j2; j++)
+    for (int j = j1; j < array.shape.y - j2; j++)
     {
       array(i, j) = array(2 * i1 - i, j);
     }
   }
 
-  for (int i = array.shape[0] - i2; i < array.shape[0]; i++)
+  for (int i = array.shape.x - i2; i < array.shape.x; i++)
   {
-    for (int j = j1; j < array.shape[1] - j2; j++)
+    for (int j = j1; j < array.shape.y - j2; j++)
     {
-      array(i, j) = array(2 * (array.shape[0] - i2) - i - 1, j);
+      array(i, j) = array(2 * (array.shape.x - i2) - i - 1, j);
     }
   }
 
-  for (int i = 0; i < array.shape[0]; i++)
+  for (int i = 0; i < array.shape.x; i++)
   {
     for (int j = 0; j < j1; j++)
     {
@@ -199,19 +195,19 @@ void sym_borders(Array &array, std::vector<int> buffer_sizes)
     }
   }
 
-  for (int i = 0; i < array.shape[0]; i++)
+  for (int i = 0; i < array.shape.x; i++)
   {
-    for (int j = array.shape[1] - j2; j < array.shape[1]; j++)
+    for (int j = array.shape.y - j2; j < array.shape.y; j++)
     {
-      array(i, j) = array(i, 2 * (array.shape[1] - j2) - j - 1);
+      array(i, j) = array(i, 2 * (array.shape.y - j2) - j - 1);
     }
   }
 }
 
 void zeroed_borders(Array &array)
 {
-  const int ni = array.shape[0];
-  const int nj = array.shape[1];
+  const int ni = array.shape.x;
+  const int nj = array.shape.y;
 
   for (int j = 0; j < nj; j++)
   {

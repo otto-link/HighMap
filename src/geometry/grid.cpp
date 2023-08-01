@@ -14,15 +14,15 @@ namespace hmap
 void expand_grid(std::vector<float> &x,
                  std::vector<float> &y,
                  std::vector<float> &value,
-                 std::vector<float>  bbox)
+                 Vec4<float>         bbox)
 {
   size_t n = x.size();
   x.resize(9 * n);
   y.resize(9 * n);
   value.resize(9 * n);
 
-  float lx = bbox[1] - bbox[0];
-  float ly = bbox[3] - bbox[2];
+  float lx = bbox.b - bbox.a;
+  float ly = bbox.d - bbox.c;
 
   int kshift = 0;
   for (int i = -1; i < 2; i++)
@@ -42,7 +42,7 @@ void expand_grid(std::vector<float> &x,
 void random_grid(std::vector<float> &x,
                  std::vector<float> &y,
                  uint                seed,
-                 std::vector<float>  bbox)
+                 Vec4<float>         bbox)
 {
   std::mt19937                          gen(seed);
   std::uniform_real_distribution<float> dis(0.f, 1.f);
@@ -50,8 +50,8 @@ void random_grid(std::vector<float> &x,
 
   for (size_t k = 0; k < n; k++)
   {
-    x[k] = dis(gen) * (bbox[1] - bbox[0]) + bbox[0];
-    y[k] = dis(gen) * (bbox[3] - bbox[2]) + bbox[2];
+    x[k] = dis(gen) * (bbox.b - bbox.a) + bbox.a;
+    y[k] = dis(gen) * (bbox.d - bbox.c) + bbox.c;
   }
 }
 
@@ -59,7 +59,7 @@ void random_grid(std::vector<float> &x,
                  std::vector<float> &y,
                  std::vector<float> &value,
                  uint                seed,
-                 std::vector<float>  bbox)
+                 Vec4<float>         bbox)
 {
   std::mt19937                          gen(seed);
   std::uniform_real_distribution<float> dis(0.f, 1.f);
@@ -67,8 +67,8 @@ void random_grid(std::vector<float> &x,
 
   for (size_t k = 0; k < n; k++)
   {
-    x[k] = dis(gen) * (bbox[1] - bbox[0]) + bbox[0];
-    y[k] = dis(gen) * (bbox[3] - bbox[2]) + bbox[2];
+    x[k] = dis(gen) * (bbox.b - bbox.a) + bbox.a;
+    y[k] = dis(gen) * (bbox.d - bbox.c) + bbox.c;
     value[k] = dis(gen);
   }
 }
@@ -77,7 +77,7 @@ void random_grid_density(std::vector<float> &x,
                          std::vector<float> &y,
                          Array              &density,
                          uint                seed,
-                         std::vector<float>  bbox)
+                         Vec4<float>         bbox)
 {
   std::mt19937                          gen(seed);
   std::uniform_real_distribution<float> dis(0.f, 1.f);
@@ -93,13 +93,13 @@ void random_grid_density(std::vector<float> &x,
     float yr = dis(gen);
     float rd = dis(gen);
 
-    int i = (int)(xr * (density.shape[0] - 1));
-    int j = (int)(yr * (density.shape[1] - 1));
+    int i = (int)(xr * (density.shape.x - 1));
+    int j = (int)(yr * (density.shape.y - 1));
 
     if (rd < density(i, j))
     {
-      x[k] = xr * (bbox[1] - bbox[0]) + bbox[0];
-      y[k] = yr * (bbox[3] - bbox[2]) + bbox[2];
+      x[k] = xr * (bbox.b - bbox.a) + bbox.a;
+      y[k] = yr * (bbox.d - bbox.c) + bbox.c;
       k++;
     }
   }
@@ -109,7 +109,7 @@ void random_grid_jittered(std::vector<float> &x,
                           std::vector<float> &y,
                           float               scale,
                           uint                seed,
-                          std::vector<float>  bbox)
+                          Vec4<float>         bbox)
 {
   std::mt19937                          gen(seed);
   std::uniform_real_distribution<float> dis(-1.f, 1.f);
@@ -127,8 +127,8 @@ void random_grid_jittered(std::vector<float> &x,
     x[k] = std::clamp(x[k], 0.f, 1.f);
     y[k] = std::clamp(y[k], 0.f, 1.f);
 
-    x[k] = x[k] * (bbox[1] - bbox[0]) + bbox[0];
-    y[k] = y[k] * (bbox[3] - bbox[2]) + bbox[2];
+    x[k] = x[k] * (bbox.b - bbox.a) + bbox.a;
+    y[k] = y[k] * (bbox.d - bbox.c) + bbox.c;
   }
 }
 

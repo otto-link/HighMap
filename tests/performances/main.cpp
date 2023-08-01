@@ -12,13 +12,9 @@ int main(void)
 
   hmap::Timer timer = hmap::Timer();
 
-  // const std::vector<int> shape = {4096, 4096};
-  // const std::vector<int> shape = {2048, 2048};
-  const std::vector<int> shape = {1024, 1024};
-  // const std::vector<int> shape = {512, 512};
-  // const std::vector<int> shape = {64, 64};
-  const std::vector<float> res = {2.f, 2.f};
-  int                      seed = 2;
+  const hmap::Vec2<int>   shape = {1024, 1024};
+  const hmap::Vec2<float> res = {2.f, 2.f};
+  int                     seed = 2;
 
   hmap::Array z = hmap::Array(shape);
 

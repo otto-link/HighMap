@@ -9,18 +9,22 @@
 namespace hmap
 {
 
-Array::Array(std::vector<int> shape) : shape(shape)
+Array::Array()
 {
-  this->vector.resize(this->shape[0] * this->shape[1]);
 }
 
-Array::Array(std::vector<int> shape, float value) : shape(shape)
+Array::Array(Vec2<int> shape) : shape(shape)
 {
-  this->vector.resize(this->shape[0] * this->shape[1]);
+  this->vector.resize(this->shape.x * this->shape.y);
+}
+
+Array::Array(Vec2<int> shape, float value) : shape(shape)
+{
+  this->vector.resize(this->shape.x * this->shape.y);
   std::fill(this->vector.begin(), this->vector.end(), value);
 }
 
-std::vector<int> Array::get_shape()
+Vec2<int> Array::get_shape()
 {
   return shape;
 }
@@ -30,10 +34,10 @@ std::vector<float> Array::get_vector()
   return this->vector;
 }
 
-void Array::set_shape(std::vector<int> new_shape)
+void Array::set_shape(Vec2<int> new_shape)
 {
   this->shape = new_shape;
-  this->vector.resize(this->shape[0] * this->shape[1]);
+  this->vector.resize(this->shape.x * this->shape.y);
 }
 
 Array Array::operator=(const float value)

@@ -5,9 +5,9 @@
 
 int main(void)
 {
-  const std::vector<int>   shape = {256, 256};
-  const std::vector<float> res = {2.f, 2.f};
-  int                      seed = 1;
+  hmap::Vec2<int>   shape = {256, 256};
+  hmap::Vec2<float> res = {2.f, 2.f};
+  int               seed = 1;
 
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
   hmap::remap(z);
@@ -28,7 +28,7 @@ int main(void)
 
   auto z3 = z;
   {
-    float talus = 2.f / shape[0];
+    float talus = 2.f / shape.x;
     int   ir = 4;
     float amplitude = 0.2f;
     float kw = 16.f;

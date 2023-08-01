@@ -14,7 +14,7 @@
 namespace hmap
 {
 
-void fill(HeightMap &h, std::function<Array(std::vector<int>)> nullary_op)
+void fill(HeightMap &h, std::function<Array(Vec2<int>)> nullary_op)
 {
   LOG_DEBUG("nullary (shape)");
   size_t                          nthreads = h.get_ntiles();
@@ -27,10 +27,8 @@ void fill(HeightMap &h, std::function<Array(std::vector<int>)> nullary_op)
     h.tiles[i] = futures[i].get();
 }
 
-void fill(HeightMap                               &h,
-          std::function<Array(std::vector<int>,
-                              std::vector<float>,
-                              std::vector<float>)> nullary_op)
+void fill(HeightMap                                                &h,
+          std::function<Array(Vec2<int>, Vec2<float>, Vec2<float>)> nullary_op)
 {
   LOG_DEBUG("nullary (shape, size)");
   size_t                          nthreads = h.get_ntiles();
@@ -49,12 +47,11 @@ void fill(HeightMap                               &h,
   //   t = nullary_op(t.shape, t.shift);
 }
 
-void fill(HeightMap                          &h,
-          HeightMap                          *p_noise,
-          std::function<Array(std::vector<int>,
-                              std::vector<float>,
-                              std::vector<float>,
-                              hmap::Array *)> nullary_op)
+void fill(
+    HeightMap &h,
+    HeightMap *p_noise,
+    std::function<Array(Vec2<int>, Vec2<float>, Vec2<float>, hmap::Array *)>
+        nullary_op)
 {
   LOG_DEBUG("nullary (shape, size, p_noise)");
   size_t                          nthreads = h.get_ntiles();
@@ -74,9 +71,9 @@ void fill(HeightMap                          &h,
 void fill(HeightMap                          &h,
           HeightMap                          *p_noise_x,
           HeightMap                          *p_noise_y,
-          std::function<Array(std::vector<int>,
-                              std::vector<float>,
-                              std::vector<float>,
+          std::function<Array(Vec2<int>,
+                              Vec2<float>,
+                              Vec2<float>,
                               hmap::Array *,
                               hmap::Array *)> nullary_op)
 {

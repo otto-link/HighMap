@@ -14,7 +14,7 @@ namespace hmap
 Graph generate_network_alpha_model(std::vector<float> xc,
                                    std::vector<float> yc,
                                    std::vector<float> size,
-                                   std::vector<float> bbox,
+                                   Vec4<float>        bbox,
                                    Array             &z,
                                    uint               seed,
                                    float              alpha,

@@ -219,7 +219,7 @@ Graph Graph::remove_orphan_points()
   return graph_out;
 }
 
-void Graph::to_array(Array &array, std::vector<float> bbox)
+void Graph::to_array(Array &array, Vec4<float> bbox)
 {
   for (std::size_t k = 0; k < this->get_nedges(); k++)
   {
@@ -233,13 +233,13 @@ void Graph::to_array(Array &array, std::vector<float> bbox)
   }
 }
 
-void Graph::to_array_fractalize(Array             &array,
-                                std::vector<float> bbox,
-                                int                iterations,
-                                uint               seed,
-                                float              sigma,
-                                int                orientation,
-                                float              persistence)
+void Graph::to_array_fractalize(Array      &array,
+                                Vec4<float> bbox,
+                                int         iterations,
+                                uint        seed,
+                                float       sigma,
+                                int         orientation,
+                                float       persistence)
 {
   // find smallest edge length
   float dmin = std::numeric_limits<float>::max();
@@ -292,7 +292,7 @@ void Graph::to_csv(std::string fname_xy, std::string fname_adjacency)
   f.close();
 }
 
-void Graph::to_png(std::string fname, std::vector<int> shape)
+void Graph::to_png(std::string fname, Vec2<int> shape)
 {
   Array array = Array(shape);
   this->to_array(array, this->get_bbox());
@@ -302,8 +302,8 @@ void Graph::to_png(std::string fname, std::vector<int> shape)
 void Graph::update_adjacency_matrix()
 {
   // reshape if needed
-  std::vector<int> new_shape = {(int)this->get_npoints(),
-                                (int)this->get_npoints()};
+  Vec2<int> new_shape = Vec2<int>((int)this->get_npoints(),
+                                  (int)this->get_npoints());
   this->adjacency_matrix.clear();
 
   // fill matrix

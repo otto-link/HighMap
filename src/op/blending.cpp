@@ -66,9 +66,9 @@ Array mixer(const Array t, const std::vector<Array> arrays)
   {
     float r0 = (float)k / (float)(n - 1);
 
-    for (int i = 0; i < t.shape[0]; i++)
+    for (int i = 0; i < t.shape.x; i++)
     {
-      for (int j = 0; j < t.shape[1]; j++)
+      for (int j = 0; j < t.shape.y; j++)
       {
         float ta = 1.f - std::fabs(t(i, j) - r0);
         if (ta >= 0.f)

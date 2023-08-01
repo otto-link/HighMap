@@ -52,8 +52,8 @@ void thermal_scree(Array &z,
   if (talus_constraint)
   {
     Array tz = gradient_talus(z);
-    for (int i = 2; i < z.shape[0] - 2; i++)
-      for (int j = 2; j < z.shape[1] - 2; j++)
+    for (int i = 2; i < z.shape.x - 2; i++)
+      for (int j = 2; j < z.shape.y - 2; j++)
       {
         float rd = dis(gen);
         if ((z(i, j) > zmin) and (z(i, j) < zmax * rd) and (tz(i, j) <= talus))
@@ -66,8 +66,8 @@ void thermal_scree(Array &z,
   }
   else
   {
-    for (int i = 2; i < z.shape[0] - 2; i++)
-      for (int j = 2; j < z.shape[1] - 2; j++)
+    for (int i = 2; i < z.shape.x - 2; i++)
+      for (int j = 2; j < z.shape.y - 2; j++)
       {
         float rd = dis(gen);
         if ((z(i, j) > zmin) and (z(i, j) < zmax * rd))
@@ -164,23 +164,23 @@ void thermal_scree(Array &z,
   extrapolate_borders(z, 2);
 }
 
-void thermal_scree_fast(Array           &z,
-                        std::vector<int> shape_coarse,
-                        float            talus,
-                        uint             seed,
-                        float            zmax,
-                        float            zmin,
-                        float            noise_ratio,
-                        float            landing_talus_ratio,
-                        float            landing_width_ratio,
-                        bool             talus_constraint)
+void thermal_scree_fast(Array    &z,
+                        Vec2<int> shape_coarse,
+                        float     talus,
+                        uint      seed,
+                        float     zmax,
+                        float     zmin,
+                        float     noise_ratio,
+                        float     landing_talus_ratio,
+                        float     landing_width_ratio,
+                        bool      talus_constraint)
 {
   Array z_coarse = z.resample_to_shape(shape_coarse);
 
   // apply the algorithm on the coarser mesh (and ajust the talus
   // value)
-  float talus_coarse = talus * std::max(z.shape[0] / shape_coarse[0],
-                                        z.shape[1] / shape_coarse[1]);
+  float talus_coarse = talus * std::max(z.shape.x / shape_coarse.x,
+                                        z.shape.y / shape_coarse.y);
 
   thermal_scree(z_coarse,
                 talus_coarse,
@@ -220,12 +220,12 @@ void thermal_scree(Array &z,
                 false);
 }
 
-void thermal_scree_fast(Array           &z,
-                        std::vector<int> shape_coarse,
-                        float            talus,
-                        uint             seed,
-                        float            zmax,
-                        float            noise_ratio)
+void thermal_scree_fast(Array    &z,
+                        Vec2<int> shape_coarse,
+                        float     talus,
+                        uint      seed,
+                        float     zmax,
+                        float     noise_ratio)
 {
   thermal_scree_fast(z,
                      shape_coarse,

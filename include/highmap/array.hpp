@@ -22,6 +22,8 @@
 #include <string>
 #include <vector>
 
+#include "highmap/vector.hpp"
+
 namespace hmap
 {
 
@@ -37,10 +39,10 @@ public:
    * @brief Array shape {ni, nj}.
    *
    */
-  std::vector<int> shape;
+  Vec2<int> shape;
 
   /**
-   * @brief Vector for data storage, size shape[0] * shape[1].
+   * @brief Vector for data storage, size shape.x * shape.y.
    *
    */
   std::vector<float> vector;
@@ -56,9 +58,11 @@ public:
    *
    *
    */
-  Array(std::vector<int> shape);
+  Array();
 
-  Array(std::vector<int> shape, float value); ///< @overload
+  Array(Vec2<int> shape); ///< @overload
+
+  Array(Vec2<int> shape, float value); ///< @overload
 
   //----------------------------------------
   // accessors
@@ -67,14 +71,14 @@ public:
   /**
    * @brief Get the shape object.
    *
-   * @return std::vector<int> Shape {ni, nj}.
+   * @return Vec2<int> Shape {ni, nj}.
    */
-  std::vector<int> get_shape();
+  Vec2<int> get_shape();
 
   /**
    * @brief Get the vector object.
    *
-   * @return std::vector<float> Vector of size shape[0] * shape[1].
+   * @return std::vector<float> Vector of size shape.x * shape.y.
    */
   std::vector<float> get_vector();
 
@@ -83,7 +87,7 @@ public:
    *
    * @param new_shape New shape.
    */
-  void set_shape(std::vector<int> new_shape);
+  void set_shape(Vec2<int> new_shape);
 
   //----------------------------------------
   // overload
@@ -250,12 +254,12 @@ public:
 
   float &operator()(int i, int j)
   {
-    return this->vector[i * this->shape[1] + j];
+    return this->vector[i * this->shape.y + j];
   }
 
   const float &operator()(int i, int j) const ///< @overload
   {
-    return this->vector[i * this->shape[1] + j];
+    return this->vector[i * this->shape.y + j];
   }
 
   //----------------------------------------
@@ -306,7 +310,7 @@ public:
    * @param idx Slice extent indices: {i1, i2, j1, j2}.
    * @return Array Resulting array.
    */
-  Array extract_slice(std::vector<int> idx);
+  Array extract_slice(Vec4<int> idx);
 
   /**
    * @brief Find the lowest elevation difference path between two points in a
@@ -334,23 +338,23 @@ public:
    * @image html ex_find_path_dijkstra1.png
    *
    */
-  void find_path_dijkstra(std::vector<int>  ij_start,
-                          std::vector<int>  ij_end,
+  void find_path_dijkstra(Vec2<int>         ij_start,
+                          Vec2<int>         ij_end,
                           std::vector<int> &i_path,
                           std::vector<int> &j_path,
                           float             distance_exponent = 0.5f,
-                          std::vector<int>  step = {1, 1});
+                          Vec2<int>         step = {1, 1});
 
   /**
    * @brief Return the gradient in the 'x' (or 'i' index) of at the index (i,
    * j).
    *
    * @warning Based on a 2nd order central difference scheme, cannot be used
-   * at the borders, i.e. for i = 0, j = 0, i = shape[0] - 1 or j =
-   * shape[1] - 1.
+   * at the borders, i.e. for i = 0, j = 0, i = shape.x - 1 or j =
+   * shape.y - 1.
    *
-   * @param i Index, expected to be in [1, shape[0] - 2].
-   * @param j Index, expected to be in [1, shape[1] - 2].
+   * @param i Index, expected to be in [1, shape.x - 2].
+   * @param j Index, expected to be in [1, shape.y - 2].
    * @return float
    */
   float get_gradient_x_at(int i, int j) const;
@@ -360,11 +364,11 @@ public:
    * j).
    *
    * @warning Based on a 2nd order central difference scheme, cannot be used
-   * at the borders, i.e. for i = 0, j = 0, i = shape[0] - 1 or j =
-   * shape[1] - 1.
+   * at the borders, i.e. for i = 0, j = 0, i = shape.x - 1 or j =
+   * shape.y - 1.
    *
-   * @param i Index, expected to be in [1, shape[0] - 2].
-   * @param j Index, expected to be in [1, shape[1] - 2].
+   * @param i Index, expected to be in [1, shape.x - 2].
+   * @param j Index, expected to be in [1, shape.y - 2].
    * @return float
    */
   float get_gradient_y_at(int i, int j) const;
@@ -374,11 +378,11 @@ public:
    * y) near the index (i, j) using bilinear interpolation.
    *
    * @warning Based on a 2nd order central difference scheme, cannot be used
-   * at the borders, i.e. for i = 0, j = 0, i = shape[0] - 1 or j =
-   * shape[1] - 1.
+   * at the borders, i.e. for i = 0, j = 0, i = shape.x - 1 or j =
+   * shape.y - 1.
    *
-   * @param i Index, expected to be in [1, shape[0] - 2].
-   * @param j Index, expected to be in [1, shape[1] - 2].
+   * @param i Index, expected to be in [1, shape.x - 2].
+   * @param j Index, expected to be in [1, shape.y - 2].
    * @param u 'u' interpolation parameter, expected to be in [0, 1[.
    * @param v 'v' interpolation parameter, expected to be in [0, 1[.
    * @return float
@@ -390,10 +394,10 @@ public:
    * y) near the index (i, j) using bilinear interpolation.
    *
    * @warning Based on a 2nd order central difference scheme, cannot be used at
-   * the borders, i.e. for i = 0, j = 0, i = shape[0] - 1 or j = shape[1] - 1.
+   * the borders, i.e. for i = 0, j = 0, i = shape.x - 1 or j = shape.y - 1.
    *
-   * @param i Index, expected to be in [1, shape[0] - 2].
-   * @param j Index, expected to be in [1, shape[1] - 2].
+   * @param i Index, expected to be in [1, shape.x - 2].
+   * @param j Index, expected to be in [1, shape.y - 2].
    * @param u 'u' interpolation parameter, expected to be in [0, 1[.
    * @param v 'v' interpolation parameter, expected to be in [0, 1[.
    * @return float
@@ -405,19 +409,19 @@ public:
    *
    * @param i Index.
    * @param j Index.
-   * @return std::vector<float> Normal vector (3 components).
+   * @return Vec3<float> Normal vector (3 components).
    */
-  std::vector<float> get_normal_at(int i, int j) const;
+  Vec3<float> get_normal_at(int i, int j) const;
 
   /**
    * @brief Return the array value at the location (x, y) near the index (i, j)
    * using bilinear interpolation.
    *
    * @warning Based on bilinear interpolation, cannot be used at the upper
-   * borders, i.e. for i = shape[0] - 1 or j = shape[1] - 1.
+   * borders, i.e. for i = shape.x - 1 or j = shape.y - 1.
    *
-   * @param i Index, expected to be in [0, shape[0] - 2].
-   * @param j Index, expected to be in [0, shape[1] - 2].
+   * @param i Index, expected to be in [0, shape.x - 2].
+   * @param j Index, expected to be in [0, shape.y - 2].
    * @param u 'u' interpolation parameter, expected to be in [0, 1[.
    * @param v 'v' interpolation parameter, expected to be in [0, 1[.
    * @return float
@@ -495,7 +499,7 @@ public:
    * **Result**
    * @image html ex_resample_to_shape.png
    */
-  Array resample_to_shape(std::vector<int> new_shape);
+  Array resample_to_shape(Vec2<int> new_shape);
 
   /**
    * @brief Return a column 'i' as a std::vector.
@@ -511,7 +515,7 @@ public:
    * @param idx Slice extent indices: {i1, i2, j1, j2}.
    * @param value New value.
    */
-  void set_slice(std::vector<int> idx, float value);
+  void set_slice(Vec4<int> idx, float value);
 
   /**
    * @brief Return the array size (number of elements).

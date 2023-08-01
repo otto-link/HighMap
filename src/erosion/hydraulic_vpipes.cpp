@@ -50,8 +50,8 @@ void hydraulic_vpipes(Array &z)
   float pipe_length = 1.f;
 
   // local
-  int ni = z.shape[0];
-  int nj = z.shape[1];
+  int ni = z.shape.x;
+  int nj = z.shape.y;
 
   Array d = rain_map;       // water height
   Array s = Array(z.shape); // sediment height
@@ -61,7 +61,7 @@ void hydraulic_vpipes(Array &z)
   Array fT = Array(z.shape);
   Array fB = Array(z.shape);
 
-  float talus_scaling = (float)(1 * std::min(z.shape[0], z.shape[1]));
+  float talus_scaling = (float)(1 * std::min(z.shape.x, z.shape.y));
 
   Array tmp = Array(z.shape);
 

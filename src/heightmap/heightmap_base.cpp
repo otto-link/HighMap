@@ -12,49 +12,45 @@
 namespace hmap
 {
 
-HeightMap::HeightMap(std::vector<int>   shape,
-                     std::vector<float> bbox,
-                     std::vector<int>   tiling,
-                     float              overlap)
+HeightMap::HeightMap(Vec2<int>   shape,
+                     Vec4<float> bbox,
+                     Vec2<int>   tiling,
+                     float       overlap)
     : shape(shape), bbox(bbox), tiling(tiling), overlap(overlap)
 {
   this->update_tile_parameters();
 }
 
-HeightMap::HeightMap(std::vector<int> shape,
-                     std::vector<int> tiling,
-                     float            overlap)
+HeightMap::HeightMap(Vec2<int> shape, Vec2<int> tiling, float overlap)
     : shape(shape), tiling(tiling), overlap(overlap)
 {
   this->update_tile_parameters();
 }
 
-HeightMap::HeightMap(std::vector<int>   shape,
-                     std::vector<float> bbox,
-                     std::vector<int>   tiling)
+HeightMap::HeightMap(Vec2<int> shape, Vec4<float> bbox, Vec2<int> tiling)
     : shape(shape), bbox(bbox), tiling(tiling)
 {
   this->update_tile_parameters();
 }
 
-HeightMap::HeightMap(std::vector<int> shape, std::vector<int> tiling)
+HeightMap::HeightMap(Vec2<int> shape, Vec2<int> tiling)
     : shape(shape), tiling(tiling)
 {
   this->update_tile_parameters();
 }
 
-HeightMap::HeightMap(std::vector<int> shape, std::vector<float> bbox)
+HeightMap::HeightMap(Vec2<int> shape, Vec4<float> bbox)
     : shape(shape), bbox(bbox)
 {
   this->update_tile_parameters();
 }
 
-HeightMap::HeightMap(std::vector<int> shape) : shape(shape)
+HeightMap::HeightMap(Vec2<int> shape) : shape(shape)
 {
   this->update_tile_parameters();
 }
 
-HeightMap::HeightMap() : shape({0, 0})
+HeightMap::HeightMap() : shape(0, 0)
 {
   this->update_tile_parameters();
 }
@@ -66,16 +62,16 @@ size_t HeightMap::get_ntiles()
 
 int HeightMap::get_tile_index(int i, int j)
 {
-  return i + j * this->tiling[0];
+  return i + j * this->tiling.x;
 }
 
-void HeightMap::set_shape(std::vector<int> new_shape)
+void HeightMap::set_shape(Vec2<int> new_shape)
 {
   this->shape = new_shape;
   this->update_tile_parameters();
 }
 
-void HeightMap::set_tiling(std::vector<int> new_tiling)
+void HeightMap::set_tiling(Vec2<int> new_tiling)
 {
   this->tiling = new_tiling;
   this->update_tile_parameters();
@@ -85,9 +81,8 @@ void HeightMap::infos()
 {
   std::cout << "Heightmap, ";
   std::cout << "address: " << this << ", ";
-  std::cout << "shape: {" << this->shape[0] << ", " << this->shape[1] << "}, ";
-  std::cout << "tiling: {" << this->tiling[0] << ", " << this->tiling[1]
-            << "}, ";
+  std::cout << "shape: {" << this->shape.x << ", " << this->shape.y << "}, ";
+  std::cout << "tiling: {" << this->tiling.x << ", " << this->tiling.y << "}, ";
   std::cout << "overlap: " << this->overlap << ", ";
   std::cout << "min: " << this->min() << ", ";
   std::cout << "max: " << this->max();
@@ -113,40 +108,40 @@ float HeightMap::max()
 
 void HeightMap::smooth_overlap_buffers()
 {
-  int delta_buffer_i = (int)(this->overlap * this->shape[0] / this->tiling[0]);
-  int delta_buffer_j = (int)(this->overlap * this->shape[1] / this->tiling[1]);
+  int delta_buffer_i = (int)(this->overlap * this->shape.x / this->tiling.x);
+  int delta_buffer_j = (int)(this->overlap * this->shape.y / this->tiling.y);
 
   // i-direction pass
-  for (int it = 0; it < tiling[0] - 1; it++)
-    for (int jt = 0; jt < tiling[1]; jt++)
+  for (int it = 0; it < tiling.x - 1; it++)
+    for (int jt = 0; jt < tiling.y; jt++)
     {
       int k = this->get_tile_index(it, jt);
       int kn = this->get_tile_index(it + 1, jt);
 
       for (int p = 0; p < delta_buffer_i; p++)
-        for (int q = 0; q < tiles[k].shape[1]; q++)
+        for (int q = 0; q < tiles[k].shape.y; q++)
         {
           float r = (float)p / (float)(delta_buffer_i - 1);
           r = (r * (r * 6.f - 15.f) + 10.f) * r * r * r;
-          int pbuf = tiles[k].shape[0] - 2 * delta_buffer_i + p;
+          int pbuf = tiles[k].shape.x - 2 * delta_buffer_i + p;
           tiles[kn](p, q) = (1.f - r) * tiles[k](pbuf, q) + r * tiles[kn](p, q);
           tiles[k](pbuf, q) = tiles[kn](p, q);
         }
     }
 
   // j-direction
-  for (int it = 0; it < tiling[0]; it++)
-    for (int jt = 0; jt < tiling[1] - 1; jt++)
+  for (int it = 0; it < tiling.x; it++)
+    for (int jt = 0; jt < tiling.y - 1; jt++)
     {
       int k = this->get_tile_index(it, jt);
       int kn = this->get_tile_index(it, jt + 1);
 
-      for (int p = 0; p < tiles[k].shape[0]; p++)
+      for (int p = 0; p < tiles[k].shape.x; p++)
         for (int q = 0; q < delta_buffer_j; q++)
         {
           float r = (float)q / (float)(delta_buffer_j - 1);
           r = (r * (r * 6.f - 15.f) + 10.f) * r * r * r;
-          int qbuf = tiles[k].shape[1] - 2 * delta_buffer_j + q;
+          int qbuf = tiles[k].shape.y - 2 * delta_buffer_j + q;
           tiles[kn](p, q) = (1.f - r) * tiles[k](p, qbuf) + r * tiles[kn](p, q);
           tiles[k](p, qbuf) = tiles[kn](p, q);
         }
@@ -188,26 +183,26 @@ Array HeightMap::to_array()
   return this->to_array(this->shape);
 }
 
-Array HeightMap::to_array(std::vector<int> shape_export)
+Array HeightMap::to_array(Vec2<int> shape_export)
 {
   // TODO: stepping not robust with overlapping
-  std::vector<int> step = {this->shape[0] / shape_export[0],
-                           this->shape[1] / shape_export[1]};
+  Vec2<int> step = {this->shape.x / shape_export.x,
+                    this->shape.y / shape_export.y};
 
   Array array = Array(shape_export);
 
-  for (int it = 0; it < tiling[0]; it++)
-    for (int jt = 0; jt < tiling[1]; jt++)
+  for (int it = 0; it < tiling.x; it++)
+    for (int jt = 0; jt < tiling.y; jt++)
     {
       // tile array position within the global array
       int k = this->get_tile_index(it, jt);
 
-      int i1 = (int)(tiles[k].shift[0] * this->shape[0]);
-      int j1 = (int)(tiles[k].shift[1] * this->shape[1]);
+      int i1 = (int)(tiles[k].shift.x * this->shape.x);
+      int j1 = (int)(tiles[k].shift.y * this->shape.y);
 
-      for (int p = 0; p < tiles[k].shape[0]; p += step[0])
-        for (int q = 0; q < tiles[k].shape[1]; q += step[1])
-          array((p + i1) / step[0], (q + j1) / step[1]) = tiles[k](p, q);
+      for (int p = 0; p < tiles[k].shape.x; p += step.x)
+        for (int q = 0; q < tiles[k].shape.y; q += step.y)
+          array((p + i1) / step.x, (q + j1) / step.y) = tiles[k](p, q);
     }
 
   return array;
@@ -215,18 +210,18 @@ Array HeightMap::to_array(std::vector<int> shape_export)
 
 void HeightMap::update_tile_parameters()
 {
-  tiles.resize(this->tiling[0] * this->tiling[1]);
+  tiles.resize(this->tiling.x * this->tiling.y);
 
-  float lx = this->bbox[1] - this->bbox[0];
-  float ly = this->bbox[3] - this->bbox[2];
+  float lx = this->bbox.b - this->bbox.a;
+  float ly = this->bbox.d - this->bbox.c;
 
   // what the buffers extent to the tile domain at both frontiers
   // (added two times for the tile surrounded by other tiles)
-  int delta_buffer_i = (int)(this->overlap * this->shape[0] / this->tiling[0]);
-  int delta_buffer_j = (int)(this->overlap * this->shape[1] / this->tiling[1]);
+  int delta_buffer_i = (int)(this->overlap * this->shape.x / this->tiling.x);
+  int delta_buffer_j = (int)(this->overlap * this->shape.y / this->tiling.y);
 
-  for (int it = 0; it < tiling[0]; it++)
-    for (int jt = 0; jt < tiling[1]; jt++)
+  for (int it = 0; it < tiling.x; it++)
+    for (int jt = 0; jt < tiling.y; jt++)
     {
       int k = this->get_tile_index(it, jt);
 
@@ -236,35 +231,34 @@ void HeightMap::update_tile_parameters()
 
       if (it > 0)
         buffer_i += delta_buffer_i;
-      if (it < this->tiling[0] - 1)
+      if (it < this->tiling.x - 1)
         buffer_i += delta_buffer_i;
       if (jt > 0)
         buffer_j += delta_buffer_j;
-      if (jt < this->tiling[1] - 1)
+      if (jt < this->tiling.y - 1)
         buffer_j += delta_buffer_j;
 
       // geometry: shape, shift and scale
-      std::vector<int> tile_shape = {
-          this->shape[0] / this->tiling[0] + buffer_i,
-          this->shape[1] / this->tiling[1] + buffer_j};
+      Vec2<int> tile_shape = Vec2<int>(
+          this->shape.x / this->tiling.x + buffer_i,
+          this->shape.y / this->tiling.y + buffer_j);
 
-      std::vector<float> shift = {(float)it / (float)this->tiling[0],
-                                  (float)jt / (float)this->tiling[1]};
+      Vec2<float> shift = Vec2<float>((float)it / (float)this->tiling.x,
+                                      (float)jt / (float)this->tiling.y);
 
       // take into account buffers
       if (it > 0)
-        shift[0] -= (float)delta_buffer_i / (float)this->shape[0];
+        shift.x -= (float)delta_buffer_i / (float)this->shape.x;
       if (jt > 0)
-        shift[1] -= (float)delta_buffer_j / (float)this->shape[1];
+        shift.y -= (float)delta_buffer_j / (float)this->shape.y;
 
-      std::vector<float> scale = {(float)tile_shape[0] / (float)this->shape[0],
-                                  (float)tile_shape[1] / (float)this->shape[1]};
+      Vec2<float> scale = Vec2((float)tile_shape.x / (float)this->shape.x,
+                               (float)tile_shape.y / (float)this->shape.y);
 
-      std::vector<float> tile_bbox = {
-          this->bbox[0] + shift[0] * lx,
-          this->bbox[0] + (shift[0] + scale[0]) * lx,
-          this->bbox[2] + shift[1] * ly,
-          this->bbox[2] + (shift[1] + scale[1]) * ly};
+      Vec4<float> tile_bbox = Vec4(this->bbox.a + shift.x * lx,
+                                   this->bbox.a + (shift.x + scale.x) * lx,
+                                   this->bbox.c + shift.y * ly,
+                                   this->bbox.c + (shift.y + scale.y) * ly);
 
       tiles[k] = Tile(tile_shape, shift, scale, tile_bbox);
     }

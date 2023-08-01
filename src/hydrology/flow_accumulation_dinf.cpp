@@ -53,9 +53,9 @@ Array flow_accumulation_dinf(Array &z, float talus_ref)
   }
 
   // --- compute number of input drainage paths for each cell
-  for (int i = 1; i < z.shape[0] - 1; i++)
+  for (int i = 1; i < z.shape.x - 1; i++)
   {
-    for (int j = 1; j < z.shape[1] - 1; j++)
+    for (int j = 1; j < z.shape.y - 1; j++)
     {
       // count the number of neighbors with flow directions pointing
       // to the current cell
@@ -73,9 +73,9 @@ Array flow_accumulation_dinf(Array &z, float talus_ref)
   std::list<int> i_queue = {};
   std::list<int> j_queue = {};
 
-  for (int i = 1; i < z.shape[0] - 1; i++)
+  for (int i = 1; i < z.shape.x - 1; i++)
   {
-    for (int j = 1; j < z.shape[1] - 1; j++)
+    for (int j = 1; j < z.shape.y - 1; j++)
     {
       if (nidp(i, j) == 0)
       {
@@ -135,9 +135,9 @@ std::vector<Array> flow_direction_dinf(Array &z, float talus_ref)
   // memory consuming... every 8 direction needs a full array
   std::vector<Array> dinf(nb, {z.shape});
 
-  for (int i = 1; i < z.shape[0] - 1; i++)
+  for (int i = 1; i < z.shape.x - 1; i++)
   {
-    for (int j = 1; j < z.shape[1] - 1; j++)
+    for (int j = 1; j < z.shape.y - 1; j++)
     {
       for (uint k = 0; k < nb; k++)
       {

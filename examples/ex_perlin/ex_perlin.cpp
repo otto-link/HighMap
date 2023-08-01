@@ -4,9 +4,9 @@
 
 int main(void)
 {
-  const std::vector<int>   shape = {256, 256};
-  const std::vector<float> res = {4.f, 4.f};
-  int                      seed = 1;
+  hmap::Vec2<int>   shape = {256, 256};
+  hmap::Vec2<float> res = {4.f, 4.f};
+  int               seed = 1;
 
   auto z1 = hmap::perlin(shape, res, seed);
   auto z2 = hmap::perlin_billow(shape, res, seed);

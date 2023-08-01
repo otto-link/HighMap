@@ -4,11 +4,11 @@
 
 int main(void)
 {
-  const std::vector<int> shape = {256, 256};
-  int                    seed = 1;
+  hmap::Vec2<int> shape = {256, 256};
+  int             seed = 1;
 
-  std::vector<float> bbox = {1.f, 2.f, -0.5f, 0.5f};
-  hmap::Path         path = hmap::Path(4, seed, {1.3f, 1.7f, -0.2, 0.2f});
+  hmap::Vec4<float> bbox = {1.f, 2.f, -0.5f, 0.5f};
+  hmap::Path        path = hmap::Path(4, seed, {1.3f, 1.7f, -0.2, 0.2f});
   path.reorder_nns();
   path.closed = true;
 

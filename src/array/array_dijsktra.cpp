@@ -13,22 +13,18 @@ namespace hmap
 
 {
 
-void Array::find_path_dijkstra(std::vector<int>  ij_start,
-                               std::vector<int>  ij_end,
+void Array::find_path_dijkstra(Vec2<int>         ij_start,
+                               Vec2<int>         ij_end,
                                std::vector<int> &i_path,
                                std::vector<int> &j_path,
                                float             distance_exponent,
-                               std::vector<int>  step)
+                               Vec2<int>         step)
 {
   // https://math.stackexchange.com/questions/3088292
 
-  std::vector<int> shape_coarse = {this->shape[0] / step[0],
-                                   this->shape[1] / step[1]};
-
-  std::vector<int> ij_start_coarse = {ij_start[0] / step[0],
-                                      ij_start[1] / step[1]};
-
-  std::vector<int> ij_end_coarse = {ij_end[0] / step[0], ij_end[1] / step[1]};
+  Vec2<int> shape_coarse = shape / step;
+  Vec2<int> ij_start_coarse = ij_start / step;
+  Vec2<int> ij_end_coarse = ij_end / step;
 
   // neighbors pattern
   const std::vector<int> di = {-1, 0, 0, 1, -1, -1, 1, 1};
@@ -39,20 +35,20 @@ void Array::find_path_dijkstra(std::vector<int>  ij_start,
   std::vector<int>   queue_i;
   std::vector<int>   queue_j;
   std::vector<float> queue_d; // distance
-  queue_i.reserve(shape_coarse[0] * shape_coarse[1]);
-  queue_j.reserve(shape_coarse[0] * shape_coarse[1]);
-  queue_d.reserve(shape_coarse[0] * shape_coarse[1]);
+  queue_i.reserve(shape_coarse.x * shape_coarse.y);
+  queue_j.reserve(shape_coarse.x * shape_coarse.y);
+  queue_d.reserve(shape_coarse.x * shape_coarse.y);
 
-  std::vector<float> distance(shape_coarse[0] * shape_coarse[1]);
-  std::vector<bool>  mask(shape_coarse[0] * shape_coarse[1]);
-  std::vector<int>   next_idx_i(shape_coarse[0] * shape_coarse[1]);
-  std::vector<int>   next_idx_j(shape_coarse[0] * shape_coarse[1]);
+  std::vector<float> distance(shape_coarse.x * shape_coarse.y);
+  std::vector<bool>  mask(shape_coarse.x * shape_coarse.y);
+  std::vector<int>   next_idx_i(shape_coarse.x * shape_coarse.y);
+  std::vector<int>   next_idx_j(shape_coarse.x * shape_coarse.y);
 
   // --- Dijkstra's algorithm
-  queue_i.push_back(ij_start_coarse[0]);
-  queue_j.push_back(ij_start_coarse[1]);
+  queue_i.push_back(ij_start_coarse.x);
+  queue_j.push_back(ij_start_coarse.y);
   queue_d.push_back(0.f);
-  mask[ij_start_coarse[0] * shape_coarse[1] + ij_start_coarse[1]] = true;
+  mask[ij_start_coarse.x * shape_coarse.y + ij_start_coarse.y] = true;
 
   while (queue_i.size() > 0)
   {
@@ -62,7 +58,7 @@ void Array::find_path_dijkstra(std::vector<int>  ij_start,
 
     int i = queue_i[kmin];
     int j = queue_j[kmin];
-    mask[i * shape_coarse[1] + j] = false;
+    mask[i * shape_coarse.y + j] = false;
 
     queue_i.erase(queue_i.begin() + kmin);
     queue_j.erase(queue_j.begin() + kmin);
@@ -74,27 +70,26 @@ void Array::find_path_dijkstra(std::vector<int>  ij_start,
       int p = i + di[k];
       int q = j + dj[k];
 
-      if ((p > 0) and (p < shape_coarse[0]) and (q > 0) and
-          (q < shape_coarse[1]))
+      if ((p > 0) and (p < shape_coarse.x) and (q > 0) and (q < shape_coarse.y))
       {
-        float dist = distance[i * shape_coarse[1] + j] +
-                     std::pow(std::abs((*this)(i * step[0], j * step[1]) -
-                                       (*this)(p * step[0], q * step[1])),
+        float dist = distance[i * shape_coarse.y + j] +
+                     std::pow(std::abs((*this)(i * step.x, j * step.y) -
+                                       (*this)(p * step.x, q * step.y)),
                               distance_exponent);
 
-        if (distance[p * shape_coarse[1] + q] == 0.f)
-          if ((mask[p * shape_coarse[1] + q] == false) or
-              (dist < distance[p * shape_coarse[1] + q]))
+        if (distance[p * shape_coarse.y + q] == 0.f)
+          if ((mask[p * shape_coarse.y + q] == false) or
+              (dist < distance[p * shape_coarse.y + q]))
           {
-            distance[p * shape_coarse[1] + q] = dist;
+            distance[p * shape_coarse.y + q] = dist;
 
-            mask[p * shape_coarse[1] + q] = true;
+            mask[p * shape_coarse.y + q] = true;
             queue_i.push_back(p);
             queue_j.push_back(q);
             queue_d.push_back(dist);
 
-            next_idx_i[p * shape_coarse[1] + q] = i;
-            next_idx_j[p * shape_coarse[1] + q] = j;
+            next_idx_i[p * shape_coarse.y + q] = i;
+            next_idx_j[p * shape_coarse.y + q] = j;
           }
       }
     }
@@ -104,16 +99,16 @@ void Array::find_path_dijkstra(std::vector<int>  ij_start,
   i_path.clear();
   j_path.clear();
 
-  int ic = ij_end_coarse[0];
-  int jc = ij_end_coarse[1];
+  int ic = ij_end_coarse.x;
+  int jc = ij_end_coarse.y;
 
-  while ((ic != ij_start_coarse[0]) or
-         (jc != ij_start_coarse[1])) // TODO add failsafe?
+  while ((ic != ij_start_coarse.x) or
+         (jc != ij_start_coarse.y)) // TODO add failsafe?
   {
     i_path.push_back(ic);
     j_path.push_back(jc);
 
-    int k = ic * shape_coarse[1] + jc;
+    int k = ic * shape_coarse.y + jc;
     ic = next_idx_i[k];
     jc = next_idx_j[k];
   }
@@ -122,9 +117,9 @@ void Array::find_path_dijkstra(std::vector<int>  ij_start,
   j_path.push_back(jc);
 
   for (auto &i : i_path)
-    i *= step[0];
+    i *= step.x;
   for (auto &j : j_path)
-    j *= step[1];
+    j *= step.y;
 
   std::reverse(i_path.begin(), i_path.end());
   std::reverse(j_path.begin(), j_path.end());

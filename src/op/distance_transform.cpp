@@ -22,8 +22,8 @@ Array distance_transform(const Array &array)
 {
   Array dt = Array(array.shape); // output distance
   Array g = Array(array.shape);
-  int   ni = array.shape[0];
-  int   nj = array.shape[1];
+  int   ni = array.shape.x;
+  int   nj = array.shape.y;
   float inf = (float)(ni + nj);
 
   // phase 1

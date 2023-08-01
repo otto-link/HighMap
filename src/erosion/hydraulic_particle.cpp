@@ -38,8 +38,8 @@ void hydraulic_particle(Array &z,
                         float  drag_rate,
                         float  evap_rate)
 {
-  const int ni = z.shape[0];
-  const int nj = z.shape[1];
+  const int ni = z.shape.x;
+  const int nj = z.shape.y;
   float     dt = DT;
 
   std::mt19937                          gen(seed);
@@ -202,10 +202,10 @@ void hydraulic_particle_multiscale(Array             &z,
   for (uint k = 0; k < ns; k++)
   {
     // "large scales" are isolated using resampling
-    int              ni = (int)std::ceil((float)z.shape[0] / scales[k]);
-    int              nj = (int)std::ceil((float)z.shape[1] / scales[k]);
-    std::vector<int> shape_c = {ni, nj};
-    int              nparticles = (int)(particle_density * ni * nj);
+    int       ni = (int)std::ceil((float)z.shape.x / scales[k]);
+    int       nj = (int)std::ceil((float)z.shape.y / scales[k]);
+    Vec2<int> shape_c = Vec2<int>(ni, nj);
+    int       nparticles = (int)(particle_density * ni * nj);
 
     LOG_DEBUG("resampling: {%d, %d}", ni, nj);
 

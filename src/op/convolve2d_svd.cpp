@@ -18,13 +18,13 @@ Array convolve2d_svd(const Array &array, const Array &kernel, int rank)
 
   // --- perform SVD decomposition of the kernel
 
-  gsl_matrix *mat_u = gsl_matrix_alloc(kernel.shape[0], kernel.shape[1]);
-  gsl_matrix *mat_v = gsl_matrix_alloc(kernel.shape[1], kernel.shape[1]);
-  gsl_vector *vec_s = gsl_vector_alloc(kernel.shape[1]);
-  gsl_vector *vec_w = gsl_vector_alloc(kernel.shape[1]); // work vector
+  gsl_matrix *mat_u = gsl_matrix_alloc(kernel.shape.x, kernel.shape.y);
+  gsl_matrix *mat_v = gsl_matrix_alloc(kernel.shape.y, kernel.shape.y);
+  gsl_vector *vec_s = gsl_vector_alloc(kernel.shape.y);
+  gsl_vector *vec_w = gsl_vector_alloc(kernel.shape.y); // work vector
 
-  for (int i = 0; i < kernel.shape[0]; i++)
-    for (int j = 0; j < kernel.shape[1]; j++)
+  for (int i = 0; i < kernel.shape.x; i++)
+    for (int j = 0; j < kernel.shape.y; j++)
       gsl_matrix_set(mat_u, i, j, kernel(i, j));
 
   // (NB - mat_v is the transpose of classical "V" of SVD formulation)
@@ -34,16 +34,16 @@ Array convolve2d_svd(const Array &array, const Array &kernel, int rank)
   // --- vectors for each singular SVD values as a pair of 1D //
   // --- kernels
 
-  for (int p = 0; p < std::min(rank, kernel.shape[1]); p++)
+  for (int p = 0; p < std::min(rank, kernel.shape.y); p++)
   {
     Array              c2d = Array(array.shape);
-    std::vector<float> ki(kernel.shape[0]);
-    std::vector<float> kj(kernel.shape[1]);
+    std::vector<float> ki(kernel.shape.x);
+    std::vector<float> kj(kernel.shape.y);
 
-    for (int i = 0; i < kernel.shape[0]; i++)
+    for (int i = 0; i < kernel.shape.x; i++)
       ki[i] = gsl_matrix_get(mat_u, i, p);
 
-    for (int j = 0; j < kernel.shape[1]; j++)
+    for (int j = 0; j < kernel.shape.y; j++)
       kj[j] = gsl_matrix_get(mat_v, j, p);
 
     c2d = convolve1d_i(array, ki);

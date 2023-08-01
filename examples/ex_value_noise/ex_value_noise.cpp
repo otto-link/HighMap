@@ -2,9 +2,9 @@
 
 int main(void)
 {
-  const std::vector<int>   shape = {256, 256};
-  const std::vector<float> res = {4.f, 4.f};
-  int                      seed = 1;
+  hmap::Vec2<int>   shape = {256, 256};
+  hmap::Vec2<float> res = {4.f, 4.f};
+  int               seed = 1;
 
   hmap::Array noise_x = hmap::fbm_perlin(shape, res, seed + 1);
   hmap::Array noise_y = hmap::fbm_perlin(shape, res, seed + 2);

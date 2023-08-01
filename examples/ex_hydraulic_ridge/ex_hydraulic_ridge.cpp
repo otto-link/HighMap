@@ -6,13 +6,13 @@
 
 int main(void)
 {
-  const std::vector<int>   shape = {256, 256};
-  const std::vector<float> res = {2.f, 2.f};
-  int                      seed = 1;
+  hmap::Vec2<int>   shape = {256, 256};
+  hmap::Vec2<float> res = {2.f, 2.f};
+  int               seed = 1;
 
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
 
-  float talus = 16.f / shape[0];
+  float talus = 16.f / shape.x;
   float intensity = 0.5f;
   float erosion_factor = 1.5f;
 
@@ -29,7 +29,7 @@ int main(void)
   // can be combined with thermal erosion to yield smoother valley
   // bottoms
   auto z3 = z2;
-  hmap::thermal_auto_bedrock(z3, 0.5f / shape[0]);
+  hmap::thermal_auto_bedrock(z3, 0.5f / shape.x);
 
   hmap::export_banner_png("ex_hydraulic_ridge.png",
                           {z, z1, z2, z3},

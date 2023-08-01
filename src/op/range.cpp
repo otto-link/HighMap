@@ -181,12 +181,12 @@ Array maximum_local(const Array &array, int ir)
   Array array_tmp = Array(array.shape);
 
   // row
-  for (int i = 0; i < array.shape[0]; i++)
+  for (int i = 0; i < array.shape.x; i++)
   {
     int i1 = std::max(0, i - ir);
-    int i2 = std::min(array.shape[0], i + ir + 1);
+    int i2 = std::min(array.shape.x, i + ir + 1);
 
-    for (int j = 0; j < array.shape[1]; j++)
+    for (int j = 0; j < array.shape.y; j++)
     {
       float max = array(i, j);
       for (int u = i1; u < i2; u++)
@@ -197,11 +197,11 @@ Array maximum_local(const Array &array, int ir)
   }
 
   // column
-  for (int j = 0; j < array.shape[1]; j++)
+  for (int j = 0; j < array.shape.y; j++)
   {
     int j1 = std::max(0, j - ir);
-    int j2 = std::min(array.shape[1], j + ir + 1);
-    for (int i = 0; i < array.shape[0]; i++)
+    int j2 = std::min(array.shape.y, j + ir + 1);
+    for (int i = 0; i < array.shape.x; i++)
     {
       float max = array_tmp(i, j);
       for (int v = j1; v < j2; v++)
@@ -218,8 +218,8 @@ Array maximum_local_disk(const Array &array, int ir)
 {
   Array array_out = array;
 
-  int ni = array.shape[0];
-  int nj = array.shape[1];
+  int ni = array.shape.x;
+  int nj = array.shape.y;
 
   for (int i = 0; i < ni; i++)
   {
@@ -266,12 +266,12 @@ Array mean_local(const Array &array, int ir)
   Array array_tmp = Array(array.shape);
 
   // row
-  for (int i = 0; i < array.shape[0]; i++)
+  for (int i = 0; i < array.shape.x; i++)
   {
     int i1 = std::max(0, i - ir);
-    int i2 = std::min(array.shape[0], i + ir + 1);
+    int i2 = std::min(array.shape.x, i + ir + 1);
 
-    for (int j = 0; j < array.shape[1]; j++)
+    for (int j = 0; j < array.shape.y; j++)
     {
       float sum = 0.f;
       for (int u = i1; u < i2; u++)
@@ -281,11 +281,11 @@ Array mean_local(const Array &array, int ir)
   }
 
   // column
-  for (int j = 0; j < array.shape[1]; j++)
+  for (int j = 0; j < array.shape.y; j++)
   {
     int j1 = std::max(0, j - ir);
-    int j2 = std::min(array.shape[1], j + ir + 1);
-    for (int i = 0; i < array.shape[0]; i++)
+    int j2 = std::min(array.shape.y, j + ir + 1);
+    for (int i = 0; i < array.shape.x; i++)
     {
       float sum = 0.f;
       for (int v = j1; v < j2; v++)

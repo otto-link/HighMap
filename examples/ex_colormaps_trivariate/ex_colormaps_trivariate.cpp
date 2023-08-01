@@ -4,19 +4,19 @@
 
 int main(void)
 {
-  const std::vector<int>   shape = {512, 512};
-  const std::vector<float> res = {2.f, 2.f};
-  int                      seed = 1;
+  hmap::Vec2<int>   shape = {512, 512};
+  hmap::Vec2<float> res = {2.f, 2.f};
+  int               seed = 1;
 
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
   hmap::remap(z);
-  z += 0.5f * hmap::step(shape, 30.f, 8.f / shape[0], &z, {-0.5f, 0.f});
-  z *= hmap::gaussian_pulse(shape, 0.2f * shape[0]);
+  z += 0.5f * hmap::step(shape, 30.f, 8.f / shape.x, &z, {-0.5f, 0.f});
+  z *= hmap::gaussian_pulse(shape, 0.2f * shape.x);
   hmap::gamma_correction(z, 0.7f);
 
   hmap::Array zb = hmap::minimum_local(z, 32);
-  // hmap::hydraulic_ridge(z, 6.f / shape[0], 0.1f);
-  hmap::hydraulic_stream(z, zb, 0.02f, 10.f / shape[0]);
+  // hmap::hydraulic_ridge(z, 6.f / shape.x, 0.1f);
+  hmap::hydraulic_stream(z, zb, 0.02f, 10.f / shape.x);
   // hmap::hydraulic_vpipes(z);
   hmap::hydraulic_particle(z, 100000, seed);
 

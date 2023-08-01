@@ -4,10 +4,10 @@
 
 int main(void)
 {
-  const std::vector<int> shape = {256, 256};
-  int                    seed = 1;
+  hmap::Vec2<int> shape = {256, 256};
+  int             seed = 1;
 
-  std::vector<float> bbox = {-1.f, 2.f, 0.f, 5.f};
+  hmap::Vec4<float> bbox = {-1.f, 2.f, 0.f, 5.f};
 
   // --- open path with (x, y) and values defined as vectors
   hmap::Path path = hmap::Path({-0.5f, 1.5f, 0.5f}, // x

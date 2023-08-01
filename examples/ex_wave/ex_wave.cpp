@@ -5,7 +5,7 @@
 
 int main(void)
 {
-  const std::vector<int> shape = {256, 256};
+  hmap::Vec2<int> shape = {256, 256};
 
   float kw = 4.f;
   float angle = 30.f;

@@ -15,6 +15,8 @@
 #pragma once
 #include <fstream>
 
+#include "highmap/vector.hpp"
+
 #define PACK_RGBA(r, g, b) (uint32_t)(r << 16 | g << 8 | b)
 
 #define UNPACK_COLOR(color, r, g, b)                                           \
