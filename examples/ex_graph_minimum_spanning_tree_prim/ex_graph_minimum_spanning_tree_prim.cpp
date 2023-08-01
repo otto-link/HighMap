@@ -4,8 +4,7 @@
 
 int main(void)
 {
-  hmap::Vec2<int> shape = {256, 256};
-  int             seed = 1;
+  int seed = 1;
 
   hmap::Vec4<float> bbox = {-1.f, 2.f, 0.f, 5.f};
 

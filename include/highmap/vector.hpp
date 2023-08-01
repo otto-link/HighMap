@@ -29,10 +29,6 @@ template <typename T> struct Vec2
   {
   }
 
-  //   Vec2(std::vector<T> v) : x(v[0]), y(v[1])
-  //   {
-  //   }
-
   Vec2 operator/=(const T value)
   {
     this->x /= value;
@@ -45,6 +41,30 @@ template <typename T> struct Vec2
     Vec2 out;
     out.x = this->x / other_vec.x;
     out.y = this->y / other_vec.y;
+    return out;
+  }
+
+  Vec2 operator*(const Vec2 &other_vec) const
+  {
+    Vec2 out;
+    out.x = this->x * other_vec.x;
+    out.y = this->y * other_vec.y;
+    return out;
+  }
+
+  Vec2 operator+(const Vec2 &other_vec) const
+  {
+    Vec2 out;
+    out.x = this->x + other_vec.x;
+    out.y = this->y + other_vec.y;
+    return out;
+  }
+
+  Vec2 operator-(const Vec2 &other_vec) const
+  {
+    Vec2 out;
+    out.x = this->x - other_vec.x;
+    out.y = this->y - other_vec.y;
     return out;
   }
 };
@@ -60,10 +80,6 @@ template <typename T> struct Vec3
   Vec3(T x, T y, T z) : x(x), y(y), z(z)
   {
   }
-
-  //   Vec3(std::vector<T> v) : x(v[0]), y(v[1]), z(v[2])
-  //   {
-  //   }
 
   Vec3 operator/=(const T value)
   {
@@ -85,10 +101,6 @@ template <typename T> struct Vec4
   Vec4(T a, T b, T c, T d) : a(a), b(b), c(c), d(d)
   {
   }
-
-  //  Vec4(std::vector<T> v) : a(v[0]), b(v[1]), c(v[2]), d(v[3])
-  //   {
-  //   }
 
   Vec4 operator/=(const T value)
   {
