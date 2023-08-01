@@ -301,9 +301,6 @@ void Graph::to_png(std::string fname, Vec2<int> shape)
 
 void Graph::update_adjacency_matrix()
 {
-  // reshape if needed
-  Vec2<int> new_shape = Vec2<int>((int)this->get_npoints(),
-                                  (int)this->get_npoints());
   this->adjacency_matrix.clear();
 
   // fill matrix
