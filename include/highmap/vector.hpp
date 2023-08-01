@@ -29,6 +29,16 @@ template <typename T> struct Vec2
   {
   }
 
+  bool operator==(const Vec2 &other_vec) const
+  {
+    return ((this->x == other_vec.x) and (this->y == other_vec.y));
+  }
+
+  bool operator!=(const Vec2 &other_vec) const
+  {
+    return ((this->x != other_vec.x) or (this->y != other_vec.y));
+  }
+  
   Vec2 operator/=(const T value)
   {
     this->x /= value;
