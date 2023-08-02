@@ -517,6 +517,7 @@ void fill_talus_fast(Array    &z,
  *
  * @param array Input array.
  * @param gain Gain factor (> 0).
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * @warning Array values are expected to be in [0, 1].
  *
@@ -526,7 +527,7 @@ void fill_talus_fast(Array    &z,
  * **Result**
  * @image html ex_gain.png
  */
-void gain(Array &array, float gain);
+void gain(Array &array, float gain, Array *p_mask = nullptr);
 
 /**
  * @brief Apply gamma correction to the input array.

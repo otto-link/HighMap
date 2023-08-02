@@ -148,7 +148,7 @@ void fill_talus_fast(Array    &z,
   clamp_min(z, z_coarse);
 }
 
-void gain(Array &array, float gain)
+void gain(Array &array, float gain, Array *p_mask)
 {
   auto lambda = [&gain](float x)
   {
@@ -156,10 +156,20 @@ void gain(Array &array, float gain)
                    : 1.f - 0.5f * std::pow(2.f * (1.f - x), gain);
   };
 
-  std::transform(array.vector.begin(),
-                 array.vector.end(),
-                 array.vector.begin(),
-                 lambda);
+  if (!p_mask)
+    std::transform(array.vector.begin(),
+                   array.vector.end(),
+                   array.vector.begin(),
+                   lambda);
+  else
+  {
+    Array array_f = array;
+    std::transform(array_f.vector.begin(),
+                   array_f.vector.end(),
+                   array_f.vector.begin(),
+                   lambda);
+    array = lerp(array, array_f, *p_mask);
+  }
 }
 
 void gamma_correction(Array &array, float gamma)
