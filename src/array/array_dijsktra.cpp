@@ -65,6 +65,8 @@ void Array::find_path_dijkstra(Vec2<int>         ij_start,
     queue_j.erase(queue_j.begin() + kmin);
     queue_d.erase(queue_d.begin() + kmin);
 
+    // LOG_DEBUG("%d %g", kmin, queue_d[kmin]);
+
     // loop over neighbors
     for (size_t k = 0; k < nb; k++)
     {
@@ -82,8 +84,11 @@ void Array::find_path_dijkstra(Vec2<int>         ij_start,
                                   (*this)(p * step.x, q * step.y)),
                          distance_exponent);
 
-        // aboslute elevation contribution
-        dist += elevation_ratio * std::abs((*this)(p * step.x, q * step.y));
+        // aboslute elevation contribution (puts the emphasize on
+        // going downslope rather than upslope)
+        dist += elevation_ratio * std::max(0.f,
+                                           (*this)(p * step.x, q * step.y) -
+                                               (*this)(i * step.x, j * step.y));
 
         if (distance[p * shape_coarse.y + q] == 0.f)
           if ((mask[p * shape_coarse.y + q] == false) or
