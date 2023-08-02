@@ -17,6 +17,11 @@
 namespace hmap
 {
 
+/**
+ * @brief Vec2 class, for very basic manipulation of 2D vectors.
+ *
+ * @tparam T Data type.
+ */
 template <typename T> struct Vec2
 {
   T x, y;
@@ -79,6 +84,11 @@ template <typename T> struct Vec2
   }
 };
 
+/**
+ * @brief Vec3 class, for very basic manipulation of 3D vectors.
+ *
+ * @tparam T Data type.
+ */
 template <typename T> struct Vec3
 {
   T x, y, z;
@@ -100,6 +110,11 @@ template <typename T> struct Vec3
   }
 };
 
+/**
+ * @brief Vec4 class, for very basic manipulation of 4D vectors.
+ *
+ * @tparam T Data type.
+ */
 template <typename T> struct Vec4
 {
   T a, b, c, d;
@@ -119,6 +134,32 @@ template <typename T> struct Vec4
     this->c /= value;
     this->d /= value;
     return *this;
+  }
+};
+
+/**
+ * @brief Mat class, for very basic manipulation of matrices.
+ *
+ * @tparam T Data type.
+ */
+template <typename T> struct Mat
+{
+  std::vector<T> vector;
+  Vec2<int>      shape;
+
+  Mat(Vec2<int> shape) : shape(shape)
+  {
+    this->vector.resize(shape.x * shape.y);
+  }
+
+  T &operator()(int i, int j)
+  {
+    return this->vector[i * this->shape.y + j];
+  }
+
+  const T &operator()(int i, int j) const
+  {
+    return this->vector[i * this->shape.y + j];
   }
 };
 

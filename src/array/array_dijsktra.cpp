@@ -40,16 +40,16 @@ void Array::find_path_dijkstra(Vec2<int>         ij_start,
   queue_j.reserve(shape_coarse.x * shape_coarse.y);
   queue_d.reserve(shape_coarse.x * shape_coarse.y);
 
-  std::vector<float> distance(shape_coarse.x * shape_coarse.y);
-  std::vector<bool>  mask(shape_coarse.x * shape_coarse.y);
-  std::vector<int>   next_idx_i(shape_coarse.x * shape_coarse.y);
-  std::vector<int>   next_idx_j(shape_coarse.x * shape_coarse.y);
+  Mat<float> distance(shape_coarse);
+  Mat<int>   mask(shape_coarse);
+  Mat<int>   next_idx_i(shape_coarse);
+  Mat<int>   next_idx_j(shape_coarse);
 
   // --- Dijkstra's algorithm
   queue_i.push_back(ij_start_coarse.x);
   queue_j.push_back(ij_start_coarse.y);
   queue_d.push_back(0.f);
-  mask[ij_start_coarse.x * shape_coarse.y + ij_start_coarse.y] = true;
+  mask(ij_start_coarse.x, ij_start_coarse.y) = true;
 
   while (queue_i.size() > 0)
   {
@@ -59,7 +59,7 @@ void Array::find_path_dijkstra(Vec2<int>         ij_start,
 
     int i = queue_i[kmin];
     int j = queue_j[kmin];
-    mask[i * shape_coarse.y + j] = false;
+    mask(i, j) = 0;
 
     queue_i.erase(queue_i.begin() + kmin);
     queue_j.erase(queue_j.begin() + kmin);
@@ -76,7 +76,7 @@ void Array::find_path_dijkstra(Vec2<int>         ij_start,
       if ((p > 0) and (p < shape_coarse.x) and (q > 0) and (q < shape_coarse.y))
       {
         // previous cumulative value
-        float dist = distance[i * shape_coarse.y + j];
+        float dist = distance(i, j);
 
         // elevation difference contribution
         dist += (1.f - elevation_ratio) *
@@ -90,19 +90,18 @@ void Array::find_path_dijkstra(Vec2<int>         ij_start,
                                            (*this)(p * step.x, q * step.y) -
                                                (*this)(i * step.x, j * step.y));
 
-        if (distance[p * shape_coarse.y + q] == 0.f)
-          if ((mask[p * shape_coarse.y + q] == false) or
-              (dist < distance[p * shape_coarse.y + q]))
+        if (distance(p, q) == 0.f)
+          if ((mask(p, q) == 0) or (dist < distance(p, q)))
           {
-            distance[p * shape_coarse.y + q] = dist;
+            distance(p, q) = dist;
 
-            mask[p * shape_coarse.y + q] = true;
+            mask(p, q) = 1;
             queue_i.push_back(p);
             queue_j.push_back(q);
             queue_d.push_back(dist);
 
-            next_idx_i[p * shape_coarse.y + q] = i;
-            next_idx_j[p * shape_coarse.y + q] = j;
+            next_idx_i(p, q) = i;
+            next_idx_j(p, q) = j;
           }
       }
     }
@@ -121,9 +120,8 @@ void Array::find_path_dijkstra(Vec2<int>         ij_start,
     i_path.push_back(ic);
     j_path.push_back(jc);
 
-    int k = ic * shape_coarse.y + jc;
-    ic = next_idx_i[k];
-    jc = next_idx_j[k];
+    ic = next_idx_i(ic, jc);
+    jc = next_idx_j(ic, jc);
   }
 
   i_path.push_back(ic);
