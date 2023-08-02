@@ -20,7 +20,7 @@
 namespace hmap
 {
 
-void expand(Array &array, int ir)
+void expand(Array &array, int ir, Array *p_mask)
 {
   Array array_new = array;
   int   ni = array.shape.x;
@@ -45,7 +45,10 @@ void expand(Array &array, int ir)
     }
   }
 
-  array = array_new;
+  if (!p_mask)
+    array = array_new;
+  else
+    array = lerp(array, array_new, *p_mask);
 }
 
 void fill_talus(Array &z, float talus, uint seed, float noise_ratio)

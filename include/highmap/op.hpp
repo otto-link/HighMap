@@ -433,6 +433,7 @@ Array exp(const Array &array);
  *
  * @param array Input array.
  * @param ir Filter radius.
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * **Example**
  * @include ex_expand.cpp
@@ -442,7 +443,7 @@ Array exp(const Array &array);
  *
  * @see {@link ex_shrink}
  */
-void expand(Array &array, int ir);
+void expand(Array &array, int ir, Array *p_mask = nullptr);
 
 /**
  * @brief Linear extrapolation of values at the borders (i = 0, j = 0, ...)
