@@ -493,7 +493,7 @@ void smooth_fill(Array &array, int ir, float k)
   array = maximum_smooth(array, array_smooth, k);
 }
 
-void smooth_fill_holes(Array &array, int ir)
+void smooth_fill_holes(Array &array, int ir, Array *p_mask)
 {
   Array array_smooth = mean_local(array, ir);
 
@@ -501,6 +501,9 @@ void smooth_fill_holes(Array &array, int ir)
   Array mask = curvature_mean(array_smooth);
   clamp_min(mask, 0.f);
   make_binary(mask);
+
+  if (p_mask)
+    mask *= (*p_mask);
 
   int ic = (int)((float)ir / 2.f);
   if (ic > 1)

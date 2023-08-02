@@ -1552,6 +1552,7 @@ void smooth_fill(Array &array, int ir, float k = 0.1f);
  *
  * @param array Input array.
  * @param ir Filter radius.
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * **Example**
  * @include ex_smooth_fill_holes.cpp
@@ -1561,7 +1562,7 @@ void smooth_fill(Array &array, int ir, float k = 0.1f);
  *
  * @see {@link smooth_smear_peaks}
  */
-void smooth_fill_holes(Array &array, int ir);
+void smooth_fill_holes(Array &array, int ir, Array *p_mask = nullptr);
 
 /**
  * @brief Apply smoothing to smear peaks (elliptic convexe surfaces).
