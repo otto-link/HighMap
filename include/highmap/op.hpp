@@ -534,6 +534,7 @@ void gain(Array &array, float gain, Array *p_mask = nullptr);
  *
  * @param array Input array.
  * @param gamma Gamma factor (> 0).
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * @warning Array values are expected to be in [0, 1].
  *
@@ -543,7 +544,7 @@ void gain(Array &array, float gain, Array *p_mask = nullptr);
  * **Result**
  * @image html ex_gamma_correction.png
  */
-void gamma_correction(Array &array, float gamma);
+void gamma_correction(Array &array, float gamma, Array *p_mask = nullptr);
 void gamma_correction_thread(Array &array, float gamma);
 void gamma_correction_xsimd(Array &array, float gamma);
 

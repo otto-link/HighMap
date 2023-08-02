@@ -172,13 +172,24 @@ void gain(Array &array, float gain, Array *p_mask)
   }
 }
 
-void gamma_correction(Array &array, float gamma)
+void gamma_correction(Array &array, float gamma, Array *p_mask)
 {
   auto lambda = [&gamma](float x) { return std::pow(x, gamma); };
-  std::transform(array.vector.begin(),
-                 array.vector.end(),
-                 array.vector.begin(),
-                 lambda);
+
+  if (!p_mask)
+    std::transform(array.vector.begin(),
+                   array.vector.end(),
+                   array.vector.begin(),
+                   lambda);
+  else
+  {
+    Array array_f = array;
+    std::transform(array_f.vector.begin(),
+                   array_f.vector.end(),
+                   array_f.vector.begin(),
+                   lambda);
+    array = lerp(array, array_f, *p_mask);
+  }
 }
 
 void gamma_correction_local(Array &array, float gamma, int ir, float k)
