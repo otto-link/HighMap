@@ -245,6 +245,18 @@ void laplace(Array &array, float sigma, int iterations)
   }
 }
 
+void laplace(Array &array, float sigma, int iterations, Array *p_mask)
+{
+  if (!p_mask)
+    laplace(array, sigma, iterations);
+  else
+  {
+    Array array_f = array;
+    laplace(array_f, sigma, iterations);
+    array = lerp(array, array_f, *p_mask);
+  }
+}
+
 void laplace_edge_preserving(Array &array,
                              float  talus,
                              float  sigma,
@@ -262,6 +274,22 @@ void laplace_edge_preserving(Array &array,
     Array delta = laplacian(array);
 
     array += sigma * (dcx * dzx + dcy * dzy + c * delta);
+  }
+}
+
+void laplace_edge_preserving(Array &array,
+                             float  talus,
+                             float  sigma,
+                             int    iterations,
+                             Array *p_mask)
+{
+  if (!p_mask)
+    laplace_edge_preserving(array, talus, sigma, iterations);
+  else
+  {
+    Array array_f = array;
+    laplace_edge_preserving(array_f, talus, sigma, iterations);
+    array = lerp(array, array_f, *p_mask);
   }
 }
 

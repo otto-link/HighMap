@@ -714,6 +714,7 @@ Array kmeans_clustering2(const Array &array1,
  * @param array Input array.
  * @param sigma Filtering intensity, in [0, 1].
  * @param iterations Number of iterations.
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * **Example**
  * @include ex_laplace.cpp
@@ -722,6 +723,10 @@ Array kmeans_clustering2(const Array &array1,
  * @image html ex_laplace.png
  */
 void laplace(Array &array, float sigma = 0.2f, int iterations = 3);
+void laplace(Array &array,
+             float  sigma,
+             int    iterations,
+             Array *p_mask); /// @overload
 
 /**
  * @brief Apply a low-pass Laplace filter to a vector.
@@ -742,6 +747,7 @@ void laplace1d(std::vector<float> &v, float sigma = 0.5f, int iterations = 1);
  * less affected by the filering).
  * @param sigma Filtering intensity, in [0, 1].
  * @param iterations Number of iterations.
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * **Example**
  * @include ex_laplace.cpp
@@ -753,6 +759,11 @@ void laplace_edge_preserving(Array &array,
                              float  talus,
                              float  sigma = 0.2f,
                              int    iterations = 3);
+void laplace_edge_preserving(Array &array,
+                             float  talus,
+                             float  sigma,
+                             int    iterations,
+                             Array *p_mask);
 
 /**
  * @brief Return the Laplacian of the input array.
