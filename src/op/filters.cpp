@@ -415,6 +415,18 @@ void recast_peak(Array &array, int ir, float gamma, float k)
   array = ac * pow(array, gamma);
 }
 
+void recast_peak(Array &array, int ir, Array *p_mask, float gamma, float k)
+{
+  if (!p_mask)
+    recast_peak(array, ir, gamma, k);
+  else
+  {
+    Array array_f = array;
+    recast_peak(array_f, ir, gamma, k);
+    array = lerp(array, array_f, *(p_mask));
+  }
+}
+
 void recast_rocky_slopes(Array &array,
                          float  talus,
                          int    ir,

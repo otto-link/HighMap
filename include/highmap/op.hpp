@@ -1060,6 +1060,7 @@ std::vector<float> random_vector(float min, float max, int num, int seed);
  *
  * @param array Input array.
  * @param vcut Canyon top elevation.
+ * @param p_mask Filter mask, expected in [0, 1].
  * @param gamma Gamma factor (> 0) (@see {@link gamma_correction}).
  *
  * **Example**
@@ -1089,6 +1090,7 @@ void recast_canyon(Array &array, float vcut, float gamma = 4.f); ///< @overload
  *
  * @param array Input array.
  * @param ir Filter radius.
+ * @param p_mask Filter mask, expected in [0, 1].
  * @param gamma Gamma factor (> 0) (@see {@link gamma_correction}).
  * @param k Smoothing parameter (> 0).
  *
@@ -1099,6 +1101,12 @@ void recast_canyon(Array &array, float vcut, float gamma = 4.f); ///< @overload
  * @image html ex_recast.png
  */
 void recast_peak(Array &array, int ir, float gamma = 2.f, float k = 0.1f);
+
+void recast_peak(Array &array,
+                 int    ir,
+                 Array *p_mask,
+                 float  gamma = 2.f,
+                 float  k = 0.1f); /// @overload
 
 /**
  * @brief Transform heightmap by adding "rock-like" features at higher slopes.
