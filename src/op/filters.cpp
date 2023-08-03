@@ -455,6 +455,42 @@ void recast_rocky_slopes(Array &array,
     array += amplitude * (*p_noise) * c;
 }
 
+void recast_rocky_slopes(Array &array,
+                         float  talus,
+                         int    ir,
+                         float  amplitude,
+                         uint   seed,
+                         float  kw,
+                         Array *p_mask,
+                         float  gamma,
+                         Array *p_noise)
+{
+  {
+    if (!p_mask)
+      recast_rocky_slopes(array,
+                          talus,
+                          ir,
+                          amplitude,
+                          seed,
+                          kw,
+                          gamma,
+                          p_noise);
+    else
+    {
+      Array array_f = array;
+      recast_rocky_slopes(array_f,
+                          talus,
+                          ir,
+                          amplitude,
+                          seed,
+                          kw,
+                          gamma,
+                          p_noise);
+      array = lerp(array, array_f, *(p_mask));
+    }
+  }
+}
+
 void recurve(Array                    &array,
              const std::vector<float> &t,
              const std::vector<float> &v)

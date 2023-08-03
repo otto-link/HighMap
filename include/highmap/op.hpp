@@ -1117,6 +1117,7 @@ void recast_peak(Array &array,
  * @param amplitude Filter amplitude.
  * @param seed Random number seed.
  * @param kw Noise wavenumber with respect to a unit domain (for rocks).
+ * @param p_mask Filter mask, expected in [0, 1].
  * @param gamma Gamma correction coefficent (for rocks)
  * @param p_noise Reference to the input noise used for rock features (overrides
  * default generator).
@@ -1133,6 +1134,16 @@ void recast_rocky_slopes(Array &array,
                          float  amplitude,
                          uint   seed,
                          float  kw,
+                         float  gamma = 0.5f,
+                         Array *p_noise = nullptr);
+
+void recast_rocky_slopes(Array &array,
+                         float  talus,
+                         int    ir,
+                         float  amplitude,
+                         uint   seed,
+                         float  kw,
+                         Array *p_mask,
                          float  gamma = 0.5f,
                          Array *p_noise = nullptr);
 
