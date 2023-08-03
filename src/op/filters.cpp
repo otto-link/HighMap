@@ -20,7 +20,7 @@
 namespace hmap
 {
 
-void expand(Array &array, int ir, Array *p_mask)
+void expand(Array &array, int ir)
 {
   Array array_new = array;
   int   ni = array.shape.x;
@@ -45,10 +45,19 @@ void expand(Array &array, int ir, Array *p_mask)
     }
   }
 
+  array = array_new;
+}
+
+void expand(Array &array, int ir, Array *p_mask)
+{
   if (!p_mask)
-    array = array_new;
+    expand(array, ir);
   else
-    array = lerp(array, array_new, *p_mask);
+  {
+    Array array_f = array;
+    expand(array_f, ir);
+    array = lerp(array, array_f, *(p_mask));
+  }
 }
 
 void fill_talus(Array &z, float talus, uint seed, float noise_ratio)
@@ -148,47 +157,51 @@ void fill_talus_fast(Array    &z,
   clamp_min(z, z_coarse);
 }
 
-void gain(Array &array, float gain, Array *p_mask)
+void gain(Array &array, float factor)
 {
-  auto lambda = [&gain](float x)
+  auto lambda = [&factor](float x)
   {
-    return x < 0.5 ? 0.5f * std::pow(2.f * x, gain)
-                   : 1.f - 0.5f * std::pow(2.f * (1.f - x), gain);
+    return x < 0.5 ? 0.5f * std::pow(2.f * x, factor)
+                   : 1.f - 0.5f * std::pow(2.f * (1.f - x), factor);
   };
 
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array.vector.begin(),
+                 lambda);
+}
+
+void gain(Array &array, float factor, Array *p_mask)
+{
   if (!p_mask)
-    std::transform(array.vector.begin(),
-                   array.vector.end(),
-                   array.vector.begin(),
-                   lambda);
+    gain(array, factor);
   else
   {
     Array array_f = array;
-    std::transform(array_f.vector.begin(),
-                   array_f.vector.end(),
-                   array_f.vector.begin(),
-                   lambda);
-    array = lerp(array, array_f, *p_mask);
+    gain(array_f, factor);
+    array = lerp(array, array_f, *(p_mask));
   }
+}
+
+void gamma_correction(Array &array, float gamma)
+{
+  auto lambda = [&gamma](float x) { return std::pow(x, gamma); };
+
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array.vector.begin(),
+                 lambda);
 }
 
 void gamma_correction(Array &array, float gamma, Array *p_mask)
 {
-  auto lambda = [&gamma](float x) { return std::pow(x, gamma); };
-
   if (!p_mask)
-    std::transform(array.vector.begin(),
-                   array.vector.end(),
-                   array.vector.begin(),
-                   lambda);
+    gamma_correction(array, gamma);
   else
   {
     Array array_f = array;
-    std::transform(array_f.vector.begin(),
-                   array_f.vector.end(),
-                   array_f.vector.begin(),
-                   lambda);
-    array = lerp(array, array_f, *p_mask);
+    gamma_correction(array, gamma);
+    array = lerp(array, array_f, *(p_mask));
   }
 }
 
@@ -232,7 +245,7 @@ void gamma_correction_local(Array &array,
   {
     Array array_f = array;
     gamma_correction_local(array_f, gamma, ir, k);
-    array = lerp(array, array_f, *p_mask);
+    array = lerp(array, array_f, *(p_mask));
   }
 }
 
@@ -253,7 +266,7 @@ void laplace(Array &array, Array *p_mask, float sigma, int iterations)
   {
     Array array_f = array;
     laplace(array_f, sigma, iterations);
-    array = lerp(array, array_f, *p_mask);
+    array = lerp(array, array_f, *(p_mask));
   }
 }
 
@@ -289,7 +302,7 @@ void laplace_edge_preserving(Array &array,
   {
     Array array_f = array;
     laplace_edge_preserving(array_f, talus, sigma, iterations);
-    array = lerp(array, array_f, *p_mask);
+    array = lerp(array, array_f, *(p_mask));
   }
 }
 
@@ -358,6 +371,18 @@ void recast_canyon(Array &array, const Array &vcut, float gamma)
                  lambda);
 }
 
+void recast_canyon(Array &array, const Array &vcut, Array *p_mask, float gamma)
+{
+  if (!p_mask)
+    recast_canyon(array, vcut, gamma);
+  else
+  {
+    Array array_f = array;
+    recast_canyon(array_f, vcut, gamma);
+    array = lerp(array, array_f, *(p_mask));
+  }
+}
+
 void recast_canyon(Array &array, float vcut, float gamma)
 {
   auto lambda = [&vcut, &gamma](float a)
@@ -367,6 +392,18 @@ void recast_canyon(Array &array, float vcut, float gamma)
                  array.vector.end(),
                  array.vector.begin(),
                  lambda);
+}
+
+void recast_canyon(Array &array, float vcut, Array *p_mask, float gamma)
+{
+  if (!p_mask)
+    recast_canyon(array, vcut, gamma);
+  else
+  {
+    Array array_f = array;
+    recast_canyon(array_f, vcut, gamma);
+    array = lerp(array, array_f, *(p_mask));
+  }
 }
 
 void recast_peak(Array &array, int ir, float gamma, float k)
@@ -561,7 +598,7 @@ void smooth_fill(Array &array, int ir, float k)
   array = maximum_smooth(array, array_smooth, k);
 }
 
-void smooth_fill_holes(Array &array, int ir, Array *p_mask)
+void smooth_fill_holes(Array &array, int ir)
 {
   Array array_smooth = mean_local(array, ir);
 
@@ -570,14 +607,23 @@ void smooth_fill_holes(Array &array, int ir, Array *p_mask)
   clamp_min(mask, 0.f);
   make_binary(mask);
 
-  if (p_mask)
-    mask *= (*p_mask);
-
   int ic = (int)((float)ir / 2.f);
   if (ic > 1)
     smooth_cpulse(mask, ic);
 
   array = lerp(array, array_smooth, mask);
+}
+
+void smooth_fill_holes(Array &array, int ir, Array *p_mask)
+{
+  if (!p_mask)
+    smooth_fill_holes(array, ir);
+  else
+  {
+    Array array_f = array;
+    smooth_fill_holes(array_f, ir);
+    array = lerp(array, array_f, *(p_mask));
+  }
 }
 
 void smooth_fill_smear_peaks(Array &array, int ir)

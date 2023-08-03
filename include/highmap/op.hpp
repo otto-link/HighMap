@@ -443,7 +443,8 @@ Array exp(const Array &array);
  *
  * @see {@link ex_shrink}
  */
-void expand(Array &array, int ir, Array *p_mask = nullptr);
+void expand(Array &array, int ir, Array *p_mask);
+void expand(Array &array, int ir); /// @overload
 
 /**
  * @brief Linear extrapolation of values at the borders (i = 0, j = 0, ...)
@@ -516,7 +517,7 @@ void fill_talus_fast(Array    &z,
  * Gain correction is based on a power law.
  *
  * @param array Input array.
- * @param gain Gain factor (> 0).
+ * @param factor Gain factor (> 0).
  * @param p_mask Filter mask, expected in [0, 1].
  *
  * @warning Array values are expected to be in [0, 1].
@@ -527,7 +528,9 @@ void fill_talus_fast(Array    &z,
  * **Result**
  * @image html ex_gain.png
  */
-void gain(Array &array, float gain, Array *p_mask = nullptr);
+void gain(Array &array, float factor, Array *p_mask);
+
+void gain(Array &array, float factor); /// @overload
 
 /**
  * @brief Apply gamma correction to the input array.
@@ -544,7 +547,9 @@ void gain(Array &array, float gain, Array *p_mask = nullptr);
  * **Result**
  * @image html ex_gamma_correction.png
  */
-void gamma_correction(Array &array, float gamma, Array *p_mask = nullptr);
+void gamma_correction(Array &array, float gamma, Array *p_mask);
+
+void gamma_correction(Array &array, float gamma); /// @overload
 
 void gamma_correction_thread(Array &array, float gamma);
 void gamma_correction_xsimd(Array &array, float gamma);
@@ -1065,9 +1070,17 @@ std::vector<float> random_vector(float min, float max, int num, int seed);
  */
 void recast_canyon(Array &array, const Array &vcut, float gamma = 4.f);
 
-void recast_canyon(Array &array, const Array &vcut, float gamma, Array *p_mask);
+void recast_canyon(Array       &array,
+                   const Array &vcut,
+                   Array        p_mask,
+                   float        gamma = 4.f); ///< @overload
 
-void recast_canyon(Array &array, float vcut, float gamma); ///< @overload
+void recast_canyon(Array &array,
+                   float  vcut,
+                   Array *p_mask,
+                   float  gamma = 4.f); ///< @overload
+
+void recast_canyon(Array &array, float vcut, float gamma = 4.f); ///< @overload
 
 /**
  * @brief Transform heightmap to give a "peak" like appearance.
@@ -1588,7 +1601,9 @@ void smooth_fill(Array &array, int ir, float k = 0.1f);
  *
  * @see {@link smooth_smear_peaks}
  */
-void smooth_fill_holes(Array &array, int ir, Array *p_mask = nullptr);
+void smooth_fill_holes(Array &array, int ir, Array *p_mask);
+
+void smooth_fill_holes(Array &array, int ir); /// @overload
 
 /**
  * @brief Apply smoothing to smear peaks (elliptic convexe surfaces).
