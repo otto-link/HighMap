@@ -233,32 +233,35 @@ public:
 private:
 };
 
-void fill(HeightMap &h,
-          HeightMap *p_noise_x,
-          HeightMap *p_noise_y,
+// shape, shift, scale, noise_x, noise_y
+void fill(HeightMap                             &h,
+          HeightMap                             *p_noise_x,
+          HeightMap                             *p_noise_y,
           std::function<Array(Vec2<int>,
                               Vec2<float>,
                               Vec2<float>,
                               Array *p_noise_x,
-                              Array *p_noise_y)>
-              nullary_op); // shape, shift, scale, noise_x, noise_y
+                              Array *p_noise_y)> nullary_op);
 
-void fill(HeightMap &h,
-          HeightMap *p_noise,
-          std::function<Array(Vec2<int>,
-                              Vec2<float>,
-                              Vec2<float>,
-                              Array *p_noise)>
-              nullary_op); // shape, shift, scale and noise
+// shape, shift, scale and noise
+void fill(
+    HeightMap &h,
+    HeightMap *p_noise,
+    std::function<Array(Vec2<int>, Vec2<float>, Vec2<float>, Array *p_noise)>
+        nullary_op);
 
-void fill(HeightMap &h,
-          std::function<Array(Vec2<int>, Vec2<float>, Vec2<float>)>
-              nullary_op); // shape, shift and scale
-
-void fill(HeightMap                      &h,
-          std::function<Array(Vec2<int>)> nullary_op); // shape only
+// shape, shift and scale
+void fill(HeightMap                                                &h,
+          std::function<Array(Vec2<int>, Vec2<float>, Vec2<float>)> nullary_op);
+// shape only
+void fill(HeightMap &h, std::function<Array(Vec2<int>)> nullary_op);
 
 void transform(HeightMap &h, std::function<void(Array &)> unary_op);
+
+// input array and mask
+void transform(HeightMap                            &h,
+               HeightMap                            *p_mask,
+               std::function<void(Array &, Array *)> unary_op);
 
 void transform(HeightMap                            &h1,
                HeightMap                            &h2,

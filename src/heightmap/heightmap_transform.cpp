@@ -113,6 +113,24 @@ void transform(HeightMap &h, std::function<void(Array &)> unary_op)
     futures[i].get();
 }
 
+void transform(HeightMap                            &h,
+               HeightMap                            *p_mask,
+               std::function<void(Array &, Array *)> unary_op)
+{
+  LOG_DEBUG("unary (mask)");
+  size_t                         nthreads = h.get_ntiles();
+  std::vector<std::future<void>> futures(nthreads);
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+  {
+    Array *p_mask_array = (p_mask == nullptr) ? nullptr : &p_mask->tiles[i];
+    futures[i] = std::async(unary_op, std::ref(h.tiles[i]), p_mask_array);
+  }
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+    futures[i].get();
+}
+
 void transform(HeightMap                            &h1,
                HeightMap                            &h2,
                std::function<void(Array &, Array &)> binary_op)
