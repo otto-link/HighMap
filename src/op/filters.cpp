@@ -506,6 +506,23 @@ void recurve(Array                    &array,
                  lambda);
 }
 
+void recurve(Array                    &array,
+             const std::vector<float> &t,
+             const std::vector<float> &v,
+             Array                    *p_mask)
+{
+  {
+    if (!p_mask)
+      recurve(array, t, v);
+    else
+    {
+      Array array_f = array;
+      recurve(array_f, t, v);
+      array = lerp(array, array_f, *(p_mask));
+    }
+  }
+}
+
 void recurve_bexp(Array &array, float tau)
 {
   float c = -1.f / tau;
@@ -515,6 +532,20 @@ void recurve_bexp(Array &array, float tau)
                  array.vector.end(),
                  array.vector.begin(),
                  lambda);
+}
+
+void recurve_bexp(Array &array, float tau, Array *p_mask)
+{
+  {
+    if (!p_mask)
+      recurve_bexp(array, tau);
+    else
+    {
+      Array array_f = array;
+      recurve_bexp(array_f, tau);
+      array = lerp(array, array_f, *(p_mask));
+    }
+  }
 }
 
 void recurve_exp(Array &array, float tau)
@@ -528,6 +559,20 @@ void recurve_exp(Array &array, float tau)
                  lambda);
 }
 
+void recurve_exp(Array &array, float tau, Array *p_mask)
+{
+  {
+    if (!p_mask)
+      recurve_exp(array, tau);
+    else
+    {
+      Array array_f = array;
+      recurve_exp(array_f, tau);
+      array = lerp(array, array_f, *(p_mask));
+    }
+  }
+}
+
 void recurve_kura(Array &array, float a, float b)
 {
   auto lambda = [&a, &b](float v)
@@ -539,6 +584,20 @@ void recurve_kura(Array &array, float a, float b)
                  lambda);
 }
 
+void recurve_kura(Array &array, float a, float b, Array *p_mask)
+{
+  {
+    if (!p_mask)
+      recurve_kura(array, a, b);
+    else
+    {
+      Array array_f = array;
+      recurve_kura(array_f, a, b);
+      array = lerp(array, array_f, *(p_mask));
+    }
+  }
+}
+
 void recurve_s(Array &array)
 {
   auto lambda = [](float a) { return a * a * (3.f - 2.f * a); };
@@ -547,6 +606,20 @@ void recurve_s(Array &array)
                  array.vector.end(),
                  array.vector.begin(),
                  lambda);
+}
+
+void recurve_s(Array &array, Array *p_mask)
+{
+  {
+    if (!p_mask)
+      recurve_s(array);
+    else
+    {
+      Array array_f = array;
+      recurve_s(array_f);
+      array = lerp(array, array_f, *(p_mask));
+    }
+  }
 }
 
 void recurve_smoothstep_rational(Array &array, float n)
@@ -561,6 +634,20 @@ void recurve_smoothstep_rational(Array &array, float n)
                  array.vector.end(),
                  array.vector.begin(),
                  lambda);
+}
+
+void recurve_smoothstep_rational(Array &array, float n, Array *p_mask)
+{
+  {
+    if (!p_mask)
+      recurve_smoothstep_rational(array, n);
+    else
+    {
+      Array array_f = array;
+      recurve_smoothstep_rational(array_f, n);
+      array = lerp(array, array_f, *(p_mask));
+    }
+  }
 }
 
 void sharpen(Array &array, float ratio)

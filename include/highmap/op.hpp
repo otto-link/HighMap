@@ -1156,6 +1156,7 @@ void recast_rocky_slopes(Array &array,
  * @param array Input array.
  * @param t Input value of the correction curve.
  * @param v Output value of the correction curve.
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * **Example**
  * @include ex_recurve.cpp
@@ -1167,6 +1168,11 @@ void recurve(Array                    &array,
              const std::vector<float> &t,
              const std::vector<float> &v);
 
+void recurve(Array                    &array,
+             const std::vector<float> &t,
+             const std::vector<float> &v,
+             Array                    *p_mask);
+
 /**
  * @brief Apply a curve adjustment filter using a "bumpy exponential-shape"
  * curve.
@@ -1174,6 +1180,7 @@ void recurve(Array                    &array,
  * @warning Array values are expected to be in [0, 1].
  *
  * @param array Input array.
+ * @param p_mask Filter mask, expected in [0, 1].
  * @param tau Exponential decay.
  *
  * **Example**
@@ -1184,6 +1191,8 @@ void recurve(Array                    &array,
  */
 void recurve_bexp(Array &array, float tau = 0.5f);
 
+void recurve_bexp(Array &array, Array *p_mask, float tau = 0.5f);
+
 /**
  * @brief Apply a curve adjustment filter using a "sharp exponential-shape"
  * curve.
@@ -1191,6 +1200,7 @@ void recurve_bexp(Array &array, float tau = 0.5f);
  * @warning Array values are expected to be in [0, 1].
  *
  * @param array Input array.
+ * @param p_mask Filter mask, expected in [0, 1].
  * @param tau Exponential decay.
  *
  * **Example**
@@ -1201,6 +1211,8 @@ void recurve_bexp(Array &array, float tau = 0.5f);
  */
 void recurve_exp(Array &array, float tau = 0.5f);
 
+void recurve_exp(Array &array, Array *p_mask, float tau = 0.5f);
+
 /**
  * @brief Apply a curve adjustment filter using Kumaraswamy's cumulative
  * distribution function.
@@ -1208,6 +1220,7 @@ void recurve_exp(Array &array, float tau = 0.5f);
  * @param array Input array.
  * @param a 'Parameter a', drives curve shape close to `0`.
  * @param b 'Parameter b', drives curve shape close to `1`.
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * **Example**
  * @include ex_recurve_xxx.cpp
@@ -1217,12 +1230,15 @@ void recurve_exp(Array &array, float tau = 0.5f);
  */
 void recurve_kura(Array &array, float a, float b);
 
+void recurve_kura(Array &array, float a, float b, Array *p_mask);
+
 /**
  * @brief Apply a curve adjustment filter using a smooth "S-shape" curve.
  *
  * @warning Array values are expected to be in [0, 1].
  *
  * @param array Input array.
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * **Example**
  * @include ex_recurve_xxx.cpp
@@ -1232,6 +1248,8 @@ void recurve_kura(Array &array, float a, float b);
  */
 void recurve_s(Array &array);
 
+void recurve_s(Array &array, Array *p_mask);
+
 /**
  * @brief Apply a curve adjustment filter using a nth-order smoothstep curve.
  *
@@ -1239,6 +1257,7 @@ void recurve_s(Array &array);
  *
  * @param array Input array.
  * @param n Smoothstep order (in [0, inf[).
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * **Example**
  * @include ex_recurve_xxx.cpp
@@ -1247,6 +1266,8 @@ void recurve_s(Array &array);
  * @image html ex_recurve_xxx.png
  */
 void recurve_smoothstep_rational(Array &array, float n);
+
+void recurve_smoothstep_rational(Array &array, float n, Array *p_mask);
 
 /**
  * @brief Remap array elements from a starting range to a target range.
