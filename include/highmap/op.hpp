@@ -1501,6 +1501,7 @@ Array shadow_heightmap(const Array &z,
  * @brief Apply sharpening filter (based on Laplace operator).
  *
  * @param array Input array.
+ * @param p_mask Filter mask, expected in [0, 1].
  * @param ratio Output ratio between sharpened (ratio = 1) and non-sharpened
  * array (ratio = 0).
  *
@@ -1512,11 +1513,14 @@ Array shadow_heightmap(const Array &z,
  */
 void sharpen(Array &array, float ratio = 1.f);
 
+void sharpen(Array &array, Array *p_mask, float ratio = 1.f);
+
 /**
  * @brief Apply shrinking, or "deflating", to emphasize the ridges.
  *
  * @param array Input array.
  * @param ir Filter radius.
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * **Example**
  * @include ex_expand.cpp
@@ -1527,6 +1531,8 @@ void sharpen(Array &array, float ratio = 1.f);
  * @see {@link ex_expand}
  */
 void shrink(Array &array, int ir);
+
+void shrink(Array &array, int ir, Array *p_mask);
 
 /**
  * @brief Return the sine of the array elements.
@@ -1539,40 +1545,6 @@ Array sin(const Array &array);
 Array skeleton_middle(const Array &array); // TODO: remove ?
 
 /**
- * @brief Steepen (or flatten) the array map.
- *
- * @param array Input array.
- * @param scale Filter amplitude.
- * @param ir Filtering radius of the array gradients.
- *
- * **Example**
- * @include ex_steepen.cpp
- *
- * **Result**
- * @image html ex_steepen.png
- */
-void steepen(Array &array, float scale, int ir = 8);
-
-/**
- * @brief Steepen array values by applying a nonlinear convection operator in a
- * given direction (see to Burger's equarion for instance).
- *
- * @todo verify results.
- *
- * @param array Input array (elements expected to be in [-1, 1]).
- * @param angle Steepening direction (in degrees).
- * @param iterations Number of iterations.
- * @param ir Smoothing radius of the array values before differentiation.
- * @param dt "Time step", can be chosen smaller than 1 for fine tuning of the
- * steepening effect.
- */
-void steepen_convective(Array &array,
-                        float  angle,
-                        int    iterations = 1,
-                        int    ir = 0,
-                        float  dt = 1);
-
-/**
  * @brief Apply filtering to the array using convolution with a cubic pulse.
  *
  * Can be used as an alternative (with a much smaller support) to Gaussian
@@ -1581,6 +1553,7 @@ void steepen_convective(Array &array,
  *
  * @param array Input array.
  * @param ir Pulse radius (half-width is half this radius).
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * **Example**
  * @include ex_smooth_cpulse.cpp
@@ -1592,11 +1565,14 @@ void steepen_convective(Array &array,
  */
 void smooth_cpulse(Array &array, int ir);
 
+void smooth_cpulse(Array &array, int ir, Array *p_mask);
+
 /**
  * @brief Apply Gaussian filtering to the array.
  *
  * @param array Input array.
  * @param ir Gaussian half-width.
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * **Example**
  * @include ex_smooth_gaussian.cpp
@@ -1606,6 +1582,8 @@ void smooth_cpulse(Array &array, int ir);
  */
 void smooth_gaussian(Array &array, int ir);
 
+void smooth_gaussian(Array &array, int ir, Array *p_mask);
+
 /**
  * @brief Apply cubic pulse smoothing to fill lower flat regions while
  * preserving some sharpness.
@@ -1614,6 +1592,7 @@ void smooth_gaussian(Array &array, int ir);
  *
  * @param array Input array.
  * @param ir Pulse radius.
+ * @param p_mask Filter mask, expected in [0, 1].
  * @param k Transition smoothing parameter in [0, 1].
  *
  * **Example**
@@ -1625,6 +1604,8 @@ void smooth_gaussian(Array &array, int ir);
  * @see {@link smooth_cpulse}, {@link thermal_auto_bedrock}
  */
 void smooth_fill(Array &array, int ir, float k = 0.1f);
+
+void smooth_fill(Array &array, int ir, Array *p_mask, float k = 0.1f);
 
 /**
  * @brief Apply smoothing to fill holes (elliptic concave surfaces).
@@ -1641,15 +1622,16 @@ void smooth_fill(Array &array, int ir, float k = 0.1f);
  *
  * @see {@link smooth_smear_peaks}
  */
-void smooth_fill_holes(Array &array, int ir, Array *p_mask);
+void smooth_fill_holes(Array &array, int ir);
 
-void smooth_fill_holes(Array &array, int ir); /// @overload
+void smooth_fill_holes(Array &array, int ir, Array *p_mask); /// @overload
 
 /**
  * @brief Apply smoothing to smear peaks (elliptic convexe surfaces).
  *
  * @param array Input array.
  * @param ir Filter radius.
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * **Example**
  * @include ex_smooth_fill_holes.cpp
@@ -1660,6 +1642,53 @@ void smooth_fill_holes(Array &array, int ir); /// @overload
  * @see {@link smooth_fill_holes}
  */
 void smooth_fill_smear_peaks(Array &array, int ir);
+
+void smooth_fill_smear_peaks(Array &array, int ir, Array *p_mask);
+
+/**
+ * @brief Steepen (or flatten) the array map.
+ *
+ * @param array Input array.
+ * @param scale Filter amplitude.
+ * @param p_mask Filter mask, expected in [0, 1].
+ * @param ir Filtering radius of the array gradients.
+ *
+ * **Example**
+ * @include ex_steepen.cpp
+ *
+ * **Result**
+ * @image html ex_steepen.png
+ */
+void steepen(Array &array, float scale, int ir = 8);
+
+void steepen(Array &array, float scale, Array *p_mask, int ir = 8);
+
+/**
+ * @brief Steepen array values by applying a nonlinear convection operator in a
+ * given direction (see to Burger's equarion for instance).
+ *
+ * @todo verify results.
+ *
+ * @param array Input array (elements expected to be in [-1, 1]).
+ * @param angle Steepening direction (in degrees).
+ * @param p_mask Filter mask, expected in [0, 1].
+ * @param iterations Number of iterations.
+ * @param ir Smoothing radius of the array values before differentiation.
+ * @param dt "Time step", can be chosen smaller than 1 for fine tuning of the
+ * steepening effect.
+ */
+void steepen_convective(Array &array,
+                        float  angle,
+                        int    iterations = 1,
+                        int    ir = 0,
+                        float  dt = 1);
+
+void steepen_convective(Array &array,
+                        float  angle,
+                        Array *p_mask,
+                        int    iterations = 1,
+                        int    ir = 0,
+                        float  dt = 1);
 
 /**
  * @brief Use symmetry for to fill values at the domain borders, over a given

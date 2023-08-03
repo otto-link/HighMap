@@ -664,12 +664,36 @@ void sharpen(Array &array, float ratio)
   array = (1.f - ratio) * array + ratio * lp;
 }
 
+void sharpen(Array &array, Array *p_mask, float ratio)
+{
+  if (!p_mask)
+    sharpen(array, ratio);
+  else
+  {
+    Array array_f = array;
+    sharpen(array_f, ratio);
+    array = lerp(array, array_f, *(p_mask));
+  }
+}
+
 void shrink(Array &array, int ir)
 {
   float amax = array.max();
   array = amax - array;
   expand(array, ir);
   array = amax - array;
+}
+
+void shrink(Array &array, int ir, Array *p_mask)
+{
+  if (!p_mask)
+    shrink(array, ir);
+  else
+  {
+    Array array_f = array;
+    shrink(array_f, ir);
+    array = lerp(array, array_f, *(p_mask));
+  }
 }
 
 void smooth_cpulse(Array &array, int ir)
@@ -696,6 +720,18 @@ void smooth_cpulse(Array &array, int ir)
   // eventually convolve
   array = convolve1d_i(array, k);
   array = convolve1d_j(array, k);
+}
+
+void smooth_cpulse(Array &array, int ir, Array *p_mask)
+{
+  if (!p_mask)
+    smooth_cpulse(array, ir);
+  else
+  {
+    Array array_f = array;
+    smooth_cpulse(array_f, ir);
+    array = lerp(array, array_f, *(p_mask));
+  }
 }
 
 void smooth_gaussian(Array &array, int ir)
@@ -726,11 +762,35 @@ void smooth_gaussian(Array &array, int ir)
   array = convolve1d_j(array, k);
 }
 
+void smooth_gaussian(Array &array, int ir, Array *p_mask)
+{
+  if (!p_mask)
+    smooth_gaussian(array, ir);
+  else
+  {
+    Array array_f = array;
+    smooth_gaussian(array_f, ir);
+    array = lerp(array, array_f, *(p_mask));
+  }
+}
+
 void smooth_fill(Array &array, int ir, float k)
 {
   Array array_smooth = array;
   smooth_cpulse(array_smooth, ir);
   array = maximum_smooth(array, array_smooth, k);
+}
+
+void smooth_fill(Array &array, int ir, Array *p_mask, float k)
+{
+  if (!p_mask)
+    smooth_fill(array, ir, k);
+  else
+  {
+    Array array_f = array;
+    smooth_fill(array_f, ir, k);
+    array = lerp(array, array_f, *(p_mask));
+  }
 }
 
 void smooth_fill_holes(Array &array, int ir)
@@ -777,6 +837,18 @@ void smooth_fill_smear_peaks(Array &array, int ir)
   array = lerp(array, array_smooth, mask);
 }
 
+void smooth_fill_smear_peaks(Array &array, int ir, Array *p_mask)
+{
+  if (!p_mask)
+    smooth_fill_smear_peaks(array, ir);
+  else
+  {
+    Array array_f = array;
+    smooth_fill_smear_peaks(array_f, ir);
+    array = lerp(array, array_f, *(p_mask));
+  }
+}
+
 void steepen(Array &array, float scale, int ir)
 {
   Array dx = gradient_x(array) * ((float)array.shape.x * -scale);
@@ -786,6 +858,18 @@ void steepen(Array &array, float scale, int ir)
   smooth_cpulse(dy, ir);
 
   warp(array, dx, dy);
+}
+
+void steepen(Array &array, float scale, Array *p_mask, int ir)
+{
+  if (!p_mask)
+    steepen(array, scale, ir);
+  else
+  {
+    Array array_f = array;
+    steepen(array_f, scale, ir);
+    array = lerp(array, array_f, *(p_mask));
+  }
 }
 
 void steepen_convective(Array &array,
@@ -815,6 +899,23 @@ void steepen_convective(Array &array,
       gradient_y(array, dy);
     }
     array *= 1.f - dt * (ca * dx + sa * dy); // == du / dt = - u * du / dx
+  }
+}
+
+void steepen_convective(Array &array,
+                        float  angle,
+                        Array *p_mask,
+                        int    iterations,
+                        int    ir,
+                        float  dt)
+{
+  if (!p_mask)
+    steepen_convective(array, angle, iterations, ir, dt);
+  else
+  {
+    Array array_f = array;
+    steepen_convective(array_f, angle, iterations, ir, dt);
+    array = lerp(array, array_f, *(p_mask));
   }
 }
 
