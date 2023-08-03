@@ -223,8 +223,8 @@ void gamma_correction_local(Array &array, float gamma, int ir, float k)
 void gamma_correction_local(Array &array,
                             float  gamma,
                             int    ir,
-                            float  k,
-                            Array *p_mask)
+                            Array *p_mask,
+                            float  k)
 {
   if (!p_mask)
     gamma_correction_local(array, gamma, ir, k);
@@ -245,7 +245,7 @@ void laplace(Array &array, float sigma, int iterations)
   }
 }
 
-void laplace(Array &array, float sigma, int iterations, Array *p_mask)
+void laplace(Array &array, Array *p_mask, float sigma, int iterations)
 {
   if (!p_mask)
     laplace(array, sigma, iterations);
@@ -279,9 +279,9 @@ void laplace_edge_preserving(Array &array,
 
 void laplace_edge_preserving(Array &array,
                              float  talus,
+                             Array *p_mask,
                              float  sigma,
-                             int    iterations,
-                             Array *p_mask)
+                             int    iterations)
 {
   if (!p_mask)
     laplace_edge_preserving(array, talus, sigma, iterations);

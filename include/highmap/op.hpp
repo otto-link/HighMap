@@ -545,6 +545,7 @@ void gain(Array &array, float gain, Array *p_mask = nullptr);
  * @image html ex_gamma_correction.png
  */
 void gamma_correction(Array &array, float gamma, Array *p_mask = nullptr);
+
 void gamma_correction_thread(Array &array, float gamma);
 void gamma_correction_xsimd(Array &array, float gamma);
 
@@ -557,8 +558,8 @@ void gamma_correction_xsimd(Array &array, float gamma);
  * @param array Input array.
  * @param gamma Gamma factor (> 0).
  * @param ir Filter radius.
- * @param k Smoothing factor.
  * @param p_mask Filter mask, expected in [0, 1].
+ * @param k Smoothing factor.
  *
  * **Example**
  * @include ex_gamma_correction_local.cpp
@@ -566,12 +567,13 @@ void gamma_correction_xsimd(Array &array, float gamma);
  * **Result**
  * @image html ex_gamma_correction_local.png
  */
-void gamma_correction_local(Array &array, float gamma, int ir, float k);
+void gamma_correction_local(Array &array, float gamma, int ir, float k = 0.1f);
+
 void gamma_correction_local(Array &array,
                             float  gamma,
                             int    ir,
-                            float  k,
-                            Array *p_mask); /// @overload
+                            Array *p_mask,
+                            float  k = 0.1f); /// @overload
 
 /**
  * @brief Return an array with buffers at the boundaries (values filled by
@@ -723,10 +725,11 @@ Array kmeans_clustering2(const Array &array1,
  * @image html ex_laplace.png
  */
 void laplace(Array &array, float sigma = 0.2f, int iterations = 3);
+
 void laplace(Array &array,
-             float  sigma,
-             int    iterations,
-             Array *p_mask); /// @overload
+             Array *p_mask,
+             float  sigma = 0.2f,
+             int    iterations = 3); /// @overload
 
 /**
  * @brief Apply a low-pass Laplace filter to a vector.
@@ -759,11 +762,12 @@ void laplace_edge_preserving(Array &array,
                              float  talus,
                              float  sigma = 0.2f,
                              int    iterations = 3);
+
 void laplace_edge_preserving(Array &array,
                              float  talus,
-                             float  sigma,
-                             int    iterations,
-                             Array *p_mask);
+                             Array *p_mask,
+                             float  sigma = 0.2f,
+                             int    iterations = 3);
 
 /**
  * @brief Return the Laplacian of the input array.
@@ -1060,6 +1064,8 @@ std::vector<float> random_vector(float min, float max, int num, int seed);
  * @image html ex_recast.png
  */
 void recast_canyon(Array &array, const Array &vcut, float gamma = 4.f);
+
+void recast_canyon(Array &array, const Array &vcut, float gamma, Array *p_mask);
 
 void recast_canyon(Array &array, float vcut, float gamma); ///< @overload
 
