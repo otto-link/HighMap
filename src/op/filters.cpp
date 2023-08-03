@@ -220,6 +220,22 @@ void gamma_correction_local(Array &array, float gamma, int ir, float k)
   }
 }
 
+void gamma_correction_local(Array &array,
+                            float  gamma,
+                            int    ir,
+                            float  k,
+                            Array *p_mask)
+{
+  if (!p_mask)
+    gamma_correction_local(array, gamma, ir, k);
+  else
+  {
+    Array array_f = array;
+    gamma_correction_local(array_f, gamma, ir, k);
+    array = lerp(array, array_f, *p_mask);
+  }
+}
+
 void laplace(Array &array, float sigma, int iterations)
 {
   for (int it = 0; it < iterations; it++)
@@ -350,11 +366,11 @@ void recast_rocky_slopes(Array &array,
   if (!p_noise)
   {
     Array noise = fbm_perlin(array.shape, {kw, kw}, seed, 4, 0.f);
-    gamma_correction_local(noise, gamma, ir);
+    gamma_correction_local(noise, gamma, ir, 0.1f);
     {
       int ir2 = (int)(ir / 4.f);
       if (ir2 > 1)
-        gamma_correction_local(noise, gamma, ir2);
+        gamma_correction_local(noise, gamma, ir2, 0.1f);
     }
     array += amplitude * noise * c;
   }

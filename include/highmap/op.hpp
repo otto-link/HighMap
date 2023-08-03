@@ -558,6 +558,7 @@ void gamma_correction_xsimd(Array &array, float gamma);
  * @param gamma Gamma factor (> 0).
  * @param ir Filter radius.
  * @param k Smoothing factor.
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * **Example**
  * @include ex_gamma_correction_local.cpp
@@ -565,7 +566,12 @@ void gamma_correction_xsimd(Array &array, float gamma);
  * **Result**
  * @image html ex_gamma_correction_local.png
  */
-void gamma_correction_local(Array &array, float gamma, int ir, float k = 0.1f);
+void gamma_correction_local(Array &array, float gamma, int ir, float k);
+void gamma_correction_local(Array &array,
+                            float  gamma,
+                            int    ir,
+                            float  k,
+                            Array *p_mask); /// @overload
 
 /**
  * @brief Return an array with buffers at the boundaries (values filled by
