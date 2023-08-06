@@ -467,4 +467,49 @@ Array helper_get_noise(Array                             &array,
   return array;
 }
 
+Array helper_get_noise(Array                             &array,
+                       Array                             *p_noise_x,
+                       Array                             *p_noise_y,
+                       Vec2<float>                        shift,
+                       Vec2<float>                        scale,
+                       std::function<float(float, float)> noise_fct)
+{
+  float ai = 1.f / (float)array.shape.x * scale.x;
+  float aj = 1.f / (float)array.shape.y * scale.y;
+
+  if ((!p_noise_x) and (!p_noise_y)) // no noise
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
+      {
+        float x = ai * (float)i + shift.x;
+        float y = aj * (float)j + shift.y;
+        array(i, j) = noise_fct(x, y);
+      }
+  else if (p_noise_x and (!p_noise_y)) // noise x only
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
+      {
+        float x = ai * (float)i + shift.x + (*p_noise_x)(i, j);
+        float y = aj * (float)j + shift.y;
+        array(i, j) = noise_fct(x, y);
+      }
+  else if ((!p_noise_x) and p_noise_y) // noise y only
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
+      {
+        float x = ai * (float)i + shift.x;
+        float y = aj * (float)j + shift.y + (*p_noise_y)(i, j);
+        array(i, j) = noise_fct(x, y);
+      }
+  else if (p_noise_x and p_noise_y) // noise x and y
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
+      {
+        float x = ai * (float)i + shift.x + (*p_noise_x)(i, j);
+        float y = aj * (float)j + shift.y + (*p_noise_y)(i, j);
+        array(i, j) = noise_fct(x, y);
+      }
+  return array;
+}
+
 } // namespace hmap

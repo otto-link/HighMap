@@ -20,8 +20,16 @@
 namespace hmap
 {
 
+// TODO move somewhere else (e.g. private include)
 Array helper_get_noise(Array                             &array,
                        Vec2<float>                        kw,
+                       Array                             *p_noise_x,
+                       Array                             *p_noise_y,
+                       Vec2<float>                        shift,
+                       Vec2<float>                        scale,
+                       std::function<float(float, float)> noise_fct);
+
+Array helper_get_noise(Array                             &array,
                        Array                             *p_noise_x,
                        Array                             *p_noise_y,
                        Vec2<float>                        shift,
@@ -686,6 +694,33 @@ Array smooth_cosine(Vec2<int> shape);
 Array step(Vec2<int>   shape,
            float       angle,
            float       talus,
+           Array      *p_noise = nullptr,
+           Vec2<float> shift = {0.f, 0.f},
+           Vec2<float> scale = {1.f, 1.f});
+
+/**
+ * @brief Generate displacements `dx` and `dy` to apply a swirl effect to
+ * another primitve.
+ *
+ * @param dx[out] 'x' displacement (unit domain scale).
+ * @param dy[out] 'y' displacement (unit domain scale).
+ * @param amplitude Displacement amplitude.
+ * @param exponent Distance exponent.
+ * @param p_noise eference to the input noise array used for domain warping
+ * (NOT in pixels, with respect to a unit domain).
+ * @param shift Shift {xs, ys} for each directions.
+ * @param scale Domain scaling, in [0, 1].
+ *
+ * **Example**
+ * @include ex_swirl.cpp
+ *
+ * **Result**
+ * @image html ex_swirl.png
+ */
+void swirl(Array      &dx,
+           Array      &dy,
+           float       amplitude = 1.f,
+           float       exponent = 1.f,
            Array      *p_noise = nullptr,
            Vec2<float> shift = {0.f, 0.f},
            Vec2<float> scale = {1.f, 1.f});
