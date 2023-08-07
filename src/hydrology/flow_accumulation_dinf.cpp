@@ -54,18 +54,12 @@ Array flow_accumulation_dinf(Array &z, float talus_ref)
 
   // --- compute number of input drainage paths for each cell
   for (int i = 1; i < z.shape.x - 1; i++)
-  {
     for (int j = 1; j < z.shape.y - 1; j++)
-    {
-      // count the number of neighbors with flow directions pointing
-      // to the current cell
       for (uint k = 0; k < nb; k++)
-      {
+        // count the number of neighbors with flow directions pointing
+        // to the current cell
         if (dinf[kp[k]](i + di[k], j + dj[k]) > 0.f)
           nidp(i, j) += 1.f;
-      }
-    }
-  }
 
   // --- flow accumulation (same as D8 with minor adjustements)
 
@@ -74,16 +68,12 @@ Array flow_accumulation_dinf(Array &z, float talus_ref)
   std::list<int> j_queue = {};
 
   for (int i = 1; i < z.shape.x - 1; i++)
-  {
     for (int j = 1; j < z.shape.y - 1; j++)
-    {
       if (nidp(i, j) == 0)
       {
         i_queue.push_back(i);
         j_queue.push_back(j);
       }
-    }
-  }
 
   // main loop
   while (i_queue.size() > 0)
@@ -136,7 +126,6 @@ std::vector<Array> flow_direction_dinf(Array &z, float talus_ref)
   std::vector<Array> dinf(nb, {z.shape});
 
   for (int i = 1; i < z.shape.x - 1; i++)
-  {
     for (int j = 1; j < z.shape.y - 1; j++)
     {
       for (uint k = 0; k < nb; k++)
@@ -155,7 +144,6 @@ std::vector<Array> flow_direction_dinf(Array &z, float talus_ref)
         for (uint k = 0; k < nb; k++)
           dinf[k](i, j) /= sum;
     }
-  }
 
   return dinf;
 }
