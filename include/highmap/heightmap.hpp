@@ -272,4 +272,14 @@ void transform(HeightMap                                     &h1,
                HeightMap                                     &h3,
                std::function<void(Array &, Array &, Array &)> ternary_op);
 
+// with returned array
+void transform(HeightMap                    &h_out, // output
+               HeightMap                    &h1,    // in 1
+               std::function<Array(Array &)> unary_op);
+
+void transform(HeightMap                             &h_out, // output
+               HeightMap                             &h1,    // in 1
+               HeightMap                             &h2,    // in 2
+               std::function<Array(Array &, Array &)> binary_op);
+
 } // namespace hmap

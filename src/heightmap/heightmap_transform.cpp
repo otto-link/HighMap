@@ -100,6 +100,39 @@ void fill(HeightMap                          &h,
     h.tiles[i] = futures[i].get();
 }
 
+void transform(HeightMap                    &h_out,
+               HeightMap                    &h1,
+               std::function<Array(Array &)> unary_op)
+{
+  LOG_DEBUG("unary, with returned array");
+  size_t                          nthreads = h1.get_ntiles();
+  std::vector<std::future<Array>> futures(nthreads);
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+    futures[i] = std::async(unary_op, std::ref(h1.tiles[i]));
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+    h_out.tiles[i] = futures[i].get();
+}
+
+void transform(HeightMap                             &h_out,
+               HeightMap                             &h1,
+               HeightMap                             &h2,
+               std::function<Array(Array &, Array &)> binary_op)
+{
+  LOG_DEBUG("binary, with returned array");
+  size_t                          nthreads = h1.get_ntiles();
+  std::vector<std::future<Array>> futures(nthreads);
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+    futures[i] = std::async(binary_op,
+                            std::ref(h1.tiles[i]),
+                            std::ref(h2.tiles[i]));
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+    h_out.tiles[i] = futures[i].get();
+}
+
 void transform(HeightMap &h, std::function<void(Array &)> unary_op)
 {
   LOG_DEBUG("unary");
