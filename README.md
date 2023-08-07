@@ -2,7 +2,9 @@
 
 A C++ library to generate two-dimensional terrain heightmaps for software rendering or video games.
 
-[toc]
+Work in progress, use at your own risk!
+
+![hand_machine](https://github.com/otto-link/HighMap/assets/121820229/6969f3ba-2892-414c-b9d2-6b30847405e3)
 
 ## License
 
