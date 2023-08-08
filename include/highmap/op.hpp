@@ -433,6 +433,7 @@ Array exp(const Array &array);
  *
  * @param array Input array.
  * @param ir Filter radius.
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * **Example**
  * @include ex_expand.cpp
@@ -442,7 +443,8 @@ Array exp(const Array &array);
  *
  * @see {@link ex_shrink}
  */
-void expand(Array &array, int ir);
+void expand(Array &array, int ir, Array *p_mask);
+void expand(Array &array, int ir); /// @overload
 
 /**
  * @brief Linear extrapolation of values at the borders (i = 0, j = 0, ...)
@@ -467,12 +469,56 @@ void extrapolate_borders(Array &array, int nbuffer = 1);
 void fill_borders(Array &array);
 
 /**
+ * @brief Fill values with a given downslope talus starting from the cell with
+ * highest values.
+ *
+ * @param z Input array.
+ * @param talus Downslope talus.
+ * @param seed Random seed number.
+ * @param noise_ratio Noise ratio (used to avoid grid orientation artifacts).
+ *
+ * **Example**
+ * @include ex_fill_talus.cpp
+ *
+ * **Result**
+ * @image html ex_fill_talus.png
+ *
+ * @see {@link thermal_scree}, {@link thermal_scree_fast}
+ */
+void fill_talus(Array &z, float talus, uint seed, float noise_ratio = 0.2f);
+
+/**
+ * @brief Fill values with a given downslope talus starting from the cell with
+ * highest values, performed on a coarse mesh to optimize restitution time.
+ *
+ * @param z Input array.
+ * @param shape_coarse  Array coarser shape used for the solver.
+ * @param talus Downslope talus.
+ * @param seed Random seed number.
+ * @param noise_ratio Noise ratio (used to avoid grid orientation artifacts).
+ *
+ * **Example**
+ * @include ex_fill_talus.cpp
+ *
+ * **Result**
+ * @image html ex_fill_talus.png
+ *
+ * @see {@link thermal_scree}, {@link thermal_scree_fast}
+ */
+void fill_talus_fast(Array    &z,
+                     Vec2<int> shape_coarse,
+                     float     talus,
+                     uint      seed,
+                     float     noise_ratio = 0.2f);
+
+/**
  * @brief Apply a gain correction of the array elements.
  *
  * Gain correction is based on a power law.
  *
  * @param array Input array.
- * @param gain Gain factor (> 0).
+ * @param factor Gain factor (> 0).
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * @warning Array values are expected to be in [0, 1].
  *
@@ -482,13 +528,16 @@ void fill_borders(Array &array);
  * **Result**
  * @image html ex_gain.png
  */
-void gain(Array &array, float gain);
+void gain(Array &array, float factor, Array *p_mask);
+
+void gain(Array &array, float factor); /// @overload
 
 /**
  * @brief Apply gamma correction to the input array.
  *
  * @param array Input array.
  * @param gamma Gamma factor (> 0).
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * @warning Array values are expected to be in [0, 1].
  *
@@ -498,7 +547,10 @@ void gain(Array &array, float gain);
  * **Result**
  * @image html ex_gamma_correction.png
  */
-void gamma_correction(Array &array, float gamma);
+void gamma_correction(Array &array, float gamma, Array *p_mask);
+
+void gamma_correction(Array &array, float gamma); /// @overload
+
 void gamma_correction_thread(Array &array, float gamma);
 void gamma_correction_xsimd(Array &array, float gamma);
 
@@ -511,6 +563,7 @@ void gamma_correction_xsimd(Array &array, float gamma);
  * @param array Input array.
  * @param gamma Gamma factor (> 0).
  * @param ir Filter radius.
+ * @param p_mask Filter mask, expected in [0, 1].
  * @param k Smoothing factor.
  *
  * **Example**
@@ -520,6 +573,12 @@ void gamma_correction_xsimd(Array &array, float gamma);
  * @image html ex_gamma_correction_local.png
  */
 void gamma_correction_local(Array &array, float gamma, int ir, float k = 0.1f);
+
+void gamma_correction_local(Array &array,
+                            float  gamma,
+                            int    ir,
+                            Array *p_mask,
+                            float  k = 0.1f); /// @overload
 
 /**
  * @brief Return an array with buffers at the boundaries (values filled by
@@ -662,6 +721,7 @@ Array kmeans_clustering2(const Array &array1,
  * @param array Input array.
  * @param sigma Filtering intensity, in [0, 1].
  * @param iterations Number of iterations.
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * **Example**
  * @include ex_laplace.cpp
@@ -670,6 +730,11 @@ Array kmeans_clustering2(const Array &array1,
  * @image html ex_laplace.png
  */
 void laplace(Array &array, float sigma = 0.2f, int iterations = 3);
+
+void laplace(Array &array,
+             Array *p_mask,
+             float  sigma = 0.2f,
+             int    iterations = 3); /// @overload
 
 /**
  * @brief Apply a low-pass Laplace filter to a vector.
@@ -690,6 +755,7 @@ void laplace1d(std::vector<float> &v, float sigma = 0.5f, int iterations = 1);
  * less affected by the filering).
  * @param sigma Filtering intensity, in [0, 1].
  * @param iterations Number of iterations.
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * **Example**
  * @include ex_laplace.cpp
@@ -699,6 +765,12 @@ void laplace1d(std::vector<float> &v, float sigma = 0.5f, int iterations = 1);
  */
 void laplace_edge_preserving(Array &array,
                              float  talus,
+                             float  sigma = 0.2f,
+                             int    iterations = 3);
+
+void laplace_edge_preserving(Array &array,
+                             float  talus,
+                             Array *p_mask,
                              float  sigma = 0.2f,
                              int    iterations = 3);
 
@@ -988,6 +1060,7 @@ std::vector<float> random_vector(float min, float max, int num, int seed);
  *
  * @param array Input array.
  * @param vcut Canyon top elevation.
+ * @param p_mask Filter mask, expected in [0, 1].
  * @param gamma Gamma factor (> 0) (@see {@link gamma_correction}).
  *
  * **Example**
@@ -998,7 +1071,17 @@ std::vector<float> random_vector(float min, float max, int num, int seed);
  */
 void recast_canyon(Array &array, const Array &vcut, float gamma = 4.f);
 
-void recast_canyon(Array &array, float vcut, float gamma); ///< @overload
+void recast_canyon(Array       &array,
+                   const Array &vcut,
+                   Array        p_mask,
+                   float        gamma = 4.f); ///< @overload
+
+void recast_canyon(Array &array,
+                   float  vcut,
+                   Array *p_mask,
+                   float  gamma = 4.f); ///< @overload
+
+void recast_canyon(Array &array, float vcut, float gamma = 4.f); ///< @overload
 
 /**
  * @brief Transform heightmap to give a "peak" like appearance.
@@ -1007,6 +1090,7 @@ void recast_canyon(Array &array, float vcut, float gamma); ///< @overload
  *
  * @param array Input array.
  * @param ir Filter radius.
+ * @param p_mask Filter mask, expected in [0, 1].
  * @param gamma Gamma factor (> 0) (@see {@link gamma_correction}).
  * @param k Smoothing parameter (> 0).
  *
@@ -1018,6 +1102,12 @@ void recast_canyon(Array &array, float vcut, float gamma); ///< @overload
  */
 void recast_peak(Array &array, int ir, float gamma = 2.f, float k = 0.1f);
 
+void recast_peak(Array &array,
+                 int    ir,
+                 Array *p_mask,
+                 float  gamma = 2.f,
+                 float  k = 0.1f); /// @overload
+
 /**
  * @brief Transform heightmap by adding "rock-like" features at higher slopes.
  *
@@ -1027,6 +1117,7 @@ void recast_peak(Array &array, int ir, float gamma = 2.f, float k = 0.1f);
  * @param amplitude Filter amplitude.
  * @param seed Random number seed.
  * @param kw Noise wavenumber with respect to a unit domain (for rocks).
+ * @param p_mask Filter mask, expected in [0, 1].
  * @param gamma Gamma correction coefficent (for rocks)
  * @param p_noise Reference to the input noise used for rock features (overrides
  * default generator).
@@ -1046,6 +1137,16 @@ void recast_rocky_slopes(Array &array,
                          float  gamma = 0.5f,
                          Array *p_noise = nullptr);
 
+void recast_rocky_slopes(Array &array,
+                         float  talus,
+                         int    ir,
+                         float  amplitude,
+                         uint   seed,
+                         float  kw,
+                         Array *p_mask,
+                         float  gamma = 0.5f,
+                         Array *p_noise = nullptr);
+
 /**
  * @brief Apply a curve adjustment filter to the array.
  *
@@ -1055,6 +1156,7 @@ void recast_rocky_slopes(Array &array,
  * @param array Input array.
  * @param t Input value of the correction curve.
  * @param v Output value of the correction curve.
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * **Example**
  * @include ex_recurve.cpp
@@ -1066,6 +1168,11 @@ void recurve(Array                    &array,
              const std::vector<float> &t,
              const std::vector<float> &v);
 
+void recurve(Array                    &array,
+             const std::vector<float> &t,
+             const std::vector<float> &v,
+             Array                    *p_mask);
+
 /**
  * @brief Apply a curve adjustment filter using a "bumpy exponential-shape"
  * curve.
@@ -1073,6 +1180,7 @@ void recurve(Array                    &array,
  * @warning Array values are expected to be in [0, 1].
  *
  * @param array Input array.
+ * @param p_mask Filter mask, expected in [0, 1].
  * @param tau Exponential decay.
  *
  * **Example**
@@ -1083,6 +1191,8 @@ void recurve(Array                    &array,
  */
 void recurve_bexp(Array &array, float tau = 0.5f);
 
+void recurve_bexp(Array &array, Array *p_mask, float tau = 0.5f);
+
 /**
  * @brief Apply a curve adjustment filter using a "sharp exponential-shape"
  * curve.
@@ -1090,6 +1200,7 @@ void recurve_bexp(Array &array, float tau = 0.5f);
  * @warning Array values are expected to be in [0, 1].
  *
  * @param array Input array.
+ * @param p_mask Filter mask, expected in [0, 1].
  * @param tau Exponential decay.
  *
  * **Example**
@@ -1100,6 +1211,8 @@ void recurve_bexp(Array &array, float tau = 0.5f);
  */
 void recurve_exp(Array &array, float tau = 0.5f);
 
+void recurve_exp(Array &array, Array *p_mask, float tau = 0.5f);
+
 /**
  * @brief Apply a curve adjustment filter using Kumaraswamy's cumulative
  * distribution function.
@@ -1107,6 +1220,7 @@ void recurve_exp(Array &array, float tau = 0.5f);
  * @param array Input array.
  * @param a 'Parameter a', drives curve shape close to `0`.
  * @param b 'Parameter b', drives curve shape close to `1`.
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * **Example**
  * @include ex_recurve_xxx.cpp
@@ -1116,12 +1230,15 @@ void recurve_exp(Array &array, float tau = 0.5f);
  */
 void recurve_kura(Array &array, float a, float b);
 
+void recurve_kura(Array &array, float a, float b, Array *p_mask);
+
 /**
  * @brief Apply a curve adjustment filter using a smooth "S-shape" curve.
  *
  * @warning Array values are expected to be in [0, 1].
  *
  * @param array Input array.
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * **Example**
  * @include ex_recurve_xxx.cpp
@@ -1131,6 +1248,8 @@ void recurve_kura(Array &array, float a, float b);
  */
 void recurve_s(Array &array);
 
+void recurve_s(Array &array, Array *p_mask);
+
 /**
  * @brief Apply a curve adjustment filter using a nth-order smoothstep curve.
  *
@@ -1138,6 +1257,7 @@ void recurve_s(Array &array);
  *
  * @param array Input array.
  * @param n Smoothstep order (in [0, inf[).
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * **Example**
  * @include ex_recurve_xxx.cpp
@@ -1146,6 +1266,8 @@ void recurve_s(Array &array);
  * @image html ex_recurve_xxx.png
  */
 void recurve_smoothstep_rational(Array &array, float n);
+
+void recurve_smoothstep_rational(Array &array, float n, Array *p_mask);
 
 /**
  * @brief Remap array elements from a starting range to a target range.
@@ -1379,6 +1501,7 @@ Array shadow_heightmap(const Array &z,
  * @brief Apply sharpening filter (based on Laplace operator).
  *
  * @param array Input array.
+ * @param p_mask Filter mask, expected in [0, 1].
  * @param ratio Output ratio between sharpened (ratio = 1) and non-sharpened
  * array (ratio = 0).
  *
@@ -1390,11 +1513,14 @@ Array shadow_heightmap(const Array &z,
  */
 void sharpen(Array &array, float ratio = 1.f);
 
+void sharpen(Array &array, Array *p_mask, float ratio = 1.f);
+
 /**
  * @brief Apply shrinking, or "deflating", to emphasize the ridges.
  *
  * @param array Input array.
  * @param ir Filter radius.
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * **Example**
  * @include ex_expand.cpp
@@ -1405,6 +1531,8 @@ void sharpen(Array &array, float ratio = 1.f);
  * @see {@link ex_expand}
  */
 void shrink(Array &array, int ir);
+
+void shrink(Array &array, int ir, Array *p_mask);
 
 /**
  * @brief Return the sine of the array elements.
@@ -1417,40 +1545,6 @@ Array sin(const Array &array);
 Array skeleton_middle(const Array &array); // TODO: remove ?
 
 /**
- * @brief Steepen (or flatten) the array map.
- *
- * @param array Input array.
- * @param scale Filter amplitude.
- * @param ir Filtering radius of the array gradients.
- *
- * **Example**
- * @include ex_steepen.cpp
- *
- * **Result**
- * @image html ex_steepen.png
- */
-void steepen(Array &array, float scale, int ir = 8);
-
-/**
- * @brief Steepen array values by applying a nonlinear convection operator in a
- * given direction (see to Burger's equarion for instance).
- *
- * @todo verify results.
- *
- * @param array Input array (elements expected to be in [-1, 1]).
- * @param angle Steepening direction (in degrees).
- * @param iterations Number of iterations.
- * @param ir Smoothing radius of the array values before differentiation.
- * @param dt "Time step", can be chosen smaller than 1 for fine tuning of the
- * steepening effect.
- */
-void steepen_convective(Array &array,
-                        float  angle,
-                        int    iterations = 1,
-                        int    ir = 0,
-                        float  dt = 1);
-
-/**
  * @brief Apply filtering to the array using convolution with a cubic pulse.
  *
  * Can be used as an alternative (with a much smaller support) to Gaussian
@@ -1459,6 +1553,7 @@ void steepen_convective(Array &array,
  *
  * @param array Input array.
  * @param ir Pulse radius (half-width is half this radius).
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * **Example**
  * @include ex_smooth_cpulse.cpp
@@ -1470,11 +1565,14 @@ void steepen_convective(Array &array,
  */
 void smooth_cpulse(Array &array, int ir);
 
+void smooth_cpulse(Array &array, int ir, Array *p_mask);
+
 /**
  * @brief Apply Gaussian filtering to the array.
  *
  * @param array Input array.
  * @param ir Gaussian half-width.
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * **Example**
  * @include ex_smooth_gaussian.cpp
@@ -1484,6 +1582,8 @@ void smooth_cpulse(Array &array, int ir);
  */
 void smooth_gaussian(Array &array, int ir);
 
+void smooth_gaussian(Array &array, int ir, Array *p_mask);
+
 /**
  * @brief Apply cubic pulse smoothing to fill lower flat regions while
  * preserving some sharpness.
@@ -1492,6 +1592,7 @@ void smooth_gaussian(Array &array, int ir);
  *
  * @param array Input array.
  * @param ir Pulse radius.
+ * @param p_mask Filter mask, expected in [0, 1].
  * @param k Transition smoothing parameter in [0, 1].
  *
  * **Example**
@@ -1504,11 +1605,14 @@ void smooth_gaussian(Array &array, int ir);
  */
 void smooth_fill(Array &array, int ir, float k = 0.1f);
 
+void smooth_fill(Array &array, int ir, Array *p_mask, float k = 0.1f);
+
 /**
  * @brief Apply smoothing to fill holes (elliptic concave surfaces).
  *
  * @param array Input array.
  * @param ir Filter radius.
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * **Example**
  * @include ex_smooth_fill_holes.cpp
@@ -1520,11 +1624,14 @@ void smooth_fill(Array &array, int ir, float k = 0.1f);
  */
 void smooth_fill_holes(Array &array, int ir);
 
+void smooth_fill_holes(Array &array, int ir, Array *p_mask); /// @overload
+
 /**
  * @brief Apply smoothing to smear peaks (elliptic convexe surfaces).
  *
  * @param array Input array.
  * @param ir Filter radius.
+ * @param p_mask Filter mask, expected in [0, 1].
  *
  * **Example**
  * @include ex_smooth_fill_holes.cpp
@@ -1535,6 +1642,53 @@ void smooth_fill_holes(Array &array, int ir);
  * @see {@link smooth_fill_holes}
  */
 void smooth_fill_smear_peaks(Array &array, int ir);
+
+void smooth_fill_smear_peaks(Array &array, int ir, Array *p_mask);
+
+/**
+ * @brief Steepen (or flatten) the array map.
+ *
+ * @param array Input array.
+ * @param scale Filter amplitude.
+ * @param p_mask Filter mask, expected in [0, 1].
+ * @param ir Filtering radius of the array gradients.
+ *
+ * **Example**
+ * @include ex_steepen.cpp
+ *
+ * **Result**
+ * @image html ex_steepen.png
+ */
+void steepen(Array &array, float scale, int ir = 8);
+
+void steepen(Array &array, float scale, Array *p_mask, int ir = 8);
+
+/**
+ * @brief Steepen array values by applying a nonlinear convection operator in a
+ * given direction (see to Burger's equarion for instance).
+ *
+ * @todo verify results.
+ *
+ * @param array Input array (elements expected to be in [-1, 1]).
+ * @param angle Steepening direction (in degrees).
+ * @param p_mask Filter mask, expected in [0, 1].
+ * @param iterations Number of iterations.
+ * @param ir Smoothing radius of the array values before differentiation.
+ * @param dt "Time step", can be chosen smaller than 1 for fine tuning of the
+ * steepening effect.
+ */
+void steepen_convective(Array &array,
+                        float  angle,
+                        int    iterations = 1,
+                        int    ir = 0,
+                        float  dt = 1);
+
+void steepen_convective(Array &array,
+                        float  angle,
+                        Array *p_mask,
+                        int    iterations = 1,
+                        int    ir = 0,
+                        float  dt = 1);
 
 /**
  * @brief Use symmetry for to fill values at the domain borders, over a given

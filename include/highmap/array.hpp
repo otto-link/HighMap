@@ -313,16 +313,20 @@ public:
   Array extract_slice(Vec4<int> idx);
 
   /**
-   * @brief Find the lowest elevation difference path between two points in a
-   * 2d-array.
+   * @brief Find the lowest elevation and elevation difference path between two
+   * points in a 2d-array.
    *
    * @see @cite Dijkstra1971 and
    * https://math.stackexchange.com/questions/3088292.
+   *
+   * @warning Parameter `elevation_ratio` must be < 1 to permit convergence.
    *
    * @param ij_start Starting point (i, j) position.
    * @param ij_end Ending point (i, j) position.
    * @param i_path[out] Shortest path 'i' indices.
    * @param j_path[out] Shortest path 'j' indices.
+   * @param elevation_ratio Balance between absolute elevation and elevation
+   * difference in the cost function, in [0, 1[.
    * @param distance_exponent Exponent of the distance calculation between two
    * points. Increasing the "distance exponent" of the cost function increases
    * the cost of elevation gaps: path then tends to stay at the same elevation
@@ -336,13 +340,14 @@ public:
    * **Result**
    * @image html ex_find_path_dijkstra0.png
    * @image html ex_find_path_dijkstra1.png
-   *
+   * @image html ex_find_path_dijkstra2.png
    */
   void find_path_dijkstra(Vec2<int>         ij_start,
                           Vec2<int>         ij_end,
                           std::vector<int> &i_path,
                           std::vector<int> &j_path,
-                          float             distance_exponent = 0.5f,
+                          float             elevation_ratio = 0.1f,
+                          float             distance_exponent = 2.f,
                           Vec2<int>         step = {1, 1});
 
   /**

@@ -100,6 +100,39 @@ void fill(HeightMap                          &h,
     h.tiles[i] = futures[i].get();
 }
 
+void transform(HeightMap                    &h_out,
+               HeightMap                    &h1,
+               std::function<Array(Array &)> unary_op)
+{
+  LOG_DEBUG("unary, with returned array");
+  size_t                          nthreads = h1.get_ntiles();
+  std::vector<std::future<Array>> futures(nthreads);
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+    futures[i] = std::async(unary_op, std::ref(h1.tiles[i]));
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+    h_out.tiles[i] = futures[i].get();
+}
+
+void transform(HeightMap                             &h_out,
+               HeightMap                             &h1,
+               HeightMap                             &h2,
+               std::function<Array(Array &, Array &)> binary_op)
+{
+  LOG_DEBUG("binary, with returned array");
+  size_t                          nthreads = h1.get_ntiles();
+  std::vector<std::future<Array>> futures(nthreads);
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+    futures[i] = std::async(binary_op,
+                            std::ref(h1.tiles[i]),
+                            std::ref(h2.tiles[i]));
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+    h_out.tiles[i] = futures[i].get();
+}
+
 void transform(HeightMap &h, std::function<void(Array &)> unary_op)
 {
   LOG_DEBUG("unary");
@@ -108,6 +141,24 @@ void transform(HeightMap &h, std::function<void(Array &)> unary_op)
 
   for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
     futures[i] = std::async(unary_op, std::ref(h.tiles[i]));
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+    futures[i].get();
+}
+
+void transform(HeightMap                            &h,
+               HeightMap                            *p_mask,
+               std::function<void(Array &, Array *)> unary_op)
+{
+  LOG_DEBUG("unary (mask)");
+  size_t                         nthreads = h.get_ntiles();
+  std::vector<std::future<void>> futures(nthreads);
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+  {
+    Array *p_mask_array = (p_mask == nullptr) ? nullptr : &p_mask->tiles[i];
+    futures[i] = std::async(unary_op, std::ref(h.tiles[i]), p_mask_array);
+  }
 
   for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
     futures[i].get();

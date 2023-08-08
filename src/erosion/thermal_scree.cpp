@@ -175,12 +175,18 @@ void thermal_scree_fast(Array    &z,
                         float     landing_width_ratio,
                         bool      talus_constraint)
 {
-  Array z_coarse = z.resample_to_shape(shape_coarse);
-
   // apply the algorithm on the coarser mesh (and ajust the talus
   // value)
-  float talus_coarse = talus * std::max(z.shape.x / shape_coarse.x,
-                                        z.shape.y / shape_coarse.y);
+  int   step = std::max(z.shape.x / shape_coarse.x, z.shape.y / shape_coarse.y);
+  float talus_coarse = talus * step;
+
+  // add maximum filter to avoid loosing data (for instance those
+  // defined at only one cell)
+  Array z_coarse = Array(shape_coarse);
+  {
+    Array z_filtered = maximum_local(z, (int)std::ceil(0.5f * step));
+    z_coarse = z_filtered.resample_to_shape(shape_coarse);
+  }
 
   thermal_scree(z_coarse,
                 talus_coarse,

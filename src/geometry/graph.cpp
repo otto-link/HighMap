@@ -225,8 +225,6 @@ void Graph::to_array(Array &array, Vec4<float> bbox)
   {
     Point p1 = this->points[this->edges[k][0]];
     Point p2 = this->points[this->edges[k][1]];
-    p1.v = this->weights[k]; // to color edges by their weight
-    p2.v = this->weights[k];
 
     Path path = Path({p1, p2});
     path.to_array(array, bbox);
@@ -301,9 +299,6 @@ void Graph::to_png(std::string fname, Vec2<int> shape)
 
 void Graph::update_adjacency_matrix()
 {
-  // reshape if needed
-  Vec2<int> new_shape = Vec2<int>((int)this->get_npoints(),
-                                  (int)this->get_npoints());
   this->adjacency_matrix.clear();
 
   // fill matrix

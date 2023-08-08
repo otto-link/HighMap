@@ -90,6 +90,7 @@ void Path::bezier(float curvature_ratio, int edge_divisions)
 void Path::dijkstra(Array      &array,
                     Vec4<float> bbox,
                     int         edge_divisions,
+                    float       elevation_ratio,
                     float       distance_exponent)
 {
   size_t ks = this->closed ? 0 : 1; // trick to handle closed contours
@@ -109,15 +110,26 @@ void Path::dijkstra(Array      &array,
         (int)((this->points[knext].y - bbox.c) / (bbox.d - bbox.c) *
               (array.shape.y - 1)));
 
-    // float dist = distance(this->points[k], this->points[knext]);
     float dist_idx = std::hypot((float)(ij_start.x - ij_end.x),
                                 (float)(ij_start.y - ij_end.y));
 
-    int       div = std::max(1, (int)(dist_idx / edge_divisions));
-    Vec2<int> step = Vec2<int>(div, div);
+    Vec2<int> step;
+    if (edge_divisions > 0)
+    {
+      int div = std::max(1, (int)(dist_idx / edge_divisions));
+      step = Vec2<int>(div, div);
+    }
+    else
+      step = Vec2<int>(1, 1);
 
     std::vector<int> ip, jp;
-    array.find_path_dijkstra(ij_start, ij_end, ip, jp, distance_exponent, step);
+    array.find_path_dijkstra(ij_start,
+                             ij_end,
+                             ip,
+                             jp,
+                             elevation_ratio,
+                             distance_exponent,
+                             step);
 
     // backup cuurrent edge informations before adding points to this edge
     Point p1 = this->points[k];
@@ -367,6 +379,22 @@ void Path::resample_uniform()
   }
 
   this->resample(dmin);
+}
+
+void Path::subsample(int step)
+{
+  size_t k_global = 0;
+  size_t k_last = this->get_npoints() - 1; // to keep the end point
+
+  for (size_t k = 0; k < this->get_npoints(); k++)
+  {
+    if ((k_global % step != 0) and (k_global != k_last))
+    {
+      this->points.erase(this->points.begin() + k);
+      k--;
+    }
+    k_global++;
+  }
 }
 
 void Path::to_array(Array &array, Vec4<float> bbox)

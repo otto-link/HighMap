@@ -271,6 +271,7 @@ void hydraulic_particle_multiscale(Array             &z,
  * tend to flatten the map.
  * @param smoothing_factor Smooothing factor in ]0, 1] (1 for no smoothing).
  * @param noise_ratio Ridge talus noise ratio in [0, 1].
+ * @param ir Prefilter radius (in pixels).
  * @param seed Random seed number (only useful when `noise_ratio != 0`).
  *
  * **Example**
@@ -285,6 +286,17 @@ void hydraulic_ridge(Array &z,
                      float  erosion_factor = 1.5f,
                      float  smoothing_factor = 0.f,
                      float  noise_ratio = 0.f,
+                     int    ir = 0,
+                     uint   seed = 1);
+
+void hydraulic_ridge(Array &z,
+                     float  talus,
+                     Array *p_mask,
+                     float  intensity = 0.5f,
+                     float  erosion_factor = 1.5f,
+                     float  smoothing_factor = 0.f,
+                     float  noise_ratio = 0.f,
+                     int    ir = 0,
                      uint   seed = 1);
 
 /**
