@@ -10,6 +10,7 @@
 [submodule "external/FastNoiseLite"]
 	path = external/FastNoiseLite
 	url = git@github.com:Auburn/FastNoiseLite.git
+	ignore = untracked
 [submodule "external/dkm"]
 	path = external/dkm
 	url = git@github.com:genbattle/dkm.git
