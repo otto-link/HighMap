@@ -56,7 +56,6 @@ void hydraulic_particle(Array &z,
 
   // --- main loop
 
-#pragma omp parallel for
   for (int ip = 0; ip < nparticles; ip++)
   {
     float x = 0.f;
@@ -180,60 +179,5 @@ void hydraulic_particle(Array &z,
                      drag_rate,
                      evap_rate);
 }
-
-//----------------------------------------------------------------------
-// Macros
-//----------------------------------------------------------------------
-
-void hydraulic_particle_multiscale(Array             &z,
-                                   Array             &moisture_map,
-                                   float              particle_density,
-                                   std::vector<float> scales,
-                                   int                seed,
-                                   int                c_radius,
-                                   float              c_capacity,
-                                   float              c_erosion,
-                                   float              c_deposition,
-                                   float              drag_rate,
-                                   float              evap_rate)
-{
-  const uint ns = scales.size();
-
-  for (uint k = 0; k < ns; k++)
-  {
-    // "large scales" are isolated using resampling
-    int       ni = (int)std::ceil((float)z.shape.x / scales[k]);
-    int       nj = (int)std::ceil((float)z.shape.y / scales[k]);
-    Vec2<int> shape_c = Vec2<int>(ni, nj);
-    int       nparticles = (int)(particle_density * ni * nj);
-
-    LOG_DEBUG("resampling: {%d, %d}", ni, nj);
-
-    Array z_c = z.resample_to_shape(shape_c);
-    Array mmap_c = moisture_map.resample_to_shape(shape_c);
-
-    // backup "small scales"
-    Array z_c0 = z - z_c.resample_to_shape(z.shape);
-
-    // perform erosion and resample back to initial shape
-    hydraulic_particle(z_c,
-                       mmap_c,
-                       nparticles,
-                       seed,
-                       c_radius,
-                       c_capacity,
-                       c_erosion,
-                       c_deposition,
-                       drag_rate,
-                       evap_rate);
-
-    z_c = z_c.resample_to_shape(z.shape);
-    z = z_c + z_c0;
-  }
-}
-
-// void hydraulic_thermal(Array &z)
-// {
-// }
 
 } // namespace hmap
