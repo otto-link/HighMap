@@ -187,10 +187,14 @@ void hydraulic_musgrave(Array &z,
  * Adapted from @cite Beyer2015 and @cite Hjulstroem1935.
  *
  * @param z Input array.
- * @param moisture_map Moisture map (quantity of rain), expected to be in [0,
- * 1].
- * @param seed Random seed number.
  * @param nparticles Number of particles.
+ * @param seed Random seed number.
+ * @param p_moisture_map Reference to the oisture map (quantity of rain),
+ * expected to be in [0, 1].
+ * @param p_erosion_map[out] Reference to the erosion map, provided as an output
+ * field.
+ * @param p_deposition_map [out] Reference to the depositio, map, provided as an
+ * output field.
  * @param c_radius Particle radius in pixel(s) (>= 0).
  * @param c_capacity Sediment capacity.
  * @param c_deposition Deposition coefficient.
@@ -202,28 +206,21 @@ void hydraulic_musgrave(Array &z,
  * @include ex_hydraulic_particle.cpp
  *
  * **Result**
- * @image html ex_hydraulic_particle.png
+ * @image html ex_hydraulic_particle0.png
+ * @image html ex_hydraulic_particle1.png
  */
 void hydraulic_particle(Array &z,
-                        Array &moisture_map,
                         int    nparticles,
                         int    seed,
+                        Array *p_moisture_map = nullptr,
+                        Array *p_erosion_map = nullptr,    // -> out
+                        Array *p_deposition_map = nullptr, // -> out
                         int    c_radius = 0,
                         float  c_capacity = 10.f,
                         float  c_erosion = 0.05f,
                         float  c_deposition = 0.01f,
                         float  drag_rate = 0.01f,
                         float  evap_rate = 0.001f);
-
-void hydraulic_particle(Array &z,
-                        int    nparticles,
-                        int    seed,
-                        int    c_radius = 0,
-                        float  c_capacity = 10.f,
-                        float  c_erosion = 0.05f,
-                        float  c_deposition = 0.01f,
-                        float  drag_rate = 0.01f,
-                        float  evap_rate = 0.001f); ///< @overload
 
 /**
  * @brief Apply large-scale hydraulic erosion to produce "deep" ridges.

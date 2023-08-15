@@ -28,9 +28,11 @@ namespace hmap
 //----------------------------------------------------------------------
 
 void hydraulic_particle(Array &z,
-                        Array &moisture_map,
                         int    nparticles,
                         int    seed,
+                        Array *p_moisture_map,
+                        Array *p_erosion_map,
+                        Array *p_deposition_map,
                         int    c_radius,
                         float  c_capacity,
                         float  c_erosion,
@@ -54,6 +56,12 @@ void hydraulic_particle(Array &z,
 
   kernel.normalize();
 
+  // keep a backup of the input if the erosion / deposition maps need
+  // to be computed
+  Array z_bckp = Array({0, 0});
+  if ((p_erosion_map != nullptr) | (p_deposition_map != nullptr))
+    z_bckp = z;
+
   // --- main loop
 
   for (int ip = 0; ip < nparticles; ip++)
@@ -63,17 +71,27 @@ void hydraulic_particle(Array &z,
     float vx = VELOCITY_INIT * (2.f * dis(gen) - 1.f);
     float vy = VELOCITY_INIT * (2.f * dis(gen) - 1.f);
     float s = 0.f; // sediment
+    float volume = 0.f;
 
     // keep spawning new particle in [1, shape[...] - 2] until the
     // initial volume is large enough (to avoid using particle from
     // dry regions)
-    do
+    if (p_moisture_map)
+    {
+      do
+      {
+        x = dis(gen) * (float)(ni - 3) + 1;
+        y = dis(gen) * (float)(nj - 3) + 1;
+
+      } while ((*p_moisture_map)((int)x, (int)y) < SPAWN_MOISTURE_LOW_LIMIT);
+      volume = VOLUME_INIT * (*p_moisture_map)((int)x, (int)y);
+    }
+    else
     {
       x = dis(gen) * (float)(ni - 3) + 1;
       y = dis(gen) * (float)(nj - 3) + 1;
-    } while (moisture_map((int)x, (int)y) < SPAWN_MOISTURE_LOW_LIMIT);
-
-    float volume = VOLUME_INIT * moisture_map((int)x, (int)y);
+      volume = VOLUME_INIT;
+    }
 
     int i_next = (int)x;
     int j_next = (int)y;
@@ -150,34 +168,19 @@ void hydraulic_particle(Array &z,
   }
 
   extrapolate_borders(z);
-}
 
-//----------------------------------------------------------------------
-// Overloading
-//----------------------------------------------------------------------
+  // splatmaps
+  if (p_erosion_map)
+  {
+    *p_erosion_map = z_bckp - z;
+    clamp_min(*p_erosion_map, 0.f);
+  }
 
-// uniform moisture map
-void hydraulic_particle(Array &z,
-                        int    nparticles,
-                        int    seed,
-                        int    c_radius,
-                        float  c_capacity,
-                        float  c_erosion,
-                        float  c_deposition,
-                        float  drag_rate,
-                        float  evap_rate)
-{
-  Array mmap = constant(z.shape, 1.f);
-  hydraulic_particle(z,
-                     mmap,
-                     nparticles,
-                     seed,
-                     c_radius,
-                     c_capacity,
-                     c_erosion,
-                     c_deposition,
-                     drag_rate,
-                     evap_rate);
+  if (p_deposition_map)
+  {
+    *p_deposition_map = z - z_bckp;
+    clamp_min(*p_deposition_map, 0.f);
+  }
 }
 
 } // namespace hmap
