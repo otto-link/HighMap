@@ -65,6 +65,12 @@ int HeightMap::get_tile_index(int i, int j)
   return i + j * this->tiling.x;
 }
 
+void HeightMap::set_overlap(float new_overlap)
+{
+  this->overlap = new_overlap;
+  this->update_tile_parameters();
+}
+
 void HeightMap::set_shape(Vec2<int> new_shape)
 {
   this->shape = new_shape;

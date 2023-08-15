@@ -159,6 +159,13 @@ public:
   int get_tile_index(int i, int j);
 
   /**
+   * @brief Set the tile overlapping.
+   *
+   * @param new_overlap New overlap.
+   */
+  void set_overlap(float new_overlap);
+
+  /**
    * @brief Set the heightmap shape.
    *
    * @param new_shape New shape.
