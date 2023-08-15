@@ -187,6 +187,8 @@ void hydraulic_musgrave(Array &z,
  * Adapted from @cite Beyer2015 and @cite Hjulstroem1935.
  *
  * @param z Input array.
+ * @param p_mask Intensity mask, expected in [0, 1] (applied as a
+ * post-processing).
  * @param nparticles Number of particles.
  * @param seed Random seed number.
  * @param p_moisture_map Reference to the oisture map (quantity of rain),
@@ -222,12 +224,28 @@ void hydraulic_particle(Array &z,
                         float  drag_rate = 0.01f,
                         float  evap_rate = 0.001f);
 
+void hydraulic_particle(Array &z,
+                        Array *p_mask,
+                        int    nparticles,
+                        int    seed,
+                        Array *p_moisture_map = nullptr,
+                        Array *p_erosion_map = nullptr,    // -> out
+                        Array *p_deposition_map = nullptr, // -> out
+                        int    c_radius = 0,
+                        float  c_capacity = 10.f,
+                        float  c_erosion = 0.05f,
+                        float  c_deposition = 0.01f,
+                        float  drag_rate = 0.01f,
+                        float  evap_rate = 0.001f); /// @overload
+
 /**
  * @brief Apply large-scale hydraulic erosion to produce "deep" ridges.
  *
  * @param z Input array.
  * @param talus Ridge talus.
  * @param intensity Erosion intensity in [0, 1].
+ * @param p_mask Intensity mask, expected in [0, 1] (applied as a
+ * post-processing).
  * @param erosion_factor Erosion factor, generally in ]0, 10]. Smaller values
  * tend to flatten the map.
  * @param smoothing_factor Smooothing factor in ]0, 1] (1 for no smoothing).

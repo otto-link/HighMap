@@ -183,4 +183,50 @@ void hydraulic_particle(Array &z,
   }
 }
 
+void hydraulic_particle(Array &z,
+                        Array *p_mask,
+                        int    nparticles,
+                        int    seed,
+                        Array *p_moisture_map,
+                        Array *p_erosion_map,
+                        Array *p_deposition_map,
+                        int    c_radius,
+                        float  c_capacity,
+                        float  c_erosion,
+                        float  c_deposition,
+                        float  drag_rate,
+                        float  evap_rate)
+{
+  if (!p_mask)
+    hydraulic_particle(z,
+                       nparticles,
+                       seed,
+                       p_moisture_map,
+                       p_erosion_map,
+                       p_deposition_map,
+                       c_radius,
+                       c_capacity,
+                       c_erosion,
+                       c_deposition,
+                       drag_rate,
+                       evap_rate);
+  else
+  {
+    Array z_f = z;
+    hydraulic_particle(z_f,
+                       nparticles,
+                       seed,
+                       p_moisture_map,
+                       p_erosion_map,
+                       p_deposition_map,
+                       c_radius,
+                       c_capacity,
+                       c_erosion,
+                       c_deposition,
+                       drag_rate,
+                       evap_rate);
+    z = lerp(z, z_f, *(p_mask));
+  }
+}
+
 } // namespace hmap
