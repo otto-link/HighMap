@@ -270,6 +270,17 @@ void transform(HeightMap                            &h,
                HeightMap                            *p_mask,
                std::function<void(Array &, Array *)> unary_op);
 
+// for erosion
+void transform(
+    HeightMap       &h,
+    hmap::HeightMap *p_1,
+    hmap::HeightMap *p_2,
+    hmap::HeightMap *p_3,
+    hmap::HeightMap *p_4,
+    hmap::HeightMap *p_5,
+    std::function<void(Array &, Array *, Array *, Array *, Array *, Array *)>
+        unary_op);
+
 void transform(HeightMap                            &h1,
                HeightMap                            &h2,
                std::function<void(Array &, Array &)> binary_op);
