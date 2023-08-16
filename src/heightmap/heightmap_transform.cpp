@@ -203,6 +203,7 @@ void transform(
     futures[i].get();
 }
 
+<<<<<<< HEAD
 void transform(HeightMap                                     &h,
                hmap::HeightMap                               *p_1,
                hmap::HeightMap                               *p_2,
@@ -226,6 +227,8 @@ void transform(HeightMap                                     &h,
     futures[i].get();
 }
 
+=======
+>>>>>>> 5408aee (Add heightmap transform for erosion)
 void transform(HeightMap                            &h1,
                HeightMap                            &h2,
                std::function<void(Array &, Array &)> binary_op)
