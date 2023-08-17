@@ -187,11 +187,12 @@ void hydraulic_musgrave(Array &z,
  * Adapted from @cite Beyer2015 and @cite Hjulstroem1935.
  *
  * @param z Input array.
+ * @param p_bedrock Reference to the bedrock heightmap.
  * @param p_mask Intensity mask, expected in [0, 1] (applied as a
  * post-processing).
  * @param nparticles Number of particles.
  * @param seed Random seed number.
- * @param p_moisture_map Reference to the oisture map (quantity of rain),
+ * @param p_moisture_map Reference to the moisture map (quantity of rain),
  * expected to be in [0, 1].
  * @param p_erosion_map[out] Reference to the erosion map, provided as an output
  * field.
@@ -214,6 +215,7 @@ void hydraulic_musgrave(Array &z,
 void hydraulic_particle(Array &z,
                         int    nparticles,
                         int    seed,
+                        Array *p_bedrock = nullptr,
                         Array *p_moisture_map = nullptr,
                         Array *p_erosion_map = nullptr,    // -> out
                         Array *p_deposition_map = nullptr, // -> out
@@ -228,6 +230,7 @@ void hydraulic_particle(Array &z,
                         Array *p_mask,
                         int    nparticles,
                         int    seed,
+                        Array *p_bedrock = nullptr,
                         Array *p_moisture_map = nullptr,
                         Array *p_erosion_map = nullptr,    // -> out
                         Array *p_deposition_map = nullptr, // -> out

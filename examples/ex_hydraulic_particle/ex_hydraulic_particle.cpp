@@ -13,9 +13,9 @@ int main(void)
   auto z1 = z;
   hmap::hydraulic_particle(z1, nparticles, seed);
 
-  auto moisture_map = z;
+  auto moisture_map = z * z;
   auto z2 = z;
-  hmap::hydraulic_particle(z2, nparticles, seed, &moisture_map);
+  hmap::hydraulic_particle(z2, nparticles, seed, nullptr, &moisture_map);
 
   auto        z3 = z;
   hmap::Array erosion_map;
@@ -23,6 +23,7 @@ int main(void)
   hmap::hydraulic_particle(z3,
                            nparticles,
                            seed,
+                           nullptr,
                            &moisture_map,
                            &erosion_map,
                            &deposition_map);
