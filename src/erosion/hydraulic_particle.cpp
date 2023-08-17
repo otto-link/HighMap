@@ -30,6 +30,7 @@ namespace hmap
 void hydraulic_particle(Array &z,
                         int    nparticles,
                         int    seed,
+                        Array *p_bedrock,
                         Array *p_moisture_map,
                         Array *p_erosion_map,
                         Array *p_deposition_map,
@@ -163,6 +164,10 @@ void hydraulic_particle(Array &z,
         // kernel-based - VERY SLOW
         z.depose_amount_kernel_bilinear_at(i, j, u, v, ir, -amount);
 
+      // make sure bedrock is not eroded
+      if (p_bedrock)
+        z(i, j) = std::max(z(i, j), (*p_bedrock)(i, j));
+
       volume *= (1 - dt * evap_rate);
     }
   }
@@ -187,6 +192,7 @@ void hydraulic_particle(Array &z,
                         Array *p_mask,
                         int    nparticles,
                         int    seed,
+                        Array *p_bedrock,
                         Array *p_moisture_map,
                         Array *p_erosion_map,
                         Array *p_deposition_map,
@@ -201,6 +207,7 @@ void hydraulic_particle(Array &z,
     hydraulic_particle(z,
                        nparticles,
                        seed,
+                       p_bedrock,
                        p_moisture_map,
                        p_erosion_map,
                        p_deposition_map,
@@ -216,6 +223,7 @@ void hydraulic_particle(Array &z,
     hydraulic_particle(z_f,
                        nparticles,
                        seed,
+                       p_bedrock,
                        p_moisture_map,
                        p_erosion_map,
                        p_deposition_map,
