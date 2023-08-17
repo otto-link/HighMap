@@ -285,11 +285,17 @@ void hydraulic_ridge(Array &z,
  * @brief Apply hydraulic erosion using based on a flow accumulation map.
  *
  * @param z Input array.
- * @param z_bedrock Lower elevation limit.
+ * @param p_mask Intensity mask, expected in [0, 1] (applied as a
+ * post-processing).
  * @param c_erosion Erosion coefficient.
  * @param talus_ref Reference talus used to localy define the flow-partition
  * exponent (small values of `talus_ref` will lead to thinner flow streams, see
  * {@link flow_accumulation_dinf}).
+ * @param p_bedrock Lower elevation limit.
+ * @param p_erosion_map[out] Reference to the erosion map, provided as an output
+ * field.
+ * @param p_deposition_map [out] Reference to the depositio, map, provided as an
+ * output field.
  * @param ir Kernel radius. If `ir > 1`, a cone kernel is used to carv channel
  * flow erosion.
  * @param clipping_ratio Flow accumulation clipping ratio.
@@ -301,9 +307,21 @@ void hydraulic_ridge(Array &z,
  * @image html ex_hydraulic_stream.png
  */
 void hydraulic_stream(Array &z,
-                      Array &z_bedrock,
                       float  c_erosion,
                       float  talus_ref,
+                      Array *p_bedrock = nullptr,
+                      Array *p_erosion_map = nullptr,    // -> out
+                      Array *p_deposition_map = nullptr, // -> out
+                      int    ir = 1,
+                      float  clipping_ratio = 10.f);
+
+void hydraulic_stream(Array &z,
+                      Array *p_mask,
+                      float  c_erosion,
+                      float  talus_ref,
+                      Array *p_bedrock = nullptr,
+                      Array *p_erosion_map = nullptr,    // -> out
+                      Array *p_deposition_map = nullptr, // -> out
                       int    ir = 1,
                       float  clipping_ratio = 10.f);
 

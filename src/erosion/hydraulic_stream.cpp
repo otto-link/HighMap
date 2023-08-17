@@ -13,12 +13,20 @@ namespace hmap
 {
 
 void hydraulic_stream(Array &z,
-                      Array &z_bedrock,
                       float  c_erosion,
                       float  talus_ref,
+                      Array *p_bedrock,
+                      Array *p_erosion_map,
+                      Array *p_deposition_map,
                       int    ir,
                       float  clipping_ratio)
 {
+  // keep a backup of the input if the erosion / deposition maps need
+  // to be computed
+  Array z_bckp = Array({0, 0});
+  if ((p_erosion_map != nullptr) | (p_deposition_map != nullptr))
+    z_bckp = z;
+
   // use flow accumulation to determine erosion intensity
   Array facc = flow_accumulation_dinf(z, talus_ref);
 
@@ -38,7 +46,60 @@ void hydraulic_stream(Array &z,
 
   Array ze = z - c_erosion * facc;
 
-  z = maximum(z_bedrock, ze);
+  if (p_bedrock)
+    z = maximum(*p_bedrock, ze);
+  else
+  {
+    hmap::Array z_bedrock = hmap::minimum_local(z, 16 * ir);
+    z = maximum(z_bedrock, ze);
+  }
+
+  // splatmaps
+  if (p_erosion_map)
+  {
+    *p_erosion_map = z_bckp - z;
+    clamp_min(*p_erosion_map, 0.f);
+  }
+
+  if (p_deposition_map)
+  {
+    *p_deposition_map = z - z_bckp;
+    clamp_min(*p_deposition_map, 0.f);
+  }
+}
+
+void hydraulic_stream(Array &z,
+                      Array *p_mask,
+                      float  c_erosion,
+                      float  talus_ref,
+                      Array *p_bedrock,
+                      Array *p_erosion_map,
+                      Array *p_deposition_map,
+                      int    ir,
+                      float  clipping_ratio)
+{
+  if (!p_mask)
+    hydraulic_stream(z,
+                     c_erosion,
+                     talus_ref,
+                     p_bedrock,
+                     p_erosion_map,
+                     p_deposition_map,
+                     ir,
+                     clipping_ratio);
+  else
+  {
+    Array z_f = z;
+    hydraulic_stream(z_f,
+                     c_erosion,
+                     talus_ref,
+                     p_bedrock,
+                     p_erosion_map,
+                     p_deposition_map,
+                     ir,
+                     clipping_ratio);
+    z = lerp(z, z_f, *(p_mask));
+  }
 }
 
 } // namespace hmap
