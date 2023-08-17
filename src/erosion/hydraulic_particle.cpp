@@ -174,6 +174,12 @@ void hydraulic_particle(Array &z,
 
   extrapolate_borders(z);
 
+  // last pass for bedrock
+  if (p_bedrock)
+    for (int i = 0; i < z.shape.x; i++)
+      for (int j = 0; j < z.shape.y; j++)
+        z(i, j) = std::max(z(i, j), (*p_bedrock)(i, j));
+
   // splatmaps
   if (p_erosion_map)
   {
