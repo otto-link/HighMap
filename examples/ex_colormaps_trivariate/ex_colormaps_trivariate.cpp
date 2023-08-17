@@ -15,9 +15,7 @@ int main(void)
   hmap::gamma_correction(z, 0.7f);
 
   hmap::Array zb = hmap::minimum_local(z, 32);
-  // hmap::hydraulic_ridge(z, 6.f / shape.x, 0.1f);
-  hmap::hydraulic_stream(z, zb, 0.02f, 10.f / shape.x);
-  // hmap::hydraulic_vpipes(z);
+  hmap::hydraulic_stream(z, 0.02f, 10.f / shape.x, &zb);
   hmap::hydraulic_particle(z, 100000, seed);
 
   z.to_png("ex_colormaps_trivariate_hmap.png", hmap::cmap::gray);
