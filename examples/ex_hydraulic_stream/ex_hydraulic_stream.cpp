@@ -1,8 +1,4 @@
-#include "highmap/array.hpp"
-#include "highmap/erosion.hpp"
-#include "highmap/io.hpp"
-#include "highmap/op.hpp"
-#include "highmap/primitives.hpp"
+#include "highmap.hpp"
 
 int main(void)
 {
@@ -11,7 +7,8 @@ int main(void)
   int               seed = 1;
 
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
-  auto        z0 = z;
+  hmap::remap(z);
+  auto z0 = z;
 
   float       c_erosion = 0.1f;
   float       talus_ref = 5.f / (float)shape.x;
@@ -25,14 +22,14 @@ int main(void)
   int  ir = 5;
 
   auto erosion_map = hmap::Array(shape);
-  auto deposition_map = hmap::Array(shape);
+  auto moisture_map = z;
 
   hmap::hydraulic_stream(z2,
                          c_erosion,
                          talus_ref,
                          &z_bedrock,
+                         &moisture_map,
                          &erosion_map,
-                         &deposition_map,
                          ir);
 
   hmap::export_banner_png("ex_hydraulic_stream0.png",
@@ -40,7 +37,5 @@ int main(void)
                           hmap::cmap::terrain,
                           true);
 
-  hmap::export_banner_png("ex_hydraulic_stream1.png",
-                          {erosion_map, deposition_map},
-                          hmap::cmap::inferno);
+  erosion_map.to_png("ex_hydraulic_stream1.png", hmap::cmap::inferno);
 }
