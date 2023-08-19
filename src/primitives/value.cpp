@@ -179,4 +179,61 @@ Array value_noise_linear(Vec2<int>   shape,
   return array;
 }
 
+Array value_noise_thinplate(Vec2<int>   shape,
+                            float       kw,
+                            uint        seed,
+                            Array      *p_noise_x,
+                            Array      *p_noise_y,
+                            Vec2<float> shift,
+                            Vec2<float> scale)
+{
+  Array array = Array({shape.x, shape.y});
+
+  // --- Generate 'n' random grid points
+  int n = (int)(kw * kw);
+
+  std::vector<float> x(n);
+  std::vector<float> y(n);
+  std::vector<float> value(n);
+
+  random_grid(x, y, value, seed, {0.f, 1.f, 0.f, 1.f});
+  expand_grid(x, y, value, {0.f, 1.f, 0.f, 1.f});
+
+  // --- Interpolate
+  _2D::ThinPlateSplineInterpolator<float> interp;
+  interp.setData(x, y, value);
+
+  // array grid
+  std::vector<float> xg = linspace(shift.x, shift.x + scale.x, shape.x);
+  std::vector<float> yg = linspace(shift.y, shift.y + scale.y, shape.y);
+
+  if ((!p_noise_x) and (!p_noise_y))
+  {
+    for (int i = 0; i < shape.x; i++)
+      for (int j = 0; j < shape.y; j++)
+        array(i, j) = interp(xg[i], yg[j]);
+  }
+  else if (p_noise_x and (!p_noise_y))
+  {
+    for (int i = 0; i < shape.x; i++)
+      for (int j = 0; j < shape.y; j++)
+        array(i, j) = interp(xg[i] + (*p_noise_x)(i, j), yg[j]);
+  }
+  else if ((!p_noise_x) and p_noise_y)
+  {
+    for (int i = 0; i < shape.x; i++)
+      for (int j = 0; j < shape.y; j++)
+        array(i, j) = interp(xg[i], yg[j] + (*p_noise_y)(i, j));
+  }
+  else if (p_noise_x and p_noise_y)
+  {
+    for (int i = 0; i < shape.x; i++)
+      for (int j = 0; j < shape.y; j++)
+        array(i, j) = interp(xg[i] + (*p_noise_x)(i, j),
+                             yg[j] + (*p_noise_y)(i, j));
+  }
+
+  return array;
+}
+
 } // namespace hmap

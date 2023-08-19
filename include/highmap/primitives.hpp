@@ -824,6 +824,34 @@ Array value_noise_linear(Vec2<int>   shape,
                          Vec2<float> scale = {1.f, 1.f});
 
 /**
+ * @brief Return an array filled with value noise based on thinplate
+ * interpolation of a set of random points.
+ *
+ * @param shape Array shape.
+ * @param kw Noise reference wavenumber.
+ * @param seed Random seed number.
+ * @param p_noise_x, p_noise_y Reference to the input noise array used for
+ * domain warping (NOT in pixels, with respect to a unit domain).
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a
+ * unit domain.
+ * @param scale Domain scaling, in [0, 1].
+ * @return Array Value noise.
+ *
+ * **Example**
+ * @include ex_value_noise_thinplate.cpp
+ *
+ * **Result**
+ * @image html ex_value_noise_thinplate.png
+ */
+Array value_noise_thinplate(Vec2<int>   shape,
+                            float       kw,
+                            uint        seed,
+                            Array      *p_noise_x = nullptr,
+                            Array      *p_noise_y = nullptr,
+                            Vec2<float> shift = {0.f, 0.f},
+                            Vec2<float> scale = {1.f, 1.f});
+
+/**
  * @brief Return a sine wave.
  *
  * @param shape Array shape.

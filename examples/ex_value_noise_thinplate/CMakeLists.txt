@@ -1,0 +1,2 @@
+add_executable(ex_value_noise_thinplate ex_value_noise_thinplate.cpp)
+target_link_libraries(ex_value_noise_thinplate highmap)
