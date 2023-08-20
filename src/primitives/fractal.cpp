@@ -57,14 +57,13 @@ Array fbm_perlin(Vec2<int>   shape,
   noise.SetFractalType(FastNoiseLite::FractalType_FBm);
   noise.SetFractalWeightedStrength(weight);
 
-  array = helper_get_noise(array,
-                           kw,
-                           p_noise_x,
-                           p_noise_y,
-                           shift,
-                           scale,
-                           [&noise](float x, float y)
-                           { return noise.GetNoise(x, y); });
+  helper_get_noise(array,
+                   kw,
+                   p_noise_x,
+                   p_noise_y,
+                   shift,
+                   scale,
+                   [&noise](float x, float y) { return noise.GetNoise(x, y); });
   return array;
 }
 
@@ -141,14 +140,13 @@ Array fbm_worley(Vec2<int>   shape,
   noise.SetFractalType(FastNoiseLite::FractalType_FBm);
   noise.SetFractalWeightedStrength(weight);
 
-  array = helper_get_noise(array,
-                           kw,
-                           p_noise_x,
-                           p_noise_y,
-                           shift,
-                           scale,
-                           [&noise](float x, float y)
-                           { return noise.GetNoise(x, y); });
+  helper_get_noise(array,
+                   kw,
+                   p_noise_x,
+                   p_noise_y,
+                   shift,
+                   scale,
+                   [&noise](float x, float y) { return noise.GetNoise(x, y); });
   return array;
 }
 
@@ -240,14 +238,13 @@ Array pingpong_perlin(Vec2<int>   shape,
   noise.SetFractalType(FastNoiseLite::FractalType_PingPong);
   noise.SetFractalWeightedStrength(weight);
 
-  array = helper_get_noise(array,
-                           kw,
-                           p_noise_x,
-                           p_noise_y,
-                           shift,
-                           scale,
-                           [&noise](float x, float y)
-                           { return noise.GetNoise(x, y); });
+  helper_get_noise(array,
+                   kw,
+                   p_noise_x,
+                   p_noise_y,
+                   shift,
+                   scale,
+                   [&noise](float x, float y) { return noise.GetNoise(x, y); });
   return array;
 }
 
@@ -274,14 +271,13 @@ Array ridged_perlin(Vec2<int>   shape,
   noise.SetFractalType(FastNoiseLite::FractalType_Ridged);
   noise.SetFractalWeightedStrength(weight);
 
-  array = helper_get_noise(array,
-                           kw,
-                           p_noise_x,
-                           p_noise_y,
-                           shift,
-                           scale,
-                           [&noise](float x, float y)
-                           { return noise.GetNoise(x, y); });
+  helper_get_noise(array,
+                   kw,
+                   p_noise_x,
+                   p_noise_y,
+                   shift,
+                   scale,
+                   [&noise](float x, float y) { return noise.GetNoise(x, y); });
   return array;
 }
 

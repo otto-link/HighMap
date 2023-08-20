@@ -30,14 +30,13 @@ Array value_noise(Vec2<int>   shape,
   noise.SetFrequency(1.0f);
   noise.SetNoiseType(FastNoiseLite::NoiseType_Value);
 
-  array = helper_get_noise(array,
-                           kw,
-                           p_noise_x,
-                           p_noise_y,
-                           shift,
-                           scale,
-                           [&noise](float x, float y)
-                           { return noise.GetNoise(x, y); });
+  helper_get_noise(array,
+                   kw,
+                   p_noise_x,
+                   p_noise_y,
+                   shift,
+                   scale,
+                   [&noise](float x, float y) { return noise.GetNoise(x, y); });
   return array;
 }
 
@@ -59,7 +58,9 @@ Array value_noise_delaunay(Vec2<int>   shape,
   std::vector<float> value(n);
 
   random_grid(x, y, value, seed, {0.f, 1.f, 0.f, 1.f});
-  expand_grid(x, y, value, {0.f, 1.f, 0.f, 1.f});
+
+  if ((p_noise_x) or (p_noise_y))
+    expand_grid(x, y, value, {0.f, 1.f, 0.f, 1.f});
 
   // --- Interpolate
   _2D::LinearDelaunayTriangleInterpolator<float> interp;
@@ -150,31 +151,12 @@ Array value_noise_linear(Vec2<int>   shape,
   std::vector<float> xg = linspace(shift.x, shift.x + scale.x, shape.x);
   std::vector<float> yg = linspace(shift.y, shift.y + scale.y, shape.y);
 
-  if ((!p_noise_x) and (!p_noise_y))
-  {
-    for (int i = 0; i < shape.x; i++)
-      for (int j = 0; j < shape.y; j++)
-        array(i, j) = interp(xg[i], yg[j]);
-  }
-  else if (p_noise_x and (!p_noise_y))
-  {
-    for (int i = 0; i < shape.x; i++)
-      for (int j = 0; j < shape.y; j++)
-        array(i, j) = interp(xg[i] + (*p_noise_x)(i, j), yg[j]);
-  }
-  else if ((!p_noise_x) and p_noise_y)
-  {
-    for (int i = 0; i < shape.x; i++)
-      for (int j = 0; j < shape.y; j++)
-        array(i, j) = interp(xg[i], yg[j] + (*p_noise_y)(i, j));
-  }
-  else if (p_noise_x and p_noise_y)
-  {
-    for (int i = 0; i < shape.x; i++)
-      for (int j = 0; j < shape.y; j++)
-        array(i, j) = interp(xg[i] + (*p_noise_x)(i, j),
-                             yg[j] + (*p_noise_y)(i, j));
-  }
+  helper_get_noise(array,
+                   xg,
+                   yg,
+                   p_noise_x,
+                   p_noise_y,
+                   [&interp](float x_, float y_) { return interp(x_, y_); });
 
   return array;
 }
@@ -197,7 +179,9 @@ Array value_noise_thinplate(Vec2<int>   shape,
   std::vector<float> value(n);
 
   random_grid(x, y, value, seed, {0.f, 1.f, 0.f, 1.f});
-  expand_grid(x, y, value, {0.f, 1.f, 0.f, 1.f});
+
+  if ((p_noise_x) or (p_noise_y))
+    expand_grid(x, y, value, {0.f, 1.f, 0.f, 1.f});
 
   // --- Interpolate
   _2D::ThinPlateSplineInterpolator<float> interp;
@@ -207,31 +191,12 @@ Array value_noise_thinplate(Vec2<int>   shape,
   std::vector<float> xg = linspace(shift.x, shift.x + scale.x, shape.x);
   std::vector<float> yg = linspace(shift.y, shift.y + scale.y, shape.y);
 
-  if ((!p_noise_x) and (!p_noise_y))
-  {
-    for (int i = 0; i < shape.x; i++)
-      for (int j = 0; j < shape.y; j++)
-        array(i, j) = interp(xg[i], yg[j]);
-  }
-  else if (p_noise_x and (!p_noise_y))
-  {
-    for (int i = 0; i < shape.x; i++)
-      for (int j = 0; j < shape.y; j++)
-        array(i, j) = interp(xg[i] + (*p_noise_x)(i, j), yg[j]);
-  }
-  else if ((!p_noise_x) and p_noise_y)
-  {
-    for (int i = 0; i < shape.x; i++)
-      for (int j = 0; j < shape.y; j++)
-        array(i, j) = interp(xg[i], yg[j] + (*p_noise_y)(i, j));
-  }
-  else if (p_noise_x and p_noise_y)
-  {
-    for (int i = 0; i < shape.x; i++)
-      for (int j = 0; j < shape.y; j++)
-        array(i, j) = interp(xg[i] + (*p_noise_x)(i, j),
-                             yg[j] + (*p_noise_y)(i, j));
-  }
+  helper_get_noise(array,
+                   x,
+                   y,
+                   p_noise_x,
+                   p_noise_y,
+                   [&interp](float x_, float y_) { return interp(x_, y_); });
 
   return array;
 }

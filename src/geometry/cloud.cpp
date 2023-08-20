@@ -7,10 +7,13 @@
 #include <iomanip>
 #include <string>
 
-#include "delaunator.hpp"
+#include "Interpolate.hpp"
+// #include "delaunator.hpp"
 #include "macrologger.h"
 
 #include "highmap/geometry.hpp"
+#include "highmap/op.hpp"
+#include "highmap/primitives.hpp"
 
 namespace hmap
 {
@@ -143,6 +146,48 @@ void Cloud::to_array(Array &array, Vec4<float> bbox)
   }
 }
 
+void Cloud::to_array_interp(Array      &array,
+                            Vec4<float> bbox,
+                            Array      *p_noise_x,
+                            Array      *p_noise_y,
+                            Vec2<float> shift,
+                            Vec2<float> scale)
+{
+  std::vector<float> x = this->get_x();
+  std::vector<float> y = this->get_y();
+  std::vector<float> v = this->get_values();
+
+  if ((p_noise_x) or (p_noise_y))
+    expand_grid(x, y, v, bbox);
+
+  // TODO: add interp method as input parameter
+
+  // _2D::LinearDelaunayTriangleInterpolator<float> interp;
+
+  _2D::ThinPlateSplineInterpolator<float> interp;
+
+  interp.setData(x, y, v);
+
+  // array grid
+  Vec2<int> shape = array.shape;
+  float     lx = bbox.b - bbox.a;
+  float     ly = bbox.d - bbox.c;
+
+  std::vector<float> xg = linspace(bbox.a + shift.x * lx,
+                                   bbox.a + (shift.x + scale.x) * lx,
+                                   shape.x);
+  std::vector<float> yg = linspace(bbox.c + shift.y * ly,
+                                   bbox.c + (shift.y + scale.y) * ly,
+                                   shape.y);
+
+  helper_get_noise(array,
+                   xg,
+                   yg,
+                   p_noise_x,
+                   p_noise_y,
+                   [&interp](float x_, float y_) { return interp(x_, y_); });
+}
+
 void Cloud::to_csv(std::string fname)
 {
   std::fstream f;
@@ -154,9 +199,9 @@ void Cloud::to_csv(std::string fname)
 
 Graph Cloud::to_graph_delaunay()
 {
-  std::vector<float>     coords = this->get_xy();
-  delaunator::Delaunator d(coords);
-  Graph                  graph = Graph(*this);
+  std::vector<float>            coords = this->get_xy();
+  delaunator::Delaunator<float> d(coords);
+  Graph                         graph = Graph(*this);
 
   for (std::size_t e = 0; e < d.triangles.size(); e++)
   {
