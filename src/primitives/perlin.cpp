@@ -24,14 +24,13 @@ Array perlin(Vec2<int>   shape,
   noise.SetFrequency(1.0f);
   noise.SetNoiseType(FastNoiseLite::NoiseType_Perlin);
 
-  array = helper_get_noise(array,
-                           kw,
-                           p_noise_x,
-                           p_noise_y,
-                           shift,
-                           scale,
-                           [&noise](float x, float y)
-                           { return noise.GetNoise(x, y); });
+  helper_get_noise(array,
+                   kw,
+                   p_noise_x,
+                   p_noise_y,
+                   shift,
+                   scale,
+                   [&noise](float x, float y) { return noise.GetNoise(x, y); });
   return array;
 }
 
@@ -49,15 +48,14 @@ Array perlin_billow(Vec2<int>   shape,
   noise.SetFrequency(1.0f);
   noise.SetNoiseType(FastNoiseLite::NoiseType_Perlin);
 
-  array = helper_get_noise(array,
-                           kw,
-                           p_noise_x,
-                           p_noise_y,
-                           shift,
-                           scale,
-                           [&noise](float x, float y) {
-                             return 2.f * std::abs(noise.GetNoise(x, y)) - 1.f;
-                           });
+  helper_get_noise(array,
+                   kw,
+                   p_noise_x,
+                   p_noise_y,
+                   shift,
+                   scale,
+                   [&noise](float x, float y)
+                   { return 2.f * std::abs(noise.GetNoise(x, y)) - 1.f; });
   return array;
 }
 
@@ -75,17 +73,17 @@ Array perlin_mix(Vec2<int>   shape,
   noise.SetFrequency(1.0f);
   noise.SetNoiseType(FastNoiseLite::NoiseType_Perlin);
 
-  array = helper_get_noise(array,
-                           kw,
-                           p_noise_x,
-                           p_noise_y,
-                           shift,
-                           scale,
-                           [&noise](float x, float y)
-                           {
-                             return 0.5f * noise.GetNoise(x, y) +
-                                    std::abs(noise.GetNoise(x, y)) - 0.5f;
-                           });
+  helper_get_noise(array,
+                   kw,
+                   p_noise_x,
+                   p_noise_y,
+                   shift,
+                   scale,
+                   [&noise](float x, float y)
+                   {
+                     return 0.5f * noise.GetNoise(x, y) +
+                            std::abs(noise.GetNoise(x, y)) - 0.5f;
+                   });
   return array;
 }
 

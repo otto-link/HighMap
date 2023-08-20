@@ -317,6 +317,19 @@ public:
   void to_array(Array &array, Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
   /**
+   * @brief Interpolate array value using cloud points.
+   *
+   * @param array Input array.
+   * @param bbox Bounding box of the array.
+   */
+  void to_array_interp(Array      &array,
+                       Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f},
+                       Array      *p_noise_x = nullptr,
+                       Array      *p_noise_y = nullptr,
+                       Vec2<float> shift = {0.f, 0.f},
+                       Vec2<float> scale = {1.f, 1.f});
+
+  /**
    * @brief Export data to a csv file.
    *
    * @param fname File name.
@@ -761,6 +774,10 @@ public:
   void to_png(std::string fname, Vec2<int> shape = {512, 512});
 };
 
+//----------------------------------------
+// Point functions
+//----------------------------------------
+
 /**
  * @brief Return the polar angle between two points.
  *
@@ -769,6 +786,16 @@ public:
  * @return float Angle in radians.
  */
 float angle(const Point &p1, const Point &p2);
+
+/**
+ * @brief Return the distance between two points in 2D, using only `x` and `y`
+ * coordinates.
+ *
+ * @param p1 1st point.
+ * @param p2 2nd point.
+ * @return float Euclidian distance.
+ */
+float distance(const Point &p1, const Point &p2);
 
 /**
  * @brief Return the linear interpolation between two points by a parameter `t`.
@@ -780,15 +807,9 @@ float angle(const Point &p1, const Point &p2);
  */
 Point lerp(const Point &p1, const Point &p2, const float t);
 
-/**
- * @brief Return the distance between two points in 2D, using only `x` and `y`
- * coordinates.
- *
- * @param p1 1st point.
- * @param p2 2nd point.
- * @return float Euclidian distance.
- */
-float distance(const Point &p1, const Point &p2);
+//----------------------------------------
+// Grid functions
+//----------------------------------------
 
 /**
  * @brief Expand grid by translating and copying the values of the current
@@ -803,6 +824,21 @@ void expand_grid(std::vector<float> &x,
                  std::vector<float> &y,
                  std::vector<float> &value,
                  Vec4<float>         bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
+ * @brief
+ *
+ * @param x `x` coordinates.
+ * @param y `y` coordinates.
+ * @param value values.
+ * @param bbox Bounding box.
+ * @param corner_value Value at the four corner points.
+ */
+void expand_grid_corners(std::vector<float> &x,
+                         std::vector<float> &y,
+                         std::vector<float> &value,
+                         Vec4<float>         bbox = {0.f, 1.f, 0.f, 1.f},
+                         float               corner_value = 0.f);
 
 /**
  * @brief Generate a random grid.

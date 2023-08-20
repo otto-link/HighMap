@@ -39,6 +39,26 @@ void expand_grid(std::vector<float> &x,
       }
 }
 
+void expand_grid_corners(std::vector<float> &x,
+                         std::vector<float> &y,
+                         std::vector<float> &value,
+                         Vec4<float>         bbox,
+                         float               corner_value)
+{
+  x.push_back(bbox.a);
+  x.push_back(bbox.a);
+  x.push_back(bbox.b);
+  x.push_back(bbox.b);
+
+  y.push_back(bbox.c);
+  y.push_back(bbox.d);
+  y.push_back(bbox.c);
+  y.push_back(bbox.d);
+
+  for (int i = 0; i < 4; i++)
+    value.push_back(corner_value);
+}
+
 void random_grid(std::vector<float> &x,
                  std::vector<float> &y,
                  uint                seed,

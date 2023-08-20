@@ -421,13 +421,49 @@ Array wave_triangular(Vec2<int>   shape,
 // Helper
 //----------------------------------------------------------------------
 
-Array helper_get_noise(Array                             &array,
-                       Vec2<float>                        kw,
-                       Array                             *p_noise_x,
-                       Array                             *p_noise_y,
-                       Vec2<float>                        shift,
-                       Vec2<float>                        scale,
-                       std::function<float(float, float)> noise_fct)
+void helper_get_noise(Array                             &array,
+                      std::vector<float>                &x,
+                      std::vector<float>                &y,
+                      Array                             *p_noise_x,
+                      Array                             *p_noise_y,
+                      std::function<float(float, float)> noise_fct)
+{
+  Vec2<int> shape = array.shape;
+
+  if ((!p_noise_x) and (!p_noise_y))
+  {
+    for (int i = 0; i < shape.x; i++)
+      for (int j = 0; j < shape.y; j++)
+        array(i, j) = noise_fct(x[i], y[j]);
+  }
+  else if (p_noise_x and (!p_noise_y))
+  {
+    for (int i = 0; i < shape.x; i++)
+      for (int j = 0; j < shape.y; j++)
+        array(i, j) = noise_fct(x[i] + (*p_noise_x)(i, j), y[j]);
+  }
+  else if ((!p_noise_x) and p_noise_y)
+  {
+    for (int i = 0; i < shape.x; i++)
+      for (int j = 0; j < shape.y; j++)
+        array(i, j) = noise_fct(x[i], y[j] + (*p_noise_y)(i, j));
+  }
+  else if (p_noise_x and p_noise_y)
+  {
+    for (int i = 0; i < shape.x; i++)
+      for (int j = 0; j < shape.y; j++)
+        array(i, j) = noise_fct(x[i] + (*p_noise_x)(i, j),
+                                y[j] + (*p_noise_y)(i, j));
+  }
+}
+
+void helper_get_noise(Array                             &array,
+                      Vec2<float>                        kw,
+                      Array                             *p_noise_x,
+                      Array                             *p_noise_y,
+                      Vec2<float>                        shift,
+                      Vec2<float>                        scale,
+                      std::function<float(float, float)> noise_fct)
 {
   float ki = kw.x / (float)array.shape.x * scale.x;
   float kj = kw.y / (float)array.shape.y * scale.y;
@@ -464,15 +500,14 @@ Array helper_get_noise(Array                             &array,
         float y = kj * (float)j + kw.y * shift.y + (*p_noise_y)(i, j);
         array(i, j) = noise_fct(x, y);
       }
-  return array;
 }
 
-Array helper_get_noise(Array                             &array,
-                       Array                             *p_noise_x,
-                       Array                             *p_noise_y,
-                       Vec2<float>                        shift,
-                       Vec2<float>                        scale,
-                       std::function<float(float, float)> noise_fct)
+void helper_get_noise(Array                             &array,
+                      Array                             *p_noise_x,
+                      Array                             *p_noise_y,
+                      Vec2<float>                        shift,
+                      Vec2<float>                        scale,
+                      std::function<float(float, float)> noise_fct)
 {
   float ai = 1.f / (float)array.shape.x * scale.x;
   float aj = 1.f / (float)array.shape.y * scale.y;
@@ -509,7 +544,6 @@ Array helper_get_noise(Array                             &array,
         float y = aj * (float)j + shift.y + (*p_noise_y)(i, j);
         array(i, j) = noise_fct(x, y);
       }
-  return array;
 }
 
 } // namespace hmap

@@ -1,0 +1,2 @@
+add_executable(ex_cloud_to_array_interp ex_cloud_to_array_interp.cpp)
+target_link_libraries(ex_cloud_to_array_interp highmap)
