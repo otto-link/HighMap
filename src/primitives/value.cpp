@@ -30,13 +30,20 @@ Array value_noise(Vec2<int>   shape,
   noise.SetFrequency(1.0f);
   noise.SetNoiseType(FastNoiseLite::NoiseType_Value);
 
+  std::vector<float> x = linspace(kw.x * shift.x,
+                                  kw.x * (shift.x + scale.x),
+                                  array.shape.x);
+  std::vector<float> y = linspace(kw.y * shift.y,
+                                  kw.y * (shift.y + scale.y),
+                                  array.shape.y);
+
   helper_get_noise(array,
-                   kw,
+                   x,
+                   y,
                    p_noise_x,
                    p_noise_y,
-                   shift,
-                   scale,
-                   [&noise](float x, float y) { return noise.GetNoise(x, y); });
+                   [&noise](float x_, float y_)
+                   { return noise.GetNoise(x_, y_); });
   return array;
 }
 
@@ -68,32 +75,12 @@ Array value_noise_delaunay(Vec2<int>   shape,
   std::vector<float> xg = linspace(shift.x, shift.x + scale.x, shape.x);
   std::vector<float> yg = linspace(shift.y, shift.y + scale.y, shape.y);
 
-  if ((!p_noise_x) and (!p_noise_y))
-  {
-    for (int i = 0; i < shape.x; i++)
-      for (int j = 0; j < shape.y; j++)
-        array(i, j) = interp(xg[i], yg[j]);
-  }
-  else if (p_noise_x and (!p_noise_y))
-  {
-    for (int i = 0; i < shape.x; i++)
-      for (int j = 0; j < shape.y; j++)
-        array(i, j) = interp(xg[i] + (*p_noise_x)(i, j), yg[j]);
-  }
-  else if ((!p_noise_x) and p_noise_y)
-  {
-    for (int i = 0; i < shape.x; i++)
-      for (int j = 0; j < shape.y; j++)
-        array(i, j) = interp(xg[i], yg[j] + (*p_noise_y)(i, j));
-  }
-  else if (p_noise_x and p_noise_y)
-  {
-    for (int i = 0; i < shape.x; i++)
-      for (int j = 0; j < shape.y; j++)
-        array(i, j) = interp(xg[i] + (*p_noise_x)(i, j),
-                             yg[j] + (*p_noise_y)(i, j));
-  }
-
+  helper_get_noise(array,
+                   x,
+                   y,
+                   p_noise_x,
+                   p_noise_y,
+                   [&interp](float x_, float y_) { return interp(x_, y_); });
   return array;
 }
 

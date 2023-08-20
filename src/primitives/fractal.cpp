@@ -57,13 +57,20 @@ Array fbm_perlin(Vec2<int>   shape,
   noise.SetFractalType(FastNoiseLite::FractalType_FBm);
   noise.SetFractalWeightedStrength(weight);
 
+  std::vector<float> x = linspace(kw.x * shift.x,
+                                  kw.x * (shift.x + scale.x),
+                                  array.shape.x);
+  std::vector<float> y = linspace(kw.y * shift.y,
+                                  kw.y * (shift.y + scale.y),
+                                  array.shape.y);
+
   helper_get_noise(array,
-                   kw,
+                   x,
+                   y,
                    p_noise_x,
                    p_noise_y,
-                   shift,
-                   scale,
-                   [&noise](float x, float y) { return noise.GetNoise(x, y); });
+                   [&noise](float x_, float y_)
+                   { return noise.GetNoise(x_, y_); });
   return array;
 }
 
@@ -140,13 +147,21 @@ Array fbm_worley(Vec2<int>   shape,
   noise.SetFractalType(FastNoiseLite::FractalType_FBm);
   noise.SetFractalWeightedStrength(weight);
 
+  std::vector<float> x = linspace(kw.x * shift.x,
+                                  kw.x * (shift.x + scale.x),
+                                  array.shape.x);
+  std::vector<float> y = linspace(kw.y * shift.y,
+                                  kw.y * (shift.y + scale.y),
+                                  array.shape.y);
+
   helper_get_noise(array,
-                   kw,
+                   x,
+                   y,
                    p_noise_x,
                    p_noise_y,
-                   shift,
-                   scale,
-                   [&noise](float x, float y) { return noise.GetNoise(x, y); });
+                   [&noise](float x_, float y_)
+                   { return noise.GetNoise(x_, y_); });
+
   return array;
 }
 
@@ -238,13 +253,20 @@ Array pingpong_perlin(Vec2<int>   shape,
   noise.SetFractalType(FastNoiseLite::FractalType_PingPong);
   noise.SetFractalWeightedStrength(weight);
 
+  std::vector<float> x = linspace(kw.x * shift.x,
+                                  kw.x * (shift.x + scale.x),
+                                  array.shape.x);
+  std::vector<float> y = linspace(kw.y * shift.y,
+                                  kw.y * (shift.y + scale.y),
+                                  array.shape.y);
+
   helper_get_noise(array,
-                   kw,
+                   x,
+                   y,
                    p_noise_x,
                    p_noise_y,
-                   shift,
-                   scale,
-                   [&noise](float x, float y) { return noise.GetNoise(x, y); });
+                   [&noise](float x_, float y_)
+                   { return noise.GetNoise(x_, y_); });
   return array;
 }
 
@@ -271,13 +293,20 @@ Array ridged_perlin(Vec2<int>   shape,
   noise.SetFractalType(FastNoiseLite::FractalType_Ridged);
   noise.SetFractalWeightedStrength(weight);
 
+  std::vector<float> x = linspace(kw.x * shift.x,
+                                  kw.x * (shift.x + scale.x),
+                                  array.shape.x);
+  std::vector<float> y = linspace(kw.y * shift.y,
+                                  kw.y * (shift.y + scale.y),
+                                  array.shape.y);
+
   helper_get_noise(array,
-                   kw,
+                   x,
+                   y,
                    p_noise_x,
                    p_noise_y,
-                   shift,
-                   scale,
-                   [&noise](float x, float y) { return noise.GetNoise(x, y); });
+                   [&noise](float x_, float y_)
+                   { return noise.GetNoise(x_, y_); });
   return array;
 }
 

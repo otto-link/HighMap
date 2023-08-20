@@ -28,21 +28,6 @@ void helper_get_noise(Array                             &array,
                       Array                             *p_noise_y,
                       std::function<float(float, float)> noise_fct);
 
-void helper_get_noise(Array                             &array,
-                      Vec2<float>                        kw,
-                      Array                             *p_noise_x,
-                      Array                             *p_noise_y,
-                      Vec2<float>                        shift,
-                      Vec2<float>                        scale,
-                      std::function<float(float, float)> noise_fct);
-
-void helper_get_noise(Array                             &array,
-                      Array                             *p_noise_x,
-                      Array                             *p_noise_y,
-                      Vec2<float>                        shift,
-                      Vec2<float>                        scale,
-                      std::function<float(float, float)> noise_fct);
-
 /**
  * @brief Return a biweight kernel.
  *
