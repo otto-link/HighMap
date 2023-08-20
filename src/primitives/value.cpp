@@ -58,9 +58,7 @@ Array value_noise_delaunay(Vec2<int>   shape,
   std::vector<float> value(n);
 
   random_grid(x, y, value, seed, {0.f, 1.f, 0.f, 1.f});
-
-  if ((p_noise_x) or (p_noise_y))
-    expand_grid(x, y, value, {0.f, 1.f, 0.f, 1.f});
+  expand_grid(x, y, value, {0.f, 1.f, 0.f, 1.f});
 
   // --- Interpolate
   _2D::LinearDelaunayTriangleInterpolator<float> interp;
@@ -179,9 +177,7 @@ Array value_noise_thinplate(Vec2<int>   shape,
   std::vector<float> value(n);
 
   random_grid(x, y, value, seed, {0.f, 1.f, 0.f, 1.f});
-
-  if ((p_noise_x) or (p_noise_y))
-    expand_grid(x, y, value, {0.f, 1.f, 0.f, 1.f});
+  expand_grid(x, y, value, {0.f, 1.f, 0.f, 1.f});
 
   // --- Interpolate
   _2D::ThinPlateSplineInterpolator<float> interp;

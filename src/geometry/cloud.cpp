@@ -7,8 +7,8 @@
 #include <iomanip>
 #include <string>
 
+#include "AnyInterpolator.hpp"
 #include "Interpolate.hpp"
-// #include "delaunator.hpp"
 #include "macrologger.h"
 
 #include "highmap/geometry.hpp"
@@ -148,6 +148,7 @@ void Cloud::to_array(Array &array, Vec4<float> bbox)
 
 void Cloud::to_array_interp(Array      &array,
                             Vec4<float> bbox,
+                            int         interpolation_method,
                             Array      *p_noise_x,
                             Array      *p_noise_y,
                             Vec2<float> shift,
@@ -157,14 +158,19 @@ void Cloud::to_array_interp(Array      &array,
   std::vector<float> y = this->get_y();
   std::vector<float> v = this->get_values();
 
-  if ((p_noise_x) or (p_noise_y))
-    expand_grid(x, y, v, bbox);
+  expand_grid(x, y, v, bbox);
 
-  // TODO: add interp method as input parameter
+  _2D::AnyInterpolator<
+      float,
+      void(std::vector<float>, std::vector<float>, std::vector<float>)>
+      interp; // = _2D::LinearDelaunayTriangleInterpolator<float>();
 
-  // _2D::LinearDelaunayTriangleInterpolator<float> interp;
-
-  _2D::ThinPlateSplineInterpolator<float> interp;
+  if (interpolation_method == 0)
+    interp = _2D::LinearDelaunayTriangleInterpolator<float>();
+  else if (interpolation_method == 1)
+    interp = _2D::ThinPlateSplineInterpolator<float>();
+  else
+    LOG_ERROR("unknown interpolation method");
 
   interp.setData(x, y, v);
 

@@ -17,12 +17,16 @@ int main(void)
 
   hmap::Array nx = 0.5f * hmap::fbm_perlin(shape, {2.f, 2.f}, seed++);
   hmap::Array ny = 0.5f * hmap::fbm_perlin(shape, {2.f, 2.f}, seed++);
-  hmap::Array z2 = hmap::Array(shape);
-  cloud.to_array_interp(z2, bbox, &nx, &ny);
 
-  z2.to_file("out.bin");
+  int         interpolation_method = 0; // 0 linear, 1 thinplate
+  hmap::Array z2 = hmap::Array(shape);
+  cloud.to_array_interp(z2, bbox, interpolation_method, &nx, &ny);
+
+  hmap::Array z3 = hmap::Array(shape);
+  interpolation_method = 1;
+  cloud.to_array_interp(z3, bbox, interpolation_method, &nx, &ny);
 
   hmap::export_banner_png("ex_cloud_to_array_interp.png",
-                          {z0, z1, z2},
+                          {z0, z1, z2, z3},
                           hmap::cmap::inferno);
 }

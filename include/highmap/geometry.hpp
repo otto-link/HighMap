@@ -321,9 +321,16 @@ public:
    *
    * @param array Input array.
    * @param bbox Bounding box of the array.
+   *
+   * **Example**
+   * @include ex_cloud_to_array_interp.cpp
+   *
+   * **Result**
+   * @image html ex_cloud_to_array_interp.png
    */
   void to_array_interp(Array      &array,
                        Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f},
+                       int         interpolation_method = 0,
                        Array      *p_noise_x = nullptr,
                        Array      *p_noise_y = nullptr,
                        Vec2<float> shift = {0.f, 0.f},
