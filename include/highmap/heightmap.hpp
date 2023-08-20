@@ -241,6 +241,22 @@ private:
 };
 
 // shape, shift, scale, noise_x, noise_y
+
+/**
+ * @brief
+ *
+ * @param h
+ * @param p_noise_x
+ * @param p_noise_y
+ * @param nullary_op
+ *
+ * **Example**
+ * @include ex_heightmap_fill.cpp
+ *
+ * **Result**
+ * @image html ex_heightmap_fill0.png
+ * @image html ex_heightmap_fill1.png
+ */
 void fill(HeightMap                             &h,
           HeightMap                             *p_noise_x,
           HeightMap                             *p_noise_y,
