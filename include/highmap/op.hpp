@@ -121,11 +121,22 @@ inline float bilinear_interp(float f00,
  * @image html ex_blend1.png
  * @image html ex_blend2.png
  * @image html ex_blend3.png
+ * @image html ex_blend4.png
  *
  * @see {@link blend_exclusion}, {@link blend_negate}, {@link blend_overlay},
  * {@link blend_soft}
  */
 Array blend_exclusion(const Array &array1, const Array &array2);
+
+/**
+ * @brief Return the blending of two arrays based on their gradients.
+ *
+ * @param array1 1st array.
+ * @param array2 2nd array.
+ * @param ir Filtering radius (in pixels).
+ * @return Array Reference to the resulting object.
+ */
+Array blend_gradients(const Array &array1, const Array &array2, int ir = 4);
 
 /**
  * @brief Return the 'negate' blending of two arrays.

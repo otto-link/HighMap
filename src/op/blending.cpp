@@ -19,6 +19,20 @@ Array blend_exclusion(const Array &array1, const Array &array2)
   return array_out;
 }
 
+Array blend_gradients(const Array &array1, const Array &array2, int ir)
+{
+  Array dn1 = gradient_norm(array1);
+  Array dn2 = gradient_norm(array2);
+
+  smooth_cpulse(dn1, ir);
+  smooth_cpulse(dn2, ir);
+
+  Array t = maximum_smooth(dn1, dn2, 0.1f);
+  remap(t);
+
+  return lerp(array1, array2, t);
+}
+
 Array blend_negate(const Array &array1, const Array &array2)
 {
   Array array_out = Array(array1.shape);
