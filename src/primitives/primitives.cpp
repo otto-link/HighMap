@@ -40,8 +40,8 @@ Array base_elevation(Vec2<int>                       shape,
   std::vector<float> y = linspace(shift.y, shift.y + scale.y, shape.y);
 
   // Gaussian half-widths based on the mesh discretization
-  float s2x = width_factor * 2.f / dxc / dxc;
-  float s2y = width_factor * 2.f / dyc / dyc;
+  float s2x = 2.f / dxc / dxc / width_factor;
+  float s2y = 2.f / dyc / dyc / width_factor;
 
   for (size_t p = 0; p < ni; p++)
     for (size_t q = 0; q < nj; q++)
