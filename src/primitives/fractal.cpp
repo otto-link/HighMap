@@ -74,48 +74,61 @@ Array fbm_perlin(Vec2<int>   shape,
   return array;
 }
 
-Array fbm_perlin_advanced(Vec2<int>    shape,
-                          Vec2<float>  kw,
-                          uint         seed,
-                          int          octaves,
-                          const Array &weight,
-                          float        persistence,
-                          float        lacunarity,
-                          Vec2<float>  shift)
+Array fbm_perlin_advanced(Vec2<int>          shape,
+                          Vec2<float>        kw,
+                          uint               seed,
+                          std::vector<float> octave_amplitudes,
+                          float              lacunarity,
+                          Array             *p_weight,
+                          Array             *p_noise_x,
+                          Array             *p_noise_y,
+                          Vec2<float>        shift,
+                          Vec2<float>        scale)
 {
   Array         array = Array(shape);
   FastNoiseLite noise(seed);
+  int           octaves = (int)octave_amplitudes.size();
 
+  // define persistence for each octave gap
+  std::vector<float> persistence(octaves);
+  for (int k = 1; k < octaves; k++)
+    persistence[k] = octave_amplitudes[k] / octave_amplitudes[k - 1];
+
+  for (auto &v: persistence)
+    LOG_DEBUG("%f", v);
+  
   noise.SetFrequency(1.0f);
   noise.SetNoiseType(FastNoiseLite::NoiseType_Perlin);
 
-  float amp0 = compute_fractal_bounding(octaves, persistence);
-  float ki0 = kw.x / (float)shape.x;
-  float kj0 = kw.y / (float)shape.y;
+  float amp0 = compute_fractal_bounding(octaves, persistence[1]);
 
-  Vec2<float> shift0 = Vec2<float>(shift.x / ki0, shift.y / kj0);
+  std::vector<float> x = linspace(kw.x * shift.x,
+                                  kw.x * (shift.x + scale.x),
+                                  array.shape.x);
+  std::vector<float> y = linspace(kw.y * shift.y,
+                                  kw.y * (shift.y + scale.y),
+                                  array.shape.y);
 
   for (int i = 0; i < array.shape.x; i++)
     for (int j = 0; j < array.shape.y; j++)
     {
       float sum = 0.f;
       float amp = amp0;
-      float ki = ki0;
-      float kj = kj0;
+      float ki = 1.f;
+      float kj = 1.f;
       int   kseed = seed;
 
       for (int k = 0; k < octaves; k++)
       {
         noise.SetSeed(kseed++);
-        float value = noise.GetNoise(ki * ((float)i + shift0.x),
-                                     kj * ((float)j + shift0.y));
+        float value = noise.GetNoise(ki * x[i], kj * y[j]);
         sum += value * amp;
-        amp *= (1.f - weight(i, j)) +
-               weight(i, j) * std::min(value + 1.f, 2.f) * 0.5f;
+        amp *= (1.f - (*p_weight)(i, j)) +
+               (*p_weight)(i, j) * std::min(value + 1.f, 2.f) * 0.5f;
 
         ki *= lacunarity;
         kj *= lacunarity;
-        amp *= persistence;
+        amp *= persistence[k + 1];
       }
       array(i, j) = sum;
     }
