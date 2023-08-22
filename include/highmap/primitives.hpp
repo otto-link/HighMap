@@ -260,14 +260,16 @@ Array fbm_perlin(Vec2<int>   shape,
                  Vec2<float> shift = {0.f, 0.f},
                  Vec2<float> scale = {1.f, 1.f});
 
-Array fbm_perlin_advanced(Vec2<int>    shape,
-                          Vec2<float>  kw,
-                          uint         seed,
-                          int          octaves,
-                          const Array &weight,
-                          float        persistence = 0.5f,
-                          float        lacunarity = 2.f,
-                          Vec2<float>  shift = {0.f, 0.f});
+Array fbm_perlin_advanced(Vec2<int>          shape,
+                          Vec2<float>        kw,
+                          uint               seed,
+                          std::vector<float> octave_amplitudes,
+                          float              lacunarity = 2.f,
+                          Array             *p_weight = nullptr,
+                          Array             *p_noise_x = nullptr,
+                          Array             *p_noise_y = nullptr,
+                          Vec2<float>        shift = {0.f, 0.f},
+                          Vec2<float>        scale = {1.f, 1.f});
 
 /**
  * @brief Return an array filled with an hybrid multifractal Worley noise.
