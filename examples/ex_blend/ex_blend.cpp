@@ -1,7 +1,4 @@
-#include "highmap/array.hpp"
-#include "highmap/io.hpp"
-#include "highmap/op.hpp"
-#include "highmap/primitives.hpp"
+#include "highmap.hpp"
 
 int main(void)
 {
@@ -18,6 +15,7 @@ int main(void)
   auto z_negate = hmap::blend_negate(z1, z2);
   auto z_overlay = hmap::blend_overlay(z1, z2);
   auto z_soft = hmap::blend_soft(z1, z2);
+  auto z_gradients = hmap::blend_gradients(z1, z2);
 
   hmap::export_banner_png("ex_blend0.png",
                           {z1, z2, z_exclusion},
@@ -33,5 +31,9 @@ int main(void)
 
   hmap::export_banner_png("ex_blend3.png",
                           {z1, z2, z_soft},
+                          hmap::cmap::viridis);
+
+  hmap::export_banner_png("ex_blend4.png",
+                          {z1, z2, z_gradients},
                           hmap::cmap::viridis);
 }
