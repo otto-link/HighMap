@@ -1,0 +1,2 @@
+add_executable(ex_base_elevation ex_base_elevation.cpp)
+target_link_libraries(ex_base_elevation highmap)
