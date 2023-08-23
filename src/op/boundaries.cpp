@@ -49,8 +49,8 @@ void fill_borders(Array &array)
 
 Array generate_buffered_array(const Array &array, Vec4<int> buffers)
 {
-  Array array_out = Array({array.shape.x + buffers.a + buffers.b,
-                           array.shape.y + buffers.c + buffers.d});
+  Array array_out = Array(Vec2<int>(array.shape.x + buffers.a + buffers.b,
+                                    array.shape.y + buffers.c + buffers.d));
 
   for (int i = 0; i < array.shape.x; i++)
     for (int j = 0; j < array.shape.y; j++)

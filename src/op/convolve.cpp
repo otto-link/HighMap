@@ -86,8 +86,8 @@ Array convolve2d(const Array &array, const Array &kernel)
 
 Array convolve2d_truncated(const Array &array, const Array &kernel)
 {
-  Array array_out = Array(
-      {array.shape.x - kernel.shape.x, array.shape.y - kernel.shape.y});
+  Array array_out = Array(Vec2<int>(array.shape.x - kernel.shape.x,
+                                    array.shape.y - kernel.shape.y));
 
   for (int i = 0; i < array_out.shape.x; i++)
   {

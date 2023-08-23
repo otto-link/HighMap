@@ -1,8 +1,12 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
-
 #include <algorithm>
+#include <stdexcept>
+
+#include "macrologger.h"
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
 
 #include "highmap/array.hpp"
 
@@ -22,6 +26,40 @@ Array::Array(Vec2<int> shape, float value) : shape(shape)
 {
   this->vector.resize(this->shape.x * this->shape.y);
   std::fill(this->vector.begin(), this->vector.end(), value);
+}
+
+Array::Array(std::string filename)
+{
+  int width;
+  int height;
+  int original_no_channels;
+  int desired_no_channels = 3;
+
+  unsigned char *img = stbi_load(filename.c_str(),
+                                 &width,
+                                 &height,
+                                 &original_no_channels,
+                                 desired_no_channels);
+
+  if (original_no_channels != desired_no_channels)
+  {
+    LOG_ERROR("original_no_channels: %d (expected to have %d channels)",
+              original_no_channels,
+              desired_no_channels);
+    throw std::runtime_error(
+        "png file cannot be loaded, wrong number of channels");
+  }
+
+  this->set_shape(Vec2<int>(height, width));
+
+  for (int i = 0; i < this->shape.x; i++)
+    for (int j = 0; j < this->shape.y; j++)
+    {
+      // transpose and flip...
+      int k = ((this->shape.y - j - 1) * this->shape.x + i) *
+              desired_no_channels;
+      (*this)(i, j) = (float)img[k] / 255.f;
+    }
 }
 
 Vec2<int> Array::get_shape()

@@ -13,13 +13,8 @@ int main(void)
   std::vector<float> amp(8);
   for (size_t k = 0; k < amp.size(); k++)
     amp[k] = std::pow(0.5f, k);
-    
-  hmap::Array z = hmap::fbm_perlin_advanced(shape,
-                                            res,
-                                            seed,
-					    amp,
-                                            2.f,
-                                            &w);
+
+  hmap::Array z = hmap::fbm_perlin_advanced(shape, res, seed, amp, 2.f, &w);
 
   z.to_png("ex_fbm_perlin_advanced.png", hmap::cmap::terrain, true);
 }

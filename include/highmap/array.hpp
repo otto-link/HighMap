@@ -53,9 +53,11 @@ public:
    * @param shape Array shape {ni, nj}.
    * @param value Array filling value at creation.
    *
-   * **Example**
+   * **Example #1**
    * @include ex_array.cpp
-   *
+
+   * **Example #2**
+   * @include ex_to_png.cpp
    *
    */
   Array();
@@ -63,6 +65,8 @@ public:
   Array(Vec2<int> shape); ///< @overload
 
   Array(Vec2<int> shape, float value); ///< @overload
+
+  Array(std::string filename); ///< @overload
 
   //----------------------------------------
   // accessors

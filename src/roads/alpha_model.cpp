@@ -48,7 +48,8 @@ Graph generate_network_alpha_model(std::vector<float> xc,
 
   //--- road weights
 
-  Array is_road = Array({(int)graph.get_npoints(), (int)graph.get_npoints()});
+  Array is_road = Array(
+      Vec2<int>((int)graph.get_npoints(), (int)graph.get_npoints()));
 
   // define number of trips between each cities
   std::vector<float> ntrips = {};

@@ -25,7 +25,7 @@ void hydraulic_stream(Array &z,
 {
   // keep a backup of the input if the erosion / deposition maps need
   // to be computed
-  Array z_bckp = Array({0, 0});
+  Array z_bckp = Array();
   if (p_erosion_map)
     z_bckp = z;
 
