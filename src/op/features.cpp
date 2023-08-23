@@ -28,7 +28,7 @@ Array connected_components(const Array &array,
   const int npi = array.shape.x + 2;
   const int npj = array.shape.y + 2;
 
-  Array labels = Array({npi, npj});
+  Array labels = Array(Vec2<int>(npi, npj));
   Array array_pad = generate_buffered_array(array, {1, 1, 1, 1});
   set_borders(array_pad, background_value + 1.f, 1);
 

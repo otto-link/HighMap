@@ -55,8 +55,6 @@ Array value_noise_delaunay(Vec2<int>   shape,
                            Vec2<float> shift,
                            Vec2<float> scale)
 {
-  Array array = Array({shape.x, shape.y});
-
   // --- Generate 'n' random grid points
   int n = (int)(kw * kw);
 
@@ -75,12 +73,12 @@ Array value_noise_delaunay(Vec2<int>   shape,
   std::vector<float> xg = linspace(shift.x, shift.x + scale.x, shape.x);
   std::vector<float> yg = linspace(shift.y, shift.y + scale.y, shape.y);
 
-  helper_get_noise(array,
-                   x,
-                   y,
-                   p_noise_x,
-                   p_noise_y,
-                   [&interp](float x_, float y_) { return interp(x_, y_); });
+  Array array = helper_get_noise(xg,
+                                 yg,
+                                 p_noise_x,
+                                 p_noise_y,
+                                 [&interp](float x_, float y_)
+                                 { return interp(x_, y_); });
   return array;
 }
 
@@ -92,8 +90,6 @@ Array value_noise_linear(Vec2<int>   shape,
                          Vec2<float> shift,
                          Vec2<float> scale)
 {
-  Array array = Array(shape);
-
   // --- Generate random values on a regular coarse grid (adjust
   // --- extent according to the input noise in order to avoid "holes"
   // --- in the data for large noise displacement)
@@ -136,12 +132,12 @@ Array value_noise_linear(Vec2<int>   shape,
   std::vector<float> xg = linspace(shift.x, shift.x + scale.x, shape.x);
   std::vector<float> yg = linspace(shift.y, shift.y + scale.y, shape.y);
 
-  helper_get_noise(array,
-                   xg,
-                   yg,
-                   p_noise_x,
-                   p_noise_y,
-                   [&interp](float x_, float y_) { return interp(x_, y_); });
+  Array array = helper_get_noise(xg,
+                                 yg,
+                                 p_noise_x,
+                                 p_noise_y,
+                                 [&interp](float x_, float y_)
+                                 { return interp(x_, y_); });
 
   return array;
 }
@@ -154,8 +150,6 @@ Array value_noise_thinplate(Vec2<int>   shape,
                             Vec2<float> shift,
                             Vec2<float> scale)
 {
-  Array array = Array({shape.x, shape.y});
-
   // --- Generate 'n' random grid points
   int n = (int)(kw * kw);
 
@@ -174,12 +168,12 @@ Array value_noise_thinplate(Vec2<int>   shape,
   std::vector<float> xg = linspace(shift.x, shift.x + scale.x, shape.x);
   std::vector<float> yg = linspace(shift.y, shift.y + scale.y, shape.y);
 
-  helper_get_noise(array,
-                   x,
-                   y,
-                   p_noise_x,
-                   p_noise_y,
-                   [&interp](float x_, float y_) { return interp(x_, y_); });
+  Array array = helper_get_noise(xg,
+                                 yg,
+                                 p_noise_x,
+                                 p_noise_y,
+                                 [&interp](float x_, float y_)
+                                 { return interp(x_, y_); });
 
   return array;
 }

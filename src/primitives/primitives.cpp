@@ -125,7 +125,7 @@ Array cone_talus(float height, float talus)
   // zero is indeed reached with provided slope (talus) over the
   // half-width of the domain (since we build a cone)
   int   n = std::max(1, (int)(2.f * height / talus));
-  Array array = Array({n, n});
+  Array array = Array(Vec2<int>(n, n));
 
   if (n > 0)
     array = height * cone({n, n});

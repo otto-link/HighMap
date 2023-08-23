@@ -59,7 +59,7 @@ void hydraulic_particle(Array &z,
 
   // keep a backup of the input if the erosion / deposition maps need
   // to be computed
-  Array z_bckp = Array({0, 0});
+  Array z_bckp = Array();
   if ((p_erosion_map != nullptr) | (p_deposition_map != nullptr))
     z_bckp = z;
 

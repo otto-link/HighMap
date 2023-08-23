@@ -94,9 +94,9 @@ Array fbm_perlin_advanced(Vec2<int>          shape,
   for (int k = 1; k < octaves; k++)
     persistence[k] = octave_amplitudes[k] / octave_amplitudes[k - 1];
 
-  for (auto &v: persistence)
+  for (auto &v : persistence)
     LOG_DEBUG("%f", v);
-  
+
   noise.SetFrequency(1.0f);
   noise.SetNoiseType(FastNoiseLite::NoiseType_Perlin);
 

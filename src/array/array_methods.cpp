@@ -41,7 +41,7 @@ void Array::depose_amount_kernel_bilinear_at(int   i,
                                              int   ir,
                                              float amount)
 {
-  Array kernel = Array({2 * ir + 1, 2 * ir + 1});
+  Array kernel = Array(Vec2<int>(2 * ir + 1, 2 * ir + 1));
 
   // compute kernel first
   for (int p = -ir; p < ir + 1; p++)
@@ -76,7 +76,7 @@ void Array::depose_amount_kernel_at(int i, int j, Array &kernel, float amount)
 
 Array Array::extract_slice(Vec4<int> idx)
 {
-  Array array_out = Array({idx.b - idx.a, idx.d - idx.c});
+  Array array_out = Array(Vec2<int>(idx.b - idx.a, idx.d - idx.c));
 
   for (int i = idx.a; i < idx.b; i++)
     for (int j = idx.c; j < idx.d; j++)
@@ -149,7 +149,8 @@ float Array::get_value_bilinear_at(int i, int j, float u, float v) const
 
 Array hstack(const Array &array1, const Array &array2) // friend function
 {
-  Array array_out = Array({array1.shape.x + array2.shape.x, array1.shape.y});
+  Array array_out = Array(
+      Vec2<int>(array1.shape.x + array2.shape.x, array1.shape.y));
 
   for (int i = 0; i < array1.shape.x; i++)
     for (int j = 0; j < array1.shape.y; j++)
@@ -243,7 +244,8 @@ float Array::sum()
 
 Array vstack(const Array &array1, const Array &array2) // friend function
 {
-  Array array_out = Array({array1.shape.x, array1.shape.y + array2.shape.y});
+  Array array_out = Array(
+      Vec2<int>(array1.shape.x, array1.shape.y + array2.shape.y));
 
   for (int i = 0; i < array1.shape.x; i++)
   {
