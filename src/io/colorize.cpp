@@ -43,89 +43,8 @@ std::vector<uint8_t> colorize(const hmap::Array &array,
                               bool               hillshading)
 {
   // define colormap
-  std::vector<uint32_t> colors_data = {};
-
-  switch (cmap)
-  {
-  case cmap::blues:
-  case -cmap::blues:
-  {
-    colors_data = CMAP_BLUES;
-  }
-  break;
-
-  case cmap::bone:
-  case -cmap::bone:
-  {
-    colors_data = CMAP_BONE;
-  }
-  break;
-
-  case cmap::gray:
-  case -cmap::gray:
-  {
-    colors_data = CMAP_GRAY;
-  }
-  break;
-
-  case cmap::hot:
-  case -cmap::hot:
-  {
-    colors_data = CMAP_HOT;
-  }
-  break;
-
-  case cmap::inferno:
-  case -cmap::inferno:
-  {
-    colors_data = CMAP_INFERNO;
-  }
-  break;
-
-  case cmap::jet:
-  case -cmap::jet:
-  {
-    colors_data = CMAP_JET;
-  }
-  break;
-
-  case cmap::magma:
-  case -cmap::magma:
-  {
-    colors_data = CMAP_MAGMA;
-  }
-  break;
-
-  case cmap::nipy_spectral:
-  case -cmap::nipy_spectral:
-  {
-    colors_data = CMAP_NIPY_SPECTRAL;
-  }
-  break;
-
-  case cmap::seismic:
-  case -cmap::seismic:
-  {
-    colors_data = CMAP_SEISMIC;
-  }
-  break;
-
-  case cmap::terrain:
-  case -cmap::terrain:
-  {
-    colors_data = CMAP_TERRAIN;
-  }
-  break;
-
-  case cmap::viridis:
-  case -cmap::viridis:
-  {
-    colors_data = CMAP_VIRIDIS;
-  }
-  break;
-  }
-
-  Clut1D clut = Clut1D({CMAP_SIZE}, colors_data);
+  std::vector<uint32_t> colors_data = get_colormap_data(cmap);
+  Clut1D                clut = Clut1D({CMAP_SIZE}, colors_data);
 
   // create image
   std::vector<uint8_t> img(IMG_CHANNELS * array.shape.x * array.shape.y);
@@ -351,6 +270,92 @@ std::vector<uint8_t> colorize_trivariate(const Array &c0,
     apply_hillshade(img, c0);
 
   return img;
+}
+
+std::vector<uint32_t> get_colormap_data(int cmap)
+{
+  std::vector<uint32_t> colors_data;
+
+  switch (cmap)
+  {
+  case cmap::blues:
+  case -cmap::blues:
+  {
+    colors_data = CMAP_BLUES;
+  }
+  break;
+
+  case cmap::bone:
+  case -cmap::bone:
+  {
+    colors_data = CMAP_BONE;
+  }
+  break;
+
+  case cmap::gray:
+  case -cmap::gray:
+  {
+    colors_data = CMAP_GRAY;
+  }
+  break;
+
+  case cmap::hot:
+  case -cmap::hot:
+  {
+    colors_data = CMAP_HOT;
+  }
+  break;
+
+  case cmap::inferno:
+  case -cmap::inferno:
+  {
+    colors_data = CMAP_INFERNO;
+  }
+  break;
+
+  case cmap::jet:
+  case -cmap::jet:
+  {
+    colors_data = CMAP_JET;
+  }
+  break;
+
+  case cmap::magma:
+  case -cmap::magma:
+  {
+    colors_data = CMAP_MAGMA;
+  }
+  break;
+
+  case cmap::nipy_spectral:
+  case -cmap::nipy_spectral:
+  {
+    colors_data = CMAP_NIPY_SPECTRAL;
+  }
+  break;
+
+  case cmap::seismic:
+  case -cmap::seismic:
+  {
+    colors_data = CMAP_SEISMIC;
+  }
+  break;
+
+  case cmap::terrain:
+  case -cmap::terrain:
+  {
+    colors_data = CMAP_TERRAIN;
+  }
+  break;
+
+  case cmap::viridis:
+  case -cmap::viridis:
+  {
+    colors_data = CMAP_VIRIDIS;
+  }
+  break;
+  }
+  return colors_data;
 }
 
 void write_png_8bit(std::string           fname,
