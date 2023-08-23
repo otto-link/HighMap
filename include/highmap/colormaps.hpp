@@ -285,4 +285,12 @@ public:
   }
 };
 
+/**
+ * @brief Return the colormap color data a given colormap map.
+ *
+ * @param cmap Colormap.
+ * @return std::vector<uint32_t> Color data (as packed RGB uint32).
+ */
+std::vector<uint32_t> get_colormap_data(int cmap);
+
 } // namespace hmap
