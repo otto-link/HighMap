@@ -134,6 +134,24 @@ Array caldera(Vec2<int>   shape,
               Vec2<float> shift = {0.f, 0.f},
               Vec2<float> scale = {1.f, 1.f}); ///< @overload
 
+/**
+ * @brief Return a checkerboard heightmap.
+ *
+ * @param shape Array shape.
+ * @param kw Noise wavenumber with respect to a unit domain.
+ * @param p_noise_x, p_noise_y Reference to the input noise array used for
+ * domain warping (NOT in pixels, with respect to a unit domain).
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a
+ * unit domain.
+ * @param scale Domain scaling, in [0, 1].
+ * @return Array New array.
+ *
+ * **Example**
+ * @include ex_checkerboard.cpp
+ *
+ * **Result**
+ * @image html ex_checkerboard.png
+ */
 Array checkerboard(Vec2<int>   shape,
                    Vec2<float> kw,
                    Array      *p_noise_x = nullptr,
@@ -535,7 +553,6 @@ Array perlin(Vec2<int>   shape,
  *
  * **Result**
  * @image html ex_perlin.png
- *
  */
 Array perlin_billow(Vec2<int>   shape,
                     Vec2<float> kw,
