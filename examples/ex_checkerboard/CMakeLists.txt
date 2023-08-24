@@ -1,0 +1,2 @@
+add_executable(ex_checkerboard ex_checkerboard.cpp)
+target_link_libraries(ex_checkerboard highmap)

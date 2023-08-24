@@ -134,6 +134,13 @@ Array caldera(Vec2<int>   shape,
               Vec2<float> shift = {0.f, 0.f},
               Vec2<float> scale = {1.f, 1.f}); ///< @overload
 
+Array checkerboard(Vec2<int>   shape,
+                   Vec2<float> kw,
+                   Array      *p_noise_x = nullptr,
+                   Array      *p_noise_y = nullptr,
+                   Vec2<float> shift = {0.f, 0.f},
+                   Vec2<float> scale = {1.f, 1.f});
+
 /**
  * @brief Return a cone.
  *
