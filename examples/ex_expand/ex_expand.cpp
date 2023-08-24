@@ -1,7 +1,4 @@
-#include "highmap/array.hpp"
-#include "highmap/io.hpp"
-#include "highmap/op.hpp"
-#include "highmap/primitives.hpp"
+#include "highmap.hpp"
 
 int main(void)
 {
@@ -14,16 +11,24 @@ int main(void)
   hmap::remap(z);
   z.infos();
 
-  int  ir = 32;
-  auto z1 = z;
+  int         ir = 64;
+  hmap::Array z1 = z;
   hmap::expand(z1, ir);
 
-  auto z2 = z;
+  hmap::Array z2 = z;
   hmap::shrink(z2, ir);
+
+  hmap::Array z3 = z;
+  hmap::Array kernel = hmap::lorentzian(
+      hmap::Vec2<int>(2 * ir + 1, 2 * ir + 1));
+  hmap::shrink(z3, kernel);
 
   hmap::remap(z);
   hmap::remap(z1);
   hmap::remap(z2);
+  hmap::remap(z3);
 
-  hmap::export_banner_png("ex_expand.png", {z, z1, z2}, hmap::cmap::viridis);
+  hmap::export_banner_png("ex_expand.png",
+                          {z, z1, z2, z3},
+                          hmap::cmap::terrain);
 }
