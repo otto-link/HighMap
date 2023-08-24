@@ -217,6 +217,24 @@ Array gaussian_pulse(Vec2<int>   shape,
   return array;
 }
 
+Array lorentzian(Vec2<int> shape, float footprint_threshold)
+{
+  Array array = Array(shape);
+  float cross_width = std::sqrt(1.f / (1.f / footprint_threshold - 1.f));
+  float cw2 = 1.f / (cross_width * cross_width);
+
+  for (int i = 0; i < shape.x; i++)
+    for (int j = 0; j < shape.y; j++)
+    {
+      float x = 2.f * (float)i / (float)shape.x - 1.f;
+      float y = 2.f * (float)j / (float)shape.y - 1.f;
+      float r2 = x * x + y * y;
+      array(i, j) = 1.f / (1.f + r2 * cw2);
+    }
+
+  return array;
+}
+
 Array plane(Vec2<int>   shape,
             float       talus,
             float       yaw_angle,
