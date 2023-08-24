@@ -39,8 +39,7 @@ void expand(Array &array, int ir)
         for (int q = q1; q < q2; q++)
         {
           float v = array(i + p, j + q) * k(p + ir, q + ir);
-          if (v > array_new(i, j))
-            array_new(i, j) = v;
+          array_new(i, j) = std::max(array_new(i, j), v);
         }
     }
   }
@@ -56,6 +55,48 @@ void expand(Array &array, int ir, Array *p_mask)
   {
     Array array_f = array;
     expand(array_f, ir);
+    array = lerp(array, array_f, *(p_mask));
+  }
+}
+
+void expand(Array &array, Array &kernel)
+{
+  Array array_new = array;
+  int   ni = array.shape.x;
+  int   nj = array.shape.y;
+
+  int ri1 = (int)(0.5f * kernel.shape.x);
+  int ri2 = kernel.shape.x - ri1 - 1;
+  int rj1 = (int)(0.5f * kernel.shape.y);
+  int rj2 = kernel.shape.y - rj1 - 1;
+
+  for (int i = 0; i < ni; i++)
+  {
+    int p1 = std::max(0, i - ri1) - i;
+    int p2 = std::min(ni, i + ri2 + 1) - i;
+    for (int j = 0; j < nj; j++)
+    {
+      int q1 = std::max(0, j - rj1) - j;
+      int q2 = std::min(nj, j + rj2 + 1) - j;
+      for (int p = p1; p < p2; p++)
+        for (int q = q1; q < q2; q++)
+        {
+          float v = array(i + p, j + q) * kernel(p + ri1, q + rj1);
+          array_new(i, j) = std::max(array_new(i, j), v);
+        }
+    }
+  }
+  array = array_new;
+}
+
+void expand(Array &array, Array &kernel, Array *p_mask)
+{
+  if (!p_mask)
+    expand(array, kernel);
+  else
+  {
+    Array array_f = array;
+    expand(array_f, kernel);
     array = lerp(array, array_f, *(p_mask));
   }
 }
@@ -692,6 +733,26 @@ void shrink(Array &array, int ir, Array *p_mask)
   {
     Array array_f = array;
     shrink(array_f, ir);
+    array = lerp(array, array_f, *(p_mask));
+  }
+}
+
+void shrink(Array &array, Array &kernel)
+{
+  float amax = array.max();
+  array = amax - array;
+  expand(array, kernel);
+  array = amax - array;
+}
+
+void shrink(Array &array, Array &kernel, Array *p_mask)
+{
+  if (!p_mask)
+    shrink(array, kernel);
+  else
+  {
+    Array array_f = array;
+    shrink(array_f, kernel);
     array = lerp(array, array_f, *(p_mask));
   }
 }

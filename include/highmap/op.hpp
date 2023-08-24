@@ -455,7 +455,9 @@ Array exp(const Array &array);
  * @see {@link ex_shrink}
  */
 void expand(Array &array, int ir, Array *p_mask);
-void expand(Array &array, int ir); /// @overload
+void expand(Array &array, int ir);                       /// @overload
+void expand(Array &array, Array &kernel);                /// @overload
+void expand(Array &array, Array &kernel, Array *p_mask); /// @overload
 
 /**
  * @brief Linear extrapolation of values at the borders (i = 0, j = 0, ...)
@@ -1542,8 +1544,9 @@ void sharpen(Array &array, Array *p_mask, float ratio = 1.f);
  * @see {@link ex_expand}
  */
 void shrink(Array &array, int ir);
-
-void shrink(Array &array, int ir, Array *p_mask);
+void shrink(Array &array, int ir, Array *p_mask);        /// @overload
+void shrink(Array &array, Array &kernel);                /// @overload
+void shrink(Array &array, Array &kernel, Array *p_mask); /// @overload
 
 /**
  * @brief Return the sine of the array elements.
