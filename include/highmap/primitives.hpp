@@ -63,16 +63,6 @@ Array base_elevation(Vec2<int>                       shape,
                      Vec2<float>                     scale = {1.f, 1.f});
 
 /**
- * @brief Return a biweight kernel.
- *
- * See https://en.wikipedia.org/wiki/Kernel_%28statistics%29.
- *
- * @param shape Array shape.
- * @return Array New array.
- */
-Array biweight(Vec2<int> shape);
-
-/**
  * @brief Return a "bump field".
  *
  * @param shape Array shape.
@@ -160,35 +150,6 @@ Array checkerboard(Vec2<int>   shape,
                    Vec2<float> scale = {1.f, 1.f});
 
 /**
- * @brief Return a cone.
- *
- * Maximum value is 1.
- *
- * @param shape Array shape.
- * @return Array New array.
- */
-Array cone(Vec2<int> shape);
-
-/**
- * @brief Return a cone with a given height and talus (output array shape is
- * adjusted accordingly).
- *
- * @param height Cone height.
- * @param talus Cone talus.
- * @return Array
- */
-Array cone_talus(float height, float talus);
-
-/**
- * @brief Return a cone with a smooth landing (zero derivative at the cone
- * bottom).
- *
- * @param shape Array shape.
- * @return Array New array.
- */
-Array cone_smooth(Vec2<int> shape);
-
-/**
  * @brief Return a constant value array.
  *
  * @param shape Array shape.
@@ -224,22 +185,6 @@ Array crater(Vec2<int>   shape,
              Array      *p_noise = nullptr,
              Vec2<float> shift = {0.f, 0.f},
              Vec2<float> scale = {1.f, 1.f});
-
-/**
- * @brief Return a cubic pulse kernel.
- *
- * @param shape Array shape.
- * @return Array New array.
- */
-Array cubic_pulse(Vec2<int> shape);
-
-/**
- * @brief Return a disk foot-print.
- *
- * @param shape Array shape.
- * @return Array New array.
- */
-Array disk(Vec2<int> shape);
 
 /**
  * @brief Return an array filled with an hybrid multifractal Perlin noise.
@@ -335,31 +280,6 @@ Array fbm_worley(Vec2<int>   shape,
                  Vec2<float> scale = {1.f, 1.f});
 
 /**
- * @brief Return a Gabor kernel of a given shape.
- *
- *   Kernel width is deduced from the array shape: the kernel footprint
- *   is limited to where envelop is larger than the value
- *   `footprint_threshold`.
- *
- * @param shape Array shape.
- * @param kw Kernel wavenumber, with respect to a unit domain.
- * @param angle Kernel angle (in degree).
- * @param footprint_threshold The kernel footprint is limited where envelop is
- * larger than the value `footprint_threshold`.
- * @return Array New array.
- *
- * **Example**
- * @include ex_gabor.cpp
- *
- * **Result**
- * @image html ex_gabor.png
- */
-Array gabor(Vec2<int> shape,
-            float     kw,
-            float     angle,
-            float     footprint_threshold = 0.05f);
-
-/**
  * @brief Return a sparse Gabor noise.
  *
  * @param shape Array shape.
@@ -431,16 +351,6 @@ Array hybrid_fbm_perlin(Vec2<int>   shape,
                         float       lacunarity = 2.f,
                         float       offset = 0.5f,
                         Vec2<float> shift = {0.f, 0.f});
-
-/**
- * @brief Return the Lorentzian kernel.
- *
- * @param shape Array shape.
- * @param footprint_threshold The kernel width is determined using the footprint
- * threshold.
- * @return Array New array.
- */
-Array lorentzian(Vec2<int> shape, float footprint_threshold = 0.1f);
 
 /**
  * @brief Return an array filled with an product-multifractal Perlin noise.
@@ -727,14 +637,6 @@ Array slope_y(Vec2<int>   shape,
               Vec2<float> scale = {1.f, 1.f});
 
 /**
- * @brief Return a smooth cosine kernel.
- *
- * @param shape Array shape.
- * @return Array New array.
- */
-Array smooth_cosine(Vec2<int> shape);
-
-/**
  * @brief Return a step function (Heaviside with an optional talus slope at
  * the transition).
  *
@@ -786,16 +688,6 @@ void swirl(Array      &dx,
            Array      *p_noise = nullptr,
            Vec2<float> shift = {0.f, 0.f},
            Vec2<float> scale = {1.f, 1.f});
-
-/**
- * @brief Return a tricube kernel.
- *
- * See https://en.wikipedia.org/wiki/Kernel_%28statistics%29.
- *
- * @param shape Array shape.
- * @return Array New array.
- */
-Array tricube(Vec2<int> shape);
 
 /**
  * @brief Return an array filled with value noise.

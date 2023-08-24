@@ -8,6 +8,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/hydrology.hpp"
+#include "highmap/kernels.hpp"
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 
