@@ -433,6 +433,16 @@ Array hybrid_fbm_perlin(Vec2<int>   shape,
                         Vec2<float> shift = {0.f, 0.f});
 
 /**
+ * @brief Return the Lorentzian kernel.
+ *
+ * @param shape Array shape.
+ * @param footprint_threshold The kernel width is determined using the footprint
+ * threshold.
+ * @return Array New array.
+ */
+Array lorentzian(Vec2<int> shape, float footprint_threshold = 0.1f);
+
+/**
  * @brief Return an array filled with an product-multifractal Perlin noise.
  *
  * Multifractals do not combine noise functions additively, as the fBM does,
