@@ -49,7 +49,7 @@ Array convolve2d_svd(const Array &array, const Array &kernel, int rank)
     c2d = convolve1d_i(array, ki);
     c2d = convolve1d_j(c2d, kj);
 
-    array_out = array_out + gsl_vector_get(vec_s, p) * c2d;
+    array_out += gsl_vector_get(vec_s, p) * c2d;
   }
 
   // --- delete GSL objects
