@@ -23,8 +23,8 @@ Array gabor(Vec2<int> shape, float kw, float angle, float footprint_threshold)
 {
   Array array = Array(shape);
 
-  std::vector<float> x = linspace(-1.f, 1.f, array.shape.x);
-  std::vector<float> y = linspace(-1.f, 1.f, array.shape.y);
+  std::vector<float> x = linspace(-1.f, 1.f, array.shape.x, false);
+  std::vector<float> y = linspace(-1.f, 1.f, array.shape.y, false);
 
   float width = std::sqrt(-0.5f * M_PI / std::log(footprint_threshold));
   float iw2 = 1.f / (width * width);

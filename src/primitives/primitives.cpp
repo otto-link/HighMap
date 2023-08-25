@@ -36,8 +36,8 @@ Array base_elevation(Vec2<int>                       shape,
   std::vector<float> xc = linspace(0.5f * dxc, 1.f - 0.5f * dxc, ni);
   std::vector<float> yc = linspace(0.5f * dyc, 1.f - 0.5f * dyc, nj);
 
-  std::vector<float> x = linspace(shift.x, shift.x + scale.x, shape.x);
-  std::vector<float> y = linspace(shift.y, shift.y + scale.y, shape.y);
+  std::vector<float> x = linspace(shift.x, shift.x + scale.x, shape.x, false);
+  std::vector<float> y = linspace(shift.y, shift.y + scale.y, shape.y, false);
 
   // Gaussian half-widths based on the mesh discretization
   float s2x = 2.f / dxc / dxc / width_factor;
@@ -199,12 +199,10 @@ Array step(Vec2<int>   shape,
            Vec2<float> scale)
 {
   Array              array = Array(shape);
-  std::vector<float> x = linspace(-0.5f + shift.x,
-                                  -0.5f + scale.x + shift.x,
-                                  shape.x);
-  std::vector<float> y = linspace(-0.5f + shift.y,
-                                  -0.5f + scale.y + shift.y,
-                                  shape.y);
+  std::vector<float> x =
+      linspace(-0.5f + shift.x, -0.5f + scale.x + shift.x, shape.x, false);
+  std::vector<float> y =
+      linspace(-0.5f + shift.y, -0.5f + scale.y + shift.y, shape.y, false);
 
   // talus value for a unit square domain
   float talus_n = talus * std::max(shape.x / scale.x, shape.y / scale.y);
@@ -243,10 +241,12 @@ Array wave_sine(Vec2<int>   shape,
                 Vec2<float> scale)
 {
   Array              array = Array(shape);
-  std::vector<float> x = linspace(0.f + shift.x, scale.x + shift.x, shape.x);
-  std::vector<float> y = linspace(0.f + shift.y, scale.y + shift.y, shape.y);
-  float              ca = std::cos(angle / 180.f * M_PI);
-  float              sa = std::sin(angle / 180.f * M_PI);
+  std::vector<float> x =
+      linspace(0.f + shift.x, scale.x + shift.x, shape.x, false);
+  std::vector<float> y =
+      linspace(0.f + shift.y, scale.y + shift.y, shape.y, false);
+  float ca = std::cos(angle / 180.f * M_PI);
+  float sa = std::sin(angle / 180.f * M_PI);
 
   auto lambda = [&kw](float x) { return std::cos(2.f * M_PI * kw * x); };
 
@@ -270,10 +270,12 @@ Array wave_square(Vec2<int>   shape,
                   Vec2<float> scale)
 {
   Array              array = Array(shape);
-  std::vector<float> x = linspace(0.f + shift.x, scale.x + shift.x, shape.x);
-  std::vector<float> y = linspace(0.f + shift.y, scale.y + shift.y, shape.y);
-  float              ca = std::cos(angle / 180.f * M_PI);
-  float              sa = std::sin(angle / 180.f * M_PI);
+  std::vector<float> x =
+      linspace(0.f + shift.x, scale.x + shift.x, shape.x, false);
+  std::vector<float> y =
+      linspace(0.f + shift.y, scale.y + shift.y, shape.y, false);
+  float ca = std::cos(angle / 180.f * M_PI);
+  float sa = std::sin(angle / 180.f * M_PI);
 
   auto lambda = [&kw](float x)
   { return 2.f * (int)(kw * x) - (int)(2.f * kw * x) + 1.f; };
@@ -299,10 +301,12 @@ Array wave_triangular(Vec2<int>   shape,
                       Vec2<float> scale)
 {
   Array              array = Array(shape);
-  std::vector<float> x = linspace(0.f + shift.x, scale.x + shift.x, shape.x);
-  std::vector<float> y = linspace(0.f + shift.y, scale.y + shift.y, shape.y);
-  float              ca = std::cos(angle / 180.f * M_PI);
-  float              sa = std::sin(angle / 180.f * M_PI);
+  std::vector<float> x =
+      linspace(0.f + shift.x, scale.x + shift.x, shape.x, false);
+  std::vector<float> y =
+      linspace(0.f + shift.y, scale.y + shift.y, shape.y, false);
+  float ca = std::cos(angle / 180.f * M_PI);
+  float sa = std::sin(angle / 180.f * M_PI);
 
   auto lambda = [&kw, &slant_ratio](float x)
   {

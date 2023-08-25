@@ -59,10 +59,12 @@ Array fbm_perlin(Vec2<int>   shape,
 
   std::vector<float> x = linspace(kw.x * shift.x,
                                   kw.x * (shift.x + scale.x),
-                                  array.shape.x);
+                                  array.shape.x,
+                                  false);
   std::vector<float> y = linspace(kw.y * shift.y,
                                   kw.y * (shift.y + scale.y),
-                                  array.shape.y);
+                                  array.shape.y,
+                                  false);
 
   helper_get_noise(array,
                    x,
@@ -104,10 +106,12 @@ Array fbm_perlin_advanced(Vec2<int>          shape,
 
   std::vector<float> x = linspace(kw.x * shift.x,
                                   kw.x * (shift.x + scale.x),
-                                  array.shape.x);
+                                  array.shape.x,
+                                  false);
   std::vector<float> y = linspace(kw.y * shift.y,
                                   kw.y * (shift.y + scale.y),
-                                  array.shape.y);
+                                  array.shape.y,
+                                  false);
 
   for (int i = 0; i < array.shape.x; i++)
     for (int j = 0; j < array.shape.y; j++)
@@ -162,10 +166,12 @@ Array fbm_worley(Vec2<int>   shape,
 
   std::vector<float> x = linspace(kw.x * shift.x,
                                   kw.x * (shift.x + scale.x),
-                                  array.shape.x);
+                                  array.shape.x,
+                                  false);
   std::vector<float> y = linspace(kw.y * shift.y,
                                   kw.y * (shift.y + scale.y),
-                                  array.shape.y);
+                                  array.shape.y,
+                                  false);
 
   helper_get_noise(array,
                    x,
@@ -268,10 +274,12 @@ Array pingpong_perlin(Vec2<int>   shape,
 
   std::vector<float> x = linspace(kw.x * shift.x,
                                   kw.x * (shift.x + scale.x),
-                                  array.shape.x);
+                                  array.shape.x,
+                                  false);
   std::vector<float> y = linspace(kw.y * shift.y,
                                   kw.y * (shift.y + scale.y),
-                                  array.shape.y);
+                                  array.shape.y,
+                                  false);
 
   helper_get_noise(array,
                    x,
@@ -308,10 +316,12 @@ Array ridged_perlin(Vec2<int>   shape,
 
   std::vector<float> x = linspace(kw.x * shift.x,
                                   kw.x * (shift.x + scale.x),
-                                  array.shape.x);
+                                  array.shape.x,
+                                  false);
   std::vector<float> y = linspace(kw.y * shift.y,
                                   kw.y * (shift.y + scale.y),
-                                  array.shape.y);
+                                  array.shape.y,
+                                  false);
 
   helper_get_noise(array,
                    x,
