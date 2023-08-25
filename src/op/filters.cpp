@@ -392,8 +392,7 @@ void low_pass_high_order(Array &array, int order, float sigma)
 
 void make_binary(Array &array, float threshold)
 {
-  auto lambda = [&threshold](float a)
-  { return std::abs(a) > threshold ? 1.f : 0.f; };
+  auto lambda = [&threshold](float a) { return a > threshold ? 1.f : 0.f; };
 
   std::transform(array.vector.begin(),
                  array.vector.end(),
