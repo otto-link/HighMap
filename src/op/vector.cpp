@@ -40,16 +40,19 @@ void laplace1d(std::vector<float> &v, float sigma = 0.5f, int iterations = 1)
   }
 }
 
-std::vector<float> linspace(float start, float stop, int num)
+std::vector<float> linspace(float start, float stop, int num, bool endpoint)
 {
   std::vector<float> v(num);
+  float              dv;
+
+  if (endpoint)
+    dv = (stop - start) / (float)(num - 1);
+  else
+    dv = (stop - start) / (float)num;
 
   if (stop != start)
     for (int i = 0; i < num; i++)
-    {
-      float dv = (stop - start) / (float)(num - 1);
       v[i] = start + (float)i * dv;
-    }
   else
     for (auto &r : v)
       r = start;

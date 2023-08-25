@@ -32,10 +32,12 @@ Array value_noise(Vec2<int>   shape,
 
   std::vector<float> x = linspace(kw.x * shift.x,
                                   kw.x * (shift.x + scale.x),
-                                  array.shape.x);
+                                  array.shape.x,
+                                  false);
   std::vector<float> y = linspace(kw.y * shift.y,
                                   kw.y * (shift.y + scale.y),
-                                  array.shape.y);
+                                  array.shape.y,
+                                  false);
 
   helper_get_noise(array,
                    x,
@@ -70,8 +72,8 @@ Array value_noise_delaunay(Vec2<int>   shape,
   interp.setData(x, y, value);
 
   // array grid
-  std::vector<float> xg = linspace(shift.x, shift.x + scale.x, shape.x);
-  std::vector<float> yg = linspace(shift.y, shift.y + scale.y, shape.y);
+  std::vector<float> xg = linspace(shift.x, shift.x + scale.x, shape.x, false);
+  std::vector<float> yg = linspace(shift.y, shift.y + scale.y, shape.y, false);
 
   Array array = helper_get_noise(xg,
                                  yg,
@@ -129,8 +131,8 @@ Array value_noise_linear(Vec2<int>   shape,
   interp.setData(xv.vector, yv.vector, values.vector);
 
   // array grid
-  std::vector<float> xg = linspace(shift.x, shift.x + scale.x, shape.x);
-  std::vector<float> yg = linspace(shift.y, shift.y + scale.y, shape.y);
+  std::vector<float> xg = linspace(shift.x, shift.x + scale.x, shape.x, false);
+  std::vector<float> yg = linspace(shift.y, shift.y + scale.y, shape.y, false);
 
   Array array = helper_get_noise(xg,
                                  yg,
@@ -165,8 +167,8 @@ Array value_noise_thinplate(Vec2<int>   shape,
   interp.setData(x, y, value);
 
   // array grid
-  std::vector<float> xg = linspace(shift.x, shift.x + scale.x, shape.x);
-  std::vector<float> yg = linspace(shift.y, shift.y + scale.y, shape.y);
+  std::vector<float> xg = linspace(shift.x, shift.x + scale.x, shape.x, false);
+  std::vector<float> yg = linspace(shift.y, shift.y + scale.y, shape.y, false);
 
   Array array = helper_get_noise(xg,
                                  yg,

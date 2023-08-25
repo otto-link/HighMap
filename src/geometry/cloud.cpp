@@ -181,10 +181,12 @@ void Cloud::to_array_interp(Array      &array,
 
   std::vector<float> xg = linspace(bbox.a + shift.x * lx,
                                    bbox.a + (shift.x + scale.x) * lx,
-                                   shape.x);
+                                   shape.x,
+                                   false);
   std::vector<float> yg = linspace(bbox.c + shift.y * ly,
                                    bbox.c + (shift.y + scale.y) * ly,
-                                   shape.y);
+                                   shape.y,
+                                   false);
 
   helper_get_noise(array,
                    xg,

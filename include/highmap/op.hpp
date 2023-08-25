@@ -815,9 +815,13 @@ Array lerp(const Array &array1, const Array &array2, float t); ///< @overload
  * @param start Starting value.
  * @param stop End value.
  * @param num Number of values.
+ * @param endpoint Include or not the end point in the output vector.
  * @return std::vector<float> Values.
  */
-std::vector<float> linspace(float start, float stop, int num);
+std::vector<float> linspace(float start,
+                            float stop,
+                            int   num,
+                            bool  endpoint = true);
 
 /**
  * @brief Return noised spaced numbers over a specified interval.
