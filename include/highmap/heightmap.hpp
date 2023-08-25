@@ -173,6 +173,15 @@ public:
   void set_shape(Vec2<int> new_shape);
 
   /**
+   * @brief Set the shape / tiling / overlap in one pass.
+   *
+   * @param new_shape New shape.
+   * @param new_tiling New tiling.
+   * @param new_overlap New overlap.
+   */
+  void set_sto(Vec2<int> new_shape, Vec2<int> new_tiling, float new_overlap);
+
+  /**
    * @brief Set the tiling setup.
    *
    * @param new_tiling New tiling.
