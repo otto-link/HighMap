@@ -73,10 +73,13 @@ Array bump(Vec2<int>   shape,
   std::vector<float> y =
       linspace(shift.y - 0.5f, shift.y + scale.y - 0.5f, shape.y, false);
 
-  auto lambda = [](float x_, float y_)
+  float gain_inv = 1.f / gain;
+
+  auto lambda = [&gain_inv](float x_, float y_)
   {
     float r2 = x_ * x_ + y_ * y_;
-    return r2 > 0.25f ? 0.f : std::exp(-1.f / (1.f - 4.f * r2));
+    return r2 > 0.25f ? 0.f
+                      : std::pow(std::exp(-1.f / (1.f - 4.f * r2)), gain_inv);
   };
 
   helper_get_noise(z, x, y, p_noise_x, p_noise_y, lambda);
