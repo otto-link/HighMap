@@ -47,27 +47,6 @@ void fill(HeightMap                                                &h,
   //   t = nullary_op(t.shape, t.shift);
 }
 
-void fill(
-    HeightMap &h,
-    HeightMap *p_noise,
-    std::function<Array(Vec2<int>, Vec2<float>, Vec2<float>, hmap::Array *)>
-        nullary_op)
-{
-  LOG_DEBUG("nullary (shape, size, p_noise)");
-  size_t                          nthreads = h.get_ntiles();
-  std::vector<std::future<Array>> futures(nthreads);
-
-  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
-    futures[i] = std::async(nullary_op,
-                            h.tiles[i].shape,
-                            h.tiles[i].shift,
-                            h.tiles[i].scale,
-                            &p_noise->tiles[i]);
-
-  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
-    h.tiles[i] = futures[i].get();
-}
-
 void fill(HeightMap                          &h,
           HeightMap                          *p_noise_x,
           HeightMap                          *p_noise_y,
@@ -94,6 +73,31 @@ void fill(HeightMap                          &h,
                             h.tiles[i].scale,
                             p_nx,
                             p_ny);
+  }
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+    h.tiles[i] = futures[i].get();
+}
+
+void fill(
+    HeightMap &h,
+    HeightMap *p_noise,
+    std::function<Array(Vec2<int>, Vec2<float>, Vec2<float>, hmap::Array *)>
+        nullary_op)
+{
+  LOG_DEBUG("nullary (shape, size, p_noise, p_noise)");
+  size_t                          nthreads = h.get_ntiles();
+  std::vector<std::future<Array>> futures(nthreads);
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+  {
+    Array *p_n = (p_noise == nullptr) ? nullptr : &p_noise->tiles[i];
+
+    futures[i] = std::async(nullary_op,
+                            h.tiles[i].shape,
+                            h.tiles[i].shift,
+                            h.tiles[i].scale,
+                            p_n);
   }
 
   for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
