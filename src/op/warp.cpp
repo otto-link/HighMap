@@ -13,12 +13,36 @@
 namespace hmap
 {
 
-void warp(Array &array, const Array &dx, const Array &dy, float scale)
+void warp(Array &array, const Array *p_dx, const Array *p_dy, float scale)
 {
-  int i1 = std::max(0, -(int)dx.min());
-  int i2 = std::max(0, (int)dx.max());
-  int j1 = std::max(0, -(int)dy.min());
-  int j2 = std::max(0, (int)dy.max());
+  int i1 = 0;
+  int i2 = 0;
+  int j1 = 0;
+  int j2 = 0;
+
+  std::function<void(float &, int &, int &)> lambda_x;
+  std::function<void(float &, int &, int &)> lambda_y;
+
+  if (p_dx)
+  {
+    i1 = std::max(0, -(int)p_dx->min());
+    i2 = std::max(0, (int)p_dx->max());
+
+    lambda_x = [p_dx, &scale](float &x_, int &i_, int &j_)
+    { x_ = (float)i_ + (*p_dx)(i_, j_) * scale; };
+  }
+  else
+    lambda_x = [](float &x_, int &i_, int &) { x_ = (float)i_; };
+
+  if (p_dy)
+  {
+    j1 = std::max(0, -(int)p_dy->min());
+    j2 = std::max(0, (int)p_dy->max());
+    lambda_y = [p_dy, &scale](float &y_, int &i_, int &j_)
+    { y_ = (float)j_ + (*p_dy)(i_, j_) * scale; };
+  }
+  else
+    lambda_y = [](float &y_, int &, int &j_) { y_ = (float)j_; };
 
   Array array_buffered = generate_buffered_array(array, {i1, i2, j1, j2});
 
@@ -26,8 +50,9 @@ void warp(Array &array, const Array &dx, const Array &dy, float scale)
     for (int j = 0; j < array.shape.y; j++)
     {
       // warped position
-      float x = (float)i + dx(i, j) * scale;
-      float y = (float)j + dy(i, j) * scale;
+      float x, y;
+      lambda_x(x, i, j);
+      lambda_y(y, i, j);
 
       // nearest grid point (and bilinear interpolation parameters)
       int   ip = (int)x + i1;
@@ -72,7 +97,7 @@ void warp_fbm(Array      &array,
                         shift);
   remap(dx, -scale, scale);
   remap(dy, -scale, scale);
-  warp(array, dx, dy);
+  warp(array, &dx, &dy);
 }
 
 } // namespace hmap

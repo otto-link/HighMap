@@ -21,7 +21,7 @@ int main(void)
   remap(dx, -scale, scale);
   remap(dy, -scale, scale);
 
-  hmap::warp(z, dx, dy);
+  hmap::warp(z, &dx, &dy);
 
   hmap::export_banner_png("ex_warp.png", {z0, z}, hmap::cmap::viridis);
 

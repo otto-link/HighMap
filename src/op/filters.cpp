@@ -918,7 +918,7 @@ void steepen(Array &array, float scale, int ir)
   smooth_cpulse(dx, ir);
   smooth_cpulse(dy, ir);
 
-  warp(array, dx, dy);
+  warp(array, &dx, &dy);
 }
 
 void steepen(Array &array, float scale, Array *p_mask, int ir)
