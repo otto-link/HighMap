@@ -59,6 +59,31 @@ Array base_elevation(Vec2<int>                       shape,
   return array;
 }
 
+Array bump(Vec2<int>   shape,
+           float       gain,
+           Array      *p_noise_x,
+           Array      *p_noise_y,
+           Vec2<float> shift,
+           Vec2<float> scale)
+{
+  Array z = Array(shape);
+
+  std::vector<float> x =
+      linspace(shift.x - 0.5f, shift.x + scale.x - 0.5f, shape.x, false);
+  std::vector<float> y =
+      linspace(shift.y - 0.5f, shift.y + scale.y - 0.5f, shape.y, false);
+
+  auto lambda = [](float x_, float y_)
+  {
+    float r2 = x_ * x_ + y_ * y_;
+    return r2 > 0.25f ? 0.f : std::exp(-1.f / (1.f - 4.f * r2));
+  };
+
+  helper_get_noise(z, x, y, p_noise_x, p_noise_y, lambda);
+
+  return z;
+}
+
 Array bump_field(Vec2<int> shape, float kw, uint seed, float shape_factor)
 {
   Array z = Array(shape);
