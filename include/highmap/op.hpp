@@ -1764,10 +1764,10 @@ Array valley_width(const Array &z, int ir = 0);
  * @todo test higher order interpolations
  *
  * @param array Input array.
- * @param dx Translation following 'i' direction, (scale is 1:1, dx = 1 => 1
- * pixel).
- * @param dy Translation following 'j' direction, (scale is 1:1, dy = 1 => 1
- * pixel).
+ * @param p_dx Reference to the translation array definition following 'i'
+ * direction, (scale is 1:1, dx = 1 => 1 pixel).
+ * @param p_dy Reference to the translation array definition following 'j'
+ * direction, (scale is 1:1, dy = 1 => 1 pixel).
  * @param scale Scaling applied to dx and and dy.
  *
  * **Example**
@@ -1776,7 +1776,10 @@ Array valley_width(const Array &z, int ir = 0);
  * **Result**
  * @image html ex_warp.png
  */
-void warp(Array &array, const Array &dx, const Array &dy, float scale = 1.f);
+void warp(Array       &array,
+          const Array *p_dx,
+          const Array *p_dy,
+          float        scale = 1.f);
 
 /**
  * @brief Apply a warping effect to the array with displacements based on fbm
