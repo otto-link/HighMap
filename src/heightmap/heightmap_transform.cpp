@@ -203,6 +203,29 @@ void transform(
     futures[i].get();
 }
 
+void transform(HeightMap                                     &h,
+               hmap::HeightMap                               *p_1,
+               hmap::HeightMap                               *p_2,
+               std::function<void(Array &, Array *, Array *)> unary_op)
+{
+  size_t                         nthreads = h.get_ntiles();
+  std::vector<std::future<void>> futures(nthreads);
+
+  LOG_DEBUG("transform 2 ptr");
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+  {
+    Array *p_1_array = (p_1 == nullptr) ? nullptr : &p_1->tiles[i];
+    Array *p_2_array = (p_2 == nullptr) ? nullptr : &p_2->tiles[i];
+
+    futures[i] =
+        std::async(unary_op, std::ref(h.tiles[i]), p_1_array, p_2_array);
+  }
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+    futures[i].get();
+}
+
 void transform(HeightMap                            &h1,
                HeightMap                            &h2,
                std::function<void(Array &, Array &)> binary_op)

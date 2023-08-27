@@ -15,18 +15,18 @@ namespace hmap
 
 void warp(Array &array, const Array *p_dx, const Array *p_dy, float scale)
 {
-  int i1 = 0;
-  int i2 = 0;
-  int j1 = 0;
-  int j2 = 0;
+  int i1 = 1;
+  int i2 = 1;
+  int j1 = 1;
+  int j2 = 1;
 
   std::function<void(float &, int &, int &)> lambda_x;
   std::function<void(float &, int &, int &)> lambda_y;
 
   if (p_dx)
   {
-    i1 = std::max(0, -(int)p_dx->min());
-    i2 = std::max(0, (int)p_dx->max());
+    i1 = std::max(1, -(int)(p_dx->min() * scale));
+    i2 = std::max(1, (int)(p_dx->max() * scale));
 
     lambda_x = [p_dx, &scale](float &x_, int &i_, int &j_)
     { x_ = (float)i_ + (*p_dx)(i_, j_) * scale; };
@@ -36,8 +36,8 @@ void warp(Array &array, const Array *p_dx, const Array *p_dy, float scale)
 
   if (p_dy)
   {
-    j1 = std::max(0, -(int)p_dy->min());
-    j2 = std::max(0, (int)p_dy->max());
+    j1 = std::max(1, -(int)(p_dy->min() * scale));
+    j2 = std::max(1, (int)(p_dy->max() * scale));
     lambda_y = [p_dy, &scale](float &y_, int &i_, int &j_)
     { y_ = (float)j_ + (*p_dy)(i_, j_) * scale; };
   }
