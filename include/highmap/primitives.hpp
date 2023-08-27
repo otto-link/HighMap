@@ -62,6 +62,13 @@ Array base_elevation(Vec2<int>                       shape,
                      Vec2<float>                     shift = {0.f, 0.f},
                      Vec2<float>                     scale = {1.f, 1.f});
 
+Array bump(Vec2<int>   shape,
+           float       gain = 1.f,
+           Array      *p_noise_x = nullptr,
+           Array      *p_noise_y = nullptr,
+           Vec2<float> shift = {0.f, 0.f},
+           Vec2<float> scale = {1.f, 1.f});
+
 /**
  * @brief Return a "bump field".
  *
