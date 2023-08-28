@@ -66,6 +66,14 @@ public:
   void operator=(const Array &array);
 
   /**
+   * @brief Fill tile values by interpolating (nearest neighbor) values from
+   * another array.
+   *
+   * @param array Input array.
+   */
+  void from_array_interp(Array &array);
+
+  /**
    * @brief Print some informations about the object.
    *
    */
@@ -187,6 +195,21 @@ public:
    * @param new_tiling New tiling.
    */
   void set_tiling(Vec2<int> new_tiling);
+
+  /**
+   * @brief Fill tile values by interpolating (nearest neighbor) values from
+   * another array.
+   *
+   * @param array Input array.
+   *
+   * **Example**
+   * @include ex_heightmap_from_array.cpp
+   *
+   * **Result**
+   * @image html ex_heightmap_from_array0.png
+   * @image html ex_heightmap_from_array1.png
+   */
+  void from_array_interp(Array &array);
 
   /**
    * @brief Print some informations about the object.
