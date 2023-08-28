@@ -3,6 +3,7 @@
  * this software. */
 
 #include "highmap/heightmap.hpp"
+#include "highmap/op.hpp"
 
 namespace hmap
 {
@@ -21,6 +22,26 @@ Tile::Tile(Vec2<int>   shape,
 void Tile::operator=(const Array &array)
 {
   this->vector = array.vector;
+}
+
+void Tile::from_array_interp(Array &array)
+{
+  std::vector<float> x = linspace(this->shift.x,
+                                  this->shift.x + this->scale.x,
+                                  this->shape.x,
+                                  false);
+  std::vector<float> y = linspace(this->shift.y,
+                                  this->shift.y + this->scale.y,
+                                  this->shape.y,
+                                  false);
+
+  for (int i = 0; i < shape.x; i++)
+    for (int j = 0; j < shape.y; j++)
+    {
+      int ip = (int)(x[i] * (array.shape.x - 1));
+      int jp = (int)(y[j] * (array.shape.y - 1));
+      (*this)(i, j) = array(ip, jp);
+    }
 }
 
 void Tile::infos() const

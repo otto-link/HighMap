@@ -1,0 +1,2 @@
+add_executable(ex_heightmap_from_array ex_heightmap_from_array.cpp)
+target_link_libraries(ex_heightmap_from_array highmap)

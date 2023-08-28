@@ -4,6 +4,7 @@
 #include <future>
 #include <thread>
 
+#include "Interpolate.hpp"
 #include "macrologger.h"
 
 #include "highmap/heightmap.hpp"
@@ -91,6 +92,19 @@ void HeightMap::set_tiling(Vec2<int> new_tiling)
 {
   this->tiling = new_tiling;
   this->update_tile_parameters();
+}
+
+void HeightMap::from_array_interp(Array &array)
+{
+  std::vector<std::future<void>> futures(this->get_ntiles());
+
+  for (decltype(futures)::size_type i = 0; i < this->get_ntiles(); ++i)
+    futures[i] = std::async(&Tile::from_array_interp,
+                            std::ref(tiles[i]),
+                            std::ref(array));
+
+  for (decltype(futures)::size_type i = 0; i < this->get_ntiles(); ++i)
+    futures[i].get();
 }
 
 void HeightMap::infos()
