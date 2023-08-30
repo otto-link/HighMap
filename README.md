@@ -71,7 +71,7 @@ eog ex_fbm_perlin.png
   - [ ] cities
 - Anthropic features
   - roads / paths
-    - [ ] communication network
+    - [X] communication network
     - [ ] path/road digging and leveling
   - cities
     - [ ] ground leveling
@@ -82,5 +82,7 @@ eog ex_fbm_perlin.png
   - [ ] multiscale terrain class
   - [ ] gateways to Unity, Unreal Engine...
 - Performances
-  - [ ] distributed / tiled computation
-  - [ ] multithreading
+  - [X] distributed / tiled computation
+  - [X] multithreading
+  - [ ] SIMD vectorization
+  - [ ] GPU vectorization
