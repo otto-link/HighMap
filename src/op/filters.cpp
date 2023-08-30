@@ -400,6 +400,15 @@ void make_binary(Array &array, float threshold)
                  lambda);
 }
 
+void match_histogram(Array &array, const Array &array_reference)
+{
+  std::vector<size_t> ki = argsort(array.vector);
+  std::vector<size_t> kr = argsort(array_reference.vector);
+
+  for (size_t i = 0; i < ki.size(); i++)
+    array.vector[ki[i]] = array_reference.vector[kr[i]];
+}
+
 void recast_canyon(Array &array, const Array &vcut, float gamma)
 {
   auto lambda = [&gamma](float a, float b)
