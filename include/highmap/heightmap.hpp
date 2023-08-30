@@ -329,14 +329,11 @@ void transform(
     std::function<void(Array &, Array *, Array *, Array *, Array *, Array *)>
         unary_op);
 
-<<<<<<< HEAD
 void transform(HeightMap                                     &h,
                hmap::HeightMap                               *p_1,
                hmap::HeightMap                               *p_2,
                std::function<void(Array &, Array *, Array *)> unary_op);
 
-=======
->>>>>>> 5408aee (Add heightmap transform for erosion)
 void transform(HeightMap                            &h1,
                HeightMap                            &h2,
                std::function<void(Array &, Array &)> binary_op);
