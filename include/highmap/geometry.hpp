@@ -289,16 +289,6 @@ public:
   void print();
 
   /**
-   * @brief Remap the values of the point coordinates.
-   *
-   * @param xmin New `xmin`.
-   * @param xmax New `xmax`.
-   * @param ymin New `ymin`.
-   * @param ymax New `ymax`.
-   */
-  void remap_xy(Vec4<float> bbox_new);
-
-  /**
    * @brief Remove a point from the cloud.
    *
    * @param point_idx Point index.

@@ -28,7 +28,12 @@ Cloud::Cloud(int npoints, uint seed, Vec4<float> bbox)
     Point p(dis(gen), dis(gen), dis(gen));
     this->add_point(p);
   }
-  this->remap_xy(bbox);
+
+  for (auto &p : this->points)
+  {
+    p.x = p.x * (bbox.b - bbox.a) + bbox.a;
+    p.y = p.y * (bbox.d - bbox.c) + bbox.c;
+  }
 };
 
 std::vector<float> Cloud::interpolate_values_from_array(const Array &array,
@@ -72,18 +77,6 @@ void Cloud::print()
   Vec4<float> bbox = this->get_bbox();
   std::cout << "   bounding box: {" << bbox.a << ", " << bbox.b << ", "
             << bbox.c << ", " << bbox.d << "}" << std::endl;
-}
-
-void Cloud::remap_xy(Vec4<float> bbox_new)
-{
-  Vec4<float> bbox = this->get_bbox();
-  for (auto &p : this->points)
-  {
-    p.x = (p.x - bbox.a) / (bbox.b - bbox.a) * (bbox_new.b - bbox_new.a) +
-          bbox_new.a;
-    p.y = (p.y - bbox.c) / (bbox.d - bbox.c) * (bbox_new.d - bbox_new.c) +
-          bbox_new.c;
-  }
 }
 
 void Cloud::set_values_from_array(const Array &array, Vec4<float> bbox)
