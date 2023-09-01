@@ -267,8 +267,9 @@ public:
   void set_values_from_array(const Array &array, Vec4<float> bbox);
 
   /**
-   * @brief Set the values distance from chull object
-   *
+   * @brief Set the values based on the distance to convex hull of the
+   * cloud (requires a call to `to_graph_delaunay()` before to
+   * initialize convex hull point indices.
    */
   void set_values_from_chull_distance();
 
