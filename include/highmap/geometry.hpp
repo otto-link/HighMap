@@ -192,6 +192,20 @@ public:
   }
 
   /**
+   * @brief Get the maximum value.
+   *
+   * @return float Maximum value
+   */
+  float get_values_max();
+
+  /**
+   * @brief Get the minimum value.
+   *
+   * @return float Minimum value
+   */
+  float get_values_min();
+
+  /**
    * @brief Get the `x` of the points.
    *
    * @return std::vector<float> `x` values.
@@ -277,7 +291,7 @@ public:
    *
    * @param array Input array.
    * @param bbox Array bounding box.
-   * @return Vec4<float> Values.
+   * @return std::vector<float> Values.
    */
   std::vector<float> interpolate_values_from_array(const Array &array,
                                                    Vec4<float>  bbox);
@@ -287,6 +301,14 @@ public:
    *
    */
   void print();
+
+  /**
+   * @brief Randomize positions and values of the cloud points.
+   *
+   * @param seed Random seed number.
+   * @param bbox Bounding box.
+   */
+  void randomize(uint seed, Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
   /**
    * @brief Remove a point from the cloud.

@@ -20,21 +20,21 @@ namespace hmap
 
 Cloud::Cloud(int npoints, uint seed, Vec4<float> bbox)
 {
-  std::mt19937                          gen(seed);
-  std::uniform_real_distribution<float> dis;
-
-  for (int k = 0; k < npoints; k++)
-  {
-    Point p(dis(gen), dis(gen), dis(gen));
-    this->add_point(p);
-  }
-
-  for (auto &p : this->points)
-  {
-    p.x = p.x * (bbox.b - bbox.a) + bbox.a;
-    p.y = p.y * (bbox.d - bbox.c) + bbox.c;
-  }
+  this->points.resize(npoints);
+  this->randomize(seed, bbox);
 };
+
+float Cloud::get_values_max()
+{
+  std::vector<float> values = this->get_values();
+  return *std::max_element(values.begin(), values.end());
+}
+
+float Cloud::get_values_min()
+{
+  std::vector<float> values = this->get_values();
+  return *std::min_element(values.begin(), values.end());
+}
 
 std::vector<float> Cloud::interpolate_values_from_array(const Array &array,
                                                         Vec4<float>  bbox)
@@ -77,6 +77,19 @@ void Cloud::print()
   Vec4<float> bbox = this->get_bbox();
   std::cout << "   bounding box: {" << bbox.a << ", " << bbox.b << ", "
             << bbox.c << ", " << bbox.d << "}" << std::endl;
+}
+
+void Cloud::randomize(uint seed, Vec4<float> bbox)
+{
+  std::mt19937                          gen(seed);
+  std::uniform_real_distribution<float> dis;
+
+  for (auto &p : this->points)
+  {
+    p.x = dis(gen) * (bbox.b - bbox.a) + bbox.a;
+    p.y = dis(gen) * (bbox.d - bbox.c) + bbox.c;
+    p.v = dis(gen);
+  }
 }
 
 void Cloud::set_values_from_array(const Array &array, Vec4<float> bbox)
