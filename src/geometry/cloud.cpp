@@ -164,7 +164,13 @@ void Cloud::to_array_interp(Array      &array,
   std::vector<float> y = this->get_y();
   std::vector<float> v = this->get_values();
 
-  expand_grid(x, y, v, bbox);
+  float       lx = bbox.b - bbox.a;
+  float       ly = bbox.d - bbox.c;
+  Vec4<float> bbox_expanded = {bbox.a - lx,
+                               bbox.b + lx,
+                               bbox.c - ly,
+                               bbox.d + ly};
+  expand_grid_corners(x, y, v, bbox_expanded, 0.f);
 
   _2D::AnyInterpolator<
       float,
@@ -181,17 +187,13 @@ void Cloud::to_array_interp(Array      &array,
   interp.setData(x, y, v);
 
   // array grid
-  Vec2<int> shape = array.shape;
-  float     lx = bbox.b - bbox.a;
-  float     ly = bbox.d - bbox.c;
-
   std::vector<float> xg = linspace(bbox.a + shift.x * lx,
                                    bbox.a + (shift.x + scale.x) * lx,
-                                   shape.x,
+                                   array.shape.x,
                                    false);
   std::vector<float> yg = linspace(bbox.c + shift.y * ly,
                                    bbox.c + (shift.y + scale.y) * ly,
-                                   shape.y,
+                                   array.shape.y,
                                    false);
 
   helper_get_noise(array,
