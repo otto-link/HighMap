@@ -3,7 +3,7 @@
  * this software. */
 
 /**
- * @file kernls.hpp
+ * @file kernels.hpp
  * @author Otto Link (otto.link.bv@gmail.com)
  * @brief
  * @version 0.1

@@ -19,6 +19,17 @@ Array abs(const Array &array)
   return array_out;
 }
 
+Array abs_smooth(const Array &array, float k)
+{
+  Array array_out = Array(array.shape);
+  float k2 = k * k;
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array_out.vector.begin(),
+                 [&k2](float v) { return std::sqrt(v * v + k2); });
+  return array_out;
+}
+
 Array atan(const Array &array)
 {
   Array array_out = Array(array.shape);

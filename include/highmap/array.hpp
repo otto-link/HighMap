@@ -271,6 +271,16 @@ public:
   //----------------------------------------
 
   /**
+   * @brief
+   *
+   * @param array
+   * @param kernel
+   * @param i
+   * @param j
+   */
+  friend void add_kernel(Array &array, const Array &kernel, int i, int j);
+
+  /**
    * @brief Return a column 'j' as a std::vector.
    *
    * @param j Colunm index.

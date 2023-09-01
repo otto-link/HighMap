@@ -13,6 +13,7 @@
  *
  */
 #pragma once
+#include "highmap/geometry.hpp"
 
 namespace hmap
 {
@@ -26,6 +27,15 @@ namespace hmap
 Array abs(const Array &array);
 
 /**
+ * @brief Return the smooth absolute value of the array elements.
+ *
+ * @param array Input array.
+ * @param k Smoothing coefficient.
+ * @return Array Output array.
+ */
+Array abs_smooth(const Array &array, float mu);
+
+/**
  * @brief Apply the almost unit identity function.
  *
  * Function that maps the unit interval to itself with zero derivative at 0 and
@@ -35,6 +45,34 @@ Array abs(const Array &array);
  * @param array Input array.
  */
 void almost_unit_identity(Array &array);
+
+/**
+ * @brief Point-wise alteration: locally enforce a new elevation value while
+    maintaining the 'shape' of the heightmap.
+ *
+ * @param array Input array.
+ * @param cloud Cloud object, defining alteration coordinates and elevation
+ variations.
+ * @param ir Alteration kernel minimal radius.
+ * @param footprint_ratio Defined how the radius is scales with variation
+ intensity (the greater the larger the alterations footprint)
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a
+ * unit domain.
+ * @param scale Domain scaling, in [0, 1].
+ *
+ *
+ * **Example**
+ * @include ex_alter_elevation.cpp
+ *
+ * **Result**
+ * @image html ex_alter_elevation.png
+ */
+void alter_elevation(Array      &array,
+                     Cloud      &cloud,
+                     int         ir,
+                     float       footprint_ratio = 1.f,
+                     Vec2<float> shift = {0.f, 0.f},
+                     Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return the approximate hypothenuse of two numbers.

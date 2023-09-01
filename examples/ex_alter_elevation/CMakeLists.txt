@@ -1,0 +1,2 @@
+add_executable(ex_alter_elevation ex_alter_elevation.cpp)
+target_link_libraries(ex_alter_elevation highmap)
