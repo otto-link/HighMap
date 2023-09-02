@@ -313,6 +313,9 @@ void fill(HeightMap &h, std::function<Array(Vec2<int>)> nullary_op);
 
 void transform(HeightMap &h, std::function<void(Array &)> unary_op);
 
+void transform(HeightMap                                             &h,
+               std::function<void(Array &, Vec2<float>, Vec2<float>)> unary_op);
+
 // input array and mask
 void transform(HeightMap                            &h,
                HeightMap                            *p_mask,
@@ -337,6 +340,11 @@ void transform(HeightMap                                     &h,
 void transform(HeightMap                            &h1,
                HeightMap                            &h2,
                std::function<void(Array &, Array &)> binary_op);
+
+void transform(
+    HeightMap                                                      &h1,
+    HeightMap                                                      &h2,
+    std::function<void(Array &, Array &, Vec2<float>, Vec2<float>)> binary_op);
 
 void transform(HeightMap                                     &h1,
                HeightMap                                     &h2,

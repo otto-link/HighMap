@@ -20,7 +20,6 @@ void alter_elevation(Array      &array,
                      Vec2<float> scale)
 {
   Array amp = Array(array.shape);
-
   for (auto &p : cloud.points)
   {
     int ic = (int)((p.x - shift.x) / scale.x * array.shape.x);
@@ -47,34 +46,16 @@ void alter_elevation(Array      &array,
     // where it goes in the array
     int i0 = std::max(ic - nk_i0, 0);
     int j0 = std::max(jc - nk_j0, 0);
-    // i1 = std::min(i + nk1, amp.shape.x);
-    // j1 = std::min(j + nk1, amp.shape.y);
+    // int i1 = std::min(ic + nk_i1, amp.shape.x);
+    // int j1 = std::min(jc + nk_j1, amp.shape.y);
 
-    float array_min = std::numeric_limits<float>::max();
-    float array_max = std::numeric_limits<float>::min();
+    float sign = (array(ic, jc) > 0.f) - (array(ic, jc) < 0.f);
 
     for (int i = ik0; i < ik1; i++)
       for (int j = jk0; j < jk1; j++)
-      {
-        array_min = std::min(array(i, j), array_min);
-        array_max = std::max(array(i, j), array_max);
-      }
-    float array_ptp = array_max - array_min;
-
-    // define scaling by roughly determining if the modification is
-    // applied to a peak or a valley
-    float scaling;
-    if (array(ic, jc) > 0.5f * array_ptp + array_min)
-      scaling = (array(ic, jc) - array_min) / array_ptp;
-    else
-      scaling = (array_max - array(ic, jc)) / array_ptp;
-
-    if (array_ptp > 0.f)
-    {
-      for (int i = ik0; i < ik1; i++)
-        for (int j = jk0; j < jk1; j++)
-          amp(i - ik0 + i0, j - jk0 + j0) += p.v * kernel(i, j) * scaling;
-    }
+        amp(i - ik0 + i0, j - jk0 + j0) += p.v * kernel(i, j) *
+                                           array(i - ik0 + i0, j - jk0 + j0) *
+                                           sign;
   }
 
   array += amp;

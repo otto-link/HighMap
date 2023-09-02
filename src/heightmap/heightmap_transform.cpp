@@ -150,6 +150,23 @@ void transform(HeightMap &h, std::function<void(Array &)> unary_op)
     futures[i].get();
 }
 
+void transform(HeightMap                                             &h,
+               std::function<void(Array &, Vec2<float>, Vec2<float>)> unary_op)
+{
+  LOG_DEBUG("unary");
+  size_t                         nthreads = h.get_ntiles();
+  std::vector<std::future<void>> futures(nthreads);
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+    futures[i] = std::async(unary_op,
+                            std::ref(h.tiles[i]),
+                            h.tiles[i].shift,
+                            h.tiles[i].scale);
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+    futures[i].get();
+}
+
 void transform(HeightMap                            &h,
                HeightMap                            *p_mask,
                std::function<void(Array &, Array *)> unary_op)
@@ -238,6 +255,26 @@ void transform(HeightMap                            &h1,
     futures[i] = std::async(binary_op,
                             std::ref(h1.tiles[i]),
                             std::ref(h2.tiles[i]));
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+    futures[i].get();
+}
+
+void transform(
+    HeightMap                                                      &h1,
+    HeightMap                                                      &h2,
+    std::function<void(Array &, Array &, Vec2<float>, Vec2<float>)> binary_op)
+{
+  LOG_DEBUG("binary");
+  size_t                         nthreads = h1.get_ntiles();
+  std::vector<std::future<void>> futures(nthreads);
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+    futures[i] = std::async(binary_op,
+                            std::ref(h1.tiles[i]),
+                            std::ref(h2.tiles[i]),
+                            h1.tiles[i].shift,
+                            h1.tiles[i].scale);
 
   for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
     futures[i].get();
