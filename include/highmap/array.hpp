@@ -271,12 +271,13 @@ public:
   //----------------------------------------
 
   /**
-   * @brief
+   * @brief Add to a given array a kernel (with a smaller shape), centered on
+   * indices (i, j).
    *
-   * @param array
-   * @param kernel
-   * @param i
-   * @param j
+   * @param array Input Array.
+   * @param kernel Kernel to add.
+   * @param i Index i (for the input array) where the kernel is added.
+   * @param j Index j (for the input array) where the kernel is added.
    */
   friend void add_kernel(Array &array, const Array &kernel, int i, int j);
 

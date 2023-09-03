@@ -27,53 +27,50 @@
 namespace hmap
 {
 
-Array flow_accumulation_d8(Array &z)
+Array d8_compute_ndip(Array &d8)
 {
-  Array facc = constant(z.shape, 1.f);
-  Array d8 = flow_direction_d8(z);
-  Array nidp = Array(z.shape);
+  Array nidp = Array(d8.shape); // output
 
   const std::vector<int> di = DI;
   const std::vector<int> dj = DJ;
   const uint             nb = di.size();
 
-  // --- compute number of input drainage paths for each cell
-
   // correspond between current neighbor index and neighbor flow
   // direction pointing to the current cell
   const std::vector<int> kp = {4, 5, 6, 7, 0, 1, 2, 3};
 
-  for (int i = 1; i < z.shape.x - 1; i++)
-  {
-    for (int j = 1; j < z.shape.y - 1; j++)
-    {
+  for (int i = 1; i < d8.shape.x - 1; i++)
+    for (int j = 1; j < d8.shape.y - 1; j++)
       // count the number of neighbors with flow directions pointing
       // to the current cell
       for (uint k = 0; k < nb; k++)
-      {
         if (d8(i + di[k], j + dj[k]) == kp[k])
           nidp(i, j) += 1;
-      }
-    }
-  }
+
+  return nidp;
+}
+
+Array flow_accumulation_d8(Array &z)
+{
+  Array facc = constant(z.shape, 1.f);
+  Array d8 = flow_direction_d8(z);
+  Array nidp = d8_compute_ndip(d8);
 
   // --- flow accumulation
+  const std::vector<int> di = DI;
+  const std::vector<int> dj = DJ;
 
   // populate queue
   std::list<int> i_queue = {};
   std::list<int> j_queue = {};
 
   for (int i = 1; i < z.shape.x - 1; i++)
-  {
     for (int j = 1; j < z.shape.y - 1; j++)
-    {
       if (nidp(i, j) == 0)
       {
         i_queue.push_back(i);
         j_queue.push_back(j);
       }
-    }
-  }
 
   // main loop
   while (i_queue.size() > 0)
@@ -114,7 +111,6 @@ Array flow_direction_d8(Array &z)
   const uint               nb = di.size();
 
   for (int i = 1; i < z.shape.x - 1; i++)
-  {
     for (int j = 1; j < z.shape.y - 1; j++)
     {
       float dmax = 0.f;
@@ -133,7 +129,6 @@ Array flow_direction_d8(Array &z)
       }
       d8(i, j) = (float)kn;
     }
-  }
   fill_borders(d8);
   return d8;
 }
