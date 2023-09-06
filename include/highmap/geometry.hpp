@@ -910,4 +910,11 @@ void random_grid_jittered(std::vector<float> &x,
                           uint                seed,
                           Vec4<float>         bbox = {0.f, 1.f, 0.f, 1.f});
 
+/**
+ * @brief Sort points in an ascending order (x then y).
+ *
+ * @param points Points to be sorted (in place).
+ */
+void sort_points(std::vector<Point> &points);
+
 } // namespace hmap

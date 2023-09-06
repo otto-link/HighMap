@@ -27,4 +27,15 @@ Point lerp(const Point &p1, const Point &p2, const float t)
   return Point(x, y, v);
 }
 
+// HELPER
+bool cmp_inf(Point &a, Point &b)
+{
+  return (a.x < b.x) | ((a.x == b.x) & (a.y < b.y));
+}
+
+void sort_points(std::vector<Point> &points)
+{
+  std::sort(points.begin(), points.end(), cmp_inf);
+}
+
 } // namespace hmap

@@ -148,6 +148,12 @@ Array curvature_mean(const Array &z)
   return h;
 }
 
+// HELPER
+bool cmp_inf(std::pair<float, float> &a, std::pair<float, float> &b)
+{
+  return (a.first < b.first) | ((a.first == b.first) & (a.second < b.second));
+}
+
 Array kmeans_clustering2(const Array &array1,
                          const Array &array2,
                          int          nclusters,
@@ -175,44 +181,27 @@ Array kmeans_clustering2(const Array &array1,
 
   // modify labelling to ensure it remains fairly consistent when the
   // data are modified (centroid are sorted by their coordinates)
-  std::vector<int>                  isort(nclusters);
-  std::vector<std::array<float, 2>> centroids = std::get<0>(dkm);
+  std::vector<int>   isort_rev(nclusters);
+  std::vector<Point> centroids = {};
 
-  stable_sort(centroids.begin(),
-              centroids.end(),
-              [](std::array<float, 2> p1, std::array<float, 2> p2)
-              {
-                if (p1[1] < p2[1])
-                  return true;
-                else
-                  return (p1[0] < p2[0]);
-              });
+  for (auto &p : std::get<0>(dkm))
+    centroids.push_back(Point(p[0], p[1]));
 
-  stable_sort(centroids.begin(),
-              centroids.end(),
-              [](std::array<float, 2> p1, std::array<float, 2> p2)
-              {
-                if (p1[0] < p2[0])
-                  return true;
-                else
-                  return (p1[1] < p2[1]);
-              });
+  sort_points(centroids);
 
   // TODO dirty
   for (int i = 0; i < nclusters; i++)
     for (int j = 0; j < nclusters; j++)
-      if ((centroids[i][0] == std::get<0>(dkm)[j][0]) &
-          (centroids[i][1] == std::get<0>(dkm)[j][1]))
-        isort[i] = j;
+      if ((centroids[i].x == std::get<0>(dkm)[j][0]) &
+          (centroids[i].y == std::get<0>(dkm)[j][1]))
+        isort_rev[j] = i;
 
   for (size_t k = 0; k < std::get<1>(dkm).size(); k++)
   {
     int j = int(k / shape.x);
     int i = k - j * shape.x;
-    kmeans(i, j) = isort[std::get<1>(dkm)[k]];
+    kmeans(i, j) = isort_rev[std::get<1>(dkm)[k]];
   }
-
-  kmeans.infos();
 
   return kmeans;
 }
