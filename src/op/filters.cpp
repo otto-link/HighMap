@@ -110,7 +110,7 @@ void fill_talus(Array &z, float talus, uint seed, float noise_ratio)
 
   std::vector<int>   di = DI;
   std::vector<int>   dj = DJ;
-  std::vector<float> c = C;
+  std::vector<float> c = CD;
   const uint         nb = di.size();
 
   // populate queue

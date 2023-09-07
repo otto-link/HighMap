@@ -30,7 +30,7 @@
 // clang-format off
 #define DI {-1, 0, 0, 1, -1, -1, 1, 1}
 #define DJ {0, 1, -1, 0, -1, 1, -1, 1}
-#define C  {1.f, 1.f, 1.f, 1.f, M_SQRT2, M_SQRT2, M_SQRT2, M_SQRT2}
+#define CD  {1.f, 1.f, 1.f, 1.f, M_SQRT2, M_SQRT2, M_SQRT2, M_SQRT2}
 // clang-format on
 
 namespace hmap

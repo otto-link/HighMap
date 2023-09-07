@@ -37,7 +37,7 @@ void thermal_scree(Array &z,
 
   std::vector<int>   di = DI;
   std::vector<int>   dj = DJ;
-  std::vector<float> c = C;
+  std::vector<float> c = CD;
   const uint         nb = di.size();
 
   // populate queue
