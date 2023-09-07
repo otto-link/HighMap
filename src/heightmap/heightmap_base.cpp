@@ -82,10 +82,14 @@ void HeightMap::set_sto(Vec2<int> new_shape,
                         Vec2<int> new_tiling,
                         float     new_overlap)
 {
-  this->shape = new_shape;
-  this->tiling = new_tiling;
-  this->overlap = new_overlap;
-  this->update_tile_parameters();
+  if ((this->shape != new_shape) || (this->tiling != new_tiling) ||
+      (this->overlap != new_overlap))
+  {
+    this->shape = new_shape;
+    this->tiling = new_tiling;
+    this->overlap = new_overlap;
+    this->update_tile_parameters();
+  }
 }
 
 void HeightMap::set_tiling(Vec2<int> new_tiling)
