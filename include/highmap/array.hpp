@@ -571,6 +571,13 @@ public:
   void to_png(std::string fname, int cmap, bool hillshading = false);
 
   /**
+   * @brief Returns the unique elements of the array.
+   *
+   * @return std::vector<float> Unique values.
+   */
+  std::vector<float> unique_values();
+
+  /**
    * @brief Return stacked arrays in sequence vertically (row wise).
    *
    * @param array1 1st array.

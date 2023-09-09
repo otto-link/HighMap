@@ -276,6 +276,21 @@ float Array::sum()
   return std::accumulate(this->vector.begin(), this->vector.end(), 0.f);
 }
 
+std::vector<float> Array::unique_values()
+{
+  std::vector<float> v = this->vector;
+
+  auto last = std::unique(v.begin(), v.end());
+  v.erase(last, v.end());
+
+  std::sort(v.begin(), v.end());
+
+  last = std::unique(v.begin(), v.end());
+  v.erase(last, v.end());
+
+  return v;
+}
+
 Array vstack(const Array &array1, const Array &array2) // friend function
 {
   Array array_out = Array(
