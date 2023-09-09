@@ -40,9 +40,9 @@ eog ex_fbm_perlin.png
 - Heightmap generation and alteration
   - [X] procedural noise (Perlin, fractal...)
   - controlled generation
-    - [ ] terrain surface from a set of points (thinplate interpolation)
+    - [X] terrain surface from a set of points (thinplate interpolation)
     - [ ] terrain surface from a sketch / splatmap
-    - [ ] shape-conservative pointwise modifications (i.e. enforce elevation at some locations while keeping the overall shape of the heightmap)
+    - [X] pointwise modifications
 - Physics-based mechanisms
   - erosion / deposition
     - [X] thermal
@@ -71,7 +71,7 @@ eog ex_fbm_perlin.png
   - [ ] cities
 - Anthropic features
   - roads / paths
-    - [ ] communication network
+    - [X] communication network
     - [ ] path/road digging and leveling
   - cities
     - [ ] ground leveling
@@ -82,5 +82,5 @@ eog ex_fbm_perlin.png
   - [ ] multiscale terrain class
   - [ ] gateways to Unity, Unreal Engine...
 - Performances
-  - [ ] distributed / tiled computation
-  - [ ] multithreading
+  - [X] distributed / tiled computation
+  - [X] multithreading
