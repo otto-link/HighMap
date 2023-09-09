@@ -264,6 +264,13 @@ public:
   Array to_array(); // @overload
 
   /**
+   * @brief Returns the unique elements of the heightmap.
+   *
+   * @return std::vector<float> Unique values.
+   */
+  std::vector<float> unique_values();
+
+  /**
    * @brief Update tile parameters.
    *
    */

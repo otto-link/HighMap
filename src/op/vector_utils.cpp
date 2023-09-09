@@ -39,4 +39,13 @@ size_t upperbound_right(const std::vector<float> &v, float value)
 void reindex_vector(std::vector<int> &v, std::vector<size_t> &idx);
 void reindex_vector(std::vector<float> &v, std::vector<size_t> &idx);
 
+void vector_unique_values(std::vector<float> &v)
+{
+  auto last = std::unique(v.begin(), v.end());
+  v.erase(last, v.end());
+  std::sort(v.begin(), v.end());
+  last = std::unique(v.begin(), v.end());
+  v.erase(last, v.end());
+}
+
 } // namespace hmap

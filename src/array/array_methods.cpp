@@ -10,6 +10,8 @@
 #include "highmap/op.hpp"
 #include "highmap/vector.hpp"
 
+#include "op/vector_utils.hpp"
+
 namespace hmap
 
 {
@@ -279,15 +281,7 @@ float Array::sum()
 std::vector<float> Array::unique_values()
 {
   std::vector<float> v = this->vector;
-
-  auto last = std::unique(v.begin(), v.end());
-  v.erase(last, v.end());
-
-  std::sort(v.begin(), v.end());
-
-  last = std::unique(v.begin(), v.end());
-  v.erase(last, v.end());
-
+  vector_unique_values(v);
   return v;
 }
 
