@@ -53,6 +53,15 @@ Array select_blob_log(const Array &array, int ir)
   return c;
 }
 
+Array select_eq(const Array &array, float value)
+{
+  Array c = array;
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
+      c(i, j) = c(i, j) == value ? 1.f : 0.f;
+  return c;
+}
+
 Array select_gradient_angle(const Array &array, float angle)
 {
   Array c = gradient_angle(array);

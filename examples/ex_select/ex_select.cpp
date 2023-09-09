@@ -1,7 +1,4 @@
-#include "highmap/array.hpp"
-#include "highmap/io.hpp"
-#include "highmap/op.hpp"
-#include "highmap/primitives.hpp"
+#include "highmap.hpp"
 
 int main(void)
 {
@@ -21,4 +18,7 @@ int main(void)
 
   hmap::Array c3 = hmap::select_interval(z, 0.25f, 0.75f);
   c3.to_png("ex_select3.png", hmap::cmap::gray);
+
+  hmap::Array c4 = hmap::select_eq(c3, 1.f);
+  c4.to_png("ex_select4.png", hmap::cmap::gray);
 }

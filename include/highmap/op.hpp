@@ -1398,6 +1398,26 @@ Array select_blob_log(const Array &array, int ir);
 
 /**
  * @brief Return an array with elements equal to 1 where input elements are
+ * equal to `value`.
+ *
+ * @param array Input array.
+ * @param value Criteria value.
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_select.cpp
+ *
+ * **Result**
+ * @image html ex_select0.png
+ * @image html ex_select1.png
+ * @image html ex_select2.png
+ * @image html ex_select3.png
+ * @image html ex_select4.png
+ */
+Array select_eq(const Array &array, float value);
+
+/**
+ * @brief Return an array with elements equal to 1 where input elements are
  * larger than `value`.
  *
  * @param array Input array.
@@ -1412,6 +1432,7 @@ Array select_blob_log(const Array &array, int ir);
  * @image html ex_select1.png
  * @image html ex_select2.png
  * @image html ex_select3.png
+ * @image html ex_select4.png
  */
 Array select_gt(const Array &array, float value);
 
@@ -1432,6 +1453,7 @@ Array select_gt(const Array &array, float value);
  * @image html ex_select1.png
  * @image html ex_select2.png
  * @image html ex_select3.png
+ * @image html ex_select4.png
  */
 Array select_interval(const Array &array, float value1, float value2);
 
@@ -1451,6 +1473,7 @@ Array select_interval(const Array &array, float value1, float value2);
  * @image html ex_select1.png
  * @image html ex_select2.png
  * @image html ex_select3.png
+ * @image html ex_select4.png
  */
 Array select_lt(const Array &array, float value);
 
