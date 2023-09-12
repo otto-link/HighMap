@@ -7,6 +7,7 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/op.hpp"
 
 namespace hmap
 {
@@ -27,6 +28,21 @@ void stratify(Array &z, std::vector<float> hs, std::vector<float> gamma)
         v = std::pow(v, gamma[k]);
         v = hs[k] + v * dh;
       }
+}
+
+void stratify(Array             &z,
+              std::vector<float> hs,
+              std::vector<float> gamma,
+              Array             *p_mask)
+{
+  if (!p_mask)
+    stratify(z, hs, gamma);
+  else
+  {
+    Array z_f = z;
+    stratify(z_f, hs, gamma);
+    z = lerp(z, z_f, *(p_mask));
+  }
 }
 
 void stratify_oblique(Array             &z,
@@ -68,7 +84,7 @@ void stratify_oblique(Array             &z,
     float dh = hs_o[1] - hs_o[0];
     for (int n = 0; n < std::ceil((zs_max - hs_o_max) / (hs_o_max - hs_o_min));
          n++)
-      for (size_t k = 0; k < nstrata; k++)
+      for (int k = 0; k < nstrata; k++)
       {
         hs_o.push_back(hs_o[k] + (hs_o_max - hs_o_min + dh) * (n + 1));
         gamma_o.push_back(gamma_o[k]);
@@ -77,6 +93,23 @@ void stratify_oblique(Array             &z,
 
   stratify(zs, hs_o, gamma_o);
   z = zs - shift;
+}
+
+void stratify_oblique(Array             &z,
+                      std::vector<float> hs,
+                      std::vector<float> gamma,
+                      float              talus,
+                      float              angle,
+                      Array             *p_mask)
+{
+  if (!p_mask)
+    stratify_oblique(z, hs, gamma, talus, angle);
+  else
+  {
+    Array z_f = z;
+    stratify_oblique(z_f, hs, gamma, talus, angle);
+    z = lerp(z, z_f, *(p_mask));
+  }
 }
 
 //----------------------------------------------------------------------
