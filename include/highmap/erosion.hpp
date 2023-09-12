@@ -419,6 +419,28 @@ void stratify(Array             &z,
               float              gamma = 0.5f); ///< @overload
 
 /**
+ * @brief Stratify the heightmap by creating a series of oblique layers with
+ * elevations corrected by a gamma factor.
+ *
+ * @param z Input array.
+ * @param hs Layer elevations. For 'n' layers, 'n + 1' values must be provided.
+ * @param gamma Layer gamma correction factors, 'n' values.
+ * @param talus Layer talus value (slope).
+ * @param angle Slope orientation (in degrees).
+ *
+ * **Example**
+ * @include ex_stratify.cpp
+ *
+ * **Result**
+ * @image html ex_stratify.png
+ */
+void stratify_oblique(Array             &z,
+                      std::vector<float> hs,
+                      std::vector<float> gamma,
+                      float              talus,
+                      float              angle);
+
+/**
  * @brief Apply thermal weathering erosion.
  *
  * Based on averaging over first neighbors, see \cite Olsen2004. Refer to \cite
