@@ -3,6 +3,7 @@
  * this software. */
 #define _USE_MATH_DEFINES
 #include <cmath>
+#include <functional>
 
 #include "macrologger.h"
 
@@ -16,31 +17,56 @@ namespace hmap
 // Main operator
 //----------------------------------------------------------------------
 
-void stratify(Array &z, std::vector<float> hs, std::vector<float> gamma)
-{
-  for (uint k = 0; k < hs.size() - 1; k++)
-    for (auto &v : z.vector)
-      if ((v >= hs[k]) and (v < hs[k + 1]))
-      {
-        // scale to [0, 1], apply gamma correction and scale back
-        float dh = hs[k + 1] - hs[k];
-        v = (v - hs[k]) / dh;
-        v = std::pow(v, gamma[k]);
-        v = hs[k] + v * dh;
-      }
-}
-
 void stratify(Array             &z,
               std::vector<float> hs,
               std::vector<float> gamma,
-              Array             *p_mask)
+              Array             *p_noise)
+{
+
+  if (p_noise)
+    for (uint k = 0; k < hs.size() - 1; k++)
+    {
+      float dh = hs[k + 1] - hs[k];
+      for (int i = 0; i < z.shape.x; i++)
+        for (int j = 0; j < z.shape.y; j++)
+        {
+          float zt = z(i, j) - (*p_noise)(i, j);
+          if ((zt >= hs[k]) and (zt < hs[k + 1]))
+          {
+            // scale to [0, 1], apply gamma correction and scale back
+            float v = (zt - hs[k]) / dh;
+            v = std::pow(v, gamma[k]);
+            z(i, j) = hs[k] + v * dh + (*p_noise)(i, j);
+          }
+        }
+    }
+  else
+    for (uint k = 0; k < hs.size() - 1; k++)
+    {
+      float dh = hs[k + 1] - hs[k];
+      for (int i = 0; i < z.shape.x; i++)
+        for (int j = 0; j < z.shape.y; j++)
+          if ((z(i, j) >= hs[k]) and (z(i, j) < hs[k + 1]))
+          {
+            float v = (z(i, j) - hs[k]) / dh;
+            v = std::pow(v, gamma[k]);
+            z(i, j) = hs[k] + v * dh;
+          }
+    }
+}
+
+void stratify(Array             &z,
+              Array             *p_mask,
+              std::vector<float> hs,
+              std::vector<float> gamma,
+              Array             *p_noise)
 {
   if (!p_mask)
-    stratify(z, hs, gamma);
+    stratify(z, hs, gamma, p_noise);
   else
   {
     Array z_f = z;
-    stratify(z_f, hs, gamma);
+    stratify(z_f, hs, gamma, p_noise);
     z = lerp(z, z_f, *(p_mask));
   }
 }
@@ -49,7 +75,8 @@ void stratify_oblique(Array             &z,
                       std::vector<float> hs,
                       std::vector<float> gamma,
                       float              talus,
-                      float              angle)
+                      float              angle,
+                      Array             *p_noise)
 {
   // elevation shift due to the oblicity
   Array shift = Array(z.shape);
@@ -91,23 +118,24 @@ void stratify_oblique(Array             &z,
       }
   }
 
-  stratify(zs, hs_o, gamma_o);
+  stratify(zs, hs_o, gamma_o, p_noise);
   z = zs - shift;
 }
 
 void stratify_oblique(Array             &z,
+                      Array             *p_mask,
                       std::vector<float> hs,
                       std::vector<float> gamma,
                       float              talus,
                       float              angle,
-                      Array             *p_mask)
+                      Array             *p_noise)
 {
   if (!p_mask)
-    stratify_oblique(z, hs, gamma, talus, angle);
+    stratify_oblique(z, hs, gamma, talus, angle, p_noise);
   else
   {
     Array z_f = z;
-    stratify_oblique(z_f, hs, gamma, talus, angle);
+    stratify_oblique(z_f, hs, gamma, talus, angle, p_noise);
     z = lerp(z, z_f, *(p_mask));
   }
 }
@@ -116,14 +144,14 @@ void stratify_oblique(Array             &z,
 // Overloading
 //----------------------------------------------------------------------
 
-void stratify(Array &z, std::vector<float> hs, float gamma)
+void stratify(Array &z, std::vector<float> hs, float gamma, Array *p_noise)
 {
   // float to vector
   std::vector<float> gs(hs.size() - 1);
   for (auto &v : gs)
     v = gamma;
 
-  stratify(z, hs, gs);
+  stratify(z, hs, gs, p_noise);
 }
 
 } // namespace hmap

@@ -8,6 +8,9 @@ int main(void)
 
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
 
+  hmap::Array mask = hmap::perlin(shape, res, 0);
+  hmap::remap(mask);
+
   // stratification features (nb of layers, elevations and gamma
   // correction factors)
   auto z1 = z;
@@ -22,7 +25,7 @@ int main(void)
   float talus = 4.f / shape.x;
   float angle = 15.f;
 
-  hmap::stratify_oblique(z2, hs, gs, talus, angle);
+  hmap::stratify_oblique(z2, &mask, hs, gs, talus, angle);
 
   z2.to_file("out.bin");
 

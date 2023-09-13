@@ -401,9 +401,10 @@ void sediment_deposition(Array &z,
  * corrected by a gamma factor.
  *
  * @param z Input array.
+ * @param p_mask Intensity mask, expected in [0, 1] (applied as a
  * @param hs Layer elevations. For 'n' layers, 'n + 1' values must be provided.
  * @param gamma Layer gamma correction factors, 'n' values.
- * @param p_mask Intensity mask, expected in [0, 1] (applied as a
+ *
  * post-processing).
  *
  * @see gamma_correction.
@@ -415,29 +416,32 @@ void sediment_deposition(Array &z,
  * @image html ex_stratify.png
  */
 void stratify(Array             &z,
+              Array             *p_mask,
               std::vector<float> hs,
               std::vector<float> gamma,
-              Array             *p_mask);
+              Array             *p_noise = nullptr);
 
 void stratify(Array             &z,
               std::vector<float> hs,
-              std::vector<float> gamma); ///< @overload
+              std::vector<float> gamma,
+              Array             *p_noise = nullptr); ///< @overload
 
 void stratify(Array             &z,
               std::vector<float> hs,
-              float              gamma = 0.5f); ///< @overload
+              float              gamma = 0.5f,
+              Array             *p_noise = nullptr); ///< @overload
 
 /**
  * @brief Stratify the heightmap by creating a series of oblique layers with
  * elevations corrected by a gamma factor.
  *
  * @param z Input array.
+ * @param p_mask Intensity mask, expected in [0, 1] (applied as a
+ * post-processing).
  * @param hs Layer elevations. For 'n' layers, 'n + 1' values must be provided.
  * @param gamma Layer gamma correction factors, 'n' values.
  * @param talus Layer talus value (slope).
  * @param angle Slope orientation (in degrees).
- * @param p_mask Intensity mask, expected in [0, 1] (applied as a
- * post-processing).
  *
  * **Example**
  * @include ex_stratify.cpp
@@ -446,17 +450,19 @@ void stratify(Array             &z,
  * @image html ex_stratify.png
  */
 void stratify_oblique(Array             &z,
+                      Array             *p_mask,
                       std::vector<float> hs,
                       std::vector<float> gamma,
                       float              talus,
                       float              angle,
-                      Array             *p_mask);
+                      Array             *p_noise = nullptr);
 
 void stratify_oblique(Array             &z,
                       std::vector<float> hs,
                       std::vector<float> gamma,
                       float              talus,
-                      float              angle); ///< @overload
+                      float              angle,
+                      Array             *p_noise = nullptr); ///< @overload
 
 /**
  * @brief Apply thermal weathering erosion.
