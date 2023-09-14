@@ -231,4 +231,50 @@ void hydraulic_vpipes(Array &z,
   }
 }
 
+void hydraulic_vpipes(Array &z,
+                      Array *p_mask,
+                      int    iterations,
+                      Array *p_bedrock,
+                      Array *p_moisture_map,
+                      Array *p_erosion_map,
+                      Array *p_deposition_map,
+                      float  water_height,
+                      float  c_capacity,
+                      float  c_erosion,
+                      float  c_deposition,
+                      float  rain_rate,
+                      float  evap_rate)
+{
+  if (!p_mask)
+    hydraulic_vpipes(z,
+                     iterations,
+                     p_bedrock,
+                     p_moisture_map,
+                     p_erosion_map,
+                     p_deposition_map,
+                     water_height,
+                     c_capacity,
+                     c_erosion,
+                     c_deposition,
+                     rain_rate,
+                     evap_rate);
+  else
+  {
+    Array z_f = z;
+    hydraulic_vpipes(z_f,
+                     iterations,
+                     p_bedrock,
+                     p_moisture_map,
+                     p_erosion_map,
+                     p_deposition_map,
+                     water_height,
+                     c_capacity,
+                     c_erosion,
+                     c_deposition,
+                     rain_rate,
+                     evap_rate);
+    z = lerp(z, z_f, *(p_mask));
+  }
+}
+
 } // namespace hmap

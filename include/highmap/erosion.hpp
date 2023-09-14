@@ -187,11 +187,11 @@ void hydraulic_musgrave(Array &z,
  * Adapted from @cite Beyer2015 and @cite Hjulstroem1935.
  *
  * @param z Input array.
+ * @param p_mask Intensity mask, expected in [0, 1] (applied as a
+ * post-processing).
  * @param nparticles Number of particles.
  * @param seed Random seed number.
  * @param p_bedrock Reference to the bedrock heightmap.
- * @param p_mask Intensity mask, expected in [0, 1] (applied as a
- * post-processing).
  * @param p_moisture_map Reference to the moisture map (quantity of rain),
  * expected to be in [0, 1].
  * @param p_erosion_map[out] Reference to the erosion map, provided as an output
@@ -376,6 +376,7 @@ void hydraulic_stream(Array &z,
  * See @cite Chiba1998, @cite Isheden2022, @cite Mei2007 and @cite Stava2008.
  *
  * @param z Input array.
+ * @param p_mask Intensity mask, expected in [0, 1] (applied as a
  * @param iterations Number of iterations.
  * @param p_bedrock
  * @param p_moisture_map Reference to the moisture map (quantity of rain),
@@ -398,6 +399,7 @@ void hydraulic_stream(Array &z,
  * @image html ex_hydraulic_vpipes.png
  */
 void hydraulic_vpipes(Array &z,
+                      Array *p_mask,
                       int    iterations,
                       Array *p_bedrock = nullptr,
                       Array *p_moisture_map = nullptr,
@@ -409,6 +411,19 @@ void hydraulic_vpipes(Array &z,
                       float  c_deposition = 0.2f,
                       float  rain_rate = 0.f,
                       float  evap_rate = 0.01f);
+
+void hydraulic_vpipes(Array &z,
+                      int    iterations,
+                      Array *p_bedrock = nullptr,
+                      Array *p_moisture_map = nullptr,
+                      Array *p_erosion_map = nullptr,
+                      Array *p_deposition_map = nullptr,
+                      float  water_height = 0.05f,
+                      float  c_capacity = 1.f,
+                      float  c_erosion = 0.2f,
+                      float  c_deposition = 0.2f,
+                      float  rain_rate = 0.f,
+                      float  evap_rate = 0.01f); ///< @overload
 
 /**
  * @brief Perform sediment deposition combined with thermal erosion.
