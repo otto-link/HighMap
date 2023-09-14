@@ -878,7 +878,7 @@ void random_grid(std::vector<float> &x,
 void random_grid(std::vector<float> &x,
                  std::vector<float> &y,
                  uint                seed,
-                 Vec4<float>         bbox = {0.f, 1.f, 0.f, 1.f}); /// @overload
+                 Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f}); ///< @overload
 
 /**
  * @brief

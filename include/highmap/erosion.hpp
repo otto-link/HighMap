@@ -187,11 +187,11 @@ void hydraulic_musgrave(Array &z,
  * Adapted from @cite Beyer2015 and @cite Hjulstroem1935.
  *
  * @param z Input array.
+ * @param nparticles Number of particles.
+ * @param seed Random seed number.
  * @param p_bedrock Reference to the bedrock heightmap.
  * @param p_mask Intensity mask, expected in [0, 1] (applied as a
  * post-processing).
- * @param nparticles Number of particles.
- * @param seed Random seed number.
  * @param p_moisture_map Reference to the moisture map (quantity of rain),
  * expected to be in [0, 1].
  * @param p_erosion_map[out] Reference to the erosion map, provided as an output
@@ -213,6 +213,7 @@ void hydraulic_musgrave(Array &z,
  * @image html ex_hydraulic_particle1.png
  */
 void hydraulic_particle(Array &z,
+                        Array *p_mask,
                         int    nparticles,
                         int    seed,
                         Array *p_bedrock = nullptr,
@@ -227,7 +228,6 @@ void hydraulic_particle(Array &z,
                         float  evap_rate = 0.001f);
 
 void hydraulic_particle(Array &z,
-                        Array *p_mask,
                         int    nparticles,
                         int    seed,
                         Array *p_bedrock = nullptr,
@@ -239,7 +239,7 @@ void hydraulic_particle(Array &z,
                         float  c_erosion = 0.05f,
                         float  c_deposition = 0.01f,
                         float  drag_rate = 0.01f,
-                        float  evap_rate = 0.001f); /// @overload
+                        float  evap_rate = 0.001f); ///< @overload
 
 /**
  * @brief Apply large-scale hydraulic erosion to produce "deep" ridges.
@@ -279,7 +279,7 @@ void hydraulic_ridge(Array &z,
                      float  smoothing_factor = 0.f,
                      float  noise_ratio = 0.f,
                      int    ir = 0,
-                     uint   seed = 1);
+                     uint   seed = 1); ///< @overload
 
 /**
  * @brief Apply hydraulic erosion based on the Stream Power Law formulation.
@@ -323,10 +323,10 @@ void hydraulic_spl(Array &z,
                    Array *p_bedrock = nullptr,
                    Array *p_moisture_map = nullptr,
                    Array *p_erosion_map = nullptr, // -> out
-                   int    ir = 8);                    /// @overload
+                   int    ir = 8);                    ///< @overload
 
 /**
- * @brief Apply hydraulic erosion using based on a flow accumulation map.
+ * @brief Apply hydraulic erosion based on a flow accumulation map.
  *
  * @param z Input array.
  * @param p_mask Intensity mask, expected in [0, 1] (applied as a
@@ -368,9 +368,47 @@ void hydraulic_stream(Array &z,
                       Array *p_moisture_map = nullptr,
                       Array *p_erosion_map = nullptr, // -> out
                       int    ir = 1,
-                      float  clipping_ratio = 10.f); /// @overload
+                      float  clipping_ratio = 10.f); ///< @overload
 
-void hydraulic_vpipes(Array &z);
+/**
+ * @brief Apply hydraulic erosion using the 'virtual pipes' algorithm.
+ *
+ * See @cite Chiba1998, @cite Isheden2022, @cite Mei2007 and @cite Stava2008.
+ *
+ * @param z Input array.
+ * @param iterations Number of iterations.
+ * @param p_bedrock
+ * @param p_moisture_map Reference to the moisture map (quantity of rain),
+ * expected to be in [0, 1].
+ * @param p_erosion_map[out] Reference to the erosion map, provided as an output
+ * field.
+ * @param p_deposition_map [out] Reference to the depositio, map, provided as an
+ * output field.
+ * @param water_height Water height.
+ * @param c_capacity Sediment capacity.
+ * @param c_deposition Deposition coefficient.
+ * @param c_erosion Erosion coefficient.
+ * @param rain_rate Rain rate.
+ * @param evap_rate Particle evaporation rate.
+ *
+ * **Example**
+ * @include ex_hydraulic_vpipes.cpp
+ *
+ * **Result**
+ * @image html ex_hydraulic_vpipes.png
+ */
+void hydraulic_vpipes(Array &z,
+                      int    iterations,
+                      Array *p_bedrock = nullptr,
+                      Array *p_moisture_map = nullptr,
+                      Array *p_erosion_map = nullptr,
+                      Array *p_deposition_map = nullptr,
+                      float  water_height = 0.05f,
+                      float  c_capacity = 1.f,
+                      float  c_erosion = 0.2f,
+                      float  c_deposition = 0.2f,
+                      float  rain_rate = 0.f,
+                      float  evap_rate = 0.01f);
 
 /**
  * @brief Perform sediment deposition combined with thermal erosion.

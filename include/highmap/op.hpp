@@ -493,9 +493,9 @@ Array exp(const Array &array);
  * @see {@link ex_shrink}
  */
 void expand(Array &array, int ir, Array *p_mask);
-void expand(Array &array, int ir);                       /// @overload
-void expand(Array &array, Array &kernel);                /// @overload
-void expand(Array &array, Array &kernel, Array *p_mask); /// @overload
+void expand(Array &array, int ir);                       ///< @overload
+void expand(Array &array, Array &kernel);                ///< @overload
+void expand(Array &array, Array &kernel, Array *p_mask); ///< @overload
 
 /**
  * @brief Linear extrapolation of values at the borders (i = 0, j = 0, ...)
@@ -581,7 +581,7 @@ void fill_talus_fast(Array    &z,
  */
 void gain(Array &array, float factor, Array *p_mask);
 
-void gain(Array &array, float factor); /// @overload
+void gain(Array &array, float factor); ///< @overload
 
 /**
  * @brief Apply gamma correction to the input array.
@@ -600,7 +600,7 @@ void gain(Array &array, float factor); /// @overload
  */
 void gamma_correction(Array &array, float gamma, Array *p_mask);
 
-void gamma_correction(Array &array, float gamma); /// @overload
+void gamma_correction(Array &array, float gamma); ///< @overload
 
 void gamma_correction_thread(Array &array, float gamma);
 void gamma_correction_xsimd(Array &array, float gamma);
@@ -629,7 +629,7 @@ void gamma_correction_local(Array &array,
                             float  gamma,
                             int    ir,
                             Array *p_mask,
-                            float  k = 0.1f); /// @overload
+                            float  k = 0.1f); ///< @overload
 
 /**
  * @brief Return an array with buffers at the boundaries (values filled by
@@ -785,7 +785,7 @@ void laplace(Array &array, float sigma = 0.2f, int iterations = 3);
 void laplace(Array &array,
              Array *p_mask,
              float  sigma = 0.2f,
-             int    iterations = 3); /// @overload
+             int    iterations = 3); ///< @overload
 
 /**
  * @brief Apply a low-pass Laplace filter to a vector.
@@ -1176,7 +1176,7 @@ void recast_peak(Array &array,
                  int    ir,
                  Array *p_mask,
                  float  gamma = 2.f,
-                 float  k = 0.1f); /// @overload
+                 float  k = 0.1f); ///< @overload
 
 /**
  * @brief Transform heightmap by adding "rock-like" features at higher slopes.
@@ -1624,9 +1624,9 @@ void sharpen(Array &array, Array *p_mask, float ratio = 1.f);
  * @see {@link ex_expand}
  */
 void shrink(Array &array, int ir);
-void shrink(Array &array, int ir, Array *p_mask);        /// @overload
-void shrink(Array &array, Array &kernel);                /// @overload
-void shrink(Array &array, Array &kernel, Array *p_mask); /// @overload
+void shrink(Array &array, int ir, Array *p_mask);        ///< @overload
+void shrink(Array &array, Array &kernel);                ///< @overload
+void shrink(Array &array, Array &kernel, Array *p_mask); ///< @overload
 
 /**
  * @brief Return the sine of the array elements.
@@ -1718,7 +1718,7 @@ void smooth_fill(Array &array, int ir, Array *p_mask, float k = 0.1f);
  */
 void smooth_fill_holes(Array &array, int ir);
 
-void smooth_fill_holes(Array &array, int ir, Array *p_mask); /// @overload
+void smooth_fill_holes(Array &array, int ir, Array *p_mask); ///< @overload
 
 /**
  * @brief Apply smoothing to smear peaks (elliptic convexe surfaces).
