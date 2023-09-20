@@ -55,9 +55,7 @@ void hydraulic_vpipes(Array &z,
   Array fT = Array(z.shape);
   Array fB = Array(z.shape);
 
-  float talus_scaling = (float)(1 * std::min(z.shape.x, z.shape.y));
-
-  Array tmp = Array(z.shape);
+  float talus_scaling = (float)std::min(z.shape.x, z.shape.y);
 
   // keep a backup of the input if the erosion / deposition maps need
   // to be computed
@@ -67,6 +65,9 @@ void hydraulic_vpipes(Array &z,
 
   for (int it = 0; it < iterations; it++)
   {
+    if (it % 10 == 0)
+      LOG_DEBUG("iteration: %d", it);
+
     // --- water increase
     Array d1 = (1.f - dt * rain_rate) * d + dt * rain_rate * rain_map;
 
@@ -109,6 +110,11 @@ void hydraulic_vpipes(Array &z,
           fB_next(i, j) = std::max(0.f, fB(i, j) + dt * g * dh / pipe_length);
         }
 
+      fill_borders(fL_next);
+      fill_borders(fR_next);
+      fill_borders(fT_next);
+      fill_borders(fB_next);
+
       // normalize
       for (int i = 0; i < ni; i++)
         for (int j = 0; j < nj; j++)
@@ -140,7 +146,50 @@ void hydraulic_vpipes(Array &z,
           d2(i, j) = d1(i, j) + dv / (pipe_length * pipe_length);
         }
 
-      extrapolate_borders(d2);
+      {
+        int i = 0;
+        for (int j = 1; j < nj - 1; j++)
+        {
+          float dv = dt * (fT(i, j - 1) + fL(i + 1, j) + fB(i, j + 1) -
+                           fL(i, j) - fR(i, j) - fT(i, j) - fB(i, j));
+          d2(i, j) = d1(i, j) + dv / (pipe_length * pipe_length);
+        }
+      }
+
+      {
+        int i = ni - 1;
+        for (int j = 1; j < nj - 1; j++)
+        {
+          float dv = dt * (fR(i - 1, j) + fT(i, j - 1) + fB(i, j + 1) -
+                           fL(i, j) - fR(i, j) - fT(i, j) - fB(i, j));
+          d2(i, j) = d1(i, j) + dv / (pipe_length * pipe_length);
+        }
+      }
+
+      {
+        int j = 0;
+        for (int i = 1; i < ni - 1; i++)
+        {
+          float dv = dt * (fR(i - 1, j) + fL(i + 1, j) + fB(i, j + 1) -
+                           fL(i, j) - fR(i, j) - fT(i, j) - fB(i, j));
+          d2(i, j) = d1(i, j) + dv / (pipe_length * pipe_length);
+        }
+      }
+
+      {
+        int j = nj - 1;
+        for (int i = 1; i < ni - 1; i++)
+        {
+          float dv = dt * (fR(i - 1, j) + fT(i, j - 1) + fL(i + 1, j) +
+                           -fL(i, j) - fR(i, j) - fT(i, j) - fB(i, j));
+          d2(i, j) = d1(i, j) + dv / (pipe_length * pipe_length);
+        }
+      }
+
+      d2(0, 0) = 0.5f * (d2(1, 0) + d2(0, 1));
+      d2(ni - 1, 0) = 0.5f * (d2(ni - 2, 0) + d2(ni - 1, 1));
+      d2(ni - 1, nj - 1) = 0.5f * (d2(ni - 1, nj - 2) + d2(ni - 2, nj - 1));
+      d2(0, nj - 1) = 0.5f * (d2(0, nj - 2) + d2(1, nj - 1));
 
       // flow velocities
       for (int i = 1; i < ni - 1; i++)
@@ -148,28 +197,35 @@ void hydraulic_vpipes(Array &z,
         {
           u(i, j) = 0.5f * (fR(i - 1, j) - fL(i, j) + fR(i, j) - fL(i + 1, j));
           v(i, j) = 0.5f * (fT(i, j - 1) - fB(i, j) + fT(i, j) - fB(i, j + 1));
+
+          // float dmean = std::max(0.5f * water_height, d2(i, j));
+          float dmean = std::max(water_height * dt,
+                                 0.5f * (d1(i, j) + d2(i, j)));
+          u(i, j) /= dmean;
+          v(i, j) /= dmean;
         }
 
-      extrapolate_borders(u);
-      extrapolate_borders(v);
-
-      tmp = v;
+      fill_borders(u);
+      fill_borders(v);
 
     } // flow sim
 
     // --- erosion and deposition
     Array s1 = s;
-    Array talus = talus_scaling * gradient_norm(z + d2);
-    laplace(talus, 0.1f, 1);
+    Array talus = talus_scaling * gradient_norm(z + 0.5f * (d1 + d2));
+    laplace(talus, 0.25f, 1);
+
+    // smooth_cpulse(talus, 16);
 
     for (int i = 1; i < ni - 1; i++)
       for (int j = 1; j < nj - 1; j++)
       {
         // sin(alpha), sin of tilt angle
-        float salpha = std::max(0.1f,
+        float salpha = std::max(0.001f,
                                 talus(i, j) / approx_hypot(1.f, talus(i, j)));
         float sc = c_capacity * approx_hypot(u(i, j), v(i, j)) * salpha;
-        float delta_sc = sc - s(i, j);
+
+        float delta_sc = dt * (sc - s(i, j));
         float amount;
 
         if (delta_sc > 0.f)
@@ -181,8 +237,8 @@ void hydraulic_vpipes(Array &z,
         z(i, j) -= amount;
       }
 
-    extrapolate_borders(s1);
-    extrapolate_borders(z);
+    fill_borders(s1);
+    fill_borders(z);
 
     // bedrock pass
     if (p_bedrock)
@@ -207,7 +263,7 @@ void hydraulic_vpipes(Array &z,
         s(i, j) = s1.get_value_bilinear_at(ip, jp, u, v);
       }
 
-    extrapolate_borders(s);
+    fill_borders(s);
 
     // --- flow evaporation
     d = d2 * (1.f - dt * evap_rate);

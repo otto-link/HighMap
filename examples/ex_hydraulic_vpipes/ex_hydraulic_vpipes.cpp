@@ -10,9 +10,11 @@ int main(void)
   hmap::remap(z);
   auto z0 = z;
 
-  hmap::hydraulic_vpipes(z, 50);
+  hmap::hydraulic_vpipes(z, 300);
 
   z.infos();
 
-  hmap::export_banner_png("ex_hydraulic_vpipes.png", {z}, hmap::cmap::terrain);
+  hmap::export_banner_png("ex_hydraulic_vpipes.png",
+                          {z0, z},
+                          hmap::cmap::terrain);
 }
