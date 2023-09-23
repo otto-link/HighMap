@@ -94,4 +94,20 @@ void normal_displacement(Array &array, float amount, int ir, bool reverse)
   array = array_new;
 }
 
+void normal_displacement(Array &array,
+                         Array *p_mask,
+                         float  amount,
+                         int    ir,
+                         bool   reverse)
+{
+  if (!p_mask)
+    normal_displacement(array, amount, ir, reverse);
+  else
+  {
+    Array array_f = array;
+    normal_displacement(array_f, amount, ir, reverse);
+    array = lerp(array, array_f, *(p_mask));
+  }
+}
+
 } // namespace hmap

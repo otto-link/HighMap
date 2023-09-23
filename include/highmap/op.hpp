@@ -1110,6 +1110,7 @@ Array mixer(const Array t, const std::vector<Array> arrays);
  * @brief Apply a displacement to the terrain along the normal direction.
  *
  * @param array Input array.
+ * @param p_mask Filter mask, expected in [0, 1].
  * @param amount Amount of displacement.
  * @param ir Pre-filtering radius.
  * @param reverse Reverse displacement direction.
@@ -1124,6 +1125,12 @@ void normal_displacement(Array &array,
                          float  amount = 0.1f,
                          int    ir = 0,
                          bool   reverse = false);
+
+void normal_displacement(Array &array,
+                         Array *p_mask,
+                         float  amount = 0.1f,
+                         int    ir = 0,
+                         bool   reverse = false); ///< @overload
 
 /**
  * @brief Return the array elements raised to the power 'exp'.

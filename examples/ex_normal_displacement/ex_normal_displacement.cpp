@@ -9,9 +9,12 @@ int main(void)
 
   hmap::Array z1 = hmap::fbm_perlin(shape, res, seed);
 
+  hmap::Array mask = z1;
+  hmap::remap(mask);
+
   hmap::Array z2 = z1;
-  hmap::normal_displacement(z2, 5.f, 4, false);
-  z2.infos();
+  hmap::normal_displacement(z2, &mask, 5.f, 4, false);
+
   hmap::export_banner_png("ex_normal_displacement.png",
                           {z1, z2},
                           hmap::cmap::terrain);
