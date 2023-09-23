@@ -1884,6 +1884,33 @@ void warp(Array       &array,
           float        scale = 1.f);
 
 /**
+ * @brief Apply a warping effect following the downward local gradient direction
+ * (deflate / inflate effect).
+ *
+ * @param array Input array.
+ * @param p_mask Filter mask, expected in [0, 1].
+ * @param amount Amount of displacement.
+ * @param ir Pre-filtering radius.
+ * @param reverse Reverse displacement direction.
+ *
+ * **Example**
+ * @include ex_warp_downslope.cpp
+ *
+ * **Result**
+ * @image html ex_warp_downslope.png
+ */
+void warp_downslope(Array &array,
+                    float  amount = 1.f,
+                    int    ir = 4,
+                    bool   reverse = false);
+
+void warp_downslope(Array &array,
+                    Array *p_mask,
+                    float  amount = 1.f,
+                    int    ir = 4,
+                    bool   reverse = false); ///< @overload
+
+/**
  * @brief Apply a warping effect to the array with displacements based on fbm
  * noise.
  *

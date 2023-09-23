@@ -12,9 +12,9 @@ int main(void)
   hmap::remap(mask);
 
   hmap::Array z2 = z1;
-  hmap::normal_displacement(z2, &mask, 5.f, 4, false);
+  hmap::warp_downslope(z2, &mask, 5.f, 4, false);
 
-  hmap::export_banner_png("ex_normal_displacement.png",
+  hmap::export_banner_png("ex_warp_downslope.png",
                           {z1, z2},
                           hmap::cmap::terrain);
 }
