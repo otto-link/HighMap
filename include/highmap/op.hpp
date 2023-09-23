@@ -470,6 +470,15 @@ Array curvature_mean(const Array &z);
 Array distance_transform(const Array &array);
 
 /**
+ * @brief Apply histogram adjustement to the array values.
+ *
+ * @param array Input array.
+ */
+void equalize(Array &array);
+
+void equalize(Array &array, Array *p_mask); ///< @overload
+
+/**
  * @brief Return the exponantial of the array elements.
  *
  * @param array Input array.

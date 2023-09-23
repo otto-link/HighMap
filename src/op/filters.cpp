@@ -21,6 +21,24 @@
 namespace hmap
 {
 
+void equalize(Array &array)
+{
+  Array flat_ref = hmap::white(array.shape, 0.f, 1.f, 0);
+  match_histogram(array, flat_ref);
+}
+
+void equalize(Array &array, Array *p_mask)
+{
+  if (!p_mask)
+    equalize(array);
+  else
+  {
+    Array array_f = array;
+    equalize(array_f);
+    array = lerp(array, array_f, *(p_mask));
+  }
+}
+
 void expand(Array &array, int ir)
 {
   Array array_new = array;
