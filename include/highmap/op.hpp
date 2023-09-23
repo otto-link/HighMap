@@ -1107,6 +1107,25 @@ Array minimum_smooth(const Array &array1, const Array &array2, float k = 0.2);
 Array mixer(const Array t, const std::vector<Array> arrays);
 
 /**
+ * @brief Apply a displacement to the terrain along the normal direction.
+ *
+ * @param array Input array.
+ * @param amount Amount of displacement.
+ * @param ir Pre-filtering radius.
+ * @param reverse Reverse displacement direction.
+ *
+ * **Example**
+ * @include ex_normal_displacement.cpp
+ *
+ * **Result**
+ * @image html ex_normal_displacement.png
+ */
+void normal_displacement(Array &array,
+                         float  amount = 0.1f,
+                         int    ir = 0,
+                         bool   reverse = false);
+
+/**
  * @brief Return the array elements raised to the power 'exp'.
  *
  * @param exp Exponent.

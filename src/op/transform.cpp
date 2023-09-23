@@ -61,4 +61,37 @@ void alter_elevation(Array      &array,
   array += amp;
 }
 
+void normal_displacement(Array &array, float amount, int ir, bool reverse)
+{
+  Array array_f = array;
+  Array array_new = Array(array.shape);
+
+  if (ir > 0)
+    smooth_cpulse(array_f, ir);
+
+  if (reverse)
+    amount = -amount;
+
+  for (int i = 1; i < array.shape.x - 1; i++)
+    for (int j = 1; j < array.shape.y - 1; j++)
+    {
+      Vec3<float> n = array_f.get_normal_at(i, j);
+
+      float x = (float)i - amount * array.shape.x * n.x;
+      float y = (float)j - amount * array.shape.y * n.y;
+
+      // bilinear interpolation parameters
+      int ip = std::clamp((int)x, 0, array.shape.x - 1);
+      int jp = std::clamp((int)y, 0, array.shape.y - 1);
+
+      float u = std::clamp(x - (float)ip, 0.f, 1.f);
+      float v = std::clamp(y - (float)jp, 0.f, 1.f);
+
+      array_new(i, j) = array.get_value_bilinear_at(ip, jp, u, v);
+    }
+  extrapolate_borders(array_new);
+
+  array = array_new;
+}
+
 } // namespace hmap
