@@ -75,7 +75,7 @@ void warp_downslope(Array &array, float amount, int ir, bool reverse)
     if (ir > 0)
       smooth_cpulse(array_f, ir);
 
-    alpha = gradient_angle(array);
+    alpha = gradient_angle(array_f);
   }
 
   // add a shape factor to avoid artifacts close to the boundaries
