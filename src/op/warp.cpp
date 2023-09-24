@@ -7,6 +7,7 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/kernels.hpp"
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 
@@ -77,6 +78,9 @@ void warp_downslope(Array &array, float amount, int ir, bool reverse)
     alpha = gradient_angle(array);
   }
 
+  // add a shape factor to avoid artifacts close to the boundaries
+  Array factor = smooth_cosine(array.shape);
+
   if (reverse)
     amount = -amount;
 
@@ -84,8 +88,8 @@ void warp_downslope(Array &array, float amount, int ir, bool reverse)
     for (int j = 1; j < array.shape.y - 1; j++)
     {
 
-      float x = (float)i + amount * std::cos(alpha(i, j));
-      float y = (float)j + amount * std::sin(alpha(i, j));
+      float x = (float)i + amount * std::cos(alpha(i, j)) * factor(i, j);
+      float y = (float)j + amount * std::sin(alpha(i, j)) * factor(i, j);
 
       // bilinear interpolation parameters
       int ip = std::clamp((int)x, 0, array.shape.x - 1);
