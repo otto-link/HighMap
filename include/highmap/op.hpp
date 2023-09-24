@@ -1903,6 +1903,35 @@ void warp(Array       &array,
  * @param reverse Reverse displacement direction.
  *
  * **Example**
+ * @include ex_warp_directional.cpp
+ *
+ * **Result**
+ * @image html ex_warp_directional.png
+ */
+void warp_directional(Array &array,
+                      float  angle,
+                      float  amount = 1.f,
+                      int    ir = 4,
+                      bool   reverse = false);
+
+void warp_directional(Array &array,
+                      float  angle,
+                      Array *p_mask,
+                      float  amount = 1.f,
+                      int    ir = 4,
+                      bool   reverse = false); ///< @overload
+
+/**
+ * @brief Apply a warping effect following the downward local gradient direction
+ * (deflate / inflate effect).
+ *
+ * @param array Input array.
+ * @param p_mask Filter mask, expected in [0, 1].
+ * @param amount Amount of displacement.
+ * @param ir Pre-filtering radius.
+ * @param reverse Reverse displacement direction.
+ *
+ * **Example**
  * @include ex_warp_downslope.cpp
  *
  * **Result**
