@@ -69,6 +69,9 @@ void normal_displacement(Array &array, float amount, int ir, bool reverse)
   if (ir > 0)
     smooth_cpulse(array_f, ir);
 
+  // add a shape factor to avoid artifacts close to the boundaries
+  Array factor = smooth_cosine(array.shape);
+
   if (reverse)
     amount = -amount;
 
@@ -77,8 +80,8 @@ void normal_displacement(Array &array, float amount, int ir, bool reverse)
     {
       Vec3<float> n = array_f.get_normal_at(i, j);
 
-      float x = (float)i - amount * array.shape.x * n.x;
-      float y = (float)j - amount * array.shape.y * n.y;
+      float x = (float)i - amount * array.shape.x * n.x * factor(i, j);
+      float y = (float)j - amount * array.shape.y * n.y * factor(i, j);
 
       // bilinear interpolation parameters
       int ip = std::clamp((int)x, 0, array.shape.x - 1);
@@ -89,7 +92,7 @@ void normal_displacement(Array &array, float amount, int ir, bool reverse)
 
       array_new(i, j) = array.get_value_bilinear_at(ip, jp, u, v);
     }
-  extrapolate_borders(array_new);
+  fill_borders(array_new);
 
   array = array_new;
 }
