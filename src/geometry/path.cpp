@@ -433,4 +433,27 @@ void Path::to_png(std::string fname, Vec2<int> shape)
   array.to_png(fname, cmap::inferno, false);
 }
 
+//----------------------------------------------------------------------
+// functions
+//----------------------------------------------------------------------
+
+void dig_path(Array      &z,
+              Path       &path,
+              int         width,
+              int         decay,
+              int         flattening_radius,
+              Vec4<float> bbox)
+{
+  Array mask = Array(z.shape);
+  path.to_array(mask, bbox);
+
+  mask = maximum_local(mask, width);
+  mask = distance_transform(mask);
+  mask = exp(-mask * mask * 0.5f / ((float)(decay * decay)));
+
+  Array zf = mean_local(z, flattening_radius);
+
+  z = lerp(z, zf, mask);
+}
+
 } // namespace hmap

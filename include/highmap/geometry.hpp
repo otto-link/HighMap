@@ -795,6 +795,33 @@ public:
 };
 
 //----------------------------------------
+// Path functions
+//----------------------------------------
+
+/**
+ * @brief Dig a path on a heightmap.
+ *
+ * @param z Input array.
+ * @param path Path to dig.
+ * @param width Path width radius (in pixels).
+ * @param decay Path border decay radius (in pixels).
+ * @param flattening_radius Path elevation flattening radius (in pixels).
+ * @param bbox  Bounding box.
+ *
+ * **Example**
+ * @include ex_dig_path.cpp
+ *
+ * **Result**
+ * @image html ex_dig_path.png
+ */
+void dig_path(Array      &z,
+              Path       &path,
+              int         width = 1,
+              int         decay = 2,
+              int         flattening_radius = 16,
+              Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+//----------------------------------------
 // Point functions
 //----------------------------------------
 
