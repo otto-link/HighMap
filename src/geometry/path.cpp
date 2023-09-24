@@ -445,7 +445,13 @@ void dig_path(Array      &z,
               Vec4<float> bbox)
 {
   Array mask = Array(z.shape);
-  path.to_array(mask, bbox);
+
+  // make sure values at the path points are non-zero before creating
+  // the mask
+  Path path_copy = path;
+  for (auto &p : path_copy.points)
+    p.v = 1.f;
+  path_copy.to_array(mask, bbox);
 
   mask = maximum_local(mask, width);
   mask = distance_transform(mask);

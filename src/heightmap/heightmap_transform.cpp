@@ -167,6 +167,19 @@ void transform(HeightMap                                             &h,
     futures[i].get();
 }
 
+void transform(HeightMap &h, std::function<void(Array &, Vec4<float>)> unary_op)
+{
+  LOG_DEBUG("unary bbox");
+  size_t                         nthreads = h.get_ntiles();
+  std::vector<std::future<void>> futures(nthreads);
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+    futures[i] = std::async(unary_op, std::ref(h.tiles[i]), h.tiles[i].bbox);
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+    futures[i].get();
+}
+
 void transform(HeightMap                            &h,
                HeightMap                            *p_mask,
                std::function<void(Array &, Array *)> unary_op)
