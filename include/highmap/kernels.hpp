@@ -67,6 +67,11 @@ Array cone_smooth(Vec2<int> shape);
  */
 Array cubic_pulse(Vec2<int> shape);
 
+Array cubic_pulse_directional(Vec2<int> shape,
+                              float     angle,
+                              float     aspect_ratio,
+                              float     anisotropy);
+
 /**
  * @brief Return a disk foot-print.
  *
