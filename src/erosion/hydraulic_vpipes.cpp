@@ -198,8 +198,7 @@ void hydraulic_vpipes(Array &z,
           u(i, j) = 0.5f * (fR(i - 1, j) - fL(i, j) + fR(i, j) - fL(i + 1, j));
           v(i, j) = 0.5f * (fT(i, j - 1) - fB(i, j) + fT(i, j) - fB(i, j + 1));
 
-          // float dmean = std::max(0.5f * water_height, d2(i, j));
-          float dmean = std::max(water_height * dt,
+          float dmean = std::max(0.5f * water_height * dt,
                                  0.5f * (d1(i, j) + d2(i, j)));
           u(i, j) /= dmean;
           v(i, j) /= dmean;

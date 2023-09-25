@@ -402,10 +402,11 @@ void low_pass_high_order(Array &array, int order, float sigma)
     break;
   }
 
-  df = convolve1d_i(df, kernel);
-  df = convolve1d_j(df, kernel);
+  df = convolve1d_i(array, kernel);
+  array -= sigma * df;
 
-  array = array - sigma * df;
+  df = convolve1d_j(array, kernel);
+  array -= sigma * df;
 }
 
 void make_binary(Array &array, float threshold)
