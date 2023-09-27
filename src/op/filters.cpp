@@ -863,21 +863,40 @@ void smooth_gaussian(Array &array, int ir, Array *p_mask)
   }
 }
 
-void smooth_fill(Array &array, int ir, float k)
+void smooth_fill(Array &array, int ir, float k, Array *p_deposition_map)
 {
+  // keep a backup of the input for the deposition map
+  Array array_bckp = Array();
+  if (p_deposition_map != nullptr)
+    array_bckp = array;
+
+  // smooth filling
   Array array_smooth = array;
   smooth_cpulse(array_smooth, ir);
   array = maximum_smooth(array, array_smooth, k);
+
+  // update map
+  LOG_DEBUG("%p", p_deposition_map);
+  if (p_deposition_map)
+  {
+    *p_deposition_map = array - array_bckp;
+    clamp_min(*p_deposition_map, 0.f);
+    p_deposition_map->infos();
+  }
 }
 
-void smooth_fill(Array &array, int ir, Array *p_mask, float k)
+void smooth_fill(Array &array,
+                 int    ir,
+                 Array *p_mask,
+                 float  k,
+                 Array *p_deposition_map)
 {
   if (!p_mask)
-    smooth_fill(array, ir, k);
+    smooth_fill(array, ir, k, p_deposition_map);
   else
   {
     Array array_f = array;
-    smooth_fill(array_f, ir, k);
+    smooth_fill(array_f, ir, k, p_deposition_map);
     array = lerp(array, array_f, *(p_mask));
   }
 }

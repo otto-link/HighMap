@@ -196,7 +196,7 @@ void hydraulic_musgrave(Array &z,
  * expected to be in [0, 1].
  * @param p_erosion_map[out] Reference to the erosion map, provided as an output
  * field.
- * @param p_deposition_map [out] Reference to the depositio, map, provided as an
+ * @param p_deposition_map [out] Reference to the deposition map, provided as an
  * output field.
  * @param c_radius Particle radius in pixel(s) (>= 0).
  * @param c_capacity Sediment capacity.
@@ -383,7 +383,7 @@ void hydraulic_stream(Array &z,
  * expected to be in [0, 1].
  * @param p_erosion_map[out] Reference to the erosion map, provided as an output
  * field.
- * @param p_deposition_map [out] Reference to the depositio, map, provided as an
+ * @param p_deposition_map [out] Reference to the deposition map, provided as an
  * output field.
  * @param water_height Water height.
  * @param c_capacity Sediment capacity.

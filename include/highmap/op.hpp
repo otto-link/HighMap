@@ -1723,6 +1723,8 @@ void smooth_gaussian(Array &array, int ir, Array *p_mask);
  * @param ir Pulse radius.
  * @param p_mask Filter mask, expected in [0, 1].
  * @param k Transition smoothing parameter in [0, 1].
+ * @param p_deposition_map [out] Reference to the deposition map, provided as an
+ * output field.
  *
  * **Example**
  * @include ex_smooth_fill.cpp
@@ -1732,9 +1734,16 @@ void smooth_gaussian(Array &array, int ir, Array *p_mask);
  *
  * @see {@link smooth_cpulse}, {@link thermal_auto_bedrock}
  */
-void smooth_fill(Array &array, int ir, float k = 0.1f);
+void smooth_fill(Array &array,
+                 int    ir,
+                 float  k = 0.1f,
+                 Array *p_deposition_map = nullptr);
 
-void smooth_fill(Array &array, int ir, Array *p_mask, float k = 0.1f);
+void smooth_fill(Array &array,
+                 int    ir,
+                 Array *p_mask,
+                 float  k = 0.1f,
+                 Array *p_deposition_map = nullptr);
 
 /**
  * @brief Apply smoothing to fill holes (elliptic concave surfaces).
