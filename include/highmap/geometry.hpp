@@ -288,6 +288,11 @@ public:
   }
 
   /**
+   * @brief Clear the cloud data.
+   */
+  void clear();
+
+  /**
    * @brief Get the values from an underlying array at location `(x, y)`.
    *
    * @param array Input array.
@@ -672,6 +677,11 @@ public:
    * @image html ex_path_bezier.png
    */
   void bezier(float curvature_ratio = 0.3f, int edge_divisions = 10);
+
+  /**
+   * @brief Clear the path data.
+   */
+  void clear();
 
   /**
    * @brief Divide path by adding point based on the lowest elevation difference

@@ -24,6 +24,12 @@ Cloud::Cloud(int npoints, uint seed, Vec4<float> bbox)
   this->randomize(seed, bbox);
 };
 
+void Cloud::clear()
+{
+  this->points.clear();
+  this->convex_hull.clear();
+}
+
 float Cloud::get_values_max()
 {
   std::vector<float> values = this->get_values();

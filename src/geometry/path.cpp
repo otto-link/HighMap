@@ -87,6 +87,13 @@ void Path::bezier(float curvature_ratio, int edge_divisions)
   }
 }
 
+void Path::clear()
+{
+  this->points.clear();
+  this->convex_hull.clear();
+  this->closed = false;
+}
+
 void Path::dijkstra(Array      &array,
                     Vec4<float> bbox,
                     int         edge_divisions,
