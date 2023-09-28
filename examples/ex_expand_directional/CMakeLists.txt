@@ -1,0 +1,2 @@
+add_executable(ex_expand_directional ex_expand_directional.cpp)
+target_link_libraries(ex_expand_directional highmap)
