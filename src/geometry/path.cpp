@@ -466,7 +466,7 @@ void dig_path(Array      &z,
   mask = exp(-mask * mask * 0.5f / ((float)(decay * decay)));
 
   Array zf = mean_local(z, flattening_radius);
-  zf -= depth;
+  zf += depth;
 
   z = lerp(z, zf, mask);
 }
