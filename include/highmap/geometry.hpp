@@ -829,7 +829,8 @@ void dig_path(Array      &z,
               int         width = 1,
               int         decay = 2,
               int         flattening_radius = 16,
-              Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+              Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f},
+              float       depth = 0.f);
 
 //----------------------------------------
 // Point functions
