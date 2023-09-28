@@ -67,6 +67,15 @@ Array cone_smooth(Vec2<int> shape);
  */
 Array cubic_pulse(Vec2<int> shape);
 
+/**
+ * @brief Return a "directional" cubic pulse kernel.
+ *
+ * @param shape Array shape.
+ * @param angle Angle (in degrees).
+ * @param aspect_ratio Pulse aspect ratio.
+ * @param anisotropy Pulse width ratio between upstream and downstream sides.
+ * @return Array New array.
+ */
 Array cubic_pulse_directional(Vec2<int> shape,
                               float     angle,
                               float     aspect_ratio,

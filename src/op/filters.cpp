@@ -120,6 +120,20 @@ void expand(Array &array, Array &kernel, Array *p_mask)
   }
 }
 
+void expand_directional(Array &array,
+                        int    ir,
+                        float  angle,
+                        float  aspect_ratio,
+                        float  anisotropy,
+                        Array *p_mask)
+{
+  Array kernel = cubic_pulse_directional(Vec2<int>(2 * ir + 1, 2 * ir + 1),
+                                         angle,
+                                         aspect_ratio,
+                                         anisotropy);
+  expand(array, kernel, p_mask);
+}
+
 void fill_talus(Array &z, float talus, uint seed, float noise_ratio)
 {
   std::mt19937                          gen(seed);
@@ -783,6 +797,20 @@ void shrink(Array &array, Array &kernel, Array *p_mask)
     shrink(array_f, kernel);
     array = lerp(array, array_f, *(p_mask));
   }
+}
+
+void shrink_directional(Array &array,
+                        int    ir,
+                        float  angle,
+                        float  aspect_ratio,
+                        float  anisotropy,
+                        Array *p_mask)
+{
+  Array kernel = cubic_pulse_directional(Vec2<int>(2 * ir + 1, 2 * ir + 1),
+                                         angle,
+                                         aspect_ratio,
+                                         anisotropy);
+  shrink(array, kernel, p_mask);
 }
 
 void smooth_cpulse(Array &array, int ir)

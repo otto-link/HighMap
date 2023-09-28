@@ -507,6 +507,30 @@ void expand(Array &array, Array &kernel);                ///< @overload
 void expand(Array &array, Array &kernel, Array *p_mask); ///< @overload
 
 /**
+ * @brief Apply expanding, or "inflating", to emphasize the bulk of the terrain,
+ * with a directional kernel.
+ *
+ * @param array Input array.
+ * @param ir Filter radius.
+ * @param angle Angle (in degrees).
+ * @param aspect_ratio Pulse aspect ratio.
+ * @param anisotropy Pulse width ratio between upstream and downstream sides.
+ * @param p_mask Filter mask, expected in [0, 1].
+ *
+ * **Example**
+ * @include ex_expand_directional.cpp
+ *
+ * **Result**
+ * @image html ex_expand_directional.png
+ */
+void expand_directional(Array &array,
+                        int    ir,
+                        float  angle,
+                        float  aspect_ratio,
+                        float  anisotropy = 1.f,
+                        Array *p_mask = nullptr);
+
+/**
  * @brief Linear extrapolation of values at the borders (i = 0, j = 0, ...)
  * based on inner values.
  *
@@ -1662,6 +1686,30 @@ void shrink(Array &array, int ir);
 void shrink(Array &array, int ir, Array *p_mask);        ///< @overload
 void shrink(Array &array, Array &kernel);                ///< @overload
 void shrink(Array &array, Array &kernel, Array *p_mask); ///< @overload
+
+/**
+ * @brief Apply shrinking, or "deflating", to emphasize the ridges of the
+ * terrain, with a directional kernel.
+ *
+ * @param array Input array.
+ * @param ir Filter radius.
+ * @param angle Angle (in degrees).
+ * @param aspect_ratio Pulse aspect ratio.
+ * @param anisotropy Pulse width ratio between upstream and downstream sides.
+ * @param p_mask Filter mask, expected in [0, 1].
+ *
+ * **Example**
+ * @include ex_expand_directional.cpp
+ *
+ * **Result**
+ * @image html ex_expand_directional.png
+ */
+void shrink_directional(Array &array,
+                        int    ir,
+                        float  angle,
+                        float  aspect_ratio,
+                        float  anisotropy = 1.f,
+                        Array *p_mask = nullptr);
 
 /**
  * @brief Return the sine of the array elements.
