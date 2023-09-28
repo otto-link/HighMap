@@ -1,4 +1,4 @@
-#include "highmap/array.hpp"
+#include "highmap.hpp"
 
 int main(void)
 {

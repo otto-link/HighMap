@@ -96,6 +96,43 @@ Array cubic_pulse(Vec2<int> shape)
   return array;
 }
 
+Array cubic_pulse_directional(Vec2<int> shape,
+                              float     angle,
+                              float     aspect_ratio,
+                              float     anisotropy)
+{
+  Array array = Array(shape);
+
+  // center and radii
+  int ci = (int)(0.5f * ((float)shape.x - 1.f));
+  int cj = (int)(0.5f * ((float)shape.y - 1.f));
+  int ri = ci;
+  int rj = cj * aspect_ratio;
+
+  float ca = std::cos(angle / 180.f * M_PI);
+  float sa = std::sin(angle / 180.f * M_PI);
+
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
+    {
+      float xi = (float)i - ci;
+      float yi = (float)j - cj;
+
+      float xt = ca * xi + sa * yi;
+      float yt = sa * xi - ca * yi;
+
+      if (xt < 0.f)
+        xt *= (1.f + anisotropy);
+
+      float r = std::hypot(xt / float(ri + 1), yt / float(rj + 1));
+
+      if (r < 1.f)
+        array(i, j) = 1.f - r * r * (3.f - 2.f * r);
+    }
+
+  return array;
+}
+
 Array disk(Vec2<int> shape)
 {
   Array array = Array(shape);

@@ -3,7 +3,7 @@
  * this software. */
 
 /**
- * @file kernls.hpp
+ * @file kernels.hpp
  * @author Otto Link (otto.link.bv@gmail.com)
  * @brief
  * @version 0.1
@@ -66,6 +66,11 @@ Array cone_smooth(Vec2<int> shape);
  * @return Array New array.
  */
 Array cubic_pulse(Vec2<int> shape);
+
+Array cubic_pulse_directional(Vec2<int> shape,
+                              float     angle,
+                              float     aspect_ratio,
+                              float     anisotropy);
 
 /**
  * @brief Return a disk foot-print.

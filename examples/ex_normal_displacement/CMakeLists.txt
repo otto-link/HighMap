@@ -1,0 +1,2 @@
+add_executable(ex_normal_displacement ex_normal_displacement.cpp)
+target_link_libraries(ex_normal_displacement highmap)

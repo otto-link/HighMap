@@ -87,6 +87,13 @@ void Path::bezier(float curvature_ratio, int edge_divisions)
   }
 }
 
+void Path::clear()
+{
+  this->points.clear();
+  this->convex_hull.clear();
+  this->closed = false;
+}
+
 void Path::dijkstra(Array      &array,
                     Vec4<float> bbox,
                     int         edge_divisions,
@@ -431,6 +438,35 @@ void Path::to_png(std::string fname, Vec2<int> shape)
   Array array = Array(shape);
   this->to_array(array, this->get_bbox());
   array.to_png(fname, cmap::inferno, false);
+}
+
+//----------------------------------------------------------------------
+// functions
+//----------------------------------------------------------------------
+
+void dig_path(Array      &z,
+              Path       &path,
+              int         width,
+              int         decay,
+              int         flattening_radius,
+              Vec4<float> bbox)
+{
+  Array mask = Array(z.shape);
+
+  // make sure values at the path points are non-zero before creating
+  // the mask
+  Path path_copy = path;
+  for (auto &p : path_copy.points)
+    p.v = 1.f;
+  path_copy.to_array(mask, bbox);
+
+  mask = maximum_local(mask, width);
+  mask = distance_transform(mask);
+  mask = exp(-mask * mask * 0.5f / ((float)(decay * decay)));
+
+  Array zf = mean_local(z, flattening_radius);
+
+  z = lerp(z, zf, mask);
 }
 
 } // namespace hmap

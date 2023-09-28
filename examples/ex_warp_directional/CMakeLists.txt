@@ -1,0 +1,2 @@
+add_executable(ex_warp_directional ex_warp_directional.cpp)
+target_link_libraries(ex_warp_directional highmap)

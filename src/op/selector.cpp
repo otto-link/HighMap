@@ -3,8 +3,9 @@
  * this software. */
 
 #define _USE_MATH_DEFINES
-
 #include <cmath>
+
+#include "macrologger.h"
 
 #include "highmap/array.hpp"
 #include "highmap/op.hpp"
@@ -50,6 +51,15 @@ Array select_blob_log(const Array &array, int ir)
   Array c = array;
   smooth_cpulse(c, ir);
   c = -laplacian(c);
+  return c;
+}
+
+Array select_eq(const Array &array, float value)
+{
+  Array c = array;
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
+      c(i, j) = c(i, j) == value ? 1.f : 0.f;
   return c;
 }
 
@@ -117,7 +127,7 @@ Array select_transitions(const Array &array1,
     }
 
   // boundaries
-  for (int j = 0; j < array1.shape.y; j++)
+  for (int j = 0; j < array1.shape.y - 1; j++)
   {
     int i = array1.shape.x - 1;
 
@@ -134,7 +144,7 @@ Array select_transitions(const Array &array1,
       mask(i, j) = 0.f;
   }
 
-  for (int i = 0; i < array1.shape.x; i++)
+  for (int i = 0; i < array1.shape.x - 1; i++)
   {
     int j = array1.shape.y - 1;
 

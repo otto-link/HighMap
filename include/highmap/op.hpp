@@ -13,6 +13,7 @@
  *
  */
 #pragma once
+#include "highmap/geometry.hpp"
 
 namespace hmap
 {
@@ -26,6 +27,15 @@ namespace hmap
 Array abs(const Array &array);
 
 /**
+ * @brief Return the smooth absolute value of the array elements.
+ *
+ * @param array Input array.
+ * @param k Smoothing coefficient.
+ * @return Array Output array.
+ */
+Array abs_smooth(const Array &array, float mu);
+
+/**
  * @brief Apply the almost unit identity function.
  *
  * Function that maps the unit interval to itself with zero derivative at 0 and
@@ -35,6 +45,34 @@ Array abs(const Array &array);
  * @param array Input array.
  */
 void almost_unit_identity(Array &array);
+
+/**
+ * @brief Point-wise alteration: locally enforce a new elevation value while
+    maintaining the 'shape' of the heightmap.
+ *
+ * @param array Input array.
+ * @param cloud Cloud object, defining alteration coordinates and elevation
+ variations.
+ * @param ir Alteration kernel minimal radius.
+ * @param footprint_ratio Defined how the radius is scales with variation
+ intensity (the greater the larger the alterations footprint)
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a
+ * unit domain.
+ * @param scale Domain scaling, in [0, 1].
+ *
+ *
+ * **Example**
+ * @include ex_alter_elevation.cpp
+ *
+ * **Result**
+ * @image html ex_alter_elevation.png
+ */
+void alter_elevation(Array      &array,
+                     Cloud      &cloud,
+                     int         ir,
+                     float       footprint_ratio = 1.f,
+                     Vec2<float> shift = {0.f, 0.f},
+                     Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return the approximate hypothenuse of two numbers.
@@ -432,6 +470,15 @@ Array curvature_mean(const Array &z);
 Array distance_transform(const Array &array);
 
 /**
+ * @brief Apply histogram adjustement to the array values.
+ *
+ * @param array Input array.
+ */
+void equalize(Array &array);
+
+void equalize(Array &array, Array *p_mask); ///< @overload
+
+/**
  * @brief Return the exponantial of the array elements.
  *
  * @param array Input array.
@@ -455,9 +502,9 @@ Array exp(const Array &array);
  * @see {@link ex_shrink}
  */
 void expand(Array &array, int ir, Array *p_mask);
-void expand(Array &array, int ir);                       /// @overload
-void expand(Array &array, Array &kernel);                /// @overload
-void expand(Array &array, Array &kernel, Array *p_mask); /// @overload
+void expand(Array &array, int ir);                       ///< @overload
+void expand(Array &array, Array &kernel);                ///< @overload
+void expand(Array &array, Array &kernel, Array *p_mask); ///< @overload
 
 /**
  * @brief Linear extrapolation of values at the borders (i = 0, j = 0, ...)
@@ -543,7 +590,7 @@ void fill_talus_fast(Array    &z,
  */
 void gain(Array &array, float factor, Array *p_mask);
 
-void gain(Array &array, float factor); /// @overload
+void gain(Array &array, float factor); ///< @overload
 
 /**
  * @brief Apply gamma correction to the input array.
@@ -562,7 +609,7 @@ void gain(Array &array, float factor); /// @overload
  */
 void gamma_correction(Array &array, float gamma, Array *p_mask);
 
-void gamma_correction(Array &array, float gamma); /// @overload
+void gamma_correction(Array &array, float gamma); ///< @overload
 
 void gamma_correction_thread(Array &array, float gamma);
 void gamma_correction_xsimd(Array &array, float gamma);
@@ -591,7 +638,7 @@ void gamma_correction_local(Array &array,
                             float  gamma,
                             int    ir,
                             Array *p_mask,
-                            float  k = 0.1f); /// @overload
+                            float  k = 0.1f); ///< @overload
 
 /**
  * @brief Return an array with buffers at the boundaries (values filled by
@@ -747,7 +794,7 @@ void laplace(Array &array, float sigma = 0.2f, int iterations = 3);
 void laplace(Array &array,
              Array *p_mask,
              float  sigma = 0.2f,
-             int    iterations = 3); /// @overload
+             int    iterations = 3); ///< @overload
 
 /**
  * @brief Apply a low-pass Laplace filter to a vector.
@@ -1069,6 +1116,32 @@ Array minimum_smooth(const Array &array1, const Array &array2, float k = 0.2);
 Array mixer(const Array t, const std::vector<Array> arrays);
 
 /**
+ * @brief Apply a displacement to the terrain along the normal direction.
+ *
+ * @param array Input array.
+ * @param p_mask Filter mask, expected in [0, 1].
+ * @param amount Amount of displacement.
+ * @param ir Pre-filtering radius.
+ * @param reverse Reverse displacement direction.
+ *
+ * **Example**
+ * @include ex_normal_displacement.cpp
+ *
+ * **Result**
+ * @image html ex_normal_displacement.png
+ */
+void normal_displacement(Array &array,
+                         float  amount = 0.1f,
+                         int    ir = 0,
+                         bool   reverse = false);
+
+void normal_displacement(Array &array,
+                         Array *p_mask,
+                         float  amount = 0.1f,
+                         int    ir = 0,
+                         bool   reverse = false); ///< @overload
+
+/**
  * @brief Return the array elements raised to the power 'exp'.
  *
  * @param exp Exponent.
@@ -1138,7 +1211,7 @@ void recast_peak(Array &array,
                  int    ir,
                  Array *p_mask,
                  float  gamma = 2.f,
-                 float  k = 0.1f); /// @overload
+                 float  k = 0.1f); ///< @overload
 
 /**
  * @brief Transform heightmap by adding "rock-like" features at higher slopes.
@@ -1360,6 +1433,26 @@ Array select_blob_log(const Array &array, int ir);
 
 /**
  * @brief Return an array with elements equal to 1 where input elements are
+ * equal to `value`.
+ *
+ * @param array Input array.
+ * @param value Criteria value.
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_select.cpp
+ *
+ * **Result**
+ * @image html ex_select0.png
+ * @image html ex_select1.png
+ * @image html ex_select2.png
+ * @image html ex_select3.png
+ * @image html ex_select4.png
+ */
+Array select_eq(const Array &array, float value);
+
+/**
+ * @brief Return an array with elements equal to 1 where input elements are
  * larger than `value`.
  *
  * @param array Input array.
@@ -1374,6 +1467,7 @@ Array select_blob_log(const Array &array, int ir);
  * @image html ex_select1.png
  * @image html ex_select2.png
  * @image html ex_select3.png
+ * @image html ex_select4.png
  */
 Array select_gt(const Array &array, float value);
 
@@ -1394,6 +1488,7 @@ Array select_gt(const Array &array, float value);
  * @image html ex_select1.png
  * @image html ex_select2.png
  * @image html ex_select3.png
+ * @image html ex_select4.png
  */
 Array select_interval(const Array &array, float value1, float value2);
 
@@ -1413,6 +1508,7 @@ Array select_interval(const Array &array, float value1, float value2);
  * @image html ex_select1.png
  * @image html ex_select2.png
  * @image html ex_select3.png
+ * @image html ex_select4.png
  */
 Array select_lt(const Array &array, float value);
 
@@ -1563,9 +1659,9 @@ void sharpen(Array &array, Array *p_mask, float ratio = 1.f);
  * @see {@link ex_expand}
  */
 void shrink(Array &array, int ir);
-void shrink(Array &array, int ir, Array *p_mask);        /// @overload
-void shrink(Array &array, Array &kernel);                /// @overload
-void shrink(Array &array, Array &kernel, Array *p_mask); /// @overload
+void shrink(Array &array, int ir, Array *p_mask);        ///< @overload
+void shrink(Array &array, Array &kernel);                ///< @overload
+void shrink(Array &array, Array &kernel, Array *p_mask); ///< @overload
 
 /**
  * @brief Return the sine of the array elements.
@@ -1627,6 +1723,8 @@ void smooth_gaussian(Array &array, int ir, Array *p_mask);
  * @param ir Pulse radius.
  * @param p_mask Filter mask, expected in [0, 1].
  * @param k Transition smoothing parameter in [0, 1].
+ * @param p_deposition_map [out] Reference to the deposition map, provided as an
+ * output field.
  *
  * **Example**
  * @include ex_smooth_fill.cpp
@@ -1636,9 +1734,16 @@ void smooth_gaussian(Array &array, int ir, Array *p_mask);
  *
  * @see {@link smooth_cpulse}, {@link thermal_auto_bedrock}
  */
-void smooth_fill(Array &array, int ir, float k = 0.1f);
+void smooth_fill(Array &array,
+                 int    ir,
+                 float  k = 0.1f,
+                 Array *p_deposition_map = nullptr);
 
-void smooth_fill(Array &array, int ir, Array *p_mask, float k = 0.1f);
+void smooth_fill(Array &array,
+                 int    ir,
+                 Array *p_mask,
+                 float  k = 0.1f,
+                 Array *p_deposition_map = nullptr);
 
 /**
  * @brief Apply smoothing to fill holes (elliptic concave surfaces).
@@ -1657,7 +1762,7 @@ void smooth_fill(Array &array, int ir, Array *p_mask, float k = 0.1f);
  */
 void smooth_fill_holes(Array &array, int ir);
 
-void smooth_fill_holes(Array &array, int ir, Array *p_mask); /// @overload
+void smooth_fill_holes(Array &array, int ir, Array *p_mask); ///< @overload
 
 /**
  * @brief Apply smoothing to smear peaks (elliptic convexe surfaces).
@@ -1795,6 +1900,62 @@ void warp(Array       &array,
           const Array *p_dx,
           const Array *p_dy,
           float        scale = 1.f);
+
+/**
+ * @brief Apply a warping effect following the downward local gradient direction
+ * (deflate / inflate effect).
+ *
+ * @param array Input array.
+ * @param p_mask Filter mask, expected in [0, 1].
+ * @param amount Amount of displacement.
+ * @param ir Pre-filtering radius.
+ * @param reverse Reverse displacement direction.
+ *
+ * **Example**
+ * @include ex_warp_directional.cpp
+ *
+ * **Result**
+ * @image html ex_warp_directional.png
+ */
+void warp_directional(Array &array,
+                      float  angle,
+                      float  amount = 1.f,
+                      int    ir = 4,
+                      bool   reverse = false);
+
+void warp_directional(Array &array,
+                      float  angle,
+                      Array *p_mask,
+                      float  amount = 1.f,
+                      int    ir = 4,
+                      bool   reverse = false); ///< @overload
+
+/**
+ * @brief Apply a warping effect following the downward local gradient direction
+ * (deflate / inflate effect).
+ *
+ * @param array Input array.
+ * @param p_mask Filter mask, expected in [0, 1].
+ * @param amount Amount of displacement.
+ * @param ir Pre-filtering radius.
+ * @param reverse Reverse displacement direction.
+ *
+ * **Example**
+ * @include ex_warp_downslope.cpp
+ *
+ * **Result**
+ * @image html ex_warp_downslope.png
+ */
+void warp_downslope(Array &array,
+                    float  amount = 1.f,
+                    int    ir = 4,
+                    bool   reverse = false);
+
+void warp_downslope(Array &array,
+                    Array *p_mask,
+                    float  amount = 1.f,
+                    int    ir = 4,
+                    bool   reverse = false); ///< @overload
 
 /**
  * @brief Apply a warping effect to the array with displacements based on fbm

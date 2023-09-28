@@ -10,6 +10,8 @@
 #include "highmap/heightmap.hpp"
 #include "highmap/op.hpp"
 
+#include "op/vector_utils.hpp"
+
 namespace hmap
 {
 
@@ -82,10 +84,14 @@ void HeightMap::set_sto(Vec2<int> new_shape,
                         Vec2<int> new_tiling,
                         float     new_overlap)
 {
-  this->shape = new_shape;
-  this->tiling = new_tiling;
-  this->overlap = new_overlap;
-  this->update_tile_parameters();
+  if ((this->shape != new_shape) || (this->tiling != new_tiling) ||
+      (this->overlap != new_overlap))
+  {
+    this->shape = new_shape;
+    this->tiling = new_tiling;
+    this->overlap = new_overlap;
+    this->update_tile_parameters();
+  }
 }
 
 void HeightMap::set_tiling(Vec2<int> new_tiling)
@@ -292,6 +298,27 @@ void HeightMap::update_tile_parameters()
 
       tiles[k] = Tile(tile_shape, shift, scale, tile_bbox);
     }
+}
+
+std::vector<float> HeightMap::unique_values()
+{
+  std::vector<std::vector<float>> tile_unique_values(this->get_ntiles());
+  std::vector<std::future<std::vector<float>>> futures(this->get_ntiles());
+  std::vector<float>                           hmap_unique_values = {};
+
+  for (decltype(futures)::size_type i = 0; i < this->get_ntiles(); ++i)
+    futures[i] = std::async(&Tile::unique_values, tiles[i]);
+
+  for (decltype(futures)::size_type i = 0; i < this->get_ntiles(); ++i)
+    tile_unique_values[i] = futures[i].get();
+
+  // fill heightmap vector values
+  for (size_t i = 0; i < this->get_ntiles(); ++i)
+    for (auto &v : tile_unique_values[i])
+      hmap_unique_values.push_back(v);
+
+  vector_unique_values(hmap_unique_values);
+  return hmap_unique_values;
 }
 
 } // namespace hmap

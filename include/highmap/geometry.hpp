@@ -192,6 +192,20 @@ public:
   }
 
   /**
+   * @brief Get the maximum value.
+   *
+   * @return float Maximum value
+   */
+  float get_values_max();
+
+  /**
+   * @brief Get the minimum value.
+   *
+   * @return float Minimum value
+   */
+  float get_values_min();
+
+  /**
    * @brief Get the `x` of the points.
    *
    * @return std::vector<float> `x` values.
@@ -253,8 +267,9 @@ public:
   void set_values_from_array(const Array &array, Vec4<float> bbox);
 
   /**
-   * @brief Set the values distance from chull object
-   *
+   * @brief Set the values based on the distance to convex hull of the
+   * cloud (requires a call to `to_graph_delaunay()` before to
+   * initialize convex hull point indices.
    */
   void set_values_from_chull_distance();
 
@@ -273,11 +288,16 @@ public:
   }
 
   /**
+   * @brief Clear the cloud data.
+   */
+  void clear();
+
+  /**
    * @brief Get the values from an underlying array at location `(x, y)`.
    *
    * @param array Input array.
    * @param bbox Array bounding box.
-   * @return Vec4<float> Values.
+   * @return std::vector<float> Values.
    */
   std::vector<float> interpolate_values_from_array(const Array &array,
                                                    Vec4<float>  bbox);
@@ -289,14 +309,12 @@ public:
   void print();
 
   /**
-   * @brief Remap the values of the point coordinates.
+   * @brief Randomize positions and values of the cloud points.
    *
-   * @param xmin New `xmin`.
-   * @param xmax New `xmax`.
-   * @param ymin New `ymin`.
-   * @param ymax New `ymax`.
+   * @param seed Random seed number.
+   * @param bbox Bounding box.
    */
-  void remap_xy(Vec4<float> bbox_new);
+  void randomize(uint seed, Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
   /**
    * @brief Remove a point from the cloud.
@@ -661,6 +679,11 @@ public:
   void bezier(float curvature_ratio = 0.3f, int edge_divisions = 10);
 
   /**
+   * @brief Clear the path data.
+   */
+  void clear();
+
+  /**
    * @brief Divide path by adding point based on the lowest elevation difference
    * path between each ends of the egdes.
    *
@@ -782,6 +805,33 @@ public:
 };
 
 //----------------------------------------
+// Path functions
+//----------------------------------------
+
+/**
+ * @brief Dig a path on a heightmap.
+ *
+ * @param z Input array.
+ * @param path Path to dig.
+ * @param width Path width radius (in pixels).
+ * @param decay Path border decay radius (in pixels).
+ * @param flattening_radius Path elevation flattening radius (in pixels).
+ * @param bbox  Bounding box.
+ *
+ * **Example**
+ * @include ex_dig_path.cpp
+ *
+ * **Result**
+ * @image html ex_dig_path.png
+ */
+void dig_path(Array      &z,
+              Path       &path,
+              int         width = 1,
+              int         decay = 2,
+              int         flattening_radius = 16,
+              Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+//----------------------------------------
 // Point functions
 //----------------------------------------
 
@@ -865,7 +915,7 @@ void random_grid(std::vector<float> &x,
 void random_grid(std::vector<float> &x,
                  std::vector<float> &y,
                  uint                seed,
-                 Vec4<float>         bbox = {0.f, 1.f, 0.f, 1.f}); /// @overload
+                 Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f}); ///< @overload
 
 /**
  * @brief
@@ -896,5 +946,12 @@ void random_grid_jittered(std::vector<float> &x,
                           float               scale,
                           uint                seed,
                           Vec4<float>         bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
+ * @brief Sort points in an ascending order (x then y).
+ *
+ * @param points Points to be sorted (in place).
+ */
+void sort_points(std::vector<Point> &points);
 
 } // namespace hmap

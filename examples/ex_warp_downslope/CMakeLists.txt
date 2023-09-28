@@ -1,0 +1,2 @@
+add_executable(ex_warp_downslope ex_warp_downslope.cpp)
+target_link_libraries(ex_warp_downslope highmap)

@@ -20,38 +20,32 @@ namespace hmap
 // Main operator(s)
 //----------------------------------------------------------------------
 
-void hydraulic_vpipes(Array &z)
+void hydraulic_vpipes(Array &z,
+                      int    iterations,
+                      Array *p_bedrock,
+                      Array *p_moisture_map,
+                      Array *p_erosion_map,
+                      Array *p_deposition_map,
+                      float  water_height,
+                      float  c_capacity,
+                      float  c_erosion,
+                      float  c_deposition,
+                      float  rain_rate,
+                      float  evap_rate)
 {
-  // mainly Isheden2022
-  // Chiba1998 Isheden2022 Mei2007 Stava2008
-
-  // https://www.diva-portal.org/smash/get/diva2:1646074/FULLTEXT01.pdf
-
-  // parameters
-  Array rain_map = 0.05f * constant(z.shape, 1.f);
-
-  // Array rain_map = z;
-  // remap(rain_map, 0.f, 0.01f);
-
   float dt = 0.5f;
-  int   iterations = 40;
-
-  float evap_rate = 1e-2f;
-  float rain_rate = 1e-2f; // 1e-2f;
-
-  // float evap_rate = 0.5f;
-  // float rain_rate = 0.f; // 1e-2f;
-
-  float c_capacity = 1.f;
-  float c_erosion = 0.2f;
-  float c_deposition = 0.2f;
-
   float g = 1.f;
   float pipe_length = 1.f;
 
   // local
   int ni = z.shape.x;
   int nj = z.shape.y;
+
+  Array rain_map = Array(z.shape);
+  if (p_moisture_map)
+    rain_map = water_height * (*p_moisture_map);
+  else
+    rain_map = water_height;
 
   Array d = rain_map;       // water height
   Array s = Array(z.shape); // sediment height
@@ -61,13 +55,18 @@ void hydraulic_vpipes(Array &z)
   Array fT = Array(z.shape);
   Array fB = Array(z.shape);
 
-  float talus_scaling = (float)(1 * std::min(z.shape.x, z.shape.y));
+  float talus_scaling = (float)std::min(z.shape.x, z.shape.y);
 
-  Array tmp = Array(z.shape);
+  // keep a backup of the input if the erosion / deposition maps need
+  // to be computed
+  Array z_bckp = Array();
+  if ((p_erosion_map != nullptr) | (p_deposition_map != nullptr))
+    z_bckp = z;
 
   for (int it = 0; it < iterations; it++)
   {
-    LOG_DEBUG("iteration: %d", it);
+    if (it % 10 == 0)
+      LOG_DEBUG("iteration: %d", it);
 
     // --- water increase
     Array d1 = (1.f - dt * rain_rate) * d + dt * rain_rate * rain_map;
@@ -111,6 +110,11 @@ void hydraulic_vpipes(Array &z)
           fB_next(i, j) = std::max(0.f, fB(i, j) + dt * g * dh / pipe_length);
         }
 
+      fill_borders(fL_next);
+      fill_borders(fR_next);
+      fill_borders(fT_next);
+      fill_borders(fB_next);
+
       // normalize
       for (int i = 0; i < ni; i++)
         for (int j = 0; j < nj; j++)
@@ -142,7 +146,50 @@ void hydraulic_vpipes(Array &z)
           d2(i, j) = d1(i, j) + dv / (pipe_length * pipe_length);
         }
 
-      extrapolate_borders(d2);
+      {
+        int i = 0;
+        for (int j = 1; j < nj - 1; j++)
+        {
+          float dv = dt * (fT(i, j - 1) + fL(i + 1, j) + fB(i, j + 1) -
+                           fL(i, j) - fR(i, j) - fT(i, j) - fB(i, j));
+          d2(i, j) = d1(i, j) + dv / (pipe_length * pipe_length);
+        }
+      }
+
+      {
+        int i = ni - 1;
+        for (int j = 1; j < nj - 1; j++)
+        {
+          float dv = dt * (fR(i - 1, j) + fT(i, j - 1) + fB(i, j + 1) -
+                           fL(i, j) - fR(i, j) - fT(i, j) - fB(i, j));
+          d2(i, j) = d1(i, j) + dv / (pipe_length * pipe_length);
+        }
+      }
+
+      {
+        int j = 0;
+        for (int i = 1; i < ni - 1; i++)
+        {
+          float dv = dt * (fR(i - 1, j) + fL(i + 1, j) + fB(i, j + 1) -
+                           fL(i, j) - fR(i, j) - fT(i, j) - fB(i, j));
+          d2(i, j) = d1(i, j) + dv / (pipe_length * pipe_length);
+        }
+      }
+
+      {
+        int j = nj - 1;
+        for (int i = 1; i < ni - 1; i++)
+        {
+          float dv = dt * (fR(i - 1, j) + fT(i, j - 1) + fL(i + 1, j) +
+                           -fL(i, j) - fR(i, j) - fT(i, j) - fB(i, j));
+          d2(i, j) = d1(i, j) + dv / (pipe_length * pipe_length);
+        }
+      }
+
+      d2(0, 0) = 0.5f * (d2(1, 0) + d2(0, 1));
+      d2(ni - 1, 0) = 0.5f * (d2(ni - 2, 0) + d2(ni - 1, 1));
+      d2(ni - 1, nj - 1) = 0.5f * (d2(ni - 1, nj - 2) + d2(ni - 2, nj - 1));
+      d2(0, nj - 1) = 0.5f * (d2(0, nj - 2) + d2(1, nj - 1));
 
       // flow velocities
       for (int i = 1; i < ni - 1; i++)
@@ -150,28 +197,34 @@ void hydraulic_vpipes(Array &z)
         {
           u(i, j) = 0.5f * (fR(i - 1, j) - fL(i, j) + fR(i, j) - fL(i + 1, j));
           v(i, j) = 0.5f * (fT(i, j - 1) - fB(i, j) + fT(i, j) - fB(i, j + 1));
+
+          float dmean = std::max(0.5f * water_height * dt,
+                                 0.5f * (d1(i, j) + d2(i, j)));
+          u(i, j) /= dmean;
+          v(i, j) /= dmean;
         }
 
-      extrapolate_borders(u);
-      extrapolate_borders(v);
-
-      tmp = v;
+      fill_borders(u);
+      fill_borders(v);
 
     } // flow sim
 
     // --- erosion and deposition
     Array s1 = s;
-    Array talus = talus_scaling * gradient_norm(z + d2);
-    laplace(talus, 0.1f, 1);
+    Array talus = talus_scaling * gradient_norm(z + 0.5f * (d1 + d2));
+    laplace(talus, 0.25f, 1);
+
+    // smooth_cpulse(talus, 16);
 
     for (int i = 1; i < ni - 1; i++)
       for (int j = 1; j < nj - 1; j++)
       {
         // sin(alpha), sin of tilt angle
-        float salpha = std::max(0.1f,
+        float salpha = std::max(0.001f,
                                 talus(i, j) / approx_hypot(1.f, talus(i, j)));
         float sc = c_capacity * approx_hypot(u(i, j), v(i, j)) * salpha;
-        float delta_sc = sc - s(i, j);
+
+        float delta_sc = dt * (sc - s(i, j));
         float amount;
 
         if (delta_sc > 0.f)
@@ -183,8 +236,14 @@ void hydraulic_vpipes(Array &z)
         z(i, j) -= amount;
       }
 
-    extrapolate_borders(s1);
-    extrapolate_borders(z);
+    fill_borders(s1);
+    fill_borders(z);
+
+    // bedrock pass
+    if (p_bedrock)
+      for (int i = 0; i < z.shape.x; i++)
+        for (int j = 0; j < z.shape.y; j++)
+          z(i, j) = std::max(z(i, j), (*p_bedrock)(i, j));
 
     // --- sediment transport
     for (int i = 1; i < ni - 1; i++)
@@ -203,7 +262,7 @@ void hydraulic_vpipes(Array &z)
         s(i, j) = s1.get_value_bilinear_at(ip, jp, u, v);
       }
 
-    extrapolate_borders(s);
+    fill_borders(s);
 
     // --- flow evaporation
     d = d2 * (1.f - dt * evap_rate);
@@ -213,7 +272,64 @@ void hydraulic_vpipes(Array &z)
 
   } // it
 
-  extrapolate_borders(z);
+  // splatmaps
+  if (p_erosion_map)
+  {
+    *p_erosion_map = z_bckp - z;
+    clamp_min(*p_erosion_map, 0.f);
+  }
+
+  if (p_deposition_map)
+  {
+    *p_deposition_map = z - z_bckp;
+    clamp_min(*p_deposition_map, 0.f);
+  }
+}
+
+void hydraulic_vpipes(Array &z,
+                      Array *p_mask,
+                      int    iterations,
+                      Array *p_bedrock,
+                      Array *p_moisture_map,
+                      Array *p_erosion_map,
+                      Array *p_deposition_map,
+                      float  water_height,
+                      float  c_capacity,
+                      float  c_erosion,
+                      float  c_deposition,
+                      float  rain_rate,
+                      float  evap_rate)
+{
+  if (!p_mask)
+    hydraulic_vpipes(z,
+                     iterations,
+                     p_bedrock,
+                     p_moisture_map,
+                     p_erosion_map,
+                     p_deposition_map,
+                     water_height,
+                     c_capacity,
+                     c_erosion,
+                     c_deposition,
+                     rain_rate,
+                     evap_rate);
+  else
+  {
+    Array z_f = z;
+    hydraulic_vpipes(z_f,
+                     iterations,
+                     p_bedrock,
+                     p_moisture_map,
+                     p_erosion_map,
+                     p_deposition_map,
+                     water_height,
+                     c_capacity,
+                     c_erosion,
+                     c_deposition,
+                     rain_rate,
+                     evap_rate);
+    z = lerp(z, z_f, *(p_mask));
+  }
 }
 
 } // namespace hmap

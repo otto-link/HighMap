@@ -54,11 +54,6 @@ void hydraulic_stream(Array &z,
 
   if (p_bedrock)
     z = maximum(*p_bedrock, z);
-  else
-  {
-    hmap::Array z_bedrock = hmap::minimum_local(z, 16 * ir);
-    z = maximum(z_bedrock, z);
-  }
 
   // splatmaps
   if (p_erosion_map)

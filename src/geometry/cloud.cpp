@@ -20,16 +20,27 @@ namespace hmap
 
 Cloud::Cloud(int npoints, uint seed, Vec4<float> bbox)
 {
-  std::mt19937                          gen(seed);
-  std::uniform_real_distribution<float> dis;
-
-  for (int k = 0; k < npoints; k++)
-  {
-    Point p(dis(gen), dis(gen), dis(gen));
-    this->add_point(p);
-  }
-  this->remap_xy(bbox);
+  this->points.resize(npoints);
+  this->randomize(seed, bbox);
 };
+
+void Cloud::clear()
+{
+  this->points.clear();
+  this->convex_hull.clear();
+}
+
+float Cloud::get_values_max()
+{
+  std::vector<float> values = this->get_values();
+  return *std::max_element(values.begin(), values.end());
+}
+
+float Cloud::get_values_min()
+{
+  std::vector<float> values = this->get_values();
+  return *std::min_element(values.begin(), values.end());
+}
 
 std::vector<float> Cloud::interpolate_values_from_array(const Array &array,
                                                         Vec4<float>  bbox)
@@ -74,15 +85,16 @@ void Cloud::print()
             << bbox.c << ", " << bbox.d << "}" << std::endl;
 }
 
-void Cloud::remap_xy(Vec4<float> bbox_new)
+void Cloud::randomize(uint seed, Vec4<float> bbox)
 {
-  Vec4<float> bbox = this->get_bbox();
+  std::mt19937                          gen(seed);
+  std::uniform_real_distribution<float> dis;
+
   for (auto &p : this->points)
   {
-    p.x = (p.x - bbox.a) / (bbox.b - bbox.a) * (bbox_new.b - bbox_new.a) +
-          bbox_new.a;
-    p.y = (p.y - bbox.c) / (bbox.d - bbox.c) * (bbox_new.d - bbox_new.c) +
-          bbox_new.c;
+    p.x = dis(gen) * (bbox.b - bbox.a) + bbox.a;
+    p.y = dis(gen) * (bbox.d - bbox.c) + bbox.c;
+    p.v = dis(gen);
   }
 }
 
@@ -158,7 +170,13 @@ void Cloud::to_array_interp(Array      &array,
   std::vector<float> y = this->get_y();
   std::vector<float> v = this->get_values();
 
-  expand_grid(x, y, v, bbox);
+  float       lx = bbox.b - bbox.a;
+  float       ly = bbox.d - bbox.c;
+  Vec4<float> bbox_expanded = {bbox.a - lx,
+                               bbox.b + lx,
+                               bbox.c - ly,
+                               bbox.d + ly};
+  expand_grid_corners(x, y, v, bbox_expanded, 0.f);
 
   _2D::AnyInterpolator<
       float,
@@ -175,17 +193,13 @@ void Cloud::to_array_interp(Array      &array,
   interp.setData(x, y, v);
 
   // array grid
-  Vec2<int> shape = array.shape;
-  float     lx = bbox.b - bbox.a;
-  float     ly = bbox.d - bbox.c;
-
   std::vector<float> xg = linspace(bbox.a + shift.x * lx,
                                    bbox.a + (shift.x + scale.x) * lx,
-                                   shape.x,
+                                   array.shape.x,
                                    false);
   std::vector<float> yg = linspace(bbox.c + shift.y * ly,
                                    bbox.c + (shift.y + scale.y) * ly,
-                                   shape.y,
+                                   array.shape.y,
                                    false);
 
   helper_get_noise(array,

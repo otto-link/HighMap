@@ -26,7 +26,7 @@ void thermal_flatten(Array       &z,
 {
   std::vector<int>   di = DI;
   std::vector<int>   dj = DJ;
-  std::vector<float> c = C;
+  std::vector<float> c = CD;
   const uint         nb = di.size();
 
   // main loop

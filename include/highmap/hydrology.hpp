@@ -18,6 +18,16 @@ namespace hmap
 {
 
 /**
+ * @brief Return the number of input drainage paths for each cell based on the
+ * D8 flow direction map.
+ *
+ * @param d8 Flow direction according to the D8 model.
+ * @return Array Number of neighbors with flow directions pointing to the
+ * current cell.
+ */
+Array d8_compute_ndip(Array &d8);
+
+/**
  * @brief Return flow accumulation in each cell using the D8 flow direction
  * model \cite Zhou2019.
  *

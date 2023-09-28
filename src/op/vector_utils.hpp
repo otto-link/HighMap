@@ -34,4 +34,6 @@ void reindex_vector(std::vector<T> &v, std::vector<size_t> &idx)
   v = v_new;
 }
 
+void vector_unique_values(std::vector<float> &v);
+
 } // namespace hmap
