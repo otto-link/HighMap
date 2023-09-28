@@ -1,6 +1,7 @@
 # HighMap
 
 A C++ library to generate two-dimensional terrain heightmaps for software rendering or video games.
+![ex_hydraulic_vpipes_1](https://github.com/otto-link/HighMap/assets/121820229/f775a003-dd33-41c0-a0d5-2fa6615f588a)
 
 ## Warning 
 
@@ -13,6 +14,15 @@ Work in progress, use at your own risk!
 This project is licensed under the GNU General Public License v3.0.
 
 ## Getting started
+
+### Getting the sources
+
+Use `git` to retrieve the sources: 
+``` bash
+git clone git@github.com:otto-link/HighMap.git
+cd HighMap
+git submodule update --init --recursive
+```
 
 ### Building
 
