@@ -378,7 +378,7 @@ void hydraulic_stream(Array &z,
  * @param z Input array.
  * @param p_mask Intensity mask, expected in [0, 1] (applied as a
  * @param iterations Number of iterations.
- * @param p_bedrock
+ * @param p_bedrock Lower elevation limit.
  * @param p_moisture_map Reference to the moisture map (quantity of rain),
  * expected to be in [0, 1].
  * @param p_erosion_map[out] Reference to the erosion map, provided as an output
@@ -431,7 +431,11 @@ void hydraulic_vpipes(Array &z,
  * @todo deposition map
  *
  * @param z Input array.
+ * @param p_mask Intensity mask, expected in [0, 1] (applied as a
+ * post-processing).
  * @param talus Talus limit.
+ * @param p_deposition_map [out] Reference to the deposition map, provided as an
+ * output field.
  * @param max_deposition Maximum height of sediment deposition.
  * @param iterations Number of iterations.
  * @param thermal_erosion_subiterations Number of thermal erosion iterations for
@@ -444,7 +448,16 @@ void hydraulic_vpipes(Array &z,
  * @image html ex_sediment_deposition.png
  */
 void sediment_deposition(Array &z,
+                         Array *p_mask,
                          Array &talus,
+                         Array *p_deposition_map = nullptr,
+                         float  max_deposition = 0.01,
+                         int    iterations = 5,
+                         int    thermal_subiterations = 10);
+
+void sediment_deposition(Array &z,
+                         Array &talus,
+                         Array *p_deposition_map = nullptr,
                          float  max_deposition = 0.01,
                          int    iterations = 5,
                          int    thermal_subiterations = 10);
@@ -455,6 +468,7 @@ void sediment_deposition(Array &z,
  *
  * @param z Input array.
  * @param p_mask Intensity mask, expected in [0, 1] (applied as a
+ * post-processing).
  * @param hs Layer elevations. For 'n' layers, 'n + 1' values must be provided.
  * @param gamma Layer gamma correction factors, 'n' values.
  *
@@ -529,10 +543,12 @@ void stratify_oblique(Array             &z,
  * @cite Musgrave1989.
  *
  * @param z Input array.
+ * @param p_mask Filter mask, expected in [0, 1].
  * @param talus Talus limit.
- * @param bedrock Lower elevation limit.
+ * @param p_bedrock Lower elevation limit.
+ * @param p_deposition_map [out] Reference to the deposition map, provided as an
+ * output field.
  * @param iterations Number of iterations.
- * @param ct "Avalanching" intensity (in [0, 1]).
  *
  * **Example**
  * @include ex_thermal.cpp
@@ -541,20 +557,23 @@ void stratify_oblique(Array             &z,
  * @image html ex_thermal.png
  */
 void thermal(Array       &z,
+             Array       *p_mask,
              const Array &talus,
-             const Array &bedrock,
              int          iterations = 10,
-             float        ct = 0.5);
+             Array       *p_bedrock = nullptr,
+             Array       *p_deposition_map = nullptr);
 
-void thermal(Array       &array,
+void thermal(Array       &z,
              const Array &talus,
              int          iterations = 10,
-             float        ct = 0.5); ///< @overload
+             Array       *p_bedrock = nullptr,
+             Array       *p_deposition_map = nullptr);
 
 void thermal(Array &z,
              float  talus,
              int    iterations = 10,
-             float  ct = 0.5); ///< @overload
+             Array *p_bedrock = nullptr,
+             Array *p_deposition_map = nullptr); ///< @overload
 
 /**
  * @brief Apply thermal weathering erosion with automatic determination of the
@@ -568,7 +587,8 @@ void thermal(Array &z,
  * @param z Input array.
  * @param talus Local talus limit.
  * @param iterations Number of iterations.
- * @param ct "Avalanching" intensity (in [0, 1]).
+ * @param p_deposition_map [out] Reference to the deposition map, provided as an
+ * output field.
  *
  * **Example**
  * @include ex_thermal_auto_bedrock.cpp
@@ -579,12 +599,12 @@ void thermal(Array &z,
 void thermal_auto_bedrock(Array       &z,
                           const Array &talus,
                           int          iterations = 10,
-                          float        ct = 0.5);
+                          Array       *p_deposition_map = nullptr);
 
 void thermal_auto_bedrock(Array &z,
                           float  talus,
                           int    iterations = 10,
-                          float  ct = 0.5); ///< @overload
+                          Array *p_deposition_map = nullptr); ///< @overload
 
 /**
  * @brief Apply modified thermal weathering of Olsen.
@@ -611,6 +631,7 @@ void thermal_flatten(Array &z, float talus, int iterations = 10); ///< @overload
  * @brief Apply thermal weathering erosion simulating scree deposition.
  *
  * @param z Input array.
+ * @param p_mask Filter mask, expected in [0, 1].
  * @param talus Talus limit.
  * @param seed Random seed number.
  * @param zmax Elevation upper limit.
@@ -630,11 +651,13 @@ void thermal_flatten(Array &z, float talus, int iterations = 10); ///< @overload
  * @image html ex_thermal_scree.png
  */
 void thermal_scree(Array &z,
+                   Array *p_mask,
                    float  talus,
                    uint   seed,
                    float  zmax,
                    float  zmin,
                    float  noise_ratio,
+                   Array *p_deposition_map = nullptr,
                    float  landing_talus_ratio = 1.f,
                    float  landing_width_ratio = 0.25f,
                    bool   talus_constraint = true);
@@ -643,7 +666,19 @@ void thermal_scree(Array &z,
                    float  talus,
                    uint   seed,
                    float  zmax,
-                   float  noise_ratio); ///< @overload
+                   float  zmin,
+                   float  noise_ratio,
+                   Array *p_deposition_map = nullptr,
+                   float  landing_talus_ratio = 1.f,
+                   float  landing_width_ratio = 0.25f,
+                   bool   talus_constraint = true); ///< @overload
+
+void thermal_scree(Array &z,
+                   float  talus,
+                   uint   seed,
+                   float  zmax,
+                   float  noise_ratio,
+                   Array *p_deposition_map = nullptr); ///< @overload
 
 /**
  * @brief Apply thermal weathering erosion simulating scree deposition,

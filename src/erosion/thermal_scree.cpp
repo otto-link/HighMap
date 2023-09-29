@@ -27,6 +27,7 @@ void thermal_scree(Array &z,
                    float  zmax,
                    float  zmin,
                    float  noise_ratio,
+                   Array *p_deposition_map,
                    float  landing_talus_ratio,
                    float  landing_width_ratio,
                    bool   talus_constraint)
@@ -39,6 +40,12 @@ void thermal_scree(Array &z,
   std::vector<int>   dj = DJ;
   std::vector<float> c = CD;
   const uint         nb = di.size();
+
+  // keep a backup of the input if the erosion / deposition maps need
+  // to be computed
+  Array z_bckp = Array();
+  if (p_deposition_map != nullptr)
+    z_bckp = z;
 
   // populate queue
   std::vector<int>   queue_i = {};
@@ -162,6 +169,12 @@ void thermal_scree(Array &z,
 
   // clean-up boundaries
   extrapolate_borders(z, 2);
+
+  if (p_deposition_map)
+  {
+    *p_deposition_map = z - z_bckp;
+    clamp_min(*p_deposition_map, 0.f);
+  }
 }
 
 void thermal_scree_fast(Array    &z,
@@ -194,6 +207,7 @@ void thermal_scree_fast(Array    &z,
                 zmax,
                 zmin,
                 noise_ratio,
+                nullptr,
                 landing_talus_ratio,
                 landing_width_ratio,
                 talus_constraint);
@@ -210,10 +224,51 @@ void thermal_scree_fast(Array    &z,
 //----------------------------------------------------------------------
 
 void thermal_scree(Array &z,
+                   Array *p_mask,
                    float  talus,
                    uint   seed,
                    float  zmax,
-                   float  noise_ratio)
+                   float  zmin,
+                   float  noise_ratio,
+                   Array *p_deposition_map,
+                   float  landing_talus_ratio,
+                   float  landing_width_ratio,
+                   bool   talus_constraint)
+{
+  if (!p_mask)
+    thermal_scree(z,
+                  talus,
+                  seed,
+                  zmax,
+                  zmin,
+                  noise_ratio,
+                  p_deposition_map,
+                  landing_talus_ratio,
+                  landing_width_ratio,
+                  talus_constraint);
+  else
+  {
+    Array z_f = z;
+    thermal_scree(z_f,
+                  talus,
+                  seed,
+                  zmax,
+                  zmin,
+                  noise_ratio,
+                  p_deposition_map,
+                  landing_talus_ratio,
+                  landing_width_ratio,
+                  talus_constraint);
+    z = lerp(z, z_f, *(p_mask));
+  }
+}
+
+void thermal_scree(Array &z,
+                   float  talus,
+                   uint   seed,
+                   float  zmax,
+                   float  noise_ratio,
+                   Array *p_deposition_map)
 {
   thermal_scree(z,
                 talus,
@@ -221,6 +276,7 @@ void thermal_scree(Array &z,
                 zmax,
                 z.min(),
                 noise_ratio,
+                p_deposition_map,
                 1.f, // landing talus = talus => deactivate smooth landing
                 0.f,
                 false);

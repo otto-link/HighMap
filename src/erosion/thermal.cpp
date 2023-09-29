@@ -11,6 +11,8 @@
 
 #include "macrologger.h"
 
+#define CT 0.5f // avalanching intensity
+
 namespace hmap
 {
 
@@ -20,14 +22,20 @@ namespace hmap
 
 void thermal(Array       &z,
              const Array &talus,
-             const Array &bedrock,
              int          iterations,
-             float        ct)
+             Array       *p_bedrock,
+             Array       *p_deposition_map)
 {
   std::vector<int>   di = DI;
   std::vector<int>   dj = DJ;
   std::vector<float> c = CD;
   const uint         nb = di.size();
+
+  // keep a backup of the input if the erosion / deposition maps need
+  // to be computed
+  Array z_bckp = Array();
+  if (p_deposition_map != nullptr)
+    z_bckp = z;
 
   // main loop
   for (int it = 0; it < iterations; it++)
@@ -38,11 +46,44 @@ void thermal(Array       &z,
     std::rotate(dj.begin(), dj.begin() + 1, dj.end());
     std::rotate(c.begin(), c.begin() + 1, c.end());
 
-    for (int i = 1; i < z.shape.x - 1; i++)
+    if (p_bedrock) // with bedrock
     {
-      for (int j = 1; j < z.shape.y - 1; j++)
-      {
-        if (z(i, j) > bedrock(i, j))
+      for (int i = 1; i < z.shape.x - 1; i++)
+        for (int j = 1; j < z.shape.y - 1; j++)
+          if (z(i, j) > (*p_bedrock)(i, j))
+          {
+            float              dmax = 0.f;
+            float              dsum = 0.f;
+            std::vector<float> dz(nb);
+
+            for (uint k = 0; k < nb; k++)
+            {
+              dz[k] = z(i, j) - z(i + di[k], j + dj[k]);
+              if (dz[k] > talus(i, j) * c[k])
+              {
+                dsum += dz[k];
+                dmax = std::max(dmax, dz[k]);
+              }
+            }
+
+            if (dmax > 0.f)
+            {
+              for (uint k = 0; k < nb; k++)
+              {
+                int   ia = i + di[k];
+                int   ja = j + dj[k];
+                float amount = std::min(CT * (dmax - talus(i, j) * c[k]) *
+                                            dz[k] / dsum,
+                                        z(i, j) - (*p_bedrock)(i, j));
+                z(ia, ja) += amount;
+              }
+            }
+          }
+    }
+    else // no bedrock
+    {
+      for (int i = 1; i < z.shape.x - 1; i++)
+        for (int j = 1; j < z.shape.y - 1; j++)
         {
           float              dmax = 0.f;
           float              dsum = 0.f;
@@ -64,14 +105,11 @@ void thermal(Array       &z,
             {
               int   ia = i + di[k];
               int   ja = j + dj[k];
-              float amount = std::min(ct * (dmax - talus(i, j) * c[k]) * dz[k] /
-                                          dsum,
-                                      z(i, j) - bedrock(i, j));
+              float amount = CT * (dmax - talus(i, j) * c[k]) * dz[k] / dsum;
               z(ia, ja) += amount;
             }
           }
         }
-      }
     }
   }
 
@@ -79,26 +117,48 @@ void thermal(Array       &z,
   // sure final elevation is not lower than the bedrock
   extrapolate_borders(z);
   laplace(z);
-  clamp_min(z, bedrock);
+
+  if (p_bedrock)
+    clamp_min(z, (*p_bedrock));
+
+  if (p_deposition_map)
+  {
+    *p_deposition_map = z - z_bckp;
+    clamp_min(*p_deposition_map, 0.f);
+  }
 }
 
 //----------------------------------------------------------------------
 // Overloading
 //----------------------------------------------------------------------
 
-// no bedrock
-void thermal(Array &z, const Array &talus, int iterations, float ct)
+void thermal(Array       &z,
+             Array       *p_mask,
+             const Array &talus,
+             int          iterations,
+             Array       *p_bedrock,
+             Array       *p_deposition_map)
 {
-  Array bedrock = constant(z.shape, z.min() - z.ptp());
-  thermal(z, talus, bedrock, iterations, ct);
+  if (!p_mask)
+    thermal(z, talus, iterations, p_bedrock, p_deposition_map);
+  else
+  {
+    Array z_f = z;
+    thermal(z_f, talus, iterations, p_bedrock, p_deposition_map);
+    z = lerp(z, z_f, *(p_mask));
+  }
 }
 
 // uniform talus limit, no bedrock
-void thermal(Array &z, float talus, int iterations, float ct)
+void thermal(Array &z,
+             float  talus,
+             int    iterations,
+             Array *p_bedrock,
+             Array *p_deposition_map)
 {
   Array talus_map = constant(z.shape, talus);
   Array bedrock = constant(z.shape, z.min() - z.ptp());
-  thermal(z, talus_map, bedrock, iterations, ct);
+  thermal(z, talus_map, iterations, p_bedrock, p_deposition_map);
 }
 
 //----------------------------------------------------------------------
@@ -108,15 +168,19 @@ void thermal(Array &z, float talus, int iterations, float ct)
 void thermal_auto_bedrock(Array       &z,
                           const Array &talus,
                           int          iterations,
-                          float        ct)
+                          Array       *p_deposition_map)
 {
   Array z_init = z; // backup initial map
   Array bedrock = constant(z.shape, z.min() - z.ptp());
+  int   ncycle = 10;
 
-  int ncycle = 10;
+  Array z_bckp = Array();
+  if (p_deposition_map != nullptr)
+    z_bckp = z;
+
   for (int ic = 0; ic < ncycle; ic++) // thermal weathering cycles
   {
-    thermal(z, talus, bedrock, iterations / ncycle, ct);
+    thermal(z, talus, (int)iterations / ncycle, &bedrock);
 
     // only keep what's above the initial ground level
     clamp_min(z, z_init);
@@ -131,12 +195,21 @@ void thermal_auto_bedrock(Array       &z,
                    bedrock.vector.begin(),
                    [](float a, float b) { return a > b ? a : 2.f * a - b; });
   }
+
+  if (p_deposition_map)
+  {
+    *p_deposition_map = z - z_bckp;
+    clamp_min(*p_deposition_map, 0.f);
+  }
 }
 
-void thermal_auto_bedrock(Array &z, float talus, int iterations, float ct)
+void thermal_auto_bedrock(Array &z,
+                          float  talus,
+                          int    iterations,
+                          Array *p_deposition_map)
 {
   Array talus_map = constant(z.shape, talus);
-  thermal_auto_bedrock(z, talus_map, iterations, ct);
+  thermal_auto_bedrock(z, talus_map, iterations, p_deposition_map);
 }
 
 } // namespace hmap

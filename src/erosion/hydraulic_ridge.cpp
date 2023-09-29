@@ -46,6 +46,7 @@ void hydraulic_ridge(Array &z,
                 2.f * erosion_factor,
                 0.f, // ze_min
                 noise_ratio,
+                nullptr,
                 smoothing_factor,
                 landing_width_ratio,
                 false);

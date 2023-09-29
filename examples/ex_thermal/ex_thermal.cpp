@@ -12,9 +12,9 @@ int main(void)
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
   auto        z0 = z;
 
-  hmap::thermal(z, 0.1f / shape.x);
+  hmap::Array dmap = hmap::Array(shape);
 
-  z.infos();
+  hmap::thermal(z, 0.1f / shape.x);
 
   hmap::export_banner_png("ex_thermal.png", {z0, z}, hmap::cmap::terrain, true);
 }
