@@ -9,12 +9,12 @@
 namespace hmap
 {
 
-void sediment_deposition(Array &z,
-                         Array &talus,
-                         Array *p_deposition_map,
-                         float  max_deposition,
-                         int    iterations,
-                         int    thermal_subiterations)
+void sediment_deposition(Array       &z,
+                         const Array &talus,
+                         Array       *p_deposition_map,
+                         float        max_deposition,
+                         int          iterations,
+                         int          thermal_subiterations)
 {
   float deposition_step = 0.5f * max_deposition;
   Array smap = Array(z.shape); // sediment map
@@ -33,13 +33,13 @@ void sediment_deposition(Array &z,
     *p_deposition_map = smap;
 }
 
-void sediment_deposition(Array &z,
-                         Array *p_mask,
-                         Array &talus,
-                         Array *p_deposition_map,
-                         float  max_deposition,
-                         int    iterations,
-                         int    thermal_subiterations)
+void sediment_deposition(Array       &z,
+                         Array       *p_mask,
+                         const Array &talus,
+                         Array       *p_deposition_map,
+                         float        max_deposition,
+                         int          iterations,
+                         int          thermal_subiterations)
 {
   if (!p_mask)
     sediment_deposition(z,

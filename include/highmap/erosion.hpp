@@ -447,20 +447,20 @@ void hydraulic_vpipes(Array &z,
  * **Result**
  * @image html ex_sediment_deposition.png
  */
-void sediment_deposition(Array &z,
-                         Array *p_mask,
-                         Array &talus,
-                         Array *p_deposition_map = nullptr,
-                         float  max_deposition = 0.01,
-                         int    iterations = 5,
-                         int    thermal_subiterations = 10);
+void sediment_deposition(Array       &z,
+                         Array       *p_mask,
+                         const Array &talus,
+                         Array       *p_deposition_map = nullptr,
+                         float        max_deposition = 0.01,
+                         int          iterations = 5,
+                         int          thermal_subiterations = 10);
 
-void sediment_deposition(Array &z,
-                         Array &talus,
-                         Array *p_deposition_map = nullptr,
-                         float  max_deposition = 0.01,
-                         int    iterations = 5,
-                         int    thermal_subiterations = 10);
+void sediment_deposition(Array       &z,
+                         const Array &talus,
+                         Array       *p_deposition_map = nullptr,
+                         float        max_deposition = 0.01,
+                         int          iterations = 5,
+                         int          thermal_subiterations = 10);
 
 /**
  * @brief Stratify the heightmap by creating a series of layers with elevations
