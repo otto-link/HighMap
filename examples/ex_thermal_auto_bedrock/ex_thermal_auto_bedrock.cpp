@@ -12,7 +12,7 @@ int main(void)
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
   auto        z0 = z;
 
-  hmap::thermal_auto_bedrock(z, 0.1f / shape.x);
+  hmap::thermal_auto_bedrock(z, 0.5f / shape.x, 200);
 
   hmap::export_banner_png("ex_thermal_auto_bedrock.png",
                           {z0, z},

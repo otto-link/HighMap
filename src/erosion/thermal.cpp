@@ -48,9 +48,65 @@ void thermal(Array       &z,
 
     if (p_bedrock) // with bedrock
     {
-      for (int i = 1; i < z.shape.x - 1; i++)
-        for (int j = 1; j < z.shape.y - 1; j++)
-          if (z(i, j) > (*p_bedrock)(i, j))
+      int pmax = z.shape.x;
+      int qmax = z.shape.y;
+
+      if (it % 2 == 1)
+      {
+        pmax = z.shape.y;
+        qmax = z.shape.x;
+      }
+
+      int dp, dq;
+
+      if (it % 4 == 0)
+      {
+        dp = 1;
+        dq = 1;
+      }
+      else if (it % 4 == 1)
+      {
+        dp = 1;
+        dq = 1;
+      }
+      else if (it % 4 == 2)
+      {
+        dp = 1;
+        dq = 1;
+      }
+      else if (it % 4 == 3)
+      {
+        dp = 1;
+        dq = 1;
+      }
+
+      for (int p = 1; p < pmax - 1; p += dp)
+        for (int q = 1; q < qmax - 1; q += dq)
+        {
+          int i, j;
+
+          if (it % 4 == 0)
+          {
+            i = p;
+            j = q;
+          }
+          else if (it % 4 == 1)
+          {
+            i = q;
+            j = p;
+          }
+          else if (it % 4 == 2)
+          {
+            i = pmax - p - 1;
+            j = qmax - q - 1;
+          }
+          else if (it % 4 == 3)
+          {
+            i = qmax - q - 1;
+            j = pmax - p - 1;
+          }
+
+          if (z(i, j) >= (*p_bedrock)(i, j))
           {
             float              dmax = 0.f;
             float              dsum = 0.f;
@@ -79,12 +135,68 @@ void thermal(Array       &z,
               }
             }
           }
+        }
     }
     else // no bedrock
     {
-      for (int i = 1; i < z.shape.x - 1; i++)
-        for (int j = 1; j < z.shape.y - 1; j++)
+      int pmax = z.shape.x;
+      int qmax = z.shape.y;
+
+      if (it % 2 == 1)
+      {
+        pmax = z.shape.y;
+        qmax = z.shape.x;
+      }
+
+      int dp, dq;
+
+      if (it % 4 == 0)
+      {
+        dp = 1;
+        dq = 1;
+      }
+      else if (it % 4 == 1)
+      {
+        dp = 1;
+        dq = 1;
+      }
+      else if (it % 4 == 2)
+      {
+        dp = 1;
+        dq = 1;
+      }
+      else if (it % 4 == 3)
+      {
+        dp = 1;
+        dq = 1;
+      }
+
+      for (int p = 1; p < pmax - 1; p += dp)
+        for (int q = 1; q < qmax - 1; q += dq)
         {
+          int i, j;
+
+          if (it % 4 == 0)
+          {
+            i = p;
+            j = q;
+          }
+          else if (it % 4 == 1)
+          {
+            i = q;
+            j = p;
+          }
+          else if (it % 4 == 2)
+          {
+            i = pmax - p - 1;
+            j = qmax - q - 1;
+          }
+          else if (it % 4 == 3)
+          {
+            i = qmax - q - 1;
+            j = pmax - p - 1;
+          }
+
           float              dmax = 0.f;
           float              dsum = 0.f;
           std::vector<float> dz(nb);
@@ -157,7 +269,7 @@ void thermal(Array &z,
              Array *p_deposition_map)
 {
   Array talus_map = constant(z.shape, talus);
-  Array bedrock = constant(z.shape, z.min() - z.ptp());
+  Array bedrock = constant(z.shape, std::numeric_limits<float>::min());
   thermal(z, talus_map, iterations, p_bedrock, p_deposition_map);
 }
 
@@ -171,7 +283,7 @@ void thermal_auto_bedrock(Array       &z,
                           Array       *p_deposition_map)
 {
   Array z_init = z; // backup initial map
-  Array bedrock = constant(z.shape, z.min() - z.ptp());
+  Array bedrock = constant(z.shape, std::numeric_limits<float>::min());
   int   ncycle = 10;
 
   Array z_bckp = Array();
@@ -193,7 +305,8 @@ void thermal_auto_bedrock(Array       &z,
                    z_init.vector.end(),
                    z.vector.begin(),
                    bedrock.vector.begin(),
-                   [](float a, float b) { return a > b ? a : 2.f * a - b; });
+                   [](float a, float b)
+                   { return a > b ? a : std::numeric_limits<float>::min(); });
   }
 
   if (p_deposition_map)
