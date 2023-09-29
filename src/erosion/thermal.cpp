@@ -212,4 +212,20 @@ void thermal_auto_bedrock(Array &z,
   thermal_auto_bedrock(z, talus_map, iterations, p_deposition_map);
 }
 
+void thermal_auto_bedrock(Array &z,
+                          Array *p_mask,
+                          float  talus,
+                          int    iterations,
+                          Array *p_deposition_map)
+{
+  if (!p_mask)
+    thermal_auto_bedrock(z, talus, iterations, p_deposition_map);
+  else
+  {
+    Array z_f = z;
+    thermal_auto_bedrock(z, talus, iterations, p_deposition_map);
+    z = lerp(z, z_f, *(p_mask));
+  }
+}
+
 } // namespace hmap

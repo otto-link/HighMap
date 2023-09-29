@@ -606,6 +606,12 @@ void thermal_auto_bedrock(Array &z,
                           int    iterations = 10,
                           Array *p_deposition_map = nullptr); ///< @overload
 
+void thermal_auto_bedrock(Array &z,
+                          Array *p_mask,
+                          float  talus,
+                          int    iterations = 10,
+                          Array *p_deposition_map = nullptr); ///< @overload
+
 /**
  * @brief Apply modified thermal weathering of Olsen.
  *
