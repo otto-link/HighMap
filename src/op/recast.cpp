@@ -54,8 +54,9 @@ void recast_canyon(Array &array, float vcut, float gamma, Array *p_noise)
   }
   else
   {
-    auto lambda = [&vcut, &gamma](float a, float b)
-    { return a > vcut ? a : vcut * std::pow(a / (vcut + b), gamma); };
+    auto lambda = [&vcut, &gamma](float a, float b) {
+      return a > (vcut + b) ? a : (vcut + b) * std::pow(a / (vcut + b), gamma);
+    };
 
     std::transform(array.vector.begin(),
                    array.vector.end(),
