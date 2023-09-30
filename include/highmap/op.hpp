@@ -1208,9 +1208,13 @@ void recast_canyon(Array       &array,
 void recast_canyon(Array &array,
                    float  vcut,
                    Array *p_mask,
-                   float  gamma = 4.f); ///< @overload
+                   float  gamma = 4.f,
+                   Array *p_noise = nullptr); ///< @overload
 
-void recast_canyon(Array &array, float vcut, float gamma = 4.f); ///< @overload
+void recast_canyon(Array &array,
+                   float  vcut,
+                   float  gamma = 4.f,
+                   Array *p_noise = nullptr); ///< @overload
 
 /**
  * @brief Transform heightmap to give a "peak" like appearance.

@@ -21,9 +21,12 @@ int main(void)
 
   auto z2 = z;
   {
+    hmap::Array noise = hmap::fbm_perlin(shape, res, seed++);
+    hmap::remap(noise, -0.1f, 0.1f);
+
     float zcut = 0.5f;
     float gamma = 4.f;
-    hmap::recast_canyon(z2, zcut, gamma);
+    hmap::recast_canyon(z2, zcut, gamma, &noise);
   }
 
   auto z3 = z;
