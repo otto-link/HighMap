@@ -2034,4 +2034,19 @@ void warp_fbm(Array      &array,
  */
 void zeroed_borders(Array &array);
 
+/**
+ * @brief Apply a smooth transition to zero at the array borders.
+ *
+ * @param array Input array.
+ * @param p_noise Reference to the input noise array used for domain warping
+ * (NOT in pixels, with respect to a unit domain).
+ * @param shift Shift {xs, ys} for each directions, with respect to a unit
+ * domain.
+ * @param scale Domain relative scale.
+ */
+void zeroed_edges(Array      &array,
+                  Array      *p_noise = nullptr,
+                  Vec2<float> shift = {0.f, 0.f},
+                  Vec2<float> scale = {1.f, 1.f});
+
 } // namespace hmap

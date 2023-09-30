@@ -5,6 +5,7 @@
 #include <cmath>
 
 #include "highmap/array.hpp"
+#include "highmap/op.hpp"
 
 namespace hmap
 {
@@ -220,6 +221,34 @@ void zeroed_borders(Array &array)
     array(i, 0) = 0.f;
     array(i, nj - 1) = 0.f;
   }
+}
+
+void zeroed_edges(Array      &array,
+                  Array      *p_noise,
+                  Vec2<float> shift,
+                  Vec2<float> scale)
+{
+  std::vector<float> x =
+      linspace(shift.x - 0.5f, shift.x - 0.5f + scale.x, array.shape.x, false);
+  std::vector<float> y =
+      linspace(shift.y - 0.5f, shift.y - 0.5f + scale.y, array.shape.y, false);
+
+  if (!p_noise)
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
+      {
+        float r = 2.f * std::sqrt(x[i] * x[i] + y[j] * y[j]);
+        r = std::clamp(r, 0.f, 1.f);
+        array(i, j) *= (1.f - r * r * (3.f - 2.f * r));
+      }
+  else
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
+      {
+        float r = 2.f * std::sqrt(x[i] * x[i] + y[j] * y[j]);
+        r = std::clamp(r + (*p_noise)(i, j), 0.f, 1.f);
+        array(i, j) *= (1.f - r * r * (3.f - 2.f * r));
+      }
 }
 
 } // namespace hmap

@@ -1,0 +1,2 @@
+add_executable(ex_zeroed_edges ex_zeroed_edges.cpp)
+target_link_libraries(ex_zeroed_edges highmap)
