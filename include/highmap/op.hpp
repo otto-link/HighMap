@@ -2043,6 +2043,12 @@ void zeroed_borders(Array &array);
  * @param shift Shift {xs, ys} for each directions, with respect to a unit
  * domain.
  * @param scale Domain relative scale.
+ *
+ * **Example**
+ * @include ex_zeroed_edges.cpp
+ *
+ * **Result**
+ * @image html ex_zeroed_edges.png
  */
 void zeroed_edges(Array      &array,
                   Array      *p_noise = nullptr,
