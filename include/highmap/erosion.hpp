@@ -56,6 +56,28 @@ namespace hmap
 void depression_filling(Array &z, int iterations = 1000, float epsilon = 1e-4f);
 
 /**
+ * @brief
+ *
+ * @param z_before Input array (before erosion).
+ * @param z_after Input array (after erosion).
+ * @param erosion_map Erosion map.
+ * @param deposition_map Deposition map.
+ * @param tolerance Tolerance for erosion / deposition definition.
+ *
+ * **Example**
+ * @include ex_erosions_maps.cpp
+ *
+ * **Result**
+ * @image html ex_erosions_maps0.png
+ * @image html ex_erosions_maps1.png
+ */
+void erosion_maps(Array &z_before,
+                  Array &z_after,
+                  Array &erosion_map,
+                  Array &deposition_map,
+                  float  tolerance = 0.f);
+
+/**
  * @brief Apply an algerbic formula based on the local gradient to perform
  * erosion/deposition.
  *
