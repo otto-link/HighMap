@@ -836,6 +836,7 @@ Array value_noise_thinplate(Vec2<int>   shape,
  * @param shape Array shape.
  * @param kw Wavenumber with respect to a unit domain.
  * @param angle Overall rotation angle (in degree).
+ * @param phase_shift Phase shift (in radians).
  * @param p_noise Reference to the input noise array used for domain warping
  * (NOT in pixels, with respect to a unit domain).
  * @param shift Shift {xs, ys} for each directions.
@@ -852,6 +853,7 @@ Array value_noise_thinplate(Vec2<int>   shape,
 Array wave_sine(Vec2<int>   shape,
                 float       kw,
                 float       angle,
+                float       phase_shift = 0.f,
                 Array      *p_noise = nullptr,
                 Vec2<float> shift = {0.f, 0.f},
                 Vec2<float> scale = {1.f, 1.f});
@@ -862,6 +864,7 @@ Array wave_sine(Vec2<int>   shape,
  * @param shape Array shape.
  * @param kw Wavenumber with respect to a unit domain.
  * @param angle Overall rotation angle (in degree).
+ * @param phase_shift Phase shift (in radians).
  * @param p_noise Reference to the input noise array used for domain warping
  * (NOT in pixels, with respect to a unit domain).
  * @param shift Shift {xs, ys} for each directions.
@@ -878,6 +881,7 @@ Array wave_sine(Vec2<int>   shape,
 Array wave_square(Vec2<int>   shape,
                   float       kw,
                   float       angle,
+                  float       phase_shift = 0.f,
                   Array      *p_noise = nullptr,
                   Vec2<float> shift = {0.f, 0.f},
                   Vec2<float> scale = {1.f, 1.f});
@@ -889,6 +893,7 @@ Array wave_square(Vec2<int>   shape,
  * @param kw Wavenumber with respect to a unit domain.
  * @param angle Overall rotation angle (in degree).
  * @param slant_ratio Relative location of the triangle apex, in [0, 1].
+ * @param phase_shift Phase shift (in radians).
  * @param p_noise Reference to the input noise array used for domain warping
  * (NOT in pixels, with respect to a unit domain).
  * @param shift Shift {xs, ys} for each directions.
@@ -906,6 +911,7 @@ Array wave_triangular(Vec2<int>   shape,
                       float       kw,
                       float       angle,
                       float       slant_ratio,
+                      float       phase_shift = 0.f,
                       Array      *p_noise = nullptr,
                       Vec2<float> shift = {0.f, 0.f},
                       Vec2<float> scale = {1.f, 1.f});

@@ -264,6 +264,7 @@ Array step(Vec2<int>   shape,
 Array wave_sine(Vec2<int>   shape,
                 float       kw,
                 float       angle,
+                float       phase_shift,
                 Array      *p_noise,
                 Vec2<float> shift,
                 Vec2<float> scale)
@@ -276,7 +277,8 @@ Array wave_sine(Vec2<int>   shape,
   float ca = std::cos(angle / 180.f * M_PI);
   float sa = std::sin(angle / 180.f * M_PI);
 
-  auto lambda = [&kw](float x) { return std::cos(2.f * M_PI * kw * x); };
+  auto lambda = [&kw, &phase_shift](float x)
+  { return std::cos(2.f * M_PI * kw * x + phase_shift); };
 
   if (p_noise != nullptr)
     for (int i = 0; i < array.shape.x; i++)
@@ -293,6 +295,7 @@ Array wave_sine(Vec2<int>   shape,
 Array wave_square(Vec2<int>   shape,
                   float       kw,
                   float       angle,
+                  float       phase_shift,
                   Array      *p_noise,
                   Vec2<float> shift,
                   Vec2<float> scale)
@@ -311,11 +314,12 @@ Array wave_square(Vec2<int>   shape,
   if (p_noise != nullptr)
     for (int i = 0; i < array.shape.x; i++)
       for (int j = 0; j < array.shape.y; j++)
-        array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_noise)(i, j));
+        array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_noise)(i, j) +
+                             phase_shift);
   else
     for (int i = 0; i < array.shape.x; i++)
       for (int j = 0; j < array.shape.y; j++)
-        array(i, j) = lambda(ca * x[i] + sa * y[j]);
+        array(i, j) = lambda(ca * x[i] + sa * y[j] + phase_shift);
 
   return array;
 }
@@ -324,6 +328,7 @@ Array wave_triangular(Vec2<int>   shape,
                       float       kw,
                       float       angle,
                       float       slant_ratio,
+                      float       phase_shift,
                       Array      *p_noise,
                       Vec2<float> shift,
                       Vec2<float> scale)
@@ -349,11 +354,12 @@ Array wave_triangular(Vec2<int>   shape,
   if (p_noise != nullptr)
     for (int i = 0; i < array.shape.x; i++)
       for (int j = 0; j < array.shape.y; j++)
-        array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_noise)(i, j));
+        array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_noise)(i, j) +
+                             phase_shift);
   else
     for (int i = 0; i < array.shape.x; i++)
       for (int j = 0; j < array.shape.y; j++)
-        array(i, j) = lambda(ca * x[i] + sa * y[j]);
+        array(i, j) = lambda(ca * x[i] + sa * y[j] + phase_shift);
 
   return array;
 }
