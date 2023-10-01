@@ -2042,6 +2042,7 @@ void zeroed_borders(Array &array);
  * @brief Apply a smooth transition to zero at the array borders.
  *
  * @param array Input array.
+ * @param sigma Transition half-width ratio.
  * @param p_noise Reference to the input noise array used for domain warping
  * (NOT in pixels, with respect to a unit domain).
  * @param shift Shift {xs, ys} for each directions, with respect to a unit
@@ -2055,6 +2056,7 @@ void zeroed_borders(Array &array);
  * @image html ex_zeroed_edges.png
  */
 void zeroed_edges(Array      &array,
+                  float       sigma = 0.25f,
                   Array      *p_noise = nullptr,
                   Vec2<float> shift = {0.f, 0.f},
                   Vec2<float> scale = {1.f, 1.f});

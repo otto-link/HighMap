@@ -1,7 +1,7 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
-
+#define _USE_MATH_DEFINES
 #include <cmath>
 
 #include "highmap/array.hpp"
@@ -224,6 +224,7 @@ void zeroed_borders(Array &array)
 }
 
 void zeroed_edges(Array      &array,
+                  float       sigma,
                   Array      *p_noise,
                   Vec2<float> shift,
                   Vec2<float> scale)
@@ -233,21 +234,22 @@ void zeroed_edges(Array      &array,
   std::vector<float> y =
       linspace(shift.y - 0.5f, shift.y - 0.5f + scale.y, array.shape.y, false);
 
+  float s = 0.5f / (sigma * sigma);
+
   if (!p_noise)
     for (int i = 0; i < array.shape.x; i++)
       for (int j = 0; j < array.shape.y; j++)
       {
-        float r = 2.f * std::sqrt(x[i] * x[i] + y[j] * y[j]);
-        r = std::clamp(r, 0.f, 1.f);
-        array(i, j) *= (1.f - r * r * (3.f - 2.f * r));
+        float r2 = x[i] * x[i] + y[j] * y[j];
+        array(i, j) *= std::exp(-s * r2);
       }
   else
     for (int i = 0; i < array.shape.x; i++)
       for (int j = 0; j < array.shape.y; j++)
       {
-        float r = 2.f * std::sqrt(x[i] * x[i] + y[j] * y[j]);
-        r = std::clamp(r + (*p_noise)(i, j), 0.f, 1.f);
-        array(i, j) *= (1.f - r * r * (3.f - 2.f * r));
+        float r2 = x[i] * x[i] + y[j] * y[j] +
+                   (*p_noise)(i, j) * (*p_noise)(i, j);
+        array(i, j) *= std::exp(-s * r2);
       }
 }
 
