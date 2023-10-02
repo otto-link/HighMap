@@ -309,7 +309,7 @@ Array wave_square(Vec2<int>   shape,
   float sa = std::sin(angle / 180.f * M_PI);
 
   auto lambda = [&kw](float x)
-  { return 2.f * (int)(kw * x) - (int)(2.f * kw * x) + 1.f; };
+  { return x = 2.f * (int)(kw * x) - (int)(2.f * kw * x) + 1.f; };
 
   if (p_noise != nullptr)
     for (int i = 0; i < array.shape.x; i++)
@@ -348,7 +348,7 @@ Array wave_triangular(Vec2<int>   shape,
       x /= slant_ratio;
     else
       x = 1.f - (x - slant_ratio) / (1.f - slant_ratio);
-    return x;
+    return x * x * (3.f - 2.f * x);
   };
 
   if (p_noise != nullptr)
