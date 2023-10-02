@@ -80,12 +80,14 @@ void hydraulic_particle(Array &z,
     // dry regions)
     if (p_moisture_map)
     {
+      int count = 0;
       do
       {
         x = dis(gen) * (float)(ni - 3) + 1;
         y = dis(gen) * (float)(nj - 3) + 1;
-
-      } while ((*p_moisture_map)((int)x, (int)y) < SPAWN_MOISTURE_LOW_LIMIT);
+        count++;
+      } while (((*p_moisture_map)((int)x, (int)y) < SPAWN_MOISTURE_LOW_LIMIT) &&
+               (count < 20));
       volume = VOLUME_INIT * (*p_moisture_map)((int)x, (int)y);
     }
     else
