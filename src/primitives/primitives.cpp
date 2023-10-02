@@ -246,7 +246,7 @@ Array step(Vec2<int>   shape,
       x = talus_n * (x + dt);
     else
       x = 0.f;
-    return x;
+    return x * x * (3.f - 2.f * x);
   };
 
   if (p_noise != nullptr)
