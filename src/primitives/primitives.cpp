@@ -223,14 +223,19 @@ Array step(Vec2<int>   shape,
            float       angle,
            float       talus,
            Array      *p_noise,
+           Vec2<float> center,
            Vec2<float> shift,
            Vec2<float> scale)
 {
   Array              array = Array(shape);
-  std::vector<float> x =
-      linspace(-0.5f + shift.x, -0.5f + scale.x + shift.x, shape.x, false);
-  std::vector<float> y =
-      linspace(-0.5f + shift.y, -0.5f + scale.y + shift.y, shape.y, false);
+  std::vector<float> x = linspace(shift.x - center.x,
+                                  scale.x - center.x + shift.x,
+                                  shape.x,
+                                  false);
+  std::vector<float> y = linspace(shift.y - center.y,
+                                  scale.y - center.y + shift.y,
+                                  shape.y,
+                                  false);
 
   // talus value for a unit square domain
   float talus_n = talus * std::max(shape.x / scale.x, shape.y / scale.y);

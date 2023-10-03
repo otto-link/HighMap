@@ -670,6 +670,7 @@ Array slope_y(Vec2<int>   shape,
  * @param talus Talus slope.
  * @param p_noise Reference to the input noise array used for domain warping
  * (NOT in pixels, with respect to a unit domain).
+ * @param center Primitive reference center.
  * @param shift Shift {xs, ys} for each directions.
  * @param scale Domain scaling, in [0, 1].
  * @return Array New array.
@@ -684,6 +685,7 @@ Array step(Vec2<int>   shape,
            float       angle,
            float       talus,
            Array      *p_noise = nullptr,
+           Vec2<float> center = {0.5f, 0.5f},
            Vec2<float> shift = {0.f, 0.f},
            Vec2<float> scale = {1.f, 1.f});
 
