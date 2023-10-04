@@ -42,6 +42,9 @@ find_package(Eigen3 REQUIRED) # required by libInterpolate
 include_directories(${EIGEN3_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} Eigen3::Eigen)
 
+find_package(PNG REQUIRED) # libpng
+target_link_libraries(${PROJECT_NAME} PNG::PNG)
+
 # set(FASTNOISE2_NOISETOOL OFF CACHE BOOL "Build Noise Tool" FORCE)
 # add_subdirectory(external/FastNoise2)
 # target_compile_options(FastNoise PRIVATE -Wmaybe-uninitialized -Wunknown-pragmas)
