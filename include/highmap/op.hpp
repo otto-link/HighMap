@@ -904,13 +904,15 @@ std::vector<float> linspace(float start,
  * @param num Number of values.
  * @param ratio Jittering ratio with respect to an evenly spaced grid.
  * @param seed Random seed number.
+ * @param endpoint Include or not the end point in the output vector.
  * @return std::vector<float> Values
  */
 std::vector<float> linspace_jitted(float start,
                                    float stop,
                                    int   num,
                                    float ratio,
-                                   int   seed);
+                                   int   seed,
+                                   bool  endpoint = true);
 
 /**
  * @brief Return the log10 of the array elements.
