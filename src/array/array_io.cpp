@@ -144,6 +144,7 @@ void Array::to_png16bit(std::string fname)
 
   // Write the PNG header
   png_write_info(png, info);
+  png_set_swap(png);
 
   // Allocate memory for row pointers
   int        width = this->shape.x;
