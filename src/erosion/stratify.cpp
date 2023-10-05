@@ -72,6 +72,8 @@ void stratify(Array             &z,
 }
 
 void stratify_multiscale(Array             &z,
+                         float              zmin,
+                         float              zmax,
                          std::vector<int>   n_strata,
                          std::vector<float> strata_noise,
                          std::vector<float> gamma_list,
@@ -80,9 +82,6 @@ void stratify_multiscale(Array             &z,
                          Array             *p_mask,
                          Array             *p_noise)
 {
-  float zmin = z.min();
-  float zmax = z.max();
-
   std::vector<float> hs_prev = {};
 
   for (size_t k = 0; k < n_strata.size(); k++)
@@ -107,45 +106,30 @@ void stratify_multiscale(Array             &z,
     }
     else
     {
-      std::vector<float> hs = {};
-      std::vector<float> gamma = {};
+      std::vector<float> hs_bckp = {};
 
       for (size_t r = 0; r < hs_prev.size() - 1; r++)
       {
-        bool endpoint = false;
-        int  ndiff = 1;
-        if (r == hs_prev.size() - 2)
-        {
-          endpoint = true;
-          ndiff = 0;
-        }
+        std::vector<float> hs = linspace_jitted(hs_prev[r],
+                                                hs_prev[r + 1],
+                                                nlevels,
+                                                strata_noise[k],
+                                                seed++);
+        std::vector<float> gamma = random_vector(gamma_list[k] - gamma_noise[k],
+                                                 gamma_list[k] - gamma_noise[k],
+                                                 (int)hs_sub.size() - 1,
+                                                 seed++);
 
-        std::vector<float> hs_sub = linspace_jitted(hs_prev[r],
-                                                    hs_prev[r + 1],
-                                                    nlevels,
-                                                    strata_noise[k],
-                                                    seed++,
-                                                    endpoint);
-        std::vector<float> gamma_sub = random_vector(
-            gamma_list[k] - gamma_noise[k],
-            gamma_list[k] - gamma_noise[k],
-            (int)hs_sub.size() - ndiff,
-            seed++);
+        stratify(z, p_mask, hs, gamma, p_noise);
 
-        for (auto &v : hs_sub)
-          hs.push_back(v);
-
-        for (auto &v : gamma_sub)
-          gamma.push_back(v);
+        for (auto &v : hs)
+          hs_bckp.push_back(v);
       }
 
-      stratify(z, p_mask, hs, gamma, p_noise);
-
       // backup elevations for next iterations
-      hs_prev.resize(hs.size());
-      for (size_t i = 0; i < hs.size(); i++)
-        hs_prev[i] = hs[i];
-      hs_prev.push_back(zmax);
+      hs_prev.resize(hs_bckp.size());
+      for (size_t i = 0; i < hs_bckp.size(); i++)
+        hs_prev[i] = hs_bckp[i];
     }
   }
 }

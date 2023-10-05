@@ -16,6 +16,8 @@ int main(void)
   std::vector<float> gamma_noise = {0.2f, 0.2f, 0.2f};
 
   hmap::stratify_multiscale(z1,
+                            z1.min(),
+                            z1.max(),
                             n_strata,
                             strata_noise,
                             gamma_list,

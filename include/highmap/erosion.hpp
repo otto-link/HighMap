@@ -523,6 +523,8 @@ void stratify(Array             &z,
  * elevations corrected by a gamma factor.
  *
  * @param z Input array.
+ * @param zmin Minimum elevation for the strata
+ * @param zmax Maximum elevation for the strata
  * @param n_strata Number of strata for each stratification iteration.
  * @param strata_noise Elevation relative noise.
  * @param gamma_list Gamma value for each stratification iteration.
@@ -540,6 +542,8 @@ void stratify(Array             &z,
  * @image html ex_stratify_multiscale.png
  */
 void stratify_multiscale(Array             &z,
+                         float              zmin,
+                         float              zmax,
                          std::vector<int>   n_strata,
                          std::vector<float> strata_noise,
                          std::vector<float> gamma_list,
