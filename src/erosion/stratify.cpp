@@ -117,7 +117,7 @@ void stratify_multiscale(Array             &z,
                                                 seed++);
         std::vector<float> gamma = random_vector(gamma_list[k] - gamma_noise[k],
                                                  gamma_list[k] - gamma_noise[k],
-                                                 (int)hs_sub.size() - 1,
+                                                 (int)hs.size() - 1,
                                                  seed++);
 
         stratify(z, p_mask, hs, gamma, p_noise);
