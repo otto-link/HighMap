@@ -1,0 +1,2 @@
+add_executable(ex_cubic_pulse_truncated ex_cubic_pulse_truncated.cpp)
+target_link_libraries(ex_cubic_pulse_truncated highmap)

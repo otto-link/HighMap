@@ -133,6 +133,33 @@ Array cubic_pulse_directional(Vec2<int> shape,
   return array;
 }
 
+Array cubic_pulse_truncated(Vec2<int> shape, float slant_ratio, float angle)
+{
+  Array array = Array(shape);
+  int   ri = (int)(0.5f * ((float)shape.x - 1.f));
+  int   rj = (int)(0.5f * ((float)shape.y - 1.f));
+
+  float ca = std::cos(angle / 180.f * M_PI);
+  float sa = std::sin(angle / 180.f * M_PI);
+
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
+    {
+      float xi = ((float)i - ri) / float(ri + 1);
+      float yi = ((float)j - rj) / float(rj + 1);
+      float r = std::hypot(xi, yi);
+
+      float pulse = r < 1.f ? 1.f - r * r * (3.f - 2.f * r) : 0.f;
+
+      float v = 1.f - (1.f / slant_ratio) * (xi * ca + yi * sa);
+      float line = v < 0.f ? 0.f : (v < 1.f ? v * v * (3.f - 2.f * v) : 1.f);
+
+      array(i, j) = std::max(0.f, line * pulse);
+    }
+
+  return array;
+}
+
 Array disk(Vec2<int> shape)
 {
   Array array = Array(shape);
@@ -145,6 +172,30 @@ Array disk(Vec2<int> shape)
       if ((i - ri) * (i - ri) + (j - rj) * (j - rj) <= ri * rj)
         array(i, j) = 1.f;
     }
+
+  return array;
+}
+
+Array gabor(Vec2<int> shape, float kw, float angle, float footprint_threshold)
+{
+  Array array = Array(shape);
+
+  std::vector<float> x = linspace(-1.f, 1.f, array.shape.x, false);
+  std::vector<float> y = linspace(-1.f, 1.f, array.shape.y, false);
+
+  float width = std::sqrt(-0.5f * M_PI / std::log(footprint_threshold));
+  float iw2 = 1.f / (width * width);
+  float ca = std::cos(angle / 180.f * M_PI);
+  float sa = std::sin(angle / 180.f * M_PI);
+
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
+      array(i, j) =
+          std::exp(-M_PI * (x[i] * x[i] + y[j] * y[j]) * 0.5f * iw2) *
+          std::cos(
+              M_PI * kw *
+              (x[i] * ca +
+               y[j] * sa)); // "kw" and not "2 kw" since the domain is [-1, 1]
 
   return array;
 }
