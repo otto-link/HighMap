@@ -10,11 +10,10 @@ int main(void)
   auto        z1 = z;
   auto        z2 = z;
 
-  float scale = 4.f; // not in pixels
-  hmap::steepen(z1, scale);
+  float angle = 30.f;
+  hmap::steepen_convective(z1, angle, 1, 0.5f);
 
-  // using a negative scale will "flatten" the map
-  hmap::steepen(z2, -scale);
-
-  hmap::export_banner_png("ex_steepen.png", {z, z1, z2}, hmap::cmap::terrain);
+  hmap::export_banner_png("ex_steepen_convective.png",
+                          {z, z1},
+                          hmap::cmap::terrain);
 }

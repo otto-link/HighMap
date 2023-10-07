@@ -1,0 +1,2 @@
+add_executable(ex_steepen_convective ex_steepen_convective.cpp)
+target_link_libraries(ex_steepen_convective highmap)

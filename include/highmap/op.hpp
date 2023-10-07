@@ -1868,19 +1868,25 @@ void steepen(Array &array, float scale, Array *p_mask, int ir = 8);
  * @param ir Smoothing radius of the array values before differentiation.
  * @param dt "Time step", can be chosen smaller than 1 for fine tuning of the
  * steepening effect.
+ *
+ * **Example**
+ * @include ex_steepen_convective.cpp
+ *
+ * **Result**
+ * @image html ex_steepen_convective.png
  */
 void steepen_convective(Array &array,
                         float  angle,
                         int    iterations = 1,
                         int    ir = 0,
-                        float  dt = 1);
+                        float  dt = 0.1f);
 
 void steepen_convective(Array &array,
                         float  angle,
                         Array *p_mask,
                         int    iterations = 1,
                         int    ir = 0,
-                        float  dt = 1);
+                        float  dt = 0.1f);
 
 /**
  * @brief Use symmetry for to fill values at the domain borders, over a given

@@ -743,6 +743,9 @@ void steepen_convective(Array &array,
       gradient_x(array, dx);
       gradient_y(array, dy);
     }
+
+    dx *= (float)array.shape.x;
+    dy *= (float)array.shape.y;
     array *= 1.f - dt * (ca * dx + sa * dy); // == du / dt = - u * du / dx
   }
 }
