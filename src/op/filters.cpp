@@ -659,8 +659,8 @@ void smooth_fill_smear_peaks(Array &array, int ir)
   Array array_smooth = mean_local(array, ir);
 
   // mask based on concave regions
-  Array mask = curvature_mean(array_smooth);
-  clamp_max(mask, 0.f);
+  Array mask = -curvature_mean(array_smooth);
+  clamp_min(mask, 0.f);
   make_binary(mask);
 
   int ic = (int)((float)ir / 2.f);

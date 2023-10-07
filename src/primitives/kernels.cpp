@@ -188,11 +188,11 @@ Array gabor(Vec2<int> shape, float kw, float angle)
 
   // gaussian shape approximate using a cubic pulse
   Array cpulse = cubic_pulse(shape);
-  
+
   for (int i = 0; i < array.shape.x; i++)
     for (int j = 0; j < array.shape.y; j++)
       array(i, j) =
-	cpulse(i, j) *
+          cpulse(i, j) *
           std::cos(
               M_PI * kw *
               (x[i] * ca +

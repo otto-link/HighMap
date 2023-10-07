@@ -123,9 +123,7 @@ Array disk(Vec2<int> shape);
  * **Result**
  * @image html ex_gabor.png
  */
-Array gabor(Vec2<int> shape,
-            float     kw,
-            float     angle);
+Array gabor(Vec2<int> shape, float kw, float angle);
 
 /**
  * @brief Return the Lorentzian kernel.
