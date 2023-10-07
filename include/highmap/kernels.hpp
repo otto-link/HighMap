@@ -115,8 +115,6 @@ Array disk(Vec2<int> shape);
  * @param shape Array shape.
  * @param kw Kernel wavenumber, with respect to a unit domain.
  * @param angle Kernel angle (in degree).
- * @param footprint_threshold The kernel footprint is limited where envelop is
- * larger than the value `footprint_threshold`.
  * @return Array New array.
  *
  * **Example**
@@ -127,8 +125,7 @@ Array disk(Vec2<int> shape);
  */
 Array gabor(Vec2<int> shape,
             float     kw,
-            float     angle,
-            float     footprint_threshold = 0.05f);
+            float     angle);
 
 /**
  * @brief Return the Lorentzian kernel.

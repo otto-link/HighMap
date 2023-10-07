@@ -176,22 +176,23 @@ Array disk(Vec2<int> shape)
   return array;
 }
 
-Array gabor(Vec2<int> shape, float kw, float angle, float footprint_threshold)
+Array gabor(Vec2<int> shape, float kw, float angle)
 {
   Array array = Array(shape);
 
   std::vector<float> x = linspace(-1.f, 1.f, array.shape.x, false);
   std::vector<float> y = linspace(-1.f, 1.f, array.shape.y, false);
 
-  float width = std::sqrt(-0.5f * M_PI / std::log(footprint_threshold));
-  float iw2 = 1.f / (width * width);
   float ca = std::cos(angle / 180.f * M_PI);
   float sa = std::sin(angle / 180.f * M_PI);
 
+  // gaussian shape approximate using a cubic pulse
+  Array cpulse = cubic_pulse(shape);
+  
   for (int i = 0; i < array.shape.x; i++)
     for (int j = 0; j < array.shape.y; j++)
       array(i, j) =
-          std::exp(-M_PI * (x[i] * x[i] + y[j] * y[j]) * 0.5f * iw2) *
+	cpulse(i, j) *
           std::cos(
               M_PI * kw *
               (x[i] * ca +
