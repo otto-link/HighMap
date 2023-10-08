@@ -88,14 +88,15 @@ void stratify_multiscale(Array             &z,
   {
     int nlevels = n_strata[k] + 1;
 
+    float gamma_min = std::max(0.001f, gamma_list[k] * (1.f - gamma_noise[k]));
+    float gamma_max = gamma_list[k] * (1.f + gamma_noise[k]);
+
     if (k == 0)
     {
       std::vector<float> hs =
           linspace_jitted(zmin, zmax, nlevels, strata_noise[k], seed++);
-      std::vector<float> gamma = random_vector(gamma_list[k] - gamma_noise[k],
-                                               gamma_list[k] - gamma_noise[k],
-                                               nlevels - 1,
-                                               seed++);
+      std::vector<float> gamma =
+          random_vector(gamma_min, gamma_max, nlevels - 1, seed++);
 
       stratify(z, p_mask, hs, gamma, p_noise);
 
@@ -115,10 +116,8 @@ void stratify_multiscale(Array             &z,
                                                 nlevels,
                                                 strata_noise[k],
                                                 seed++);
-        std::vector<float> gamma = random_vector(gamma_list[k] - gamma_noise[k],
-                                                 gamma_list[k] - gamma_noise[k],
-                                                 (int)hs.size() - 1,
-                                                 seed++);
+        std::vector<float> gamma =
+            random_vector(gamma_min, gamma_max, (int)hs.size() - 1, seed++);
 
         stratify(z, p_mask, hs, gamma, p_noise);
 
