@@ -3,6 +3,7 @@
  * this software. */
 
 #include "FastNoiseLite.h"
+#include "macrologger.h"
 
 #include "highmap/array.hpp"
 #include "highmap/op.hpp"
@@ -16,6 +17,7 @@ Array perlin(Vec2<int>   shape,
              uint        seed,
              Array      *p_noise_x,
              Array      *p_noise_y,
+             Array      *p_stretching,
              Vec2<float> shift,
              Vec2<float> scale)
 {
@@ -39,6 +41,7 @@ Array perlin(Vec2<int>   shape,
                    y,
                    p_noise_x,
                    p_noise_y,
+                   p_stretching,
                    [&noise](float x_, float y_)
                    { return noise.GetNoise(x_, y_); });
   return array;

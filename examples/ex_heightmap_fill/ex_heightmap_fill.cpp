@@ -12,13 +12,20 @@ int main(void)
 
   hmap::HeightMap h = hmap::HeightMap(shape, tiling, overlap);
 
-  hmap::fill(
-      h,
-      [&kw, &seed](hmap::Vec2<int>   shape,
-                   hmap::Vec2<float> shift,
-                   hmap::Vec2<float> scale) {
-        return hmap::perlin(shape, kw, seed, nullptr, nullptr, shift, scale);
-      });
+  hmap::fill(h,
+             [&kw, &seed](hmap::Vec2<int>   shape,
+                          hmap::Vec2<float> shift,
+                          hmap::Vec2<float> scale)
+             {
+               return hmap::perlin(shape,
+                                   kw,
+                                   seed,
+                                   nullptr,
+                                   nullptr,
+                                   nullptr,
+                                   shift,
+                                   scale);
+             });
 
   fname = "ex_heightmap_fill" + std::to_string(count++) + ".png";
   h.to_array().to_png(fname.c_str(), hmap::cmap::inferno);

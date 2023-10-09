@@ -71,6 +71,68 @@ void stratify(Array             &z,
   }
 }
 
+void stratify_multiscale(Array             &z,
+                         float              zmin,
+                         float              zmax,
+                         std::vector<int>   n_strata,
+                         std::vector<float> strata_noise,
+                         std::vector<float> gamma_list,
+                         std::vector<float> gamma_noise,
+                         uint               seed,
+                         Array             *p_mask,
+                         Array             *p_noise)
+{
+  std::vector<float> hs_prev = {};
+
+  for (size_t k = 0; k < n_strata.size(); k++)
+  {
+    int nlevels = n_strata[k] + 1;
+
+    float gamma_min = std::max(0.001f, gamma_list[k] * (1.f - gamma_noise[k]));
+    float gamma_max = gamma_list[k] * (1.f + gamma_noise[k]);
+
+    if (k == 0)
+    {
+      std::vector<float> hs =
+          linspace_jitted(zmin, zmax, nlevels, strata_noise[k], seed++);
+      std::vector<float> gamma =
+          random_vector(gamma_min, gamma_max, nlevels - 1, seed++);
+
+      stratify(z, p_mask, hs, gamma, p_noise);
+
+      // backup elevations for next iterations
+      hs_prev.resize(hs.size());
+      for (size_t i = 0; i < hs.size(); i++)
+        hs_prev[i] = hs[i];
+    }
+    else
+    {
+      std::vector<float> hs_bckp = {};
+
+      for (size_t r = 0; r < hs_prev.size() - 1; r++)
+      {
+        std::vector<float> hs = linspace_jitted(hs_prev[r],
+                                                hs_prev[r + 1],
+                                                nlevels,
+                                                strata_noise[k],
+                                                seed++);
+        std::vector<float> gamma =
+            random_vector(gamma_min, gamma_max, (int)hs.size() - 1, seed++);
+
+        stratify(z, p_mask, hs, gamma, p_noise);
+
+        for (auto &v : hs)
+          hs_bckp.push_back(v);
+      }
+
+      // backup elevations for next iterations
+      hs_prev.resize(hs_bckp.size());
+      for (size_t i = 0; i < hs_bckp.size(); i++)
+        hs_prev[i] = hs_bckp[i];
+    }
+  }
+}
+
 void stratify_oblique(Array             &z,
                       std::vector<float> hs,
                       std::vector<float> gamma,

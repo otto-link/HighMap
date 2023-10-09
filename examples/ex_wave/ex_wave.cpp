@@ -17,9 +17,9 @@ int main(void)
   auto zq = hmap::wave_square(shape, kw, angle);
   auto zs = hmap::wave_sine(shape, kw, angle);
 
-  auto ztn = hmap::wave_triangular(shape, kw, angle, 0.8f, &noise);
-  auto zqn = hmap::wave_square(shape, kw, angle, &noise);
-  auto zsn = hmap::wave_sine(shape, kw, angle, &noise);
+  auto ztn = hmap::wave_triangular(shape, kw, angle, 0.8f, 0.f, &noise);
+  auto zqn = hmap::wave_square(shape, kw, angle, 0.f, &noise);
+  auto zsn = hmap::wave_sine(shape, kw, angle, 0.f, &noise);
 
   hmap::export_banner_png("ex_wave0.png", {zt, zq, zs}, hmap::cmap::viridis);
 

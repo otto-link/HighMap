@@ -43,6 +43,7 @@ Array fbm_perlin(Vec2<int>   shape,
                  float       lacunarity,
                  Array      *p_noise_x,
                  Array      *p_noise_y,
+                 Array      *p_stretching,
                  Vec2<float> shift,
                  Vec2<float> scale)
 {
@@ -71,6 +72,7 @@ Array fbm_perlin(Vec2<int>   shape,
                    y,
                    p_noise_x,
                    p_noise_y,
+                   p_stretching,
                    [&noise](float x_, float y_)
                    { return noise.GetNoise(x_, y_); });
   return array;
@@ -149,6 +151,7 @@ Array fbm_worley(Vec2<int>   shape,
                  float       lacunarity,
                  Array      *p_noise_x,
                  Array      *p_noise_y,
+                 Array      *p_stretching,
                  Vec2<float> shift,
                  Vec2<float> scale)
 {
@@ -178,6 +181,7 @@ Array fbm_worley(Vec2<int>   shape,
                    y,
                    p_noise_x,
                    p_noise_y,
+                   p_stretching,
                    [&noise](float x_, float y_)
                    { return noise.GetNoise(x_, y_); });
 
@@ -208,8 +212,13 @@ Array hybrid_fbm_perlin(Vec2<int>   shape,
   {
     float ck = std::pow(lacunarity, k);
     float ak = std::pow(persistence, k);
-    Array noise =
-        perlin(shape, {ck * kw.x, ck * kw.y}, seed++, nullptr, nullptr, shift);
+    Array noise = perlin(shape,
+                         {ck * kw.x, ck * kw.y},
+                         seed++,
+                         nullptr,
+                         nullptr,
+                         nullptr,
+                         shift);
     noise += offset;
     noise *= ak;
     weight *= noise;
@@ -242,6 +251,7 @@ Array multifractal_perlin(Vec2<int>   shape,
                                   seed,
                                   nullptr,
                                   nullptr,
+                                  nullptr,
                                   shift,
                                   scale);
     array = array * std::pow(persistence, k) * noise;
@@ -258,6 +268,7 @@ Array pingpong_perlin(Vec2<int>   shape,
                       float       lacunarity,
                       Array      *p_noise_x,
                       Array      *p_noise_y,
+                      Array      *p_stretching,
                       Vec2<float> shift,
                       Vec2<float> scale)
 {
@@ -286,6 +297,7 @@ Array pingpong_perlin(Vec2<int>   shape,
                    y,
                    p_noise_x,
                    p_noise_y,
+                   p_stretching,
                    [&noise](float x_, float y_)
                    { return noise.GetNoise(x_, y_); });
   return array;
@@ -300,6 +312,7 @@ Array ridged_perlin(Vec2<int>   shape,
                     float       lacunarity,
                     Array      *p_noise_x,
                     Array      *p_noise_y,
+                    Array      *p_stretching,
                     Vec2<float> shift,
                     Vec2<float> scale)
 {
@@ -328,6 +341,7 @@ Array ridged_perlin(Vec2<int>   shape,
                    y,
                    p_noise_x,
                    p_noise_y,
+                   p_stretching,
                    [&noise](float x_, float y_)
                    { return noise.GetNoise(x_, y_); });
   return array;

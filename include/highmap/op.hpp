@@ -904,13 +904,15 @@ std::vector<float> linspace(float start,
  * @param num Number of values.
  * @param ratio Jittering ratio with respect to an evenly spaced grid.
  * @param seed Random seed number.
+ * @param endpoint Include or not the end point in the output vector.
  * @return std::vector<float> Values
  */
 std::vector<float> linspace_jitted(float start,
                                    float stop,
                                    int   num,
                                    float ratio,
-                                   int   seed);
+                                   int   seed,
+                                   bool  endpoint = true);
 
 /**
  * @brief Return the log10 of the array elements.
@@ -1866,19 +1868,25 @@ void steepen(Array &array, float scale, Array *p_mask, int ir = 8);
  * @param ir Smoothing radius of the array values before differentiation.
  * @param dt "Time step", can be chosen smaller than 1 for fine tuning of the
  * steepening effect.
+ *
+ * **Example**
+ * @include ex_steepen_convective.cpp
+ *
+ * **Result**
+ * @image html ex_steepen_convective.png
  */
 void steepen_convective(Array &array,
                         float  angle,
                         int    iterations = 1,
                         int    ir = 0,
-                        float  dt = 1);
+                        float  dt = 0.1f);
 
 void steepen_convective(Array &array,
                         float  angle,
                         Array *p_mask,
                         int    iterations = 1,
                         int    ir = 0,
-                        float  dt = 1);
+                        float  dt = 0.1f);
 
 /**
  * @brief Use symmetry for to fill values at the domain borders, over a given
@@ -2042,6 +2050,7 @@ void zeroed_borders(Array &array);
  * @brief Apply a smooth transition to zero at the array borders.
  *
  * @param array Input array.
+ * @param sigma Transition half-width ratio.
  * @param p_noise Reference to the input noise array used for domain warping
  * (NOT in pixels, with respect to a unit domain).
  * @param shift Shift {xs, ys} for each directions, with respect to a unit
@@ -2055,6 +2064,7 @@ void zeroed_borders(Array &array);
  * @image html ex_zeroed_edges.png
  */
 void zeroed_edges(Array      &array,
+                  float       sigma = 0.25f,
                   Array      *p_noise = nullptr,
                   Vec2<float> shift = {0.f, 0.f},
                   Vec2<float> scale = {1.f, 1.f});

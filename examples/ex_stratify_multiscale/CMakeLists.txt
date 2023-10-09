@@ -1,0 +1,2 @@
+add_executable(ex_stratify_multiscale ex_stratify_multiscale.cpp)
+target_link_libraries(ex_stratify_multiscale highmap)

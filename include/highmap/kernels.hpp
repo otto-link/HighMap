@@ -82,6 +82,22 @@ Array cubic_pulse_directional(Vec2<int> shape,
                               float     anisotropy);
 
 /**
+ * @brief Return a "truncated" cubic pulse kernel.
+ *
+ * @param shape Array shape.
+ * @param slant_ratio Truncation slope.
+ * @param angle Angle (in degrees).
+ * @return Array
+ *
+ * **Example**
+ * @include ex_cubic_pulse_truncated.cpp
+ *
+ * **Result**
+ * @image html ex_cubic_pulse_truncated.png
+ */
+Array cubic_pulse_truncated(Vec2<int> shape, float slant_ratio, float angle);
+
+/**
  * @brief Return a disk foot-print.
  *
  * @param shape Array shape.
@@ -99,8 +115,6 @@ Array disk(Vec2<int> shape);
  * @param shape Array shape.
  * @param kw Kernel wavenumber, with respect to a unit domain.
  * @param angle Kernel angle (in degree).
- * @param footprint_threshold The kernel footprint is limited where envelop is
- * larger than the value `footprint_threshold`.
  * @return Array New array.
  *
  * **Example**
@@ -109,10 +123,7 @@ Array disk(Vec2<int> shape);
  * **Result**
  * @image html ex_gabor.png
  */
-Array gabor(Vec2<int> shape,
-            float     kw,
-            float     angle,
-            float     footprint_threshold = 0.05f);
+Array gabor(Vec2<int> shape, float kw, float angle);
 
 /**
  * @brief Return the Lorentzian kernel.

@@ -22,6 +22,8 @@
 #include <string>
 #include <vector>
 
+#include <png.h>
+
 #include "highmap/vector.hpp"
 
 namespace hmap
@@ -566,9 +568,19 @@ public:
    * @param hillshading Activate hillshading.
    *
    * **Example**
-   * @include ex_perlin.cpp
+   * @include ex_to_png.cpp
    */
   void to_png(std::string fname, int cmap, bool hillshading = false);
+
+  /**
+   * @brief Export array as 16bit grayscale png image file.
+   *
+   * @param fname File name.
+   *
+   * **Example**
+   * @include ex_to_png.cpp
+   */
+  void to_png16bit(std::string fname);
 
   /**
    * @brief Returns the unique elements of the array.

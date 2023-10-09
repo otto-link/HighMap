@@ -590,18 +590,6 @@ void smooth_gaussian(Array &array, int ir)
   array = convolve1d_j(array, k);
 }
 
-void smooth_gaussian(Array &array, int ir, Array *p_mask)
-{
-  if (!p_mask)
-    smooth_gaussian(array, ir);
-  else
-  {
-    Array array_f = array;
-    smooth_gaussian(array_f, ir);
-    array = lerp(array, array_f, *(p_mask));
-  }
-}
-
 void smooth_fill(Array &array, int ir, float k, Array *p_deposition_map)
 {
   // keep a backup of the input for the deposition map
@@ -615,12 +603,10 @@ void smooth_fill(Array &array, int ir, float k, Array *p_deposition_map)
   array = maximum_smooth(array, array_smooth, k);
 
   // update map
-  LOG_DEBUG("%p", p_deposition_map);
   if (p_deposition_map)
   {
     *p_deposition_map = array - array_bckp;
     clamp_min(*p_deposition_map, 0.f);
-    p_deposition_map->infos();
   }
 }
 
@@ -673,8 +659,8 @@ void smooth_fill_smear_peaks(Array &array, int ir)
   Array array_smooth = mean_local(array, ir);
 
   // mask based on concave regions
-  Array mask = curvature_mean(array_smooth);
-  clamp_max(mask, 0.f);
+  Array mask = -curvature_mean(array_smooth);
+  clamp_min(mask, 0.f);
   make_binary(mask);
 
   int ic = (int)((float)ir / 2.f);
@@ -692,6 +678,18 @@ void smooth_fill_smear_peaks(Array &array, int ir, Array *p_mask)
   {
     Array array_f = array;
     smooth_fill_smear_peaks(array_f, ir);
+    array = lerp(array, array_f, *(p_mask));
+  }
+}
+
+void smooth_gaussian(Array &array, int ir, Array *p_mask)
+{
+  if (!p_mask)
+    smooth_gaussian(array, ir);
+  else
+  {
+    Array array_f = array;
+    smooth_gaussian(array_f, ir);
     array = lerp(array, array_f, *(p_mask));
   }
 }
@@ -745,6 +743,9 @@ void steepen_convective(Array &array,
       gradient_x(array, dx);
       gradient_y(array, dy);
     }
+
+    dx *= (float)array.shape.x;
+    dy *= (float)array.shape.y;
     array *= 1.f - dt * (ca * dx + sa * dy); // == du / dt = - u * du / dx
   }
 }
