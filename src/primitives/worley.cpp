@@ -46,4 +46,26 @@ hmap::Array worley(Vec2<int>   shape,
   return array;
 }
 
+Array worley_double(Vec2<int>   shape,
+                    Vec2<float> kw,
+                    uint        seed,
+                    float       ratio,
+                    float       k,
+                    Array      *p_noise_x,
+                    Array      *p_noise_y,
+                    Vec2<float> shift,
+                    Vec2<float> scale)
+{
+  Array w1 = worley(shape, kw, seed++, p_noise_x, p_noise_y, shift, scale);
+  Array w2 = worley(shape, kw, seed++, p_noise_y, p_noise_x, shift, scale);
+  Array z;
+
+  if (k > 0.f)
+    z = maximum_smooth(ratio * w1, (1.f - ratio) * w2, k);
+  else
+    z = maximum(ratio * w1, (1.f - ratio) * w2);
+
+  return z;
+}
+
 } // namespace hmap

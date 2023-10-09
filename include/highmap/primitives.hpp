@@ -999,4 +999,37 @@ Array worley(Vec2<int>   shape,
              Vec2<float> shift = {0.f, 0.f},
              Vec2<float> scale = {1.f, 1.f});
 
+/**
+ * @brief Return an array filled with the maximum of two Worley (cellular)
+ * noises.
+ *
+ * @param shape Array shape.
+ * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
+ * a unit domain.
+ * @param seed Random seed number.
+ * @param ratio Amplitude ratio between each Worley noise.
+ * @param k
+ * @param p_noise_x, p_noise_y Reference to the input noise array used for
+ * domain warping (NOT in pixels, with respect to a unit domain).
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a
+ * unit domain.
+ * @param scale Domain scaling, in [0, 1].
+ * @return Array Noise.
+ *
+ * **Example**
+ * @include ex_worley_double.cpp
+ *
+ * **Result**
+ * @image html ex_worley_double.png
+ */
+Array worley_double(Vec2<int>   shape,
+                    Vec2<float> kw,
+                    uint        seed,
+                    float       ratio = 0.5f,
+                    float       k = 0.f,
+                    Array      *p_noise_x = nullptr,
+                    Array      *p_noise_y = nullptr,
+                    Vec2<float> shift = {0.f, 0.f},
+                    Vec2<float> scale = {1.f, 1.f});
+
 } // namespace hmap
