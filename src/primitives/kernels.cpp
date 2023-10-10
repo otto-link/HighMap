@@ -191,12 +191,50 @@ Array gabor(Vec2<int> shape, float kw, float angle)
 
   for (int i = 0; i < array.shape.x; i++)
     for (int j = 0; j < array.shape.y; j++)
-      array(i, j) =
-          cpulse(i, j) *
-          std::cos(
-              M_PI * kw *
-              (x[i] * ca +
-               y[j] * sa)); // "kw" and not "2 kw" since the domain is [-1, 1]
+      // "kw" and not "2 kw" since the domain is [-1, 1]
+      array(i, j) = cpulse(i, j) *
+                    std::cos(M_PI * kw * (x[i] * ca + y[j] * sa));
+
+  return array;
+}
+
+Array gabor_dune(Vec2<int> shape,
+                 float     kw,
+                 float     angle,
+                 float     xtop,
+                 float     xbottom)
+{
+  Array array = Array(shape);
+
+  // do not start at '0' to avoid issues with modulo operator
+  std::vector<float> x = linspace(1.f, 2.f, array.shape.x, false);
+  std::vector<float> y = linspace(1.f, 2.f, array.shape.y, false);
+
+  float ca = std::cos(angle / 180.f * M_PI);
+  float sa = std::sin(angle / 180.f * M_PI);
+
+  // gaussian shape approximate using a cubic pulse
+  Array cpulse = cubic_pulse(shape);
+
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
+    {
+      float xp = std::fmod(kw * (x[i] * ca + y[j] * sa), 1.f);
+      float yp = 0.f;
+
+      if (xp < xtop)
+      {
+        float r = xp / xtop;
+        yp = r * r * (3.f - 2.f * r);
+      }
+      else if (xp < xbottom)
+      {
+        float r = (xp - xbottom) / (xtop - xbottom);
+        yp = r * r * (2.f - r);
+      }
+
+      array(i, j) = cpulse(i, j) * yp;
+    }
 
   return array;
 }

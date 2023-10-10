@@ -108,10 +108,6 @@ Array disk(Vec2<int> shape);
 /**
  * @brief Return a Gabor kernel of a given shape.
  *
- *   Kernel width is deduced from the array shape: the kernel footprint
- *   is limited to where envelop is larger than the value
- *   `footprint_threshold`.
- *
  * @param shape Array shape.
  * @param kw Kernel wavenumber, with respect to a unit domain.
  * @param angle Kernel angle (in degree).
@@ -124,6 +120,28 @@ Array disk(Vec2<int> shape);
  * @image html ex_gabor.png
  */
 Array gabor(Vec2<int> shape, float kw, float angle);
+
+/**
+ * @brief Return a modified dune-like Gabor kernel of a given shape.
+ *
+ * @param shape Array shape.
+ * @param kw Kernel wavenumber, with respect to a unit domain.
+ * @param angle Kernel angle (in degree).
+ * @param xtop Relative location of the top of the dune profile (in [0, 1]).
+ * @param xbottom Relative location of the foot of the dune profile (in [0, 1]).
+ * @return Array New array.
+*
+ * **Example**
+ * @include ex_gabor_dune.cpp
+ *
+ * **Result**
+ * @image html ex_gabor_dune.png
+ */
+Array gabor_dune(Vec2<int> shape,
+                 float     kw,
+                 float     angle,
+                 float     xtop,
+                 float     xbottom);
 
 /**
  * @brief Return the Lorentzian kernel.

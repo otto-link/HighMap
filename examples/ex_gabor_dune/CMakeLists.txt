@@ -1,0 +1,2 @@
+add_executable(ex_gabor_dune ex_gabor_dune.cpp)
+target_link_libraries(ex_gabor_dune highmap)
