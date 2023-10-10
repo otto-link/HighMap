@@ -284,6 +284,9 @@ void gamma_correction_local(Array &array, float gamma, int ir, float k)
   Array amin = minimum_local(array, ir);
   Array amax = maximum_local(array, ir);
 
+  smooth_cpulse(amin, ir);
+  smooth_cpulse(amax, ir);
+
   if (k != 0) // with smoothing
   {
     for (int i = 0; i < array.shape.x; i++)
