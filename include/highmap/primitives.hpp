@@ -850,6 +850,31 @@ Array value_noise_thinplate(Vec2<int>   shape,
                             Vec2<float> scale = {1.f, 1.f});
 
 /**
+ * @brief Return a dune shape wave.
+ *
+ * @param shape Array shape.
+ * @param kw Wavenumber with respect to a unit domain.
+ * @param angle Overall rotation angle (in degree).
+ * @param xtop Relative location of the top of the dune profile (in [0, 1]).
+ * @param xbottom Relative location of the foot of the dune profile (in [0, 1]).
+ * @param phase_shift Phase shift (in radians).
+ * @param p_noise Reference to the input noise array used for domain warping
+ * (NOT in pixels, with respect to a unit domain).
+ * @param shift Shift {xs, ys} for each directions.
+ * @param scale Domain scaling, in [0, 1].
+ * @return Array New array.
+ */
+Array wave_dune(Vec2<int>   shape,
+                float       kw,
+                float       angle,
+                float       xtop,
+                float       xbottom,
+                float       phase_shift = 0.f,
+                Array      *p_noise = nullptr,
+                Vec2<float> shift = {0.f, 0.f},
+                Vec2<float> scale = {1.f, 1.f});
+
+/**
  * @brief Return a sine wave.
  *
  * @param shape Array shape.

@@ -130,7 +130,7 @@ Array gabor(Vec2<int> shape, float kw, float angle);
  * @param xtop Relative location of the top of the dune profile (in [0, 1]).
  * @param xbottom Relative location of the foot of the dune profile (in [0, 1]).
  * @return Array New array.
-*
+ *
  * **Example**
  * @include ex_gabor_dune.cpp
  *

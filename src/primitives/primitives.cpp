@@ -266,6 +266,55 @@ Array step(Vec2<int>   shape,
   return array;
 }
 
+Array wave_dune(Vec2<int>   shape,
+                float       kw,
+                float       angle,
+                float       xtop,
+                float       xbottom,
+                float       phase_shift,
+                Array      *p_noise,
+                Vec2<float> shift,
+                Vec2<float> scale)
+{
+  Array              array = Array(shape);
+  std::vector<float> x =
+      linspace(0.f + shift.x, scale.x + shift.x, shape.x, false);
+  std::vector<float> y =
+      linspace(0.f + shift.y, scale.y + shift.y, shape.y, false);
+
+  float ca = std::cos(angle / 180.f * M_PI);
+  float sa = std::sin(angle / 180.f * M_PI);
+
+  auto lambda = [&kw, &phase_shift, &xtop, &xbottom](float x)
+  {
+    float xp = std::fmod(kw * x + phase_shift, 1.f);
+    float yp = 0.f;
+
+    if (xp < xtop)
+    {
+      float r = xp / xtop;
+      yp = r * r * (3.f - 2.f * r);
+    }
+    else if (xp < xbottom)
+    {
+      float r = (xp - xbottom) / (xtop - xbottom);
+      yp = r * r * (2.f - r);
+    }
+    return yp;
+  };
+
+  if (p_noise != nullptr)
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
+        array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_noise)(i, j));
+  else
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
+        array(i, j) = lambda(ca * x[i] + sa * y[j]);
+
+  return array;
+}
+
 Array wave_sine(Vec2<int>   shape,
                 float       kw,
                 float       angle,

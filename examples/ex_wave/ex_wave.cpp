@@ -16,12 +16,17 @@ int main(void)
   auto zt = hmap::wave_triangular(shape, kw, angle, 0.8f);
   auto zq = hmap::wave_square(shape, kw, angle);
   auto zs = hmap::wave_sine(shape, kw, angle);
+  auto zd = hmap::wave_dune(shape, kw, angle, 0.5f, 0.7f);
 
   auto ztn = hmap::wave_triangular(shape, kw, angle, 0.8f, 0.f, &noise);
   auto zqn = hmap::wave_square(shape, kw, angle, 0.f, &noise);
   auto zsn = hmap::wave_sine(shape, kw, angle, 0.f, &noise);
+  auto zdn = hmap::wave_dune(shape, kw, angle, 0.5f, 0.7f, 0.f, &noise);
 
-  hmap::export_banner_png("ex_wave0.png", {zt, zq, zs}, hmap::cmap::viridis);
-
-  hmap::export_banner_png("ex_wave1.png", {ztn, zqn, zsn}, hmap::cmap::viridis);
+  hmap::export_banner_png("ex_wave0.png",
+                          {zt, zq, zs, zd},
+                          hmap::cmap::viridis);
+  hmap::export_banner_png("ex_wave1.png",
+                          {ztn, zqn, zsn, zdn},
+                          hmap::cmap::viridis);
 }
