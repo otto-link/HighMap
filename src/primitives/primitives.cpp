@@ -273,6 +273,7 @@ Array wave_dune(Vec2<int>   shape,
                 float       xbottom,
                 float       phase_shift,
                 Array      *p_noise,
+                Array      *p_shift,
                 Vec2<float> shift,
                 Vec2<float> scale)
 {
@@ -287,7 +288,7 @@ Array wave_dune(Vec2<int>   shape,
 
   auto lambda = [&kw, &phase_shift, &xtop, &xbottom](float x)
   {
-    float xp = std::fmod(kw * x + phase_shift, 1.f);
+    float xp = std::fmod(kw * x + phase_shift + 10.f, 1.f);
     float yp = 0.f;
 
     if (xp < xtop)
@@ -304,13 +305,28 @@ Array wave_dune(Vec2<int>   shape,
   };
 
   if (p_noise != nullptr)
-    for (int i = 0; i < array.shape.x; i++)
-      for (int j = 0; j < array.shape.y; j++)
-        array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_noise)(i, j));
+  {
+    if (p_shift != nullptr)
+      for (int i = 0; i < array.shape.x; i++)
+        for (int j = 0; j < array.shape.y; j++)
+          array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_noise)(i, j) +
+                               (*p_shift)(i, j));
+    else
+      for (int i = 0; i < array.shape.x; i++)
+        for (int j = 0; j < array.shape.y; j++)
+          array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_noise)(i, j));
+  }
   else
-    for (int i = 0; i < array.shape.x; i++)
-      for (int j = 0; j < array.shape.y; j++)
-        array(i, j) = lambda(ca * x[i] + sa * y[j]);
+  {
+    if (p_shift != nullptr)
+      for (int i = 0; i < array.shape.x; i++)
+        for (int j = 0; j < array.shape.y; j++)
+          array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_shift)(i, j));
+    else
+      for (int i = 0; i < array.shape.x; i++)
+        for (int j = 0; j < array.shape.y; j++)
+          array(i, j) = lambda(ca * x[i] + sa * y[j]);
+  }
 
   return array;
 }
@@ -337,7 +353,7 @@ Array wave_sine(Vec2<int>   shape,
   if (p_noise != nullptr)
     for (int i = 0; i < array.shape.x; i++)
       for (int j = 0; j < array.shape.y; j++)
-        array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_noise)(i, j));
+        array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_noise)(i, j) / kw);
   else
     for (int i = 0; i < array.shape.x; i++)
       for (int j = 0; j < array.shape.y; j++)
@@ -368,7 +384,7 @@ Array wave_square(Vec2<int>   shape,
   if (p_noise != nullptr)
     for (int i = 0; i < array.shape.x; i++)
       for (int j = 0; j < array.shape.y; j++)
-        array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_noise)(i, j) +
+        array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_noise)(i, j) / kw +
                              phase_shift);
   else
     for (int i = 0; i < array.shape.x; i++)
@@ -408,7 +424,7 @@ Array wave_triangular(Vec2<int>   shape,
   if (p_noise != nullptr)
     for (int i = 0; i < array.shape.x; i++)
       for (int j = 0; j < array.shape.y; j++)
-        array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_noise)(i, j) +
+        array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_noise)(i, j) / kw +
                              phase_shift);
   else
     for (int i = 0; i < array.shape.x; i++)
