@@ -860,7 +860,6 @@ Array value_noise_thinplate(Vec2<int>   shape,
  * @param phase_shift Phase shift (in radians).
  * @param p_noise Reference to the input noise array used for domain warping
  * (NOT in pixels, with respect to a unit domain).
- * @param p_phase Reference to the input noise array used for the phase shift
  * @param shift Shift {xs, ys} for each directions.
  * @param scale Domain scaling, in [0, 1].
  * @return Array New array.
@@ -872,7 +871,6 @@ Array wave_dune(Vec2<int>   shape,
                 float       xbottom,
                 float       phase_shift = 0.f,
                 Array      *p_noise = nullptr,
-                Array      *p_shift = nullptr,
                 Vec2<float> shift = {0.f, 0.f},
                 Vec2<float> scale = {1.f, 1.f});
 

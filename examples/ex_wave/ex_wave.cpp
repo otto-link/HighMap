@@ -12,12 +12,11 @@ int main(void)
   uint  seed = 1;
 
   auto noise = 0.1f * hmap::fbm_perlin(shape, {kw, kw}, seed, 8, 0.f);
-  auto phase = 0.2f * hmap::perlin(shape, {kw, kw}, seed);
 
   auto zt = hmap::wave_triangular(shape, kw, angle, 0.8f);
   auto zq = hmap::wave_square(shape, kw, angle);
   auto zs = hmap::wave_sine(shape, kw, angle);
-  auto zd = hmap::wave_dune(shape, kw, angle, 0.5f, 0.7f, 0.f, nullptr, &phase);
+  auto zd = hmap::wave_dune(shape, kw, angle, 0.5f, 0.7f, 0.f);
 
   auto ztn = hmap::wave_triangular(shape, kw, angle, 0.8f, 0.f, &noise);
   auto zqn = hmap::wave_square(shape, kw, angle, 0.f, &noise);

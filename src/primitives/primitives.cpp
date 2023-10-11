@@ -273,7 +273,6 @@ Array wave_dune(Vec2<int>   shape,
                 float       xbottom,
                 float       phase_shift,
                 Array      *p_noise,
-                Array      *p_shift,
                 Vec2<float> shift,
                 Vec2<float> scale)
 {
@@ -305,28 +304,13 @@ Array wave_dune(Vec2<int>   shape,
   };
 
   if (p_noise != nullptr)
-  {
-    if (p_shift != nullptr)
-      for (int i = 0; i < array.shape.x; i++)
-        for (int j = 0; j < array.shape.y; j++)
-          array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_noise)(i, j) +
-                               (*p_shift)(i, j));
-    else
-      for (int i = 0; i < array.shape.x; i++)
-        for (int j = 0; j < array.shape.y; j++)
-          array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_noise)(i, j));
-  }
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
+        array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_noise)(i, j));
   else
-  {
-    if (p_shift != nullptr)
-      for (int i = 0; i < array.shape.x; i++)
-        for (int j = 0; j < array.shape.y; j++)
-          array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_shift)(i, j));
-    else
-      for (int i = 0; i < array.shape.x; i++)
-        for (int j = 0; j < array.shape.y; j++)
-          array(i, j) = lambda(ca * x[i] + sa * y[j]);
-  }
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
+        array(i, j) = lambda(ca * x[i] + sa * y[j]);
 
   return array;
 }
