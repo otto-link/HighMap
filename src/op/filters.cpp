@@ -447,6 +447,44 @@ void match_histogram(Array &array, const Array &array_reference)
     array.vector[ki[i]] = array_reference.vector[kr[i]];
 }
 
+void median_3x3(Array &array)
+{
+  Array array_out = Array(array.shape);
+
+  std::vector<float> v(9);
+
+  for (int i = 1; i < array.shape.x - 1; i++)
+    for (int j = 1; j < array.shape.y - 1; j++)
+    {
+      v[0] = array(i - 1, j - 1);
+      v[1] = array(i - 1, j);
+      v[2] = array(i - 1, j + 1);
+      v[3] = array(i, j - 1);
+      v[4] = array(i, j);
+      v[5] = array(i, j + 1);
+      v[6] = array(i + 1, j - 1);
+      v[7] = array(i + 1, j);
+      v[8] = array(i + 1, j + 1);
+
+      std::sort(v.begin(), v.end());
+      array_out(i, j) = v[4];
+    }
+
+  array = array_out;
+}
+
+void median_3x3(Array &array, Array *p_mask)
+{
+  if (!p_mask)
+    median_3x3(array);
+  else
+  {
+    Array array_f = array;
+    median_3x3(array_f);
+    array = lerp(array, array_f, *(p_mask));
+  }
+}
+
 void sharpen(Array &array, float ratio)
 {
   Array lp = Array(array.shape);

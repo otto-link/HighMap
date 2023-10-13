@@ -1063,6 +1063,21 @@ void match_histogram(Array &array, const Array &array_reference);
 Array mean_local(const Array &array, int ir);
 
 /**
+ * @brief Apply a 3x3 median filter to the array.
+ *
+ * @param array Input array.
+ * @param p_mask Filter mask, expected in [0, 1].
+ *
+ * **Example**
+ * @include ex_median_3x3.cpp
+ *
+ * **Result**
+ * @image html ex_median_3x3.png
+ */
+void median_3x3(Array &array, Array *p_mask);
+void median_3x3(Array &array); ///< @overload
+
+/**
  * @brief Return the element-wise minimum of two arrays.
  *
  * @param array1 First array.
