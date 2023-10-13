@@ -470,7 +470,11 @@ void median_3x3(Array &array)
       array_out(i, j) = v[4];
     }
 
-  array = array_out;
+  for (int i = 1; i < array.shape.x - 1; i++)
+    for (int j = 1; j < array.shape.y - 1; j++)
+    {
+      array(i, j) = array_out(i, j);
+    }
 }
 
 void median_3x3(Array &array, Array *p_mask)
