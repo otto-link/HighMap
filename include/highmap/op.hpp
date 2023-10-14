@@ -1471,6 +1471,20 @@ void remap(Array &array,
 void remap(Array &array, float vmin = 0, float vmax = 1); ///< @overload
 
 /**
+ * @brief Rotate the array.
+ *
+ * @param array Input array.
+ * @param angle Rotation angle in degrees.
+ *
+ * **Example**
+ * @include ex_rotate.cpp
+ *
+ * **Result**
+ * @image html ex_rotate.png
+ */
+void rotate(Array &array, float angle);
+
+/**
  * @brief Return rugosity estimate (based on the skewness).
  *
  * @param z Input array.

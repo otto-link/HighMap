@@ -127,4 +127,41 @@ void normal_displacement(Array &array,
   }
 }
 
+void rotate(Array &array, float angle)
+{
+  float ca = std::cos(angle / 180.f * M_PI);
+  float sa = std::sin(angle / 180.f * M_PI);
+
+  // create a larger array filled using symmetry to have a domain
+  // large enough to avoid 'holes' while interpolating
+  int nbuffer = std::max((int)(0.25f * array.shape.x),
+                         (int)(0.25f * array.shape.y));
+
+  Array array_bf = generate_buffered_array(
+      array,
+      Vec4<int>(nbuffer, nbuffer, nbuffer, nbuffer));
+
+  float xc = 0.5f * array.shape.x;
+  float yc = 0.5f * array.shape.y;
+
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
+    {
+      float x = xc + ca * (i - xc) - sa * (j - yc);
+      float y = yc + sa * (i - xc) + ca * (j - yc);
+
+      // corresponding nearest cells in buffered array (and bilinear
+      // interpolation parameters)
+      int   ix = (int)x;
+      int   jy = (int)y;
+      float u = x - ix;
+      float v = y - jy;
+
+      int ib = nbuffer + 1 + ix;
+      int jb = nbuffer + 1 + jy;
+
+      array(i, j) = array_bf.get_value_bilinear_at(ib, jb, u, v);
+    }
+}
+
 } // namespace hmap
