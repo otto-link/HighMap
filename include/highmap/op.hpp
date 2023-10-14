@@ -596,6 +596,32 @@ void fill_talus_fast(Array    &z,
                      float     noise_ratio = 0.2f);
 
 /**
+ * @brief Flip the array vertically (left/right).
+ *
+ * @param array Input array.
+ *
+ * **Example**
+ * @include flip_ud.cpp
+ *
+ * **Result**
+ * @image html flip_ud.png
+ */
+void flip_lr(Array &array);
+
+/**
+ * @brief Flip the array horizontally (up/down).
+ *
+ * @param array Input array.
+ *
+ * **Example**
+ * @include flip_ud.cpp
+ *
+ * **Result**
+ * @image html flip_ud.png
+ */
+void flip_ud(Array &array);
+
+/**
  * @brief Apply a gain correction of the array elements.
  *
  * Gain correction is based on a power law.
