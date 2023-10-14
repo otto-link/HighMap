@@ -206,8 +206,8 @@ void hydraulic_benes(Array &z,
 }
 
 void hydraulic_benes(Array &z,
-                     int    iterations,
                      Array *p_mask,
+                     int    iterations,
                      Array *p_bedrock,
                      Array *p_moisture_map,
                      Array *p_erosion_map,
