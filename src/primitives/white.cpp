@@ -53,4 +53,19 @@ Array white_sparse(Vec2<int> shape, float a, float b, float density, uint seed)
   return array;
 }
 
+Array white_sparse_binary(Vec2<int> shape, float density, uint seed)
+{
+  Array                                 array = Array(shape);
+  std::mt19937                          gen(seed);
+  std::uniform_real_distribution<float> dis(0.f, 1.f);
+
+  for (auto &v : array.vector)
+  {
+    float r = dis(gen);
+    if (r < density)
+      v = 1.f;
+  }
+  return array;
+}
+
 } // namespace hmap

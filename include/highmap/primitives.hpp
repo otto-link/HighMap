@@ -1017,6 +1017,17 @@ Array white_density_map(const Array &density_map, uint seed);
 Array white_sparse(Vec2<int> shape, float a, float b, float density, uint seed);
 
 /**
+ * @brief Return an array sparsely filled with random 0 and 1.
+ *
+ * @param shape Array shape.
+ * @param density Array filling density, in [0, 1]. If set to 1, the function
+ * is equivalent to {@link white}.
+ * @param seed Random number seed.
+ * @return Array Sparse white noise.
+ */
+Array white_sparse_binary(Vec2<int> shape, float density, uint seed);
+
+/**
  * @brief Return an array filled with Worley (cellular) noise.
  *
  * The function is just a wrapper based of the library <a

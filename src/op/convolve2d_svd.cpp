@@ -1,13 +1,16 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
-
+#define _USE_MATH_DEFINES
 #include <cmath>
 #include <gsl/gsl_linalg.h>
 #include <gsl/gsl_matrix.h>
 
+#include "macrologger.h"
+
 #include "highmap/array.hpp"
 #include "highmap/op.hpp"
+#include "highmap/primitives.hpp"
 
 namespace hmap
 {
@@ -57,6 +60,31 @@ Array convolve2d_svd(const Array &array, const Array &kernel, int rank)
   gsl_matrix_free(mat_v);
   gsl_vector_free(vec_s);
   gsl_vector_free(vec_w);
+
+  return array_out;
+}
+
+Array convolve2d_svd_rotated_kernel(const Array &array,
+                                    const Array &kernel,
+                                    int          rank,
+                                    int          n_rotations,
+                                    uint         seed)
+{
+  Array array_out = Array(array.shape);
+
+  std::vector<float> angles = linspace(0.f, 360.f, n_rotations, false);
+  float              density = 1.f / (float)n_rotations;
+
+  for (int k = 0; k < n_rotations; k++)
+  {
+    Array base = white_sparse_binary(array.shape, density, seed);
+    base *= array;
+
+    Array kr = kernel;
+    rotate(kr, angles[k]);
+
+    array_out += convolve2d_svd(base, kernel, rank);
+  }
 
   return array_out;
 }

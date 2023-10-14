@@ -412,6 +412,31 @@ Array convolve2d_truncated(const Array &array, const Array &kernel);
 Array convolve2d_svd(const Array &z, const Array &kernel, int rank = 3);
 
 /**
+ * @brief Return the approximate convolution product of the array with a
+ * Singular Value Decomposition (SVD) of a kernel combined with a rotation of
+ * the kernel.
+ *
+ * @param z Input array.
+ * @param kernel Kernel array.
+ * @param rank Approximation rank: the first 'rank' singular values/vectors are
+ * used to approximate the convolution product.
+ * @param n_rotations Number of kernel rotations.
+ * @param seed Random seed number.
+ * @return Array Convolution result.
+ *
+ * **Example**
+ * @include ex_convolve2d_svd.cpp
+ *
+ * **Result**
+ * @image html ex_convolve2d_svd.png
+ */
+Array convolve2d_svd_rotated_kernel(const Array &z,
+                                    const Array &kernel,
+                                    int          rank = 3,
+                                    int          n_rotations = 6,
+                                    uint         seed = 1);
+
+/**
  * @brief Return the cosine of the array elements.
  *
  * @param array Input array.
