@@ -61,6 +61,20 @@ void alter_elevation(Array      &array,
   array += amp;
 }
 
+void flip_lr(Array &array)
+{
+  for (int i = 0; i < (int)(0.5f * array.shape.y); i++)
+    for (int j = 0; j < array.shape.y; j++)
+      std::swap(array(i, j), array(array.shape.x - i - 1, j));
+}
+
+void flip_ud(Array &array)
+{
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < (int)(0.5f * array.shape.y); j++)
+      std::swap(array(i, j), array(i, array.shape.y - j - 1));
+}
+
 void normal_displacement(Array &array, float amount, int ir, bool reverse)
 {
   Array array_f = array;
