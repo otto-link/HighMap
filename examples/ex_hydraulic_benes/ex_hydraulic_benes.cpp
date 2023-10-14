@@ -11,7 +11,8 @@ int main(void)
   int               seed = 1;
 
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
-  auto        z0 = z;
+  hmap::remap(z);
+  auto z0 = z;
 
   hmap::hydraulic_benes(z, 50);
 

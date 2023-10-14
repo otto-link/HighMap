@@ -108,7 +108,15 @@ void hydraulic_algebric(Array &z,
  * See @cite Benes2002 and @cite Olsen2004.
  *
  * @param z Input array.
- * @param rain_map Moisture map (quantity of rain), expected to be in [0, 1].
+ * @param p_mask Intensity mask, expected in [0, 1] (applied as a
+ * post-processing).
+ * @param p_bedrock Reference to the bedrock heightmap.
+ * @param p_moisture_map Reference to the moisture map (quantity of rain),
+ * expected to be in [0, 1].
+ * @param p_erosion_map[out] Reference to the erosion map, provided as an output
+ * field.
+ * @param p_deposition_map [out] Reference to the deposition map, provided as an
+ * output field.
  * @param iterations Number of iterations.
  * @param c_capacity Sediment capacity.
  * @param c_deposition Deposition coefficient.
@@ -124,8 +132,12 @@ void hydraulic_algebric(Array &z,
  * @image html ex_hydraulic_benes.png
  */
 void hydraulic_benes(Array &z,
-                     Array &rain_map,
+                     Array *p_mask,
                      int    iterations = 50,
+                     Array *p_bedrock = nullptr,
+                     Array *p_moisture_map = nullptr,
+                     Array *p_erosion_map = nullptr,
+                     Array *p_deposition_map = nullptr,
                      float  c_capacity = 40.f,
                      float  c_erosion = 0.2f,
                      float  c_deposition = 0.8f,
@@ -135,6 +147,10 @@ void hydraulic_benes(Array &z,
 
 void hydraulic_benes(Array &z,
                      int    iterations = 50,
+                     Array *p_bedrock = nullptr,
+                     Array *p_moisture_map = nullptr,
+                     Array *p_erosion_map = nullptr,
+                     Array *p_deposition_map = nullptr,
                      float  c_capacity = 40.f,
                      float  c_erosion = 0.2f,
                      float  c_deposition = 0.8f,

@@ -19,8 +19,11 @@ namespace hmap
 //----------------------------------------------------------------------
 
 void hydraulic_benes(Array &z,
-                     Array &rain_map,
                      int    iterations,
+                     Array *p_bedrock,
+                     Array *p_moisture_map,
+                     Array *p_erosion_map,
+                     Array *p_deposition_map,
                      float  c_capacity,
                      float  c_erosion,
                      float  c_deposition,
@@ -32,7 +35,17 @@ void hydraulic_benes(Array &z,
   std::vector<int> dj = DJ;
   const uint       nb = di.size();
 
-  Array w = water_level * rain_map; // water map
+  // keep a backup of the input if the erosion / deposition maps need
+  // to be computed
+  Array z_bckp = Array();
+  if ((p_erosion_map != nullptr) | (p_deposition_map != nullptr))
+    z_bckp = z;
+
+  Array w = water_level * constant(z.shape, 1.f);
+
+  if (p_moisture_map)
+    w *= (*p_moisture_map); // water map
+
   Array w_init = w;                 // backup water initial map
   Array s = constant(z.shape, 0.f); // sediment map (disolved in the water)
 
@@ -169,16 +182,36 @@ void hydraulic_benes(Array &z,
 
     laplace(w);
     laplace(s);
+
+    // make sure bedrock is not eroded
+    if (p_bedrock)
+      for (int i = 0; i < z.shape.x; i++)
+        for (int j = 0; j < z.shape.y; j++)
+          z(i, j) = std::max(z(i, j), (*p_bedrock)(i, j));
+
   } // it
+
+  // splatmaps
+  if (p_erosion_map)
+  {
+    *p_erosion_map = z_bckp - z;
+    clamp_min(*p_erosion_map, 0.f);
+  }
+
+  if (p_deposition_map)
+  {
+    *p_deposition_map = z - z_bckp;
+    clamp_min(*p_deposition_map, 0.f);
+  }
 }
 
-//----------------------------------------------------------------------
-// Overloading
-//----------------------------------------------------------------------
-
-// uniform moisture map
 void hydraulic_benes(Array &z,
                      int    iterations,
+                     Array *p_mask,
+                     Array *p_bedrock,
+                     Array *p_moisture_map,
+                     Array *p_erosion_map,
+                     Array *p_deposition_map,
                      float  c_capacity,
                      float  c_erosion,
                      float  c_deposition,
@@ -186,17 +219,36 @@ void hydraulic_benes(Array &z,
                      float  evap_rate,
                      float  rain_rate)
 {
-  Array rain_map = constant(z.shape, 1.f);
-
-  hydraulic_benes(z,
-                  rain_map,
-                  iterations,
-                  c_capacity,
-                  c_erosion,
-                  c_deposition,
-                  water_level,
-                  evap_rate,
-                  rain_rate);
+  if (!p_mask)
+    hydraulic_benes(z,
+                    iterations,
+                    p_bedrock,
+                    p_moisture_map,
+                    p_erosion_map,
+                    p_deposition_map,
+                    c_capacity,
+                    c_erosion,
+                    c_deposition,
+                    water_level,
+                    evap_rate,
+                    rain_rate);
+  else
+  {
+    Array z_f = z;
+    hydraulic_benes(z_f,
+                    iterations,
+                    p_bedrock,
+                    p_moisture_map,
+                    p_erosion_map,
+                    p_deposition_map,
+                    c_capacity,
+                    c_erosion,
+                    c_deposition,
+                    water_level,
+                    evap_rate,
+                    rain_rate);
+    z = lerp(z, z_f, *(p_mask));
+  }
 }
 
 } // namespace hmap
