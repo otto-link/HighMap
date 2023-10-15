@@ -23,15 +23,24 @@ void hydraulic_ridge(Array &z,
                      int    ir,
                      uint   seed)
 {
-  // erosion depth
-  Array ze;
+  // erosion depth and intermediate working array
+  Array ze = z;
+
+  // add a gentle slope to avoid numerical artifacts for perfectly
+  // flat heightmap
+  {
+    float talus_fix = 1e-3 / (float)z.shape.x;
+    for (int i = 0; i < z.shape.x; i++)
+      for (int j = 0; j < z.shape.y; j++)
+        ze(i, j) += talus_fix * (float)i;
+  }
+
   if (ir == 0)
-    ze = flow_accumulation_dinf(z, talus);
+    ze = flow_accumulation_dinf(ze, talus);
   else
   {
-    Array zf = z;
-    smooth_cpulse(zf, ir);
-    ze = flow_accumulation_dinf(zf, talus);
+    smooth_cpulse(ze, ir);
+    ze = flow_accumulation_dinf(ze, talus);
   }
   ze = log10(ze);
   clamp_max_smooth(ze, erosion_factor, erosion_factor);
