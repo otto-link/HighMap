@@ -1471,6 +1471,21 @@ void recurve_smoothstep_rational(Array &array, float n);
 void recurve_smoothstep_rational(Array &array, float n, Array *p_mask);
 
 /**
+ * @brief Return the relative elevation within a a radius `ir`.
+ *
+ * @param array Input array.
+ * @param ir Lookup radius, in pixels.
+ * @return Array Relative elevation, in [0, 1].
+ *
+ * **Example**
+ * @include relative_elevation.cpp
+ *
+ * **Result**
+ * @image html relative_elevation.png
+ */
+Array relative_elevation(const Array &array, int ir);
+
+/**
  * @brief Remap array elements from a starting range to a target range.
  *
  * By default the starting range is taken to be [min(), max()] of the input

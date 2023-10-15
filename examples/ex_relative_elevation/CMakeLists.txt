@@ -1,0 +1,2 @@
+add_executable(ex_relative_elevation ex_relative_elevation.cpp)
+target_link_libraries(ex_relative_elevation highmap)

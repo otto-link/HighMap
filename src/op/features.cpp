@@ -206,6 +206,17 @@ Array kmeans_clustering2(const Array &array1,
   return kmeans;
 }
 
+Array relative_elevation(const Array &array, int ir)
+{
+  Array amin = minimum_local(array, ir);
+  Array amax = maximum_local(array, ir);
+
+  smooth_cpulse(amin, ir);
+  smooth_cpulse(amax, ir);
+
+  return (array - amin) / (amax - amin + std::numeric_limits<float>::min());
+}
+
 Array rugosity(const Array &z, int ir)
 {
   hmap::Array z_avg = Array(z.shape);
