@@ -647,6 +647,27 @@ void flip_lr(Array &array);
 void flip_ud(Array &array);
 
 /**
+ * @brief Apply a flood fill algorithm to the input array.
+ *
+ * @param array Input array.
+ * @param i Seed point index.
+ * @param j Seed point index.
+ * @param fill_value Filling value.
+ * @param background_value Background value.
+ *
+ * **Example**
+ * @include ex_flood_fill.cpp
+ *
+ * **Result**
+ * @image html ex_flood_fill.png
+ */
+void flood_fill(Array &array,
+                int    i,
+                int    j,
+                float  fill_value = 1.f,
+                float  background_value = 0.f);
+
+/**
  * @brief Apply a gain correction of the array elements.
  *
  * Gain correction is based on a power law.

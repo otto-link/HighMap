@@ -1,0 +1,2 @@
+add_executable(ex_flood_fill ex_flood_fill.cpp)
+target_link_libraries(ex_flood_fill highmap)
