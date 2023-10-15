@@ -404,7 +404,7 @@ void Path::subsample(int step)
   }
 }
 
-void Path::to_array(Array &array, Vec4<float> bbox)
+void Path::to_array(Array &array, Vec4<float> bbox, bool filled)
 {
   // number of pixels per unit length
   float lx = bbox.b - bbox.a;
@@ -414,6 +414,7 @@ void Path::to_array(Array &array, Vec4<float> bbox)
   // create a temporary cloud with the right points density (= 1 ppu)
   Cloud cloud = Cloud(points);
 
+  // project path itself
   size_t ks = this->closed ? 0 : 1;
   for (size_t k = 0; k < this->get_npoints() - ks; k++)
   {
@@ -430,7 +431,25 @@ void Path::to_array(Array &array, Vec4<float> bbox)
     }
   }
 
+  // if filled, set the border to the same value of the filling value
+  if (filled)
+    cloud.set_values(1.f);
+
   cloud.to_array(array, bbox);
+
+  // flood filling
+  if (filled)
+  {
+    Vec2<float> xy = cloud.get_center();
+
+    int i = (int)((xy.x - bbox.a) / (bbox.b - bbox.a) * (array.shape.x - 1));
+    int j = (int)((xy.y - bbox.c) / (bbox.d - bbox.c) * (array.shape.y - 1));
+
+    i = std::clamp(i, 0, array.shape.x - 1);
+    j = std::clamp(j, 0, array.shape.y - 1);
+
+    flood_fill(array, i, j);
+  }
 }
 
 void Path::to_png(std::string fname, Vec2<int> shape)

@@ -169,6 +169,27 @@ public:
   }
 
   /**
+   * @brief Get the center cloud.
+   *
+   * @return Vec2<float> Center (x, y) coordinates.
+   */
+  Vec2<float> get_center()
+  {
+    Vec2<float> xy = Vec2<float>(0.f, 0.f);
+
+    for (auto &p : this->points)
+    {
+      xy.x += p.x;
+      xy.y += p.y;
+    }
+
+    xy.x /= (float)this->points.size();
+    xy.y /= (float)this->points.size();
+
+    return xy;
+  }
+
+  /**
    * @brief Get the number of points.
    *
    * @return size_t Number of points.
@@ -257,6 +278,12 @@ public:
     for (size_t k = 0; k < this->get_npoints(); k++)
       this->points[k].v = new_values[k];
   }
+
+  void set_values(float new_value)
+  {
+    for (auto &p : this->points)
+      p.v = new_value;
+  } ///< @overload
 
   /**
    * @brief Set the values using values of an underlying array.
@@ -792,8 +819,9 @@ public:
    *
    * @param array Input array.
    * @param bbox Bounding box of the array.
+   * @param filled Activate flood filling of the contour.
    */
-  void to_array(Array &array, Vec4<float> bbox);
+  void to_array(Array &array, Vec4<float> bbox, bool filled = false);
 
   /**
    * @brief Export path as png image file.

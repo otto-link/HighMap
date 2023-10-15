@@ -1841,8 +1841,6 @@ void shrink_directional(Array &array,
  */
 Array sin(const Array &array);
 
-Array skeleton_middle(const Array &array); // TODO: remove ?
-
 /**
  * @brief Apply filtering to the array using convolution with a cubic pulse.
  *
