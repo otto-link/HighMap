@@ -631,6 +631,33 @@ Array ridged_perlin(Vec2<int>   shape,
                     Vec2<float> scale = {1.f, 1.f});
 
 /**
+ * @brief Return an array corresponding to a slope with a given overall.
+ *
+ * @param shape Array shape.
+ * @param angle Overall rotation angle (in degree).
+ * @param talus Talus slope.
+ * @param p_noise Reference to the input noise array used for domain warping
+ * (NOT in pixels, with respect to a unit domain).
+ * @param center Primitive reference center.
+ * @param shift Shift {xs, ys} for each directions.
+ * @param scale Domain scaling, in [0, 1].
+ * @return Array New array.
+ *
+ * **Example**
+ * @include ex_step.cpp
+ *
+ * **Result**
+ * @image html ex_step.png
+ */
+Array slope(Vec2<int>   shape,
+            float       angle,
+            float       talus,
+            Array      *p_noise = nullptr,
+            Vec2<float> center = {0.5f, 0.5f},
+            Vec2<float> shift = {0.f, 0.f},
+            Vec2<float> scale = {1.f, 1.f});
+
+/**
  * @brief Return an array corresponding to a slope in the x direction.
  *
  * @param shape Array shape.

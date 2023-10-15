@@ -159,6 +159,43 @@ Array plane(Vec2<int>   shape,
   return array;
 }
 
+Array slope(Vec2<int>   shape,
+            float       angle,
+            float       talus,
+            Array      *p_noise,
+            Vec2<float> center,
+            Vec2<float> shift,
+            Vec2<float> scale)
+{
+  Array              array = Array(shape);
+  std::vector<float> x = linspace(shift.x - center.x,
+                                  scale.x - center.x + shift.x,
+                                  shape.x,
+                                  false);
+  std::vector<float> y = linspace(shift.y - center.y,
+                                  scale.y - center.y + shift.y,
+                                  shape.y,
+                                  false);
+
+  // talus value for a unit square domain
+  float talus_n = talus * std::max(shape.x / scale.x, shape.y / scale.y);
+  float ca = std::cos(angle / 180.f * M_PI);
+  float sa = std::sin(angle / 180.f * M_PI);
+
+  auto lambda = [&talus_n](float x) { return talus_n * x; };
+
+  if (p_noise != nullptr)
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
+        array(i, j) = lambda(ca * x[i] + sa * y[j] + (*p_noise)(i, j));
+  else
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
+        array(i, j) = lambda(ca * x[i] + sa * y[j]);
+
+  return array;
+}
+
 Array slope_x(Vec2<int>   shape,
               float       talus,
               Array      *p_noise,

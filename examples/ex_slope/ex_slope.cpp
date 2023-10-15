@@ -12,8 +12,7 @@ int main(void)
   hmap::Array sx = hmap::slope_x(shape, talus);
   hmap::Array sy = hmap::slope_y(shape, talus);
 
-  hmap::Array oblique = hmap::slope_x(shape, talus, &noise) +
-                        hmap::slope_y(shape, talus, &noise);
+  hmap::Array oblique = hmap::slope(shape, 30.f, talus, &noise);
 
   hmap::Array valley = maximum_smooth(hmap::slope_x(shape, talus, &noise),
                                       hmap::slope_y(shape, talus, &noise),
