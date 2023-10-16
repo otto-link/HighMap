@@ -489,6 +489,31 @@ void median_3x3(Array &array, Array *p_mask)
   }
 }
 
+void plateau(Array &array, int ir, float factor)
+{
+  Array amin = minimum_local(array, ir);
+  Array amax = maximum_local(array, ir);
+
+  smooth_cpulse(amin, ir);
+  smooth_cpulse(amax, ir);
+
+  array = (array - amin) / (amax - amin);
+  gain(array, factor);
+  array = amin + (amax - amin) * array;
+}
+
+void plateau(Array &array, Array *p_mask, int ir, float factor)
+{
+  if (!p_mask)
+    plateau(array, ir, factor);
+  else
+  {
+    Array array_f = array;
+    plateau(array_f, ir, factor);
+    array = lerp(array, array_f, *(p_mask));
+  }
+}
+
 void sharpen(Array &array, float ratio)
 {
   Array lp = Array(array.shape);

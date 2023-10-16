@@ -1255,6 +1255,23 @@ void normal_displacement(Array &array,
                          bool   reverse = false); ///< @overload
 
 /**
+ * @brief Apply a "plateau-shape" filter to the array.
+ *
+ * @param array Input array.
+ * @param p_mask Filter mask, expected in [0, 1].
+ * @param ir Plateau radius.
+ * @param factor Gain factor (== plateau flatness).
+ *
+ * **Example**
+ * @include ex_plateau.cpp
+ *
+ * **Result**
+ * @image html ex_plateau.png
+ */
+void plateau(Array &array, Array *p_mask, int ir, float factor);
+void plateau(Array &array, int ir, float factor); ///< @overload
+
+/**
  * @brief Return the array elements raised to the power 'exp'.
  *
  * @param exp Exponent.
