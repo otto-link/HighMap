@@ -52,6 +52,10 @@ void thermal_scree(Array &z,
   std::vector<int>   queue_j = {};
   std::vector<float> queue_z = {};
 
+  queue_i.reserve(z.shape.x * z.shape.y);
+  queue_j.reserve(z.shape.x * z.shape.y);
+  queue_z.reserve(z.shape.x * z.shape.y);
+
   // trick to exclude border cells, to avoid checking out of bounds
   // indices
   set_borders(z, 10.f * z.max(), 2);
