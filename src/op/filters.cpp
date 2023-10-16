@@ -497,7 +497,8 @@ void plateau(Array &array, int ir, float factor)
   smooth_cpulse(amin, ir);
   smooth_cpulse(amax, ir);
 
-  array = (array - amin) / (amax - amin);
+  array = (array - amin) / (amax - amin + std::numeric_limits<float>::min());
+  clamp(array); // keep things under control...
   gain(array, factor);
   array = amin + (amax - amin) * array;
 }
