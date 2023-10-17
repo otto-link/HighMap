@@ -440,15 +440,16 @@ void Path::to_array(Array &array, Vec4<float> bbox, bool filled)
   // flood filling
   if (filled)
   {
-    Vec2<float> xy = cloud.get_center();
+    Array array_bckp = array;
 
-    int i = (int)((xy.x - bbox.a) / (bbox.b - bbox.a) * (array.shape.x - 1));
-    int j = (int)((xy.y - bbox.c) / (bbox.d - bbox.c) * (array.shape.y - 1));
-
-    i = std::clamp(i, 0, array.shape.x - 1);
-    j = std::clamp(j, 0, array.shape.y - 1);
+    // TODO make something more robust
+    int i = 0;
+    int j = 0;
 
     flood_fill(array, i, j);
+
+    array = 1.f - array;
+    array = maximum(array, array_bckp);
   }
 }
 

@@ -14,6 +14,7 @@ int main(void)
 
   auto z1 = hmap::Array(shape);
   path.resample(0.1f);
+  path.fractalize(8, seed);
   path.to_array(z1, bbox);
 
   auto z2 = z1;
