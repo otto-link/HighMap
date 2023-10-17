@@ -35,12 +35,20 @@ void Tile::from_array_interp(Array &array)
                                   this->shape.y,
                                   false);
 
+  for (auto &v : x)
+    v *= array.shape.x - 1;
+
+  for (auto &v : y)
+    v *= array.shape.y - 1;
+
   for (int i = 0; i < shape.x; i++)
     for (int j = 0; j < shape.y; j++)
     {
-      int ip = (int)(x[i] * (array.shape.x - 1));
-      int jp = (int)(y[j] * (array.shape.y - 1));
-      (*this)(i, j) = array(ip, jp);
+      int   ip = (int)x[i];
+      int   jp = (int)y[j];
+      float u = x[i] - ip;
+      float v = y[j] - jp;
+      (*this)(i, j) = array.get_value_bilinear_at(ip, jp, u, v);
     }
 }
 
