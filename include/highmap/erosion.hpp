@@ -36,6 +36,8 @@
 namespace hmap
 {
 
+// void depression_breaching(Array &z);
+
 /**
  * @brief Fill the depressions of the heightmap using the Planchon-Darboux
  * algorithm.
@@ -82,8 +84,15 @@ void erosion_maps(Array &z_before,
  * erosion/deposition.
  *
  * @param z Input array.
+ * @param p_mask Intensity mask, expected in [0, 1] (applied as a
+ * post-processing).
  * @param talus_ref Reference talus.
  * @param ir Smoothing prefilter radius.
+ * @param p_bedrock Reference to the bedrock heightmap.
+ * @param p_erosion_map[out] Reference to the erosion map, provided as an output
+ * field.
+ * @param p_deposition_map [out] Reference to the deposition map, provided as an
+ * output field.
  * @param c_erosion Erosion coefficient.
  * @param c_deposition Deposition coefficient.
  * @param iterations Number of iterations.
@@ -95,11 +104,25 @@ void erosion_maps(Array &z_before,
  * @image html ex_hydraulic_algebric.png
  */
 void hydraulic_algebric(Array &z,
+                        Array *p_mask,
                         float  talus_ref,
                         int    ir,
+                        Array *p_bedrock = nullptr,
+                        Array *p_erosion_map = nullptr,
+                        Array *p_deposition_map = nullptr,
                         float  c_erosion = 0.05f,
                         float  c_deposition = 0.05f,
                         int    iterations = 1);
+
+void hydraulic_algebric(Array &z,
+                        float  talus_ref,
+                        int    ir,
+                        Array *p_bedrock = nullptr,
+                        Array *p_erosion_map = nullptr,
+                        Array *p_deposition_map = nullptr,
+                        float  c_erosion = 0.05f,
+                        float  c_deposition = 0.05f,
+                        int    iterations = 1); ///< @overload
 
 /**
  * @brief Apply cell-based hydraulic erosion/deposition based on Benes et al.
@@ -110,6 +133,7 @@ void hydraulic_algebric(Array &z,
  * @param z Input array.
  * @param p_mask Intensity mask, expected in [0, 1] (applied as a
  * post-processing).
+ * @param iterations Number of iterations.
  * @param p_bedrock Reference to the bedrock heightmap.
  * @param p_moisture_map Reference to the moisture map (quantity of rain),
  * expected to be in [0, 1].
@@ -117,7 +141,6 @@ void hydraulic_algebric(Array &z,
  * field.
  * @param p_deposition_map [out] Reference to the deposition map, provided as an
  * output field.
- * @param iterations Number of iterations.
  * @param c_capacity Sediment capacity.
  * @param c_deposition Deposition coefficient.
  * @param c_erosion Erosion coefficient.

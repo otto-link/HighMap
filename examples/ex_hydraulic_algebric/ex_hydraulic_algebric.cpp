@@ -23,7 +23,10 @@ int main(void)
   hmap::hydraulic_algebric(z,
                            talus_ref,
                            ir,
-                           c_erosion,
+                           nullptr,
+                           nullptr,
+                           nullptr,
+			   c_erosion,
                            c_deposition,
                            iterations);
 

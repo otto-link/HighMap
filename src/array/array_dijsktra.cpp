@@ -73,7 +73,8 @@ void Array::find_path_dijkstra(Vec2<int>         ij_start,
       int p = i + di[k];
       int q = j + dj[k];
 
-      if ((p > 0) and (p < shape_coarse.x) and (q > 0) and (q < shape_coarse.y))
+      if ((p >= 0) and (p < shape_coarse.x) and (q >= 0) and
+          (q < shape_coarse.y))
       {
         // previous cumulative value
         float dist = distance(i, j);
