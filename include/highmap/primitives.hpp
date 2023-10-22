@@ -1120,4 +1120,37 @@ Array worley_double(Vec2<int>   shape,
                     Vec2<float> shift = {0.f, 0.f},
                     Vec2<float> scale = {1.f, 1.f});
 
+/**
+ * @brief Return an array filled with Worley (cellular) noise.
+ *
+ * The function is just a wrapper based of the library <a
+ * href=https://github.com/Auburn/FastNoiseLite>FastNoiseLite</a>, theoretical
+ * details are available in the original paper of Perlin et al. @cite
+ * Worley1996.
+ *
+ * @param shape Array shape.
+ * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
+ * a unit domain.
+ * @param seed Random seed number.
+ * @param p_noise_x, p_noise_y Reference to the input noise array used for
+ * domain warping (NOT in pixels, with respect to a unit domain).
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a
+ * unit domain.
+ * @param scale Domain scaling, in [0, 1].
+ * @return Array Worley noise.
+ *
+ * **Example**
+ * @include ex_worley.cpp
+ *
+ * **Result**
+ * @image html ex_worley.png
+ */
+Array worley_value(Vec2<int>   shape,
+                   Vec2<float> kw,
+                   uint        seed,
+                   Array      *p_noise_x = nullptr,
+                   Array      *p_noise_y = nullptr,
+                   Vec2<float> shift = {0.f, 0.f},
+                   Vec2<float> scale = {1.f, 1.f});
+
 } // namespace hmap

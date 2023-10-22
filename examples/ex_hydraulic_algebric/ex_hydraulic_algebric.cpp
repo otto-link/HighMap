@@ -26,7 +26,7 @@ int main(void)
                            nullptr,
                            nullptr,
                            nullptr,
-			   c_erosion,
+                           c_erosion,
                            c_deposition,
                            iterations);
 
