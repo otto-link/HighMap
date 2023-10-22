@@ -113,6 +113,19 @@ void HeightMap::from_array_interp(Array &array)
     futures[i].get();
 }
 
+void HeightMap::from_array_interp_nearest(Array &array)
+{
+  std::vector<std::future<void>> futures(this->get_ntiles());
+
+  for (decltype(futures)::size_type i = 0; i < this->get_ntiles(); ++i)
+    futures[i] = std::async(&Tile::from_array_interp_nearest,
+                            std::ref(tiles[i]),
+                            std::ref(array));
+
+  for (decltype(futures)::size_type i = 0; i < this->get_ntiles(); ++i)
+    futures[i].get();
+}
+
 void HeightMap::infos()
 {
   std::cout << "Heightmap, ";

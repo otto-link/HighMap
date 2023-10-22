@@ -66,12 +66,20 @@ public:
   void operator=(const Array &array);
 
   /**
-   * @brief Fill tile values by interpolating (nearest neighbor) values from
+   * @brief Fill tile values by interpolating (bilinear) values from
    * another array.
    *
    * @param array Input array.
    */
   void from_array_interp(Array &array);
+
+  /**
+   * @brief Fill tile values by interpolating (nearest) values from
+   * another array.
+   *
+   * @param array Input array.
+   */
+  void from_array_interp_nearest(Array &array);
 
   /**
    * @brief Print some informations about the object.
@@ -197,7 +205,7 @@ public:
   void set_tiling(Vec2<int> new_tiling);
 
   /**
-   * @brief Fill tile values by interpolating (nearest neighbor) values from
+   * @brief Fill tile values by interpolating (bilinear) values from
    * another array.
    *
    * @param array Input array.
@@ -210,6 +218,14 @@ public:
    * @image html ex_heightmap_from_array1.png
    */
   void from_array_interp(Array &array);
+
+  /**
+   * @brief Fill tile values by interpolating (nearest neighbor) values from
+   * another array.
+   *
+   * @param array Input array.
+   */
+  void from_array_interp_nearest(Array &array);
 
   /**
    * @brief Print some informations about the object.
