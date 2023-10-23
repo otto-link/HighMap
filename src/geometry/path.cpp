@@ -388,6 +388,11 @@ void Path::resample_uniform()
   this->resample(dmin);
 }
 
+void Path::reverse()
+{
+  std::reverse(this->points.begin(), this->points.end());
+}
+
 void Path::subsample(int step)
 {
   size_t k_global = 0;

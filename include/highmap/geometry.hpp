@@ -808,6 +808,11 @@ public:
   void resample_uniform();
 
   /**
+   * @brief Reverse point order.
+   */
+  void reverse();
+
+  /**
    * @brief Subsample the path by keeping only every n-th point.
    *
    * @param step Keep every 'step' points.
