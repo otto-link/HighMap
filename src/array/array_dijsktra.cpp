@@ -19,7 +19,8 @@ void Array::find_path_dijkstra(Vec2<int>         ij_start,
                                std::vector<int> &j_path,
                                float             elevation_ratio,
                                float             distance_exponent,
-                               Vec2<int>         step)
+                               Vec2<int>         step,
+                               Array            *p_mask_nogo)
 {
   // https://math.stackexchange.com/questions/3088292
 
@@ -59,7 +60,7 @@ void Array::find_path_dijkstra(Vec2<int>         ij_start,
 
     int i = queue_i[kmin];
     int j = queue_j[kmin];
-    mask(i, j) = 0;
+    mask(i, j) = false;
 
     queue_i.erase(queue_i.begin() + kmin);
     queue_j.erase(queue_j.begin() + kmin);
@@ -91,12 +92,15 @@ void Array::find_path_dijkstra(Vec2<int>         ij_start,
                                            (*this)(p * step.x, q * step.y) -
                                                (*this)(i * step.x, j * step.y));
 
+        if (p_mask_nogo)
+          dist += 1e5f * (*p_mask_nogo)(p * step.x, q * step.y);
+
         if (distance(p, q) == 0.f)
           if ((mask(p, q) == 0) or (dist < distance(p, q)))
           {
             distance(p, q) = dist;
 
-            mask(p, q) = 1;
+            mask(p, q) = true;
             queue_i.push_back(p);
             queue_j.push_back(q);
             queue_d.push_back(dist);

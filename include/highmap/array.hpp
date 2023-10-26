@@ -350,6 +350,7 @@ public:
    * if possible (i.e. reduce the overall cumulative elevation gain).
    * @param step Steps for i and j indices, to accelerate computation by using
    * only every "step" data.
+   * @param p_mask_nogo Reference to the mask defining areas to avoid.
    *
    * **Example**
    * @include ex_find_path_dijkstra.cpp
@@ -365,7 +366,8 @@ public:
                           std::vector<int> &j_path,
                           float             elevation_ratio = 0.1f,
                           float             distance_exponent = 2.f,
-                          Vec2<int>         step = {1, 1});
+                          Vec2<int>         step = {1, 1},
+                          Array            *p_mask_nogo = nullptr);
 
   /**
    * @brief Return the gradient in the 'x' (or 'i' index) of at the index (i,

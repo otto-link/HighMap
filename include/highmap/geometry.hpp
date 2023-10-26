@@ -721,6 +721,7 @@ public:
    * @param elevation_ratio Balance between absolute elevation and elevation
    * difference in the cost function.
    * @param distance_exponent Distance exponent of the dijkstra weight function.
+   * @param p_mask_nogo Reference to the mask defining areas to avoid.
    *
    * **Example**
    * @include ex_path_dijkstra.cpp
@@ -734,7 +735,8 @@ public:
                 Vec4<float> bbox,
                 int         edge_divisions = 0,
                 float       elevation_ratio = 0.f,
-                float       distance_exponent = 0.5f);
+                float       distance_exponent = 0.5f,
+                Array      *p_mask_nogo = nullptr);
 
   /**
    * @brief Divide path by adding a point in-between each pair of consecutive

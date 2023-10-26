@@ -98,7 +98,8 @@ void Path::dijkstra(Array      &array,
                     Vec4<float> bbox,
                     int         edge_divisions,
                     float       elevation_ratio,
-                    float       distance_exponent)
+                    float       distance_exponent,
+                    Array      *p_mask_nogo)
 {
   size_t ks = this->closed ? 0 : 1; // trick to handle closed contours
   for (size_t k = 0; k < this->get_npoints() - ks; k++)
@@ -136,7 +137,8 @@ void Path::dijkstra(Array      &array,
                              jp,
                              elevation_ratio,
                              distance_exponent,
-                             step);
+                             step,
+                             p_mask_nogo);
 
     // backup cuurrent edge informations before adding points to this edge
     Point p1 = this->points[k];
