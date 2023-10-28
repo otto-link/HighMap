@@ -1595,6 +1595,24 @@ Array rugosity(const Array &z, int ir);
 Array select_blob_log(const Array &array, int ir);
 
 /**
+ * @brief Return holes or bumps detection based on the mean curvature of the
+ * heightmap.
+ *
+ * @param array Input array.
+ * @param ir Kernel radius.
+ * @param concave Select 'holes' if set to true, and select 'bumps' if set to
+ * false.
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_select_cavities.cpp
+ *
+ * **Result**
+ * @image html ex_select_cavities.png
+ */
+Array select_cavities(const Array &array, int ir, bool concave = true);
+
+/**
  * @brief Return an array with elements equal to 1 where input elements are
  * equal to `value`.
  *

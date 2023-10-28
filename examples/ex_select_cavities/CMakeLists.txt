@@ -1,0 +1,2 @@
+add_executable(ex_select_cavities ex_select_cavities.cpp)
+target_link_libraries(ex_select_cavities highmap)

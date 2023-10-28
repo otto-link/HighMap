@@ -14,6 +14,19 @@
 namespace hmap
 {
 
+Array select_cavities(const Array &array, int ir, bool concave)
+{
+  Array array_smooth = array;
+  smooth_cpulse(array_smooth, ir);
+  Array c = curvature_mean(array_smooth);
+
+  if (!concave)
+    c *= -1.f;
+
+  clamp_min(c, 0.f);
+  return c;
+}
+
 Array select_gt(const Array &array, float value)
 {
   Array c = array;
