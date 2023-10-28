@@ -148,12 +148,6 @@ Array curvature_mean(const Array &z)
   return h;
 }
 
-// HELPER
-bool cmp_inf(std::pair<float, float> &a, std::pair<float, float> &b)
-{
-  return (a.first < b.first) | ((a.first == b.first) & (a.second < b.second));
-}
-
 Array kmeans_clustering2(const Array &array1,
                          const Array &array2,
                          int          nclusters,
