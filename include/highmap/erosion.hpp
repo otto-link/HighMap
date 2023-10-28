@@ -524,6 +524,49 @@ void sediment_deposition(Array       &z,
                          int          thermal_subiterations = 10);
 
 /**
+ * @brief
+ *
+ * @param z Input array.
+ * @param p_mask Intensity mask, expected in [0, 1] (applied as a
+ * post-processing).
+ * @param nparticles Number of particles.
+ * @param ir Particle deposition radius.
+ * @param seed Random seed number.
+ * @param p_spawning_map Reference to the particle spawning density map.
+ * @param p_deposition_map Reference to the deposition map (output).
+ * @param particle_initial_sediment Initial sediment amount carried out by the
+ * particles.
+ * @param deposition_velocity_limit Deposition at which the deposition occurs.
+ * @param drag_rate Particle drag rate.
+ *
+ * **Example**
+ * @include ex_sediment_deposition_particle.cpp
+ *
+ * **Result**
+ * @image html ex_sediment_deposition_particle.png
+ */
+void sediment_deposition_particle(Array &z,
+                                  Array *p_mask,
+                                  int    nparticles,
+                                  int    ir,
+                                  int    seed = 1,
+                                  Array *p_spawning_map = nullptr,
+                                  Array *p_deposition_map = nullptr,
+                                  float  particle_initial_sediment = 0.1f,
+                                  float  deposition_velocity_limit = 0.01f,
+                                  float  drag_rate = 0.001f);
+
+void sediment_deposition_particle(Array &z,
+                                  int    nparticles,
+                                  int    ir,
+                                  int    seed = 1,
+                                  Array *p_spawning_map = nullptr,
+                                  Array *p_deposition_map = nullptr,
+                                  float  particle_initial_sediment = 0.1f,
+                                  float  deposition_velocity_limit = 0.01f,
+                                  float  drag_rate = 0.001f);
+
+/**
  * @brief Stratify the heightmap by creating a series of layers with elevations
  * corrected by a gamma factor.
  *

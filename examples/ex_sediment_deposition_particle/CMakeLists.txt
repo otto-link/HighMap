@@ -1,0 +1,2 @@
+add_executable(ex_sediment_deposition_particle ex_sediment_deposition_particle.cpp)
+target_link_libraries(ex_sediment_deposition_particle highmap)
