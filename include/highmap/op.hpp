@@ -865,11 +865,18 @@ Array hypot(const Array &array1, const Array &array2);
  * **Result**
  * @image html ex_kmeans_clustering0.png
  * @image html ex_kmeans_clustering1.png
+ * @image html ex_kmeans_clustering2.png
  */
 Array kmeans_clustering2(const Array &array1,
                          const Array &array2,
                          int          nclusters,
                          uint         seed = 1);
+
+Array kmeans_clustering3(const Array &array1,
+                         const Array &array2,
+                         const Array &array3,
+                         int          nclusters,
+                         uint         seed = 1); ///< @overload
 
 /**
  * @brief Apply a low-pass Laplace filter.

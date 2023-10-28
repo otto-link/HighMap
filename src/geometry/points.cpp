@@ -30,7 +30,8 @@ Point lerp(const Point &p1, const Point &p2, const float t)
 // HELPER
 bool cmp_inf(Point &a, Point &b)
 {
-  return (a.x < b.x) | ((a.x == b.x) & (a.y < b.y));
+  return (a.x < b.x) | (a.x == b.x && a.y < b.y) |
+         (a.x == b.x && a.y == b.y && a.v < b.v);
 }
 
 void sort_points(std::vector<Point> &points)
