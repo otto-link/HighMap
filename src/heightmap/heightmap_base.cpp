@@ -141,6 +141,17 @@ void HeightMap::infos()
     t.infos();
 }
 
+void HeightMap::inverse()
+{
+  float hmax = this->max();
+  transform(*this,
+            [hmax](Array &x)
+            {
+              x *= -1.f;
+              x += hmax;
+            });
+}
+
 float HeightMap::max()
 {
   std::vector<float>              max_tiles(this->get_ntiles());

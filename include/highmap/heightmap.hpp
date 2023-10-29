@@ -234,6 +234,11 @@ public:
   void infos();
 
   /**
+   * @brief Inverse the heightmap values (max - values).
+   */
+  void inverse();
+
+  /**
    * @brief Return the value of the greatest element in the heightmap data.
    *
    * @return float
