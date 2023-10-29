@@ -21,12 +21,13 @@ Array caldera(Vec2<int>   shape,
               Array      *p_noise,
               float       noise_r_amp,
               float       noise_z_ratio,
+              Vec2<float> center,
               Vec2<float> shift,
               Vec2<float> scale)
 {
   Array z = Array(shape);
-  int   ic = (int)((0.5f - shift.x) / scale.x * z.shape.x);
-  int   jc = (int)((0.5f - shift.y) / scale.y * z.shape.y);
+  int   ic = (int)((center.x - shift.x) / scale.x * z.shape.x);
+  int   jc = (int)((center.y - shift.y) / scale.y * z.shape.y);
 
   float si2 = sigma_inner * sigma_inner;
   float so2 = sigma_outer * sigma_outer;
@@ -70,6 +71,7 @@ Array caldera(Vec2<int>   shape,
               float       sigma_inner,
               float       sigma_outer,
               float       z_bottom,
+              Vec2<float> center,
               Vec2<float> shift,
               Vec2<float> scale)
 {
@@ -82,6 +84,7 @@ Array caldera(Vec2<int>   shape,
                     nullptr,
                     0.f,
                     0.f,
+                    center,
                     shift,
                     scale);
   return z;

@@ -127,6 +127,7 @@ Array bump_field(Vec2<int> shape,
  * @param p_noise Displacement noise.
  * @param noise_amp_r Radial noise absolute scale (in pixels).
  * @param noise_ratio_z Vertical noise relative scale (in [0, 1]).
+ * @param center Primitive reference center.
  * @param shift Noise shift {xs, ys} for each directions, with respect to a
  * unit domain.
  * @param scale Domain scaling, in [0, 1].
@@ -146,6 +147,7 @@ Array caldera(Vec2<int>   shape,
               Array      *p_noise,
               float       noise_amp_r,
               float       noise_ratio_z,
+              Vec2<float> center = {0.5f, 0.5f},
               Vec2<float> shift = {0.f, 0.f},
               Vec2<float> scale = {1.f, 1.f});
 
@@ -154,6 +156,7 @@ Array caldera(Vec2<int>   shape,
               float       sigma_inner,
               float       sigma_outer,
               float       z_bottom,
+              Vec2<float> center = {0.5f, 0.5f},
               Vec2<float> shift = {0.f, 0.f},
               Vec2<float> scale = {1.f, 1.f}); ///< @overload
 
