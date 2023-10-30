@@ -462,6 +462,13 @@ public:
   friend Array hstack(const Array &array1, const Array &array2);
 
   /**
+   * @brief Import array from raw binary file.
+   *
+   * @param fname File name.
+   */
+  void from_file(std::string fname);
+
+  /**
    * @brief Display a bunch of infos on the array.
    *
    */

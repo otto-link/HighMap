@@ -20,6 +20,17 @@
 namespace hmap
 {
 
+void Array::from_file(std::string fname)
+{
+  LOG_DEBUG("reading binary file");
+  std::ifstream f;
+  f.open(fname, std::ios::binary);
+
+  for (auto &v : this->vector)
+      f.read(reinterpret_cast<char *>(&v), sizeof(float));
+  f.close();
+}
+
 void Array::infos(std::string msg) const
 {
   std::cout << "Array: " << msg << " ";
@@ -51,9 +62,8 @@ void Array::to_file(std::string fname)
   f.open(fname, std::ios::binary);
 
   for (auto &v : this->vector)
-  {
     f.write(reinterpret_cast<const char *>(&v), sizeof(float));
-  }
+
   f.close();
 }
 
