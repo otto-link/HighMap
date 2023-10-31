@@ -68,7 +68,7 @@ public:
 
   Array(Vec2<int> shape, float value); ///< @overload
 
-  Array(std::string filename); ///< @overload
+  Array(std::string filename, bool resize_array = true); ///< @overload
 
   //----------------------------------------
   // accessors
@@ -582,6 +582,16 @@ public:
   void to_png(std::string fname, int cmap, bool hillshading = false);
 
   /**
+   * @brief Export array as 8bit grayscale png image file.
+   *
+   * @param fname File name.
+   *
+   * **Example**
+   * @include ex_to_png.cpp
+   */
+  void to_png_grayscale_8bit(std::string fname);
+
+  /**
    * @brief Export array as 16bit grayscale png image file.
    *
    * @param fname File name.
@@ -589,7 +599,7 @@ public:
    * **Example**
    * @include ex_to_png.cpp
    */
-  void to_png16bit(std::string fname);
+  void to_png_grayscale_16bit(std::string fname);
 
   /**
    * @brief Returns the unique elements of the array.

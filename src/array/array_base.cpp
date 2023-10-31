@@ -5,10 +5,9 @@
 #include <stdexcept>
 
 #include "macrologger.h"
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
 
 #include "highmap/array.hpp"
+#include "highmap/io.hpp"
 
 namespace hmap
 {
@@ -28,38 +27,53 @@ Array::Array(Vec2<int> shape, float value) : shape(shape)
   std::fill(this->vector.begin(), this->vector.end(), value);
 }
 
-Array::Array(std::string filename)
+Array::Array(std::string filename, bool resize_array)
 {
-  int width;
-  int height;
-  int original_no_channels;
-  int desired_no_channels = 3;
+  int      width;
+  int      height;
+  png_byte color_type;
+  png_byte bit_depth;
 
-  unsigned char *img = stbi_load(filename.c_str(),
-                                 &width,
-                                 &height,
-                                 &original_no_channels,
-                                 desired_no_channels);
+  read_png_header(filename, width, height, color_type, bit_depth);
 
-  if (original_no_channels != desired_no_channels)
+  if (resize_array)
+    this->set_shape(Vec2<int>(width, height));
+  else if (this->shape.x != width || this->shape.y != height)
   {
-    LOG_ERROR("original_no_channels: %d (expected to have %d channels)",
-              original_no_channels,
-              desired_no_channels);
-    throw std::runtime_error(
-        "png file cannot be loaded, wrong number of channels");
+    // exit if image size does not match current array size
+    LOG_ERROR("image size (%d, %d) does not match current size (%d, %d)",
+              width,
+              height,
+              this->shape.x,
+              this->shape.y);
+    return;
   }
 
-  this->set_shape(Vec2<int>(height, width));
+  if (bit_depth == 8)
+  {
+    LOG_DEBUG("8bit");
+    std::vector<uint8_t> img = read_png_grayscale_8bit(filename);
 
-  for (int i = 0; i < this->shape.x; i++)
-    for (int j = 0; j < this->shape.y; j++)
-    {
-      // transpose and flip...
-      int k = ((this->shape.y - j - 1) * this->shape.x + i) *
-              desired_no_channels;
-      (*this)(i, j) = (float)img[k] / 255.f;
-    }
+    for (int i = 0; i < this->shape.x; i++)
+      for (int j = 0; j < this->shape.y; j++)
+      {
+        int k = (this->shape.y - 1 - j) * this->shape.y + i;
+        (*this)(i, j) = (float)img[k] / 255.f;
+      }
+  }
+
+  if (bit_depth == 16)
+  {
+    LOG_DEBUG("16bit");
+    std::vector<uint16_t> img = read_png_grayscale_16bit(filename);
+
+    for (int i = 0; i < this->shape.x; i++)
+      for (int j = 0; j < this->shape.y; j++)
+      {
+        int k = (this->shape.y - 1 - j) * this->shape.x + i;
+        (*this)(i, j) = (float)img[k] / 65535.f;
+      }
+  }
 }
 
 Vec2<int> Array::get_shape()

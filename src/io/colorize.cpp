@@ -6,13 +6,10 @@
 #include <stdint.h>
 #include <vector>
 
-// #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "macrologger.h"
-#include "stb_image_write.h"
 
 #include "highmap/array.hpp"
 #include "highmap/colormaps.hpp"
-#include "highmap/io.hpp"
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 
@@ -47,7 +44,7 @@ std::vector<uint8_t> colorize(const hmap::Array &array,
   Clut1D                clut = Clut1D({CMAP_SIZE}, colors_data);
 
   // create image
-  std::vector<uint8_t> img(IMG_CHANNELS * array.shape.x * array.shape.y);
+  std::vector<uint8_t> img(3 * array.shape.x * array.shape.y);
 
   // normalization factors
   float a = 0.f;
@@ -181,7 +178,7 @@ std::vector<uint8_t> colorize_trivariate(const Array &c0,
                                          Clut3D      &clut,
                                          bool         hillshading)
 {
-  std::vector<uint8_t> img(IMG_CHANNELS * c0.shape.x * c0.shape.y);
+  std::vector<uint8_t> img(3 * c0.shape.x * c0.shape.y);
 
   // TODO vlim and clamping
 
@@ -239,20 +236,18 @@ std::vector<uint8_t> colorize_trivariate(const Array &c0,
 
   // blur colors to smooth nearest interpolation
   {
-    std::vector<uint8_t> delta(IMG_CHANNELS * c0.shape.x * c0.shape.y);
+    std::vector<uint8_t> delta(3 * c0.shape.x * c0.shape.y);
 
     for (int i = 1; i < c0.shape.x - 1; i++)
       for (int j = 1; j < c0.shape.y - 1; j++)
       {
-        int k = j * IMG_CHANNELS + i * IMG_CHANNELS * c0.shape.y;
-        int kn = (j + 1) * IMG_CHANNELS +
-                 i * IMG_CHANNELS * c0.shape.y; // north
-        int ks = (j - 1) * IMG_CHANNELS +
-                 i * IMG_CHANNELS * c0.shape.y; // south
-        int ke = j * IMG_CHANNELS + (i - 1) * IMG_CHANNELS * c0.shape.y; // east
-        int kw = j * IMG_CHANNELS + (i + 1) * IMG_CHANNELS * c0.shape.y; // west
+        int k = j * 3 + i * 3 * c0.shape.y;
+        int kn = (j + 1) * 3 + i * 3 * c0.shape.y; // north
+        int ks = (j - 1) * 3 + i * 3 * c0.shape.y; // south
+        int ke = j * 3 + (i - 1) * 3 * c0.shape.y; // east
+        int kw = j * 3 + (i + 1) * 3 * c0.shape.y; // west
 
-        for (int r = 0; r < IMG_CHANNELS; r++)
+        for (int r = 0; r < 3; r++)
           delta[k + r] = (uint8_t)(0.25f * (img[kn + r] + img[ks + r] +
                                             img[ke + r] + img[kw + r])) -
                          img[k + r];
@@ -356,19 +351,6 @@ std::vector<uint32_t> get_colormap_data(int cmap)
   break;
   }
   return colors_data;
-}
-
-void write_png_8bit(std::string           fname,
-                    std::vector<uint8_t> &img,
-                    Vec2<int>             shape)
-{
-  // row and column are permutted
-  stbi_write_png(fname.c_str(),
-                 shape.x,
-                 shape.y,
-                 IMG_CHANNELS,
-                 img.data(),
-                 IMG_CHANNELS * shape.x);
 }
 
 } // namespace hmap

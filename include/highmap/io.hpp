@@ -50,15 +50,22 @@ std::vector<uint8_t> colorize(const Array &array,
  */
 
 /**
- * @brief
+ * @brief Export array values to a 8 bit grayscale image.
  *
- * @param array
- * @param step
- * @return std::vector<uint8_t>
+ * @param array Input array.
+ * @param step Step for each direction (to skip data).
+ * @return std::vector<uint8_t> Output image.
  */
 std::vector<uint8_t> colorize_grayscale(const Array &array,
                                         Vec2<int>    step = {1, 1});
 
+/**
+ * @brief Export array values to a 8 bit grayscale histogram image.
+ *
+ * @param array Input array.
+ * @param step Step for each direction (to skip data).
+ * @return std::vector<uint8_t> Output image.
+ */
 std::vector<uint8_t> colorize_histogram(const Array &array,
                                         Vec2<int>    step = {1, 1});
 
@@ -94,14 +101,75 @@ void export_banner_png(std::string        fname,
                        bool               hillshading = false);
 
 /**
- * @brief Export an 8bit image to a png file.
+ * @brief Read an 8bit grayscale image to a png file.
+ *
+ * @param fname File name.
+ * @param shape Image shape.
+ */
+std::vector<uint8_t> read_png_grayscale_8bit(std::string fname);
+
+/**
+ * @brief Read an 16bit grayscale image to a png file.
+ *
+ * @param fname File name.
+ * @param shape Image shape.
+ */
+std::vector<uint16_t> read_png_grayscale_16bit(std::string fname);
+
+/**
+ * @brief
+ *
+ * @param fname File name.
+ * @param width Image width.
+ * @param height Image width.
+ * @param color_type Color type.
+ * @param bit_depth Bit depth.
+ */
+void read_png_header(std::string fname,
+                     int        &width,
+                     int        &height,
+                     png_byte   &color_type,
+                     png_byte   &bit_depth);
+
+/**
+ * @brief Export an 8bit grayscale image to a png file.
  *
  * @param fname File name.
  * @param img Image data.
  * @param shape Image shape.
  */
-void write_png_8bit(std::string           fname,
-                    std::vector<uint8_t> &img,
-                    Vec2<int>             shape);
+void write_png_grayscale_8bit(std::string           fname,
+                              std::vector<uint8_t> &img,
+                              Vec2<int>             shape);
+
+/**
+ * @brief Export an 16bit grayscale image to a png file.
+ *
+ * @param fname File name.
+ * @param img Image data.
+ * @param shape Image shape.
+ */
+void write_png_grayscale_16bit(std::string            fname,
+                               std::vector<uint16_t> &img,
+                               Vec2<int>              shape);
+
+/**
+ * @brief Export an 8bit RGB image to a png file.
+ *
+ * @param fname File name.
+ * @param img Image data.
+ * @param shape Image shape.
+ */
+void write_png_rgb_8bit(std::string           fname,
+                        std::vector<uint8_t> &img,
+                        Vec2<int>             shape);
+
+/**
+ * @brief Export an array to a 16bit 'raw' file (Unity import terrain format).
+ *
+ * @param fname Filename.
+ * @param array Input array.
+ */
+void write_raw_16bit(std::string fname, Array &array);
 
 } // namespace hmap

@@ -46,8 +46,8 @@ int main(void)
     std::cout << fname << std::endl;
     hmap::Clut3D clut = hmap::Clut3D({32, 32, 32}, fname);
     auto         img = hmap::colorize_trivariate(z, dzx, dzy, clut, true);
-    hmap::write_png_8bit("ex_colormaps_trivariate_" + fname + ".png",
-                         img,
-                         shape);
+    hmap::write_png_rgb_8bit("ex_colormaps_trivariate_" + fname + ".png",
+                             img,
+                             shape);
   }
 }
