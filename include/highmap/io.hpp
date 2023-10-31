@@ -170,6 +170,6 @@ void write_png_rgb_8bit(std::string           fname,
  * @param fname Filename.
  * @param array Input array.
  */
-void write_raw_16bit(std::string fname, Array &array);
+void write_raw_16bit(std::string fname, const Array &array);
 
 } // namespace hmap
