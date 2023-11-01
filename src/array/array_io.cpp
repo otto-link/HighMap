@@ -130,4 +130,9 @@ void Array::to_png_grayscale_16bit(std::string fname)
   write_png_grayscale_16bit(fname, img, this->shape);
 }
 
+void Array::to_raw_16bit(std::string fname)
+{
+  write_raw_16bit(fname, *this);
+}
+
 } // namespace hmap

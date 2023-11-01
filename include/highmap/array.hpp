@@ -602,6 +602,16 @@ public:
   void to_png_grayscale_16bit(std::string fname);
 
   /**
+   * @brief Export array as 16bit raw file (Unity terrain import format).
+   *
+   * @param fname File name.
+   *
+   * **Example**
+   * @include ex_to_png.cpp
+   */
+  void to_raw_16bit(std::string fname);
+
+  /**
    * @brief Returns the unique elements of the array.
    *
    * @return std::vector<float> Unique values.
