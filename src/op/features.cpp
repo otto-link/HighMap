@@ -151,6 +151,7 @@ Array curvature_mean(const Array &z)
 Array kmeans_clustering2(const Array &array1,
                          const Array &array2,
                          int          nclusters,
+                         Vec2<float>  weights,
                          uint         seed)
 {
   Vec2<int> shape = array1.shape;
@@ -164,8 +165,8 @@ Array kmeans_clustering2(const Array &array1,
     for (int j = 0; j < shape.y; j++)
     {
       int k = i + j * shape.x;
-      data[k][0] = array1(i, j);
-      data[k][1] = array2(i, j);
+      data[k][0] = weights.x * array1(i, j);
+      data[k][1] = weights.y * array2(i, j);
     }
 
   dkm::clustering_parameters<float> parameters =
@@ -204,6 +205,7 @@ Array kmeans_clustering3(const Array &array1,
                          const Array &array2,
                          const Array &array3,
                          int          nclusters,
+                         Vec3<float>  weights,
                          uint         seed)
 {
   Vec2<int> shape = array1.shape;
@@ -217,9 +219,9 @@ Array kmeans_clustering3(const Array &array1,
     for (int j = 0; j < shape.y; j++)
     {
       int k = i + j * shape.x;
-      data[k][0] = array1(i, j);
-      data[k][1] = array2(i, j);
-      data[k][2] = array3(i, j);
+      data[k][0] = weights.x * array1(i, j);
+      data[k][1] = weights.y * array2(i, j);
+      data[k][2] = weights.z * array3(i, j);
     }
 
   dkm::clustering_parameters<float> parameters =
