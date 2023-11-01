@@ -1,0 +1,2 @@
+add_executable(ex_export_normal_map ex_export_normal_map.cpp)
+target_link_libraries(ex_export_normal_map highmap)

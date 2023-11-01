@@ -29,11 +29,18 @@ void write_raw_16bit(std::string fname, const Array &array)
   std::ofstream f;
   f.open(fname, std::ios::binary);
 
-  for (auto &v : array.vector)
-  {
-    uint16_t d = (uint32_t)(a * v + b);
-    f.write(reinterpret_cast<const char *>(&d), sizeof(uint16_t));
-  }
+  for (int j = array.shape.y - 1; j > -1; j -= 1)
+    for (int i = 0; i < array.shape.x; i++)
+    {
+      uint16_t v = (uint32_t)(a * array(i, j) + b);
+      f.write(reinterpret_cast<const char *>(&v), sizeof(uint16_t));
+    }
+
+  // for (auto &v : array.vector)
+  // {
+  //   uint16_t d = (uint32_t)(a * v + b);
+  //   f.write(reinterpret_cast<const char *>(&d), sizeof(uint16_t));
+  // }
 
   f.close();
 }

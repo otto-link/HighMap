@@ -18,7 +18,7 @@ int main(void)
   hmap::Array z2 = hmap::Array("out_8bit.png");
   hmap::Array z3 = hmap::Array("out_16bit.png");
 
-  hmap::write_raw_16bit("out.raw", z1);
+  z1.to_raw_16bit("out.raw");
 
   hmap::export_banner_png("ex_to_png.png", {z1, z2, z3}, hmap::cmap::inferno);
 }

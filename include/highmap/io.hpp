@@ -101,6 +101,28 @@ void export_banner_png(std::string        fname,
                        bool               hillshading = false);
 
 /**
+ * @brief Export the heightmap normal map to a 8 bit png file.
+ *
+ * @param fname File name.
+ * @param array Input array.
+ *
+ * **Example**
+ * @include ex_export_normal_map.cpp
+ */
+void export_normal_map_png_8bit(std::string fname, const Array &array);
+
+/**
+ * @brief Export the heightmap normal map to a 16 bit png file.
+ *
+ * @param fname File name.
+ * @param array Input array.
+ *
+ * **Example**
+ * @include ex_export_normal_map.cpp
+ */
+void export_normal_map_png_16bit(std::string fname, const Array &array);
+
+/**
  * @brief Read an 8bit grayscale image to a png file.
  *
  * @param fname File name.
@@ -163,6 +185,17 @@ void write_png_grayscale_16bit(std::string            fname,
 void write_png_rgb_8bit(std::string           fname,
                         std::vector<uint8_t> &img,
                         Vec2<int>             shape);
+
+/**
+ * @brief Export an 16bit RGB image to a png file.
+ *
+ * @param fname File name.
+ * @param img Image data.
+ * @param shape Image shape.
+ */
+void write_png_rgb_16bit(std::string            fname,
+                         std::vector<uint16_t> &img,
+                         Vec2<int>              shape);
 
 /**
  * @brief Export an array to a 16bit 'raw' file (Unity import terrain format).
