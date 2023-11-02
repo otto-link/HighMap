@@ -476,25 +476,43 @@ void dig_path(Array      &z,
               int         width,
               int         decay,
               int         flattening_radius,
+              bool        force_downhill,
               Vec4<float> bbox,
               float       depth)
 {
   Array mask = Array(z.shape);
+  Path  path_copy = path;
+  Array zf;
 
-  // make sure values at the path points are non-zero before creating
-  // the mask
-  Path path_copy = path;
-  for (auto &p : path_copy.points)
-    p.v = 1.f;
-  path_copy.to_array(mask, bbox);
+  if (force_downhill)
+  {
+    // make sure the path is monotically decreasing
+    path_copy.set_values_from_array(z, bbox);
+
+    for (size_t k = 1; k < path_copy.get_npoints(); k++)
+      if (path_copy.points[k].v > path_copy.points[k - 1].v)
+        path_copy.points[k].v = path_copy.points[k - 1].v;
+
+    path_copy.to_array(mask, bbox);
+    zf = maximum_local(mask, flattening_radius);
+  }
+  else
+  {
+    // make sure values at the path points are non-zero before creating
+    // the mask
+    Path path_copy = path;
+    for (auto &p : path_copy.points)
+      p.v = 1.f;
+
+    path_copy.to_array(mask, bbox);
+    zf = mean_local(z, flattening_radius);
+  }
 
   mask = maximum_local(mask, width);
   mask = distance_transform(mask);
   mask = exp(-mask * mask * 0.5f / ((float)(decay * decay)));
 
-  Array zf = mean_local(z, flattening_radius);
   zf += depth;
-
   z = lerp(z, zf, mask);
 }
 

@@ -851,6 +851,7 @@ public:
  * @param width Path width radius (in pixels).
  * @param decay Path border decay radius (in pixels).
  * @param flattening_radius Path elevation flattening radius (in pixels).
+ * @param force_downhill Force the path elevation to be monotically decreasing.
  * @param bbox  Bounding box.
  *
  * **Example**
@@ -864,6 +865,7 @@ void dig_path(Array      &z,
               int         width = 1,
               int         decay = 2,
               int         flattening_radius = 16,
+              bool        force_downhill = false,
               Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f},
               float       depth = 0.f);
 

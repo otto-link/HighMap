@@ -22,10 +22,29 @@ int main(void)
   int  width = 1; // pixels
   int  decay = 2;
   int  flattening_radius = 16;
-  hmap::dig_path(z2, path, width, decay, flattening_radius, bbox);
+  bool force_downhill = false;
+
+  hmap::dig_path(z2,
+                 path,
+                 width,
+                 decay,
+                 flattening_radius,
+                 force_downhill,
+                 bbox);
+
+  auto z3 = z;
+  force_downhill = true;
+
+  hmap::dig_path(z3,
+                 path,
+                 width,
+                 decay,
+                 flattening_radius,
+                 force_downhill,
+                 bbox);
 
   hmap::export_banner_png("ex_dig_path.png",
-                          {z, z1, z2},
+                          {z, z1, z2, z3},
                           hmap::cmap::terrain,
                           true);
 }
