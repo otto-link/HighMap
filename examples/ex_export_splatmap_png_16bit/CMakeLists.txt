@@ -1,0 +1,2 @@
+add_executable(ex_export_splatmap_png_16bit ex_export_splatmap_png_16bit.cpp)
+target_link_libraries(ex_export_splatmap_png_16bit highmap)

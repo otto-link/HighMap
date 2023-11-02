@@ -122,6 +122,12 @@ void export_normal_map_png_8bit(std::string fname, const Array &array);
  */
 void export_normal_map_png_16bit(std::string fname, const Array &array);
 
+void export_splatmap_png_16bit(std::string fname,
+                               Array      *p_r,
+                               Array      *p_g = nullptr,
+                               Array      *p_b = nullptr,
+                               Array      *p_a = nullptr);
+
 /**
  * @brief Read an 8bit grayscale image to a png file.
  *
@@ -196,6 +202,17 @@ void write_png_rgb_8bit(std::string           fname,
 void write_png_rgb_16bit(std::string            fname,
                          std::vector<uint16_t> &img,
                          Vec2<int>              shape);
+
+/**
+ * @brief Export an 16bit RGBA image to a png file.
+ *
+ * @param fname File name.
+ * @param img Image data.
+ * @param shape Image shape.
+ */
+void write_png_rgba_16bit(std::string            fname,
+                          std::vector<uint16_t> &img,
+                          Vec2<int>              shape);
 
 /**
  * @brief Export an array to a 16bit 'raw' file (Unity import terrain format).
