@@ -490,11 +490,8 @@ void dig_path(Array      &z,
     path_copy.set_values_from_array(z, bbox);
 
     for (size_t k = 1; k < path_copy.get_npoints(); k++)
-    {
-      LOG_DEBUG("%ld %f", k, path_copy.points[k].v);
       if (path_copy.points[k].v > path_copy.points[k - 1].v)
         path_copy.points[k].v = path_copy.points[k - 1].v;
-    }
 
     path_copy.to_array(mask, bbox);
     zf = maximum_local(mask, 3 * (width + decay));
