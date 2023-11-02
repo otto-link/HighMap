@@ -349,6 +349,7 @@ Array gabor_noise(Vec2<int> shape,
  * @param sigma Gaussian sigma (in pixels).
  * @param p_noise Reference to the input noise array used for domain warping
  * (NOT in pixels, with respect to a unit domain).
+ * @param center Primitive reference center.
  * @param shift Shift {xs, ys} for each directions, with respect to a unit
  * domain.
  * @return Array
@@ -356,6 +357,7 @@ Array gabor_noise(Vec2<int> shape,
 Array gaussian_pulse(Vec2<int>   shape,
                      float       sigma,
                      Array      *p_noise = nullptr,
+                     Vec2<float> center = {0.5f, 0.5f},
                      Vec2<float> shift = {0.f, 0.f},
                      Vec2<float> scale = {1.f, 1.f});
 

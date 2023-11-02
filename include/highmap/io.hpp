@@ -122,6 +122,15 @@ void export_normal_map_png_8bit(std::string fname, const Array &array);
  */
 void export_normal_map_png_16bit(std::string fname, const Array &array);
 
+/**
+ * @brief Export 4 arrays as a RGBA png splatmap.
+ *
+ * @param fname File name.
+ * @param p_r Reference to array for channel R.
+ * @param p_g Reference to array for channel G.
+ * @param p_b Reference to array for channel B.
+ * @param p_a Reference to array for channel A.
+ */
 void export_splatmap_png_16bit(std::string fname,
                                Array      *p_r,
                                Array      *p_g = nullptr,

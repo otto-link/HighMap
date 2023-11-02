@@ -114,13 +114,14 @@ Array constant(Vec2<int> shape, float value)
 Array gaussian_pulse(Vec2<int>   shape,
                      float       sigma,
                      Array      *p_noise,
+                     Vec2<float> center,
                      Vec2<float> shift,
                      Vec2<float> scale)
 {
   Array array = Array(shape);
 
-  int ic = (int)((0.5f - shift.x) / scale.x * shape.x);
-  int jc = (int)((0.5f - shift.y) / scale.y * shape.y);
+  int ic = (int)((center.x - shift.x) / scale.x * shape.x);
+  int jc = (int)((center.y - shift.y) / scale.y * shape.y);
 
   float s2 = 1.f / (sigma * sigma);
 
