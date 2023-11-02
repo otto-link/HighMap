@@ -490,19 +490,26 @@ void dig_path(Array      &z,
     path_copy.set_values_from_array(z, bbox);
 
     for (size_t k = 1; k < path_copy.get_npoints(); k++)
+    {
+      LOG_DEBUG("%ld %f", k, path_copy.points[k].v);
       if (path_copy.points[k].v > path_copy.points[k - 1].v)
         path_copy.points[k].v = path_copy.points[k - 1].v;
+    }
 
     path_copy.to_array(mask, bbox);
-    zf = maximum_local(mask, flattening_radius);
+    zf = maximum_local(mask, 3 * (width + decay));
+    smooth_cpulse(zf, width + decay);
+
+    // regenerate the mask
+    path_copy.set_values(1.f);
+    path_copy.to_array(mask, bbox);
   }
   else
   {
     // make sure values at the path points are non-zero before creating
     // the mask
     Path path_copy = path;
-    for (auto &p : path_copy.points)
-      p.v = 1.f;
+    path_copy.set_values(1.f);
 
     path_copy.to_array(mask, bbox);
     zf = mean_local(z, flattening_radius);
@@ -511,6 +518,7 @@ void dig_path(Array      &z,
   mask = maximum_local(mask, width);
   mask = distance_transform(mask);
   mask = exp(-mask * mask * 0.5f / ((float)(decay * decay)));
+  smooth_cpulse(mask, decay);
 
   zf += depth;
   z = lerp(z, zf, mask);
