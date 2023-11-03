@@ -142,6 +142,50 @@ Array fbm_perlin_advanced(Vec2<int>          shape,
   return array;
 }
 
+Array fbm_simplex(Vec2<int>   shape,
+                  Vec2<float> kw,
+                  uint        seed,
+                  int         octaves,
+                  float       weight,
+                  float       persistence,
+                  float       lacunarity,
+                  Array      *p_noise_x,
+                  Array      *p_noise_y,
+                  Array      *p_stretching,
+                  Vec2<float> shift,
+                  Vec2<float> scale)
+{
+  Array         array = Array(shape);
+  FastNoiseLite noise(seed);
+
+  noise.SetFrequency(1.0f);
+  noise.SetNoiseType(FastNoiseLite::NoiseType_OpenSimplex2);
+  noise.SetFractalOctaves(octaves);
+  noise.SetFractalLacunarity(lacunarity);
+  noise.SetFractalGain(persistence);
+  noise.SetFractalType(FastNoiseLite::FractalType_FBm);
+  noise.SetFractalWeightedStrength(weight);
+
+  std::vector<float> x = linspace(0.5f * kw.x * shift.x,
+                                  0.5f * kw.x * (shift.x + scale.x),
+                                  array.shape.x,
+                                  false);
+  std::vector<float> y = linspace(0.5f * kw.y * shift.y,
+                                  0.5f * kw.y * (shift.y + scale.y),
+                                  array.shape.y,
+                                  false);
+
+  helper_get_noise(array,
+                   x,
+                   y,
+                   p_noise_x,
+                   p_noise_y,
+                   p_stretching,
+                   [&noise](float x_, float y_)
+                   { return noise.GetNoise(x_, y_); });
+  return array;
+}
+
 Array fbm_worley(Vec2<int>   shape,
                  Vec2<float> kw,
                  uint        seed,
