@@ -263,36 +263,13 @@ Array maximum_smooth(const Array &array1, const Array &array2, float k)
 Array mean_local(const Array &array, int ir)
 {
   Array array_out = Array(array.shape);
-  Array array_tmp = Array(array.shape);
 
-  // row
-  for (int i = 0; i < array.shape.x; i++)
-  {
-    int i1 = std::max(0, i - ir);
-    int i2 = std::min(array.shape.x, i + ir + 1);
+  std::vector<float> k1d(2 * ir + 1);
+  for (auto &v : k1d)
+    v = 1.f / (float)(2 * ir + 1);
 
-    for (int j = 0; j < array.shape.y; j++)
-    {
-      float sum = 0.f;
-      for (int u = i1; u < i2; u++)
-        sum += array(u, j);
-      array_tmp(i, j) = sum / (float)(i2 - i1);
-    }
-  }
-
-  // column
-  for (int j = 0; j < array.shape.y; j++)
-  {
-    int j1 = std::max(0, j - ir);
-    int j2 = std::min(array.shape.y, j + ir + 1);
-    for (int i = 0; i < array.shape.x; i++)
-    {
-      float sum = 0.f;
-      for (int v = j1; v < j2; v++)
-        sum += array_tmp(i, v);
-      array_out(i, j) = sum / (float)(j2 - j1);
-    }
-  }
+  array_out = convolve1d_i(array, k1d);
+  array_out = convolve1d_j(array_out, k1d);
 
   return array_out;
 }

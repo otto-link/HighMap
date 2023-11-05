@@ -272,23 +272,16 @@ Array rugosity(const Array &z, int ir)
 {
   hmap::Array z_avg = Array(z.shape);
   hmap::Array z_std = Array(z.shape);
-  hmap::Array z_skw = Array(z.shape); // output
 
-  z_avg = mean_local(z, ir);
+  // use Gaussian windowing instead of a real arithmetic averaging to
+  // limit boundary artifacts
+  z_avg = z;
+  smooth_cpulse(z_avg, ir);
 
-  // standard deviation
-  {
-    hmap::Array z2 = pow(z, 2.f);
-    z_std = pow(mean_local(z2, ir) - pow(z_avg, 2.f), 0.5f);
-  }
+  z_std = pow(z - z_avg, 2.f);
+  smooth_cpulse(z_std, ir);
 
-  // skewness
-  {
-    hmap::Array z3 = pow(z, 3.f);
-    z_skw = (mean_local(z3, ir) - pow(z_avg, 3.f)) / pow(z_std, 3.f);
-  }
-
-  return z_skw;
+  return z_std;
 }
 
 Array valley_width(const Array &z, int ir)
