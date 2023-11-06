@@ -1750,6 +1750,24 @@ Array select_gradient_inv(const Array &array,
                           float        talus_sigma);
 
 /**
+ * @brief Return an array filled with non-zero values where the input is in the
+ * interval [value - sigma, value + sigma]. Output array values have a cubic
+ * pulse distribution within this interval.
+ *
+ * @param array Input array.
+ * @param value Central value.
+ * @param sigma Pulse width.
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_select_pulse.cpp
+ *
+ * **Result**
+ * @image html ex_select_pulse.png
+ */
+Array select_pulse(const Array &array, float value, float sigma);
+
+/**
  * @brief Return an array filled with 1 at the blending transition between two
  * arrays, and 0 elsewhere.
  *
