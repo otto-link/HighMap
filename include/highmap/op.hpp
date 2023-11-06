@@ -15,6 +15,11 @@
 #pragma once
 #include "highmap/geometry.hpp"
 
+#define M_PI 3.14159265358979323846
+#define M_PI_2 1.57079632679489661923
+#define M_SQRT2 1.41421356237309504880
+#define M_SQRT1_2 0.707106781186547524401
+
 namespace hmap
 {
 

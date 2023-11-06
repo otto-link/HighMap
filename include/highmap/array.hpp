@@ -13,6 +13,7 @@
  *
  */
 #pragma once
+typedef unsigned int uint;
 
 #include <algorithm>
 #include <cmath>
