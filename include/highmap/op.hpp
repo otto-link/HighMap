@@ -1768,6 +1768,16 @@ Array select_gradient_inv(const Array &array,
 Array select_pulse(const Array &array, float value, float sigma);
 
 /**
+ * @brief
+ *
+ * @param array Input array.
+ * @param talus_ref Reference talus used to localy define the flow-partition.
+ * @param clipping_ratio Flow accumulation clipping ratio.
+ * @return Array Output array.
+ */
+Array select_rivers(const Array &array, float talus_ref, float clipping_ratio);
+
+/**
  * @brief Return an array filled with 1 at the blending transition between two
  * arrays, and 0 elsewhere.
  *

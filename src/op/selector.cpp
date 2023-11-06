@@ -6,6 +6,7 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/hydrology.hpp"
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 
@@ -128,6 +129,15 @@ Array select_pulse(const Array &array, float value, float sigma)
         c(i, j) = 1.f - r * r * (3.f - 2.f * r);
     }
   return c;
+}
+
+Array select_rivers(const Array &array, float talus_ref, float clipping_ratio)
+{
+  // see erosion/hydraulic_stream
+  Array facc = flow_accumulation_dinf(array, talus_ref);
+  float vmax = clipping_ratio * std::pow(facc.sum() / (float)facc.size(), 0.5f);
+  clamp(facc, 0.f, vmax);
+  return facc;
 }
 
 Array select_transitions(const Array &array1,

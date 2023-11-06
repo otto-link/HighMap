@@ -1,0 +1,2 @@
+add_executable(ex_select_rivers ex_select_rivers.cpp)
+target_link_libraries(ex_select_rivers highmap)
