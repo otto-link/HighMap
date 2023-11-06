@@ -14,10 +14,6 @@
  */
 #pragma once
 
-// for portability
-#define _USE_MATH_DEFINES
-typedef unsigned int uint;
-
 #include "highmap/array.hpp"
 #include "highmap/colormaps.hpp"
 #include "highmap/erosion.hpp"
