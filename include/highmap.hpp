@@ -14,9 +14,6 @@
  */
 #pragma once
 
-// for portability
-typedef unsigned int uint;
-
 #include "highmap/array.hpp"
 #include "highmap/colormaps.hpp"
 #include "highmap/erosion.hpp"
