@@ -289,8 +289,18 @@ Array rugosity(const Array &z, int ir)
 
   // Fisher-Pearson coefficient of skewness
   z_skw = (zf - z_avg) * (zf - z_avg) * (zf - z_avg);
-  smooth_cpulse(z_std, ir);
-  z_skw /= pow(z_std, 1.5f) + 1e-6f;
+
+  // do not filter, surprisingly yields much better results
+  // smooth_cpulse(z_skw, ir);
+
+  float tol = 1e-30f * z.ptp();
+
+  for (int i = 0; i < z.shape.x; i++)
+    for (int j = 0; j < z.shape.y; j++)
+      if (z_std(i, j) > tol)
+        z_skw(i, j) /= std::pow(z_std(i, j), 1.5f);
+      else
+        z_skw(i, j) = 0.f;
 
   // keep only "bumpy" rugosities
   clamp_min(z_skw, 0.f);
