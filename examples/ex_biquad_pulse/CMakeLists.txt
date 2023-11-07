@@ -1,0 +1,2 @@
+add_executable(ex_biquad_pulse ex_biquad_pulse.cpp)
+target_link_libraries(ex_biquad_pulse highmap)
