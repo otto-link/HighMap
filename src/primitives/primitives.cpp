@@ -75,6 +75,7 @@ Array biquad_pulse(Vec2<int>   shape,
   auto lambda = [&gain_inv](float x_, float y_)
   {
     float v = (x_ * x_ - 0.25f) * (y_ * y_ - 0.25f);
+    v = std::clamp(v, 0.f, 1.f);
     return std::pow(v, gain_inv);
   };
 
