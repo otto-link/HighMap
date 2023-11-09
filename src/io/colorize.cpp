@@ -33,35 +33,26 @@ void apply_hillshade(std::vector<uint8_t> &img, const hmap::Array &array)
     }
 }
 
-std::vector<uint8_t> colorize(const hmap::Array &array,
-                              float              vmin,
-                              float              vmax,
-                              int                cmap,
-                              bool               hillshading)
+std::vector<uint8_t> colorize(hmap::Array &array,
+                              float        vmin,
+                              float        vmax,
+                              int          cmap,
+                              bool         hillshading,
+                              bool         reverse)
 {
-  // define colormap
-  std::vector<uint32_t> colors_data = get_colormap_data(cmap);
-  Clut1D                clut = Clut1D({CMAP_SIZE}, colors_data);
+  std::vector<std::vector<float>> colors = get_colormap_data(cmap);
+
+  if (reverse)
+    std::swap(vmin, vmax);
 
   // create image
   std::vector<uint8_t> img(3 * array.shape.x * array.shape.y);
 
   // normalization factors
-  float a = 0.f;
-  float b = 0.f;
-  if (vmin != vmax)
-  {
-    if (cmap > 0)
-    {
-      a = 1.f / (vmax - vmin);
-      b = -vmin / (vmax - vmin);
-    }
-    else
-    {
-      a = 1.f / (vmin - vmax);
-      b = -vmax / (vmin - vmax);
-    }
-  }
+  int         nc = (int)colors.size();
+  Vec2<float> a = array.normalization_coeff(vmin, vmax);
+  a.x *= (nc - 1);
+  a.y *= (nc - 1);
 
   // reorganize things to get an image with (i, j) used as (x, y)
   // coordinates, i.e. with (0, 0) at the bottom left
@@ -70,28 +61,17 @@ std::vector<uint8_t> colorize(const hmap::Array &array,
   for (int j = array.shape.y - 1; j > -1; j--)
     for (int i = 0; i < array.shape.x; i++)
     {
-      float v = std::clamp(a * array(i, j) + b, 0.f, 1.f);
+      float v = std::clamp(a.x * array(i, j) + a.y, 0.f, (float)nc - 1.f);
+      int   q = (int)v;
+      float t = v - q;
 
-      // linear interpolation
-      float u;
-      int   p = clut.get_index(v, 0, u);
-
-      UNPACK_COLOR(clut.value_at(p), uint8_t r0, uint8_t g0, uint8_t b0);
-
-      if (p < clut.shape[0] - 1)
-      {
-        UNPACK_COLOR(clut.value_at(p + 1), uint8_t r1, uint8_t g1, uint8_t b1);
-
-        img[k++] = (1.f - u) * r0 + u * r1;
-        img[k++] = (1.f - u) * g0 + u * g1;
-        img[k++] = (1.f - u) * b0 + u * b1;
-      }
+      if (q < nc - 1)
+        for (int ch = 0; ch < 3; ch++)
+          img[k++] = (uint8_t)(255.f * ((1.f - t) * colors[q][ch] +
+                                        t * colors[q + 1][ch]));
       else
-      {
-        img[k++] = r0;
-        img[k++] = g0;
-        img[k++] = b0;
-      }
+        for (int ch = 0; ch < 3; ch++)
+          img[k++] = (uint8_t)(255.f * colors[q][ch]);
     }
 
   // add hillshading
@@ -172,185 +152,99 @@ std::vector<uint8_t> colorize_histogram(const Array &array, Vec2<int> step)
   return img;
 }
 
-std::vector<uint8_t> colorize_trivariate(const Array &c0,
-                                         const Array &c1,
-                                         const Array &c2,
-                                         Clut3D      &clut,
-                                         bool         hillshading)
-{
-  std::vector<uint8_t> img(3 * c0.shape.x * c0.shape.y);
+// std::vector<uint8_t> colorize_trivariate(const Array &c0,
+//                                          const Array &c1,
+//                                          const Array &c2,
+//                                          Clut3D      &clut,
+//                                          bool         hillshading)
+// {
+//   std::vector<uint8_t> img(3 * c0.shape.x * c0.shape.y);
 
-  // TODO vlim and clamping
+//   // TODO vlim and clamping
 
-  // normalization coefficients for each array
-  float cmin = c0.min();
-  float cmax = c0.max();
-  float ac0 = 1.f / (cmax - cmin);
-  float bc0 = -cmin / (cmax - cmin);
+//   // normalization coefficients for each array
+//   float cmin = c0.min();
+//   float cmax = c0.max();
+//   float ac0 = 1.f / (cmax - cmin);
+//   float bc0 = -cmin / (cmax - cmin);
 
-  cmin = c1.min();
-  cmax = c1.max();
-  float ac1 = 1.f / (cmax - cmin);
-  float bc1 = -cmin / (cmax - cmin);
+//   cmin = c1.min();
+//   cmax = c1.max();
+//   float ac1 = 1.f / (cmax - cmin);
+//   float bc1 = -cmin / (cmax - cmin);
 
-  cmin = c2.min();
-  cmax = c2.max();
-  float ac2 = 1.f / (cmax - cmin);
-  float bc2 = -cmin / (cmax - cmin);
+//   cmin = c2.min();
+//   cmax = c2.max();
+//   float ac2 = 1.f / (cmax - cmin);
+//   float bc2 = -cmin / (cmax - cmin);
 
-  int k = 0;
+//   int k = 0;
 
-  for (int j = c0.shape.y - 1; j > -1; j--)
-    for (int i = 0; i < c0.shape.x; i++)
-    {
-      // linear interpolation for the first criterion (generally
-      // dominant)
-      float u;
-      int   p1 = clut.get_index(ac0 * c0(i, j) + bc0, 0, u);
-      int   p2 = clut.get_index(ac1 * c1(i, j) + bc1, 1);
-      int   p3 = clut.get_index(ac2 * c2(i, j) + bc2, 2);
+//   for (int j = c0.shape.y - 1; j > -1; j--)
+//     for (int i = 0; i < c0.shape.x; i++)
+//     {
+//       // linear interpolation for the first criterion (generally
+//       // dominant)
+//       float u;
+//       int   p1 = clut.get_index(ac0 * c0(i, j) + bc0, 0, u);
+//       int   p2 = clut.get_index(ac1 * c1(i, j) + bc1, 1);
+//       int   p3 = clut.get_index(ac2 * c2(i, j) + bc2, 2);
 
-      UNPACK_COLOR(clut.value_at(p1, p2, p3),
-                   uint8_t r0,
-                   uint8_t g0,
-                   uint8_t b0);
+//       UNPACK_COLOR(clut.value_at(p1, p2, p3),
+//                    uint8_t r0,
+//                    uint8_t g0,
+//                    uint8_t b0);
 
-      if (p1 < clut.shape[0] - 1)
-      {
-        UNPACK_COLOR(clut.value_at(p1 + 1, p2, p3),
-                     uint8_t r1,
-                     uint8_t g1,
-                     uint8_t b1);
+//       if (p1 < clut.shape[0] - 1)
+//       {
+//         UNPACK_COLOR(clut.value_at(p1 + 1, p2, p3),
+//                      uint8_t r1,
+//                      uint8_t g1,
+//                      uint8_t b1);
 
-        img[k++] = (1.f - u) * r0 + u * r1;
-        img[k++] = (1.f - u) * g0 + u * g1;
-        img[k++] = (1.f - u) * b0 + u * b1;
-      }
-      else
-      {
-        img[k++] = r0;
-        img[k++] = g0;
-        img[k++] = b0;
-      }
-    }
+//         img[k++] = (1.f - u) * r0 + u * r1;
+//         img[k++] = (1.f - u) * g0 + u * g1;
+//         img[k++] = (1.f - u) * b0 + u * b1;
+//       }
+//       else
+//       {
+//         img[k++] = r0;
+//         img[k++] = g0;
+//         img[k++] = b0;
+//       }
+//     }
 
-  // blur colors to smooth nearest interpolation
-  {
-    std::vector<uint8_t> delta(3 * c0.shape.x * c0.shape.y);
+//   // blur colors to smooth nearest interpolation
+//   {
+//     std::vector<uint8_t> delta(3 * c0.shape.x * c0.shape.y);
 
-    for (int i = 1; i < c0.shape.x - 1; i++)
-      for (int j = 1; j < c0.shape.y - 1; j++)
-      {
-        int k = j * 3 + i * 3 * c0.shape.y;
-        int kn = (j + 1) * 3 + i * 3 * c0.shape.y; // north
-        int ks = (j - 1) * 3 + i * 3 * c0.shape.y; // south
-        int ke = j * 3 + (i - 1) * 3 * c0.shape.y; // east
-        int kw = j * 3 + (i + 1) * 3 * c0.shape.y; // west
+//     for (int i = 1; i < c0.shape.x - 1; i++)
+//       for (int j = 1; j < c0.shape.y - 1; j++)
+//       {
+//         int k = j * 3 + i * 3 * c0.shape.y;
+//         int kn = (j + 1) * 3 + i * 3 * c0.shape.y; // north
+//         int ks = (j - 1) * 3 + i * 3 * c0.shape.y; // south
+//         int ke = j * 3 + (i - 1) * 3 * c0.shape.y; // east
+//         int kw = j * 3 + (i + 1) * 3 * c0.shape.y; // west
 
-        for (int r = 0; r < 3; r++)
-          delta[k + r] = (uint8_t)(0.25f * (img[kn + r] + img[ks + r] +
-                                            img[ke + r] + img[kw + r])) -
-                         img[k + r];
-      }
+//         for (int r = 0; r < 3; r++)
+//           delta[k + r] = (uint8_t)(0.25f * (img[kn + r] + img[ks + r] +
+//                                             img[ke + r] + img[kw + r])) -
+//                          img[k + r];
+//       }
 
-    std::transform(img.begin(),
-                   img.end(),
-                   delta.begin(),
-                   img.begin(),
-                   [](uint8_t i, uint8_t d) { return i + d; });
-  }
+//     std::transform(img.begin(),
+//                    img.end(),
+//                    delta.begin(),
+//                    img.begin(),
+//                    [](uint8_t i, uint8_t d) { return i + d; });
+//   }
 
-  // add hillshading
-  if (hillshading)
-    apply_hillshade(img, c0);
+//   // add hillshading
+//   if (hillshading)
+//     apply_hillshade(img, c0);
 
-  return img;
-}
-
-std::vector<uint32_t> get_colormap_data(int cmap)
-{
-  std::vector<uint32_t> colors_data;
-
-  switch (cmap)
-  {
-  case cmap::blues:
-  case -cmap::blues:
-  {
-    colors_data = CMAP_BLUES;
-  }
-  break;
-
-  case cmap::bone:
-  case -cmap::bone:
-  {
-    colors_data = CMAP_BONE;
-  }
-  break;
-
-  case cmap::gray:
-  case -cmap::gray:
-  {
-    colors_data = CMAP_GRAY;
-  }
-  break;
-
-  case cmap::hot:
-  case -cmap::hot:
-  {
-    colors_data = CMAP_HOT;
-  }
-  break;
-
-  case cmap::inferno:
-  case -cmap::inferno:
-  {
-    colors_data = CMAP_INFERNO;
-  }
-  break;
-
-  case cmap::jet:
-  case -cmap::jet:
-  {
-    colors_data = CMAP_JET;
-  }
-  break;
-
-  case cmap::magma:
-  case -cmap::magma:
-  {
-    colors_data = CMAP_MAGMA;
-  }
-  break;
-
-  case cmap::nipy_spectral:
-  case -cmap::nipy_spectral:
-  {
-    colors_data = CMAP_NIPY_SPECTRAL;
-  }
-  break;
-
-  case cmap::seismic:
-  case -cmap::seismic:
-  {
-    colors_data = CMAP_SEISMIC;
-  }
-  break;
-
-  case cmap::terrain:
-  case -cmap::terrain:
-  {
-    colors_data = CMAP_TERRAIN;
-  }
-  break;
-
-  case cmap::viridis:
-  case -cmap::viridis:
-  {
-    colors_data = CMAP_VIRIDIS;
-  }
-  break;
-  }
-  return colors_data;
-}
+//   return img;
+// }
 
 } // namespace hmap

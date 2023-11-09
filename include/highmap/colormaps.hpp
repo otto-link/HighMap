@@ -13,284 +13,144 @@
  *
  */
 #pragma once
-#include <fstream>
-
-#include "highmap/vector.hpp"
-
-#define PACK_RGBA(r, g, b) (uint32_t)(r << 16 | g << 8 | b)
-
-#define UNPACK_COLOR(color, r, g, b)                                           \
-  r = (color >> 16) & 0xff;                                                    \
-  g = (color >> 8) & 0xff;                                                     \
-  b = color & 0xff;
 
 namespace hmap
 {
 
-/**
- * @brief Colormaps.
- *
- * @note Use the inverse value of the cmap to reverse it. For instance
- * `hmap::cmap::gray` and `-hmap::cmap::gray`.
- *
- * **Example**
- * @include ex_colormaps.cpp
- *
- * **Result**
- * @image html ex_colormaps0.png
- * @image html ex_colormaps1.png
- * @image html ex_colormaps2.png
- * @image html ex_colormaps3.png
- * @image html ex_colormaps4.png
- * @image html ex_colormaps5.png
- * @image html ex_colormaps6.png
- * @image html ex_colormaps7.png
- * @image html ex_colormaps8.png
- * @image html ex_colormaps9.png
- * @image html ex_colormaps10.png
- */
 enum cmap : int
 {
-  blues = 1,         ///< bone
-  bone = 2,          ///< blues
-  gray = 3,          ///< gray
-  hot = 4,           ///< hot
-  inferno = 5,       ///< inferno
-  jet = 6,           ///< jet
-  magma = 7,         ///< magma
-  nipy_spectral = 8, ///< nipy_spectral
-  seismic = 9,       ///< seismic
-  terrain = 10,      ///< terrain
-  viridis = 11       ///< viridis
+  bone,
+  gray,
+  hot,
+  inferno,
+  jet,
+  magma,
+  nipy_spectral,
+  seismic,
+  terrain,
+  viridis
 };
 
-#define CMAP_SIZE 12
-#define CMAP_BLUES                                                             \
-  {                                                                            \
-    536683, 542862, 1269671, 2586296, 4165572, 6071248, 8239322, 10603490,     \
-        12507116, 13886451, 15003641, 16251903                                 \
-  }
 #define CMAP_BONE                                                              \
   {                                                                            \
-    0, 1315868, 2631736, 3947604, 5329264, 6646917, 7964825, 9282733,          \
-        10666178, 12572374, 14674666, 16777215                                 \
+    {0.000f, 0.000f, 0.000f}, {0.058f, 0.058f, 0.081f},                        \
+        {0.117f, 0.117f, 0.162f}, {0.175f, 0.175f, 0.243f},                    \
+        {0.233f, 0.233f, 0.325f}, {0.292f, 0.292f, 0.406f},                    \
+        {0.350f, 0.361f, 0.475f}, {0.408f, 0.442f, 0.533f},                    \
+        {0.467f, 0.522f, 0.592f}, {0.525f, 0.602f, 0.650f},                    \
+        {0.583f, 0.682f, 0.708f}, {0.642f, 0.762f, 0.767f},                    \
+        {0.727f, 0.825f, 0.825f}, {0.818f, 0.883f, 0.883f},                    \
+        {0.909f, 0.942f, 0.942f}, {1.000f, 1.000f, 1.000f},                    \
   }
+
 #define CMAP_GRAY                                                              \
   {                                                                            \
-    0, 1513239, 3026478, 4539717, 6052956, 7566195, 9145227, 10658466,         \
-        12171705, 13684944, 15198183, 16777215                                 \
+    {0.000f, 0.000f, 0.000f}, {0.067f, 0.067f, 0.067f},                        \
+        {0.133f, 0.133f, 0.133f}, {0.200f, 0.200f, 0.200f},                    \
+        {0.267f, 0.267f, 0.267f}, {0.333f, 0.333f, 0.333f},                    \
+        {0.400f, 0.400f, 0.400f}, {0.467f, 0.467f, 0.467f},                    \
+        {0.533f, 0.533f, 0.533f}, {0.600f, 0.600f, 0.600f},                    \
+        {0.667f, 0.667f, 0.667f}, {0.733f, 0.733f, 0.733f},                    \
+        {0.800f, 0.800f, 0.800f}, {0.867f, 0.867f, 0.867f},                    \
+        {0.933f, 0.933f, 0.933f}, {1.000f, 1.000f, 1.000f},                    \
   }
+
 #define CMAP_HOT                                                               \
   {                                                                            \
-    655360, 4653056, 8650752, 12648448, 16646144, 16726784, 16742400,          \
-        16758016, 16773632, 16777032, 16777123, 16777215                       \
+    {0.042f, 0.000f, 0.000f}, {0.217f, 0.000f, 0.000f},                        \
+        {0.392f, 0.000f, 0.000f}, {0.567f, 0.000f, 0.000f},                    \
+        {0.742f, 0.000f, 0.000f}, {0.917f, 0.000f, 0.000f},                    \
+        {1.000f, 0.092f, 0.000f}, {1.000f, 0.267f, 0.000f},                    \
+        {1.000f, 0.442f, 0.000f}, {1.000f, 0.617f, 0.000f},                    \
+        {1.000f, 0.792f, 0.000f}, {1.000f, 0.967f, 0.000f},                    \
+        {1.000f, 1.000f, 0.212f}, {1.000f, 1.000f, 0.475f},                    \
+        {1.000f, 1.000f, 0.737f}, {1.000f, 1.000f, 1.000f},                    \
   }
+
 #define CMAP_INFERNO                                                           \
   {                                                                            \
-    3, 1247796, 3737954, 6230638, 8724586, 11087454, 13320265, 15096878,       \
-        16220944, 16494098, 16046923, 16580260                                 \
+    {0.001f, 0.000f, 0.014f}, {0.047f, 0.030f, 0.150f},                        \
+        {0.142f, 0.046f, 0.309f}, {0.258f, 0.039f, 0.406f},                    \
+        {0.367f, 0.072f, 0.432f}, {0.472f, 0.111f, 0.428f},                    \
+        {0.578f, 0.148f, 0.404f}, {0.683f, 0.190f, 0.361f},                    \
+        {0.781f, 0.243f, 0.300f}, {0.865f, 0.317f, 0.226f},                    \
+        {0.930f, 0.411f, 0.145f}, {0.971f, 0.523f, 0.058f},                    \
+        {0.988f, 0.645f, 0.040f}, {0.979f, 0.775f, 0.176f},                    \
+        {0.950f, 0.903f, 0.380f}, {0.988f, 0.998f, 0.645f},                    \
   }
+
 #define CMAP_JET                                                               \
   {                                                                            \
-    127, 232, 14847, 38655, 783339, 5636000, 10551125, 15466251, 16755712,     \
-        16733696, 15204352, 8323072                                            \
+    {0.000f, 0.000f, 0.500f}, {0.000f, 0.000f, 0.803f},                        \
+        {0.000f, 0.033f, 1.000f}, {0.000f, 0.300f, 1.000f},                    \
+        {0.000f, 0.567f, 1.000f}, {0.000f, 0.833f, 1.000f},                    \
+        {0.161f, 1.000f, 0.806f}, {0.376f, 1.000f, 0.591f},                    \
+        {0.591f, 1.000f, 0.376f}, {0.806f, 1.000f, 0.161f},                    \
+        {1.000f, 0.901f, 0.000f}, {1.000f, 0.654f, 0.000f},                    \
+        {1.000f, 0.407f, 0.000f}, {1.000f, 0.160f, 0.000f},                    \
+        {0.803f, 0.000f, 0.000f}, {0.500f, 0.000f, 0.000f},                    \
   }
+
 #define CMAP_MAGMA                                                             \
   {                                                                            \
-    3, 1117233, 3280999, 5772670, 8266881, 10694782, 13122930, 15225953,       \
-        16350557, 16689267, 16634517, 16514239                                 \
+    {0.001f, 0.000f, 0.014f}, {0.044f, 0.034f, 0.142f},                        \
+        {0.124f, 0.067f, 0.296f}, {0.232f, 0.060f, 0.438f},                    \
+        {0.341f, 0.081f, 0.493f}, {0.445f, 0.123f, 0.507f},                    \
+        {0.550f, 0.161f, 0.506f}, {0.658f, 0.196f, 0.490f},                    \
+        {0.767f, 0.234f, 0.458f}, {0.869f, 0.288f, 0.409f},                    \
+        {0.944f, 0.378f, 0.365f}, {0.981f, 0.498f, 0.370f},                    \
+        {0.995f, 0.624f, 0.427f}, {0.997f, 0.748f, 0.517f},                    \
+        {0.993f, 0.870f, 0.626f}, {0.987f, 0.991f, 0.750f},                    \
   }
+
 #define CMAP_NIPY_SPECTRAL                                                     \
   {                                                                            \
-    0, 8650901, 202, 34525, 43680, 39936, 55552, 8912640, 16243456, 16736512,  \
-        14221312, 13421772                                                     \
+    {0.000f, 0.000f, 0.000f}, {0.489f, 0.000f, 0.556f},                        \
+        {0.178f, 0.000f, 0.644f}, {0.000f, 0.000f, 0.867f},                    \
+        {0.000f, 0.511f, 0.867f}, {0.000f, 0.644f, 0.733f},                    \
+        {0.000f, 0.667f, 0.533f}, {0.000f, 0.644f, 0.000f},                    \
+        {0.000f, 0.822f, 0.000f}, {0.000f, 1.000f, 0.000f},                    \
+        {0.800f, 0.978f, 0.000f}, {0.978f, 0.844f, 0.000f},                    \
+        {1.000f, 0.600f, 0.000f}, {0.956f, 0.000f, 0.000f},                    \
+        {0.822f, 0.000f, 0.000f}, {0.800f, 0.800f, 0.800f},                    \
   }
+
 #define CMAP_SEISMIC                                                           \
   {                                                                            \
-    76, 141, 206, 1513471, 7566335, 13684991, 16765136, 16741235, 16717591,    \
-        14417920, 11337728, 8323072                                            \
+    {0.000f, 0.000f, 0.300f}, {0.000f, 0.000f, 0.487f},                        \
+        {0.000f, 0.000f, 0.673f}, {0.000f, 0.000f, 0.860f},                    \
+        {0.067f, 0.067f, 1.000f}, {0.333f, 0.333f, 1.000f},                    \
+        {0.600f, 0.600f, 1.000f}, {0.867f, 0.867f, 1.000f},                    \
+        {1.000f, 0.867f, 0.867f}, {1.000f, 0.600f, 0.600f},                    \
+        {1.000f, 0.333f, 0.333f}, {1.000f, 0.067f, 0.067f},                    \
+        {0.900f, 0.000f, 0.000f}, {0.767f, 0.000f, 0.000f},                    \
+        {0.633f, 0.000f, 0.000f}, {0.500f, 0.000f, 0.000f},                    \
   }
+
 #define CMAP_TERRAIN                                                           \
   {                                                                            \
-    3355545, 1339606, 43470, 1560682, 7594877, 13694351, 15196556, 12166515,   \
-        9136730, 10651778, 13681600, 16777215                                  \
+    {0.200f, 0.200f, 0.600f}, {0.111f, 0.378f, 0.778f},                        \
+        {0.022f, 0.556f, 0.956f}, {0.000f, 0.700f, 0.700f},                    \
+        {0.067f, 0.813f, 0.413f}, {0.333f, 0.867f, 0.467f},                    \
+        {0.600f, 0.920f, 0.520f}, {0.867f, 0.973f, 0.573f},                    \
+        {0.933f, 0.915f, 0.564f}, {0.800f, 0.744f, 0.492f},                    \
+        {0.667f, 0.573f, 0.420f}, {0.533f, 0.403f, 0.348f},                    \
+        {0.600f, 0.488f, 0.464f}, {0.733f, 0.659f, 0.643f},                    \
+        {0.867f, 0.829f, 0.821f}, {1.000f, 1.000f, 1.000f},                    \
   }
+
 #define CMAP_VIRIDIS                                                           \
   {                                                                            \
-    4456788, 4727154, 4341124, 3692428, 2977678, 2393485, 2005641, 2797694,    \
-        5358696, 8836169, 12771106, 16639780                                   \
+    {0.267f, 0.005f, 0.329f}, {0.283f, 0.100f, 0.422f},                        \
+        {0.277f, 0.185f, 0.490f}, {0.254f, 0.265f, 0.530f},                    \
+        {0.222f, 0.339f, 0.549f}, {0.191f, 0.407f, 0.556f},                    \
+        {0.164f, 0.471f, 0.558f}, {0.139f, 0.534f, 0.555f},                    \
+        {0.121f, 0.596f, 0.544f}, {0.135f, 0.659f, 0.518f},                    \
+        {0.208f, 0.719f, 0.473f}, {0.328f, 0.774f, 0.407f},                    \
+        {0.478f, 0.821f, 0.318f}, {0.647f, 0.858f, 0.210f},                    \
+        {0.825f, 0.885f, 0.106f}, {0.993f, 0.906f, 0.144f},                    \
   }
 
-/**
- * @brief Abstract Color Lookup Table class.
- *
- */
-struct Clut
-{
-  /**
-   * @brief Data shape.
-   *
-   */
-  std::vector<int> shape;
-
-  /**
-   * @brief Raw uint8 RGB color data packed as uint32
-   *
-   */
-  std::vector<uint32_t> data;
-
-  /**
-   * @brief Construct a new Clut object from a vector.
-   *
-   * @param shape Shape.
-   * @param data Data.
-   */
-  Clut(std::vector<int> shape, std::vector<uint32_t> data)
-      : shape(shape), data(data)
-  {
-  }
-
-  /**
-   * @brief Construct a new Clut object from a binary file.
-   *
-   * @param shape Shape.
-   * @param fname Filename.
-   */
-  Clut(std::vector<int> shape, std::string fname) : shape(shape)
-  {
-    int size = 1;
-    for (auto &v : shape)
-      size *= v;
-
-    this->data.resize(size);
-    this->read_file(fname);
-  }
-
-  /**
-   * @brief Get the index corresponding to a float x in [0, 1]
-   *
-   * @param x
-   * @param idim
-   * @return int
-   */
-  inline int get_index(float x, int idim)
-  {
-    return (int)(x * (shape[idim] - 1));
-  }
-
-  /**
-   * @brief Get the index object to a float x in [0, 1] and the offset u in [0,
-   * 1] (for linear interoplation).
-   *
-   * @param x[in] position in [0, 1]
-   * @param idim[in] Dimension where the index is requested.
-   * @param u[out] Offset.
-   * @return int Index.
-   */
-  inline int get_index(float x, int idim, float &u)
-  {
-    float xn = x * (shape[idim] - 1);
-    u = xn - (int)xn;
-    return (int)xn;
-  }
-
-  /**
-   * @brief Read binary file into a vector.
-   *
-   * @param fname File name.
-   */
-  void read_file(std::string fname)
-  {
-    std::ifstream f(fname, std::ios::in | std::ios::binary);
-    if (f.is_open())
-      for (auto &v : this->data)
-        f.read((char *)&v, sizeof(v));
-  }
-};
-
-/**
- * @brief 1D Color Lookup Table class.
- *
- */
-struct Clut1D : public Clut
-{
-public:
-  Clut1D(std::vector<int> shape, std::vector<uint32_t> data) : Clut(shape, data)
-  {
-  }
-
-  /**
-   * @brief Return the table value at i.
-   *
-   * @param i Index.
-   * @return uint32_t Packed color.
-   */
-  inline uint32_t value_at(int i)
-  {
-    return this->data[i];
-  }
-};
-
-/**
- * @brief 2D Color Lookup Table class.
- *
- */
-struct Clut2D : public Clut
-{
-public:
-  Clut2D(std::vector<int> shape, std::vector<uint32_t> data) : Clut(shape, data)
-  {
-  }
-
-  /**
-   * @brief Return the table value at (i, j).
-   *
-   * @param i Index.
-   * @param j Index.
-   * @return uint32_t Packed color.
-   */
-  inline uint32_t value_at(int i, int j)
-  {
-    return this->data[i + j * this->shape[0]];
-  }
-};
-
-/**
- * @brief 3D Color Lookup Table class.
- *
- */
-struct Clut3D : public Clut
-{
-public:
-  Clut3D(std::vector<int> shape, std::vector<uint32_t> data) : Clut(shape, data)
-  {
-  }
-
-  Clut3D(std::vector<int> shape, std::string fname) : Clut(shape, fname)
-  {
-  }
-
-  /**
-   * @brief Return the table value at (i, j, k).
-   *
-   * @param i Index.
-   * @param j Index.
-   * @param k Index.
-   * @return uint32_t Packed color.
-   */
-  inline uint32_t value_at(int i, int j, int k)
-  {
-    return this
-        ->data[i + j * this->shape[0] + k * this->shape[0] * this->shape[1]];
-  }
-};
-
-/**
- * @brief Return the colormap color data a given colormap map.
- *
- * @param cmap Colormap.
- * @return std::vector<uint32_t> Color data (as packed RGB uint32).
- */
-std::vector<uint32_t> get_colormap_data(int cmap);
+std::vector<std::vector<float>> get_colormap_data(int cmap);
 
 } // namespace hmap
