@@ -318,6 +318,8 @@ struct HeightMapRGB
 
   void normalize();
 
+  std::vector<uint8_t> to_img_8bit(Vec2<int> shape_img = {0, 0});
+
   void to_png_16bit(std::string fname);
 
   friend HeightMapRGB mix_heightmap_rgb(HeightMapRGB &rgb1,
