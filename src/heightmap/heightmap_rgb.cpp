@@ -186,4 +186,64 @@ HeightMapRGB mix_heightmap_rgb(HeightMapRGB &rgb1,
   return rgb_out;
 }
 
+HeightMapRGB mix_heightmap_rgb_srqt(HeightMapRGB &rgb1,
+                                    HeightMapRGB &rgb2,
+                                    HeightMap    &t)
+{
+  HeightMapRGB rgb_out;
+  rgb_out.set_sto(rgb1.rgb[0].shape, rgb1.rgb[0].tiling, rgb1.rgb[0].overlap);
+
+  // mixing function
+  auto lambda = [](Array &out, Array &in1, Array &in2, Array &t)
+  { out = pow((1.f - t) * in1 * in1 + t * in2 * in2, 0.5f); };
+
+  // apply to the each rgb heightmaps
+  for (size_t kc = 0; kc < rgb1.rgb.size(); kc++)
+  {
+    size_t                         nthreads = rgb1.rgb[kc].get_ntiles();
+    std::vector<std::future<void>> futures(nthreads);
+
+    for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+      futures[i] = std::async(lambda,
+                              std::ref(rgb_out.rgb[kc].tiles[i]),
+                              std::ref(rgb1.rgb[kc].tiles[i]),
+                              std::ref(rgb2.rgb[kc].tiles[i]),
+                              std::ref(t.tiles[i]));
+
+    for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+      futures[i].get();
+  }
+
+  return rgb_out;
+}
+HeightMapRGB mix_heightmap_rgb_srqt(HeightMapRGB &rgb1,
+                                    HeightMapRGB &rgb2,
+                                    float         t)
+{
+  HeightMapRGB rgb_out;
+  rgb_out.set_sto(rgb1.rgb[0].shape, rgb1.rgb[0].tiling, rgb1.rgb[0].overlap);
+
+  // mixing function
+  auto lambda = [&t](Array &out, Array &in1, Array &in2)
+  { out = pow((1.f - t) * in1 * in1 + t * in2 * in2, 0.5f); };
+
+  // apply to the each rgb heightmaps
+  for (size_t kc = 0; kc < rgb1.rgb.size(); kc++)
+  {
+    size_t                         nthreads = rgb1.rgb[kc].get_ntiles();
+    std::vector<std::future<void>> futures(nthreads);
+
+    for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+      futures[i] = std::async(lambda,
+                              std::ref(rgb_out.rgb[kc].tiles[i]),
+                              std::ref(rgb1.rgb[kc].tiles[i]),
+                              std::ref(rgb2.rgb[kc].tiles[i]));
+
+    for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+      futures[i].get();
+  }
+
+  return rgb_out;
+}
+
 } // namespace hmap
