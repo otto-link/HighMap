@@ -316,6 +316,12 @@ struct HeightMapRGB
                 int        cmap,
                 bool       reverse = false);
 
+  void colorize(HeightMap                      &h,
+                float                           vmin,
+                float                           vmax,
+                std::vector<std::vector<float>> colormap_colors,
+                bool                            reverse = false);
+
   void normalize();
 
   std::vector<uint8_t> to_img_8bit(Vec2<int> shape_img = {0, 0});

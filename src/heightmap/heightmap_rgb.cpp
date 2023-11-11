@@ -36,21 +36,20 @@ void HeightMapRGB::set_sto(Vec2<int> new_shape,
     channel.set_sto(new_shape, new_tiling, new_overlap);
 }
 
-void HeightMapRGB::colorize(HeightMap &h,
-                            float      vmin,
-                            float      vmax,
-                            int        cmap,
-                            bool       reverse)
+void HeightMapRGB::colorize(HeightMap                      &h,
+                            float                           vmin,
+                            float                           vmax,
+                            std::vector<std::vector<float>> colormap_colors,
+                            bool                            reverse)
 {
-  std::vector<std::vector<float>> colors = get_colormap_data(cmap);
-
   if (reverse)
     std::swap(vmin, vmax);
 
   // write colorize function for each tile
-  auto lambda = [&vmin, &vmax, &colors](Array &in, Array &out, int channel)
+  auto lambda =
+      [&vmin, &vmax, &colormap_colors](Array &in, Array &out, int channel)
   {
-    int         nc = (int)colors.size();
+    int         nc = (int)colormap_colors.size();
     Vec2<float> a = in.normalization_coeff(vmin, vmax);
     a.x *= (nc - 1);
     a.y *= (nc - 1);
@@ -63,10 +62,10 @@ void HeightMapRGB::colorize(HeightMap &h,
         float t = v - k;
 
         if (k < nc - 1)
-          out(i, j) = (1.f - t) * colors[k][channel] +
-                      t * colors[k + 1][channel];
+          out(i, j) = (1.f - t) * colormap_colors[k][channel] +
+                      t * colormap_colors[k + 1][channel];
         else
-          out(i, j) = colors[k][channel];
+          out(i, j) = colormap_colors[k][channel];
       }
   };
 
@@ -85,6 +84,16 @@ void HeightMapRGB::colorize(HeightMap &h,
     for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
       futures[i].get();
   }
+}
+
+void HeightMapRGB::colorize(HeightMap &h,
+                            float      vmin,
+                            float      vmax,
+                            int        cmap,
+                            bool       reverse)
+{
+  std::vector<std::vector<float>> colors = get_colormap_data(cmap);
+  this->colorize(h, vmin, vmax, colors, reverse);
 }
 
 void HeightMapRGB::normalize()
