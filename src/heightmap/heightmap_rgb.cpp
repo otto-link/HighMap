@@ -114,8 +114,6 @@ std::vector<uint8_t> HeightMapRGB::to_img_8bit(Vec2<int> shape_img)
 
   std::vector<uint8_t> img(shape_img.x * shape_img.y * 3);
 
-  this->normalize();
-
   Array r_array = this->rgb[0].to_array(shape_img);
   Array g_array = this->rgb[1].to_array(shape_img);
   Array b_array = this->rgb[2].to_array(shape_img);
@@ -135,8 +133,6 @@ std::vector<uint8_t> HeightMapRGB::to_img_8bit(Vec2<int> shape_img)
 void HeightMapRGB::to_png_16bit(std::string fname)
 {
   std::vector<uint16_t> img(this->shape.x * this->shape.y * 3);
-
-  this->normalize();
 
   Array r_array = this->rgb[0].to_array();
   Array g_array = this->rgb[1].to_array();
