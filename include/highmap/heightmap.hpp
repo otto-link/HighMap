@@ -332,6 +332,14 @@ struct HeightMapRGB
                                         HeightMapRGB &rgb2,
                                         HeightMap    &t);
 
+  friend HeightMapRGB mix_heightmap_rgb_ryb(HeightMapRGB &rgb1,
+                                            HeightMapRGB &rgb2,
+                                            HeightMap    &t);
+
+  friend HeightMapRGB mix_heightmap_rgb_ryb(HeightMapRGB &rgb1,
+                                            HeightMapRGB &rgb2,
+                                            float         t);
+
   friend HeightMapRGB mix_heightmap_rgb_srqt(HeightMapRGB &rgb1,
                                              HeightMapRGB &rgb2,
                                              HeightMap    &t);

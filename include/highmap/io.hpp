@@ -13,7 +13,7 @@
  *
  */
 #pragma once
-#define IMG_CHANNELS 3
+#include <cstdint>
 
 #include "highmap/colormaps.hpp"
 #include "highmap/vector.hpp"
@@ -40,16 +40,6 @@ std::vector<uint8_t> colorize(Array &array,
                               int    cmap,
                               bool   hillshading,
                               bool   reverse = false);
-
-/**
- * @brief Convert array element values to a grayscale image data (1 channels in
- * [0, 255]).
- *
- * @param array Input array.
- * @param step Steps for i and j indices, to take every "step" data.
- * @return std::vector<uint8_t> Vector containing colors (size : shape[0] *
- * shape[1] * 1 channel).
- */
 
 /**
  * @brief Export array values to a 8 bit grayscale image.
@@ -89,6 +79,20 @@ std::vector<uint8_t> colorize_histogram(const Array &array,
 //                                          const Array &c2,
 //                                          Clut3D      &clut,
 //                                          bool         hillshading);
+
+void convert_rgb_to_ryb(Array &r,
+                        Array &g,
+                        Array &b,
+                        Array &r_out,
+                        Array &y_out,
+                        Array &b_out);
+
+void convert_ryb_to_rgb(Array &r,
+                        Array &y,
+                        Array &b,
+                        Array &r_out,
+                        Array &g_out,
+                        Array &b_out);
 
 /**
  * @brief Export a set of arrays as banner png image file.
