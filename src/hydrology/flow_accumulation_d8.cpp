@@ -24,7 +24,7 @@
 namespace hmap
 {
 
-Array d8_compute_ndip(Array &d8)
+Array d8_compute_ndip(const Array &d8)
 {
   Array nidp = Array(d8.shape); // output
 
@@ -47,7 +47,7 @@ Array d8_compute_ndip(Array &d8)
   return nidp;
 }
 
-Array flow_accumulation_d8(Array &z)
+Array flow_accumulation_d8(const Array &z)
 {
   Array facc = constant(z.shape, 1.f);
   Array d8 = flow_direction_d8(z);
@@ -98,7 +98,7 @@ Array flow_accumulation_d8(Array &z)
   return facc;
 }
 
-Array flow_direction_d8(Array &z)
+Array flow_direction_d8(const Array &z)
 {
   Array d8 = Array(z.shape);
 

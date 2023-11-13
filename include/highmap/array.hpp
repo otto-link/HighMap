@@ -13,6 +13,7 @@
  *
  */
 #pragma once
+typedef unsigned int uint;
 
 #include <algorithm>
 #include <cmath>
@@ -436,6 +437,16 @@ public:
    * @return Vec3<float> Normal vector (3 components).
    */
   Vec3<float> get_normal_at(int i, int j) const;
+
+  /**
+   * @brief Return normalization coefficients (a, b) so that a * array + b is in
+   * [vmin, vmax]
+   *
+   * @param vmin Lower bound.
+   * @param vmax Upper bound.
+   * @return Vec2<float> Coefficients (a, b)
+   */
+  Vec2<float> normalization_coeff(float vmin = 0.f, float vmax = 1.f);
 
   /**
    * @brief Return the array value at the location (x, y) near the index (i, j)

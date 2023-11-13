@@ -1,6 +1,7 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
+#include <cstdint>
 #include <vector>
 
 #include "macrologger.h"
@@ -38,22 +39,17 @@ std::vector<uint8_t> read_png_grayscale_8bit(std::string fname)
   int width = png_get_image_width(png, info);
   int height = png_get_image_height(png, info);
 
-  png_bytep row_pointers[height];
+  std::vector<png_bytep> row_pointers(height);
   for (int j = 0; j < height; j++)
     row_pointers[j] = (png_byte *)malloc(png_get_rowbytes(png, info));
-  png_read_image(png, row_pointers);
+  png_read_image(png, row_pointers.data());
 
   std::vector<uint8_t> img(width * height);
 
   for (int j = 0; j < height; j++)
-  {
-    png_bytep row = row_pointers[j];
     for (int i = 0; i < width; i++)
-      img[j * width + i] = (uint8_t)row[i];
-  }
+      img[j * width + i] = (uint8_t)row_pointers[j][i];
 
-  for (int j = 0; j < height; j++)
-    delete row_pointers[j];
   png_destroy_read_struct(&png, &info, nullptr);
   fclose(fp);
 
@@ -88,23 +84,21 @@ std::vector<uint16_t> read_png_grayscale_16bit(std::string fname)
   int width = png_get_image_width(png, info);
   int height = png_get_image_height(png, info);
 
-  png_bytep row_pointers[height];
+  std::vector<png_bytep> row_pointers(height);
   for (int j = 0; j < height; j++)
     row_pointers[j] = (png_byte *)malloc(png_get_rowbytes(png, info));
-  png_read_image(png, row_pointers);
+  png_read_image(png, row_pointers.data());
 
   // convert data
   std::vector<uint16_t> img(width * height);
 
   for (int j = 0; j < height; j++)
   {
-    png_bytep row = row_pointers[j];
     for (int i = 0; i < 2 * width; i += 2)
-      img[j * width + i / 2] = (uint16_t)((row[i] << 8) | row[i + 1]);
+      img[j * width + i / 2] = (uint16_t)((row_pointers[j][i] << 8) |
+                                          row_pointers[j][i + 1]);
   }
 
-  for (int j = 0; j < height; j++)
-    delete row_pointers[j];
   png_destroy_read_struct(&png, &info, nullptr);
   fclose(fp);
 
@@ -208,9 +202,7 @@ void write_png_grayscale_8bit(std::string           fname,
   int        height = shape.y;
   png_bytep *row_pointers = new png_bytep[height];
   for (int i = 0; i < height; ++i)
-  {
     row_pointers[i] = (png_bytep)&img[i * width];
-  }
 
   // Write the image data
   png_write_image(png, row_pointers);
@@ -351,9 +343,7 @@ void write_png_rgb_8bit(std::string           fname,
   int        height = shape.y;
   png_bytep *row_pointers = new png_bytep[height];
   for (int i = 0; i < height; ++i)
-  {
     row_pointers[i] = (png_bytep)&img[i * width * 3];
-  }
 
   // Write the image data
   png_write_image(png, row_pointers);
@@ -423,9 +413,7 @@ void write_png_rgb_16bit(std::string            fname,
   int        height = shape.y;
   png_bytep *row_pointers = new png_bytep[height];
   for (int i = 0; i < height; ++i)
-  {
     row_pointers[i] = (png_bytep)&img[i * width * 3];
-  }
 
   // Write the image data
   png_write_image(png, row_pointers);

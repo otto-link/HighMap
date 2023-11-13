@@ -25,7 +25,7 @@ namespace hmap
  * @return Array Number of neighbors with flow directions pointing to the
  * current cell.
  */
-Array d8_compute_ndip(Array &d8);
+Array d8_compute_ndip(const Array &d8);
 
 /**
  * @brief Return flow accumulation in each cell using the D8 flow direction
@@ -43,7 +43,7 @@ Array d8_compute_ndip(Array &d8);
  *
  * @see flow_direction_d8
  */
-Array flow_accumulation_d8(Array &z);
+Array flow_accumulation_d8(const Array &z);
 
 /**
  * @brief Return flow accumulation in each cell using the multiple flow
@@ -65,7 +65,7 @@ Array flow_accumulation_d8(Array &z);
  *
  * @see flow_direction_dinf, flow_accumulation_d8
  */
-Array flow_accumulation_dinf(Array &z, float talus_ref);
+Array flow_accumulation_dinf(const Array &z, float talus_ref);
 
 /**
  * @brief Return the direction of flow from each cell to its downslope neighbor
@@ -83,7 +83,7 @@ Array flow_accumulation_dinf(Array &z, float talus_ref);
  *
  * @see flow_accumulation_d8
  */
-Array flow_direction_d8(Array &z);
+Array flow_direction_d8(const Array &z);
 
 /**
  * @brief Return flow direction in each cell and for each directions using the
@@ -95,6 +95,6 @@ Array flow_direction_d8(Array &z);
  * maximum talus value of the heighmap can be used as a reference.
  * @return std::vector<Array> Weight for each flow directions at every cells.
  */
-std::vector<Array> flow_direction_dinf(Array &z, float talus_ref);
+std::vector<Array> flow_direction_dinf(const Array &z, float talus_ref);
 
 } // namespace hmap

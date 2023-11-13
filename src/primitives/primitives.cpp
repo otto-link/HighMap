@@ -56,6 +56,34 @@ Array base_elevation(Vec2<int>                       shape,
   return array;
 }
 
+Array biquad_pulse(Vec2<int>   shape,
+                   float       gain,
+                   Array      *p_noise_x,
+                   Array      *p_noise_y,
+                   Vec2<float> shift,
+                   Vec2<float> scale)
+{
+  Array z = Array(shape);
+
+  std::vector<float> x =
+      linspace(shift.x - 0.5f, shift.x + scale.x - 0.5f, shape.x, false);
+  std::vector<float> y =
+      linspace(shift.y - 0.5f, shift.y + scale.y - 0.5f, shape.y, false);
+
+  float gain_inv = 1.f / gain;
+
+  auto lambda = [&gain_inv](float x_, float y_)
+  {
+    float v = (x_ * x_ - 0.25f) * (y_ * y_ - 0.25f);
+    v = std::clamp(v, 0.f, 1.f);
+    return std::pow(v, gain_inv);
+  };
+
+  helper_get_noise(z, x, y, p_noise_x, p_noise_y, lambda);
+
+  return z;
+}
+
 Array bump(Vec2<int>   shape,
            float       gain,
            Array      *p_noise_x,

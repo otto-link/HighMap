@@ -16,6 +16,7 @@
 #include <functional>
 
 #include "highmap/array.hpp"
+#include "highmap/io.hpp"
 #include "highmap/vector.hpp"
 
 namespace hmap
@@ -296,8 +297,60 @@ public:
    *
    */
   void update_tile_parameters();
+};
 
-private:
+struct HeightMapRGB
+{
+  std::vector<HeightMap> rgb;
+  Vec2<int>              shape = {0, 0};
+
+  HeightMapRGB();
+
+  HeightMapRGB(HeightMap r, HeightMap g, HeightMap b);
+
+  void set_sto(Vec2<int> new_shape, Vec2<int> new_tiling, float new_overlap);
+
+  void colorize(HeightMap &h,
+                float      vmin,
+                float      vmax,
+                int        cmap,
+                bool       reverse = false);
+
+  void colorize(HeightMap                      &h,
+                float                           vmin,
+                float                           vmax,
+                std::vector<std::vector<float>> colormap_colors,
+                bool                            reverse = false);
+
+  void normalize();
+
+  std::vector<uint8_t> to_img_8bit(Vec2<int> shape_img = {0, 0});
+
+  void to_png_16bit(std::string fname);
+
+  friend HeightMapRGB mix_heightmap_rgb(HeightMapRGB &rgb1,
+                                        HeightMapRGB &rgb2,
+                                        HeightMap    &t);
+
+  friend HeightMapRGB mix_heightmap_rgb(HeightMapRGB &rgb1,
+                                        HeightMapRGB &rgb2,
+                                        float         t);
+
+  friend HeightMapRGB mix_heightmap_rgb_ryb(HeightMapRGB &rgb1,
+                                            HeightMapRGB &rgb2,
+                                            HeightMap    &t);
+
+  friend HeightMapRGB mix_heightmap_rgb_ryb(HeightMapRGB &rgb1,
+                                            HeightMapRGB &rgb2,
+                                            float         t);
+
+  friend HeightMapRGB mix_heightmap_rgb_sqrt(HeightMapRGB &rgb1,
+                                             HeightMapRGB &rgb2,
+                                             HeightMap    &t);
+
+  friend HeightMapRGB mix_heightmap_rgb_sqrt(HeightMapRGB &rgb1,
+                                             HeightMapRGB &rgb2,
+                                             float         t);
 };
 
 // shape, shift, scale, noise_x, noise_y

@@ -1,0 +1,2 @@
+add_executable(ex_select_pulse ex_select_pulse.cpp)
+target_link_libraries(ex_select_pulse highmap)

@@ -1,6 +1,4 @@
-#include "highmap/array.hpp"
-#include "highmap/io.hpp"
-#include "highmap/primitives.hpp"
+#include "highmap.hpp"
 
 int main(void)
 {
@@ -10,7 +8,6 @@ int main(void)
 
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
 
-  z.to_png("ex_colormaps0.png", hmap::cmap::blues);
   z.to_png("ex_colormaps1.png", hmap::cmap::bone);
   z.to_png("ex_colormaps2.png", hmap::cmap::gray);
   z.to_png("ex_colormaps3.png", hmap::cmap::hot);

@@ -71,6 +71,31 @@ Array base_elevation(Vec2<int>                       shape,
                      Vec2<float>                     scale = {1.f, 1.f});
 
 /**
+ * @brief Return a 'biquadratic pulse'.
+ *
+ * @param shape Array shape.
+ * @param gain Gain (the higher, the steeper).
+ * @param p_noise_x, p_noise_y Reference to the input noise array used for
+ * domain warping (NOT in pixels, with respect to a unit domain).
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a
+ * unit domain.
+ * @param scale Domain scaling, in [0, 1].
+ * @return Array Perlin billow noise.
+ *
+ * **Example**
+ * @include ex_biquad_pulse.cpp
+ *
+ * **Result**
+ * @image html ex_biquad_pulse.png
+ */
+Array biquad_pulse(Vec2<int>   shape,
+                   float       gain = 1.f,
+                   Array      *p_noise_x = nullptr,
+                   Array      *p_noise_y = nullptr,
+                   Vec2<float> shift = {0.f, 0.f},
+                   Vec2<float> scale = {1.f, 1.f});
+
+/**
  * @brief Return a bump.
  *
  * @param shape Array shape.

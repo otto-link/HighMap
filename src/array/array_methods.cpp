@@ -173,6 +173,18 @@ Vec3<float> Array::get_normal_at(int i, int j) const
   return normal;
 }
 
+Vec2<float> Array::normalization_coeff(float vmin, float vmax)
+{
+  float a = 0.f;
+  float b = 0.f;
+  if (vmin != vmax)
+  {
+    a = 1.f / (vmax - vmin);
+    b = -vmin / (vmax - vmin);
+  }
+  return Vec2<float>(a, b);
+}
+
 float Array::get_value_bilinear_at(int i, int j, float u, float v) const
 {
   float a10 = (*this)(i + 1, j) - (*this)(i, j);

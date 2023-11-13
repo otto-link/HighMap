@@ -30,7 +30,7 @@
 namespace hmap
 {
 
-Array flow_accumulation_dinf(Array &z, float talus_ref)
+Array flow_accumulation_dinf(const Array &z, float talus_ref)
 {
   const std::vector<int> di = DI;
   const std::vector<int> dj = DJ;
@@ -102,7 +102,7 @@ Array flow_accumulation_dinf(Array &z, float talus_ref)
   return facc;
 }
 
-std::vector<Array> flow_direction_dinf(Array &z, float talus_ref)
+std::vector<Array> flow_direction_dinf(const Array &z, float talus_ref)
 {
   const std::vector<int>   di = DI;
   const std::vector<int>   dj = DJ;

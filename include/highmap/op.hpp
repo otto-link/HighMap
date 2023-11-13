@@ -15,6 +15,13 @@
 #pragma once
 #include "highmap/geometry.hpp"
 
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#define M_PI_2 1.57079632679489661923
+#define M_SQRT2 1.41421356237309504880
+#define M_SQRT1_2 0.707106781186547524401
+#endif
+
 namespace hmap
 {
 
@@ -1748,6 +1755,41 @@ Array select_gradient_exp(const Array &array,
 Array select_gradient_inv(const Array &array,
                           float        talus_center,
                           float        talus_sigma);
+
+/**
+ * @brief Return an array filled with non-zero values where the input is in the
+ * interval [value - sigma, value + sigma]. Output array values have a cubic
+ * pulse distribution within this interval.
+ *
+ * @param array Input array.
+ * @param value Central value.
+ * @param sigma Pulse width.
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_select_pulse.cpp
+ *
+ * **Result**
+ * @image html ex_select_pulse.png
+ */
+Array select_pulse(const Array &array, float value, float sigma);
+
+/**
+ * @brief Return an array filled with a criterion based on the occurence of a
+ * river bed.
+ *
+ * @param array Input array.
+ * @param talus_ref Reference talus used to localy define the flow-partition.
+ * @param clipping_ratio Flow accumulation clipping ratio.
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_select_rivers.cpp
+ *
+ * **Result**
+ * @image html ex_select_rivers.png
+ */
+Array select_rivers(const Array &array, float talus_ref, float clipping_ratio);
 
 /**
  * @brief Return an array filled with 1 at the blending transition between two
