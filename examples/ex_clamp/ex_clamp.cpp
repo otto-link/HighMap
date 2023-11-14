@@ -17,5 +17,10 @@ int main(void)
   auto z3 = z;
   hmap::clamp_min_smooth(z3, -0.1f);
 
-  hmap::export_banner_png("ex_clamp.png", {z1, z2, z3}, hmap::cmap::viridis);
+  auto z4 = z;
+  hmap::clamp_smooth(z4, -0.1f, 0.1f);
+
+  hmap::export_banner_png("ex_clamp.png",
+                          {z1, z2, z3, z4},
+                          hmap::cmap::viridis);
 }

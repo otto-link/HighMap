@@ -316,6 +316,16 @@ void clamp_max_smooth(Array       &array,
                       float        k = 0.2f); ///< @overload
 
 /**
+ * @brief Clamp array values within a given interval with a smooth transition.
+ *
+ * @param array Input array.
+ * @param vmin Lower bound.
+ * @param vmax Upper bound.
+ * @param k Smoothing parameter in [0, 1].
+ */
+void clamp_smooth(Array &array, float vmin, float vmax, float k = 0.2f);
+
+/**
  * @brief Return the connected-component labelling of the array.
  *
  * See https://en.wikipedia.org/wiki/Connected-component_labeling.

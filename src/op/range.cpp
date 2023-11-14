@@ -154,6 +154,25 @@ void clamp_min_smooth(Array &array, const Array &vmin, float k)
                  lambda);
 }
 
+void clamp_smooth(Array &array, float vmin, float vmax, float k)
+{
+  auto lambda = [&k, &vmin, &vmax](float x)
+  {
+    // min smooth
+    float h = std::max(k - std::abs(x - vmin), 0.f) / k;
+    h = std::max(x, vmin) + std::pow(h, 3) * k / 6.f;
+
+    // max smooth
+    h = std::max(k - std::abs(x - vmax), 0.f) / k;
+    return std::min(x, vmax) - std::pow(h, 3) * k / 6.f;
+  };
+
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array.vector.begin(),
+                 lambda);
+}
+
 Array maximum(const Array &array1, const Array &array2)
 {
   Array array_out = Array(array1.shape);
