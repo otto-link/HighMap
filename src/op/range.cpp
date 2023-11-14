@@ -163,6 +163,7 @@ void clamp_smooth(Array &array, float vmin, float vmax, float k)
     h = std::max(x, vmin) + std::pow(h, 3) * k / 6.f;
 
     // max smooth
+    x = h;
     h = std::max(k - std::abs(x - vmax), 0.f) / k;
     return std::min(x, vmax) - std::pow(h, 3) * k / 6.f;
   };
