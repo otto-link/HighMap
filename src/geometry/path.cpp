@@ -28,7 +28,7 @@ void Path::bezier(float curvature_ratio, int edge_divisions)
     size_t kp1 = (k + 1) % this->get_npoints();
 
     // start point
-    Bezier::Point p1 = Bezier::Point(this->points[k].x, this->points[k].y);
+    bezier::Point p1 = bezier::Point(this->points[k].x, this->points[k].y);
 
     // control #1
     float x2 = (1.f - curvature_ratio) * this->points[k].x +
@@ -36,10 +36,10 @@ void Path::bezier(float curvature_ratio, int edge_divisions)
     float y2 = (1.f - curvature_ratio) * this->points[k].y +
                curvature_ratio * this->points[kp1].y;
 
-    Bezier::Point p2 = Bezier::Point(x2, y2);
+    bezier::Point p2 = bezier::Point(x2, y2);
 
     // control #2
-    Bezier::Point p3 = Bezier::Point();
+    bezier::Point p3 = bezier::Point();
 
     if ((k == this->get_npoints() - ks - 1) and (this->closed == false))
       p3 = p2;
@@ -60,20 +60,20 @@ void Path::bezier(float curvature_ratio, int edge_divisions)
                  (1.f - curvature_ratio) * this->points[kp1].y -
                  curvature_ratio * point_kp2.y;
 
-      p3 = Bezier::Point(x3, y3);
+      p3 = bezier::Point(x3, y3);
     }
 
     // end point
-    Bezier::Point p4 = Bezier::Point(this->points[kp1].x, this->points[kp1].y);
+    bezier::Point p4 = bezier::Point(this->points[kp1].x, this->points[kp1].y);
 
     // Bezier curve
-    std::vector<Bezier::Point> xy = {p1, p2, p3, p4};
-    Bezier::Bezier<3>          cubicBezier(xy);
+    std::vector<bezier::Point> xy = {p1, p2, p3, p4};
+    bezier::Bezier<3>          cubicBezier(xy);
 
     for (int i = 1; i < edge_divisions - 1; i++)
     {
       float         s = (float)i / (float)(edge_divisions - 1);
-      Bezier::Point p = cubicBezier.valueAt(s);
+      bezier::Point p = cubicBezier.valueAt(s);
 
       float v = (1. - s) * this->points[k].v + s * this->points[kp1].v;
       Point pc = Point(p.x, p.y, v);
