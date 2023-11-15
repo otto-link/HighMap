@@ -28,6 +28,8 @@ git submodule update --init --recursive
 
 ### Building
 
+#### Linux
+
 Build by making a build directory (i.e. `build/`), run `cmake` in that dir, and then use `make` to build the desired target.
 
 Example:
@@ -43,7 +45,20 @@ bin/./ex_fbm_perlin
 eog ex_fbm_perlin.png
 ```
 
+#### Windows
+
+Use for `PowerShell` to clone the repository (because Visual Studio won't clone the submodules) using `git` command lines (see above).
+
+Install the missing OpenSource dependencies using `vcpkg`:
+```
+vcpkg install eigen3 libpng boost-range boost-type-erasure boost-geometry glm
+```
+
+You should then be able to build the sources using Visual Studio.
+
 ### Usage examples
+
+ToDo.
 
 ### Documentation
 
