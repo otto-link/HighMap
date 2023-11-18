@@ -47,7 +47,7 @@ eog ex_fbm_perlin.png
 
 #### Windows
 
-Use for `PowerShell` to clone the repository (because Visual Studio won't clone the submodules) using `git` command lines (see above).
+Use `PowerShell` to clone the repository (because Visual Studio won't clone the submodules) using `git` command lines (see above).
 
 Install the missing OpenSource dependencies using `vcpkg`:
 ```
