@@ -429,6 +429,15 @@ void hydraulic_stream(Array &z,
                       int    ir = 1,
                       float  clipping_ratio = 10.f); ///< @overload
 
+void hydraulic_stream_log(Array &z,
+                          float  c_erosion,
+                          float  talus_ref,
+                          float  gamma,
+                          Array *p_bedrock = nullptr,
+                          Array *p_moisture_map = nullptr,
+                          Array *p_erosion_map = nullptr, // -> out
+                          int    ir = 1);
+
 /**
  * @brief Apply hydraulic erosion using the 'virtual pipes' algorithm.
  *

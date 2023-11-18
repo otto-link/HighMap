@@ -32,8 +32,20 @@ int main(void)
                          &erosion_map,
                          ir);
 
+  // log scale
+  auto  z3 = z;
+  float gamma = 0.5f;
+
+  hmap::hydraulic_stream_log(z3,
+                             c_erosion,
+                             talus_ref,
+                             gamma,
+                             &z_bedrock,
+                             &moisture_map,
+                             &erosion_map);
+
   hmap::export_banner_png("ex_hydraulic_stream0.png",
-                          {z0, z1, z2},
+                          {z0, z1, z2, z3},
                           hmap::cmap::terrain,
                           true);
 
