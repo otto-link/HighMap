@@ -194,7 +194,7 @@ public:
    *
    * @return size_t Number of points.
    */
-  size_t get_npoints()
+  size_t get_npoints() const
   {
     return this->points.size();
   }
@@ -204,7 +204,7 @@ public:
    *
    * @return std::vector<float> Values
    */
-  std::vector<float> get_values()
+  std::vector<float> get_values() const
   {
     std::vector<float> v(this->get_npoints());
     for (size_t i = 0; i < this->get_npoints(); i++)
@@ -231,7 +231,7 @@ public:
    *
    * @return std::vector<float> `x` values.
    */
-  std::vector<float> get_x()
+  std::vector<float> get_x() const
   {
     std::vector<float> x(this->get_npoints());
     for (size_t i = 0; i < this->get_npoints(); i++)
@@ -244,7 +244,7 @@ public:
    *
    * @return std::vector<float> Coordinates.
    */
-  std::vector<float> get_xy()
+  std::vector<float> get_xy() const
   {
     std::vector<float> xy(2 * this->get_npoints());
     for (size_t i = 0; i < this->get_npoints(); i++)
@@ -260,7 +260,7 @@ public:
    *
    * @return std::vector<float> `y` values.
    */
-  std::vector<float> get_y()
+  std::vector<float> get_y() const
   {
     std::vector<float> y(this->get_npoints());
     for (size_t i = 0; i < this->get_npoints(); i++)
