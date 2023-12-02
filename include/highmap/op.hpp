@@ -451,6 +451,7 @@ Array convolve2d_svd_rotated_kernel(const Array &z,
                                     const Array &kernel,
                                     int          rank = 3,
                                     int          n_rotations = 6,
+                                    float        density = 1.f,
                                     uint         seed = 1);
 
 /**
