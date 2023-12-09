@@ -38,9 +38,19 @@ Array abs(const Array &array);
  *
  * @param array Input array.
  * @param k Smoothing coefficient.
+ * @param vshift Reference value for the "zero" value of the absolute value
+ * (default is zero).
  * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_abs_smooth.cpp
+ *
+ * **Result**
+ * @image html ex_abs_smooth.png
  */
-Array abs_smooth(const Array &array, float mu);
+Array abs_smooth(const Array &array, float mu, const Array &vshift);
+Array abs_smooth(const Array &array, float mu, float vshift); ///< @overload
+Array abs_smooth(const Array &array, float mu);               ///< @overload
 
 /**
  * @brief Apply the almost unit identity function.
@@ -66,7 +76,6 @@ void almost_unit_identity(Array &array);
  * @param shift Noise shift {xs, ys} for each directions, with respect to a
  * unit domain.
  * @param scale Domain scaling, in [0, 1].
- *
  *
  * **Example**
  * @include ex_alter_elevation.cpp
@@ -1639,6 +1648,25 @@ Array select_blob_log(const Array &array, int ir);
  * @image html ex_select_cavities.png
  */
 Array select_cavities(const Array &array, int ir, bool concave = true);
+
+/**
+ * @brief
+ *
+ * @param array
+ * @param vmax
+ * @param gradient_scaling
+ * @return Array
+ *
+ * **Example**
+ * @include ex_select_elevation_slope.cpp
+ *
+ * **Result**
+ * @image html ex_select_elevation_slope0.png
+ * @image html ex_select_elevation_slope1.png
+ */
+Array select_elevation_slope(const Array &array,
+                             float        vmax = 0.5f,
+                             float        gradient_scaling = 10.f);
 
 /**
  * @brief Return an array with elements equal to 1 where input elements are

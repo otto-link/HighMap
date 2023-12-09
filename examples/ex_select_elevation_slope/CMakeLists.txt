@@ -1,0 +1,2 @@
+add_executable(ex_select_elevation_slope ex_select_elevation_slope.cpp)
+target_link_libraries(ex_select_elevation_slope highmap)
