@@ -1,0 +1,2 @@
+add_executable(ex_abs_smooth ex_abs_smooth.cpp)
+target_link_libraries(ex_abs_smooth highmap)

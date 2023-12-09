@@ -30,6 +30,37 @@ Array abs_smooth(const Array &array, float k)
   return array_out;
 }
 
+Array abs_smooth(const Array &array, float k, float vshift)
+{
+  Array array_out = Array(array.shape);
+  float k2 = k * k;
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array_out.vector.begin(),
+                 [&k2, &vshift](float v)
+                 {
+                   float vbis = v - vshift;
+                   return vshift + std::sqrt(vbis * vbis + k2);
+                 });
+  return array_out;
+}
+
+Array abs_smooth(const Array &array, float k, const Array &vshift)
+{
+  Array array_out = Array(array.shape);
+  float k2 = k * k;
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 vshift.vector.begin(),
+                 array_out.vector.begin(),
+                 [&k2](float v, float s)
+                 {
+                   float vbis = v - s;
+                   return s + std::sqrt(vbis * vbis + k2);
+                 });
+  return array_out;
+}
+
 Array atan(const Array &array)
 {
   Array array_out = Array(array.shape);
