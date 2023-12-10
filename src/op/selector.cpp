@@ -40,10 +40,7 @@ Array select_elevation_slope(const Array &array,
 {
   Array c = array;
   Array da = gradient_norm(array);
-
   c = array - vmax - da * gradient_scaling;
-  clamp_max(c, 0.f);
-
   return c;
 }
 
