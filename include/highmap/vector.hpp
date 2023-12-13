@@ -82,6 +82,11 @@ template <typename T> struct Vec2
     out.y = this->y - other_vec.y;
     return out;
   }
+
+  friend float dot(const Vec2 v1, const Vec2 v2)
+  {
+    return v1.x * v2.x + v1.y * v2.y;
+  }
 };
 
 /**
