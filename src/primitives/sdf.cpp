@@ -76,6 +76,37 @@ Array sdf_circle(Vec2<int>   shape,
                      scale);
 }
 
+Array sdf_path(Vec2<int>          shape,
+               std::vector<float> xp,
+               std::vector<float> yp,
+               Array             *p_noise_x,
+               Array             *p_noise_y,
+               Vec2<float>        shift,
+               Vec2<float>        scale)
+{
+  auto distance_fct = [&xp, &yp](float x, float y)
+  {
+    float d = x * xp[0] + y * yp[0];
+    for (size_t i = 0, j = xp.size() - 1; i < xp.size() - 1; j = i, i++)
+    {
+      Vec2<float> e = {xp[j] - xp[i], yp[j] - yp[i]};
+      Vec2<float> w = {x - xp[i], y - yp[i]};
+      float       coeff = std::clamp(dot(w, e) / dot(e, e), 0.f, 1.f);
+      Vec2<float> b = {w.x - e.x * coeff, w.y - e.y * coeff};
+      d = std::min(d, dot(b, b));
+    }
+    return std::sqrt(d);
+  };
+
+  return sdf_generic(shape,
+                     distance_fct,
+                     p_noise_x,
+                     p_noise_y,
+                     Vec2<float>(0.f, 0.f), // center at bottom-left
+                     shift,
+                     scale);
+}
+
 Array sdf_polygon(Vec2<int>          shape,
                   std::vector<float> xp,
                   std::vector<float> yp,
