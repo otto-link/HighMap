@@ -231,7 +231,7 @@ public:
    *
    * @return std::vector<float> `x` values.
    */
-  std::vector<float> get_x() const
+  virtual std::vector<float> get_x() const
   {
     std::vector<float> x(this->get_npoints());
     for (size_t i = 0; i < this->get_npoints(); i++)
@@ -244,7 +244,7 @@ public:
    *
    * @return std::vector<float> Coordinates.
    */
-  std::vector<float> get_xy() const
+  virtual std::vector<float> get_xy() const
   {
     std::vector<float> xy(2 * this->get_npoints());
     for (size_t i = 0; i < this->get_npoints(); i++)
@@ -260,7 +260,7 @@ public:
    *
    * @return std::vector<float> `y` values.
    */
-  std::vector<float> get_y() const
+  virtual std::vector<float> get_y() const
   {
     std::vector<float> y(this->get_npoints());
     for (size_t i = 0; i < this->get_npoints(); i++)
@@ -686,6 +686,60 @@ public:
    */
   std::vector<float> get_cumulative_distance();
 
+  /**
+   * @brief Get the `x` of the points.
+   *
+   * @return std::vector<float> `x` values.
+   */
+  std::vector<float> get_x() const
+  {
+    std::vector<float> x(this->get_npoints());
+    for (size_t i = 0; i < this->get_npoints(); i++)
+      x[i] = this->points[i].x;
+
+    if (this->closed && this->get_npoints() > 0)
+      x.push_back(this->points[0].x);
+    return x;
+  }
+
+  /** Get the points coordinates of a single vector (x0, y0, x1, y1,...).
+   * @brief Get the xy object
+   *
+   * @return std::vector<float> Coordinates.
+   */
+  std::vector<float> get_xy() const
+  {
+    std::vector<float> xy(2 * this->get_npoints());
+    for (size_t i = 0; i < this->get_npoints(); i++)
+    {
+      xy[2 * i] = this->points[i].x;
+      xy[2 * i + 1] = this->points[i].y;
+    }
+
+    if (this->closed && this->get_npoints() > 0)
+    {
+      xy.push_back(this->points[0].x);
+      xy.push_back(this->points[0].y);
+    }
+    return xy;
+  }
+
+  /**
+   * @brief Get the `y` of the points.
+   *
+   * @return std::vector<float> `y` values.
+   */
+  std::vector<float> get_y() const
+  {
+    std::vector<float> y(this->get_npoints());
+    for (size_t i = 0; i < this->get_npoints(); i++)
+      y[i] = this->points[i].y;
+
+    if (this->closed && this->get_npoints() > 0)
+      y.push_back(this->points[0].y);
+    return y;
+  }
+
   //----------------------------------------
   // methods
   //----------------------------------------
@@ -775,7 +829,6 @@ public:
    * @param transition_length_ratio Transition to preserve starting and ending
    * parts of the curve.
    *
-   *
    * **Example**
    * @include ex_path_meanderize.cpp
    *
@@ -822,13 +875,37 @@ public:
   void subsample(int step);
 
   /**
-   * @brief Project cloud points to an array.
+   * @brief Project path points to an array.
    *
    * @param array Input array.
    * @param bbox Bounding box of the array.
    * @param filled Activate flood filling of the contour.
    */
   void to_array(Array &array, Vec4<float> bbox, bool filled = false);
+
+  /**
+   * @brief Project path points to an array using a signed distance function.
+   *
+   * @param shape Output array shape.
+   * @param bbox Bounding box.
+   * @param width Mountain shape width.
+   * @param decay Elevation decay away from the path.
+   * @param p_noise_x, p_noise_y Reference to the input noise array used for
+   * domain warping (NOT in pixels, with respect to a unit domain).
+   * @return Array Output array.
+   *
+   * **Example**
+   * @include ex_path_to_array_moutain_range.cpp
+   *
+   * **Result**
+   * @image html ex_path_to_array_moutain_range.png
+   */
+  Array to_array_mountain_range(Vec2<int>   shape,
+                                Vec4<float> bbox,
+                                float       width = 0.1f,
+                                float       decay = 0.5f,
+                                Array      *p_noise_x = nullptr,
+                                Array      *p_noise_y = nullptr);
 
   /**
    * @brief Export path as png image file.

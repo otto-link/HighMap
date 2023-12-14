@@ -13,6 +13,7 @@
 #include "highmap/geometry.hpp"
 #include "highmap/io.hpp"
 #include "highmap/op.hpp"
+#include "highmap/primitives.hpp"
 
 namespace hmap
 {
@@ -455,6 +456,34 @@ void Path::to_array(Array &array, Vec4<float> bbox, bool filled)
     array = 1.f - array;
     array = maximum(array, array_bckp);
   }
+}
+
+Array Path::to_array_mountain_range(Vec2<int>   shape,
+                                    Vec4<float> bbox,
+                                    float       width,
+                                    float       decay,
+                                    Array      *p_noise_x,
+                                    Array      *p_noise_y)
+{
+  std::vector<float> x = this->get_x();
+  std::vector<float> y = this->get_y();
+
+  for (size_t k = 0; k < x.size(); k++)
+  {
+    x[k] = (x[k] - bbox.a) / (bbox.b - bbox.a);
+    y[k] = (y[k] - bbox.c) / (bbox.d - bbox.c);
+  }
+
+  Array z = -sdf_path(shape, x, y, p_noise_x, p_noise_y) + width;
+
+  z.infos();
+
+  Array zp = maximum(z, 0.f);
+  Array zm = minimum(z, 0.f);
+
+  zm = exp(-zm * zm * 0.5f / (decay * decay));
+
+  return zp + zm;
 }
 
 void Path::to_png(std::string fname, Vec2<int> shape)
