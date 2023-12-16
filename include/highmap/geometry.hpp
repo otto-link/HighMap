@@ -884,7 +884,8 @@ public:
   void to_array(Array &array, Vec4<float> bbox, bool filled = false);
 
   /**
-   * @brief Project path points to an array using a signed distance function.
+   * @brief Project path points to an array using a signed distance function and
+   * an exponential decrease.
    *
    * @param shape Output array shape.
    * @param bbox Bounding box.
@@ -895,17 +896,16 @@ public:
    * @return Array Output array.
    *
    * **Example**
-   * @include ex_path_to_array_moutain_range.cpp
+   * @include ex_path_to_array_gaussian.cpp
    *
    * **Result**
-   * @image html ex_path_to_array_moutain_range.png
+   * @image html ex_path_to_array_gaussian.png
    */
-  Array to_array_mountain_range(Vec2<int>   shape,
-                                Vec4<float> bbox,
-                                float       width = 0.1f,
-                                float       decay = 0.5f,
-                                Array      *p_noise_x = nullptr,
-                                Array      *p_noise_y = nullptr);
+  Array to_array_gaussian(Vec2<int>   shape,
+                          Vec4<float> bbox,
+                          float       width = 0.1f,
+                          Array      *p_noise_x = nullptr,
+                          Array      *p_noise_y = nullptr);
 
   /**
    * @brief Export path as png image file.

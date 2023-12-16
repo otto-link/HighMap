@@ -400,6 +400,7 @@ void fill(
 // shape, shift and scale
 void fill(HeightMap                                                &h,
           std::function<Array(Vec2<int>, Vec2<float>, Vec2<float>)> nullary_op);
+
 // shape only
 void fill(HeightMap &h, std::function<Array(Vec2<int>)> nullary_op);
 
@@ -407,6 +408,12 @@ void transform(HeightMap &h, std::function<void(Array &)> unary_op);
 
 void transform(HeightMap                                &h,
                std::function<void(Array &, Vec4<float>)> unary_op);
+
+void transform(
+    HeightMap                                                  &h,
+    HeightMap                                                  *p_noise_x,
+    HeightMap                                                  *p_noise_y,
+    std::function<void(Array &, Vec4<float>, Array *, Array *)> unary_op);
 
 void transform(HeightMap                                             &h,
                std::function<void(Array &, Vec2<float>, Vec2<float>)> unary_op);

@@ -1,0 +1,2 @@
+add_executable(ex_path_to_array_gaussian ex_path_to_array_gaussian.cpp)
+target_link_libraries(ex_path_to_array_gaussian highmap)

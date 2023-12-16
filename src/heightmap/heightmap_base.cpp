@@ -312,8 +312,10 @@ void HeightMap::update_tile_parameters()
       if (jt > 0)
         shift.y -= (float)delta_buffer_j / (float)this->shape.y;
 
-      Vec2<float> scale = Vec2((float)tile_shape.x / (float)this->shape.x,
-                               (float)tile_shape.y / (float)this->shape.y);
+      // remove endpoints
+      Vec2<float> scale = Vec2((float)(tile_shape.x - 1) / (float)this->shape.x,
+                               (float)(tile_shape.y - 1) /
+                                   (float)this->shape.y);
 
       Vec4<float> tile_bbox = Vec4(this->bbox.a + shift.x * lx,
                                    this->bbox.a + (shift.x + scale.x) * lx,

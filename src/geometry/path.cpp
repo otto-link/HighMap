@@ -458,12 +458,11 @@ void Path::to_array(Array &array, Vec4<float> bbox, bool filled)
   }
 }
 
-Array Path::to_array_mountain_range(Vec2<int>   shape,
-                                    Vec4<float> bbox,
-                                    float       width,
-                                    float       decay,
-                                    Array      *p_noise_x,
-                                    Array      *p_noise_y)
+Array Path::to_array_gaussian(Vec2<int>   shape,
+                              Vec4<float> bbox,
+                              float       width,
+                              Array      *p_noise_x,
+                              Array      *p_noise_y)
 {
   std::vector<float> x = this->get_x();
   std::vector<float> y = this->get_y();
@@ -474,16 +473,11 @@ Array Path::to_array_mountain_range(Vec2<int>   shape,
     y[k] = (y[k] - bbox.c) / (bbox.d - bbox.c);
   }
 
-  Array z = -sdf_path(shape, x, y, p_noise_x, p_noise_y) + width;
+  Array z = -sdf_path(shape, x, y, p_noise_x, p_noise_y);
 
-  z.infos();
+  z = exp(-0.5f * z * z / (width * width));
 
-  Array zp = maximum(z, 0.f);
-  Array zm = minimum(z, 0.f);
-
-  zm = exp(-zm * zm * 0.5f / (decay * decay));
-
-  return zp + zm;
+  return z;
 }
 
 void Path::to_png(std::string fname, Vec2<int> shape)
