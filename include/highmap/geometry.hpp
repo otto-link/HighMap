@@ -687,6 +687,22 @@ public:
   std::vector<float> get_cumulative_distance();
 
   /**
+   * @brief Get the values assigned of the points.
+   *
+   * @return std::vector<float> Values
+   */
+  std::vector<float> get_values() const
+  {
+    std::vector<float> v(this->get_npoints());
+    for (size_t i = 0; i < this->get_npoints(); i++)
+      v[i] = this->points[i].v;
+
+    if (this->closed && this->get_npoints() > 0)
+      v.push_back(this->points[0].v);
+    return v;
+  }
+
+  /**
    * @brief Get the `x` of the points.
    *
    * @return std::vector<float> `x` values.

@@ -87,7 +87,7 @@ Array sdf_path(Vec2<int>          shape,
   auto distance_fct = [&xp, &yp](float x, float y)
   {
     float d = std::numeric_limits<float>::max();
-    for (size_t i = 0, j = xp.size() - 2; i < xp.size(); j = i, i++)
+    for (size_t i = 0, j = 1; i < xp.size(); j = i, i++)
     {
       Vec2<float> e = {xp[j] - xp[i], yp[j] - yp[i]};
       Vec2<float> w = {x - xp[i], y - yp[i]};
