@@ -117,7 +117,7 @@ Array sdf_polygon(Vec2<int>          shape,
 {
   auto distance_fct = [&xp, &yp](float x, float y)
   {
-    float d = x * xp[0] + y * yp[0];
+    float d = std::numeric_limits<float>::max();
     float s = 1.f;
     for (size_t i = 0, j = xp.size() - 1; i < xp.size(); j = i, i++)
     {
@@ -155,7 +155,7 @@ Array sdf_polygon_annular(Vec2<int>          shape,
 {
   auto distance_fct = [&xp, &yp, &width](float x, float y)
   {
-    float d = x * xp[0] + y * yp[0];
+    float d = std::numeric_limits<float>::max();
     float s = 1.f;
     for (size_t i = 0, j = xp.size() - 1; i < xp.size(); j = i, i++)
     {

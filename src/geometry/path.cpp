@@ -480,6 +480,23 @@ Array Path::to_array_gaussian(Vec2<int>   shape,
   return z;
 }
 
+Array Path::to_array_polygon(Vec2<int>   shape,
+                             Vec4<float> bbox,
+                             Array      *p_noise_x,
+                             Array      *p_noise_y)
+{
+  std::vector<float> x = this->get_x();
+  std::vector<float> y = this->get_y();
+
+  for (size_t k = 0; k < x.size(); k++)
+  {
+    x[k] = (x[k] - bbox.a) / (bbox.b - bbox.a);
+    y[k] = (y[k] - bbox.c) / (bbox.d - bbox.c);
+  }
+
+  return -sdf_polygon(shape, x, y, p_noise_x, p_noise_y);
+}
+
 void Path::to_png(std::string fname, Vec2<int> shape)
 {
   Array array = Array(shape);

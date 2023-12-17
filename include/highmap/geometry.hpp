@@ -906,7 +906,6 @@ public:
    * @param shape Output array shape.
    * @param bbox Bounding box.
    * @param width Mountain shape width.
-   * @param decay Elevation decay away from the path.
    * @param p_noise_x, p_noise_y Reference to the input noise array used for
    * domain warping (NOT in pixels, with respect to a unit domain).
    * @return Array Output array.
@@ -922,6 +921,27 @@ public:
                           float       width = 0.1f,
                           Array      *p_noise_x = nullptr,
                           Array      *p_noise_y = nullptr);
+
+  /**
+   * @brief Project path points to an array using a signed distance function
+   * assuming the path is a closed polygon.
+   *
+   * @param shape Output array shape.
+   * @param bbox Bounding box.
+   * @param p_noise_x, p_noise_y Reference to the input noise array used for
+   * domain warping (NOT in pixels, with respect to a unit domain).
+   * @return Array Output array.
+   *
+   * **Example**
+   * @include ex_path_to_array_polygon.cpp
+   *
+   * **Result**
+   * @image html ex_path_to_array_polygon.png
+   */
+  Array to_array_polygon(Vec2<int>   shape,
+                         Vec4<float> bbox,
+                         Array      *p_noise_x = nullptr,
+                         Array      *p_noise_y = nullptr);
 
   /**
    * @brief Export path as png image file.
