@@ -2278,6 +2278,44 @@ void warp_fbm(Array      &array,
               Vec2<float> shift = {0.f, 0.f});
 
 /**
+ * @brief
+ *
+ * @param array Input array.
+ * @param wrinkle_amplitude Effect amplitude.
+ * @param p_mask Filter mask, expected in [0, 1].
+ * @param displacement_amplitude Drives wrinkles primitive displacement.
+ * @param ir Smooth filter radius.
+ * @param kw Underlying primitive wavenumber.
+ * @param seed Underlying primitive random seed number.
+ * @param octaves Underlying primitive number of octaves.
+ * @param weight Underlying primitive weight.
+ *
+ * **Example**
+ * @include ex_wrinkle.png
+ *
+ * **Result**
+ * @image html ex_wrinkle.cpp
+ */
+void wrinkle(Array &array,
+             float  wrinkle_amplitude,
+             Array *p_mask,
+             float  displacement_amplitude = 1.f,
+             int    ir = 0,
+             float  kw = 2.f,
+             uint   seed = 1,
+             int    octaves = 8,
+             float  weight = 0.7f);
+
+void wrinkle(Array &array,
+             float  wrinkle_amplitude,
+             float  displacement_amplitude = 1.f,
+             int    ir = 0,
+             float  kw = 2.f,
+             uint   seed = 1,
+             int    octaves = 8,
+             float  weight = 0.7f); ///< @overload
+
+/**
  * @brief Fill values at the borders (i = 0, j = 0, ...) with zeros.
  *
  * @param array Input array.
