@@ -494,7 +494,8 @@ Array Path::to_array_polygon(Vec2<int>   shape,
     y[k] = (y[k] - bbox.c) / (bbox.d - bbox.c);
   }
 
-  return -sdf_polygon(shape, x, y, p_noise_x, p_noise_y);
+  Array z = -sdf_polygon(shape, x, y, p_noise_x, p_noise_y);
+  return z;
 }
 
 void Path::to_png(std::string fname, Vec2<int> shape)
