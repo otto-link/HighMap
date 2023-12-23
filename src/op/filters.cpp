@@ -850,6 +850,10 @@ void wrinkle(Array &array,
              float  weight)
 {
   Array dr = displacement_amplitude * array;
+
+  if (ir > 0)
+    smooth_cpulse(dr, ir);
+
   Array w = fbm_simplex(array.shape,
                         Vec2<float>(kw, kw),
                         seed,
@@ -859,8 +863,6 @@ void wrinkle(Array &array,
                         2.f,
                         &dr,
                         &dr);
-  if (ir > 0)
-    smooth_cpulse(array, ir);
 
   array += wrinkle_amplitude * gradient_norm(w);
 }
