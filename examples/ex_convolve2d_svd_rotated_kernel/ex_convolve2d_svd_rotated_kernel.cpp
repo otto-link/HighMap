@@ -15,14 +15,10 @@ int main(void)
 
   kernel.normalize();
 
-  int   rank = 4;
-  int   n_rotations = 6;
-  float density = 0.1f;
-  auto  zs = hmap::convolve2d_svd_rotated_kernel(z,
-                                                kernel,
-                                                rank,
-                                                n_rotations,
-                                                density);
+  int rank = 4;
+  int n_rotations = 6;
+
+  auto zs = hmap::convolve2d_svd_rotated_kernel(z, kernel, rank, n_rotations);
   hmap::remap(zs);
 
   hmap::export_banner_png("ex_convolve2d_svd_rotated_kernel.png",
