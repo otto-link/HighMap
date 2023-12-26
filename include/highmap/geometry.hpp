@@ -920,7 +920,9 @@ public:
                           Vec4<float> bbox,
                           float       width = 0.1f,
                           Array      *p_noise_x = nullptr,
-                          Array      *p_noise_y = nullptr);
+                          Array      *p_noise_y = nullptr,
+                          Vec2<float> shift = {0.f, 0.f},
+                          Vec2<float> scale = {1.f, 1.f});
 
   /**
    * @brief Project path points to an array using a signed distance function
@@ -941,7 +943,9 @@ public:
   Array to_array_polygon(Vec2<int>   shape,
                          Vec4<float> bbox,
                          Array      *p_noise_x = nullptr,
-                         Array      *p_noise_y = nullptr);
+                         Array      *p_noise_y = nullptr,
+                         Vec2<float> shift = {0.f, 0.f},
+                         Vec2<float> scale = {1.f, 1.f});
 
   /**
    * @brief Export path as png image file.

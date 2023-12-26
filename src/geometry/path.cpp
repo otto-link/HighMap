@@ -462,7 +462,9 @@ Array Path::to_array_gaussian(Vec2<int>   shape,
                               Vec4<float> bbox,
                               float       width,
                               Array      *p_noise_x,
-                              Array      *p_noise_y)
+                              Array      *p_noise_y,
+                              Vec2<float> shift,
+                              Vec2<float> scale)
 {
   std::vector<float> x = this->get_x();
   std::vector<float> y = this->get_y();
@@ -473,7 +475,7 @@ Array Path::to_array_gaussian(Vec2<int>   shape,
     y[k] = (y[k] - bbox.c) / (bbox.d - bbox.c);
   }
 
-  Array z = -sdf_path(shape, x, y, p_noise_x, p_noise_y);
+  Array z = -sdf_path(shape, x, y, p_noise_x, p_noise_y, shift, scale);
 
   z = exp(-0.5f * z * z / (width * width));
 
@@ -483,7 +485,9 @@ Array Path::to_array_gaussian(Vec2<int>   shape,
 Array Path::to_array_polygon(Vec2<int>   shape,
                              Vec4<float> bbox,
                              Array      *p_noise_x,
-                             Array      *p_noise_y)
+                             Array      *p_noise_y,
+                             Vec2<float> shift,
+                             Vec2<float> scale)
 {
   std::vector<float> x = this->get_x();
   std::vector<float> y = this->get_y();
@@ -494,7 +498,7 @@ Array Path::to_array_polygon(Vec2<int>   shape,
     y[k] = (y[k] - bbox.c) / (bbox.d - bbox.c);
   }
 
-  Array z = -sdf_polygon(shape, x, y, p_noise_x, p_noise_y);
+  Array z = -sdf_polygon(shape, x, y, p_noise_x, p_noise_y, shift, scale);
   return z;
 }
 
