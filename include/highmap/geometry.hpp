@@ -947,11 +947,30 @@ public:
                          Vec2<float> shift = {0.f, 0.f},
                          Vec2<float> scale = {1.f, 1.f});
 
+  /**
+   * @brief Project path points to an array using a signed distance function to
+   * generate a mountain range-like heightmap.
+   *
+   * @param shape Output array shape.
+   * @param bbox Bounding box.
+   * @param aspect_ratio Mountain range aspect ratio (width / height).
+   * @param p_noise_x, p_noise_y Reference to the input noise array used for
+   * domain warping (NOT in pixels, with respect to a unit domain).
+   * @return Array Output array.
+   *
+   * **Example**
+   * @include ex_path_to_array_range.cpp
+   *
+   * **Result**
+   * @image html ex_path_to_array_range.png
+   */
   Array to_array_range(Vec2<int>   shape,
                        Vec4<float> bbox,
                        float       aspect_ratio,
                        Array      *p_noise_x = nullptr,
-                       Array      *p_noise_y = nullptr);
+                       Array      *p_noise_y = nullptr,
+                       Vec2<float> shift = {0.f, 0.f},
+                       Vec2<float> scale = {1.f, 1.f});
 
   /**
    * @brief Export path as png image file.

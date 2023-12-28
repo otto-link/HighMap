@@ -506,7 +506,9 @@ Array Path::to_array_range(Vec2<int>   shape,
                            Vec4<float> bbox,
                            float       aspect_ratio,
                            Array      *p_noise_x,
-                           Array      *p_noise_y)
+                           Array      *p_noise_y,
+                           Vec2<float> shift,
+                           Vec2<float> scale)
 {
   // build up a path encompassing the original path, distance between
   // the points of this "hull" path and the points of the input path
@@ -568,7 +570,8 @@ Array Path::to_array_range(Vec2<int>   shape,
 
   path_hull.to_array(z, bbox);
 
-  z = path_hull.to_array_polygon(shape, bbox, p_noise_x, p_noise_y);
+  z = path_hull
+          .to_array_polygon(shape, bbox, p_noise_x, p_noise_y, shift, scale);
 
   return z;
 }
