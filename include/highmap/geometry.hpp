@@ -947,6 +947,12 @@ public:
                          Vec2<float> shift = {0.f, 0.f},
                          Vec2<float> scale = {1.f, 1.f});
 
+  Array to_array_range(Vec2<int>   shape,
+                       Vec4<float> bbox,
+                       float       aspect_ratio,
+                       Array      *p_noise_x = nullptr,
+                       Array      *p_noise_y = nullptr);
+
   /**
    * @brief Export path as png image file.
    *

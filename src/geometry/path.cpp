@@ -502,6 +502,77 @@ Array Path::to_array_polygon(Vec2<int>   shape,
   return z;
 }
 
+Array Path::to_array_range(Vec2<int>   shape,
+                           Vec4<float> bbox,
+                           float       aspect_ratio,
+                           Array      *p_noise_x,
+                           Array      *p_noise_y)
+{
+  // build up a path encompassing the original path, distance between
+  // the points of this "hull" path and the points of the input path
+  // is driven by the value at the points.
+  Path path_hull = Path();
+
+  if (this->get_npoints() > 0)
+  {
+
+    // new points are orthognal to the path
+    Path ph1 = Path();
+    Path ph2 = Path();
+
+    // but start point is in the alignment of the path
+    {
+      int   k = 0;
+      float alpha = angle(this->points[k + 1], this->points[k]);
+      float dx = aspect_ratio * this->points[k].v * std::cos(alpha);
+      float dy = aspect_ratio * this->points[k].v * std::sin(alpha);
+      ph1.add_point(Point(this->points[k].x + dx, this->points[k].y + dy, 1.f));
+    }
+
+    for (size_t k = 0; k < this->get_npoints(); k++)
+    {
+      float alpha;
+      if (k == 0)
+        alpha = angle(this->points[k + 1], this->points[k]) + M_PI_2;
+      else if (k == this->get_npoints() - 1)
+        alpha = angle(this->points[k], this->points[k - 1]) + M_PI_2;
+      else
+        alpha = angle(this->points[k + 1], this->points[k - 1]) + M_PI_2;
+
+      float dx = aspect_ratio * this->points[k].v * std::cos(alpha);
+      float dy = aspect_ratio * this->points[k].v * std::sin(alpha);
+
+      ph1.add_point(Point(this->points[k].x + dx, this->points[k].y + dy, 1.f));
+      ph2.add_point(
+          Point(this->points[k].x - dx, this->points[k].y - dy, 0.7f));
+    }
+
+    // add end points in the alignment of the path
+    {
+      int   k = this->get_npoints() - 1;
+      float alpha = angle(this->points[k - 1], this->points[k]);
+      float dx = aspect_ratio * this->points[k].v * std::cos(alpha);
+      float dy = aspect_ratio * this->points[k].v * std::sin(alpha);
+      ph2.add_point(Point(this->points[k].x + dx, this->points[k].y + dy, 1.f));
+    }
+
+    // concatenate everything
+    for (size_t k = 0; k < ph1.get_npoints(); k++)
+      path_hull.add_point(ph1.points[k]);
+
+    for (size_t k = 0; k < ph2.get_npoints(); k++)
+      path_hull.add_point(ph2.points[ph2.get_npoints() - 1 - k]);
+  }
+
+  Array z = Array(shape);
+
+  path_hull.to_array(z, bbox);
+
+  z = path_hull.to_array_polygon(shape, bbox, p_noise_x, p_noise_y);
+
+  return z;
+}
+
 void Path::to_png(std::string fname, Vec2<int> shape)
 {
   Array array = Array(shape);
