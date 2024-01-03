@@ -2,12 +2,12 @@
 
 #include <cassert>
 
-Point2D CatmullRomSpline(const Point2D& p0, const Point2D& p1, const Point2D& p2, const Point2D& p3, double t)
+Point2D CatmullRomSpline(const Point2D& p0, const Point2D& p1, const Point2D& p2, const Point2D& p3, float t)
 {
-	const double t0 = 0.0;
-	const double t1 = dist(p0, p1) + t0;
-	const double t2 = dist(p1, p2) + t1;
-	const double t3 = dist(p2, p3) + t2;
+	const float t0 = 0.f;
+	const float t1 = dist(p0, p1) + t0;
+	const float t2 = dist(p1, p2) + t1;
+	const float t3 = dist(p2, p3) + t2;
 
 	assert(t0 != t1);
 	assert(t0 != t2);
@@ -25,12 +25,12 @@ Point2D CatmullRomSpline(const Point2D& p0, const Point2D& p1, const Point2D& p2
 	return b1 * ((t2 - t) / (t2 - t1)) + b2 * ((t - t1) / (t2 - t1));
 }
 
-Point3D CatmullRomSpline(const Point3D& p0, const Point3D& p1, const Point3D& p2, const Point3D& p3, double t)
+Point3D CatmullRomSpline(const Point3D& p0, const Point3D& p1, const Point3D& p2, const Point3D& p3, float t)
 {
-	const double t0 = 0.0;
-	const double t1 = dist(p0, p1) + t0;
-	const double t2 = dist(p1, p2) + t1;
-	const double t3 = dist(p2, p3) + t2;
+	const float t0 = 0.f;
+	const float t1 = dist(p0, p1) + t0;
+	const float t2 = dist(p1, p2) + t1;
+	const float t3 = dist(p2, p3) + t2;
 
 	assert(t0 != t1);
 	assert(t0 != t2);
@@ -48,12 +48,12 @@ Point3D CatmullRomSpline(const Point3D& p0, const Point3D& p1, const Point3D& p2
 	return b1 * ((t2 - t) / (t2 - t1)) + b2 * ((t - t1) / (t2 - t1));
 }
 
-Point2D SubdivideCatmullRomSpline(const Point2D& p0, const Point2D& p1, const Point2D& p2, const Point2D& p3, double x)
+Point2D SubdivideCatmullRomSpline(const Point2D& p0, const Point2D& p1, const Point2D& p2, const Point2D& p3, float x)
 {
-	const double t0 = 0.0;
-	const double t1 = dist(p0, p1) + t0;
-	const double t2 = dist(p1, p2) + t1;
-	const double t3 = dist(p2, p3) + t2;
+	const float t0 = 0.f;
+	const float t1 = dist(p0, p1) + t0;
+	const float t2 = dist(p1, p2) + t1;
+	const float t3 = dist(p2, p3) + t2;
 
 	assert(t0 != t1);
 	assert(t0 != t2);
@@ -61,7 +61,7 @@ Point2D SubdivideCatmullRomSpline(const Point2D& p0, const Point2D& p1, const Po
 	assert(t2 != t3);
 
 	// Evaluate the Spline between p1 and p2
-	const double t = lerp(t1, t2, x);
+	const float t = lerp(t1, t2, x);
 
 	const Point2D a1 = p0 * ((t1 - t) / (t1 - t0)) + p1 * ((t - t0) / (t1 - t0));
 	const Point2D a2 = p1 * ((t2 - t) / (t2 - t1)) + p2 * ((t - t1) / (t2 - t1));
@@ -73,12 +73,12 @@ Point2D SubdivideCatmullRomSpline(const Point2D& p0, const Point2D& p1, const Po
 	return b1 * ((t2 - t) / (t2 - t1)) + b2 * ((t - t1) / (t2 - t1));
 }
 
-Point3D SubdivideCatmullRomSpline(const Point3D& p0, const Point3D& p1, const Point3D& p2, const Point3D& p3, double x)
+Point3D SubdivideCatmullRomSpline(const Point3D& p0, const Point3D& p1, const Point3D& p2, const Point3D& p3, float x)
 {
-	const double t0 = 0.0;
-	const double t1 = dist(p0, p1) + t0;
-	const double t2 = dist(p1, p2) + t1;
-	const double t3 = dist(p2, p3) + t2;
+	const float t0 = 0.f;
+	const float t1 = dist(p0, p1) + t0;
+	const float t2 = dist(p1, p2) + t1;
+	const float t3 = dist(p2, p3) + t2;
 
 	assert(t0 != t1);
 	assert(t0 != t2);
@@ -86,7 +86,7 @@ Point3D SubdivideCatmullRomSpline(const Point3D& p0, const Point3D& p1, const Po
 	assert(t2 != t3);
 
 	// Evaluate the Spline between p1 and p2
-	const double t = lerp(t1, t2, x);
+	const float t = lerp(t1, t2, x);
 
 	const Point3D a1 = p0 * ((t1 - t) / (t1 - t0)) + p1 * ((t - t0) / (t1 - t0));
 	const Point3D a2 = p1 * ((t2 - t) / (t2 - t1)) + p2 * ((t - t1) / (t2 - t1));

@@ -27,20 +27,20 @@ public:
 		  const Point2D& controlFunctionTopLeft,
 		  const Point2D& controlFunctionBottomRight,
 		  int seed = 0,
-		  double eps = 0.0,
+		  float eps = 0.f,
 		  int resolution = 1,
-		  double displacement = 0.0,
+		  float displacement = 0.f,
 		  int primitivesResolutionSteps = 3,
-		  double slopePower = 1.0,
-		  double noiseAmplitudeProportion = 0.0,
+		  float slopePower = 1.f,
+		  float noiseAmplitudeProportion = 0.f,
 		  bool displayFunction = true,
 		  bool displayPoints = false,
 	      bool displaySegments = false,
 	      bool displayGrid = false,
 		  bool displayDistance = false);
 
-	double evaluateTerrain(double x, double y) const;
-	double evaluateLichtenberg(double x, double y) const;
+	float evaluateTerrain(float x, float y) const;
+	float evaluateLichtenberg(float x, float y) const;
 
 private:
 	// ----- Types -----
@@ -51,7 +51,7 @@ private:
 	using Segment3DChain = std::array<Segment3D, D>;
 
 	template <size_t N>
-	using DoubleArray = Array2D<double, N>;
+	using DoubleArray = Array2D<float, N>;
 
 	template <size_t N>
 	using Point2DArray = Array2D<Point2D, N>;
@@ -95,9 +95,9 @@ private:
 
 	// ----- Utils -----
 
-	Cell GetCell(double x, double y, int resolution) const;
+	Cell GetCell(float x, float y, int resolution) const;
 
-	double EvaluateControlFunction(const Point2D& point) const;
+	float EvaluateControlFunction(const Point2D& point) const;
 
 	bool InsideDomain(const Point2D& point) const;
 
@@ -114,34 +114,34 @@ private:
 	bool ControlFunctionMaximum() const;
 
 	template <size_t D>
-	Segment3DChain<D> ConnectPointToSegmentAngle(const Point3D& point, double segmentDist, const Segment3D& segment) const;
+	Segment3DChain<D> ConnectPointToSegmentAngle(const Point3D& point, float segmentDist, const Segment3D& segment) const;
 
 	template <size_t D>
-	Segment3DChain<D> ConnectPointToSegmentAngleMid(const Point3D& point, double segmentDist, const Segment3D& segment) const;
+	Segment3DChain<D> ConnectPointToSegmentAngleMid(const Point3D& point, float segmentDist, const Segment3D& segment) const;
 
 	template <size_t D>
-	Segment3DChain<D> ConnectPointToSegmentNearestPoint(const Point3D& point, double segmentDist, const Segment3D& segment) const;
+	Segment3DChain<D> ConnectPointToSegmentNearestPoint(const Point3D& point, float segmentDist, const Segment3D& segment) const;
 
 	template <size_t D>
-	Segment3DChain<D> ConnectPointToSegmentRivers(const Point3D& point, double segmentDist, const Segment3D& segment) const;
+	Segment3DChain<D> ConnectPointToSegmentRivers(const Point3D& point, float segmentDist, const Segment3D& segment) const;
 
 	template <size_t D>
-	Segment3DChain<D> ConnectPointToSegment(const ConnectionStrategy& strategy, const Point3D& point, double segmentDist, const Segment3D& segment) const;
+	Segment3DChain<D> ConnectPointToSegment(const ConnectionStrategy& strategy, const Point3D& point, float segmentDist, const Segment3D& segment) const;
 
 	template <typename T, size_t N>
 	std::tuple<int, int> GetArrayCell(const Cell& arrCell, const Array2D<T, N>& arr, const Cell& cell) const;
 
 	template <size_t N, size_t D>
-	double NearestSegmentAndCellProjectionZ(int neighborhood, const Point2D& point, Cell& nearestSegmentCellOut, Segment3D& nearestSegmentOut, const Cell& cell, const Segment3DChainArray<N, D>& segments) const;
+	float NearestSegmentAndCellProjectionZ(int neighborhood, const Point2D& point, Cell& nearestSegmentCellOut, Segment3D& nearestSegmentOut, const Cell& cell, const Segment3DChainArray<N, D>& segments) const;
 
 	template <size_t N, size_t D, typename ...Tail>
-	double NearestSegmentAndCellProjectionZ(int neighborhood, const Point2D& point, Cell& nearestSegmentCellOut, Segment3D& nearestSegmentOut, const Cell& cell, const Segment3DChainArray<N, D>& segments, Tail&&... tail) const;
+	float NearestSegmentAndCellProjectionZ(int neighborhood, const Point2D& point, Cell& nearestSegmentCellOut, Segment3D& nearestSegmentOut, const Cell& cell, const Segment3DChainArray<N, D>& segments, Tail&&... tail) const;
 
 	template <size_t N, size_t D>
-	double NearestSegmentProjectionZ(int neighborhood, const Point2D& point, Segment3D& nearestSegmentOut, const Cell& cell, const Segment3DChainArray<N, D>& segments) const;
+	float NearestSegmentProjectionZ(int neighborhood, const Point2D& point, Segment3D& nearestSegmentOut, const Cell& cell, const Segment3DChainArray<N, D>& segments) const;
 
 	template <size_t N, size_t D, typename ...Tail>
-	double NearestSegmentProjectionZ(int neighborhood, const Point2D& point, Segment3D& nearestSegmentOut, const Cell& cell, const Segment3DChainArray<N, D>& segments, Tail&&... tail) const;
+	float NearestSegmentProjectionZ(int neighborhood, const Point2D& point, Segment3D& nearestSegmentOut, const Cell& cell, const Segment3DChainArray<N, D>& segments, Tail&&... tail) const;
 
 	template <size_t N>
 	int SegmentsEndingInP(const Cell& cell, const Segment3DChainArray<N, 1>& segments, const Point3D& point, Segment3D& lastSegmentEndingInP) const;
@@ -170,7 +170,7 @@ private:
 	void SubdivideSegments(const Cell& cell, const Segment3DChainArray<N, 1>& segments, Segment3DChainArray<N - 2, D>& subdividedSegments) const;
 	
 	template <size_t N, size_t D>
-	void DisplaceSegments(double displacementFactor, const Cell& cell, Segment3DChainArray<N, D>& segments) const;
+	void DisplaceSegments(float displacementFactor, const Cell& cell, Segment3DChainArray<N, D>& segments) const;
 
 	template <size_t N2, size_t N1, size_t D1>
 	void CheckEnoughSegmentInVicinity(const Point2DArray<N2>& points, const Cell& cell, const Segment3DChainArray<N1, D1>& segments) const;
@@ -179,41 +179,41 @@ private:
 	void CheckEnoughSegmentInVicinity(const Point2DArray<N2>& points, const Cell& cell, const Segment3DChainArray<N1, D1>& segments, Tail&&... tail) const;
 
 	template <size_t N, size_t D, typename ...Tail>
-	Segment3DChainArray<N, D> GenerateSubSegments(const ConnectionStrategy& connectionStrategy, double minSlope, const Point2DArray<N>& points, Tail&&... tail) const;
+	Segment3DChainArray<N, D> GenerateSubSegments(const ConnectionStrategy& connectionStrategy, float minSlope, const Point2DArray<N>& points, Tail&&... tail) const;
 
 	// ----- Compute Color -----
 
-	double ComputeColorBase(double dist, double radius) const;
+	float ComputeColorBase(float dist, float radius) const;
 
-	double ComputeColorPoint(double x, double y, const Point2D& point, double radius) const;
+	float ComputeColorPoint(float x, float y, const Point2D& point, float radius) const;
 
 	template <size_t N>
-	double ComputeColorPoints(double x, double y, const Point2DArray<N>& points, double radius) const;
+	float ComputeColorPoints(float x, float y, const Point2DArray<N>& points, float radius) const;
 
 	template <size_t N, size_t D>
-	double ComputeColorPoints(double x, double y, const Segment3DChainArray<N, D>& segments, double radius) const;
+	float ComputeColorPoints(float x, float y, const Segment3DChainArray<N, D>& segments, float radius) const;
 
-	double ComputeColorSegment(double x, double y, const Segment2D& segment, double radius) const;
+	float ComputeColorSegment(float x, float y, const Segment2D& segment, float radius) const;
 
 	template <size_t N, size_t D>
-	double ComputeColorSegments(const Cell& cell, const Segment3DChainArray<N, D>& segments, int neighborhood, double x, double y, double radius) const;
+	float ComputeColorSegments(const Cell& cell, const Segment3DChainArray<N, D>& segments, int neighborhood, float x, float y, float radius) const;
 
-	double ComputeColorGrid(double x, double y, double deltaX, double deltaY, double radius) const;
+	float ComputeColorGrid(float x, float y, float deltaX, float deltaY, float radius) const;
 
 	template <size_t N1, size_t D1, size_t N2>
-	double ComputeColor(double x, double y, const Cell& cell, const Segment3DChainArray<N1, D1>& segments, const Point2DArray<N2>& points) const;
+	float ComputeColor(float x, float y, const Cell& cell, const Segment3DChainArray<N1, D1>& segments, const Point2DArray<N2>& points) const;
 
 	template <size_t N1, size_t D1, size_t N2, typename ...Tail>
-	double ComputeColor(double x, double y, const Cell& cell, const Segment3DChainArray<N1, D1>& segments, const Point2DArray<N2>& points, Tail&&... tail) const;
+	float ComputeColor(float x, float y, const Cell& cell, const Segment3DChainArray<N1, D1>& segments, const Point2DArray<N2>& points, Tail&&... tail) const;
 
 	template <size_t N, typename ...Tail>
-	double ComputeColorPrimitives(double x, double y, const Cell& higherResCell, const Point2DArray<N>& higherResPoints, Tail&&... tail) const;
+	float ComputeColorPrimitives(float x, float y, const Cell& higherResCell, const Point2DArray<N>& higherResPoints, Tail&&... tail) const;
 
 	template <typename ...Tail>
-	double ComputeColorControlFunction(double x, double y, Tail&&... tail) const;
+	float ComputeColorControlFunction(float x, float y, Tail&&... tail) const;
 
 	template <typename ...Tail>
-	double ComputeColorDistance(double x, double y, Tail&&... tail) const;
+	float ComputeColorDistance(float x, float y, Tail&&... tail) const;
 
 	// Seed of the noise
 	const int m_seed;
@@ -233,22 +233,22 @@ private:
 	const Point2D m_controlFunctionBottomRight;
 
 	// Epsilon used to bias the area where points are generated in cells
-	const double m_eps;
+	const float m_eps;
 
 	// Number of resolutions in the noise function
 	const int m_resolution;
 
 	// Maximum displacement of segments
-	const double m_displacement;
+	const float m_displacement;
 
 	// Additional resolution steps in the ComputeColorPrimitives function
 	const int m_primitivesResolutionSteps;
 
 	// Proportion of the amplitude of the control function as noise
-	const double m_noiseAmplitudeProportion;
+	const float m_noiseAmplitudeProportion;
 
 	// Additional parameter to control the variation of slope on terrains
-	const double m_slopePower;
+	const float m_slopePower;
 
 	const int CACHE_X = 128;
 	const int CACHE_Y = 128;
@@ -256,7 +256,7 @@ private:
 };
 
 template <typename I>
-Noise<I>::Noise(std::unique_ptr<ControlFunction<I> > controlFunction, const Point2D& noiseTopLeft, const Point2D& noiseBottomRight, const Point2D & controlFunctionTopLeft, const Point2D & controlFunctionBottomRight, int seed, double eps, int resolution, double displacement, int primitivesResolutionSteps, double slopePower, double noiseAmplitudeProportion, bool displayFunction, bool displayPoints, bool displaySegments, bool displayGrid, bool displayDistance) :
+Noise<I>::Noise(std::unique_ptr<ControlFunction<I> > controlFunction, const Point2D& noiseTopLeft, const Point2D& noiseBottomRight, const Point2D & controlFunctionTopLeft, const Point2D & controlFunctionBottomRight, int seed, float eps, int resolution, float displacement, int primitivesResolutionSteps, float slopePower, float noiseAmplitudeProportion, bool displayFunction, bool displayPoints, bool displaySegments, bool displayGrid, bool displayDistance) :
 	m_seed(seed),
 	m_controlFunction(std::move(controlFunction)),
 	m_displayFunction(displayFunction),
@@ -315,11 +315,11 @@ Point2D Noise<I>::GeneratePoint(int x, int y) const
 {
 	RandomGenerator generator = InitRandomGenerator(x, y);
 
-	std::uniform_real_distribution<double> distribution(m_eps, 1.0 - m_eps);
-	const double px = distribution(generator);
-	const double py = distribution(generator);
+	std::uniform_real_distribution<float> distribution(m_eps, 1.f - m_eps);
+	const float px = distribution(generator);
+	const float py = distribution(generator);
 
-	return { double(x) + px, double(y) + py };
+	return { float(x) + px, float(y) + py };
 }
 
 /// <summary>
@@ -344,7 +344,7 @@ Point2D Noise<I>::GeneratePointCached(int x, int y) const
 }
 
 template <typename I>
-typename Noise<I>::Cell Noise<I>::GetCell(double x, double y, int resolution) const
+typename Noise<I>::Cell Noise<I>::GetCell(float x, float y, int resolution) const
 {
 	// Return the coordinates of the cell in which (x, y)
 	// For example, for resolution 1:
@@ -392,12 +392,12 @@ typename Noise<I>::Cell Noise<I>::GetCell(double x, double y, int resolution) co
 /// <param name="point">Coordinates of the point</param>
 /// <returns>The value of the function at the point</returns>
 template <typename I>
-double Noise<I>::EvaluateControlFunction(const Point2D& point) const
+float Noise<I>::EvaluateControlFunction(const Point2D& point) const
 {
-	const double x = remap(point.x, m_noiseTopLeft.x, m_noiseBottomRight.x, m_controlFunctionTopLeft.x, m_controlFunctionBottomRight.x);
-	const double y = remap(point.y, m_noiseTopLeft.y, m_noiseBottomRight.y, m_controlFunctionTopLeft.y, m_controlFunctionBottomRight.y);
+	const float x = remap(point.x, m_noiseTopLeft.x, m_noiseBottomRight.x, m_controlFunctionTopLeft.x, m_controlFunctionBottomRight.x);
+	const float y = remap(point.y, m_noiseTopLeft.y, m_noiseBottomRight.y, m_controlFunctionTopLeft.y, m_controlFunctionBottomRight.y);
 
-	double value = 0.0;
+	float value = 0.f;
 
 	if (m_controlFunction)
 	{
@@ -415,8 +415,8 @@ double Noise<I>::EvaluateControlFunction(const Point2D& point) const
 template <typename I>
 bool Noise<I>::InsideDomain(const Point2D& point) const
 {
-	const double x = remap(point.x, m_noiseTopLeft.x, m_noiseBottomRight.x, m_controlFunctionTopLeft.x, m_controlFunctionBottomRight.x);
-	const double y = remap(point.y, m_noiseTopLeft.y, m_noiseBottomRight.y, m_controlFunctionTopLeft.y, m_controlFunctionBottomRight.y);
+	const float x = remap(point.x, m_noiseTopLeft.x, m_noiseBottomRight.x, m_controlFunctionTopLeft.x, m_controlFunctionBottomRight.x);
+	const float y = remap(point.y, m_noiseTopLeft.y, m_noiseBottomRight.y, m_controlFunctionTopLeft.y, m_controlFunctionBottomRight.y);
 
 	bool value = false;
 
@@ -448,10 +448,10 @@ bool Noise<I>::InsideDomain(const Segment3D& segment) const
 template <typename I>
 bool Noise<I>::DistToDomain(const Point2D& point) const
 {
-	const double x = remap(point.x, m_noiseTopLeft.x, m_noiseBottomRight.x, m_controlFunctionTopLeft.x, m_controlFunctionBottomRight.x);
-	const double y = remap(point.y, m_noiseTopLeft.y, m_noiseBottomRight.y, m_controlFunctionTopLeft.y, m_controlFunctionBottomRight.y);
+	const float x = remap(point.x, m_noiseTopLeft.x, m_noiseBottomRight.x, m_controlFunctionTopLeft.x, m_controlFunctionBottomRight.x);
+	const float y = remap(point.y, m_noiseTopLeft.y, m_noiseBottomRight.y, m_controlFunctionTopLeft.y, m_controlFunctionBottomRight.y);
 
-	double value = 0.0;
+	float value = 0.f;
 
 	if (m_controlFunction)
 	{
@@ -464,7 +464,7 @@ bool Noise<I>::DistToDomain(const Point2D& point) const
 template <typename I>
 bool Noise<I>::ControlFunctionMinimum() const
 {
-	double value = 0.0;
+	float value = 0.f;
 
 	if (m_controlFunction)
 	{
@@ -477,7 +477,7 @@ bool Noise<I>::ControlFunctionMinimum() const
 template <typename I>
 bool Noise<I>::ControlFunctionMaximum() const
 {
-	double value = 0.0;
+	float value = 0.f;
 
 	if (m_controlFunction)
 	{
@@ -498,21 +498,21 @@ bool Noise<I>::ControlFunctionMaximum() const
 /// <returns>A chain of segments connecting the point with the segment</returns>
 template <typename I>
 template <size_t D>
-typename Noise<I>::template Segment3DChain<D> Noise<I>::ConnectPointToSegmentAngle(const Point3D & point, double segmentDist, const Segment3D& segment) const
+typename Noise<I>::template Segment3DChain<D> Noise<I>::ConnectPointToSegmentAngle(const Point3D & point, float segmentDist, const Segment3D& segment) const
 {
 	Segment3DChain<D> generatedSegment;
 
 	// Find an intersection on the segment with respect to constraints
 	// u = 0 is point A of the segment ; u = 1 is point B of the segment
-	double u = pointLineSegmentProjection(ProjectionZ(point), ProjectionZ(segment));
+	float u = pointLineSegmentProjection(ProjectionZ(point), ProjectionZ(segment));
 
 	// If, on the segment, the nearest point is between A and B, we shift it so that the angle constraint is respected
 	if (u > 0.0 && u < 1.0)
 	{
-		// Find the intersection so that the angle between the two segments is 45°
+		// Find the intersection so that the angle between the two segments is 45\B0
 		// v designates the ratio of the segment on which the intersection is located
 		// v = 0 is point A of the segment ; v = 1 is point B of the segment
-		const double v = u + segmentDist / length(ProjectionZ(segment));
+		const float v = u + segmentDist / length(ProjectionZ(segment));
 
 		if (v > 1.0)
 		{
@@ -560,23 +560,23 @@ typename Noise<I>::template Segment3DChain<D> Noise<I>::ConnectPointToSegmentAng
 /// <returns>A chain of segments connecting the point with the segment</returns>
 template <typename I>
 template <size_t D>
-typename Noise<I>::template Segment3DChain<D> Noise<I>::ConnectPointToSegmentAngleMid(const Point3D& point, double segmentDist, const Segment3D& segment) const
+typename Noise<I>::template Segment3DChain<D> Noise<I>::ConnectPointToSegmentAngleMid(const Point3D& point, float segmentDist, const Segment3D& segment) const
 {
 	Segment3DChain<D> generatedSegment;
 
 	// Find an intersection on the segment with respect to constraints
 	// u = 0 is point A of the segment ; u = 1 is point B of the segment
-	const double u = pointLineProjection(ProjectionZ(point), ProjectionZ(segment));
+	const float u = pointLineProjection(ProjectionZ(point), ProjectionZ(segment));
 
-	const double tanAngle = 1.0; // tan(45 deg) = 1.0
-	// Find the intersection so that the angle between the two segments is 45°
+	const float tanAngle = 1.0; // tan(45 deg) = 1.0
+	// Find the intersection so that the angle between the two segments is 45\B0
 	// v designates the ratio of the segment on which the intersection is located
 	// v = 0 is point A of the segment ; v = 1 is point B of the segment
 	// TODO: segmentDist could actually not be the distance to the line which means the angle is not 45 degrees
 	// TODO: make sure that segmentDist is the distance to the line (AB) using u or by recomputing it in this function
-	double v = u + (segmentDist / tanAngle) / length(ProjectionZ(segment));
+	float v = u + (segmentDist / tanAngle) / length(ProjectionZ(segment));
 	// The intersection must lie on the segment
-	v = std::clamp(v, 0.0, 1.0);
+	v = std::clamp(v, 0.f, 1.f);
 
 	const Point3D straightSegmentEnd(lerp(segment, v));
 	const Segment3D straightSegment(point, straightSegmentEnd);
@@ -613,11 +613,11 @@ typename Noise<I>::template Segment3DChain<D> Noise<I>::ConnectPointToSegmentAng
 /// <returns>A chain of segments connecting the point with the segment</returns>
 template <typename I>
 template <size_t D>
-typename Noise<I>::template Segment3DChain<D> Noise<I>::ConnectPointToSegmentNearestPoint(const Point3D& point, double segmentDist, const Segment3D& segment) const
+typename Noise<I>::template Segment3DChain<D> Noise<I>::ConnectPointToSegmentNearestPoint(const Point3D& point, float segmentDist, const Segment3D& segment) const
 {
 	// Find an intersection on the segment with respect to constraints
 	// u = 0 is point A of the segment ; u = 1 is point B of the segment
-	const double u = pointLineSegmentProjection(ProjectionZ(point), ProjectionZ(segment));
+	const float u = pointLineSegmentProjection(ProjectionZ(point), ProjectionZ(segment));
 
 	const Point3D segmentEnd(lerp(segment, u));
 	const Segment3D straightSegment(point, segmentEnd);
@@ -628,22 +628,22 @@ typename Noise<I>::template Segment3DChain<D> Noise<I>::ConnectPointToSegmentNea
 
 template <typename I>
 template <size_t D>
-typename Noise<I>::template Segment3DChain<D> Noise<I>::ConnectPointToSegmentRivers(const Point3D& point, double segmentDist, const Segment3D& segment) const
+typename Noise<I>::template Segment3DChain<D> Noise<I>::ConnectPointToSegmentRivers(const Point3D& point, float segmentDist, const Segment3D& segment) const
 {
 	Segment3DChain<D> generatedSegment;
 
 	// The connection point is the nearest point among A, B and middle of the segment
 	Point3D connectionPoint = MidPoint(segment);
-	double distConnectionPoint = dist(connectionPoint, point);
+	float distConnectionPoint = dist(connectionPoint, point);
 
-	const double distanceA = dist(segment.a, point);
+	const float distanceA = dist(segment.a, point);
 	if (distanceA < distConnectionPoint)
 	{
 		connectionPoint = segment.a;
 		distConnectionPoint = distanceA;
 	}
 
-	const double distanceB = dist(segment.b, point);
+	const float distanceB = dist(segment.b, point);
 	if (distanceB < distConnectionPoint)
 	{
 		connectionPoint = segment.b;
@@ -655,13 +655,13 @@ typename Noise<I>::template Segment3DChain<D> Noise<I>::ConnectPointToSegmentRiv
 
 	// Subdivide the straightSegment into D smaller segments
 	std::array<Point3D, D - 1> generatedSegmentPoints;
-	if (length_sq(straightSegment) > 0.0)
+	if (length_sq(straightSegment) > 0.f)
 	{
 		// Compute the connection angle
-		const double mainSegmentSlope = std::abs(segment.b.z - segment.a.z) / length(ProjectionZ(segment));
-		const double tributarySlope = std::abs(straightSegment.b.z - straightSegment.a.z) / length(ProjectionZ(straightSegment));		
-		double connectionAngle = 0.0;
-		if (tributarySlope >= 0.0 && mainSegmentSlope <= tributarySlope)
+		const float mainSegmentSlope = std::abs(segment.b.z - segment.a.z) / length(ProjectionZ(segment));
+		const float tributarySlope = std::abs(straightSegment.b.z - straightSegment.a.z) / length(ProjectionZ(straightSegment));		
+		float connectionAngle = 0.f;
+		if (tributarySlope >= 0.f && mainSegmentSlope <= tributarySlope)
 		{
 			connectionAngle = acos(mainSegmentSlope / tributarySlope);
 		}
@@ -691,7 +691,7 @@ typename Noise<I>::template Segment3DChain<D> Noise<I>::ConnectPointToSegmentRiv
 
 template <typename I>
 template <size_t D>
-typename Noise<I>::template Segment3DChain<D> Noise<I>::ConnectPointToSegment(const ConnectionStrategy& strategy, const Point3D& point, double segmentDist, const Segment3D& segment) const
+typename Noise<I>::template Segment3DChain<D> Noise<I>::ConnectPointToSegment(const ConnectionStrategy& strategy, const Point3D& point, float segmentDist, const Segment3D& segment) const
 {
 	Segment3DChain<D> connectionSegments;
 
@@ -719,60 +719,60 @@ typename Noise<I>::template Segment3DChain<D> Noise<I>::ConnectPointToSegment(co
 }
 
 template <typename I>
-double Noise<I>::ComputeColorBase(double dist, double radius) const
+float Noise<I>::ComputeColorBase(float dist, float radius) const
 {
 	if (dist < radius)
 	{
-		return 1.0;
+		return 1.f;
 	}
 
-	return 0.0;
+	return 0.f;
 }
 
 template <typename I>
-double Noise<I>::ComputeColorPoint(double x, double y, const Point2D& point, double radius) const
+float Noise<I>::ComputeColorPoint(float x, float y, const Point2D& point, float radius) const
 {
-	const double d = dist(Point2D(x, y), point);
+	const float d = dist(Point2D(x, y), point);
 	return ComputeColorBase(d, radius);
 }
 
 template <typename I>
-double Noise<I>::ComputeColorSegment(double x, double y, const Segment2D& segment, double radius) const
+float Noise<I>::ComputeColorSegment(float x, float y, const Segment2D& segment, float radius) const
 {
 	Point2D c;
-	const double d = distToLineSegment(Point2D(x, y), segment, c);
+	const float d = distToLineSegment(Point2D(x, y), segment, c);
 	return ComputeColorBase(d, radius);
 }
 
 template <typename I>
-double Noise<I>::ComputeColorGrid(double x, double y, double deltaX, double deltaY, double radius) const
+float Noise<I>::ComputeColorGrid(float x, float y, float deltaX, float deltaY, float radius) const
 {
-	double value = 0.0;
+	float value = 0.f;
 
 	// When near to the grid
 	if (std::abs(x - floor(x) - deltaX) < radius || std::abs(y - floor(y) - deltaY) < radius)
 	{
-		value = 1.0;
+		value = 1.f;
 	}
 
 	return value;
 }
 
 template <typename I>
-double Noise<I>::evaluateTerrain(double x, double y) const
+float Noise<I>::evaluateTerrain(float x, float y) const
 {
 	assert(m_resolution >= 1 && m_resolution <= 5);
 
 	const ConnectionStrategy connectionStrategy = ConnectionStrategy::Rivers;
-	const double minSlopeLevel2 = 0.09;
-	const double minSlopeLevel3 = 0.18;
-	const double minSlopeLevel4 = 0.38;
-	const double minSlopeLevel5 = 1.0;
-	const double displacementLevel1 = m_displacement;
-	const double displacementLevel2 = displacementLevel1 / 4;
-	const double displacementLevel3 = displacementLevel2 / 4;
+	const float minSlopeLevel2 = 0.9;
+	const float minSlopeLevel3 = 0.18;
+	const float minSlopeLevel4 = 0.38;
+	const float minSlopeLevel5 = 1.f;
+	const float displacementLevel1 = m_displacement;
+	const float displacementLevel2 = displacementLevel1 / 4;
+	const float displacementLevel3 = displacementLevel2 / 4;
 
-	double value = 0.0;
+	float value = 0.f;
 
 	// In which level 1 cell is the point (x, y)
 	Cell cell1 = GetCell(x, y, 1);
@@ -923,16 +923,16 @@ double Noise<I>::evaluateTerrain(double x, double y) const
 }
 
 template <typename I>
-double Noise<I>::evaluateLichtenberg(double x, double y) const
+float Noise<I>::evaluateLichtenberg(float x, float y) const
 {
 	assert(m_resolution >= 1 && m_resolution <= 6);
 
 	const ConnectionStrategy connectionStrategy = ConnectionStrategy::AngleMid;
-	const double displacementLevel1 = m_displacement;
-	const double displacementLevel2 = displacementLevel1 / 4;
-	const double displacementLevel3 = displacementLevel2 / 4;
+	const float displacementLevel1 = m_displacement;
+	const float displacementLevel2 = displacementLevel1 / 4;
+	const float displacementLevel3 = displacementLevel2 / 4;
 
-	double value = 0.0;
+	float value = 0.f;
 
 	// In which level 1 cell is the point (x, y)
 	Cell cell1 = GetCell(x, y, 1);
@@ -966,7 +966,7 @@ double Noise<I>::evaluateLichtenberg(double x, double y) const
 	Point2DArray<5> points2 = GenerateNeighboringPoints<5>(cell2);
 	ReplaceNeighboringPoints(cell1, points1, cell2, points2);
 	// Level 2: List of segments
-	Segment3DChainArray<5, 3> segments2 = GenerateSubSegments<5, 3>(connectionStrategy, 0.0, points2, cell1, segments1);
+	Segment3DChainArray<5, 3> segments2 = GenerateSubSegments<5, 3>(connectionStrategy, 0.f, points2, cell1, segments1);
 	DisplaceSegments(displacementLevel2, cell2, segments2);
 
 	if (m_resolution == 2)
@@ -990,7 +990,7 @@ double Noise<I>::evaluateLichtenberg(double x, double y) const
 	Point2DArray<5> points3 = GenerateNeighboringPoints<5>(cell3);
 	ReplaceNeighboringPoints(cell2, points2, cell3, points3);
 	// Level 3: List of segments
-	Segment3DChainArray<5, 2> segments3 = GenerateSubSegments<5, 2>(connectionStrategy, 0.0, points3, cell1, segments1, cell2, segments2);
+	Segment3DChainArray<5, 2> segments3 = GenerateSubSegments<5, 2>(connectionStrategy, 0.f, points3, cell1, segments1, cell2, segments2);
 	DisplaceSegments(displacementLevel3, cell3, segments3);
 
 	if (m_resolution == 3)
@@ -1014,7 +1014,7 @@ double Noise<I>::evaluateLichtenberg(double x, double y) const
 	Point2DArray<5> points4 = GenerateNeighboringPoints<5>(cell4);
 	ReplaceNeighboringPoints(cell3, points3, cell4, points4);
 	// Level 4: List of segments
-	Segment3DChainArray<5, 1> segments4 = GenerateSubSegments<5, 1>(connectionStrategy, 0.0, points4, cell1, segments1, cell2, segments2, cell3, segments3);
+	Segment3DChainArray<5, 1> segments4 = GenerateSubSegments<5, 1>(connectionStrategy, 0.f, points4, cell1, segments1, cell2, segments2, cell3, segments3);
 
 	if (m_resolution == 4)
 	{
@@ -1037,7 +1037,7 @@ double Noise<I>::evaluateLichtenberg(double x, double y) const
 	Point2DArray<5> points5 = GenerateNeighboringPoints<5>(cell5);
 	ReplaceNeighboringPoints(cell4, points4, cell5, points5);
 	// Level 5: List of segments
-	Segment3DChainArray<5, 1> segments5 = GenerateSubSegments<5, 1>(connectionStrategy, 0.0, points5, cell1, segments1, cell2, segments2, cell3, segments3, cell4, segments4);
+	Segment3DChainArray<5, 1> segments5 = GenerateSubSegments<5, 1>(connectionStrategy, 0.f, points5, cell1, segments1, cell2, segments2, cell3, segments3, cell4, segments4);
 
 	if (m_resolution == 5)
 	{
@@ -1060,7 +1060,7 @@ double Noise<I>::evaluateLichtenberg(double x, double y) const
 	Point2DArray<5> points6 = GenerateNeighboringPoints<5>(cell6);
 	ReplaceNeighboringPoints(cell5, points5, cell6, points6);
 	// Level 6: List of segments
-	Segment3DChainArray<5, 1> segments6 = GenerateSubSegments<5, 1>(connectionStrategy, 0.0, points6, cell1, segments1, cell2, segments2, cell3, segments3, cell4, segments4, cell5, segments5);
+	Segment3DChainArray<5, 1> segments6 = GenerateSubSegments<5, 1>(connectionStrategy, 0.f, points6, cell1, segments1, cell2, segments2, cell3, segments3, cell4, segments4, cell5, segments5);
 
 	if (m_resolution == 6)
 	{
@@ -1092,12 +1092,12 @@ std::tuple<int, int> Noise<I>::GetArrayCell(const Cell& arrCell, const Array2D<T
 
 template <typename I>
 template <size_t N, size_t D>
-double Noise<I>::NearestSegmentAndCellProjectionZ(int neighborhood, const Point2D& point, Cell& nearestSegmentCellOut, Segment3D& nearestSegmentOut, const Cell& cell, const Segment3DChainArray<N, D>& segments) const
+float Noise<I>::NearestSegmentAndCellProjectionZ(int neighborhood, const Point2D& point, Cell& nearestSegmentCellOut, Segment3D& nearestSegmentOut, const Cell& cell, const Segment3DChainArray<N, D>& segments) const
 {
 	assert(neighborhood >= 0);
 
 	// Distance to the nearest segment
-	double nearestSegmentDistance = std::numeric_limits<double>::max();
+	float nearestSegmentDistance = std::numeric_limits<float>::max();
 
 	int ci, cj;
 	std::tie(ci, cj) = GetArrayCell(cell, segments, GetCell(point.x, point.y, cell.resolution));
@@ -1111,7 +1111,7 @@ double Noise<I>::NearestSegmentAndCellProjectionZ(int neighborhood, const Point2
 			for (unsigned int k = 0; k < segments[i][j].size(); k++)
 			{
 				Point2D c;
-				const double dist = distToLineSegment(point, ProjectionZ(segments[i][j][k]), c);
+				const float dist = distToLineSegment(point, ProjectionZ(segments[i][j][k]), c);
 
 				if (dist < nearestSegmentDistance)
 				{
@@ -1131,17 +1131,17 @@ double Noise<I>::NearestSegmentAndCellProjectionZ(int neighborhood, const Point2
 
 template <typename I>
 template <size_t N, size_t D, typename ...Tail>
-double Noise<I>::NearestSegmentAndCellProjectionZ(int neighborhood, const Point2D& point, Cell& nearestSegmentCellOut, Segment3D& nearestSegmentOut, const Cell& cell, const Segment3DChainArray<N, D>& segments, Tail&&... tail) const
+float Noise<I>::NearestSegmentAndCellProjectionZ(int neighborhood, const Point2D& point, Cell& nearestSegmentCellOut, Segment3D& nearestSegmentOut, const Cell& cell, const Segment3DChainArray<N, D>& segments, Tail&&... tail) const
 {
 	assert(neighborhood >= 0);
 
 	// Nearest segment in the sub resolutions
 	Cell nearestSubSegmentCell;
 	Segment3D nearestSubSegment;
-	const double nearestSubSegmentDistance = NearestSegmentAndCellProjectionZ(neighborhood, point, nearestSubSegmentCell, nearestSubSegment, std::forward<Tail>(tail)...);
+	const float nearestSubSegmentDistance = NearestSegmentAndCellProjectionZ(neighborhood, point, nearestSubSegmentCell, nearestSubSegment, std::forward<Tail>(tail)...);
 
 	// Nearest segment in the current resolution
-	double nearestSegmentDistance = NearestSegmentAndCellProjectionZ(neighborhood, point, nearestSegmentCellOut, nearestSegmentOut, cell, segments);
+	float nearestSegmentDistance = NearestSegmentAndCellProjectionZ(neighborhood, point, nearestSegmentCellOut, nearestSegmentOut, cell, segments);
 
 	if (nearestSubSegmentDistance < nearestSegmentDistance)
 	{
@@ -1155,7 +1155,7 @@ double Noise<I>::NearestSegmentAndCellProjectionZ(int neighborhood, const Point2
 
 template <typename I>
 template <size_t N, size_t D>
-double Noise<I>::NearestSegmentProjectionZ(int neighborhood, const Point2D& point, Segment3D& nearestSegmentOut, const Cell& cell, const Segment3DChainArray<N, D>& segments) const
+float Noise<I>::NearestSegmentProjectionZ(int neighborhood, const Point2D& point, Segment3D& nearestSegmentOut, const Cell& cell, const Segment3DChainArray<N, D>& segments) const
 {
 	Cell placeholderCell;
 	return NearestSegmentAndCellProjectionZ(neighborhood, point, placeholderCell, nearestSegmentOut, cell, segments);
@@ -1163,7 +1163,7 @@ double Noise<I>::NearestSegmentProjectionZ(int neighborhood, const Point2D& poin
 
 template <typename I>
 template <size_t N, size_t D, typename ...Tail>
-double Noise<I>::NearestSegmentProjectionZ(int neighborhood, const Point2D& point, Segment3D& nearestSegmentOut, const Cell& cell, const Segment3DChainArray<N, D>& segments, Tail&&... tail) const
+float Noise<I>::NearestSegmentProjectionZ(int neighborhood, const Point2D& point, Segment3D& nearestSegmentOut, const Cell& cell, const Segment3DChainArray<N, D>& segments, Tail&&... tail) const
 {
 	Cell placeholderCell;
 	return NearestSegmentAndCellProjectionZ(neighborhood, point, placeholderCell, nearestSegmentOut, cell, segments, std::forward<Tail>(tail)...);
@@ -1250,8 +1250,8 @@ typename Noise<I>::template Point2DArray<N> Noise<I>::GenerateNeighboringPoints(
 			else
 			{
 				// Furthest point in the cell (could be improved with topRight and bottom Left)
-				const Point2D topLeft(double(x) / cell.resolution, double(y) / cell.resolution);
-				const Point2D bottomRight(double(x + 1) / cell.resolution, double(y + 1) / cell.resolution);
+				const Point2D topLeft(float(x) / cell.resolution, float(y) / cell.resolution);
+				const Point2D bottomRight(float(x + 1) / cell.resolution, float(y + 1) / cell.resolution);
 
 				if (DistToDomain(topLeft) < DistToDomain(bottomRight))
 				{
@@ -1326,7 +1326,7 @@ typename Noise<I>::template Segment3DChainArray<N - 2 , 1> Noise<I>::GenerateSeg
 		for (unsigned int j = 1; j < points[i].size() - 1; j++)
 		{
 			// Find the lowest neighbor
-			double lowestNeighborElevation = std::numeric_limits<double>::max();
+			float lowestNeighborElevation = std::numeric_limits<float>::max();
 			int lowestNeighborI = i;
 			int lowestNeighborJ = j;
 
@@ -1434,7 +1434,7 @@ void Noise<I>::SubdivideSegments(const Cell& cell, const Segment3DChainArray<N, 
 
 template <typename I>
 template <size_t N, size_t D>
-void Noise<I>::DisplaceSegments(double displacementFactor, const Cell& cell, Segment3DChainArray<N, D>& segments) const
+void Noise<I>::DisplaceSegments(float displacementFactor, const Cell& cell, Segment3DChainArray<N, D>& segments) const
 {
 	// Ensure that segments are subdivided.
 	static_assert(D > 1, "Segments should be subdivided in more than 1 part.");
@@ -1450,16 +1450,16 @@ void Noise<I>::DisplaceSegments(double displacementFactor, const Cell& cell, Seg
 			const Point2D b = ProjectionZ(segments[i][j].back().b);
 
 			const Vec2D ab(a, b);
-			const Vec3D displacementVector(rotateCCW90(ab), 0.0);
+			const Vec3D displacementVector(rotateCCW90(ab), 0.f);
 
 			// Generate random numbers according to the position of the first point of the segment chain
 			Cell aCell = GetCell(a.x, a.y, cell.resolution);
 			RandomGenerator generator = InitRandomGenerator(aCell.x, aCell.y);
-			std::uniform_real_distribution<double> distribution(-displacementFactor, displacementFactor);
+			std::uniform_real_distribution<float> distribution(-displacementFactor, displacementFactor);
 
 			for (unsigned int k = 0; k < segments[i][j].size() - 1; k++)
 			{
-				const double factor = distribution(generator);
+				const float factor = distribution(generator);
 				segments[i][j][k].b += factor * displacementVector;
 				segments[i][j][k + 1].a += factor * displacementVector;
 			}
@@ -1485,7 +1485,7 @@ void Noise<I>::CheckEnoughSegmentInVicinity(const Point2DArray<N2>& points, cons
 
 template <typename I>
 template <size_t N, size_t D, typename ...Tail>
-typename Noise<I>::template Segment3DChainArray<N , D> Noise<I>::GenerateSubSegments(const ConnectionStrategy& connectionStrategy, double minSlope, const Point2DArray<N>& points, Tail&&... tail) const
+typename Noise<I>::template Segment3DChainArray<N , D> Noise<I>::GenerateSubSegments(const ConnectionStrategy& connectionStrategy, float minSlope, const Point2DArray<N>& points, Tail&&... tail) const
 {
 	// Ensure that there is enough segments around to connect sub points
 	CheckEnoughSegmentInVicinity(points, std::forward<Tail>(tail)...);
@@ -1501,30 +1501,30 @@ typename Noise<I>::template Segment3DChainArray<N , D> Noise<I>::GenerateSubSegm
 
 			// Find the nearest segment
 			Segment3D nearestSegment;
-			double nearestSegmentDist = NearestSegmentProjectionZ(1, point, nearestSegment, std::forward<Tail>(tail)...);
+			float nearestSegmentDist = NearestSegmentProjectionZ(1, point, nearestSegment, std::forward<Tail>(tail)...);
 
-			const double u = pointLineSegmentProjection(point, ProjectionZ(nearestSegment));
+			const float u = pointLineSegmentProjection(point, ProjectionZ(nearestSegment));
 			const Point3D nearestPointOnSegment = lerp(nearestSegment, u);
 
 			// Compute elevation of the point on the control function
-			const double elevationControlFunction = EvaluateControlFunction(point);
+			const float elevationControlFunction = EvaluateControlFunction(point);
 			// Compute elevation with a constraint on slope
 			// Warning, the actual slope may change if the connection point is changed in ConnectPointToSegment
-			const double elevationWithMinSlope = nearestPointOnSegment.z + minSlope * nearestSegmentDist;
+			const float elevationWithMinSlope = nearestPointOnSegment.z + minSlope * nearestSegmentDist;
 
-			const double elevation = std::max(elevationWithMinSlope, elevationControlFunction);
+			const float elevation = std::max(elevationWithMinSlope, elevationControlFunction);
 
 			const Point3D p(point.x, point.y, elevation);
 
 			const Segment3DChain<D> segmentChain = ConnectPointToSegment<D>(connectionStrategy, p, nearestSegmentDist, nearestSegment);
 
-			if (length_sq(nearestSegment) > 0.0 && InsideDomain(segmentChain.front().a) && InsideDomain(segmentChain.back().b))
+			if (length_sq(nearestSegment) > 0.f && InsideDomain(segmentChain.front().a) && InsideDomain(segmentChain.back().b))
 			{
 				subSegments[i][j] = segmentChain;
 			}
 			else
 			{
-				// Warning, in some cases, even if length_sq(nearestSegment) == 0.0, we would want to connect the point to the segment
+				// Warning, in some cases, even if length_sq(nearestSegment) == 0.f, we would want to connect the point to the segment
 				// It happens we a point is generated exactly on a segment. The segment starting from this point has a null length.
 				subSegments[i][j] = SubdivideInSegments<D>(Segment3D(p, p));
 			}
@@ -1536,9 +1536,9 @@ typename Noise<I>::template Segment3DChainArray<N , D> Noise<I>::GenerateSubSegm
 
 template <typename I>
 template <size_t N>
-double Noise<I>::ComputeColorPoints(double x, double y, const Point2DArray<N>& points, double radius) const
+float Noise<I>::ComputeColorPoints(float x, float y, const Point2DArray<N>& points, float radius) const
 {
-	double value = 0.0;
+	float value = 0.f;
 
 	const int center = int(points.size()) / 2;
 
@@ -1556,9 +1556,9 @@ double Noise<I>::ComputeColorPoints(double x, double y, const Point2DArray<N>& p
 
 template <typename I>
 template <size_t N, size_t D>
-double Noise<I>::ComputeColorPoints(double x, double y, const Segment3DChainArray<N, D>& segments, double radius) const
+float Noise<I>::ComputeColorPoints(float x, float y, const Segment3DChainArray<N, D>& segments, float radius) const
 {
-	double value = 0.0;
+	float value = 0.f;
 
 	// White when near to a segment
 	for (unsigned int i = 0; i < segments.size(); i++)
@@ -1578,27 +1578,27 @@ double Noise<I>::ComputeColorPoints(double x, double y, const Segment3DChainArra
 
 template <typename I>
 template <size_t N, size_t D>
-double Noise<I>::ComputeColorSegments(const Cell& cell, const Segment3DChainArray<N, D>& segments, int neighborhood, double x, double y, double radius) const
+float Noise<I>::ComputeColorSegments(const Cell& cell, const Segment3DChainArray<N, D>& segments, int neighborhood, float x, float y, float radius) const
 {
-	double value = 0.0;
+	float value = 0.f;
 
 	// White when near to a segment
 	Segment3D nearestSegment;
-	const double nearestSegmentDistance = NearestSegmentProjectionZ(neighborhood, Point2D(x, y), nearestSegment, cell, segments);
+	const float nearestSegmentDistance = NearestSegmentProjectionZ(neighborhood, Point2D(x, y), nearestSegment, cell, segments);
 	
 	/*
 	 * // Make level 1 segments thicker near to the origin of the Lichtenberg figure
 	 * if (cell.resolution == 1)
 	 * {
-	 *     // const double d = dist(Point2D(-0.75, -1.8), Point2D(x, y));
-	 *     const double d = dist(Point2D(0.0, -4.0), Point2D(x, y));
-	 *     radius *= 1.0 - smootherstep(0.0, 3.0, d) / 2.0;
+	 *     // const float d = dist(Point2D(-0.75, -1.8), Point2D(x, y));
+	 *     const float d = dist(Point2D(0.f, -4.0), Point2D(x, y));
+	 *     radius *= 1.f - smootherstep(0.f, 3.0, d) / 2.0;
 	 * }
 	 * 
 	 */
 
 	// If the segment has a length greater than zero
-	if (length_sq(nearestSegment) > 0.0)
+	if (length_sq(nearestSegment) > 0.f)
 	{
 		value = ComputeColorBase(nearestSegmentDistance, radius);
 	}
@@ -1608,11 +1608,11 @@ double Noise<I>::ComputeColorSegments(const Cell& cell, const Segment3DChainArra
 
 template <typename I>
 template <size_t N1, size_t D1, size_t N2>
-double Noise<I>::ComputeColor(double x, double y, const Cell& cell, const Segment3DChainArray<N1, D1>& segments, const Point2DArray<N2>& points) const
+float Noise<I>::ComputeColor(float x, float y, const Cell& cell, const Segment3DChainArray<N1, D1>& segments, const Point2DArray<N2>& points) const
 {
-	double value = 0.0;
+	float value = 0.f;
 
-	const double radius = 1.0 / (26 * std::exp(0.085 * cell.resolution));
+	const float radius = 1.f / (26 * std::exp(0.85 * cell.resolution));
 
 	if (m_displayPoints)
 	{
@@ -1629,7 +1629,7 @@ double Noise<I>::ComputeColor(double x, double y, const Cell& cell, const Segmen
 	{
 		for (int i = 0; i <= cell.resolution; i++)
 		{
-			const double grid = double(i) / cell.resolution;
+			const float grid = float(i) / cell.resolution;
 			value = std::max(value, ComputeColorGrid(x, y, grid, grid, radius / 8.0));
 		}
 	}
@@ -1639,17 +1639,17 @@ double Noise<I>::ComputeColor(double x, double y, const Cell& cell, const Segmen
 
 template <typename I>
 template <size_t N1, size_t D1, size_t N2, typename ...Tail>
-double Noise<I>::ComputeColor(double x, double y, const Cell& cell, const Segment3DChainArray<N1, D1>& segments, const Point2DArray<N2>& points, Tail&&... tail) const
+float Noise<I>::ComputeColor(float x, float y, const Cell& cell, const Segment3DChainArray<N1, D1>& segments, const Point2DArray<N2>& points, Tail&&... tail) const
 {
-	const double valueCurrentLevel = ComputeColor(x, y, cell, segments, points);
-	const double valueTail = ComputeColor(x, y, std::forward<Tail>(tail)...);
+	const float valueCurrentLevel = ComputeColor(x, y, cell, segments, points);
+	const float valueTail = ComputeColor(x, y, std::forward<Tail>(tail)...);
 
 	return std::max(valueCurrentLevel, valueTail);
 }
 
 template <typename I>
 template <size_t N, typename ...Tail>
-double Noise<I>::ComputeColorPrimitives(double x, double y, const Cell& higherResCell, const Point2DArray<N>& higherResPoints, Tail&&... tail) const
+float Noise<I>::ComputeColorPrimitives(float x, float y, const Cell& higherResCell, const Point2DArray<N>& higherResPoints, Tail&&... tail) const
 {
 	const Point2D point(x, y);
 
@@ -1667,13 +1667,13 @@ double Noise<I>::ComputeColorPrimitives(double x, double y, const Cell& higherRe
 	}
 
 	// Radius of primitives
-	const double R = 2.0 / highestResCell.resolution;
+	const float R = 2.0 / highestResCell.resolution;
 	// Power to the Wyvill-Galin function
-	const double P = 3.0;
+	const float P = 3.0;
 
 	// Numerator and denominator used to compute the blend of primitives
-	double numerator = 0.0;
-	double denominator = 0.0;
+	float numerator = 0.f;
+	float denominator = 0.f;
 
 	for (unsigned int i = 0; i < highestResPoints.size(); i++)
 	{
@@ -1682,36 +1682,36 @@ double Noise<I>::ComputeColorPrimitives(double x, double y, const Cell& higherRe
 			// Nearest segment to points[i][j] and nearest point on this segment
 			Cell primitiveNearestSegmentCell;
 			Segment3D primitiveNearestSegment;
-			const double distancePrimitiveCenter = NearestSegmentAndCellProjectionZ(1, highestResPoints[i][j], primitiveNearestSegmentCell, primitiveNearestSegment, std::forward<Tail>(tail)...);
-			double uPrimitive = pointLineSegmentProjection(highestResPoints[i][j], ProjectionZ(primitiveNearestSegment));
+			const float distancePrimitiveCenter = NearestSegmentAndCellProjectionZ(1, highestResPoints[i][j], primitiveNearestSegmentCell, primitiveNearestSegment, std::forward<Tail>(tail)...);
+			float uPrimitive = pointLineSegmentProjection(highestResPoints[i][j], ProjectionZ(primitiveNearestSegment));
 
-			double distancePrimitive = dist(point, highestResPoints[i][j]);
+			float distancePrimitive = dist(point, highestResPoints[i][j]);
 
-			const double alphaPrimitive = WyvillGalinFunction(distancePrimitive, R, P);
-			const double nearestPointOnSegmentHeight = lerp(primitiveNearestSegment.a.z, primitiveNearestSegment.b.z, uPrimitive);
+			const float alphaPrimitive = WyvillGalinFunction(distancePrimitive, R, P);
+			const float nearestPointOnSegmentHeight = lerp(primitiveNearestSegment.a.z, primitiveNearestSegment.b.z, uPrimitive);
 
 			// Adaptive slope depending on the mountain height
-			const double controlFunctionMinimum = ControlFunctionMinimum();
-			const double controlFunctionMaximum = ControlFunctionMaximum();
-			const double adaptiveSlope = smootherstep(controlFunctionMinimum, controlFunctionMaximum, pow(nearestPointOnSegmentHeight, m_slopePower));
+			const float controlFunctionMinimum = ControlFunctionMinimum();
+			const float controlFunctionMaximum = ControlFunctionMaximum();
+			const float adaptiveSlope = smootherstep(controlFunctionMinimum, controlFunctionMaximum, std::pow(nearestPointOnSegmentHeight, (float)m_slopePower));
 
 			// Noise
-			const double amplitudeMax = m_noiseAmplitudeProportion * (controlFunctionMaximum - controlFunctionMinimum) / higherResCell.resolution;
-			const double periodPerCell = 4.0;
-			const double terrainSizeX = m_noiseBottomRight.x - m_noiseTopLeft.x;
-			const double terrainSizeY = m_noiseBottomRight.y - m_noiseTopLeft.y;
-			const double higherResCellSize = std::max(terrainSizeX, terrainSizeY) / higherResCell.resolution;
-			const double highestResCellSizeX = terrainSizeX / highestResCell.resolution;
-			const double highestResCellSizeY = terrainSizeY / highestResCell.resolution;
-			const double amplitude = amplitudeMax * smootherstep(0.0, higherResCellSize / 4.0, distancePrimitiveCenter);
-			const double wavelengthX = highestResCellSizeX / periodPerCell;
-			const double wavelengthY = highestResCellSizeY / periodPerCell;
-			const double noise = amplitude * Perlin(x / wavelengthX, y / wavelengthY)
+			const float amplitudeMax = m_noiseAmplitudeProportion * (controlFunctionMaximum - controlFunctionMinimum) / higherResCell.resolution;
+			const float periodPerCell = 4.0;
+			const float terrainSizeX = m_noiseBottomRight.x - m_noiseTopLeft.x;
+			const float terrainSizeY = m_noiseBottomRight.y - m_noiseTopLeft.y;
+			const float higherResCellSize = std::max(terrainSizeX, terrainSizeY) / higherResCell.resolution;
+			const float highestResCellSizeX = terrainSizeX / highestResCell.resolution;
+			const float highestResCellSizeY = terrainSizeY / highestResCell.resolution;
+			const float amplitude = amplitudeMax * smootherstep(0.f, higherResCellSize / 4.f, distancePrimitiveCenter);
+			const float wavelengthX = highestResCellSizeX / periodPerCell;
+			const float wavelengthY = highestResCellSizeY / periodPerCell;
+			const float noise = amplitude * Perlin(x / wavelengthX, y / wavelengthY)
 							   + 0.5 * amplitude * Perlin(x / (2.0 * wavelengthX), y / (2.0 * wavelengthY))
 							   + 0.25 * amplitude * Perlin(x / (4.0 * wavelengthX), y / (4.0 * wavelengthY));
 
 			// Final elevation
-			const double elevation = nearestPointOnSegmentHeight + adaptiveSlope * distancePrimitiveCenter + noise;
+			const float elevation = nearestPointOnSegmentHeight + adaptiveSlope * distancePrimitiveCenter + noise;
 
 			numerator += alphaPrimitive * elevation;
 			denominator += alphaPrimitive;
@@ -1719,26 +1719,26 @@ double Noise<I>::ComputeColorPrimitives(double x, double y, const Cell& higherRe
 	}
 
 	// denominator shouldn't be equal to zero if there is enough primitives around the point.
-	assert(denominator != 0.0);
+	assert(denominator != 0.f);
 
 	return numerator / denominator;
 }
 
 template <typename I>
 template <typename ...Tail>
-double Noise<I>::ComputeColorControlFunction(double x, double y, Tail&&... tail) const
+float Noise<I>::ComputeColorControlFunction(float x, float y, Tail&&... tail) const
 {
 	const Point2D point(x, y);
 
 	// nearest segment
 	Segment3D nearestSegment;
-	const double d = NearestSegmentProjectionZ(1, point, nearestSegment, std::forward<Tail>(tail)...);
+	const float d = NearestSegmentProjectionZ(1, point, nearestSegment, std::forward<Tail>(tail)...);
 
-	double value;
+	float value;
 
-	if (d < (1.0 / 32.0))
+	if (d < (1.f / 32.0))
 	{
-		const double u = pointLineSegmentProjection(point, ProjectionZ(nearestSegment));
+		const float u = pointLineSegmentProjection(point, ProjectionZ(nearestSegment));
 		// Elevation of the nearest point
 		value = lerp(nearestSegment.a.z, nearestSegment.b.z, u);
 	}
@@ -1752,7 +1752,7 @@ double Noise<I>::ComputeColorControlFunction(double x, double y, Tail&&... tail)
 
 template <typename I>
 template <typename ... Tail>
-double Noise<I>::ComputeColorDistance(double x, double y, Tail&&... tail) const
+float Noise<I>::ComputeColorDistance(float x, float y, Tail&&... tail) const
 {
 	const Point2D point(x, y);
 

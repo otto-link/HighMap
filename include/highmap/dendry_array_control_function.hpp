@@ -34,36 +34,36 @@ public:
   }
 
 protected:
-  double EvaluateImpl(double x, double y) const
+  float EvaluateImpl(float x, float y) const
   {
-    x = std::clamp(x, 0.0, 1.0);
-    y = std::clamp(y, 0.0, 1.0);
+    x = std::clamp(x, 0.f, 1.f);
+    y = std::clamp(y, 0.f, 1.f);
 
     return sample(x, y);
   }
 
-  bool InsideDomainImpl(double x, double y) const
+  bool InsideDomainImpl(float x, float y) const
   {
-    return x >= 0.0 && x <= 1.0 && y >= 0.0 && y <= 1.0;
+    return x >= 0.f && x <= 1.f && y >= 0.f && y <= 1.f;
   }
 
-  double DistToDomainImpl(double x, double y) const
+  float DistToDomainImpl(float x, float y) const
   {
     if (InsideDomainImpl(x, y))
     {
-      return 0.0;
+      return 0.f;
     }
 
     const Point2D p(x, y);
 
-    const Point2D topLeft(0.0, 0.0);
-    const Point2D topRight(1.0, 0.0);
-    const Point2D bottomLeft(0.0, 1.0);
-    const Point2D bottomRight(1.0, 1.0);
+    const Point2D topLeft(0.f, 0.f);
+    const Point2D topRight(1.f, 0.f);
+    const Point2D bottomLeft(0.f, 1.f);
+    const Point2D bottomRight(1.f, 1.f);
 
     Point2D c; // Useless point for distToLineSegment
 
-    auto dist = std::numeric_limits<double>::max();
+    auto dist = std::numeric_limits<float>::max();
 
     dist = std::min(dist, distToLineSegment(p, topLeft, topRight, c));
     dist = std::min(dist, distToLineSegment(p, topRight, bottomRight, c));
@@ -73,23 +73,23 @@ protected:
     return dist;
   }
 
-  double MinimumImpl() const
+  float MinimumImpl() const
   {
-    return 0.0;
+    return 0.f;
   }
 
-  double MaximumImpl() const
+  float MaximumImpl() const
   {
-    return 1.0;
+    return 1.f;
   }
 
 private:
-  double get(int i, int j) const
+  float get(int i, int j) const
   {
-    return (double)m_array(i, j);
+    return (float)m_array(i, j);
   }
 
-  double sample(double ri, double rj) const
+  float sample(float ri, float rj) const
   {
     float x = ri * (m_array.shape.x - 1);
     float y = rj * (m_array.shape.y - 1);

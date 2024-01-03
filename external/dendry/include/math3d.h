@@ -16,15 +16,15 @@ struct Segment3D;
  */
 struct Point3D
 {
-	double x;
-	double y;
-	double z;
+	float x;
+	float y;
+	float z;
 
-	Point3D() : x(0.0), y(0.0), z(0.0) { }
+	Point3D() : x(0.f), y(0.f), z(0.f) { }
 
-	Point3D(double _x, double _y, double _z) : x(_x), y(_y), z(_z) { }
+	Point3D(float _x, float _y, float _z) : x(_x), y(_y), z(_z) { }
 
-	explicit Point3D(const Point2D& point, double _z) : x(point.x), y(point.y), z(_z) { }
+	explicit Point3D(const Point2D& point, float _z) : x(point.x), y(point.y), z(_z) { }
 
 	// Unary Point operators
 	Point3D& operator+=(const Point3D& p) { x += p.x; y += p.y; z += p.z; return *this; }
@@ -35,8 +35,8 @@ struct Point3D
 	Point3D& operator-=(const Vec3D& v);
 
 	// Scalar operators
-	Point3D& operator*=(double s) { x *= s; y *= s; z *= s; return *this; }
-	Point3D& operator/=(double s) { x /= s; y /= s; z /= s; return *this; }
+	Point3D& operator*=(float s) { x *= s; y *= s; z *= s; return *this; }
+	Point3D& operator/=(float s) { x /= s; y /= s; z /= s; return *this; }
 
 	// Unary minus operator
 	Point3D operator-() const { return { -x, -y, -z }; }
@@ -72,30 +72,30 @@ inline Point3D operator-(const Point3D& a, const Vec3D& v) {
 }
 
 // Binary scalar operators
-inline Point3D operator*(const Point3D& a, double s) {
+inline Point3D operator*(const Point3D& a, float s) {
 	return Point3D(a) *= s;
 }
 
-inline Point3D operator*(double s, const Point3D& a) {
+inline Point3D operator*(float s, const Point3D& a) {
 	return Point3D(a) *= s;
 }
 
-inline Point3D operator/(const Point3D& a, double s) {
+inline Point3D operator/(const Point3D& a, float s) {
 	return Point3D(a) /= s;
 }
 
 // Utility functions
-inline double dist_sq(const Point3D& lhs, const Point3D& rhs) {
+inline float dist_sq(const Point3D& lhs, const Point3D& rhs) {
 	return (lhs.x - rhs.x) * (lhs.x - rhs.x)
 		 + (lhs.y - rhs.y) * (lhs.y - rhs.y)
 		 + (lhs.z - rhs.z) * (lhs.z - rhs.z);
 }
 
-inline double dist(const Point3D& lhs, const Point3D& rhs) {
+inline float dist(const Point3D& lhs, const Point3D& rhs) {
 	return sqrt(dist_sq(lhs, rhs));
 }
 
-inline Point3D lerp(const Point3D& a, const Point3D& b, double t) {
+inline Point3D lerp(const Point3D& a, const Point3D& b, float t) {
 	return {
 		lerp(a.x, b.x, t),
 		lerp(a.y, b.y, t),
@@ -112,27 +112,27 @@ inline Point2D ProjectionZ(const Point3D& p) {
  */
 struct Vec3D
 {
-	double x;
-	double y;
-	double z;
+	float x;
+	float y;
+	float z;
 
-	Vec3D() : x(0.0), y(0.0), z(0.0) { }
+	Vec3D() : x(0.f), y(0.f), z(0.f) { }
 
-	Vec3D(double _x, double _y, double _z) : x(_x), y(_y), z(_z) { }
+	Vec3D(float _x, float _y, float _z) : x(_x), y(_y), z(_z) { }
 
 	explicit Vec3D(const Point3D& p) : x(p.x), y(p.y), z(p.z) { }
 
 	explicit Vec3D(const Point3D& a, const Point3D& b) : x(b.x - a.x), y(b.y - a.y), z(b.z - a.z) { }
 
-	explicit Vec3D(const Vec2D& vec, double _z) : x(vec.x), y(vec.y), z(_z) { }
+	explicit Vec3D(const Vec2D& vec, float _z) : x(vec.x), y(vec.y), z(_z) { }
 
 	// Unary Point operators
 	Vec3D& operator+=(const Vec3D& v) { x += v.x; y += v.y; z += v.z; return *this; }
 	Vec3D& operator-=(const Vec3D& v) { x -= v.x; y -= v.y; z -= v.z; return *this; }
 
 	// Scalar operators
-	Vec3D& operator*=(double s) { x *= s; y *= s; z *= s; return *this; }
-	Vec3D& operator/=(double s) { x /= s; y /= s; z /= s; return *this; }
+	Vec3D& operator*=(float s) { x *= s; y *= s; z *= s; return *this; }
+	Vec3D& operator/=(float s) { x /= s; y /= s; z /= s; return *this; }
 
 	// Unary minus operator
 	Vec3D operator-() const { return Vec3D(-x, -y, -z); }
@@ -159,28 +159,28 @@ inline Vec3D operator-(const Vec3D& a, const Vec3D& b) {
 }
 
 // Binary scalar operators
-inline Vec3D operator*(const Vec3D& a, double s) {
+inline Vec3D operator*(const Vec3D& a, float s) {
 	return Vec3D(a) *= s;
 }
 
-inline Vec3D operator*(double s, const Vec3D& a) {
+inline Vec3D operator*(float s, const Vec3D& a) {
 	return Vec3D(a) *= s;
 }
 
-inline Vec3D operator/(const Vec3D& a, double s) {
+inline Vec3D operator/(const Vec3D& a, float s) {
 	return Vec3D(a) /= s;
 }
 
 // Utility functions
-inline double norm_sq(const Vec3D& a) {
+inline float norm_sq(const Vec3D& a) {
 	return a.x * a.x + a.y * a.y + a.z * a.z;
 }
 
-inline double norm(const Vec3D& a) {
+inline float norm(const Vec3D& a) {
 	return sqrt(norm_sq(a));
 }
 
-inline double dot(const Vec3D& a, const Vec3D& b) {
+inline float dot(const Vec3D& a, const Vec3D& b) {
 	return a.x * b.x + a.y * b.y + a.z * b.z;
 }
 
@@ -193,7 +193,7 @@ inline Vec3D cross(const Vec3D& a, const Vec3D& b) {
 }
 
 inline Vec3D normalized(const Vec3D& a) {
-	const double n = norm(a);
+	const float n = norm(a);
 	return { a.x / n, a.y / n, a.z / n };
 }
 
@@ -201,17 +201,17 @@ inline Vec2D ProjectionZ(const Vec3D& v) {
 	return { v.x, v.y };
 }
 
-inline double angle(const Vec3D& oa, const Vec3D& ob) {
+inline float angle(const Vec3D& oa, const Vec3D& ob) {
 	return acos(dot(oa, ob) / sqrt(norm_sq(oa) * norm_sq(ob)));
 }
 
-inline Vec3D rotate_axis(const Vec3D& v, const Vec3D& axis, double angle)
+inline Vec3D rotate_axis(const Vec3D& v, const Vec3D& axis, float angle)
 {
-	assert(abs(norm_sq(axis) - 1.0) < 1e-6);
+	assert(abs(norm_sq(axis) - 1.f) < 1e-6);
 
-	const double sinAngle = sin(angle);
-	const double cosAngle = cos(angle);
-	const double oneMinusCosAngle = 1.0 - cosAngle;
+	const float sinAngle = sin(angle);
+	const float cosAngle = cos(angle);
+	const float oneMinusCosAngle = 1.f - cosAngle;
 
 	const Vec3D rotMatrixRow0 = {
 		axis.x * axis.x + cosAngle * (1 - axis.x * axis.x),
@@ -249,15 +249,15 @@ struct Segment3D
 };
 
 // Utility functions
-inline double length_sq(const Segment3D& s) {
+inline float length_sq(const Segment3D& s) {
 	return dist_sq(s.a, s.b);
 }
 
-inline double length(const Segment3D& s) {
+inline float length(const Segment3D& s) {
 	return dist(s.a, s.b);
 }
 
-inline Point3D lerp(const Segment3D& s, double t) {
+inline Point3D lerp(const Segment3D& s, float t) {
 	return lerp(s.a, s.b, t);
 }
 
@@ -276,7 +276,7 @@ std::array<Point3D, N> SubdivideInPoints(const Segment3D& s)
 
 	for (int n = 0; n < points.size(); n++)
 	{
-		const double t = double(n + 1) / (N + 1);
+		const float t = float(n + 1) / (N + 1);
 		points[n] = lerp(s.a, s.b, t);
 	}
 
@@ -293,7 +293,7 @@ std::array<Segment3D, N> SubdivideInSegments(const Segment3D& s)
 	segments.front().a = s.a;
 	for (int n = 0; n < segments.size() - 1; n++)
 	{
-		const double t = double(n + 1) / N;
+		const float t = float(n + 1) / N;
 		const Point3D point = lerp(s.a, s.b, t);
 		segments[n].b = point;
 		segments[n + 1].a = point;

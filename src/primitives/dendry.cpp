@@ -19,12 +19,12 @@ Array dendry(Vec2<int>   shape,
              Vec2<float> kw,
              uint        seed,
              Array      &control_array,
-             double      eps,
+             float       eps,
              int         resolution,
-             double      displacement,
+             float       displacement,
              int         primitives_resolution_steps,
-             double      slope_power,
-             double      noise_amplitude_proportion,
+             float       slope_power,
+             float       noise_amplitude_proportion,
              bool        add_control_function,
              float       control_function_overlap,
              Array      *p_noise_x,
@@ -84,7 +84,7 @@ Array dendry(Vec2<int>   shape,
                    p_noise_x,
                    p_noise_y,
                    [&noise](float x_, float y_)
-                   { return (float)noise.evaluateTerrain(x_, y_); });
+                   { return noise.evaluateTerrain(x_, y_); });
 
   return array;
 }

@@ -41,11 +41,11 @@ T lerp(const T& a, const T& b, const T& x)
 template<typename T>
 T lerp_clamp(const T& a, const T& b, const T& x)
 {
-	if (x < 0.0)
+	if (x < 0.f)
 	{
 		return a;
 	}
-	else if (x > 1.0)
+	else if (x > 1.f)
 	{
 		return b;
 	}
@@ -58,7 +58,7 @@ T lerp_clamp(const T& a, const T& b, const T& x)
 template<typename T>
 T smoother(T x)
 {
-	return x * x * x * (x * (x * 6.0 - 15.0) + 10.0);
+	return x * x * x * (x * (x * 6.0 - 15.0) + 10.f);
 }
 
 template<typename T>
@@ -78,7 +78,7 @@ template<typename T>
 T smootherstep(const T& edge0, const T& edge1, const T& x)
 {
 	// Scale, and clamp x to 0..1 range
-	const T t = remap_clamp(x, edge0, edge1, 0.0, 1.0);
+	const T t = remap_clamp(x, edge0, edge1, 0.f, 1.f);
 	// Evaluate polynomial
 	return smoother(t);
 }
@@ -86,7 +86,7 @@ T smootherstep(const T& edge0, const T& edge1, const T& x)
 template<typename T>
 T WyvillGalinFunction(const T& distance, const T& R, const T& N)
 {
-	T alpha = 0.0;
+	T alpha = 0.f;
 
 	if (distance < R)
 	{
@@ -96,13 +96,13 @@ T WyvillGalinFunction(const T& distance, const T& R, const T& N)
 	return alpha;
 }
 
-double cubic_interpolate(double p0, double p1, double p2, double p3, double t);
+float cubic_interpolate(float p0, float p1, float p2, float p3, float t);
 
-double cubic_interpolate(const std::array<double, 4>& p, double t);
+float cubic_interpolate(const std::array<float, 4>& p, float t);
 
-double bi_cubic_interpolate(const std::array<std::array<double, 4>, 4>& p, double u, double v);
+float bi_cubic_interpolate(const std::array<std::array<float, 4>, 4>& p, float u, float v);
 
 // Equivalent of the Jet coloring in Matlab.
-std::array<double, 3> matlab_jet(double u);
+std::array<float, 3> matlab_jet(float u);
 
 #endif // UTILS_H

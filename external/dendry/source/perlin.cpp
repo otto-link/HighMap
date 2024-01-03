@@ -5,8 +5,8 @@
 
 #include "utils.h"
 
-const double unit = 1.0 / sqrt(2);
-const double Gradients[][2] = {
+const float unit = 1.f / sqrt(2);
+const float Gradients[][2] = {
 	{ unit, unit },
 	{ -unit, unit },
 	{ unit, -unit },
@@ -34,7 +34,7 @@ const uint8_t HashTable[256] = {
 };
 
 // Computes the dot product of the distance and gradient vectors.
-double dotGridGradient(int ix, int iy, double x, double y)
+float dotGridGradient(int ix, int iy, float x, float y)
 {
 	const int mx = robust_mod(ix, 256);
 	const int my = robust_mod(iy, 256);
@@ -45,15 +45,15 @@ double dotGridGradient(int ix, int iy, double x, double y)
 	int g = HashTable[index] % 8;
 
 	// Compute the distance vector
-	double dx = x - (double)ix;
-	double dy = y - (double)iy;
+	float dx = x - (float)ix;
+	float dy = y - (float)iy;
 
 	// Compute the dot-product
 	return (dx * Gradients[g][0] + dy * Gradients[g][1]);
 }
 
 // Compute Perlin noise at coordinates x, y
-double Perlin(double x, double y)
+float Perlin(float x, float y)
 {
 	// Determine grid cell coordinates
 	int x0 = int(floor(x));
@@ -63,16 +63,16 @@ double Perlin(double x, double y)
 
 	// Determine interpolation weights
 	// Could also use higher order polynomial/s-curve here
-	double sx = x - floor(x);
-	double sy = y - floor(y);
+	float sx = x - floor(x);
+	float sy = y - floor(y);
 
-	double s = dotGridGradient(x0, y0, x, y);
-	double t = dotGridGradient(x1, y0, x, y);
-	double u = dotGridGradient(x0, y1, x, y);
-	double v = dotGridGradient(x1, y1, x, y);
+	float s = dotGridGradient(x0, y0, x, y);
+	float t = dotGridGradient(x1, y0, x, y);
+	float u = dotGridGradient(x0, y1, x, y);
+	float v = dotGridGradient(x1, y1, x, y);
 
 	// Interpolate between grid point gradients
-	double ix0 = lerp(s, t, smoother(sx));
-	double ix1 = lerp(u, v, smoother(sx));
+	float ix0 = lerp(s, t, smoother(sx));
+	float ix1 = lerp(u, v, smoother(sx));
 	return lerp(ix0, ix1, smoother(sy));
 }
