@@ -248,6 +248,56 @@ Array crater(Vec2<int>   shape,
              Vec2<float> scale = {1.f, 1.f});
 
 /**
+ * @brief Dendry is a locally computable procedural function that generates
+ * branching patterns at various scales (see @cite Gaillard2019).
+ *
+ * @param shape Array shape.
+ * @param kw Noise wavenumber with respect to a unit domain.
+ * @param seed Random seed number.
+ * @param control_array Control array (can be of any shape, different from
+ * `shape`).
+ * @param eps Epsilon used to bias the area where points are generated in cells.
+ * @param resolution Number of resolutions in the noise function.
+ * @param displacement Maximum displacement of segments.
+ * @param primitives_resolution_steps Additional resolution steps in the
+ * ComputeColorPrimitives function.
+ * @param slope_power Additional parameter to control the variation of slope on
+ * terrains.
+ * @param noise_amplitude_proportion Proportion of the amplitude of the control
+ * function as noise.
+ * @param add_control_function Add control function to the output.
+ * @param control_function_overlap Extent of the extension added at the domain
+ * frontiers of the control array.
+ * @param p_noise_x, p_noise_y Reference to the input noise array used for
+ * domain warping (NOT in pixels, with respect to a domain of size kw.x * kw.y).
+ * @param shift Shift {xs, ys} for each directions.
+ * @param scale Domain scaling, in [0, 1].
+ * @return Array New array.
+ *
+ * **Example**
+ * @include ex_dendry.cpp
+ *
+ * **Result**
+ * @image html ex_dendry.png
+ */
+Array dendry(Vec2<int>   shape,
+             Vec2<float> kw,
+             uint        seed,
+             Array      &control_function,
+             double      eps = 0.05,
+             int         resolution = 1,
+             double      displacement = 0.075,
+             int         primitives_resolution_steps = 3,
+             double      slope_power = 2.f,
+             double      noise_amplitude_proportion = 0.01,
+             bool        add_control_function = true,
+             float       control_function_overlap = 0.5f,
+             Array      *p_noise_x = nullptr,
+             Array      *p_noise_y = nullptr,
+             Vec2<float> shift = {0.f, 0.f},
+             Vec2<float> scale = {1.f, 1.f});
+
+/**
  * @brief Return an array filled with an hybrid multifractal Perlin noise.
  *
  * The function is just a wrapper based of the library <a

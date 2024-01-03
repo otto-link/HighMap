@@ -32,12 +32,12 @@ target_include_directories(${PROJECT_NAME}
                              ${PROJECT_SOURCE_DIR}/include
                            PRIVATE
                              ${PROJECT_SOURCE_DIR}/external/bezier/include/bezier
+                             ${PROJECT_SOURCE_DIR}/external/ #dendry
                              ${PROJECT_SOURCE_DIR}/external/dkm/include
                              # ${PROJECT_SOURCE_DIR}/external/FastNoise2/include/FastNoise
                              ${PROJECT_SOURCE_DIR}/external/FastNoiseLite/Cpp
                              ${PROJECT_SOURCE_DIR}/external/libInterpolate/src/libInterpolate
                              ${PROJECT_SOURCE_DIR}/external/macro-logger
-                             ${PROJECT_SOURCE_DIR}/external/stb
                              ${PROJECT_SOURCE_DIR}/external/xsimd/include
                              ${PROJECT_SOURCE_DIR}/src)
 
@@ -57,6 +57,10 @@ target_link_libraries(${PROJECT_NAME} PNG::PNG)
 # add_subdirectory(external/FastNoise2)
 # target_compile_options(FastNoise PRIVATE -Wmaybe-uninitialized -Wunknown-pragmas)
 # target_link_libraries(${PROJECT_NAME} FastNoise)
+
+# Dendry
+add_subdirectory(external/dendry)
+target_link_libraries(${PROJECT_NAME} NoiseLib)
 
 #--------------------------------------------------------------
 # everything else...
