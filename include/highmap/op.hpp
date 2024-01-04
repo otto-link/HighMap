@@ -2077,6 +2077,38 @@ void smooth_fill_smear_peaks(Array &array, int ir);
 void smooth_fill_smear_peaks(Array &array, int ir, Array *p_mask);
 
 /**
+ * @brief Return the 3rd order smoothstep function of the array elements.
+ *
+ * @param array Input array.
+ * @param vmin Lower bound.
+ * @param vmax Upper bound.
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_smoothstep.cpp
+ *
+ * **Result**
+ * @image html ex_smoothstep.png
+ */
+Array smoothstep3(const Array &array, float vmin = 0.f, float vmax = 1.f);
+
+/**
+ * @brief Return the 5rd order smoothstep function of the array elements.
+ *
+ * @param array Input array.
+ * @param vmin Lower bound.
+ * @param vmax Upper bound.
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_smoothstep.cpp
+ *
+ * **Result**
+ * @image html ex_smoothstep.png
+ */
+Array smoothstep5(const Array &array, float vmin = 0.f, float vmax = 1.f);
+
+/**
  * @brief Steepen (or flatten) the array map.
  *
  * @param array Input array.
