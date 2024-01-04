@@ -231,11 +231,7 @@ public:
    *
    * @return std::vector<float> `x` values.
    */
-<<<<<<< HEAD
-  std::vector<float> get_x() const
-=======
   virtual std::vector<float> get_x() const
->>>>>>> dev
   {
     std::vector<float> x(this->get_npoints());
     for (size_t i = 0; i < this->get_npoints(); i++)
@@ -248,11 +244,7 @@ public:
    *
    * @return std::vector<float> Coordinates.
    */
-<<<<<<< HEAD
-  std::vector<float> get_xy() const
-=======
   virtual std::vector<float> get_xy() const
->>>>>>> dev
   {
     std::vector<float> xy(2 * this->get_npoints());
     for (size_t i = 0; i < this->get_npoints(); i++)
@@ -268,11 +260,7 @@ public:
    *
    * @return std::vector<float> `y` values.
    */
-<<<<<<< HEAD
-  std::vector<float> get_y() const
-=======
   virtual std::vector<float> get_y() const
->>>>>>> dev
   {
     std::vector<float> y(this->get_npoints());
     for (size_t i = 0; i < this->get_npoints(); i++)
