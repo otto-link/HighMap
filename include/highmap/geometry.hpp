@@ -231,7 +231,11 @@ public:
    *
    * @return std::vector<float> `x` values.
    */
+<<<<<<< HEAD
   std::vector<float> get_x() const
+=======
+  virtual std::vector<float> get_x() const
+>>>>>>> dev
   {
     std::vector<float> x(this->get_npoints());
     for (size_t i = 0; i < this->get_npoints(); i++)
@@ -244,7 +248,11 @@ public:
    *
    * @return std::vector<float> Coordinates.
    */
+<<<<<<< HEAD
   std::vector<float> get_xy() const
+=======
+  virtual std::vector<float> get_xy() const
+>>>>>>> dev
   {
     std::vector<float> xy(2 * this->get_npoints());
     for (size_t i = 0; i < this->get_npoints(); i++)
@@ -260,7 +268,11 @@ public:
    *
    * @return std::vector<float> `y` values.
    */
+<<<<<<< HEAD
   std::vector<float> get_y() const
+=======
+  virtual std::vector<float> get_y() const
+>>>>>>> dev
   {
     std::vector<float> y(this->get_npoints());
     for (size_t i = 0; i < this->get_npoints(); i++)
@@ -686,6 +698,76 @@ public:
    */
   std::vector<float> get_cumulative_distance();
 
+  /**
+   * @brief Get the values assigned of the points.
+   *
+   * @return std::vector<float> Values
+   */
+  std::vector<float> get_values() const
+  {
+    std::vector<float> v(this->get_npoints());
+    for (size_t i = 0; i < this->get_npoints(); i++)
+      v[i] = this->points[i].v;
+
+    if (this->closed && this->get_npoints() > 0)
+      v.push_back(this->points[0].v);
+    return v;
+  }
+
+  /**
+   * @brief Get the `x` of the points.
+   *
+   * @return std::vector<float> `x` values.
+   */
+  std::vector<float> get_x() const
+  {
+    std::vector<float> x(this->get_npoints());
+    for (size_t i = 0; i < this->get_npoints(); i++)
+      x[i] = this->points[i].x;
+
+    if (this->closed && this->get_npoints() > 0)
+      x.push_back(this->points[0].x);
+    return x;
+  }
+
+  /** Get the points coordinates of a single vector (x0, y0, x1, y1,...).
+   * @brief Get the xy object
+   *
+   * @return std::vector<float> Coordinates.
+   */
+  std::vector<float> get_xy() const
+  {
+    std::vector<float> xy(2 * this->get_npoints());
+    for (size_t i = 0; i < this->get_npoints(); i++)
+    {
+      xy[2 * i] = this->points[i].x;
+      xy[2 * i + 1] = this->points[i].y;
+    }
+
+    if (this->closed && this->get_npoints() > 0)
+    {
+      xy.push_back(this->points[0].x);
+      xy.push_back(this->points[0].y);
+    }
+    return xy;
+  }
+
+  /**
+   * @brief Get the `y` of the points.
+   *
+   * @return std::vector<float> `y` values.
+   */
+  std::vector<float> get_y() const
+  {
+    std::vector<float> y(this->get_npoints());
+    for (size_t i = 0; i < this->get_npoints(); i++)
+      y[i] = this->points[i].y;
+
+    if (this->closed && this->get_npoints() > 0)
+      y.push_back(this->points[0].y);
+    return y;
+  }
+
   //----------------------------------------
   // methods
   //----------------------------------------
@@ -775,7 +857,6 @@ public:
    * @param transition_length_ratio Transition to preserve starting and ending
    * parts of the curve.
    *
-   *
    * **Example**
    * @include ex_path_meanderize.cpp
    *
@@ -822,13 +903,86 @@ public:
   void subsample(int step);
 
   /**
-   * @brief Project cloud points to an array.
+   * @brief Project path points to an array.
    *
    * @param array Input array.
    * @param bbox Bounding box of the array.
    * @param filled Activate flood filling of the contour.
    */
   void to_array(Array &array, Vec4<float> bbox, bool filled = false);
+
+  /**
+   * @brief Project path points to an array using a signed distance function and
+   * an exponential decrease.
+   *
+   * @param shape Output array shape.
+   * @param bbox Bounding box.
+   * @param width Mountain shape width.
+   * @param p_noise_x, p_noise_y Reference to the input noise array used for
+   * domain warping (NOT in pixels, with respect to a unit domain).
+   * @return Array Output array.
+   *
+   * **Example**
+   * @include ex_path_to_array_gaussian.cpp
+   *
+   * **Result**
+   * @image html ex_path_to_array_gaussian.png
+   */
+  Array to_array_gaussian(Vec2<int>   shape,
+                          Vec4<float> bbox,
+                          float       width = 0.1f,
+                          Array      *p_noise_x = nullptr,
+                          Array      *p_noise_y = nullptr,
+                          Vec2<float> shift = {0.f, 0.f},
+                          Vec2<float> scale = {1.f, 1.f});
+
+  /**
+   * @brief Project path points to an array using a signed distance function
+   * assuming the path is a closed polygon.
+   *
+   * @param shape Output array shape.
+   * @param bbox Bounding box.
+   * @param p_noise_x, p_noise_y Reference to the input noise array used for
+   * domain warping (NOT in pixels, with respect to a unit domain).
+   * @return Array Output array.
+   *
+   * **Example**
+   * @include ex_path_to_array_polygon.cpp
+   *
+   * **Result**
+   * @image html ex_path_to_array_polygon.png
+   */
+  Array to_array_polygon(Vec2<int>   shape,
+                         Vec4<float> bbox,
+                         Array      *p_noise_x = nullptr,
+                         Array      *p_noise_y = nullptr,
+                         Vec2<float> shift = {0.f, 0.f},
+                         Vec2<float> scale = {1.f, 1.f});
+
+  /**
+   * @brief Project path points to an array using a signed distance function to
+   * generate a mountain range-like heightmap.
+   *
+   * @param shape Output array shape.
+   * @param bbox Bounding box.
+   * @param aspect_ratio Mountain range aspect ratio (width / height).
+   * @param p_noise_x, p_noise_y Reference to the input noise array used for
+   * domain warping (NOT in pixels, with respect to a unit domain).
+   * @return Array Output array.
+   *
+   * **Example**
+   * @include ex_path_to_array_range.cpp
+   *
+   * **Result**
+   * @image html ex_path_to_array_range.png
+   */
+  Array to_array_range(Vec2<int>   shape,
+                       Vec4<float> bbox,
+                       float       aspect_ratio,
+                       Array      *p_noise_x = nullptr,
+                       Array      *p_noise_y = nullptr,
+                       Vec2<float> shift = {0.f, 0.f},
+                       Vec2<float> scale = {1.f, 1.f});
 
   /**
    * @brief Export path as png image file.

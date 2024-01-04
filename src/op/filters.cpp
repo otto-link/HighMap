@@ -840,4 +840,65 @@ void steepen_convective(Array &array,
   }
 }
 
+void wrinkle(Array &array,
+             float  wrinkle_amplitude,
+             float  displacement_amplitude,
+             int    ir,
+             float  kw,
+             uint   seed,
+             int    octaves,
+             float  weight)
+{
+  Array dr = displacement_amplitude * array;
+
+  if (ir > 0)
+    smooth_cpulse(dr, ir);
+
+  Array w = fbm_simplex(array.shape,
+                        Vec2<float>(kw, kw),
+                        seed,
+                        octaves,
+                        weight,
+                        0.5f,
+                        2.f,
+                        &dr,
+                        &dr);
+
+  array += wrinkle_amplitude * gradient_norm(w);
+}
+
+void wrinkle(Array &array,
+             float  wrinkle_amplitude,
+             Array *p_mask,
+             float  displacement_amplitude,
+             int    ir,
+             float  kw,
+             uint   seed,
+             int    octaves,
+             float  weight)
+{
+  if (!p_mask)
+    wrinkle(array,
+            wrinkle_amplitude,
+            displacement_amplitude,
+            ir,
+            kw,
+            seed,
+            octaves,
+            weight);
+  else
+  {
+    Array array_f = array;
+    wrinkle(array_f,
+            wrinkle_amplitude,
+            displacement_amplitude,
+            ir,
+            kw,
+            seed,
+            octaves,
+            weight);
+    array = lerp(array, array_f, *(p_mask));
+  }
+}
+
 } // namespace hmap

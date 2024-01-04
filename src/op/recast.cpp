@@ -118,7 +118,7 @@ void recast_rocky_slopes(Array &array,
 
   if (!p_noise)
   {
-    Array noise = fbm_perlin(array.shape, {kw, kw}, seed, 4, 0.f);
+    Array noise = fbm_simplex(array.shape, {kw, kw}, seed, 8, 0.f);
     gamma_correction_local(noise, gamma, ir, 0.1f);
     {
       int ir2 = (int)(ir / 4.f);

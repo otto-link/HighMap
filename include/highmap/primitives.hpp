@@ -248,6 +248,56 @@ Array crater(Vec2<int>   shape,
              Vec2<float> scale = {1.f, 1.f});
 
 /**
+ * @brief Dendry is a locally computable procedural function that generates
+ * branching patterns at various scales (see @cite Gaillard2019).
+ *
+ * @param shape Array shape.
+ * @param kw Noise wavenumber with respect to a unit domain.
+ * @param seed Random seed number.
+ * @param control_array Control array (can be of any shape, different from
+ * `shape`).
+ * @param eps Epsilon used to bias the area where points are generated in cells.
+ * @param resolution Number of resolutions in the noise function.
+ * @param displacement Maximum displacement of segments.
+ * @param primitives_resolution_steps Additional resolution steps in the
+ * ComputeColorPrimitives function.
+ * @param slope_power Additional parameter to control the variation of slope on
+ * terrains.
+ * @param noise_amplitude_proportion Proportion of the amplitude of the control
+ * function as noise.
+ * @param add_control_function Add control function to the output.
+ * @param control_function_overlap Extent of the extension added at the domain
+ * frontiers of the control array.
+ * @param p_noise_x, p_noise_y Reference to the input noise array used for
+ * domain warping (NOT in pixels, with respect to a domain of size kw.x * kw.y).
+ * @param shift Shift {xs, ys} for each directions.
+ * @param scale Domain scaling, in [0, 1].
+ * @return Array New array.
+ *
+ * **Example**
+ * @include ex_dendry.cpp
+ *
+ * **Result**
+ * @image html ex_dendry.png
+ */
+Array dendry(Vec2<int>   shape,
+             Vec2<float> kw,
+             uint        seed,
+             Array      &control_function,
+             float       eps = 0.05,
+             int         resolution = 1,
+             float       displacement = 0.075,
+             int         primitives_resolution_steps = 3,
+             float       slope_power = 2.f,
+             float       noise_amplitude_proportion = 0.01,
+             bool        add_control_function = true,
+             float       control_function_overlap = 0.5f,
+             Array      *p_noise_x = nullptr,
+             Array      *p_noise_y = nullptr,
+             Vec2<float> shift = {0.f, 0.f},
+             Vec2<float> scale = {1.f, 1.f});
+
+/**
  * @brief Return an array filled with an hybrid multifractal Perlin noise.
  *
  * The function is just a wrapper based of the library <a
@@ -703,6 +753,117 @@ Array ridged_perlin(Vec2<int>   shape,
                     Array      *p_stretching = nullptr,
                     Vec2<float> shift = {0.f, 0.f},
                     Vec2<float> scale = {1.f, 1.f});
+
+/**
+ * @brief Return an array filled with the signed distance function of a circle.
+ *
+ * @param shape Array shape.
+ * @param radius Disk radius.
+ * @param p_noise_x, p_noise_y Reference to the input noise array used for
+ * domain warping (NOT in pixels, with respect to a unit domain).
+ * @param center Primitive reference center.
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a
+ * unit domain.
+ * @param scale Domain scaling, in [0, 1].
+ * @return Array SDF values.
+ *
+ * **Example**
+ * @include ex_sdf.cpp
+ *
+ * **Result**
+ * @image html ex_sdf.png
+ */
+Array sdf_circle(Vec2<int>   shape,
+                 float       radius,
+                 Array      *p_noise_x = nullptr,
+                 Array      *p_noise_y = nullptr,
+                 Vec2<float> center = {0.5f, 0.5f},
+                 Vec2<float> shift = {0.f, 0.f},
+                 Vec2<float> scale = {1.f, 1.f});
+
+/**
+ * @brief Return an array filled with the signed distance function of a path.
+ *
+ * @param shape Array shape.
+ * @param xp Polygon x coordinates (assuming a square unit domain).
+ * @param yp Polygon y coordinates (assuming a square unit domain).
+ * @param p_noise_x, p_noise_y Reference to the input noise array used for
+ * domain warping (NOT in pixels, with respect to a unit domain).
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a
+ * unit domain.
+ * @param scale Domain scaling, in [0, 1].
+ * @return Array SDF values.
+ *
+ * **Example**
+ * @include ex_sdf.cpp
+ *
+ * **Result**
+ * @image html ex_sdf.png
+ */
+Array sdf_path(Vec2<int>          shape,
+               std::vector<float> xp,
+               std::vector<float> yp,
+               Array             *p_noise_x = nullptr,
+               Array             *p_noise_y = nullptr,
+               Vec2<float>        shift = {0.f, 0.f},
+               Vec2<float>        scale = {1.f, 1.f});
+
+/**
+ * @brief Return an array filled with the signed distance function of a polygon.
+ *
+ * @param shape Array shape.
+ * @param xp Polygon x coordinates (assuming a square unit domain).
+ * @param yp Polygon y coordinates (assuming a square unit domain).
+ * @param p_noise_x, p_noise_y Reference to the input noise array used for
+ * domain warping (NOT in pixels, with respect to a unit domain).
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a
+ * unit domain.
+ * @param scale Domain scaling, in [0, 1].
+ * @return Array SDF values.
+ *
+ * **Example**
+ * @include ex_sdf.cpp
+ *
+ * **Result**
+ * @image html ex_sdf.png
+ */
+Array sdf_polygon(Vec2<int>          shape,
+                  std::vector<float> xp,
+                  std::vector<float> yp,
+                  Array             *p_noise_x = nullptr,
+                  Array             *p_noise_y = nullptr,
+                  Vec2<float>        shift = {0.f, 0.f},
+                  Vec2<float>        scale = {1.f, 1.f});
+
+/**
+ * @brief Return an array filled with the annular signed distance function of a
+ * polygon.
+ *
+ * @param shape Array shape.
+ * @param xp Polygon x coordinates (assuming a square unit domain).
+ * @param yp Polygon y coordinates (assuming a square unit domain).
+ * @param width Annular width.
+ * @param p_noise_x, p_noise_y Reference to the input noise array used for
+ * domain warping (NOT in pixels, with respect to a unit domain).
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a
+ * unit domain.
+ * @param scale Domain scaling, in [0, 1].
+ * @return Array SDF values.
+ *
+ * **Example**
+ * @include ex_sdf.cpp
+ *
+ * **Result**
+ * @image html ex_sdf.png
+ */
+Array sdf_polygon_annular(Vec2<int>          shape,
+                          std::vector<float> xp,
+                          std::vector<float> yp,
+                          float              width,
+                          Array             *p_noise_x = nullptr,
+                          Array             *p_noise_y = nullptr,
+                          Vec2<float>        shift = {0.f, 0.f},
+                          Vec2<float>        scale = {1.f, 1.f});
 
 /**
  * @brief Return an array filled with OpenSimplex2 noise.

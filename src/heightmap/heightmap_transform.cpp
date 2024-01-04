@@ -216,6 +216,29 @@ void transform(HeightMap &h, std::function<void(Array &, Vec4<float>)> unary_op)
     futures[i].get();
 }
 
+void transform(
+    HeightMap                                                  &h,
+    HeightMap                                                  *p_noise_x,
+    HeightMap                                                  *p_noise_y,
+    std::function<void(Array &, Vec4<float>, Array *, Array *)> unary_op)
+{
+  LOG_DEBUG("unary bbox");
+  size_t                         nthreads = h.get_ntiles();
+  std::vector<std::future<void>> futures(nthreads);
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+  {
+    Array *p_nx = (p_noise_x == nullptr) ? nullptr : &p_noise_x->tiles[i];
+    Array *p_ny = (p_noise_y == nullptr) ? nullptr : &p_noise_y->tiles[i];
+
+    futures[i] =
+        std::async(unary_op, std::ref(h.tiles[i]), h.tiles[i].bbox, p_nx, p_ny);
+  }
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+    futures[i].get();
+}
+
 void transform(HeightMap                            &h,
                HeightMap                            *p_mask,
                std::function<void(Array &, Array *)> unary_op)

@@ -2078,6 +2078,38 @@ void smooth_fill_smear_peaks(Array &array, int ir);
 void smooth_fill_smear_peaks(Array &array, int ir, Array *p_mask);
 
 /**
+ * @brief Return the 3rd order smoothstep function of the array elements.
+ *
+ * @param array Input array.
+ * @param vmin Lower bound.
+ * @param vmax Upper bound.
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_smoothstep.cpp
+ *
+ * **Result**
+ * @image html ex_smoothstep.png
+ */
+Array smoothstep3(const Array &array, float vmin = 0.f, float vmax = 1.f);
+
+/**
+ * @brief Return the 5rd order smoothstep function of the array elements.
+ *
+ * @param array Input array.
+ * @param vmin Lower bound.
+ * @param vmax Upper bound.
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_smoothstep.cpp
+ *
+ * **Result**
+ * @image html ex_smoothstep.png
+ */
+Array smoothstep5(const Array &array, float vmin = 0.f, float vmax = 1.f);
+
+/**
  * @brief Steepen (or flatten) the array map.
  *
  * @param array Input array.
@@ -2276,6 +2308,44 @@ void warp_fbm(Array      &array,
               uint        seed,
               int         octaves = 8,
               Vec2<float> shift = {0.f, 0.f});
+
+/**
+ * @brief
+ *
+ * @param array Input array.
+ * @param wrinkle_amplitude Effect amplitude.
+ * @param p_mask Filter mask, expected in [0, 1].
+ * @param displacement_amplitude Drives wrinkles primitive displacement.
+ * @param ir Smooth filter radius.
+ * @param kw Underlying primitive wavenumber.
+ * @param seed Underlying primitive random seed number.
+ * @param octaves Underlying primitive number of octaves.
+ * @param weight Underlying primitive weight.
+ *
+ * **Example**
+ * @include ex_wrinkle.png
+ *
+ * **Result**
+ * @image html ex_wrinkle.cpp
+ */
+void wrinkle(Array &array,
+             float  wrinkle_amplitude,
+             Array *p_mask,
+             float  displacement_amplitude = 1.f,
+             int    ir = 0,
+             float  kw = 2.f,
+             uint   seed = 1,
+             int    octaves = 8,
+             float  weight = 0.7f);
+
+void wrinkle(Array &array,
+             float  wrinkle_amplitude,
+             float  displacement_amplitude = 1.f,
+             int    ir = 0,
+             float  kw = 2.f,
+             uint   seed = 1,
+             int    octaves = 8,
+             float  weight = 0.7f); ///< @overload
 
 /**
  * @brief Fill values at the borders (i = 0, j = 0, ...) with zeros.

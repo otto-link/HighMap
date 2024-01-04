@@ -144,4 +144,48 @@ Array sin(const Array &array)
   return array_out;
 }
 
+Array smoothstep3(const Array &array, float vmin, float vmax)
+{
+  Array array_out = Array(array.shape);
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array_out.vector.begin(),
+                 [&vmin, &vmax](float v)
+                 {
+                   if (v < vmin)
+                     return vmin;
+                   else if (v > vmax)
+                     return vmax;
+                   else
+                   {
+                     float vn = (v - vmin) / (vmax - vmin);
+                     vn = vn * vn * (3.f - 2.f * vn);
+                     return vmin + (vmax - vmin) * vn;
+                   }
+                 });
+  return array_out;
+}
+
+Array smoothstep5(const Array &array, float vmin, float vmax)
+{
+  Array array_out = Array(array.shape);
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array_out.vector.begin(),
+                 [&vmin, &vmax](float v)
+                 {
+                   if (v < vmin)
+                     return vmin;
+                   else if (v > vmax)
+                     return vmax;
+                   else
+                   {
+                     float vn = (v - vmin) / (vmax - vmin);
+                     vn = vn * vn * vn * (vn * (vn * 6.f - 15.f) + 10.f);
+                     return vmin + (vmax - vmin) * vn;
+                   }
+                 });
+  return array_out;
+}
+
 } // namespace hmap
