@@ -380,6 +380,17 @@ void fill(HeightMap                             &h,
                               Array *p_noise_y)> nullary_op);
 
 void fill(HeightMap                          &h,
+          HeightMap                          &hin,
+          HeightMap                          *p_noise_x,
+          HeightMap                          *p_noise_y,
+          std::function<Array(hmap::Array &,
+                              Vec2<int>,
+                              Vec2<float>,
+                              Vec2<float>,
+                              hmap::Array *,
+                              hmap::Array *)> nullary_op);
+
+void fill(HeightMap                          &h,
           HeightMap                          *p_noise_x,
           HeightMap                          *p_noise_y,
           HeightMap                          *p_stretching,

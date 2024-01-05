@@ -80,6 +80,41 @@ void fill(HeightMap                          &h,
 }
 
 void fill(HeightMap                          &h,
+          HeightMap                          &hin,
+          HeightMap                          *p_noise_x,
+          HeightMap                          *p_noise_y,
+          std::function<Array(hmap::Array &,
+                              Vec2<int>,
+                              Vec2<float>,
+                              Vec2<float>,
+                              hmap::Array *,
+                              hmap::Array *)> unary_op)
+{
+  LOG_DEBUG("unary (shape, size, p_noise, p_noise)");
+  size_t                          nthreads = h.get_ntiles();
+  std::vector<std::future<Array>> futures(nthreads);
+
+  LOG_DEBUG("pointer: %p", (void *)p_noise_y);
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+  {
+    Array *p_nx = (p_noise_x == nullptr) ? nullptr : &p_noise_x->tiles[i];
+    Array *p_ny = (p_noise_y == nullptr) ? nullptr : &p_noise_y->tiles[i];
+
+    futures[i] = std::async(unary_op,
+                            std::ref(hin.tiles[i]),
+                            h.tiles[i].shape,
+                            h.tiles[i].shift,
+                            h.tiles[i].scale,
+                            p_nx,
+                            p_ny);
+  }
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+    h.tiles[i] = futures[i].get();
+}
+
+void fill(HeightMap                          &h,
           HeightMap                          *p_noise_x,
           HeightMap                          *p_noise_y,
           HeightMap                          *p_stretching,
