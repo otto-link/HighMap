@@ -221,6 +221,11 @@ float Array::max() const
   return *std::max_element(this->vector.begin(), this->vector.end());
 }
 
+float Array::mean() const
+{
+  return this->sum() / (float)this->size();
+};
+
 float Array::min() const
 {
   return *std::min_element(this->vector.begin(), this->vector.end());
@@ -285,7 +290,7 @@ int Array::size() const
   return this->shape.x * this->shape.y;
 }
 
-float Array::sum()
+float Array::sum() const
 {
   return std::accumulate(this->vector.begin(), this->vector.end(), 0.f);
 }

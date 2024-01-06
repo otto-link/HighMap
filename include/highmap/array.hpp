@@ -502,6 +502,13 @@ public:
   float max() const;
 
   /**
+   * @brief Return the mean value of the element in the array.
+   *
+   * @return float
+   */
+  float mean() const;
+
+  /**
    * @brief Return the value of the smallest element in the array.
    *
    * @return float
@@ -571,7 +578,7 @@ public:
    *
    * @return float
    */
-  float sum();
+  float sum() const;
 
   /**
    * @brief Export array a raw binary file.
