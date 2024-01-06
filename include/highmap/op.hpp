@@ -1589,10 +1589,9 @@ void remap(Array &array, float vmin = 0, float vmax = 1); ///< @overload
  *
  * @param array Input array.
  * @param scaling Amplitude scaling.
- * @param centered If true, the scaling is applied with the mean value of the
- * array element as a 'zero' reference.
+ * @param vref Reference 'zero' value.
  */
-void rescale(Array &array, float scaling, bool centered = false);
+void rescale(Array &array, float scaling, float vref = 0.f);
 
 /**
  * @brief Rotate the array.

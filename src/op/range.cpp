@@ -379,17 +379,16 @@ void remap(Array &array, float vmin, float vmax, float from_min, float from_max)
     std::fill(array.vector.begin(), array.vector.end(), vmin);
 }
 
-void rescale(Array &array, float scaling, bool centered)
+void rescale(Array &array, float scaling, float vref)
 {
-  if (!centered)
+  if (vref == 0.f)
     // simply multiply the values by the scaling
     array *= scaling;
   else
   {
-    float mean = array.mean();
-    array -= mean;
+    array -= vref;
     array *= scaling;
-    array += mean;
+    array += vref;
   }
 }
 

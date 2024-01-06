@@ -13,8 +13,8 @@ int main(void)
   hmap::rescale(z2, 0.5f);
 
   auto z3 = z1;
-  bool centered = true;
-  hmap::rescale(z3, 0.5f, centered);
+  float vref = z1.mean();
+  hmap::rescale(z3, 0.5f, vref);
 
   hmap::export_banner_png("ex_rescale.png", {z1, z2, z3}, hmap::cmap::inferno);
 }
