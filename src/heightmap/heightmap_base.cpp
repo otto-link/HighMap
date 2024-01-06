@@ -222,6 +222,12 @@ float HeightMap::min()
   return *std::min_element(min_tiles.begin(), min_tiles.end());
 }
 
+float HeightMap::mean()
+{
+  float mean = this->sum() / (float)(this->shape.x * this->shape.y);
+  return mean;
+}
+
 void HeightMap::remap(float vmin, float vmax)
 {
   float hmin = this->min();
@@ -236,6 +242,24 @@ void HeightMap::remap(float vmin, float vmax, float from_min, float from_max)
   transform(*this,
             [vmin, vmax, from_min, from_max](Array &x)
             { hmap::remap(x, vmin, vmax, from_min, from_max); });
+}
+
+float HeightMap::sum()
+{
+  std::vector<float>              sum_tiles(this->get_ntiles());
+  std::vector<std::future<float>> futures(this->get_ntiles());
+
+  for (decltype(futures)::size_type i = 0; i < this->get_ntiles(); ++i)
+    futures[i] = std::async(&Tile::sum, tiles[i]);
+
+  for (decltype(futures)::size_type i = 0; i < this->get_ntiles(); ++i)
+    sum_tiles[i] = futures[i].get();
+
+  float sum = 0.f;
+  for (auto &v : sum_tiles)
+    sum += v;
+
+  return sum;
 }
 
 Array HeightMap::to_array()

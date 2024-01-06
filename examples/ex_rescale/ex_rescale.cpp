@@ -12,7 +12,7 @@ int main(void)
   auto z2 = z1;
   hmap::rescale(z2, 0.5f);
 
-  auto z3 = z1;
+  auto  z3 = z1;
   float vref = z1.mean();
   hmap::rescale(z3, 0.5f, vref);
 
