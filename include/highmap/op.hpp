@@ -26,6 +26,16 @@ namespace hmap
 {
 
 /**
+ * @brief Neighborhood lattice type.
+ */
+enum neighborhood : int
+{
+  moore,       ///< Moore
+  von_neumann, ///< Von Neuman
+  cross        ///< cross-shaped neighborhood (only diagonals)
+};
+
+/**
  * @brief Return the absolute value of the array elements.
  *
  * @param array Input array.
@@ -592,6 +602,27 @@ void expand_directional(Array &array,
  *
  */
 void extrapolate_borders(Array &array, int nbuffer = 1);
+
+/**
+ * @brief Return an heightmap retaining the main features of the input heightmap
+ * but with a 'faceted' aspect.
+ *
+ * @param array Input arrau.
+ * @param neighborhood Neighborhood type (see {@link neighborhood}).
+ * @param p_noise_x, p_noise_y Reference to the input noise array used for
+ * domain warping (NOT in pixels, with respect to a unit domain).
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_faceted.cpp
+ *
+ * **Result**
+ * @image html ex_faceted.png
+ */
+Array faceted(const Array &array,
+              int          neighborhood = 0,
+              Array       *p_noise_x = nullptr,
+              Array       *p_noise_y = nullptr);
 
 /**
  * @brief Fill values at the borders (i = 0, j = 0, ...) based on 1st neighbor
