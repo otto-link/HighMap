@@ -21,9 +21,7 @@ Array geomorphons(const Array &array, int irmin, int irmax, float epsilon)
   // neighborhood search
   const std::vector<int> di = {-1, -1, 0, 1, 1, 1, 0, -1};
   const std::vector<int> dj = {0, 1, 1, 1, 0, -1, -1, -1};
-  std::vector<float>     c =
-      {1.f, M_SQRT1_2, 1.f, M_SQRT1_2, 1.f, M_SQRT1_2, 1.f, M_SQRT1_2};
-  const uint nb = di.size();
+  const uint             nb = di.size();
 
   const int dr_max = irmax - irmin + 1;
 
@@ -41,8 +39,8 @@ Array geomorphons(const Array &array, int irmin, int irmax, float epsilon)
 
         for (int dr = 1; dr < dr_max; dr++)
         {
-          int ip = i + (int)(di[k] * dr); // * c[k]);
-          int jp = j + (int)(dj[k] * dr); // * c[k]);
+          int ip = i + (int)(di[k] * dr);
+          int jp = j + (int)(dj[k] * dr);
 
           if ((ip > -1) && (ip < array.shape.x) && (jp > -1) &&
               (jp < array.shape.y))
