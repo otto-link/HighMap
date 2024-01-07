@@ -773,6 +773,25 @@ void gamma_correction_local(Array &array,
 Array generate_buffered_array(const Array &array, Vec4<int> buffers);
 
 /**
+ * @brief Return the labelling of a geomorphons-based classification @cite
+ * Jasiewicz2013.
+ *
+ * @param array Input array.
+ * @param irmin Minimum lookup radius (in pixels).
+ * @param irmax Maximum lookup radius (in pixels).
+ * @param epsilon Slope tolerance defining 'flatness'.
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_geomorphons.cpp
+ *
+ * **Result**
+ * @image html ex_geomorphons0.png
+ * @image html ex_geomorphons1.png
+ */
+Array geomorphons(const Array &array, int irmin, int irmax, float epsilon);
+
+/**
  * @brief Return the gradient of a vector.
  *
  * @param v Input vector.
