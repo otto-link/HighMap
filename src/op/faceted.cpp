@@ -8,6 +8,7 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/interpolate.hpp"
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 
@@ -19,8 +20,6 @@ Array faceted(const Array &array,
               Array       *p_noise_x,
               Array       *p_noise_y)
 {
-  Array array_out(array.shape);
-
   // find sinks and preaks to use their positions and elevations as
   // reference points for the Delauney interpolation
   std::vector<float> x;
@@ -102,20 +101,16 @@ Array faceted(const Array &array,
   //
   expand_grid(x, y, value, {0.f, 1.f, 0.f, 1.f});
 
-  // --- Interpolate
-  _2D::LinearDelaunayTriangleInterpolator<float> interp;
-  interp.setData(x, y, value);
-
-  // array grid
-  std::vector<float> xg = linspace(0.f, 1.f, array.shape.x, false);
-  std::vector<float> yg = linspace(0.f, 1.f, array.shape.y, false);
-
-  array_out = helper_get_noise(xg,
-                               yg,
-                               p_noise_x,
-                               p_noise_y,
-                               [&interp](float x_, float y_)
-                               { return interp(x_, y_); });
+  // interpolate
+  Array array_out = interpolate2d(array.shape,
+                                  x,
+                                  y,
+                                  value,
+                                  interpolator2d::delaunay,
+                                  p_noise_x,
+                                  p_noise_y,
+                                  {0.f, 0.f},
+                                  {1.f, 1.f});
 
   return array_out;
 }

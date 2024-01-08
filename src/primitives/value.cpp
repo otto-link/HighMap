@@ -4,11 +4,10 @@
 #include <cmath>
 
 #include "FastNoiseLite.h"
-#include "Interpolate.hpp"
 
 #include "highmap/array.hpp"
 #include "highmap/geometry.hpp"
-#include "highmap/io.hpp"
+#include "highmap/interpolate.hpp"
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 #include "highmap/vector.hpp"
@@ -57,7 +56,7 @@ Array value_noise_delaunay(Vec2<int>   shape,
                            Vec2<float> shift,
                            Vec2<float> scale)
 {
-  // --- Generate 'n' random grid points
+  // generate 'n' random grid points
   int n = (int)(kw * kw);
 
   std::vector<float> x(n);
@@ -67,20 +66,17 @@ Array value_noise_delaunay(Vec2<int>   shape,
   random_grid(x, y, value, seed, {0.f, 1.f, 0.f, 1.f});
   expand_grid(x, y, value, {0.f, 1.f, 0.f, 1.f});
 
-  // --- Interpolate
-  _2D::LinearDelaunayTriangleInterpolator<float> interp;
-  interp.setData(x, y, value);
+  // interpolate
+  Array array = interpolate2d(shape,
+                              x,
+                              y,
+                              value,
+                              interpolator2d::delaunay,
+                              p_noise_x,
+                              p_noise_y,
+                              shift,
+                              scale);
 
-  // array grid
-  std::vector<float> xg = linspace(shift.x, shift.x + scale.x, shape.x, false);
-  std::vector<float> yg = linspace(shift.y, shift.y + scale.y, shape.y, false);
-
-  Array array = helper_get_noise(xg,
-                                 yg,
-                                 p_noise_x,
-                                 p_noise_y,
-                                 [&interp](float x_, float y_)
-                                 { return interp(x_, y_); });
   return array;
 }
 
@@ -92,9 +88,9 @@ Array value_noise_linear(Vec2<int>   shape,
                          Vec2<float> shift,
                          Vec2<float> scale)
 {
-  // --- Generate random values on a regular coarse grid (adjust
-  // --- extent according to the input noise in order to avoid "holes"
-  // --- in the data for large noise displacement)
+  // generate random values on a regular coarse grid (adjust extent
+  // according to the input noise in order to avoid "holes" in the
+  // data for large noise displacement)
   Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f}; // bounding box
 
   if (p_noise_x)
@@ -126,20 +122,16 @@ Array value_noise_linear(Vec2<int>   shape,
       yv(i, j) = bbox.c + ly * (float)j / (float)(shape_base.y - 1);
     }
 
-  // --- Interpolate
-  _2D::BilinearInterpolator<float> interp;
-  interp.setData(xv.vector, yv.vector, values.vector);
-
-  // array grid
-  std::vector<float> xg = linspace(shift.x, shift.x + scale.x, shape.x, false);
-  std::vector<float> yg = linspace(shift.y, shift.y + scale.y, shape.y, false);
-
-  Array array = helper_get_noise(xg,
-                                 yg,
-                                 p_noise_x,
-                                 p_noise_y,
-                                 [&interp](float x_, float y_)
-                                 { return interp(x_, y_); });
+  // interpolate
+  Array array = interpolate2d(shape,
+                              xv.vector,
+                              yv.vector,
+                              values.vector,
+                              interpolator2d::bilinear,
+                              p_noise_x,
+                              p_noise_y,
+                              shift,
+                              scale);
 
   return array;
 }
@@ -152,7 +144,7 @@ Array value_noise_thinplate(Vec2<int>   shape,
                             Vec2<float> shift,
                             Vec2<float> scale)
 {
-  // --- Generate 'n' random grid points
+  // generate 'n' random grid points
   int n = (int)(kw * kw);
 
   std::vector<float> x(n);
@@ -162,20 +154,16 @@ Array value_noise_thinplate(Vec2<int>   shape,
   random_grid(x, y, value, seed, {0.f, 1.f, 0.f, 1.f});
   expand_grid(x, y, value, {0.f, 1.f, 0.f, 1.f});
 
-  // --- Interpolate
-  _2D::ThinPlateSplineInterpolator<float> interp;
-  interp.setData(x, y, value);
-
-  // array grid
-  std::vector<float> xg = linspace(shift.x, shift.x + scale.x, shape.x, false);
-  std::vector<float> yg = linspace(shift.y, shift.y + scale.y, shape.y, false);
-
-  Array array = helper_get_noise(xg,
-                                 yg,
-                                 p_noise_x,
-                                 p_noise_y,
-                                 [&interp](float x_, float y_)
-                                 { return interp(x_, y_); });
+  // interpolate
+  Array array = interpolate2d(shape,
+                              x,
+                              y,
+                              value,
+                              interpolator2d::thinplate,
+                              p_noise_x,
+                              p_noise_y,
+                              shift,
+                              scale);
 
   return array;
 }
