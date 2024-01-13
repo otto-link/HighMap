@@ -66,7 +66,10 @@ Array faceted(const Array &array,
         }
       }
 
+      // defines whether the current point data must be stored later
+      // on
       bool store_xyz = false;
+
       bool all_ones = std::all_of(signature.begin(),
                                   signature.end(),
                                   [](int i) { return i == 1; });
@@ -86,7 +89,6 @@ Array faceted(const Array &array,
         x.push_back((float)i);
         y.push_back((float)j);
         value.push_back((float)array(i, j));
-        LOG_DEBUG("%d %d %f", i, j, array(i, j));
       }
     }
 
