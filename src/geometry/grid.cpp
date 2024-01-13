@@ -7,6 +7,7 @@
 #include "macrologger.h"
 
 #include "highmap/geometry.hpp"
+#include "highmap/op.hpp"
 
 namespace hmap
 {
@@ -37,6 +38,40 @@ void expand_grid(std::vector<float> &x,
           value[k + kshift * n] = value[k];
         }
       }
+}
+
+void expand_grid_boundaries(std::vector<float> &x,
+                            std::vector<float> &y,
+                            std::vector<float> &value,
+                            Vec4<float>         bbox,
+                            float               boundary_value)
+{
+  expand_grid_corners(x, y, value, bbox, boundary_value);
+
+  int npoints = std::max(0, (int)std::sqrt((float)x.size()));
+
+  std::vector<float> xb = linspace(bbox.a, bbox.b, npoints, false);
+  std::vector<float> yb = linspace(bbox.c, bbox.d, npoints, false);
+
+  for (int i = 0; i < npoints; i++)
+  {
+    x.push_back(xb[i]);
+    y.push_back(bbox.c);
+
+    x.push_back(xb[i]);
+    y.push_back(bbox.d);
+
+    x.push_back(bbox.a);
+    y.push_back(yb[i]);
+
+    x.push_back(bbox.b);
+    y.push_back(yb[i]);
+
+    value.push_back(boundary_value);
+    value.push_back(boundary_value);
+    value.push_back(boundary_value);
+    value.push_back(boundary_value);
+  }
 }
 
 void expand_grid_corners(std::vector<float> &x,

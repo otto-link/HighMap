@@ -2228,6 +2228,28 @@ void steepen_convective(Array &array,
 void sym_borders(Array &array, Vec4<int> buffer_sizes);
 
 /**
+ * @brief
+ *
+ * @param array Input array.
+ * @param seed Random seed number.
+ * @param node_density Node density (as a ratio to the number of cells of the
+ * input array).
+ * @param p_weight Reference to the density distribution array, expected in [0,
+ * 1].
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_tessellate.cpp
+ *
+ * **Result**
+ * @image html ex_tessellate.png
+ */
+Array tessellate(Array &array,
+                 uint   seed,
+                 float  node_density = 0.001f,
+                 Array *p_weight = nullptr);
+
+/**
  * @brief Return the topographic shadow intensity in [-1, 1].
  *
  * @param z Input array.

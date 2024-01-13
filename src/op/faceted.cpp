@@ -4,7 +4,6 @@
 
 #include <cmath>
 
-#include "Interpolate.hpp"
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
