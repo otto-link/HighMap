@@ -1,0 +1,2 @@
+add_executable(ex_fbm_iq_perlin ex_fbm_iq_perlin.cpp)
+target_link_libraries(ex_fbm_iq_perlin highmap)
