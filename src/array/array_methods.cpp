@@ -211,7 +211,7 @@ Array hstack(const Array &array1, const Array &array2) // friend function
   return array_out;
 }
 
-int Array::linear_index(int i, int j)
+int Array::linear_index(int i, int j) const
 {
   return i * this->shape.y + j;
 }

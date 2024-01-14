@@ -87,7 +87,7 @@ public:
    *
    * @return std::vector<float> Vector of size shape.x * shape.y.
    */
-  std::vector<float> get_vector();
+  std::vector<float> get_vector() const;
 
   /**
    * @brief Set the array shape.
@@ -492,7 +492,7 @@ public:
    * @param j 'j' index.
    * @return int Linear index.
    */
-  int linear_index(int i, int j);
+  int linear_index(int i, int j) const;
 
   /**
    * @brief Return the value of the greastest element in the array.

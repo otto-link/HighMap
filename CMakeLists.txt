@@ -20,19 +20,26 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 # Library
 #--------------------------------------------------------------
 
-include(GNUInstallDirs)
+# add hmm sources (heightmap meshing)
+set(HMM_DIR ${PROJECT_SOURCE_DIR}/external/hmm/src)
+set(HMM_SRC
+    ${HMM_DIR}/base.cpp
+    ${HMM_DIR}/blur.cpp
+    ${HMM_DIR}/heightmap.cpp
+    ${HMM_DIR}/stl.cpp
+    ${HMM_DIR}/triangulator.cpp)
 
 file(GLOB_RECURSE SOURCES
      ${PROJECT_SOURCE_DIR}/src/*.cpp)
 
-add_library(${PROJECT_NAME} STATIC ${SOURCES})
+add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HMM_SRC})
 
 target_include_directories(${PROJECT_NAME}
                            PUBLIC
                              ${PROJECT_SOURCE_DIR}/include
                            PRIVATE
                              ${PROJECT_SOURCE_DIR}/external/bezier/include/bezier
-                             ${PROJECT_SOURCE_DIR}/external/ #dendry & WavefrontObjWriter
+                             ${PROJECT_SOURCE_DIR}/external/ #dendry & WavefrontObjWriter & hmm
                              ${PROJECT_SOURCE_DIR}/external/dkm/include
                              # ${PROJECT_SOURCE_DIR}/external/FastNoise2/include/FastNoise
                              ${PROJECT_SOURCE_DIR}/external/FastNoiseLite/Cpp
@@ -40,6 +47,8 @@ target_include_directories(${PROJECT_NAME}
                              ${PROJECT_SOURCE_DIR}/external/macro-logger
                              ${PROJECT_SOURCE_DIR}/external/xsimd/include
                              ${PROJECT_SOURCE_DIR}/src)
+
+include(GNUInstallDirs)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${PROJECT_VERSION})
 

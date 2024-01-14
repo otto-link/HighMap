@@ -81,7 +81,7 @@ Vec2<int> Array::get_shape()
   return shape;
 }
 
-std::vector<float> Array::get_vector()
+std::vector<float> Array::get_vector() const
 {
   return this->vector;
 }
