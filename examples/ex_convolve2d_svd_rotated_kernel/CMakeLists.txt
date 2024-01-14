@@ -1,2 +1,3 @@
-add_executable(ex_convolve2d_svd_rotated_kernel ex_convolve2d_svd_rotated_kernel.cpp)
+add_executable(ex_convolve2d_svd_rotated_kernel
+               ex_convolve2d_svd_rotated_kernel.cpp)
 target_link_libraries(ex_convolve2d_svd_rotated_kernel highmap)
