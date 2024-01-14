@@ -154,6 +154,15 @@ void export_splatmap_png_16bit(std::string fname,
                                Array      *p_b = nullptr,
                                Array      *p_a = nullptr);
 
+/**
+ * @brief Export heightmap as a Wavefront Object mesh file.
+ *
+ * @param fname File name.
+ * @param array Input array.
+ * @param mesh_type Mesh type (see {@link mesh_type}).
+ * @param elevation_scaling Elevation scaling factor.
+ * @param max_error Max error (only used for optimized Delaunay triangulation).
+ */
 void export_wavefront_obj(std::string  fname,
                           const Array &array,
                           int          mesh_type = 0,

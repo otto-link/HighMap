@@ -10,4 +10,4 @@ for D in ${DIRS}; do
 done
 
 # format cmake files
-cmake-format -i CMakeLists.txt \;
+cmake-format -i CMakeLists.txt
