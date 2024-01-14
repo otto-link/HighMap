@@ -144,6 +144,10 @@ void export_splatmap_png_16bit(std::string fname,
                                Array      *p_b = nullptr,
                                Array      *p_a = nullptr);
 
+void export_wavefront_obj(std::string  fname,
+                          const Array &array,
+                          float        elevation_scaling = 0.2f);
+
 /**
  * @brief Read an 8bit grayscale image to a png file.
  *
