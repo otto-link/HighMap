@@ -188,4 +188,26 @@ Array smoothstep5(const Array &array, float vmin, float vmax)
   return array_out;
 }
 
+Array smoothstep5(const Array &array, const Array &vmin, const Array &vmax)
+{
+  Array array_out = Array(array.shape);
+
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
+    {
+      if (array(i, j) < vmin(i, j))
+        array_out(i, j) = vmin(i, j);
+      else if (array(i, j) > vmax(i, j))
+        array_out(i, j) = vmax(i, j);
+      else
+      {
+        float vn = (array(i, j) - vmin(i, j)) / (vmax(i, j) - vmin(i, j));
+        vn = vn * vn * vn * (vn * (vn * 6.f - 15.f) + 10.f);
+        array_out(i, j) = vmin(i, j) + (vmax(i, j) - vmin(i, j)) * vn;
+      }
+    }
+
+  return array_out;
+}
+
 } // namespace hmap

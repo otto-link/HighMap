@@ -1409,6 +1409,35 @@ void recast_canyon(Array &array,
                    Array *p_noise = nullptr); ///< @overload
 
 /**
+ * @brief Transform heightmap to add cliffs where gradient are steep enough.
+ *
+ * @param array Input array.
+ * @param talus Reference talus.
+ * @param ir Fiter radius
+ * @param amplitude Cliff amplitude.
+ * @param p_mask Filter mask, expected in [0, 1].
+ * @param gain Gain of the gain filter (i.e. cliff steepness).
+ *
+ * **Example**
+ * @include ex_recast.cpp
+ *
+ * **Result**
+ * @image html ex_recast.png
+ */
+void recast_cliff(Array &array,
+                  float  talus,
+                  int    ir,
+                  float  amplitude,
+                  float  gain = 2.f);
+
+void recast_cliff(Array &array,
+                  float  talus,
+                  int    ir,
+                  float  amplitude,
+                  Array *p_mask,
+                  float  gain = 2.f); ///< @overload
+
+/**
  * @brief Transform heightmap to give a "peak" like appearance.
  *
  * @warning Array values are expected to be in [0, 1].
@@ -2166,6 +2195,10 @@ Array smoothstep3(const Array &array, float vmin = 0.f, float vmax = 1.f);
  * @image html ex_smoothstep.png
  */
 Array smoothstep5(const Array &array, float vmin = 0.f, float vmax = 1.f);
+
+Array smoothstep5(const Array &array,
+                  const Array &vmin,
+                  const Array &vmax); ///< @overload
 
 /**
  * @brief Steepen (or flatten) the array map.
