@@ -32,10 +32,7 @@ target_include_directories(${PROJECT_NAME}
                              ${PROJECT_SOURCE_DIR}/include
                            PRIVATE
                              ${PROJECT_SOURCE_DIR}/external/bezier/include/bezier
-<<<<<<< HEAD
-=======
                              ${PROJECT_SOURCE_DIR}/external/ #dendry
->>>>>>> dev
                              ${PROJECT_SOURCE_DIR}/external/dkm/include
                              # ${PROJECT_SOURCE_DIR}/external/FastNoise2/include/FastNoise
                              ${PROJECT_SOURCE_DIR}/external/FastNoiseLite/Cpp

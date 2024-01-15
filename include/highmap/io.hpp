@@ -16,10 +16,21 @@
 #include <cstdint>
 
 #include "highmap/colormaps.hpp"
+#include "highmap/geometry.hpp"
 #include "highmap/vector.hpp"
 
 namespace hmap
 {
+
+/**
+ * @brief Mesh type.
+ */
+enum mesh_type : int
+{
+  tri_optimized, ///< Triangles with optimized Delaunay triangulation
+  quad,          ///< Quad elements.
+  tri            ///< Triangle elements
+};
 
 /**
  * @brief Convert array element values to a color data (3 channels RGB in [0,
@@ -143,6 +154,25 @@ void export_splatmap_png_16bit(std::string fname,
                                Array      *p_g = nullptr,
                                Array      *p_b = nullptr,
                                Array      *p_a = nullptr);
+
+/**
+ * @brief Export heightmap as a Wavefront Object mesh file.
+ *
+ * @param fname File name.
+ * @param array Input array.
+ * @param mesh_type Mesh type (see {@link mesh_type}).
+ * @param elevation_scaling Elevation scaling factor.
+ * @param max_error Max error (only used for optimized Delaunay triangulation).
+ */
+void export_wavefront_obj(std::string  fname,
+                          const Array &array,
+                          int          mesh_type = 0,
+                          float        elevation_scaling = 0.2f,
+                          float        max_error = 5e-4f);
+
+void export_wavefront_obj(std::string fname,
+                          const Path &path,
+                          float       elevation_scaling = 0.2f);
 
 /**
  * @brief Read an 8bit grayscale image to a png file.

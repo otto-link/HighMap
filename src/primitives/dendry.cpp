@@ -44,7 +44,8 @@ Array dendry(Vec2<int>   shape,
       std::make_unique<ArrayControlFunction>(control_array_buffered));
 
   const Point2D noise_top_left(0.f, 0.f);
-  const Point2D noise_bottom_right(kw.x, kw.y);
+  const Point2D noise_bottom_right(kw.x, kw.x);
+
   const Point2D control_function_top_left(0.5f * control_function_overlap,
                                           0.5f * control_function_overlap);
   const Point2D control_function_bottom_right(

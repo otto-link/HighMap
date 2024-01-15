@@ -1,0 +1,2 @@
+add_executable(ex_geomorphons ex_geomorphons.cpp)
+target_link_libraries(ex_geomorphons highmap)

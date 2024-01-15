@@ -1,9 +1,10 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
-
 #include <algorithm>
 #include <cmath>
+
+#include "macrologger.h"
 
 #include "highmap/array.hpp"
 #include "highmap/op.hpp"
@@ -376,6 +377,19 @@ void remap(Array &array, float vmin, float vmax, float from_min, float from_max)
   }
   else
     std::fill(array.vector.begin(), array.vector.end(), vmin);
+}
+
+void rescale(Array &array, float scaling, float vref)
+{
+  if (vref == 0.f)
+    // simply multiply the values by the scaling
+    array *= scaling;
+  else
+  {
+    array -= vref;
+    array *= scaling;
+    array += vref;
+  }
 }
 
 } // namespace hmap

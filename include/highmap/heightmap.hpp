@@ -247,10 +247,11 @@ public:
   float max();
 
   /**
-   * @brief Smooth the transitions between each tiles (when overlap > 0).
+   * @brief Return the mean of the heightmap data.
    *
+   * @return float
    */
-  void smooth_overlap_buffers();
+  float mean();
 
   /**
    * @brief Return the value of the smallest element in the heightmap data.
@@ -274,6 +275,19 @@ public:
   void remap(float vmin = 0.f, float vmax = 1.f);
 
   void remap(float vmin, float vmax, float from_min, float from_max);
+
+  /**
+   * @brief Smooth the transitions between each tiles (when overlap > 0).
+   *
+   */
+  void smooth_overlap_buffers();
+
+  /**
+   * @brief Return the sum of the heightmap data.
+   *
+   * @return float
+   */
+  float sum();
 
   /**
    * @brief Return the heightmap as an array.
@@ -378,6 +392,17 @@ void fill(HeightMap                             &h,
                               Vec2<float>,
                               Array *p_noise_x,
                               Array *p_noise_y)> nullary_op);
+
+void fill(HeightMap                          &h,
+          HeightMap                          &hin,
+          HeightMap                          *p_noise_x,
+          HeightMap                          *p_noise_y,
+          std::function<Array(hmap::Array &,
+                              Vec2<int>,
+                              Vec2<float>,
+                              Vec2<float>,
+                              hmap::Array *,
+                              hmap::Array *)> nullary_op);
 
 void fill(HeightMap                          &h,
           HeightMap                          *p_noise_x,

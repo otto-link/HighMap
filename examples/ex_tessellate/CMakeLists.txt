@@ -1,0 +1,2 @@
+add_executable(ex_tessellate ex_tessellate.cpp)
+target_link_libraries(ex_tessellate highmap)

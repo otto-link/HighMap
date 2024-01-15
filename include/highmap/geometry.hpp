@@ -1063,7 +1063,24 @@ void expand_grid(std::vector<float> &x,
                  Vec4<float>         bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
- * @brief
+ * @brief Expand the grid by adding points on the boundaries of the bounding
+ * box.
+ *
+ * @param x `x` coordinates.
+ * @param y `y` coordinates.
+ * @param value values.
+ * @param bbox Bounding box.
+ * @param corner_value Value at the boundary points.
+ */
+void expand_grid_boundaries(std::vector<float> &x,
+                            std::vector<float> &y,
+                            std::vector<float> &value,
+                            Vec4<float>         bbox = {0.f, 1.f, 0.f, 1.f},
+                            float               boundary_value = 0.f);
+
+/**
+ * @brief Expand the grid by adding four points at the corner of the bounding
+ * box.
  *
  * @param x `x` coordinates.
  * @param y `y` coordinates.

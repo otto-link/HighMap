@@ -298,6 +298,53 @@ Array dendry(Vec2<int>   shape,
              Vec2<float> scale = {1.f, 1.f});
 
 /**
+ * @brief Return an array filled with an hybrid multifractal Perlin noise
+ * weighted by the gradient norm and/or elevation of each octave.
+ *
+ * https://iquilezles.org/articles/morenoise/
+ *
+ * @param shape Array shape.
+ * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
+ * a unit domain.
+ * @param seed Random seed number.
+ * @param gradient_weight Gradient norm influence.
+ * @param value_weight Elevation influence.
+ * @param octaves Number of octaves.
+ * @param persistence 'Persistence' is a multiplier that determines how
+ * quickly the amplitude diminishes for each successive octave: choose
+ * 'persistence' close to 0 for a smooth noise, and close 1 for a rougher
+ * noise texture.
+ * @param lacunarity Defines the wavenumber ratio between each octaves.
+ * @param weigth Octave weighting.
+ * @param p_noise_x, p_noise_y Reference to the input noise array used for
+ * domain warping (NOT in pixels, with respect to a unit domain).
+ * @param p_stretching Local wavenumber multiplier.
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a
+ * unit domain.
+ * @param scale Domain scaling, in [0, 1].
+ * @return Array Fractal noise.
+ *
+ * **Example**
+ * @include ex_fbm_iq_perlin.cpp
+ *
+ * **Result**
+ * @image html ex_fbm_iq_perlin.png
+ */
+Array fbm_iq_perlin(Vec2<int>   shape,
+                    Vec2<float> kw,
+                    uint        seed,
+                    float       gradient_weight = 0.01f,
+                    float       value_weight = 0.01f,
+                    int         octaves = 8,
+                    float       weight = 0.7f,
+                    float       persistence = 0.5f,
+                    float       lacunarity = 2.f,
+                    Array      *p_noise_x = nullptr,
+                    Array      *p_noise_y = nullptr,
+                    Vec2<float> shift = {0.f, 0.f},
+                    Vec2<float> scale = {1.f, 1.f});
+
+/**
  * @brief Return an array filled with an hybrid multifractal Perlin noise.
  *
  * The function is just a wrapper based of the library <a

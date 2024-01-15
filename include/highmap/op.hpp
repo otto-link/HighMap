@@ -26,6 +26,16 @@ namespace hmap
 {
 
 /**
+ * @brief Neighborhood lattice type.
+ */
+enum neighborhood : int
+{
+  moore,       ///< Moore
+  von_neumann, ///< Von Neuman
+  cross        ///< cross-shaped neighborhood (only diagonals)
+};
+
+/**
  * @brief Return the absolute value of the array elements.
  *
  * @param array Input array.
@@ -594,6 +604,27 @@ void expand_directional(Array &array,
 void extrapolate_borders(Array &array, int nbuffer = 1);
 
 /**
+ * @brief Return an heightmap retaining the main features of the input heightmap
+ * but with a 'faceted' aspect.
+ *
+ * @param array Input arrau.
+ * @param neighborhood Neighborhood type (see {@link neighborhood}).
+ * @param p_noise_x, p_noise_y Reference to the input noise array used for
+ * domain warping (NOT in pixels, with respect to a unit domain).
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_faceted.cpp
+ *
+ * **Result**
+ * @image html ex_faceted.png
+ */
+Array faceted(const Array &array,
+              int          neighborhood = 0,
+              Array       *p_noise_x = nullptr,
+              Array       *p_noise_y = nullptr);
+
+/**
  * @brief Fill values at the borders (i = 0, j = 0, ...) based on 1st neighbor
  * values.
  *
@@ -771,6 +802,25 @@ void gamma_correction_local(Array &array,
  * @return Array New array with buffers.
  */
 Array generate_buffered_array(const Array &array, Vec4<int> buffers);
+
+/**
+ * @brief Return the labelling of a geomorphons-based classification @cite
+ * Jasiewicz2013.
+ *
+ * @param array Input array.
+ * @param irmin Minimum lookup radius (in pixels).
+ * @param irmax Maximum lookup radius (in pixels).
+ * @param epsilon Slope tolerance defining 'flatness'.
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_geomorphons.cpp
+ *
+ * **Result**
+ * @image html ex_geomorphons0.png
+ * @image html ex_geomorphons1.png
+ */
+Array geomorphons(const Array &array, int irmin, int irmax, float epsilon);
 
 /**
  * @brief Return the gradient of a vector.
@@ -1359,6 +1409,35 @@ void recast_canyon(Array &array,
                    Array *p_noise = nullptr); ///< @overload
 
 /**
+ * @brief Transform heightmap to add cliffs where gradient are steep enough.
+ *
+ * @param array Input array.
+ * @param talus Reference talus.
+ * @param ir Fiter radius
+ * @param amplitude Cliff amplitude.
+ * @param p_mask Filter mask, expected in [0, 1].
+ * @param gain Gain of the gain filter (i.e. cliff steepness).
+ *
+ * **Example**
+ * @include ex_recast.cpp
+ *
+ * **Result**
+ * @image html ex_recast.png
+ */
+void recast_cliff(Array &array,
+                  float  talus,
+                  int    ir,
+                  float  amplitude,
+                  float  gain = 2.f);
+
+void recast_cliff(Array &array,
+                  float  talus,
+                  int    ir,
+                  float  amplitude,
+                  Array *p_mask,
+                  float  gain = 2.f); ///< @overload
+
+/**
  * @brief Transform heightmap to give a "peak" like appearance.
  *
  * @warning Array values are expected to be in [0, 1].
@@ -1583,6 +1662,15 @@ void remap(Array &array,
            float  from_max);
 
 void remap(Array &array, float vmin = 0, float vmax = 1); ///< @overload
+
+/**
+ * @brief Remap array elements from a starting range to a target range.
+ *
+ * @param array Input array.
+ * @param scaling Amplitude scaling.
+ * @param vref Reference 'zero' value.
+ */
+void rescale(Array &array, float scaling, float vref = 0.f);
 
 /**
  * @brief Rotate the array.
@@ -2108,6 +2196,10 @@ Array smoothstep3(const Array &array, float vmin = 0.f, float vmax = 1.f);
  */
 Array smoothstep5(const Array &array, float vmin = 0.f, float vmax = 1.f);
 
+Array smoothstep5(const Array &array,
+                  const Array &vmin,
+                  const Array &vmax); ///< @overload
+
 /**
  * @brief Steepen (or flatten) the array map.
  *
@@ -2167,6 +2259,28 @@ void steepen_convective(Array &array,
  * @param buffer_sizes Buffer size at the borders {east, west, south, north}.
  */
 void sym_borders(Array &array, Vec4<int> buffer_sizes);
+
+/**
+ * @brief
+ *
+ * @param array Input array.
+ * @param seed Random seed number.
+ * @param node_density Node density (as a ratio to the number of cells of the
+ * input array).
+ * @param p_weight Reference to the density distribution array, expected in [0,
+ * 1].
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_tessellate.cpp
+ *
+ * **Result**
+ * @image html ex_tessellate.png
+ */
+Array tessellate(Array &array,
+                 uint   seed,
+                 float  node_density = 0.001f,
+                 Array *p_weight = nullptr);
 
 /**
  * @brief Return the topographic shadow intensity in [-1, 1].

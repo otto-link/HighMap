@@ -211,7 +211,7 @@ Array hstack(const Array &array1, const Array &array2) // friend function
   return array_out;
 }
 
-int Array::linear_index(int i, int j)
+int Array::linear_index(int i, int j) const
 {
   return i * this->shape.y + j;
 }
@@ -220,6 +220,11 @@ float Array::max() const
 {
   return *std::max_element(this->vector.begin(), this->vector.end());
 }
+
+float Array::mean() const
+{
+  return this->sum() / (float)this->size();
+};
 
 float Array::min() const
 {
@@ -285,7 +290,7 @@ int Array::size() const
   return this->shape.x * this->shape.y;
 }
 
-float Array::sum()
+float Array::sum() const
 {
   return std::accumulate(this->vector.begin(), this->vector.end(), 0.f);
 }
