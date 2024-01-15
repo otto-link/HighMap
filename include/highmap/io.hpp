@@ -16,6 +16,7 @@
 #include <cstdint>
 
 #include "highmap/colormaps.hpp"
+#include "highmap/geometry.hpp"
 #include "highmap/vector.hpp"
 
 namespace hmap
@@ -168,6 +169,10 @@ void export_wavefront_obj(std::string  fname,
                           int          mesh_type = 0,
                           float        elevation_scaling = 0.2f,
                           float        max_error = 5e-4f);
+
+void export_wavefront_obj(std::string fname,
+                          const Path &path,
+                          float       elevation_scaling = 0.2f);
 
 /**
  * @brief Read an 8bit grayscale image to a png file.

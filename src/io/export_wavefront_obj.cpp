@@ -9,11 +9,18 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/geometry.hpp"
 #include "highmap/io.hpp"
 #include "highmap/op.hpp"
 
 namespace hmap
 {
+
+std::string extract_raw_filename(std::string fname)
+{
+  size_t lastindex = fname.find_last_of(".");
+  return fname.substr(0, lastindex);
+}
 
 void export_wavefront_obj(std::string  fname,
                           const Array &array,
@@ -21,10 +28,6 @@ void export_wavefront_obj(std::string  fname,
                           float        elevation_scaling,
                           float        max_error)
 {
-  // remove extension if already provided
-  size_t      lastindex = fname.find_last_of(".");
-  std::string fname_raw = fname.substr(0, lastindex);
-
   wow::Obj obj;
 
   std::vector<float> x = linspace(0.f, 1.f, array.shape.x);
@@ -77,8 +80,11 @@ void export_wavefront_obj(std::string  fname,
   {
     LOG_DEBUG("exporting OBJ (tri optimized)");
 
-    const auto   p_hmap = std::make_shared<Heightmap>(array.shape.x,
-                                                    array.shape.y,
+    // lots of switch between 'x' and 'y' to deal with row-major vs
+    // column-major mode for vector data
+
+    const auto   p_hmap = std::make_shared<Heightmap>(array.shape.y,
+                                                    array.shape.x,
                                                     array.get_vector());
     Triangulator tri(p_hmap);
     const int    max_triangles = 0;
@@ -93,11 +99,11 @@ void export_wavefront_obj(std::string  fname,
     LOG_DEBUG("points: %ld (max: %d)", points.size(), array.size());
     LOG_DEBUG("triangles: %ld", triangles.size());
 
-    float ax = 1.f / (float)array.shape.x;
-    float ay = 1.f / (float)array.shape.y;
+    float ax = 1.f / (float)array.shape.y;
+    float ay = 1.f / (float)array.shape.x;
 
     for (size_t k = 0; k < points.size(); k++)
-      obj.appendVertex(ax * points[k].x, points[k].z, ay * points[k].y);
+      obj.appendVertex(1.f - ay * points[k].y, points[k].z, ax * points[k].x);
 
     for (size_t k = 0; k < triangles.size(); k++)
       obj.appendFace(wow::Face(triangles[k].x, triangles[k].y, triangles[k].z));
@@ -105,7 +111,24 @@ void export_wavefront_obj(std::string  fname,
   break;
   }
 
-  obj.output(fname_raw);
+  obj.output(extract_raw_filename(fname));
+}
+
+void export_wavefront_obj(std::string fname,
+                          const Path &path,
+                          float       elevation_scaling)
+{
+  LOG_DEBUG("exporting OBJ (lines for path)");
+
+  wow::LineObj obj;
+
+  for (auto &p : path.points)
+    obj.appendVertex(p.x, elevation_scaling * p.v, p.y);
+
+  for (int k = 0; k < (int)path.points.size() - 1; k++)
+    obj.appendLine(wow::Line(k, k + 1));
+
+  obj.output(extract_raw_filename(fname));
 }
 
 } // namespace hmap
