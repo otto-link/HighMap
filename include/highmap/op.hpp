@@ -481,6 +481,16 @@ Array convolve2d_svd_rotated_kernel(const Array &z,
 Array cos(const Array &array);
 
 /**
+ * @brief
+ *
+ * @param array
+ * @return Array
+ */
+Array curl(const Array &array);
+
+Array curl(const Array &array);
+
+/**
  * @brief Return the Gaussian curvature @cite Kurita1992.
  *
  * @param z Input array.
@@ -1436,6 +1446,13 @@ void recast_cliff(Array &array,
                   float  amplitude,
                   Array *p_mask,
                   float  gain = 2.f); ///< @overload
+
+void recast_cliff_directional(Array &array,
+                              float  talus,
+                              int    ir,
+                              float  amplitude,
+                              float  angle,
+                              float  gain = 2.f);
 
 /**
  * @brief Transform heightmap to give a "peak" like appearance.

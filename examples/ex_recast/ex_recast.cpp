@@ -40,6 +40,7 @@ int main(void)
   }
 
   auto z4 = z;
+  auto z5 = z;
   {
     float talus = 1.f / shape.x;
     int   ir = 32;
@@ -47,10 +48,14 @@ int main(void)
     float gain = 1.5f;
     hmap::recast_cliff(z4, talus, ir, amplitude, gain);
     hmap::remap(z4);
+
+    float angle = 0.f;
+    hmap::recast_cliff_directional(z5, talus, ir, amplitude, angle, gain);
+    hmap::remap(z5);
   }
 
   hmap::export_banner_png("ex_recast.png",
-                          {z, z1, z2, z3, z4},
+                          {z, z1, z2, z3, z4, z5},
                           hmap::cmap::terrain,
                           true);
 }
