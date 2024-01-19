@@ -233,9 +233,6 @@ Array reverse_midpoint(Array &array,
                        float  noise_scale,
                        float  threshold)
 {
-  float threshold = 0.f;
-  float noise_scale = 1.f;
-
   std::mt19937                          gen(seed);
   std::uniform_real_distribution<float> dis(-1.f, 1.f);
 
