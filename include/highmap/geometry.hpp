@@ -1112,6 +1112,7 @@ void expand_grid_corners(std::vector<float> &x,
 void grid_from_array(Array              &array,
                      std::vector<float> &x,
                      std::vector<float> &y,
+                     std::vector<float> &value,
                      Vec4<float>         bbox = {0.f, 1.f, 0.f, 1.f},
                      float               threshold = 0.f);
 

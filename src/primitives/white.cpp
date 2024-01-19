@@ -41,14 +41,13 @@ Array white_sparse(Vec2<int> shape, float a, float b, float density, uint seed)
 {
   Array                                 array = Array(shape);
   std::mt19937                          gen(seed);
-  std::uniform_real_distribution<float> dis(a, b);
+  std::uniform_real_distribution<float> dis1(0.f, 1.f);
+  std::uniform_real_distribution<float> dis2(a, b);
 
   for (auto &v : array.vector)
   {
-    float r = dis(gen);
-    float d = (r - a) / (b - a); // remap to [0, 1]
-    if (d < density)
-      v = r;
+    if (dis1(gen) < density)
+      v = dis2(gen);
   }
   return array;
 }
