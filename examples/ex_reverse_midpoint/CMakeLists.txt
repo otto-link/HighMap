@@ -1,0 +1,2 @@
+add_executable(ex_reverse_midpoint ex_reverse_midpoint.cpp)
+target_link_libraries(ex_reverse_midpoint highmap)
