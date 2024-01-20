@@ -765,7 +765,7 @@ public:
    *
    * @param curvature_ratio Amount of curvature (usually in [-1, 1] and commonly
    * > 0).
-   * @param edge_divisions Edge sub-divisions of each Bezier curves.
+   * @param edge_divisions Edge sub-divisions of each edge.
    *
    * **Example**
    * @include ex_path_bezier.cpp
@@ -774,6 +774,49 @@ public:
    * @image html ex_path_bezier.png
    */
   void bezier(float curvature_ratio = 0.3f, int edge_divisions = 10);
+
+  /**
+   * @brief "Smooth" the path using Bezier curves (alternative).
+   *
+   * @param curvature_ratio Amount of curvature (usually in [-1, 1] and commonly
+   * > 0).
+   * @param edge_divisions Edge sub-divisions of each edge.
+   *
+   * **Example**
+   * @include ex_path_bezier_round.cpp
+   *
+   * **Result**
+   * @image html ex_path_bezier_round.png
+   */
+  void bezier_round(float curvature_ratio = 0.3f, int edge_divisions = 10);
+
+  /**
+   * @brief "Smooth" the path using BSpline curves.
+   *
+   * @param edge_divisions Edge sub-divisions of each edge.
+   *
+   *
+   * **Example**
+   * @include ex_path_bspline.cpp
+   *
+   * **Result**
+   * @image html ex_path_bspline.png
+   */
+  void bspline(int edge_divisions = 10);
+
+  /**
+   * @brief "Smooth" the path using CatmullRom curves.
+   *
+   * @param edge_divisions Edge sub-divisions of each edge.
+   *
+   *
+   * **Example**
+   * @include ex_path_catmullrom.cpp
+   *
+   * **Result**
+   * @image html ex_path_catmullrom.png
+   */
+  void catmullrom(int edge_divisions = 10);
 
   /**
    * @brief Clear the path data.

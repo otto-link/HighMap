@@ -6,7 +6,9 @@
 #include <list>
 #include <random>
 
+#include "BSpline.h"
 #include "Bezier.h"
+#include "CatmullRom.h"
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
@@ -34,7 +36,7 @@ void Path::bezier(float curvature_ratio, int edge_divisions)
     curve.add_way_point(Vector(this->points[k].x, this->points[k].y, 0.f));
 
     {
-      Point p = lerp(this->points[k], this->points[kp1], 1.f - curvature_ratio);
+      Point p = lerp(this->points[k], this->points[kp1], curvature_ratio);
       curve.add_way_point(Vector(p.x, p.y, 0.f));
     }
 
@@ -54,6 +56,127 @@ void Path::bezier(float curvature_ratio, int edge_divisions)
       new_path.add_point(Point(curve.node(i).x, curve.node(i).y, v));
     }
   }
+
+  *this = new_path;
+}
+
+void Path::bezier_round(float curvature_ratio, int edge_divisions)
+{
+  Path new_path = Path();
+
+  size_t ks = this->closed ? 0 : 1;
+  for (size_t k = 0; k < this->get_npoints() - ks; k++)
+  {
+    size_t km1 = (k - 1) % this->get_npoints();
+    size_t kp1 = (k + 1) % this->get_npoints();
+    size_t kp2 = (k + 2) % this->get_npoints();
+
+    Bezier curve = Bezier();
+    curve.set_steps(edge_divisions);
+
+    curve.add_way_point(Vector(this->points[k].x, this->points[k].y, 0.f));
+
+    if (!this->closed && k == 0)
+    {
+      Point p = lerp(this->points[k], this->points[kp1], curvature_ratio);
+      curve.add_way_point(Vector(p.x, p.y, 0.f));
+    }
+    else
+    {
+      float dx = this->points[kp1].x - this->points[km1].x;
+      float dy = this->points[kp1].y - this->points[km1].y;
+      Point p = Point(this->points[k].x + curvature_ratio * dx,
+                      this->points[k].y + curvature_ratio * dy,
+                      0.f);
+      curve.add_way_point(Vector(p.x, p.y, 0.f));
+    }
+
+    if (!this->closed && k == this->get_npoints() - 1)
+    {
+      Point p = lerp(this->points[kp1], this->points[kp2], curvature_ratio);
+      curve.add_way_point(Vector(p.x, p.y, 0.f));
+    }
+    else
+    {
+      float dx = this->points[kp2].x - this->points[k].x;
+      float dy = this->points[kp2].y - this->points[k].y;
+      Point p = Point(this->points[kp1].x - curvature_ratio * dx,
+                      this->points[kp1].y - curvature_ratio * dy,
+                      0.f);
+      curve.add_way_point(Vector(p.x, p.y, 0.f));
+    }
+
+    curve.add_way_point(Vector(this->points[kp1].x, this->points[kp1].y, 0.f));
+
+    for (int i = 0; i < curve.node_count(); ++i)
+    {
+      // interpolate value
+      float s = curve.length_from_starting_point(i) / curve.total_length();
+      float v = (1. - s) * this->points[k].v + s * this->points[kp1].v;
+
+      new_path.add_point(Point(curve.node(i).x, curve.node(i).y, v));
+    }
+  }
+
+  *this = new_path;
+}
+
+void Path::bspline(int edge_divisions)
+{
+  Path new_path = Path();
+
+  BSpline curve = BSpline();
+  curve.set_steps(edge_divisions * (int)this->get_npoints());
+
+  size_t ks = this->closed ? 1 : 0;
+  for (size_t k = 0; k < this->get_npoints() + ks; k++)
+  {
+    if (k == 0)
+      curve.add_way_point(
+          Vector(this->points[0].x, this->points[0].y, this->points[0].v));
+
+    size_t k0 = k % this->get_npoints();
+    curve.add_way_point(
+        Vector(this->points[k0].x, this->points[k0].y, this->points[k0].v));
+
+    if (k == (this->get_npoints() + ks - 1))
+      curve.add_way_point(
+          Vector(this->points[k0].x, this->points[k0].y, this->points[k0].v));
+  }
+
+  for (int i = 0; i < curve.node_count(); ++i)
+    new_path.add_point(
+        Point(curve.node(i).x, curve.node(i).y, curve.node(i).z));
+
+  *this = new_path;
+}
+
+void Path::catmullrom(int edge_divisions)
+{
+  Path new_path = Path();
+
+  CatmullRom curve = CatmullRom();
+  curve.set_steps(edge_divisions * (int)this->get_npoints());
+
+  size_t ks = this->closed ? 1 : 0;
+  for (size_t k = 0; k < this->get_npoints() + ks; k++)
+  {
+    if (k == 0)
+      curve.add_way_point(
+          Vector(this->points[0].x, this->points[0].y, this->points[0].v));
+
+    size_t k0 = k % this->get_npoints();
+    curve.add_way_point(
+        Vector(this->points[k0].x, this->points[k0].y, this->points[k0].v));
+
+    if (k == (this->get_npoints() + ks - 1))
+      curve.add_way_point(
+          Vector(this->points[k0].x, this->points[k0].y, this->points[k0].v));
+  }
+
+  for (int i = 0; i < curve.node_count(); ++i)
+    new_path.add_point(
+        Point(curve.node(i).x, curve.node(i).y, curve.node(i).z));
 
   *this = new_path;
 }
