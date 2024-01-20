@@ -6,7 +6,7 @@
 #include <list>
 #include <random>
 
-#include "bezier.h"
+#include "Bezier.h"
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
@@ -20,69 +20,42 @@ namespace hmap
 
 void Path::bezier(float curvature_ratio, int edge_divisions)
 {
-  // backup 2nd point for closed path
-  Point p_bckp = this->points[1];
+  Path new_path = Path();
 
-  size_t ks = this->closed ? 0 : 1; // trick to handle closed contours
+  size_t ks = this->closed ? 0 : 1;
   for (size_t k = 0; k < this->get_npoints() - ks; k++)
   {
     size_t kp1 = (k + 1) % this->get_npoints();
+    size_t kp2 = (k + 2) % this->get_npoints();
 
-    // start point
-    bezier::Point p1 = bezier::Point(this->points[k].x, this->points[k].y);
+    Bezier curve = Bezier();
+    curve.set_steps(edge_divisions);
 
-    // control #1
-    float x2 = (1.f - curvature_ratio) * this->points[k].x +
-               curvature_ratio * this->points[kp1].x;
-    float y2 = (1.f - curvature_ratio) * this->points[k].y +
-               curvature_ratio * this->points[kp1].y;
+    curve.add_way_point(Vector(this->points[k].x, this->points[k].y, 0.f));
 
-    bezier::Point p2 = bezier::Point(x2, y2);
-
-    // control #2
-    bezier::Point p3 = bezier::Point();
-
-    if ((k == this->get_npoints() - ks - 1) and (this->closed == false))
-      p3 = p2;
-    else
     {
-      size_t kp2 = (k + 2) % this->get_npoints();
-
-      Point point_kp2 = Point();
-      if (kp2 == 1)
-        point_kp2 = p_bckp;
-      else
-        point_kp2 = this->points[kp2];
-
-      float x3 = 2.f * this->points[kp1].x -
-                 (1.f - curvature_ratio) * this->points[kp1].x -
-                 curvature_ratio * point_kp2.x;
-      float y3 = 2.f * this->points[kp1].y -
-                 (1.f - curvature_ratio) * this->points[kp1].y -
-                 curvature_ratio * point_kp2.y;
-
-      p3 = bezier::Point(x3, y3);
+      Point p = lerp(this->points[k], this->points[kp1], 1.f - curvature_ratio);
+      curve.add_way_point(Vector(p.x, p.y, 0.f));
     }
 
-    // end point
-    bezier::Point p4 = bezier::Point(this->points[kp1].x, this->points[kp1].y);
-
-    // Bezier curve
-    std::vector<bezier::Point> xy = {p1, p2, p3, p4};
-    bezier::Bezier<3>          cubicBezier(xy);
-
-    for (int i = 1; i < edge_divisions - 1; i++)
     {
-      float         s = (float)i / (float)(edge_divisions - 1);
-      bezier::Point p = cubicBezier.valueAt(s);
+      Point p = lerp(this->points[kp1], this->points[kp2], -curvature_ratio);
+      curve.add_way_point(Vector(p.x, p.y, 0.f));
+    }
 
+    curve.add_way_point(Vector(this->points[kp1].x, this->points[kp1].y, 0.f));
+
+    for (int i = 0; i < curve.node_count(); ++i)
+    {
+      // interpolate value
+      float s = curve.length_from_starting_point(i) / curve.total_length();
       float v = (1. - s) * this->points[k].v + s * this->points[kp1].v;
-      Point pc = Point(p.x, p.y, v);
 
-      this->points.insert(this->points.begin() + k + 1, pc);
-      ++k;
+      new_path.add_point(Point(curve.node(i).x, curve.node(i).y, v));
     }
   }
+
+  *this = new_path;
 }
 
 void Path::clear()
