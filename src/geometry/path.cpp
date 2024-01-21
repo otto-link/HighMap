@@ -40,6 +40,12 @@ void Path::bezier(float curvature_ratio, int edge_divisions)
       curve.add_way_point(Vector(p.x, p.y, 0.f));
     }
 
+    if (!this->closed && k == this->get_npoints() - 2)
+    {
+      Point p = lerp(this->points[k], this->points[kp1], curvature_ratio);
+      curve.add_way_point(Vector(p.x, p.y, 0.f));
+    }
+    else
     {
       Point p = lerp(this->points[kp1], this->points[kp2], -curvature_ratio);
       curve.add_way_point(Vector(p.x, p.y, 0.f));
