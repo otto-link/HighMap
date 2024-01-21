@@ -334,74 +334,52 @@ std::vector<float> Path::get_cumulative_distance()
   return dacc;
 }
 
-void Path::meanderize(float radius,
-                      float tangent_contribution,
-                      int   iterations,
-                      float transition_length_ratio)
+void Path::meanderize(float ratio, int iterations, int edge_divisions)
 {
-  float sigma = 0.5f;
-  int   laplace_iterations = 3;
-
   for (int it = 0; it < iterations; it++)
   {
-    std::vector<float> s = this->get_cumulative_distance();
-    std::vector<float> ds = gradient1d(s);
+    Path new_path = Path();
 
-    std::vector<float> tx = gradient1d(this->get_x());
-    std::vector<float> ty = gradient1d(this->get_y());
-    laplace1d(tx, sigma, laplace_iterations);
-    laplace1d(ty, sigma, laplace_iterations);
-
-    std::vector<float> nx = gradient1d(tx);
-    std::vector<float> ny = gradient1d(ty);
-    laplace1d(nx, sigma, laplace_iterations);
-    laplace1d(ny, sigma, laplace_iterations);
-
-    // scaling of the normal vector
-    float scale_n = 0.f;
-    for (size_t i = 0; i < this->get_npoints(); i++)
+    size_t ks = this->closed ? 0 : 1;
+    for (size_t k = 0; k < this->get_npoints() - ks; k++)
     {
-      float d = std::hypot(nx[i], ny[i]);
-      if (d > scale_n)
-        scale_n = d;
-    }
-    scale_n = 1.f / scale_n;
+      size_t kp1 = (k + 1) % this->get_npoints();
+      size_t kp2 = (k + 2) % this->get_npoints();
 
-    for (size_t i = 0; i < this->get_npoints(); i++)
-    {
-      // normalize
-      float scale_t = 1.f / ds[i];
-      tx[i] *= scale_t;
-      ty[i] *= scale_t;
+      new_path.add_point(
+          Point(this->points[k].x, this->points[k].y, this->points[k].v));
 
-      nx[i] *= scale_n;
-      ny[i] *= scale_n;
+      float alpha = angle(this->points[kp1], this->points[k]);
 
-      float cx = tangent_contribution * tx[i] -
-                 (1.f - tangent_contribution) * nx[i];
-      float cy = tangent_contribution * ty[i] -
-                 (1.f - tangent_contribution) * ny[i];
+      float dist = distance(this->points[kp1], this->points[k]);
+      Point p = lerp(this->points[k], this->points[kp1], 0.5f);
 
-      // apply a shape factor to preserve starting and ending parts of
-      // the curve
-      float shape_factor = 1.f;
-      float smax = s.back();
-      if (s[i] < smax * transition_length_ratio)
-        shape_factor = s[i] / (smax * transition_length_ratio);
-      else if (s[i] > smax * (1.f - transition_length_ratio))
-        shape_factor = 1.f - (s[i] / smax - 1.f + transition_length_ratio) /
-                                 transition_length_ratio;
+      // vector relative orientation based on cross-product
+      float cross_product = (this->points[kp2].y - this->points[k].y) *
+                                (this->points[kp1].x - this->points[k].x) -
+                            (this->points[kp2].x - this->points[k].x) *
+                                (this->points[kp1].y - this->points[k].y);
 
-      // smooth transitions
-      shape_factor = shape_factor * shape_factor * (3.f - 2.f * shape_factor);
+      if (cross_product >= 0.f)
+        alpha += M_PI_2;
+      else
+        alpha -= M_PI_2;
 
-      this->points[i].x += cx * radius * shape_factor;
-      this->points[i].y += cy * radius * shape_factor;
+      p.x += ratio * dist * std::cos(alpha);
+      p.y += ratio * dist * std::sin(alpha);
+
+      new_path.add_point(p);
     }
 
-    // remesh to maintain the same distance between points
-    this->resample(s.back() / (float)(this->get_npoints() - 1));
+    if (this->closed)
+      new_path.add_point(this->points[0]);
+    else
+      new_path.add_point(this->points.back());
+
+    *this = new_path;
   }
+
+  this->bspline(edge_divisions);
 }
 
 void Path::reorder_nns(int start_index)

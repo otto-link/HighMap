@@ -877,16 +877,11 @@ public:
                   float persistence = 1.f);
 
   /**
-   * @brief Add "meanders" to the path using a deformation based on a
-   * combination of the local tangent and normal vectors.
+   * @brief Add "meanders" to the path.
    *
-   * See https://roberthodgin.com/project/meander.
-   *
-   * @param radius Meander reference radius.
-   * @param tangent_contribution Tangent contribution to the meander, in [0, 1].
+   * @param ratio Meander amplitude ratio.
    * @param iterations Number of iterations.
-   * @param transition_length_ratio Transition to preserve starting and ending
-   * parts of the curve.
+   * @param edge_divisions Edge sub-divisions of each edge.
    *
    * **Example**
    * @include ex_path_meanderize.cpp
@@ -894,10 +889,7 @@ public:
    * **Result**
    * @image html ex_path_meanderize.png
    */
-  void meanderize(float radius,
-                  float tangent_contribution,
-                  int   iterations = 1,
-                  float transition_length_ratio = 0.2f);
+  void meanderize(float ratio, int iterations = 2, int edge_divisions = 10);
 
   /**
    * @brief Reorder points using a nearest neighbor search.
