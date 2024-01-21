@@ -880,6 +880,8 @@ public:
    * @brief Add "meanders" to the path.
    *
    * @param ratio Meander amplitude ratio.
+   * @param noise_ratio Randomness ratio.
+   * @param seed Random seed number.
    * @param iterations Number of iterations.
    * @param edge_divisions Edge sub-divisions of each edge.
    *
@@ -889,7 +891,11 @@ public:
    * **Result**
    * @image html ex_path_meanderize.png
    */
-  void meanderize(float ratio, int iterations = 2, int edge_divisions = 10);
+  void meanderize(float ratio,
+                  float noise_ratio = 0.1f,
+                  uint  seed = 1,
+                  int   iterations = 1,
+                  int   edge_divisions = 10);
 
   /**
    * @brief Reorder points using a nearest neighbor search.

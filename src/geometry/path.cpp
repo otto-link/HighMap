@@ -334,8 +334,15 @@ std::vector<float> Path::get_cumulative_distance()
   return dacc;
 }
 
-void Path::meanderize(float ratio, int iterations, int edge_divisions)
+void Path::meanderize(float ratio,
+                      float noise_ratio,
+                      uint  seed,
+                      int   iterations,
+                      int   edge_divisions)
 {
+  std::mt19937                    gen(seed);
+  std::normal_distribution<float> dis(-noise_ratio, noise_ratio);
+
   for (int it = 0; it < iterations; it++)
   {
     Path new_path = Path();
@@ -350,8 +357,8 @@ void Path::meanderize(float ratio, int iterations, int edge_divisions)
           Point(this->points[k].x, this->points[k].y, this->points[k].v));
 
       float alpha = angle(this->points[kp1], this->points[k]);
-
       float dist = distance(this->points[kp1], this->points[k]);
+
       Point p = lerp(this->points[k], this->points[kp1], 0.5f);
 
       // vector relative orientation based on cross-product
@@ -365,8 +372,10 @@ void Path::meanderize(float ratio, int iterations, int edge_divisions)
       else
         alpha -= M_PI_2;
 
-      p.x += ratio * dist * std::cos(alpha);
-      p.y += ratio * dist * std::sin(alpha);
+      dist *= ratio * (1.f + dis(gen));
+
+      p.x += dist * std::cos(alpha);
+      p.y += dist * std::sin(alpha);
 
       new_path.add_point(p);
     }

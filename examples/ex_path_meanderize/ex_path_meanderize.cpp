@@ -20,9 +20,8 @@ int main(void)
     hmap::Path path_c = path;
 
     float ratio = 0.2f;
-    int   iterations = 1;
 
-    path_c.meanderize(ratio, iterations);
+    path_c.meanderize(ratio);
     path_c.to_array(z2, bbox);
   }
 
@@ -31,9 +30,10 @@ int main(void)
     hmap::Path path_c = path;
 
     float ratio = 0.4f;
+    float noise_ratio = 0.1f;
     int   iterations = 2;
 
-    path_c.meanderize(ratio, iterations);
+    path_c.meanderize(ratio, noise_ratio, seed, iterations);
     path_c.to_array(z3, bbox);
   }
 
