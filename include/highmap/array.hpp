@@ -495,6 +495,14 @@ public:
   int linear_index(int i, int j) const;
 
   /**
+   * @brief Return the (i, j) cell corresponding to the linear index k .
+   *
+   * @param k Linear index.
+   * @return Vec2<int> (i, j).
+   */
+  Vec2<int> linear_index_reverse(int k) const;
+
+  /**
    * @brief Return the value of the greastest element in the array.
    *
    * @return float
@@ -548,7 +556,7 @@ public:
    * **Result**
    * @image html ex_resample_to_shape.png
    */
-  Array resample_to_shape(Vec2<int> new_shape);
+  Array resample_to_shape(Vec2<int> new_shape) const;
 
   /**
    * @brief Return a column 'i' as a std::vector.

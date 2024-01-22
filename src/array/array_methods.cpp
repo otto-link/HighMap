@@ -216,6 +216,14 @@ int Array::linear_index(int i, int j) const
   return i * this->shape.y + j;
 }
 
+Vec2<int> Array::linear_index_reverse(int k) const
+{
+  Vec2<int> ij;
+  ij.x = std::floor(k / shape.y);
+  ij.y = k - ij.x * shape.y;
+  return ij;
+}
+
 float Array::max() const
 {
   return *std::max_element(this->vector.begin(), this->vector.end());
@@ -246,7 +254,7 @@ float Array::ptp() const
   return this->max() - this->min();
 }
 
-Array Array::resample_to_shape(Vec2<int> new_shape)
+Array Array::resample_to_shape(Vec2<int> new_shape) const
 {
   Array array_out = Array(new_shape);
 

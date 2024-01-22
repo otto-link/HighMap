@@ -936,6 +936,25 @@ Array hillshade(const Array &z,
 Array hypot(const Array &array1, const Array &array2);
 
 /**
+ * @brief Apply diffusion-based inpainting to fill a region (defined by mask) of
+ * the input array.
+ *
+ * @param array Input array.
+ * @param mask Mask, region to be inpainted.
+ * @param iterations Number of diffusion iterations.
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_inpainting_diffusion.cpp
+ *
+ * **Result**
+ * @image html ex_inpainting_diffusion.png
+ */
+Array inpainting_diffusion(const Array &array,
+                           const Array &mask,
+                           int          iterations);
+
+/**
  * @brief Return the labelling of each cell of the array based on a k-means
  * clustering, with two arrays of input data.
  *
