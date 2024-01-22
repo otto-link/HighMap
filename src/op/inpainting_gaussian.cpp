@@ -14,6 +14,9 @@ Array inpainting_diffusion(const Array &array,
                            const Array &mask,
                            int          iterations)
 {
+  // M. M. Oliveira, B. Bowen, R. McKenna, Y.-S. Chang: Fast Digital
+  // Image Inpainting, Proc. of Int. Conf. on Visualization, Imaging
+  // and Image Processing (VIIP), pp. 261-266, 2001.
 
   const float a = 0.073235f;
   const float b = 0.176765f;

@@ -937,7 +937,7 @@ Array hypot(const Array &array1, const Array &array2);
 
 /**
  * @brief Apply diffusion-based inpainting to fill a region (defined by mask) of
- * the input array.
+ * the input array (@cite Oliveira2001).
  *
  * @param array Input array.
  * @param mask Mask, region to be inpainted.
