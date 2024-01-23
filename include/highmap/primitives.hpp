@@ -829,7 +829,8 @@ Array sdf_circle(Vec2<int>   shape,
                  Vec2<float> scale = {1.f, 1.f});
 
 /**
- * @brief Return an array filled with the signed distance function of a path.
+ * @brief Return an array filled with the signed distance function of a polyline
+ * (i.e. a path).
  *
  * @param shape Array shape.
  * @param xp Polygon x coordinates (assuming a square unit domain).
@@ -847,13 +848,13 @@ Array sdf_circle(Vec2<int>   shape,
  * **Result**
  * @image html ex_sdf.png
  */
-Array sdf_path(Vec2<int>          shape,
-               std::vector<float> xp,
-               std::vector<float> yp,
-               Array             *p_noise_x = nullptr,
-               Array             *p_noise_y = nullptr,
-               Vec2<float>        shift = {0.f, 0.f},
-               Vec2<float>        scale = {1.f, 1.f});
+Array sdf_polyline(Vec2<int>          shape,
+                   std::vector<float> xp,
+                   std::vector<float> yp,
+                   Array             *p_noise_x = nullptr,
+                   Array             *p_noise_y = nullptr,
+                   Vec2<float>        shift = {0.f, 0.f},
+                   Vec2<float>        scale = {1.f, 1.f});
 
 /**
  * @brief Return an array filled with the signed distance function of a polygon.

@@ -482,6 +482,99 @@ void Path::reverse()
   std::reverse(this->points.begin(), this->points.end());
 }
 
+float Path::sdf_angle_closed(float x, float y)
+{
+  float  d = std::numeric_limits<float>::max();
+  size_t k_closest = 0;
+  size_t kp_closest = 0;
+
+  for (size_t i = 0, j = this->get_npoints() - 1; i < this->get_npoints();
+       j = i, i++)
+  {
+    Vec2<float> e = {this->points[j].x - this->points[i].x,
+                     this->points[j].y - this->points[i].y};
+    Vec2<float> w = {x - this->points[i].x, y - this->points[i].y};
+    float       coeff = std::clamp(dot(w, e) / dot(e, e), 0.f, 1.f);
+    Vec2<float> b = {w.x - e.x * coeff, w.y - e.y * coeff};
+    float       di = dot(b, b);
+    if (di < d)
+    {
+      d = di;
+      k_closest = i;
+      kp_closest = j;
+    }
+  }
+
+  return k_closest == 0
+             ? angle(this->points[k_closest], this->points[kp_closest])
+             : angle(this->points[kp_closest], this->points[k_closest]);
+}
+
+float Path::sdf_angle_open(float x, float y)
+{
+  float  d = std::numeric_limits<float>::max();
+  size_t k_closest = 0;
+
+  for (size_t i = 0; i < this->get_npoints() - 1; i++)
+  {
+    size_t      j = i + 1;
+    Vec2<float> e = {this->points[j].x - this->points[i].x,
+                     this->points[j].y - this->points[i].y};
+    Vec2<float> w = {x - this->points[i].x, y - this->points[i].y};
+    float       coeff = std::clamp(dot(w, e) / dot(e, e), 0.f, 1.f);
+    Vec2<float> b = {w.x - e.x * coeff, w.y - e.y * coeff};
+    float       di = dot(b, b);
+    if (di <= d)
+    {
+      d = di;
+      k_closest = i;
+    }
+  }
+  return angle(this->points[k_closest], this->points[k_closest + 1]);
+}
+
+float Path::sdf_closed(float x, float y)
+{
+  // distance
+  float d = std::numeric_limits<float>::max();
+  float s = 1.f;
+  for (size_t i = 0, j = this->get_npoints() - 1; i < this->get_npoints();
+       j = i, i++)
+  {
+    Vec2<float> e = {this->points[j].x - this->points[i].x,
+                     this->points[j].y - this->points[i].y};
+    Vec2<float> w = {x - this->points[i].x, y - this->points[i].y};
+    float       coeff = std::clamp(dot(w, e) / dot(e, e), 0.f, 1.f);
+    Vec2<float> b = {w.x - e.x * coeff, w.y - e.y * coeff};
+    d = std::min(d, dot(b, b));
+
+    Vec3<bool> c = Vec3<bool>(y >= this->points[i].y,
+                              y<this->points[j].y, e.x * w.y> e.y * w.x);
+
+    if ((c.x && c.y && c.z) || (not(c.x) && not(c.y) && not(c.z)))
+      s *= -1.f;
+  }
+  return s * std::sqrt(d);
+}
+
+float Path::sdf_open(float x, float y)
+{
+  // distance
+  float d = std::numeric_limits<float>::max();
+
+  for (size_t i = 0; i < this->get_npoints() - 1; i++)
+  {
+    size_t      j = i + 1;
+    Vec2<float> e = {this->points[j].x - this->points[i].x,
+                     this->points[j].y - this->points[i].y};
+    Vec2<float> w = {x - this->points[i].x, y - this->points[i].y};
+    float       coeff = std::clamp(dot(w, e) / dot(e, e), 0.f, 1.f);
+    Vec2<float> b = {w.x - e.x * coeff, w.y - e.y * coeff};
+    d = std::min(d, dot(b, b));
+  }
+  return std::sqrt(d);
+}
+
 void Path::subsample(int step)
 {
   size_t k_global = 0;
@@ -564,7 +657,7 @@ Array Path::to_array_gaussian(Vec2<int>   shape,
     y[k] = (y[k] - bbox.c) / (bbox.d - bbox.c);
   }
 
-  Array z = -sdf_path(shape, x, y, p_noise_x, p_noise_y, shift, scale);
+  Array z = -sdf_polyline(shape, x, y, p_noise_x, p_noise_y, shift, scale);
 
   z = exp(-0.5f * z * z / (width * width));
 

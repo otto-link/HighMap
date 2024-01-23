@@ -925,6 +925,74 @@ public:
   void reverse();
 
   /**
+   * @brief Return the value of the angle of the closest edge to the point (x,
+   * y), assuming a closed path.
+   *
+   * @param x x coordinate.
+   * @param y y coordinate.
+   * @return float Edge angle (radians).
+   *
+   *  * **Example**
+   * @include ex_path_sdf.cpp
+   *
+   * **Result**
+   * @image html ex_path_sdf0.png
+   * @image html ex_path_sdf1.png
+   */
+  float sdf_angle_closed(float x, float y);
+
+  /**
+   * @brief Return the value of the angle of the closest edge to the point (x,
+   * y), assuming an open path.
+   *
+   * @param x x coordinate.
+   * @param y y coordinate.
+   * @return float Edge angle (radians).
+   *
+   *  * **Example**
+   * @include ex_path_sdf.cpp
+   *
+   * **Result**
+   * @image html ex_path_sdf0.png
+   * @image html ex_path_sdf1.png
+   */
+  float sdf_angle_open(float x, float y);
+
+  /**
+   * @brief Return the value of the signed distance function at (x, y), assuming
+   * a closed path.
+   *
+   * @param x x coordinate.
+   * @param y y coordinate.
+   * @return float Signed distance.
+   *
+   * **Example**
+   * @include ex_path_sdf.cpp
+   *
+   * **Result**
+   * @image html ex_path_sdf0.png
+   * @image html ex_path_sdf1.png
+   */
+  float sdf_closed(float x, float y);
+
+  /**
+   * @brief Return the value of the signed distance function at (x, y), assuming
+   * an open path.
+   *
+   * @param x x coordinate.
+   * @param y y coordinate.
+   * @return float Signed distance.
+   *
+   *  * **Example**
+   * @include ex_path_sdf.cpp
+   *
+   * **Result**
+   * @image html ex_path_sdf0.png
+   * @image html ex_path_sdf1.png
+   */
+  float sdf_open(float x, float y);
+
+  /**
    * @brief Subsample the path by keeping only every n-th point.
    *
    * @param step Keep every 'step' points.
