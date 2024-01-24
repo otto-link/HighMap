@@ -119,6 +119,22 @@ void export_banner_png(std::string        fname,
                        bool               hillshading = false);
 
 /**
+ * @brief Export the hillshade map to a 8 bit png file.
+ *
+ * @param fname File name.
+ * @param array Input array.
+ */
+void export_hillshade_png_8bit(std::string fname, const Array &array);
+
+/**
+ * @brief Export the hillshade map to a 16 bit png file.
+ *
+ * @param fname File name.
+ * @param array Input array.
+ */
+void export_hillshade_png_16bit(std::string fname, const Array &array);
+
+/**
  * @brief Export the heightmap normal map to a 8 bit png file.
  *
  * @param fname File name.
