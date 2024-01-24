@@ -30,7 +30,7 @@ void export_wavefront_obj(std::string  fname,
 {
   wow::Obj obj;
 
-  std::vector<float> x = linspace(0.f, 1.f, array.shape.x);
+  std::vector<float> x = linspace(1.f, 0.f, array.shape.x);
   std::vector<float> y = linspace(0.f, 1.f, array.shape.y);
 
   switch (mesh_type)
@@ -103,7 +103,7 @@ void export_wavefront_obj(std::string  fname,
     float ay = 1.f / (float)array.shape.x;
 
     for (size_t k = 0; k < points.size(); k++)
-      obj.appendVertex(1.f - ay * points[k].y, points[k].z, ax * points[k].x);
+      obj.appendVertex(ay * points[k].y, points[k].z, ax * points[k].x);
 
     for (size_t k = 0; k < triangles.size(); k++)
       obj.appendFace(wow::Face(triangles[k].x, triangles[k].y, triangles[k].z));
