@@ -181,7 +181,7 @@ void Cloud::to_array_interp(Array      &array,
   _2D::AnyInterpolator<
       float,
       void(std::vector<float>, std::vector<float>, std::vector<float>)>
-      interp; // = _2D::LinearDelaunayTriangleInterpolator<float>();
+      interp;
 
   if (interpolation_method == 0)
     interp = _2D::LinearDelaunayTriangleInterpolator<float>();
