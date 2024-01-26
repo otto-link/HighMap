@@ -1,0 +1,2 @@
+add_executable(ex_worley_polyline ex_worley_polyline.cpp)
+target_link_libraries(ex_worley_polyline highmap)

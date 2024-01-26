@@ -170,9 +170,6 @@ Array fbm_perlin_advanced(Vec2<int>          shape,
   for (int k = 1; k < octaves; k++)
     persistence[k] = octave_amplitudes[k] / octave_amplitudes[k - 1];
 
-  for (auto &v : persistence)
-    LOG_DEBUG("%f", v);
-
   noise.SetFrequency(1.0f);
   noise.SetNoiseType(FastNoiseLite::NoiseType_Perlin);
 
@@ -300,6 +297,43 @@ Array fbm_worley(Vec2<int>   shape,
                    p_stretching,
                    [&noise](float x_, float y_)
                    { return noise.GetNoise(x_, y_); });
+
+  return array;
+}
+
+Array fbm_worley_polyline(Vec2<int>   shape,
+                          float       kw,
+                          uint        seed,
+                          float       decay,
+                          int         octaves,
+                          float       weight,
+                          float       persistence,
+                          float       lacunarity,
+                          Array      *p_noise_x,
+                          Array      *p_noise_y,
+                          Vec2<float> shift,
+                          Vec2<float> scale)
+{
+  Array array = Array(shape);
+
+  Array amp = constant(shape, compute_fractal_bounding(octaves, persistence));
+
+  for (int k = 0; k < octaves; k++)
+  {
+    Array value = worley_polyline(shape,
+                                  kw,
+                                  seed++,
+                                  decay,
+                                  p_noise_x,
+                                  p_noise_y,
+                                  shift,
+                                  scale);
+    array += value * amp;
+    amp *= (1.f - weight) + weight * minimum(value + 1.f, 2.f) * 0.5f;
+
+    kw *= lacunarity;
+    amp *= persistence;
+  }
 
   return array;
 }
