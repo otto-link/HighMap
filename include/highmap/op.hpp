@@ -1473,6 +1473,14 @@ void recast_cliff_directional(Array &array,
                               float  angle,
                               float  gain = 2.f); ///< @overloads
 
+void recast_cliff_directional(Array &array,
+                              float  talus,
+                              int    ir,
+                              float  amplitude,
+                              float  angle,
+                              Array *p_mask,
+                              float  gain = 2.f); ///< @overloads
+
 /**
  * @brief Transform heightmap to give a "peak" like appearance.
  *

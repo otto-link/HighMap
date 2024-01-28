@@ -88,18 +88,15 @@ void recast_cliff(Array &array,
                   float  amplitude,
                   float  gain)
 {
-  // work on a filtered field
-  Array array_f = array;
-  smooth_cpulse(array_f, ir);
-
   // scale with gradient regions where the gradient is larger than the
   // reference talus (0 elsewhere)
-  Array dn = gradient_norm(array_f);
+  Array dn = gradient_norm(array);
   dn -= talus;
   dn *= array.shape.x;
   clamp_min(dn, 0.f);
+  smooth_cpulse(dn, ir);
 
-  Array vmin = mean_local(array_f, ir);
+  Array vmin = mean_local(array, ir);
   Array vmax = vmin + amplitude * dn;
 
   // apply gain filter
@@ -144,24 +141,22 @@ void recast_cliff_directional(Array &array,
 {
   float alpha = angle / 180.f * M_PI;
 
-  // work on a filtered field
-  Array array_f = array;
-  smooth_cpulse(array_f, ir);
-
   // scale with gradient regions where the gradient is larger than the
   // reference talus (0 elsewhere)
-  Array dn = gradient_norm(array_f);
+  Array dn = gradient_norm(array);
   dn -= talus;
   dn *= array.shape.x;
   clamp_min(dn, 0.f);
+  smooth_cpulse(dn, ir);
 
   // orientation scaling
-  Array da = gradient_angle(array_f);
+  Array da = gradient_angle(array);
   da -= alpha;
   da = cos(da);
   clamp_min(da, 0.f);
+  smooth_cpulse(da, ir);
 
-  Array vmin = mean_local(array_f, ir);
+  Array vmin = mean_local(array, ir);
   Array vmax = vmin + amplitude * dn * da;
 
   // apply gain filter
@@ -180,6 +175,23 @@ void recast_cliff_directional(Array &array,
     }
 }
 
+void recast_cliff_directional(Array &array,
+                              float  talus,
+                              int    ir,
+                              float  amplitude,
+                              float  angle,
+                              Array *p_mask,
+                              float  gain)
+{
+  if (!p_mask)
+    recast_cliff_directional(array, talus, ir, amplitude, angle, gain);
+  else
+  {
+    Array array_f = array;
+    recast_cliff_directional(array_f, talus, ir, amplitude, angle, gain);
+    array = lerp(array, array_f, *(p_mask));
+  }
+}
 void recast_peak(Array &array, int ir, float gamma, float k)
 {
   Array ac = array;
