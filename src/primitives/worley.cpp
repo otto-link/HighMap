@@ -68,6 +68,44 @@ Array worley_double(Vec2<int>   shape,
   return z;
 }
 
+hmap::Array worley_polyline(Vec2<int>   shape,
+                            float       kw,
+                            uint        seed,
+                            float       decay,
+                            Array      *p_noise_x,
+                            Array      *p_noise_y,
+                            Vec2<float> shift,
+                            Vec2<float> scale)
+{
+  hmap::Array array = hmap::Array(shape);
+
+  // create a random path
+  hmap::Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f};
+
+  int  npoints = 2 * (int)kw;
+  Path path = hmap::Path(npoints, seed, bbox);
+  path.reorder_nns();
+
+  std::vector<float> x =
+      linspace(shift.x, shift.x + scale.x, array.shape.x, false);
+  std::vector<float> y =
+      linspace(shift.y, shift.y + scale.y, array.shape.y, false);
+
+  helper_get_noise(array,
+                   x,
+                   y,
+                   p_noise_x,
+                   p_noise_y,
+                   [&path, &decay](float x_, float y_)
+                   {
+                     float h = path.sdf_open(x_, y_);
+                     h = std::exp(-1.386f * decay * h);
+                     return h;
+                   });
+
+  return array;
+}
+
 hmap::Array worley_value(Vec2<int>   shape,
                          Vec2<float> kw,
                          uint        seed,

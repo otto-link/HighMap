@@ -263,9 +263,9 @@ inline Point3D lerp(const Segment3D& s, float t) {
 
 inline Point3D MidPoint(const Segment3D& s) {
 	return {
-		(s.a.x + s.b.x) / 2.0,
-		(s.a.y + s.b.y) / 2.0,
-		(s.a.z + s.b.z) / 2.0
+		(s.a.x + s.b.x) / 2.f,
+		(s.a.y + s.b.y) / 2.f,
+		(s.a.z + s.b.z) / 2.f
 	};
 }
 

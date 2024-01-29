@@ -35,15 +35,23 @@ set(HMM_SRC
     # ${HMM_DIR}/stl.cpp
     ${HMM_DIR}/triangulator.cpp)
 
+set(CPP_SPLINE_DIR
+    ${PROJECT_SOURCE_DIR}/external/cpp-spline/spline/src/main/cpp)
+set(CPP_SPLINE_SRC
+    ${CPP_SPLINE_DIR}/Bezier.cpp ${CPP_SPLINE_DIR}/BSpline.cpp
+    ${CPP_SPLINE_DIR}/CatmullRom.cpp ${CPP_SPLINE_DIR}/Curve.cpp
+    ${CPP_SPLINE_DIR}/Vector.cpp)
+
 file(GLOB_RECURSE SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 
-add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HMM_SRC})
+add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HMM_SRC} ${CPP_SPLINE_SRC})
 
 target_include_directories(
   ${PROJECT_NAME}
   PUBLIC ${PROJECT_SOURCE_DIR}/include
   PRIVATE ${PROJECT_SOURCE_DIR}/external/bezier/include/bezier
           ${PROJECT_SOURCE_DIR}/external/ # dendry & WavefrontObjWriter & hmm
+          ${PROJECT_SOURCE_DIR}/external/cpp-spline/spline/src/main/cpp
           ${PROJECT_SOURCE_DIR}/external/dkm/include
           # ${PROJECT_SOURCE_DIR}/external/FastNoise2/include/FastNoise
           ${PROJECT_SOURCE_DIR}/external/FastNoiseLite/Cpp

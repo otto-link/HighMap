@@ -1,9 +1,6 @@
 [submodule "external/macro-logger"]
 	path = external/macro-logger
         url = git@github.com:otto-link/macro-logger.git
-[submodule "external/bezier"]
-	path = external/bezier
-	url = git@github.com:oysteinmyrmo/bezier.git
 [submodule "external/FastNoiseLite"]
 	path = external/FastNoiseLite
 	url = git@github.com:Auburn/FastNoiseLite.git
@@ -20,3 +17,6 @@
 [submodule "external/hmm"]
 	path = external/hmm
 	url = git@github.com:fogleman/hmm.git
+[submodule "external/ccp-spline"]
+	path = external/cpp-spline
+	url = git@github.com:chen0040/cpp-spline.git

@@ -6,7 +6,9 @@
 #include <list>
 #include <random>
 
-#include "bezier.h"
+#include "BSpline.h"
+#include "Bezier.h"
+#include "CatmullRom.h"
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
@@ -20,69 +22,169 @@ namespace hmap
 
 void Path::bezier(float curvature_ratio, int edge_divisions)
 {
-  // backup 2nd point for closed path
-  Point p_bckp = this->points[1];
+  Path new_path = Path();
 
-  size_t ks = this->closed ? 0 : 1; // trick to handle closed contours
+  size_t ks = this->closed ? 0 : 1;
   for (size_t k = 0; k < this->get_npoints() - ks; k++)
   {
     size_t kp1 = (k + 1) % this->get_npoints();
+    size_t kp2 = (k + 2) % this->get_npoints();
 
-    // start point
-    bezier::Point p1 = bezier::Point(this->points[k].x, this->points[k].y);
+    Bezier curve = Bezier();
+    curve.set_steps(edge_divisions);
 
-    // control #1
-    float x2 = (1.f - curvature_ratio) * this->points[k].x +
-               curvature_ratio * this->points[kp1].x;
-    float y2 = (1.f - curvature_ratio) * this->points[k].y +
-               curvature_ratio * this->points[kp1].y;
+    curve.add_way_point(Vector(this->points[k].x, this->points[k].y, 0.f));
 
-    bezier::Point p2 = bezier::Point(x2, y2);
+    {
+      Point p = lerp(this->points[k], this->points[kp1], curvature_ratio);
+      curve.add_way_point(Vector(p.x, p.y, 0.f));
+    }
 
-    // control #2
-    bezier::Point p3 = bezier::Point();
-
-    if ((k == this->get_npoints() - ks - 1) and (this->closed == false))
-      p3 = p2;
+    if (!this->closed && k == this->get_npoints() - 2)
+    {
+      Point p = lerp(this->points[k], this->points[kp1], curvature_ratio);
+      curve.add_way_point(Vector(p.x, p.y, 0.f));
+    }
     else
     {
-      size_t kp2 = (k + 2) % this->get_npoints();
-
-      Point point_kp2 = Point();
-      if (kp2 == 1)
-        point_kp2 = p_bckp;
-      else
-        point_kp2 = this->points[kp2];
-
-      float x3 = 2.f * this->points[kp1].x -
-                 (1.f - curvature_ratio) * this->points[kp1].x -
-                 curvature_ratio * point_kp2.x;
-      float y3 = 2.f * this->points[kp1].y -
-                 (1.f - curvature_ratio) * this->points[kp1].y -
-                 curvature_ratio * point_kp2.y;
-
-      p3 = bezier::Point(x3, y3);
+      Point p = lerp(this->points[kp1], this->points[kp2], -curvature_ratio);
+      curve.add_way_point(Vector(p.x, p.y, 0.f));
     }
 
-    // end point
-    bezier::Point p4 = bezier::Point(this->points[kp1].x, this->points[kp1].y);
+    curve.add_way_point(Vector(this->points[kp1].x, this->points[kp1].y, 0.f));
 
-    // Bezier curve
-    std::vector<bezier::Point> xy = {p1, p2, p3, p4};
-    bezier::Bezier<3>          cubicBezier(xy);
-
-    for (int i = 1; i < edge_divisions - 1; i++)
+    for (int i = 0; i < curve.node_count(); ++i)
     {
-      float         s = (float)i / (float)(edge_divisions - 1);
-      bezier::Point p = cubicBezier.valueAt(s);
-
+      // interpolate value
+      float s = curve.length_from_starting_point(i) / curve.total_length();
       float v = (1. - s) * this->points[k].v + s * this->points[kp1].v;
-      Point pc = Point(p.x, p.y, v);
 
-      this->points.insert(this->points.begin() + k + 1, pc);
-      ++k;
+      new_path.add_point(Point(curve.node(i).x, curve.node(i).y, v));
     }
   }
+
+  *this = new_path;
+}
+
+void Path::bezier_round(float curvature_ratio, int edge_divisions)
+{
+  Path new_path = Path();
+
+  size_t ks = this->closed ? 0 : 1;
+  for (size_t k = 0; k < this->get_npoints() - ks; k++)
+  {
+    size_t km1 = (k - 1) % this->get_npoints();
+    size_t kp1 = (k + 1) % this->get_npoints();
+    size_t kp2 = (k + 2) % this->get_npoints();
+
+    Bezier curve = Bezier();
+    curve.set_steps(edge_divisions);
+
+    curve.add_way_point(Vector(this->points[k].x, this->points[k].y, 0.f));
+
+    if (!this->closed && k == 0)
+    {
+      Point p = lerp(this->points[k], this->points[kp1], curvature_ratio);
+      curve.add_way_point(Vector(p.x, p.y, 0.f));
+    }
+    else
+    {
+      float dx = this->points[kp1].x - this->points[km1].x;
+      float dy = this->points[kp1].y - this->points[km1].y;
+      Point p = Point(this->points[k].x + curvature_ratio * dx,
+                      this->points[k].y + curvature_ratio * dy,
+                      0.f);
+      curve.add_way_point(Vector(p.x, p.y, 0.f));
+    }
+
+    if (!this->closed && k == this->get_npoints() - 1)
+    {
+      Point p = lerp(this->points[kp1], this->points[kp2], curvature_ratio);
+      curve.add_way_point(Vector(p.x, p.y, 0.f));
+    }
+    else
+    {
+      float dx = this->points[kp2].x - this->points[k].x;
+      float dy = this->points[kp2].y - this->points[k].y;
+      Point p = Point(this->points[kp1].x - curvature_ratio * dx,
+                      this->points[kp1].y - curvature_ratio * dy,
+                      0.f);
+      curve.add_way_point(Vector(p.x, p.y, 0.f));
+    }
+
+    curve.add_way_point(Vector(this->points[kp1].x, this->points[kp1].y, 0.f));
+
+    for (int i = 0; i < curve.node_count(); ++i)
+    {
+      // interpolate value
+      float s = curve.length_from_starting_point(i) / curve.total_length();
+      float v = (1. - s) * this->points[k].v + s * this->points[kp1].v;
+
+      new_path.add_point(Point(curve.node(i).x, curve.node(i).y, v));
+    }
+  }
+
+  *this = new_path;
+}
+
+void Path::bspline(int edge_divisions)
+{
+  Path new_path = Path();
+
+  BSpline curve = BSpline();
+  curve.set_steps(edge_divisions * (int)this->get_npoints());
+
+  size_t ks = this->closed ? 1 : 0;
+  for (size_t k = 0; k < this->get_npoints() + ks; k++)
+  {
+    if (k == 0)
+      curve.add_way_point(
+          Vector(this->points[0].x, this->points[0].y, this->points[0].v));
+
+    size_t k0 = k % this->get_npoints();
+    curve.add_way_point(
+        Vector(this->points[k0].x, this->points[k0].y, this->points[k0].v));
+
+    if (k == (this->get_npoints() + ks - 1))
+      curve.add_way_point(
+          Vector(this->points[k0].x, this->points[k0].y, this->points[k0].v));
+  }
+
+  for (int i = 0; i < curve.node_count(); ++i)
+    new_path.add_point(
+        Point(curve.node(i).x, curve.node(i).y, curve.node(i).z));
+
+  *this = new_path;
+}
+
+void Path::catmullrom(int edge_divisions)
+{
+  Path new_path = Path();
+
+  CatmullRom curve = CatmullRom();
+  curve.set_steps(edge_divisions * (int)this->get_npoints());
+
+  size_t ks = this->closed ? 1 : 0;
+  for (size_t k = 0; k < this->get_npoints() + ks; k++)
+  {
+    if (k == 0)
+      curve.add_way_point(
+          Vector(this->points[0].x, this->points[0].y, this->points[0].v));
+
+    size_t k0 = k % this->get_npoints();
+    curve.add_way_point(
+        Vector(this->points[k0].x, this->points[k0].y, this->points[k0].v));
+
+    if (k == (this->get_npoints() + ks - 1))
+      curve.add_way_point(
+          Vector(this->points[k0].x, this->points[k0].y, this->points[k0].v));
+  }
+
+  for (int i = 0; i < curve.node_count(); ++i)
+    new_path.add_point(
+        Point(curve.node(i).x, curve.node(i).y, curve.node(i).z));
+
+  *this = new_path;
 }
 
 void Path::clear()
@@ -232,74 +334,61 @@ std::vector<float> Path::get_cumulative_distance()
   return dacc;
 }
 
-void Path::meanderize(float radius,
-                      float tangent_contribution,
+void Path::meanderize(float ratio,
+                      float noise_ratio,
+                      uint  seed,
                       int   iterations,
-                      float transition_length_ratio)
+                      int   edge_divisions)
 {
-  float sigma = 0.5f;
-  int   laplace_iterations = 3;
+  std::mt19937                    gen(seed);
+  std::normal_distribution<float> dis(-noise_ratio, noise_ratio);
 
   for (int it = 0; it < iterations; it++)
   {
-    std::vector<float> s = this->get_cumulative_distance();
-    std::vector<float> ds = gradient1d(s);
+    Path new_path = Path();
 
-    std::vector<float> tx = gradient1d(this->get_x());
-    std::vector<float> ty = gradient1d(this->get_y());
-    laplace1d(tx, sigma, laplace_iterations);
-    laplace1d(ty, sigma, laplace_iterations);
-
-    std::vector<float> nx = gradient1d(tx);
-    std::vector<float> ny = gradient1d(ty);
-    laplace1d(nx, sigma, laplace_iterations);
-    laplace1d(ny, sigma, laplace_iterations);
-
-    // scaling of the normal vector
-    float scale_n = 0.f;
-    for (size_t i = 0; i < this->get_npoints(); i++)
+    size_t ks = this->closed ? 0 : 1;
+    for (size_t k = 0; k < this->get_npoints() - ks; k++)
     {
-      float d = std::hypot(nx[i], ny[i]);
-      if (d > scale_n)
-        scale_n = d;
-    }
-    scale_n = 1.f / scale_n;
+      size_t kp1 = (k + 1) % this->get_npoints();
+      size_t kp2 = (k + 2) % this->get_npoints();
 
-    for (size_t i = 0; i < this->get_npoints(); i++)
-    {
-      // normalize
-      float scale_t = 1.f / ds[i];
-      tx[i] *= scale_t;
-      ty[i] *= scale_t;
+      new_path.add_point(
+          Point(this->points[k].x, this->points[k].y, this->points[k].v));
 
-      nx[i] *= scale_n;
-      ny[i] *= scale_n;
+      float alpha = angle(this->points[kp1], this->points[k]);
+      float dist = distance(this->points[kp1], this->points[k]);
 
-      float cx = tangent_contribution * tx[i] -
-                 (1.f - tangent_contribution) * nx[i];
-      float cy = tangent_contribution * ty[i] -
-                 (1.f - tangent_contribution) * ny[i];
+      Point p = lerp(this->points[k], this->points[kp1], 0.5f);
 
-      // apply a shape factor to preserve starting and ending parts of
-      // the curve
-      float shape_factor = 1.f;
-      float smax = s.back();
-      if (s[i] < smax * transition_length_ratio)
-        shape_factor = s[i] / (smax * transition_length_ratio);
-      else if (s[i] > smax * (1.f - transition_length_ratio))
-        shape_factor = 1.f - (s[i] / smax - 1.f + transition_length_ratio) /
-                                 transition_length_ratio;
+      // vector relative orientation based on cross-product
+      float cross_product = (this->points[kp2].y - this->points[k].y) *
+                                (this->points[kp1].x - this->points[k].x) -
+                            (this->points[kp2].x - this->points[k].x) *
+                                (this->points[kp1].y - this->points[k].y);
 
-      // smooth transitions
-      shape_factor = shape_factor * shape_factor * (3.f - 2.f * shape_factor);
+      if (cross_product >= 0.f)
+        alpha += M_PI_2;
+      else
+        alpha -= M_PI_2;
 
-      this->points[i].x += cx * radius * shape_factor;
-      this->points[i].y += cy * radius * shape_factor;
+      dist *= ratio * (1.f + dis(gen));
+
+      p.x += dist * std::cos(alpha);
+      p.y += dist * std::sin(alpha);
+
+      new_path.add_point(p);
     }
 
-    // remesh to maintain the same distance between points
-    this->resample(s.back() / (float)(this->get_npoints() - 1));
+    if (this->closed)
+      new_path.add_point(this->points[0]);
+    else
+      new_path.add_point(this->points.back());
+
+    *this = new_path;
   }
+
+  this->bspline(edge_divisions);
 }
 
 void Path::reorder_nns(int start_index)
@@ -393,6 +482,99 @@ void Path::reverse()
   std::reverse(this->points.begin(), this->points.end());
 }
 
+float Path::sdf_angle_closed(float x, float y)
+{
+  float  d = std::numeric_limits<float>::max();
+  size_t k_closest = 0;
+  size_t kp_closest = 0;
+
+  for (size_t i = 0, j = this->get_npoints() - 1; i < this->get_npoints();
+       j = i, i++)
+  {
+    Vec2<float> e = {this->points[j].x - this->points[i].x,
+                     this->points[j].y - this->points[i].y};
+    Vec2<float> w = {x - this->points[i].x, y - this->points[i].y};
+    float       coeff = std::clamp(dot(w, e) / dot(e, e), 0.f, 1.f);
+    Vec2<float> b = {w.x - e.x * coeff, w.y - e.y * coeff};
+    float       di = dot(b, b);
+    if (di < d)
+    {
+      d = di;
+      k_closest = i;
+      kp_closest = j;
+    }
+  }
+
+  return k_closest == 0
+             ? angle(this->points[k_closest], this->points[kp_closest])
+             : angle(this->points[kp_closest], this->points[k_closest]);
+}
+
+float Path::sdf_angle_open(float x, float y)
+{
+  float  d = std::numeric_limits<float>::max();
+  size_t k_closest = 0;
+
+  for (size_t i = 0; i < this->get_npoints() - 1; i++)
+  {
+    size_t      j = i + 1;
+    Vec2<float> e = {this->points[j].x - this->points[i].x,
+                     this->points[j].y - this->points[i].y};
+    Vec2<float> w = {x - this->points[i].x, y - this->points[i].y};
+    float       coeff = std::clamp(dot(w, e) / dot(e, e), 0.f, 1.f);
+    Vec2<float> b = {w.x - e.x * coeff, w.y - e.y * coeff};
+    float       di = dot(b, b);
+    if (di <= d)
+    {
+      d = di;
+      k_closest = i;
+    }
+  }
+  return angle(this->points[k_closest], this->points[k_closest + 1]);
+}
+
+float Path::sdf_closed(float x, float y)
+{
+  // distance
+  float d = std::numeric_limits<float>::max();
+  float s = 1.f;
+  for (size_t i = 0, j = this->get_npoints() - 1; i < this->get_npoints();
+       j = i, i++)
+  {
+    Vec2<float> e = {this->points[j].x - this->points[i].x,
+                     this->points[j].y - this->points[i].y};
+    Vec2<float> w = {x - this->points[i].x, y - this->points[i].y};
+    float       coeff = std::clamp(dot(w, e) / dot(e, e), 0.f, 1.f);
+    Vec2<float> b = {w.x - e.x * coeff, w.y - e.y * coeff};
+    d = std::min(d, dot(b, b));
+
+    Vec3<bool> c = Vec3<bool>(y >= this->points[i].y,
+                              y<this->points[j].y, e.x * w.y> e.y * w.x);
+
+    if ((c.x && c.y && c.z) || (not(c.x) && not(c.y) && not(c.z)))
+      s *= -1.f;
+  }
+  return s * std::sqrt(d);
+}
+
+float Path::sdf_open(float x, float y)
+{
+  // distance
+  float d = std::numeric_limits<float>::max();
+
+  for (size_t i = 0; i < this->get_npoints() - 1; i++)
+  {
+    size_t      j = i + 1;
+    Vec2<float> e = {this->points[j].x - this->points[i].x,
+                     this->points[j].y - this->points[i].y};
+    Vec2<float> w = {x - this->points[i].x, y - this->points[i].y};
+    float       coeff = std::clamp(dot(w, e) / dot(e, e), 0.f, 1.f);
+    Vec2<float> b = {w.x - e.x * coeff, w.y - e.y * coeff};
+    d = std::min(d, dot(b, b));
+  }
+  return std::sqrt(d);
+}
+
 void Path::subsample(int step)
 {
   size_t k_global = 0;
@@ -475,7 +657,7 @@ Array Path::to_array_gaussian(Vec2<int>   shape,
     y[k] = (y[k] - bbox.c) / (bbox.d - bbox.c);
   }
 
-  Array z = -sdf_path(shape, x, y, p_noise_x, p_noise_y, shift, scale);
+  Array z = -sdf_polyline(shape, x, y, p_noise_x, p_noise_y, shift, scale);
 
   z = exp(-0.5f * z * z / (width * width));
 

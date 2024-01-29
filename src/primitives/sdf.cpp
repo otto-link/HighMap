@@ -7,6 +7,7 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/geometry.hpp"
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 
@@ -76,27 +77,17 @@ Array sdf_circle(Vec2<int>   shape,
                      scale);
 }
 
-Array sdf_path(Vec2<int>          shape,
-               std::vector<float> xp,
-               std::vector<float> yp,
-               Array             *p_noise_x,
-               Array             *p_noise_y,
-               Vec2<float>        shift,
-               Vec2<float>        scale)
+Array sdf_polyline(Vec2<int>          shape,
+                   std::vector<float> xp,
+                   std::vector<float> yp,
+                   Array             *p_noise_x,
+                   Array             *p_noise_y,
+                   Vec2<float>        shift,
+                   Vec2<float>        scale)
 {
-  auto distance_fct = [&xp, &yp](float x, float y)
-  {
-    float d = std::numeric_limits<float>::max();
-    for (size_t i = 0, j = 1; i < xp.size(); j = i, i++)
-    {
-      Vec2<float> e = {xp[j] - xp[i], yp[j] - yp[i]};
-      Vec2<float> w = {x - xp[i], y - yp[i]};
-      float       coeff = std::clamp(dot(w, e) / dot(e, e), 0.f, 1.f);
-      Vec2<float> b = {w.x - e.x * coeff, w.y - e.y * coeff};
-      d = std::min(d, dot(b, b));
-    }
-    return std::sqrt(d);
-  };
+  Path path = Path(xp, yp);
+
+  auto distance_fct = [&path](float x, float y) { return path.sdf_open(x, y); };
 
   return sdf_generic(shape,
                      distance_fct,
@@ -115,25 +106,10 @@ Array sdf_polygon(Vec2<int>          shape,
                   Vec2<float>        shift,
                   Vec2<float>        scale)
 {
-  auto distance_fct = [&xp, &yp](float x, float y)
-  {
-    float d = std::numeric_limits<float>::max();
-    float s = 1.f;
-    for (size_t i = 0, j = xp.size() - 1; i < xp.size(); j = i, i++)
-    {
-      Vec2<float> e = {xp[j] - xp[i], yp[j] - yp[i]};
-      Vec2<float> w = {x - xp[i], y - yp[i]};
-      float       coeff = std::clamp(dot(w, e) / dot(e, e), 0.f, 1.f);
-      Vec2<float> b = {w.x - e.x * coeff, w.y - e.y * coeff};
-      d = std::min(d, dot(b, b));
+  Path path = Path(xp, yp);
 
-      Vec3<bool> c = Vec3<bool>(y >= yp[i], y<yp[j], e.x * w.y> e.y * w.x);
-
-      if ((c.x && c.y && c.z) || (not(c.x) && not(c.y) && not(c.z)))
-        s *= -1.f;
-    }
-    return s * std::sqrt(d);
-  };
+  auto distance_fct = [&path](float x, float y)
+  { return path.sdf_closed(x, y); };
 
   return sdf_generic(shape,
                      distance_fct,
@@ -153,25 +129,10 @@ Array sdf_polygon_annular(Vec2<int>          shape,
                           Vec2<float>        shift,
                           Vec2<float>        scale)
 {
-  auto distance_fct = [&xp, &yp, &width](float x, float y)
-  {
-    float d = std::numeric_limits<float>::max();
-    float s = 1.f;
-    for (size_t i = 0, j = xp.size() - 1; i < xp.size(); j = i, i++)
-    {
-      Vec2<float> e = {xp[j] - xp[i], yp[j] - yp[i]};
-      Vec2<float> w = {x - xp[i], y - yp[i]};
-      float       coeff = std::clamp(dot(w, e) / dot(e, e), 0.f, 1.f);
-      Vec2<float> b = {w.x - e.x * coeff, w.y - e.y * coeff};
-      d = std::min(d, dot(b, b));
+  Path path = Path(xp, yp);
 
-      Vec3<bool> c = Vec3<bool>(y >= yp[i], y<yp[j], e.x * w.y> e.y * w.x);
-
-      if ((c.x && c.y && c.z) || (not(c.x) && not(c.y) && not(c.z)))
-        s *= -1.f;
-    }
-    return std::abs(s * std::sqrt(d) - width);
-  };
+  auto distance_fct = [&path, &width](float x, float y)
+  { return std::abs(path.sdf_closed(x, y) - width); };
 
   return sdf_generic(shape,
                      distance_fct,

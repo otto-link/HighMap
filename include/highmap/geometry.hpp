@@ -765,7 +765,7 @@ public:
    *
    * @param curvature_ratio Amount of curvature (usually in [-1, 1] and commonly
    * > 0).
-   * @param edge_divisions Edge sub-divisions of each Bezier curves.
+   * @param edge_divisions Edge sub-divisions of each edge.
    *
    * **Example**
    * @include ex_path_bezier.cpp
@@ -774,6 +774,49 @@ public:
    * @image html ex_path_bezier.png
    */
   void bezier(float curvature_ratio = 0.3f, int edge_divisions = 10);
+
+  /**
+   * @brief "Smooth" the path using Bezier curves (alternative).
+   *
+   * @param curvature_ratio Amount of curvature (usually in [-1, 1] and commonly
+   * > 0).
+   * @param edge_divisions Edge sub-divisions of each edge.
+   *
+   * **Example**
+   * @include ex_path_bezier_round.cpp
+   *
+   * **Result**
+   * @image html ex_path_bezier_round.png
+   */
+  void bezier_round(float curvature_ratio = 0.3f, int edge_divisions = 10);
+
+  /**
+   * @brief "Smooth" the path using BSpline curves.
+   *
+   * @param edge_divisions Edge sub-divisions of each edge.
+   *
+   *
+   * **Example**
+   * @include ex_path_bspline.cpp
+   *
+   * **Result**
+   * @image html ex_path_bspline.png
+   */
+  void bspline(int edge_divisions = 10);
+
+  /**
+   * @brief "Smooth" the path using CatmullRom curves.
+   *
+   * @param edge_divisions Edge sub-divisions of each edge.
+   *
+   *
+   * **Example**
+   * @include ex_path_catmullrom.cpp
+   *
+   * **Result**
+   * @image html ex_path_catmullrom.png
+   */
+  void catmullrom(int edge_divisions = 10);
 
   /**
    * @brief Clear the path data.
@@ -834,16 +877,13 @@ public:
                   float persistence = 1.f);
 
   /**
-   * @brief Add "meanders" to the path using a deformation based on a
-   * combination of the local tangent and normal vectors.
+   * @brief Add "meanders" to the path.
    *
-   * See https://roberthodgin.com/project/meander.
-   *
-   * @param radius Meander reference radius.
-   * @param tangent_contribution Tangent contribution to the meander, in [0, 1].
+   * @param ratio Meander amplitude ratio.
+   * @param noise_ratio Randomness ratio.
+   * @param seed Random seed number.
    * @param iterations Number of iterations.
-   * @param transition_length_ratio Transition to preserve starting and ending
-   * parts of the curve.
+   * @param edge_divisions Edge sub-divisions of each edge.
    *
    * **Example**
    * @include ex_path_meanderize.cpp
@@ -851,10 +891,11 @@ public:
    * **Result**
    * @image html ex_path_meanderize.png
    */
-  void meanderize(float radius,
-                  float tangent_contribution,
+  void meanderize(float ratio,
+                  float noise_ratio = 0.1f,
+                  uint  seed = 1,
                   int   iterations = 1,
-                  float transition_length_ratio = 0.2f);
+                  int   edge_divisions = 10);
 
   /**
    * @brief Reorder points using a nearest neighbor search.
@@ -882,6 +923,74 @@ public:
    * @brief Reverse point order.
    */
   void reverse();
+
+  /**
+   * @brief Return the value of the angle of the closest edge to the point (x,
+   * y), assuming a closed path.
+   *
+   * @param x x coordinate.
+   * @param y y coordinate.
+   * @return float Edge angle (radians).
+   *
+   *  * **Example**
+   * @include ex_path_sdf.cpp
+   *
+   * **Result**
+   * @image html ex_path_sdf0.png
+   * @image html ex_path_sdf1.png
+   */
+  float sdf_angle_closed(float x, float y);
+
+  /**
+   * @brief Return the value of the angle of the closest edge to the point (x,
+   * y), assuming an open path.
+   *
+   * @param x x coordinate.
+   * @param y y coordinate.
+   * @return float Edge angle (radians).
+   *
+   *  * **Example**
+   * @include ex_path_sdf.cpp
+   *
+   * **Result**
+   * @image html ex_path_sdf0.png
+   * @image html ex_path_sdf1.png
+   */
+  float sdf_angle_open(float x, float y);
+
+  /**
+   * @brief Return the value of the signed distance function at (x, y), assuming
+   * a closed path.
+   *
+   * @param x x coordinate.
+   * @param y y coordinate.
+   * @return float Signed distance.
+   *
+   * **Example**
+   * @include ex_path_sdf.cpp
+   *
+   * **Result**
+   * @image html ex_path_sdf0.png
+   * @image html ex_path_sdf1.png
+   */
+  float sdf_closed(float x, float y);
+
+  /**
+   * @brief Return the value of the signed distance function at (x, y), assuming
+   * an open path.
+   *
+   * @param x x coordinate.
+   * @param y y coordinate.
+   * @return float Signed distance.
+   *
+   *  * **Example**
+   * @include ex_path_sdf.cpp
+   *
+   * **Result**
+   * @image html ex_path_sdf0.png
+   * @image html ex_path_sdf1.png
+   */
+  float sdf_open(float x, float y);
 
   /**
    * @brief Subsample the path by keeping only every n-th point.
@@ -1093,6 +1202,28 @@ void expand_grid_corners(std::vector<float> &x,
                          std::vector<float> &value,
                          Vec4<float>         bbox = {0.f, 1.f, 0.f, 1.f},
                          float               corner_value = 0.f);
+
+/**
+ * @brief
+ *
+ * @param array Input array.
+ * @param x `x` coordinates (output).
+ * @param y `y` coordinates (output).
+ * @param bbox Bounding box.
+ * @param threshold Theshold 'background' value.
+ *
+ * **Example**
+ * @include ex_grid_from_array.cpp
+ *
+ * **Result**
+ * @image html ex_grid_from_array.png
+ */
+void grid_from_array(Array              &array,
+                     std::vector<float> &x,
+                     std::vector<float> &y,
+                     std::vector<float> &value,
+                     Vec4<float>         bbox = {0.f, 1.f, 0.f, 1.f},
+                     float               threshold = 0.f);
 
 /**
  * @brief Generate a random grid.

@@ -17,8 +17,6 @@ int main(void)
   hmap::export_wavefront_obj("hmap_quad.obj", z, hmap::mesh_type::quad);
   hmap::export_wavefront_obj("hmap_tri.obj", z, hmap::mesh_type::tri);
 
-  z.to_png("out.png", hmap::cmap::gray);
-
   // lines
 
   hmap::Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f};

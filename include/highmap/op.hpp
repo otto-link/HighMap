@@ -481,6 +481,16 @@ Array convolve2d_svd_rotated_kernel(const Array &z,
 Array cos(const Array &array);
 
 /**
+ * @brief
+ *
+ * @param array
+ * @return Array
+ */
+Array curl(const Array &array);
+
+Array curl(const Array &array);
+
+/**
  * @brief Return the Gaussian curvature @cite Kurita1992.
  *
  * @param z Input array.
@@ -844,6 +854,8 @@ Array gradient_angle(const Array &array, bool downward = false);
  * @brief Return the gradient norm of an array.
  *
  * @param array Input array.
+ * @param p_dx Reference to the x-gradient (output).
+ * @param p_dy Reference to the y-gradient (output).
  * @return Array Gradient norm.
  *
  * **Example**
@@ -852,7 +864,35 @@ Array gradient_angle(const Array &array, bool downward = false);
  * **Result**
  * @image html ex_gradient_norm.png
  */
-Array gradient_norm(const Array &array);
+Array gradient_norm(const Array &array,
+                    Array       *p_dx = nullptr,
+                    Array       *p_dy = nullptr);
+
+/**
+ * @brief Return the gradient norm of an array using Prewitt filter.
+ *
+ * @param array Input array.
+ * @param p_dx Reference to the x-gradient (output).
+ * @param p_dy Reference to the y-gradient (output).
+ * @return Array Gradient norm.
+ *
+ * **Example**
+ * @include ex_gradient_norm.cpp
+ *
+ * **Result**
+ * @image html ex_gradient_norm.png
+ */
+Array gradient_norm_prewitt(const Array &array,
+                            Array       *p_dx = nullptr,
+                            Array       *p_dy = nullptr);
+
+Array gradient_norm_scharr(const Array &array,
+                           Array       *p_dx = nullptr,
+                           Array       *p_dy = nullptr);
+
+Array gradient_norm_sobel(const Array &array,
+                          Array       *p_dx = nullptr,
+                          Array       *p_dy = nullptr);
 
 /**
  * @brief Return the gradient talus slope of an array.
@@ -924,6 +964,25 @@ Array hillshade(const Array &z,
  * @return Array Hypothenuse.
  */
 Array hypot(const Array &array1, const Array &array2);
+
+/**
+ * @brief Apply diffusion-based inpainting to fill a region (defined by mask) of
+ * the input array (@cite Oliveira2001).
+ *
+ * @param array Input array.
+ * @param mask Mask, region to be inpainted.
+ * @param iterations Number of diffusion iterations.
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_inpainting_diffusion.cpp
+ *
+ * **Result**
+ * @image html ex_inpainting_diffusion.png
+ */
+Array inpainting_diffusion(const Array &array,
+                           const Array &mask,
+                           int          iterations);
 
 /**
  * @brief Return the labelling of each cell of the array based on a k-means
@@ -1437,6 +1496,21 @@ void recast_cliff(Array &array,
                   Array *p_mask,
                   float  gain = 2.f); ///< @overload
 
+void recast_cliff_directional(Array &array,
+                              float  talus,
+                              int    ir,
+                              float  amplitude,
+                              float  angle,
+                              float  gain = 2.f); ///< @overloads
+
+void recast_cliff_directional(Array &array,
+                              float  talus,
+                              int    ir,
+                              float  amplitude,
+                              float  angle,
+                              Array *p_mask,
+                              float  gain = 2.f); ///< @overloads
+
 /**
  * @brief Transform heightmap to give a "peak" like appearance.
  *
@@ -1671,6 +1745,27 @@ void remap(Array &array, float vmin = 0, float vmax = 1); ///< @overload
  * @param vref Reference 'zero' value.
  */
 void rescale(Array &array, float scaling, float vref = 0.f);
+
+/**
+ * @brief Apply the reverse midpoint displacement algorithm to the input array
+ * (see @cite Belhadj2005).
+ *
+ * @param array Input array.
+ * @param seed Random seed number.
+ * @param noise_scale Noise scale amplitude.
+ * @param threshold Theshold 'background' value.
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_reverse_midpoint.cpp
+ *
+ * **Result**
+ * @image html ex_reverse_midpoint.png
+ */
+Array reverse_midpoint(Array &array,
+                       uint   seed,
+                       float  noise_scale = 1.f,
+                       float  threshold = 0.f);
 
 /**
  * @brief Rotate the array.

@@ -22,8 +22,8 @@ int main(void)
   float width = 0.1f;
   auto z3 = hmap::sdf_polygon_annular(shape, path.get_x(), path.get_y(), width);
 
-  // path ("open polygon")
-  auto z4 = hmap::sdf_path(shape, path.get_x(), path.get_y());
+  // polyline
+  auto z4 = hmap::sdf_polyline(shape, path.get_x(), path.get_y());
 
   hmap::export_banner_png("ex_sdf.png", {z1, z2, z3, z4}, hmap::cmap::jet);
 }
