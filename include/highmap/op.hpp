@@ -854,6 +854,8 @@ Array gradient_angle(const Array &array, bool downward = false);
  * @brief Return the gradient norm of an array.
  *
  * @param array Input array.
+ * @param p_dx Reference to the x-gradient (output).
+ * @param p_dy Reference to the y-gradient (output).
  * @return Array Gradient norm.
  *
  * **Example**
@@ -862,7 +864,35 @@ Array gradient_angle(const Array &array, bool downward = false);
  * **Result**
  * @image html ex_gradient_norm.png
  */
-Array gradient_norm(const Array &array);
+Array gradient_norm(const Array &array,
+                    Array       *p_dx = nullptr,
+                    Array       *p_dy = nullptr);
+
+/**
+ * @brief Return the gradient norm of an array using Prewitt filter.
+ *
+ * @param array Input array.
+ * @param p_dx Reference to the x-gradient (output).
+ * @param p_dy Reference to the y-gradient (output).
+ * @return Array Gradient norm.
+ *
+ * **Example**
+ * @include ex_gradient_norm.cpp
+ *
+ * **Result**
+ * @image html ex_gradient_norm.png
+ */
+Array gradient_norm_prewitt(const Array &array,
+                            Array       *p_dx = nullptr,
+                            Array       *p_dy = nullptr);
+
+Array gradient_norm_scharr(const Array &array,
+                           Array       *p_dx = nullptr,
+                           Array       *p_dy = nullptr);
+
+Array gradient_norm_sobel(const Array &array,
+                          Array       *p_dx = nullptr,
+                          Array       *p_dy = nullptr);
 
 /**
  * @brief Return the gradient talus slope of an array.

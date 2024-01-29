@@ -1,7 +1,4 @@
-#include "highmap/array.hpp"
-#include "highmap/io.hpp"
-#include "highmap/op.hpp"
-#include "highmap/primitives.hpp"
+#include "highmap.hpp"
 
 int main(void)
 {
@@ -12,5 +9,11 @@ int main(void)
   hmap::Array z = hmap::fbm_perlin(shape, res, seed);
 
   auto dz = hmap::gradient_norm(z);
-  dz.to_png("ex_gradient_norm.png", hmap::cmap::viridis);
+  auto dz_p = hmap::gradient_norm_prewitt(z);
+  auto dz_c = hmap::gradient_norm_scharr(z);
+  auto dz_s = hmap::gradient_norm_sobel(z);
+
+  hmap::export_banner_png("ex_gradient_norm.png",
+                          {dz, dz_p, dz_c, dz_s},
+                          hmap::cmap::viridis);
 }
