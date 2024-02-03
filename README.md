@@ -51,7 +51,7 @@ Use `PowerShell` to clone the repository (because Visual Studio won't clone the 
 
 Install the missing OpenSource dependencies using `vcpkg`:
 ```
-vcpkg install eigen3 libpng boost-range boost-type-erasure boost-geometry glm
+vcpkg install eigen3 libpng boost-range boost-type-erasure boost-geometry glm opencl
 ```
 
 You should then be able to build the sources using Visual Studio.
