@@ -18,6 +18,7 @@
 #include "highmap/colormaps.hpp"
 #include "highmap/erosion.hpp"
 #include "highmap/geometry.hpp"
+#include "highmap/gpu.hpp"
 #include "highmap/heightmap.hpp"
 #include "highmap/hydrology.hpp"
 #include "highmap/io.hpp"
