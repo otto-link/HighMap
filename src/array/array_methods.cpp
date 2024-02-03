@@ -173,6 +173,11 @@ Vec3<float> Array::get_normal_at(int i, int j) const
   return normal;
 }
 
+size_t Array::get_sizeof() const
+{
+  return sizeof(float) * this->vector.size();
+}
+
 Vec2<float> Array::normalization_coeff(float vmin, float vmax)
 {
   float a = 0.f;

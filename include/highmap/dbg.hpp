@@ -20,6 +20,8 @@
 #include <list>
 #include <map>
 
+#include "macrologger.h"
+
 namespace hmap
 {
 

@@ -439,6 +439,13 @@ public:
   Vec3<float> get_normal_at(int i, int j) const;
 
   /**
+   * @brief Return the number of bytes occupied by the array data (i.e. of the
+   * underlying storage vector).
+   *
+   * @return size_t Size.
+   */
+  size_t get_sizeof() const;
+  /**
    * @brief Return normalization coefficients (a, b) so that a * array + b is in
    * [vmin, vmax]
    *
