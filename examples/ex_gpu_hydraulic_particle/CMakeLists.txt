@@ -1,0 +1,2 @@
+add_executable(ex_gpu_hydraulic_particle ex_gpu_hydraulic_particle.cpp)
+target_link_libraries(ex_gpu_hydraulic_particle highmap)
