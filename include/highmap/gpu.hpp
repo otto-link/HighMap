@@ -19,6 +19,7 @@
 
 #include "highmap/array.hpp"
 
+// https://streamhpc.com/blog/2013-04-28/opencl-error-codes/
 #define OPENCL_ERROR_MESSAGE(err, msg)                                         \
   {                                                                            \
     if (err != CL_SUCCESS)                                                     \
@@ -89,7 +90,7 @@ struct OpenCLConfig
 
 // --- helpers
 
-template <typename T> T smallest_multiple(T value, T factor)
+template <typename T> T closest_smaller_multiple(T value, T factor)
 {
   return (T)std::floor((float)(value) / factor) * factor;
 }
@@ -100,6 +101,17 @@ template <typename T> size_t vector_sizeof(const typename std::vector<T> &v)
 }
 
 // --- filters
+
+void hydraulic_particle(OpenCLConfig &config,
+                        Array        &array,
+                        int nparticles,
+                        const uint    seed,
+                        const float   c_capacity = 100.f,
+                        const float   c_erosion = 0.005f,
+                        const float   c_deposition = 0.01f,
+                        const float   drag_rate = 1e-3f,
+                        const float   evap_rate = 1e-3f,
+                        const float   dt = 1.5f);
 
 /**
  * @brief TODO

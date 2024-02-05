@@ -22,7 +22,11 @@ void OpenCLConfig::build_program()
   cl::Program::Sources sources;
 
   const std::string kernel_code =
+#include "image_utils.cl"
+#include "rand.cl"
+  //
 #include "kernel.cl"
+#include "kernel_hydraulic_particle.cl"
       ;
 
   if (kernel_code.length() == 0)
@@ -57,6 +61,10 @@ void OpenCLConfig::infos()
     LOG_INFO("name: %s", device.getInfo<CL_DEVICE_NAME>().c_str());
     LOG_INFO("vendor: %s", device.getInfo<CL_DEVICE_VENDOR>().c_str());
     LOG_INFO("version: %s", device.getInfo<CL_DEVICE_VERSION>().c_str());
+    LOG_INFO("device OpenCL C version: %s",
+             device.getInfo<CL_DEVICE_OPENCL_C_VERSION>().c_str());
+    LOG_INFO("device extension: %s",
+             device.getInfo<CL_DEVICE_EXTENSIONS>().c_str());
     for (auto p : device.getInfo<CL_DEVICE_MAX_WORK_ITEM_SIZES>())
       LOG_INFO("work items: %ld", p);
     LOG_INFO("work groups: %ld",
