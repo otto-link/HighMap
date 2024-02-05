@@ -13,9 +13,10 @@
 namespace hmap::gpu
 {
 
+// TODO add moisture map
 void hydraulic_particle(OpenCLConfig &config,
                         Array        &array,
-                        const int nparticles,
+                        const int     nparticles,
                         const uint    seed,
                         const float   c_capacity,
                         const float   c_erosion,
@@ -24,7 +25,7 @@ void hydraulic_particle(OpenCLConfig &config,
                         const float   evap_rate,
                         const float   dt)
 {
-  int err;
+  int err = 0;
 
   int nparticles_resized = closest_smaller_multiple<int>(nparticles,
                                                          config.block_size);
@@ -33,7 +34,6 @@ void hydraulic_particle(OpenCLConfig &config,
     LOG_DEBUG("effective number of particles: %d (requested: %d)",
               nparticles_resized,
               nparticles);
-
 
   cl::CommandQueue queue(config.context, config.device);
 
@@ -93,7 +93,7 @@ void hydraulic_particle(OpenCLConfig &config,
 
 void maximum_local_weighted(OpenCLConfig &config, Array &array, Array &weights)
 {
-  int    err;
+  int    err = 0;
   Array *p_weights;
 
   // --- perform some checkings
@@ -125,6 +125,7 @@ void maximum_local_weighted(OpenCLConfig &config, Array &array, Array &weights)
   cl::Buffer buffer_in(config.context,
                        CL_MEM_READ_ONLY,
                        array.get_sizeof(),
+                       nullptr,
                        &err);
 
   OPENCL_ERROR_MESSAGE(err, "Buffer");
@@ -132,13 +133,17 @@ void maximum_local_weighted(OpenCLConfig &config, Array &array, Array &weights)
   cl::Buffer buffer_weights(config.context,
                             CL_MEM_READ_ONLY,
                             p_weights->get_sizeof(),
+                            nullptr,
                             &err);
+
   OPENCL_ERROR_MESSAGE(err, "Buffer");
 
   cl::Buffer buffer_out(config.context,
                         CL_MEM_WRITE_ONLY,
                         array.get_sizeof(),
+                        nullptr,
                         &err);
+
   OPENCL_ERROR_MESSAGE(err, "Buffer");
 
   cl::CommandQueue queue(config.context, config.device);
@@ -164,15 +169,17 @@ void maximum_local_weighted(OpenCLConfig &config, Array &array, Array &weights)
                                  &err);
   OPENCL_ERROR_MESSAGE(err, "Kernel");
 
-  err = kernel.setArg(0, buffer_in);
-  err |= kernel.setArg(1, buffer_out);
-  err |= kernel.setArg(2, buffer_weights);
-  err |= kernel.setArg(3, size.x);
-  err |= kernel.setArg(4, size.y);
-  err |= kernel.setArg(5, array.shape.x);
-  err |= kernel.setArg(6, array.shape.y);
-
-  OPENCL_ERROR_MESSAGE(err, "setArg");
+  {
+    int iarg = 0;
+    err = kernel.setArg(iarg++, buffer_in);
+    err |= kernel.setArg(iarg++, buffer_out);
+    err |= kernel.setArg(iarg++, buffer_weights);
+    err |= kernel.setArg(iarg++, size.x);
+    err |= kernel.setArg(iarg++, size.y);
+    err |= kernel.setArg(iarg++, array.shape.x);
+    err |= kernel.setArg(iarg++, array.shape.y);
+    OPENCL_ERROR_MESSAGE(err, "setArg");
+  }
 
   err = queue.finish();
   timer.start("test");
