@@ -104,7 +104,7 @@ template <typename T> size_t vector_sizeof(const typename std::vector<T> &v)
 
 void hydraulic_particle(OpenCLConfig &config,
                         Array        &array,
-                        int nparticles,
+                        int           nparticles,
                         const uint    seed,
                         const float   c_capacity = 100.f,
                         const float   c_erosion = 0.005f,

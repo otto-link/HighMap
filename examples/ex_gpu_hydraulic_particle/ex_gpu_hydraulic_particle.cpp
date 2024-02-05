@@ -16,7 +16,7 @@ int main(void)
   hmap::remap(z);
 
   int nparticles = 100000;
-  
+
   hmap::Array z1;
   for (int bsize = 64; bsize <= 64; bsize *= 2)
   {
