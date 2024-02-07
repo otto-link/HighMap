@@ -535,7 +535,6 @@ float Path::sdf_angle_open(float x, float y)
 
 float Path::sdf_closed(float x, float y)
 {
-  // distance
   float d = std::numeric_limits<float>::max();
   float s = 1.f;
   for (size_t i = 0, j = this->get_npoints() - 1; i < this->get_npoints();
@@ -555,6 +554,44 @@ float Path::sdf_closed(float x, float y)
       s *= -1.f;
   }
   return s * std::sqrt(d);
+}
+
+float Path::sdf_elevation_closed(float x, float y, float slope)
+{
+  float d = -std::numeric_limits<float>::max();
+
+  for (size_t i = 0, j = this->get_npoints() - 1; i < this->get_npoints();
+       j = i, i++)
+  {
+    Vec2<float> e = {this->points[j].x - this->points[i].x,
+                     this->points[j].y - this->points[i].y};
+    Vec2<float> w = {x - this->points[i].x, y - this->points[i].y};
+    float       coeff = std::clamp(dot(w, e) / dot(e, e), 0.f, 1.f);
+    Vec2<float> b = {w.x - e.x * coeff, w.y - e.y * coeff};
+    float dtmp = (1.f - coeff) * this->points[i].v + coeff * this->points[j].v -
+                 slope * std::sqrt(dot(b, b));
+    d = std::max(d, dtmp);
+  }
+  return d;
+}
+
+float Path::sdf_elevation_open(float x, float y, float slope)
+{
+  float d = -std::numeric_limits<float>::max();
+
+  for (size_t i = 0; i < this->get_npoints() - 1; i++)
+  {
+    size_t      j = i + 1;
+    Vec2<float> e = {this->points[j].x - this->points[i].x,
+                     this->points[j].y - this->points[i].y};
+    Vec2<float> w = {x - this->points[i].x, y - this->points[i].y};
+    float       coeff = std::clamp(dot(w, e) / dot(e, e), 0.f, 1.f);
+    Vec2<float> b = {w.x - e.x * coeff, w.y - e.y * coeff};
+    float dtmp = (1.f - coeff) * this->points[i].v + coeff * this->points[j].v -
+                 slope * std::sqrt(dot(b, b));
+    d = std::max(d, dtmp);
+  }
+  return d;
 }
 
 float Path::sdf_open(float x, float y)
