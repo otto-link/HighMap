@@ -347,11 +347,22 @@ void Path::meanderize(float ratio,
   {
     Path new_path = Path();
 
+    float cross_product;
+
+    if (this->get_npoints() > 1)
+      cross_product = (this->points[2].y - this->points[0].y) *
+                          (this->points[1].x - this->points[0].x) -
+                      (this->points[2].x - this->points[0].x) *
+                          (this->points[1].y - this->points[0].y);
+    else
+      cross_product = 1.f;
+
+    float orientation = -std::copysign(1.f, cross_product);
+
     size_t ks = this->closed ? 0 : 1;
     for (size_t k = 0; k < this->get_npoints() - ks; k++)
     {
       size_t kp1 = (k + 1) % this->get_npoints();
-      size_t kp2 = (k + 2) % this->get_npoints();
 
       new_path.add_point(
           Point(this->points[k].x, this->points[k].y, this->points[k].v));
@@ -361,13 +372,7 @@ void Path::meanderize(float ratio,
 
       Point p = lerp(this->points[k], this->points[kp1], 0.5f);
 
-      // vector relative orientation based on cross-product
-      float cross_product = (this->points[kp2].y - this->points[k].y) *
-                                (this->points[kp1].x - this->points[k].x) -
-                            (this->points[kp2].x - this->points[k].x) *
-                                (this->points[kp1].y - this->points[k].y);
-
-      if (cross_product >= 0.f)
+      if (orientation >= 0.f)
         alpha += M_PI_2;
       else
         alpha -= M_PI_2;
@@ -378,6 +383,7 @@ void Path::meanderize(float ratio,
       p.y += dist * std::sin(alpha);
 
       new_path.add_point(p);
+      orientation *= -1.f;
     }
 
     if (this->closed)
