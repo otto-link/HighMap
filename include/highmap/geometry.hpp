@@ -938,6 +938,7 @@ public:
    * **Result**
    * @image html ex_path_sdf0.png
    * @image html ex_path_sdf1.png
+   * @image html ex_path_sdf2.png
    */
   float sdf_angle_closed(float x, float y);
 
@@ -955,6 +956,7 @@ public:
    * **Result**
    * @image html ex_path_sdf0.png
    * @image html ex_path_sdf1.png
+   * @image html ex_path_sdf2.png
    */
   float sdf_angle_open(float x, float y);
 
@@ -972,8 +974,47 @@ public:
    * **Result**
    * @image html ex_path_sdf0.png
    * @image html ex_path_sdf1.png
+   * @image html ex_path_sdf2.png
    */
   float sdf_closed(float x, float y);
+
+  /**
+   * @brief Return the value of the elevation at (x, y) away from the path based
+   * on a downslope `slope`, assuming a closed path.
+   *
+   * @param x x coordinate.
+   * @param y y coordinate.
+   * @param slope Downslope.
+   * @return float Signed distance.
+   *
+   *  * **Example**
+   * @include ex_path_sdf.cpp
+   *
+   * **Result**
+   * @image html ex_path_sdf0.png
+   * @image html ex_path_sdf1.png
+   * @image html ex_path_sdf2.png
+   */
+  float sdf_elevation_closed(float x, float y, float slope);
+
+  /**
+   * @brief Return the value of the elevation at (x, y) away from the path based
+   * on a downslope `slope`, assuming an open path.
+   *
+   * @param x x coordinate.
+   * @param y y coordinate.
+   * @param slope Downslope.
+   * @return float Signed distance.
+   *
+   *  * **Example**
+   * @include ex_path_sdf.cpp
+   *
+   * **Result**
+   * @image html ex_path_sdf0.png
+   * @image html ex_path_sdf1.png
+   * @image html ex_path_sdf2.png
+   */
+  float sdf_elevation_open(float x, float y, float slope);
 
   /**
    * @brief Return the value of the signed distance function at (x, y), assuming
@@ -989,6 +1030,7 @@ public:
    * **Result**
    * @image html ex_path_sdf0.png
    * @image html ex_path_sdf1.png
+   * @image html ex_path_sdf2.png
    */
   float sdf_open(float x, float y);
 

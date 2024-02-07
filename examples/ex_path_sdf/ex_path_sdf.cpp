@@ -29,6 +29,8 @@ int main(void)
 
   hmap::Vec4<float> bbox_array = {0.f, 1.f, 0.f, 1.f};
 
+  path.print();
+
   // --- distance
 
   hmap::Array zo = hmap::Array(shape);
@@ -51,13 +53,34 @@ int main(void)
     fill_array(za_o, bbox_array, sdf);
   }
 
-  hmap::Array zc_o = hmap::Array(shape);
+  hmap::Array za_c = hmap::Array(shape);
   {
     auto sdf = [&path](float x, float y)
     { return path.sdf_angle_closed(x, y); };
-    fill_array(zc_o, bbox_array, sdf);
+    fill_array(za_c, bbox_array, sdf);
+  }
+
+  // --- with elevation
+
+  hmap::Array ze_o = hmap::Array(shape);
+  {
+    float slope = 4.f;
+    auto  sdf = [&path, &slope](float x, float y)
+    { return path.sdf_elevation_open(x, y, slope); };
+    fill_array(ze_o, bbox_array, sdf);
+  }
+
+  hmap::Array ze_c = hmap::Array(shape);
+  {
+    float slope = 1.f;
+    auto  sdf = [&path, &slope](float x, float y)
+    { return path.sdf_elevation_closed(x, y, slope); };
+    fill_array(ze_c, bbox_array, sdf);
   }
 
   hmap::export_banner_png("ex_path_sdf0.png", {zo, zc}, hmap::cmap::inferno);
-  hmap::export_banner_png("ex_path_sdf1.png", {za_o, zc_o}, hmap::cmap::jet);
+  hmap::export_banner_png("ex_path_sdf1.png", {za_o, za_c}, hmap::cmap::jet);
+  hmap::export_banner_png("ex_path_sdf2.png",
+                          {ze_o, ze_c},
+                          hmap::cmap::inferno);
 }
