@@ -207,4 +207,148 @@ void maximum_local_weighted(OpenCLConfig &config, Array &array, Array &weights)
   OPENCL_ERROR_MESSAGE(err, "enqueueReadBuffer");
 }
 
+void median_3x3(OpenCLConfig &config, Array &array)
+{
+  int err = 0;
+
+  Timer timer = Timer("median_3x3");
+
+  // --- wrapper to GPU host
+
+  cl::Buffer buffer_in(config.context,
+                       CL_MEM_READ_WRITE,
+                       array.get_sizeof(),
+                       nullptr,
+                       &err);
+
+  OPENCL_ERROR_MESSAGE(err, "Buffer");
+
+  cl::Buffer buffer_out(config.context,
+                        CL_MEM_WRITE_ONLY,
+                        array.get_sizeof(),
+                        nullptr,
+                        &err);
+
+  OPENCL_ERROR_MESSAGE(err, "Buffer");
+
+  cl::CommandQueue queue(config.context, config.device);
+
+  err = queue.enqueueWriteBuffer(buffer_in,
+                                 CL_TRUE,
+                                 0,
+                                 array.get_sizeof(),
+                                 array.vector.data());
+
+  OPENCL_ERROR_MESSAGE(err, "enqueueWriteBuffer");
+
+  cl::Kernel kernel = cl::Kernel(config.program, "median_3x3", &err);
+  OPENCL_ERROR_MESSAGE(err, "Kernel");
+
+  {
+    int iarg = 0;
+    err = kernel.setArg(iarg++, buffer_in);
+    err |= kernel.setArg(iarg++, buffer_out);
+    err |= kernel.setArg(iarg++, array.shape.x);
+    err |= kernel.setArg(iarg++, array.shape.y);
+    OPENCL_ERROR_MESSAGE(err, "setArg");
+  }
+
+  err = queue.finish();
+  timer.start("test");
+
+  const cl::NDRange global_work_size(array.shape.x, array.shape.y);
+  const cl::NDRange local_work_size(config.block_size, config.block_size);
+
+  err = queue.enqueueNDRangeKernel(kernel,
+                                   cl::NullRange,
+                                   global_work_size,
+                                   local_work_size);
+
+  OPENCL_ERROR_MESSAGE(err, "enqueueNDRangeKernel");
+
+  err = queue.finish();
+  OPENCL_ERROR_MESSAGE(err, "finish");
+  timer.stop("test");
+
+  err = queue.enqueueReadBuffer(buffer_out,
+                                CL_TRUE,
+                                0,
+                                array.get_sizeof(),
+                                array.vector.data());
+
+  OPENCL_ERROR_MESSAGE(err, "enqueueReadBuffer");
+}
+
+void median_3x3_2(OpenCLConfig &config, Array &array)
+{
+  int err = 0;
+
+  Timer timer = Timer("median_3x3");
+
+  // --- wrapper to GPU host
+
+  cl::Image2D img_in(config.context,
+                     CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
+                     cl::ImageFormat(CL_LUMINANCE, CL_FLOAT),
+                     array.shape.y,
+                     array.shape.x,
+                     0,
+                     (void *)array.vector.data(),
+                     &err);
+
+  OPENCL_ERROR_MESSAGE(err, "Image2D");
+
+  cl::Image2D img_out(config.context,
+                      CL_MEM_WRITE_ONLY,
+                      cl::ImageFormat(CL_LUMINANCE, CL_FLOAT),
+                      array.shape.y,
+                      array.shape.x,
+                      0,
+                      nullptr,
+                      &err);
+
+  OPENCL_ERROR_MESSAGE(err, "Image2D");
+
+  cl::CommandQueue queue(config.context, config.device);
+
+  cl::Kernel kernel = cl::Kernel(config.program, "median_3x3_img", &err);
+  OPENCL_ERROR_MESSAGE(err, "Kernel");
+
+  {
+    int iarg = 0;
+    err = kernel.setArg(iarg++, img_in);
+    err |= kernel.setArg(iarg++, img_out);
+    OPENCL_ERROR_MESSAGE(err, "setArg");
+  }
+
+  err = queue.finish();
+  timer.start("test");
+
+  const cl::NDRange global_work_size(array.shape.x, array.shape.y);
+  const cl::NDRange local_work_size(config.block_size, config.block_size);
+
+  err = queue.enqueueNDRangeKernel(kernel,
+                                   cl::NullRange,
+                                   global_work_size,
+                                   local_work_size);
+
+  OPENCL_ERROR_MESSAGE(err, "enqueueNDRangeKernel");
+
+  err = queue.finish();
+  OPENCL_ERROR_MESSAGE(err, "finish");
+  timer.stop("test");
+
+  cl::array<size_t, 2> origin = {0, 0};
+  cl::array<size_t, 2> region = {(size_t)array.shape.y, (size_t)array.shape.x};
+
+  err = queue.enqueueReadImage(img_out,
+                               CL_TRUE,
+                               origin,
+                               region,
+                               0,
+                               0,
+                               (void *)array.vector.data());
+  OPENCL_ERROR_MESSAGE(err, "enqueueReadImage");
+}
+
 } // namespace hmap::gpu
