@@ -22,11 +22,13 @@ void OpenCLConfig::build_program()
   cl::Program::Sources sources;
 
   const std::string kernel_code =
-#include "image_utils.cl"
 #include "rand.cl"
+#include "utils_image.cl"
+#include "utils_index.cl"
   //
 #include "kernel.cl"
 #include "kernel_hydraulic_particle.cl"
+#include "kernel_median_3x3.cl"
       ;
 
   if (kernel_code.length() == 0)

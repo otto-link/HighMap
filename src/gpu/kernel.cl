@@ -21,7 +21,7 @@ void kernel maximum_local_weighted(global const float   *input,
   const int2 ntiles = 2 * size / BLOCK_SIZE;
 
   // declare cache subarray, fill it and wait other threads
-  __local float sub_in[BLOCK_SIZE][BLOCK_SIZE];
+  local float sub_in[BLOCK_SIZE][BLOCK_SIZE];
 
   float val = input[index];
 

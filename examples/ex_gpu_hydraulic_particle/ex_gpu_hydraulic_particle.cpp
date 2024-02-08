@@ -24,6 +24,7 @@ int main(void)
     gpu_config.set_block_size(bsize);
 
     z1 = z;
+
     timer.start("full gpu");
     hmap::gpu::hydraulic_particle(gpu_config, z1, nparticles, seed);
     timer.stop("full gpu");

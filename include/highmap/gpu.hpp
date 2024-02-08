@@ -25,7 +25,9 @@
     if (err != CL_SUCCESS)                                                     \
     {                                                                          \
       LOG_ERROR("%s, error id: %d", msg, err);                                 \
-      throw std::runtime_error("OpenCL error");                                \
+      throw std::runtime_error(                                                \
+          "OpenCL error "                                                      \
+          "(https://streamhpc.com/blog/2013-04-28/opencl-error-codes/)");      \
     }                                                                          \
   }
 
@@ -127,5 +129,9 @@ void hydraulic_particle(OpenCLConfig &config,
  * @image html ex_gpu_maximum_local_weighted.png
  */
 void maximum_local_weighted(OpenCLConfig &config, Array &array, Array &kernel);
+
+void median_3x3(OpenCLConfig &config, Array &array);
+
+void median_3x3_2(OpenCLConfig &config, Array &array);
 
 } // namespace hmap::gpu
