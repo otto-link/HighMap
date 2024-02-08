@@ -31,6 +31,8 @@
     }                                                                          \
   }
 
+#define HMAP_CL_DEFAULT_LOCAL_WORK_SIZE cl::NDRange(8, 8)
+
 namespace hmap::gpu
 {
 
@@ -130,8 +132,14 @@ void hydraulic_particle(OpenCLConfig &config,
  */
 void maximum_local_weighted(OpenCLConfig &config, Array &array, Array &kernel);
 
-void median_3x3(OpenCLConfig &config, Array &array);
+void median_3x3(
+    OpenCLConfig     &config,
+    Array            &array,
+    const cl::NDRange local_work_size = HMAP_CL_DEFAULT_LOCAL_WORK_SIZE);
 
-void median_3x3_2(OpenCLConfig &config, Array &array);
+void median_3x3_img(
+    OpenCLConfig     &config,
+    Array            &array,
+    const cl::NDRange local_work_size = HMAP_CL_DEFAULT_LOCAL_WORK_SIZE);
 
 } // namespace hmap::gpu

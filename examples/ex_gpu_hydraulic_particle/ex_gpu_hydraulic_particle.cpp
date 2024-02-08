@@ -25,11 +25,13 @@ int main(void)
 
     z1 = z;
 
-    timer.start("full gpu");
+    timer.start("full GPU");
     hmap::gpu::hydraulic_particle(gpu_config, z1, nparticles, seed);
-    timer.stop("full gpu");
+    timer.stop("full GPU");
 
-    hmap::median_3x3(z1);
+    timer.start("median filter GPU");
+    hmap::gpu::median_3x3_img(gpu_config, z1);
+    timer.stop("median filter GPU");
   }
 
   hmap::export_banner_png("ex_gpu_hydraulic_particle.png",

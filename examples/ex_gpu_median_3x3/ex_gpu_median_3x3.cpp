@@ -33,10 +33,10 @@ int main(void)
     hmap::gpu::median_3x3(gpu_config, z2);
     timer.stop("full GPU");
 
-    z2 = z;
-    timer.start("full GPU img");
-    hmap::gpu::median_3x3_2(gpu_config, z2);
-    timer.stop("full GPU img");
+    // z2 = z;
+    // timer.start("full GPU img");
+    // hmap::gpu::median_3x3_img(gpu_config, z2);
+    // timer.stop("full GPU img");
 
     z2.infos();
   }
