@@ -27,6 +27,8 @@ void hydraulic_particle(OpenCLConfig &config,
 {
   int err = 0;
 
+  Timer timer = Timer("hydraulic_particle");
+
   int nparticles_resized = closest_smaller_multiple<int>(nparticles,
                                                          config.block_size);
 
@@ -65,6 +67,8 @@ void hydraulic_particle(OpenCLConfig &config,
     OPENCL_ERROR_MESSAGE(err, "setArg");
   }
 
+  err = queue.finish();
+
   const cl::NDRange global_work_size(nparticles_resized);
   const cl::NDRange local_work_size(config.block_size, config.block_size);
 
@@ -75,8 +79,12 @@ void hydraulic_particle(OpenCLConfig &config,
 
   OPENCL_ERROR_MESSAGE(err, "enqueueNDRangeKernel");
 
+  timer.start("core");
+
   err = queue.finish();
+
   OPENCL_ERROR_MESSAGE(err, "finish");
+  timer.stop("core");
 
   cl::array<size_t, 2> origin = {0, 0};
   cl::array<size_t, 2> region = {(size_t)array.shape.y, (size_t)array.shape.x};
@@ -182,7 +190,6 @@ void maximum_local_weighted(OpenCLConfig &config, Array &array, Array &weights)
   }
 
   err = queue.finish();
-  timer.start("test");
 
   const cl::NDRange global_work_size(array.shape.x, array.shape.y);
   const cl::NDRange local_work_size(config.block_size, config.block_size);
@@ -194,9 +201,12 @@ void maximum_local_weighted(OpenCLConfig &config, Array &array, Array &weights)
 
   OPENCL_ERROR_MESSAGE(err, "enqueueNDRangeKernel");
 
+  timer.start("core");
+
   err = queue.finish();
+
   OPENCL_ERROR_MESSAGE(err, "finish");
-  timer.stop("test");
+  timer.stop("core");
 
   err = queue.enqueueReadBuffer(buffer_out,
                                 CL_TRUE,
@@ -207,7 +217,9 @@ void maximum_local_weighted(OpenCLConfig &config, Array &array, Array &weights)
   OPENCL_ERROR_MESSAGE(err, "enqueueReadBuffer");
 }
 
-void median_3x3(OpenCLConfig &config, Array &array)
+void median_3x3(OpenCLConfig     &config,
+                Array            &array,
+                const cl::NDRange local_work_size)
 {
   int err = 0;
 
@@ -254,10 +266,8 @@ void median_3x3(OpenCLConfig &config, Array &array)
   }
 
   err = queue.finish();
-  timer.start("test");
 
   const cl::NDRange global_work_size(array.shape.x, array.shape.y);
-  const cl::NDRange local_work_size(config.block_size, config.block_size);
 
   err = queue.enqueueNDRangeKernel(kernel,
                                    cl::NullRange,
@@ -266,9 +276,12 @@ void median_3x3(OpenCLConfig &config, Array &array)
 
   OPENCL_ERROR_MESSAGE(err, "enqueueNDRangeKernel");
 
+  timer.start("core");
+
   err = queue.finish();
+
   OPENCL_ERROR_MESSAGE(err, "finish");
-  timer.stop("test");
+  timer.stop("core");
 
   err = queue.enqueueReadBuffer(buffer_out,
                                 CL_TRUE,
@@ -279,11 +292,13 @@ void median_3x3(OpenCLConfig &config, Array &array)
   OPENCL_ERROR_MESSAGE(err, "enqueueReadBuffer");
 }
 
-void median_3x3_2(OpenCLConfig &config, Array &array)
+void median_3x3_img(OpenCLConfig     &config,
+                    Array            &array,
+                    const cl::NDRange local_work_size)
 {
   int err = 0;
 
-  Timer timer = Timer("median_3x3");
+  Timer timer = Timer("median_3x3_img");
 
   // --- wrapper to GPU host
 
@@ -322,10 +337,8 @@ void median_3x3_2(OpenCLConfig &config, Array &array)
   }
 
   err = queue.finish();
-  timer.start("test");
 
   const cl::NDRange global_work_size(array.shape.x, array.shape.y);
-  const cl::NDRange local_work_size(config.block_size, config.block_size);
 
   err = queue.enqueueNDRangeKernel(kernel,
                                    cl::NullRange,
@@ -334,9 +347,12 @@ void median_3x3_2(OpenCLConfig &config, Array &array)
 
   OPENCL_ERROR_MESSAGE(err, "enqueueNDRangeKernel");
 
+  timer.start("core");
+
   err = queue.finish();
+
   OPENCL_ERROR_MESSAGE(err, "finish");
-  timer.stop("test");
+  timer.stop("core");
 
   cl::array<size_t, 2> origin = {0, 0};
   cl::array<size_t, 2> region = {(size_t)array.shape.y, (size_t)array.shape.x};
