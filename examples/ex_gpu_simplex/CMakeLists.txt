@@ -1,0 +1,2 @@
+add_executable(ex_gpu_simplex ex_gpu_simplex.cpp)
+target_link_libraries(ex_gpu_simplex highmap)

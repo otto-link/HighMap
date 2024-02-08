@@ -367,4 +367,67 @@ void median_3x3_img(OpenCLConfig     &config,
   OPENCL_ERROR_MESSAGE(err, "enqueueReadImage");
 }
 
+Array simplex(OpenCLConfig     &config,
+              Vec2<int>         shape,
+              Vec2<float>       kw,
+              uint              seed,
+              const cl::NDRange local_work_size)
+{
+  int   err = 0;
+  Array array = Array(shape); // output
+
+  Timer timer = Timer("simplex");
+
+  cl::Buffer buffer_out(config.context,
+                        CL_MEM_WRITE_ONLY,
+                        array.get_sizeof(),
+                        nullptr,
+                        &err);
+  OPENCL_ERROR_MESSAGE(err, "Buffer");
+
+  cl::CommandQueue queue(config.context, config.device);
+
+  cl::Kernel kernel = cl::Kernel(config.program, "simplex", &err);
+  OPENCL_ERROR_MESSAGE(err, "Kernel");
+
+  {
+    int iarg = 0;
+    err = kernel.setArg(iarg++, buffer_out);
+    err |= kernel.setArg(iarg++, kw.x);
+    err |= kernel.setArg(iarg++, kw.y);
+    err |= kernel.setArg(iarg++, seed);
+    err |= kernel.setArg(iarg++, array.shape.x);
+    err |= kernel.setArg(iarg++, array.shape.y);
+    OPENCL_ERROR_MESSAGE(err, "setArg");
+  }
+
+  err = queue.finish();
+
+  const cl::NDRange global_work_size(array.shape.x, array.shape.y);
+
+  err = queue.enqueueNDRangeKernel(kernel,
+                                   cl::NullRange,
+                                   global_work_size,
+                                   local_work_size);
+
+  OPENCL_ERROR_MESSAGE(err, "enqueueNDRangeKernel");
+
+  timer.start("core");
+
+  err = queue.finish();
+
+  OPENCL_ERROR_MESSAGE(err, "finish");
+  timer.stop("core");
+
+  err = queue.enqueueReadBuffer(buffer_out,
+                                CL_TRUE,
+                                0,
+                                array.get_sizeof(),
+                                array.vector.data());
+
+  OPENCL_ERROR_MESSAGE(err, "enqueueReadBuffer");
+
+  return array;
+}
+
 } // namespace hmap::gpu
