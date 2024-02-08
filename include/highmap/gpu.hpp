@@ -142,4 +142,12 @@ void median_3x3_img(
     Array            &array,
     const cl::NDRange local_work_size = HMAP_CL_DEFAULT_LOCAL_WORK_SIZE);
 
+// TODO poor noise generation algo in OpenCL kernel
+Array simplex(
+    OpenCLConfig     &config,
+    Vec2<int>         shape,
+    Vec2<float>       kw,
+    uint              seed,
+    const cl::NDRange local_work_size = HMAP_CL_DEFAULT_LOCAL_WORK_SIZE);
+
 } // namespace hmap::gpu
