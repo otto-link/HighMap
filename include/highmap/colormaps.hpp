@@ -28,7 +28,8 @@ enum cmap : int
   nipy_spectral,
   seismic,
   terrain,
-  viridis
+  viridis,
+  white_uniform
 };
 
 #define CMAP_BONE                                                              \
@@ -149,6 +150,11 @@ enum cmap : int
         {0.208f, 0.719f, 0.473f}, {0.328f, 0.774f, 0.407f},                    \
         {0.478f, 0.821f, 0.318f}, {0.647f, 0.858f, 0.210f},                    \
         {0.825f, 0.885f, 0.106f}, {0.993f, 0.906f, 0.144f},                    \
+  }
+
+#define CMAP_WHITE_UNIFORM                                                     \
+  {                                                                            \
+    {1.000f, 1.000f, 1.000f}, {1.000f, 1.000f, 1.000f},                        \
   }
 
 std::vector<std::vector<float>> get_colormap_data(int cmap);

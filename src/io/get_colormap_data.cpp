@@ -32,6 +32,8 @@ std::vector<std::vector<float>> get_colormap_data(int cmap)
     return CMAP_TERRAIN;
   case cmap::viridis:
     return CMAP_VIRIDIS;
+  case cmap::white_uniform:
+    return CMAP_WHITE_UNIFORM;
   }
 }
 

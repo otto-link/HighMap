@@ -3,7 +3,7 @@
 
 int main(void)
 {
-  hmap::Vec2<int>   shape = {256, 512};
+  hmap::Vec2<int> shape = {256, 512};
   shape = {4096, 4096};
   hmap::Vec2<float> kw = {2.f, 4.f};
   int               seed = 1;
@@ -22,7 +22,7 @@ int main(void)
 
   hmap::remap(z1);
   hmap::remap(z2);
-  
+
   z2.infos();
 
   hmap::export_banner_png("ex_gpu_simplex.png", {z1, z2}, hmap::cmap::viridis);
