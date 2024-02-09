@@ -119,6 +119,16 @@ void export_banner_png(std::string        fname,
                        bool               hillshading = false);
 
 /**
+ * @brief Export a 'bird view' (top view) of the heightmap as a 16 bit png file.
+ *
+ * @param fname File name.
+ * @param array Input array.
+ */
+void export_birdview_png(std::string  fname,
+                         const Array &array,
+                         const float  gamma = 1.f);
+
+/**
  * @brief Export the hillshade map to a 8 bit png file.
  *
  * @param fname File name.
