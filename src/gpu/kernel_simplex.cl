@@ -24,7 +24,7 @@ R""(
 // OR OTHER DEALINGS IN THE SOFTWARE.
 // https://www.youtube.com/c/InigoQuilez https://iquilezles.org
 
-float2 hash(float2 p) // replace this by something better
+float2 hash2(float2 p) // replace this by something better
 {
   p = (float2)(dot(p, (float2)(127.1f, 311.7f)),
                dot(p, (float2)(269.5f, 183.3f)));
@@ -45,9 +45,9 @@ float noise_simplex(const float2 p)
   float2 c = a - 1.f + 2.f * K2;
   float3 h = max(0.5f - (float3)(dot(a, a), dot(b, b), dot(c, c)), 0.f);
   float3 n = h * h * h * h *
-             (float3)(dot(a, hash(i + 0.f)),
-                      dot(b, hash(i + o)),
-                      dot(c, hash(i + 1.f)));
+             (float3)(dot(a, hash2(i + 0.f)),
+                      dot(b, hash2(i + o)),
+                      dot(c, hash2(i + 1.f)));
   return dot(n, (float3)(70.f));
 }
 // <<<

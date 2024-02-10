@@ -30,6 +30,7 @@ void OpenCLConfig::build_program()
 #include "kernel_hydraulic_particle.cl"
 #include "kernel_median_3x3.cl"
 #include "kernel_simplex.cl"
+#include "kernel_voronoise.cl"
       ;
 
   if (kernel_code.length() == 0)
