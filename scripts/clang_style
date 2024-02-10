@@ -1,4 +1,5 @@
 AlignConsecutiveDeclarations: true
+AlignOperands: true
 AllowAllArgumentsOnNextLine: false
 AllowAllParametersOfDeclarationOnNextLine: false
 AllowShortFunctionsOnASingleLine: None
@@ -10,5 +11,5 @@ BreakBeforeBraces: Allman
 
 ColumnLimit: 80
 
-PenaltyBreakAssignment: 100
+PenaltyBreakAssignment: 200
 PenaltyReturnTypeOnItsOwnLine: 1000

@@ -156,10 +156,14 @@ void set_borders(Array      &array,
 
 void set_borders(Array &array, float border_values, int buffer_sizes)
 {
-  Vec4<float> bv =
-      Vec4<float>(border_values, border_values, border_values, border_values);
-  Vec4<int> bs =
-      Vec4<int>(buffer_sizes, buffer_sizes, buffer_sizes, buffer_sizes);
+  Vec4<float> bv = Vec4<float>(border_values,
+                               border_values,
+                               border_values,
+                               border_values);
+  Vec4<int>   bs = Vec4<int>(buffer_sizes,
+                           buffer_sizes,
+                           buffer_sizes,
+                           buffer_sizes);
   set_borders(array, bv, bs);
 }
 
@@ -228,10 +232,14 @@ void zeroed_edges(Array      &array,
                   Vec2<float> shift,
                   Vec2<float> scale)
 {
-  std::vector<float> x =
-      linspace(shift.x - 0.5f, shift.x - 0.5f + scale.x, array.shape.x, false);
-  std::vector<float> y =
-      linspace(shift.y - 0.5f, shift.y - 0.5f + scale.y, array.shape.y, false);
+  std::vector<float> x = linspace(shift.x - 0.5f,
+                                  shift.x - 0.5f + scale.x,
+                                  array.shape.x,
+                                  false);
+  std::vector<float> y = linspace(shift.y - 0.5f,
+                                  shift.y - 0.5f + scale.y,
+                                  array.shape.y,
+                                  false);
 
   float s = 0.5f / (sigma * sigma);
 

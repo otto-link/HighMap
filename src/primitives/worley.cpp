@@ -86,10 +86,14 @@ hmap::Array worley_polyline(Vec2<int>   shape,
   Path path = hmap::Path(npoints, seed, bbox);
   path.reorder_nns();
 
-  std::vector<float> x =
-      linspace(shift.x, shift.x + scale.x, array.shape.x, false);
-  std::vector<float> y =
-      linspace(shift.y, shift.y + scale.y, array.shape.y, false);
+  std::vector<float> x = linspace(shift.x,
+                                  shift.x + scale.x,
+                                  array.shape.x,
+                                  false);
+  std::vector<float> y = linspace(shift.y,
+                                  shift.y + scale.y,
+                                  array.shape.y,
+                                  false);
 
   helper_get_noise(array,
                    x,

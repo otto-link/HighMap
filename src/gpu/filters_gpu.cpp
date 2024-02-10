@@ -128,49 +128,24 @@ void maximum_local_weighted(OpenCLConfig &config, Array &array, Array &weights)
 
   Timer timer = Timer("maximum_local_weighted");
 
-  // --- wrapper to GPU host
-
-  cl::Buffer buffer_in(config.context,
-                       CL_MEM_READ_ONLY,
-                       array.get_sizeof(),
-                       nullptr,
-                       &err);
-
-  OPENCL_ERROR_MESSAGE(err, "Buffer");
-
-  cl::Buffer buffer_weights(config.context,
-                            CL_MEM_READ_ONLY,
-                            p_weights->get_sizeof(),
-                            nullptr,
-                            &err);
-
-  OPENCL_ERROR_MESSAGE(err, "Buffer");
+  cl::CommandQueue queue(config.context, config.device);
 
   cl::Buffer buffer_out(config.context,
                         CL_MEM_WRITE_ONLY,
                         array.get_sizeof(),
                         nullptr,
                         &err);
-
   OPENCL_ERROR_MESSAGE(err, "Buffer");
 
-  cl::CommandQueue queue(config.context, config.device);
+  cl::Buffer buffer_in = buffer_from_vector(config.context,
+                                            queue,
+                                            CL_MEM_READ_ONLY,
+                                            array.vector);
 
-  err = queue.enqueueWriteBuffer(buffer_in,
-                                 CL_TRUE,
-                                 0,
-                                 array.get_sizeof(),
-                                 array.vector.data());
-
-  OPENCL_ERROR_MESSAGE(err, "enqueueWriteBuffer");
-
-  err = queue.enqueueWriteBuffer(buffer_weights,
-                                 CL_TRUE,
-                                 0,
-                                 p_weights->get_sizeof(),
-                                 p_weights->vector.data());
-
-  OPENCL_ERROR_MESSAGE(err, "enqueueWriteBuffer");
+  cl::Buffer buffer_weights = buffer_from_vector(config.context,
+                                                 queue,
+                                                 CL_MEM_READ_ONLY,
+                                                 p_weights->vector);
 
   cl::Kernel kernel = cl::Kernel(config.program,
                                  "maximum_local_weighted",
@@ -227,31 +202,19 @@ void median_3x3(OpenCLConfig     &config,
 
   // --- wrapper to GPU host
 
-  cl::Buffer buffer_in(config.context,
-                       CL_MEM_READ_WRITE,
-                       array.get_sizeof(),
-                       nullptr,
-                       &err);
-
-  OPENCL_ERROR_MESSAGE(err, "Buffer");
+  cl::CommandQueue queue(config.context, config.device);
 
   cl::Buffer buffer_out(config.context,
                         CL_MEM_WRITE_ONLY,
                         array.get_sizeof(),
                         nullptr,
                         &err);
-
   OPENCL_ERROR_MESSAGE(err, "Buffer");
 
-  cl::CommandQueue queue(config.context, config.device);
-
-  err = queue.enqueueWriteBuffer(buffer_in,
-                                 CL_TRUE,
-                                 0,
-                                 array.get_sizeof(),
-                                 array.vector.data());
-
-  OPENCL_ERROR_MESSAGE(err, "enqueueWriteBuffer");
+  cl::Buffer buffer_in = buffer_from_vector(config.context,
+                                            queue,
+                                            CL_MEM_READ_WRITE,
+                                            array.vector);
 
   cl::Kernel kernel = cl::Kernel(config.program, "median_3x3", &err);
   OPENCL_ERROR_MESSAGE(err, "Kernel");
@@ -367,6 +330,101 @@ void median_3x3_img(OpenCLConfig     &config,
   OPENCL_ERROR_MESSAGE(err, "enqueueReadImage");
 }
 
+Array ridgelines_slope(OpenCLConfig      &config,
+                       Vec2<int>          shape,
+                       std::vector<float> xr,
+                       std::vector<float> yr,
+                       std::vector<float> zr,
+                       float              slope,
+                       Vec4<float>        bbox,
+                       const cl::NDRange  local_work_size)
+{
+  int   err = 0;
+  Array array = Array(shape); // output
+
+  // normalized (x, y) coordinates according to tge domain bounding
+  // box (OpenCL buffer assumes that the domain is a unit square)
+  std::vector<float> xr_scaled = xr;
+  std::vector<float> yr_scaled = yr;
+  std::vector<float> zr_scaled = zr;
+
+  for (size_t k = 0; k < xr.size(); k++)
+  {
+    xr_scaled[k] = (xr[k] - bbox.a) / (bbox.b - bbox.a);
+    yr_scaled[k] = (yr[k] - bbox.c) / (bbox.d - bbox.c);
+  }
+
+  Timer timer = Timer("ridgelines_slope");
+
+  cl::CommandQueue queue(config.context, config.device);
+
+  cl::Buffer buffer_out(config.context,
+                        CL_MEM_WRITE_ONLY,
+                        array.get_sizeof(),
+                        nullptr,
+                        &err);
+  OPENCL_ERROR_MESSAGE(err, "Buffer");
+
+  cl::Buffer buffer_xr = buffer_from_vector(config.context,
+                                            queue,
+                                            CL_MEM_READ_ONLY,
+                                            xr_scaled);
+
+  cl::Buffer buffer_yr = buffer_from_vector(config.context,
+                                            queue,
+                                            CL_MEM_READ_ONLY,
+                                            yr_scaled);
+
+  cl::Buffer buffer_zr = buffer_from_vector(config.context,
+                                            queue,
+                                            CL_MEM_READ_ONLY,
+                                            zr_scaled);
+
+  cl::Kernel kernel = cl::Kernel(config.program, "ridgelines_slope", &err);
+  OPENCL_ERROR_MESSAGE(err, "Kernel");
+
+  {
+    int iarg = 0;
+    err = kernel.setArg(iarg++, buffer_out);
+    err |= kernel.setArg(iarg++, buffer_xr);
+    err |= kernel.setArg(iarg++, buffer_yr);
+    err |= kernel.setArg(iarg++, buffer_zr);
+    err |= kernel.setArg(iarg++, (int)xr.size());
+    err |= kernel.setArg(iarg++, slope);
+    err |= kernel.setArg(iarg++, array.shape.x);
+    err |= kernel.setArg(iarg++, array.shape.y);
+    OPENCL_ERROR_MESSAGE(err, "setArg");
+  }
+
+  err = queue.finish();
+
+  const cl::NDRange global_work_size(array.shape.x, array.shape.y);
+
+  err = queue.enqueueNDRangeKernel(kernel,
+                                   cl::NullRange,
+                                   global_work_size,
+                                   local_work_size);
+
+  OPENCL_ERROR_MESSAGE(err, "enqueueNDRangeKernel");
+
+  timer.start("core");
+
+  err = queue.finish();
+
+  OPENCL_ERROR_MESSAGE(err, "finish");
+  timer.stop("core");
+
+  err = queue.enqueueReadBuffer(buffer_out,
+                                CL_TRUE,
+                                0,
+                                array.get_sizeof(),
+                                array.vector.data());
+
+  OPENCL_ERROR_MESSAGE(err, "enqueueReadBuffer");
+
+  return array;
+}
+
 Array simplex(OpenCLConfig     &config,
               Vec2<int>         shape,
               Vec2<float>       kw,
@@ -378,14 +436,14 @@ Array simplex(OpenCLConfig     &config,
 
   Timer timer = Timer("simplex");
 
+  cl::CommandQueue queue(config.context, config.device);
+
   cl::Buffer buffer_out(config.context,
                         CL_MEM_WRITE_ONLY,
                         array.get_sizeof(),
                         nullptr,
                         &err);
   OPENCL_ERROR_MESSAGE(err, "Buffer");
-
-  cl::CommandQueue queue(config.context, config.device);
 
   cl::Kernel kernel = cl::Kernel(config.program, "simplex", &err);
   OPENCL_ERROR_MESSAGE(err, "Kernel");
@@ -443,14 +501,14 @@ Array voronoise(OpenCLConfig     &config,
 
   Timer timer = Timer("voronoise");
 
+  cl::CommandQueue queue(config.context, config.device);
+
   cl::Buffer buffer_out(config.context,
                         CL_MEM_WRITE_ONLY,
                         array.get_sizeof(),
                         nullptr,
                         &err);
   OPENCL_ERROR_MESSAGE(err, "Buffer");
-
-  cl::CommandQueue queue(config.context, config.device);
 
   cl::Kernel kernel = cl::Kernel(config.program, "voronoise", &err);
   OPENCL_ERROR_MESSAGE(err, "Kernel");

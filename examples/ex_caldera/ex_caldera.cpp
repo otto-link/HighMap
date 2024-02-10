@@ -13,8 +13,11 @@ int main(void)
   float z_bottom = 0.3f;
 
   // without noise
-  hmap::Array z1 =
-      hmap::caldera(shape, radius, sigma_inner, sigma_outer, z_bottom);
+  hmap::Array z1 = hmap::caldera(shape,
+                                 radius,
+                                 sigma_inner,
+                                 sigma_outer,
+                                 z_bottom);
 
   // with noise
   hmap::Vec2<float> res = {4.f, 4.f};

@@ -14,8 +14,10 @@ void export_hillshade_png_8bit(std::string fname, const Array &array)
 {
   std::vector<uint8_t> img(array.shape.x * array.shape.y * 3);
 
-  Array hs =
-      hillshade(array, 180.f, 45.f, 10.f * array.ptp() / (float)array.shape.y);
+  Array hs = hillshade(array,
+                       180.f,
+                       45.f,
+                       10.f * array.ptp() / (float)array.shape.y);
   remap(hs);
 
   int k = 0;
@@ -33,8 +35,10 @@ void export_hillshade_png_16bit(std::string fname, const Array &array)
 {
   std::vector<uint16_t> img(array.shape.x * array.shape.y * 3);
 
-  Array hs =
-      hillshade(array, 180.f, 45.f, 10.f * array.ptp() / (float)array.shape.y);
+  Array hs = hillshade(array,
+                       180.f,
+                       45.f,
+                       10.f * array.ptp() / (float)array.shape.y);
   remap(hs);
 
   int k = 0;

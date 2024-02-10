@@ -11,8 +11,12 @@ int main(void)
 
   float decay = 1.f;
 
-  hmap::Array z1 =
-      hmap::worley_polyline(shape, kw, seed, decay, &noise, &noise);
+  hmap::Array z1 = hmap::worley_polyline(shape,
+                                         kw,
+                                         seed,
+                                         decay,
+                                         &noise,
+                                         &noise);
 
   int   octaves = 8;
   float weight = 0.7f;

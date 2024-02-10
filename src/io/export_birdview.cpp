@@ -16,8 +16,10 @@ void export_birdview_png(std::string  fname,
 {
   std::vector<uint16_t> img(array.shape.x * array.shape.y * 3);
 
-  Array hs =
-      hillshade(array, 180.f, 45.f, 10.f * array.ptp() / (float)array.shape.y);
+  Array hs = hillshade(array,
+                       180.f,
+                       45.f,
+                       10.f * array.ptp() / (float)array.shape.y);
   Array shadow = shadow_heightmap(array, 180.f, 45.f, 0.2f);
   clamp_min_smooth(shadow, 0.3f, 0.2f);
   clamp_max_smooth(shadow, 1.f, 0.2f);

@@ -266,8 +266,11 @@ void transform(
     Array *p_nx = (p_noise_x == nullptr) ? nullptr : &p_noise_x->tiles[i];
     Array *p_ny = (p_noise_y == nullptr) ? nullptr : &p_noise_y->tiles[i];
 
-    futures[i] =
-        std::async(unary_op, std::ref(h.tiles[i]), h.tiles[i].bbox, p_nx, p_ny);
+    futures[i] = std::async(unary_op,
+                            std::ref(h.tiles[i]),
+                            h.tiles[i].bbox,
+                            p_nx,
+                            p_ny);
   }
 
   for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
@@ -369,8 +372,10 @@ void transform(HeightMap                                     &h,
     Array *p_1_array = (p_1 == nullptr) ? nullptr : &p_1->tiles[i];
     Array *p_2_array = (p_2 == nullptr) ? nullptr : &p_2->tiles[i];
 
-    futures[i] =
-        std::async(unary_op, std::ref(h.tiles[i]), p_1_array, p_2_array);
+    futures[i] = std::async(unary_op,
+                            std::ref(h.tiles[i]),
+                            p_1_array,
+                            p_2_array);
   }
 
   for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
