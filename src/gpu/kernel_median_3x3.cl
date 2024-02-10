@@ -22,7 +22,6 @@ void kernel median_3x3(global const float *input,
                        const int           nx,
                        const int           ny)
 {
-  int2 p = {get_local_id(0), get_local_id(1)};
   int2 g = {get_global_id(0), get_global_id(1)};
   int  index = linear_index(g.x, g.y, ny);
 
