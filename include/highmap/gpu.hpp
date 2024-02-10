@@ -150,4 +150,33 @@ Array simplex(
     uint              seed,
     const cl::NDRange local_work_size = HMAP_CL_DEFAULT_LOCAL_WORK_SIZE);
 
+/**
+ * @brief Return an array filled with "Voronoise" noise.
+ *
+ * See https://iquilezles.org/articles/voronoise/.
+ *
+ * @param config
+ * @param shape
+ * @param kw
+ * @param u_param
+ * @param v_param
+ * @param seed
+ * @param local_work_size
+ * @return Array
+ *
+ * **Example**
+ * @include ex_gpu_voronoise.cpp
+ *
+ * **Result**
+ * @image ex_gpu_voronoise.png
+ */
+Array voronoise(
+    OpenCLConfig     &config,
+    Vec2<int>         shape,
+    Vec2<float>       kw,
+    float             u_param,
+    float             v_param,
+    uint              seed,
+    const cl::NDRange local_work_size = HMAP_CL_DEFAULT_LOCAL_WORK_SIZE);
+
 } // namespace hmap::gpu
