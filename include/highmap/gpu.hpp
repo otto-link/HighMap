@@ -18,6 +18,7 @@
 #include <CL/opencl.hpp>
 
 #include "highmap/array.hpp"
+#include "highmap/dbg.hpp"
 
 // https://streamhpc.com/blog/2013-04-28/opencl-error-codes/
 #define OPENCL_ERROR_MESSAGE(err, msg)                                         \
@@ -104,6 +105,24 @@ template <typename T> size_t vector_sizeof(const typename std::vector<T> &v)
   return sizeof(T) * v.size();
 }
 
+template <typename T>
+cl::Buffer buffer_from_vector(cl::Context                   &context,
+                              cl::CommandQueue              &queue,
+                              cl_mem_flags                   flags,
+                              const typename std::vector<T> &v)
+{
+  int err = 0;
+
+  cl::Buffer buffer(context, flags, vector_sizeof<float>(v), nullptr, &err);
+  err = queue.enqueueWriteBuffer(buffer,
+                                 CL_TRUE,
+                                 0,
+                                 vector_sizeof<float>(v),
+                                 v.data());
+  OPENCL_ERROR_MESSAGE(err, "enqueueWriteBuffer");
+  return buffer;
+}
+
 // --- filters
 
 void hydraulic_particle(OpenCLConfig &config,
@@ -141,6 +160,16 @@ void median_3x3_img(
     OpenCLConfig     &config,
     Array            &array,
     const cl::NDRange local_work_size = HMAP_CL_DEFAULT_LOCAL_WORK_SIZE);
+
+Array ridgelines_slope(
+    OpenCLConfig      &config,
+    Vec2<int>          shape,
+    std::vector<float> xr,
+    std::vector<float> yr,
+    std::vector<float> zr,
+    float              slope,
+    Vec4<float>        bbox = {0.f, 1.f, 0.f, 1.f},
+    const cl::NDRange  local_work_size = HMAP_CL_DEFAULT_LOCAL_WORK_SIZE);
 
 // TODO poor noise generation algo in OpenCL kernel
 Array simplex(

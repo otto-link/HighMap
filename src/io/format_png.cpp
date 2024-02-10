@@ -17,8 +17,10 @@ std::vector<uint8_t> read_png_grayscale_8bit(std::string fname)
   if (!fp)
     LOG_ERROR("Error opening file for writing: %s", fname.c_str());
 
-  png_structp png =
-      png_create_read_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
+  png_structp png = png_create_read_struct(PNG_LIBPNG_VER_STRING,
+                                           nullptr,
+                                           nullptr,
+                                           nullptr);
   if (!png)
   {
     LOG_ERROR("Error creating PNG write structure");
@@ -62,8 +64,10 @@ std::vector<uint16_t> read_png_grayscale_16bit(std::string fname)
   if (!fp)
     LOG_ERROR("Error opening file for writing: %s", fname.c_str());
 
-  png_structp png =
-      png_create_read_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
+  png_structp png = png_create_read_struct(PNG_LIBPNG_VER_STRING,
+                                           nullptr,
+                                           nullptr,
+                                           nullptr);
   if (!png)
   {
     LOG_ERROR("Error creating PNG write structure");
@@ -115,8 +119,10 @@ void read_png_header(std::string fname,
   if (!fp)
     LOG_ERROR("Error opening file for writing: %s", fname.c_str());
 
-  png_structp png =
-      png_create_read_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
+  png_structp png = png_create_read_struct(PNG_LIBPNG_VER_STRING,
+                                           nullptr,
+                                           nullptr,
+                                           nullptr);
   if (!png)
   {
     LOG_ERROR("Error creating PNG write structure");
@@ -156,8 +162,10 @@ void write_png_grayscale_8bit(std::string           fname,
   if (!fp)
     LOG_ERROR("Error opening file for writing: %s", fname.c_str());
 
-  png_structp png =
-      png_create_write_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
+  png_structp png = png_create_write_struct(PNG_LIBPNG_VER_STRING,
+                                            nullptr,
+                                            nullptr,
+                                            nullptr);
   if (!png)
   {
     LOG_ERROR("Error creating PNG write structure");
@@ -226,8 +234,10 @@ void write_png_grayscale_16bit(std::string            fname,
   if (!fp)
     LOG_ERROR("Error opening file for writing: %s", fname.c_str());
 
-  png_structp png =
-      png_create_write_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
+  png_structp png = png_create_write_struct(PNG_LIBPNG_VER_STRING,
+                                            nullptr,
+                                            nullptr,
+                                            nullptr);
   if (!png)
   {
     LOG_ERROR("Error creating PNG write structure");
@@ -297,8 +307,10 @@ void write_png_rgb_8bit(std::string           fname,
   if (!fp)
     LOG_ERROR("Error opening file for writing: %s", fname.c_str());
 
-  png_structp png =
-      png_create_write_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
+  png_structp png = png_create_write_struct(PNG_LIBPNG_VER_STRING,
+                                            nullptr,
+                                            nullptr,
+                                            nullptr);
   if (!png)
   {
     LOG_ERROR("Error creating PNG write structure");
@@ -367,8 +379,10 @@ void write_png_rgb_16bit(std::string            fname,
   if (!fp)
     LOG_ERROR("Error opening file for writing: %s", fname.c_str());
 
-  png_structp png =
-      png_create_write_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
+  png_structp png = png_create_write_struct(PNG_LIBPNG_VER_STRING,
+                                            nullptr,
+                                            nullptr,
+                                            nullptr);
   if (!png)
   {
     LOG_ERROR("Error creating PNG write structure");
@@ -437,8 +451,10 @@ void write_png_rgba_16bit(std::string            fname,
   if (!fp)
     LOG_ERROR("Error opening file for writing: %s", fname.c_str());
 
-  png_structp png =
-      png_create_write_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
+  png_structp png = png_create_write_struct(PNG_LIBPNG_VER_STRING,
+                                            nullptr,
+                                            nullptr,
+                                            nullptr);
   if (!png)
   {
     LOG_ERROR("Error creating PNG write structure");
