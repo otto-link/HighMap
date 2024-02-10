@@ -30,24 +30,24 @@ float3 hash3(float2 p)
   float3 q = (float3)(dot(p, (float2)(127.1f, 311.7f)),
                       dot(p, (float2)(269.5f, 183.3f)),
                       dot(p, (float2)(419.2f, 371.9f)));
-  float3 r;
-  return fract(sin(q) * 43758.5453f, &r);
+  float3 qi;
+  return fract(sin(q) * 43758.5453f, &qi);
 }
 
-float noise_voronoise(float2 p, float u, float v)
+float noise_voronoise(float2 p, float u, float v, float fseed)
 {
   float k = 1.f + 63.f * pow(1.f - v, 6.f);
 
   float2 i = floor(p);
-  float2 r;
-  float2 f = fract(p, &r);
+  float2 pi;
+  float2 f = fract(p, &pi);
 
   float2 a = (float2)(0.f, 0.f);
   for (int y = -2; y <= 2; y++)
     for (int x = -2; x <= 2; x++)
     {
       float2 g = (float2)(x, y);
-      float3 o = hash3(i + g) * (float3)(u, u, 1.f);
+      float3 o = hash3(i + g + fseed) * (float3)(u, u, 1.f);
       float2 d = g - f + o.xy;
       float  w = pow(1.f - smoothstep(0.f, 1.414f, length(d)), k);
       a += (float2)(o.z * w, w);
@@ -69,8 +69,11 @@ void kernel voronoise(global float *output,
   int2 g = {get_global_id(0), get_global_id(1)};
   int  index = linear_index(g.x, g.y, ny);
 
+  uint  rng_state = wang_hash(seed);
+  float fseed = rand(&rng_state);
+
   float2 pos = (float2)(kx * (float)g.x / nx, ky * (float)g.y / ny);
 
-  output[index] = noise_voronoise(pos, u_param, v_param);
+  output[index] = noise_voronoise(pos, u_param, v_param, fseed);
 }
 )""

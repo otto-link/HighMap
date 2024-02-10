@@ -32,7 +32,7 @@ float2 hash2(float2 p) // replace this by something better
   return -1.f + 2.f * fract(sin(p) * 43758.5453123f, &r);
 }
 
-float noise_simplex(const float2 p)
+float noise_simplex(const float2 p, const float fseed)
 {
   const float K1 = 0.366025404f; // (sqrt(3)-1)/2;
   const float K2 = 0.211324865f; // (3-sqrt(3))/6;
@@ -44,6 +44,7 @@ float noise_simplex(const float2 p)
   float2 b = a - o + K2;
   float2 c = a - 1.f + 2.f * K2;
   float3 h = max(0.5f - (float3)(dot(a, a), dot(b, b), dot(c, c)), 0.f);
+  i += fseed;
   float3 n = h * h * h * h *
              (float3)(dot(a, hash2(i + 0.f)),
                       dot(b, hash2(i + o)),
@@ -62,9 +63,12 @@ void kernel simplex(global float *output,
   int2 g = {get_global_id(0), get_global_id(1)};
   int  index = linear_index(g.x, g.y, ny);
 
+  uint  rng_state = wang_hash(seed);
+  float fseed = rand(&rng_state);
+
   float2 pos = (float2)(0.5f * kx * (float)g.x / nx,
                         0.5f * ky * (float)g.y / ny);
 
-  output[index] = noise_simplex(pos);
+  output[index] = noise_simplex(pos, fseed);
 }
 )""
