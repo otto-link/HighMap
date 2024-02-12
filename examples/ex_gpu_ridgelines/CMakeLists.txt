@@ -1,0 +1,2 @@
+add_executable(ex_gpu_ridgelines ex_gpu_ridgelines.cpp)
+target_link_libraries(ex_gpu_ridgelines highmap)

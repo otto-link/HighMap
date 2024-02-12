@@ -25,13 +25,15 @@ void OpenCLConfig::build_program()
 #include "rand.cl"
 #include "utils_image.cl"
 #include "utils_index.cl"
+#include "utils_math.cl"
+  //
+#include "kernel_simplex.cl"
+#include "kernel_voronoise.cl"
   //
 #include "kernel.cl"
 #include "kernel_hydraulic_particle.cl"
 #include "kernel_median_3x3.cl"
-#include "kernel_ridgelines_slope.cl"
-#include "kernel_simplex.cl"
-#include "kernel_voronoise.cl"
+#include "kernel_ridgelines.cl"
       ;
 
   if (kernel_code.length() == 0)
