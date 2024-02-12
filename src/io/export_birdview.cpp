@@ -10,9 +10,9 @@
 namespace hmap
 {
 
-void export_birdview_png(std::string  fname,
-                         const Array &array,
-                         const float  gamma)
+void export_birdview_png_16bit(std::string  fname,
+                               const Array &array,
+                               const float  gamma)
 {
   std::vector<uint16_t> img(array.shape.x * array.shape.y * 3);
 
