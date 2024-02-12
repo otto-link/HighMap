@@ -330,14 +330,17 @@ void median_3x3_img(OpenCLConfig     &config,
   OPENCL_ERROR_MESSAGE(err, "enqueueReadImage");
 }
 
-Array ridgelines_slope(OpenCLConfig      &config,
-                       Vec2<int>          shape,
-                       std::vector<float> xr,
-                       std::vector<float> yr,
-                       std::vector<float> zr,
-                       float              slope,
-                       Vec4<float>        bbox,
-                       const cl::NDRange  local_work_size)
+Array ridgelines(OpenCLConfig      &config,
+                 Vec2<int>          shape,
+                 std::vector<float> xr,
+                 std::vector<float> yr,
+                 std::vector<float> zr,
+                 float              slope,
+                 float              k_smoothing,
+                 float              width,
+                 float              vmin,
+                 Vec4<float>        bbox,
+                 const cl::NDRange  local_work_size)
 {
   int   err = 0;
   Array array = Array(shape); // output
@@ -354,7 +357,7 @@ Array ridgelines_slope(OpenCLConfig      &config,
     yr_scaled[k] = (yr[k] - bbox.c) / (bbox.d - bbox.c);
   }
 
-  Timer timer = Timer("ridgelines_slope");
+  Timer timer = Timer("ridgelines");
 
   cl::CommandQueue queue(config.context, config.device);
 
@@ -380,7 +383,7 @@ Array ridgelines_slope(OpenCLConfig      &config,
                                             CL_MEM_READ_ONLY,
                                             zr_scaled);
 
-  cl::Kernel kernel = cl::Kernel(config.program, "ridgelines_slope", &err);
+  cl::Kernel kernel = cl::Kernel(config.program, "ridgelines", &err);
   OPENCL_ERROR_MESSAGE(err, "Kernel");
 
   {
@@ -391,6 +394,9 @@ Array ridgelines_slope(OpenCLConfig      &config,
     err |= kernel.setArg(iarg++, buffer_zr);
     err |= kernel.setArg(iarg++, (int)xr.size());
     err |= kernel.setArg(iarg++, slope);
+    err |= kernel.setArg(iarg++, k_smoothing);
+    err |= kernel.setArg(iarg++, width);
+    err |= kernel.setArg(iarg++, vmin);
     err |= kernel.setArg(iarg++, array.shape.x);
     err |= kernel.setArg(iarg++, array.shape.y);
     OPENCL_ERROR_MESSAGE(err, "setArg");

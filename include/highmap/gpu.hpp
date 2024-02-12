@@ -125,6 +125,7 @@ cl::Buffer buffer_from_vector(cl::Context                   &context,
 
 // --- filters
 
+// TODO multiscale
 void hydraulic_particle(OpenCLConfig &config,
                         Array        &array,
                         int           nparticles,
@@ -161,13 +162,19 @@ void median_3x3_img(
     Array            &array,
     const cl::NDRange local_work_size = HMAP_CL_DEFAULT_LOCAL_WORK_SIZE);
 
-Array ridgelines_slope(
+// TODO add fbm parameters as inputs and fix amplitude
+// TODO fix amplitude
+// TODO add x, y input noise
+Array ridgelines(
     OpenCLConfig      &config,
     Vec2<int>          shape,
     std::vector<float> xr,
     std::vector<float> yr,
     std::vector<float> zr,
     float              slope,
+    float              k_smoothing = 1.f,
+    float              width = 0.1f,
+    float              vmin = 0.f,
     Vec4<float>        bbox = {0.f, 1.f, 0.f, 1.f},
     const cl::NDRange  local_work_size = HMAP_CL_DEFAULT_LOCAL_WORK_SIZE);
 
