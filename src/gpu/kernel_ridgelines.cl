@@ -18,24 +18,49 @@ void kernel ridgelines(global float   *output,
   int  index = linear_index(g.x, g.y, ny);
 
   float2 pos = (float2)((float)g.x / nx, (float)g.y / ny);
-  float  d = -FLT_MAX;
+  float  d;
 
-  for (int i = 0; i < xyz_size - 1; i += 2)
+  if (slope > 0.f)
   {
-    int    j = i + 1;
-    float2 e = (float2)(x[j] - x[i], y[j] - y[i]);
-    float2 w = pos - (float2)(x[i], y[i]);
-    float  coeff = clamp(dot(w, e) / dot(e, e), 0.f, 1.f);
-    float2 b = w - coeff * e;
+    d = -FLT_MAX;
+    for (int i = 0; i < xyz_size - 1; i += 2)
+    {
+      int    j = i + 1;
+      float2 e = (float2)(x[j] - x[i], y[j] - y[i]);
+      float2 w = pos - (float2)(x[i], y[i]);
+      float  coeff = clamp(dot(w, e) / dot(e, e), 0.f, 1.f);
+      float2 b = w - coeff * e;
 
-    float dist = sqrt(dot(b, b));
-    if (dist <= width)
-      dist = width * almost_unit_identity_c2(dist / width);
+      float dist = sqrt(dot(b, b));
+      if (dist <= width)
+        dist = width * almost_unit_identity_c2(dist / width);
 
-    float coeff_z = smoothstep3(coeff);
-    float dtmp = (1.f - coeff_z) * z[i] + coeff_z * z[j] - slope * dist;
+      float coeff_z = smoothstep3(coeff);
+      float dtmp = (1.f - coeff_z) * z[i] + coeff_z * z[j] - slope * dist;
 
-    d = max_smooth(d, dtmp, k_smoothing);
+      d = max_smooth(d, dtmp, k_smoothing);
+    }
+  }
+  else
+  {
+    d = +FLT_MAX;
+    for (int i = 0; i < xyz_size - 1; i += 2)
+    {
+      int    j = i + 1;
+      float2 e = (float2)(x[j] - x[i], y[j] - y[i]);
+      float2 w = pos - (float2)(x[i], y[i]);
+      float  coeff = clamp(dot(w, e) / dot(e, e), 0.f, 1.f);
+      float2 b = w - coeff * e;
+
+      float dist = sqrt(dot(b, b));
+      if (dist <= width)
+        dist = width * almost_unit_identity_c2(dist / width);
+
+      float coeff_z = smoothstep3(coeff);
+      float dtmp = (1.f - coeff_z) * z[i] + coeff_z * z[j] - slope * dist;
+
+      d = min_smooth(d, dtmp, k_smoothing);
+    }
   }
 
   // add fbm noise
