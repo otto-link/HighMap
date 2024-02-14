@@ -8,6 +8,10 @@ project(
     "C++ library to generate two-dimensional terrain heightmaps for software rendering or video games."
 )
 
+option(HIGHMAP_ENABLE_DOCS "" ON)
+option(HIGHMAP_ENABLE_EXAMPLES "" ON)
+option(HIGHMAP_ENABLE_TESTS "" ON)
+
 set(CMAKE_CXX_STANDARD 20)
 
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -O3 -pthread
@@ -90,6 +94,14 @@ target_link_libraries(${PROJECT_NAME} NoiseLib)
 # everything else...
 # --------------------------------------------------------------
 
-add_subdirectory(${PROJECT_SOURCE_DIR}/doc)
-add_subdirectory(${PROJECT_SOURCE_DIR}/examples)
-add_subdirectory(${PROJECT_SOURCE_DIR}/tests)
+if(HIGHMAP_ENABLE_DOCS)
+  add_subdirectory(${PROJECT_SOURCE_DIR}/doc)
+endif(HIGHMAP_ENABLE_DOCS)
+
+if(HIGHMAP_ENABLE_EXAMPLES)
+  add_subdirectory(${PROJECT_SOURCE_DIR}/examples)
+endif(HIGHMAP_ENABLE_EXAMPLES)
+
+if(HIGHMAP_ENABLE_TESTS)
+  add_subdirectory(${PROJECT_SOURCE_DIR}/tests)
+endif(HIGHMAP_ENABLE_TESTS)
