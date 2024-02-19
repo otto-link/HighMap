@@ -1,0 +1,2 @@
+add_executable(ex_pyramid_decomposition ex_pyramid_decomposition.cpp)
+target_link_libraries(ex_pyramid_decomposition highmap)

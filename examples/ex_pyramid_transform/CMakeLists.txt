@@ -1,0 +1,2 @@
+add_executable(ex_pyramid_transform ex_pyramid_transform.cpp)
+target_link_libraries(ex_pyramid_transform highmap)

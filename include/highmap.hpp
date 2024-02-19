@@ -25,5 +25,6 @@
 #include "highmap/kernels.hpp"
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
+#include "highmap/pyramid.hpp"
 #include "highmap/roads.hpp"
 #include "highmap/vector.hpp"

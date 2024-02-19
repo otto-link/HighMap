@@ -445,6 +445,7 @@ public:
    * @return size_t Size.
    */
   size_t get_sizeof() const;
+
   /**
    * @brief Return normalization coefficients (a, b) so that a * array + b is in
    * [vmin, vmax]
@@ -564,6 +565,15 @@ public:
    * @image html ex_resample_to_shape.png
    */
   Array resample_to_shape(Vec2<int> new_shape) const;
+
+  /**
+   * @brief Return a resampled array of shape 'new_shape' using nearest
+   * interpolation.
+   *
+   * @param new_shape Target shape.
+   * @return Array Resampled array.
+   */
+  Array resample_to_shape_nearest(Vec2<int> new_shape) const;
 
   /**
    * @brief Return a column 'i' as a std::vector.

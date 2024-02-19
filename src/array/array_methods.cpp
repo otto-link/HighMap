@@ -276,7 +276,43 @@ Array Array::resample_to_shape(Vec2<int> new_shape) const
       int   jref = (int)y[j];
       float u = x[i] - (float)iref;
       float v = y[j] - (float)jref;
+
+      // handle bordline cases
+      if (iref == this->shape.x - 1)
+      {
+        iref = this->shape.x - 2;
+        u = 1.f;
+      }
+
+      if (jref == this->shape.y - 1)
+      {
+        jref = this->shape.y - 2;
+        v = 1.f;
+      }
+
       array_out(i, j) = this->get_value_bilinear_at(iref, jref, u, v);
+    }
+  }
+
+  return array_out;
+}
+
+Array Array::resample_to_shape_nearest(Vec2<int> new_shape) const
+{
+  Array array_out = Array(new_shape);
+
+  // interpolation grid scaled to the starting grid to ease seeking of
+  // the reference (i, j) indices during bilinear interpolation
+  std::vector<float> x = linspace(0.f, (float)this->shape.x - 1, new_shape.x);
+  std::vector<float> y = linspace(0.f, (float)this->shape.y - 1, new_shape.y);
+
+  for (int i = 0; i < new_shape.x; i++)
+  {
+    int iref = (int)std::floor(x[i]);
+    for (int j = 0; j < new_shape.y; j++)
+    {
+      int jref = (int)std::floor(y[j]);
+      array_out(i, j) = (*this)(iref, jref);
     }
   }
 
