@@ -124,9 +124,9 @@ void export_banner_png(std::string        fname,
  * @param fname File name.
  * @param array Input array.
  */
-void export_birdview_png(std::string  fname,
-                         const Array &array,
-                         const float  gamma = 1.f);
+void export_birdview_png_16bit(std::string  fname,
+                               const Array &array,
+                               const float  gamma = 1.f);
 
 /**
  * @brief Export the hillshade map to a 8 bit png file.
@@ -180,6 +180,54 @@ void export_splatmap_png_16bit(std::string fname,
                                Array      *p_g = nullptr,
                                Array      *p_b = nullptr,
                                Array      *p_a = nullptr);
+
+/**
+ * @brief Export a pair of heightmaps as a glyph vector field representation to
+ * a 8 bit png file.
+ *
+ * @param fname File name.
+ * @param array_u Vector component.
+ * @param array_v Vector component.
+ * @param density Glyph density.
+ * @param scale Glyph scale.
+ * @param seed Random seed number.
+ *
+ * **Example**
+ * @include ex_export_vector_glyph.cpp
+ *
+ * **Result**
+ * @image html ex_export_vector_glyph.png
+ */
+void export_vector_glyph_png_8bit(const std::string fname,
+                                  const Array      &array_u,
+                                  const Array      &array_v,
+                                  const float       density = 0.05f,
+                                  const float       scale = 0.05f,
+                                  const uint        seed = 0);
+
+/**
+ * @brief Export a pair of heightmaps as a glyph vector field representation to
+ * a 16 bit png file.
+ *
+ * @param fname File name.
+ * @param array_u Vector component.
+ * @param array_v Vector component.
+ * @param density Glyph density.
+ * @param scale Glyph scale.
+ * @param seed Random seed number.
+ *
+ * **Example**
+ * @include ex_export_vector_glyph.cpp
+ *
+ * **Result**
+ * @image html ex_export_vector_glyph.png
+ */
+void export_vector_glyph_png_16bit(const std::string fname,
+                                   const Array      &array_u,
+                                   const Array      &array_v,
+                                   const float       density = 0.05f,
+                                   const float       scale = 0.05f,
+                                   const uint        seed = 0);
 
 /**
  * @brief Export heightmap as a Wavefront Object mesh file.

@@ -15,8 +15,15 @@ int main(void)
 
   float slope = 3.f;
 
-  auto z = hmap::gpu::ridgelines(gpu_config, shape, x, y, v, slope);
-  hmap::remap(z);
+  auto z1 = hmap::gpu::ridgelines(gpu_config, shape, x, y, v, slope);
+  hmap::remap(z1);
 
-  hmap::export_banner_png("ex_gpu_ridgelines.png", {z}, hmap::cmap::inferno);
+  auto z2 = hmap::gpu::ridgelines(gpu_config, shape, x, y, v, -slope);
+  hmap::remap(z2);
+
+  hmap::export_wavefront_obj("hmap.obj", z2, hmap::mesh_type::quad);
+
+  hmap::export_banner_png("ex_gpu_ridgelines.png",
+                          {z1, z2},
+                          hmap::cmap::inferno);
 }
