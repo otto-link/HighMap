@@ -86,8 +86,10 @@ void hydraulic_particle(OpenCLConfig &config,
   OPENCL_ERROR_MESSAGE(err, "finish");
   timer.stop("core");
 
-  cl::array<size_t, 2> origin = {0, 0};
-  cl::array<size_t, 2> region = {(size_t)array.shape.y, (size_t)array.shape.x};
+  cl::array<size_t, 3> origin = {0, 0, 0};
+  cl::array<size_t, 3> region = {(size_t)array.shape.y,
+                                 (size_t)array.shape.x,
+                                 1};
 
   err = queue.enqueueReadImage(img_io,
                                CL_TRUE,
@@ -317,8 +319,10 @@ void median_3x3_img(OpenCLConfig     &config,
   OPENCL_ERROR_MESSAGE(err, "finish");
   timer.stop("core");
 
-  cl::array<size_t, 2> origin = {0, 0};
-  cl::array<size_t, 2> region = {(size_t)array.shape.y, (size_t)array.shape.x};
+  cl::array<size_t, 3> origin = {0, 0, 0};
+  cl::array<size_t, 3> region = {(size_t)array.shape.y,
+                                 (size_t)array.shape.x,
+                                 1};
 
   err = queue.enqueueReadImage(img_out,
                                CL_TRUE,
