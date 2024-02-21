@@ -1124,6 +1124,31 @@ public:
                        Vec2<float> scale = {1.f, 1.f});
 
   /**
+   * @brief Return an array filled with the signed distance function to the path
+   *
+   * @param shape Output array shape.
+   * @param bbox Bounding box.
+   * @param p_noise_x, p_noise_y Reference to the input noise array used for
+   * domain warping (NOT in pixels, with respect to a unit domain).
+   * @param shift Noise shift {xs, ys} for each directions, with respect to a
+   * unit domain.
+   * @param scale Domain scaling, in [0, 1].
+   * @return Array Resulting array.
+   *
+   *  * **Example**
+   * @include ex_path_sdf.cpp
+   *
+   * **Result**
+   * @image html ex_path_sdf.png
+   */
+  Array to_array_sdf(Vec2<int>   shape,
+                     Vec4<float> bbox,
+                     Array      *p_noise_x = nullptr,
+                     Array      *p_noise_y = nullptr,
+                     Vec2<float> shift = {0.f, 0.f},
+                     Vec2<float> scale = {1.f, 1.f});
+
+  /**
    * @brief Export path as png image file.
    *
    * @param fname File name.

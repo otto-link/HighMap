@@ -801,6 +801,42 @@ Array Path::to_array_range(Vec2<int>   shape,
   return z;
 }
 
+Array Path::to_array_sdf(Vec2<int>   shape,
+                         Vec4<float> bbox,
+                         Array      *p_noise_x,
+                         Array      *p_noise_y,
+                         Vec2<float> shift,
+                         Vec2<float> scale)
+{
+  // Path nodes
+  std::vector<float> xp = this->get_x();
+  std::vector<float> yp = this->get_y();
+
+  for (size_t k = 0; k < xp.size(); k++)
+  {
+    xp[k] = (xp[k] - bbox.a) / (bbox.b - bbox.a);
+    yp[k] = (yp[k] - bbox.c) / (bbox.d - bbox.c);
+  }
+
+  // fill heightmap
+  std::function<float(float, float)> distance_fct;
+
+  if (this->closed)
+    distance_fct = [this](float x, float y) { return this->sdf_closed(x, y); };
+  else
+    distance_fct = [this](float x, float y) { return this->sdf_open(x, y); };
+
+  Array z = sdf_generic(shape,
+                        distance_fct,
+                        p_noise_x,
+                        p_noise_y,
+                        Vec2<float>(0.f, 0.f), // center at bottom-left
+                        shift,
+                        scale);
+
+  return z;
+}
+
 void Path::to_png(std::string fname, Vec2<int> shape)
 {
   Array array = Array(shape);

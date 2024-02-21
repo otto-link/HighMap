@@ -42,6 +42,14 @@ void helper_get_noise(Array                             &array,
                       Array                             *p_stretching,
                       std::function<float(float, float)> noise_fct);
 
+Array sdf_generic(Vec2<int>                          shape,
+                  std::function<float(float, float)> distance_fct,
+                  Array                             *p_noise_x,
+                  Array                             *p_noise_y,
+                  Vec2<float>                        center,
+                  Vec2<float>                        shift,
+                  Vec2<float>                        scale);
+
 /**
  * @brief Return an heightmap defined by a set of elevation values defined on a
  * very coarse grid of control points.
