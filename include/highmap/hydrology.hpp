@@ -28,6 +28,20 @@ namespace hmap
 Array d8_compute_ndip(const Array &d8);
 
 /**
+ * @brief Find the indices `(i, j)` of flow sinks within the heightmap.
+ *
+ * @param z Input array.
+ * @param is Indices `i` of the sinks (output).
+ * @param js Indices `j` of the sinks (output).
+ *
+ * **Example**
+ * @include ex_find_flow_sinks.cpp
+ */
+void find_flow_sinks(const Array      &z,
+                     std::vector<int> &is,
+                     std::vector<int> &js);
+
+/**
  * @brief Return flow accumulation in each cell using the D8 flow direction
  * model \cite Zhou2019.
  *
