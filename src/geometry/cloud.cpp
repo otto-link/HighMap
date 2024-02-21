@@ -210,6 +210,43 @@ void Cloud::to_array_interp(Array      &array,
                    [&interp](float x_, float y_) { return interp(x_, y_); });
 }
 
+Array Cloud::to_array_sdf(Vec2<int>   shape,
+                          Vec4<float> bbox,
+                          Array      *p_noise_x,
+                          Array      *p_noise_y,
+                          Vec2<float> shift,
+                          Vec2<float> scale)
+{
+  // nodes
+  std::vector<float> xp = this->get_x();
+  std::vector<float> yp = this->get_y();
+
+  for (size_t k = 0; k < xp.size(); k++)
+  {
+    xp[k] = (xp[k] - bbox.a) / (bbox.b - bbox.a);
+    yp[k] = (yp[k] - bbox.c) / (bbox.d - bbox.c);
+  }
+
+  // fill heightmap
+  auto distance_fct = [&xp, &yp](float x, float y)
+  {
+    float d = std::numeric_limits<float>::max();
+    for (size_t i = 0; i < xp.size(); i++)
+      d = std::min(d, std::hypot(x - xp[i], y - yp[i]));
+    return std::sqrt(d);
+  };
+
+  Array z = sdf_generic(shape,
+                        distance_fct,
+                        p_noise_x,
+                        p_noise_y,
+                        Vec2<float>(0.f, 0.f), // center at bottom-left
+                        shift,
+                        scale);
+
+  return z;
+}
+
 void Cloud::to_csv(std::string fname)
 {
   std::fstream f;

@@ -5,9 +5,6 @@ int main(void)
   hmap::Vec2<int> shape = {256, 256};
   uint            seed = 1;
 
-  auto noise = hmap::fbm_perlin(shape, {2, 2}, seed);
-  hmap::remap(noise, 0.f, 0.1f);
-
   hmap::Vec4<float> bbox = {0.2f, 0.8f, 0.2f, 0.8f};
   hmap::Path        path = hmap::Path(5, seed, bbox);
   path.reorder_nns();

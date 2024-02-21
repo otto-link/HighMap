@@ -1,0 +1,2 @@
+add_executable(ex_cloud_sdf ex_cloud_sdf.cpp)
+target_link_libraries(ex_cloud_sdf highmap)
