@@ -13,6 +13,7 @@
 #include "highmap/array.hpp"
 #include "highmap/geometry.hpp"
 #include "highmap/io.hpp"
+#include "highmap/primitives.hpp"
 
 namespace hmap
 {
@@ -98,6 +99,30 @@ std::vector<float> Graph::get_lengths()
                                this->points[this->edges[k][1]]));
   }
   return lengths;
+}
+
+std::vector<float> Graph::get_edge_x_pairs()
+{
+  std::vector<float> x;
+  x.reserve(2 * this->get_nedges());
+  for (auto &e : this->edges)
+  {
+    x.push_back(this->points[e[0]].x);
+    x.push_back(this->points[e[1]].x);
+  }
+  return x;
+}
+
+std::vector<float> Graph::get_edge_y_pairs()
+{
+  std::vector<float> y;
+  y.reserve(2 * this->get_nedges());
+  for (auto &e : this->edges)
+  {
+    y.push_back(this->points[e[0]].y);
+    y.push_back(this->points[e[1]].y);
+  }
+  return y;
 }
 
 Graph Graph::minimum_spanning_tree_prim()
@@ -260,6 +285,51 @@ void Graph::to_array_fractalize(Array      &array,
     path.fractalize(iterations, seed, sigma, orientation, persistence);
     path.to_array(array, bbox);
   }
+}
+
+Array Graph::to_array_sdf(Vec2<int>   shape,
+                          Vec4<float> bbox,
+                          Array      *p_noise_x,
+                          Array      *p_noise_y,
+                          Vec2<float> shift,
+                          Vec2<float> scale)
+{
+  // nodes
+  std::vector<float> xp = this->get_edge_x_pairs();
+  std::vector<float> yp = this->get_edge_y_pairs();
+
+  for (size_t k = 0; k < xp.size(); k++)
+  {
+    xp[k] = (xp[k] - bbox.a) / (bbox.b - bbox.a);
+    yp[k] = (yp[k] - bbox.c) / (bbox.d - bbox.c);
+  }
+
+  // fill heightmap
+  auto distance_fct = [&xp, &yp](float x, float y)
+  {
+    float d = std::numeric_limits<float>::max();
+
+    for (size_t i = 0; i < xp.size() - 1; i += 2)
+    {
+      size_t      j = i + 1;
+      Vec2<float> e = {xp[j] - xp[i], yp[j] - yp[i]};
+      Vec2<float> w = {x - xp[i], y - yp[i]};
+      float       coeff = std::clamp(dot(w, e) / dot(e, e), 0.f, 1.f);
+      Vec2<float> b = {w.x - e.x * coeff, w.y - e.y * coeff};
+      d = std::min(d, dot(b, b));
+    }
+    return std::sqrt(d);
+  };
+
+  Array z = sdf_generic(shape,
+                        distance_fct,
+                        p_noise_x,
+                        p_noise_y,
+                        Vec2<float>(0.f, 0.f), // center at bottom-left
+                        shift,
+                        scale);
+
+  return z;
 }
 
 void Graph::to_csv(std::string fname_xy, std::string fname_adjacency)

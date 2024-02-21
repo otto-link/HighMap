@@ -1,0 +1,2 @@
+add_executable(ex_graph_sdf ex_graph_sdf.cpp)
+target_link_libraries(ex_graph_sdf highmap)

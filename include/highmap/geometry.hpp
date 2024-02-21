@@ -484,6 +484,20 @@ public:
   float get_edge_length(int k);
 
   /**
+   * @brief Return x coordinates of the edges (as pairs)
+   *
+   * @return std::vector<float> Coordinates.
+   */
+  std::vector<float> get_edge_x_pairs();
+
+  /**
+   * @brief Return y coordinates of the edges (as pairs)
+   *
+   * @return std::vector<float> Coordinates.
+   */
+  std::vector<float> get_edge_y_pairs();
+
+  /**
    * @brief Get the length of all the edge lengths.
    *
    * @return std::vector<float>
@@ -589,6 +603,32 @@ public:
                            float       sigma = 0.3f,
                            int         orientation = 0.f,
                            float       persistence = 1.f);
+
+  /**
+   * @brief Return an array filled with the signed distance function to the
+   * graph
+   *
+   * @param shape Output array shape.
+   * @param bbox Bounding box.
+   * @param p_noise_x, p_noise_y Reference to the input noise array used for
+   * domain warping (NOT in pixels, with respect to a unit domain).
+   * @param shift Noise shift {xs, ys} for each directions, with respect to a
+   * unit domain.
+   * @param scale Domain scaling, in [0, 1].
+   * @return Array Resulting array.
+   *
+   *  * **Example**
+   * @include ex_cloud_sdf.cpp
+   *
+   * **Result**
+   * @image html ex_cloud_sdf.png
+   */
+  Array to_array_sdf(Vec2<int>   shape,
+                     Vec4<float> bbox,
+                     Array      *p_noise_x = nullptr,
+                     Array      *p_noise_y = nullptr,
+                     Vec2<float> shift = {0.f, 0.f},
+                     Vec2<float> scale = {1.f, 1.f});
 
   /**
    * @brief Export graph to csv files.
