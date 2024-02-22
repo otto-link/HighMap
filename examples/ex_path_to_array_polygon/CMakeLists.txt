@@ -1,2 +1,0 @@
-add_executable(ex_path_to_array_polygon ex_path_to_array_polygon.cpp)
-target_link_libraries(ex_path_to_array_polygon highmap)
