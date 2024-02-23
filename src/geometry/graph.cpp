@@ -244,16 +244,26 @@ Graph Graph::remove_orphan_points()
   return graph_out;
 }
 
-void Graph::to_array(Array &array, Vec4<float> bbox)
+void Graph::to_array(Array &array, Vec4<float> bbox, bool color_by_edge_weight)
 {
-  for (std::size_t k = 0; k < this->get_nedges(); k++)
-  {
-    Point p1 = this->points[this->edges[k][0]];
-    Point p2 = this->points[this->edges[k][1]];
-
-    Path path = Path({p1, p2});
-    path.to_array(array, bbox);
-  }
+  if (color_by_edge_weight)
+    for (std::size_t k = 0; k < this->get_nedges(); k++)
+    {
+      Point p1 = this->points[this->edges[k][0]];
+      Point p2 = this->points[this->edges[k][1]];
+      p1.v = this->weights[this->edges[k][0]];
+      p2.v = this->weights[this->edges[k][1]];
+      Path path = Path({p1, p2});
+      path.to_array(array, bbox);
+    }
+  else
+    for (std::size_t k = 0; k < this->get_nedges(); k++)
+    {
+      Point p1 = this->points[this->edges[k][0]];
+      Point p2 = this->points[this->edges[k][1]];
+      Path  path = Path({p1, p2});
+      path.to_array(array, bbox);
+    }
 }
 
 void Graph::to_array_fractalize(Array      &array,

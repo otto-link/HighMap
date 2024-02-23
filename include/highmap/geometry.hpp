@@ -580,8 +580,11 @@ public:
    *
    * @param array Input array.
    * @param bbox Bounding box of the array.
+   * @param color_by_edge_weight Color by edge weight or by node values else.
    */
-  void to_array(Array &array, Vec4<float> bbox);
+  void to_array(Array      &array,
+                Vec4<float> bbox,
+                bool        color_by_edge_weight = true);
 
   /**
    * @brief Fractalize graph edge and project to an array.

@@ -85,7 +85,7 @@ Graph generate_network_alpha_model(std::vector<float> xc,
         float dz = graph.points[i].v - graph.points[j].v;
         graph.adjacency_matrix[{i, j}] += std::abs(dz) * dz_weight;
         graph.adjacency_matrix[{i, j}] += local_weight[i] + local_weight[j];
-        graph.adjacency_matrix[{i, j}] = graph.adjacency_matrix[{i, j}];
+        graph.adjacency_matrix[{j, i}] = graph.adjacency_matrix[{i, j}];
       }
     }
 

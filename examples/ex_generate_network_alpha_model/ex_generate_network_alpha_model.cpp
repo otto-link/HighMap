@@ -7,7 +7,7 @@
 int main(void)
 {
   hmap::Vec2<int> shape = {256, 256};
-  int             seed = 1;
+  int             seed = 0;
 
   hmap::Array z = hmap::fbm_perlin(shape, {4.f, 4.f}, seed);
   z.to_png("ex_generate_network_alpha_model0.png", hmap::cmap::terrain, true);
@@ -29,6 +29,8 @@ int main(void)
                                                            ndummy);
 
   network.to_csv("nodes.csv", "adj.csv");
+
+  // network.set_values(1.f);
 
   // graph view, no bounding box, color by edge weight
   network.to_png("ex_generate_network_alpha_model1.png");
