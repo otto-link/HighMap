@@ -51,34 +51,6 @@ Array sdf_generic(Vec2<int>                          shape,
                   Vec2<float>                        scale);
 
 /**
- * @brief Return an heightmap defined by a set of elevation values defined on a
- * very coarse grid of control points.
- *
- * @param shape Array shape.
- * @param values Elevation at the control points.
- * @param width_factor Factor applied to the half-width of the base Gaussian.
- * @param p_noise_x, p_noise_y Reference to the input noise array used for
- * domain warping (NOT in pixels, with respect to a unit domain).
- * @param shift Noise shift {xs, ys} for each directions, with respect to a
- * unit domain.
- * @param scale Domain scaling, in [0, 1].
- * @return Array New array.
- *
- * **Example**
- * @include ex_base_elevation.cpp
- *
- * **Result**
- * @image html ex_base_elevation.png
- */
-Array base_elevation(Vec2<int>                       shape,
-                     std::vector<std::vector<float>> values,
-                     float                           width_factor = 1.f,
-                     Array                          *p_noise_x = nullptr,
-                     Array                          *p_noise_y = nullptr,
-                     Vec2<float>                     shift = {0.f, 0.f},
-                     Vec2<float>                     scale = {1.f, 1.f});
-
-/**
  * @brief Return a 'biquadratic pulse'.
  *
  * @param shape Array shape.

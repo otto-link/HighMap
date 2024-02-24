@@ -91,6 +91,13 @@ void OpenCLConfig::initialize_context()
 
   std::vector<cl::Platform> all_platforms;
   cl::Platform::get(&all_platforms);
+
+  if (all_platforms.size() == 0)
+  {
+    LOG_ERROR("no platform available");
+    throw std::runtime_error("No platform found. Check OpenCL installation.");
+  }
+
   cl::Platform default_platform = all_platforms[0];
 
   LOG_DEBUG("available platforms:");

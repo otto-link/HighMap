@@ -15,6 +15,7 @@
 #pragma once
 
 #include "highmap/array.hpp"
+#include "highmap/authoring.hpp"
 #include "highmap/colormaps.hpp"
 #include "highmap/erosion.hpp"
 #include "highmap/geometry.hpp"

@@ -13,49 +13,6 @@
 namespace hmap
 {
 
-Array base_elevation(Vec2<int>                       shape,
-                     std::vector<std::vector<float>> values,
-                     float                           width_factor,
-                     Array                          *p_noise_x,
-                     Array                          *p_noise_y,
-                     Vec2<float>                     shift,
-                     Vec2<float>                     scale)
-{
-  Array array = Array(shape);
-
-  // get number of control points per direction
-  size_t ni = values.size();
-  size_t nj = values[0].size();
-
-  // corresponding coordinates
-  float              dxc = 1.f / (float)ni;
-  float              dyc = 1.f / (float)nj;
-  std::vector<float> xc = linspace(0.5f * dxc, 1.f - 0.5f * dxc, ni);
-  std::vector<float> yc = linspace(0.5f * dyc, 1.f - 0.5f * dyc, nj);
-
-  std::vector<float> x = linspace(shift.x, shift.x + scale.x, shape.x, false);
-  std::vector<float> y = linspace(shift.y, shift.y + scale.y, shape.y, false);
-
-  // Gaussian half-widths based on the mesh discretization
-  float s2x = 2.f / dxc / dxc / width_factor;
-  float s2y = 2.f / dyc / dyc / width_factor;
-
-  for (size_t p = 0; p < ni; p++)
-    for (size_t q = 0; q < nj; q++)
-    {
-      auto lambda = [&xc, &yc, &p, &q, &s2x, &s2y](float x_, float y_)
-      {
-        float r2 = s2x * (x_ - xc[p]) * (x_ - xc[p]) +
-                   s2y * (y_ - yc[q]) * (y_ - yc[q]);
-        return std::exp(-r2);
-      };
-      array += values[p][q] *
-               helper_get_noise(x, y, p_noise_x, p_noise_y, lambda);
-    }
-
-  return array;
-}
-
 Array biquad_pulse(Vec2<int>   shape,
                    float       gain,
                    Array      *p_noise_x,

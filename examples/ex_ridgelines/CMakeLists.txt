@@ -1,0 +1,2 @@
+add_executable(ex_ridgelines ex_ridgelines.cpp)
+target_link_libraries(ex_ridgelines highmap)

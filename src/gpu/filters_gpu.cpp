@@ -6,6 +6,7 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/geometry.hpp"
 #include "highmap/gpu.hpp"
 
 #include "highmap/dbg.hpp"
@@ -353,13 +354,8 @@ Array ridgelines(OpenCLConfig      &config,
   // box (OpenCL buffer assumes that the domain is a unit square)
   std::vector<float> xr_scaled = xr;
   std::vector<float> yr_scaled = yr;
-  std::vector<float> zr_scaled = zr;
 
-  for (size_t k = 0; k < xr.size(); k++)
-  {
-    xr_scaled[k] = (xr[k] - bbox.a) / (bbox.b - bbox.a);
-    yr_scaled[k] = (yr[k] - bbox.c) / (bbox.d - bbox.c);
-  }
+  rescale_grid_to_unit_square(xr_scaled, yr_scaled, bbox);
 
   Timer timer = Timer("ridgelines");
 
@@ -385,7 +381,7 @@ Array ridgelines(OpenCLConfig      &config,
   cl::Buffer buffer_zr = buffer_from_vector(config.context,
                                             queue,
                                             CL_MEM_READ_ONLY,
-                                            zr_scaled);
+                                            zr);
 
   cl::Kernel kernel = cl::Kernel(config.program, "ridgelines", &err);
   OPENCL_ERROR_MESSAGE(err, "Kernel");

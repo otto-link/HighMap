@@ -1245,6 +1245,9 @@ Array maximum_local_disk(const Array &array, int ir);
  * @see {@link minimum_smooth}, {@link minimum}, {@link maximum}
  */
 Array maximum_smooth(const Array &array1, const Array &array2, float k = 0.2);
+float maximum_smooth(const float a,
+                     const float b,
+                     float       k = 0.2); ///< @overload
 
 /**
  * @brief Transform input array elevation to match the histogram of a reference
@@ -1355,6 +1358,7 @@ Array minimum_local_disk(const Array &array, int ir);
  * @see {@link maximum_smooth}, {@link minimum}, {@link maximum}
  */
 Array minimum_smooth(const Array &array1, const Array &array2, float k = 0.2);
+float minimum_smooth(const float a, const float b, float k); ///< @overload
 
 /**
  * @brief Return the mixing of a set of arrays based on a parameter `t`.

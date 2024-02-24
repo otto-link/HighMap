@@ -1339,6 +1339,18 @@ void random_grid_jittered(std::vector<float> &x,
                           Vec4<float>         bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
+ * @brief Rescale coordinate (x, y) so that they fit in a unit-square box based
+ * on a given initial bounding box.
+ *
+ * @param x[in, out] `x` coordinates (output).
+ * @param y[in, out] `y` coordinates (output).
+ * @param bbox Initial bounding box.
+ */
+void rescale_grid_to_unit_square(std::vector<float> &x,
+                                 std::vector<float> &y,
+                                 Vec4<float>         bbox);
+
+/**
  * @brief Sort points in an ascending order (x then y).
  *
  * @param points Points to be sorted (in place).
