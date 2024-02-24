@@ -1,0 +1,2 @@
+add_executable(ex_path_fractalize ex_path_fractalize.cpp)
+target_link_libraries(ex_path_fractalize highmap)

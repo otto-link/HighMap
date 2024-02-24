@@ -938,6 +938,14 @@ public:
    * @param orientation Displacement orientation (0 for random inward/outward
    * displacement, 1 to inflate the path and -1 to deflate the path).
    * @param persistence Noise persistence (with iteration number).
+   * @param p_control_field Reference to the array locally controlling the
+   * amplitude of the added displacement.
+   *
+   * **Example**
+   * @include ex_path_fractalize.cpp
+   *
+   * **Result**
+   * @image html ex_path_fractalize.png
    */
   void fractalize(int   iterations,
                   uint  seed,
@@ -945,6 +953,13 @@ public:
                   int   orientation = 0,
                   float persistence = 1.f);
 
+  void fractalize(int         iterations,
+                  uint        seed,
+                  Array      &control_field,
+                  Vec4<float> bbox,
+                  float       sigma = 0.3f,
+                  int         orientation = 0,
+                  float       persistence = 1.f); ///< @overload
   /**
    * @brief Add "meanders" to the path.
    *

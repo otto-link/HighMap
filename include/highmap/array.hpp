@@ -472,6 +472,18 @@ public:
   float get_value_bilinear_at(int i, int j, float u, float v) const;
 
   /**
+   * @brief Get the nearest value at the location (x, y) assuming the arrat
+   * covers a domain `bbox`. Values are clamped if x or y are outside the
+   * domain.
+   *
+   * @param x Coordinate x.
+   * @param y Coordinate x.
+   * @param bbox Bounding box.
+   * @return float Nearest value.
+   */
+  float get_value_nearest(float x, float y, Vec4<float> bbox);
+
+  /**
    * @brief Return stacked arrays in sequence horizontally (column wise).
    *
    * @param array1 1st array.

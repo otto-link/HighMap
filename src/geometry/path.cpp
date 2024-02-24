@@ -310,6 +310,46 @@ void Path::fractalize(int   iterations,
   }
 }
 
+void Path::fractalize(int         iterations,
+                      uint        seed,
+                      Array      &control_field,
+                      Vec4<float> bbox,
+                      float       sigma,
+                      int         orientation,
+                      float       persistence)
+{
+  std::mt19937                    gen(seed);
+  std::normal_distribution<float> dis(0.f, sigma);
+
+  for (int it = 0; it < iterations; it++)
+  {
+    // add a mid point between each points and shuffle the position of
+    // this new point
+    this->divide();
+
+    size_t ks = this->closed ? 0 : 1;
+    for (size_t k = 1; k < this->get_npoints() - ks; k += 2)
+    {
+      size_t knext = (k + 1) % this->get_npoints();
+
+      float amp = dis(gen);
+      float alpha = angle(this->points[k - 1], this->points[knext]) + M_PI_2;
+      float dist = distance(this->points[k - 1], this->points[knext]);
+
+      if (orientation != 0)
+        amp = std::abs(amp) * (float)std::copysign(1, orientation);
+
+      amp *= control_field.get_value_nearest(this->points[k].x,
+                                             this->points[k].y,
+                                             bbox);
+
+      this->points[k].x += amp * dist * std::cos(alpha);
+      this->points[k].y += amp * dist * std::sin(alpha);
+    }
+    sigma *= persistence;
+  }
+}
+
 std::vector<float> Path::get_arc_length()
 {
   std::vector<float> s = this->get_cumulative_distance();

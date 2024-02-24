@@ -200,6 +200,15 @@ float Array::get_value_bilinear_at(int i, int j, float u, float v) const
   return (*this)(i, j) + a10 * u + a01 * v + a11 * u * v;
 }
 
+float Array::get_value_nearest(float x, float y, Vec4<float> bbox)
+{
+  int i = (int)(std::clamp((x - bbox.a) / (bbox.b - bbox.a), 0.f, 1.f) *
+                (this->shape.x - 1));
+  int j = (int)(std::clamp((y - bbox.c) / (bbox.d - bbox.c), 0.f, 1.f) *
+                (this->shape.y - 1));
+  return (*this)(i, j);
+}
+
 Array hstack(const Array &array1, const Array &array2) // friend function
 {
   Array array_out = Array(
