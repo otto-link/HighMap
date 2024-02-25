@@ -294,7 +294,6 @@ void clamp(Array &array, float vmin = 0, float vmax = 1);
  * @see {@link clamp}, {@link clamp_max}
  */
 void clamp_min(Array &array, float vmin);
-
 void clamp_min(Array &array, const Array &vmin); ///< @overload
 
 /**
@@ -319,7 +318,6 @@ void clamp_min_smooth(Array       &array,
  * @see {@link clamp}, {@link clamp_min}
  */
 void clamp_max(Array &array, float vmax);
-
 void clamp_max(Array &array, const Array &vmax); ///< @overload
 
 /**
@@ -482,16 +480,6 @@ Array convolve2d_svd_rotated_kernel(const Array &z,
 Array cos(const Array &array);
 
 /**
- * @brief
- *
- * @param array
- * @return Array
- */
-Array curl(const Array &array);
-
-Array curl(const Array &array);
-
-/**
  * @brief Return the Gaussian curvature @cite Kurita1992.
  *
  * @param z Input array.
@@ -547,7 +535,6 @@ Array distance_transform(const Array &array);
  * @param array Input array.
  */
 void equalize(Array &array);
-
 void equalize(Array &array, Array *p_mask); ///< @overload
 
 /**
@@ -2099,8 +2086,7 @@ Array shadow_heightmap(const Array &z,
  * @image html ex_sharpen.png
  */
 void sharpen(Array &array, float ratio = 1.f);
-
-void sharpen(Array &array, Array *p_mask, float ratio = 1.f);
+void sharpen(Array &array, Array *p_mask, float ratio = 1.f); ///< @overload
 
 /**
  * @brief Apply shrinking, or "deflating", to emphasize the ridges.
@@ -2174,8 +2160,7 @@ Array sin(const Array &array);
  * @see {@link smooth_gaussian}
  */
 void smooth_cpulse(Array &array, int ir);
-
-void smooth_cpulse(Array &array, int ir, Array *p_mask);
+void smooth_cpulse(Array &array, int ir, Array *p_mask); ///< @overload
 
 /**
  * @brief Apply Gaussian filtering to the array.
@@ -2191,8 +2176,7 @@ void smooth_cpulse(Array &array, int ir, Array *p_mask);
  * @image html ex_smooth_gaussian.png
  */
 void smooth_gaussian(Array &array, int ir);
-
-void smooth_gaussian(Array &array, int ir, Array *p_mask);
+void smooth_gaussian(Array &array, int ir, Array *p_mask); ///< @overload
 
 /**
  * @brief Apply cubic pulse smoothing to fill lower flat regions while
@@ -2224,7 +2208,7 @@ void smooth_fill(Array &array,
                  int    ir,
                  Array *p_mask,
                  float  k = 0.1f,
-                 Array *p_deposition_map = nullptr);
+                 Array *p_deposition_map = nullptr); ///< @overload
 
 /**
  * @brief Apply smoothing to fill holes (elliptic concave surfaces).
@@ -2242,7 +2226,6 @@ void smooth_fill(Array &array,
  * @see {@link smooth_smear_peaks}
  */
 void smooth_fill_holes(Array &array, int ir);
-
 void smooth_fill_holes(Array &array, int ir, Array *p_mask); ///< @overload
 
 /**
@@ -2261,8 +2244,9 @@ void smooth_fill_holes(Array &array, int ir, Array *p_mask); ///< @overload
  * @see {@link smooth_fill_holes}
  */
 void smooth_fill_smear_peaks(Array &array, int ir);
-
-void smooth_fill_smear_peaks(Array &array, int ir, Array *p_mask);
+void smooth_fill_smear_peaks(Array &array,
+                             int    ir,
+                             Array *p_mask); ///< @overload
 
 /**
  * @brief Return the 3rd order smoothstep function of the array elements.
@@ -2315,8 +2299,10 @@ Array smoothstep5(const Array &array,
  * @image html ex_steepen.png
  */
 void steepen(Array &array, float scale, int ir = 8);
-
-void steepen(Array &array, float scale, Array *p_mask, int ir = 8);
+void steepen(Array &array,
+             float  scale,
+             Array *p_mask,
+             int    ir = 8); ///< @overload
 
 /**
  * @brief Steepen array values by applying a nonlinear convection operator in a
@@ -2349,7 +2335,7 @@ void steepen_convective(Array &array,
                         Array *p_mask,
                         int    iterations = 1,
                         int    ir = 0,
-                        float  dt = 0.1f);
+                        float  dt = 0.1f); ///< @overload
 
 /**
  * @brief Use symmetry for to fill values at the domain borders, over a given
