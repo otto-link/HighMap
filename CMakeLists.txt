@@ -54,12 +54,14 @@ target_include_directories(
   ${PROJECT_NAME}
   PUBLIC ${PROJECT_SOURCE_DIR}/include
          ${PROJECT_SOURCE_DIR}/external/macro-logger
+         ${PROJECT_SOURCE_DIR}/external/FastNoiseLite/Cpp # public to retrieve
+                                                          # FastNoiseLite enum
+                                                          # in highmap headers
   PRIVATE ${PROJECT_SOURCE_DIR}/external/bezier/include/bezier
           ${PROJECT_SOURCE_DIR}/external/ # dendry & WavefrontObjWriter & hmm
           ${PROJECT_SOURCE_DIR}/external/cpp-spline/spline/src/main/cpp
           ${PROJECT_SOURCE_DIR}/external/dkm/include
           # ${PROJECT_SOURCE_DIR}/external/FastNoise2/include/FastNoise
-          ${PROJECT_SOURCE_DIR}/external/FastNoiseLite/Cpp
           ${PROJECT_SOURCE_DIR}/external/libInterpolate/src/libInterpolate
           ${PROJECT_SOURCE_DIR}/external/xsimd/include
           ${PROJECT_SOURCE_DIR}/src)

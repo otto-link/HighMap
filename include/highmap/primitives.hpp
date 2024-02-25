@@ -15,6 +15,8 @@
 #pragma once
 #include <functional>
 
+#include "FastNoiseLite.h"
+
 #include "highmap/vector.hpp"
 
 namespace hmap
@@ -49,6 +51,26 @@ Array sdf_generic(Vec2<int>                          shape,
                   Vec2<float>                        center,
                   Vec2<float>                        shift,
                   Vec2<float>                        scale);
+
+enum noise_type : int
+{
+  noise_simplex2 = FastNoiseLite::NoiseType_OpenSimplex2,
+  noise_simplex2s = FastNoiseLite::NoiseType_OpenSimplex2S,
+  noise_worley = FastNoiseLite::NoiseType_Cellular,
+  noise_perlin = FastNoiseLite::NoiseType_Perlin,
+  noise_value_cubic = FastNoiseLite::NoiseType_ValueCubic,
+  noise_value = FastNoiseLite::NoiseType_Value,
+  noise_perlin_billow,
+  noise_perlin_cliff
+};
+
+enum fractal_type : int
+{
+  fractal_none = FastNoiseLite::FractalType_None,
+  fractal_fbm = FastNoiseLite::FractalType_FBm,
+  fractal_ridged = FastNoiseLite::FractalType_Ridged,
+  fractal_pingpong = FastNoiseLite::FractalType_PingPong
+};
 
 /**
  * @brief Return a 'biquadratic pulse'.
@@ -276,6 +298,22 @@ Array dendry(Vec2<int>   shape,
              Array      *p_noise_y = nullptr,
              Vec2<float> shift = {0.f, 0.f},
              Vec2<float> scale = {1.f, 1.f});
+
+Array fbm(Vec2<int>   shape,
+          Vec2<float> kw,
+          uint        seed,
+          int         noise_type,
+          int         fractal_type,
+          int         octaves = 8,
+          float       weight = 0.7f,
+          float       persistence = 0.5f,
+          float       lacunarity = 2.f,
+          Array      *p_base_elevation = nullptr,
+          Array      *p_noise_x = nullptr,
+          Array      *p_noise_y = nullptr,
+          Array      *p_stretching = nullptr,
+          Vec2<float> shift = {0.f, 0.f},
+          Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return an array filled with an hybrid multifractal Perlin noise
@@ -506,47 +544,6 @@ Array fbm_worley_double(Vec2<int>   shape,
                         Array      *p_noise_y = nullptr,
                         Vec2<float> shift = {0.f, 0.f},
                         Vec2<float> scale = {1.f, 1.f});
-
-/**
- * @brief Return an array filled with a polyline Worley noise.
- *
- * @param shape Array shape.
- * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
- * a unit domain.
- * @param seed Random seed number.
- * @param decay Distance decay slope.
- * @param octaves Number of octaves.
- * @param persistence 'Persistence' is a multiplier that determines how
- * quickly the amplitude diminishes for each successive octave: choose
- * 'persistence' close to 0 for a smooth noise, and close 1 for a rougher
- * noise texture.
- * @param lacunarity Defines the wavenumber ratio between each octaves.
- * @param weigth Octave weighting.
- * @param p_noise_x, p_noise_y Reference to the input noise array used for
- * domain warping (NOT in pixels, with respect to a unit domain).
- * @param shift Noise shift {xs, ys} for each directions, with respect to a
- * unit domain.
- * @param scale Domain scaling, in [0, 1].
- * @return Array Fractal noise.
- *
- * **Example**
- * @include ex_worley_polyline.cpp
- *
- * **Result**
- * @image html ex_worley_polyline.png
- */
-Array fbm_worley_polyline(Vec2<int>   shape,
-                          float       kw,
-                          uint        seed,
-                          float       decay,
-                          int         octaves = 8,
-                          float       weight = 0.7f,
-                          float       persistence = 0.5f,
-                          float       lacunarity = 2.f,
-                          Array      *p_noise_x = nullptr,
-                          Array      *p_noise_y = nullptr,
-                          Vec2<float> shift = {0.f, 0.f},
-                          Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return a sparse Gabor noise.
@@ -1499,37 +1496,6 @@ Array worley_double(Vec2<int>   shape,
                     Array      *p_noise_y = nullptr,
                     Vec2<float> shift = {0.f, 0.f},
                     Vec2<float> scale = {1.f, 1.f});
-
-/**
- * @brief Return an array filled with a cellular-like noise, with a distance
- * computed to a polyline instead of a cloud of points.
- *
- * @param shape Array shape.
- * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
- * a unit domain.
- * @param seed Random seed number.
- * @param decay Distance decay slope.
- * @param p_noise_x, p_noise_y Reference to the input noise array used for
- * domain warping (NOT in pixels, with respect to a unit domain).
- * @param shift Noise shift {xs, ys} for each directions, with respect to a
- * unit domain.
- * @param scale Domain scaling, in [0, 1].
- * @return Array Output array.
- *
- * **Example**
- * @include ex_worley_polyline.cpp
- *
- * **Result**
- * @image html ex_worley_polyline.png
- */
-Array worley_polyline(Vec2<int>   shape,
-                      float       kw,
-                      uint        seed,
-                      float       decay,
-                      Array      *p_noise_x = nullptr,
-                      Array      *p_noise_y = nullptr,
-                      Vec2<float> shift = {0.f, 0.f},
-                      Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return an array filled with Worley (cellular) noise.

@@ -61,6 +61,7 @@ Array abs(const Array &array);
 Array abs_smooth(const Array &array, float mu, const Array &vshift);
 Array abs_smooth(const Array &array, float mu, float vshift); ///< @overload
 Array abs_smooth(const Array &array, float mu);               ///< @overload
+float abs_smooth(const float a, float mu);                    ///< @overload
 
 /**
  * @brief Apply the almost unit identity function.
