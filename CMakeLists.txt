@@ -8,6 +8,7 @@ project(
     "C++ library to generate two-dimensional terrain heightmaps for software rendering or video games."
 )
 
+option(HIGHMAP_ENABLE_OPENCL "" OFF)
 option(HIGHMAP_ENABLE_DOCS "" ON)
 option(HIGHMAP_ENABLE_EXAMPLES "" ON)
 option(HIGHMAP_ENABLE_TESTS "" ON)
@@ -50,6 +51,13 @@ file(GLOB_RECURSE SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 
 add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HMM_SRC} ${CPP_SPLINE_SRC})
 
+if(HIGHMAP_ENABLE_OPENCL)
+  message("OpenCL enabled")
+  target_compile_definitions(${PROJECT_NAME} PRIVATE ENABLE_OPENCL=1)
+else()
+  message("OpenCL disabled")
+endif(HIGHMAP_ENABLE_OPENCL)
+
 target_include_directories(
   ${PROJECT_NAME}
   PUBLIC ${PROJECT_SOURCE_DIR}/include
@@ -80,8 +88,10 @@ target_link_libraries(${PROJECT_NAME} Eigen3::Eigen)
 find_package(PNG REQUIRED) # libpng
 target_link_libraries(${PROJECT_NAME} PNG::PNG)
 
-find_package(OpenCL REQUIRED)
-target_link_libraries(${PROJECT_NAME} ${OpenCL_LIBRARIES})
+if(HIGHMAP_ENABLE_OPENCL)
+  find_package(OpenCL REQUIRED)
+  target_link_libraries(${PROJECT_NAME} ${OpenCL_LIBRARIES})
+endif(HIGHMAP_ENABLE_OPENCL)
 
 # set(FASTNOISE2_NOISETOOL OFF CACHE BOOL "Build Noise Tool" FORCE)
 # add_subdirectory(external/FastNoise2) target_compile_options(FastNoise PRIVATE
@@ -101,6 +111,9 @@ if(HIGHMAP_ENABLE_DOCS)
 endif(HIGHMAP_ENABLE_DOCS)
 
 if(HIGHMAP_ENABLE_EXAMPLES)
+  if(HIGHMAP_ENABLE_OPENCL)
+    set_directory_properties(PROPERTIES COMPILE_DEFINITIONS ENABLE_OPENCL=1)
+  endif(HIGHMAP_ENABLE_OPENCL)
   add_subdirectory(${PROJECT_SOURCE_DIR}/examples)
 endif(HIGHMAP_ENABLE_EXAMPLES)
 

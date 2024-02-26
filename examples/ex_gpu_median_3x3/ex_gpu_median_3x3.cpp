@@ -3,6 +3,7 @@
 
 int main(void)
 {
+#ifdef ENABLE_OPENCL
   hmap::Vec2<int> shape = {256, 512};
   int             seed = 1;
 
@@ -44,4 +45,7 @@ int main(void)
   hmap::export_banner_png("ex_gpu_median_3x3.png",
                           {z, z1, z2},
                           hmap::cmap::inferno);
+#else
+  LOG_ERROR("OpenCL not activated");
+#endif
 }

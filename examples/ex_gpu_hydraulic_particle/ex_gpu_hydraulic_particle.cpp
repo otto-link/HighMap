@@ -3,6 +3,7 @@
 
 int main(void)
 {
+#ifdef ENABLE_OPENCL
   hmap::Vec2<int>   shape = {256, 512};
   hmap::Vec2<float> res = {2.f, 4.f};
   int               seed = 1;
@@ -38,4 +39,7 @@ int main(void)
                           {z, z1},
                           hmap::cmap::terrain,
                           true);
+#else
+  LOG_ERROR("OpenCL not activated");
+#endif
 }

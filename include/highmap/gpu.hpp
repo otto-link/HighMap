@@ -12,9 +12,11 @@
  * @copyright Copyright (c) 2023
  *
  */
+#ifdef ENABLE_OPENCL
 #pragma once
 
-#define CL_HPP_TARGET_OPENCL_VERSION 300
+#define CL_HPP_MINIMUM_OPENCL_VERSION 120
+#define CL_HPP_TARGET_OPENCL_VERSION 120
 #include <CL/opencl.hpp>
 
 #include "highmap/array.hpp"
@@ -216,3 +218,5 @@ Array voronoise(
     const cl::NDRange local_work_size = HMAP_CL_DEFAULT_LOCAL_WORK_SIZE);
 
 } // namespace hmap::gpu
+
+#endif // ENABLE_OPENCL
