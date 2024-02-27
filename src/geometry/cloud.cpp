@@ -207,6 +207,7 @@ void Cloud::to_array_interp(Array      &array,
                    yg,
                    p_noise_x,
                    p_noise_y,
+		   nullptr,
                    [&interp](float x_, float y_) { return interp(x_, y_); });
 }
 

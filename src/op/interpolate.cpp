@@ -24,8 +24,6 @@ Array interpolate2d(Vec2<int>          shape,
                     Vec2<float>        shift,
                     Vec2<float>        scale)
 {
-  Array array_out = Array(shape);
-
   // create interpolator
   _2D::AnyInterpolator<
       float,
@@ -48,12 +46,14 @@ Array interpolate2d(Vec2<int>          shape,
   std::vector<float> xi = linspace(shift.x, shift.x + scale.x, shape.x, false);
   std::vector<float> yi = linspace(shift.y, shift.y + scale.y, shape.y, false);
 
-  array_out = helper_get_noise(xi,
-                               yi,
-                               p_noise_x,
-                               p_noise_y,
-                               [&interp](float x_, float y_)
-                               { return interp(x_, y_); });
+  Array array_out = Array(shape);
+  helper_get_noise(array_out,
+                   xi,
+                   yi,
+                   p_noise_x,
+                   p_noise_y,
+                   nullptr,
+                   [&interp](float x_, float y_) { return interp(x_, y_); });
 
   return array_out;
 }

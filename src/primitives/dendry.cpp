@@ -84,6 +84,7 @@ Array dendry(Vec2<int>   shape,
                    y,
                    p_noise_x,
                    p_noise_y,
+                   nullptr,
                    [&noise](float x_, float y_)
                    { return noise.evaluateTerrain(x_, y_); });
 

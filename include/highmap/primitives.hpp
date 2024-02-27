@@ -23,18 +23,6 @@ namespace hmap
 {
 
 // TODO move somewhere else (e.g. private include)
-void helper_get_noise(Array                             &array,
-                      std::vector<float>                &x,
-                      std::vector<float>                &y,
-                      Array                             *p_noise_x,
-                      Array                             *p_noise_y,
-                      std::function<float(float, float)> noise_fct);
-
-Array helper_get_noise(std::vector<float>                &x,
-                       std::vector<float>                &y,
-                       Array                             *p_noise_x,
-                       Array                             *p_noise_y,
-                       std::function<float(float, float)> noise_fct);
 
 void helper_get_noise(Array                             &array,
                       std::vector<float>                &x,

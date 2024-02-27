@@ -43,6 +43,7 @@ Array value_noise(Vec2<int>   shape,
                    y,
                    p_noise_x,
                    p_noise_y,
+                   nullptr,
                    [&noise](float x_, float y_)
                    { return noise.GetNoise(x_, y_); });
   return array;

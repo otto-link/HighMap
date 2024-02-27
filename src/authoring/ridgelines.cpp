@@ -49,8 +49,10 @@ Array base_elevation(Vec2<int>                       shape,
                    s2y * (y_ - yc[q]) * (y_ - yc[q]);
         return std::exp(-r2);
       };
-      array += values[p][q] *
-               helper_get_noise(x, y, p_noise_x, p_noise_y, lambda);
+
+      Array array_tmp = Array(array.shape);
+      helper_get_noise(array_tmp, x, y, p_noise_x, p_noise_y, nullptr, lambda);
+      array += values[p][q] * array_tmp;
     }
 
   return array;
@@ -70,8 +72,6 @@ Array ridgelines(Vec2<int>          shape,
                  Vec2<float>        shift,
                  Vec2<float>        scale)
 {
-  Array array = Array(shape);
-
   std::vector<float> x = linspace(shift.x, shift.x + scale.x, shape.x, false);
   std::vector<float> y = linspace(shift.y, shift.y + scale.y, shape.y, false);
 
@@ -149,7 +149,8 @@ Array ridgelines(Vec2<int>          shape,
     };
 
   // eventually fill array
-  array = helper_get_noise(x, y, p_noise_x, p_noise_y, lambda);
+  Array array = Array(shape);
+  helper_get_noise(array, x, y, p_noise_x, p_noise_y, nullptr, lambda);
 
   return array;
 }
