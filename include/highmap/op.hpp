@@ -918,6 +918,21 @@ Array gradient_y(const Array &array);
 void gradient_y(const Array &array, Array &dy); ///< @overload
 
 /**
+ * @brief Return the Gaussian of the array elements.
+ *
+ * @param array Input array.
+ * @param sigma Gaussian half-width.
+ * @return Array Reference to the current object.
+ *
+ * **Example**
+ * @include ex_gaussian.cpp
+ *
+ * **Result**
+ * @image html ex_gaussian.png
+ */
+Array gaussian(const Array &array, float sigma);
+
+/**
  * @brief Return the shaded relief map (or hillshading).
  *
  * @param z Input array.

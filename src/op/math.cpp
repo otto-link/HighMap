@@ -97,6 +97,17 @@ Array exp(const Array &array)
   return array_out;
 }
 
+Array gaussian(const Array &array, float sigma)
+{
+  float coeff = 0.5f / (sigma * sigma);
+  Array array_out = Array(array.shape);
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array_out.vector.begin(),
+                 [&coeff](float v) { return std::exp(-coeff * v * v); });
+  return array_out;
+}
+
 Array hypot(const Array &array1, const Array &array2)
 {
   Array array_out = Array(array1.shape);
