@@ -32,8 +32,6 @@ enum noise_type : int
   noise_perlin = FastNoiseLite::NoiseType_Perlin,           ///< Perlin
   noise_value_cubic = FastNoiseLite::NoiseType_ValueCubic,  ///< Value (cubic)
   noise_value = FastNoiseLite::NoiseType_Value,             ///< Value
-  noise_perlin_billow,                                      ///< Perlin billow
-  noise_perlin_cliff                                        ///< Perlin cliff
 };
 
 /**

@@ -28,6 +28,12 @@ float compute_fractal_bounding(int octaves, float persistence)
   return 1.f / amp_fractal;
 }
 
+static float ping_pong(float t)
+{
+  t -= (int)(t * 0.5f) * 2;
+  return t < 1 ? t : 2 - t;
+}
+
 //----------------------------------------------------------------------
 // Main operator(s)
 //----------------------------------------------------------------------
@@ -53,60 +59,24 @@ Array fbm(Vec2<int>   shape,
 {
   FastNoiseLite noise(seed);
 
-  // fractal parameters
-  noise.SetFractalType(static_cast<FastNoiseLite::FractalType>(fractal_type));
+  // --- define base noise function
 
-  if (fractal_type != fractal_type::fractal_none)
-  {
-    noise.SetFractalOctaves(octaves);
-    noise.SetFractalLacunarity(lacunarity);
-    noise.SetFractalGain(persistence);
-    noise.SetFractalWeightedStrength(weight);
-  }
-
-  // noise primitive parameters
-  std::function<float(float, float)> noise_fct;
+  std::function<float(float, float, uint)> noise_fct;
 
   // frequency
   if (noise_type == noise_type::noise_simplex2 ||
-      noise_type == noise_type::noise_simplex2s ||
-      noise_type == noise_type::noise_perlin_billow ||
-      noise_type == noise_type::noise_perlin_cliff)
+      noise_type == noise_type::noise_simplex2s)
     noise.SetFrequency(0.5f);
   else
     noise.SetFrequency(1.0f);
 
-  // adjust noise function
-  switch (noise_type)
+  // noise function
+  noise.SetNoiseType(static_cast<FastNoiseLite::NoiseType>(noise_type));
+  noise_fct = [&noise](float x_, float y_, uint seed_)
   {
-  case (noise_type::noise_perlin_billow):
-  {
-    noise.SetNoiseType(FastNoiseLite::NoiseType_Perlin);
-    noise_fct = [&noise](float x_, float y_)
-    {
-      float smoothing_parameter = 0.05f;
-      return 2.f * abs_smooth(noise.GetNoise(x_, y_), smoothing_parameter) -
-             1.f;
-    };
-    break;
-  }
-  case (noise_type::noise_perlin_cliff):
-  {
-    noise.SetNoiseType(FastNoiseLite::NoiseType_Perlin);
-    noise_fct = [&noise](float x_, float y_)
-    {
-      float smoothing_parameter = 0.01f;
-      float value = noise.GetNoise(x_, y_);
-      return 0.5f * value - abs_smooth(value, smoothing_parameter) - 0.5f;
-    };
-    break;
-  }
-  default:
-  {
-    noise.SetNoiseType(static_cast<FastNoiseLite::NoiseType>(noise_type));
-    noise_fct = [&noise](float x_, float y_) { return noise.GetNoise(x_, y_); };
-  }
-  }
+    noise.SetSeed(seed_);
+    return noise.GetNoise(x_, y_);
+  };
 
   std::vector<float> x = linspace(kw.x * shift.x,
                                   kw.x * (shift.x + scale.x),
@@ -117,6 +87,121 @@ Array fbm(Vec2<int>   shape,
                                   shape.y,
                                   false);
 
+  // --- fractal layering function
+
+  std::function<float(float, float)> fractal_fct;
+  float amp0 = compute_fractal_bounding(octaves, persistence);
+
+  switch (fractal_type)
+  {
+  case (fractal_type::fractal_none):
+  {
+    fractal_fct = [&noise_fct, &seed](float x_, float y_)
+    { return noise_fct(x_, y_, seed); };
+  }
+  break;
+  //
+  case (fractal_type::fractal_fbm):
+  {
+    fractal_fct = [&amp0,
+                   &seed,
+                   &octaves,
+                   &weight,
+                   &persistence,
+                   &lacunarity,
+                   &noise_fct](float x_, float y_)
+    {
+      float sum = 0.f;
+      float amp = amp0;
+      float ki = 1.f;
+      float kj = 1.f;
+      int   kseed = seed;
+
+      for (int k = 0; k < octaves; k++)
+      {
+        float value = noise_fct(ki * x_, kj * y_, kseed++);
+        sum += value * amp;
+        amp *= (1.f - weight) + weight * std::min(value + 1.f, 2.f) * 0.5f;
+
+        ki *= lacunarity;
+        kj *= lacunarity;
+        amp *= persistence;
+      }
+      return sum;
+    };
+  }
+  break;
+  //
+  case (fractal_type::fractal_ridged):
+  {
+    fractal_fct = [&amp0,
+                   &seed,
+                   &octaves,
+                   &weight,
+                   &persistence,
+                   &lacunarity,
+                   &noise_fct](float x_, float y_)
+    {
+      float sum = 0.f;
+      float amp = amp0;
+      float ki = 1.f;
+      float kj = 1.f;
+      int   kseed = seed;
+
+      for (int k = 0; k < octaves; k++)
+      {
+        float value = std::abs(noise_fct(ki * x_, kj * y_, kseed++));
+        sum += (value * -2.f + 1.f) * amp;
+        amp *= (1.f - weight) + weight * (1.f - value);
+
+        ki *= lacunarity;
+        kj *= lacunarity;
+        amp *= persistence;
+      }
+      return sum;
+    };
+  }
+  break;
+  //
+  case (fractal_type::fractal_pingpong):
+  {
+    fractal_fct = [&amp0,
+                   &seed,
+                   &octaves,
+                   &weight,
+                   &persistence,
+                   &lacunarity,
+                   &noise_fct](float x_, float y_)
+    {
+      float sum = 0.f;
+      float amp = amp0;
+      float ki = 1.f;
+      float kj = 1.f;
+      int   kseed = seed;
+
+      for (int k = 0; k < octaves; k++)
+      {
+        float value = ping_pong((noise_fct(ki * x_, kj * y_, kseed++) + 1.f) *
+                                2.f);
+        sum += (value - 0.5f) * 2.f * amp;
+        amp *= (1.f - weight) + weight * value;
+
+        ki *= lacunarity;
+        kj *= lacunarity;
+        amp *= persistence;
+      }
+      return sum;
+    };
+  }
+  break;
+  //
+  default:
+  {
+    LOG_ERROR("unknown fractal type");
+    throw std::runtime_error("unknown fractal type");
+  }
+  }
+
   // --- fill output array
   Array array = Array(shape);
   fill_array_using_xy_function(array,
@@ -125,7 +210,7 @@ Array fbm(Vec2<int>   shape,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
-                               noise_fct);
+                               fractal_fct);
 
   return array;
 }

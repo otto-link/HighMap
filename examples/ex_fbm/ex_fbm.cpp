@@ -12,9 +12,7 @@ int main(void)
                                  hmap::noise_type::noise_worley,
                                  hmap::noise_type::noise_perlin,
                                  hmap::noise_type::noise_value_cubic,
-                                 hmap::noise_type::noise_value,
-                                 hmap::noise_type::noise_perlin_billow,
-                                 hmap::noise_type::noise_perlin_cliff};
+                                 hmap::noise_type::noise_value};
 
   std::vector<int> fractal_list = {hmap::fractal_type::fractal_none,
                                    hmap::fractal_type::fractal_fbm,
@@ -48,14 +46,6 @@ int main(void)
     hmap::remap(n);
     z2 = hstack(z2, n);
   }
-
-  auto z3 = hmap::fbm(shape,
-                      res,
-                      seed,
-                      hmap::noise_type::noise_perlin_cliff,
-                      hmap::fractal_type::fractal_fbm);
-
-  // hmap::export_wavefront_obj("hmap.obj", z3);
 
   z1.to_png("ex_fbm0.png", hmap::cmap::terrain, true);
   z2.to_png("ex_fbm1.png", hmap::cmap::terrain, true);
