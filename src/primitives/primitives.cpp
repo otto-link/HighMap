@@ -140,16 +140,6 @@ Array gaussian_pulse(Vec2<int>   shape,
   return array;
 }
 
-Array plane(Vec2<int>   shape,
-            float       talus,
-            float       yaw_angle,
-            Vec3<float> xyz_center)
-{
-  Array array = Array(shape);
-  // TODO !!!
-  return array;
-}
-
 Array slope(Vec2<int>   shape,
             float       angle,
             float       talus,

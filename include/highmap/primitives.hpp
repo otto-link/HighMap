@@ -789,29 +789,6 @@ Array pingpong_perlin(Vec2<int>   shape,
                       Vec2<float> scale = {1.f, 1.f});
 
 /**
- * @brief Return an array based on a plane equation.
- *
- * @todo TO BE DONE.
- *
- * @param shape Array shape.
- * @param talus Plane talus.
- * @param yaw_angle Plane yaw_angle.
- * @param xyz_center Reference point: the plane passes through this point,
- * which can be anywhere.
- * @return Array New array.
- *
- * **Example**
- * @include ex_plane.cpp
- *
- * **Result**
- * @image html ex_plane.png
- */
-Array plane(Vec2<int>   shape,
-            float       talus,
-            float       yaw_angle,
-            Vec3<float> xyz_center);
-
-/**
  * @brief Return an array filled with a ridged hybrid multifractal Perlin
  * noise.
  *
