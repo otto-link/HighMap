@@ -26,4 +26,5 @@ done
 
 
 # format cmake files
-cmake-format -i CMakeLists.txt
+cmake-format -i CMakeLists.txt HighMap/CMakeLists.txt external/CMakeLists.txt external/*.cmake
+
