@@ -748,13 +748,17 @@ Array Path::to_array_sdf(Vec2<int>   shape,
   else
     distance_fct = [this](float x, float y) { return this->sdf_open(x, y); };
 
-  Array z = sdf_generic(shape,
-                        distance_fct,
-                        p_noise_x,
-                        p_noise_y,
-                        Vec2<float>(0.f, 0.f), // center at bottom-left
-                        shift,
-                        scale);
+  std::vector<float> x = linspace(shift.x, scale.x + shift.x, shape.x, false);
+  std::vector<float> y = linspace(shift.y, scale.y + shift.y, shape.y, false);
+
+  Array z = Array(shape);
+  fill_array_using_xy_function(z,
+                               x,
+                               y,
+                               p_noise_x,
+                               p_noise_y,
+                               nullptr,
+                               distance_fct);
 
   return z;
 }

@@ -13,7 +13,6 @@
  *
  */
 #pragma once
-#include <functional>
 
 #include "FastNoiseLite.h"
 
@@ -22,42 +21,30 @@
 namespace hmap
 {
 
-// TODO move somewhere else (e.g. private include)
-
-void helper_get_noise(Array                             &array,
-                      std::vector<float>                &x,
-                      std::vector<float>                &y,
-                      Array                             *p_noise_x,
-                      Array                             *p_noise_y,
-                      Array                             *p_stretching,
-                      std::function<float(float, float)> noise_fct);
-
-Array sdf_generic(Vec2<int>                          shape,
-                  std::function<float(float, float)> distance_fct,
-                  Array                             *p_noise_x,
-                  Array                             *p_noise_y,
-                  Vec2<float>                        center,
-                  Vec2<float>                        shift,
-                  Vec2<float>                        scale);
-
+/**
+ * @brief Noise type.
+ */
 enum noise_type : int
 {
-  noise_simplex2 = FastNoiseLite::NoiseType_OpenSimplex2,
-  noise_simplex2s = FastNoiseLite::NoiseType_OpenSimplex2S,
-  noise_worley = FastNoiseLite::NoiseType_Cellular,
-  noise_perlin = FastNoiseLite::NoiseType_Perlin,
-  noise_value_cubic = FastNoiseLite::NoiseType_ValueCubic,
-  noise_value = FastNoiseLite::NoiseType_Value,
-  noise_perlin_billow,
-  noise_perlin_cliff
+  noise_simplex2 = FastNoiseLite::NoiseType_OpenSimplex2,   ///< OpenSimplex2
+  noise_simplex2s = FastNoiseLite::NoiseType_OpenSimplex2S, ///< OpenSimplex2S
+  noise_worley = FastNoiseLite::NoiseType_Cellular,         ///< Worley
+  noise_perlin = FastNoiseLite::NoiseType_Perlin,           ///< Perlin
+  noise_value_cubic = FastNoiseLite::NoiseType_ValueCubic,  ///< Value (cubic)
+  noise_value = FastNoiseLite::NoiseType_Value,             ///< Value
+  noise_perlin_billow,                                      ///< Perlin billow
+  noise_perlin_cliff                                        ///< Perlin cliff
 };
 
+/**
+ * @brief Fractal type.
+ */
 enum fractal_type : int
 {
-  fractal_none = FastNoiseLite::FractalType_None,
-  fractal_fbm = FastNoiseLite::FractalType_FBm,
-  fractal_ridged = FastNoiseLite::FractalType_Ridged,
-  fractal_pingpong = FastNoiseLite::FractalType_PingPong
+  fractal_none = FastNoiseLite::FractalType_None,     ///< No fractal layering
+  fractal_fbm = FastNoiseLite::FractalType_FBm,       ///< Fbm layering
+  fractal_ridged = FastNoiseLite::FractalType_Ridged, ///< Ridged layering
+  fractal_pingpong = FastNoiseLite::FractalType_PingPong ///< PingPong layering
 };
 
 /**

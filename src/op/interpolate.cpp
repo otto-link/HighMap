@@ -47,13 +47,14 @@ Array interpolate2d(Vec2<int>          shape,
   std::vector<float> yi = linspace(shift.y, shift.y + scale.y, shape.y, false);
 
   Array array_out = Array(shape);
-  helper_get_noise(array_out,
-                   xi,
-                   yi,
-                   p_noise_x,
-                   p_noise_y,
-                   nullptr,
-                   [&interp](float x_, float y_) { return interp(x_, y_); });
+  fill_array_using_xy_function(array_out,
+                               xi,
+                               yi,
+                               p_noise_x,
+                               p_noise_y,
+                               nullptr,
+                               [&interp](float x_, float y_)
+                               { return interp(x_, y_); });
 
   return array_out;
 }

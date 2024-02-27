@@ -40,7 +40,7 @@ Array biquad_pulse(Vec2<int>   shape,
     return std::pow(v, gain_inv);
   };
 
-  helper_get_noise(z, x, y, p_noise_x, p_noise_y, nullptr, lambda);
+  fill_array_using_xy_function(z, x, y, p_noise_x, p_noise_y, nullptr, lambda);
 
   return z;
 }
@@ -72,7 +72,7 @@ Array bump(Vec2<int>   shape,
                       : std::pow(std::exp(-1.f / (1.f - 4.f * r2)), gain_inv);
   };
 
-  helper_get_noise(z, x, y, p_noise_x, p_noise_y, nullptr, lambda);
+  fill_array_using_xy_function(z, x, y, p_noise_x, p_noise_y, nullptr, lambda);
 
   return z;
 }
@@ -450,84 +450,6 @@ Array wave_triangular(Vec2<int>   shape,
         array(i, j) = lambda(ca * x[i] + sa * y[j] + phase_shift);
 
   return array;
-}
-
-//----------------------------------------------------------------------
-// Helper
-//----------------------------------------------------------------------
-
-void helper_get_noise(Array                             &array,
-                      std::vector<float>                &x,
-                      std::vector<float>                &y,
-                      Array                             *p_noise_x,
-                      Array                             *p_noise_y,
-                      Array                             *p_stretching,
-                      std::function<float(float, float)> noise_fct)
-{
-  Vec2<int> shape = array.shape;
-
-  if (p_stretching) // with stretching
-  {
-    if ((!p_noise_x) and (!p_noise_y))
-    {
-      for (int i = 0; i < shape.x; i++)
-        for (int j = 0; j < shape.y; j++)
-          array(i, j) = noise_fct(x[i] * (*p_stretching)(i, j),
-                                  y[j] * (*p_stretching)(i, j));
-    }
-    else if (p_noise_x and (!p_noise_y))
-    {
-      for (int i = 0; i < shape.x; i++)
-        for (int j = 0; j < shape.y; j++)
-          array(i, j) = noise_fct(x[i] * (*p_stretching)(i, j) +
-                                      (*p_noise_x)(i, j),
-                                  y[j] * (*p_stretching)(i, j));
-    }
-    else if ((!p_noise_x) and p_noise_y)
-    {
-      for (int i = 0; i < shape.x; i++)
-        for (int j = 0; j < shape.y; j++)
-          array(i, j) = noise_fct(x[i] * (*p_stretching)(i, j),
-                                  y[j] * (*p_stretching)(i, j) +
-                                      (*p_noise_y)(i, j));
-    }
-    else if (p_noise_x and p_noise_y)
-    {
-      for (int i = 0; i < shape.x; i++)
-        for (int j = 0; j < shape.y; j++)
-          array(i, j) = noise_fct(
-              x[i] * (*p_stretching)(i, j) + (*p_noise_x)(i, j),
-              y[j] * (*p_stretching)(i, j) + (*p_noise_y)(i, j));
-    }
-  }
-  else // without stretching
-  {
-    if ((!p_noise_x) and (!p_noise_y))
-    {
-      for (int i = 0; i < shape.x; i++)
-        for (int j = 0; j < shape.y; j++)
-          array(i, j) = noise_fct(x[i], y[j]);
-    }
-    else if (p_noise_x and (!p_noise_y))
-    {
-      for (int i = 0; i < shape.x; i++)
-        for (int j = 0; j < shape.y; j++)
-          array(i, j) = noise_fct(x[i] + (*p_noise_x)(i, j), y[j]);
-    }
-    else if ((!p_noise_x) and p_noise_y)
-    {
-      for (int i = 0; i < shape.x; i++)
-        for (int j = 0; j < shape.y; j++)
-          array(i, j) = noise_fct(x[i], y[j] + (*p_noise_y)(i, j));
-    }
-    else if (p_noise_x and p_noise_y)
-    {
-      for (int i = 0; i < shape.x; i++)
-        for (int j = 0; j < shape.y; j++)
-          array(i, j) = noise_fct(x[i] + (*p_noise_x)(i, j),
-                                  y[j] + (*p_noise_y)(i, j));
-    }
-  }
 }
 
 } // namespace hmap

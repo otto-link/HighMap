@@ -36,14 +36,14 @@ Array perlin(Vec2<int>   shape,
                                   array.shape.y,
                                   false);
 
-  helper_get_noise(array,
-                   x,
-                   y,
-                   p_noise_x,
-                   p_noise_y,
-                   p_stretching,
-                   [&noise](float x_, float y_)
-                   { return noise.GetNoise(x_, y_); });
+  fill_array_using_xy_function(array,
+                               x,
+                               y,
+                               p_noise_x,
+                               p_noise_y,
+                               p_stretching,
+                               [&noise](float x_, float y_)
+                               { return noise.GetNoise(x_, y_); });
   return array;
 }
 
@@ -70,14 +70,15 @@ Array perlin_billow(Vec2<int>   shape,
                                   array.shape.y,
                                   false);
 
-  helper_get_noise(array,
-                   x,
-                   y,
-                   p_noise_x,
-                   p_noise_y,
-                   nullptr,
-                   [&noise](float x_, float y_)
-                   { return 2.f * std::abs(noise.GetNoise(x_, y_)) - 1.f; });
+  fill_array_using_xy_function(
+      array,
+      x,
+      y,
+      p_noise_x,
+      p_noise_y,
+      nullptr,
+      [&noise](float x_, float y_)
+      { return 2.f * std::abs(noise.GetNoise(x_, y_)) - 1.f; });
 
   return array;
 }
@@ -105,17 +106,17 @@ Array perlin_mix(Vec2<int>   shape,
                                   array.shape.y,
                                   false);
 
-  helper_get_noise(array,
-                   x,
-                   y,
-                   p_noise_x,
-                   p_noise_y,
-                   nullptr,
-                   [&noise](float x_, float y_)
-                   {
-                     return 0.5f * noise.GetNoise(x_, y_) +
-                            std::abs(noise.GetNoise(x_, y_)) - 0.5f;
-                   });
+  fill_array_using_xy_function(array,
+                               x,
+                               y,
+                               p_noise_x,
+                               p_noise_y,
+                               nullptr,
+                               [&noise](float x_, float y_)
+                               {
+                                 return 0.5f * noise.GetNoise(x_, y_) +
+                                        std::abs(noise.GetNoise(x_, y_)) - 0.5f;
+                               });
   return array;
 }
 

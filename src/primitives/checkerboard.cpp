@@ -33,7 +33,13 @@ Array checkerboard(Vec2<int>   shape,
                     std::abs((int)std::floor(y_) % 2));
   };
 
-  helper_get_noise(array, x, y, p_noise_x, p_noise_y, nullptr, lambda);
+  fill_array_using_xy_function(array,
+                               x,
+                               y,
+                               p_noise_x,
+                               p_noise_y,
+                               nullptr,
+                               lambda);
   return array;
 }
 

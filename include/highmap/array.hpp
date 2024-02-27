@@ -17,6 +17,7 @@ typedef unsigned int uint;
 
 #include <algorithm>
 #include <cmath>
+#include <functional>
 #include <iomanip>
 #include <iostream>
 #include <numeric>
@@ -491,6 +492,26 @@ public:
    * @return Array Reference to the resulting object.
    */
   friend Array hstack(const Array &array1, const Array &array2);
+
+  /**
+   * @brief Fill array using a scalar function based on (x, y) coordinates.
+   *
+   * @param array Array to fill.
+   * @param x Grid x coordinates.
+   * @param y Grid y coordinates.
+   * @param p_noise_x, p_noise_y Reference to the input noise array used for
+   * domain warping (NOT in pixels, with respect to a unit domain).
+   * @param p_stretching Local wavenumber multiplier.
+   * @param fct_xy (x, y) scalar function.
+   */
+  friend void fill_array_using_xy_function(
+      Array                             &array,
+      std::vector<float>                &x,
+      std::vector<float>                &y,
+      Array                             *p_noise_x,
+      Array                             *p_noise_y,
+      Array                             *p_stretching,
+      std::function<float(float, float)> fct_xy);
 
   /**
    * @brief Import array from raw binary file.

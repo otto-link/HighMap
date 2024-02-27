@@ -38,14 +38,14 @@ Array value_noise(Vec2<int>   shape,
                                   array.shape.y,
                                   false);
 
-  helper_get_noise(array,
-                   x,
-                   y,
-                   p_noise_x,
-                   p_noise_y,
-                   nullptr,
-                   [&noise](float x_, float y_)
-                   { return noise.GetNoise(x_, y_); });
+  fill_array_using_xy_function(array,
+                               x,
+                               y,
+                               p_noise_x,
+                               p_noise_y,
+                               nullptr,
+                               [&noise](float x_, float y_)
+                               { return noise.GetNoise(x_, y_); });
   return array;
 }
 

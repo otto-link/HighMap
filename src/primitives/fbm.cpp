@@ -119,7 +119,13 @@ Array fbm(Vec2<int>   shape,
 
   // --- fill output array
   Array array = Array(shape);
-  helper_get_noise(array, x, y, p_noise_x, p_noise_y, p_stretching, noise_fct);
+  fill_array_using_xy_function(array,
+                               x,
+                               y,
+                               p_noise_x,
+                               p_noise_y,
+                               p_stretching,
+                               noise_fct);
 
   return array;
 }

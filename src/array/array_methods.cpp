@@ -1,7 +1,7 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
-
+#include <functional>
 #include <vector>
 
 #include "macrologger.h"
@@ -119,6 +119,80 @@ Array Array::extract_slice(Vec4<int> idx)
       array_out(i - idx.a, j - idx.c) = (*this)(i, j);
 
   return array_out;
+}
+
+void fill_array_using_xy_function(Array              &array,
+                                  std::vector<float> &x,
+                                  std::vector<float> &y,
+                                  Array              *p_noise_x,
+                                  Array              *p_noise_y,
+                                  Array              *p_stretching,
+                                  std::function<float(float, float)> fct_xy)
+{
+  Vec2<int> shape = array.shape;
+
+  if (p_stretching) // with stretching
+  {
+    if ((!p_noise_x) and (!p_noise_y))
+    {
+      for (int i = 0; i < shape.x; i++)
+        for (int j = 0; j < shape.y; j++)
+          array(i, j) = fct_xy(x[i] * (*p_stretching)(i, j),
+                               y[j] * (*p_stretching)(i, j));
+    }
+    else if (p_noise_x and (!p_noise_y))
+    {
+      for (int i = 0; i < shape.x; i++)
+        for (int j = 0; j < shape.y; j++)
+          array(i,
+                j) = fct_xy(x[i] * (*p_stretching)(i, j) + (*p_noise_x)(i, j),
+                            y[j] * (*p_stretching)(i, j));
+    }
+    else if ((!p_noise_x) and p_noise_y)
+    {
+      for (int i = 0; i < shape.x; i++)
+        for (int j = 0; j < shape.y; j++)
+          array(i,
+                j) = fct_xy(x[i] * (*p_stretching)(i, j),
+                            y[j] * (*p_stretching)(i, j) + (*p_noise_y)(i, j));
+    }
+    else if (p_noise_x and p_noise_y)
+    {
+      for (int i = 0; i < shape.x; i++)
+        for (int j = 0; j < shape.y; j++)
+          array(i,
+                j) = fct_xy(x[i] * (*p_stretching)(i, j) + (*p_noise_x)(i, j),
+                            y[j] * (*p_stretching)(i, j) + (*p_noise_y)(i, j));
+    }
+  }
+  else // without stretching
+  {
+    if ((!p_noise_x) and (!p_noise_y))
+    {
+      for (int i = 0; i < shape.x; i++)
+        for (int j = 0; j < shape.y; j++)
+          array(i, j) = fct_xy(x[i], y[j]);
+    }
+    else if (p_noise_x and (!p_noise_y))
+    {
+      for (int i = 0; i < shape.x; i++)
+        for (int j = 0; j < shape.y; j++)
+          array(i, j) = fct_xy(x[i] + (*p_noise_x)(i, j), y[j]);
+    }
+    else if ((!p_noise_x) and p_noise_y)
+    {
+      for (int i = 0; i < shape.x; i++)
+        for (int j = 0; j < shape.y; j++)
+          array(i, j) = fct_xy(x[i], y[j] + (*p_noise_y)(i, j));
+    }
+    else if (p_noise_x and p_noise_y)
+    {
+      for (int i = 0; i < shape.x; i++)
+        for (int j = 0; j < shape.y; j++)
+          array(i, j) = fct_xy(x[i] + (*p_noise_x)(i, j),
+                               y[j] + (*p_noise_y)(i, j));
+    }
+  }
 }
 
 float Array::get_gradient_x_at(int i, int j) const
