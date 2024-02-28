@@ -16,6 +16,11 @@
 namespace hmap
 {
 
+void recast_billow(Array &array, float vref, float k)
+{
+  array = 2.f * (vref + abs_smooth(array - vref, k)) - 1.f;
+}
+
 void recast_canyon(Array &array, const Array &vcut, float gamma)
 {
   auto lambda = [&gamma](float a, float b)
@@ -275,6 +280,11 @@ void recast_rocky_slopes(Array &array,
       array = lerp(array, array_f, *(p_mask));
     }
   }
+}
+
+void recast_sag(Array &array, float vref, float k)
+{
+  array = 0.5f * array + vref - abs_smooth(array - vref, k);
 }
 
 } // namespace hmap

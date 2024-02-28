@@ -294,7 +294,7 @@ Array Array::operator-(float value) const
   std::transform(this->vector.begin(),
                  this->vector.end(),
                  array_out.vector.begin(),
-                 [&value](float v) { return v / value; });
+                 [&value](float v) { return v - value; });
   return array_out;
 }
 

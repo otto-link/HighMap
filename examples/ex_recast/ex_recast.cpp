@@ -54,8 +54,21 @@ int main(void)
     hmap::remap(z5);
   }
 
+  auto z6 = z;
+  auto z7 = z;
+  {
+    float k = 0.01f;
+
+    hmap::recast_billow(z6, 0.5f, k);
+    hmap::remap(z6);
+
+    hmap::recast_sag(z7, 0.5f, k);
+    hmap::remap(z7);
+    z7.infos();
+  }
+
   hmap::export_banner_png("ex_recast.png",
-                          {z, z1, z2, z3, z4, z5},
+                          {z, z1, z2, z3, z4, z5, z6, z7},
                           hmap::cmap::terrain,
                           true);
 }

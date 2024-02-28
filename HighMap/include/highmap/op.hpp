@@ -1443,6 +1443,21 @@ Array pow(const Array &array, float exp);
 std::vector<float> random_vector(float min, float max, int num, int seed);
 
 /**
+ * @brief Transform heightmap to give a "billow" like appearance.
+ *
+ * @param array Input array.
+ * @param vref Reference elevation where the elevation is folded.
+ * @param k Smoothing coefficient.
+ *
+ * **Example**
+ * @include ex_recast.cpp
+ *
+ * **Result**
+ * @image html ex_recast.png
+ */
+void recast_billow(Array &array, float vref, float k);
+
+/**
  * @brief Transform heightmap to give a "canyon" like appearance.
  *
  * @param array Input array.
@@ -1581,6 +1596,21 @@ void recast_rocky_slopes(Array &array,
                          Array *p_mask,
                          float  gamma = 0.5f,
                          Array *p_noise = nullptr);
+
+/**
+ * @brief Transform heightmap to give a "cliff" like appearance.
+ *
+ * @param array Input array.
+ * @param vref Reference elevation where the elevation is folded.
+ * @param k Smoothing coefficient.
+ *
+ * **Example**
+ * @include ex_recast.cpp
+ *
+ * **Result**
+ * @image html ex_recast.png
+ */
+void recast_sag(Array &array, float vref, float k);
 
 /**
  * @brief Apply a curve adjustment filter to the array.
