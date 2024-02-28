@@ -33,7 +33,7 @@ Array biquad_pulse(Vec2<int>   shape,
 
   float gain_inv = 1.f / gain;
 
-  auto lambda = [&gain_inv](float x_, float y_)
+  auto lambda = [&gain_inv](float x_, float y_, float)
   {
     float v = (x_ * x_ - 0.25f) * (y_ * y_ - 0.25f);
     v = std::clamp(v, 0.f, 1.f);
@@ -65,7 +65,7 @@ Array bump(Vec2<int>   shape,
 
   float gain_inv = 1.f / gain;
 
-  auto lambda = [&gain_inv](float x_, float y_)
+  auto lambda = [&gain_inv](float x_, float y_, float)
   {
     float r2 = x_ * x_ + y_ * y_;
     return r2 > 0.25f ? 0.f

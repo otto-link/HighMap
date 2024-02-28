@@ -24,7 +24,7 @@ Array sdf_circle(Vec2<int>   shape,
                  Vec2<float> shift,
                  Vec2<float> scale)
 {
-  auto distance_fct = [&radius](float x, float y)
+  auto distance_fct = [&radius](float x, float y, float)
   { return std::hypot(x, y) - radius; };
 
   std::vector<float> x = linspace(shift.x - center.x,
@@ -57,7 +57,8 @@ Array sdf_polyline(Vec2<int>          shape,
 {
   Path path = Path(xp, yp);
 
-  auto distance_fct = [&path](float x, float y) { return path.sdf_open(x, y); };
+  auto distance_fct = [&path](float x, float y, float)
+  { return path.sdf_open(x, y); };
 
   std::vector<float> x = linspace(shift.x, scale.x + shift.x, shape.x, false);
   std::vector<float> y = linspace(shift.y, scale.y + shift.y, shape.y, false);
@@ -83,7 +84,7 @@ Array sdf_polygon(Vec2<int>          shape,
 {
   Path path = Path(xp, yp);
 
-  auto distance_fct = [&path](float x, float y)
+  auto distance_fct = [&path](float x, float y, float)
   { return path.sdf_closed(x, y); };
 
   std::vector<float> x = linspace(shift.x, scale.x + shift.x, shape.x, false);
@@ -111,7 +112,7 @@ Array sdf_polygon_annular(Vec2<int>          shape,
 {
   Path path = Path(xp, yp);
 
-  auto distance_fct = [&path, &width](float x, float y)
+  auto distance_fct = [&path, &width](float x, float y, float)
   { return std::abs(path.sdf_closed(x, y) - width); };
 
   std::vector<float> x = linspace(shift.x, scale.x + shift.x, shape.x, false);

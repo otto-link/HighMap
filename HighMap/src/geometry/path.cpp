@@ -741,12 +741,14 @@ Array Path::to_array_sdf(Vec2<int>   shape,
   }
 
   // fill heightmap
-  std::function<float(float, float)> distance_fct;
+  std::function<float(float, float, float)> distance_fct;
 
   if (this->closed)
-    distance_fct = [this](float x, float y) { return this->sdf_closed(x, y); };
+    distance_fct = [this](float x, float y, float)
+    { return this->sdf_closed(x, y); };
   else
-    distance_fct = [this](float x, float y) { return this->sdf_open(x, y); };
+    distance_fct = [this](float x, float y, float)
+    { return this->sdf_open(x, y); };
 
   std::vector<float> x = linspace(shift.x, scale.x + shift.x, shape.x, false);
   std::vector<float> y = linspace(shift.y, scale.y + shift.y, shape.y, false);

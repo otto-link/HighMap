@@ -53,7 +53,7 @@ Array interpolate2d(Vec2<int>          shape,
                                p_noise_x,
                                p_noise_y,
                                nullptr,
-                               [&interp](float x_, float y_)
+                               [&interp](float x_, float y_, float)
                                { return interp(x_, y_); });
 
   return array_out;

@@ -32,12 +32,13 @@ Array ridgelines(Vec2<int>          shape,
   rescale_grid_to_unit_square(xr_scaled, yr_scaled, bbox);
 
   // define noise function
-  std::function<float(float x, float y)> lambda;
+  std::function<float(float, float, float)> lambda;
 
   if (slope > 0.f)
     lambda = [&xr_scaled, &yr_scaled, &zr, &vmin, &slope, &k_smoothing, &width](
                  float x_,
-                 float y_)
+                 float y_,
+                 float)
     {
       float d = -std::numeric_limits<float>::max();
       for (size_t i = 0; i < xr_scaled.size() - 1; i += 2)
@@ -69,7 +70,8 @@ Array ridgelines(Vec2<int>          shape,
   else
     lambda = [&xr_scaled, &yr_scaled, &zr, &vmin, &slope, &k_smoothing, &width](
                  float x_,
-                 float y_)
+                 float y_,
+                 float)
     {
       float d = std::numeric_limits<float>::max();
       for (size_t i = 0; i < xr_scaled.size() - 1; i += 2)

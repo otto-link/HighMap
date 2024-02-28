@@ -121,13 +121,14 @@ Array Array::extract_slice(Vec4<int> idx)
   return array_out;
 }
 
-void fill_array_using_xy_function(Array              &array,
-                                  std::vector<float> &x,
-                                  std::vector<float> &y,
-                                  Array              *p_noise_x,
-                                  Array              *p_noise_y,
-                                  Array              *p_stretching,
-                                  std::function<float(float, float)> fct_xy)
+void fill_array_using_xy_function(
+    Array                                    &array,
+    std::vector<float>                       &x,
+    std::vector<float>                       &y,
+    Array                                    *p_noise_x,
+    Array                                    *p_noise_y,
+    Array                                    *p_stretching,
+    std::function<float(float, float, float)> fct_xy)
 {
   Vec2<int> shape = array.shape;
 
@@ -138,7 +139,8 @@ void fill_array_using_xy_function(Array              &array,
       for (int i = 0; i < shape.x; i++)
         for (int j = 0; j < shape.y; j++)
           array(i, j) = fct_xy(x[i] * (*p_stretching)(i, j),
-                               y[j] * (*p_stretching)(i, j));
+                               y[j] * (*p_stretching)(i, j),
+                               array(i, j));
     }
     else if (p_noise_x and (!p_noise_y))
     {
@@ -146,7 +148,8 @@ void fill_array_using_xy_function(Array              &array,
         for (int j = 0; j < shape.y; j++)
           array(i,
                 j) = fct_xy(x[i] * (*p_stretching)(i, j) + (*p_noise_x)(i, j),
-                            y[j] * (*p_stretching)(i, j));
+                            y[j] * (*p_stretching)(i, j),
+                            array(i, j));
     }
     else if ((!p_noise_x) and p_noise_y)
     {
@@ -154,7 +157,8 @@ void fill_array_using_xy_function(Array              &array,
         for (int j = 0; j < shape.y; j++)
           array(i,
                 j) = fct_xy(x[i] * (*p_stretching)(i, j),
-                            y[j] * (*p_stretching)(i, j) + (*p_noise_y)(i, j));
+                            y[j] * (*p_stretching)(i, j) + (*p_noise_y)(i, j),
+                            array(i, j));
     }
     else if (p_noise_x and p_noise_y)
     {
@@ -162,7 +166,8 @@ void fill_array_using_xy_function(Array              &array,
         for (int j = 0; j < shape.y; j++)
           array(i,
                 j) = fct_xy(x[i] * (*p_stretching)(i, j) + (*p_noise_x)(i, j),
-                            y[j] * (*p_stretching)(i, j) + (*p_noise_y)(i, j));
+                            y[j] * (*p_stretching)(i, j) + (*p_noise_y)(i, j),
+                            array(i, j));
     }
   }
   else // without stretching
@@ -171,26 +176,27 @@ void fill_array_using_xy_function(Array              &array,
     {
       for (int i = 0; i < shape.x; i++)
         for (int j = 0; j < shape.y; j++)
-          array(i, j) = fct_xy(x[i], y[j]);
+          array(i, j) = fct_xy(x[i], y[j], array(i, j));
     }
     else if (p_noise_x and (!p_noise_y))
     {
       for (int i = 0; i < shape.x; i++)
         for (int j = 0; j < shape.y; j++)
-          array(i, j) = fct_xy(x[i] + (*p_noise_x)(i, j), y[j]);
+          array(i, j) = fct_xy(x[i] + (*p_noise_x)(i, j), y[j], array(i, j));
     }
     else if ((!p_noise_x) and p_noise_y)
     {
       for (int i = 0; i < shape.x; i++)
         for (int j = 0; j < shape.y; j++)
-          array(i, j) = fct_xy(x[i], y[j] + (*p_noise_y)(i, j));
+          array(i, j) = fct_xy(x[i], y[j] + (*p_noise_y)(i, j), array(i, j));
     }
     else if (p_noise_x and p_noise_y)
     {
       for (int i = 0; i < shape.x; i++)
         for (int j = 0; j < shape.y; j++)
           array(i, j) = fct_xy(x[i] + (*p_noise_x)(i, j),
-                               y[j] + (*p_noise_y)(i, j));
+                               y[j] + (*p_noise_y)(i, j),
+                               array(i, j));
     }
   }
 }

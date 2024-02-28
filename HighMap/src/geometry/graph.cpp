@@ -316,7 +316,7 @@ Array Graph::to_array_sdf(Vec2<int>   shape,
   }
 
   // fill heightmap
-  auto distance_fct = [&xp, &yp](float x, float y)
+  auto distance_fct = [&xp, &yp](float x, float y, float)
   {
     float d = std::numeric_limits<float>::max();
 

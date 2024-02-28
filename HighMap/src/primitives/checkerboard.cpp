@@ -27,7 +27,7 @@ Array checkerboard(Vec2<int>   shape,
                                   array.shape.y,
                                   false);
 
-  auto lambda = [&kw](float x_, float y_)
+  auto lambda = [&kw](float x_, float y_, float)
   {
     return std::abs(std::abs((int)std::floor(x_) % 2) -
                     std::abs((int)std::floor(y_) % 2));

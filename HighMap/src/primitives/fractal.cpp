@@ -145,7 +145,7 @@ Array fbm_perlin(Vec2<int>   shape,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
-                               [&noise](float x_, float y_)
+                               [&noise](float x_, float y_, float)
                                { return noise.GetNoise(x_, y_); });
   return array;
 }
@@ -250,7 +250,7 @@ Array fbm_simplex(Vec2<int>   shape,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
-                               [&noise](float x_, float y_)
+                               [&noise](float x_, float y_, float)
                                { return noise.GetNoise(x_, y_); });
   return array;
 }
@@ -295,7 +295,7 @@ Array fbm_worley(Vec2<int>   shape,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
-                               [&noise](float x_, float y_)
+                               [&noise](float x_, float y_, float)
                                { return noise.GetNoise(x_, y_); });
 
   return array;
@@ -450,7 +450,7 @@ Array pingpong_perlin(Vec2<int>   shape,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
-                               [&noise](float x_, float y_)
+                               [&noise](float x_, float y_, float)
                                { return noise.GetNoise(x_, y_); });
   return array;
 }
@@ -494,7 +494,7 @@ Array ridged_perlin(Vec2<int>   shape,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
-                               [&noise](float x_, float y_)
+                               [&noise](float x_, float y_, float)
                                { return noise.GetNoise(x_, y_); });
   return array;
 }

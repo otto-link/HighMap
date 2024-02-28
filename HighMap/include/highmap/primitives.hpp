@@ -31,7 +31,7 @@ enum noise_type : int
   noise_worley = FastNoiseLite::NoiseType_Cellular,         ///< Worley
   noise_perlin = FastNoiseLite::NoiseType_Perlin,           ///< Perlin
   noise_value_cubic = FastNoiseLite::NoiseType_ValueCubic,  ///< Value (cubic)
-  noise_value = FastNoiseLite::NoiseType_Value,             ///< Value
+  noise_value = FastNoiseLite::NoiseType_Value              ///< Value
 };
 
 /**
@@ -42,7 +42,9 @@ enum fractal_type : int
   fractal_none = FastNoiseLite::FractalType_None,     ///< No fractal layering
   fractal_fbm = FastNoiseLite::FractalType_FBm,       ///< Fbm layering
   fractal_ridged = FastNoiseLite::FractalType_Ridged, ///< Ridged layering
-  fractal_pingpong = FastNoiseLite::FractalType_PingPong ///< PingPong layering
+  fractal_pingpong = FastNoiseLite::FractalType_PingPong, ///< PingPong layering
+  fractal_max,
+  fractal_min
 };
 
 /**
@@ -272,6 +274,38 @@ Array dendry(Vec2<int>   shape,
              Vec2<float> shift = {0.f, 0.f},
              Vec2<float> scale = {1.f, 1.f});
 
+/**
+ * @brief
+ *
+ * @param shape Array shape.
+ * @param kw Noise wavenumber with respect to a unit domain.
+ * @param seed Random seed number.
+ * @param noise_type Noise primitive (see {@link noise_type}).
+ * @param fractal_type Fractal layering algorithm (see {@link fractal_type}).
+ * @param octaves Number of octaves.
+ * @param persistence 'Persistence' is a multiplier that determines how
+ * quickly the amplitude diminishes for each successive octave: choose
+ * 'persistence' close to 0 for a smooth noise, and close 1 for a rougher
+ * noise texture.
+ * @param lacunarity Defines the wavenumber ratio between each octaves.
+ * @param weigth Octave weighting.
+ * @param p_base_elevation Base elevation.
+ * @param p_noise_x, p_noise_y Reference to the input noise array used for
+ * domain warping (NOT in pixels, with respect to a unit domain).
+ * @param p_stretching Local wavenumber multiplier.
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a
+ * unit domain.
+ * @param scale Domain scaling, in [0, 1].
+ * @return Array Fractal noise.
+ *
+ * **Example**
+ * @include ex_fbm.cpp
+ *
+ * **Result**
+ * @image html ex_fbm0.png
+ * @image html ex_fbm1.png
+ * @image html ex_fbm2.png
+ */
 Array fbm(Vec2<int>   shape,
           Vec2<float> kw,
           uint        seed,

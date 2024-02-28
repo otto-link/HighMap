@@ -208,7 +208,7 @@ void Cloud::to_array_interp(Array      &array,
                                p_noise_x,
                                p_noise_y,
                                nullptr,
-                               [&interp](float x_, float y_)
+                               [&interp](float x_, float y_, float)
                                { return interp(x_, y_); });
 }
 
@@ -230,7 +230,7 @@ Array Cloud::to_array_sdf(Vec2<int>   shape,
   }
 
   // fill heightmap
-  auto distance_fct = [&xp, &yp](float x, float y)
+  auto distance_fct = [&xp, &yp](float x, float y, float)
   {
     float d = std::numeric_limits<float>::max();
     for (size_t i = 0; i < xp.size(); i++)

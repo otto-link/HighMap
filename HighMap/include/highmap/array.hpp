@@ -502,16 +502,17 @@ public:
    * @param p_noise_x, p_noise_y Reference to the input noise array used for
    * domain warping (NOT in pixels, with respect to a unit domain).
    * @param p_stretching Local wavenumber multiplier.
-   * @param fct_xy (x, y) scalar function.
+   * @param fct_xy (x, y, initial_value) scalar function.
    */
+
   friend void fill_array_using_xy_function(
-      Array                             &array,
-      std::vector<float>                &x,
-      std::vector<float>                &y,
-      Array                             *p_noise_x,
-      Array                             *p_noise_y,
-      Array                             *p_stretching,
-      std::function<float(float, float)> fct_xy);
+      Array                                    &array,
+      std::vector<float>                       &x,
+      std::vector<float>                       &y,
+      Array                                    *p_noise_x,
+      Array                                    *p_noise_y,
+      Array                                    *p_stretching,
+      std::function<float(float, float, float)> fct_xy);
 
   /**
    * @brief Import array from raw binary file.

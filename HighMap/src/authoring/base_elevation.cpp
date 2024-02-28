@@ -39,7 +39,7 @@ Array base_elevation(Vec2<int>                       shape,
   for (size_t p = 0; p < ni; p++)
     for (size_t q = 0; q < nj; q++)
     {
-      auto lambda = [&xc, &yc, &p, &q, &s2x, &s2y](float x_, float y_)
+      auto lambda = [&xc, &yc, &p, &q, &s2x, &s2y](float x_, float y_, float)
       {
         float r2 = s2x * (x_ - xc[p]) * (x_ - xc[p]) +
                    s2y * (y_ - yc[q]) * (y_ - yc[q]);

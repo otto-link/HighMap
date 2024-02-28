@@ -1,4 +1,5 @@
 #include "highmap.hpp"
+#include "highmap/dbg.hpp"
 
 int main(void)
 {
@@ -16,6 +17,8 @@ int main(void)
 
   std::vector<int> fractal_list = {hmap::fractal_type::fractal_none,
                                    hmap::fractal_type::fractal_fbm,
+                                   hmap::fractal_type::fractal_max,
+                                   hmap::fractal_type::fractal_min,
                                    hmap::fractal_type::fractal_ridged,
                                    hmap::fractal_type::fractal_pingpong};
 
@@ -47,6 +50,46 @@ int main(void)
     z2 = hstack(z2, n);
   }
 
+  // with base elevation
+
+  auto base = hmap::gaussian_pulse(shape, 64.f);
+  hmap::remap(base);
+
+  hmap::Array z3 = hmap::Array(hmap::Vec2<int>(0, shape.y));
+  for (auto &noise_type : noise_list)
+  {
+    auto n = hmap::fbm(shape,
+                       res,
+                       seed,
+                       noise_type,
+                       hmap::fractal_type::fractal_fbm,
+                       8,
+                       0.7f,
+                       0.5f,
+                       2.f,
+                       &base);
+    hmap::remap(n);
+    z3 = hstack(z3, n);
+  }
+
+  // check performances
+
+  hmap::Timer timer = hmap::Timer();
+  {
+    timer.start("old");
+    auto a = hmap::fbm_perlin(shape, res, seed);
+    timer.stop("old");
+
+    timer.start("new");
+    auto b = hmap::fbm(shape,
+                       res,
+                       seed,
+                       hmap::noise_type::noise_perlin,
+                       hmap::fractal_type::fractal_fbm);
+    timer.stop("new");
+  }
+
   z1.to_png("ex_fbm0.png", hmap::cmap::terrain, true);
   z2.to_png("ex_fbm1.png", hmap::cmap::terrain, true);
+  z3.to_png("ex_fbm2.png", hmap::cmap::terrain, true);
 }

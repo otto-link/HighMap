@@ -16,18 +16,6 @@
 // Helper(s)
 //----------------------------------------------------------------------
 
-float compute_fractal_bounding(int octaves, float persistence)
-{
-  float amp = persistence;
-  float amp_fractal = 1.0f;
-  for (int i = 1; i < octaves; i++)
-  {
-    amp_fractal += amp;
-    amp *= persistence;
-  }
-  return 1.f / amp_fractal;
-}
-
 static float ping_pong(float t)
 {
   t -= (int)(t * 0.5f) * 2;
@@ -89,14 +77,29 @@ Array fbm(Vec2<int>   shape,
 
   // --- fractal layering function
 
-  std::function<float(float, float)> fractal_fct;
-  float amp0 = compute_fractal_bounding(octaves, persistence);
+  // determine initial amplitude so that the final field has roughly a
+  // unit peak-to-peak amplitude
+  float amp0;
+  {
+    float amp = persistence;
+    float amp_fractal = 1.0f;
+    for (int i = 1; i < octaves; i++)
+    {
+      amp_fractal += amp;
+      amp *= persistence;
+    }
+    amp0 = 1.f / amp_fractal;
+  }
+
+  // define function
+  std::function<float(float, float, float)> fractal_fct;
 
   switch (fractal_type)
   {
+  //
   case (fractal_type::fractal_none):
   {
-    fractal_fct = [&noise_fct, &seed](float x_, float y_)
+    fractal_fct = [&noise_fct, &seed](float x_, float y_, float initial_value)
     { return noise_fct(x_, y_, seed); };
   }
   break;
@@ -109,9 +112,9 @@ Array fbm(Vec2<int>   shape,
                    &weight,
                    &persistence,
                    &lacunarity,
-                   &noise_fct](float x_, float y_)
+                   &noise_fct](float x_, float y_, float initial_value)
     {
-      float sum = 0.f;
+      float sum = initial_value;
       float amp = amp0;
       float ki = 1.f;
       float kj = 1.f;
@@ -140,9 +143,9 @@ Array fbm(Vec2<int>   shape,
                    &weight,
                    &persistence,
                    &lacunarity,
-                   &noise_fct](float x_, float y_)
+                   &noise_fct](float x_, float y_, float initial_value)
     {
-      float sum = 0.f;
+      float sum = initial_value;
       float amp = amp0;
       float ki = 1.f;
       float kj = 1.f;
@@ -171,9 +174,9 @@ Array fbm(Vec2<int>   shape,
                    &weight,
                    &persistence,
                    &lacunarity,
-                   &noise_fct](float x_, float y_)
+                   &noise_fct](float x_, float y_, float initial_value)
     {
-      float sum = 0.f;
+      float sum = initial_value;
       float amp = amp0;
       float ki = 1.f;
       float kj = 1.f;
@@ -195,6 +198,68 @@ Array fbm(Vec2<int>   shape,
   }
   break;
   //
+  case (fractal_type::fractal_max):
+  {
+    fractal_fct = [&amp0,
+                   &seed,
+                   &octaves,
+                   &weight,
+                   &persistence,
+                   &lacunarity,
+                   &noise_fct](float x_, float y_, float initial_value)
+    {
+      float sum = initial_value;
+      float amp = amp0;
+      float ki = 1.f;
+      float kj = 1.f;
+      int   kseed = seed;
+
+      for (int k = 0; k < octaves; k++)
+      {
+        float value = noise_fct(ki * x_, kj * y_, kseed++);
+        sum = maximum_smooth(sum, sum + value * amp, 0.1f);
+        amp *= (1.f - weight) + weight * std::min(value + 1.f, 2.f) * 0.5f;
+
+        ki *= lacunarity;
+        kj *= lacunarity;
+        amp *= persistence;
+      }
+      return sum;
+    };
+  }
+  break;
+  //
+  case (fractal_type::fractal_min):
+  {
+    fractal_fct = [&amp0,
+                   &seed,
+                   &octaves,
+                   &weight,
+                   &persistence,
+                   &lacunarity,
+                   &noise_fct](float x_, float y_, float initial_value)
+    {
+      float sum = initial_value;
+      float amp = amp0;
+      float ki = 1.f;
+      float kj = 1.f;
+      int   kseed = seed;
+
+      for (int k = 0; k < octaves; k++)
+      {
+        float value = noise_fct(ki * x_, kj * y_, kseed++);
+        sum = minimum_smooth(sum, sum + value * amp, 0.1f);
+        amp *= (1.f - weight) + weight * std::min(value + 1.f, 2.f) * 0.5f;
+
+        ki *= lacunarity;
+        kj *= lacunarity;
+        amp *= persistence;
+      }
+      return sum;
+    };
+  }
+  break;
+  //
   default:
   {
     LOG_ERROR("unknown fractal type");
@@ -204,6 +269,10 @@ Array fbm(Vec2<int>   shape,
 
   // --- fill output array
   Array array = Array(shape);
+
+  if (p_base_elevation)
+    array = *p_base_elevation;
+
   fill_array_using_xy_function(array,
                                x,
                                y,

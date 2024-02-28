@@ -42,7 +42,7 @@ Array perlin(Vec2<int>   shape,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
-                               [&noise](float x_, float y_)
+                               [&noise](float x_, float y_, float)
                                { return noise.GetNoise(x_, y_); });
   return array;
 }
@@ -77,7 +77,7 @@ Array perlin_billow(Vec2<int>   shape,
       p_noise_x,
       p_noise_y,
       nullptr,
-      [&noise](float x_, float y_)
+      [&noise](float x_, float y_, float)
       { return 2.f * std::abs(noise.GetNoise(x_, y_)) - 1.f; });
 
   return array;
@@ -112,7 +112,7 @@ Array perlin_mix(Vec2<int>   shape,
                                p_noise_x,
                                p_noise_y,
                                nullptr,
-                               [&noise](float x_, float y_)
+                               [&noise](float x_, float y_, float)
                                {
                                  return 0.5f * noise.GetNoise(x_, y_) +
                                         std::abs(noise.GetNoise(x_, y_)) - 0.5f;
