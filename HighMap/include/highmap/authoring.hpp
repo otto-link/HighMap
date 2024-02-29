@@ -57,6 +57,8 @@ Array base_elevation(Vec2<int>                       shape,
  * @param width Ridge edge width.
  * @param vmin Minimum value (lower values are clamped).
  * @param bbox Bounding box corresponding to the whole domain.
+ * @param p_noise_x, p_noise_y Reference to the input noise array used for
+ * domain warping (NOT in pixels, with respect to a unit domain).
  * @param shift Noise shift {xs, ys} for each directions, with respect to a
  * unit domain.
  * @param scale Domain scaling, in [0, 1].
@@ -82,6 +84,32 @@ Array ridgelines(Vec2<int>          shape,
                  Vec2<float>        shift = {0.f, 0.f},
                  Vec2<float>        scale = {1.f, 1.f});
 
+/**
+ * @brief Return an heightmap defined by a set of ridgelines and a given slope.
+ * Quadratic Bezier interpolation is used for ridgeline curve.
+ *
+ * @param shape Array shape.
+ * @param xr Ridge segments x coordinates (as groups of three).
+ * @param yr Ridge segments y coordinates (as groups of three).
+ * @param zr Ridge segments z coordinates (as groups of three).
+ * @param slope Ridge slope (can be negative).
+ * @param k_smoothing Smoothing.
+ * @param width Ridge edge width.
+ * @param vmin Minimum value (lower values are clamped).
+ * @param bbox Bounding box corresponding to the whole domain.
+ * @param p_noise_x, p_noise_y Reference to the input noise array used for
+ * domain warping (NOT in pixels, with respect to a unit domain).
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a
+ * unit domain.
+ * @param scale Domain scaling, in [0, 1].
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_ridgelines_bezier.cpp
+ *
+ * **Result**
+ * @image html ex_ridgelines_bezier.png
+ */
 Array ridgelines_bezier(Vec2<int>          shape,
                         std::vector<float> xr,
                         std::vector<float> yr,
