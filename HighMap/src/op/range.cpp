@@ -13,11 +13,6 @@
 namespace hmap
 {
 
-void almost_unit_identity(Array &array)
-{
-  array = (2.f - array) * array * array;
-}
-
 void chop(Array &array, float vmin)
 {
   auto lambda = [&vmin](float x) { return x > vmin ? x : 0.f; };

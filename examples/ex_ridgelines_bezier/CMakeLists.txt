@@ -1,0 +1,2 @@
+add_executable(ex_ridgelines_bezier ex_ridgelines_bezier.cpp)
+target_link_libraries(ex_ridgelines_bezier highmap)

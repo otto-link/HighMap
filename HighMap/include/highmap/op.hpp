@@ -64,15 +64,26 @@ Array abs_smooth(const Array &array, float mu);               ///< @overload
 float abs_smooth(const float a, float mu);                    ///< @overload
 
 /**
- * @brief Apply the almost unit identity function.
+ * @brief Return the almost unit identity function.
  *
  * Function that maps the unit interval to itself with zero derivative at 0 and
  * "one" derivative at 1 (see <a
  * href=https://iquilezles.org/articles/functions/>Inigo Quilez's articles</a>).
  *
  * @param array Input array.
+ * @return Array Output array.
  */
-void almost_unit_identity(Array &array);
+Array almost_unit_identity(const Array &array);
+float almost_unit_identity(const float x); ///< @overload
+
+/**
+ * @brief Return the almost unit identity function (with a second-order
+ * derivative equals 0 at x = 1 also to avoid discontinuities in some cases)
+ *
+ * @param x Input.
+ * @return float Output.
+ */
+float almost_unit_identity_c2(const float x);
 
 /**
  * @brief Point-wise alteration: locally enforce a new elevation value while
@@ -2308,6 +2319,14 @@ void smooth_fill_smear_peaks(Array &array,
  * @image html ex_smoothstep.png
  */
 Array smoothstep3(const Array &array, float vmin = 0.f, float vmax = 1.f);
+
+/**
+ * @brief Return the 3rd order smoothstep function.
+ *
+ * @param x Input.
+ * @return float Output.
+ */
+float smoothstep3(const float x);
 
 /**
  * @brief Return the 5rd order smoothstep function of the array elements.

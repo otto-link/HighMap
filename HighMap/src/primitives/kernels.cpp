@@ -53,7 +53,7 @@ Array cone(Vec2<int> shape)
 Array cone_smooth(Vec2<int> shape)
 {
   Array array = cone(shape);
-  almost_unit_identity(array);
+  array = almost_unit_identity(array);
   return array;
 }
 

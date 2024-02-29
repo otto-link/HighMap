@@ -82,4 +82,18 @@ Array ridgelines(Vec2<int>          shape,
                  Vec2<float>        shift = {0.f, 0.f},
                  Vec2<float>        scale = {1.f, 1.f});
 
+Array ridgelines_bezier(Vec2<int>          shape,
+                        std::vector<float> xr,
+                        std::vector<float> yr,
+                        std::vector<float> zr,
+                        float              slope,
+                        float              k_smoothing = 1.f,
+                        float              width = 0.1f,
+                        float              vmin = 0.f,
+                        Vec4<float>        bbox = {0.f, 1.f, 0.f, 1.f},
+                        Array             *p_noise_x = nullptr,
+                        Array             *p_noise_y = nullptr,
+                        Vec2<float>        shift = {0.f, 0.f},
+                        Vec2<float>        scale = {1.f, 1.f});
+
 } // namespace hmap
