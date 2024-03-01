@@ -18,6 +18,8 @@
 
 #include "highmap/vector.hpp"
 
+#define HMAP_GRADIENT_OFFSET 0.001f
+
 namespace hmap
 {
 
@@ -43,8 +45,8 @@ enum fractal_type : int
   fractal_fbm = FastNoiseLite::FractalType_FBm,       ///< Fbm layering
   fractal_ridged = FastNoiseLite::FractalType_Ridged, ///< Ridged layering
   fractal_pingpong = FastNoiseLite::FractalType_PingPong, ///< PingPong layering
-  fractal_max,
-  fractal_min
+  fractal_max,                                            ///< Max
+  fractal_min                                             ///< Min
 };
 
 /**
@@ -321,6 +323,108 @@ Array fbm(Vec2<int>   shape,
           Array      *p_stretching = nullptr,
           Vec2<float> shift = {0.f, 0.f},
           Vec2<float> scale = {1.f, 1.f});
+
+/**
+ * @brief Return an array filled with a "Jordan" multifractal noise.
+ *
+ * See https://www.decarpentier.nl/scape-procedural-extensions
+ *
+ * @param shape Array shape.
+ * @param kw Noise wavenumber with respect to a unit domain.
+ * @param seed Random seed number.
+ * @param noise_type Noise primitive (see {@link noise_type}).
+ * @param warp0 Initial warping amplitude parameter.
+ * @param damp0 Initial damping amplitude parameter.
+ * @param warp_scale Warp scaling.
+ * @param damp_scale Damp scaling.
+ * @param octaves Number of octaves.
+ * @param persistence 'Persistence' is a multiplier that determines how
+ * quickly the amplitude diminishes for each successive octave: choose
+ * 'persistence' close to 0 for a smooth noise, and close 1 for a rougher
+ * noise texture.
+ * @param lacunarity Defines the wavenumber ratio between each octaves.
+ * @param weigth Octave weighting.
+ * @param p_base_elevation Base elevation.
+ * @param p_noise_x, p_noise_y Reference to the input noise array used for
+ * domain warping (NOT in pixels, with respect to a unit domain).
+ * @param p_stretching Local wavenumber multiplier.
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a
+ * unit domain.
+ * @param scale Domain scaling, in [0, 1].
+ * @return Array Fractal noise.
+ *
+ * **Example**
+ * @include ex_fbm_jordan.cpp
+ *
+ * **Result**
+ * @image html ex_fbm_jordan.png
+ */
+Array fbm_jordan(Vec2<int>   shape,
+                 Vec2<float> kw,
+                 uint        seed,
+                 int         noise_type,
+                 float       warp0 = 0.4f,
+                 float       damp0 = 1.f,
+                 float       warp_scale = 0.5f,
+                 float       damp_scale = 1.f,
+                 int         octaves = 8,
+                 float       weight = 0.2f,
+                 float       persistence = 0.5f,
+                 float       lacunarity = 2.f,
+                 Array      *p_base_elevation = nullptr,
+                 Array      *p_noise_x = nullptr,
+                 Array      *p_noise_y = nullptr,
+                 Array      *p_stretching = nullptr,
+                 Vec2<float> shift = {0.f, 0.f},
+                 Vec2<float> scale = {1.f, 1.f});
+
+/**
+ * @brief Return an array filled with a "Swiss" multifractal noise.
+ *
+ * See https://www.decarpentier.nl/scape-procedural-extensions
+ *
+ * @param shape Array shape.
+ * @param kw Noise wavenumber with respect to a unit domain.
+ * @param seed Random seed number.
+ * @param noise_type Noise primitive (see {@link noise_type}).
+ * @param warp_scale Warp scaling.
+ * @param octaves Number of octaves.
+ * @param persistence 'Persistence' is a multiplier that determines how
+ * quickly the amplitude diminishes for each successive octave: choose
+ * 'persistence' close to 0 for a smooth noise, and close 1 for a rougher
+ * noise texture.
+ * @param lacunarity Defines the wavenumber ratio between each octaves.
+ * @param weigth Octave weighting.
+ * @param p_base_elevation Base elevation.
+ * @param p_noise_x, p_noise_y Reference to the input noise array used for
+ * domain warping (NOT in pixels, with respect to a unit domain).
+ * @param p_stretching Local wavenumber multiplier.
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a
+ * unit domain.
+ * @param scale Domain scaling, in [0, 1].
+ * @return Array Fractal noise.
+ *
+ * **Example**
+ * @include ex_fbm_swiss.cpp
+ *
+ * **Result**
+ * @image html ex_fbm_swiss.png
+ */
+Array fbm_swiss(Vec2<int>   shape,
+                Vec2<float> kw,
+                uint        seed,
+                int         noise_type,
+                float       warp_scale = 0.5f,
+                int         octaves = 8,
+                float       weight = 0.7f,
+                float       persistence = 0.5f,
+                float       lacunarity = 2.f,
+                Array      *p_base_elevation = nullptr,
+                Array      *p_noise_x = nullptr,
+                Array      *p_noise_y = nullptr,
+                Array      *p_stretching = nullptr,
+                Vec2<float> shift = {0.f, 0.f},
+                Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return an array filled with an hybrid multifractal Perlin noise

@@ -45,7 +45,9 @@ int main(void)
                        res,
                        seed,
                        hmap::noise_type::noise_simplex2,
-                       fractal_type);
+                       fractal_type,
+                       8,
+                       0.5f);
     hmap::remap(n);
     z2 = hstack(z2, n);
   }
@@ -87,6 +89,16 @@ int main(void)
                        hmap::noise_type::noise_perlin,
                        hmap::fractal_type::fractal_fbm);
     timer.stop("new");
+  }
+
+  //
+  {
+    auto m = hmap::fbm(shape,
+                       res,
+                       seed,
+                       hmap::noise_type::noise_simplex2,
+                       hmap::fractal_type::fractal_fbm);
+    hmap::export_wavefront_obj("hmap.obj", m);
   }
 
   z1.to_png("ex_fbm0.png", hmap::cmap::terrain, true);

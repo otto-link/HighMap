@@ -1,0 +1,2 @@
+add_executable(ex_fbm_swiss ex_fbm_swiss.cpp)
+target_link_libraries(ex_fbm_swiss highmap)

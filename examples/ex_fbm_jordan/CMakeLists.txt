@@ -1,0 +1,2 @@
+add_executable(ex_fbm_jordan ex_fbm_jordan.cpp)
+target_link_libraries(ex_fbm_jordan highmap)

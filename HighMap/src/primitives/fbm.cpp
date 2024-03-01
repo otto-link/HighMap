@@ -99,7 +99,7 @@ Array fbm(Vec2<int>   shape,
   //
   case (fractal_type::fractal_none):
   {
-    fractal_fct = [&noise_fct, &seed](float x_, float y_, float initial_value)
+    fractal_fct = [&noise_fct, &seed](float x_, float y_, float)
     { return noise_fct(x_, y_, seed); };
   }
   break;
