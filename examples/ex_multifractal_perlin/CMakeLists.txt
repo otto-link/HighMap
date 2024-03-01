@@ -1,2 +1,0 @@
-add_executable(ex_multifractal_perlin ex_multifractal_perlin.cpp)
-target_link_libraries(ex_multifractal_perlin highmap)

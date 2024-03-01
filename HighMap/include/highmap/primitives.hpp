@@ -277,7 +277,7 @@ Array dendry(Vec2<int>   shape,
              Vec2<float> scale = {1.f, 1.f});
 
 /**
- * @brief
+ * @brief Return an array filled with multifractal noise.
  *
  * @param shape Array shape.
  * @param kw Noise wavenumber with respect to a unit domain.
@@ -519,17 +519,6 @@ Array fbm_perlin(Vec2<int>   shape,
                  Vec2<float> shift = {0.f, 0.f},
                  Vec2<float> scale = {1.f, 1.f});
 
-Array fbm_perlin_advanced(Vec2<int>          shape,
-                          Vec2<float>        kw,
-                          uint               seed,
-                          std::vector<float> octave_amplitudes,
-                          float              lacunarity = 2.f,
-                          Array             *p_weight = nullptr,
-                          Array             *p_noise_x = nullptr,
-                          Array             *p_noise_y = nullptr,
-                          Vec2<float>        shift = {0.f, 0.f},
-                          Vec2<float>        scale = {1.f, 1.f});
-
 /**
  * @brief Return an array filled with an hybrid multifractal OpenSimplex2 noise.
  *
@@ -698,77 +687,6 @@ Array gaussian_pulse(Vec2<int>   shape,
                      Vec2<float> center = {0.5f, 0.5f},
                      Vec2<float> shift = {0.f, 0.f},
                      Vec2<float> scale = {1.f, 1.f});
-
-/**
- * @param shape Array shape.
- * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
- * a unit domain.
- * @param seed Random seed number.
- * @param octaves Number of octaves.
- * @param persistence 'Persistence' is a multiplier that determines how
- * quickly the amplitude diminishes for each successive octave: choose
- * 'persistence' close to 0 for a smooth noise, and close 1 for a rougher
- * noise texture.
- * @param lacunarity Defines the wavenumber ratio between each octaves.
- * @param offset Offset applied to the noise function to move its range to [0,
- * 2].
- * @param shift Noise shift {xs, ys} for each directions, with respect to a
- * unit domain.
- * @return Array Factal noise
- *
- * **Example**
- * @include ex_hybrid_fbm_perlin.cpp
- *
- * **Result**
- * @image html ex_hybrid_fbm_perlin.png
- */
-Array hybrid_fbm_perlin(Vec2<int>   shape,
-                        Vec2<float> kw,
-                        uint        seed,
-                        int         octaves = 8,
-                        float       persistence = 0.9f,
-                        float       lacunarity = 2.f,
-                        float       offset = 0.5f,
-                        Vec2<float> shift = {0.f, 0.f});
-
-/**
- * @brief Return an array filled with an product-multifractal Perlin noise.
- *
- * Multifractals do not combine noise functions additively, as the fBM does,
- * but multiplicatively. By this, the occurence of high frequencies depend on
- * the noise values of lower frequencies. Theoretical details are available in
- * the references @cite Ebert2002 and @cite Dachsbacher2006.
- *
- * @param shape Array shape.
- * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
- * a unit domain.
- * @param seed Random seed number.
- * @param octaves Number of octaves.
- * @param persistence Amplitude factor for each octave.
- * @param lacunarity Defines the wavenumber ratio between each octaves.
- * @param seed Random seed number.
- * @param shift Noise shift {xs, ys} for each directions, with respect to a
- * unit domain.
- * @param scale Domain scaling, in [0, 1].
- * @return Array
- *
- * **Example**
- * @include ex_multifractal_perlin.cpp
- *
- * **Result**
- * @image html ex_multifractal_perlin.png
- *
- * @see {@link fbm_perlin}
- */
-Array multifractal_perlin(Vec2<int>   shape,
-                          Vec2<float> kw,
-                          uint        seed,
-                          int         octaves = 8,
-                          float       persistence = 0.5f,
-                          float       lacunarity = 2.f,
-                          float       offset = 1.f,
-                          Vec2<float> shift = {0.f, 0.f},
-                          Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return a peak-shaped heightmap.
