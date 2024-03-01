@@ -17,10 +17,10 @@ int main(void)
 
   std::vector<int> fractal_list = {hmap::fractal_type::fractal_none,
                                    hmap::fractal_type::fractal_fbm,
-                                   hmap::fractal_type::fractal_max,
-                                   hmap::fractal_type::fractal_min,
                                    hmap::fractal_type::fractal_ridged,
-                                   hmap::fractal_type::fractal_pingpong};
+                                   hmap::fractal_type::fractal_pingpong,
+                                   hmap::fractal_type::fractal_max,
+                                   hmap::fractal_type::fractal_min};
 
   // noises
 
@@ -91,14 +91,14 @@ int main(void)
     timer.stop("new");
   }
 
-  //
+  // mesh check
   {
     auto m = hmap::fbm(shape,
                        res,
                        seed,
                        hmap::noise_type::noise_simplex2,
                        hmap::fractal_type::fractal_fbm);
-    hmap::export_wavefront_obj("hmap.obj", m);
+    hmap::export_wavefront_obj("hmap.obj", m, hmap::mesh_type::quad);
   }
 
   z1.to_png("ex_fbm0.png", hmap::cmap::terrain, true);
