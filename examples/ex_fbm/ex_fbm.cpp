@@ -97,7 +97,7 @@ int main(void)
                        res,
                        seed,
                        hmap::noise_type::noise_simplex2,
-                       hmap::fractal_type::fractal_fbm);
+                       hmap::fractal_type::fractal_pingpong);
     hmap::export_wavefront_obj("hmap.obj", m, hmap::mesh_type::quad);
   }
 

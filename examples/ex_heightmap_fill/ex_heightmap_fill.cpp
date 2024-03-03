@@ -33,10 +33,12 @@ int main(void)
   hmap::fill(h,
              [&kw, &seed](hmap::Vec2<int>   shape,
                           hmap::Vec2<float> shift,
-                          hmap::Vec2<float> scale) {
+                          hmap::Vec2<float> scale)
+             {
                return hmap::perlin_mix(shape,
                                        kw,
                                        seed,
+                                       nullptr,
                                        nullptr,
                                        nullptr,
                                        shift,
