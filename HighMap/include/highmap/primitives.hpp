@@ -1178,7 +1178,7 @@ Array slope_y(Vec2<int>   shape,
  *
  * @param shape Array shape.
  * @param angle Overall rotation angle (in degree).
- * @param talus Talus slope.
+ * @param slope Step slope.
  * @param p_noise Reference to the input noise array used for domain warping
  * (NOT in pixels, with respect to a unit domain).
  * @param center Primitive reference center.
@@ -1194,8 +1194,10 @@ Array slope_y(Vec2<int>   shape,
  */
 Array step(Vec2<int>   shape,
            float       angle,
-           float       talus,
-           Array      *p_noise = nullptr,
+           float       slope,
+           Array      *p_noise_x = nullptr,
+           Array      *p_noise_y = nullptr,
+           Array      *p_stretching = nullptr,
            Vec2<float> center = {0.5f, 0.5f},
            Vec2<float> shift = {0.f, 0.f},
            Vec2<float> scale = {1.f, 1.f});
@@ -1239,6 +1241,7 @@ void swirl(Array      &dx,
  * @param seed Random seed number.
  * @param p_noise_x, p_noise_y Reference to the input noise array used for
  * domain warping (NOT in pixels, with respect to a unit domain).
+ * @param p_stretching Local wavenumber multiplier.
  * @param shift Noise shift {xs, ys} for each directions, with respect to a
  * unit domain.
  * @param scale Domain scaling, in [0, 1].
@@ -1255,6 +1258,7 @@ Array value_noise(Vec2<int>   shape,
                   uint        seed,
                   Array      *p_noise_x = nullptr,
                   Array      *p_noise_y = nullptr,
+                  Array      *p_stretching = nullptr,
                   Vec2<float> shift = {0.f, 0.f},
                   Vec2<float> scale = {1.f, 1.f});
 

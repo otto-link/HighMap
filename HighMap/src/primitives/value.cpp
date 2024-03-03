@@ -8,6 +8,7 @@
 #include "highmap/array.hpp"
 #include "highmap/geometry.hpp"
 #include "highmap/interpolate.hpp"
+#include "highmap/noise_function.hpp"
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 #include "highmap/vector.hpp"
@@ -15,37 +16,47 @@
 namespace hmap
 {
 
+// --- (x, y) function definitions
+
+ValueNoiseFunction::ValueNoiseFunction(Vec2<float> kw, uint seed)
+    : NoiseFunction(kw, seed)
+{
+  this->set_seed(seed);
+  this->noise.SetFrequency(1.f);
+  this->noise.SetNoiseType(FastNoiseLite::NoiseType_Value);
+
+  this->function = [this](float x, float y, float)
+  { return this->noise.GetNoise(this->kw.x * x, this->kw.y * y); };
+}
+
+// --- wrappers for array filling
+
 Array value_noise(Vec2<int>   shape,
                   Vec2<float> kw,
                   uint        seed,
                   Array      *p_noise_x,
                   Array      *p_noise_y,
+                  Array      *p_stretching,
                   Vec2<float> shift,
                   Vec2<float> scale)
 {
-  Array         array = Array(shape);
-  FastNoiseLite noise(seed);
+  Array                    array = Array(shape);
+  hmap::ValueNoiseFunction f = hmap::ValueNoiseFunction(kw, seed);
+  std::vector<float>       x, y;
+  hmap::Vec4<float>        bbox = {0.f + shift.x,
+                                   scale.x + shift.x,
+                                   0.f + shift.y,
+                                   scale.y + shift.y};
 
-  noise.SetFrequency(1.0f);
-  noise.SetNoiseType(FastNoiseLite::NoiseType_Value);
-
-  std::vector<float> x = linspace(kw.x * shift.x,
-                                  kw.x * (shift.x + scale.x),
-                                  array.shape.x,
-                                  false);
-  std::vector<float> y = linspace(kw.y * shift.y,
-                                  kw.y * (shift.y + scale.y),
-                                  array.shape.y,
-                                  false);
+  grid_xy_vector(x, y, shape, bbox);
 
   fill_array_using_xy_function(array,
                                x,
                                y,
                                p_noise_x,
                                p_noise_y,
-                               nullptr,
-                               [&noise](float x_, float y_, float)
-                               { return noise.GetNoise(x_, y_); });
+                               p_stretching,
+                               f.get_function());
   return array;
 }
 

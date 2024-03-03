@@ -41,6 +41,10 @@ public:
 
   NoiseFunction() = default;
 
+  NoiseFunction(Vec2<float> kw) : kw(kw), seed(0)
+  {
+  }
+
   NoiseFunction(Vec2<float> kw, uint seed) : kw(kw), seed(seed)
   {
   }
@@ -252,6 +256,86 @@ public:
    * @param seed Random seed number.
    */
   Simplex2SFunction(Vec2<float> kw, uint seed);
+
+  /**
+   * @brief Set the seed attribute.
+   *
+   * @param new_seed New seed.
+   */
+  void set_seed(uint new_seed)
+  {
+    this->seed = new_seed;
+    this->noise.SetSeed(new_seed);
+  }
+
+private:
+  /**
+   * @brief FastNoiseLite noise generator object.
+   */
+  FastNoiseLite noise;
+};
+
+/**
+ * @brief Step (x, y) function class.
+ */
+class StepFunction : public NoiseFunction
+{
+public:
+  /**
+   * @brief Overall rotation angle (in degree).
+   */
+  float angle;
+
+  /**
+   * @brief Step slope.
+   */
+  float slope;
+
+  /**
+   * @brief Primitive reference center.
+   */
+  Vec2<float> center;
+
+  /**
+   * @brief Construct a new Step Function object
+   *
+   * @param angle Overall rotation angle (in degree).
+   * @param slope Step slope.
+   * @param center Primitive reference center.
+   */
+  StepFunction(float angle, float slope, Vec2<float> center);
+
+  /**
+   * @brief Set the angle.
+   *
+   * @param new_angle New angle
+   */
+  void set_angle(float new_angle)
+  {
+    this->angle = new_angle;
+    this->ca = std::cos(angle / 180.f * M_PI);
+    this->sa = std::sin(angle / 180.f * M_PI);
+  }
+
+private:
+  float ca;
+  float sa;
+};
+
+/**
+ * @brief Value noise (x, y) function class.
+ */
+class ValueNoiseFunction : public NoiseFunction
+{
+public:
+  /**
+   * @brief Construct a new ValueNoiseFunction object.
+   *
+   * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
+   * a unit domain.
+   * @param seed Random seed number.
+   */
+  ValueNoiseFunction(Vec2<float> kw, uint seed);
 
   /**
    * @brief Set the seed attribute.
