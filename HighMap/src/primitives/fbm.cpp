@@ -153,7 +153,9 @@ Array fbm(Vec2<int>   shape,
 
       for (int k = 0; k < octaves; k++)
       {
-        float value = std::abs(noise_fct(ki * x_, kj * y_, kseed++));
+        // float value = std::abs(noise_fct(ki * x_, kj * y_, kseed++));
+
+        float value = abs_smooth(noise_fct(ki * x_, kj * y_, kseed++), 0.25f);
         sum += (value * -2.f + 1.f) * amp;
         amp *= (1.f - weight) + weight * (1.f - value);
 
@@ -186,6 +188,7 @@ Array fbm(Vec2<int>   shape,
       {
         float value = ping_pong((noise_fct(ki * x_, kj * y_, kseed++) + 1.f) *
                                 2.f);
+        value = smoothstep5(value);
         sum += (value - 0.5f) * 2.f * amp;
         amp *= (1.f - weight) + weight * value;
 

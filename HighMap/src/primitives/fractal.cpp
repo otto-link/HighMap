@@ -267,6 +267,7 @@ Array fbm_worley_double(Vec2<int>   shape,
                                 k,
                                 p_noise_x,
                                 p_noise_y,
+                                nullptr,
                                 shift,
                                 scale);
     array += value * amp;

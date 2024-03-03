@@ -6,7 +6,7 @@ int main(void)
   hmap::Vec2<float> kw = {2.f, 2.f};
   int               seed = 1;
 
-  hmap::Array z1 = hmap::worley_double(shape, kw, seed);
+  hmap::Array z1 = hmap::worley_double(shape, kw, seed, 0.5f, 0.5f);
 
   hmap::Array z2 = hmap::fbm_worley_double(shape, kw, seed);
 

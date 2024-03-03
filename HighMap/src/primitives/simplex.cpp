@@ -6,11 +6,38 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/noise_function.hpp"
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 
 namespace hmap
 {
+
+// --- (x, y) function definitions
+
+Simplex2Function::Simplex2Function(Vec2<float> kw, uint seed)
+    : NoiseFunction(kw, seed)
+{
+  this->set_seed(seed);
+  this->noise.SetFrequency(0.5f);
+  this->noise.SetNoiseType(FastNoiseLite::NoiseType_OpenSimplex2);
+
+  this->function = [this](float x, float y, float)
+  { return this->noise.GetNoise(this->kw.x * x, this->kw.y * y); };
+}
+
+Simplex2SFunction::Simplex2SFunction(Vec2<float> kw, uint seed)
+    : NoiseFunction(kw, seed)
+{
+  this->set_seed(seed);
+  this->noise.SetFrequency(0.5f);
+  this->noise.SetNoiseType(FastNoiseLite::NoiseType_OpenSimplex2S);
+
+  this->function = [this](float x, float y, float)
+  { return this->noise.GetNoise(this->kw.x * x, this->kw.y * y); };
+}
+
+// --- wrappers for array filling
 
 Array simplex(Vec2<int>   shape,
               Vec2<float> kw,
@@ -21,20 +48,15 @@ Array simplex(Vec2<int>   shape,
               Vec2<float> shift,
               Vec2<float> scale)
 {
-  Array         array = Array(shape);
-  FastNoiseLite noise(seed);
+  Array                  array = Array(shape);
+  hmap::Simplex2Function f = hmap::Simplex2Function(kw, seed);
+  std::vector<float>     x, y;
+  hmap::Vec4<float>      bbox = {0.f + shift.x,
+                                 scale.x + shift.x,
+                                 0.f + shift.y,
+                                 scale.y + shift.y};
 
-  noise.SetFrequency(1.0f);
-  noise.SetNoiseType(FastNoiseLite::NoiseType_OpenSimplex2);
-
-  std::vector<float> x = linspace(0.5f * kw.x * shift.x,
-                                  0.5f * kw.x * (shift.x + scale.x),
-                                  array.shape.x,
-                                  false);
-  std::vector<float> y = linspace(0.5f * kw.y * shift.y,
-                                  0.5f * kw.y * (shift.y + scale.y),
-                                  array.shape.y,
-                                  false);
+  grid_xy_vector(x, y, shape, bbox);
 
   fill_array_using_xy_function(array,
                                x,
@@ -42,8 +64,7 @@ Array simplex(Vec2<int>   shape,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
-                               [&noise](float x_, float y_, float)
-                               { return noise.GetNoise(x_, y_); });
+                               f.get_function());
   return array;
 }
 

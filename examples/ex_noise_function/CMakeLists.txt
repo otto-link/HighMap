@@ -1,0 +1,2 @@
+add_executable(ex_noise_function ex_noise_function.cpp)
+target_link_libraries(ex_noise_function highmap)

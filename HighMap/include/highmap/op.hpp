@@ -321,6 +321,15 @@ void clamp_min_smooth(Array       &array,
                       float        k = 0.2f); ///< @overload
 
 /**
+ * @brief Clamp value lower than a given bound with a smooth transition.
+ *
+ * @param x Input value.
+ * @param vmin Lower bound.
+ * @param k Smoothing parameter in [0, 1].
+ */
+float clamp_min_smooth(float x, float vmin, float k = 0.2f);
+
+/**
  * @brief Clamp array values larger than a given bound.
  *
  * @param array Input array.
@@ -2347,6 +2356,14 @@ Array smoothstep5(const Array &array, float vmin = 0.f, float vmax = 1.f);
 Array smoothstep5(const Array &array,
                   const Array &vmin,
                   const Array &vmax); ///< @overload
+
+/**
+ * @brief Return the 5rd order smoothstep function.
+ *
+ * @param x Input.
+ * @return float Output.
+ */
+float smoothstep5(const float x);
 
 /**
  * @brief Steepen (or flatten) the array map.

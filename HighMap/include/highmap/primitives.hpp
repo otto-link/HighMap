@@ -810,6 +810,7 @@ Array perlin(Vec2<int>   shape,
  * @param seed Random seed number.
  * @param p_noise_x, p_noise_y Reference to the input noise array used for
  * domain warping (NOT in pixels, with respect to a unit domain).
+ * @param p_stretching Local wavenumber multiplier.
  * @param shift Noise shift {xs, ys} for each directions, with respect to a
  * unit domain.
  * @param scale Domain scaling, in [0, 1].
@@ -826,8 +827,42 @@ Array perlin_billow(Vec2<int>   shape,
                     uint        seed,
                     Array      *p_noise_x = nullptr,
                     Array      *p_noise_y = nullptr,
+                    Array      *p_stretching = nullptr,
                     Vec2<float> shift = {0.f, 0.f},
                     Vec2<float> scale = {1.f, 1.f});
+
+/**
+ * @brief Return an array filled with Perlin noise with a clamping of lower
+ * values.
+ *
+ * @param shape Array shape.
+ * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
+ * a unit domain.
+ * @param k Smoothing factor.
+ * @param seed Random seed number.
+ * @param p_noise_x, p_noise_y Reference to the input noise array used for
+ * domain warping (NOT in pixels, with respect to a unit domain).
+ * @param p_stretching Local wavenumber multiplier.
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a
+ * unit domain.
+ * @param scale Domain scaling, in [0, 1].
+ * @return Array Perlin billow noise.
+ *
+ * **Example**
+ * @include ex_perlin.cpp
+ *
+ * **Result**
+ * @image html ex_perlin.png
+ */
+Array perlin_half(Vec2<int>   shape,
+                  Vec2<float> kw,
+                  uint        seed,
+                  float       k = 0.5f,
+                  Array      *p_noise_x = nullptr,
+                  Array      *p_noise_y = nullptr,
+                  Array      *p_stretching = nullptr,
+                  Vec2<float> shift = {0.f, 0.f},
+                  Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return an array filled with "mix" Perlin noise.
@@ -849,6 +884,7 @@ Array perlin_mix(Vec2<int>   shape,
                  uint        seed,
                  Array      *p_noise_x = nullptr,
                  Array      *p_noise_y = nullptr,
+                 Array      *p_stretching = nullptr,
                  Vec2<float> shift = {0.f, 0.f},
                  Vec2<float> scale = {1.f, 1.f});
 
@@ -1316,8 +1352,9 @@ Array value_noise_thinplate(Vec2<int>   shape,
  * @param xtop Relative location of the top of the dune profile (in [0, 1]).
  * @param xbottom Relative location of the foot of the dune profile (in [0, 1]).
  * @param phase_shift Phase shift (in radians).
- * @param p_noise Reference to the input noise array used for domain warping
- * (NOT in pixels, with respect to a unit domain).
+ * @param p_noise_x, p_noise_y Reference to the input noise array used for
+ * domain warping (NOT in pixels, with respect to a unit domain).
+ * @param p_stretching Local wavenumber multiplier.
  * @param shift Shift {xs, ys} for each directions.
  * @param scale Domain scaling, in [0, 1].
  * @return Array New array.
@@ -1328,7 +1365,9 @@ Array wave_dune(Vec2<int>   shape,
                 float       xtop,
                 float       xbottom,
                 float       phase_shift = 0.f,
-                Array      *p_noise = nullptr,
+                Array      *p_noise_x = nullptr,
+                Array      *p_noise_y = nullptr,
+                Array      *p_stretching = nullptr,
                 Vec2<float> shift = {0.f, 0.f},
                 Vec2<float> scale = {1.f, 1.f});
 
@@ -1339,8 +1378,9 @@ Array wave_dune(Vec2<int>   shape,
  * @param kw Wavenumber with respect to a unit domain.
  * @param angle Overall rotation angle (in degree).
  * @param phase_shift Phase shift (in radians).
- * @param p_noise Reference to the input noise array used for domain warping
- * (NOT in pixels, with respect to a unit domain).
+ * @param p_noise_x, p_noise_y Reference to the input noise array used for
+ * domain warping (NOT in pixels, with respect to a unit domain).
+ * @param p_stretching Local wavenumber multiplier.
  * @param shift Shift {xs, ys} for each directions.
  * @param scale Domain scaling, in [0, 1].
  * @return Array New array.
@@ -1356,7 +1396,9 @@ Array wave_sine(Vec2<int>   shape,
                 float       kw,
                 float       angle,
                 float       phase_shift = 0.f,
-                Array      *p_noise = nullptr,
+                Array      *p_noise_x = nullptr,
+                Array      *p_noise_y = nullptr,
+                Array      *p_stretching = nullptr,
                 Vec2<float> shift = {0.f, 0.f},
                 Vec2<float> scale = {1.f, 1.f});
 
@@ -1367,8 +1409,9 @@ Array wave_sine(Vec2<int>   shape,
  * @param kw Wavenumber with respect to a unit domain.
  * @param angle Overall rotation angle (in degree).
  * @param phase_shift Phase shift (in radians).
- * @param p_noise Reference to the input noise array used for domain warping
- * (NOT in pixels, with respect to a unit domain).
+ * @param p_noise_x, p_noise_y Reference to the input noise array used for
+ * domain warping (NOT in pixels, with respect to a unit domain).
+ * @param p_stretching Local wavenumber multiplier.
  * @param shift Shift {xs, ys} for each directions.
  * @param scale Domain scaling, in [0, 1].
  * @return Array New array.
@@ -1384,7 +1427,9 @@ Array wave_square(Vec2<int>   shape,
                   float       kw,
                   float       angle,
                   float       phase_shift = 0.f,
-                  Array      *p_noise = nullptr,
+                  Array      *p_noise_x = nullptr,
+                  Array      *p_noise_y = nullptr,
+                  Array      *p_stretching = nullptr,
                   Vec2<float> shift = {0.f, 0.f},
                   Vec2<float> scale = {1.f, 1.f});
 
@@ -1396,8 +1441,9 @@ Array wave_square(Vec2<int>   shape,
  * @param angle Overall rotation angle (in degree).
  * @param slant_ratio Relative location of the triangle apex, in [0, 1].
  * @param phase_shift Phase shift (in radians).
- * @param p_noise Reference to the input noise array used for domain warping
- * (NOT in pixels, with respect to a unit domain).
+ * @param p_noise_x, p_noise_y Reference to the input noise array used for
+ * domain warping (NOT in pixels, with respect to a unit domain).
+ * @param p_stretching Local wavenumber multiplier.
  * @param shift Shift {xs, ys} for each directions.
  * @param scale Domain scaling, in [0, 1].
  * @return Array New array.
@@ -1414,7 +1460,9 @@ Array wave_triangular(Vec2<int>   shape,
                       float       angle,
                       float       slant_ratio,
                       float       phase_shift = 0.f,
-                      Array      *p_noise = nullptr,
+                      Array      *p_noise_x = nullptr,
+                      Array      *p_noise_y = nullptr,
+                      Array      *p_stretching = nullptr,
                       Vec2<float> shift = {0.f, 0.f},
                       Vec2<float> scale = {1.f, 1.f});
 
@@ -1499,6 +1547,7 @@ Array white_sparse_binary(Vec2<int> shape, float density, uint seed);
  * @param seed Random seed number.
  * @param p_noise_x, p_noise_y Reference to the input noise array used for
  * domain warping (NOT in pixels, with respect to a unit domain).
+ * @param p_stretching Local wavenumber multiplier.
  * @param shift Noise shift {xs, ys} for each directions, with respect to a
  * unit domain.
  * @param scale Domain scaling, in [0, 1].
@@ -1515,6 +1564,7 @@ Array worley(Vec2<int>   shape,
              uint        seed,
              Array      *p_noise_x = nullptr,
              Array      *p_noise_y = nullptr,
+             Array      *p_stretching = nullptr,
              Vec2<float> shift = {0.f, 0.f},
              Vec2<float> scale = {1.f, 1.f});
 
@@ -1530,6 +1580,7 @@ Array worley(Vec2<int>   shape,
  * @param k Transition smoothing parameter.
  * @param p_noise_x, p_noise_y Reference to the input noise array used for
  * domain warping (NOT in pixels, with respect to a unit domain).
+ * @param p_stretching Local wavenumber multiplier.
  * @param shift Noise shift {xs, ys} for each directions, with respect to a
  * unit domain.
  * @param scale Domain scaling, in [0, 1].
@@ -1548,6 +1599,7 @@ Array worley_double(Vec2<int>   shape,
                     float       k = 0.f,
                     Array      *p_noise_x = nullptr,
                     Array      *p_noise_y = nullptr,
+                    Array      *p_stretching = nullptr,
                     Vec2<float> shift = {0.f, 0.f},
                     Vec2<float> scale = {1.f, 1.f});
 
@@ -1565,6 +1617,7 @@ Array worley_double(Vec2<int>   shape,
  * @param seed Random seed number.
  * @param p_noise_x, p_noise_y Reference to the input noise array used for
  * domain warping (NOT in pixels, with respect to a unit domain).
+ * @param p_stretching Local wavenumber multiplier.
  * @param shift Noise shift {xs, ys} for each directions, with respect to a
  * unit domain.
  * @param scale Domain scaling, in [0, 1].
@@ -1581,6 +1634,7 @@ Array worley_value(Vec2<int>   shape,
                    uint        seed,
                    Array      *p_noise_x = nullptr,
                    Array      *p_noise_y = nullptr,
+                   Array      *p_stretching = nullptr,
                    Vec2<float> shift = {0.f, 0.f},
                    Vec2<float> scale = {1.f, 1.f});
 

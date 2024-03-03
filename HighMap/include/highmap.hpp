@@ -24,6 +24,7 @@
 #include "highmap/hydrology.hpp"
 #include "highmap/io.hpp"
 #include "highmap/kernels.hpp"
+#include "highmap/noise_function.hpp"
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 #include "highmap/pyramid.hpp"

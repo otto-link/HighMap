@@ -1304,6 +1304,21 @@ void grid_from_array(Array              &array,
                      float               threshold = 0.f);
 
 /**
+ * @brief Return x and y coordinates of a regular grid, as two 1D vectors.
+ *
+ * @param x[out] Vector x.
+ * @param y[out] Vector y.
+ * @param shape Shape.
+ * @param bbox Bounding box.
+ * @param endpoint Include or not the endpoint.
+ */
+void grid_xy_vector(std::vector<float> &x,
+                    std::vector<float> &y,
+                    Vec2<int>           shape,
+                    Vec4<float>         bbox = {0.f, 1.f, 0.f, 1.f},
+                    bool                endpoint = false);
+
+/**
  * @brief Generate a random grid.
  *
  * @param x[out] `x` coordinates (output).

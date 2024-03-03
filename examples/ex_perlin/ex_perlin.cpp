@@ -8,7 +8,8 @@ int main(void)
 
   auto z1 = hmap::perlin(shape, kw, seed);
   auto z2 = hmap::perlin_billow(shape, kw, seed);
-  auto z3 = hmap::perlin_mix(shape, kw, seed);
+  auto z3 = hmap::perlin_half(shape, kw, seed);
+  auto z4 = hmap::perlin_mix(shape, kw, seed);
 
-  hmap::export_banner_png("ex_perlin.png", {z1, z2, z3}, hmap::cmap::viridis);
+  hmap::export_banner_png("ex_perlin.png", {z1, z2, z3, z4}, hmap::cmap::jet);
 }

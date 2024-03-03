@@ -150,6 +150,12 @@ void clamp_min_smooth(Array &array, const Array &vmin, float k)
                  lambda);
 }
 
+float clamp_min_smooth(float x, float vmin, float k)
+{
+  float h = std::max(k - std::abs(x - vmin), 0.f) / k;
+  return std::max(x, vmin) + std::pow(h, 3) * k / 6.f;
+}
+
 void clamp_smooth(Array &array, float vmin, float vmax, float k)
 {
   auto lambda = [&k, &vmin, &vmax](float x)

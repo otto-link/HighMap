@@ -121,6 +121,16 @@ void grid_from_array(Array              &array,
   }
 }
 
+void grid_xy_vector(std::vector<float> &x,
+                    std::vector<float> &y,
+                    Vec2<int>           shape,
+                    Vec4<float>         bbox,
+                    bool                endpoint)
+{
+  x = linspace(bbox.a, bbox.b, shape.x, endpoint);
+  y = linspace(bbox.c, bbox.d, shape.y, endpoint);
+}
+
 void random_grid(std::vector<float> &x,
                  std::vector<float> &y,
                  uint                seed,

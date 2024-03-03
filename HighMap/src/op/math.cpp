@@ -249,4 +249,9 @@ Array smoothstep5(const Array &array, const Array &vmin, const Array &vmax)
   return array_out;
 }
 
+float smoothstep5(const float x)
+{
+  return x * x * x * (x * (x * 6.f - 15.f) + 10.f);
+}
+
 } // namespace hmap
