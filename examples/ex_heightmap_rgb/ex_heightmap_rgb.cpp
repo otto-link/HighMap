@@ -21,7 +21,7 @@ int main(void)
                           {zr, zg, zb},
                           hmap::cmap::gray);
 
-  auto zs = hmap::slope_x(shape, 1.f);
+  auto zs = hmap::slope(shape, 0.f, 1.f);
   hmap::remap(zs);
 
   auto hr = hmap::HeightMap(shape, tiling, overlap);

@@ -8,17 +8,16 @@ int main(void)
 
   hmap::Array noise = 0.2f * hmap::fbm_perlin(shape, res, seed);
 
-  float       talus = 1.f / shape.x;
-  hmap::Array sx = hmap::slope_x(shape, talus);
-  hmap::Array sy = hmap::slope_y(shape, talus);
+  float slope = 1.f;
 
-  hmap::Array oblique = hmap::slope(shape, 30.f, talus, &noise);
+  hmap::Array oblique = hmap::slope(shape, 30.f, slope, &noise);
 
-  hmap::Array valley = maximum_smooth(hmap::slope_x(shape, talus, &noise),
-                                      hmap::slope_y(shape, talus, &noise),
-                                      0.1f);
+  hmap::Array valley = maximum_smooth(
+      hmap::slope(shape, 0.f, slope, &noise, &noise),
+      hmap::slope(shape, 90.f, slope, &noise, &noise),
+      0.1f);
 
   hmap::export_banner_png("ex_slope.png",
-                          {sx, sy, oblique, valley},
+                          {oblique, valley},
                           hmap::cmap::terrain);
 }

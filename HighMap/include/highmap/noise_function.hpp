@@ -276,6 +276,53 @@ private:
 };
 
 /**
+ * @brief Slope (x, y) function class.
+ */
+class SlopeFunction : public NoiseFunction
+{
+public:
+  /**
+   * @brief Overall rotation angle (in degree).
+   */
+  float angle;
+
+  /**
+   * @brief Slope.
+   */
+  float slope;
+
+  /**
+   * @brief Primitive reference center.
+   */
+  Vec2<float> center;
+
+  /**
+   * @brief Construct a new Slope Function object
+   *
+   * @param angle Overall rotation angle (in degree).
+   * @param slope Step slope.
+   * @param center Primitive reference center.
+   */
+  SlopeFunction(float angle, float slope, Vec2<float> center);
+
+  /**
+   * @brief Set the angle.
+   *
+   * @param new_angle New angle
+   */
+  void set_angle(float new_angle)
+  {
+    this->angle = new_angle;
+    this->ca = std::cos(angle / 180.f * M_PI);
+    this->sa = std::sin(angle / 180.f * M_PI);
+  }
+
+private:
+  float ca;
+  float sa;
+};
+
+/**
  * @brief Step (x, y) function class.
  */
 class StepFunction : public NoiseFunction

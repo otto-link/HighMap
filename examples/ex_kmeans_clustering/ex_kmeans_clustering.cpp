@@ -21,7 +21,7 @@ int main(void)
   hmap::Array labels4 = hmap::kmeans_clustering2(z, dz, nclusters);
 
   // --- add some data mimicking some moisture increasing from west to east
-  hmap::Array moisture = hmap::slope_x(shape, 1.f);
+  hmap::Array moisture = hmap::slope(shape, 0.f, 1.f);
   hmap::remap(moisture);
 
   // build up 6 clusters (cloud be biomes) based on dry/wet combined

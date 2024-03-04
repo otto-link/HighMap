@@ -990,7 +990,7 @@ Array simplex(Vec2<int>   shape,
  *
  * @param shape Array shape.
  * @param angle Overall rotation angle (in degree).
- * @param talus Talus slope.
+ * @param slope Slope (assuming a unit domain).
  * @param p_noise Reference to the input noise array used for domain warping
  * (NOT in pixels, with respect to a unit domain).
  * @param center Primitive reference center.
@@ -1006,59 +1006,13 @@ Array simplex(Vec2<int>   shape,
  */
 Array slope(Vec2<int>   shape,
             float       angle,
-            float       talus,
-            Array      *p_noise = nullptr,
+            float       slope,
+            Array      *p_noise_x = nullptr,
+            Array      *p_noise_y = nullptr,
+            Array      *p_stretching = nullptr,
             Vec2<float> center = {0.5f, 0.5f},
             Vec2<float> shift = {0.f, 0.f},
             Vec2<float> scale = {1.f, 1.f});
-
-/**
- * @brief Return an array corresponding to a slope in the x direction.
- *
- * @param shape Array shape.
- * @param talus Slope talus.
- * @param p_noise Reference to the input noise array used for domain warping
- * (NOT in pixels, with respect to a unit domain).
- * @param shift Noise shift {xs, ys} for each directions, with respect to a
- * unit domain.
- * @param scale Domain scaling, in [0, 1].
- * @return Array New array.
- *
- * **Example**
- * @include ex_slope.cpp
- *
- * **Result**
- * @image html ex_slope.png
- */
-Array slope_x(Vec2<int>   shape,
-              float       talus,
-              Array      *p_noise = nullptr,
-              Vec2<float> shift = {0.f, 0.f},
-              Vec2<float> scale = {1.f, 1.f});
-
-/**
- * @brief Return an array corresponding to a slope in the y direction.
- *
- * @param shape Array shape.
- * @param talus Slope talus.
- * @param p_noise Reference to the input noise array used for domain warping
- * (NOT in pixels, with respect to a unit domain).
- * @param shift Noise shift {xs, ys} for each directions, with respect to a
- * unit domain.
- * @param scale Domain scaling, in [0, 1].
- * @return Array New array.
- *
- * **Example**
- * @include ex_slope.cpp
- *
- * **Result**
- * @image html ex_slope.png
- */
-Array slope_y(Vec2<int>   shape,
-              float       talus,
-              Array      *p_noise = nullptr,
-              Vec2<float> shift = {0.f, 0.f},
-              Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return a step function (Heaviside with an optional talus slope at
@@ -1066,7 +1020,7 @@ Array slope_y(Vec2<int>   shape,
  *
  * @param shape Array shape.
  * @param angle Overall rotation angle (in degree).
- * @param slope Step slope.
+ * @param slope Step slope (assuming a unit domain).
  * @param p_noise Reference to the input noise array used for domain warping
  * (NOT in pixels, with respect to a unit domain).
  * @param center Primitive reference center.

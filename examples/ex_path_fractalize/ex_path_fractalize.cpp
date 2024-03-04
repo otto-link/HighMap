@@ -16,7 +16,7 @@ int main(void)
   path.to_array(z1, bbox);
 
   // control function (supposed to be in [0, 1])
-  hmap::Array z_control = slope_x(shape, -1.f);
+  hmap::Array z_control = slope(shape, 0.f, -1.f);
   hmap::remap(z_control);
 
   int   iterations = 6;
