@@ -185,42 +185,4 @@ void warp_downslope(Array &array,
   }
 }
 
-void warp_fbm(Array      &array,
-              float       scale,
-              Vec2<float> kw,
-              uint        seed,
-              int         octaves,
-              Vec2<float> shift)
-{
-  float weight = 0.f;
-  float persistence = 0.5f;
-  float lacunarity = 2.f;
-
-  Array dx = fbm_perlin(array.shape,
-                        kw,
-                        seed,
-                        octaves,
-                        weight,
-                        persistence,
-                        lacunarity,
-                        nullptr,
-                        nullptr,
-                        nullptr,
-                        shift);
-  Array dy = fbm_perlin(array.shape,
-                        kw,
-                        seed++,
-                        octaves,
-                        weight,
-                        persistence,
-                        lacunarity,
-                        nullptr,
-                        nullptr,
-                        nullptr,
-                        shift);
-  remap(dx, -scale, scale);
-  remap(dy, -scale, scale);
-  warp(array, &dx, &dy);
-}
-
 } // namespace hmap

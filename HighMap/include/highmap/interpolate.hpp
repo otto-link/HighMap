@@ -27,6 +27,19 @@ enum interpolator2d : int
   thinplate ///< Thinplate
 };
 
+/**
+ * @brief Generic 2D interpolation.
+ *
+ * @param shape Output array shape.
+ * @param x x coordinates of the input values.
+ * @param y y coordinates of the input values.
+ * @param values Input values at (x, y).
+ * @param interpolation_method Interpolation method (@see interpolator2d).
+ * @param p_noise_x, p_noise_y Reference to the input noise arrays.
+ * @param p_stretching Local wavenumber multiplier.
+ * @param bbox Domain bounding box.
+ * @return Array Output array.
+ */
 Array interpolate2d(Vec2<int>          shape,
                     std::vector<float> x,
                     std::vector<float> y,
@@ -34,7 +47,7 @@ Array interpolate2d(Vec2<int>          shape,
                     int                interpolation_method,
                     Array             *p_noise_x = nullptr,
                     Array             *p_noise_y = nullptr,
-                    Vec2<float>        shift = {0.f, 0.f},
-                    Vec2<float>        scale = {1.f, 1.f});
+                    Array             *p_stretching = nullptr,
+                    Vec4<float>        bbox = {0.f, 1.f, 0.f, 1.f});
 
 } // namespace hmap

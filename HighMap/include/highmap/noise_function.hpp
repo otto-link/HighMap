@@ -15,7 +15,9 @@
 #pragma once
 #include <functional>
 
+#include "AnyInterpolator.hpp"
 #include "FastNoiseLite.h"
+#include "Interpolate.hpp"
 #include "macrologger.h"
 
 #include "highmap/op.hpp"
@@ -34,8 +36,6 @@ namespace hmap
 class NoiseFunction
 {
 public:
-  Vec2<float>         kw;
-  uint                seed;
   HMAP_NOISE_FCT_TYPE function = [](float, float, float initial_value)
   { return initial_value; };
 
@@ -59,6 +59,16 @@ public:
     return (NoiseFunction *)this;
   }
 
+  Vec2<float> get_kw() const
+  {
+    return this->kw;
+  }
+
+  uint get_seed() const
+  {
+    return this->seed;
+  }
+
   virtual void set_seed(uint new_seed)
   {
     this->seed = new_seed;
@@ -68,6 +78,10 @@ public:
   {
     this->kw = new_kw;
   }
+
+protected:
+  Vec2<float> kw;
+  uint        seed;
 };
 
 //----------------------------------------
@@ -403,6 +417,224 @@ private:
 };
 
 /**
+ * @brief ValueNoiseDelaunay (x, y) function class.
+ */
+class ValueNoiseDelaunayFunction : public NoiseFunction
+{
+public:
+  /**
+   * @brief Construct a new ValueNoiseFunction object.
+   *
+   * @param kw Noise wavenumber, with respect to
+   * a unit domain.
+   * @param seed Random seed number.
+   */
+  ValueNoiseDelaunayFunction(Vec2<float> kw, uint seed);
+
+  /**
+   * @brief Set the wavenumber attribute.
+   *
+   * @param new_kw New kw.
+   */
+  void set_kw(Vec2<float> new_kw)
+  {
+    this->kw = new_kw;
+    this->update_interpolation_function();
+  }
+
+  /**
+   * @brief Set the seed attribute.
+   *
+   * @param new_seed New seed.
+   */
+  void set_seed(uint new_seed)
+  {
+    this->seed = new_seed;
+    this->update_interpolation_function();
+  }
+
+  /**
+   * @brief Update base interpolation.
+   */
+  void update_interpolation_function()
+  {
+    // generate 'n' random grid points
+    int n = (int)(this->kw.x * this->kw.y);
+
+    std::vector<float> x(n);
+    std::vector<float> y(n);
+    std::vector<float> value(n);
+
+    random_grid(x, y, value, this->seed, {0.f, 1.f, 0.f, 1.f});
+    expand_grid(x, y, value, {0.f, 1.f, 0.f, 1.f});
+    this->interp = _2D::LinearDelaunayTriangleInterpolator<float>();
+    this->interp.setData(x, y, value);
+  }
+
+private:
+  /**
+   * @brief Interpolation function object.
+   */
+  _2D::AnyInterpolator<
+      float,
+      void(std::vector<float>, std::vector<float>, std::vector<float>)>
+      interp;
+};
+
+/**
+ * @brief ValueNoiseLinearFunction (x, y) function class.
+ */
+class ValueNoiseLinearFunction : public NoiseFunction
+{
+public:
+  /**
+   * @brief Construct a new ValueNoiseLinearFunction object.
+   *
+   * @param kw Noise wavenumber, with respect to
+   * a unit domain.
+   * @param seed Random seed number.
+   */
+  ValueNoiseLinearFunction(Vec2<float> kw, uint seed);
+
+  /**
+   * @brief Set the wavenumber attribute.
+   *
+   * @param new_kw New kw.
+   */
+  void set_kw(Vec2<float> new_kw)
+  {
+    this->kw = new_kw;
+    this->update_interpolation_function();
+  }
+
+  /**
+   * @brief Set the seed attribute.
+   *
+   * @param new_seed New seed.
+   */
+  void set_seed(uint new_seed)
+  {
+    this->seed = new_seed;
+    this->update_interpolation_function();
+  }
+
+  /**
+   * @brief Update base interpolation.
+   */
+  void update_interpolation_function()
+  {
+    // generate random values on a regular coarse grid (adjust extent
+    // according to the input noise in order to avoid "holes" in the
+    // data for large noise displacement)
+    Vec4<float> bbox = {-1.f, 2.f, -1.f, 2.f}; // bounding box
+
+    float lx = bbox.b - bbox.a;
+    float ly = bbox.d - bbox.c;
+
+    Vec2<int> shape_base = Vec2<int>((int)(kw.x * lx) + 1,
+                                     (int)(kw.y * ly) + 1);
+
+    std::vector<float> value;
+    value.reserve(shape_base.x * shape_base.y);
+
+    {
+      std::mt19937                          gen(seed);
+      std::uniform_real_distribution<float> dis(0.f, 1.f);
+      for (int k = 0; k < shape_base.x * shape_base.y; k++)
+        value.push_back(dis(gen));
+    }
+
+    // corresponding grids
+    Array xv = Array(shape_base);
+    Array yv = Array(shape_base);
+
+    for (int i = 0; i < shape_base.x; i++)
+      for (int j = 0; j < shape_base.y; j++)
+      {
+        xv(i, j) = bbox.a + lx * (float)i / (float)(shape_base.x - 1);
+        yv(i, j) = bbox.c + ly * (float)j / (float)(shape_base.y - 1);
+      }
+
+    this->interp = _2D::BilinearInterpolator<float>();
+    this->interp.setData(xv.vector, yv.vector, value);
+  }
+
+private:
+  /**
+   * @brief Interpolation function object.
+   */
+  _2D::AnyInterpolator<
+      float,
+      void(std::vector<float>, std::vector<float>, std::vector<float>)>
+      interp;
+};
+
+/**
+ * @brief ValueNoiseThinplate (x, y) function class.
+ */
+class ValueNoiseThinplateFunction : public NoiseFunction
+{
+public:
+  /**
+   * @brief Construct a new ValueNoiseThinplateFunction object.
+   *
+   * @param kw Noise wavenumber, with respect to
+   * a unit domain.
+   * @param seed Random seed number.
+   */
+  ValueNoiseThinplateFunction(Vec2<float> kw, uint seed);
+
+  /**
+   * @brief Set the wavenumber attribute.
+   *
+   * @param new_kw New kw.
+   */
+  void set_kw(Vec2<float> new_kw)
+  {
+    this->kw = new_kw;
+    this->update_interpolation_function();
+  }
+
+  /**
+   * @brief Set the seed attribute.
+   *
+   * @param new_seed New seed.
+   */
+  void set_seed(uint new_seed)
+  {
+    this->seed = new_seed;
+    this->update_interpolation_function();
+  }
+
+  /**
+   * @brief Update base interpolation.
+   */
+  void update_interpolation_function()
+  {
+    // generate 'n' random grid points
+    int n = (int)(this->kw.x * this->kw.y);
+
+    std::vector<float> x(n);
+    std::vector<float> y(n);
+    std::vector<float> value(n);
+
+    random_grid(x, y, value, this->seed, {0.f, 1.f, 0.f, 1.f});
+    expand_grid(x, y, value, {0.f, 1.f, 0.f, 1.f});
+    this->interp = _2D::ThinPlateSplineInterpolator<float>();
+    this->interp.setData(x, y, value);
+  }
+
+private:
+  /**
+   * @brief Interpolation function object.
+   */
+  _2D::AnyInterpolator<
+      float,
+      void(std::vector<float>, std::vector<float>, std::vector<float>)>
+      interp;
+};
+
+/**
  * @brief Worley (x, y) function class.
  */
 class WorleyFunction : public NoiseFunction
@@ -695,15 +927,15 @@ public:
         persistence(persistence), lacunarity(lacunarity)
   {
     // backup base noise infos
-    this->set_seed(this->p_base->seed);
-    this->set_kw(this->p_base->kw);
+    this->set_seed(this->p_base->get_seed());
+    this->set_kw(this->p_base->get_kw());
     this->update_amp0();
   }
 
   void set_kw(Vec2<float> new_kw)
   {
     this->kw = new_kw;
-    this->p_base->kw = new_kw;
+    this->p_base->set_kw(new_kw);
   }
 
   void set_lacunarity(float new_lacunarity)
@@ -726,7 +958,7 @@ public:
   void set_seed(uint new_seed)
   {
     this->seed = new_seed;
-    this->p_base->seed = new_seed;
+    this->p_base->set_seed(new_seed);
   }
 
   void update_amp0()
@@ -754,135 +986,104 @@ protected:
   float          amp0;
 };
 
+/**
+ * @brief Pingpong layering function
+ */
 class FbmFunction : public GenericFractalFunction
 {
 public:
+  /**
+   * @brief Construct a new Fbm Pingpong Function object.
+   *
+   * @param octaves Number of octaves.
+   * @param weigth Octave weighting.
+   * @param persistence Octave persistence.
+   * @param lacunarity Defines the wavenumber ratio between each octaves.
+   */
   FbmFunction(NoiseFunction *p_base,
               int            octaves,
               float          weight,
               float          persistence,
-              float          lacunarity)
-      : GenericFractalFunction(p_base, octaves, weight, persistence, lacunarity)
-  {
-    this->function = [this](float x, float y, float initial_value)
-    {
-      float sum = initial_value;
-      float amp = this->amp0;
-      float ki = 1.f;
-      float kj = 1.f;
-      int   kseed = this->seed;
-
-      for (int k = 0; k < this->octaves; k++)
-      {
-        this->p_base->set_seed(kseed);
-        float value = this->p_base->function(ki * x, kj * y, 0.f);
-        sum += value * amp;
-        amp *= (1.f - this->weight) +
-               this->weight * std::min(value + 1.f, 2.f) * 0.5f;
-
-        ki *= this->lacunarity;
-        kj *= this->lacunarity;
-        amp *= this->persistence;
-        kseed++;
-      }
-      return sum;
-    };
-  }
+              float          lacunarity);
 };
 
+/**
+ * @brief Pingpong layering function
+ */
+class FbmPingpongFunction : public GenericFractalFunction
+{
+public:
+  /**
+   * @brief Construct a new Fbm Pingpong Function object.
+   *
+   * @param octaves Number of octaves.
+   * @param weigth Octave weighting.
+   * @param persistence Octave persistence.
+   * @param lacunarity Defines the wavenumber ratio between each octaves.
+   */
+  FbmPingpongFunction(NoiseFunction *p_base,
+                      int            octaves,
+                      float          weight,
+                      float          persistence,
+                      float          lacunarity);
+
+protected:
+  float k_smoothing;
+};
+
+/**
+ * @brief Ridged layering function
+ */
 class FbmRidgedFunction : public GenericFractalFunction
 {
 public:
+  /**
+   * @brief Construct a new Fbm Ridged Function object.
+   *
+   * @param octaves Number of octaves.
+   * @param weigth Octave weighting.
+   * @param persistence Octave persistence.
+   * @param lacunarity Defines the wavenumber ratio between each octaves.
+   * @param k_smoothing Smoothing parameter.
+   */
   FbmRidgedFunction(NoiseFunction *p_base,
                     int            octaves,
                     float          weight,
                     float          persistence,
-                    float          lacunarity)
-      : GenericFractalFunction(p_base, octaves, weight, persistence, lacunarity)
-  {
-    this->function = [this](float x, float y, float initial_value)
-    {
-      float sum = initial_value;
-      float amp = this->amp0;
-      float ki = 1.f;
-      float kj = 1.f;
-      int   kseed = this->seed;
+                    float          lacunarity,
+                    float          k_smoothing);
 
-      for (int k = 0; k < this->octaves; k++)
-      {
-        this->p_base->set_seed(kseed);
-        float value = std::abs(this->p_base->function(ki * x, kj * y, 0.f));
-        sum += (1.f - 2.f * value) * amp;
-        amp *= 1.f - this->weight * value;
-
-        ki *= this->lacunarity;
-        kj *= this->lacunarity;
-        amp *= this->persistence;
-        kseed++;
-      }
-      return sum;
-    };
-  }
+protected:
+  float k_smoothing;
 };
 
+/**
+ * @brief Swiss layering function
+ */
 class FbmSwissFunction : public GenericFractalFunction
 {
 public:
+  /**
+   * @brief Construct a new Fbm Swiss Function object
+   *
+   * @param octaves Number of octaves.
+   * @param weigth Octave weighting.
+   * @param persistence Octave persistence.
+   * @param lacunarity Defines the wavenumber ratio between each octaves.
+   * @param warp_scale Warping scale.
+   */
   FbmSwissFunction(NoiseFunction *p_base,
                    int            octaves,
                    float          weight,
                    float          persistence,
                    float          lacunarity,
-                   float          warp_scale)
-      : GenericFractalFunction(p_base, octaves, weight, persistence, lacunarity)
-  {
-    this->set_warp_scale(warp_scale);
+                   float          warp_scale);
 
-    this->function = [this](float x, float y, float initial_value)
-    {
-      // based on https://www.decarpentier.nl/scape-procedural-extensions
-      float sum = initial_value;
-      float amp = this->amp0;
-      float ki = 1.f;
-      float kj = 1.f;
-      int   kseed = this->seed;
-
-      float dx_sum = 0.f;
-      float dy_sum = 0.f;
-
-      for (int k = 0; k < this->octaves; k++)
-      {
-        float xw = ki * x + this->warp_scale_normalized * dx_sum;
-        float yw = kj * y + this->warp_scale_normalized * dy_sum;
-
-        float value = this->p_base->function(xw, yw, 0.f);
-        float dvdx =
-            (this->p_base->function(xw + HMAP_GRADIENT_OFFSET, yw, 0.f) -
-             this->p_base->function(xw - HMAP_GRADIENT_OFFSET, yw, 0.f)) /
-            HMAP_GRADIENT_OFFSET;
-        float dvdy =
-            (this->p_base->function(xw, yw + HMAP_GRADIENT_OFFSET, 0.f) -
-             this->p_base->function(xw, yw - HMAP_GRADIENT_OFFSET, 0.f)) /
-            HMAP_GRADIENT_OFFSET;
-
-        // LOG_DEBUG("%f", value);
-
-        sum += value * amp;
-        dx_sum += amp * dvdx * -(value + 0.5f);
-        dy_sum += amp * dvdy * -(value + 0.5f);
-
-        amp *= (1.f - this->weight) +
-               this->weight * std::min(value + 1.f, 2.f) * 0.5f;
-
-        ki *= this->lacunarity;
-        kj *= this->lacunarity;
-        amp *= this->persistence;
-        kseed++;
-      }
-      return sum;
-    };
-  }
-
+  /**
+   * @brief Set the warp scale object
+   *
+   * @param new_warp_scale New warp scale.
+   */
   void set_warp_scale(float new_warp_scale)
   {
     this->warp_scale = new_warp_scale;

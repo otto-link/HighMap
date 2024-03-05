@@ -13,32 +13,22 @@ Array checkerboard(Vec2<int>   shape,
                    Vec2<float> kw,
                    Array      *p_noise_x,
                    Array      *p_noise_y,
-                   Vec2<float> shift,
-                   Vec2<float> scale)
+                   Array      *p_stretching,
+                   Vec4<float> bbox)
 {
   Array array = Array(shape);
 
-  std::vector<float> x = linspace(kw.x * shift.x,
-                                  kw.x * (shift.x + scale.x),
-                                  array.shape.x,
-                                  false);
-  std::vector<float> y = linspace(kw.y * shift.y,
-                                  kw.y * (shift.y + scale.y),
-                                  array.shape.y,
-                                  false);
-
-  auto lambda = [&kw](float x_, float y_, float)
+  auto lambda = [&kw](float x, float y, float)
   {
-    return std::abs(std::abs((int)std::floor(x_) % 2) -
-                    std::abs((int)std::floor(y_) % 2));
+    return std::abs(std::abs((int)std::floor(x) % 2) -
+                    std::abs((int)std::floor(y) % 2));
   };
 
   fill_array_using_xy_function(array,
-                               x,
-                               y,
+                               bbox,
                                p_noise_x,
                                p_noise_y,
-                               nullptr,
+                               p_stretching,
                                lambda);
   return array;
 }

@@ -50,8 +50,8 @@ Array tessellate(Array &array, uint seed, float node_density, Array *p_weight)
                                   interpolator2d::delaunay,
                                   nullptr, // noise
                                   nullptr, // noise
-                                  {0.f, 0.f},
-                                  {1.f, 1.f});
+                                  nullptr,
+                                  bbox);
 
   return array_out;
 }

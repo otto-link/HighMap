@@ -8,7 +8,7 @@ int main(void)
   hmap::Vec2<float> res = {2.f, 2.f};
   int               seed = 1;
 
-  hmap::Array z = hmap::ridged_perlin(shape, res, seed);
+  hmap::Array z = hmap::fbm_ridged_perlin(shape, res, seed);
 
   z.to_png("ex_ridged_perlin.png", hmap::cmap::terrain, true);
 }

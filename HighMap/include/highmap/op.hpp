@@ -2570,26 +2570,6 @@ void warp_downslope(Array &array,
                     bool   reverse = false); ///< @overload
 
 /**
- * @brief Apply a warping effect to the array with displacements based on fbm
- * noise.
- *
- * @param array Input array.
- * @param scale Warping scale (scale is 1:1, scale = 1 => 1 pixel).
- * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
- * a unit domain.
- * @param seed Random seed number.
- * @param octaves Number of octaves.
- * @param shift Noise shift {xs, ys} for each directions, with respect to a unit
- * domain.
- */
-void warp_fbm(Array      &array,
-              float       scale,
-              Vec2<float> kw,
-              uint        seed,
-              int         octaves = 8,
-              Vec2<float> shift = {0.f, 0.f});
-
-/**
  * @brief
  *
  * @param array Input array.

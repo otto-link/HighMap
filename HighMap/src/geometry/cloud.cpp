@@ -163,8 +163,7 @@ void Cloud::to_array_interp(Array      &array,
                             int         interpolation_method,
                             Array      *p_noise_x,
                             Array      *p_noise_y,
-                            Vec2<float> shift,
-                            Vec2<float> scale)
+                            Vec4<float> bbox_array)
 {
   std::vector<float> x = this->get_x();
   std::vector<float> y = this->get_y();
@@ -192,32 +191,20 @@ void Cloud::to_array_interp(Array      &array,
 
   interp.setData(x, y, v);
 
-  // array grid
-  std::vector<float> xg = linspace(bbox.a + shift.x * lx,
-                                   bbox.a + (shift.x + scale.x) * lx,
-                                   array.shape.x,
-                                   false);
-  std::vector<float> yg = linspace(bbox.c + shift.y * ly,
-                                   bbox.c + (shift.y + scale.y) * ly,
-                                   array.shape.y,
-                                   false);
-
   fill_array_using_xy_function(array,
-                               xg,
-                               yg,
+                               bbox_array,
                                p_noise_x,
                                p_noise_y,
                                nullptr,
-                               [&interp](float x_, float y_, float)
-                               { return interp(x_, y_); });
+                               [&interp](float x, float y, float)
+                               { return interp(x, y); });
 }
 
 Array Cloud::to_array_sdf(Vec2<int>   shape,
                           Vec4<float> bbox,
                           Array      *p_noise_x,
                           Array      *p_noise_y,
-                          Vec2<float> shift,
-                          Vec2<float> scale)
+                          Vec4<float> bbox_array)
 {
   // nodes
   std::vector<float> xp = this->get_x();
@@ -238,18 +225,13 @@ Array Cloud::to_array_sdf(Vec2<int>   shape,
     return std::sqrt(d);
   };
 
-  std::vector<float> x = linspace(shift.x, scale.x + shift.x, shape.x, false);
-  std::vector<float> y = linspace(shift.y, scale.y + shift.y, shape.y, false);
-
   Array z = Array(shape);
   fill_array_using_xy_function(z,
-                               x,
-                               y,
+                               bbox_array,
                                p_noise_x,
                                p_noise_y,
                                nullptr,
                                distance_fct);
-
   return z;
 }
 

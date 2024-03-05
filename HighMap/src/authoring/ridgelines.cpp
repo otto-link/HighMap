@@ -25,12 +25,9 @@ Array ridgelines(Vec2<int>          shape,
                  Vec4<float>        bbox,
                  Array             *p_noise_x,
                  Array             *p_noise_y,
-                 Vec2<float>        shift,
-                 Vec2<float>        scale)
+                 Array             *p_stretching,
+                 Vec4<float>        bbox_array)
 {
-  std::vector<float> x = linspace(shift.x, shift.x + scale.x, shape.x, false);
-  std::vector<float> y = linspace(shift.y, shift.y + scale.y, shape.y, false);
-
   // normalized node coordinates
   std::vector<float> xrs = xr;
   std::vector<float> yrs = yr;
@@ -93,11 +90,10 @@ Array ridgelines(Vec2<int>          shape,
   // eventually fill array
   Array array = Array(shape);
   fill_array_using_xy_function(array,
-                               x,
-                               y,
+                               bbox_array,
                                p_noise_x,
                                p_noise_y,
-                               nullptr,
+                               p_stretching,
                                lambda);
 
   return array;
@@ -114,12 +110,9 @@ Array ridgelines_bezier(Vec2<int>          shape,
                         Vec4<float>        bbox,
                         Array             *p_noise_x,
                         Array             *p_noise_y,
-                        Vec2<float>        shift,
-                        Vec2<float>        scale)
+                        Array             *p_stretching,
+                        Vec4<float>        bbox_array)
 {
-  std::vector<float> x = linspace(shift.x, shift.x + scale.x, shape.x, false);
-  std::vector<float> y = linspace(shift.y, shift.y + scale.y, shape.y, false);
-
   // normalized node coordinates
   std::vector<float> xrs = xr;
   std::vector<float> yrs = yr;
@@ -307,11 +300,10 @@ Array ridgelines_bezier(Vec2<int>          shape,
   // eventually fill array
   Array array = Array(shape);
   fill_array_using_xy_function(array,
-                               x,
-                               y,
+                               bbox_array,
                                p_noise_x,
                                p_noise_y,
-                               nullptr,
+                               p_stretching,
                                lambda);
 
   return array;

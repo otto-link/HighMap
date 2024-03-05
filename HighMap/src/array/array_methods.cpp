@@ -130,7 +130,19 @@ void fill_array_using_xy_function(
     Array                                    *p_stretching,
     std::function<float(float, float, float)> fct_xy)
 {
-  Vec2<int> shape = array.shape;
+}
+
+void fill_array_using_xy_function(
+    Array                                    &array,
+    Vec4<float>                               bbox,
+    Array                                    *p_noise_x,
+    Array                                    *p_noise_y,
+    Array                                    *p_stretching,
+    std::function<float(float, float, float)> fct_xy)
+{
+  Vec2<int>          shape = array.shape;
+  std::vector<float> x, y;
+  grid_xy_vector(x, y, shape, bbox);
 
   if (p_stretching) // with stretching
   {

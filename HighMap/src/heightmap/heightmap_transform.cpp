@@ -27,34 +27,25 @@ void fill(HeightMap &h, std::function<Array(Vec2<int>)> nullary_op)
     h.tiles[i] = futures[i].get();
 }
 
-void fill(HeightMap                                                &h,
-          std::function<Array(Vec2<int>, Vec2<float>, Vec2<float>)> nullary_op)
+void fill(HeightMap &h, std::function<Array(Vec2<int>, Vec4<float>)> nullary_op)
 {
   LOG_DEBUG("nullary (shape, size)");
   size_t                          nthreads = h.get_ntiles();
   std::vector<std::future<Array>> futures(nthreads);
 
   for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
-    futures[i] = std::async(nullary_op,
-                            h.tiles[i].shape,
-                            h.tiles[i].shift,
-                            h.tiles[i].scale);
+    futures[i] = std::async(nullary_op, h.tiles[i].shape, h.tiles[i].bbox);
 
   for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
     h.tiles[i] = futures[i].get();
-
-  // for (auto &t : h.tiles)
-  //   t = nullary_op(t.shape, t.shift);
 }
 
-void fill(HeightMap                          &h,
-          HeightMap                          *p_noise_x,
-          HeightMap                          *p_noise_y,
-          std::function<Array(Vec2<int>,
-                              Vec2<float>,
-                              Vec2<float>,
-                              hmap::Array *,
-                              hmap::Array *)> nullary_op)
+void fill(
+    HeightMap &h,
+    HeightMap *p_noise_x,
+    HeightMap *p_noise_y,
+    std::function<Array(Vec2<int>, Vec4<float>, hmap::Array *, hmap::Array *)>
+        nullary_op)
 {
   LOG_DEBUG("nullary (shape, size, p_noise, p_noise)");
   size_t                          nthreads = h.get_ntiles();
@@ -69,8 +60,7 @@ void fill(HeightMap                          &h,
 
     futures[i] = std::async(nullary_op,
                             h.tiles[i].shape,
-                            h.tiles[i].shift,
-                            h.tiles[i].scale,
+                            h.tiles[i].bbox,
                             p_nx,
                             p_ny);
   }
@@ -85,8 +75,7 @@ void fill(HeightMap                          &h,
           HeightMap                          *p_noise_y,
           std::function<Array(hmap::Array &,
                               Vec2<int>,
-                              Vec2<float>,
-                              Vec2<float>,
+                              Vec4<float>,
                               hmap::Array *,
                               hmap::Array *)> unary_op)
 {
@@ -104,8 +93,7 @@ void fill(HeightMap                          &h,
     futures[i] = std::async(unary_op,
                             std::ref(hin.tiles[i]),
                             h.tiles[i].shape,
-                            h.tiles[i].shift,
-                            h.tiles[i].scale,
+                            h.tiles[i].bbox,
                             p_nx,
                             p_ny);
   }
@@ -119,8 +107,7 @@ void fill(HeightMap                          &h,
           HeightMap                          *p_noise_y,
           HeightMap                          *p_stretching,
           std::function<Array(Vec2<int>,
-                              Vec2<float>,
-                              Vec2<float>,
+                              Vec4<float>,
                               hmap::Array *,
                               hmap::Array *,
                               hmap::Array *)> nullary_op)
@@ -139,8 +126,7 @@ void fill(HeightMap                          &h,
 
     futures[i] = std::async(nullary_op,
                             h.tiles[i].shape,
-                            h.tiles[i].shift,
-                            h.tiles[i].scale,
+                            h.tiles[i].bbox,
                             p_nx,
                             p_ny,
                             p_s);
@@ -151,10 +137,9 @@ void fill(HeightMap                          &h,
 }
 
 void fill(
-    HeightMap &h,
-    HeightMap *p_noise,
-    std::function<Array(Vec2<int>, Vec2<float>, Vec2<float>, hmap::Array *)>
-        nullary_op)
+    HeightMap                                                  &h,
+    HeightMap                                                  *p_noise,
+    std::function<Array(Vec2<int>, Vec4<float>, hmap::Array *)> nullary_op)
 {
   LOG_DEBUG("nullary (shape, size, p_noise, p_noise)");
   size_t                          nthreads = h.get_ntiles();
@@ -164,11 +149,7 @@ void fill(
   {
     Array *p_n = (p_noise == nullptr) ? nullptr : &p_noise->tiles[i];
 
-    futures[i] = std::async(nullary_op,
-                            h.tiles[i].shape,
-                            h.tiles[i].shift,
-                            h.tiles[i].scale,
-                            p_n);
+    futures[i] = std::async(nullary_op, h.tiles[i].shape, h.tiles[i].bbox, p_n);
   }
 
   for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
@@ -221,22 +202,21 @@ void transform(HeightMap &h, std::function<void(Array &)> unary_op)
     futures[i].get();
 }
 
-void transform(HeightMap                                             &h,
-               std::function<void(Array &, Vec2<float>, Vec2<float>)> unary_op)
-{
-  LOG_DEBUG("unary");
-  size_t                         nthreads = h.get_ntiles();
-  std::vector<std::future<void>> futures(nthreads);
+// void transform(HeightMap                                             &h,
+//                std::function<void(Array &, Vec4<float>)> unary_op)
+// {
+//   LOG_DEBUG("unary");
+//   size_t                         nthreads = h.get_ntiles();
+//   std::vector<std::future<void>> futures(nthreads);
 
-  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
-    futures[i] = std::async(unary_op,
-                            std::ref(h.tiles[i]),
-                            h.tiles[i].shift,
-                            h.tiles[i].scale);
+//   for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+//     futures[i] = std::async(unary_op,
+//                             std::ref(h.tiles[i]),
+//                             h.tiles[i].bbox);
 
-  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
-    futures[i].get();
-}
+//   for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+//     futures[i].get();
+// }
 
 void transform(HeightMap &h, std::function<void(Array &, Vec4<float>)> unary_op)
 {
@@ -399,10 +379,9 @@ void transform(HeightMap                            &h1,
     futures[i].get();
 }
 
-void transform(
-    HeightMap                                                      &h1,
-    HeightMap                                                      &h2,
-    std::function<void(Array &, Array &, Vec2<float>, Vec2<float>)> binary_op)
+void transform(HeightMap                                         &h1,
+               HeightMap                                         &h2,
+               std::function<void(Array &, Array &, Vec4<float>)> binary_op)
 {
   LOG_DEBUG("binary");
   size_t                         nthreads = h1.get_ntiles();
@@ -412,8 +391,7 @@ void transform(
     futures[i] = std::async(binary_op,
                             std::ref(h1.tiles[i]),
                             std::ref(h2.tiles[i]),
-                            h1.tiles[i].shift,
-                            h1.tiles[i].scale);
+                            h1.tiles[i].bbox);
 
   for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
     futures[i].get();

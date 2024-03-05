@@ -14,8 +14,8 @@ Array base_elevation(Vec2<int>                       shape,
                      float                           width_factor,
                      Array                          *p_noise_x,
                      Array                          *p_noise_y,
-                     Vec2<float>                     shift,
-                     Vec2<float>                     scale)
+                     Array                          *p_stretching,
+                     Vec4<float>                     bbox)
 {
   Array array = Array(shape);
 
@@ -28,9 +28,6 @@ Array base_elevation(Vec2<int>                       shape,
   float              dyc = 1.f / (float)nj;
   std::vector<float> xc = linspace(0.5f * dxc, 1.f - 0.5f * dxc, ni);
   std::vector<float> yc = linspace(0.5f * dyc, 1.f - 0.5f * dyc, nj);
-
-  std::vector<float> x = linspace(shift.x, shift.x + scale.x, shape.x, false);
-  std::vector<float> y = linspace(shift.y, shift.y + scale.y, shape.y, false);
 
   // Gaussian half-widths based on the mesh discretization
   float s2x = 2.f / dxc / dxc / width_factor;
@@ -48,11 +45,10 @@ Array base_elevation(Vec2<int>                       shape,
 
       Array array_tmp = Array(array.shape);
       fill_array_using_xy_function(array_tmp,
-                                   x,
-                                   y,
+                                   bbox,
                                    p_noise_x,
                                    p_noise_y,
-                                   nullptr,
+                                   p_stretching,
                                    lambda);
       array += values[p][q] * array_tmp;
     }

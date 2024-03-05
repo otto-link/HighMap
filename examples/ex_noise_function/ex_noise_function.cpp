@@ -43,7 +43,8 @@ int main(void)
                                                       8,
                                                       0.7f,
                                                       0.5f,
-                                                      2.f);
+                                                      2.f,
+                                                      0.5f);
 
   // hmap::FbmSwissFunction f = hmap::FbmSwissFunction(pa.get()->get_base_ref(),
   //                                                   8,
@@ -70,14 +71,6 @@ int main(void)
   timer.start("ArrayOp");
   auto a = hmap::fbm_perlin(shape, kw, seed);
   timer.stop("ArrayOp");
-
-  timer.start("ArrayNew");
-  auto b = hmap::fbm(shape,
-                     kw,
-                     seed,
-                     hmap::noise_type::noise_perlin,
-                     hmap::fractal_type::fractal_fbm);
-  timer.stop("ArrayNew");
 
   z.infos();
   z.to_png("out.png", hmap::cmap::terrain, true);

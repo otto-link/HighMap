@@ -369,9 +369,7 @@ public:
    * @param bbox Bounding box.
    * @param p_noise_x, p_noise_y Reference to the input noise array used for
    * domain warping (NOT in pixels, with respect to a unit domain).
-   * @param shift Noise shift {xs, ys} for each directions, with respect to a
-   * unit domain.
-   * @param scale Domain scaling, in [0, 1].
+   * @param bbox_array Bounding box of the destination array.
    * @return Array Resulting array.
    *
    *  * **Example**
@@ -384,14 +382,16 @@ public:
                      Vec4<float> bbox,
                      Array      *p_noise_x = nullptr,
                      Array      *p_noise_y = nullptr,
-                     Vec2<float> shift = {0.f, 0.f},
-                     Vec2<float> scale = {1.f, 1.f});
+                     Vec4<float> bbox_array = {0.f, 1.f, 0.f, 1.f});
 
   /**
    * @brief Interpolate array value using cloud points.
    *
    * @param array Input array.
-   * @param bbox Bounding box of the array.
+   * @param bbox Bounding box.
+   * @param p_noise_x, p_noise_y Reference to the input noise array used for
+   * domain warping (NOT in pixels, with respect to a unit domain).
+   * @param bbox_array Bounding box of the destination array.
    *
    * **Example**
    * @include ex_cloud_to_array_interp.cpp
@@ -404,8 +404,7 @@ public:
                        int         interpolation_method = 0,
                        Array      *p_noise_x = nullptr,
                        Array      *p_noise_y = nullptr,
-                       Vec2<float> shift = {0.f, 0.f},
-                       Vec2<float> scale = {1.f, 1.f});
+                       Vec4<float> bbox_array = {0.f, 1.f, 0.f, 1.f});
 
   /**
    * @brief Export data to a csv file.
@@ -613,11 +612,8 @@ public:
    *
    * @param shape Output array shape.
    * @param bbox Bounding box.
-   * @param p_noise_x, p_noise_y Reference to the input noise array used for
-   * domain warping (NOT in pixels, with respect to a unit domain).
-   * @param shift Noise shift {xs, ys} for each directions, with respect to a
-   * unit domain.
-   * @param scale Domain scaling, in [0, 1].
+   * @param p_noise_x, p_noise_y Reference to the input noise arrays.
+   * @param bbox_array Bounding box of the destination array.
    * @return Array Resulting array.
    *
    *  * **Example**
@@ -630,8 +626,7 @@ public:
                      Vec4<float> bbox,
                      Array      *p_noise_x = nullptr,
                      Array      *p_noise_y = nullptr,
-                     Vec2<float> shift = {0.f, 0.f},
-                     Vec2<float> scale = {1.f, 1.f});
+                     Vec4<float> bbox_array = {0.f, 1.f, 0.f, 1.f});
 
   /**
    * @brief Export graph to csv files.
@@ -1139,11 +1134,8 @@ public:
    *
    * @param shape Output array shape.
    * @param bbox Bounding box.
-   * @param p_noise_x, p_noise_y Reference to the input noise array used for
-   * domain warping (NOT in pixels, with respect to a unit domain).
-   * @param shift Noise shift {xs, ys} for each directions, with respect to a
-   * unit domain.
-   * @param scale Domain scaling, in [0, 1].
+   * @param p_noise_x, p_noise_y Reference to the input noise arrays.
+   * @param bbox_array Bounding box of the destination array.
    * @return Array Resulting array.
    *
    *  * **Example**
@@ -1156,8 +1148,7 @@ public:
                      Vec4<float> bbox,
                      Array      *p_noise_x = nullptr,
                      Array      *p_noise_y = nullptr,
-                     Vec2<float> shift = {0.f, 0.f},
-                     Vec2<float> scale = {1.f, 1.f});
+                     Vec4<float> bbox_array = {0.f, 1.f, 0.f, 1.f});
 
   /**
    * @brief Export path as png image file.

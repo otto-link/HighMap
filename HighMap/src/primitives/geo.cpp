@@ -22,12 +22,15 @@ Array caldera(Vec2<int>   shape,
               float       noise_r_amp,
               float       noise_z_ratio,
               Vec2<float> center,
-              Vec2<float> shift,
-              Vec2<float> scale)
+              Vec4<float> bbox)
 {
   Array z = Array(shape);
-  int   ic = (int)((center.x - shift.x) / scale.x * z.shape.x);
-  int   jc = (int)((center.y - shift.y) / scale.y * z.shape.y);
+
+  Vec2<float> shift = {bbox.a, bbox.c};
+  Vec2<float> scale = {bbox.b - bbox.a, bbox.d - bbox.c};
+
+  int ic = (int)((center.x - shift.x) / scale.x * z.shape.x);
+  int jc = (int)((center.y - shift.y) / scale.y * z.shape.y);
 
   float si2 = sigma_inner * sigma_inner;
   float so2 = sigma_outer * sigma_outer;
@@ -72,8 +75,7 @@ Array caldera(Vec2<int>   shape,
               float       sigma_outer,
               float       z_bottom,
               Vec2<float> center,
-              Vec2<float> shift,
-              Vec2<float> scale)
+              Vec4<float> bbox)
 {
   Array noise = constant(shape, 0.f);
   Array z = caldera(shape,
@@ -85,8 +87,7 @@ Array caldera(Vec2<int>   shape,
                     0.f,
                     0.f,
                     center,
-                    shift,
-                    scale);
+                    bbox);
   return z;
 }
 
@@ -96,12 +97,15 @@ Array crater(Vec2<int>   shape,
              float       lip_decay,
              float       lip_height_ratio,
              Array      *p_noise,
-             Vec2<float> shift,
-             Vec2<float> scale)
+             Vec4<float> bbox)
 {
   Array z = Array(shape);
-  int   ic = (int)((0.5f - shift.x) / scale.x * z.shape.x);
-  int   jc = (int)((0.5f - shift.y) / scale.y * z.shape.y);
+
+  Vec2<float> shift = {bbox.a, bbox.c};
+  Vec2<float> scale = {bbox.b - bbox.a, bbox.d - bbox.c};
+
+  int ic = (int)((0.5f - shift.x) / scale.x * z.shape.x);
+  int jc = (int)((0.5f - shift.y) / scale.y * z.shape.y);
 
   if (!p_noise)
   {
@@ -141,9 +145,11 @@ Array peak(Vec2<int>   shape,
            Array      *p_noise,
            float       noise_r_amp,
            float       noise_z_ratio,
-           Vec2<float> shift,
-           Vec2<float> scale)
+           Vec4<float> bbox)
 {
+  Vec2<float> shift = {bbox.a, bbox.c};
+  Vec2<float> scale = {bbox.b - bbox.a, bbox.d - bbox.c};
+
   Array z = Array(shape);
   int   ic = (int)((0.5f - shift.x) / scale.x * z.shape.x);
   int   jc = (int)((0.5f - shift.y) / scale.y * z.shape.y);

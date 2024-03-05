@@ -29,8 +29,8 @@ Array dendry(Vec2<int>   shape,
              float       control_function_overlap,
              Array      *p_noise_x,
              Array      *p_noise_y,
-             Vec2<float> shift,
-             Vec2<float> scale)
+             Array      *p_stretching,
+             Vec4<float> bbox)
 {
   Array array = Array(shape);
 
@@ -69,6 +69,9 @@ Array dendry(Vec2<int>   shape,
                                           false,
                                           false,
                                           false);
+
+  Vec2<float> shift = {bbox.a, bbox.c};
+  Vec2<float> scale = {bbox.b - bbox.a, bbox.d - bbox.c};
 
   std::vector<float> x = linspace(kw.x * shift.x,
                                   kw.x * (shift.x + scale.x),

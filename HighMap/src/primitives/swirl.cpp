@@ -12,15 +12,17 @@
 namespace hmap
 {
 
-void swirl(Array      &dx,
-           Array      &dy,
-           float       amplitude,
-           float       exponent,
-           Array      *p_noise,
-           Vec2<float> shift,
-           Vec2<float> scale)
+void swirl(Array            &dx,
+           Array            &dy,
+           float             amplitude,
+           float             exponent,
+           Array            *p_noise,
+           hmap::Vec4<float> bbox)
 {
   const Vec2<int> shape = dx.shape;
+
+  Vec2<float> shift = {bbox.a, bbox.c};
+  Vec2<float> scale = {bbox.b - bbox.a, bbox.d - bbox.c};
 
   float xc = (0.5f - shift.x) / scale.x;
   float yc = (0.5f - shift.y) / scale.y;

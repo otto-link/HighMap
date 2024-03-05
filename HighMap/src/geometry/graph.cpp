@@ -302,8 +302,7 @@ Array Graph::to_array_sdf(Vec2<int>   shape,
                           Vec4<float> bbox,
                           Array      *p_noise_x,
                           Array      *p_noise_y,
-                          Vec2<float> shift,
-                          Vec2<float> scale)
+                          Vec4<float> bbox_array)
 {
   // nodes
   std::vector<float> xp = this->get_edge_x_pairs();
@@ -332,18 +331,13 @@ Array Graph::to_array_sdf(Vec2<int>   shape,
     return std::sqrt(d);
   };
 
-  std::vector<float> x = linspace(shift.x, scale.x + shift.x, shape.x, false);
-  std::vector<float> y = linspace(shift.y, scale.y + shift.y, shape.y, false);
-
   Array z = Array(shape);
   fill_array_using_xy_function(z,
-                               x,
-                               y,
+                               bbox_array,
                                p_noise_x,
                                p_noise_y,
                                nullptr,
                                distance_fct);
-
   return z;
 }
 

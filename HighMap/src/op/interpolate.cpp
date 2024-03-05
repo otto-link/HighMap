@@ -21,8 +21,8 @@ Array interpolate2d(Vec2<int>          shape,
                     int                interpolation_method,
                     Array             *p_noise_x,
                     Array             *p_noise_y,
-                    Vec2<float>        shift,
-                    Vec2<float>        scale)
+                    Array             *p_stretching,
+                    Vec4<float>        bbox)
 {
   // create interpolator
   _2D::AnyInterpolator<
@@ -42,17 +42,12 @@ Array interpolate2d(Vec2<int>          shape,
   // interpolate
   interp.setData(x, y, values);
 
-  // array grid
-  std::vector<float> xi = linspace(shift.x, shift.x + scale.x, shape.x, false);
-  std::vector<float> yi = linspace(shift.y, shift.y + scale.y, shape.y, false);
-
   Array array_out = Array(shape);
   fill_array_using_xy_function(array_out,
-                               xi,
-                               yi,
+                               bbox,
                                p_noise_x,
                                p_noise_y,
-                               nullptr,
+                               p_stretching,
                                [&interp](float x_, float y_, float)
                                { return interp(x_, y_); });
 
