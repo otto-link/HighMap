@@ -1017,13 +1017,13 @@ protected:
 };
 
 /**
- * @brief Pingpong layering function
+ * @brief Fbm layering function
  */
 class FbmFunction : public GenericFractalFunction
 {
 public:
   /**
-   * @brief Construct a new Fbm Pingpong Function object.
+   * @brief Construct a new Fbm Function object.
    *
    * @param octaves Number of octaves.
    * @param weigth Octave weighting.
@@ -1035,6 +1035,67 @@ public:
               float          weight,
               float          persistence,
               float          lacunarity);
+};
+
+/**
+ * @brief Iq layering function
+ */
+class FbmIqFunction : public GenericFractalFunction
+{
+public:
+  /**
+   * @brief Construct a new Fbm Iq Function object
+   *
+   * @param octaves Number of octaves.
+   * @param weigth Octave weighting.
+   * @param persistence Octave persistence.
+   * @param lacunarity Defines the wavenumber ratio between each octaves.
+   * @param gradient_scale Gradient scale influence.
+   */
+  FbmIqFunction(NoiseFunction *p_base,
+                int            octaves,
+                float          weight,
+                float          persistence,
+                float          lacunarity,
+                float          gradient_scale);
+
+protected:
+  float gradient_scale;
+};
+
+/**
+ * @brief Jordan layering function
+ */
+class FbmJordanFunction : public GenericFractalFunction
+{
+public:
+  /**
+   * @brief Construct a new Fbm Jordan Function object
+   *
+   * @param octaves Number of octaves.
+   * @param weigth Octave weighting.
+   * @param persistence Octave persistence.
+   * @param lacunarity Defines the wavenumber ratio between each octaves.
+   * @param warp0 Initial warp.
+   * @param damp0 Initial damp.
+   * @param warp_scale Warp scale.
+   * @param damp_scale Damp scale.
+   */
+  FbmJordanFunction(NoiseFunction *p_base,
+                    int            octaves,
+                    float          weight,
+                    float          persistence,
+                    float          lacunarity,
+                    float          warp0,
+                    float          damp0,
+                    float          warp_scale,
+                    float          damp_scale);
+
+protected:
+  float warp0;
+  float damp0;
+  float warp_scale;
+  float damp_scale;
 };
 
 /**

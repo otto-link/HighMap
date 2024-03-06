@@ -40,6 +40,144 @@ FbmFunction::FbmFunction(NoiseFunction *p_base,
   };
 }
 
+FbmIqFunction::FbmIqFunction(NoiseFunction *p_base,
+                             int            octaves,
+                             float          weight,
+                             float          persistence,
+                             float          lacunarity,
+                             float          gradient_scale)
+    : GenericFractalFunction(p_base, octaves, weight, persistence, lacunarity),
+      gradient_scale(gradient_scale)
+{
+  this->function = [this](float x, float y, float initial_value)
+  {
+    float sum = initial_value;
+    float dx_sum = 0.f;
+    float dy_sum = 0.f;
+    float amp = this->amp0;
+    float ki = 1.f;
+    float kj = 1.f;
+    int   kseed = this->seed;
+
+    for (int k = 0; k < this->octaves; k++)
+    {
+      float xw = ki * x;
+      float yw = kj * y;
+
+      float value = this->p_base->function(xw, yw, kseed);
+      float dvdx =
+          (this->p_base->function(xw + HMAP_GRADIENT_OFFSET, yw, kseed) -
+           this->p_base->function(xw - HMAP_GRADIENT_OFFSET, yw, kseed)) /
+          HMAP_GRADIENT_OFFSET;
+      float dvdy =
+          (this->p_base->function(xw, yw + HMAP_GRADIENT_OFFSET, kseed) -
+           this->p_base->function(xw, yw - HMAP_GRADIENT_OFFSET, kseed)) /
+          HMAP_GRADIENT_OFFSET;
+
+      value = smoothstep3(0.5f + value);
+
+      dx_sum += dvdx;
+      dy_sum += dvdy;
+
+      sum += value * amp /
+             (1.f + this->gradient_scale * (dx_sum * dx_sum + dy_sum * dy_sum));
+      amp *= (1.f - this->weight) +
+             this->weight * std::min(value + 1.f, 2.f) * 0.5f;
+
+      ki *= this->lacunarity;
+      kj *= this->lacunarity;
+      amp *= this->persistence;
+      kseed++;
+    }
+    return sum;
+  };
+}
+
+FbmJordanFunction::FbmJordanFunction(NoiseFunction *p_base,
+                                     int            octaves,
+                                     float          weight,
+                                     float          persistence,
+                                     float          lacunarity,
+                                     float          warp0,
+                                     float          damp0,
+                                     float          warp_scale,
+                                     float          damp_scale)
+    : GenericFractalFunction(p_base, octaves, weight, persistence, lacunarity),
+      warp0(warp0), damp0(damp0), warp_scale(warp_scale), damp_scale(damp_scale)
+{
+  this->function = [this](float x, float y, float initial_value)
+  {
+    // based on https://www.decarpentier.nl/scape-procedural-extensions
+    float sum = initial_value;
+    float amp = this->amp0;
+    float amp_damp = this->amp0;
+    float ki = 1.f;
+    float kj = 1.f;
+    int   kseed = this->seed;
+
+    // --- 1st octave
+
+    float value = this->p_base->function(x, y, kseed);
+    float dvdx = (this->p_base->function(x + HMAP_GRADIENT_OFFSET, y, kseed) -
+                  this->p_base->function(x - HMAP_GRADIENT_OFFSET, y, kseed)) /
+                 HMAP_GRADIENT_OFFSET;
+    float dvdy = (this->p_base->function(x, y + HMAP_GRADIENT_OFFSET, kseed) -
+                  this->p_base->function(x, y - HMAP_GRADIENT_OFFSET, kseed)) /
+                 HMAP_GRADIENT_OFFSET;
+
+    sum += value * value;
+    float dx_sum_warp = this->warp0 * value * dvdx;
+    float dy_sum_warp = this->warp0 * value * dvdy;
+    float dx_sum_damp = this->damp0 * value * dvdx;
+    float dy_sum_damp = this->damp0 * value * dvdy;
+
+    amp *= (1.f - this->weight) +
+           this->weight * std::min(value * value + 1.f, 2.f) * 0.5f;
+
+    ki *= this->lacunarity;
+    kj *= this->lacunarity;
+    amp *= this->persistence;
+    amp_damp *= this->persistence;
+    kseed++;
+
+    // --- other octaves
+
+    for (int k = 0; k < this->octaves; k++)
+    {
+      float xw = ki * x + this->warp_scale * dx_sum_warp;
+      float yw = kj * y + this->warp_scale * dy_sum_warp;
+
+      float value = this->p_base->function(xw, yw, kseed);
+      float dvdx =
+          (this->p_base->function(xw + HMAP_GRADIENT_OFFSET, yw, kseed) -
+           this->p_base->function(xw - HMAP_GRADIENT_OFFSET, yw, kseed)) /
+          HMAP_GRADIENT_OFFSET;
+      float dvdy =
+          (this->p_base->function(xw, yw + HMAP_GRADIENT_OFFSET, kseed) -
+           this->p_base->function(xw, yw - HMAP_GRADIENT_OFFSET, kseed)) /
+          HMAP_GRADIENT_OFFSET;
+
+      sum += amp_damp * value * value;
+      dx_sum_warp += this->warp0 * value * dvdx;
+      dy_sum_warp += this->warp0 * value * dvdy;
+      dx_sum_damp += this->damp0 * value * dvdx;
+      dy_sum_damp += this->damp0 * value * dvdy;
+
+      amp *= (1.f - this->weight) +
+             this->weight * std::min(value * value + 1.f, 2.f) * 0.5f;
+
+      ki *= this->lacunarity;
+      kj *= this->lacunarity;
+      amp *= this->persistence;
+      amp_damp = amp *
+                 (1.f - this->damp_scale / (1.f + dx_sum_damp * dx_sum_damp +
+                                            dy_sum_damp * dy_sum_damp));
+      kseed++;
+    }
+    return sum;
+  };
+}
+
 FbmPingpongFunction::FbmPingpongFunction(NoiseFunction *p_base,
                                          int            octaves,
                                          float          weight,
