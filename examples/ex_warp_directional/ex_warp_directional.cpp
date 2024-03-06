@@ -13,7 +13,7 @@ int main(void)
   hmap::remap(mask);
 
   hmap::Array z2 = z1;
-  hmap::warp_directional(z2, 30.f, 10.f, 0, true);
+  hmap::warp_directional(z2, 30.f, 0.02f, 0, true);
 
   hmap::export_banner_png("ex_warp_directional.png",
                           {z1, z2},

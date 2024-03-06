@@ -2523,14 +2523,14 @@ void warp(Array &array, Array *p_dx, Array *p_dy);
  */
 void warp_directional(Array &array,
                       float  angle,
-                      float  amount = 1.f,
+                      float  amount = 0.02f,
                       int    ir = 4,
                       bool   reverse = false);
 
 void warp_directional(Array &array,
                       float  angle,
                       Array *p_mask,
-                      float  amount = 1.f,
+                      float  amount = 0.02f,
                       int    ir = 4,
                       bool   reverse = false); ///< @overload
 
@@ -2551,13 +2551,13 @@ void warp_directional(Array &array,
  * @image html ex_warp_downslope.png
  */
 void warp_downslope(Array &array,
-                    float  amount = 1.f,
+                    float  amount = 0.02f,
                     int    ir = 4,
                     bool   reverse = false);
 
 void warp_downslope(Array &array,
                     Array *p_mask,
-                    float  amount = 1.f,
+                    float  amount = 0.02f,
                     int    ir = 4,
                     bool   reverse = false); ///< @overload
 
