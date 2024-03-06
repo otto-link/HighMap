@@ -83,8 +83,7 @@ Array dendry(Vec2<int>   shape,
                                   false);
 
   fill_array_using_xy_function(array,
-                               x,
-                               y,
+                               bbox,
                                p_noise_x,
                                p_noise_y,
                                nullptr,

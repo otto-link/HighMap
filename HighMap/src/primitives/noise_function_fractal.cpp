@@ -120,6 +120,7 @@ FbmRidgedFunction::FbmRidgedFunction(NoiseFunction *p_base,
         amp *= this->persistence;
         kseed++;
       }
+
     return sum;
   };
 }

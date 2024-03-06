@@ -123,17 +123,6 @@ Array Array::extract_slice(Vec4<int> idx)
 
 void fill_array_using_xy_function(
     Array                                    &array,
-    std::vector<float>                       &x,
-    std::vector<float>                       &y,
-    Array                                    *p_noise_x,
-    Array                                    *p_noise_y,
-    Array                                    *p_stretching,
-    std::function<float(float, float, float)> fct_xy)
-{
-}
-
-void fill_array_using_xy_function(
-    Array                                    &array,
     Vec4<float>                               bbox,
     Array                                    *p_noise_x,
     Array                                    *p_noise_y,

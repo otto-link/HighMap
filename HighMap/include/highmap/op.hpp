@@ -2621,11 +2621,8 @@ void zeroed_borders(Array &array);
  *
  * @param array Input array.
  * @param sigma Transition half-width ratio.
- * @param p_noise Reference to the input noise array used for domain warping
- * (NOT in pixels, with respect to a unit domain).
- * @param shift Shift {xs, ys} for each directions, with respect to a unit
- * domain.
- * @param scale Domain relative scale.
+ * @param p_noise Reference to the input noise arrays.
+ * @param bbox Domain bounding box.
  *
  * **Example**
  * @include ex_zeroed_edges.cpp
@@ -2636,7 +2633,6 @@ void zeroed_borders(Array &array);
 void zeroed_edges(Array      &array,
                   float       sigma = 0.25f,
                   Array      *p_noise = nullptr,
-                  Vec2<float> shift = {0.f, 0.f},
-                  Vec2<float> scale = {1.f, 1.f});
+                  Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
 } // namespace hmap

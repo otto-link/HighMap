@@ -226,12 +226,11 @@ void zeroed_borders(Array &array)
   }
 }
 
-void zeroed_edges(Array      &array,
-                  float       sigma,
-                  Array      *p_noise,
-                  Vec2<float> shift,
-                  Vec2<float> scale)
+void zeroed_edges(Array &array, float sigma, Array *p_noise, Vec4<float> bbox)
 {
+  hmap::Vec2<float> shift = {bbox.a, bbox.c};
+  hmap::Vec2<float> scale = {bbox.b - bbox.a, bbox.d - bbox.c};
+
   std::vector<float> x = linspace(shift.x - 0.5f,
                                   shift.x - 0.5f + scale.x,
                                   array.shape.x,
