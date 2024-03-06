@@ -21,14 +21,14 @@ ArrayFunction::ArrayFunction(hmap::Array array, Vec2<float> kw, bool periodic)
       float xp = 0.5f * this->kw.x * x;
       float yp = 0.5f * this->kw.y * y;
 
-      xp = 2.f * (xp - int(xp));
-      yp = 2.f * (yp - int(yp));
+      xp = 2.f * std::abs(xp - int(xp));
+      yp = 2.f * std::abs(yp - int(yp));
 
       xp = xp < 1.f ? xp : 2.f - xp;
       yp = yp < 1.f ? yp : 2.f - yp;
 
-      smoothstep3(xp);
-      smoothstep3(yp);
+      smoothstep5(xp);
+      smoothstep5(yp);
 
       float xg = xp * (this->array.shape.x - 1);
       float yg = yp * (this->array.shape.y - 1);

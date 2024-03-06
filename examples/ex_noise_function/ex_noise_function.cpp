@@ -28,8 +28,8 @@ int main(void)
   //     std::unique_ptr<hmap::NoiseFunction>(
   //         new hmap::WorleyDoubleFunction(kw, seed, 0.5f, 0.5f));
 
-  //hmap::PerlinFunction p = hmap::PerlinFunction(kw, seed);
-  // hmap::Simplex2Function     p = hmap::Simplex2Function(kw, seed);
+  // hmap::PerlinFunction p = hmap::PerlinFunction(kw, seed);
+  //  hmap::Simplex2Function     p = hmap::Simplex2Function(kw, seed);
   hmap::WorleyDoubleFunction q = hmap::WorleyDoubleFunction(kw,
                                                             seed,
                                                             0.5f,

@@ -7,61 +7,24 @@
 
 #include "highmap/array.hpp"
 #include "highmap/kernels.hpp"
+#include "highmap/noise_function.hpp"
 #include "highmap/op.hpp"
-#include "highmap/primitives.hpp"
 
 namespace hmap
 {
 
-void warp(Array &array, const Array *p_dx, const Array *p_dy, float scale)
+void warp(Array &array, Array *p_dx, Array *p_dy)
 {
-  int i1 = 1;
-  int i2 = 1;
-  int j1 = 1;
-  int j2 = 1;
+  hmap::ArrayFunction f = hmap::ArrayFunction(array,
+                                              Vec2<float>(1.f, 1.f),
+                                              true);
 
-  std::function<void(float &, int &, int &)> lambda_x;
-  std::function<void(float &, int &, int &)> lambda_y;
-
-  if (p_dx)
-  {
-    i1 = std::max(1, -(int)(p_dx->min() * scale));
-    i2 = std::max(1, (int)(p_dx->max() * scale));
-
-    lambda_x = [p_dx, &scale](float &x_, int &i_, int &j_)
-    { x_ = (float)i_ + (*p_dx)(i_, j_) * scale; };
-  }
-  else
-    lambda_x = [](float &x_, int &i_, int &) { x_ = (float)i_; };
-
-  if (p_dy)
-  {
-    j1 = std::max(1, -(int)(p_dy->min() * scale));
-    j2 = std::max(1, (int)(p_dy->max() * scale));
-    lambda_y = [p_dy, &scale](float &y_, int &i_, int &j_)
-    { y_ = (float)j_ + (*p_dy)(i_, j_) * scale; };
-  }
-  else
-    lambda_y = [](float &y_, int &, int &j_) { y_ = (float)j_; };
-
-  Array array_buffered = generate_buffered_array(array, {i1, i2, j1, j2});
-
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
-    {
-      // warped position
-      float x, y;
-      lambda_x(x, i, j);
-      lambda_y(y, i, j);
-
-      // nearest grid point (and bilinear interpolation parameters)
-      int   ip = (int)x + i1;
-      int   jp = (int)y + j1;
-      float u = x - (float)(ip - i1);
-      float v = y - (float)(jp - j1);
-
-      array(i, j) = array_buffered.get_value_bilinear_at(ip, jp, u, v);
-    }
+  fill_array_using_xy_function(array,
+                               {0.f, 1.f, 0.f, 1.f},
+                               p_dx,
+                               p_dy,
+                               nullptr,
+                               f.get_function());
 }
 
 void warp_directional(Array &array,

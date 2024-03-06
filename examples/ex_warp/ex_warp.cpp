@@ -1,7 +1,4 @@
-#include "highmap/array.hpp"
-#include "highmap/io.hpp"
-#include "highmap/op.hpp"
-#include "highmap/primitives.hpp"
+#include "highmap.hpp"
 
 int main(void)
 {
@@ -15,15 +12,12 @@ int main(void)
   hmap::Array dx = hmap::fbm_perlin(shape, {4.f, 4.f}, seed + 1);
   hmap::Array dy = hmap::fbm_perlin(shape, {4.f, 4.f}, seed + 2);
 
-  // adjust warping maximum displacement to +- 64 pixels in both
-  // directions
-  float scale = 32.f;
+  // warping scale assuming a unit square domain
+  float scale = 0.25f;
   remap(dx, -scale, scale);
   remap(dy, -scale, scale);
 
   hmap::warp(z, &dx, &dy);
 
   hmap::export_banner_png("ex_warp.png", {z0, z}, hmap::cmap::viridis);
-
-  z.to_file("out.bin");
 }
