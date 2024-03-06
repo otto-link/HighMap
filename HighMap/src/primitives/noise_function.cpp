@@ -12,6 +12,51 @@
 namespace hmap
 {
 
+ArrayFunction::ArrayFunction(hmap::Array array, Vec2<float> kw, bool periodic)
+    : NoiseFunction(kw), array(array)
+{
+  if (periodic)
+    this->function = [this](float x, float y, float)
+    {
+      float xp = 0.5f * this->kw.x * x;
+      float yp = 0.5f * this->kw.y * y;
+
+      xp = 2.f * (xp - int(xp));
+      yp = 2.f * (yp - int(yp));
+
+      xp = xp < 1.f ? xp : 2.f - xp;
+      yp = yp < 1.f ? yp : 2.f - yp;
+
+      smoothstep3(xp);
+      smoothstep3(yp);
+
+      float xg = xp * (this->array.shape.x - 1);
+      float yg = yp * (this->array.shape.y - 1);
+      int   i = (int)xg;
+      int   j = (int)yg;
+      return this->array.get_value_bilinear_at(i, j, xg - i, yg - j);
+    };
+  else
+    this->function = [this](float x, float y, float)
+    {
+      float xp = std::clamp(this->kw.x * x,
+                            0.f,
+                            1.f - std::numeric_limits<float>::min());
+      float yp = std::clamp(this->kw.y * y,
+                            0.f,
+                            1.f - std::numeric_limits<float>::min());
+
+      xp = xp - int(xp);
+      yp = yp - int(yp);
+
+      float xg = xp * (this->array.shape.x - 1);
+      float yg = yp * (this->array.shape.y - 1);
+      int   i = (int)xg;
+      int   j = (int)yg;
+      return this->array.get_value_bilinear_at(i, j, xg - i, yg - j);
+    };
+}
+
 PerlinFunction::PerlinFunction(Vec2<float> kw, uint seed)
     : NoiseFunction(kw, seed)
 {

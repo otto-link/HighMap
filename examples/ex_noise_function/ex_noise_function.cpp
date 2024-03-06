@@ -8,7 +8,9 @@ int main(void)
   hmap::Vec2<float> kw = {4.f, 4.f};
   uint              seed = 1;
 
-  hmap::Timer timer = hmap::Timer();
+  hmap::Timer       timer = hmap::Timer();
+  hmap::Array       z = hmap::Array(shape);
+  hmap::Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f};
 
   // std::unique_ptr<hmap::NoiseFunction> pa =
   //     std::unique_ptr<hmap::NoiseFunction>(new hmap::PerlinFunction(kw,
@@ -26,25 +28,35 @@ int main(void)
   //     std::unique_ptr<hmap::NoiseFunction>(
   //         new hmap::WorleyDoubleFunction(kw, seed, 0.5f, 0.5f));
 
-  hmap::PerlinFunction p = hmap::PerlinFunction(kw, seed);
+  //hmap::PerlinFunction p = hmap::PerlinFunction(kw, seed);
   // hmap::Simplex2Function     p = hmap::Simplex2Function(kw, seed);
   hmap::WorleyDoubleFunction q = hmap::WorleyDoubleFunction(kw,
                                                             seed,
                                                             0.5f,
                                                             0.1f);
 
+  hmap::Array         array = hmap::perlin({32, 32}, kw, seed);
+  hmap::ArrayFunction p = hmap::ArrayFunction(array, {1.f, 1.f});
+
+  fill_array_using_xy_function(z,
+                               bbox,
+                               nullptr,
+                               nullptr,
+                               nullptr,
+                               p.get_function());
+  // z.to_png("out.png", hmap::cmap::jet);
+
   hmap::WaveSineFunction s = hmap::WaveSineFunction(kw, 15.f, 0.f);
   s.set_angle(30.f);
 
-  // hmap::FbmFunction f = hmap::FbmFunction(p.get_base_ref(), 8, 0.7f,
-  // 0.5f, 2.f);
+  hmap::FbmFunction f = hmap::FbmFunction(p.get_base_ref(), 8, 0.7f, 0.5f, 2.f);
 
-  hmap::FbmRidgedFunction f = hmap::FbmRidgedFunction(p.get_base_ref(),
-                                                      8,
-                                                      0.7f,
-                                                      0.5f,
-                                                      2.f,
-                                                      0.5f);
+  // hmap::FbmRidgedFunction f = hmap::FbmRidgedFunction(p.get_base_ref(),
+  //                                                     8,
+  //                                                     0.7f,
+  //                                                     0.5f,
+  //                                                     2.f,
+  //                                                     0.5f);
 
   // hmap::FbmSwissFunction f = hmap::FbmSwissFunction(pa.get()->get_base_ref(),
   //                                                   8,
@@ -53,15 +65,9 @@ int main(void)
   //                                                   2.f,
   //                                                   0.1f);
 
-  std::vector<float> x = hmap::linspace(0.f, 1.f, shape.x, false);
-  std::vector<float> y = hmap::linspace(0.f, 1.f, shape.y, false);
-
-  hmap::Array z = hmap::Array(shape);
-
   timer.start("NoiseFunction");
   fill_array_using_xy_function(z,
-                               x,
-                               y,
+                               bbox,
                                nullptr,
                                nullptr,
                                nullptr,

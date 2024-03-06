@@ -89,6 +89,36 @@ protected:
 //----------------------------------------
 
 /**
+ * @brief Array (x, y) function class.
+ */
+class ArrayFunction : public NoiseFunction
+{
+public:
+  /**
+   * @brief Construct a new Array Function object
+   *
+   * @param array Data array.
+   * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
+   * a unit domain.
+   * @param periodic Wether the domain is periodic or not.
+   */
+  ArrayFunction(hmap::Array array, Vec2<float> kw, bool periodic = true);
+
+  /**
+   * @brief Set the array object.
+   *
+   * @param new_array New data array.
+   */
+  void set_array(hmap::Array new_array)
+  {
+    this->array = new_array;
+  }
+
+private:
+  hmap::Array array;
+};
+
+/**
  * @brief Perlin (x, y) function class.
  */
 class PerlinFunction : public NoiseFunction
