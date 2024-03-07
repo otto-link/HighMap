@@ -17,8 +17,6 @@ target_include_directories(
   PUBLIC ${PROJECT_SOURCE_DIR}/include
   PRIVATE ${PROJECT_SOURCE_DIR}/src)
 
-# include(GNUInstallDirs)
-
 set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${PROJECT_VERSION})
 
 target_link_libraries(
