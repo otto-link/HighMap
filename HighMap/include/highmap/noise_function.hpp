@@ -49,6 +49,13 @@ enum NoiseType : int
   n_worley_value,    ///< Worley (cell value return)
 };
 
+enum FractalType : int
+{
+  n_none,
+  n_fbm,
+  n_
+};
+
 //----------------------------------------
 // Base function class
 //----------------------------------------

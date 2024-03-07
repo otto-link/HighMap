@@ -543,6 +543,24 @@ Array gaussian_pulse(Vec2<int>   shape,
                      Vec2<float> center = {0.5f, 0.5f},
                      Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
+/**
+ * @brief Return an array filled with coherence noise.
+ *
+ * @param noise_type Noise type.
+ * @param shape Array shape.
+ * @param kw Noise wavenumbers {kx, ky} for each directions.
+ * @param seed Random seed number.
+ * @param p_noise_x, p_noise_y Reference to the input noise arrays.
+ * @param p_stretching Local wavenumber multiplier.
+ * @param bbox Domain bounding box.
+ * @return Array Resulting array.
+ *
+ * **Example**
+ * @include ex_noise.cpp
+ *
+ * **Result**
+ * @image html ex_noise.png
+ */
 Array noise(NoiseType   noise_type,
             Vec2<int>   shape,
             Vec2<float> kw,
@@ -551,6 +569,121 @@ Array noise(NoiseType   noise_type,
             Array      *p_noise_y = nullptr,
             Array      *p_stretching = nullptr,
             Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
+ * @brief Return an array filled with coherence fbm noise.
+ *
+ * @param noise_type Noise type.
+ * @param shape Array shape.
+ * @param kw Noise wavenumbers {kx, ky} for each directions.
+ * @param seed Random seed number.
+ * @param ratio Amplitude ratio between each Worley noise.
+ * @param k Transition smoothing parameter.
+ * @param octaves Number of octaves.
+ * @param weigth Octave weighting.
+ * @param persistence Octave persistence.
+ * @param lacunarity Defines the wavenumber ratio between each octaves.
+ * @param p_noise_x, p_noise_y Reference to the input noise arrays.
+ * @param p_stretching Local wavenumber multiplier.
+ * @param bbox Domain bounding box.
+ * @return Array Fractal noise.
+ *
+ * **Example**
+ * @include ex_noise_fbm.cpp
+ *
+ * **Result**
+ * @image html ex_noise_fbm.png
+ */
+Array noise_fbm(NoiseType   noise_type,
+                Vec2<int>   shape,
+                Vec2<float> kw,
+                uint        seed,
+                int         octaves = 8,
+                float       weight = 0.7f,
+                float       persistence = 0.5f,
+                float       lacunarity = 2.f,
+                Array      *p_base_elevation = nullptr,
+                Array      *p_noise_x = nullptr,
+                Array      *p_noise_y = nullptr,
+                Array      *p_stretching = nullptr,
+                Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+Array noise_iq(NoiseType   noise_type,
+               Vec2<int>   shape,
+               Vec2<float> kw,
+               uint        seed,
+               int         octaves = 8,
+               float       weight = 0.7f,
+               float       persistence = 0.5f,
+               float       lacunarity = 2.f,
+               float       gradient_scale = 0.05f,
+               Array      *p_base_elevation = nullptr,
+               Array      *p_noise_x = nullptr,
+               Array      *p_noise_y = nullptr,
+               Array      *p_stretching = nullptr,
+               Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+Array noise_jordan(NoiseType   noise_type,
+                   Vec2<int>   shape,
+                   Vec2<float> kw,
+                   uint        seed,
+                   int         octaves = 8,
+                   float       weight = 0.7f,
+                   float       persistence = 0.5f,
+                   float       lacunarity = 2.f,
+                   float       warp0 = 0.4f,
+                   float       damp0 = 1.f,
+                   float       warp_scale = 0.4f,
+                   float       damp_scale = 1.f,
+                   Array      *p_base_elevation = nullptr,
+                   Array      *p_noise_x = nullptr,
+                   Array      *p_noise_y = nullptr,
+                   Array      *p_stretching = nullptr,
+                   Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+Array noise_pingpong(NoiseType   noise_type,
+                     Vec2<int>   shape,
+                     Vec2<float> kw,
+                     uint        seed,
+                     int         octaves = 8,
+                     float       weight = 0.7f,
+                     float       persistence = 0.5f,
+                     float       lacunarity = 2.f,
+                     Array      *p_base_elevation = nullptr,
+                     Array      *p_noise_x = nullptr,
+                     Array      *p_noise_y = nullptr,
+                     Array      *p_stretching = nullptr,
+                     Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+Array noise_ridged(NoiseType   noise_type,
+                   Vec2<int>   shape,
+                   Vec2<float> kw,
+                   uint        seed,
+                   int         octaves = 8,
+                   float       weight = 0.7f,
+                   float       persistence = 0.5f,
+                   float       lacunarity = 2.f,
+                   float       k_smoothing = 0.1f,
+                   Array      *p_base_elevation = nullptr,
+                   Array      *p_noise_x = nullptr,
+                   Array      *p_noise_y = nullptr,
+                   Array      *p_stretching = nullptr,
+                   Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+Array noise_swiss(NoiseType   noise_type,
+                  Vec2<int>   shape,
+                  Vec2<float> kw,
+                  uint        seed,
+                  int         octaves = 8,
+                  float       weight = 0.7f,
+                  float       persistence = 0.5f,
+                  float       lacunarity = 2.f,
+                  float       warp_scale = 0.1f,
+                  Array      *p_base_elevation = nullptr,
+                  Array      *p_noise_x = nullptr,
+                  Array      *p_noise_y = nullptr,
+                  Array      *p_stretching = nullptr,
+                  Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return a peak-shaped heightmap.

@@ -1,0 +1,2 @@
+add_executable(ex_noise_fbm ex_noise_fbm.cpp)
+target_link_libraries(ex_noise_fbm highmap)
