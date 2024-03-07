@@ -16,12 +16,39 @@
 
 #include "FastNoiseLite.h"
 
+#include "highmap/noise_function.hpp"
 #include "highmap/vector.hpp"
 
 #define HMAP_GRADIENT_OFFSET 0.001f
 
 namespace hmap
 {
+
+// /**
+//  * @brief Noise type.
+//  */
+// enum noise_type : int
+// {
+//   noise_simplex2 = FastNoiseLite::NoiseType_OpenSimplex2,   ///< OpenSimplex2
+//   noise_simplex2s = FastNoiseLite::NoiseType_OpenSimplex2S, ///<
+//   OpenSimplex2S noise_worley = FastNoiseLite::NoiseType_Cellular, ///< Worley
+//   noise_perlin = FastNoiseLite::NoiseType_Perlin,           ///< Perlin
+//   noise_value_cubic = FastNoiseLite::NoiseType_ValueCubic,  ///< Value
+//   (cubic) noise_value = FastNoiseLite::NoiseType_Value              ///<
+//   Value
+// };
+
+// /**
+//  * @brief Fractal type.
+//  */
+// enum fractal_type : int
+// {
+//   fractal_none = FastNoiseLite::FractalType_None,     ///< No fractal
+//   layering fractal_fbm = FastNoiseLite::FractalType_FBm,       ///< Fbm
+//   layering fractal_ridged = FastNoiseLite::FractalType_Ridged, ///< Ridged
+//   layering fractal_pingpong = FastNoiseLite::FractalType_PingPong, ///<
+//   PingPong layering fractal_max, ///< Max fractal_min ///< Min
+// };
 
 /**
  * @brief Return a 'biquadratic pulse'.
@@ -68,27 +95,6 @@ Array bump(Vec2<int>   shape,
            Array      *p_noise_y = nullptr,
            Array      *p_stretching = nullptr,
            Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
-
-/**
- * @brief Return a "bump field".
- *
- * @param shape Array shape.
- * @param kw Noise wavenumber with respect to a unit domain.
- * @param seed Random seed number.
- * @param shape_factor Shape factor (> 0). Larger values lead to flatter
- * bumps.
- * @return Array New array.
- *
- * **Example**
- * @include ex_bump_field.cpp
- *
- * **Result**
- * @image html ex_bump_field.png
- */
-Array bump_field(Vec2<int> shape,
-                 float     kw,
-                 uint      seed,
-                 float     shape_factor = 2.f);
 
 /**
  * @brief Return a caldera-shaped heightmap.
@@ -236,6 +242,25 @@ Array dendry(Vec2<int>   shape,
              Array      *p_noise_y = nullptr,
              Array      *p_stretching = nullptr,
              Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+Array dendry(Vec2<int>      shape,
+             Vec2<float>    kw,
+             uint           seed,
+             NoiseFunction &noise_function,
+             float          noise_function_offset = 0.f,
+             float          noise_function_scaling = 1.f,
+             float          eps = 0.05,
+             int            resolution = 1,
+             float          displacement = 0.075,
+             int            primitives_resolution_steps = 3,
+             float          slope_power = 2.f,
+             float          noise_amplitude_proportion = 0.01,
+             bool           add_control_function = true,
+             float          control_function_overlap = 0.5f,
+             Array         *p_noise_x = nullptr,
+             Array         *p_noise_y = nullptr,
+             Array         *p_stretching = nullptr,
+             Vec4<float>    bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return an array filled with an hybrid multifractal Perlin noise

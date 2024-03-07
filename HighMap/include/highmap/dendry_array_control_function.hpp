@@ -23,6 +23,10 @@
 
 #include "highmap/array.hpp"
 #include "highmap/dendry_array_control_function.hpp"
+#include "highmap/noise_function.hpp"
+
+namespace hmap
+{
 
 class ArrayControlFunction : public ControlFunction<ArrayControlFunction>
 {
@@ -121,3 +125,49 @@ private:
 
   const hmap::Array m_array;
 };
+
+class XyControlFunction : public ControlFunction<XyControlFunction>
+{
+  friend class ControlFunction<XyControlFunction>;
+
+public:
+  XyControlFunction(NoiseFunction noise_function,
+                    float         offset = 0.f,
+                    float         scaling = 1.f)
+      : noise_function(noise_function), offset(offset), scaling(scaling)
+  {
+  }
+
+protected:
+  double EvaluateImpl(float x, float y) const
+  {
+    return offset + scaling * noise_function.get_function()(x, y, 0.f);
+  }
+
+  bool InsideDomainImpl(float x, float y) const
+  {
+    return true;
+  }
+
+  double DistToDomainImpl(float x, float y) const
+  {
+    return 0.f;
+  }
+
+  double MinimumImpl() const
+  {
+    return 0.f;
+  }
+
+  double MaximumImpl() const
+  {
+    return 1.f;
+  }
+
+private:
+  NoiseFunction noise_function;
+  float         offset;
+  float         scaling;
+};
+
+} // namespace hmap
