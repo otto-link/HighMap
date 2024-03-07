@@ -17,9 +17,9 @@
 #include <cassert>
 #include <utility>
 
-#include "dendry/include/controlfunction.h"
-#include "dendry/include/math2d.h"
-#include "dendry/include/utils.h"
+#include "NoiseLib/include/controlfunction.h"
+#include "NoiseLib/include/math2d.h"
+#include "NoiseLib/include/utils.h"
 
 #include "highmap/array.hpp"
 #include "highmap/dendry_array_control_function.hpp"

@@ -20,3 +20,6 @@
 [submodule "external/ccp-spline"]
 	path = external/cpp-spline
 	url = git@github.com:chen0040/cpp-spline.git
+[submodule "external/Noise"]
+	path = external/Noise
+	url = git@github.com:otto-link/Noise.git

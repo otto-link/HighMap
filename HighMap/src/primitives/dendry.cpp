@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <memory>
 
-#include "dendry/include/noise.h"
+#include "NoiseLib/include/noise.h"
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
@@ -70,25 +70,14 @@ Array dendry(Vec2<int>   shape,
                                           false,
                                           false);
 
-  Vec2<float> shift = {bbox.a, bbox.c};
-  Vec2<float> scale = {bbox.b - bbox.a, bbox.d - bbox.c};
-
-  std::vector<float> x = linspace(kw.x * shift.x,
-                                  kw.x * (shift.x + scale.x),
-                                  array.shape.x,
-                                  false);
-  std::vector<float> y = linspace(kw.y * shift.y,
-                                  kw.y * (shift.y + scale.y),
-                                  array.shape.y,
-                                  false);
-
-  fill_array_using_xy_function(array,
-                               bbox,
-                               p_noise_x,
-                               p_noise_y,
-                               nullptr,
-                               [&noise](float x_, float y_, float)
-                               { return noise.evaluateTerrain(x_, y_); });
+  fill_array_using_xy_function(
+      array,
+      bbox,
+      p_noise_x,
+      p_noise_y,
+      nullptr,
+      [&noise, &kw](float x, float y, float)
+      { return noise.evaluateTerrain(kw.x * x, kw.y * y); });
 
   return array;
 }

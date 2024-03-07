@@ -7,4 +7,4 @@ include(macro-logger.cmake)
 include(WavefrontObjWriter.cmake)
 include(xsimd.cmake)
 
-add_subdirectory(dendry)
+add_subdirectory(Noise/NoiseLib)
