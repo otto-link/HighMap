@@ -1058,6 +1058,11 @@ public:
     this->p_base->set_seed(new_seed);
   }
 
+  void scale_amp0(float scale)
+  {
+    this->amp0 *= scale;
+  }
+
   void update_amp0()
   {
     // determine initial amplitude so that the final field has roughly
