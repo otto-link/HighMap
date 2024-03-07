@@ -13,7 +13,7 @@ namespace hmap
 
 Array geomorphons(const Array &array, int irmin, int irmax, float epsilon)
 {
-  float epsilon_normed = 0.001f / (float)array.shape.x;
+  float epsilon_normed = epsilon / (float)array.shape.x;
 
   // output array containing the geomorphon labels
   Array gm = Array(array.shape);
