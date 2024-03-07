@@ -45,7 +45,7 @@ Array value_noise_delaunay(Vec2<int>   shape,
                            Vec4<float> bbox)
 {
   Array                            array = Array(shape);
-  hmap::ValueNoiseDelaunayFunction f = hmap::ValueNoiseDelaunayFunction(kw,
+  hmap::ValueDelaunayNoiseFunction f = hmap::ValueDelaunayNoiseFunction(kw,
                                                                         seed);
 
   fill_array_using_xy_function(array,
@@ -66,7 +66,7 @@ Array value_noise_linear(Vec2<int>   shape,
                          Vec4<float> bbox)
 {
   Array                          array = Array(shape);
-  hmap::ValueNoiseLinearFunction f = hmap::ValueNoiseLinearFunction(kw, seed);
+  hmap::ValueLinearNoiseFunction f = hmap::ValueLinearNoiseFunction(kw, seed);
 
   fill_array_using_xy_function(array,
                                bbox,
@@ -86,7 +86,7 @@ Array value_noise_thinplate(Vec2<int>   shape,
                             Vec4<float> bbox)
 {
   Array                             array = Array(shape);
-  hmap::ValueNoiseThinplateFunction f = hmap::ValueNoiseThinplateFunction(kw,
+  hmap::ValueThinplateNoiseFunction f = hmap::ValueThinplateNoiseFunction(kw,
                                                                           seed);
 
   fill_array_using_xy_function(array,

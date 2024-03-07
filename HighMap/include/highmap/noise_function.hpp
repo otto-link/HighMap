@@ -29,6 +29,9 @@
 namespace hmap
 {
 
+// forward declaration
+enum class NoiseType;
+
 //----------------------------------------
 // Base function class
 //----------------------------------------
@@ -83,6 +86,13 @@ protected:
   Vec2<float> kw;
   uint        seed;
 };
+
+// helper
+
+std::unique_ptr<hmap::NoiseFunction> create_noise_function_from_type(
+    NoiseType   noise_type,
+    Vec2<float> kw,
+    uint        seed);
 
 //----------------------------------------
 // Actual functions
@@ -447,9 +457,42 @@ private:
 };
 
 /**
- * @brief ValueNoiseDelaunay (x, y) function class.
+ * @brief Value Cubic noise (x, y) function class.
  */
-class ValueNoiseDelaunayFunction : public NoiseFunction
+class ValueCubicNoiseFunction : public NoiseFunction
+{
+public:
+  /**
+   * @brief Construct a new ValueCubicNoiseFunction object.
+   *
+   * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
+   * a unit domain.
+   * @param seed Random seed number.
+   */
+  ValueCubicNoiseFunction(Vec2<float> kw, uint seed);
+
+  /**
+   * @brief Set the seed attribute.
+   *
+   * @param new_seed New seed.
+   */
+  void set_seed(uint new_seed)
+  {
+    this->seed = new_seed;
+    this->noise.SetSeed(new_seed);
+  }
+
+private:
+  /**
+   * @brief FastNoiseLite noise generator object.
+   */
+  FastNoiseLite noise;
+};
+
+/**
+ * @brief ValueDelaunayNoise (x, y) function class.
+ */
+class ValueDelaunayNoiseFunction : public NoiseFunction
 {
 public:
   /**
@@ -459,7 +502,7 @@ public:
    * a unit domain.
    * @param seed Random seed number.
    */
-  ValueNoiseDelaunayFunction(Vec2<float> kw, uint seed);
+  ValueDelaunayNoiseFunction(Vec2<float> kw, uint seed);
 
   /**
    * @brief Set the wavenumber attribute.
@@ -512,19 +555,19 @@ private:
 };
 
 /**
- * @brief ValueNoiseLinearFunction (x, y) function class.
+ * @brief ValueLinearNoiseFunction (x, y) function class.
  */
-class ValueNoiseLinearFunction : public NoiseFunction
+class ValueLinearNoiseFunction : public NoiseFunction
 {
 public:
   /**
-   * @brief Construct a new ValueNoiseLinearFunction object.
+   * @brief Construct a new ValueLinearNoiseFunction object.
    *
    * @param kw Noise wavenumber, with respect to
    * a unit domain.
    * @param seed Random seed number.
    */
-  ValueNoiseLinearFunction(Vec2<float> kw, uint seed);
+  ValueLinearNoiseFunction(Vec2<float> kw, uint seed);
 
   /**
    * @brief Set the wavenumber attribute.
@@ -600,19 +643,19 @@ private:
 };
 
 /**
- * @brief ValueNoiseThinplate (x, y) function class.
+ * @brief ValueThinplateNoise (x, y) function class.
  */
-class ValueNoiseThinplateFunction : public NoiseFunction
+class ValueThinplateNoiseFunction : public NoiseFunction
 {
 public:
   /**
-   * @brief Construct a new ValueNoiseThinplateFunction object.
+   * @brief Construct a new ValueThinplateNoiseFunction object.
    *
    * @param kw Noise wavenumber, with respect to
    * a unit domain.
    * @param seed Random seed number.
    */
-  ValueNoiseThinplateFunction(Vec2<float> kw, uint seed);
+  ValueThinplateNoiseFunction(Vec2<float> kw, uint seed);
 
   /**
    * @brief Set the wavenumber attribute.

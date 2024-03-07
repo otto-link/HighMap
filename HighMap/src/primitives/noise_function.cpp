@@ -8,6 +8,7 @@
 #include "Interpolate.hpp"
 
 #include "highmap/noise_function.hpp"
+#include "highmap/primitives.hpp"
 
 namespace hmap
 {
@@ -174,7 +175,18 @@ ValueNoiseFunction::ValueNoiseFunction(Vec2<float> kw, uint seed)
   { return this->noise.GetNoise(this->kw.x * x, this->kw.y * y); };
 }
 
-ValueNoiseDelaunayFunction::ValueNoiseDelaunayFunction(Vec2<float> kw,
+ValueCubicNoiseFunction::ValueCubicNoiseFunction(Vec2<float> kw, uint seed)
+    : NoiseFunction(kw, seed)
+{
+  this->set_seed(seed);
+  this->noise.SetFrequency(1.f);
+  this->noise.SetNoiseType(FastNoiseLite::NoiseType_ValueCubic);
+
+  this->function = [this](float x, float y, float)
+  { return this->noise.GetNoise(this->kw.x * x, this->kw.y * y); };
+}
+
+ValueDelaunayNoiseFunction::ValueDelaunayNoiseFunction(Vec2<float> kw,
                                                        uint        seed)
     : NoiseFunction(kw, seed)
 {
@@ -185,7 +197,7 @@ ValueNoiseDelaunayFunction::ValueNoiseDelaunayFunction(Vec2<float> kw,
   { return this->interp(x, y); };
 }
 
-ValueNoiseLinearFunction::ValueNoiseLinearFunction(Vec2<float> kw, uint seed)
+ValueLinearNoiseFunction::ValueLinearNoiseFunction(Vec2<float> kw, uint seed)
     : NoiseFunction(kw, seed)
 {
   this->set_kw(kw);
@@ -195,7 +207,7 @@ ValueNoiseLinearFunction::ValueNoiseLinearFunction(Vec2<float> kw, uint seed)
   { return this->interp(x, y); };
 }
 
-ValueNoiseThinplateFunction::ValueNoiseThinplateFunction(Vec2<float> kw,
+ValueThinplateNoiseFunction::ValueThinplateNoiseFunction(Vec2<float> kw,
                                                          uint        seed)
     : NoiseFunction(kw, seed)
 {
@@ -331,6 +343,55 @@ WorleyDoubleFunction::WorleyDoubleFunction(Vec2<float> kw,
     else
       return std::max(this->ratio * w1, (1.f - this->ratio) * w2);
   };
+}
+
+// --- helper
+
+std::unique_ptr<NoiseFunction> create_noise_function_from_type(
+    NoiseType   noise_type,
+    Vec2<float> kw,
+    uint        seed)
+{
+  switch (noise_type)
+  {
+  // clang-format off
+  case (NoiseType::n_perlin):
+    return std::unique_ptr<NoiseFunction>(new PerlinFunction(kw, seed));
+  case (NoiseType::n_perlin_billow):
+    return std::unique_ptr<NoiseFunction>(new PerlinBillowFunction(kw, seed));
+  case (NoiseType::n_perlin_half):
+  {
+    float k = 0.5f;
+    return std::unique_ptr<NoiseFunction>(new PerlinHalfFunction(kw, seed, k));
+  }
+  case (NoiseType::n_simplex2):
+    return std::unique_ptr<NoiseFunction>(new Simplex2Function(kw, seed));
+  case (NoiseType::n_simplex2s):
+    return std::unique_ptr<NoiseFunction>(new Simplex2SFunction(kw, seed));
+  case (NoiseType::n_value):
+    return std::unique_ptr<NoiseFunction>(new ValueNoiseFunction(kw, seed));
+  case (NoiseType::n_value_cubic):
+    return std::unique_ptr<NoiseFunction>(new ValueCubicNoiseFunction(kw, seed));
+  case (NoiseType::n_value_delaunay):
+    return std::unique_ptr<NoiseFunction>(new ValueDelaunayNoiseFunction(kw, seed));
+  case (NoiseType::n_value_linear):
+    return std::unique_ptr<NoiseFunction>(new ValueLinearNoiseFunction(kw, seed));
+  case (NoiseType::n_value_thinplate):
+    return std::unique_ptr<NoiseFunction>(new ValueThinplateNoiseFunction(kw, seed));
+  case (NoiseType::n_worley):
+    return std::unique_ptr<NoiseFunction>(new WorleyFunction(kw, seed, false));
+  case (NoiseType::n_worley_double):
+  {
+    float ratio = 0.5f;
+    float k = 0.5f;
+    return std::unique_ptr<NoiseFunction>(new WorleyDoubleFunction(kw, seed, ratio, k));
+  }
+  case (NoiseType::n_worley_value):
+    return std::unique_ptr<NoiseFunction>(new WorleyFunction(kw, seed, true));
+    // clang-format on
+  }
+
+  return nullptr;
 }
 
 } // namespace hmap

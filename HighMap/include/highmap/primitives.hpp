@@ -24,31 +24,25 @@
 namespace hmap
 {
 
-// /**
-//  * @brief Noise type.
-//  */
-// enum noise_type : int
-// {
-//   noise_simplex2 = FastNoiseLite::NoiseType_OpenSimplex2,   ///< OpenSimplex2
-//   noise_simplex2s = FastNoiseLite::NoiseType_OpenSimplex2S, ///<
-//   OpenSimplex2S noise_worley = FastNoiseLite::NoiseType_Cellular, ///< Worley
-//   noise_perlin = FastNoiseLite::NoiseType_Perlin,           ///< Perlin
-//   noise_value_cubic = FastNoiseLite::NoiseType_ValueCubic,  ///< Value
-//   (cubic) noise_value = FastNoiseLite::NoiseType_Value              ///<
-//   Value
-// };
-
-// /**
-//  * @brief Fractal type.
-//  */
-// enum fractal_type : int
-// {
-//   fractal_none = FastNoiseLite::FractalType_None,     ///< No fractal
-//   layering fractal_fbm = FastNoiseLite::FractalType_FBm,       ///< Fbm
-//   layering fractal_ridged = FastNoiseLite::FractalType_Ridged, ///< Ridged
-//   layering fractal_pingpong = FastNoiseLite::FractalType_PingPong, ///<
-//   PingPong layering fractal_max, ///< Max fractal_min ///< Min
-// };
+/**
+ * @brief Noise type.
+ */
+enum class NoiseType
+{
+  n_perlin,          ///< Perlin
+  n_perlin_billow,   ///< Perlin billow
+  n_perlin_half,     ///< Perlin half
+  n_simplex2,        ///< OpenSimplex2
+  n_simplex2s,       ///< OpenSimplex2S
+  n_value,           ///< Value
+  n_value_cubic,     ///< Value (cubic)
+  n_value_delaunay,  ///< Value (delaunay)
+  n_value_linear,    ///< Value (linear)
+  n_value_thinplate, ///< Value (thinplate)
+  n_worley,          ///< Worley
+  n_worley_double,   ///< Worley double
+  n_worley_value,    ///< Worley (cell value return)
+};
 
 /**
  * @brief Return a 'biquadratic pulse'.
@@ -568,6 +562,15 @@ Array gaussian_pulse(Vec2<int>   shape,
                      Array      *p_noise = nullptr,
                      Vec2<float> center = {0.5f, 0.5f},
                      Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+Array noise(NoiseType   noise_type,
+            Vec2<int>   shape,
+            Vec2<float> kw,
+            uint        seed,
+            Array      *p_noise_x = nullptr,
+            Array      *p_noise_y = nullptr,
+            Array      *p_stretching = nullptr,
+            Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return a peak-shaped heightmap.
