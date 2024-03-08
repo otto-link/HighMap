@@ -583,6 +583,7 @@ Array noise(NoiseType   noise_type,
  * @param weigth Octave weighting.
  * @param persistence Octave persistence.
  * @param lacunarity Defines the wavenumber ratio between each octaves.
+ * @param p_base_elevation Reference to the base elevation noise array.
  * @param p_noise_x, p_noise_y Reference to the input noise arrays.
  * @param p_stretching Local wavenumber multiplier.
  * @param bbox Domain bounding box.
@@ -608,6 +609,32 @@ Array noise_fbm(NoiseType   noise_type,
                 Array      *p_stretching = nullptr,
                 Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
+/**
+ * @brief Return an array filled with coherence fbm noise.
+ *
+ * @param noise_type Noise type.
+ * @param shape Array shape.
+ * @param kw Noise wavenumbers {kx, ky} for each directions.
+ * @param seed Random seed number.
+ * @param ratio Amplitude ratio between each Worley noise.
+ * @param k Transition smoothing parameter.
+ * @param octaves Number of octaves.
+ * @param weigth Octave weighting.
+ * @param persistence Octave persistence.
+ * @param lacunarity Defines the wavenumber ratio between each octaves.
+ * @param gradient_scale Gradient scale.
+ * @param p_base_elevation Reference to the base elevation noise array.
+ * @param p_noise_x, p_noise_y Reference to the input noise arrays.
+ * @param p_stretching Local wavenumber multiplier.
+ * @param bbox Domain bounding box.
+ * @return Array Fractal noise.
+ *
+ * **Example**
+ * @include ex_noise_fbm.cpp
+ *
+ * **Result**
+ * @image html ex_noise_fbm.png
+ */
 Array noise_iq(NoiseType   noise_type,
                Vec2<int>   shape,
                Vec2<float> kw,
@@ -623,6 +650,35 @@ Array noise_iq(NoiseType   noise_type,
                Array      *p_stretching = nullptr,
                Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
+/**
+ * @brief Return an array filled with coherence fbm noise.
+ *
+ * @param noise_type Noise type.
+ * @param shape Array shape.
+ * @param kw Noise wavenumbers {kx, ky} for each directions.
+ * @param seed Random seed number.
+ * @param ratio Amplitude ratio between each Worley noise.
+ * @param k Transition smoothing parameter.
+ * @param octaves Number of octaves.
+ * @param weigth Octave weighting.
+ * @param persistence Octave persistence.
+ * @param lacunarity Defines the wavenumber ratio between each octaves.
+ * @param warp0 Initial warp scale.
+ * @param damp0 Initial damp scale.
+ * @param warp_scale Warp scale.
+ * @param damp_scale Damp scale.
+ * @param p_base_elevation Reference to the base elevation noise array.
+ * @param p_noise_x, p_noise_y Reference to the input noise arrays.
+ * @param p_stretching Local wavenumber multiplier.
+ * @param bbox Domain bounding box.
+ * @return Array Fractal noise.
+ *
+ * **Example**
+ * @include ex_noise_fbm.cpp
+ *
+ * **Result**
+ * @image html ex_noise_fbm.png
+ */
 Array noise_jordan(NoiseType   noise_type,
                    Vec2<int>   shape,
                    Vec2<float> kw,
@@ -641,6 +697,31 @@ Array noise_jordan(NoiseType   noise_type,
                    Array      *p_stretching = nullptr,
                    Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
+/**
+ * @brief Return an array filled with coherence fbm pingpong noise.
+ *
+ * @param noise_type Noise type.
+ * @param shape Array shape.
+ * @param kw Noise wavenumbers {kx, ky} for each directions.
+ * @param seed Random seed number.
+ * @param ratio Amplitude ratio between each Worley noise.
+ * @param k Transition smoothing parameter.
+ * @param octaves Number of octaves.
+ * @param weigth Octave weighting.
+ * @param persistence Octave persistence.
+ * @param lacunarity Defines the wavenumber ratio between each octaves.
+ * @param p_base_elevation Reference to the base elevation noise array.
+ * @param p_noise_x, p_noise_y Reference to the input noise arrays.
+ * @param p_stretching Local wavenumber multiplier.
+ * @param bbox Domain bounding box.
+ * @return Array Fractal noise.
+ *
+ * **Example**
+ * @include ex_noise_fbm.cpp
+ *
+ * **Result**
+ * @image html ex_noise_fbm.png
+ */
 Array noise_pingpong(NoiseType   noise_type,
                      Vec2<int>   shape,
                      Vec2<float> kw,
@@ -655,6 +736,32 @@ Array noise_pingpong(NoiseType   noise_type,
                      Array      *p_stretching = nullptr,
                      Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
+/**
+ * @brief Return an array filled with coherence fbm ridged noise.
+ *
+ * @param noise_type Noise type.
+ * @param shape Array shape.
+ * @param kw Noise wavenumbers {kx, ky} for each directions.
+ * @param seed Random seed number.
+ * @param ratio Amplitude ratio between each Worley noise.
+ * @param k Transition smoothing parameter.
+ * @param octaves Number of octaves.
+ * @param weigth Octave weighting.
+ * @param persistence Octave persistence.
+ * @param lacunarity Defines the wavenumber ratio between each octaves.
+ * @param k_smoothing Smoothing parameter.
+ * @param p_base_elevation Reference to the base elevation noise array.
+ * @param p_noise_x, p_noise_y Reference to the input noise arrays.
+ * @param p_stretching Local wavenumber multiplier.
+ * @param bbox Domain bounding box.
+ * @return Array Fractal noise.
+ *
+ * **Example**
+ * @include ex_noise_fbm.cpp
+ *
+ * **Result**
+ * @image html ex_noise_fbm.png
+ */
 Array noise_ridged(NoiseType   noise_type,
                    Vec2<int>   shape,
                    Vec2<float> kw,
@@ -670,6 +777,32 @@ Array noise_ridged(NoiseType   noise_type,
                    Array      *p_stretching = nullptr,
                    Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
+/**
+ * @brief Return an array filled with coherence fbm swiss noise.
+ *
+ * @param noise_type Noise type.
+ * @param shape Array shape.
+ * @param kw Noise wavenumbers {kx, ky} for each directions.
+ * @param seed Random seed number.
+ * @param ratio Amplitude ratio between each Worley noise.
+ * @param k Transition smoothing parameter.
+ * @param octaves Number of octaves.
+ * @param weigth Octave weighting.
+ * @param persistence Octave persistence.
+ * @param lacunarity Defines the wavenumber ratio between each octaves.
+ * @param warp_scale Warp scale.
+ * @param p_base_elevation Reference to the base elevation noise array.
+ * @param p_noise_x, p_noise_y Reference to the input noise arrays.
+ * @param p_stretching Local wavenumber multiplier.
+ * @param bbox Domain bounding box.
+ * @return Array Fractal noise.
+ *
+ * **Example**
+ * @include ex_noise_fbm.cpp
+ *
+ * **Result**
+ * @image html ex_noise_fbm.png
+ */
 Array noise_swiss(NoiseType   noise_type,
                   Vec2<int>   shape,
                   Vec2<float> kw,
