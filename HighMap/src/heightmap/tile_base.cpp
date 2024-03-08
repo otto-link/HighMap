@@ -44,8 +44,9 @@ void Tile::from_array_interp(Array &array)
   for (int i = 0; i < shape.x; i++)
     for (int j = 0; j < shape.y; j++)
     {
-      int   ip = (int)x[i];
-      int   jp = (int)y[j];
+      int ip = std::clamp((int)x[i], 0, array.shape.x - 1);
+      int jp = std::clamp((int)y[j], 0, array.shape.y - 1);
+
       float u = x[i] - ip;
       float v = y[j] - jp;
       (*this)(i, j) = array.get_value_bilinear_at(ip, jp, u, v);
