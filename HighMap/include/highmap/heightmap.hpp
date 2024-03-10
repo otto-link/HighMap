@@ -22,6 +22,10 @@
 namespace hmap
 {
 
+/**
+ * @brief Tile class, to manipulate a restricted region of an heightmap (with
+ * contextual informations).
+ */
 class Tile : public Array
 {
 public:
@@ -45,7 +49,6 @@ public:
 
   /**
    * @brief Tile bounding box {xmin, xmax, ymin, ymax}.
-   *
    */
   Vec4<float> bbox;
 
@@ -57,7 +60,7 @@ public:
    */
   Tile(Vec2<int> shape, Vec2<float> shift, Vec2<float> scale, Vec4<float> bbox);
 
-  Tile(); /// @overload
+  Tile(); ///< @overload
 
   /**
    * @brief Assignment overloading (array).
@@ -84,7 +87,6 @@ public:
 
   /**
    * @brief Print some informations about the object.
-   *
    */
   void infos() const;
 };
@@ -92,38 +94,32 @@ public:
 /**
  * @brief HeightMap class, to manipulate heightmap (with contextual
  * informations).
- *
  */
 class HeightMap
 {
 public:
   /**
    * @brief Heightmap global shape.
-   *
    */
   Vec2<int> shape;
 
   /**
    * @brief Heightmap bounding box {xmin, xmax, ymin, ymax}.
-   *
    */
   Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f};
 
   /**
    * @brief Tiling setup (number of tiles in each direction).
-   *
    */
   Vec2<int> tiling = {1, 1};
 
   /**
    * @brief Tile overlapping, in [0, 1[.
-   *
    */
   float overlap = 0.f;
 
   /**
    * @brief Tile storage.
-   *
    */
   std::vector<Tile> tiles = {};
 
@@ -138,18 +134,18 @@ public:
   HeightMap(Vec2<int> shape, Vec4<float> bbox, Vec2<int> tiling, float overlap);
 
   HeightMap(Vec2<int> shape, Vec2<int> tiling,
-            float overlap); /// @overload
+            float overlap); ///< @overload
 
   HeightMap(Vec2<int> shape, Vec4<float> bbox,
-            Vec2<int> tiling); /// @overload
+            Vec2<int> tiling); ///< @overload
 
-  HeightMap(Vec2<int> shape, Vec4<float> bbox); /// @overload
+  HeightMap(Vec2<int> shape, Vec4<float> bbox); ///< @overload
 
-  HeightMap(Vec2<int> shape, Vec2<int> tiling); /// @overload
+  HeightMap(Vec2<int> shape, Vec2<int> tiling); ///< @overload
 
-  HeightMap(Vec2<int> shape); /// @overload
+  HeightMap(Vec2<int> shape); ///< @overload
 
-  HeightMap(); /// @overload
+  HeightMap(); ///< @overload
 
   //----------------------------------------
   // accessors
@@ -230,7 +226,6 @@ public:
 
   /**
    * @brief Print some informations about the object.
-   *
    */
   void infos();
 
@@ -278,7 +273,6 @@ public:
 
   /**
    * @brief Smooth the transitions between each tiles (when overlap > 0).
-   *
    */
   void smooth_overlap_buffers();
 
@@ -297,7 +291,7 @@ public:
    */
   Array to_array(Vec2<int> shape_export);
 
-  Array to_array(); // @overload
+  Array to_array(); ///< @overload
 
   /**
    * @brief Returns the unique elements of the heightmap.
@@ -308,48 +302,116 @@ public:
 
   /**
    * @brief Update tile parameters.
-   *
    */
   void update_tile_parameters();
 };
 
+/**
+ * @brief HeightMap class, to manipulate a set of RGB heightmap for heightmap
+ * texturing.
+ */
 struct HeightMapRGB
 {
+  /**
+   * @brief RGB component heightmap storage.
+   */
   std::vector<HeightMap> rgb;
-  Vec2<int>              shape = {0, 0};
 
-  HeightMapRGB();
+  /**
+   * @brief Shape.
+   */
+  Vec2<int> shape = {0, 0};
 
+  /**
+   * @brief Constructor.
+   * @param r Heightmap for R (red) component.
+   * @param g Heightmap for G (green) component.
+   * @param b Heightmap for B (blue) component.
+   */
   HeightMapRGB(HeightMap r, HeightMap g, HeightMap b);
 
+  HeightMapRGB(); ///< @overload
+
+  /**
+   * @brief Set the shape / tiling / overlap in one pass.
+   *
+   * @param new_shape New shape.
+   * @param new_tiling New tiling.
+   * @param new_overlap New overlap.
+   */
   void set_sto(Vec2<int> new_shape, Vec2<int> new_tiling, float new_overlap);
 
+  /**
+   * @brief Fill RGB heightmap components based on a colormap and an input
+   * reference heightmap.
+   * @param h Input heightmap.
+   * @param vmin Lower bound for scaling to array [0, 1].
+   * @param vmax Upper bound for scaling to array [0, 1]
+   * @param cmap Colormap (see {@link cmap}).
+   * @param reverse Reverse colormap.
+   */
   void colorize(HeightMap &h,
                 float      vmin,
                 float      vmax,
                 int        cmap,
                 bool       reverse = false);
 
+  /**
+   * @brief Fill RGB heightmap components based on a colormap and an input
+   * reference heightmap.
+   * @param h Input heightmap.
+   * @param vmin Lower bound for scaling to array [0, 1].
+   * @param vmax Upper bound for scaling to array [0, 1]
+   * @param colormap_colors Colormap RGB colors as a vector of RGB colors.
+   * @param reverse Reverse colormap.
+   */
   void colorize(HeightMap                      &h,
                 float                           vmin,
                 float                           vmax,
                 std::vector<std::vector<float>> colormap_colors,
                 bool                            reverse = false);
 
+  /**
+   * @brief Normalize RGB heightmaps amplitude.
+   */
   void normalize();
 
+  /**
+   * @brief Convert the RGB heightmap to a 8bit RGB image.
+   * @param shape_img Resulting image shape.
+   * @return Image data.
+   */
   std::vector<uint8_t> to_img_8bit(Vec2<int> shape_img = {0, 0});
 
+  /**
+   * @brief Export the RGB heightmap to a 16bit png file.
+   * @param fname File name.
+   */
   void to_png_16bit(std::string fname);
 
+  /**
+   * @brief Mix two RGB heightmap using linear interpolation.
+   * @param rgb1 1st RGB heightmap.
+   * @param rgb2 2st RGB heightmap.
+   * @param t Mixing parameter, in [0, 1].
+   * @return RGB heightmap.
+   */
   friend HeightMapRGB mix_heightmap_rgb(HeightMapRGB &rgb1,
                                         HeightMapRGB &rgb2,
                                         HeightMap    &t);
 
   friend HeightMapRGB mix_heightmap_rgb(HeightMapRGB &rgb1,
                                         HeightMapRGB &rgb2,
-                                        float         t);
+                                        float         t); ///< @overload
 
+  /**
+   * @brief Mix two RGB heightmap using linear interpolation in the RYB color
+   * space.
+   * @param rgb1 1st RGB heightmap.
+   * @param rgb2 2st RGB heightmap.
+   * @param t Mixing parameter, in [0, 1].
+   * @return RGB heightmap.
+   */
   friend HeightMapRGB mix_heightmap_rgb_ryb(HeightMapRGB &rgb1,
                                             HeightMapRGB &rgb2,
                                             HeightMap    &t);
@@ -358,6 +420,13 @@ struct HeightMapRGB
                                             HeightMapRGB &rgb2,
                                             float         t);
 
+  /**
+   * @brief Mix two RGB heightmap using weighted quadratic averaging.
+   * @param rgb1 1st RGB heightmap.
+   * @param rgb2 2st RGB heightmap.
+   * @param t Mixing parameter, in [0, 1].
+   * @return RGB heightmap.
+   */
   friend HeightMapRGB mix_heightmap_rgb_sqrt(HeightMapRGB &rgb1,
                                              HeightMapRGB &rgb2,
                                              HeightMap    &t);
