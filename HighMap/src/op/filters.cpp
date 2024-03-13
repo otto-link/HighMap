@@ -540,6 +540,25 @@ void sharpen(Array &array, Array *p_mask, float ratio)
   }
 }
 
+void sharpen_cone(Array &array, int ir, float scale)
+{
+  Array array_low_pass = array;
+  smooth_cone(array_low_pass, ir);
+  array += scale * (array - array_low_pass);
+}
+
+void sharpen_cone(Array &array, Array *p_mask, int ir, float scale)
+{
+  if (!p_mask)
+    sharpen_cone(array, ir, scale);
+  else
+  {
+    Array array_f = array;
+    sharpen_cone(array_f, ir, scale);
+    array = lerp(array, array_f, *(p_mask));
+  }
+}
+
 void shrink(Array &array, int ir)
 {
   float amax = array.max();

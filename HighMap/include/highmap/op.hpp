@@ -2154,6 +2154,26 @@ void sharpen(Array &array, float ratio = 1.f);
 void sharpen(Array &array, Array *p_mask, float ratio = 1.f); ///< @overload
 
 /**
+ * @brief Apply sharpening filter (based on a smooth_cone filter).
+ *
+ * @param array Input array.
+ * @param p_mask Filter mask, expected in [0, 1].
+ * @param ir Filter radius.
+ * @param scale Sharpening scale.
+ *
+ * **Example**
+ * @include ex_sharpen_cone.cpp
+ *
+ * **Result**
+ * @image html ex_sharpen_cone.png
+ */
+void sharpen_cone(Array &array, int ir, float intensity = 0.5f);
+void sharpen_cone(Array &array,
+                  Array *p_mask,
+                  int    ir,
+                  float  scale = 0.5f); ///< @overload
+
+/**
  * @brief Apply shrinking, or "deflating", to emphasize the ridges.
  *
  * @param array Input array.

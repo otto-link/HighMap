@@ -1,0 +1,2 @@
+add_executable(ex_sharpen_cone ex_sharpen_cone.cpp)
+target_link_libraries(ex_sharpen_cone highmap)
