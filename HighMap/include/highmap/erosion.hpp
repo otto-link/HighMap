@@ -301,6 +301,53 @@ void hydraulic_particle(Array &z,
                         float  evap_rate = 0.001f); ///< @overload
 
 /**
+ * @brief Apply hydraulic erosion using a particle based procedure, using a
+ * pyramid decomposition to allow a multiscale approach.
+ * @param z Input array.
+ * @param particle_density Particles density (with respect to the number of
+ * cells of the input array).
+ * @param seed Random seed number.
+ * @param p_bedrock Reference to the bedrock heightmap.
+ * @param p_moisture_map Reference to the moisture map (quantity of rain),
+ * expected to be in [0, 1].
+ * @param p_erosion_map[out] Reference to the erosion map, provided as an output
+ * field.
+ * @param p_deposition_map [out] Reference to the deposition map, provided as an
+ * output field.
+ * @param c_radius Particle radius in pixel(s) (>= 0).
+ * @param c_capacity Sediment capacity.
+ * @param c_deposition Deposition coefficient.
+ * @param c_erosion Erosion coefficient.
+ * @param drag_rate Drag rate.
+ * @param evap_rate Particle evaporation rate.
+ * @param pyramid_finest_level First level at which the erosion is applied
+ * (default is 0, meaning it is applied to the current resolution, the 0th
+ * pyramid level, and then to the coarser pyramid levels, if set to 1 it starts
+ * with the first pyramid level and so on).
+ *
+ * **Example**
+ * @include ex_hydraulic_particle_multiscale.cpp
+ *
+ * **Result**
+ * @image html ex_hydraulic_particle_multiscale0.png
+ * @image html ex_hydraulic_particle_multiscale1.png
+ */
+void hydraulic_particle_multiscale(Array &z,
+                                   float  particle_density,
+                                   int    seed,
+                                   Array *p_bedrock = nullptr,
+                                   Array *p_moisture_map = nullptr,
+                                   Array *p_erosion_map = nullptr,    // -> out
+                                   Array *p_deposition_map = nullptr, // -> out
+                                   int    c_radius = 0,
+                                   float  c_capacity = 10.f,
+                                   float  c_erosion = 0.05f,
+                                   float  c_deposition = 0.01f,
+                                   float  drag_rate = 0.01f,
+                                   float  evap_rate = 0.001f,
+                                   int    pyramid_finest_level = 0);
+
+/**
  * @brief Apply large-scale hydraulic erosion to produce "deep" ridges.
  *
  * @param z Input array.

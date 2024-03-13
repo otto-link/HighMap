@@ -24,8 +24,10 @@ PyramidDecomposition::PyramidDecomposition(Array &array, int nlevels_)
     this->nlevels = np2 + nlevels_;
 
   if (this->nlevels != nlevels_)
-    LOG_DEBUG("number of levels adjusted, effective: %d, requested: %d",
+    LOG_DEBUG("number of levels adjusted, effective / maximum: %d / %d, "
+              "requested: %d",
               this->nlevels,
+              np2,
               nlevels_);
 
   // default filter is a Laplace filter
@@ -126,7 +128,8 @@ void PyramidDecomposition::to_png(std::string fname, int cmap, bool hillshading)
 Array PyramidDecomposition::transform(
     std::function<Array(const Array &, const int current_level)> function,
     int                                                          support,
-    std::vector<float>                                           level_weights)
+    std::vector<float>                                           level_weights,
+    int                                                          finest_level)
 {
   // if no weights are provided, just a constant one
   if (!level_weights.size())
@@ -138,7 +141,7 @@ Array PyramidDecomposition::transform(
   Array     array_out = this->residual;
   Vec2<int> shape = array_out.shape;
 
-  for (int n = this->nlevels; n-- > 0;)
+  for (int n = this->nlevels; n-- > finest_level;)
   {
     switch (support)
     {

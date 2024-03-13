@@ -115,7 +115,8 @@ public:
   Array transform(
       std::function<Array(const Array &, const int current_level)> function,
       int                                                          support = 0,
-      std::vector<float> level_weights = {});
+      std::vector<float> level_weights = {},
+      int                finest_level = 0);
 
 private:
   /**
