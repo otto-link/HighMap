@@ -2206,6 +2206,22 @@ void shrink_directional(Array &array,
 Array sin(const Array &array);
 
 /**
+ * @brief Apply filtering to the array using convolution with a cone kernel.
+ *
+ * @param array Input array.
+ * @param ir Cone radius (half-width is half this radius).
+ * @param p_mask Filter mask, expected in [0, 1].
+ *
+ * **Example**
+ * @include ex_smooth_cone.cpp
+ *
+ * **Result**
+ * @image html ex_smooth_cone.png
+ */
+void smooth_cone(Array &array, int ir);
+void smooth_cone(Array &array, int ir, Array *p_mask); ///< @overload
+
+/**
  * @brief Apply filtering to the array using convolution with a cubic pulse.
  *
  * Can be used as an alternative (with a much smaller support) to Gaussian

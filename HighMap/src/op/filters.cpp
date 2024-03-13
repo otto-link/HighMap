@@ -594,6 +594,44 @@ void shrink_directional(Array &array,
   shrink(array, kernel, p_mask);
 }
 
+void smooth_cone(Array &array, int ir)
+{
+  // define kernel
+  const int          nk = 2 * ir + 1;
+  std::vector<float> k(nk);
+
+  float sum = 0.f;
+  float x0 = (float)nk / 2.f;
+  for (int i = 0; i < nk; i++)
+  {
+    float x = std::abs((float)i - x0) / (float)ir;
+    k[i] = 1.f - x;
+    sum += k[i];
+  }
+
+  // normalize
+  for (int i = 0; i < nk; i++)
+  {
+    k[i] /= sum;
+  }
+
+  // eventually convolve
+  array = convolve1d_i(array, k);
+  array = convolve1d_j(array, k);
+}
+
+void smooth_cone(Array &array, int ir, Array *p_mask)
+{
+  if (!p_mask)
+    smooth_cone(array, ir);
+  else
+  {
+    Array array_f = array;
+    smooth_cone(array_f, ir);
+    array = lerp(array, array_f, *(p_mask));
+  }
+}
+
 void smooth_cpulse(Array &array, int ir)
 {
   // define kernel
