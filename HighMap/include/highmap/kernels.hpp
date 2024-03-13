@@ -154,6 +154,14 @@ Array gabor_dune(Vec2<int> shape,
 Array lorentzian(Vec2<int> shape, float footprint_threshold = 0.1f);
 
 /**
+ * @brief Return a modified Lorentzian kernel with compact support.
+ *
+ * @param shape Array shape.
+ * @return Array New array.
+ */
+Array lorentzian_compact(Vec2<int> shape);
+
+/**
  * @brief Return a smooth cosine kernel.
  *
  * @param shape Array shape.

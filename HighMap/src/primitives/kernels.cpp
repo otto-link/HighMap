@@ -254,6 +254,22 @@ Array lorentzian(Vec2<int> shape, float footprint_threshold)
   return array;
 }
 
+Array lorentzian_compact(Vec2<int> shape)
+{
+  Array array = Array(shape);
+
+  for (int i = 0; i < shape.x; i++)
+    for (int j = 0; j < shape.y; j++)
+    {
+      float x = 2.f * (float)i / (float)shape.x - 1.f;
+      float y = 2.f * (float)j / (float)shape.y - 1.f;
+      float r2 = x * x + y * y;
+      array(i, j) = r2 < 1.f ? (1.f - r2) / (1.f + 4.f * r2) : 0.f;
+    }
+
+  return array;
+}
+
 Array smooth_cosine(Vec2<int> shape)
 {
   Array array = Array(shape);
