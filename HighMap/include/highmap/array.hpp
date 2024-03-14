@@ -502,6 +502,12 @@ public:
    * domain warping (NOT in pixels, with respect to a unit domain).
    * @param p_stretching Local wavenumber multiplier.
    * @param fct_xy (x, y, initial_value) scalar function.
+   *
+   *  * **Example**
+   * @include ex_fill_array_using_xy_function.cpp
+   *
+   * **Result**
+   * @image html ex_fill_array_using_xy_function.png
    */
   friend void fill_array_using_xy_function(
       Array                                    &array,
@@ -510,6 +516,15 @@ public:
       Array                                    *p_noise_y,
       Array                                    *p_stretching,
       std::function<float(float, float, float)> fct_xy);
+
+  friend void fill_array_using_xy_function(
+      Array                                    &array,
+      Vec4<float>                               bbox,
+      Array                                    *p_noise_x,
+      Array                                    *p_noise_y,
+      Array                                    *p_stretching,
+      std::function<float(float, float, float)> fct_xy,
+      int                                       subsampling); ///< @overload
 
   /**
    * @brief Import array from raw binary file.

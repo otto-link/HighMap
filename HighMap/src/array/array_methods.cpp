@@ -131,7 +131,7 @@ void fill_array_using_xy_function(
 {
   Vec2<int>          shape = array.shape;
   std::vector<float> x, y;
-  grid_xy_vector(x, y, shape, bbox);
+  grid_xy_vector(x, y, shape, bbox, false); // no endpoint
 
   if (p_stretching) // with stretching
   {
@@ -200,6 +200,65 @@ void fill_array_using_xy_function(
                                array(i, j));
     }
   }
+}
+
+void fill_array_using_xy_function(
+    Array                                    &array,
+    Vec4<float>                               bbox,
+    Array                                    *p_noise_x,
+    Array                                    *p_noise_y,
+    Array                                    *p_stretching,
+    std::function<float(float, float, float)> fct_xy,
+    int                                       subsampling)
+{
+  Vec2<int> shape = array.shape;
+  Vec2<int> shape_sub = Vec2<int>((int)(shape.x / subsampling),
+                                  (int)(shape.y / subsampling));
+  Array     array_sub = Array(shape_sub);
+
+  std::vector<float> x, y;
+  grid_xy_vector(x, y, shape, bbox, false);
+
+  // subsampled grid (with endpoints to cover the exact same domain as
+  // the original grid)
+  Vec4<float> bbox_sub = Vec4<float>(x.front(), x.back(), y.front(), y.back());
+
+  // also resample input noise and stretching
+  Array noise_x_sub;
+  Array noise_y_sub;
+  Array stretching_sub;
+
+  Array *p_noise_x_sub = nullptr;
+  Array *p_noise_y_sub = nullptr;
+  Array *p_stretching_sub = nullptr;
+
+  if (p_noise_x != nullptr)
+  {
+    noise_x_sub = p_noise_x->resample_to_shape(shape_sub);
+    p_noise_x_sub = &noise_x_sub;
+  }
+
+  if (p_noise_y != nullptr)
+  {
+    noise_x_sub = p_noise_y->resample_to_shape(shape_sub);
+    p_noise_y_sub = &noise_x_sub;
+  }
+
+  if (p_stretching != nullptr)
+  {
+    noise_x_sub = p_stretching->resample_to_shape(shape_sub);
+    p_stretching_sub = &noise_x_sub;
+  }
+
+  fill_array_using_xy_function(array_sub,
+                               bbox_sub,
+                               p_noise_x_sub,
+                               p_noise_y_sub,
+                               p_stretching_sub,
+                               fct_xy);
+
+  // interpolate on finer grid
+  array = array_sub.resample_to_shape(shape);
 }
 
 float Array::get_gradient_x_at(int i, int j) const

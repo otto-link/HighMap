@@ -1,0 +1,2 @@
+add_executable(ex_fill_array_using_xy_function ex_fill_array_using_xy_function.cpp)
+target_link_libraries(ex_fill_array_using_xy_function highmap)
