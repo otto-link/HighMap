@@ -180,8 +180,7 @@ void export_wavefront_obj(std::string  fname,
   // mesh fname without extension
   std::string raw_fname = extract_raw_filename(fname);
 
-  // add a material file pointing to the texture file name
-  if (texture_fname != "")
+  // add a material file
   {
     std::fstream f;
     f.open(raw_fname + ".mtl", std::ios::out);
@@ -194,7 +193,8 @@ void export_wavefront_obj(std::string  fname,
     f << "d 1.000000" << std::endl;
     f << "illum 0" << std::endl;
     f << "map_Kd " << texture_fname << std::endl;
-    f << "map_bump " << raw_fname + "_nmap.png" << std::endl;
+    if (texture_fname != "")
+      f << "map_bump " << raw_fname + "_nmap.png" << std::endl;
     f.close();
   }
 
@@ -206,7 +206,8 @@ void export_wavefront_obj(std::string  fname,
   // lots of switch between 'x' and 'y' to deal with row-major vs
   // column-major mode for vector data
   Array array_f = array;
-  smooth_cone(array_f, ir);
+  if (ir > 0)
+    smooth_cone(array_f, ir);
 
   const auto   p_hmap = std::make_shared<Heightmap>(array_f.shape.y,
                                                   array_f.shape.x,
@@ -274,7 +275,6 @@ void export_wavefront_obj(std::string  fname,
   obj.output(raw_fname);
 
   // add pointer to material file
-  if (texture_fname != "")
   {
     std::fstream f;
     f.open(fname, std::ios::app);
