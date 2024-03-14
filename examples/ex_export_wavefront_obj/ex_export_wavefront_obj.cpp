@@ -3,7 +3,7 @@
 int main(void)
 {
 
-  // heightmaps
+  // --- heightmaps
 
   hmap::Vec2<int>   shape = {256, 256};
   hmap::Vec2<float> res = {2.f, 2.f};
@@ -13,11 +13,37 @@ int main(void)
   hmap::clamp_min_smooth(z, 0.f, 0.2f);
   hmap::remap(z);
 
-  hmap::export_wavefront_obj("hmap.obj", z, hmap::mesh_type::tri_optimized);
-  hmap::export_wavefront_obj("hmap_quad.obj", z, hmap::mesh_type::quad);
-  hmap::export_wavefront_obj("hmap_tri.obj", z, hmap::mesh_type::tri);
+  hmap::export_wavefront_obj("hmap.obj",
+                             z,
+                             hmap::MeshType::tri_optimized,
+                             0.2f,
+                             "", // no texture file
+                             1e-2f);
+  hmap::export_wavefront_obj("hmap_quad.obj", z, hmap::MeshType::quad);
+  hmap::export_wavefront_obj("hmap_tri.obj", z, hmap::MeshType::tri);
 
-  // lines
+  // --- heightmap with texture
+
+  z.to_png("hmap.png", hmap::cmap::terrain);
+
+  hmap::export_wavefront_obj("hmap.obj",
+                             z,
+                             hmap::MeshType::tri_optimized,
+                             0.2f,
+                             "hmap.png");
+
+  // --- heightmap, decimated mesh with texture and bump map
+
+  int   ir = 16; // pre-filtering radius
+  float tolerance = 1e-3f;
+
+  hmap::export_wavefront_obj("hmap_decimated.obj",
+                             z,
+                             ir, // <- radius
+                             0.2f,
+                             "hmap.png",
+                             tolerance);
+  // --- lines
 
   hmap::Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f};
 

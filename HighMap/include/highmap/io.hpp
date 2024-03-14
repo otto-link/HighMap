@@ -25,7 +25,7 @@ namespace hmap
 /**
  * @brief Mesh type.
  */
-enum mesh_type : int
+enum MeshType
 {
   tri_optimized, ///< Triangles with optimized Delaunay triangulation
   quad,          ///< Quad elements.
@@ -240,8 +240,16 @@ void export_vector_glyph_png_16bit(const std::string fname,
  */
 void export_wavefront_obj(std::string  fname,
                           const Array &array,
-                          int          mesh_type = 0,
+                          MeshType     mesh_type = MeshType::tri_optimized,
                           float        elevation_scaling = 0.2f,
+                          std::string  texture_fname = "",
+                          float        max_error = 5e-4f);
+
+void export_wavefront_obj(std::string  fname,
+                          const Array &array,
+                          int          ir,
+                          float        elevation_scaling = 0.2f,
+                          std::string  texture_fname = "",
                           float        max_error = 5e-4f);
 
 void export_wavefront_obj(std::string fname,
