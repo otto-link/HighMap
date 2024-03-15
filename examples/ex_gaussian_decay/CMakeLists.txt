@@ -1,0 +1,2 @@
+add_executable(ex_gaussian_decay ex_gaussian_decay.cpp)
+target_link_libraries(ex_gaussian_decay highmap)

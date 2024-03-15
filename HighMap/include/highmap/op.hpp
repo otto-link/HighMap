@@ -945,12 +945,12 @@ void gradient_y(const Array &array, Array &dy); ///< @overload
  * @return Array Reference to the current object.
  *
  * **Example**
- * @include ex_gaussian.cpp
+ * @include ex_gaussian_decay.cpp
  *
  * **Result**
- * @image html ex_gaussian.png
+ * @image html ex_gaussian_decay.png
  */
-Array gaussian(const Array &array, float sigma);
+Array gaussian_decay(const Array &array, float sigma);
 
 /**
  * @brief Return the shaded relief map (or hillshading).

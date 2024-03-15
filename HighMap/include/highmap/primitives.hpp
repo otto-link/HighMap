@@ -527,7 +527,7 @@ Array gabor_noise(Vec2<int> shape,
                   uint      seed);
 
 /**
- * @brief Return a gaussian pulse kernel.
+ * @brief Return a gaussian_decay pulse kernel.
  *
  * @param shape Array shape.
  * @param sigma Gaussian sigma (in pixels).

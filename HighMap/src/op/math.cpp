@@ -114,7 +114,7 @@ Array exp(const Array &array)
   return array_out;
 }
 
-Array gaussian(const Array &array, float sigma)
+Array gaussian_decay(const Array &array, float sigma)
 {
   float coeff = 0.5f / (sigma * sigma);
   Array array_out = Array(array.shape);

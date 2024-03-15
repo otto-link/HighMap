@@ -183,7 +183,7 @@ Array gabor(Vec2<int> shape, float kw, float angle)
   float ca = std::cos(angle / 180.f * M_PI);
   float sa = std::sin(angle / 180.f * M_PI);
 
-  // gaussian shape approximate using a cubic pulse
+  // gaussian_decay shape approximate using a cubic pulse
   Array cpulse = cubic_pulse(shape);
 
   for (int i = 0; i < array.shape.x; i++)
@@ -210,7 +210,7 @@ Array gabor_dune(Vec2<int> shape,
   float ca = std::cos(angle / 180.f * M_PI);
   float sa = std::sin(angle / 180.f * M_PI);
 
-  // gaussian shape approximate using a cubic pulse
+  // gaussian_decay shape approximate using a cubic pulse
   Array cpulse = cubic_pulse(shape);
 
   for (int i = 0; i < array.shape.x; i++)
