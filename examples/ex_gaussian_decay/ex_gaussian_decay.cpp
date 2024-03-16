@@ -15,5 +15,7 @@ int main(void)
   float       sigma = 0.5f;
   hmap::Array zg = hmap::gaussian_decay(z, sigma);
 
-  hmap::export_banner_png("ex_gaussian_decay.png", {z, zg}, hmap::cmap::viridis);
+  hmap::export_banner_png("ex_gaussian_decay.png",
+                          {z, zg},
+                          hmap::cmap::viridis);
 }

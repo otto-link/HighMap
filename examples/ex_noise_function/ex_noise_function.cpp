@@ -39,7 +39,7 @@ int main(void)
   hmap::export_wavefront_obj("hmap.obj",
                              array,
                              hmap::MeshType::tri_optimized,
-			     0.2f,
+                             0.2f,
                              "", // no texture
                              5e-2f);
   hmap::export_normal_map_png_16bit("hmap_nmap.png", array);

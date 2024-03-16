@@ -30,7 +30,8 @@ Array dendry(Vec2<int>   shape,
              Array      *p_noise_x,
              Array      *p_noise_y,
              Array      *p_stretching,
-             Vec4<float> bbox)
+             Vec4<float> bbox,
+             int         subsampling)
 {
   Array array = Array(shape);
 
@@ -77,7 +78,8 @@ Array dendry(Vec2<int>   shape,
       p_noise_y,
       nullptr,
       [&noise, &kw](float x, float y, float)
-      { return noise.evaluateTerrain(kw.x * x, kw.y * y); });
+      { return noise.evaluateTerrain(kw.x * x, kw.y * y); },
+      subsampling);
 
   return array;
 }

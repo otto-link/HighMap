@@ -215,7 +215,8 @@ Array dendry(Vec2<int>   shape,
              Array      *p_noise_x = nullptr,
              Array      *p_noise_y = nullptr,
              Array      *p_stretching = nullptr,
-             Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+             Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f},
+             int         subsampling = 1);
 
 Array dendry(Vec2<int>      shape,
              Vec2<float>    kw,
