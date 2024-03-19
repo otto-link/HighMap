@@ -103,7 +103,7 @@ void HeightMapRGB::normalize()
   float max = std::max(std::max(this->rgb[0].max(), this->rgb[1].max()),
                        this->rgb[2].max());
 
-  for (auto &channel : rgb)
+  for (auto &channel : this->rgb)
     channel.remap(0.f, 1.f, min, max);
 }
 

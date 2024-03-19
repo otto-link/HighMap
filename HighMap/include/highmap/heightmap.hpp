@@ -22,6 +22,16 @@
 namespace hmap
 {
 
+// --- forward declarations
+class HeightMapRGBA;
+HeightMapRGBA mix_heightmap_rgba(HeightMapRGBA &rgba1,
+                                 HeightMapRGBA &rgba2,
+                                 bool           use_sqrt_avg = true);
+HeightMapRGBA mix_heightmap_rgba(std::vector<HeightMapRGBA> rgba_list,
+                                 bool use_sqrt_avg = true);
+
+// --- classes
+
 /**
  * @brief Tile class, to manipulate a restricted region of an heightmap (with
  * contextual informations).
@@ -135,6 +145,11 @@ public:
 
   HeightMap(Vec2<int> shape, Vec2<int> tiling,
             float overlap); ///< @overload
+
+  HeightMap(Vec2<int> shape,
+            Vec2<int> tiling,
+            float     overlap,
+            float     fill_value); ///< @overload
 
   HeightMap(Vec2<int> shape, Vec4<float> bbox,
             Vec2<int> tiling); ///< @overload
@@ -314,6 +329,15 @@ struct HeightMapRGB
 {
   /**
    * @brief RGB component heightmap storage.
+   *
+ * **Example**
+ * @include ex_ex_heightmap_rgb.cpp
+ *
+ * **Result**
+ * @image html ex_ex_heightmap_rgb0.png
+ * @image html ex_ex_heightmap_rgb1.png
+ * @image html ex_ex_heightmap_rgb2.png
+ * @image html ex_ex_heightmap_rgb3.png
    */
   std::vector<HeightMap> rgb;
 
@@ -434,6 +458,130 @@ struct HeightMapRGB
   friend HeightMapRGB mix_heightmap_rgb_sqrt(HeightMapRGB &rgb1,
                                              HeightMapRGB &rgb2,
                                              float         t);
+};
+
+/**
+ * @brief HeightMap class, to manipulate a set of RGBA heightmap for heightmap
+ * texturing.
+ *
+ * **Example**
+ * @include ex_ex_heightmap_rgba.cpp
+ *
+ * **Result**
+ * @image html ex_ex_heightmap_rgba0.png
+ * @image html ex_ex_heightmap_rgba1.png
+ * @image html ex_ex_heightmap_rgba2.png
+ * @image html ex_ex_heightmap_rgba3.png
+ * @image html ex_ex_heightmap_rgba4.png
+ */
+struct HeightMapRGBA
+{
+  /**
+   * @brief RGBA component heightmap storage.
+   */
+  std::vector<HeightMap> rgba;
+
+  /**
+   * @brief Shape.
+   */
+  Vec2<int> shape = {0, 0};
+
+  /**
+   * @brief Constructor.
+   * @param r Heightmap for R (red) component.
+   * @param g Heightmap for G (green) component.
+   * @param b Heightmap for B (blue) component.
+   * @param a Heightmap for A (alpha) component.
+   */
+  HeightMapRGBA(HeightMap r, HeightMap g, HeightMap b, HeightMap a);
+
+  HeightMapRGBA(); ///< @overload
+
+  /**
+   * @brief Set the alpha channel.
+   * @param new_alpha Alpha value(s).
+   */
+  void set_alpha(HeightMap new_alpha);
+
+  void set_alpha(float new_alpha);
+
+  /**
+   * @brief Set the shape / tiling / overlap in one pass.
+   *
+   * @param new_shape New shape.
+   * @param new_tiling New tiling.
+   * @param new_overlap New overlap.
+   */
+  void set_sto(Vec2<int> new_shape, Vec2<int> new_tiling, float new_overlap);
+
+  /**
+   * @brief Export the RGB heightmap to a 16bit png file.
+   * @param fname File name.
+   */
+  void to_png_16bit(std::string fname);
+
+  /**
+   * @brief Fill RGB heightmap components based on a colormap and an
+   input
+   * reference heightmap.
+   * @param color_level Input heightmap for color level.
+   * @param vmin Lower bound for scaling to array [0, 1].
+   * @param vmax Upper bound for scaling to array [0, 1]
+   * @param cmap Colormap (see {@link cmap}).
+   * @param p_alpha Reference to input heightmap for alpha channel, expected in
+   [0, 1].
+   * @param reverse Reverse colormap.
+   */
+  void colorize(HeightMap &color_level,
+                float      vmin,
+                float      vmax,
+                int        cmap,
+                HeightMap *p_alpha = nullptr,
+                bool       reverse = false);
+
+  /**
+   * @brief Fill RGBA heightmap components based on a colormap and
+   input reference heightmaps for the color level and the transparency.
+   * @param color_level Input heightmap for color level.
+   * @param vmin Lower bound for scaling to array [0, 1].
+   * @param vmax Upper bound for scaling to array [0, 1]
+   * @param colormap_colors Colormap RGB colors as a vector of RGB
+   colors.
+   * @param p_alpha Reference to input heightmap for alpha channel, expected in
+   [0, 1].
+   * @param reverse Reverse colormap.
+   */
+  void colorize(HeightMap                      &color_level,
+                float                           vmin,
+                float                           vmax,
+                std::vector<std::vector<float>> colormap_colors,
+                HeightMap                      *p_alpha = nullptr,
+                bool                            reverse = false);
+
+  /**
+   * @brief Mix two RGBA heightmap using alpha compositing ("over").
+   * @param rgba1 1st RGBA heightmap.
+   * @param rgba2 2st RGBA heightmap.
+   * @param use_sqrt_avg Whether to use or not square averaging.
+   * @return RGBA heightmap.
+   */
+  friend HeightMapRGBA mix_heightmap_rgba(HeightMapRGBA &rgba1,
+                                          HeightMapRGBA &rgba2,
+                                          bool           use_sqrt_avg);
+
+  /**
+   * @brief Mix two RGBA heightmap using alpha compositing ("over").
+   * @param rgba_list Heightmap list.
+   * @param use_sqrt_avg Whether to use or not square averaging.
+   * @return RGBA heightmap.
+   */
+  friend HeightMapRGBA mix_heightmap_rgba(std::vector<HeightMapRGBA> rgba_list,
+                                          bool use_sqrt_avg);
+
+  /**
+   * @brief Normalize RGBA heightmaps amplitude.
+   */
+  void normalize();
 };
 
 // shape, shift, scale, noise_x, noise_y

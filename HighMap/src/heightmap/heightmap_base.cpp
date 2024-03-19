@@ -30,6 +30,17 @@ HeightMap::HeightMap(Vec2<int> shape, Vec2<int> tiling, float overlap)
   this->update_tile_parameters();
 }
 
+HeightMap::HeightMap(Vec2<int> shape,
+                     Vec2<int> tiling,
+                     float     overlap,
+                     float     fill_value)
+    : shape(shape), tiling(tiling), overlap(overlap)
+{
+  this->update_tile_parameters();
+
+  transform(*this, [&fill_value](Array &x) { x = fill_value; });
+}
+
 HeightMap::HeightMap(Vec2<int> shape, Vec4<float> bbox, Vec2<int> tiling)
     : shape(shape), bbox(bbox), tiling(tiling)
 {
