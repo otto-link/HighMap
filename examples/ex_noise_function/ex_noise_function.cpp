@@ -36,14 +36,6 @@ int main(void)
                                                             0.1f);
 
   hmap::Array array = hmap::fbm_perlin({1024, 1024}, kw, seed);
-  hmap::export_wavefront_obj("hmap.obj",
-                             array,
-                             hmap::MeshType::tri_optimized,
-                             0.2f,
-                             "", // no texture
-                             5e-2f);
-  hmap::export_normal_map_png_16bit("hmap_nmap.png", array);
-  array.to_png("hmap.png", hmap::cmap::terrain);
 
   // hmap::ArrayFunction p = hmap::ArrayFunction(array, {1.f, 1.f});
 

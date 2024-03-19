@@ -1,0 +1,2 @@
+add_executable(ex_export_asset ex_export_asset.cpp)
+target_link_libraries(ex_export_asset highmap)

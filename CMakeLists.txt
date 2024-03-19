@@ -29,6 +29,7 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 find_package(Eigen3 REQUIRED)
 find_package(GSL REQUIRED COMPONENTS gsl gslcblas)
 find_package(PNG REQUIRED) # libpng
+find_package(assimp REQUIRED)
 
 if(HIGHMAP_ENABLE_OPENCL)
   find_package(OpenCL REQUIRED)

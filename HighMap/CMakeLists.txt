@@ -21,6 +21,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${PROJECT_VERSION})
 
 target_link_libraries(
   ${PROJECT_NAME}
+  assimp::assimp
   GSL::gsl
   GSL::gslcblas
   Eigen3::Eigen
@@ -32,7 +33,6 @@ target_link_libraries(
   libInterpolate::libInterpolate
   macro-logger::macro-logger
   NoiseLib
-  WavefrontObjWriter::WavefrontObjWriter
   xsimd::xsimd)
 
 if(HIGHMAP_ENABLE_OPENCL)

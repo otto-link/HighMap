@@ -29,8 +29,76 @@ enum MeshType
 {
   tri_optimized, ///< Triangles with optimized Delaunay triangulation
   quad,          ///< Quad elements.
-  tri            ///< Triangle elements
+  tri,           ///< Triangle elements
 };
+
+/**
+ * @brief Mapping between the enum and plain text.
+ */
+static std::map<MeshType, std::string> mesh_type_as_string = {
+    {tri_optimized, "triangles (optimized)"},
+    {quad, "quad"},
+    {tri, "triangles"}};
+
+/**
+ * @brief Asset export format (nomemclature of formats supported by assimp)
+ */
+enum AssetExportFormat
+{
+  _3ds,     ///< Autodesk 3DS (legacy) - *.3ds
+  _3mf,     ///< The 3MF-File-Format - *.3mf
+  assbin,   ///<   Assimp Binary - *.assbin
+  assxml,   ///< Assxml Document - *.assxml
+  fbxa,     ///< Autodesk FBX (ascii) - *.fbx
+  fbx,      ///< Autodesk FBX (binary) - *.fbx
+  collada,  ///< COLLADA - Digital Asset Exchange Schema - *.dae
+  x3d,      ///< Extensible 3D - *.x3d
+  gltf,     ///< GL Transmission Format - *.gltf
+  glb,      ///< GL Transmission Format (binary) - *.glb
+  gltf2,    ///< GL Transmission Format v. 2 - *.gltf
+  glb2,     ///< GL Transmission Format v. 2 (binary) - *.glb
+  ply,      ///< Stanford Polygon Library - *.ply
+  plyb,     ///< Stanford Polygon Library (binary) - *.ply
+  stp,      ///< Step Files - *.stp
+  stl,      ///< Stereolithography - *.stl
+  stlb,     ///< Stereolithography (binary) - *.stl
+  obj,      ///< Wavefront OBJ format - *.obj
+  objnomtl, ///< Wavefront OBJ format without material file - *.obj
+  x,        ///< X Files - *.x
+};
+
+/**
+ * @brief Mapping between the enum and plain text. Plain has 3 components: a
+ * human-readable plain text format, the corresponding format id for the assimp
+ * library and the corresponding file extension.
+ *
+ *  https://github.com/assimp/assimp/issues/2481
+ */
+// clang-format off
+static std::map<AssetExportFormat, std::vector<std::string>>
+    asset_export_format_as_string = {
+        {_3ds, {"Autodesk 3DS (legacy) - *.3ds", "3ds", "3ds"}},
+        {_3mf, {"The 3MF-File-Format - *.3mf", "3mf", "3mf"}},
+        {assbin, {"Assimp Binary - *.assbin", "assbin", "assbin"}},
+        {assxml, {"Assxml Document - *.assxml", "assxml", "assxml"}},
+        {fbxa, {"Autodesk FBX (ascii) - *.fbx", "fbxa", "fbx"}},
+        {fbx, {"Autodesk FBX (binary) - *.fbx", "fbx", "fbx"}},
+        {collada, {"COLLADA - Digital Asset Exchange Schema - *.dae", "collada", "dae"}},
+        {x3d, {"Extensible 3D - *.x3d", "x3d", "x3d"}},
+        {gltf, {"GL Transmission Format - *.gltf", "gltf", "gltf"}},
+        {glb, {"GL Transmission Format (binary) - *.glb", "glb", "glb"}},
+        {gltf2, {"GL Transmission Format v. 2 - *.gltf", "gltf2", "gltf"}},
+        {glb2, {"GL Transmission Format v. 2 (binary) - *.glb", "glb2", "glb"}},
+        {ply, {"Stanford Polygon Library - *.ply", "ply", "ply"}},
+        {plyb, {"Stanford Polygon Library (binary) - *.ply", "plyb", "ply"}},
+        {stp, {"Step Files - *.stp", "stp", "stp"}},
+        {stl, {"Stereolithography - *.stl", "stl", "stl"}},
+        {stlb, {"Stereolithography (binary) - *.stl", "stlb", "stl"}},
+        {obj, {"Wavefront OBJ format - *.obj", "obj", "obj"}},
+        {objnomtl, {"Wavefront OBJ format without material file - *.obj", "objnomtl", "obj"}},
+        {x, {"X Files - *.x", "x", "x"}},
+};
+// clang-format on
 
 /**
  * @brief Convert array element values to a color data (3 channels RGB in [0,
@@ -104,6 +172,27 @@ void convert_ryb_to_rgb(Array &r,
                         Array &r_out,
                         Array &g_out,
                         Array &b_out);
+
+/**
+ * @brief Export the heightmap to various 3d file formats.
+ * @param fname File name.
+ * @param array Input array.
+ * @param mesh_type Mesh type (see {@link mesh_type}).
+ * @param export_format Export format (see {@link AssetExportFormat}).
+ * @param elevation_scaling Elevation scaling factor.
+ * @param texture_fname Texture file name (not mandatory).
+ * @param normal_map_fname Normal file name (not mandatory).
+ * @param max_error Max error (only used for optimized Delaunay triangulation).
+ * @return Success.
+ */
+bool export_asset(std::string       fname,
+                  const Array      &array,
+                  MeshType          mesh_type = MeshType::tri,
+                  AssetExportFormat export_format = AssetExportFormat::glb2,
+                  float             elevation_scaling = 0.2f,
+                  std::string       texture_fname = "",
+                  std::string       normal_map_fname = "",
+                  float             max_error = 5e-4f);
 
 /**
  * @brief Export a set of arrays as banner png image file.
@@ -228,33 +317,6 @@ void export_vector_glyph_png_16bit(const std::string fname,
                                    const float       density = 0.05f,
                                    const float       scale = 0.05f,
                                    const uint        seed = 0);
-
-/**
- * @brief Export heightmap as a Wavefront Object mesh file.
- *
- * @param fname File name.
- * @param array Input array.
- * @param mesh_type Mesh type (see {@link mesh_type}).
- * @param elevation_scaling Elevation scaling factor.
- * @param max_error Max error (only used for optimized Delaunay triangulation).
- */
-void export_wavefront_obj(std::string  fname,
-                          const Array &array,
-                          MeshType     mesh_type = MeshType::tri_optimized,
-                          float        elevation_scaling = 0.2f,
-                          std::string  texture_fname = "",
-                          float        max_error = 5e-4f);
-
-void export_wavefront_obj(std::string  fname,
-                          const Array &array,
-                          int          ir,
-                          float        elevation_scaling = 0.2f,
-                          std::string  texture_fname = "",
-                          float        max_error = 5e-4f);
-
-void export_wavefront_obj(std::string fname,
-                          const Path &path,
-                          float       elevation_scaling = 0.2f);
 
 /**
  * @brief Read an 8bit grayscale image to a png file.

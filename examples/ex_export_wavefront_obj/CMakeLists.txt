@@ -1,2 +1,0 @@
-add_executable(ex_export_wavefront_obj ex_export_wavefront_obj.cpp)
-target_link_libraries(ex_export_wavefront_obj highmap)

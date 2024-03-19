@@ -11,9 +11,6 @@
 [submodule "external/libInterpolate"]
 	path = external/libInterpolate
 	url = git@github.com:CD3/libInterpolate.git
-[submodule "external/WavefrontObjWriter"]
-	path = external/WavefrontObjWriter
-	url = git@github.com:yknishidate/WavefrontObjWriter.git
 [submodule "external/hmm"]
 	path = external/hmm
 	url = git@github.com:fogleman/hmm.git

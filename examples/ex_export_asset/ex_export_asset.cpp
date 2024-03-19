@@ -1,0 +1,36 @@
+#include "highmap.hpp"
+#include "highmap/dbg.hpp"
+
+int main(void)
+{
+
+  // --- heightmaps
+
+  hmap::Vec2<int>   shape = {256, 256};
+  hmap::Vec2<float> res = {2.f, 2.f};
+  int               seed = 1;
+
+  hmap::Array z = hmap::fbm_simplex(shape, res, seed);
+  hmap::clamp_min_smooth(z, 0.f, 0.2f);
+  hmap::remap(z);
+
+  z.to_png("hmap.png", hmap::cmap::terrain);
+
+  for (auto &[export_id, export_infos] : hmap::asset_export_format_as_string)
+  {
+    LOG_INFO("exporting format: %s", export_infos[0].c_str());
+
+    float error_tolerance = 1e-2f; // for tri_optimized only
+
+    hmap::export_asset("hmap.dummy_extension",
+                       z,
+                       hmap::MeshType::tri_optimized,
+                       export_id,
+                       0.2f,
+                       "hmap.png",
+                       "", // normal map
+                       error_tolerance);
+  }
+
+  return 0;
+}
