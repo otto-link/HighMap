@@ -232,4 +232,29 @@ void HeightMapRGBA::to_png_16bit(std::string fname)
   write_png_rgba_16bit(fname, img, this->shape);
 }
 
+std::vector<uint8_t> HeightMapRGBA::to_img_8bit(Vec2<int> shape_img)
+{
+  if (shape_img.x * shape_img.y == 0)
+    shape_img = this->shape;
+
+  std::vector<uint8_t> img(shape_img.x * shape_img.y * 4);
+
+  Array r_array = this->rgba[0].to_array(shape_img);
+  Array g_array = this->rgba[1].to_array(shape_img);
+  Array b_array = this->rgba[2].to_array(shape_img);
+  Array a_array = this->rgba[3].to_array(shape_img);
+
+  int k = 0;
+  for (int j = shape_img.y - 1; j > -1; j -= 1)
+    for (int i = 0; i < shape_img.x; i++)
+    {
+      img[k++] = (uint8_t)(255.f * r_array(i, j));
+      img[k++] = (uint8_t)(255.f * g_array(i, j));
+      img[k++] = (uint8_t)(255.f * b_array(i, j));
+      img[k++] = (uint8_t)(255.f * a_array(i, j));
+    }
+
+  return img;
+}
+
 } // namespace hmap

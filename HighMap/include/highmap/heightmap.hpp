@@ -330,14 +330,14 @@ struct HeightMapRGB
   /**
    * @brief RGB component heightmap storage.
    *
- * **Example**
- * @include ex_ex_heightmap_rgb.cpp
- *
- * **Result**
- * @image html ex_ex_heightmap_rgb0.png
- * @image html ex_ex_heightmap_rgb1.png
- * @image html ex_ex_heightmap_rgb2.png
- * @image html ex_ex_heightmap_rgb3.png
+   * **Example**
+   * @include ex_ex_heightmap_rgb.cpp
+   *
+   * **Result**
+   * @image html ex_ex_heightmap_rgb0.png
+   * @image html ex_ex_heightmap_rgb1.png
+   * @image html ex_ex_heightmap_rgb2.png
+   * @image html ex_ex_heightmap_rgb3.png
    */
   std::vector<HeightMap> rgb;
 
@@ -582,6 +582,13 @@ struct HeightMapRGBA
    * @brief Normalize RGBA heightmaps amplitude.
    */
   void normalize();
+
+  /**
+   * @brief Convert the RGB heightmap to a 8bit RGB image.
+   * @param shape_img Resulting image shape.
+   * @return Image data.
+   */
+  std::vector<uint8_t> to_img_8bit(Vec2<int> shape_img = {0, 0});
 };
 
 // shape, shift, scale, noise_x, noise_y
