@@ -25,10 +25,9 @@ namespace hmap
 /**
  * @brief Mesh type.
  */
-enum MeshType
+enum MeshType : int
 {
   tri_optimized, ///< Triangles with optimized Delaunay triangulation
-  quad,          ///< Quad elements.
   tri,           ///< Triangle elements
 };
 
@@ -37,13 +36,12 @@ enum MeshType
  */
 static std::map<MeshType, std::string> mesh_type_as_string = {
     {tri_optimized, "triangles (optimized)"},
-    {quad, "quad"},
     {tri, "triangles"}};
 
 /**
  * @brief Asset export format (nomemclature of formats supported by assimp)
  */
-enum AssetExportFormat
+enum AssetExportFormat : int
 {
   _3ds,     ///< Autodesk 3DS (legacy) - *.3ds
   _3mf,     ///< The 3MF-File-Format - *.3mf
