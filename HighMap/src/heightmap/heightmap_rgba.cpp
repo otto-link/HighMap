@@ -179,21 +179,21 @@ HeightMapRGBA mix_heightmap_rgba(HeightMapRGBA &rgba1,
   return rgba_out;
 }
 
-HeightMapRGBA mix_heightmap_rgba(std::vector<HeightMapRGBA> rgba_list,
-                                 bool                       use_sqrt_avg)
+HeightMapRGBA mix_heightmap_rgba(std::vector<HeightMapRGBA *> rgba_plist,
+                                 bool                         use_sqrt_avg)
 {
   HeightMapRGBA rgba_out;
 
   // overlay the RGBA "2 by 2"
-  if (rgba_list.size() == 0)
+  if (rgba_plist.size() == 0)
     throw std::runtime_error("empty RGBA list");
-  else if (rgba_list.size() == 1)
-    rgba_out = rgba_list[0];
+  else if (rgba_plist.size() == 1)
+    rgba_out = *rgba_plist[0];
   else
   {
-    rgba_out = rgba_list[0];
-    for (size_t k = 1; k < rgba_list.size(); k++)
-      rgba_out = mix_heightmap_rgba(rgba_out, rgba_list[k], use_sqrt_avg);
+    rgba_out = *rgba_plist[0];
+    for (size_t k = 1; k < rgba_plist.size(); k++)
+      rgba_out = mix_heightmap_rgba(rgba_out, *rgba_plist[k], use_sqrt_avg);
   }
 
   return rgba_out;

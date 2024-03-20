@@ -27,7 +27,7 @@ class HeightMapRGBA;
 HeightMapRGBA mix_heightmap_rgba(HeightMapRGBA &rgba1,
                                  HeightMapRGBA &rgba2,
                                  bool           use_sqrt_avg = true);
-HeightMapRGBA mix_heightmap_rgba(std::vector<HeightMapRGBA> rgba_list,
+HeightMapRGBA mix_heightmap_rgba(std::vector<HeightMapRGBA *> p_rgba_list,
                                  bool use_sqrt_avg = true);
 
 // --- classes

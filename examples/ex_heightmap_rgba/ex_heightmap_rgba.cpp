@@ -57,8 +57,8 @@ int main(void)
   // mix list of heightmaps
   hmap::HeightMapRGBA h_rgba3 = hmap::HeightMapRGBA(h0, hr, h0, ha);
 
-  std::vector<hmap::HeightMapRGBA> list = {h_rgba1, h_rgba2, h_rgba3};
-  auto                             hmix_list = mix_heightmap_rgba(list, true);
+  std::vector<hmap::HeightMapRGBA *> list = {&h_rgba1, &h_rgba2, &h_rgba3};
+  auto                               hmix_list = mix_heightmap_rgba(list, true);
   hmix_list.to_png_16bit("ex_heightmap_rgba4.png");
 
   h_rgba1.to_png_16bit("rgba1.png");
