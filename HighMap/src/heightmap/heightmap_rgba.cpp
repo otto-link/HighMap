@@ -103,6 +103,8 @@ void HeightMapRGBA::colorize(HeightMap                      &color_level,
   // alpha channel
   if (p_alpha)
     this->rgba[3] = *p_alpha;
+  else
+    transform(this->rgba[3], [](Array &x) { x = 1.f; });
 }
 
 void HeightMapRGBA::colorize(HeightMap &color_level,
