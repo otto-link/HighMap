@@ -571,12 +571,13 @@ struct HeightMapRGBA
 
   /**
    * @brief Mix two RGBA heightmap using alpha compositing ("over").
-   * @param rgba_list Heightmap list.
+   * @param rgba_plist Heightmap reference list.
    * @param use_sqrt_avg Whether to use or not square averaging.
    * @return RGBA heightmap.
    */
-  friend HeightMapRGBA mix_heightmap_rgba(std::vector<HeightMapRGBA> rgba_list,
-                                          bool use_sqrt_avg);
+  friend HeightMapRGBA mix_heightmap_rgba(
+      std::vector<HeightMapRGBA *> rgba_plist,
+      bool                         use_sqrt_avg);
 
   /**
    * @brief Normalize RGBA heightmaps amplitude.
