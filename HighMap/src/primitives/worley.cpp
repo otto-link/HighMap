@@ -12,26 +12,6 @@
 namespace hmap
 {
 
-hmap::Array worley(Vec2<int>   shape,
-                   Vec2<float> kw,
-                   uint        seed,
-                   Array      *p_noise_x,
-                   Array      *p_noise_y,
-                   Array      *p_stretching,
-                   Vec4<float> bbox)
-{
-  hmap::Array          array = hmap::Array(shape);
-  hmap::WorleyFunction f = hmap::WorleyFunction(kw, seed, false);
-
-  fill_array_using_xy_function(array,
-                               bbox,
-                               p_noise_x,
-                               p_noise_y,
-                               p_stretching,
-                               f.get_function());
-  return array;
-}
-
 Array worley_double(Vec2<int>   shape,
                     Vec2<float> kw,
                     uint        seed,
@@ -44,26 +24,6 @@ Array worley_double(Vec2<int>   shape,
 {
   hmap::Array                array = hmap::Array(shape);
   hmap::WorleyDoubleFunction f = hmap::WorleyDoubleFunction(kw, seed, ratio, k);
-
-  fill_array_using_xy_function(array,
-                               bbox,
-                               p_noise_x,
-                               p_noise_y,
-                               p_stretching,
-                               f.get_function());
-  return array;
-}
-
-hmap::Array worley_value(Vec2<int>   shape,
-                         Vec2<float> kw,
-                         uint        seed,
-                         Array      *p_noise_x,
-                         Array      *p_noise_y,
-                         Array      *p_stretching,
-                         Vec4<float> bbox)
-{
-  hmap::Array          array = hmap::Array(shape);
-  hmap::WorleyFunction f = hmap::WorleyFunction(kw, seed, true);
 
   fill_array_using_xy_function(array,
                                bbox,

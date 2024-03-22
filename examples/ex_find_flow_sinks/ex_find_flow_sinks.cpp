@@ -7,7 +7,7 @@ int main(void)
   hmap::Vec2<float> res = {4.f, 4.f};
   int               seed = 1;
 
-  hmap::Array z = hmap::fbm_simplex(shape, res, seed);
+  hmap::Array z = hmap::noise(hmap::NoiseType::n_simplex2, shape, res, seed);
 
   std::vector<int> is, js;
   hmap::find_flow_sinks(z, is, js);

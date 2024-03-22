@@ -11,7 +11,7 @@ int main(void)
   int               ir = 8;
   float             k_smoothing = 0.1f;
 
-  hmap::Array z = hmap::fbm_perlin(shape, res, seed);
+  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::n_perlin, shape, res, seed);
   hmap::remap(z);
   hmap::gamma_correction_local(z, 0.5f, ir, k_smoothing);
   z.to_png("ex_gamma_correction_local.png", hmap::cmap::viridis);

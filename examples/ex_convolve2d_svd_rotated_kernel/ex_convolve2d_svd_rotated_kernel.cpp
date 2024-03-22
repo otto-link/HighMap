@@ -6,10 +6,13 @@ int main(void)
   hmap::Vec2<float> res = {2.f, 2.f};
   int               seed = 1;
 
-  hmap::Array z = hmap::perlin(shape, res, seed);
+  hmap::Array z = hmap::noise(hmap::NoiseType::n_perlin, shape, res, seed);
   hmap::remap(z);
 
-  hmap::Array kernel = hmap::fbm_worley({64, 64}, res, seed);
+  hmap::Array kernel = hmap::noise(hmap::NoiseType::n_worley,
+                                   {64, 64},
+                                   res,
+                                   seed);
   hmap::remap(kernel);
   hmap::set_borders(kernel, 0.f, 16);
 

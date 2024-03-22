@@ -8,7 +8,10 @@ int main(void)
   hmap::Vec2<float> kw = {4.f, 4.f};
   int               seed = 1;
 
-  hmap::Array     z = hmap::perlin(hmap::Vec2<int>(64, 64), kw, seed);
+  hmap::Array     z = hmap::noise(hmap::NoiseType::n_perlin,
+                              hmap::Vec2<int>(64, 64),
+                              kw,
+                              seed);
   hmap::HeightMap h = hmap::HeightMap(shape, tiling, overlap);
 
   h.from_array_interp(z);

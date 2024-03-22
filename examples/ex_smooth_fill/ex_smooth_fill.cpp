@@ -10,7 +10,7 @@ int main(void)
   int               seed = 1;
   int               radius = 32;
 
-  hmap::Array z = hmap::fbm_perlin(shape, res, seed);
+  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::n_perlin, shape, res, seed);
   hmap::Array z0 = z;
 
   hmap::smooth_fill(z, radius);

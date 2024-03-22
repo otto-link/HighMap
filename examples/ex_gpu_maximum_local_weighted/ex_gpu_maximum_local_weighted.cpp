@@ -13,7 +13,7 @@ int main(void)
 
   hmap::Timer timer = hmap::Timer("main");
 
-  hmap::Array z = hmap::fbm_perlin(shape, res, seed);
+  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::n_perlin, shape, res, seed);
   hmap::remap(z);
 
   // CPU

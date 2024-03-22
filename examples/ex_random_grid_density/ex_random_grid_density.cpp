@@ -7,7 +7,10 @@ int main(void)
   int               seed = 1;
   int               n_grid_points = 500;
 
-  hmap::Array density = hmap::fbm_perlin(shape, res, seed);
+  hmap::Array density = hmap::noise_fbm(hmap::NoiseType::n_perlin,
+                                        shape,
+                                        res,
+                                        seed);
   hmap::remap(density);
   density.to_png("ex_random_grid_density0.png", hmap::cmap::magma);
 

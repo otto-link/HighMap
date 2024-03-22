@@ -11,7 +11,12 @@ int main(void)
 
   float kw = 4.f;
   uint  seed = 1;
-  auto  noise = 0.2f * hmap::fbm_perlin(shape, {kw, kw}, seed, 8, 0.f);
+  auto  noise = 0.2f * hmap::noise_fbm(hmap::NoiseType::n_perlin,
+                                      shape,
+                                       {kw, kw},
+                                      seed,
+                                      8,
+                                      0.f);
 
   auto z1 = hmap::step(shape, angle, talus);
   auto z2 = hmap::step(shape, angle, talus, &noise);

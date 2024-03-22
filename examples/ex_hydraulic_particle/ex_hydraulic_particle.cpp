@@ -7,7 +7,7 @@ int main(void)
   int               nparticles = 50000;
   int               seed = 1;
 
-  hmap::Array z = hmap::fbm_perlin(shape, res, seed);
+  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::n_perlin, shape, res, seed);
   hmap::remap(z);
 
   auto z1 = z;

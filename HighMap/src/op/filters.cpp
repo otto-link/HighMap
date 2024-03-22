@@ -896,42 +896,48 @@ void steepen_convective(Array &array,
   }
 }
 
-void wrinkle(Array &array,
-             float  wrinkle_amplitude,
-             float  displacement_amplitude,
-             int    ir,
-             float  kw,
-             uint   seed,
-             int    octaves,
-             float  weight)
+void wrinkle(Array      &array,
+             float       wrinkle_amplitude,
+             float       displacement_amplitude,
+             int         ir,
+             float       kw,
+             uint        seed,
+             int         octaves,
+             float       weight,
+             Vec4<float> bbox)
 {
   Array dr = displacement_amplitude * array;
 
   if (ir > 0)
     smooth_cpulse(dr, ir);
 
-  Array w = fbm_simplex(array.shape,
-                        Vec2<float>(kw, kw),
-                        seed,
-                        octaves,
-                        weight,
-                        0.5f,
-                        2.f,
-                        &dr,
-                        &dr);
+  Array w = noise_fbm(NoiseType::n_perlin,
+                      array.shape,
+                      Vec2<float>(kw, kw),
+                      seed,
+                      octaves,
+                      weight,
+                      0.5f,
+                      2.f,
+                      nullptr,
+                      &dr,
+                      &dr,
+                      nullptr,
+                      bbox);
 
   array += wrinkle_amplitude * gradient_norm(w);
 }
 
-void wrinkle(Array &array,
-             float  wrinkle_amplitude,
-             Array *p_mask,
-             float  displacement_amplitude,
-             int    ir,
-             float  kw,
-             uint   seed,
-             int    octaves,
-             float  weight)
+void wrinkle(Array      &array,
+             float       wrinkle_amplitude,
+             Array      *p_mask,
+             float       displacement_amplitude,
+             int         ir,
+             float       kw,
+             uint        seed,
+             int         octaves,
+             float       weight,
+             Vec4<float> bbox)
 {
   if (!p_mask)
     wrinkle(array,
@@ -941,7 +947,8 @@ void wrinkle(Array &array,
             kw,
             seed,
             octaves,
-            weight);
+            weight,
+            bbox);
   else
   {
     Array array_f = array;
@@ -952,7 +959,8 @@ void wrinkle(Array &array,
             kw,
             seed,
             octaves,
-            weight);
+            weight,
+            bbox);
     array = lerp(array, array_f, *(p_mask));
   }
 }

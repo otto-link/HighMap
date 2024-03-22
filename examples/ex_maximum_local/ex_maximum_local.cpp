@@ -10,7 +10,7 @@ int main(void)
   int               seed = 1;
   int               radius = 5;
 
-  hmap::Array z = hmap::fbm_perlin(shape, res, seed);
+  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::n_perlin, shape, res, seed);
   hmap::Array zmin = hmap::minimum_local(z, radius);
   hmap::Array zmax = hmap::maximum_local(z, radius);
   hmap::Array zdisk = hmap::maximum_local_disk(z, radius);

@@ -1,2 +1,0 @@
-add_executable(ex_ridged_perlin ex_ridged_perlin.cpp)
-target_link_libraries(ex_ridged_perlin highmap)

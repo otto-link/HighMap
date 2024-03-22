@@ -8,10 +8,9 @@ int main(void)
   // hmap::Vec2<float> res = {2.f, 2.f};
   // int               seed = 1;
 
-  // hmap::Array z = hmap::fbm_perlin(shape, res, seed);
-  // hmap::remap(z);
-  // z += 0.5f * hmap::step(shape, 30.f, 8.f / shape.x, &z, {-0.5f, 0.f});
-  // z *= hmap::gaussian_pulse(shape, 0.2f * shape.x);
+  // hmap::Array z = hmap::noise_fbm(hmap::NoiseType::n_perlin, shape, res,
+  // seed); hmap::remap(z); z += 0.5f * hmap::step(shape, 30.f, 8.f / shape.x,
+  // &z, {-0.5f, 0.f}); z *= hmap::gaussian_pulse(shape, 0.2f * shape.x);
   // hmap::gamma_correction(z, 0.7f);
 
   // hmap::Array zb = hmap::minimum_local(z, 32);

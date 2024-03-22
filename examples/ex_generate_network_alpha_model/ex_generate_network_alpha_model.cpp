@@ -9,7 +9,10 @@ int main(void)
   hmap::Vec2<int> shape = {256, 256};
   int             seed = 0;
 
-  hmap::Array z = hmap::fbm_perlin(shape, {4.f, 4.f}, seed);
+  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::n_perlin,
+                                  shape,
+                                  {4.f, 4.f},
+                                  seed);
   z.to_png("ex_generate_network_alpha_model0.png", hmap::cmap::terrain, true);
 
   // "cities"

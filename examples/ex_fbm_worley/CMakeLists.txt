@@ -1,2 +1,0 @@
-add_executable(ex_fbm_worley ex_fbm_worley.cpp)
-target_link_libraries(ex_fbm_worley highmap)

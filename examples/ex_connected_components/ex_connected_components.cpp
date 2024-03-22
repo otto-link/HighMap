@@ -9,7 +9,7 @@ int main(void)
   hmap::Vec2<float> res = {4.f, 4.f};
   uint              seed = 5;
 
-  hmap::Array z = hmap::perlin(shape, res, seed);
+  hmap::Array z = hmap::noise(hmap::NoiseType::n_perlin, shape, res, seed);
   hmap::clamp_min(z, 0.f);
 
   hmap::Array labels = hmap::connected_components(z);

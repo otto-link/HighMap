@@ -8,7 +8,11 @@ int main(void)
   int                     seed = 2;
 
   // write png
-  hmap::Array z1 = hmap::fbm_perlin(shape, res, seed, 8);
+  hmap::Array z1 = hmap::noise_fbm(hmap::NoiseType::n_perlin,
+                                   shape,
+                                   res,
+                                   seed,
+                                   8);
   hmap::remap(z1);
   z1.to_png("out_rgb.png", hmap::cmap::jet);
   z1.to_png_grayscale_8bit("out_8bit.png");

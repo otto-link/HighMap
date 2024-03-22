@@ -8,7 +8,10 @@ int main(void)
   hmap::Vec2<int> shape = {256, 256};
   int             seed = 1;
 
-  hmap::Array dmap = hmap::fbm_perlin(shape, {2.f, 2.f}, seed);
+  hmap::Array dmap = hmap::noise_fbm(hmap::NoiseType::n_perlin,
+                                     shape,
+                                     {2.f, 2.f},
+                                     seed);
   hmap::remap(dmap);
 
   hmap::Array w = hmap::white_density_map(0.5f * dmap, seed);

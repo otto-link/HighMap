@@ -7,10 +7,10 @@ int main(void)
   const hmap::Vec2<float> res = {4.f, 4.f};
   int                     seed = 2;
 
-  hmap::Array zr = hmap::perlin(shape, res, seed++);
-  hmap::Array zg = hmap::perlin(shape, res, seed++);
-  hmap::Array zb = hmap::perlin(shape, res, seed++);
-  hmap::Array za = hmap::perlin(shape, res, seed++);
+  hmap::Array zr = hmap::noise(hmap::NoiseType::n_perlin, shape, res, seed++);
+  hmap::Array zg = hmap::noise(hmap::NoiseType::n_perlin, shape, res, seed++);
+  hmap::Array zb = hmap::noise(hmap::NoiseType::n_perlin, shape, res, seed++);
+  hmap::Array za = hmap::noise(hmap::NoiseType::n_perlin, shape, res, seed++);
 
   hmap::export_banner_png("ex_export_splatmap_png_16bit0.png",
                           {zr, zg, zb, za},

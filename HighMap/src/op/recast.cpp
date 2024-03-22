@@ -218,14 +218,15 @@ void recast_peak(Array &array, int ir, Array *p_mask, float gamma, float k)
   }
 }
 
-void recast_rocky_slopes(Array &array,
-                         float  talus,
-                         int    ir,
-                         float  amplitude,
-                         uint   seed,
-                         float  kw,
-                         float  gamma,
-                         Array *p_noise)
+void recast_rocky_slopes(Array      &array,
+                         float       talus,
+                         int         ir,
+                         float       amplitude,
+                         uint        seed,
+                         float       kw,
+                         float       gamma,
+                         Array      *p_noise,
+                         Vec4<float> bbox)
 {
   // slope-based criteria
   Array c = select_gradient_binary(array, talus);
@@ -233,7 +234,19 @@ void recast_rocky_slopes(Array &array,
 
   if (!p_noise)
   {
-    Array noise = fbm_simplex(array.shape, {kw, kw}, seed, 8, 0.f);
+    Array noise = noise_fbm(NoiseType::n_perlin,
+                            array.shape,
+                            Vec2<float>(kw, kw),
+                            seed,
+                            8,
+                            0.f,
+                            0.5f,
+                            2.f,
+                            nullptr,
+                            nullptr,
+                            nullptr,
+                            nullptr,
+                            bbox);
     gamma_correction_local(noise, gamma, ir, 0.1f);
     {
       int ir2 = (int)(ir / 4.f);
@@ -246,15 +259,16 @@ void recast_rocky_slopes(Array &array,
     array += amplitude * (*p_noise) * c;
 }
 
-void recast_rocky_slopes(Array &array,
-                         float  talus,
-                         int    ir,
-                         float  amplitude,
-                         uint   seed,
-                         float  kw,
-                         Array *p_mask,
-                         float  gamma,
-                         Array *p_noise)
+void recast_rocky_slopes(Array      &array,
+                         float       talus,
+                         int         ir,
+                         float       amplitude,
+                         uint        seed,
+                         float       kw,
+                         Array      *p_mask,
+                         float       gamma,
+                         Array      *p_noise,
+                         Vec4<float> bbox)
 {
   {
     if (!p_mask)
@@ -265,7 +279,8 @@ void recast_rocky_slopes(Array &array,
                           seed,
                           kw,
                           gamma,
-                          p_noise);
+                          p_noise,
+                          bbox);
     else
     {
       Array array_f = array;
@@ -276,7 +291,8 @@ void recast_rocky_slopes(Array &array,
                           seed,
                           kw,
                           gamma,
-                          p_noise);
+                          p_noise,
+                          bbox);
       array = lerp(array, array_f, *(p_mask));
     }
   }

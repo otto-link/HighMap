@@ -8,11 +8,20 @@ int main(void)
   hmap::Vec2<int> shape = {128, 128};
   int             seed = 1;
 
-  hmap::Array z1 = hmap::perlin(shape, {8.f, 8.f}, seed);
-  hmap::Array z2 = hmap::fbm_perlin(shape, {4.f, 4.f}, seed + 1);
+  hmap::Array z1 = hmap::noise(hmap::NoiseType::n_perlin,
+                               shape,
+                               {8.f, 8.f},
+                               seed);
+  hmap::Array z2 = hmap::noise_fbm(hmap::NoiseType::n_perlin,
+                                   shape,
+                                   {4.f, 4.f},
+                                   seed + 1);
   hmap::Array z3 = hmap::white(shape, 0.f, 1.f, seed + 2);
 
-  hmap::Array t = hmap::perlin(shape, {2.f, 2.f}, seed + 3); // mixer
+  hmap::Array t = hmap::noise(hmap::NoiseType::n_perlin,
+                              shape,
+                              {2.f, 2.f},
+                              seed + 3); // mixer
 
   hmap::remap(t);
 

@@ -1598,24 +1598,26 @@ void recast_peak(Array &array,
  * **Result**
  * @image html ex_recast.png
  */
-void recast_rocky_slopes(Array &array,
-                         float  talus,
-                         int    ir,
-                         float  amplitude,
-                         uint   seed,
-                         float  kw,
-                         float  gamma = 0.5f,
-                         Array *p_noise = nullptr);
+void recast_rocky_slopes(Array      &array,
+                         float       talus,
+                         int         ir,
+                         float       amplitude,
+                         uint        seed,
+                         float       kw,
+                         float       gamma = 0.5f,
+                         Array      *p_noise = nullptr,
+                         Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
-void recast_rocky_slopes(Array &array,
-                         float  talus,
-                         int    ir,
-                         float  amplitude,
-                         uint   seed,
-                         float  kw,
-                         Array *p_mask,
-                         float  gamma = 0.5f,
-                         Array *p_noise = nullptr);
+void recast_rocky_slopes(Array      &array,
+                         float       talus,
+                         int         ir,
+                         float       amplitude,
+                         uint        seed,
+                         float       kw,
+                         Array      *p_mask,
+                         float       gamma = 0.5f,
+                         Array      *p_noise = nullptr,
+                         Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Transform heightmap to give a "cliff" like appearance.
@@ -2616,24 +2618,26 @@ void warp_downslope(Array &array,
  * **Result**
  * @image html ex_wrinkle.cpp
  */
-void wrinkle(Array &array,
-             float  wrinkle_amplitude,
-             Array *p_mask,
-             float  displacement_amplitude = 1.f,
-             int    ir = 0,
-             float  kw = 2.f,
-             uint   seed = 1,
-             int    octaves = 8,
-             float  weight = 0.7f);
+void wrinkle(Array      &array,
+             float       wrinkle_amplitude,
+             Array      *p_mask,
+             float       displacement_amplitude = 1.f,
+             int         ir = 0,
+             float       kw = 2.f,
+             uint        seed = 1,
+             int         octaves = 8,
+             float       weight = 0.7f,
+             Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
-void wrinkle(Array &array,
-             float  wrinkle_amplitude,
-             float  displacement_amplitude = 1.f,
-             int    ir = 0,
-             float  kw = 2.f,
-             uint   seed = 1,
-             int    octaves = 8,
-             float  weight = 0.7f); ///< @overload
+void wrinkle(Array      &array,
+             float       wrinkle_amplitude,
+             float       displacement_amplitude = 1.f,
+             int         ir = 0,
+             float       kw = 2.f,
+             uint        seed = 1,
+             int         octaves = 8,
+             float       weight = 0.7f,
+             Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f}); ///< @overload
 
 /**
  * @brief Fill values at the borders (i = 0, j = 0, ...) with zeros.

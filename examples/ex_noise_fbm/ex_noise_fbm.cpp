@@ -22,7 +22,7 @@ int main(void)
       hmap::NoiseType::n_worley_double,
       hmap::NoiseType::n_worley_value};
 
-  auto b = hmap::perlin(shape, kw, seed + 1);
+  auto b = hmap::noise(hmap::NoiseType::n_perlin, shape, kw, seed + 1);
 
   // fbm
   {

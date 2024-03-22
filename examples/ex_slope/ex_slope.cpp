@@ -6,7 +6,10 @@ int main(void)
   hmap::Vec2<float> res = {4.f, 4.f};
   int               seed = 1;
 
-  hmap::Array noise = 0.2f * hmap::fbm_perlin(shape, res, seed);
+  hmap::Array noise = 0.2f * hmap::noise_fbm(hmap::NoiseType::n_perlin,
+                                             shape,
+                                             res,
+                                             seed);
 
   float slope = 1.f;
 

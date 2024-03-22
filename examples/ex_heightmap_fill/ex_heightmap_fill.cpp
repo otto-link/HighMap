@@ -12,24 +12,17 @@ int main(void)
 
   hmap::HeightMap h = hmap::HeightMap(shape, tiling, overlap);
 
-  hmap::fill(
-      h,
-      [&kw, &seed](hmap::Vec2<int> shape, hmap::Vec4<float> bbox) {
-        return hmap::perlin(shape, kw, seed, nullptr, nullptr, nullptr, bbox);
-      });
-
-  fname = "ex_heightmap_fill" + std::to_string(count++) + ".png";
-  h.to_array().to_png(fname.c_str(), hmap::cmap::inferno);
-
   hmap::fill(h,
-             [&kw, &seed](hmap::Vec2<int> shape, hmap::Vec4<float> bbox) {
-               return hmap::perlin_mix(shape,
-                                       kw,
-                                       seed,
-                                       nullptr,
-                                       nullptr,
-                                       nullptr,
-                                       bbox);
+             [&kw, &seed](hmap::Vec2<int> shape, hmap::Vec4<float> bbox)
+             {
+               return hmap::noise(hmap::NoiseType::n_perlin,
+                                  shape,
+                                  kw,
+                                  seed,
+                                  nullptr,
+                                  nullptr,
+                                  nullptr,
+                                  bbox);
              });
 
   fname = "ex_heightmap_fill" + std::to_string(count++) + ".png";

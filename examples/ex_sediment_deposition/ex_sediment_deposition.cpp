@@ -9,7 +9,7 @@ int main(void)
   hmap::Vec2<float> res = {4.f, 4.f};
   int               seed = 1;
 
-  hmap::Array z = hmap::fbm_perlin(shape, res, seed);
+  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::n_perlin, shape, res, seed);
   auto        z0 = z;
 
   // talus limit defined locally

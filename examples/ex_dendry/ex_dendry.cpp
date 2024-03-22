@@ -7,7 +7,7 @@ int main(void)
   int               seed = 1;
 
   // control function based on an array
-  auto control_hmap = hmap::perlin(shape, kw, seed);
+  auto control_hmap = hmap::noise(hmap::NoiseType::n_perlin, shape, kw, seed);
   hmap::remap(control_hmap, 0.5f, 1.f);
 
   hmap::Vec2<float> kd = {8.f, 8.f};

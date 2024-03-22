@@ -9,8 +9,14 @@ int main(void)
 
   hmap::Array z1 = hmap::base_elevation(shape, values);
 
-  hmap::Array nx = 0.4f * hmap::fbm_perlin(shape, {2.f, 2.f}, 1);
-  hmap::Array ny = 0.4f * hmap::fbm_perlin(shape, {2.f, 2.f}, 2);
+  hmap::Array nx = 0.4f * hmap::noise_fbm(hmap::NoiseType::n_perlin,
+                                          shape,
+                                          {2.f, 2.f},
+                                          1);
+  hmap::Array ny = 0.4f * hmap::noise_fbm(hmap::NoiseType::n_perlin,
+                                          shape,
+                                          {2.f, 2.f},
+                                          2);
   float       width_factor = 1.f;
   hmap::Array z2 = hmap::base_elevation(shape, values, width_factor, &nx, &ny);
 

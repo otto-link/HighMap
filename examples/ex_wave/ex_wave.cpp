@@ -8,7 +8,12 @@ int main(void)
   float angle = 30.f;
   uint  seed = 1;
 
-  auto noise = 0.1f * hmap::fbm_perlin(shape, {kw, kw}, seed, 8, 0.f);
+  auto noise = 0.1f * hmap::noise_fbm(hmap::NoiseType::n_perlin,
+                                      shape,
+                                      {kw, kw},
+                                      seed,
+                                      8,
+                                      0.f);
 
   auto zt = hmap::wave_triangular(shape, kw, angle, 0.8f);
   auto zq = hmap::wave_square(shape, kw, angle);

@@ -15,8 +15,14 @@ int main(void)
   hmap::Array z1 = hmap::Array(shape);
   cloud.to_array_interp(z1, bbox);
 
-  hmap::Array nx = 0.5f * hmap::fbm_perlin(shape, {2.f, 2.f}, seed++);
-  hmap::Array ny = 0.5f * hmap::fbm_perlin(shape, {2.f, 2.f}, seed++);
+  hmap::Array nx = 0.5f * hmap::noise_fbm(hmap::NoiseType::n_perlin,
+                                          shape,
+                                          {2.f, 2.f},
+                                          seed++);
+  hmap::Array ny = 0.5f * hmap::noise_fbm(hmap::NoiseType::n_perlin,
+                                          shape,
+                                          {2.f, 2.f},
+                                          seed++);
 
   int         interpolation_method = 0; // 0 linear, 1 thinplate
   hmap::Array z2 = hmap::Array(shape);

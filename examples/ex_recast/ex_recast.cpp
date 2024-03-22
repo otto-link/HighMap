@@ -9,7 +9,7 @@ int main(void)
   hmap::Vec2<float> res = {2.f, 2.f};
   int               seed = 1;
 
-  hmap::Array z = hmap::fbm_perlin(shape, res, seed);
+  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::n_perlin, shape, res, seed);
   hmap::remap(z);
 
   auto z1 = z;
@@ -21,7 +21,10 @@ int main(void)
 
   auto z2 = z;
   {
-    hmap::Array noise = hmap::fbm_perlin(shape, res, seed++);
+    hmap::Array noise = hmap::noise_fbm(hmap::NoiseType::n_perlin,
+                                        shape,
+                                        res,
+                                        seed++);
     hmap::remap(noise, -0.1f, 0.1f);
 
     float zcut = 0.5f;

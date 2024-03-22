@@ -1,2 +1,0 @@
-add_executable(ex_value_noise_delaunay ex_value_noise_delaunay.cpp)
-target_link_libraries(ex_value_noise_delaunay highmap)

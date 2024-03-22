@@ -1,2 +1,0 @@
-add_executable(ex_fbm_perlin ex_fbm_perlin.cpp)
-target_link_libraries(ex_fbm_perlin highmap)

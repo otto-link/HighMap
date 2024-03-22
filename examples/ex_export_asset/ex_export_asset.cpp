@@ -10,7 +10,7 @@ int main(void)
   hmap::Vec2<float> res = {2.f, 2.f};
   int               seed = 1;
 
-  hmap::Array z = hmap::fbm_simplex(shape, res, seed);
+  hmap::Array z = hmap::noise(hmap::NoiseType::n_simplex2, shape, res, seed);
   hmap::clamp_min_smooth(z, 0.f, 0.2f);
   hmap::remap(z);
 
