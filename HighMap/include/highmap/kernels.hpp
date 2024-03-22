@@ -15,6 +15,7 @@
 #pragma once
 #include <functional>
 
+#include "highmap/array.hpp"
 #include "highmap/vector.hpp"
 
 namespace hmap

@@ -13,6 +13,7 @@
  *
  */
 #pragma once
+#include <vector>
 
 #define HMAP_PACK8(a, b, c, d, e, f, g, h)                                     \
   ((a << 15) + (b << 13) + (c << 11) + (d << 9) + (e << 7) + (f << 5) +        \
