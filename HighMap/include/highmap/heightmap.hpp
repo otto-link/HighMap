@@ -654,6 +654,10 @@ void transform(HeightMap &h, std::function<void(Array &)> unary_op);
 void transform(HeightMap                                &h,
                std::function<void(Array &, Vec4<float>)> unary_op);
 
+void transform(HeightMap                                         &h,
+               HeightMap                                         *p_noise_x,
+               std::function<void(Array &, Vec4<float>, Array *)> unary_op);
+
 void transform(
     HeightMap                                                  &h,
     HeightMap                                                  *p_noise_x,
