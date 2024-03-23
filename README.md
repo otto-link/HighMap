@@ -41,8 +41,8 @@ make
 
 Simple examples are provided for most of the functions, for instance:
 ```
-bin/./ex_fbm_perlin
-eog ex_fbm_perlin.png
+bin/./ex_noise_fbm
+eog ex_noise_fbm_*.png
 ```
 
 #### Windows
@@ -51,7 +51,7 @@ Use `PowerShell` to clone the repository (because Visual Studio won't clone the 
 
 Install the missing OpenSource dependencies using `vcpkg`:
 ```
-vcpkg install eigen3 libpng boost-range boost-type-erasure boost-geometry glm opencl
+vcpkg install eigen3 libpng boost-range boost-type-erasure boost-geometry glm ocl-icd-opencl-dev libassimp-dev
 ```
 
 You should then be able to build the sources using Visual Studio.
