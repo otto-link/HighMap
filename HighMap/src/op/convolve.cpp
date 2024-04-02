@@ -4,6 +4,8 @@
 
 #include <cmath>
 
+#include "macrologger.h"
+
 #include "highmap/array.hpp"
 #include "highmap/op.hpp"
 
@@ -31,6 +33,8 @@ Array convolve1d_i(const Array              &array,
         ii = 2 * array.shape.x - 1 - (i + p - i1);
       else
         ii = i + p - i1;
+
+      ii = std::clamp(ii, 0, array.shape.x - 1);
 
       for (int j = 0; j < array.shape.y; j++)
         array_out(i, j) += array(ii, j) * kernel[p];
@@ -62,6 +66,8 @@ Array convolve1d_j(const Array              &array,
         jj = 2 * array.shape.y - 1 - (j + q - j1);
       else
         jj = j + q - j1;
+
+      jj = std::clamp(jj, 0, array.shape.y - 1);
 
       for (int i = 0; i < array.shape.x; i++)
         array_out(i, j) += array(i, jj) * kernel[q];
