@@ -1,0 +1,2 @@
+add_executable(ex_thermal_rib ex_thermal_rib.cpp)
+target_link_libraries(ex_thermal_rib highmap)

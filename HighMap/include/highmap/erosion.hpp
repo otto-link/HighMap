@@ -864,6 +864,14 @@ void thermal_flatten(Array &z, const Array &talus, int iterations = 10);
 void thermal_flatten(Array &z, float talus, int iterations = 10); ///< @overload
 
 /**
+ * @brief
+ * @param z
+ * @param iterations
+ * @param p_bedrock
+ */
+void thermal_rib(Array &z, int iterations, Array *p_bedrock = nullptr);
+
+/**
  * @brief Apply thermal weathering erosion simulating scree deposition.
  *
  * @param z Input array.
