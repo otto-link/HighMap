@@ -864,10 +864,16 @@ void thermal_flatten(Array &z, const Array &talus, int iterations = 10);
 void thermal_flatten(Array &z, float talus, int iterations = 10); ///< @overload
 
 /**
- * @brief
- * @param z
- * @param iterations
- * @param p_bedrock
+ * @brief Apply thermal erosion using a 'rib' algorithm (taken from Geomorph).
+ * @param z Input heightmap.
+ * @param iterations Number of iterations.
+ * @param p_bedrock Lower elevation limit.
+ *
+ * **Example**
+ * @include ex_thermal_rib.cpp
+ *
+ * **Result**
+ * @image html ex_thermal_rib.png
  */
 void thermal_rib(Array &z, int iterations, Array *p_bedrock = nullptr);
 
