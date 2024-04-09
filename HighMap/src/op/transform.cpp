@@ -127,6 +127,12 @@ void normal_displacement(Array &array,
   }
 }
 
+void rot90(Array &array)
+{
+  array = transpose(array);
+  flip_ud(array);
+}
+
 void rotate(Array &array, float angle)
 {
   float ca = std::cos(angle / 180.f * M_PI);

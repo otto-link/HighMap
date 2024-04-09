@@ -1922,6 +1922,18 @@ Array reverse_midpoint(Array &array,
                        float  threshold = 0.f);
 
 /**
+ * @brief Rotate the array by 90 degrees.
+ * @param array Input array.
+ *
+ * **Example**
+ * @include ex_rot90.cpp
+ *
+ * **Result**
+ * @image html ex_rot90.png
+ */
+void rot90(Array &array);
+
+/**
  * @brief Rotate the array.
  *
  * @param array Input array.
