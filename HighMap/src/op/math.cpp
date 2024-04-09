@@ -148,6 +148,11 @@ Array lerp(const Array &array1, const Array &array2, const float t)
   return array_out;
 }
 
+float lerp(const float a, const float b, const float t)
+{
+  return a * (1.f - t) + b * t;
+}
+
 Array log10(const Array &array)
 {
   Array array_out = Array(array.shape);

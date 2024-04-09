@@ -33,16 +33,17 @@ void hydraulic_particle_multiscale(Array &z,
 {
 
   // --- 'transform' function
-  auto fct = [&seed,
-              &particle_density,
-              p_bedrock,
-              p_moisture_map,
-              &c_radius,
-              &c_capacity,
-              &c_erosion,
-              &c_deposition,
-              &drag_rate,
-              &evap_rate](const hmap::Array &input, const int current_level)
+  auto fct =
+      [&seed,
+       &particle_density,
+       p_bedrock,
+       p_moisture_map,
+       &c_radius,
+       &c_capacity,
+       &c_erosion,
+       &c_deposition,
+       &drag_rate,
+       &evap_rate](const hmap::Array &input, const int /* current_level */)
   {
     // LOG_DEBUG("applying erosion to level: %d, shape: {%d, %d}",
     //           current_level,

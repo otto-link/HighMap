@@ -324,7 +324,8 @@ public:
   void depose_amount_kernel_at(int i, int j, Array &kernel, float amount);
 
   /**
-   * @brief Extract the value of a slice {i1, i2, j1, j2} to create a new array.
+   * @brief Extract the value of a slice {i1, i2, j1, j2} to create a new array
+   * (i2 and j2 are excluded).
    *
    * @param idx Slice extent indices: {i1, i2, j1, j2}.
    * @return Array Resulting array.

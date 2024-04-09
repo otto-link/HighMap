@@ -164,4 +164,15 @@ void rotate(Array &array, float angle)
     }
 }
 
+Array transpose(const Array &array)
+{
+  Array array_out = Array(Vec2<int>(array.shape.y, array.shape.x));
+
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
+      array_out(j, i) = array(i, j);
+
+  return array_out;
+}
+
 } // namespace hmap

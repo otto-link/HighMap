@@ -1118,6 +1118,8 @@ Array lerp(const Array &array1, const Array &array2, const Array &t);
 
 Array lerp(const Array &array1, const Array &array2, float t); ///< @overload
 
+float lerp(const float a, const float b, float t); ///< @overload
+
 /**
  * @brief Return evenly spaced numbers over a specified interval.
  *
@@ -1450,6 +1452,99 @@ void plateau(Array &array, int ir, float factor); ///< @overload
  * @return Array Reference to the current object.
  */
 Array pow(const Array &array, float exp);
+
+/**
+ * @brief Synthesize a new heightmap by stitching together small patches of the
+ * input heightmap.
+ *
+ * See @cite Efros2001.
+ *
+ * @param array Input array.
+ * @param patch_base_shape Patch shape.
+ * @param tiling Patch tiling.
+ * @param overlap Patch overlap, in ]0, 1[.
+ * @param seed Random seed number.
+ * @param filter_width_ratio Smooth filter width with respect the overlap
+ * length.
+ * @return Synthetized array (shape determined by patch shape and tiling
+ * features).
+ *
+ * **Example**
+ * @include ex_quilting.cpp
+ *
+ * **Result**
+ * @image html ex_quilting0.png
+ * @image html ex_quilting1.png
+ * @image html ex_quilting2.png
+ * @image html ex_quilting3.png
+ */
+Array quilting(Array          &array,
+               hmap::Vec2<int> patch_base_shape,
+               hmap::Vec2<int> tiling,
+               float           overlap,
+               uint            seed,
+               float           filter_width_ratio = 0.25f);
+
+/**
+ * @brief Synthesize a new heightmap by stitching together small patches of the
+ * input heightmap. Wrapper to reshuffle an heightmap with the same shape as the
+ * input.
+ *
+ * @param array Input array.
+ * @param patch_base_shape Patch shape.
+ * @param overlap Patch overlap, in ]0, 1[.
+ * @param seed Random seed number.
+ * @param filter_width_ratio Smooth filter width with respect the overlap
+ * length.
+ * @return Synthetized array.
+ *
+ * **Example**
+ * @include ex_quilting.cpp
+ *
+ * **Result**
+ * @image html ex_quilting0.png
+ * @image html ex_quilting1.png
+ * @image html ex_quilting2.png
+ * @image html ex_quilting3.png
+ */
+Array quilting_shuffle(Array          &array,
+                       hmap::Vec2<int> patch_base_shape,
+                       float           overlap,
+                       uint            seed,
+                       float           filter_width_ratio = 0.25f);
+
+/**
+ * @brief Synthesize a new heightmap by stitching together small patches of the
+ * input heightmap. Wrapper to expand the input.
+ *
+ * @param array Input array.
+ * @param expansion_ratio Determine the nex extent of the heightmap. If set to
+ * 2, the heightmap is 2-times larger with features of the same "size".
+ * @param patch_base_shape Patch shape.
+ * @param overlap Patch overlap, in ]0, 1[.
+ * @param seed Random seed number.
+ * @param keep_input_shape If set to true, the output has the same shape as the
+ * input.
+ * @param filter_width_ratio Smooth filter width with respect the overlap
+ * length.
+ * @return Synthetized array.
+ *
+ * **Example**
+ * @include ex_quilting.cpp
+ *
+ * **Result**
+ * @image html ex_quilting0.png
+ * @image html ex_quilting1.png
+ * @image html ex_quilting2.png
+ * @image html ex_quilting3.png
+ */
+Array quilting_expand(Array          &array,
+                      float           expansion_ratio,
+                      hmap::Vec2<int> patch_base_shape,
+                      float           overlap,
+                      uint            seed,
+                      bool            keep_input_shape = false,
+                      float           filter_width_ratio = 0.25f);
 
 /**
  * @brief Generate a vector filled with random values.
@@ -2464,6 +2559,13 @@ void steepen_convective(Array &array,
  * @param buffer_sizes Buffer size at the borders {east, west, south, north}.
  */
 void sym_borders(Array &array, Vec4<int> buffer_sizes);
+
+/**
+ * @brief Return the transposed array.
+ * @param array Input array.
+ * @return Transposed array.
+ */
+Array transpose(const Array &array);
 
 /**
  * @brief
