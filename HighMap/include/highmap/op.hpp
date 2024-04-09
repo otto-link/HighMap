@@ -1464,6 +1464,9 @@ Array pow(const Array &array, float exp);
  * @param tiling Patch tiling.
  * @param overlap Patch overlap, in ]0, 1[.
  * @param seed Random seed number.
+ * @param patch_flip Allow patch flipping (up-down and left-right).
+ * @param patch_rotate Allow patch 90 degree rotation (square patches only).
+ * @param patch_transpose Allow patch tranposition (square patches only).
  * @param filter_width_ratio Smooth filter width with respect the overlap
  * length.
  * @return Synthetized array (shape determined by patch shape and tiling
@@ -1483,6 +1486,9 @@ Array quilting(Array          &array,
                hmap::Vec2<int> tiling,
                float           overlap,
                uint            seed,
+               bool            patch_flip = true,
+               bool            patch_rotate = true,
+               bool            patch_transpose = true,
                float           filter_width_ratio = 0.25f);
 
 /**
@@ -1494,6 +1500,9 @@ Array quilting(Array          &array,
  * @param patch_base_shape Patch shape.
  * @param overlap Patch overlap, in ]0, 1[.
  * @param seed Random seed number.
+ * @param patch_flip Allow patch flipping (up-down and left-right).
+ * @param patch_rotate Allow patch 90 degree rotation (square patches only).
+ * @param patch_transpose Allow patch tranposition (square patches only).
  * @param filter_width_ratio Smooth filter width with respect the overlap
  * length.
  * @return Synthetized array.
@@ -1511,6 +1520,9 @@ Array quilting_shuffle(Array          &array,
                        hmap::Vec2<int> patch_base_shape,
                        float           overlap,
                        uint            seed,
+                       bool            patch_flip = true,
+                       bool            patch_rotate = true,
+                       bool            patch_transpose = true,
                        float           filter_width_ratio = 0.25f);
 
 /**
@@ -1525,6 +1537,9 @@ Array quilting_shuffle(Array          &array,
  * @param seed Random seed number.
  * @param keep_input_shape If set to true, the output has the same shape as the
  * input.
+ * @param patch_flip Allow patch flipping (up-down and left-right).
+ * @param patch_rotate Allow patch 90 degree rotation (square patches only).
+ * @param patch_transpose Allow patch tranposition (square patches only).
  * @param filter_width_ratio Smooth filter width with respect the overlap
  * length.
  * @return Synthetized array.
@@ -1544,6 +1559,9 @@ Array quilting_expand(Array          &array,
                       float           overlap,
                       uint            seed,
                       bool            keep_input_shape = false,
+                      bool            patch_flip = true,
+                      bool            patch_rotate = true,
+                      bool            patch_transpose = true,
                       float           filter_width_ratio = 0.25f);
 
 /**

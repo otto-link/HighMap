@@ -15,14 +15,15 @@ namespace hmap
 
 Array get_random_patch(Array          &array,
                        hmap::Vec2<int> patch_shape,
-                       std::mt19937   &gen)
+                       std::mt19937   &gen,
+                       bool            patch_flip,
+                       bool            patch_rotate,
+                       bool            patch_transpose)
 {
-  std::uniform_real_distribution<float> dis_i(0,
-                                              array.shape.x - 1 -
-                                                  patch_shape.x);
-  std::uniform_real_distribution<float> dis_j(0,
-                                              array.shape.y - 1 -
-                                                  patch_shape.y);
+  std::uniform_int_distribution<int> dis_i(0,
+                                           array.shape.x - 2 - patch_shape.x);
+  std::uniform_int_distribution<int> dis_j(0,
+                                           array.shape.y - 2 - patch_shape.y);
 
   // random pair of indices
   int i = dis_i(gen);
@@ -30,6 +31,29 @@ Array get_random_patch(Array          &array,
 
   Array patch = array.extract_slice(
       Vec4<int>(i, i + patch_shape.x, j, j + patch_shape.y));
+
+  // flipping, etc...
+  int imid = (int)(0.5f * (array.shape.x - 1 - patch_shape.x));
+
+  if (patch_flip)
+  {
+    if (dis_i(gen) > imid)
+      flip_ud(patch);
+    if (dis_i(gen) > imid)
+      flip_lr(patch);
+  }
+
+  // square patches only...
+  if (patch_shape.x == patch_shape.y)
+  {
+    if (patch_rotate)
+      if (dis_i(gen) > imid)
+        rot90(patch);
+
+    if (patch_transpose)
+      if (dis_i(gen) > imid)
+        patch = transpose(patch);
+  }
 
   return patch;
 }
@@ -139,6 +163,9 @@ Array quilting(Array          &array,
                hmap::Vec2<int> tiling,
                float           overlap,
                uint            seed,
+               bool            patch_flip,
+               bool            patch_rotate,
+               bool            patch_transpose,
                float           filter_width_ratio)
 {
   std::mt19937 gen(seed);
@@ -167,7 +194,12 @@ Array quilting(Array          &array,
     {
       int i1 = it * patch_base_shape.x;
 
-      Array patch = get_random_patch(array, patch_shape, gen);
+      Array patch = get_random_patch(array,
+                                     patch_shape,
+                                     gen,
+                                     patch_flip,
+                                     patch_rotate,
+                                     patch_transpose);
 
       if (it > 0)
       {
@@ -239,12 +271,19 @@ Array quilting_expand(Array          &array,
                       float           overlap,
                       uint            seed,
                       bool            keep_input_shape,
+                      bool            patch_flip,
+                      bool            patch_rotate,
+                      bool            patch_transpose,
                       float           filter_width_ratio)
 {
   expansion_ratio = std::max(1.f, expansion_ratio);
 
+  LOG_DEBUG("ok");
+
   if (keep_input_shape)
   {
+    LOG_DEBUG("keep shape");
+
     // output shape is the same as the output
     Vec2<int> work_shape = Vec2<int>((int)(array.shape.x / expansion_ratio),
                                      (int)(array.shape.y / expansion_ratio));
@@ -264,6 +303,9 @@ Array quilting_expand(Array          &array,
                                tiling,
                                overlap,
                                seed,
+                               patch_flip,
+                               patch_rotate,
+                               patch_transpose,
                                filter_width_ratio);
 
     return array_out.extract_slice(
@@ -271,6 +313,8 @@ Array quilting_expand(Array          &array,
   }
   else
   {
+    LOG_DEBUG("dont keep shape");
+
     // output shape is also expanded according to expansion factor
     Vec2<int> expanded_shape = Vec2<int>(
         (int)(array.shape.x * expansion_ratio),
@@ -285,6 +329,9 @@ Array quilting_expand(Array          &array,
                                tiling,
                                overlap,
                                seed,
+                               patch_flip,
+                               patch_rotate,
+                               patch_transpose,
                                filter_width_ratio);
 
     return array_out.extract_slice(
@@ -296,6 +343,9 @@ Array quilting_shuffle(Array          &array,
                        hmap::Vec2<int> patch_base_shape,
                        float           overlap,
                        uint            seed,
+                       bool            patch_flip,
+                       bool            patch_rotate,
+                       bool            patch_transpose,
                        float           filter_width_ratio)
 {
   Vec2<int> tiling = Vec2<int>(
@@ -307,6 +357,9 @@ Array quilting_shuffle(Array          &array,
                              tiling,
                              overlap,
                              seed,
+                             patch_flip,
+                             patch_rotate,
+                             patch_transpose,
                              filter_width_ratio);
 
   // return an array with the same shape as the input

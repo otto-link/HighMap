@@ -42,19 +42,21 @@ int main(void)
   ze0.to_png("ex_quilting2.png", hmap::cmap::terrain, true);
 
   // keep input shape for the output ('true' parameter)
+  bool keep_input_shape = true;
+
   hmap::Array ze1 = hmap::quilting_expand(z,
                                           expansion_ratio,
                                           patch_shape,
                                           overlap,
                                           ++seed,
-                                          true);
+                                          keep_input_shape);
 
   hmap::Array ze2 = hmap::quilting_expand(z,
                                           2.f * expansion_ratio,
                                           patch_shape,
                                           overlap,
                                           ++seed,
-                                          true);
+                                          keep_input_shape);
 
   hmap::export_banner_png("ex_quilting3.png",
                           {z, ze1, ze2},
