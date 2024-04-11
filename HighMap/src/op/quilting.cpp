@@ -278,12 +278,8 @@ Array quilting_expand(Array          &array,
 {
   expansion_ratio = std::max(1.f, expansion_ratio);
 
-  LOG_DEBUG("ok");
-
   if (keep_input_shape)
   {
-    LOG_DEBUG("keep shape");
-
     // output shape is the same as the output
     Vec2<int> work_shape = Vec2<int>((int)(array.shape.x / expansion_ratio),
                                      (int)(array.shape.y / expansion_ratio));
@@ -313,8 +309,6 @@ Array quilting_expand(Array          &array,
   }
   else
   {
-    LOG_DEBUG("dont keep shape");
-
     // output shape is also expanded according to expansion factor
     Vec2<int> expanded_shape = Vec2<int>(
         (int)(array.shape.x * expansion_ratio),
