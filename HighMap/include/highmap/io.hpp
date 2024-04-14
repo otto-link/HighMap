@@ -392,6 +392,17 @@ void write_png_rgb_16bit(std::string            fname,
                          Vec2<int>              shape);
 
 /**
+ * @brief Export an 8bit RGBA image to a png file.
+ *
+ * @param fname File name.
+ * @param img Image data.
+ * @param shape Image shape.
+ */
+void write_png_rgba_8bit(std::string           fname,
+                         std::vector<uint8_t> &img,
+                         Vec2<int>             shape);
+
+/**
  * @brief Export an 16bit RGBA image to a png file.
  *
  * @param fname File name.
