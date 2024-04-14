@@ -21,6 +21,7 @@ typedef unsigned int uint;
 #include <iomanip>
 #include <iostream>
 #include <numeric>
+#include <random>
 #include <string>
 #include <vector>
 
@@ -717,5 +718,23 @@ public:
    */
   friend Array vstack(const Array &array1, const Array &array2);
 };
+
+/**
+ * @brief Return a random 'patch' taken from the input array.
+ * @param array Input array.
+ * @param patch_shape Patch shape.
+ * @param gen Pseudo-random number generator.
+ * @param patch_flip Flip the patch (50% probability for each flip_lr or
+ * flip_ud).
+ * @param patch_rotate Rotate 90 degree the patch (50% prob.).
+ * @param patch_transpose Tranpose the patch (50% prob.).
+ * @return Patch.
+ */
+Array get_random_patch(Array          &array,
+                       hmap::Vec2<int> patch_shape,
+                       std::mt19937   &gen,
+                       bool            patch_flip = false,
+                       bool            patch_rotate = false,
+                       bool            patch_transpose = false);
 
 } // namespace hmap

@@ -1,0 +1,2 @@
+add_executable(ex_non_parametric_sampling ex_non_parametric_sampling.cpp)
+target_link_libraries(ex_non_parametric_sampling highmap)

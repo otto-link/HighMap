@@ -1403,6 +1403,29 @@ float minimum_smooth(const float a, const float b, float k); ///< @overload
 Array mixer(const Array t, const std::vector<Array> arrays);
 
 /**
+ * @brief Synthesize a new heightmap based on an input array using a
+ * non-parametric sampling method (very slow).
+ *
+ * See @cite Efros1999
+ *
+ * @param array Input array.
+ * @param patch_shape Patch shape.
+ * @param seed Random seed number.
+ * @param error_threshold Error threshold for the patch selection process.
+ * @return Synthetized array.
+ *
+ * **Example**
+ * @include non_parametric_sampling.cpp
+ *
+ * **Result**
+ * @image html non_parametric_sampling.png
+ */
+Array non_parametric_sampling(Array          &array,
+                              hmap::Vec2<int> patch_shape,
+                              uint            seed,
+                              float           error_threshold = 0.1f);
+
+/**
  * @brief Apply a displacement to the terrain along the normal direction.
  *
  * @param array Input array.
@@ -1464,6 +1487,9 @@ Array pow(const Array &array, float exp);
  * @param tiling Patch tiling.
  * @param overlap Patch overlap, in ]0, 1[.
  * @param seed Random seed number.
+ * @param patch_flip Allow patch flipping (up-down and left-right).
+ * @param patch_rotate Allow patch 90 degree rotation (square patches only).
+ * @param patch_transpose Allow patch tranposition (square patches only).
  * @param filter_width_ratio Smooth filter width with respect the overlap
  * length.
  * @return Synthetized array (shape determined by patch shape and tiling
@@ -1483,6 +1509,9 @@ Array quilting(Array          &array,
                hmap::Vec2<int> tiling,
                float           overlap,
                uint            seed,
+               bool            patch_flip = true,
+               bool            patch_rotate = true,
+               bool            patch_transpose = true,
                float           filter_width_ratio = 0.25f);
 
 /**
@@ -1494,6 +1523,9 @@ Array quilting(Array          &array,
  * @param patch_base_shape Patch shape.
  * @param overlap Patch overlap, in ]0, 1[.
  * @param seed Random seed number.
+ * @param patch_flip Allow patch flipping (up-down and left-right).
+ * @param patch_rotate Allow patch 90 degree rotation (square patches only).
+ * @param patch_transpose Allow patch tranposition (square patches only).
  * @param filter_width_ratio Smooth filter width with respect the overlap
  * length.
  * @return Synthetized array.
@@ -1511,6 +1543,9 @@ Array quilting_shuffle(Array          &array,
                        hmap::Vec2<int> patch_base_shape,
                        float           overlap,
                        uint            seed,
+                       bool            patch_flip = true,
+                       bool            patch_rotate = true,
+                       bool            patch_transpose = true,
                        float           filter_width_ratio = 0.25f);
 
 /**
@@ -1525,6 +1560,9 @@ Array quilting_shuffle(Array          &array,
  * @param seed Random seed number.
  * @param keep_input_shape If set to true, the output has the same shape as the
  * input.
+ * @param patch_flip Allow patch flipping (up-down and left-right).
+ * @param patch_rotate Allow patch 90 degree rotation (square patches only).
+ * @param patch_transpose Allow patch tranposition (square patches only).
  * @param filter_width_ratio Smooth filter width with respect the overlap
  * length.
  * @return Synthetized array.
@@ -1544,6 +1582,9 @@ Array quilting_expand(Array          &array,
                       float           overlap,
                       uint            seed,
                       bool            keep_input_shape = false,
+                      bool            patch_flip = true,
+                      bool            patch_rotate = true,
+                      bool            patch_transpose = true,
                       float           filter_width_ratio = 0.25f);
 
 /**
@@ -1920,6 +1961,18 @@ Array reverse_midpoint(Array &array,
                        uint   seed,
                        float  noise_scale = 1.f,
                        float  threshold = 0.f);
+
+/**
+ * @brief Rotate the array by 90 degrees.
+ * @param array Input array.
+ *
+ * **Example**
+ * @include ex_rot90.cpp
+ *
+ * **Result**
+ * @image html ex_rot90.png
+ */
+void rot90(Array &array);
 
 /**
  * @brief Rotate the array.
