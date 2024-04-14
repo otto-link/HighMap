@@ -1403,6 +1403,29 @@ float minimum_smooth(const float a, const float b, float k); ///< @overload
 Array mixer(const Array t, const std::vector<Array> arrays);
 
 /**
+ * @brief Synthesize a new heightmap based on an input array using a
+ * non-parametric sampling method (very slow).
+ *
+ * See @cite Efros1999
+ *
+ * @param array Input array.
+ * @param patch_shape Patch shape.
+ * @param seed Random seed number.
+ * @param error_threshold Error threshold for the patch selection process.
+ * @return Synthetized array.
+ *
+ * **Example**
+ * @include non_parametric_sampling.cpp
+ *
+ * **Result**
+ * @image html non_parametric_sampling.png
+ */
+Array non_parametric_sampling(Array          &array,
+                              hmap::Vec2<int> patch_shape,
+                              uint            seed,
+                              float           error_threshold = 0.1f);
+
+/**
  * @brief Apply a displacement to the terrain along the normal direction.
  *
  * @param array Input array.
