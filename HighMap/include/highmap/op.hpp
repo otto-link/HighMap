@@ -1225,8 +1225,6 @@ void make_binary_xsimd(Array &array, float threshold = 0.f);
  *
  * **Result**
  * @image html ex_make_periodic0.png
- *
- * Tiled
  * @image html ex_make_periodic1.png
  */
 void make_periodic(Array &array, int nbuffer);
@@ -1239,7 +1237,6 @@ void make_periodic(Array &array, int nbuffer);
  * @return Array Element-wise maximum array.
  */
 Array maximum(const Array &array1, const Array &array2);
-
 Array maximum(const Array &array1, const float value); ///< @overload
 
 /**
@@ -2843,5 +2840,26 @@ void zeroed_edges(Array      &array,
                   float       sigma = 0.25f,
                   Array      *p_noise = nullptr,
                   Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+// --- helpers
+
+/**
+ * @brief Among all the possible cut paths in an array from bottom to top and
+ * find the one with the minimum cost using Dijkstra's algorithm
+ *
+ * @param error Input array.
+ * @param path_i Indices of the path.
+ */
+void find_vertical_cut_path(Array &error, std::vector<int> &path_i);
+
+/**
+ * @brief Generate a smooth mask based on an input cut path (@see
+ * find_vertical_cut_path).
+ *
+ * @param shape Mask shape
+ * @param cut_path_i Vertica cut path indices
+ * @param ir Filtering radius.
+ */
+Array generate_mask(hmap::Vec2<int> shape, std::vector<int> cut_path_i, int ir);
 
 } // namespace hmap
