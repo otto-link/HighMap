@@ -1230,6 +1230,21 @@ void make_binary_xsimd(Array &array, float threshold = 0.f);
 void make_periodic(Array &array, int nbuffer);
 
 /**
+ * @brief Make the array periodic in both directions using a stitching operation
+ * minimizing errors.
+ *
+ * @param array Input array.
+ * @param Overlap overlap based on domain half size (if overlap = 1, the
+ * transition, made on both sides, then spans the whole domain).
+ * @return Array Periodic array.
+ *
+ * **Result**
+ * @image html ex_make_periodic_stitching0.png
+ * @image html ex_make_periodic_stitching1.png
+ */
+Array make_periodic_stitching(Array &array, float overlap);
+
+/**
  * @brief Return the element-wise maximum of two arrays.
  *
  * @param array1 First array.

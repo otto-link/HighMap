@@ -3,6 +3,8 @@
  * this software. */
 #include <cmath>
 
+#include "macrologger.h"
+
 #include "highmap/array.hpp"
 #include "highmap/op.hpp"
 
@@ -109,6 +111,69 @@ void make_periodic(Array &array, int nbuffer)
   }
 
   array = a2;
+}
+
+Array make_periodic_stitching(Array &array, float overlap)
+{
+  Array     array_p = array;
+  Vec2<int> shape = array.shape;
+
+  Vec2<int> noverlap = {(int)(0.5f * overlap * shape.x),
+                        (int)(0.5f * overlap * shape.y)};
+  int       ir = (int)noverlap.x / 2.f;
+
+  // east frontier
+  {
+    Array error = Array(Vec2<int>(noverlap.x, shape.y));
+    for (int i = 0; i < noverlap.x; i++)
+      for (int j = 0; j < shape.y; j++)
+        error(i, j) = std::abs(array(i, j) -
+                               array(shape.x - 1 - noverlap.x + i, j));
+
+    // find cut path
+    std::vector<int> cut_path_i;
+    find_vertical_cut_path(error, cut_path_i);
+
+    // define lerp factor
+    Array mask = generate_mask(error.shape, cut_path_i, ir);
+
+    for (int i = 0; i < noverlap.x; i++)
+      for (int j = 0; j < shape.y; j++)
+        array_p(i, j) = lerp(array(shape.x - 1 - noverlap.x + i, j),
+                             array(i, j),
+                             mask(i, j));
+  }
+
+  // south frontier
+  {
+    Array error = Array(Vec2<int>(shape.x, noverlap.y));
+    for (int i = 0; i < shape.x; i++)
+      for (int j = 0; j < noverlap.y; j++)
+        error(i, j) = std::abs(array_p(i, j) -
+                               array_p(i, shape.y - 1 - noverlap.y + j));
+
+    Array mask = Array(error.shape);
+    {
+      Array            error_t = transpose(error);
+      std::vector<int> cut_path_i;
+      find_vertical_cut_path(error_t, cut_path_i);
+      Array mask_t = generate_mask(error_t.shape, cut_path_i, ir);
+      mask = transpose(mask_t);
+    }
+
+    for (int i = 0; i < shape.x; i++)
+      for (int j = 0; j < noverlap.y; j++)
+        array_p(i, j) = lerp(array_p(i, shape.y - 1 - noverlap.y + j),
+                             array_p(i, j),
+                             mask(i, j));
+  }
+
+  array_p = array_p.extract_slice(
+      Vec4<int>(0, array.shape.x - noverlap.x, 0, array.shape.y - noverlap.y));
+
+  array_p = array_p.resample_to_shape(shape);
+
+  return array_p;
 }
 
 void set_borders(Array      &array,

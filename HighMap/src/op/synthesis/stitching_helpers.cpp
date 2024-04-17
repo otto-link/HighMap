@@ -82,6 +82,9 @@ Array generate_mask(hmap::Vec2<int> shape, std::vector<int> cut_path_i, int ir)
     for (int j = 0; j < shape.y; j++)
       mask(i, j) = (i > cut_path_i[j]) ? 1.f : 0.f;
 
+  for (int j = 0; j < shape.y; j++)
+    mask(shape.x - 1, j) = 1.f;
+
   // smoothing
   smooth_cpulse(mask, ir);
 
@@ -97,11 +100,12 @@ Array generate_mask(hmap::Vec2<int> shape, std::vector<int> cut_path_i, int ir)
       vmax = std::max(vmax, mask(i, j));
     }
 
-    for (int i = 0; i < shape.x; i++)
-    {
-      mask(i, j) -= vmin;
-      mask(i, j) /= (vmax - vmin);
-    }
+    if (vmin != vmax)
+      for (int i = 0; i < shape.x; i++)
+      {
+        mask(i, j) -= vmin;
+        mask(i, j) /= (vmax - vmin);
+      }
   }
 
   return mask;

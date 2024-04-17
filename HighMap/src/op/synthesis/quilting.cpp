@@ -9,10 +9,6 @@
 namespace hmap
 {
 
-// --- helpers
-
-// --- quilting
-
 Array quilting(Array          &array,
                hmap::Vec2<int> patch_base_shape,
                hmap::Vec2<int> tiling,

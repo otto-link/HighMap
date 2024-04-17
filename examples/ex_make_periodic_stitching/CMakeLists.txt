@@ -1,0 +1,2 @@
+add_executable(ex_make_periodic_stitching ex_make_periodic_stitching.cpp)
+target_link_libraries(ex_make_periodic_stitching highmap)
