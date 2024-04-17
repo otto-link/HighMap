@@ -1238,11 +1238,31 @@ void make_periodic(Array &array, int nbuffer);
  * transition, made on both sides, then spans the whole domain).
  * @return Array Periodic array.
  *
+ * **Example**
+ * @include ex_make_periodic_stitching.cpp
+ *
  * **Result**
  * @image html ex_make_periodic_stitching0.png
  * @image html ex_make_periodic_stitching1.png
  */
 Array make_periodic_stitching(Array &array, float overlap);
+
+/**
+ * @brief
+ *
+ * @param array Input array.
+ * @param Overlap overlap based on domain half size (if overlap = 1, the
+ * transition, made on both sides, then spans the whole domain).
+ * @param tiling Array tiling.
+ * @return Tiled array.
+ *
+ * **Example**
+ * @include make_periodic_tiling.cpp
+ *
+ * **Result**
+ * @image html make_periodic_tiling.png
+ */
+Array make_periodic_tiling(Array &array, float overlap, Vec2<int> tiling);
 
 /**
  * @brief Return the element-wise maximum of two arrays.

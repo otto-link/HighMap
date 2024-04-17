@@ -1,0 +1,2 @@
+add_executable(ex_make_periodic_tiling ex_make_periodic_tiling.cpp)
+target_link_libraries(ex_make_periodic_tiling highmap)

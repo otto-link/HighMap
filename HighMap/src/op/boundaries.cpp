@@ -176,6 +176,32 @@ Array make_periodic_stitching(Array &array, float overlap)
   return array_p;
 }
 
+Array make_periodic_tiling(Array &array, float overlap, Vec2<int> tiling)
+{
+  //
+
+  Array array_periodic = make_periodic_stitching(array, overlap);
+
+  Vec2<int> shape_tile = {(int)(array.shape.x / tiling.x),
+                          (int)(array.shape.y / tiling.y)};
+  array_periodic = array_periodic.resample_to_shape(shape_tile);
+
+  Array array_out = array_periodic;
+
+  for (int k = 1; k < tiling.x; k++)
+    array_out = hstack(array_out, array_periodic);
+
+  Array array_strip = array_out;
+
+  for (int k = 1; k < tiling.y; k++)
+    array_out = vstack(array_out, array_strip);
+
+  if (array_out.shape != array.shape)
+    array_out = array_out.resample_to_shape(array.shape);
+
+  return array_out;
+}
+
 void set_borders(Array      &array,
                  Vec4<float> border_values,
                  Vec4<int>   buffer_sizes)
