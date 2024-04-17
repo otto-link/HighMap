@@ -743,6 +743,28 @@ void flood_fill(Array &array,
                 float  background_value = 0.f);
 
 /**
+ * @brief Apply a "folding" filter (successive absolute values) to the array
+ * elements.
+ * @param array Input array.
+ * @param vmin Minimum reference value.
+ * @param vmax Maximum reference value.
+ * @param iterations Number of iterations.
+ * @param k Absolute value smoothing parameters (expected > 0).
+ *
+ * **Example**
+ * @include ex_fold.cpp
+ *
+ * **Result**
+ * @image html ex_fold.png
+ */
+void fold(Array &array,
+          float  vmin,
+          float  vmax,
+          int    iterations = 3,
+          float  k = 0.05f);
+void fold(Array &array, int iterations = 3, float k = 0.05f); ///< @overload
+
+/**
  * @brief Apply a gain correction of the array elements.
  *
  * Gain correction is based on a power law.
