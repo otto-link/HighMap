@@ -2132,67 +2132,6 @@ Array select_elevation_slope(const Array &array,
 Array select_eq(const Array &array, float value);
 
 /**
- * @brief Return an array with elements equal to 1 where input elements are
- * larger than `value`.
- *
- * @param array Input array.
- * @param value Criteria value.
- * @return Array Output array.
- *
- * **Example**
- * @include ex_select.cpp
- *
- * **Result**
- * @image html ex_select0.png
- * @image html ex_select1.png
- * @image html ex_select2.png
- * @image html ex_select3.png
- * @image html ex_select4.png
- */
-Array select_gt(const Array &array, float value);
-
-/**
- * @brief Return an array with elements equal to 1 where input elements are
- * within the bounds provided.
- *
- * @param array Input array.
- * @param value1 Lower bound.
- * @param value2 Upper bound.
- * @return Array Output array.
- *
- * **Example**
- * @include ex_select.cpp
- *
- * **Result**
- * @image html ex_select0.png
- * @image html ex_select1.png
- * @image html ex_select2.png
- * @image html ex_select3.png
- * @image html ex_select4.png
- */
-Array select_interval(const Array &array, float value1, float value2);
-
-/**
- * @brief Return an array with elements equal to 1 where input elements are
- * smaller than `value`.
- *
- * @param array Input array.
- * @param value Criteria value.
- * @return Array Output array.
- *
- * **Example**
- * @include ex_select.cpp
- *
- * **Result**
- * @image html ex_select0.png
- * @image html ex_select1.png
- * @image html ex_select2.png
- * @image html ex_select3.png
- * @image html ex_select4.png
- */
-Array select_lt(const Array &array, float value);
-
-/**
  * @brief Return an array weighted by the gap between the gradient angle and a
  * given angle.
  *
@@ -2237,6 +2176,85 @@ Array select_gradient_exp(const Array &array,
 Array select_gradient_inv(const Array &array,
                           float        talus_center,
                           float        talus_sigma);
+
+/**
+ * @brief Return an array with elements equal to 1 where input elements are
+ * larger than `value`.
+ *
+ * @param array Input array.
+ * @param value Criteria value.
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_select.cpp
+ *
+ * **Result**
+ * @image html ex_select0.png
+ * @image html ex_select1.png
+ * @image html ex_select2.png
+ * @image html ex_select3.png
+ * @image html ex_select4.png
+ */
+Array select_gt(const Array &array, float value);
+
+/**
+ * @brief Return an array with elements equal to 1 where input elements are
+ * within the bounds provided.
+ *
+ * @param array Input array.
+ * @param value1 Lower bound.
+ * @param value2 Upper bound.
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_select.cpp
+ *
+ * **Result**
+ * @image html ex_select0.png
+ * @image html ex_select1.png
+ * @image html ex_select2.png
+ * @image html ex_select3.png
+ * @image html ex_select4.png
+ */
+Array select_interval(const Array &array, float value1, float value2);
+
+/**
+ * @brief Return an array with positive values if the slope is pointing to the
+ * center (slope is inward), and negative values otherwise (slope is outward).
+ * @param array Input array.
+ * @param center Reference center.
+ * @param bbox Domain bounding box.
+ * @return Output array.
+ *
+ * **Example**
+ * @include ex_select_inward_outward_slope.cpp
+ *
+ * **Result**
+ * @image html ex_select_inward_outward_slope.png
+ */
+Array select_inward_outward_slope(const Array &array,
+                                  Vec2<float>  center = {0.5f, 0.5f},
+                                  Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
+ * @brief Return an array with elements equal to 1 where input elements are
+ * smaller than `value`.
+ *
+ * @param array Input array.
+ * @param value Criteria value.
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_select.cpp
+ *
+ * **Result**
+ * @image html ex_select0.png
+ * @image html ex_select1.png
+ * @image html ex_select2.png
+ * @image html ex_select3.png
+ * @image html ex_select4.png
+ */
+Array select_lt(const Array &array, float value);
 
 /**
  * @brief Return an array filled with non-zero values where the input is in the
