@@ -364,6 +364,21 @@ void clamp_max_smooth(Array       &array,
 void clamp_smooth(Array &array, float vmin, float vmax, float k = 0.2f);
 
 /**
+ * @brief Apply a closing algorithm to the input array using a square
+ * structure.
+ * @param array Input array.
+ * @param ir Square kernel radius.
+ * @return Output array.
+ *
+ * **Example**
+ * @include ex_morphology_base.cpp
+ *
+ * **Result**
+ * @image html ex_morphology_base.png
+ */
+Array closing(const Array &array, int ir);
+
+/**
  * @brief Return the connected-component labelling of the array.
  *
  * See https://en.wikipedia.org/wiki/Connected-component_labeling.
@@ -532,6 +547,21 @@ Array curvature_gaussian(const Array &z);
 Array curvature_mean(const Array &z);
 
 /**
+ * @brief Apply a dilation algorithm to the input array using a square
+ * structure.
+ * @param array Input array.
+ * @param ir Square kernel radius.
+ * @return Output array.
+ *
+ * **Example**
+ * @include ex_morphology_base.cpp
+ *
+ * **Result**
+ * @image html ex_morphology_base.png
+ */
+Array dilation(const Array &array, int ir);
+
+/**
  * @brief Return the Euclidean distance transform.
  *
  * Exact transform based on Meijster et al. algorithm @cite Meijster2000.
@@ -556,6 +586,21 @@ Array distance_transform(const Array &array);
  */
 void equalize(Array &array);
 void equalize(Array &array, Array *p_mask); ///< @overload
+
+/**
+ * @brief Apply an erosion algorithm to the input array using a square
+ * structure.
+ * @param array Input array.
+ * @param ir Square kernel radius.
+ * @return Output array.
+ *
+ *  **Example**
+ * @include ex_morphology_base.cpp
+ *
+ * **Result**
+ * @image html ex_morphology_base.png
+ */
+Array erosion(const Array &array, int ir);
 
 /**
  * @brief Return the exponantial of the array elements.
@@ -1457,6 +1502,51 @@ float minimum_smooth(const float a, const float b, float k); ///< @overload
 Array mixer(const Array t, const std::vector<Array> arrays);
 
 /**
+ * @brief Apply a morphological_black_hat algorithm to the input array using a
+ * square structure.
+ * @param array Input array.
+ * @param ir Square kernel radius.
+ * @return Output array.
+ *
+ * **Example**
+ * @include ex_morphology_base.cpp
+ *
+ * **Result**
+ * @image html ex_morphology_base.png
+ */
+Array morphological_black_hat(const Array &array, int ir);
+
+/**
+ * @brief Apply a morphological_gradient algorithm to the input array using a
+ * square structure.
+ * @param array Input array.
+ * @param ir Square kernel radius.
+ * @return Output array.
+ *
+ * **Example**
+ * @include ex_morphology_base.cpp
+ *
+ * **Result**
+ * @image html ex_morphology_base.png
+ */
+Array morphological_gradient(const Array &array, int ir);
+
+/**
+ * @brief Apply a morphological_top_hat algorithm to the input array using a
+ * square structure.
+ * @param array Input array.
+ * @param ir Square kernel radius.
+ * @return Output array.
+ *
+ * **Example**
+ * @include ex_morphology_base.cpp
+ *
+ * **Result**
+ * @image html ex_morphology_base.png
+ */
+Array morphological_top_hat(const Array &array, int ir);
+
+/**
  * @brief Synthesize a new heightmap based on an input array using a
  * non-parametric sampling method (very slow).
  *
@@ -1504,6 +1594,21 @@ void normal_displacement(Array &array,
                          float  amount = 0.1f,
                          int    ir = 0,
                          bool   reverse = false); ///< @overload
+
+/**
+ * @brief Apply an opening algorithm to the input array using a square
+ * structure.
+ * @param array Input array.
+ * @param ir Square kernel radius.
+ * @return Output array.
+ *
+ * **Example**
+ * @include ex_morphology_base.cpp
+ *
+ * **Result**
+ * @image html ex_morphology_base.png
+ */
+Array opening(const Array &array, int ir);
 
 /**
  * @brief Apply a "plateau-shape" filter to the array.

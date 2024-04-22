@@ -9,6 +9,21 @@
 namespace hmap
 {
 
+Array closing(const Array &array, int ir)
+{
+  return erosion(dilation(array, ir), ir);
+}
+
+Array dilation(const Array &array, int ir)
+{
+  return maximum_local(array, ir);
+}
+
+Array erosion(const Array &array, int ir)
+{
+  return minimum_local(array, ir);
+}
+
 void flood_fill(Array &array,
                 int    i,
                 int    j,
@@ -54,6 +69,26 @@ void flood_fill(Array &array,
       }
     }
   }
+}
+
+Array morphological_black_hat(const Array &array, int ir)
+{
+  return closing(array, ir) - array;
+}
+
+Array morphological_gradient(const Array &array, int ir)
+{
+  return dilation(array, ir) - erosion(array, ir);
+}
+
+Array morphological_top_hat(const Array &array, int ir)
+{
+  return array - opening(array, ir);
+}
+
+Array opening(const Array &array, int ir)
+{
+  return dilation(erosion(array, ir), ir);
 }
 
 } // namespace hmap
