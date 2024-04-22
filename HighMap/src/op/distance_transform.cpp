@@ -18,7 +18,7 @@ int sep(int i, int u, float gi, float gu)
 namespace hmap
 {
 
-Array distance_transform(const Array &array)
+Array distance_transform(const Array &array, bool return_squared_distance)
 {
   Array dt = Array(array.shape); // output distance
   Array g = Array(array.shape);
@@ -92,7 +92,10 @@ Array distance_transform(const Array &array)
     }
   }
 
-  return pow(dt, 0.5f);
+  if (return_squared_distance)
+    return dt;
+  else
+    return pow(dt, 0.5f);
 }
 
 } // namespace hmap
