@@ -15,7 +15,7 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 else()
   # GNU compiler options
   set(CMAKE_CXX_FLAGS
-      "${CMAKE_CXX_FLAGS} -Wall -Wextra -O3 -pthread -DLOG_LEVEL=3 -Wno-free-nonheap-object"
+      "${CMAKE_CXX_FLAGS} -Wall -Wextra -O3 -pthread -DLOG_LEVEL=3 -Wno-free-nonheap-object -g"
   )
 endif()
 

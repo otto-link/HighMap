@@ -213,6 +213,27 @@ void HeightMapRGBA::normalize()
       this->rgba[k].remap(0.f, 1.f, min, max); // RGB
 }
 
+void HeightMapRGBA::to_png_8bit(std::string fname)
+{
+  std::vector<uint8_t> img(this->shape.x * this->shape.y * 4);
+
+  Array r_array = this->rgba[0].to_array();
+  Array g_array = this->rgba[1].to_array();
+  Array b_array = this->rgba[2].to_array();
+  Array a_array = this->rgba[3].to_array();
+
+  int k = 0;
+  for (int j = this->shape.y - 1; j > -1; j -= 1)
+    for (int i = 0; i < this->shape.x; i++)
+    {
+      img[k++] = (uint8_t)(255.f * r_array(i, j));
+      img[k++] = (uint8_t)(255.f * g_array(i, j));
+      img[k++] = (uint8_t)(255.f * b_array(i, j));
+      img[k++] = (uint8_t)(255.f * a_array(i, j));
+    }
+  write_png_rgba_8bit(fname, img, this->shape);
+}
+
 void HeightMapRGBA::to_png_16bit(std::string fname)
 {
   std::vector<uint16_t> img(this->shape.x * this->shape.y * 4);

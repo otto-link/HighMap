@@ -364,6 +364,21 @@ void clamp_max_smooth(Array       &array,
 void clamp_smooth(Array &array, float vmin, float vmax, float k = 0.2f);
 
 /**
+ * @brief Apply a closing algorithm to the input array using a square
+ * structure.
+ * @param array Input array.
+ * @param ir Square kernel radius.
+ * @return Output array.
+ *
+ * **Example**
+ * @include ex_morphology_base.cpp
+ *
+ * **Result**
+ * @image html ex_morphology_base.png
+ */
+Array closing(const Array &array, int ir);
+
+/**
  * @brief Return the connected-component labelling of the array.
  *
  * See https://en.wikipedia.org/wiki/Connected-component_labeling.
@@ -532,12 +547,29 @@ Array curvature_gaussian(const Array &z);
 Array curvature_mean(const Array &z);
 
 /**
+ * @brief Apply a dilation algorithm to the input array using a square
+ * structure.
+ * @param array Input array.
+ * @param ir Square kernel radius.
+ * @return Output array.
+ *
+ * **Example**
+ * @include ex_morphology_base.cpp
+ *
+ * **Result**
+ * @image html ex_morphology_base.png
+ */
+Array dilation(const Array &array, int ir);
+
+/**
  * @brief Return the Euclidean distance transform.
  *
  * Exact transform based on Meijster et al. algorithm @cite Meijster2000.
  *
  * @param array Input array to be transformed, will be converted into binary: 1
  * wherever input is greater than 0, 0 elsewhere.
+ * @param return_squared_distance Wheter the distance returned is squared or
+ * not.
  * @return Array Reference to the output array.
  *
  * **Example**
@@ -547,7 +579,8 @@ Array curvature_mean(const Array &z);
  * @image html ex_distance_transform0.png
  * @image html ex_distance_transform1.png
  */
-Array distance_transform(const Array &array);
+Array distance_transform(const Array &array,
+                         bool         return_squared_distance = false);
 
 /**
  * @brief Apply histogram adjustement to the array values.
@@ -556,6 +589,21 @@ Array distance_transform(const Array &array);
  */
 void equalize(Array &array);
 void equalize(Array &array, Array *p_mask); ///< @overload
+
+/**
+ * @brief Apply an erosion algorithm to the input array using a square
+ * structure.
+ * @param array Input array.
+ * @param ir Square kernel radius.
+ * @return Output array.
+ *
+ *  **Example**
+ * @include ex_morphology_base.cpp
+ *
+ * **Result**
+ * @image html ex_morphology_base.png
+ */
+Array erosion(const Array &array, int ir);
 
 /**
  * @brief Return the exponantial of the array elements.
@@ -741,6 +789,28 @@ void flood_fill(Array &array,
                 int    j,
                 float  fill_value = 1.f,
                 float  background_value = 0.f);
+
+/**
+ * @brief Apply a "folding" filter (successive absolute values) to the array
+ * elements.
+ * @param array Input array.
+ * @param vmin Minimum reference value.
+ * @param vmax Maximum reference value.
+ * @param iterations Number of iterations.
+ * @param k Absolute value smoothing parameters (expected > 0).
+ *
+ * **Example**
+ * @include ex_fold.cpp
+ *
+ * **Result**
+ * @image html ex_fold.png
+ */
+void fold(Array &array,
+          float  vmin,
+          float  vmax,
+          int    iterations = 3,
+          float  k = 0.05f);
+void fold(Array &array, int iterations = 3, float k = 0.05f); ///< @overload
 
 /**
  * @brief Apply a gain correction of the array elements.
@@ -1203,11 +1273,44 @@ void make_binary_xsimd(Array &array, float threshold = 0.f);
  *
  * **Result**
  * @image html ex_make_periodic0.png
- *
- * Tiled
  * @image html ex_make_periodic1.png
  */
 void make_periodic(Array &array, int nbuffer);
+
+/**
+ * @brief Make the array periodic in both directions using a stitching operation
+ * minimizing errors.
+ *
+ * @param array Input array.
+ * @param Overlap overlap based on domain half size (if overlap = 1, the
+ * transition, made on both sides, then spans the whole domain).
+ * @return Array Periodic array.
+ *
+ * **Example**
+ * @include ex_make_periodic_stitching.cpp
+ *
+ * **Result**
+ * @image html ex_make_periodic_stitching0.png
+ * @image html ex_make_periodic_stitching1.png
+ */
+Array make_periodic_stitching(Array &array, float overlap);
+
+/**
+ * @brief
+ *
+ * @param array Input array.
+ * @param Overlap overlap based on domain half size (if overlap = 1, the
+ * transition, made on both sides, then spans the whole domain).
+ * @param tiling Array tiling.
+ * @return Tiled array.
+ *
+ * **Example**
+ * @include make_periodic_tiling.cpp
+ *
+ * **Result**
+ * @image html make_periodic_tiling.png
+ */
+Array make_periodic_tiling(Array &array, float overlap, Vec2<int> tiling);
 
 /**
  * @brief Return the element-wise maximum of two arrays.
@@ -1217,7 +1320,6 @@ void make_periodic(Array &array, int nbuffer);
  * @return Array Element-wise maximum array.
  */
 Array maximum(const Array &array1, const Array &array2);
-
 Array maximum(const Array &array1, const float value); ///< @overload
 
 /**
@@ -1403,6 +1505,51 @@ float minimum_smooth(const float a, const float b, float k); ///< @overload
 Array mixer(const Array t, const std::vector<Array> arrays);
 
 /**
+ * @brief Apply a morphological_black_hat algorithm to the input array using a
+ * square structure.
+ * @param array Input array.
+ * @param ir Square kernel radius.
+ * @return Output array.
+ *
+ * **Example**
+ * @include ex_morphology_base.cpp
+ *
+ * **Result**
+ * @image html ex_morphology_base.png
+ */
+Array morphological_black_hat(const Array &array, int ir);
+
+/**
+ * @brief Apply a morphological_gradient algorithm to the input array using a
+ * square structure.
+ * @param array Input array.
+ * @param ir Square kernel radius.
+ * @return Output array.
+ *
+ * **Example**
+ * @include ex_morphology_base.cpp
+ *
+ * **Result**
+ * @image html ex_morphology_base.png
+ */
+Array morphological_gradient(const Array &array, int ir);
+
+/**
+ * @brief Apply a morphological_top_hat algorithm to the input array using a
+ * square structure.
+ * @param array Input array.
+ * @param ir Square kernel radius.
+ * @return Output array.
+ *
+ * **Example**
+ * @include ex_morphology_base.cpp
+ *
+ * **Result**
+ * @image html ex_morphology_base.png
+ */
+Array morphological_top_hat(const Array &array, int ir);
+
+/**
  * @brief Synthesize a new heightmap based on an input array using a
  * non-parametric sampling method (very slow).
  *
@@ -1452,6 +1599,21 @@ void normal_displacement(Array &array,
                          bool   reverse = false); ///< @overload
 
 /**
+ * @brief Apply an opening algorithm to the input array using a square
+ * structure.
+ * @param array Input array.
+ * @param ir Square kernel radius.
+ * @return Output array.
+ *
+ * **Example**
+ * @include ex_morphology_base.cpp
+ *
+ * **Result**
+ * @image html ex_morphology_base.png
+ */
+Array opening(const Array &array, int ir);
+
+/**
  * @brief Apply a "plateau-shape" filter to the array.
  *
  * @param array Input array.
@@ -1478,11 +1640,11 @@ Array pow(const Array &array, float exp);
 
 /**
  * @brief Synthesize a new heightmap by stitching together small patches of the
- * input heightmap.
+ * input heightmaps.
  *
  * See @cite Efros2001.
  *
- * @param array Input array.
+ * @param p_arrays Reference to the input arrays as a vector.
  * @param patch_base_shape Patch shape.
  * @param tiling Patch tiling.
  * @param overlap Patch overlap, in ]0, 1[.
@@ -1503,23 +1665,23 @@ Array pow(const Array &array, float exp);
  * @image html ex_quilting1.png
  * @image html ex_quilting2.png
  * @image html ex_quilting3.png
+ * @image html ex_quilting4.png
  */
-Array quilting(Array          &array,
-               hmap::Vec2<int> patch_base_shape,
-               hmap::Vec2<int> tiling,
-               float           overlap,
-               uint            seed,
-               bool            patch_flip = true,
-               bool            patch_rotate = true,
-               bool            patch_transpose = true,
-               float           filter_width_ratio = 0.25f);
+Array quilting(std::vector<Array *> p_arrays,
+               hmap::Vec2<int>      patch_base_shape,
+               hmap::Vec2<int>      tiling,
+               float                overlap,
+               uint                 seed,
+               bool                 patch_flip = true,
+               bool                 patch_rotate = true,
+               bool                 patch_transpose = true,
+               float                filter_width_ratio = 0.25f);
 
 /**
- * @brief Synthesize a new heightmap by stitching together small patches of the
- * input heightmap. Wrapper to reshuffle an heightmap with the same shape as the
- * input.
+ * @brief Synthesize a new heightmap by stitching together small patches from a
+ * list of input heightmaps.
  *
- * @param array Input array.
+ * @param array Reference to the input arrays.
  * @param patch_base_shape Patch shape.
  * @param overlap Patch overlap, in ]0, 1[.
  * @param seed Random seed number.
@@ -1538,15 +1700,16 @@ Array quilting(Array          &array,
  * @image html ex_quilting1.png
  * @image html ex_quilting2.png
  * @image html ex_quilting3.png
+ * @image html ex_quilting4.png
  */
-Array quilting_shuffle(Array          &array,
-                       hmap::Vec2<int> patch_base_shape,
-                       float           overlap,
-                       uint            seed,
-                       bool            patch_flip = true,
-                       bool            patch_rotate = true,
-                       bool            patch_transpose = true,
-                       float           filter_width_ratio = 0.25f);
+Array quilting_blend(std::vector<Array *> p_arrays,
+                     hmap::Vec2<int>      patch_base_shape,
+                     float                overlap,
+                     uint                 seed,
+                     bool                 patch_flip = true,
+                     bool                 patch_rotate = true,
+                     bool                 patch_transpose = true,
+                     float                filter_width_ratio = 0.25f);
 
 /**
  * @brief Synthesize a new heightmap by stitching together small patches of the
@@ -1575,6 +1738,7 @@ Array quilting_shuffle(Array          &array,
  * @image html ex_quilting1.png
  * @image html ex_quilting2.png
  * @image html ex_quilting3.png
+ * @image html ex_quilting4.png
  */
 Array quilting_expand(Array          &array,
                       float           expansion_ratio,
@@ -1586,6 +1750,41 @@ Array quilting_expand(Array          &array,
                       bool            patch_rotate = true,
                       bool            patch_transpose = true,
                       float           filter_width_ratio = 0.25f);
+
+/**
+ * @brief Synthesize a new heightmap by stitching together small patches of the
+ * input heightmap. Wrapper to reshuffle an heightmap with the same shape as the
+ * input.
+ *
+ * @param array Input array.
+ * @param patch_base_shape Patch shape.
+ * @param overlap Patch overlap, in ]0, 1[.
+ * @param seed Random seed number.
+ * @param patch_flip Allow patch flipping (up-down and left-right).
+ * @param patch_rotate Allow patch 90 degree rotation (square patches only).
+ * @param patch_transpose Allow patch tranposition (square patches only).
+ * @param filter_width_ratio Smooth filter width with respect the overlap
+ * length.
+ * @return Synthetized array.
+ *
+ * **Example**
+ * @include ex_quilting.cpp
+ *
+ * **Result**
+ * @image html ex_quilting0.png
+ * @image html ex_quilting1.png
+ * @image html ex_quilting2.png
+ * @image html ex_quilting3.png
+ * @image html ex_quilting4.png
+ */
+Array quilting_shuffle(Array          &array,
+                       hmap::Vec2<int> patch_base_shape,
+                       float           overlap,
+                       uint            seed,
+                       bool            patch_flip = true,
+                       bool            patch_rotate = true,
+                       bool            patch_transpose = true,
+                       float           filter_width_ratio = 0.25f);
 
 /**
  * @brief Generate a vector filled with random values.
@@ -2078,67 +2277,6 @@ Array select_elevation_slope(const Array &array,
 Array select_eq(const Array &array, float value);
 
 /**
- * @brief Return an array with elements equal to 1 where input elements are
- * larger than `value`.
- *
- * @param array Input array.
- * @param value Criteria value.
- * @return Array Output array.
- *
- * **Example**
- * @include ex_select.cpp
- *
- * **Result**
- * @image html ex_select0.png
- * @image html ex_select1.png
- * @image html ex_select2.png
- * @image html ex_select3.png
- * @image html ex_select4.png
- */
-Array select_gt(const Array &array, float value);
-
-/**
- * @brief Return an array with elements equal to 1 where input elements are
- * within the bounds provided.
- *
- * @param array Input array.
- * @param value1 Lower bound.
- * @param value2 Upper bound.
- * @return Array Output array.
- *
- * **Example**
- * @include ex_select.cpp
- *
- * **Result**
- * @image html ex_select0.png
- * @image html ex_select1.png
- * @image html ex_select2.png
- * @image html ex_select3.png
- * @image html ex_select4.png
- */
-Array select_interval(const Array &array, float value1, float value2);
-
-/**
- * @brief Return an array with elements equal to 1 where input elements are
- * smaller than `value`.
- *
- * @param array Input array.
- * @param value Criteria value.
- * @return Array Output array.
- *
- * **Example**
- * @include ex_select.cpp
- *
- * **Result**
- * @image html ex_select0.png
- * @image html ex_select1.png
- * @image html ex_select2.png
- * @image html ex_select3.png
- * @image html ex_select4.png
- */
-Array select_lt(const Array &array, float value);
-
-/**
  * @brief Return an array weighted by the gap between the gradient angle and a
  * given angle.
  *
@@ -2183,6 +2321,85 @@ Array select_gradient_exp(const Array &array,
 Array select_gradient_inv(const Array &array,
                           float        talus_center,
                           float        talus_sigma);
+
+/**
+ * @brief Return an array with elements equal to 1 where input elements are
+ * larger than `value`.
+ *
+ * @param array Input array.
+ * @param value Criteria value.
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_select.cpp
+ *
+ * **Result**
+ * @image html ex_select0.png
+ * @image html ex_select1.png
+ * @image html ex_select2.png
+ * @image html ex_select3.png
+ * @image html ex_select4.png
+ */
+Array select_gt(const Array &array, float value);
+
+/**
+ * @brief Return an array with elements equal to 1 where input elements are
+ * within the bounds provided.
+ *
+ * @param array Input array.
+ * @param value1 Lower bound.
+ * @param value2 Upper bound.
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_select.cpp
+ *
+ * **Result**
+ * @image html ex_select0.png
+ * @image html ex_select1.png
+ * @image html ex_select2.png
+ * @image html ex_select3.png
+ * @image html ex_select4.png
+ */
+Array select_interval(const Array &array, float value1, float value2);
+
+/**
+ * @brief Return an array with positive values if the slope is pointing to the
+ * center (slope is inward), and negative values otherwise (slope is outward).
+ * @param array Input array.
+ * @param center Reference center.
+ * @param bbox Domain bounding box.
+ * @return Output array.
+ *
+ * **Example**
+ * @include ex_select_inward_outward_slope.cpp
+ *
+ * **Result**
+ * @image html ex_select_inward_outward_slope.png
+ */
+Array select_inward_outward_slope(const Array &array,
+                                  Vec2<float>  center = {0.5f, 0.5f},
+                                  Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
+ * @brief Return an array with elements equal to 1 where input elements are
+ * smaller than `value`.
+ *
+ * @param array Input array.
+ * @param value Criteria value.
+ * @return Array Output array.
+ *
+ * **Example**
+ * @include ex_select.cpp
+ *
+ * **Result**
+ * @image html ex_select0.png
+ * @image html ex_select1.png
+ * @image html ex_select2.png
+ * @image html ex_select3.png
+ * @image html ex_select4.png
+ */
+Array select_lt(const Array &array, float value);
 
 /**
  * @brief Return an array filled with non-zero values where the input is in the
@@ -2821,5 +3038,26 @@ void zeroed_edges(Array      &array,
                   float       sigma = 0.25f,
                   Array      *p_noise = nullptr,
                   Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+// --- helpers
+
+/**
+ * @brief Among all the possible cut paths in an array from bottom to top and
+ * find the one with the minimum cost using Dijkstra's algorithm
+ *
+ * @param error Input array.
+ * @param path_i Indices of the path.
+ */
+void find_vertical_cut_path(Array &error, std::vector<int> &path_i);
+
+/**
+ * @brief Generate a smooth mask based on an input cut path (@see
+ * find_vertical_cut_path).
+ *
+ * @param shape Mask shape
+ * @param cut_path_i Vertica cut path indices
+ * @param ir Filtering radius.
+ */
+Array generate_mask(hmap::Vec2<int> shape, std::vector<int> cut_path_i, int ir);
 
 } // namespace hmap

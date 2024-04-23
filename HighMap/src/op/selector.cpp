@@ -116,6 +116,40 @@ Array select_interval(const Array &array, float value1, float value2)
   return c;
 }
 
+Array select_inward_outward_slope(const Array &array,
+                                  Vec2<float>  center,
+                                  Vec4<float>  bbox)
+{
+  Array c = Array(array.shape);
+
+  Vec2<float> shift = {bbox.a, bbox.c};
+  Vec2<float> scale = {bbox.b - bbox.a, bbox.d - bbox.c};
+
+  int ic = (int)((center.x - shift.x) / scale.x * array.shape.x);
+  int jc = (int)((center.y - shift.y) / scale.y * array.shape.y);
+
+  for (int i = 0; i < array.shape.x - 1; i++)
+    for (int j = 0; j < array.shape.y - 1; j++)
+    {
+      float hypot = (float)std::hypot(i - ic, j - jc);
+      if (hypot > 0.f)
+      {
+        float u = (float)(i - ic) / hypot;
+        float v = (float)(j - jc) / hypot;
+
+        // elevation difference along the radial axis (if positive,
+        // the slope is pointing to the center and is inward, otherwise the
+        // slope is pointing outward)
+        float dz = array.get_value_bilinear_at(i, j, u, v) - array(i, j);
+        c(i, j) = dz;
+      }
+    }
+
+  extrapolate_borders(c);
+
+  return c;
+}
+
 Array select_lt(const Array &array, float value)
 {
   Array c = array;

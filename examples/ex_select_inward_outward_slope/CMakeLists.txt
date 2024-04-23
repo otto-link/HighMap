@@ -1,0 +1,2 @@
+add_executable(ex_select_inward_outward_slope ex_select_inward_outward_slope.cpp)
+target_link_libraries(ex_select_inward_outward_slope highmap)

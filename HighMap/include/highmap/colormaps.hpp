@@ -13,6 +13,7 @@
  *
  */
 #pragma once
+#include <vector>
 
 namespace hmap
 {

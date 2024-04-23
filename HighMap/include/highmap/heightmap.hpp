@@ -515,6 +515,12 @@ struct HeightMapRGBA
   void set_sto(Vec2<int> new_shape, Vec2<int> new_tiling, float new_overlap);
 
   /**
+   * @brief Export the RGB heightmap to a 8bit png file.
+   * @param fname File name.
+   */
+  void to_png_8bit(std::string fname);
+
+  /**
    * @brief Export the RGB heightmap to a 16bit png file.
    * @param fname File name.
    */

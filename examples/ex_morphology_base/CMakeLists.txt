@@ -1,0 +1,2 @@
+add_executable(ex_morphology_base ex_morphology_base.cpp)
+target_link_libraries(ex_morphology_base highmap)
