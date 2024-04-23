@@ -1640,11 +1640,11 @@ Array pow(const Array &array, float exp);
 
 /**
  * @brief Synthesize a new heightmap by stitching together small patches of the
- * input heightmap.
+ * input heightmaps.
  *
  * See @cite Efros2001.
  *
- * @param array Input array.
+ * @param p_arrays Reference to the input arrays as a vector.
  * @param patch_base_shape Patch shape.
  * @param tiling Patch tiling.
  * @param overlap Patch overlap, in ]0, 1[.
@@ -1665,23 +1665,23 @@ Array pow(const Array &array, float exp);
  * @image html ex_quilting1.png
  * @image html ex_quilting2.png
  * @image html ex_quilting3.png
+ * @image html ex_quilting4.png
  */
-Array quilting(Array          &array,
-               hmap::Vec2<int> patch_base_shape,
-               hmap::Vec2<int> tiling,
-               float           overlap,
-               uint            seed,
-               bool            patch_flip = true,
-               bool            patch_rotate = true,
-               bool            patch_transpose = true,
-               float           filter_width_ratio = 0.25f);
+Array quilting(std::vector<Array *> p_arrays,
+               hmap::Vec2<int>      patch_base_shape,
+               hmap::Vec2<int>      tiling,
+               float                overlap,
+               uint                 seed,
+               bool                 patch_flip = true,
+               bool                 patch_rotate = true,
+               bool                 patch_transpose = true,
+               float                filter_width_ratio = 0.25f);
 
 /**
- * @brief Synthesize a new heightmap by stitching together small patches of the
- * input heightmap. Wrapper to reshuffle an heightmap with the same shape as the
- * input.
+ * @brief Synthesize a new heightmap by stitching together small patches from a
+ * list of input heightmaps.
  *
- * @param array Input array.
+ * @param array Reference to the input arrays.
  * @param patch_base_shape Patch shape.
  * @param overlap Patch overlap, in ]0, 1[.
  * @param seed Random seed number.
@@ -1700,15 +1700,16 @@ Array quilting(Array          &array,
  * @image html ex_quilting1.png
  * @image html ex_quilting2.png
  * @image html ex_quilting3.png
+ * @image html ex_quilting4.png
  */
-Array quilting_shuffle(Array          &array,
-                       hmap::Vec2<int> patch_base_shape,
-                       float           overlap,
-                       uint            seed,
-                       bool            patch_flip = true,
-                       bool            patch_rotate = true,
-                       bool            patch_transpose = true,
-                       float           filter_width_ratio = 0.25f);
+Array quilting_blend(std::vector<Array *> p_arrays,
+                     hmap::Vec2<int>      patch_base_shape,
+                     float                overlap,
+                     uint                 seed,
+                     bool                 patch_flip = true,
+                     bool                 patch_rotate = true,
+                     bool                 patch_transpose = true,
+                     float                filter_width_ratio = 0.25f);
 
 /**
  * @brief Synthesize a new heightmap by stitching together small patches of the
@@ -1737,6 +1738,7 @@ Array quilting_shuffle(Array          &array,
  * @image html ex_quilting1.png
  * @image html ex_quilting2.png
  * @image html ex_quilting3.png
+ * @image html ex_quilting4.png
  */
 Array quilting_expand(Array          &array,
                       float           expansion_ratio,
@@ -1748,6 +1750,41 @@ Array quilting_expand(Array          &array,
                       bool            patch_rotate = true,
                       bool            patch_transpose = true,
                       float           filter_width_ratio = 0.25f);
+
+/**
+ * @brief Synthesize a new heightmap by stitching together small patches of the
+ * input heightmap. Wrapper to reshuffle an heightmap with the same shape as the
+ * input.
+ *
+ * @param array Input array.
+ * @param patch_base_shape Patch shape.
+ * @param overlap Patch overlap, in ]0, 1[.
+ * @param seed Random seed number.
+ * @param patch_flip Allow patch flipping (up-down and left-right).
+ * @param patch_rotate Allow patch 90 degree rotation (square patches only).
+ * @param patch_transpose Allow patch tranposition (square patches only).
+ * @param filter_width_ratio Smooth filter width with respect the overlap
+ * length.
+ * @return Synthetized array.
+ *
+ * **Example**
+ * @include ex_quilting.cpp
+ *
+ * **Result**
+ * @image html ex_quilting0.png
+ * @image html ex_quilting1.png
+ * @image html ex_quilting2.png
+ * @image html ex_quilting3.png
+ * @image html ex_quilting4.png
+ */
+Array quilting_shuffle(Array          &array,
+                       hmap::Vec2<int> patch_base_shape,
+                       float           overlap,
+                       uint            seed,
+                       bool            patch_flip = true,
+                       bool            patch_rotate = true,
+                       bool            patch_transpose = true,
+                       float           filter_width_ratio = 0.25f);
 
 /**
  * @brief Generate a vector filled with random values.

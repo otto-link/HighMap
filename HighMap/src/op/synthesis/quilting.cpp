@@ -9,17 +9,19 @@
 namespace hmap
 {
 
-Array quilting(Array          &array,
-               hmap::Vec2<int> patch_base_shape,
-               hmap::Vec2<int> tiling,
-               float           overlap,
-               uint            seed,
-               bool            patch_flip,
-               bool            patch_rotate,
-               bool            patch_transpose,
-               float           filter_width_ratio)
+Array quilting(std::vector<Array *> p_arrays,
+               hmap::Vec2<int>      patch_base_shape,
+               hmap::Vec2<int>      tiling,
+               float                overlap,
+               uint                 seed,
+               bool                 patch_flip,
+               bool                 patch_rotate,
+               bool                 patch_transpose,
+               float                filter_width_ratio)
 {
   std::mt19937 gen(seed);
+
+  std::uniform_int_distribution<int> dis_a(0, (int)p_arrays.size() - 1);
 
   hmap::Vec2<int> patch_shape = {(int)(patch_base_shape.x * (1.f + overlap)),
                                  (int)(patch_base_shape.y * (1.f + overlap))};
@@ -45,7 +47,9 @@ Array quilting(Array          &array,
     {
       int i1 = it * patch_base_shape.x;
 
-      Array patch = get_random_patch(array,
+      int array_idx = dis_a(gen);
+
+      Array patch = get_random_patch(*p_arrays[array_idx],
                                      patch_shape,
                                      gen,
                                      patch_flip,
@@ -116,6 +120,34 @@ Array quilting(Array          &array,
   return array_out;
 }
 
+Array quilting_blend(std::vector<Array *> p_arrays,
+                     hmap::Vec2<int>      patch_base_shape,
+                     float                overlap,
+                     uint                 seed,
+                     bool                 patch_flip,
+                     bool                 patch_rotate,
+                     bool                 patch_transpose,
+                     float                filter_width_ratio)
+{
+  Vec2<int> shape = p_arrays.back()->shape;
+
+  Vec2<int> tiling = Vec2<int>((int)(std::ceil(shape.x / patch_base_shape.x)),
+                               (int)(std::ceil(shape.y / patch_base_shape.y)));
+
+  Array array_out = quilting(p_arrays,
+                             patch_base_shape,
+                             tiling,
+                             overlap,
+                             seed,
+                             patch_flip,
+                             patch_rotate,
+                             patch_transpose,
+                             filter_width_ratio);
+
+  // return an array with the same shape as the input
+  return array_out.extract_slice(Vec4<int>(0, shape.x, 0, shape.y));
+}
+
 Array quilting_expand(Array          &array,
                       float           expansion_ratio,
                       hmap::Vec2<int> patch_base_shape,
@@ -145,7 +177,7 @@ Array quilting_expand(Array          &array,
         (int)(std::ceil(array.shape.x / patch_base_shape_work.x)),
         (int)(std::ceil(array.shape.y / patch_base_shape_work.y)));
 
-    Array array_out = quilting(array_work,
+    Array array_out = quilting({&array_work},
                                patch_base_shape_work,
                                tiling,
                                overlap,
@@ -169,7 +201,7 @@ Array quilting_expand(Array          &array,
         (int)(std::ceil(expanded_shape.x / patch_base_shape.x)),
         (int)(std::ceil(expanded_shape.y / patch_base_shape.y)));
 
-    Array array_out = quilting(array,
+    Array array_out = quilting({&array},
                                patch_base_shape,
                                tiling,
                                overlap,
@@ -197,7 +229,7 @@ Array quilting_shuffle(Array          &array,
       (int)(std::ceil(array.shape.x / patch_base_shape.x)),
       (int)(std::ceil(array.shape.y / patch_base_shape.y)));
 
-  Array array_out = quilting(array,
+  Array array_out = quilting({&array},
                              patch_base_shape,
                              tiling,
                              overlap,

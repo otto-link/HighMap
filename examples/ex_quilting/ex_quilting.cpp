@@ -7,6 +7,10 @@ int main(void)
   int               seed = 1;
 
   auto z = hmap::noise_fbm(hmap::NoiseType::n_perlin, shape, kw, seed);
+  auto zw = hmap::noise_fbm(hmap::NoiseType::n_worley, shape, kw, ++seed);
+
+  hmap::remap(z);
+  hmap::remap(zw);
 
   float           ratio = 0.25f;
   hmap::Vec2<int> patch_shape = {(int)(ratio * shape.x),
@@ -14,10 +18,17 @@ int main(void)
   hmap::Vec2<int> tiling = {4, 4};
   float           overlap = 0.9f;
 
-  // base function
-  hmap::Array zq = hmap::quilting(z, patch_shape, tiling, overlap, ++seed);
+  // base function, a list of array can be provided as a source of
+  // patches
+  std::vector<hmap::Array *> input_p_arrays = {&z, &zw};
 
-  zq.to_png("ex_quilting0.png", hmap::cmap::magma);
+  hmap::Array zq = hmap::quilting(input_p_arrays,
+                                  patch_shape,
+                                  tiling,
+                                  overlap,
+                                  ++seed);
+
+  zq.to_png("ex_quilting0.png", hmap::cmap::magma, true);
 
   // wrapper / shuffle
   hmap::Array zs0 = hmap::quilting_shuffle(z, patch_shape, overlap, ++seed);
@@ -60,6 +71,17 @@ int main(void)
 
   hmap::export_banner_png("ex_quilting3.png",
                           {z, ze1, ze2},
+                          hmap::cmap::terrain,
+                          true);
+
+  // wrapper / blend
+  hmap::Array zb = hmap::quilting_blend({&z, &zw},
+                                        patch_shape,
+                                        overlap,
+                                        ++seed);
+
+  hmap::export_banner_png("ex_quilting4.png",
+                          {z, zw, zb},
                           hmap::cmap::terrain,
                           true);
 }
