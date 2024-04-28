@@ -168,8 +168,13 @@ Array make_periodic_stitching(Array &array, float overlap)
                              mask(i, j));
   }
 
-  array_p = array_p.extract_slice(
-      Vec4<int>(0, array.shape.x - noverlap.x, 0, array.shape.y - noverlap.y));
+  int nx = (int)(0.5f * noverlap.x);
+  int ny = (int)(0.5f * noverlap.y);
+
+  array_p = array_p.extract_slice(Vec4<int>(nx,
+                                            array.shape.x - noverlap.x + nx,
+                                            ny,
+                                            array.shape.y - noverlap.y + ny));
 
   array_p = array_p.resample_to_shape(shape);
 
