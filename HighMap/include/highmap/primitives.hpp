@@ -312,8 +312,6 @@ Array noise(NoiseType   noise_type,
  * @param shape Array shape.
  * @param kw Noise wavenumbers {kx, ky} for each directions.
  * @param seed Random seed number.
- * @param ratio Amplitude ratio between each Worley noise.
- * @param k Transition smoothing parameter.
  * @param octaves Number of octaves.
  * @param weigth Octave weighting.
  * @param persistence Octave persistence.
@@ -351,8 +349,6 @@ Array noise_fbm(NoiseType   noise_type,
  * @param shape Array shape.
  * @param kw Noise wavenumbers {kx, ky} for each directions.
  * @param seed Random seed number.
- * @param ratio Amplitude ratio between each Worley noise.
- * @param k Transition smoothing parameter.
  * @param octaves Number of octaves.
  * @param weigth Octave weighting.
  * @param persistence Octave persistence.
@@ -392,8 +388,6 @@ Array noise_iq(NoiseType   noise_type,
  * @param shape Array shape.
  * @param kw Noise wavenumbers {kx, ky} for each directions.
  * @param seed Random seed number.
- * @param ratio Amplitude ratio between each Worley noise.
- * @param k Transition smoothing parameter.
  * @param octaves Number of octaves.
  * @param weigth Octave weighting.
  * @param persistence Octave persistence.
@@ -439,8 +433,6 @@ Array noise_jordan(NoiseType   noise_type,
  * @param shape Array shape.
  * @param kw Noise wavenumbers {kx, ky} for each directions.
  * @param seed Random seed number.
- * @param ratio Amplitude ratio between each Worley noise.
- * @param k Transition smoothing parameter.
  * @param octaves Number of octaves.
  * @param weigth Octave weighting.
  * @param persistence Octave persistence.
@@ -478,8 +470,6 @@ Array noise_pingpong(NoiseType   noise_type,
  * @param shape Array shape.
  * @param kw Noise wavenumbers {kx, ky} for each directions.
  * @param seed Random seed number.
- * @param ratio Amplitude ratio between each Worley noise.
- * @param k Transition smoothing parameter.
  * @param octaves Number of octaves.
  * @param weigth Octave weighting.
  * @param persistence Octave persistence.
@@ -519,8 +509,6 @@ Array noise_ridged(NoiseType   noise_type,
  * @param shape Array shape.
  * @param kw Noise wavenumbers {kx, ky} for each directions.
  * @param seed Random seed number.
- * @param ratio Amplitude ratio between each Worley noise.
- * @param k Transition smoothing parameter.
  * @param octaves Number of octaves.
  * @param weigth Octave weighting.
  * @param persistence Octave persistence.

@@ -138,24 +138,19 @@ std::vector<uint8_t> colorize_grayscale(const Array &array,
 std::vector<uint8_t> colorize_histogram(const Array &array,
                                         Vec2<int>    step = {1, 1});
 
-// /**
-//  * @brief Convert 3 array element values to a color data (3 channels RGB in
-//  [0,
-//  * 255]) use a multivariate colormap.
-//  *
-//  * @param c0 First array.
-//  * @param c1 Second array.
-//  * @param c2 Third array.
-//  * @param clut Colormap Lookup Table object.
-//  * @param hillshading Activate hillshading.
-//  * @return std::vector<uint8_t> Vector containing colors (size : shape[0] *
-//  * shape[1] * 3 channels for RGB).
-//  */
-// std::vector<uint8_t> colorize_trivariate(const Array &c0,
-//                                          const Array &c1,
-//                                          const Array &c2,
-//                                          Clut3D      &clut,
-//                                          bool         hillshading);
+/**
+ * @brief Export a pair of arrays to a 8 bit colored image.
+ * @param array1 Input array.
+ * @param array2 Input array.
+ * @return Output image.
+ *
+ * **Example**
+ * @include ex_colorize_vec2.cpp
+ *
+ * **Result**
+ * @image html ex_colorize_vec2.png
+ */
+std::vector<uint8_t> colorize_vec2(const Array &array1, const Array &array2);
 
 void convert_rgb_to_ryb(Array &r,
                         Array &g,

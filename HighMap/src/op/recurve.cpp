@@ -5,7 +5,7 @@
 #include <cmath>
 #include <random>
 
-#include "Interpolate.hpp"
+#include "libInterpolate/Interpolate.hpp"
 #include "macrologger.h"
 
 #include "highmap/array.hpp"

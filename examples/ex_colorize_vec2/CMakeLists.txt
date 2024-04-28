@@ -1,0 +1,2 @@
+add_executable(ex_colorize_vec2 ex_colorize_vec2.cpp)
+target_link_libraries(ex_colorize_vec2 highmap)

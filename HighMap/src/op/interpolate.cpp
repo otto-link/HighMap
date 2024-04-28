@@ -2,8 +2,8 @@
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
 
-#include "Interpolate.hpp"
-#include "AnyInterpolator.hpp"
+#include "libInterpolate/Interpolate.hpp"
+#include "libInterpolate/AnyInterpolator.hpp"
 #include "macrologger.h"
 
 #include "highmap/array.hpp"

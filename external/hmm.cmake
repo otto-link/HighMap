@@ -11,3 +11,5 @@ add_library(${PROJECT_NAME} STATIC ${HMM_SRC})
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${HMM_INCLUDE_DIR})
+
+target_link_libraries(${PROJECT_NAME} glm::glm)
