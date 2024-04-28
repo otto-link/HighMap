@@ -91,6 +91,7 @@ void make_periodic(Array &array, int nbuffer)
   for (int i = 0; i < nbuffer; i++)
   {
     float r = 0.5f * (float)i / ((float)nbuffer - 1.f);
+    r = 0.5f * smoothstep3(2.f * r);
     for (int j = 0; j < nj; j++)
     {
       a1(i, j) = (0.5f + r) * array(i, j) + (0.5f - r) * array(ni - 1 - i, j);
@@ -103,6 +104,7 @@ void make_periodic(Array &array, int nbuffer)
   for (int j = 0; j < nbuffer; j++)
   {
     float r = 0.5f * (float)j / ((float)nbuffer - 1);
+    r = 0.5f * smoothstep3(2.f * r);
     for (int i = 0; i < ni; i++)
     {
       a2(i, j) = (0.5 + r) * a1(i, j) + (0.5 - r) * a1(i, nj - 1 - j);
