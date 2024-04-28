@@ -4,7 +4,7 @@
 #include <future>
 #include <thread>
 
-#include "Interpolate.hpp"
+#include "libInterpolate/Interpolate.hpp"
 #include "macrologger.h"
 
 #include "highmap/heightmap.hpp"

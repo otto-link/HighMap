@@ -3,9 +3,9 @@
  * this software. */
 #include <cmath>
 
-#include "AnyInterpolator.hpp"
 #include "FastNoiseLite.h"
-#include "Interpolate.hpp"
+#include "libInterpolate/AnyInterpolator.hpp"
+#include "libInterpolate/Interpolate.hpp"
 
 #include "highmap/noise_function.hpp"
 #include "highmap/primitives.hpp"

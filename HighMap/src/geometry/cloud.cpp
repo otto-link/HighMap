@@ -7,8 +7,8 @@
 #include <iomanip>
 #include <string>
 
-#include "AnyInterpolator.hpp"
-#include "Interpolate.hpp"
+#include "libInterpolate/AnyInterpolator.hpp"
+#include "libInterpolate/Interpolate.hpp"
 #include "macrologger.h"
 
 #include "highmap/geometry.hpp"

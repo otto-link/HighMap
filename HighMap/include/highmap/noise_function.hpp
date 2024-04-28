@@ -15,9 +15,9 @@
 #pragma once
 #include <functional>
 
-#include "AnyInterpolator.hpp"
 #include "FastNoiseLite.h"
-#include "Interpolate.hpp"
+#include "libInterpolate/AnyInterpolator.hpp"
+#include "libInterpolate/Interpolate.hpp"
 #include "macrologger.h"
 
 #include "highmap/op.hpp"
