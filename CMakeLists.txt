@@ -30,6 +30,7 @@ find_package(Eigen3 REQUIRED)
 find_package(GSL REQUIRED COMPONENTS gsl gslcblas)
 find_package(PNG REQUIRED) # libpng
 find_package(assimp REQUIRED)
+find_package(glm REQUIRED) # by hmm
 
 if(HIGHMAP_ENABLE_OPENCL)
   find_package(OpenCL REQUIRED)
