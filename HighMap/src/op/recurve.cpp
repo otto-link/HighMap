@@ -183,11 +183,8 @@ void saturate(Array &array,
               float  from_max,
               float  k)
 {
-  float min_bckp = array.min();
-  float max_bckp = array.max();
-
   clamp_smooth(array, vmin, vmax, k);
-  remap(array, min_bckp, max_bckp, from_min, from_max);
+  remap(array, from_min, from_max, vmin, vmax);
 }
 
 void saturate(Array &array, float vmin, float vmax, float k)
