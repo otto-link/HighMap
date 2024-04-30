@@ -2204,6 +2204,32 @@ void rotate(Array &array, float angle);
 Array rugosity(const Array &z, int ir);
 
 /**
+ * @brief Saturate the array values based on the input interval [vmin, vmax]
+ * (the output amplitude is not modified).
+ *
+ * @param array Input array.
+ * @param vmin The lower bound of the range to remap to.
+ * @param vmax The lower bound of the range to remap to.
+ * @param from_min The lower bound of the range to remap from.
+ * @param from_max The upper bound of the range to remap from.
+ *
+ * **Example**
+ * @include ex_saturate.cpp
+ *
+ * **Result**
+ * @image html ex_saturate.png
+ */
+void saturate(Array &array,
+              float  vmin,
+              float  vmax,
+              float  from_min,
+              float  from_max,
+              float  k);
+
+void saturate(Array &array, float vmin, float vmax,
+              float k); ///< @overload
+
+/**
  * @brief Return blob detection using the Laplacian of Gaussian (LoG) approach.
  *
  * @param array Input array.
