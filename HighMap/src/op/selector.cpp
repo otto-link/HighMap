@@ -30,7 +30,7 @@ Array scan_mask(const Array &array, float contrast, float brightness)
 
   array_out = smoothstep3(array_out);
 
-  remap(array_out);
+  remap(array_out, 0.f, 1.f, 0.f, 1.f);
 
   return array_out;
 }
