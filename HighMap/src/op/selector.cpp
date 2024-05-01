@@ -13,6 +13,28 @@
 namespace hmap
 {
 
+Array scan_mask(const Array &array, float contrast, float brightness)
+{
+  brightness *= 0.5f;
+  float low = std::clamp(contrast - brightness, 0.f, 1.f);
+  float high = std::clamp(contrast + brightness, 0.f, 1.f);
+
+  contrast = contrast * 2.f - 1.f;
+
+  Array array_out = array + contrast;
+
+  clamp(array_out);
+
+  array_out -= low;
+  array_out *= (high - low);
+
+  array_out = smoothstep3(array_out);
+
+  remap(array_out);
+
+  return array_out;
+}
+
 Array select_blob_log(const Array &array, int ir)
 {
   Array c = array;

@@ -1,0 +1,2 @@
+add_executable(ex_scan_mask ex_scan_mask.cpp)
+target_link_libraries(ex_scan_mask highmap)

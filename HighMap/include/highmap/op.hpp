@@ -2230,6 +2230,26 @@ void saturate(Array &array, float vmin, float vmax,
               float k); ///< @overload
 
 /**
+ * @brief Mask adjustement using a 'scanning' method.
+ *
+ * See https://www.shadertoy.com/view/stjSRR
+ *
+ * @param array Input array.
+ * @param contrast Contrast.
+ * @param brightness Brightness.
+ * @return Ouput array.
+ *
+ * **Example**
+ * @include ex_scan_mask.cpp
+ *
+ * **Result**
+ * @image html ex_scan_mask.png
+ */
+Array scan_mask(const Array &array,
+                float        contrast = 0.5f,
+                float        brightness = 0.5f);
+
+/**
  * @brief Return blob detection using the Laplacian of Gaussian (LoG) approach.
  *
  * @param array Input array.
