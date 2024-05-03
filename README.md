@@ -5,7 +5,7 @@ A C++ library to generate two-dimensional terrain heightmaps for software render
 >[!WARNING] 
 > Work in progress, use at your own risk!
 
-![home_hmap_preview_render](https://github.com/otto-link/HighMap/assets/121820229/4451f45b-c74e-4a06-9431-9302477a12c5)
+<p align="center"><img src="https://github.com/otto-link/HighMap/assets/121820229/4451f45b-c74e-4a06-9431-9302477a12c5" width="512"></p>
 
 ## License
 
