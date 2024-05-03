@@ -2,15 +2,10 @@
 
 A C++ library to generate two-dimensional terrain heightmaps for software rendering or video games. HighMap is the core solver of the [Hesiod](https://github.com/otto-link/Hesiod) GUI.
 
+>[!WARNING] 
+> Work in progress, use at your own risk!
 
 ![home_hmap_preview_render](https://github.com/otto-link/HighMap/assets/121820229/4451f45b-c74e-4a06-9431-9302477a12c5)
-
-
-## Warning 
-
-Work in progress, use at your own risk!
-
-![WS310836__67171](https://github.com/otto-link/HighMap/assets/121820229/43dd1f39-06a3-4c32-955a-cf2609a58f17)
 
 ## License
 
