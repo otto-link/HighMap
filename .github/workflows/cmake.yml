@@ -73,6 +73,8 @@ jobs:
         -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
         -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
         -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+        -DHIGHMAP_ENABLE_DOCS=OFF
+        -DHIGHMAP_ENABLE_EXAMPLES=OFF
         -S ${{ github.workspace }}
 
     - name: Build
