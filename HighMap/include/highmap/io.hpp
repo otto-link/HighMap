@@ -99,6 +99,21 @@ static std::map<AssetExportFormat, std::vector<std::string>>
 // clang-format on
 
 /**
+ * @brief Apply hillshading to an image.
+ *
+ * @param img Input image.
+ * @param array Elevation array.
+ * @param exponent Power exponent applied to the hillshade values.
+ * @param is_img_rgba Whether the input image as an alpha channel or not.
+ */
+void apply_hillshade(std::vector<uint8_t> &img,
+                     const hmap::Array    &array,
+                     float                 vmin = 0.f,
+                     float                 vmax = 1.f,
+                     float                 exponent = 1.f,
+                     bool                  is_img_rgba = false);
+
+/**
  * @brief Convert array element values to a color data (3 channels RGB in [0,
  * 255]).
  *
