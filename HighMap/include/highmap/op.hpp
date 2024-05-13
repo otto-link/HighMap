@@ -379,28 +379,6 @@ void clamp_smooth(Array &array, float vmin, float vmax, float k = 0.2f);
 Array closing(const Array &array, int ir);
 
 /**
- * @brief Return the connected-component labelling of the array.
- *
- * See https://en.wikipedia.org/wiki/Connected-component_labeling.
- *
- * @param array Input array.
- * @param surface_threshold Surface threshold (in number of pixels): if not set
- * to zero, components with a surface smaller than the threshold are removed.
- * @param background_value Background value.
- * @return Array Resulting array.
- *
- * **Example**
- * @include ex_connected_components.cpp
- *
- * **Result**
- * @image html ex_connected_components0.png
- * @image html ex_connected_components1.png
- */
-Array connected_components(const Array &array,
-                           float        surface_threshold = 0.f,
-                           float        background_value = 0.f);
-
-/**
  * @brief Return the convolution product of the array with a 1D kernel (row, 'i'
  * direction).
  *
@@ -513,38 +491,6 @@ Array convolve2d_svd_rotated_kernel(const Array &z,
  * @return Array Reference to the current object.
  */
 Array cos(const Array &array);
-
-/**
- * @brief Return the Gaussian curvature @cite Kurita1992.
- *
- * @param z Input array.
- * @return Array Resulting array.
- *
- * **Example**
- * @include ex_curvature_gaussian.cpp
- *
- * **Result**
- * @image html ex_curvature_gaussian0.png
- * @image html ex_curvature_gaussian1.png
- * @image html ex_curvature_gaussian2.png
- */
-Array curvature_gaussian(const Array &z);
-
-/**
- * @brief Return the mean curvature @cite Kurita1992.
- *
- * @param z Input array.
- * @return Array Resulting array.
- *
- * **Example**
- * @include ex_curvature_gaussian.cpp
- *
- * **Result**
- * @image html ex_curvature_gaussian0.png
- * @image html ex_curvature_gaussian1.png
- * @image html ex_curvature_gaussian2.png
- */
-Array curvature_mean(const Array &z);
 
 /**
  * @brief Apply a dilation algorithm to the input array using a square
@@ -892,25 +838,6 @@ void gamma_correction_local(Array &array,
 Array generate_buffered_array(const Array &array, Vec4<int> buffers);
 
 /**
- * @brief Return the labelling of a geomorphons-based classification @cite
- * Jasiewicz2013.
- *
- * @param array Input array.
- * @param irmin Minimum lookup radius (in pixels).
- * @param irmax Maximum lookup radius (in pixels).
- * @param epsilon Slope tolerance defining 'flatness'.
- * @return Array Output array.
- *
- * **Example**
- * @include ex_geomorphons.cpp
- *
- * **Result**
- * @image html ex_geomorphons0.png
- * @image html ex_geomorphons1.png
- */
-Array geomorphons(const Array &array, int irmin, int irmax, float epsilon);
-
-/**
  * @brief Return the gradient of a vector.
  *
  * @param v Input vector.
@@ -1076,38 +1003,6 @@ Array hypot(const Array &array1, const Array &array2);
 Array inpainting_diffusion(const Array &array,
                            const Array &mask,
                            int          iterations);
-
-/**
- * @brief Return the labelling of each cell of the array based on a k-means
- * clustering, with two arrays of input data.
- *
- * @param array1 Input array #1.
- * @param array2 Input array #2.
- * @param nclusters Number of clusters.
- * @param weights Feature weights.
- * @param seed Random seed number.
- * @return Array Resulting label array.
- *
- * **Example**
- * @include ex_kmeans_clustering.cpp
- *
- * **Result**
- * @image html ex_kmeans_clustering0.png
- * @image html ex_kmeans_clustering1.png
- * @image html ex_kmeans_clustering2.png
- */
-Array kmeans_clustering2(const Array &array1,
-                         const Array &array2,
-                         int          nclusters,
-                         Vec2<float>  weights = {1.f, 1.f},
-                         uint         seed = 1);
-
-Array kmeans_clustering3(const Array &array1,
-                         const Array &array2,
-                         const Array &array3,
-                         int          nclusters,
-                         Vec3<float>  weights = {1.f, 1.f, 1.f},
-                         uint         seed = 1); ///< @overload
 
 /**
  * @brief Apply a low-pass Laplace filter.
@@ -2092,21 +1987,6 @@ void recurve_smoothstep_rational(Array &array, float n);
 void recurve_smoothstep_rational(Array &array, float n, Array *p_mask);
 
 /**
- * @brief Return the relative elevation within a a radius `ir`.
- *
- * @param array Input array.
- * @param ir Lookup radius, in pixels.
- * @return Array Relative elevation, in [0, 1].
- *
- * **Example**
- * @include relative_elevation.cpp
- *
- * **Result**
- * @image html relative_elevation.png
- */
-Array relative_elevation(const Array &array, int ir);
-
-/**
  * @brief Remap array elements from a starting range to a target range.
  *
  * By default the starting range is taken to be [min(), max()] of the input
@@ -2186,22 +2066,6 @@ void rot90(Array &array);
  * @image html ex_rotate.png
  */
 void rotate(Array &array, float angle);
-
-/**
- * @brief Return rugosity estimate (based on the skewness).
- *
- * @param z Input array.
- * @param ir Square kernel footprint radius.
- * @return Array Resulting array.
- *
- * **Example**
- * @include ex_rugosity.cpp
- *
- * **Result**
- * @image html ex_rugosity0.png
- * @image html ex_rugosity1.png
- */
-Array rugosity(const Array &z, int ir);
 
 /**
  * @brief Saturate the array values based on the input interval [vmin, vmax]
@@ -2928,23 +2792,6 @@ Array topographic_shading(const Array &z,
                           float        azimuth,
                           float        zenith,
                           float        talus_ref = 1.f);
-
-/**
- * @brief Return the "valley width", corresponding to the distance to the
- * concave region frontier (in this concave frontier).
- *
- * @param z Input array.
- * @param ir Filter radius.
- * @return Array Resulting array.
- *
- * **Example**
- * @include ex_valley_width.cpp
- *
- * **Result**
- * @image html ex_valley_width0.png
- * @image html ex_valley_width1.png
- */
-Array valley_width(const Array &z, int ir = 0);
 
 /**
  * @brief Apply a warping effect to the array.

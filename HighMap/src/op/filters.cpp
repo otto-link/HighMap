@@ -9,6 +9,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/erosion.hpp"
+#include "highmap/features.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"

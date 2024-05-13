@@ -18,6 +18,7 @@
 #include "highmap/authoring.hpp"
 #include "highmap/colormaps.hpp"
 #include "highmap/erosion.hpp"
+#include "highmap/features.hpp"
 #include "highmap/geometry.hpp"
 #include "highmap/gpu.hpp"
 #include "highmap/heightmap.hpp"
