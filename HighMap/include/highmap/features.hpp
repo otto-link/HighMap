@@ -52,6 +52,7 @@ Array connected_components(const Array &array,
  * @image html ex_curvature_gaussian0.png
  * @image html ex_curvature_gaussian1.png
  * @image html ex_curvature_gaussian2.png
+ * @image html ex_curvature_gaussian3.png
  */
 Array curvature_gaussian(const Array &z);
 
@@ -68,6 +69,7 @@ Array curvature_gaussian(const Array &z);
  * @image html ex_curvature_gaussian0.png
  * @image html ex_curvature_gaussian1.png
  * @image html ex_curvature_gaussian2.png
+ * @image html ex_curvature_gaussian3.png
  */
 Array curvature_mean(const Array &z);
 
@@ -154,11 +156,33 @@ Array relative_elevation(const Array &array, int ir);
 Array rugosity(const Array &z, int ir);
 
 /**
+ * @brief The Shape Index (SI) is a measure used to quantify the shape
+ * complexity of landforms in a DEM. It is calculated based on the second
+ * derivatives of the elevation surface.
+ *
+ * See @cite Florinsky2011
+ *
+ * @param z Input array.
+ * @param ir Pre-filter radius.
+ * @return Resulting array (> 0.5 for convex and < 0.5 for concave).
+ *
+ * **Example**
+ * @include ex_curvature_gaussian.cpp
+ *
+ * **Result**
+ * @image html ex_curvature_gaussian0.png
+ * @image html ex_curvature_gaussian1.png
+ * @image html ex_curvature_gaussian2.png
+ * @image html ex_curvature_gaussian3.png
+ */
+Array shape_index(const Array &z, int ir);
+
+/**
  * @brief Return the "valley width", corresponding to the distance to the
  * concave region frontier (in this concave frontier).
  *
  * @param z Input array.
- * @param ir Filter radius.
+ * @param ir Pre-filter radius.
  * @return Array Resulting array.
  *
  * **Example**

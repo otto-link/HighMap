@@ -121,33 +121,6 @@ Array connected_components(const Array &array,
   return labels;
 }
 
-Array curvature_gaussian(const Array &z)
-{
-  Array k = Array(z.shape); // output
-  Array zx = gradient_x(z);
-  Array zy = gradient_y(z);
-  Array zxx = gradient_x(zx);
-  Array zxy = gradient_y(zx);
-  Array zyy = gradient_y(zy);
-
-  k = (zxx * zyy - pow(zxy, 2.f)) / pow(1.f + pow(zx, 2.f) + pow(zy, 2.f), 2.f);
-  return k;
-}
-
-Array curvature_mean(const Array &z)
-{
-  Array h = Array(z.shape); // output
-  Array zx = gradient_x(z);
-  Array zy = gradient_y(z);
-  Array zxx = gradient_x(zx);
-  Array zxy = gradient_y(zx);
-  Array zyy = gradient_y(zy);
-
-  h = (zxx * (1.f + zy * zy) - 2.f * zxy * zx * zy + zyy * (1.f + zx * zx)) *
-      0.5f / pow(1.f + zx * zx + zy * zy, 1.5f);
-  return h;
-}
-
 Array kmeans_clustering2(const Array &array1,
                          const Array &array2,
                          int          nclusters,
@@ -306,17 +279,6 @@ Array rugosity(const Array &z, int ir)
   clamp_min(z_skw, 0.f);
 
   return z_skw;
-}
-
-Array valley_width(const Array &z, int ir)
-{
-  Array vw = z;
-  if (ir > 0)
-    smooth_cpulse(vw, ir);
-
-  vw = curvature_mean(-vw);
-  vw = distance_transform(vw);
-  return vw;
 }
 
 } // namespace hmap
