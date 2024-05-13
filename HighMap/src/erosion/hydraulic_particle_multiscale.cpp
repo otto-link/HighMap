@@ -8,6 +8,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/erosion.hpp"
+#include "highmap/math.hpp"
 #include "highmap/op.hpp"
 #include "highmap/pyramid.hpp"
 

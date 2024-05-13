@@ -3,7 +3,7 @@
  * this software. */
 
 /**
- * @file op.hpp
+ * @file features.hpp
  * @author Otto Link (otto.link.bv@gmail.com)
  * @brief
  * @version 0.1

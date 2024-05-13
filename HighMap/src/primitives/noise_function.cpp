@@ -7,6 +7,7 @@
 #include "libInterpolate/AnyInterpolator.hpp"
 #include "libInterpolate/Interpolate.hpp"
 
+#include "highmap/math.hpp"
 #include "highmap/noise_function.hpp"
 #include "highmap/primitives.hpp"
 

@@ -3,6 +3,7 @@
  * this software. */
 #include <cmath>
 
+#include "highmap/math.hpp"
 #include "highmap/noise_function.hpp"
 
 namespace hmap

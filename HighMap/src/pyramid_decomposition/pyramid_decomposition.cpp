@@ -5,6 +5,7 @@
 #include "highmap/array.hpp"
 #include "highmap/dbg.hpp"
 #include "highmap/io.hpp"
+#include "highmap/math.hpp"
 #include "highmap/op.hpp"
 #include "highmap/pyramid.hpp"
 

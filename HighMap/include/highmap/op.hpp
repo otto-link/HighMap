@@ -15,13 +15,6 @@
 #pragma once
 #include "highmap/geometry.hpp"
 
-#ifndef M_PI
-#define M_PI 3.14159265358979323846
-#define M_PI_2 1.57079632679489661923
-#define M_SQRT2 1.41421356237309504880
-#define M_SQRT1_2 0.707106781186547524401
-#endif
-
 namespace hmap
 {
 
@@ -34,56 +27,6 @@ enum neighborhood : int
   von_neumann, ///< Von Neuman
   cross        ///< cross-shaped neighborhood (only diagonals)
 };
-
-/**
- * @brief Return the absolute value of the array elements.
- *
- * @param array Input array.
- * @return Array Output array.
- */
-Array abs(const Array &array);
-
-/**
- * @brief Return the smooth absolute value of the array elements.
- *
- * @param array Input array.
- * @param k Smoothing coefficient.
- * @param vshift Reference value for the "zero" value of the absolute value
- * (default is zero).
- * @return Array Output array.
- *
- * **Example**
- * @include ex_abs_smooth.cpp
- *
- * **Result**
- * @image html ex_abs_smooth.png
- */
-Array abs_smooth(const Array &array, float mu, const Array &vshift);
-Array abs_smooth(const Array &array, float mu, float vshift); ///< @overload
-Array abs_smooth(const Array &array, float mu);               ///< @overload
-float abs_smooth(const float a, float mu);                    ///< @overload
-
-/**
- * @brief Return the almost unit identity function.
- *
- * Function that maps the unit interval to itself with zero derivative at 0 and
- * "one" derivative at 1 (see <a
- * href=https://iquilezles.org/articles/functions/>Inigo Quilez's articles</a>).
- *
- * @param array Input array.
- * @return Array Output array.
- */
-Array almost_unit_identity(const Array &array);
-float almost_unit_identity(const float x); ///< @overload
-
-/**
- * @brief Return the almost unit identity function (with a second-order
- * derivative equals 0 at x = 1 also to avoid discontinuities in some cases)
- *
- * @param x Input.
- * @return float Output.
- */
-float almost_unit_identity_c2(const float x);
 
 /**
  * @brief Point-wise alteration: locally enforce a new elevation value while
@@ -111,48 +54,6 @@ void alter_elevation(Array      &array,
                      float       footprint_ratio = 1.f,
                      Vec2<float> shift = {0.f, 0.f},
                      Vec2<float> scale = {1.f, 1.f});
-
-/**
- * @brief Return the approximate hypothenuse of two numbers.
- *
- * @param a a
- * @param b a
- * @return float ~sqrt(a**2 + b**2)
- */
-inline float approx_hypot(float a, float b)
-{
-  a = std::abs(a);
-  b = std::abs(b);
-  if (a > b)
-    std::swap(a, b);
-  return 0.414 * a + b;
-}
-
-/**
- * @brief Return the approximate inverse square root of a number.
- *
- * @param a a
- * @return float ~1/sqrt(a)
- */
-inline float approx_rsqrt(float a)
-{
-  union
-  {
-    float    f;
-    uint32_t i;
-  } conv = {.f = a};
-  conv.i = 0x5f3759df - (conv.i >> 1);
-  conv.f *= 1.5F - (a * 0.5F * conv.f * conv.f);
-  return conv.f;
-}
-
-/**
- * @brief Return the arctan of the array elements.
- *
- * @param array Input array.
- * @return Array Reference to the current object.
- */
-Array atan(const Array &array);
 
 /**
  * @brief Return the bilinear interpolated value based on four input values.
@@ -485,14 +386,6 @@ Array convolve2d_svd_rotated_kernel(const Array &z,
                                     uint         seed = 1);
 
 /**
- * @brief Return the cosine of the array elements.
- *
- * @param array Input array.
- * @return Array Reference to the current object.
- */
-Array cos(const Array &array);
-
-/**
  * @brief Apply a dilation algorithm to the input array using a square
  * structure.
  * @param array Input array.
@@ -550,14 +443,6 @@ void equalize(Array &array, Array *p_mask); ///< @overload
  * @image html ex_morphology_base.png
  */
 Array erosion(const Array &array, int ir);
-
-/**
- * @brief Return the exponantial of the array elements.
- *
- * @param array Input array.
- * @return Array Reference to the current object.
- */
-Array exp(const Array &array);
 
 /**
  * @brief Apply expanding, or "inflating", to emphasize the bulk of the terrain.
@@ -935,21 +820,6 @@ Array gradient_y(const Array &array);
 void gradient_y(const Array &array, Array &dy); ///< @overload
 
 /**
- * @brief Return the Gaussian of the array elements.
- *
- * @param array Input array.
- * @param sigma Gaussian half-width.
- * @return Array Reference to the current object.
- *
- * **Example**
- * @include ex_gaussian_decay.cpp
- *
- * **Result**
- * @image html ex_gaussian_decay.png
- */
-Array gaussian_decay(const Array &array, float sigma);
-
-/**
  * @brief Return the shaded relief map (or hillshading).
  *
  * @param z Input array.
@@ -972,18 +842,6 @@ Array hillshade(const Array &z,
                 float        azimuth,
                 float        zenith,
                 float        talus_ref = 1.f);
-
-/**
- * @brief Return the square root of the sum of the squares of the two input
- * arrays.
- *
- * @relates Map
- *
- * @param array1 First array.
- * @param array2 Second array.
- * @return Array Hypothenuse.
- */
-Array hypot(const Array &array1, const Array &array2);
 
 /**
  * @brief Apply diffusion-based inpainting to fill a region (defined by mask) of
@@ -1072,20 +930,6 @@ void laplace_edge_preserving(Array &array,
 Array laplacian(const Array &array);
 
 /**
- * @brief Return the linear interpolation between two arrays by a parameter t.
- *
- * @param array1 First array.
- * @param array2 Second array.
- * @param t Interpolation parameter (in [0, 1]).
- * @return Array Interpolated array.
- */
-Array lerp(const Array &array1, const Array &array2, const Array &t);
-
-Array lerp(const Array &array1, const Array &array2, float t); ///< @overload
-
-float lerp(const float a, const float b, float t); ///< @overload
-
-/**
  * @brief Return evenly spaced numbers over a specified interval.
  *
  * @see linspace_jittered
@@ -1120,14 +964,6 @@ std::vector<float> linspace_jitted(float start,
                                    float ratio,
                                    int   seed,
                                    bool  endpoint = true);
-
-/**
- * @brief Return the log10 of the array elements.
- *
- * @param array Input array.
- * @return Array Reference to the current object.
- */
-Array log10(const Array &array);
 
 /**
  * @brief Apply a low-pass high-order filter (5, 7 or 9th-order).
@@ -1524,14 +1360,6 @@ Array opening(const Array &array, int ir);
  */
 void plateau(Array &array, Array *p_mask, int ir, float factor);
 void plateau(Array &array, int ir, float factor); ///< @overload
-
-/**
- * @brief Return the array elements raised to the power 'exp'.
- *
- * @param exp Exponent.
- * @return Array Reference to the current object.
- */
-Array pow(const Array &array, float exp);
 
 /**
  * @brief Synthesize a new heightmap by stitching together small patches of the
@@ -2495,14 +2323,6 @@ void shrink_directional(Array &array,
                         Array *p_mask = nullptr);
 
 /**
- * @brief Return the sine of the array elements.
- *
- * @param array Input array.
- * @return Array Reference to the current object.
- */
-Array sin(const Array &array);
-
-/**
  * @brief Apply filtering to the array using convolution with a cone kernel.
  *
  * @param array Input array.
@@ -2625,58 +2445,6 @@ void smooth_fill_smear_peaks(Array &array, int ir);
 void smooth_fill_smear_peaks(Array &array,
                              int    ir,
                              Array *p_mask); ///< @overload
-
-/**
- * @brief Return the 3rd order smoothstep function of the array elements.
- *
- * @param array Input array.
- * @param vmin Lower bound.
- * @param vmax Upper bound.
- * @return Array Output array.
- *
- * **Example**
- * @include ex_smoothstep.cpp
- *
- * **Result**
- * @image html ex_smoothstep.png
- */
-Array smoothstep3(const Array &array, float vmin = 0.f, float vmax = 1.f);
-
-/**
- * @brief Return the 3rd order smoothstep function.
- *
- * @param x Input.
- * @return float Output.
- */
-float smoothstep3(const float x);
-
-/**
- * @brief Return the 5rd order smoothstep function of the array elements.
- *
- * @param array Input array.
- * @param vmin Lower bound.
- * @param vmax Upper bound.
- * @return Array Output array.
- *
- * **Example**
- * @include ex_smoothstep.cpp
- *
- * **Result**
- * @image html ex_smoothstep.png
- */
-Array smoothstep5(const Array &array, float vmin = 0.f, float vmax = 1.f);
-
-Array smoothstep5(const Array &array,
-                  const Array &vmin,
-                  const Array &vmax); ///< @overload
-
-/**
- * @brief Return the 5rd order smoothstep function.
- *
- * @param x Input.
- * @return float Output.
- */
-float smoothstep5(const float x);
 
 /**
  * @brief Steepen (or flatten) the array map.

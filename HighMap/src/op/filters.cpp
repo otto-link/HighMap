@@ -11,6 +11,7 @@
 #include "highmap/erosion.hpp"
 #include "highmap/features.hpp"
 #include "highmap/kernels.hpp"
+#include "highmap/math.hpp"
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 
