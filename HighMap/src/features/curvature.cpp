@@ -72,11 +72,30 @@ Array shape_index(const Array &z, int ir)
   Array h = compute_h(zx, zy, zxx, zxy, zyy); // mean
 
   Array d = pow(h * h - k, 0.5f);
-  si = 2.f / M_PI * atan(h / (d + 1e-30));
+  si = -2.f / M_PI * atan(h / (d + 1e-30));
   si *= 0.5f;
   si += 0.5f;
 
   return si;
+}
+
+Array unsphericity(const Array &z, int ir)
+{
+  Array si = z;
+  if (ir > 0)
+    smooth_cpulse(si, ir);
+
+  // compute curvature criteria
+  Array zx = gradient_x(si);
+  Array zy = gradient_y(si);
+  Array zxx = gradient_x(zx);
+  Array zxy = gradient_y(zx);
+  Array zyy = gradient_y(zy);
+
+  Array k = compute_k(zx, zy, zxx, zxy, zyy); // gaussian
+  Array h = compute_h(zx, zy, zxx, zxy, zyy); // mean
+
+  return pow(h * h - k, 0.5f);
 }
 
 Array valley_width(const Array &z, int ir)
