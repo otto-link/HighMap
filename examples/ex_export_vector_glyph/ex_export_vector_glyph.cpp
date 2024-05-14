@@ -7,8 +7,8 @@ int main(void)
   const hmap::Vec2<float> res = {2.f, 2.f};
   int                     seed = 1;
 
-  hmap::Array u = hmap::noise(hmap::NoiseType::n_perlin, shape, res, ++seed);
-  hmap::Array v = hmap::noise(hmap::NoiseType::n_perlin, shape, res, ++seed);
+  hmap::Array u = hmap::noise(hmap::NoiseType::PERLIN, shape, res, ++seed);
+  hmap::Array v = hmap::noise(hmap::NoiseType::PERLIN, shape, res, ++seed);
 
   hmap::export_vector_glyph_png_16bit("ex_export_vector_glyph.png", u, v);
 }

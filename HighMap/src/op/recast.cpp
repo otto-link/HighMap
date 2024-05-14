@@ -235,7 +235,7 @@ void recast_rocky_slopes(Array      &array,
 
   if (!p_noise)
   {
-    Array noise = noise_fbm(NoiseType::n_perlin,
+    Array noise = noise_fbm(NoiseType::PERLIN,
                             array.shape,
                             Vec2<float>(kw, kw),
                             seed,

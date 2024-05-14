@@ -356,38 +356,38 @@ std::unique_ptr<NoiseFunction> create_noise_function_from_type(
   switch (noise_type)
   {
   // clang-format off
-  case (NoiseType::n_perlin):
+  case (NoiseType::PERLIN):
     return std::unique_ptr<NoiseFunction>(new PerlinFunction(kw, seed));
-  case (NoiseType::n_perlin_billow):
+  case (NoiseType::PERLIN_BILLOW):
     return std::unique_ptr<NoiseFunction>(new PerlinBillowFunction(kw, seed));
-  case (NoiseType::n_perlin_half):
+  case (NoiseType::PERLIN_HALF):
   {
     float k = 0.5f;
     return std::unique_ptr<NoiseFunction>(new PerlinHalfFunction(kw, seed, k));
   }
-  case (NoiseType::n_simplex2):
+  case (NoiseType::SIMPLEX2):
     return std::unique_ptr<NoiseFunction>(new Simplex2Function(kw, seed));
-  case (NoiseType::n_simplex2s):
+  case (NoiseType::SIMPLEX2S):
     return std::unique_ptr<NoiseFunction>(new Simplex2SFunction(kw, seed));
-  case (NoiseType::n_value):
+  case (NoiseType::VALUE):
     return std::unique_ptr<NoiseFunction>(new ValueNoiseFunction(kw, seed));
-  case (NoiseType::n_value_cubic):
+  case (NoiseType::VALUE_CUBIC):
     return std::unique_ptr<NoiseFunction>(new ValueCubicNoiseFunction(kw, seed));
-  case (NoiseType::n_value_delaunay):
+  case (NoiseType::VALUE_DELAUNAY):
     return std::unique_ptr<NoiseFunction>(new ValueDelaunayNoiseFunction(kw, seed));
-  case (NoiseType::n_value_linear):
+  case (NoiseType::VALUE_LINEAR):
     return std::unique_ptr<NoiseFunction>(new ValueLinearNoiseFunction(kw, seed));
-  case (NoiseType::n_value_thinplate):
+  case (NoiseType::VALUE_THINPLATE):
     return std::unique_ptr<NoiseFunction>(new ValueThinplateNoiseFunction(kw, seed));
-  case (NoiseType::n_worley):
+  case (NoiseType::WORLEY):
     return std::unique_ptr<NoiseFunction>(new WorleyFunction(kw, seed, false));
-  case (NoiseType::n_worley_double):
+  case (NoiseType::WORLEY_DOUBLE):
   {
     float ratio = 0.5f;
     float k = 0.5f;
     return std::unique_ptr<NoiseFunction>(new WorleyDoubleFunction(kw, seed, ratio, k));
   }
-  case (NoiseType::n_worley_value):
+  case (NoiseType::WORLEY_VALUE):
     return std::unique_ptr<NoiseFunction>(new WorleyFunction(kw, seed, true));
     // clang-format on
   }

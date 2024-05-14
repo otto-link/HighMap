@@ -6,9 +6,9 @@ int main(void)
   hmap::Vec2<float> res = {4.f, 4.f};
   int               seed = 1;
 
-  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::n_perlin, shape, res, seed);
+  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, res, seed);
 
-  hmap::Array mask = hmap::noise(hmap::NoiseType::n_perlin, shape, res, 0);
+  hmap::Array mask = hmap::noise(hmap::NoiseType::PERLIN, shape, res, 0);
   hmap::remap(mask);
 
   // stratification features (nb of layers, elevations and gamma

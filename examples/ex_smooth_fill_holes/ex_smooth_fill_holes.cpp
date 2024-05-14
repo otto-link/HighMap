@@ -10,7 +10,7 @@ int main(void)
   int               seed = 1;
   int               radius = 8;
 
-  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::n_perlin, shape, res, seed);
+  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, res, seed);
 
   auto z1 = z;
   hmap::smooth_fill_holes(z1, radius);

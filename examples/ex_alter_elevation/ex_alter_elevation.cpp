@@ -6,7 +6,7 @@ int main(void)
   hmap::Vec2<float> res = {2.f, 2.f};
   int               seed = 1;
 
-  hmap::Array z0 = hmap::noise_fbm(hmap::NoiseType::n_perlin, shape, res, seed);
+  hmap::Array z0 = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, res, seed);
 
   // modification point (x, y) in [0, 1]x[0, 1] and a value
   // corresponding to the relative elevation modification

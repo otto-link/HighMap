@@ -23,7 +23,7 @@ int main(void)
   hmap::Vec2<float> res = {4.f, 4.f};
   int               seed = 1;
 
-  hmap::Array noise = hmap::noise_fbm(hmap::NoiseType::n_perlin,
+  hmap::Array noise = hmap::noise_fbm(hmap::NoiseType::PERLIN,
                                       shape,
                                       res,
                                       seed);

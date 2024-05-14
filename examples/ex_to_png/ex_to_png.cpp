@@ -8,7 +8,7 @@ int main(void)
   int                     seed = 2;
 
   // write png
-  hmap::Array z1 = hmap::noise_fbm(hmap::NoiseType::n_perlin,
+  hmap::Array z1 = hmap::noise_fbm(hmap::NoiseType::PERLIN,
                                    shape,
                                    res,
                                    seed,

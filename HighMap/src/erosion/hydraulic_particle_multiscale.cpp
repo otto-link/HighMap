@@ -81,7 +81,7 @@ void hydraulic_particle_multiscale(Array &z,
 
   // apply the erosion filter and recompose the pyramid
   Array ze = pyr.transform(fct,
-                           pyramid_transform_support::full,
+                           pyramid_transform_support::FULL,
                            {}, // uniform weights
                            pyramid_finest_level);
 

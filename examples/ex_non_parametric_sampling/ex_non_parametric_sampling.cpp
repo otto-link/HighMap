@@ -6,7 +6,7 @@ int main(void)
   hmap::Vec2<float> kw = {2.f, 2.f};
   int               seed = 1;
 
-  auto z = hmap::noise_fbm(hmap::NoiseType::n_perlin, shape, kw, seed);
+  auto z = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, kw, seed);
   hmap::remap(z);
 
   hmap::Vec2<int> patch_shape = {5, 5};

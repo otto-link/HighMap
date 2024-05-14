@@ -9,7 +9,7 @@ int main(void)
 
   hmap::PerlinFunction p = hmap::PerlinFunction(kw, seed);
 
-  auto n = 0.4f * hmap::noise(hmap::NoiseType::n_perlin, shape, kw, ++seed);
+  auto n = 0.4f * hmap::noise(hmap::NoiseType::PERLIN, shape, kw, ++seed);
 
   auto z1 = hmap::Array(shape);
   auto z2 = hmap::Array(shape);

@@ -6,7 +6,7 @@ int main(void)
   hmap::Vec2<float> kw = {4.f, 4.f};
   int               seed = 1;
 
-  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::n_perlin_half,
+  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::PERLIN_HALF,
                                   shape,
                                   kw,
                                   seed);

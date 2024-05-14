@@ -5,11 +5,11 @@ int main(void)
   hmap::Vec2<int> shape = {128, 128};
   int             seed = 1;
 
-  hmap::Array z1 = hmap::noise(hmap::NoiseType::n_perlin,
+  hmap::Array z1 = hmap::noise(hmap::NoiseType::PERLIN,
                                shape,
                                {2.f, 2.f},
                                seed);
-  hmap::Array z2 = hmap::noise_fbm(hmap::NoiseType::n_perlin,
+  hmap::Array z2 = hmap::noise_fbm(hmap::NoiseType::PERLIN,
                                    shape,
                                    {4.f, 4.f},
                                    seed + 1);

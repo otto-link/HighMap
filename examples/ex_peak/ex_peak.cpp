@@ -11,7 +11,7 @@ int main(void)
 
   float radius = 64.f;
 
-  hmap::Array noise = hmap::noise_fbm(hmap::NoiseType::n_perlin,
+  hmap::Array noise = hmap::noise_fbm(hmap::NoiseType::PERLIN,
                                       shape,
                                       res,
                                       seed);

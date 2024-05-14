@@ -6,7 +6,7 @@ int main(void)
   hmap::Vec2<float> res = {4.f, 4.f};
   int               seed = 1;
 
-  hmap::Array noise = 0.5f * hmap::noise_fbm(hmap::NoiseType::n_perlin,
+  hmap::Array noise = 0.5f * hmap::noise_fbm(hmap::NoiseType::PERLIN,
                                              shape,
                                              res,
                                              seed + 1);
@@ -14,10 +14,10 @@ int main(void)
   hmap::Array dx = hmap::Array(shape);
   hmap::Array dy = hmap::Array(shape);
 
-  hmap::Array z0 = hmap::noise(hmap::NoiseType::n_perlin, shape, res, seed);
+  hmap::Array z0 = hmap::noise(hmap::NoiseType::PERLIN, shape, res, seed);
 
   hmap::swirl(dx, dy, 1.f, 1.f);
-  hmap::Array z1 = hmap::noise(hmap::NoiseType::n_perlin,
+  hmap::Array z1 = hmap::noise(hmap::NoiseType::PERLIN,
                                shape,
                                res,
                                seed,
@@ -25,7 +25,7 @@ int main(void)
                                &dy);
 
   hmap::swirl(dx, dy, 1.f, 1.f, &noise);
-  hmap::Array z2 = hmap::noise(hmap::NoiseType::n_perlin,
+  hmap::Array z2 = hmap::noise(hmap::NoiseType::PERLIN,
                                shape,
                                res,
                                seed,

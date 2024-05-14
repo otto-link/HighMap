@@ -6,19 +6,19 @@ int main(void)
   hmap::Vec2<float> kw = {4.f, 4.f};
   int               seed = 1;
 
-  std::vector<hmap::NoiseType> noise_list = {hmap::NoiseType::n_perlin,
-                                             hmap::NoiseType::n_perlin_billow,
-                                             hmap::NoiseType::n_perlin_half,
-                                             hmap::NoiseType::n_simplex2,
-                                             hmap::NoiseType::n_simplex2s,
-                                             hmap::NoiseType::n_value,
-                                             hmap::NoiseType::n_value_cubic,
-                                             hmap::NoiseType::n_value_delaunay,
-                                             hmap::NoiseType::n_value_linear,
-                                             hmap::NoiseType::n_value_thinplate,
-                                             hmap::NoiseType::n_worley,
-                                             hmap::NoiseType::n_worley_double,
-                                             hmap::NoiseType::n_worley_value};
+  std::vector<hmap::NoiseType> noise_list = {hmap::NoiseType::PERLIN,
+                                             hmap::NoiseType::PERLIN_BILLOW,
+                                             hmap::NoiseType::PERLIN_HALF,
+                                             hmap::NoiseType::SIMPLEX2,
+                                             hmap::NoiseType::SIMPLEX2S,
+                                             hmap::NoiseType::VALUE,
+                                             hmap::NoiseType::VALUE_CUBIC,
+                                             hmap::NoiseType::VALUE_DELAUNAY,
+                                             hmap::NoiseType::VALUE_LINEAR,
+                                             hmap::NoiseType::VALUE_THINPLATE,
+                                             hmap::NoiseType::WORLEY,
+                                             hmap::NoiseType::WORLEY_DOUBLE,
+                                             hmap::NoiseType::WORLEY_VALUE};
 
   hmap::Array z = hmap::Array(hmap::Vec2<int>(0, shape.y));
   for (auto &noise_type : noise_list)

@@ -6,7 +6,7 @@ int main(void)
   hmap::Vec2<float> res = {2.f, 2.f};
   int               seed = 1;
 
-  hmap::Array z1 = hmap::noise(hmap::NoiseType::n_perlin, shape, res, seed);
+  hmap::Array z1 = hmap::noise(hmap::NoiseType::PERLIN, shape, res, seed);
 
   // uniform
   hmap::Array z2 = hmap::tessellate(z1, seed++, 0.005f);

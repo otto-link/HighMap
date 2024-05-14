@@ -30,11 +30,11 @@ Array interpolate2d(Vec2<int>          shape,
       void(std::vector<float>, std::vector<float>, std::vector<float>)>
       interp;
 
-  if (interpolation_method == interpolator2d::delaunay)
+  if (interpolation_method == interpolator2d::DELAUNAY)
     interp = _2D::LinearDelaunayTriangleInterpolator<float>();
-  else if (interpolation_method == interpolator2d::bilinear)
+  else if (interpolation_method == interpolator2d::BILINEAR)
     interp = _2D::BilinearInterpolator<float>();
-  else if (interpolation_method == interpolator2d::thinplate)
+  else if (interpolation_method == interpolator2d::THINPLATE)
     interp = _2D::ThinPlateSplineInterpolator<float>();
   else
     LOG_ERROR("unknown interpolation method");

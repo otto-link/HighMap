@@ -7,7 +7,7 @@ int main(void)
   int               seed = 1;
   int               n_grid_points = 500;
 
-  hmap::Array density = hmap::noise_fbm(hmap::NoiseType::n_perlin,
+  hmap::Array density = hmap::noise_fbm(hmap::NoiseType::PERLIN,
                                         shape,
                                         res,
                                         seed);

@@ -146,7 +146,7 @@ Array PyramidDecomposition::transform(
   {
     switch (support)
     {
-    case pyramid_transform_support::full:
+    case pyramid_transform_support::FULL:
     {
       array_out += this->components[n];
       Array component_transformed = function(array_out, n);
@@ -154,7 +154,7 @@ Array PyramidDecomposition::transform(
     }
     break;
 
-    case pyramid_transform_support::highpass_only:
+    case pyramid_transform_support::HIGHPASS_ONLY:
     {
       Array component_transformed = function(this->components[n], n);
       array_out += lerp(this->components[n],
@@ -163,7 +163,7 @@ Array PyramidDecomposition::transform(
     }
     break;
 
-    case pyramid_transform_support::lowpass_only:
+    case pyramid_transform_support::LOWPASS_ONLY:
     {
       Array component_transformed = function(array_out, n);
       array_out = lerp(array_out + this->components[n],

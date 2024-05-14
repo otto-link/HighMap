@@ -6,8 +6,8 @@ int main(void)
   hmap::Vec2<float> kw = {4.f, 4.f};
   int               seed = 1;
 
-  auto z = hmap::noise_fbm(hmap::NoiseType::n_perlin, shape, kw, seed);
-  auto zw = hmap::noise_fbm(hmap::NoiseType::n_worley, shape, kw, ++seed);
+  auto z = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, kw, seed);
+  auto zw = hmap::noise_fbm(hmap::NoiseType::WORLEY, shape, kw, ++seed);
 
   hmap::remap(z);
   hmap::remap(zw);

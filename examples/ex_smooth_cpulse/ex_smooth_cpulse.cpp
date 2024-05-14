@@ -10,7 +10,7 @@ int main(void)
   int               seed = 1;
   int               radius = 20;
 
-  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::n_perlin, shape, res, seed);
+  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, res, seed);
   hmap::Array z0 = z;
 
   hmap::smooth_cpulse(z, radius);

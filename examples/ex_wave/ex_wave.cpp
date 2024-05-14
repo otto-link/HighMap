@@ -8,7 +8,7 @@ int main(void)
   float angle = 30.f;
   uint  seed = 1;
 
-  auto noise = 0.1f * hmap::noise_fbm(hmap::NoiseType::n_perlin,
+  auto noise = 0.1f * hmap::noise_fbm(hmap::NoiseType::PERLIN,
                                       shape,
                                       {kw, kw},
                                       seed,

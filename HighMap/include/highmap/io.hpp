@@ -27,42 +27,41 @@ namespace hmap
  */
 enum MeshType : int
 {
-  tri_optimized, ///< Triangles with optimized Delaunay triangulation
-  tri,           ///< Triangle elements
+  TRI_OPTIMIZED, ///< Triangles with optimized Delaunay triangulation
+  TRI,           ///< Triangle elements
 };
 
 /**
  * @brief Mapping between the enum and plain text.
  */
 static std::map<MeshType, std::string> mesh_type_as_string = {
-    {tri_optimized, "triangles (optimized)"},
-    {tri, "triangles"}};
+    {TRI_OPTIMIZED, "triangles (optimized)"},
+    {TRI, "triangles"}};
 
 /**
  * @brief Asset export format (nomemclature of formats supported by assimp)
  */
 enum AssetExportFormat : int
 {
-  _3ds,     ///< Autodesk 3DS (legacy) - *.3ds
-  _3mf,     ///< The 3MF-File-Format - *.3mf
-  assbin,   ///<   Assimp Binary - *.assbin
-  assxml,   ///< Assxml Document - *.assxml
-  fbxa,     ///< Autodesk FBX (ascii) - *.fbx
-  fbx,      ///< Autodesk FBX (binary) - *.fbx
-  collada,  ///< COLLADA - Digital Asset Exchange Schema - *.dae
-  x3d,      ///< Extensible 3D - *.x3d
-  gltf,     ///< GL Transmission Format - *.gltf
-  glb,      ///< GL Transmission Format (binary) - *.glb
-  gltf2,    ///< GL Transmission Format v. 2 - *.gltf
-  glb2,     ///< GL Transmission Format v. 2 (binary) - *.glb
-  ply,      ///< Stanford Polygon Library - *.ply
-  plyb,     ///< Stanford Polygon Library (binary) - *.ply
-  stp,      ///< Step Files - *.stp
-  stl,      ///< Stereolithography - *.stl
-  stlb,     ///< Stereolithography (binary) - *.stl
-  obj,      ///< Wavefront OBJ format - *.obj
-  objnomtl, ///< Wavefront OBJ format without material file - *.obj
-  x,        ///< X Files - *.x
+  _3DS,     ///< Autodesk 3DS (legacy) - *.3ds
+  _3MF,     ///< The 3MF-File-Format - *.3mf
+  ASSBIN,   ///<   Assimp Binary - *.assbin
+  ASSXML,   ///< Assxml Document - *.assxml
+  FXBA,     ///< Autodesk FBX (ascii) - *.fbx
+  FBX,      ///< Autodesk FBX (binary) - *.fbx
+  COLLADA,  ///< COLLADA - Digital Asset Exchange Schema - *.dae
+  X3D,      ///< Extensible 3D - *.x3d
+  GLTF,     ///< GL Transmission Format - *.gltf
+  GLB,      ///< GL Transmission Format (binary) - *.glb
+  GTLF2,    ///< GL Transmission Format v. 2 - *.gltf
+  GLB2,     ///< GL Transmission Format v. 2 (binary) - *.glb
+  PLY,      ///< Stanford Polygon Library - *.ply
+  PLYB,     ///< Stanford Polygon Library (binary) - *.ply
+  STP,      ///< Step Files - *.stp
+  STL,      ///< Stereolithography - *.stl
+  STLB,     ///< Stereolithography (binary) - *.stl
+  OBJ,      ///< Wavefront OBJ format - *.obj
+  OBJNOMTL, ///< Wavefront OBJ format without material file - *.obj
 };
 
 /**
@@ -75,26 +74,25 @@ enum AssetExportFormat : int
 // clang-format off
 static std::map<AssetExportFormat, std::vector<std::string>>
     asset_export_format_as_string = {
-        {_3ds, {"Autodesk 3DS (legacy) - *.3ds", "3ds", "3ds"}},
-        {_3mf, {"The 3MF-File-Format - *.3mf", "3mf", "3mf"}},
-        {assbin, {"Assimp Binary - *.assbin", "assbin", "assbin"}},
-        {assxml, {"Assxml Document - *.assxml", "assxml", "assxml"}},
-        {fbxa, {"Autodesk FBX (ascii) - *.fbx", "fbxa", "fbx"}},
-        {fbx, {"Autodesk FBX (binary) - *.fbx", "fbx", "fbx"}},
-        {collada, {"COLLADA - Digital Asset Exchange Schema - *.dae", "collada", "dae"}},
-        {x3d, {"Extensible 3D - *.x3d", "x3d", "x3d"}},
-        {gltf, {"GL Transmission Format - *.gltf", "gltf", "gltf"}},
-        {glb, {"GL Transmission Format (binary) - *.glb", "glb", "glb"}},
-        {gltf2, {"GL Transmission Format v. 2 - *.gltf", "gltf2", "gltf"}},
-        {glb2, {"GL Transmission Format v. 2 (binary) - *.glb", "glb2", "glb"}},
-        {ply, {"Stanford Polygon Library - *.ply", "ply", "ply"}},
-        {plyb, {"Stanford Polygon Library (binary) - *.ply", "plyb", "ply"}},
-        {stp, {"Step Files - *.stp", "stp", "stp"}},
-        {stl, {"Stereolithography - *.stl", "stl", "stl"}},
-        {stlb, {"Stereolithography (binary) - *.stl", "stlb", "stl"}},
-        {obj, {"Wavefront OBJ format - *.obj", "obj", "obj"}},
-        {objnomtl, {"Wavefront OBJ format without material file - *.obj", "objnomtl", "obj"}},
-        {x, {"X Files - *.x", "x", "x"}},
+        {_3DS, {"Autodesk 3DS (legacy) - *.3ds", "3ds", "3ds"}},
+        {_3MF, {"The 3MF-File-Format - *.3mf", "3mf", "3mf"}},
+        {ASSBIN, {"Assimp Binary - *.assbin", "assbin", "assbin"}},
+        {ASSXML, {"Assxml Document - *.assxml", "assxml", "assxml"}},
+        {FXBA, {"Autodesk FBX (ascii) - *.fbx", "fbxa", "fbx"}},
+        {FBX, {"Autodesk FBX (binary) - *.fbx", "fbx", "fbx"}},
+        {COLLADA, {"COLLADA - Digital Asset Exchange Schema - *.dae", "collada", "dae"}},
+        {X3D, {"Extensible 3D - *.x3d", "x3d", "x3d"}},
+        {GLTF, {"GL Transmission Format - *.gltf", "gltf", "gltf"}},
+        {GLB, {"GL Transmission Format (binary) - *.glb", "glb", "glb"}},
+        {GTLF2, {"GL Transmission Format v. 2 - *.gltf", "gltf2", "gltf"}},
+        {GLB2, {"GL Transmission Format v. 2 (binary) - *.glb", "glb2", "glb"}},
+        {PLY, {"Stanford Polygon Library - *.ply", "ply", "ply"}},
+        {PLYB, {"Stanford Polygon Library (binary) - *.ply", "plyb", "ply"}},
+        {STP, {"Step Files - *.stp", "stp", "stp"}},
+        {STL, {"Stereolithography - *.stl", "stl", "stl"}},
+        {STLB, {"Stereolithography (binary) - *.stl", "stlb", "stl"}},
+        {OBJ, {"Wavefront OBJ format - *.obj", "obj", "obj"}},
+        {OBJNOMTL, {"Wavefront OBJ format without material file - *.obj", "objnomtl", "obj"}},
 };
 // clang-format on
 
@@ -180,8 +178,8 @@ void convert_ryb_to_rgb(Array &r,
  */
 bool export_asset(std::string       fname,
                   const Array      &array,
-                  MeshType          mesh_type = MeshType::tri,
-                  AssetExportFormat export_format = AssetExportFormat::glb2,
+                  MeshType          mesh_type = MeshType::TRI,
+                  AssetExportFormat export_format = AssetExportFormat::GLB2,
                   float             elevation_scaling = 0.2f,
                   std::string       texture_fname = "",
                   std::string       normal_map_fname = "",

@@ -35,7 +35,7 @@ int main(void)
                                                             0.5f,
                                                             0.1f);
 
-  hmap::Array array = hmap::noise_fbm(hmap::NoiseType::n_perlin,
+  hmap::Array array = hmap::noise_fbm(hmap::NoiseType::PERLIN,
                                       {1024, 1024},
                                       kw,
                                       seed);
@@ -97,7 +97,7 @@ int main(void)
   timer.stop("NoiseFunction");
 
   timer.start("ArrayOp");
-  auto a = hmap::noise_fbm(hmap::NoiseType::n_perlin, shape, kw, seed);
+  auto a = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, kw, seed);
   timer.stop("ArrayOp");
 
   z.infos();

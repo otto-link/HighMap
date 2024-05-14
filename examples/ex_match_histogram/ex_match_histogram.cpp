@@ -6,10 +6,10 @@ int main(void)
   hmap::Vec2<float> res = {4.f, 4.f};
   int               seed = 1;
 
-  hmap::Array z0 = hmap::noise_fbm(hmap::NoiseType::n_perlin, shape, res, seed);
+  hmap::Array z0 = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, res, seed);
   hmap::remap(z0);
 
-  hmap::Array zref = hmap::noise(hmap::NoiseType::n_perlin, shape, res, ++seed);
+  hmap::Array zref = hmap::noise(hmap::NoiseType::PERLIN, shape, res, ++seed);
   hmap::remap(zref);
   hmap::gain(zref, 4.f);
 

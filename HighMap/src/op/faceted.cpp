@@ -29,17 +29,17 @@ Array faceted(const Array &array,
 
   switch (neighborhood)
   {
-  case neighborhood::moore:
+  case neighborhood::MOORE:
     di = {-1, -1, 0, 1, 1, 1, 0, -1};
     dj = {0, 1, 1, 1, 0, -1, -1, -1};
     break;
 
-  case neighborhood::von_neumann:
+  case neighborhood::VON_NEUMANN:
     di = {-1, 0, 1, 0};
     dj = {0, 1, 0, -1};
     break;
 
-  case neighborhood::cross:
+  case neighborhood::CROSS:
     di = {-1, 1, 1, -1};
     dj = {1, 1, -1, -1};
   }
@@ -107,7 +107,7 @@ Array faceted(const Array &array,
                                   x,
                                   y,
                                   value,
-                                  interpolator2d::delaunay,
+                                  interpolator2d::DELAUNAY,
                                   p_noise_x,
                                   p_noise_y,
                                   nullptr,

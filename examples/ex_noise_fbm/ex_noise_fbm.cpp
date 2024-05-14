@@ -7,22 +7,22 @@ int main(void)
   int               seed = 1;
 
   std::vector<hmap::NoiseType> noise_list = {
-      hmap::NoiseType::n_perlin,
-      hmap::NoiseType::n_perlin_billow,
-      hmap::NoiseType::n_perlin_half,
-      hmap::NoiseType::n_simplex2,
-      hmap::NoiseType::n_simplex2s,
-      hmap::NoiseType::n_value,
-      hmap::NoiseType::n_value_cubic,
+      hmap::NoiseType::PERLIN,
+      hmap::NoiseType::PERLIN_BILLOW,
+      hmap::NoiseType::PERLIN_HALF,
+      hmap::NoiseType::SIMPLEX2,
+      hmap::NoiseType::SIMPLEX2S,
+      hmap::NoiseType::VALUE,
+      hmap::NoiseType::VALUE_CUBIC,
       // --- too slow, do not use ---
       // hmap::NoiseType::n_value_delaunay,
       // hmap::NoiseType::n_value_linear,
       // hmap::NoiseType::n_value_thinplate,
-      hmap::NoiseType::n_worley,
-      hmap::NoiseType::n_worley_double,
-      hmap::NoiseType::n_worley_value};
+      hmap::NoiseType::WORLEY,
+      hmap::NoiseType::WORLEY_DOUBLE,
+      hmap::NoiseType::WORLEY_VALUE};
 
-  auto b = hmap::noise(hmap::NoiseType::n_perlin, shape, kw, seed + 1);
+  auto b = hmap::noise(hmap::NoiseType::PERLIN, shape, kw, seed + 1);
 
   // fbm
   {

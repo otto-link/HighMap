@@ -7,7 +7,7 @@ int main(void)
   int               seed = 1;
   int               ir = 5;
 
-  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::n_perlin, shape, res, seed);
+  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, res, seed);
   hmap::Array c = hmap::rugosity(z, ir);
 
   z.to_png("ex_rugosity0.png", hmap::cmap::viridis);

@@ -23,9 +23,9 @@ namespace hmap
  */
 enum neighborhood : int
 {
-  moore,       ///< Moore
-  von_neumann, ///< Von Neuman
-  cross        ///< cross-shaped neighborhood (only diagonals)
+  MOORE,       ///< Moore
+  VON_NEUMANN, ///< Von Neuman
+  CROSS        ///< cross-shaped neighborhood (only diagonals)
 };
 
 /**

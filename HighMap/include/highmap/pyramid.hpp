@@ -25,9 +25,9 @@ namespace hmap
  */
 enum pyramid_transform_support : int
 {
-  full,         ///< Complete field (sum of low and high pass
-  lowpass_only, ///< Low pass component only
-  highpass_only ///< High pass component only
+  FULL,         ///< Complete field (sum of low and high pass
+  LOWPASS_ONLY, ///< Low pass component only
+  HIGHPASS_ONLY ///< High pass component only
 };
 
 /**

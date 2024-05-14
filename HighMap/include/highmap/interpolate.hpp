@@ -22,9 +22,9 @@ namespace hmap
  */
 enum interpolator2d : int
 {
-  delaunay, ///< Delaunay triangular
-  bilinear, ///< Bilinear
-  thinplate ///< Thinplate
+  DELAUNAY, ///< Delaunay triangular
+  BILINEAR, ///< Bilinear
+  THINPLATE ///< Thinplate
 };
 
 /**

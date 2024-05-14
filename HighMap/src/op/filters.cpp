@@ -934,7 +934,7 @@ void wrinkle(Array      &array,
   if (ir > 0)
     smooth_cpulse(dr, ir);
 
-  Array w = noise_fbm(NoiseType::n_perlin,
+  Array w = noise_fbm(NoiseType::PERLIN,
                       array.shape,
                       Vec2<float>(kw, kw),
                       seed,

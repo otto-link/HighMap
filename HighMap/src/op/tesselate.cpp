@@ -47,7 +47,7 @@ Array tessellate(Array &array, uint seed, float node_density, Array *p_weight)
                                   x,
                                   y,
                                   cloud.get_values(),
-                                  interpolator2d::delaunay,
+                                  interpolator2d::DELAUNAY,
                                   nullptr, // noise
                                   nullptr, // noise
                                   nullptr,

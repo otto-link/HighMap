@@ -6,7 +6,7 @@ int main(void)
   hmap::Vec2<float> res = {4.f, 4.f};
   uint              seed = 5;
 
-  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::n_perlin, shape, res, seed);
+  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, res, seed);
   hmap::Array dz = hmap::gradient_talus(z);
 
   // normalize data to balance their respective weights during the

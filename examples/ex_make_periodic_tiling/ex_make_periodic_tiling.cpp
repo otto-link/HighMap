@@ -9,7 +9,7 @@ int main(void)
   hmap::Vec2<float> kw = {2.f, 2.f};
   int               seed = 1;
 
-  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::n_perlin, shape, kw, seed);
+  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, kw, seed);
   float       overlap = 0.5f;
 
   hmap::Vec2<int> tiling = {4, 3};

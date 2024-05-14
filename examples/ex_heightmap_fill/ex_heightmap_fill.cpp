@@ -15,7 +15,7 @@ int main(void)
   hmap::fill(h,
              [&kw, &seed](hmap::Vec2<int> shape, hmap::Vec4<float> bbox)
              {
-               return hmap::noise(hmap::NoiseType::n_perlin,
+               return hmap::noise(hmap::NoiseType::PERLIN,
                                   shape,
                                   kw,
                                   seed,

@@ -74,7 +74,7 @@ bool export_asset(std::string       fname,
   switch (mesh_type)
   {
 
-  case hmap::MeshType::tri:
+  case hmap::MeshType::TRI:
   {
 
     // vertices (and texture coordinates)
@@ -124,7 +124,7 @@ bool export_asset(std::string       fname,
   }
   break;
 
-  case hmap::MeshType::tri_optimized:
+  case hmap::MeshType::TRI_OPTIMIZED:
   {
     // mesh retopology (lots of switch between 'x' and 'y' to deal
     // with row-major vs column-major mode for vector data)

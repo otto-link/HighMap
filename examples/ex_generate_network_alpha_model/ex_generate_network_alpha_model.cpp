@@ -9,7 +9,7 @@ int main(void)
   hmap::Vec2<int> shape = {256, 256};
   int             seed = 0;
 
-  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::n_perlin,
+  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::PERLIN,
                                   shape,
                                   {4.f, 4.f},
                                   seed);

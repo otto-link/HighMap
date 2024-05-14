@@ -9,9 +9,9 @@ int main(void)
   hmap::Vec2<float> kw = {4.f, 4.f};
   int               seed = 1;
 
-  auto zr = hmap::noise(hmap::NoiseType::n_perlin, shape, kw, seed++);
-  auto zg = hmap::noise(hmap::NoiseType::n_perlin, shape, kw, seed++);
-  auto zb = hmap::noise(hmap::NoiseType::n_perlin, shape, kw, seed++);
+  auto zr = hmap::noise(hmap::NoiseType::PERLIN, shape, kw, seed++);
+  auto zg = hmap::noise(hmap::NoiseType::PERLIN, shape, kw, seed++);
+  auto zb = hmap::noise(hmap::NoiseType::PERLIN, shape, kw, seed++);
   auto zsp = hmap::slope(shape, 0.f, 1.f);
   auto zsm = hmap::slope(shape, 0.f, -1.f);
 

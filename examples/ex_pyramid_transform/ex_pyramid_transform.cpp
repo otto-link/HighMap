@@ -8,7 +8,7 @@ int main(void)
   hmap::Vec2<float> res = {4.f, 4.f};
   int               seed = 1;
 
-  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::n_perlin, shape, res, seed);
+  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, res, seed);
   hmap::remap(z);
 
   int                        nlevels = 4;
@@ -33,7 +33,7 @@ int main(void)
     return output;
   };
 
-  auto zr = pyr.transform(fct, hmap::pyramid_transform_support::full);
+  auto zr = pyr.transform(fct, hmap::pyramid_transform_support::FULL);
 
   hmap::export_banner_png("ex_pyramid_transform.png",
                           {z, zr},

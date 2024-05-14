@@ -9,11 +9,11 @@ int main(void)
 
   hmap::Array z1 = hmap::base_elevation(shape, values);
 
-  hmap::Array nx = 0.4f * hmap::noise_fbm(hmap::NoiseType::n_perlin,
+  hmap::Array nx = 0.4f * hmap::noise_fbm(hmap::NoiseType::PERLIN,
                                           shape,
                                           {2.f, 2.f},
                                           1);
-  hmap::Array ny = 0.4f * hmap::noise_fbm(hmap::NoiseType::n_perlin,
+  hmap::Array ny = 0.4f * hmap::noise_fbm(hmap::NoiseType::PERLIN,
                                           shape,
                                           {2.f, 2.f},
                                           2);
