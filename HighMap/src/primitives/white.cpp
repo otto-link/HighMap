@@ -32,7 +32,7 @@ Array white_density_map(const Array &density_map, uint seed)
     {
       float r = dis(gen);
       if (r < density_map(i, j))
-        array(i, j) = 1.f;
+        array(i, j) = r / density_map(i, j);
     }
   return array;
 }

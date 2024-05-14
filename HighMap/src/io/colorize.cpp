@@ -10,27 +10,52 @@
 
 #include "highmap/array.hpp"
 #include "highmap/colormaps.hpp"
+#include "highmap/io.hpp"
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 
 namespace hmap
 {
 
-void apply_hillshade(std::vector<uint8_t> &img, const hmap::Array &array)
+void apply_hillshade(std::vector<uint8_t> &img,
+                     const hmap::Array    &array,
+                     float                 vmin,
+                     float                 vmax,
+                     float                 exponent,
+                     bool                  is_img_rgba)
 {
   Array hs = constant(array.shape, 1.f);
   hs = hillshade(array, 180.f, 45.f, 10.f * array.ptp() / (float)array.shape.y);
-  remap(hs);
+  remap(hs, vmin, vmax);
+
+  if (exponent != 1.f)
+    hs = hmap::pow(hs, exponent);
 
   int k = 0;
-  for (int j = array.shape.y - 1; j > -1; j--)
-    for (int i = 0; i < array.shape.x; i++)
-    {
-      img[k] = (uint8_t)((float)img[k] * hs(i, j));
-      img[k + 1] = (uint8_t)((float)img[k + 1] * hs(i, j));
-      img[k + 2] = (uint8_t)((float)img[k + 2] * hs(i, j));
-      k += 3;
-    }
+
+  if (is_img_rgba)
+  {
+    for (int j = array.shape.y - 1; j > -1; j--)
+      for (int i = 0; i < array.shape.x; i++)
+      {
+        img[k] = (uint8_t)((float)img[k] * hs(i, j));
+        img[k + 1] = (uint8_t)((float)img[k + 1] * hs(i, j));
+        img[k + 2] = (uint8_t)((float)img[k + 2] * hs(i, j));
+        // skip alpha channel
+        k += 4;
+      }
+  }
+  else
+  {
+    for (int j = array.shape.y - 1; j > -1; j--)
+      for (int i = 0; i < array.shape.x; i++)
+      {
+        img[k] = (uint8_t)((float)img[k] * hs(i, j));
+        img[k + 1] = (uint8_t)((float)img[k + 1] * hs(i, j));
+        img[k + 2] = (uint8_t)((float)img[k + 2] * hs(i, j));
+        k += 3;
+      }
+  }
 }
 
 std::vector<uint8_t> colorize(hmap::Array &array,
