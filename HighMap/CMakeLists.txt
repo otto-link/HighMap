@@ -33,6 +33,7 @@ target_link_libraries(
   libInterpolate::libInterpolate
   macro-logger::macro-logger
   NoiseLib
+  OpenMP::OpenMP_CXX
   xsimd::xsimd)
 
 if(HIGHMAP_ENABLE_OPENCL)

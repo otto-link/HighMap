@@ -1,8 +1,10 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
+#include <omp.h>
 
 #include "highmap/array.hpp"
+#include "highmap/dbg.hpp"
 #include "highmap/math.hpp"
 #include "highmap/op.hpp"
 
@@ -28,6 +30,8 @@ Array distance_transform(const Array &array, bool return_squared_distance)
   float inf = (float)(ni + nj);
 
   // phase 1
+#pragma omp parallel for
+
   for (int i = 0; i < ni; i++)
   {
     // scan 1
@@ -50,9 +54,13 @@ Array distance_transform(const Array &array, bool return_squared_distance)
         g(i, j) = 1.f + g(i, j + 1);
   }
 
+#pragma omp barrier
+
   // phase 2
   std::vector<int> s(std::max(ni, nj));
   std::vector<int> t(std::max(ni, nj));
+
+#pragma omp parallel for
 
   for (int j = 0; j < nj; j++)
   {
