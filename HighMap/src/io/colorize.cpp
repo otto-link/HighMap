@@ -11,7 +11,7 @@
 #include "highmap/array.hpp"
 #include "highmap/colormaps.hpp"
 #include "highmap/io.hpp"
-#include "highmap/op.hpp"
+#include "highmap/math.hpp"
 #include "highmap/primitives.hpp"
 
 namespace hmap

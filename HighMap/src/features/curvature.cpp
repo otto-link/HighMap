@@ -73,7 +73,7 @@ Array shape_index(const Array &z, int ir)
   Array h = compute_h(zx, zy, zxx, zxy, zyy); // mean
 
   Array d = pow(h * h - k, 0.5f);
-  si = -2.f / M_PI * atan(h / (d + 1e-30));
+  si = 2.f / M_PI * atan(h / (d + 1e-30));
   si *= 0.5f;
   si += 0.5f;
 
