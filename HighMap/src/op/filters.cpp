@@ -661,8 +661,6 @@ void smooth_cone(Array &array, int ir)
   // eventually convolve
   array = convolve1d_i(array, k);
   array = convolve1d_j(array, k);
-
-  extrapolate_borders(array, ir);
 }
 
 void smooth_cone(Array &array, int ir, Array *p_mask)
@@ -701,8 +699,6 @@ void smooth_cpulse(Array &array, int ir)
   // eventually convolve
   array = convolve1d_i(array, k);
   array = convolve1d_j(array, k);
-
-  extrapolate_borders(array, ir);
 }
 
 void smooth_cpulse(Array &array, int ir, Array *p_mask)
@@ -743,8 +739,6 @@ void smooth_gaussian(Array &array, int ir)
   // eventually convolve
   array = convolve1d_i(array, k);
   array = convolve1d_j(array, k);
-
-  extrapolate_borders(array, ir);
 }
 
 void smooth_gaussian(Array &array, int ir, Array *p_mask)
