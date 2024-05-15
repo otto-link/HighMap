@@ -661,6 +661,8 @@ void smooth_cone(Array &array, int ir)
   // eventually convolve
   array = convolve1d_i(array, k);
   array = convolve1d_j(array, k);
+
+  extrapolate_borders(array, ir);
 }
 
 void smooth_cone(Array &array, int ir, Array *p_mask)
@@ -699,6 +701,8 @@ void smooth_cpulse(Array &array, int ir)
   // eventually convolve
   array = convolve1d_i(array, k);
   array = convolve1d_j(array, k);
+
+  extrapolate_borders(array, ir);
 }
 
 void smooth_cpulse(Array &array, int ir, Array *p_mask)
@@ -739,6 +743,20 @@ void smooth_gaussian(Array &array, int ir)
   // eventually convolve
   array = convolve1d_i(array, k);
   array = convolve1d_j(array, k);
+
+  extrapolate_borders(array, ir);
+}
+
+void smooth_gaussian(Array &array, int ir, Array *p_mask)
+{
+  if (!p_mask)
+    smooth_gaussian(array, ir);
+  else
+  {
+    Array array_f = array;
+    smooth_gaussian(array_f, ir);
+    array = lerp(array, array_f, *(p_mask));
+  }
 }
 
 void smooth_fill(Array &array, int ir, float k, Array *p_deposition_map)
@@ -831,18 +849,6 @@ void smooth_fill_smear_peaks(Array &array, int ir, Array *p_mask)
   {
     Array array_f = array;
     smooth_fill_smear_peaks(array_f, ir);
-    array = lerp(array, array_f, *(p_mask));
-  }
-}
-
-void smooth_gaussian(Array &array, int ir, Array *p_mask)
-{
-  if (!p_mask)
-    smooth_gaussian(array, ir);
-  else
-  {
-    Array array_f = array;
-    smooth_gaussian(array_f, ir);
     array = lerp(array, array_f, *(p_mask));
   }
 }

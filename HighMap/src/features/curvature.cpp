@@ -77,7 +77,7 @@ Array shape_index(const Array &z, int ir)
   clamp_min(d, 0.f);
   d = pow(d, 0.5f);
 
-  si = 2.f / M_PI * atan(h / (d + 1e-30));
+  si = -2.f / M_PI * atan(h / (d + 1e-30));
   si *= 0.5f;
   si += 0.5f;
 
