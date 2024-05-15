@@ -6,6 +6,7 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/gradient.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/math.hpp"
 #include "highmap/noise_function.hpp"

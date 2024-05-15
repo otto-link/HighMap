@@ -21,6 +21,7 @@
 #include "highmap/features.hpp"
 #include "highmap/geometry.hpp"
 #include "highmap/gpu.hpp"
+#include "highmap/gradient.hpp"
 #include "highmap/heightmap.hpp"
 #include "highmap/hydrology.hpp"
 #include "highmap/io.hpp"

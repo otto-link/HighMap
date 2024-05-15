@@ -5,6 +5,7 @@
 #include <algorithm>
 
 #include "highmap/array.hpp"
+#include "highmap/gradient.hpp"
 #include "highmap/math.hpp"
 #include "highmap/op.hpp"
 
