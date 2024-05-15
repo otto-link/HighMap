@@ -24,6 +24,7 @@ void apply_hillshade(std::vector<uint8_t> &img,
                      float                 exponent,
                      bool                  is_img_rgba)
 {
+  // compute and scale hillshading
   Array hs = constant(array.shape, 1.f);
   hs = hillshade(array, 180.f, 45.f, 10.f * array.ptp() / (float)array.shape.y);
   remap(hs, vmin, vmax);
@@ -31,6 +32,9 @@ void apply_hillshade(std::vector<uint8_t> &img,
   if (exponent != 1.f)
     hs = hmap::pow(hs, exponent);
 
+  clamp(hs);
+
+  // apply to image
   int k = 0;
 
   if (is_img_rgba)
