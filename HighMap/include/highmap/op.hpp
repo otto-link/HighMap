@@ -494,11 +494,12 @@ void expand_directional(Array &array,
  *
  * @param array Input array.
  * @param nbuffer Buffer depth.
+ * @param sigma Relaxation coefficient.
  *
  * @see {@link fill_borders}
  *
  */
-void extrapolate_borders(Array &array, int nbuffer = 1);
+void extrapolate_borders(Array &array, int nbuffer = 1, float sigma = 0.f);
 
 /**
  * @brief Return an heightmap retaining the main features of the input heightmap

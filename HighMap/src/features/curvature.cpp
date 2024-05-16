@@ -81,6 +81,11 @@ Array shape_index(const Array &z, int ir)
   si *= 0.5f;
   si += 0.5f;
 
+  if (ir > 0)
+    extrapolate_borders(si, ir + 1, 0.05f);
+  else
+    extrapolate_borders(si);
+
   return si;
 }
 
@@ -101,8 +106,14 @@ Array unsphericity(const Array &z, int ir)
   Array h = compute_h(zx, zy, zxx, zxy, zyy); // mean
 
   Array d = h * h - k;
+
   clamp_min(d, 0.f);
   d = pow(d, 0.5f);
+
+  if (ir > 0)
+    extrapolate_borders(d, ir + 1, 0.05f);
+  else
+    extrapolate_borders(d);
 
   return d;
 }
@@ -115,6 +126,7 @@ Array valley_width(const Array &z, int ir)
 
   vw = curvature_mean(-vw);
   vw = distance_transform(vw);
+
   return vw;
 }
 

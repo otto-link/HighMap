@@ -12,24 +12,65 @@
 namespace hmap
 {
 
-void extrapolate_borders(Array &array, int nbuffer)
+void extrapolate_borders(Array &array, int nbuffer, float sigma)
 {
   const int ni = array.shape.x;
   const int nj = array.shape.y;
 
-  for (int j = 0; j < nj; j++)
-    for (int k = nbuffer - 1; k > -1; k--)
+  if (sigma == 0.f)
+  {
+    for (int j = 0; j < nj; j++)
+      for (int k = nbuffer - 1; k > -1; k--)
+      {
+        array(k, j) = 2.f * array(k + 1, j) - array(k + 2, j);
+        array(ni - 1 - k, j) = 2.f * array(ni - 2 - k, j) -
+                               array(ni - 3 - k, j);
+      }
+
+    for (int i = 0; i < ni; i++)
+      for (int k = nbuffer - 1; k > -1; k--)
+      {
+        array(i, k) = 2.f * array(i, k + 1) - array(i, k + 2);
+        array(i, nj - 1 - k) = 2.f * array(i, nj - 2 - k) -
+                               array(i, nj - 3 - k);
+      }
+  }
+  else
+  {
+    for (int j = 0; j < nj; j++)
     {
-      array(k, j) = 2.f * array(k + 1, j) - array(k + 2, j);
-      array(ni - 1 - k, j) = 2.f * array(ni - 2 - k, j) - array(ni - 3 - k, j);
+      float vref1 = array(nbuffer, j);
+      float vref2 = array(ni - 1 - nbuffer, j);
+
+      for (int k = nbuffer - 1; k > -1; k--)
+      {
+        array(k, j) = 2.f * array(k + 1, j) - array(k + 2, j);
+        array(ni - 1 - k, j) = 2.f * array(ni - 2 - k, j) -
+                               array(ni - 3 - k, j);
+
+        array(k, j) = (1.f - sigma) * array(k, j) + sigma * vref1;
+        array(ni - 1 - k, j) = (1.f - sigma) * array(ni - 1 - k, j) +
+                               sigma * vref2;
+      }
     }
 
-  for (int i = 0; i < ni; i++)
-    for (int k = nbuffer - 1; k > -1; k--)
+    for (int i = 0; i < ni; i++)
     {
-      array(i, k) = 2.f * array(i, k + 1) - array(i, k + 2);
-      array(i, nj - 1 - k) = 2.f * array(i, nj - 2 - k) - array(i, nj - 3 - k);
+      float vref1 = array(i, nbuffer);
+      float vref2 = array(i, nj - 1 - nbuffer);
+
+      for (int k = nbuffer - 1; k > -1; k--)
+      {
+        array(i, k) = 2.f * array(i, k + 1) - array(i, k + 2);
+        array(i, nj - 1 - k) = 2.f * array(i, nj - 2 - k) -
+                               array(i, nj - 3 - k);
+
+        array(i, k) = (1.f - sigma) * array(i, k) + sigma * vref1;
+        array(i, nj - 1 - k) = (1.f - sigma) * array(i, nj - 1 - k) +
+                               sigma * vref2;
+      }
     }
+  }
 }
 
 void fill_borders(Array &array)
