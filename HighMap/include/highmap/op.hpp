@@ -1128,7 +1128,7 @@ float minimum_smooth(const float a, const float b, float k); ///< @overload
  * @warning Values of array `t` are expected to be in [0, 1].
  *
  * @param t Mixing coefficient, define locally, in [0, 1].
- * @param arrays Input arrays.
+ * @param arrays References to the input arrays.
  * @return Array Resulting array.
  *
  * **Example**
@@ -1137,7 +1137,7 @@ float minimum_smooth(const float a, const float b, float k); ///< @overload
  * **Result**
  * @image html ex_mixer.png
  */
-Array mixer(const Array t, const std::vector<Array> arrays);
+Array mixer(const Array t, const std::vector<Array *> arrays);
 
 /**
  * @brief Apply a morphological_black_hat algorithm to the input array using a
