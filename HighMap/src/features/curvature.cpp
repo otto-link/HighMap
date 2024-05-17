@@ -82,7 +82,7 @@ Array shape_index(const Array &z, int ir)
   si += 0.5f;
 
   if (ir > 0)
-    extrapolate_borders(si, ir + 1, 0.05f);
+    extrapolate_borders(si, ir + 1, 0.1f);
   else
     extrapolate_borders(si);
 
@@ -111,7 +111,7 @@ Array unsphericity(const Array &z, int ir)
   d = pow(d, 0.5f);
 
   if (ir > 0)
-    extrapolate_borders(d, ir + 1, 0.05f);
+    extrapolate_borders(d, ir + 1, 0.1f);
   else
     extrapolate_borders(d);
 
