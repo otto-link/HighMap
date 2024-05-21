@@ -1137,7 +1137,7 @@ float minimum_smooth(const float a, const float b, float k); ///< @overload
  * **Result**
  * @image html ex_mixer.png
  */
-Array mixer(const Array t, const std::vector<Array *> arrays);
+Array mixer(const Array &t, const std::vector<Array *> arrays);
 
 /**
  * @brief Apply a morphological_black_hat algorithm to the input array using a
