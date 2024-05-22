@@ -18,6 +18,31 @@ namespace hmap
 {
 
 /**
+ * @brief This specific type of curvature reflects how the shape of the
+ * heightmap influences the accumulation of water. Positive accumulation
+ * curvature indicates converging flow, where water tends to accumulate and
+ * concentrate, often leading to the formation of channels or gullies. Negative
+ * accumulation curvature suggests diverging flow, where water is dispersed over
+ * a broader area, which is typical of ridges or hilltops.
+ * @param z Input array.
+ * @param ir Pre-filter radius.
+ * @return Output array.
+ *
+ *
+ * **Example**
+ * @include ex_curvature_gaussian.cpp
+ *
+ * **Result**
+ * @image html ex_curvature_gaussian0.png
+ * @image html ex_curvature_gaussian1.png
+ * @image html ex_curvature_gaussian2.png
+ * @image html ex_curvature_gaussian3.png
+ * @image html ex_curvature_gaussian4.png
+ * @image html ex_curvature_gaussian5.png
+ */
+Array accumulation_curvature(const Array &z, int ir);
+
+/**
  * @brief Return the connected-component labelling of the array.
  *
  * See https://en.wikipedia.org/wiki/Connected-component_labeling.
@@ -54,6 +79,7 @@ Array connected_components(const Array &array,
  * @image html ex_curvature_gaussian2.png
  * @image html ex_curvature_gaussian3.png
  * @image html ex_curvature_gaussian4.png
+ * @image html ex_curvature_gaussian5.png
  */
 Array curvature_gaussian(const Array &z);
 
@@ -72,6 +98,7 @@ Array curvature_gaussian(const Array &z);
  * @image html ex_curvature_gaussian2.png
  * @image html ex_curvature_gaussian3.png
  * @image html ex_curvature_gaussian4.png
+ * @image html ex_curvature_gaussian5.png
  */
 Array curvature_mean(const Array &z);
 
@@ -177,6 +204,7 @@ Array rugosity(const Array &z, int ir);
  * @image html ex_curvature_gaussian2.png
  * @image html ex_curvature_gaussian3.png
  * @image html ex_curvature_gaussian4.png
+ * @image html ex_curvature_gaussian5.png
  */
 Array shape_index(const Array &z, int ir);
 
@@ -197,6 +225,7 @@ Array shape_index(const Array &z, int ir);
  * @image html ex_curvature_gaussian2.png
  * @image html ex_curvature_gaussian3.png
  * @image html ex_curvature_gaussian4.png
+ * @image html ex_curvature_gaussian5.png
  */
 Array unsphericity(const Array &z, int ir);
 
