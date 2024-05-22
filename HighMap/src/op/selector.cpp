@@ -43,6 +43,7 @@ Array select_blob_log(const Array &array, int ir)
   Array c = array;
   smooth_cpulse(c, ir);
   c = -laplacian(c);
+  extrapolate_borders(c, ir + 1, 0.1f);
   return c;
 }
 
