@@ -61,13 +61,18 @@ Array select_cavities(const Array &array, int ir, bool concave)
 }
 
 Array select_elevation_slope(const Array &array,
-                             float        vmax,
-                             float        gradient_scaling)
+                             float        gradient_scale,
+                             float        vmax)
 {
-  Array c = array;
-  Array da = gradient_norm(array);
-  c = array - vmax - da * gradient_scaling;
-  return c;
+  Array da = gradient_norm(array) * gradient_scale * (float)array.shape.x;
+  clamp_max(da, vmax);
+
+  return pow((vmax - array) * (vmax - da), 0.5f);
+}
+
+Array select_elevation_slope(const Array &array, float gradient_scale)
+{
+  return select_elevation_slope(array, gradient_scale, array.max());
 }
 
 Array select_eq(const Array &array, float value)

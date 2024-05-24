@@ -122,7 +122,7 @@ void hydraulic_benes(Array &z,
           }
         }
       } // j
-    }   // i
+    } // i
 
     // --- erosion and deposition
     for (int i = 1; i < z.shape.x - 1; i++)
@@ -172,7 +172,7 @@ void hydraulic_benes(Array &z,
         }
 
       } // j
-    }   // i
+    } // i
 
     w = (1.f - evap_rate) * w;
     chop(w, wmin);

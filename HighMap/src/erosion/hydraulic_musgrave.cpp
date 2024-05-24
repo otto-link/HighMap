@@ -96,8 +96,8 @@ void hydraulic_musgrave(Array &z,
             }
           }
         } // k
-      }   // j
-    }     // i
+      } // j
+    } // i
 
     // fix boundaries
     fill_borders(z);

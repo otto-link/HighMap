@@ -12,7 +12,8 @@ int main(void)
   hmap::Array z = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, res, seed);
   hmap::remap(z, -1.f, 2.f);
 
-  hmap::Array c = hmap::select_elevation_slope(z);
+  float       gradient_scale = 0.05f;
+  hmap::Array c = hmap::select_elevation_slope(z, gradient_scale);
 
   z.to_png("ex_select_elevation_slope0.png", hmap::cmap::jet);
   c.to_png("ex_select_elevation_slope1.png", hmap::cmap::jet);

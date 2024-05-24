@@ -355,7 +355,7 @@ std::unique_ptr<NoiseFunction> create_noise_function_from_type(
 {
   switch (noise_type)
   {
-  // clang-format off
+    // clang-format off
   case (NoiseType::PERLIN):
     return std::unique_ptr<NoiseFunction>(new PerlinFunction(kw, seed));
   case (NoiseType::PERLIN_BILLOW):
