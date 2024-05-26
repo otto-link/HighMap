@@ -32,4 +32,5 @@
 #include "highmap/primitives.hpp"
 #include "highmap/pyramid.hpp"
 #include "highmap/roads.hpp"
+#include "highmap/selector.hpp"
 #include "highmap/vector.hpp"
