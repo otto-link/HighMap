@@ -172,6 +172,16 @@ public:
    */
   void initialize();
 
+  /**
+   * @brief Set the seed attribute.
+   *
+   * @param new_seed New seed.
+   */
+  void set_seed(uint /*new_seed*/)
+  {
+    // FIX ME seed cannot be changed with current implemtantion.
+  }
+
 private:
   /**
    * @brief Perlin's B, a power of 2 usually equal to 256.
@@ -186,7 +196,7 @@ private:
   /**
    * @brief Perlin's N.
    */
-  int perlin_n = 0x1000;
+  int perlin_n = 0x100;
 
   /**
    * @brief Perlin's permutation table.
