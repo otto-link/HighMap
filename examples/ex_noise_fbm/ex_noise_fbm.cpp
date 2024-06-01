@@ -96,4 +96,11 @@ int main(void)
     }
     z.to_png("ex_noise_fbm5.png", hmap::cmap::terrain, true);
   }
+
+  // Parberry
+  {
+    auto n = hmap::noise_parberry(shape, kw, seed);
+    hmap::remap(n);
+    n.to_png("ex_noise_fbm6.png", hmap::cmap::terrain, true);
+  }
 }

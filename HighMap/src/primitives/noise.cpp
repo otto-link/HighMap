@@ -151,6 +151,39 @@ Array noise_jordan(NoiseType   noise_type,
   return array;
 }
 
+Array noise_parberry(Vec2<int>   shape,
+                     Vec2<float> kw,
+                     uint        seed,
+                     int         octaves,
+                     float       weight,
+                     float       persistence,
+                     float       lacunarity,
+                     float       mu,
+                     Array      *p_base_elevation,
+                     Array      *p_noise_x,
+                     Array      *p_noise_y,
+                     Array      *p_stretching,
+                     Vec4<float> bbox)
+{
+  Array array = p_base_elevation == nullptr ? Array(shape) : *p_base_elevation;
+
+  hmap::ParberryFunction p = hmap::ParberryFunction(kw, seed, mu);
+
+  hmap::FbmFunction f = hmap::FbmFunction(p.get_base_ref(),
+                                          octaves,
+                                          weight,
+                                          persistence,
+                                          lacunarity);
+
+  fill_array_using_xy_function(array,
+                               bbox,
+                               p_noise_x,
+                               p_noise_y,
+                               p_stretching,
+                               f.get_function());
+  return array;
+}
+
 Array noise_pingpong(NoiseType   noise_type,
                      Vec2<int>   shape,
                      Vec2<float> kw,

@@ -427,6 +427,44 @@ Array noise_jordan(NoiseType   noise_type,
                    Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
+ * @brief Return an array filled with coherent fbm Parberry variant of Perlin
+ * noise.
+ *
+ * @param shape Array shape.
+ * @param kw Noise wavenumbers {kx, ky} for each directions.
+ * @param seed Random seed number.
+ * @param octaves Number of octaves.
+ * @param weigth Octave weighting.
+ * @param persistence Octave persistence.
+ * @param lacunarity Defines the wavenumber ratio between each octaves.
+ * @param mu Gradient magnitude exponent.
+ * @param p_base_elevation Reference to the base elevation noise array.
+ * @param p_noise_x, p_noise_y Reference to the input noise arrays.
+ * @param p_stretching Local wavenumber multiplier.
+ * @param bbox Domain bounding box.
+ * @return Array Fractal noise.
+ *
+ * **Example**
+ * @include ex_noise_fbm.cpp
+ *
+ * **Result**
+ * @image html ex_noise_fbm.png
+ */
+Array noise_parberry(Vec2<int>   shape,
+                     Vec2<float> kw,
+                     uint        seed,
+                     int         octaves = 8,
+                     float       weight = 0.7f,
+                     float       persistence = 0.5f,
+                     float       lacunarity = 2.f,
+                     float       mu = 1.02f,
+                     Array      *p_base_elevation = nullptr,
+                     Array      *p_noise_x = nullptr,
+                     Array      *p_noise_y = nullptr,
+                     Array      *p_stretching = nullptr,
+                     Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
  * @brief Return an array filled with coherence fbm pingpong noise.
  *
  * @param noise_type Noise type.

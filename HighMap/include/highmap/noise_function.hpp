@@ -34,6 +34,7 @@ namespace hmap
  */
 enum NoiseType : int
 {
+  PARBERRY,        ///< Parberry (Perlin variant)
   PERLIN,          ///< Perlin
   PERLIN_BILLOW,   ///< Perlin billow
   PERLIN_HALF,     ///< Perlin half
@@ -143,6 +144,64 @@ public:
 
 private:
   hmap::Array array;
+};
+
+/**
+ * @brief Parberry (x, y) function class.
+ */
+class ParberryFunction : public NoiseFunction
+{
+public:
+  /**
+   * @brief Gradient magnitude exponent.
+   */
+  float mu;
+
+  /**
+   * @brief Construct a new Perlin Function object.
+   *
+   * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
+   * a unit domain.
+   * @param seed Random seed number.
+   * @param mu Gradient magnitude exponent.
+   */
+  ParberryFunction(Vec2<float> kw, uint seed, float mu);
+
+  /**
+   * @brief Initialize generator.
+   */
+  void initialize();
+
+private:
+  /**
+   * @brief Perlin's B, a power of 2 usually equal to 256.
+   */
+  int perlin_b = 0X100;
+
+  /**
+   * @brief A bit mask, one less than B.
+   */
+  int perlin_bm = 0xff;
+
+  /**
+   * @brief Perlin's N.
+   */
+  int perlin_n = 0x1000;
+
+  /**
+   * @brief Perlin's permutation table.
+   */
+  std::vector<int> p;
+
+  /**
+   * @brief Perlin's gradient table.
+   */
+  std::vector<std::vector<float>> g2;
+
+  /**
+   * @brief Ian Parberry's gradient magnitude table.
+   */
+  std::vector<float> m;
 };
 
 /**
