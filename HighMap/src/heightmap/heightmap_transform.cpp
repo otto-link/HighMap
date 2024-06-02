@@ -16,7 +16,6 @@ namespace hmap
 
 void fill(HeightMap &h, std::function<Array(Vec2<int>)> nullary_op)
 {
-  LOG_DEBUG("nullary (shape)");
   size_t                          nthreads = h.get_ntiles();
   std::vector<std::future<Array>> futures(nthreads);
 
@@ -29,7 +28,6 @@ void fill(HeightMap &h, std::function<Array(Vec2<int>)> nullary_op)
 
 void fill(HeightMap &h, std::function<Array(Vec2<int>, Vec4<float>)> nullary_op)
 {
-  LOG_DEBUG("nullary (shape, size)");
   size_t                          nthreads = h.get_ntiles();
   std::vector<std::future<Array>> futures(nthreads);
 
@@ -47,11 +45,8 @@ void fill(
     std::function<Array(Vec2<int>, Vec4<float>, hmap::Array *, hmap::Array *)>
         nullary_op)
 {
-  LOG_DEBUG("nullary (shape, size, p_noise, p_noise)");
   size_t                          nthreads = h.get_ntiles();
   std::vector<std::future<Array>> futures(nthreads);
-
-  LOG_DEBUG("pointer: %p", (void *)p_noise_y);
 
   for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
   {
@@ -79,11 +74,8 @@ void fill(HeightMap                          &h,
                               hmap::Array *,
                               hmap::Array *)> unary_op)
 {
-  LOG_DEBUG("unary (shape, size, p_noise, p_noise)");
   size_t                          nthreads = h.get_ntiles();
   std::vector<std::future<Array>> futures(nthreads);
-
-  LOG_DEBUG("pointer: %p", (void *)p_noise_y);
 
   for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
   {
@@ -112,11 +104,8 @@ void fill(HeightMap                          &h,
                               hmap::Array *,
                               hmap::Array *)> nullary_op)
 {
-  LOG_DEBUG("nullary (shape, size, p_noise, p_noise, p_stretching)");
   size_t                          nthreads = h.get_ntiles();
   std::vector<std::future<Array>> futures(nthreads);
-
-  LOG_DEBUG("pointer: %p", (void *)p_noise_y);
 
   for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
   {
@@ -141,7 +130,6 @@ void fill(
     HeightMap                                                  *p_noise,
     std::function<Array(Vec2<int>, Vec4<float>, hmap::Array *)> nullary_op)
 {
-  LOG_DEBUG("nullary (shape, size, p_noise, p_noise)");
   size_t                          nthreads = h.get_ntiles();
   std::vector<std::future<Array>> futures(nthreads);
 
@@ -160,7 +148,6 @@ void transform(HeightMap                    &h_out,
                HeightMap                    &h1,
                std::function<Array(Array &)> unary_op)
 {
-  LOG_DEBUG("unary, with returned array");
   size_t                          nthreads = h1.get_ntiles();
   std::vector<std::future<Array>> futures(nthreads);
 
@@ -176,7 +163,6 @@ void transform(HeightMap                             &h_out,
                HeightMap                             &h2,
                std::function<Array(Array &, Array &)> binary_op)
 {
-  LOG_DEBUG("binary, with returned array");
   size_t                          nthreads = h1.get_ntiles();
   std::vector<std::future<Array>> futures(nthreads);
 
@@ -191,7 +177,6 @@ void transform(HeightMap                             &h_out,
 
 void transform(HeightMap &h, std::function<void(Array &)> unary_op)
 {
-  LOG_DEBUG("unary");
   size_t                         nthreads = h.get_ntiles();
   std::vector<std::future<void>> futures(nthreads);
 
@@ -205,7 +190,6 @@ void transform(HeightMap &h, std::function<void(Array &)> unary_op)
 // void transform(HeightMap                                             &h,
 //                std::function<void(Array &, Vec4<float>)> unary_op)
 // {
-//   LOG_DEBUG("unary");
 //   size_t                         nthreads = h.get_ntiles();
 //   std::vector<std::future<void>> futures(nthreads);
 
@@ -220,7 +204,6 @@ void transform(HeightMap &h, std::function<void(Array &)> unary_op)
 
 void transform(HeightMap &h, std::function<void(Array &, Vec4<float>)> unary_op)
 {
-  LOG_DEBUG("unary bbox");
   size_t                         nthreads = h.get_ntiles();
   std::vector<std::future<void>> futures(nthreads);
 
@@ -235,7 +218,6 @@ void transform(HeightMap                                         &h,
                HeightMap                                         *p_noise_x,
                std::function<void(Array &, Vec4<float>, Array *)> unary_op)
 {
-  LOG_DEBUG("unary bbox");
   size_t                         nthreads = h.get_ntiles();
   std::vector<std::future<void>> futures(nthreads);
 
@@ -259,7 +241,6 @@ void transform(
     HeightMap                                                  *p_noise_y,
     std::function<void(Array &, Vec4<float>, Array *, Array *)> unary_op)
 {
-  LOG_DEBUG("unary bbox");
   size_t                         nthreads = h.get_ntiles();
   std::vector<std::future<void>> futures(nthreads);
 
@@ -283,7 +264,6 @@ void transform(HeightMap                            &h,
                HeightMap                            *p_mask,
                std::function<void(Array &, Array *)> unary_op)
 {
-  LOG_DEBUG("unary (mask)");
   size_t                         nthreads = h.get_ntiles();
   std::vector<std::future<void>> futures(nthreads);
 
@@ -303,7 +283,6 @@ void transform(HeightMap                                              &h,
                hmap::HeightMap                                        *p_3,
                std::function<void(Array &, Array *, Array *, Array *)> unary_op)
 {
-  LOG_DEBUG("unary (erosion)");
   size_t                         nthreads = h.get_ntiles();
   std::vector<std::future<void>> futures(nthreads);
 
@@ -334,7 +313,6 @@ void transform(
     std::function<void(Array &, Array *, Array *, Array *, Array *, Array *)>
         unary_op)
 {
-  LOG_DEBUG("unary (erosion)");
   size_t                         nthreads = h.get_ntiles();
   std::vector<std::future<void>> futures(nthreads);
 
@@ -367,8 +345,6 @@ void transform(HeightMap                                     &h,
   size_t                         nthreads = h.get_ntiles();
   std::vector<std::future<void>> futures(nthreads);
 
-  LOG_DEBUG("transform 2 ptr");
-
   for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
   {
     Array *p_1_array = (p_1 == nullptr) ? nullptr : &p_1->tiles[i];
@@ -388,7 +364,6 @@ void transform(HeightMap                            &h1,
                HeightMap                            &h2,
                std::function<void(Array &, Array &)> binary_op)
 {
-  LOG_DEBUG("binary");
   size_t                         nthreads = h1.get_ntiles();
   std::vector<std::future<void>> futures(nthreads);
 
@@ -405,7 +380,6 @@ void transform(HeightMap                                         &h1,
                HeightMap                                         &h2,
                std::function<void(Array &, Array &, Vec4<float>)> binary_op)
 {
-  LOG_DEBUG("binary");
   size_t                         nthreads = h1.get_ntiles();
   std::vector<std::future<void>> futures(nthreads);
 
@@ -424,7 +398,6 @@ void transform(HeightMap                                     &h1,
                HeightMap                                     &h3,
                std::function<void(Array &, Array &, Array &)> ternary_op)
 {
-  LOG_DEBUG("ternary");
   size_t                         nthreads = h1.get_ntiles();
   std::vector<std::future<void>> futures(nthreads);
 
@@ -445,7 +418,6 @@ void transform(
     HeightMap                                              &h4,
     std::function<void(Array &, Array &, Array &, Array &)> quaternary_op)
 {
-  LOG_DEBUG("quaternary");
   size_t                         nthreads = h1.get_ntiles();
   std::vector<std::future<void>> futures(nthreads);
 
