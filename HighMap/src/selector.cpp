@@ -12,6 +12,7 @@
 #include "highmap/math.hpp"
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
+#include "highmap/selector.hpp"
 
 namespace hmap
 {
@@ -36,6 +37,20 @@ Array scan_mask(const Array &array, float contrast, float brightness)
   remap(array_out, 0.f, 1.f, 0.f, 1.f);
 
   return array_out;
+}
+
+Array select_angle(const Array &array, float angle, float sigma, int ir)
+{
+  Array c = array;
+
+  // prefiltering
+  if (ir > 0)
+    smooth_cpulse(c, ir);
+
+  c = gradient_angle(c) + M_PI;
+  c = select_pulse(c, angle / 180.f * M_PI, sigma / 180.f * M_PI);
+
+  return c;
 }
 
 Array select_blob_log(const Array &array, int ir)

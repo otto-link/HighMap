@@ -1,0 +1,2 @@
+add_executable(ex_select_angle ex_select_angle.cpp)
+target_link_libraries(ex_select_angle highmap)

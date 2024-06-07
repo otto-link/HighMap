@@ -39,6 +39,23 @@ Array scan_mask(const Array &array,
                 float        brightness = 0.5f);
 
 /**
+ * @brief Return angle selection for a given angle and a tolerance half-width
+ * on this value.
+ * @param array Input array.
+ * @param angle Selected angle (degree).
+ * @param sigma Selected angle tolerance (degree).
+ * @param ir Prefilter radius.
+ * @return Output array.
+ *
+ * **Example**
+ * @include ex_select_angle.cpp
+ *
+ * **Result**
+ * @image html ex_select_angle.png
+ */
+Array select_angle(const Array &array, float angle, float sigma, int ir = 0);
+
+/**
  * @brief Return blob detection using the Laplacian of Gaussian (LoG) approach.
  *
  * @param array Input array.
@@ -115,7 +132,7 @@ Array select_eq(const Array &array, float value);
  * given angle.
  *
  * @param array Input array.
- * @param angle Reference angle.
+ * @param angle Reference angle (degree).
  * @return Array Output array.
  */
 Array select_gradient_angle(const Array &array, float angle);
