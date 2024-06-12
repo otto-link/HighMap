@@ -20,6 +20,7 @@
 #include "libInterpolate/Interpolate.hpp"
 #include "macrologger.h"
 
+#include "highmap/math.hpp"
 #include "highmap/op.hpp"
 
 #define HMAP_NOISE_FCT_TYPE std::function<float(float, float, float)>
