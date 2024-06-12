@@ -98,6 +98,16 @@ void Cloud::randomize(uint seed, Vec4<float> bbox)
   }
 }
 
+void Cloud::remap_values(float vmin, float vmax)
+{
+  float from_min = this->get_values_min();
+  float from_max = this->get_values_max();
+
+  if (from_min != from_max)
+    for (auto &p : this->points)
+      p.v = (p.v - from_min) / (from_max - from_min) * (vmax - vmin) + vmin;
+}
+
 void Cloud::set_values_from_array(const Array &array, Vec4<float> bbox)
 {
   float ax = (float)(array.shape.x - 1) / (bbox.b - bbox.a);

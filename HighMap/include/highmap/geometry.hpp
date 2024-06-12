@@ -344,6 +344,13 @@ public:
   void randomize(uint seed, Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
   /**
+   * @brief Remap point values to a target range.
+   * @param vmin The lower bound of the range to remap to.
+   * @param vmax The lower bound of the range to remap to.
+   */
+  void remap_values(float vmin, float vmax);
+
+  /**
    * @brief Remove a point from the cloud.
    *
    * @param point_idx Point index.
