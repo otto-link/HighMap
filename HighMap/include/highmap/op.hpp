@@ -719,9 +719,12 @@ void gamma_correction_local(Array &array,
  *
  * @param array Input array.
  * @param buffers Buffer size {east, west, south, north}.
+ * @param zero_padding Use zero-padding instead of symmetry to fill values.
  * @return Array New array with buffers.
  */
-Array generate_buffered_array(const Array &array, Vec4<int> buffers);
+Array generate_buffered_array(const Array &array,
+                              Vec4<int>    buffers,
+                              bool         zero_padding = false);
 
 /**
  * @brief Return the shaded relief map (or hillshading).
@@ -1790,6 +1793,8 @@ void rot90(Array &array);
  *
  * @param array Input array.
  * @param angle Rotation angle in degrees.
+ * @param zero_padding Use zero-padding instead of symmetry to fill values (can
+ * be useful when rotating array with zero values at the domain borders).
  *
  * **Example**
  * @include ex_rotate.cpp
@@ -1797,7 +1802,7 @@ void rot90(Array &array);
  * **Result**
  * @image html ex_rotate.png
  */
-void rotate(Array &array, float angle);
+void rotate(Array &array, float angle, bool zero_padding = false);
 
 /**
  * @brief Saturate the array values based on the input interval [vmin, vmax]

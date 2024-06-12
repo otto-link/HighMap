@@ -91,7 +91,9 @@ void fill_borders(Array &array)
   }
 }
 
-Array generate_buffered_array(const Array &array, Vec4<int> buffers)
+Array generate_buffered_array(const Array &array,
+                              Vec4<int>    buffers,
+                              bool         zero_padding)
 {
   Array array_out = Array(Vec2<int>(array.shape.x + buffers.a + buffers.b,
                                     array.shape.y + buffers.c + buffers.d));
@@ -100,26 +102,29 @@ Array generate_buffered_array(const Array &array, Vec4<int> buffers)
     for (int j = 0; j < array.shape.y; j++)
       array_out(i + buffers.a, j + buffers.c) = array(i, j);
 
-  int i1 = buffers.a;
-  int i2 = buffers.b;
-  int j1 = buffers.c;
-  int j2 = buffers.d;
+  if (!zero_padding)
+  {
+    int i1 = buffers.a;
+    int i2 = buffers.b;
+    int j1 = buffers.c;
+    int j2 = buffers.d;
 
-  for (int i = 0; i < i1; i++)
-    for (int j = j1; j < array_out.shape.y - j2; j++)
-      array_out(i, j) = array_out(2 * i1 - i, j);
+    for (int i = 0; i < i1; i++)
+      for (int j = j1; j < array_out.shape.y - j2; j++)
+        array_out(i, j) = array_out(2 * i1 - i, j);
 
-  for (int i = array_out.shape.x - i2; i < array_out.shape.x; i++)
-    for (int j = j1; j < array_out.shape.y - j2; j++)
-      array_out(i, j) = array_out(2 * (array_out.shape.x - i2) - i - 1, j);
+    for (int i = array_out.shape.x - i2; i < array_out.shape.x; i++)
+      for (int j = j1; j < array_out.shape.y - j2; j++)
+        array_out(i, j) = array_out(2 * (array_out.shape.x - i2) - i - 1, j);
 
-  for (int i = 0; i < array_out.shape.x; i++)
-    for (int j = 0; j < j1; j++)
-      array_out(i, j) = array_out(i, 2 * j1 - j);
+    for (int i = 0; i < array_out.shape.x; i++)
+      for (int j = 0; j < j1; j++)
+        array_out(i, j) = array_out(i, 2 * j1 - j);
 
-  for (int i = 0; i < array_out.shape.x; i++)
-    for (int j = array_out.shape.y - j2; j < array_out.shape.y; j++)
-      array_out(i, j) = array_out(i, 2 * (array_out.shape.y - j2) - j - 1);
+    for (int i = 0; i < array_out.shape.x; i++)
+      for (int j = array_out.shape.y - j2; j < array_out.shape.y; j++)
+        array_out(i, j) = array_out(i, 2 * (array_out.shape.y - j2) - j - 1);
+  }
 
   return array_out;
 }
