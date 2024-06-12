@@ -165,6 +165,64 @@ void random_grid(std::vector<float> &x,
   }
 }
 
+void random_grid(std::vector<float> &x,
+                 std::vector<float> &y,
+                 std::vector<float> &value,
+                 uint                seed,
+                 Vec2<float>         delta,
+                 Vec2<float>         stagger_ratio,
+                 Vec2<float>         jitter_ratio,
+                 Vec4<float>         bbox)
+{
+  std::mt19937                          gen(seed);
+  std::uniform_real_distribution<float> dis(-1.f, 1.f);
+
+  x.clear();
+  y.clear();
+  value.clear();
+
+  int nx = (int)((bbox.b - bbox.a) / delta.x) + 3;
+  int ny = (int)((bbox.d - bbox.c) / delta.y) + 3;
+
+  x.reserve(nx * ny);
+  y.reserve(nx * ny);
+  value.reserve(nx * ny);
+
+  std::vector<float> xlist = linspace(bbox.a - delta.x, bbox.b + delta.x, nx);
+  std::vector<float> ylist = linspace(bbox.c - delta.y, bbox.d + delta.y, ny);
+
+  Vec2<float> offset = {0.f, 0.f};
+
+  for (float yp : ylist)
+  {
+    offset.x = (offset.x == 0.f) ? stagger_ratio.x * delta.x : 0.f;
+    offset.y = 0.f;
+
+    for (float xp : xlist)
+    {
+      float new_x = xp + offset.x;
+      float new_y = yp + offset.y;
+
+      // add jitter
+      if (jitter_ratio.x > 0.f)
+        new_x += 0.5f * jitter_ratio.x * delta.x * dis(gen);
+
+      if (jitter_ratio.y > 0.f)
+        new_y += 0.5f * jitter_ratio.y * delta.y * dis(gen);
+
+      // save
+      x.push_back(new_x);
+      y.push_back(new_y);
+      value.push_back(1.f);
+
+      offset.y = (offset.y == 0.f) ? stagger_ratio.y * delta.y : 0.f;
+    }
+  }
+
+  // clean-up
+  remove_grid_points_outside_bbox(x, y, value, bbox);
+}
+
 void random_grid_density(std::vector<float> &x,
                          std::vector<float> &y,
                          Array              &density,
@@ -221,6 +279,28 @@ void random_grid_jittered(std::vector<float> &x,
 
     x[k] = x[k] * (bbox.b - bbox.a) + bbox.a;
     y[k] = y[k] * (bbox.d - bbox.c) + bbox.c;
+  }
+}
+
+void remove_grid_points_outside_bbox(std::vector<float> &x,
+                                     std::vector<float> &y,
+                                     std::vector<float> &v,
+                                     Vec4<float>         bbox)
+{
+  std::vector<size_t> indices_to_remove;
+
+  for (size_t k = 0; k < x.size(); k++)
+  {
+    if (x[k] < bbox.a || x[k] > bbox.b || y[k] < bbox.c || y[k] > bbox.d)
+      indices_to_remove.push_back(k);
+  }
+
+  for (auto it = indices_to_remove.rbegin(); it != indices_to_remove.rend();
+       ++it)
+  {
+    x.erase(x.begin() + *it);
+    y.erase(y.begin() + *it);
+    v.erase(v.begin() + *it);
   }
 }
 

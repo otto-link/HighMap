@@ -1330,6 +1330,34 @@ void random_grid(std::vector<float> &x,
                  Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f}); ///< @overload
 
 /**
+ * @brief Generate a random grid.
+ * @param x[out] `x` coordinates (output).
+ * @param y[out] `y` coordinates (output).
+ * @param value[out] Random value, in [0, 1], at (x, y).
+ * @param seed Random seed number.
+ * @param delta Point spacing in x and y directions.
+ * @param stagger_ratio Point offset in x and y directions for every two lines
+ * (to do a staggered grid), in [0, 1].
+ * @param jitter Point jittering (noise) in x and y directions, in [0, 1].
+ *
+ * @param bbox Bounding box.
+ *
+ * **Example**
+ * @include ex_random_grid.cpp
+ *
+ * **Result**
+ * @image html ex_random_grid.png
+ */
+void random_grid(std::vector<float> &x,
+                 std::vector<float> &y,
+                 std::vector<float> &value,
+                 uint                seed,
+                 Vec2<float>         delta,
+                 Vec2<float>         stagger_ratio,
+                 Vec2<float>         jitter_ratio,
+                 Vec4<float>         bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
  * @brief
  *
  * @param x
@@ -1358,6 +1386,18 @@ void random_grid_jittered(std::vector<float> &x,
                           float               scale,
                           uint                seed,
                           Vec4<float>         bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
+ * @brief Remove grid points that are outside a given bounding box.
+ * @param x `x` coordinates.
+ * @param y `y` coordinates.
+ * @param value Values at points.
+ * @param bbox Bounding box.
+ */
+void remove_grid_points_outside_bbox(std::vector<float> &x,
+                                     std::vector<float> &y,
+                                     std::vector<float> &value,
+                                     Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Rescale coordinate (x, y) so that they fit in a unit-square box based

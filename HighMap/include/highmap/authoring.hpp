@@ -155,7 +155,6 @@ Array ridgelines_bezier(Vec2<int>          shape,
  * @param bbox_array Array domain bounding box.
  * @return Array Output array.
  *
- *
  * **Example**
  * @include ex_stamping.cpp
  *
