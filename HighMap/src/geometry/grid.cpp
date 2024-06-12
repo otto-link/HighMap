@@ -213,7 +213,7 @@ void random_grid(std::vector<float> &x,
       // save
       x.push_back(new_x);
       y.push_back(new_y);
-      value.push_back(1.f);
+      value.push_back(0.5f * (dis(gen) + 1.f));
 
       offset.y = (offset.y == 0.f) ? stagger_ratio.y * delta.y : 0.f;
     }
