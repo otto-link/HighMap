@@ -141,13 +141,14 @@ Array ridgelines_bezier(Vec2<int>          shape,
  * @param yr Stamping locations y coordinates.
  * @param zr Stamping locations z coordinates.
  * @param kernel Kernel to be stamped
- * @param kernel_radius Kernel radius (with respect to a unit-square domain).
+ * @param kernel_ir Kernel radius (in pixels).
  * @param kernel_scale_radius Scale, or not, the kernel radius using the 'z'
  * coordinates of the points.
  * @param kernel_scale_amplitude Scale, or not, the kernel amplitude using the
  * 'z' coordinates of the points.
  * @param blend_method Blending method.
  * @param seed Random seed number.
+ * @param k_smoothing Smoothing (if any, e.g. for smooth min and max).
  * @param kernel_flip Randomly flip, or not, the kernel before stamping
  * (flipping including tranposing).
  * @param kernel_rotate Randomly rotate, or not, the kernel before stamping (can
@@ -168,11 +169,12 @@ Array stamping(Vec2<int>           shape,
                std::vector<float>  yr,
                std::vector<float>  zr,
                Array               kernel,
-               float               kernel_radius,
+               int                 kernel_ir,
                bool                kernel_scale_radius,
                bool                kernel_scale_amplitude,
                StampingBlendMethod blend_method,
                uint                seed,
+               float               k_smoothing = 0.1f,
                bool                kernel_flip = true,
                bool                kernel_rotate = false,
                Vec4<float>         bbox_array = {0.f, 1.f, 0.f, 1.f});

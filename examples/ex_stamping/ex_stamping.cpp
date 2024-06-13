@@ -20,7 +20,7 @@ int main(void)
                                  y,
                                  v,
                                  kernel,
-                                 0.4f, // kernel radius
+                                 32,   // kernel radius in pixels
                                  true, // scale ampl
                                  true, // scale radius
                                  hmap::StampingBlendMethod::MAXIMUM,

@@ -17,11 +17,12 @@ Array stamping(Vec2<int>           shape,
                std::vector<float>  yr,
                std::vector<float>  zr,
                Array               kernel,
-               float               kernel_radius,
+               int                 kernel_ir,
                bool                kernel_scale_radius,
                bool                kernel_scale_amplitude,
                StampingBlendMethod blend_method,
                uint                seed,
+               float               k_smoothing,
                bool                kernel_flip,
                bool                kernel_rotate,
                Vec4<float>         bbox_array)
@@ -39,8 +40,6 @@ Array stamping(Vec2<int>           shape,
   // --- define blending function
 
   std::function<void(float &, float &)> blend_function;
-
-  float k_smoothing = 0.1f;
 
   switch (blend_method)
   {
@@ -80,8 +79,7 @@ Array stamping(Vec2<int>           shape,
   // --- do the stamping
 
   // scale kernel
-  Vec2<int> scaled_kernel_shape = {std::max(2, (int)(kernel_radius * shape.x)),
-                                   std::max(2, (int)(kernel_radius * shape.y))};
+  Vec2<int> scaled_kernel_shape = {2 * kernel_ir + 1, 2 * kernel_ir + 1};
 
   Array kernel_scaled = kernel.resample_to_shape(scaled_kernel_shape);
 
@@ -94,10 +92,9 @@ Array stamping(Vec2<int>           shape,
     // resize kernel (if requested)
     if (kernel_scale_radius)
     {
-      float coeff = zr[k] * kernel_radius;
-
-      Vec2<int> new_scaled_kernel_shape = {std::max(2, (int)(coeff * shape.x)),
-                                           std::max(2, (int)(coeff * shape.y))};
+      Vec2<int> new_scaled_kernel_shape = {
+          std::max(3, (int)(zr[k] * (2 * kernel_ir + 1))),
+          std::max(3, (int)(zr[k] * (2 * kernel_ir + 1)))};
 
       if (new_scaled_kernel_shape != scaled_kernel_shape)
       {
