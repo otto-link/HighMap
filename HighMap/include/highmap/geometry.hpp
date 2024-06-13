@@ -1167,7 +1167,7 @@ public:
 };
 
 //----------------------------------------
-// Path functions
+// Functions
 //----------------------------------------
 
 /**
@@ -1195,6 +1195,15 @@ void dig_path(Array      &z,
               bool        force_downhill = false,
               Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f},
               float       depth = 0.f);
+
+/**
+ * @brief Merge two clouds.
+ *
+ * @param cloud1 Cloud.
+ * @param cloud2 Cloud.
+ * @return Merged cloud.
+ */
+Cloud merge_cloud(Cloud &cloud1, Cloud &cloud2);
 
 //----------------------------------------
 // Point functions

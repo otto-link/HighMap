@@ -283,4 +283,25 @@ Graph Cloud::to_graph_delaunay()
   return graph;
 }
 
+//----------------------------------------------------------------------
+// functions
+//----------------------------------------------------------------------
+
+Cloud merge_cloud(Cloud &cloud1, Cloud &cloud2)
+{
+  std::vector<float> x1 = cloud1.get_x();
+  std::vector<float> y1 = cloud1.get_y();
+  std::vector<float> v1 = cloud1.get_values();
+
+  std::vector<float> x2 = cloud2.get_x();
+  std::vector<float> y2 = cloud2.get_y();
+  std::vector<float> v2 = cloud2.get_values();
+
+  x1.insert(x1.end(), x2.begin(), x2.end());
+  y1.insert(y1.end(), y2.begin(), y2.end());
+  v1.insert(v1.end(), v2.begin(), v2.end());
+
+  return Cloud(x1, y1, v1);
+}
+
 } // namespace hmap
