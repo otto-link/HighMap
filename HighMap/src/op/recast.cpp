@@ -303,13 +303,19 @@ void recast_rocky_slopes(Array      &array,
 
 void recast_sag(Array &array, float vref, float k)
 {
-  float vmin = array.min();
-  recast_sag(array, vref, k, vmin);
+  array = 0.5f * array + vref - abs_smooth(array - vref, k);
 }
 
-void recast_sag(Array &array, float vref, float k, float vmin)
+void recast_sag(Array &array, float vref, float k, Array *p_mask)
 {
-  array = 0.5f * array + vref - abs_smooth(array - vref, k) - vmin;
+  if (!p_mask)
+    recast_sag(array, vref, k);
+  else
+  {
+    Array array_f = array;
+    recast_sag(array_f, vref, k);
+    array = lerp(array, array_f, *(p_mask));
+  }
 }
 
 } // namespace hmap
