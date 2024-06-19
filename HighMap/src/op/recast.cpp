@@ -303,7 +303,13 @@ void recast_rocky_slopes(Array      &array,
 
 void recast_sag(Array &array, float vref, float k)
 {
-  array = 0.5f * array + vref - abs_smooth(array - vref, k);
+  float vmin = array.min();
+  recast_sag(array, vref, k, vmin);
+}
+
+void recast_sag(Array &array, float vref, float k, float vmin)
+{
+  array = 0.5f * array + vref - abs_smooth(array - vref, k) - vmin;
 }
 
 } // namespace hmap

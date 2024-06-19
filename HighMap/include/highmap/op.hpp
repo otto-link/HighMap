@@ -1590,6 +1590,7 @@ void recast_rocky_slopes(Array      &array,
  * @param array Input array.
  * @param vref Reference elevation where the elevation is folded.
  * @param k Smoothing coefficient.
+ * @param vmin Reference minimum elevation.
  *
  * **Example**
  * @include ex_recast.cpp
@@ -1598,6 +1599,7 @@ void recast_rocky_slopes(Array      &array,
  * @image html ex_recast.png
  */
 void recast_sag(Array &array, float vref, float k);
+void recast_sag(Array &array, float vref, float k, float vmin); ///< @overload
 
 /**
  * @brief Apply a curve adjustment filter to the array.
