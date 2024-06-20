@@ -386,6 +386,20 @@ Array convolve2d_svd_rotated_kernel(const Array &z,
                                     uint         seed = 1);
 
 /**
+ * @brief Simplified detrending for array using linear regression applied to
+ * columns and rows.
+ * @param array Input array.
+ * @return Output array.
+ *
+ * **Example**
+ * @include ex_detrend.cpp
+ *
+ * **Result**
+ * @image html ex_detrend.png
+ */
+Array detrend_reg(const Array &array);
+
+/**
  * @brief Apply a dilation algorithm to the input array using a square
  * structure.
  * @param array Input array.
