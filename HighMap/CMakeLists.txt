@@ -15,7 +15,7 @@ add_library(${PROJECT_NAME} STATIC ${SOURCES})
 target_include_directories(
   ${PROJECT_NAME}
   PUBLIC ${PROJECT_SOURCE_DIR}/include
-  PRIVATE ${PROJECT_SOURCE_DIR}/src)
+  PRIVATE ${PROJECT_SOURCE_DIR}/include/internal)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${PROJECT_VERSION})
 

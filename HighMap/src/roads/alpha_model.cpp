@@ -6,7 +6,8 @@
 
 #include "highmap/array.hpp"
 #include "highmap/geometry.hpp"
-#include "op/vector_utils.hpp"
+
+#include "highmap/internal/vector_utils.hpp"
 
 namespace hmap
 {

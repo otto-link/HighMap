@@ -10,7 +10,7 @@
 #include "highmap/heightmap.hpp"
 #include "highmap/op.hpp"
 
-#include "op/vector_utils.hpp"
+#include "highmap/internal/vector_utils.hpp"
 
 namespace hmap
 {
