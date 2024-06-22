@@ -7,6 +7,7 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/kernels.hpp"
 #include "highmap/math.hpp"
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
@@ -290,6 +291,11 @@ Array smooth_cosine(Vec2<int> shape)
   return array;
 }
 
+Array square(Vec2<int> shape)
+{
+  return constant(shape, 1.f);
+}
+
 Array tricube(Vec2<int> shape)
 {
   Array array = Array(shape);
@@ -307,6 +313,33 @@ Array tricube(Vec2<int> shape)
     }
 
   return array;
+}
+
+// generic function
+
+Array get_kernel(Vec2<int> shape, KernelType kernel_type)
+{
+  switch (kernel_type)
+  {
+  case KernelType::BIWEIGHT:
+    return biweight(shape);
+  case KernelType::CUBIC_PULSE:
+    return cubic_pulse(shape);
+  case KernelType::CONE:
+    return cone(shape);
+  case KernelType::CONE_SMOOTH:
+    return cone_smooth(shape);
+  case KernelType::DISK:
+    return disk(shape);
+  case KernelType::LORENTZIAN:
+    return lorentzian(shape);
+  case KernelType::SMOOTH_COSINE:
+    return smooth_cosine(shape);
+  case KernelType::SQUARE:
+    return square(shape);
+  case KernelType::TRICUBE:
+    return tricube(shape);
+  }
 }
 
 } // namespace hmap

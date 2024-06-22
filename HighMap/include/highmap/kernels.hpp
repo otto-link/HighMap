@@ -22,6 +22,22 @@ namespace hmap
 {
 
 /**
+ * @brief Kernel function.
+ */
+enum KernelType : int
+{
+  BIWEIGHT,
+  CUBIC_PULSE,
+  CONE,
+  CONE_SMOOTH,
+  DISK,
+  LORENTZIAN,
+  SMOOTH_COSINE,
+  SQUARE,
+  TRICUBE
+};
+
+/**
  * @brief Return a biweight kernel.
  *
  * See https://en.wikipedia.org/wiki/Kernel_%28statistics%29.
@@ -145,6 +161,14 @@ Array gabor_dune(Vec2<int> shape,
                  float     xbottom);
 
 /**
+ * @brief Return a kernel.
+ * @param shape Kernel shape.
+ * @param kernel_type Kernel type.
+ * @return Array.
+ */
+Array get_kernel(Vec2<int> shape, KernelType kernel_type);
+
+/**
  * @brief Return the Lorentzian kernel.
  *
  * @param shape Array shape.
@@ -169,6 +193,16 @@ Array lorentzian_compact(Vec2<int> shape);
  * @return Array New array.
  */
 Array smooth_cosine(Vec2<int> shape);
+
+/**
+ * @brief Return a squre.
+ *
+ * Maximum value is 1.
+ *
+ * @param shape Array shape.
+ * @return Array New array.
+ */
+Array square(Vec2<int> shape);
 
 /**
  * @brief Return a tricube kernel.
