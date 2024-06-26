@@ -8,6 +8,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/geometry.hpp"
+#include "highmap/math.hpp"
 #include "highmap/noise_function.hpp"
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
@@ -113,6 +114,43 @@ Array gaussian_pulse(Vec2<int>   shape,
       }
   }
 
+  return array;
+}
+
+Array paraboloid(Vec2<int>   shape,
+                 float       angle,
+                 float       a,
+                 float       b,
+                 bool        reverse_x,
+                 bool        reverse_y,
+                 Array      *p_noise_x,
+                 Array      *p_noise_y,
+                 Array      *p_stretching,
+                 Vec2<float> center,
+                 Vec4<float> bbox)
+{
+  Array array = Array(shape);
+
+  float ca = std::cos(-angle / 180.f * M_PI);
+  float sa = std::sin(-angle / 180.f * M_PI);
+
+  float inv_a2 = (reverse_x ? -1.f : 1.f) * 1.f / (a * a);
+  float inv_b2 = (reverse_y ? -1.f : 1.f) * 1.f / (b * b);
+
+  auto lambda = [&ca, &sa, &inv_a2, &inv_b2, &center](float x, float y, float)
+  {
+    float xr = ca * (x - center.x) - sa * (y - center.y);
+    float yr = sa * (x - center.x) + ca * (y - center.y);
+
+    return inv_a2 * xr * xr + inv_b2 * yr * yr;
+  };
+
+  fill_array_using_xy_function(array,
+                               bbox,
+                               p_noise_x,
+                               p_noise_y,
+                               p_stretching,
+                               lambda);
   return array;
 }
 

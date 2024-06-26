@@ -1,0 +1,2 @@
+add_executable(ex_paraboloid ex_paraboloid.cpp)
+target_link_libraries(ex_paraboloid highmap)

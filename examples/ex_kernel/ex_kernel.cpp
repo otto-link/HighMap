@@ -15,6 +15,6 @@ int main(void)
 
   // generic call function
   kernels.push_back(hmap::get_kernel(shape, hmap::KernelType::TRICUBE));
-  
+
   hmap::export_banner_png("ex_kernels.png", kernels, hmap::cmap::jet);
 }

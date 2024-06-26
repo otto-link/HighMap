@@ -580,6 +580,39 @@ Array noise_swiss(NoiseType   noise_type,
                   Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
+ * @brief Return a paraboloid.
+ * @param shape Array shape.
+ * @param angle Rotation angle.
+ * @param a Curvature parameter, first principal axis.
+ * @param b Curvature parameter, second principal axis.
+ * @param reverse_x Reverse coefficient of first principal axis.
+ * @param reverse_y Reverse coefficient of second principal axis.
+ * @param p_base_elevation Reference to the base elevation noise array.
+ * @param p_noise_x, p_noise_y Reference to the input noise arrays.
+ * @param p_stretching Local wavenumber multiplier.
+ * @param center Primitive reference center.
+ * @param bbox Domain bounding box.
+ * @return Output array.
+ *
+ * **Example**
+ * @include ex_paraboloid.cpp
+ *
+ * **Result**
+ * @image html ex_paraboloid.png
+ */
+Array paraboloid(Vec2<int>   shape,
+                 float       angle,
+                 float       a,
+                 float       b,
+                 bool        reverse_x = false,
+                 bool        reverse_y = false,
+                 Array      *p_noise_x = nullptr,
+                 Array      *p_noise_y = nullptr,
+                 Array      *p_stretching = nullptr,
+                 Vec2<float> center = {0.5f, 0.5f},
+                 Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
  * @brief Return a peak-shaped heightmap.
  *
  * @param shape Array shape.
