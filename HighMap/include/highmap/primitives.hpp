@@ -585,6 +585,7 @@ Array noise_swiss(NoiseType   noise_type,
  * @param angle Rotation angle.
  * @param a Curvature parameter, first principal axis.
  * @param b Curvature parameter, second principal axis.
+ * @param v0 Value at the paraboloid center.
  * @param reverse_x Reverse coefficient of first principal axis.
  * @param reverse_y Reverse coefficient of second principal axis.
  * @param p_base_elevation Reference to the base elevation noise array.
@@ -604,6 +605,7 @@ Array paraboloid(Vec2<int>   shape,
                  float       angle,
                  float       a,
                  float       b,
+                 float       v0 = 0.f,
                  bool        reverse_x = false,
                  bool        reverse_y = false,
                  Array      *p_noise_x = nullptr,

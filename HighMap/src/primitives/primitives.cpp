@@ -121,6 +121,7 @@ Array paraboloid(Vec2<int>   shape,
                  float       angle,
                  float       a,
                  float       b,
+                 float       v0,
                  bool        reverse_x,
                  bool        reverse_y,
                  Array      *p_noise_x,
@@ -137,12 +138,13 @@ Array paraboloid(Vec2<int>   shape,
   float inv_a2 = (reverse_x ? -1.f : 1.f) * 1.f / (a * a);
   float inv_b2 = (reverse_y ? -1.f : 1.f) * 1.f / (b * b);
 
-  auto lambda = [&ca, &sa, &inv_a2, &inv_b2, &center](float x, float y, float)
+  auto lambda =
+      [&ca, &sa, &v0, &inv_a2, &inv_b2, &center](float x, float y, float)
   {
     float xr = ca * (x - center.x) - sa * (y - center.y);
     float yr = sa * (x - center.x) + ca * (y - center.y);
 
-    return inv_a2 * xr * xr + inv_b2 * yr * yr;
+    return inv_a2 * xr * xr + inv_b2 * yr * yr + v0;
   };
 
   fill_array_using_xy_function(array,
