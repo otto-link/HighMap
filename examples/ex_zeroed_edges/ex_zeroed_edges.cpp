@@ -14,11 +14,13 @@ int main(void)
   auto z1 = z;
   auto z2 = z;
   auto z3 = z;
+  auto z4 = z;
   hmap::zeroed_edges(z1, sigma, hmap::DistanceFunction::EUCLIDIAN);
-  hmap::zeroed_edges(z2, sigma, hmap::DistanceFunction::CHEBYSHEV);
-  hmap::zeroed_edges(z3, sigma, hmap::DistanceFunction::MANHATTAN);
+  hmap::zeroed_edges(z2, sigma, hmap::DistanceFunction::EUCLISHEV);
+  hmap::zeroed_edges(z3, sigma, hmap::DistanceFunction::CHEBYSHEV);
+  hmap::zeroed_edges(z4, sigma, hmap::DistanceFunction::MANHATTAN);
 
   hmap::export_banner_png("ex_zeroed_edges.png",
-                          {z, z1, z2, z3},
-                          hmap::cmap::inferno);
+                          {z, z1, z2, z3, z4},
+                          hmap::cmap::jet);
 }

@@ -25,6 +25,7 @@ enum DistanceFunction : int
 {
   CHEBYSHEV, ///< Chebyshev
   EUCLIDIAN, ///< Euclidian
+  EUCLISHEV, ///< Euclidian and Chebyshev mix
   MANHATTAN, ///< Manhattan
 };
 
