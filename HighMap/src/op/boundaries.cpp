@@ -371,7 +371,11 @@ void zeroed_borders(Array &array)
   }
 }
 
-void zeroed_edges(Array &array, float sigma, Array *p_noise, Vec4<float> bbox)
+void zeroed_edges(Array           &array,
+                  float            sigma,
+                  DistanceFunction dist_fct,
+                  Array           *p_noise,
+                  Vec4<float>      bbox)
 {
   hmap::Vec2<float> shift = {bbox.a, bbox.c};
   hmap::Vec2<float> scale = {bbox.b - bbox.a, bbox.d - bbox.c};
@@ -385,22 +389,51 @@ void zeroed_edges(Array &array, float sigma, Array *p_noise, Vec4<float> bbox)
                                   array.shape.y,
                                   false);
 
-  float s = 0.5f / (sigma * sigma);
+  std::function<float(float, float)> r_fct;
+
+  switch (dist_fct)
+  {
+  case DistanceFunction::CHEBYSHEV:
+    r_fct = [](float x, float y)
+    {
+      float r = std::max(std::abs(x), std::abs(y));
+      return r < 1.f ? 1.f - r : 0.f;
+    };
+    break;
+
+  case DistanceFunction::EUCLIDIAN:
+    r_fct = [](float x, float y)
+    {
+      float r = x * x + y * y;
+      return r < 1.f ? 1.f - r : 0.f;
+    };
+    break;
+
+  case DistanceFunction::MANHATTAN:
+    r_fct = [](float x, float y)
+    {
+      float r = std::abs(x) + std::abs(y);
+      return r < 1.f ? 1.f - r : 0.f;
+    };
+    break;
+  }
 
   if (!p_noise)
     for (int i = 0; i < array.shape.x; i++)
       for (int j = 0; j < array.shape.y; j++)
       {
-        float r2 = x[i] * x[i] + y[j] * y[j];
-        array(i, j) *= std::exp(-s * r2);
+        float r = r_fct(2.f * x[i], 2.f * y[j]);
+        float ra = std::pow(r, sigma);
+        array(i, j) *= ra / (ra + std::pow(1.f - r, sigma));
       }
   else
     for (int i = 0; i < array.shape.x; i++)
       for (int j = 0; j < array.shape.y; j++)
       {
-        float r2 = x[i] * x[i] + y[j] * y[j] +
-                   (*p_noise)(i, j) * (*p_noise)(i, j);
-        array(i, j) *= std::exp(-s * r2);
+        float r = r_fct(2.f * x[i], 2.f * y[j]);
+        r += (*p_noise)(i, j) * (*p_noise)(i, j);
+        float ra = std::pow(r, sigma);
+        array(i, j) *= ra / (ra + std::pow(1.f - r, sigma));
       }
 }
 

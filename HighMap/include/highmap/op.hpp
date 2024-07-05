@@ -19,6 +19,16 @@ namespace hmap
 {
 
 /**
+ * @brief Distance function type.
+ */
+enum DistanceFunction : int
+{
+  CHEBYSHEV, ///< Chebyshev
+  EUCLIDIAN, ///< Euclidian
+  MANHATTAN, ///< Manhattan
+};
+
+/**
  * @brief Neighborhood lattice type.
  */
 enum neighborhood : int
@@ -2350,10 +2360,11 @@ void zeroed_borders(Array &array);
  * **Result**
  * @image html ex_zeroed_edges.png
  */
-void zeroed_edges(Array      &array,
-                  float       sigma = 0.25f,
-                  Array      *p_noise = nullptr,
-                  Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+void zeroed_edges(Array           &array,
+                  float            sigma = 1.f,
+                  DistanceFunction dist_fct = DistanceFunction::EUCLIDIAN,
+                  Array           *p_noise = nullptr,
+                  Vec4<float>      bbox = {0.f, 1.f, 0.f, 1.f});
 
 // --- helpers
 
