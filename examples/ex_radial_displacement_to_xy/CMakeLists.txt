@@ -1,0 +1,2 @@
+add_executable(ex_radial_displacement_to_xy ex_radial_displacement_to_xy.cpp)
+target_link_libraries(ex_radial_displacement_to_xy highmap)

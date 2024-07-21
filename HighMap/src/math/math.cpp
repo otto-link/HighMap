@@ -5,6 +5,7 @@
 #include <cmath>
 
 #include "highmap/array.hpp"
+#include "highmap/geometry.hpp"
 
 namespace hmap
 {
@@ -171,6 +172,28 @@ Array pow(const Array &array, float exp)
                  array_out.vector.begin(),
                  [&exp](float v) { return std::pow(v, exp); });
   return array_out;
+}
+
+void radial_displacement_to_xy(const Array &dr,
+                               Array       &dx,
+                               Array       &dy,
+                               Vec2<float>  center,
+                               Vec4<float>  bbox)
+{
+  Vec2<int> shape = dr.shape;
+  dx = Array(shape);
+  dy = Array(shape);
+
+  std::vector<float> x, y;
+  grid_xy_vector(x, y, shape, bbox, false); // no endpoint
+
+  for (int i = 0; i < shape.x; i++)
+    for (int j = 0; j < shape.y; j++)
+    {
+      float theta = std::atan2(y[j] - center.y, x[i] - center.x);
+      dx(i, j) = dr(i, j) * std::cos(theta);
+      dy(i, j) = dr(i, j) * std::sin(theta);
+    }
 }
 
 Array sin(const Array &array)

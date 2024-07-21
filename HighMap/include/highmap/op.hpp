@@ -1442,6 +1442,27 @@ Array quilting_shuffle(Array          &array,
                        float           filter_width_ratio = 0.25f);
 
 /**
+ * @brief Interpret the input array `dr` as a radial displacement and convert it
+ * to a pair of displacements `dx` and `dy` in cartesian coordinates.
+ * @param dr Radial displacement.
+ * @param dx Displacent in x direction (output).
+ * @param dy Displacent in y direction (output).
+ * @param center Origin center.
+ * @param bbox Domain bounding box.
+ *
+ * **Example**
+ * @include ex_radial_displacement_to_xy.cpp
+ *
+ * **Result**
+ * @image html ex_radial_displacement_to_xy.png
+ * */
+void radial_displacement_to_xy(const Array &dr,
+                               Array       &dx,
+                               Array       &dy,
+                               Vec2<float>  center = {0.5f, 0.5f},
+                               Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
  * @brief Generate a vector filled with random values.
  *
  * @param min Lower bound of random distribution.
