@@ -26,9 +26,9 @@ namespace hmap
 class HeightMapRGBA;
 HeightMapRGBA mix_heightmap_rgba(HeightMapRGBA &rgba1,
                                  HeightMapRGBA &rgba2,
-                                 bool           use_sqrt_avg = true);
+                                 bool           use_sqrt_avg);
 HeightMapRGBA mix_heightmap_rgba(std::vector<HeightMapRGBA *> p_rgba_list,
-                                 bool use_sqrt_avg = true);
+                                 bool                         use_sqrt_avg);
 
 // --- classes
 
@@ -713,6 +713,12 @@ void transform(HeightMap                                     &h1,
                HeightMap                                     &h2,
                HeightMap                                     &h3,
                std::function<void(Array &, Array &, Array &)> ternary_op);
+
+void transform(
+    HeightMap                                                  &h1,
+    HeightMap                                                  &h2,
+    HeightMap                                                  &h3,
+    std::function<void(Array &, Array &, Array &, Vec4<float>)> ternary_op);
 
 // with returned array
 void transform(HeightMap                    &h_out, // output
