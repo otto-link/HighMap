@@ -21,7 +21,7 @@ std::function<float(float, float)> get_distance_function(
     r_fct = [ks](float x, float y)
     {
       float r = maximum_smooth(std::abs(x), std::abs(y), ks);
-      return r < 1.f ? 1.f - r : 0.f;
+      return r;
     };
     break;
 
@@ -29,7 +29,7 @@ std::function<float(float, float)> get_distance_function(
     r_fct = [](float x, float y)
     {
       float r = x * x + y * y;
-      return r < 1.f ? 1.f - std::sqrt(r) : 0.f;
+      return std::sqrt(r);
     };
     break;
 
@@ -37,10 +37,10 @@ std::function<float(float, float)> get_distance_function(
     r_fct = [ks](float x, float y)
     {
       float rc = maximum_smooth(std::abs(x), std::abs(y), ks);
-      rc = rc < 1.f ? 1.f - rc : 0.f;
+      rc = rc < 1.f ? rc : 1.f;
 
       float re = x * x + y * y;
-      re = re < 1.f ? 1.f - std::sqrt(re) : 0.f;
+      re = re < 1.f ? std::sqrt(re) : 1.f;
 
       // add a smoothstep to avoid a gradient discontinuity at re = 1
       re = smoothstep3(re);
@@ -53,7 +53,7 @@ std::function<float(float, float)> get_distance_function(
     r_fct = [ks](float x, float y)
     {
       float r = abs_smooth(x, ks) + abs_smooth(y, ks) - ks;
-      return r < 1.f ? 1.f - r : 0.f;
+      return r;
     };
     break;
   }

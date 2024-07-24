@@ -538,6 +538,26 @@ Array faceted(const Array &array,
               Array       *p_noise_y = nullptr);
 
 /**
+ * @brief
+ * @param array
+ * @param strength
+ * @param dist_fct
+ * @param p_noise
+ * @param bbox
+ *
+ * **Example**
+ * @include ex_falloff.cpp
+ *
+ * **Result**
+ * @image html ex_falloff.png
+ */
+void falloff(Array           &array,
+             float            strength = 1.f,
+             DistanceFunction dist_fct = DistanceFunction::EUCLIDIAN,
+             Array           *p_noise = nullptr,
+             Vec4<float>      bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
  * @brief Fill values at the borders (i = 0, j = 0, ...) based on 1st neighbor
  * values.
  *
