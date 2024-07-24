@@ -27,6 +27,17 @@ namespace hmap
 {
 
 /**
+ * @brief Distance function type.
+ */
+enum DistanceFunction : int
+{
+  CHEBYSHEV, ///< Chebyshev
+  EUCLIDIAN, ///< Euclidian
+  EUCLISHEV, ///< Euclidian and Chebyshev mix
+  MANHATTAN, ///< Manhattan
+};
+
+/**
  * @brief Return the absolute value of the array elements.
  *
  * @param array Input array.
@@ -148,6 +159,14 @@ Array exp(const Array &array);
  * @image html ex_gaussian_decay.png
  */
 Array gaussian_decay(const Array &array, float sigma);
+
+/**
+ * @brief Return the requested distance function.
+ * @param dist_fct Distance function type.
+ * @return Distance function.
+ */
+std::function<float(float, float)> get_distance_function(
+    DistanceFunction dist_fct);
 
 /**
  * @brief Return the square root of the sum of the squares of the two input

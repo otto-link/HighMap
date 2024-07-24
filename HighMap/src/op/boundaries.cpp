@@ -389,51 +389,7 @@ void zeroed_edges(Array           &array,
                                   array.shape.y,
                                   false);
 
-  std::function<float(float, float)> r_fct;
-  float ks = 0.1f; // TODO hardcoded smoothing parameter
-
-  switch (dist_fct)
-  {
-  case DistanceFunction::CHEBYSHEV:
-    r_fct = [ks](float x, float y)
-    {
-      float r = maximum_smooth(std::abs(x), std::abs(y), ks);
-      return r < 1.f ? 1.f - r : 0.f;
-    };
-    break;
-
-  case DistanceFunction::EUCLIDIAN:
-    r_fct = [](float x, float y)
-    {
-      float r = x * x + y * y;
-      return r < 1.f ? 1.f - std::sqrt(r) : 0.f;
-    };
-    break;
-
-  case DistanceFunction::EUCLISHEV:
-    r_fct = [ks](float x, float y)
-    {
-      float rc = maximum_smooth(std::abs(x), std::abs(y), ks);
-      rc = rc < 1.f ? 1.f - rc : 0.f;
-
-      float re = x * x + y * y;
-      re = re < 1.f ? 1.f - std::sqrt(re) : 0.f;
-
-      // add a smoothstep to avoid a gradient discontinuity at re = 1
-      re = smoothstep3(re);
-
-      return (1.f - rc) * rc + rc * re;
-    };
-    break;
-
-  case DistanceFunction::MANHATTAN:
-    r_fct = [ks](float x, float y)
-    {
-      float r = abs_smooth(x, ks) + abs_smooth(y, ks) - ks;
-      return r < 1.f ? 1.f - r : 0.f;
-    };
-    break;
-  }
+  std::function<float(float, float)> r_fct = get_distance_function(dist_fct);
 
   if (!p_noise)
     for (int i = 0; i < array.shape.x; i++)

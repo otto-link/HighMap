@@ -14,20 +14,10 @@
  */
 #pragma once
 #include "highmap/geometry.hpp"
+#include "highmap/math.hpp"
 
 namespace hmap
 {
-
-/**
- * @brief Distance function type.
- */
-enum DistanceFunction : int
-{
-  CHEBYSHEV, ///< Chebyshev
-  EUCLIDIAN, ///< Euclidian
-  EUCLISHEV, ///< Euclidian and Chebyshev mix
-  MANHATTAN, ///< Manhattan
-};
 
 /**
  * @brief Neighborhood lattice type.
