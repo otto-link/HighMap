@@ -54,6 +54,7 @@ Array biquad_pulse(Vec2<int>   shape,
  * @param gain Gain (the higher, the steeper the bump).
  * @param p_noise_x, p_noise_y Reference to the input noise arrays.
  * @param p_stretching Local wavenumber multiplier.
+ * @param center Primitive reference center.
  * @param bbox Domain bounding box.
  * @return Array Perlin billow noise.
  *
@@ -68,6 +69,7 @@ Array bump(Vec2<int>   shape,
            Array      *p_noise_x = nullptr,
            Array      *p_noise_y = nullptr,
            Array      *p_stretching = nullptr,
+           Vec2<float> center = {0.5f, 0.5f},
            Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**

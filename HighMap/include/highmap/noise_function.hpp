@@ -148,6 +148,45 @@ private:
 };
 
 /**
+ * @brief Bump (x, y) function class.
+ */
+class BumpFunction : public NoiseFunction
+{
+public:
+  /**
+   * @brief Primitive reference center.
+   */
+  Vec2<float> center;
+
+  /**
+   * @brief Construct a new Bump Function object
+   *
+   * @param gain Gain.
+   * @param center Primitive reference center.
+   */
+  BumpFunction(float gain, Vec2<float> center);
+
+  /**
+   * @brief Set the gain.
+   *
+   * @param new_gain New gain
+   */
+  void set_gain(float new_gain)
+  {
+    this->gain = new_gain;
+    this->inv_gain = 1.f / gain;
+  }
+
+private:
+  /**
+   * @brief Gain (the higher, the steeper the bump).
+   */
+  float gain;
+
+  float inv_gain;
+};
+
+/**
  * @brief Parberry (x, y) function class.
  */
 class ParberryFunction : public NoiseFunction

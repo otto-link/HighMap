@@ -47,24 +47,18 @@ Array bump(Vec2<int>   shape,
            Array      *p_noise_x,
            Array      *p_noise_y,
            Array      *p_stretching,
+           Vec2<float> center,
            Vec4<float> bbox)
 {
-  Array array = Array(shape);
-  float gain_inv = 1.f / gain;
-
-  auto lambda = [&gain_inv](float x, float y, float)
-  {
-    float r2 = (x - 0.5f) * (x - 0.5f) + (y - 0.5f) * (y - 0.5f);
-    return r2 > 0.25f ? 0.f
-                      : std::pow(std::exp(-1.f / (1.f - 4.f * r2)), gain_inv);
-  };
+  Array        array = Array(shape);
+  BumpFunction f = BumpFunction(gain, center);
 
   fill_array_using_xy_function(array,
                                bbox,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
-                               lambda);
+                               f.get_function());
   return array;
 }
 

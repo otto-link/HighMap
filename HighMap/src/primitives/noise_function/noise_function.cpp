@@ -59,6 +59,22 @@ ArrayFunction::ArrayFunction(hmap::Array array, Vec2<float> kw, bool periodic)
     };
 }
 
+BumpFunction::BumpFunction(float gain, Vec2<float> center)
+    : NoiseFunction(), center(center)
+{
+  this->set_gain(gain);
+  this->function = [this](float x, float y, float)
+  {
+    float xc = x - this->center.x;
+    float yc = y - this->center.y;
+
+    float r2 = xc * xc + yc * yc;
+    return r2 > 0.25f
+               ? 0.f
+               : std::pow(std::exp(-1.f / (1.f - 4.f * r2)), this->inv_gain);
+  };
+}
+
 PerlinFunction::PerlinFunction(Vec2<float> kw, uint seed)
     : NoiseFunction(kw, seed)
 {
