@@ -177,6 +177,7 @@ Array pow(const Array &array, float exp)
 void radial_displacement_to_xy(const Array &dr,
                                Array       &dx,
                                Array       &dy,
+                               float        smoothing,
                                Vec2<float>  center,
                                Vec4<float>  bbox)
 {
@@ -190,9 +191,13 @@ void radial_displacement_to_xy(const Array &dr,
   for (int i = 0; i < shape.x; i++)
     for (int j = 0; j < shape.y; j++)
     {
-      float theta = std::atan2(y[j] - center.y, x[i] - center.x);
-      dx(i, j) = dr(i, j) * std::cos(theta);
-      dy(i, j) = dr(i, j) * std::sin(theta);
+      float xr = x[i] - center.x;
+      float yr = y[j] - center.y;
+      float r2 = smoothing * std::hypot(xr, yr);
+      float factor = r2 / (1.f + r2);
+      float theta = std::atan2(yr, xr);
+      dx(i, j) = factor * dr(i, j) * std::cos(theta);
+      dy(i, j) = factor * dr(i, j) * std::sin(theta);
     }
 }
 
