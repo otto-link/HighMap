@@ -29,6 +29,7 @@ Array biquad_pulse(Vec2<int>   shape,
 
   fill_array_using_xy_function(array,
                                bbox,
+                               nullptr,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
@@ -49,6 +50,7 @@ Array bump(Vec2<int>   shape,
 
   fill_array_using_xy_function(array,
                                bbox,
+                               nullptr,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
@@ -137,10 +139,55 @@ Array paraboloid(Vec2<int>   shape,
 
   fill_array_using_xy_function(array,
                                bbox,
+                               nullptr,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
                                lambda);
+  return array;
+}
+
+Array slope(Vec2<int>   shape,
+            float       angle,
+            float       slope,
+            Array      *p_noise_x,
+            Array      *p_noise_y,
+            Array      *p_stretching,
+            Vec2<float> center,
+            Vec4<float> bbox)
+{
+  Array               array = Array(shape);
+  hmap::SlopeFunction f = hmap::SlopeFunction(angle, slope, center);
+
+  fill_array_using_xy_function(array,
+                               bbox,
+                               nullptr,
+                               p_noise_x,
+                               p_noise_y,
+                               p_stretching,
+                               f.get_delegate());
+  return array;
+}
+
+Array step(Vec2<int>         shape,
+           float             angle,
+           float             slope,
+           Array            *p_noise_x,
+           Array            *p_noise_y,
+           Array            *p_stretching,
+           Vec2<float>       center,
+           hmap::Vec4<float> bbox)
+{
+  Array              array = Array(shape);
+  hmap::StepFunction f = hmap::StepFunction(angle, slope, center);
+
+  fill_array_using_xy_function(array,
+                               bbox,
+                               nullptr,
+                               p_noise_x,
+                               p_noise_y,
+                               p_stretching,
+                               f.get_delegate());
   return array;
 }
 

@@ -334,6 +334,7 @@ Array Graph::to_array_sdf(Vec2<int>   shape,
   Array z = Array(shape);
   fill_array_using_xy_function(z,
                                bbox_array,
+                               nullptr,
                                p_noise_x,
                                p_noise_y,
                                nullptr,

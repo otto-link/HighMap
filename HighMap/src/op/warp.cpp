@@ -23,6 +23,7 @@ void warp(Array &array, Array *p_dx, Array *p_dy)
 
   fill_array_using_xy_function(array,
                                {0.f, 1.f, 0.f, 1.f},
+                               nullptr,
                                p_dx,
                                p_dy,
                                nullptr,

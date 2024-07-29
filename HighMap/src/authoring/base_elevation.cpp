@@ -46,6 +46,7 @@ Array base_elevation(Vec2<int>                       shape,
       Array array_tmp = Array(array.shape);
       fill_array_using_xy_function(array_tmp,
                                    bbox,
+                                   nullptr,
                                    p_noise_x,
                                    p_noise_y,
                                    p_stretching,

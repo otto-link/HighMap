@@ -514,6 +514,7 @@ public:
   friend void fill_array_using_xy_function(
       Array                                    &array,
       Vec4<float>                               bbox,
+      Array                                    *p_ctrl_param,
       Array                                    *p_noise_x,
       Array                                    *p_noise_y,
       Array                                    *p_stretching,
@@ -522,6 +523,7 @@ public:
   friend void fill_array_using_xy_function(
       Array                                    &array,
       Vec4<float>                               bbox,
+      Array                                    *p_ctrl_param,
       Array                                    *p_noise_x,
       Array                                    *p_noise_y,
       Array                                    *p_stretching,

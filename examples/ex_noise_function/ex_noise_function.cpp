@@ -13,16 +13,14 @@ int main(void)
 
   float mu = 1.02f;
 
-  hmap::ParberryFunction p = hmap::ParberryFunction(kw, seed, mu);
+  std::unique_ptr<hmap::NoiseFunction> p = std::unique_ptr<hmap::NoiseFunction>(
+      new hmap::ParberryFunction(kw, seed, mu));
 
-  hmap::FbmFunction f = hmap::FbmFunction(p.get_ref<NoiseFunction>(),
-                                          8,
-                                          0.7f,
-                                          0.5f,
-                                          2.f);
+  hmap::FbmFunction f = hmap::FbmFunction(std::move(p), 8, 0.7f, 0.5f, 2.f);
 
   fill_array_using_xy_function(z,
                                bbox,
+			       nullptr,
                                nullptr,
                                nullptr,
                                nullptr,

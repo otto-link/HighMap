@@ -21,21 +21,22 @@ FbmFunction::FbmFunction(std::unique_ptr<NoiseFunction> p_base,
                              lacunarity)
 {
   this->set_delegate(
-      [this](float x, float y, float initial_value)
+      [this](float x, float y, float ctrl_param)
       {
-        float sum = initial_value;
+        float sum = 0.f;
         float amp = this->amp0;
         float ki = 1.f;
         float kj = 1.f;
         int   kseed = this->seed;
+        float local_weight = this->weight * (1.f - ctrl_param);
 
         for (int k = 0; k < this->octaves; k++)
         {
           this->p_base->set_seed(kseed);
           float value = this->p_base->get_value(ki * x, kj * y, 0.f);
           sum += value * amp;
-          amp *= (1.f - this->weight) +
-                 this->weight * std::min(value + 1.f, 2.f) * 0.5f;
+          amp *= (1.f - local_weight) +
+                 local_weight * std::min(value + 1.f, 2.f) * 0.5f;
 
           ki *= this->lacunarity;
           kj *= this->lacunarity;
@@ -60,15 +61,16 @@ FbmIqFunction::FbmIqFunction(std::unique_ptr<NoiseFunction> p_base,
       gradient_scale(gradient_scale)
 {
   this->set_delegate(
-      [this](float x, float y, float initial_value)
+      [this](float x, float y, float ctrl_param)
       {
-        float sum = initial_value;
+        float sum = 0.f;
         float dx_sum = 0.f;
         float dy_sum = 0.f;
         float amp = this->amp0;
         float ki = 1.f;
         float kj = 1.f;
         int   kseed = this->seed;
+        float local_weight = this->weight * (1.f - ctrl_param);
 
         for (int k = 0; k < this->octaves; k++)
         {
@@ -95,8 +97,8 @@ FbmIqFunction::FbmIqFunction(std::unique_ptr<NoiseFunction> p_base,
           sum += value * amp /
                  (1.f +
                   this->gradient_scale * (dx_sum * dx_sum + dy_sum * dy_sum));
-          amp *= (1.f - this->weight) +
-                 this->weight * std::min(value + 1.f, 2.f) * 0.5f;
+          amp *= (1.f - local_weight) +
+                 local_weight * std::min(value + 1.f, 2.f) * 0.5f;
 
           ki *= this->lacunarity;
           kj *= this->lacunarity;
@@ -124,15 +126,16 @@ FbmJordanFunction::FbmJordanFunction(std::unique_ptr<NoiseFunction> p_base,
       warp0(warp0), damp0(damp0), warp_scale(warp_scale), damp_scale(damp_scale)
 {
   this->set_delegate(
-      [this](float x, float y, float initial_value)
+      [this](float x, float y, float ctrl_param)
       {
         // based on https://www.decarpentier.nl/scape-procedural-extensions
-        float sum = initial_value;
+        float sum = 0.f;
         float amp = this->amp0;
         float amp_damp = this->amp0;
         float ki = 1.f;
         float kj = 1.f;
         int   kseed = this->seed;
+        float local_weight = this->weight * (1.f - ctrl_param);
 
         // --- 1st octave
 
@@ -153,8 +156,8 @@ FbmJordanFunction::FbmJordanFunction(std::unique_ptr<NoiseFunction> p_base,
         float dx_sum_damp = this->damp0 * value * dvdx;
         float dy_sum_damp = this->damp0 * value * dvdy;
 
-        amp *= (1.f - this->weight) +
-               this->weight * std::min(value * value + 1.f, 2.f) * 0.5f;
+        amp *= (1.f - local_weight) +
+               local_weight * std::min(value * value + 1.f, 2.f) * 0.5f;
 
         ki *= this->lacunarity;
         kj *= this->lacunarity;
@@ -187,8 +190,8 @@ FbmJordanFunction::FbmJordanFunction(std::unique_ptr<NoiseFunction> p_base,
           dx_sum_damp += this->damp0 * value * dvdx;
           dy_sum_damp += this->damp0 * value * dvdy;
 
-          amp *= (1.f - this->weight) +
-                 this->weight * std::min(value * value + 1.f, 2.f) * 0.5f;
+          amp *= (1.f - local_weight) +
+                 local_weight * std::min(value * value + 1.f, 2.f) * 0.5f;
 
           ki *= this->lacunarity;
           kj *= this->lacunarity;
@@ -214,13 +217,14 @@ FbmPingpongFunction::FbmPingpongFunction(std::unique_ptr<NoiseFunction> p_base,
                              lacunarity)
 {
   this->set_delegate(
-      [this](float x, float y, float initial_value)
+      [this](float x, float y, float ctrl_param)
       {
-        float sum = initial_value;
+        float sum = 0.f;
         float amp = this->amp0;
         float ki = 1.f;
         float kj = 1.f;
         int   kseed = this->seed;
+        float local_weight = this->weight * (1.f - ctrl_param);
 
         for (int k = 0; k < this->octaves; k++)
         {
@@ -232,7 +236,7 @@ FbmPingpongFunction::FbmPingpongFunction(std::unique_ptr<NoiseFunction> p_base,
           value = smoothstep5(value);
 
           sum += (value - 0.5f) * 2.f * amp;
-          amp *= (1.f - this->weight) + this->weight * value;
+          amp *= (1.f - local_weight) + local_weight * value;
 
           ki *= this->lacunarity;
           kj *= this->lacunarity;
@@ -257,13 +261,14 @@ FbmRidgedFunction::FbmRidgedFunction(std::unique_ptr<NoiseFunction> p_base,
       k_smoothing(k_smoothing)
 {
   this->set_delegate(
-      [this](float x, float y, float initial_value)
+      [this](float x, float y, float ctrl_param)
       {
-        float sum = initial_value;
+        float sum = 0.f;
         float amp = this->amp0;
         float ki = 1.f;
         float kj = 1.f;
         int   kseed = this->seed;
+        float local_weight = this->weight * (1.f - ctrl_param);
 
         if (this->k_smoothing == 0.f)
           for (int k = 0; k < this->octaves; k++)
@@ -272,7 +277,7 @@ FbmRidgedFunction::FbmRidgedFunction(std::unique_ptr<NoiseFunction> p_base,
             float value = std::abs(
                 this->p_base->get_value(ki * x, kj * y, 0.f));
             sum += (1.f - 2.f * value) * amp;
-            amp *= 1.f - this->weight * value;
+            amp *= 1.f - local_weight * value;
 
             ki *= this->lacunarity;
             kj *= this->lacunarity;
@@ -286,7 +291,7 @@ FbmRidgedFunction::FbmRidgedFunction(std::unique_ptr<NoiseFunction> p_base,
             float value = this->p_base->get_value(ki * x, kj * y, 0.f);
             value = abs_smooth(value, this->k_smoothing);
             sum += (1.f - 2.f * value) * amp;
-            amp *= 1.f - this->weight * value;
+            amp *= 1.f - local_weight * value;
 
             ki *= this->lacunarity;
             kj *= this->lacunarity;
@@ -313,14 +318,15 @@ FbmSwissFunction::FbmSwissFunction(std::unique_ptr<NoiseFunction> p_base,
   this->set_warp_scale(warp_scale);
 
   this->set_delegate(
-      [this](float x, float y, float initial_value)
+      [this](float x, float y, float ctrl_param)
       {
         // based on https://www.decarpentier.nl/scape-procedural-extensions
-        float sum = initial_value;
+        float sum = 0.f;
         float amp = this->amp0;
         float ki = 1.f;
         float kj = 1.f;
         int   kseed = this->seed;
+        float local_weight = this->weight * (1.f - ctrl_param);
 
         float dx_sum = 0.f;
         float dy_sum = 0.f;
@@ -346,8 +352,8 @@ FbmSwissFunction::FbmSwissFunction(std::unique_ptr<NoiseFunction> p_base,
           dx_sum += amp * dvdx * -(value + 0.5f);
           dy_sum += amp * dvdy * -(value + 0.5f);
 
-          amp *= (1.f - this->weight) +
-                 this->weight * std::min(value + 1.f, 2.f) * 0.5f;
+          amp *= (1.f - local_weight) +
+                 local_weight * std::min(value + 1.f, 2.f) * 0.5f;
 
           ki *= this->lacunarity;
           kj *= this->lacunarity;

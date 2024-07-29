@@ -22,13 +22,15 @@ Array noise(NoiseType   noise_type,
             Array      *p_stretching,
             Vec4<float> bbox)
 {
-  Array                          array = Array(shape);
+  Array array = Array(shape);
+
   std::unique_ptr<NoiseFunction> p = create_noise_function_from_type(noise_type,
                                                                      kw,
                                                                      seed);
 
   fill_array_using_xy_function(array,
                                bbox,
+                               nullptr,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
@@ -44,13 +46,13 @@ Array noise_fbm(NoiseType   noise_type,
                 float       weight,
                 float       persistence,
                 float       lacunarity,
-                Array      *p_base_elevation,
+                Array      *p_ctrl_param,
                 Array      *p_noise_x,
                 Array      *p_noise_y,
                 Array      *p_stretching,
                 Vec4<float> bbox)
 {
-  Array array = p_base_elevation == nullptr ? Array(shape) : *p_base_elevation;
+  Array array = Array(shape);
 
   std::unique_ptr<NoiseFunction> p = create_noise_function_from_type(noise_type,
                                                                      kw,
@@ -64,6 +66,7 @@ Array noise_fbm(NoiseType   noise_type,
 
   fill_array_using_xy_function(array,
                                bbox,
+                               p_ctrl_param,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
@@ -80,13 +83,13 @@ Array noise_iq(NoiseType   noise_type,
                float       persistence,
                float       lacunarity,
                float       gradient_scale,
-               Array      *p_base_elevation,
+               Array      *p_ctrl_param,
                Array      *p_noise_x,
                Array      *p_noise_y,
                Array      *p_stretching,
                Vec4<float> bbox)
 {
-  Array array = p_base_elevation == nullptr ? Array(shape) : *p_base_elevation;
+  Array array = Array(shape);
 
   std::unique_ptr<NoiseFunction> p = create_noise_function_from_type(noise_type,
                                                                      kw,
@@ -101,6 +104,7 @@ Array noise_iq(NoiseType   noise_type,
 
   fill_array_using_xy_function(array,
                                bbox,
+                               p_ctrl_param,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
@@ -120,13 +124,13 @@ Array noise_jordan(NoiseType   noise_type,
                    float       damp0,
                    float       warp_scale,
                    float       damp_scale,
-                   Array      *p_base_elevation,
+                   Array      *p_ctrl_param,
                    Array      *p_noise_x,
                    Array      *p_noise_y,
                    Array      *p_stretching,
                    Vec4<float> bbox)
 {
-  Array array = p_base_elevation == nullptr ? Array(shape) : *p_base_elevation;
+  Array array = Array(shape);
 
   std::unique_ptr<NoiseFunction> p = create_noise_function_from_type(noise_type,
                                                                      kw,
@@ -144,6 +148,7 @@ Array noise_jordan(NoiseType   noise_type,
 
   fill_array_using_xy_function(array,
                                bbox,
+                               p_ctrl_param,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
@@ -159,13 +164,13 @@ Array noise_parberry(Vec2<int>   shape,
                      float       persistence,
                      float       lacunarity,
                      float       mu,
-                     Array      *p_base_elevation,
+                     Array      *p_ctrl_param,
                      Array      *p_noise_x,
                      Array      *p_noise_y,
                      Array      *p_stretching,
                      Vec4<float> bbox)
 {
-  Array array = p_base_elevation == nullptr ? Array(shape) : *p_base_elevation;
+  Array array = Array(shape);
 
   std::unique_ptr<NoiseFunction> p = std::unique_ptr<NoiseFunction>(
       new ParberryFunction(kw, seed, mu));
@@ -178,6 +183,7 @@ Array noise_parberry(Vec2<int>   shape,
 
   fill_array_using_xy_function(array,
                                bbox,
+                               p_ctrl_param,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
@@ -193,13 +199,13 @@ Array noise_pingpong(NoiseType   noise_type,
                      float       weight,
                      float       persistence,
                      float       lacunarity,
-                     Array      *p_base_elevation,
+                     Array      *p_ctrl_param,
                      Array      *p_noise_x,
                      Array      *p_noise_y,
                      Array      *p_stretching,
                      Vec4<float> bbox)
 {
-  Array array = p_base_elevation == nullptr ? Array(shape) : *p_base_elevation;
+  Array array = Array(shape);
 
   std::unique_ptr<NoiseFunction> p = create_noise_function_from_type(noise_type,
                                                                      kw,
@@ -213,6 +219,7 @@ Array noise_pingpong(NoiseType   noise_type,
 
   fill_array_using_xy_function(array,
                                bbox,
+                               p_ctrl_param,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
@@ -229,13 +236,13 @@ Array noise_ridged(NoiseType   noise_type,
                    float       persistence,
                    float       lacunarity,
                    float       k_smoothing,
-                   Array      *p_base_elevation,
+                   Array      *p_ctrl_param,
                    Array      *p_noise_x,
                    Array      *p_noise_y,
                    Array      *p_stretching,
                    Vec4<float> bbox)
 {
-  Array array = p_base_elevation == nullptr ? Array(shape) : *p_base_elevation;
+  Array array = Array(shape);
 
   std::unique_ptr<NoiseFunction> p = create_noise_function_from_type(noise_type,
                                                                      kw,
@@ -250,6 +257,7 @@ Array noise_ridged(NoiseType   noise_type,
 
   fill_array_using_xy_function(array,
                                bbox,
+                               p_ctrl_param,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
@@ -266,13 +274,13 @@ Array noise_swiss(NoiseType   noise_type,
                   float       persistence,
                   float       lacunarity,
                   float       warp_scale,
-                  Array      *p_base_elevation,
+                  Array      *p_ctrl_param,
                   Array      *p_noise_x,
                   Array      *p_noise_y,
                   Array      *p_stretching,
                   Vec4<float> bbox)
 {
-  Array array = p_base_elevation == nullptr ? Array(shape) : *p_base_elevation;
+  Array array = Array(shape);
 
   std::unique_ptr<NoiseFunction> p = create_noise_function_from_type(noise_type,
                                                                      kw,
@@ -287,6 +295,7 @@ Array noise_swiss(NoiseType   noise_type,
 
   fill_array_using_xy_function(array,
                                bbox,
+                               p_ctrl_param,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,

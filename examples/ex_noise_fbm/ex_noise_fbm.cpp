@@ -22,15 +22,23 @@ int main(void)
       hmap::NoiseType::WORLEY_DOUBLE,
       hmap::NoiseType::WORLEY_VALUE};
 
-  auto b = hmap::noise(hmap::NoiseType::PERLIN, shape, kw, seed + 1);
+  auto ctrl_array = hmap::noise(hmap::NoiseType::PERLIN, shape, kw, seed);
+  hmap::remap(ctrl_array);
 
   // fbm
   {
     hmap::Array z = hmap::Array(hmap::Vec2<int>(0, shape.y));
     for (auto &noise_type : noise_list)
     {
-      auto n =
-          hmap::noise_fbm(noise_type, shape, kw, seed, 8, 0.7f, 0.5f, 2.f, &b);
+      auto n = hmap::noise_fbm(noise_type,
+                               shape,
+                               kw,
+                               seed,
+                               8,
+                               0.7f,
+                               0.5f,
+                               2.f,
+                               &ctrl_array);
       hmap::remap(n);
       z = hstack(z, n);
     }

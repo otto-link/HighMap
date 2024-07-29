@@ -14,15 +14,22 @@ int main(void)
   auto z1 = hmap::Array(shape);
   auto z2 = hmap::Array(shape);
 
-  fill_array_using_xy_function(z1, bbox, &n, &n, nullptr, p.get_delegate());
+  fill_array_using_xy_function(z1,
+                               bbox,
+                               nullptr,
+                               &n,
+                               &n,
+                               nullptr,
+                               p.get_delegate());
 
   int subsampling = 8;
 
   fill_array_using_xy_function(z2,
                                bbox,
+                               nullptr, // ctrl_param
                                &n,
                                &n,
-                               nullptr,
+                               nullptr, // stretching
                                p.get_delegate(),
                                subsampling);
 

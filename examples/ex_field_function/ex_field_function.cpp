@@ -32,6 +32,7 @@ int main(void)
                                nullptr,
                                nullptr,
                                nullptr,
+                               nullptr,
                                field_fct.get_delegate());
 
   z.to_png("ex_field_function.png", hmap::cmap::jet, true);

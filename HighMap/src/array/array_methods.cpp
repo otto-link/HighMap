@@ -124,6 +124,7 @@ Array Array::extract_slice(Vec4<int> idx)
 void fill_array_using_xy_function(
     Array                                    &array,
     Vec4<float>                               bbox,
+    Array                                    *p_ctrl_param,
     Array                                    *p_noise_x,
     Array                                    *p_noise_y,
     Array                                    *p_stretching,
@@ -133,6 +134,9 @@ void fill_array_using_xy_function(
   std::vector<float> x, y;
   grid_xy_vector(x, y, shape, bbox, false); // no endpoint
 
+  Array ctrl_array = p_ctrl_param == nullptr ? Array(shape, 1.f)
+                                             : *p_ctrl_param;
+
   if (p_stretching) // with stretching
   {
     if ((!p_noise_x) and (!p_noise_y))
@@ -141,7 +145,7 @@ void fill_array_using_xy_function(
         for (int j = 0; j < shape.y; j++)
           array(i, j) = fct_xy(x[i] * (*p_stretching)(i, j),
                                y[j] * (*p_stretching)(i, j),
-                               array(i, j));
+                               ctrl_array(i, j));
     }
     else if (p_noise_x and (!p_noise_y))
     {
@@ -150,7 +154,7 @@ void fill_array_using_xy_function(
           array(i,
                 j) = fct_xy(x[i] * (*p_stretching)(i, j) + (*p_noise_x)(i, j),
                             y[j] * (*p_stretching)(i, j),
-                            array(i, j));
+                            ctrl_array(i, j));
     }
     else if ((!p_noise_x) and p_noise_y)
     {
@@ -159,7 +163,7 @@ void fill_array_using_xy_function(
           array(i,
                 j) = fct_xy(x[i] * (*p_stretching)(i, j),
                             y[j] * (*p_stretching)(i, j) + (*p_noise_y)(i, j),
-                            array(i, j));
+                            ctrl_array(i, j));
     }
     else if (p_noise_x and p_noise_y)
     {
@@ -168,7 +172,7 @@ void fill_array_using_xy_function(
           array(i,
                 j) = fct_xy(x[i] * (*p_stretching)(i, j) + (*p_noise_x)(i, j),
                             y[j] * (*p_stretching)(i, j) + (*p_noise_y)(i, j),
-                            array(i, j));
+                            ctrl_array(i, j));
     }
   }
   else // without stretching
@@ -177,19 +181,21 @@ void fill_array_using_xy_function(
     {
       for (int i = 0; i < shape.x; i++)
         for (int j = 0; j < shape.y; j++)
-          array(i, j) = fct_xy(x[i], y[j], array(i, j));
+          array(i, j) = fct_xy(x[i], y[j], ctrl_array(i, j));
     }
     else if (p_noise_x and (!p_noise_y))
     {
       for (int i = 0; i < shape.x; i++)
         for (int j = 0; j < shape.y; j++)
-          array(i, j) = fct_xy(x[i] + (*p_noise_x)(i, j), y[j], array(i, j));
+          array(i,
+                j) = fct_xy(x[i] + (*p_noise_x)(i, j), y[j], ctrl_array(i, j));
     }
     else if ((!p_noise_x) and p_noise_y)
     {
       for (int i = 0; i < shape.x; i++)
         for (int j = 0; j < shape.y; j++)
-          array(i, j) = fct_xy(x[i], y[j] + (*p_noise_y)(i, j), array(i, j));
+          array(i,
+                j) = fct_xy(x[i], y[j] + (*p_noise_y)(i, j), ctrl_array(i, j));
     }
     else if (p_noise_x and p_noise_y)
     {
@@ -197,7 +203,7 @@ void fill_array_using_xy_function(
         for (int j = 0; j < shape.y; j++)
           array(i, j) = fct_xy(x[i] + (*p_noise_x)(i, j),
                                y[j] + (*p_noise_y)(i, j),
-                               array(i, j));
+                               ctrl_array(i, j));
     }
   }
 }
@@ -205,6 +211,7 @@ void fill_array_using_xy_function(
 void fill_array_using_xy_function(
     Array                                    &array,
     Vec4<float>                               bbox,
+    Array                                    *p_ctrl_param,
     Array                                    *p_noise_x,
     Array                                    *p_noise_y,
     Array                                    *p_stretching,
@@ -219,9 +226,15 @@ void fill_array_using_xy_function(
   std::vector<float> x, y;
   grid_xy_vector(x, y, shape, bbox, false);
 
+  Array ctrl_array = p_ctrl_param == nullptr ? Array(shape, 1.f)
+                                             : *p_ctrl_param;
+
   // subsampled grid (with endpoints to cover the exact same domain as
   // the original grid)
   Vec4<float> bbox_sub = Vec4<float>(x.front(), x.back(), y.front(), y.back());
+
+  // resample control parameter
+  Array ctrl_array_sub = ctrl_array.resample_to_shape(shape_sub);
 
   // also resample input noise and stretching
   Array noise_x_sub;
@@ -252,6 +265,7 @@ void fill_array_using_xy_function(
 
   fill_array_using_xy_function(array_sub,
                                bbox_sub,
+                               &ctrl_array_sub,
                                p_noise_x_sub,
                                p_noise_y_sub,
                                p_stretching_sub,

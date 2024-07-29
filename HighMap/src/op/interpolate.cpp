@@ -45,6 +45,7 @@ Array interpolate2d(Vec2<int>          shape,
   Array array_out = Array(shape);
   fill_array_using_xy_function(array_out,
                                bbox,
+                               nullptr,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,

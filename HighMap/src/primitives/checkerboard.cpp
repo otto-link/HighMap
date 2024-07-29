@@ -26,6 +26,7 @@ Array checkerboard(Vec2<int>   shape,
 
   fill_array_using_xy_function(array,
                                bbox,
+                               nullptr,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,

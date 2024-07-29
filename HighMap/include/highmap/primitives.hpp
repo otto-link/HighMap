@@ -319,7 +319,8 @@ Array noise(NoiseType   noise_type,
  * @param weigth Octave weighting.
  * @param persistence Octave persistence.
  * @param lacunarity Defines the wavenumber ratio between each octaves.
- * @param p_base_elevation Reference to the base elevation noise array.
+ * @param p_ctrl_param Reference to the control parameter array (acts as a
+ * multiplier for the weight parameter).
  * @param p_noise_x, p_noise_y Reference to the input noise arrays.
  * @param p_stretching Local wavenumber multiplier.
  * @param bbox Domain bounding box.
@@ -339,7 +340,7 @@ Array noise_fbm(NoiseType   noise_type,
                 float       weight = 0.7f,
                 float       persistence = 0.5f,
                 float       lacunarity = 2.f,
-                Array      *p_base_elevation = nullptr,
+                Array      *p_ctrl_param = nullptr,
                 Array      *p_noise_x = nullptr,
                 Array      *p_noise_y = nullptr,
                 Array      *p_stretching = nullptr,
@@ -357,7 +358,8 @@ Array noise_fbm(NoiseType   noise_type,
  * @param persistence Octave persistence.
  * @param lacunarity Defines the wavenumber ratio between each octaves.
  * @param gradient_scale Gradient scale.
- * @param p_base_elevation Reference to the base elevation noise array.
+ * @param p_ctrl_param Reference to the control parameter array (acts as a
+ * multiplier for the weight parameter).
  * @param p_noise_x, p_noise_y Reference to the input noise arrays.
  * @param p_stretching Local wavenumber multiplier.
  * @param bbox Domain bounding box.
@@ -378,7 +380,7 @@ Array noise_iq(NoiseType   noise_type,
                float       persistence = 0.5f,
                float       lacunarity = 2.f,
                float       gradient_scale = 0.05f,
-               Array      *p_base_elevation = nullptr,
+               Array      *p_ctrl_param = nullptr,
                Array      *p_noise_x = nullptr,
                Array      *p_noise_y = nullptr,
                Array      *p_stretching = nullptr,
@@ -399,7 +401,8 @@ Array noise_iq(NoiseType   noise_type,
  * @param damp0 Initial damp scale.
  * @param warp_scale Warp scale.
  * @param damp_scale Damp scale.
- * @param p_base_elevation Reference to the base elevation noise array.
+ * @param p_ctrl_param Reference to the control parameter array (acts as a
+ * multiplier for the weight parameter).
  * @param p_noise_x, p_noise_y Reference to the input noise arrays.
  * @param p_stretching Local wavenumber multiplier.
  * @param bbox Domain bounding box.
@@ -423,7 +426,7 @@ Array noise_jordan(NoiseType   noise_type,
                    float       damp0 = 1.f,
                    float       warp_scale = 0.4f,
                    float       damp_scale = 1.f,
-                   Array      *p_base_elevation = nullptr,
+                   Array      *p_ctrl_param = nullptr,
                    Array      *p_noise_x = nullptr,
                    Array      *p_noise_y = nullptr,
                    Array      *p_stretching = nullptr,
@@ -441,7 +444,8 @@ Array noise_jordan(NoiseType   noise_type,
  * @param persistence Octave persistence.
  * @param lacunarity Defines the wavenumber ratio between each octaves.
  * @param mu Gradient magnitude exponent.
- * @param p_base_elevation Reference to the base elevation noise array.
+ * @param p_ctrl_param Reference to the control parameter array (acts as a
+ * multiplier for the weight parameter).
  * @param p_noise_x, p_noise_y Reference to the input noise arrays.
  * @param p_stretching Local wavenumber multiplier.
  * @param bbox Domain bounding box.
@@ -461,7 +465,7 @@ Array noise_parberry(Vec2<int>   shape,
                      float       persistence = 0.5f,
                      float       lacunarity = 2.f,
                      float       mu = 1.02f,
-                     Array      *p_base_elevation = nullptr,
+                     Array      *p_ctrl_param = nullptr,
                      Array      *p_noise_x = nullptr,
                      Array      *p_noise_y = nullptr,
                      Array      *p_stretching = nullptr,
@@ -478,7 +482,8 @@ Array noise_parberry(Vec2<int>   shape,
  * @param weigth Octave weighting.
  * @param persistence Octave persistence.
  * @param lacunarity Defines the wavenumber ratio between each octaves.
- * @param p_base_elevation Reference to the base elevation noise array.
+ * @param p_ctrl_param Reference to the control parameter array (acts as a
+ * multiplier for the weight parameter).
  * @param p_noise_x, p_noise_y Reference to the input noise arrays.
  * @param p_stretching Local wavenumber multiplier.
  * @param bbox Domain bounding box.
@@ -498,7 +503,7 @@ Array noise_pingpong(NoiseType   noise_type,
                      float       weight = 0.7f,
                      float       persistence = 0.5f,
                      float       lacunarity = 2.f,
-                     Array      *p_base_elevation = nullptr,
+                     Array      *p_ctrl_param = nullptr,
                      Array      *p_noise_x = nullptr,
                      Array      *p_noise_y = nullptr,
                      Array      *p_stretching = nullptr,
@@ -516,7 +521,8 @@ Array noise_pingpong(NoiseType   noise_type,
  * @param persistence Octave persistence.
  * @param lacunarity Defines the wavenumber ratio between each octaves.
  * @param k_smoothing Smoothing parameter.
- * @param p_base_elevation Reference to the base elevation noise array.
+ * @param p_ctrl_param Reference to the control parameter array (acts as a
+ * multiplier for the weight parameter).
  * @param p_noise_x, p_noise_y Reference to the input noise arrays.
  * @param p_stretching Local wavenumber multiplier.
  * @param bbox Domain bounding box.
@@ -537,7 +543,7 @@ Array noise_ridged(NoiseType   noise_type,
                    float       persistence = 0.5f,
                    float       lacunarity = 2.f,
                    float       k_smoothing = 0.1f,
-                   Array      *p_base_elevation = nullptr,
+                   Array      *p_ctrl_param = nullptr,
                    Array      *p_noise_x = nullptr,
                    Array      *p_noise_y = nullptr,
                    Array      *p_stretching = nullptr,
@@ -555,7 +561,8 @@ Array noise_ridged(NoiseType   noise_type,
  * @param persistence Octave persistence.
  * @param lacunarity Defines the wavenumber ratio between each octaves.
  * @param warp_scale Warp scale.
- * @param p_base_elevation Reference to the base elevation noise array.
+ * @param p_ctrl_param Reference to the control parameter array (acts as a
+ * multiplier for the weight parameter).
  * @param p_noise_x, p_noise_y Reference to the input noise arrays.
  * @param p_stretching Local wavenumber multiplier.
  * @param bbox Domain bounding box.
@@ -576,7 +583,7 @@ Array noise_swiss(NoiseType   noise_type,
                   float       persistence = 0.5f,
                   float       lacunarity = 2.f,
                   float       warp_scale = 0.1f,
-                  Array      *p_base_elevation = nullptr,
+                  Array      *p_ctrl_param = nullptr,
                   Array      *p_noise_x = nullptr,
                   Array      *p_noise_y = nullptr,
                   Array      *p_stretching = nullptr,
@@ -591,7 +598,8 @@ Array noise_swiss(NoiseType   noise_type,
  * @param v0 Value at the paraboloid center.
  * @param reverse_x Reverse coefficient of first principal axis.
  * @param reverse_y Reverse coefficient of second principal axis.
- * @param p_base_elevation Reference to the base elevation noise array.
+ * @param p_base_elevation Reference to the control parameter array (acts as a
+ * multiplier for the weight parameter).
  * @param p_noise_x, p_noise_y Reference to the input noise arrays.
  * @param p_stretching Local wavenumber multiplier.
  * @param center Primitive reference center.
