@@ -61,7 +61,7 @@ enum NoiseType : int
 };
 
 //----------------------------------------
-// Base function classes
+// Base Function class and derived
 //----------------------------------------
 
 /**
@@ -99,37 +99,6 @@ public:
    */
   HMAP_FCT_XY_TYPE get_delegate() const;
 
-  //  /**
-  //   * @brief Get a reference to the current instance cast to the specified
-  //   type.
-  //   *
-  //   * This method attempts to cast the current instance to the specified type
-  //   T.
-  //   * If the cast is successful, it returns a pointer to the casted type.
-  //   * If the cast fails, it throws a std::runtime_error.
-  //   *
-  //   * @tparam T The type to which the current instance should be cast.
-  //   Defaults
-  //   * to void.
-  //   * @return T* A pointer to the current instance cast to type T.
-  //   * @throws std::runtime_error if the cast is not compatible with the
-  //   current
-  //   * instance.
-  //   */
-  //  template <class T = void> T *get_ref()
-  //  {
-  //    T *ptr = dynamic_cast<T *>(this);
-  //    if (ptr)
-  //    {
-  //      return ptr;
-  //    }
-  //    else
-  //    {
-  //      throw std::runtime_error("Invalid cast to type: " +
-  //                               std::string(typeid(T).name()));
-  //    }
-  //  }
-
   /**
    * @brief Call the delegate function with given arguments.
    * @param x The first float parameter.
@@ -148,6 +117,277 @@ public:
 private:
   HMAP_FCT_XY_TYPE delegate; ///< The stored delegate function object.
 };
+
+/**
+ * @class ArrayFunction
+ * @brief Array (x, y) function class.
+ *
+ * This class functions like an image sampler with normalized coordinates found
+ * on a GPU. It is based on a 2D array, allowing interpolation of any value at a
+ * given (x, y) coordinate. Specific boundary conditions, such as periodicity,
+ * can also be used.
+ */
+class ArrayFunction : public Function
+{
+public:
+  /**
+   * @brief Construct a new ArrayFunction object.
+   *
+   * @param array Data array.
+   * @param kw Noise wavenumbers {kx, ky} for each direction, with respect to
+   *           a unit domain.
+   * @param periodic Whether the domain is periodic or not.
+   */
+  ArrayFunction(hmap::Array array, Vec2<float> kw, bool periodic = true);
+
+  /**
+   * @brief Set the array object.
+   *
+   * @param new_array New data array.
+   */
+  void set_array(hmap::Array new_array)
+  {
+    this->array = new_array;
+  }
+
+protected:
+  Vec2<float> kw; ///< Frequency scaling vector.
+  bool periodic;  ///< Flag indicating whether the domain is periodic or not.
+
+private:
+  hmap::Array array; ///< Data array representing the 2D field.
+};
+
+/**
+ * @brief Bump (x, y) function class.
+ */
+class BumpFunction : public Function
+{
+public:
+  /**
+   * @brief Primitive reference center.
+   */
+  Vec2<float> center;
+
+  /**
+   * @brief Construct a new Bump Function object
+   *
+   * @param gain Gain.
+   * @param center Primitive reference center.
+   */
+  BumpFunction(float gain, Vec2<float> center);
+
+  /**
+   * @brief Set the gain.
+   *
+   * @param new_gain New gain
+   */
+  void set_gain(float new_gain)
+  {
+    this->gain = new_gain;
+    this->inv_gain = 1.f / gain;
+  }
+
+private:
+  /**
+   * @brief Gain (the higher, the steeper the bump).
+   */
+  float gain;
+
+  /**
+   * @brief Inverse of the gain.
+   */
+  float inv_gain;
+};
+
+/**
+ * @class WaveDuneFunction
+ * @brief Wave dune (x, y) function class.
+ *
+ * This class models a wave dune function with specific noise wavenumbers,
+ * rotation angle, slant ratio, and phase shift. It extends the base Function
+ * class.
+ */
+class WaveDuneFunction : public Function
+{
+public:
+  /**
+   * @brief Construct a new Wave Dune Function object.
+   *
+   * @param kw Noise wavenumbers {kx, ky} for each direction, with respect to
+   *           a unit domain.
+   * @param angle Overall rotation angle (in degrees).
+   * @param xtop Relative location of the top of the dune profile (in [0, 1]).
+   * @param xbottom Relative location of the foot of the dune profile (in [0,
+   * 1]).
+   * @param phase_shift Phase shift (in radians).
+   */
+  WaveDuneFunction(Vec2<float> kw,
+                   float       angle,
+                   float       xtop,
+                   float       xbottom,
+                   float       phase_shift);
+
+  /**
+   * @brief Set the angle.
+   *
+   * @param new_angle New angle.
+   */
+  void set_angle(float new_angle)
+  {
+    this->angle = new_angle;
+    this->ca = std::cos(angle / 180.f * M_PI);
+    this->sa = std::sin(angle / 180.f * M_PI);
+  }
+
+protected:
+  Vec2<float> kw;    ///< Frequency scaling vector.
+  float       angle; ///< Overall rotation angle (in degrees).
+  float xtop; ///< Relative location of the top of the dune profile (in [0, 1]).
+  float xbottom; ///< Relative location of the foot of the dune profile (in [0,
+  ///< 1]).
+  float phase_shift; ///< Phase shift (in radians).
+
+private:
+  float ca; ///< Cached cosine of the angle.
+  float sa; ///< Cached sine of the angle.
+};
+
+/**
+ * @class WaveSineFunction
+ * @brief Wave sine (x, y) function class.
+ *
+ * This class models a wave sine function with specific noise wavenumbers,
+ * rotation angle, and phase shift. It extends the base Function class.
+ */
+class WaveSineFunction : public Function
+{
+public:
+  /**
+   * @brief Construct a new Wave Sine Function object.
+   *
+   * @param kw Noise wavenumbers {kx, ky} for each direction, with respect to
+   *           a unit domain.
+   * @param angle Overall rotation angle (in degrees).
+   * @param phase_shift Phase shift (in radians).
+   */
+  WaveSineFunction(Vec2<float> kw, float angle, float phase_shift);
+
+  /**
+   * @brief Set the angle.
+   *
+   * @param new_angle New angle.
+   */
+  void set_angle(float new_angle)
+  {
+    this->angle = new_angle;
+    this->ca = std::cos(angle / 180.f * M_PI);
+    this->sa = std::sin(angle / 180.f * M_PI);
+  }
+
+protected:
+  Vec2<float> kw;          ///< Frequency scaling vector.
+  float       angle;       ///< Overall rotation angle (in degrees).
+  float       phase_shift; ///< Phase shift (in radians).
+
+private:
+  float ca; ///< Cached cosine of the angle.
+  float sa; ///< Cached sine of the angle.
+};
+
+/**
+ * @class WaveSquareFunction
+ * @brief Wave square (x, y) function class.
+ *
+ * This class models a wave square function with specific noise wavenumbers,
+ * rotation angle, and phase shift. It extends the base Function class.
+ */
+class WaveSquareFunction : public Function
+{
+public:
+  /**
+   * @brief Construct a new Wave Square Function object.
+   *
+   * @param kw Noise wavenumbers {kx, ky} for each direction, with respect to
+   *           a unit domain.
+   * @param angle Overall rotation angle (in degrees).
+   * @param phase_shift Phase shift (in radians).
+   */
+  WaveSquareFunction(Vec2<float> kw, float angle, float phase_shift);
+
+  /**
+   * @brief Set the angle.
+   *
+   * @param new_angle New angle.
+   */
+  void set_angle(float new_angle)
+  {
+    this->angle = new_angle;
+    this->ca = std::cos(angle / 180.f * M_PI);
+    this->sa = std::sin(angle / 180.f * M_PI);
+  }
+
+protected:
+  Vec2<float> kw;          ///< Frequency scaling vector.
+  float       angle;       ///< Overall rotation angle (in degrees).
+  float       phase_shift; ///< Phase shift (in radians).
+
+private:
+  float ca; ///< Cached cosine of the angle.
+  float sa; ///< Cached sine of the angle.
+};
+
+/**
+ * @class WaveTriangularFunction
+ * @brief Wave triangular (x, y) function class.
+ *
+ * This class models a wave triangular function with specific noise wavenumbers,
+ * rotation angle, slant ratio, and phase shift. It extends the base Function
+ * class.
+ */
+class WaveTriangularFunction : public Function
+{
+public:
+  /**
+   * @brief Construct a new Wave Triangular Function object.
+   *
+   * @param kw Noise wavenumbers {kx, ky} for each direction, with respect to
+   *           a unit domain.
+   * @param angle Overall rotation angle (in degrees).
+   * @param slant_ratio Relative location of the triangle apex, in [0, 1].
+   * @param phase_shift Phase shift (in radians).
+   */
+  WaveTriangularFunction(Vec2<float> kw,
+                         float       angle,
+                         float       slant_ratio,
+                         float       phase_shift);
+
+  /**
+   * @brief Set the angle.
+   *
+   * @param new_angle New angle.
+   */
+  void set_angle(float new_angle)
+  {
+    this->angle = new_angle;
+    this->ca = std::cos(angle / 180.f * M_PI);
+    this->sa = std::sin(angle / 180.f * M_PI);
+  }
+
+protected:
+  Vec2<float> kw;    ///< Frequency scaling vector.
+  float       angle; ///< Overall rotation angle (in degrees).
+  float slant_ratio; ///< Relative location of the triangle apex, in [0, 1].
+  float phase_shift; ///< Phase shift (in radians).
+
+private:
+  float ca; ///< Cached cosine of the angle.
+  float sa; ///< Cached sine of the angle.
+};
+
+//----------------------------------------
+// NoiseFunction class and derived
+//----------------------------------------
 
 /**
  * @class NoiseFunction
@@ -230,85 +470,6 @@ protected:
 //----------------------------------------
 // Actual functions
 //----------------------------------------
-
-/**
- * @class ArrayFunction
- * @brief Array (x, y) function class.
- *
- * This class functions like an image sampler with normalized coordinates found
- * on a GPU. It is based on a 2D array, allowing interpolation of any value at a
- * given (x, y) coordinate. Specific boundary conditions, such as periodicity,
- * can also be used.
- */
-class ArrayFunction : public NoiseFunction
-{
-public:
-  /**
-   * @brief Construct a new ArrayFunction object.
-   *
-   * @param array Data array.
-   * @param kw Noise wavenumbers {kx, ky} for each direction, with respect to
-   *           a unit domain.
-   * @param periodic Whether the domain is periodic or not.
-   */
-  ArrayFunction(hmap::Array array, Vec2<float> kw, bool periodic = true);
-
-  /**
-   * @brief Set the array object.
-   *
-   * @param new_array New data array.
-   */
-  void set_array(hmap::Array new_array)
-  {
-    this->array = new_array;
-  }
-
-private:
-  hmap::Array array; ///< Data array representing the 2D field.
-  bool periodic;     ///< Flag indicating whether the domain is periodic or not.
-};
-
-/**
- * @brief Bump (x, y) function class.
- */
-class BumpFunction : public Function
-{
-public:
-  /**
-   * @brief Primitive reference center.
-   */
-  Vec2<float> center;
-
-  /**
-   * @brief Construct a new Bump Function object
-   *
-   * @param gain Gain.
-   * @param center Primitive reference center.
-   */
-  BumpFunction(float gain, Vec2<float> center);
-
-  /**
-   * @brief Set the gain.
-   *
-   * @param new_gain New gain
-   */
-  void set_gain(float new_gain)
-  {
-    this->gain = new_gain;
-    this->inv_gain = 1.f / gain;
-  }
-
-private:
-  /**
-   * @brief Gain (the higher, the steeper the bump).
-   */
-  float gain;
-
-  /**
-   * @brief Inverse of the gain.
-   */
-  float inv_gain;
-};
 
 /**
  * @brief Parberry (x, y) function class.
@@ -974,206 +1135,8 @@ private:
   FastNoiseLite noise1, noise2;
 };
 
-/**
- * @brief Wave dune (x, y) function class.
- */
-class WaveDuneFunction : public NoiseFunction
-{
-public:
-  /**
-   * @brief Overall rotation angle (in degree).
-   */
-  float angle;
-
-  /**
-   * @brief Relative location of the top of the dune profile (in [0, 1]).
-   */
-  float xtop;
-
-  /**
-   * @brief Relative location of the foot of the dune profile (in [0, 1]).
-   */
-  float xbottom;
-
-  /**
-   * @brief hase shift (in radians).
-   */
-  float phase_shift;
-
-  /**
-   * @brief Construct a new Wave Dune Function object.
-   *
-   * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
-   * a unit domain.
-   * @param angle Overall rotation angle (in degree).
-   * @param slant_ratio Relative location of the triangle apex, in [0, 1].
-   * @param phase_shift Phase shift (in radians).
-   */
-  WaveDuneFunction(Vec2<float> kw,
-                   float       angle,
-                   float       xtop,
-                   float       xbottom,
-                   float       phase_shift);
-
-  /**
-   * @brief Set the angle.
-   *
-   * @param new_angle New angle
-   */
-  void set_angle(float new_angle)
-  {
-    this->angle = new_angle;
-    this->ca = std::cos(angle / 180.f * M_PI);
-    this->sa = std::sin(angle / 180.f * M_PI);
-  }
-
-private:
-  float ca;
-  float sa;
-};
-
-/**
- * @brief Wave sine (x, y) function class.
- */
-class WaveSineFunction : public NoiseFunction
-{
-public:
-  /**
-   * @brief Overall rotation angle (in degree).
-   */
-  float angle;
-
-  /**
-   * @brief hase shift (in radians).
-   */
-  float phase_shift;
-
-  /**
-   * @brief Construct a new Wave Sine Function object.
-   *
-   * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
-   * a unit domain.
-   * @param kw Wavenumber with respect to a unit domain.
-   * @param angle Overall rotation angle (in degree).
-   * @param phase_shift Phase shift (in radians).
-   */
-  WaveSineFunction(Vec2<float> kw, float angle, float phase_shift);
-
-  /**
-   * @brief Set the angle.
-   *
-   * @param new_angle New angle
-   */
-  void set_angle(float new_angle)
-  {
-    this->angle = new_angle;
-    this->ca = std::cos(angle / 180.f * M_PI);
-    this->sa = std::sin(angle / 180.f * M_PI);
-  }
-
-private:
-  float ca;
-  float sa;
-};
-
-/**
- * @brief Wave square (x, y) function class.
- */
-class WaveSquareFunction : public NoiseFunction
-{
-public:
-  /**
-   * @brief Overall rotation angle (in degree).
-   */
-  float angle;
-
-  /**
-   * @brief hase shift (in radians).
-   */
-  float phase_shift;
-
-  /**
-   * @brief Construct a new Wave Square Function object.
-   *
-   * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
-   * a unit domain.
-   * @param kw Wavenumber with respect to a unit domain.
-   * @param angle Overall rotation angle (in degree).
-   * @param phase_shift Phase shift (in radians).
-   */
-  WaveSquareFunction(Vec2<float> kw, float angle, float phase_shift);
-
-  /**
-   * @brief Set the angle.
-   *
-   * @param new_angle New angle
-   */
-  void set_angle(float new_angle)
-  {
-    this->angle = new_angle;
-    this->ca = std::cos(angle / 180.f * M_PI);
-    this->sa = std::sin(angle / 180.f * M_PI);
-  }
-
-private:
-  float ca;
-  float sa;
-};
-
-/**
- * @brief Wave triangular (x, y) function class.
- */
-class WaveTriangularFunction : public NoiseFunction
-{
-public:
-  /**
-   * @brief Overall rotation angle (in degree).
-   */
-  float angle;
-
-  /**
-   * @brief Relative location of the triangle apex, in [0, 1].
-   */
-  float slant_ratio;
-
-  /**
-   * @brief hase shift (in radians).
-   */
-  float phase_shift;
-
-  /**
-   * @brief Construct a new Wave Triangular Function object.
-   *
-   * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
-   * a unit domain.
-   * @param angle Overall rotation angle (in degree).
-   * @param slant_ratio Relative location of the triangle apex, in [0, 1].
-   * @param phase_shift Phase shift (in radians).
-   */
-  WaveTriangularFunction(Vec2<float> kw,
-                         float       angle,
-                         float       slant_ratio,
-                         float       phase_shift);
-
-  /**
-   * @brief Set the angle.
-   *
-   * @param new_angle New angle
-   */
-  void set_angle(float new_angle)
-  {
-    this->angle = new_angle;
-    this->ca = std::cos(angle / 180.f * M_PI);
-    this->sa = std::sin(angle / 180.f * M_PI);
-  }
-
-private:
-  float ca;
-  float sa;
-};
-
 //----------------------------------------
-// Fractal layering functions (composite)
+// Composite functions
 //----------------------------------------
 
 /**
@@ -1578,9 +1541,6 @@ protected:
 //----------------------------------------
 // Field functions
 //----------------------------------------
-
-#include <memory>
-#include <vector>
 
 /**
  * @class FieldFunction
