@@ -6,10 +6,10 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/functions.hpp"
 #include "highmap/gradient.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/math.hpp"
-#include "highmap/noise_function.hpp"
 #include "highmap/op.hpp"
 
 namespace hmap
@@ -26,7 +26,7 @@ void warp(Array &array, Array *p_dx, Array *p_dy)
                                p_dx,
                                p_dy,
                                nullptr,
-                               f.get_function());
+                               f.get_delegate());
 }
 
 void warp_directional(Array &array,

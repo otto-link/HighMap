@@ -5,7 +5,7 @@
 #include "FastNoiseLite.h"
 
 #include "highmap/array.hpp"
-#include "highmap/noise_function.hpp"
+#include "highmap/functions.hpp"
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 
@@ -30,7 +30,7 @@ Array worley_double(Vec2<int>   shape,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
-                               f.get_function());
+                               f.get_delegate());
   return array;
 }
 

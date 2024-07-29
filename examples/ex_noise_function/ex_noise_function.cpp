@@ -15,14 +15,18 @@ int main(void)
 
   hmap::ParberryFunction p = hmap::ParberryFunction(kw, seed, mu);
 
-  hmap::FbmFunction f = hmap::FbmFunction(p.get_base_ref(), 8, 0.7f, 0.5f, 2.f);
+  hmap::FbmFunction f = hmap::FbmFunction(p.get_ref<NoiseFunction>(),
+                                          8,
+                                          0.7f,
+                                          0.5f,
+                                          2.f);
 
   fill_array_using_xy_function(z,
                                bbox,
                                nullptr,
                                nullptr,
                                nullptr,
-                               f.get_function());
+                               f.get_delegate());
 
   z.to_png("out.png", hmap::cmap::terrain, true);
   z.infos();

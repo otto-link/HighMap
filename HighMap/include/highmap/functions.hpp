@@ -3,7 +3,7 @@
  * this software. */
 
 /**
- * @file noise_function.hpp
+ * @file functions.hpp
  * @author Otto Link (otto.link.bv@gmail.com)
  * @brief
  * @version 0.1
@@ -23,7 +23,11 @@
 #include "highmap/math.hpp"
 #include "highmap/op.hpp"
 
-#define HMAP_NOISE_FCT_TYPE std::function<float(float, float, float)>
+/**
+ * @typedef HMAP_FCT_XY_TYPE
+ * @brief Type alias for a function taking three floats and returning a float.
+ */
+#define HMAP_FCT_XY_TYPE std::function<float(float, float, float)>
 
 #define HMAP_GRADIENT_OFFSET 0.001f
 
@@ -31,7 +35,12 @@ namespace hmap
 {
 
 /**
- * @brief Noise type.
+ * @enum NoiseType
+ * @brief Enumeration of various noise types used for procedural generation.
+ *
+ * This enumeration defines different types of noise algorithms that can be used
+ * for procedural generation tasks such as terrain generation, texture
+ * synthesis, and other applications where pseudo-random patterns are required.
  */
 enum NoiseType : int
 {
@@ -52,84 +61,195 @@ enum NoiseType : int
 };
 
 //----------------------------------------
-// Base function class
+// Base function classes
 //----------------------------------------
 
-class NoiseFunction
+/**
+ * @class Function
+ * @brief A class that wraps a callable entity taking three floats and returning
+ * a float.
+ */
+class Function
 {
 public:
-  HMAP_NOISE_FCT_TYPE function = [](float, float, float initial_value)
-  { return initial_value; };
-
-  NoiseFunction() = default;
-
-  NoiseFunction(Vec2<float> kw) : kw(kw), seed(0)
+  /**
+   * @brief Default constructor. Initializes the delegate function to a default
+   * that returns 0.
+   */
+  Function() : delegate([](float, float, float) { return 0.f; })
   {
   }
 
-  NoiseFunction(Vec2<float> kw, uint seed) : kw(kw), seed(seed)
+  /**
+   * @brief Virtual destructor to ensure proper cleanup in derived classes.
+   */
+  virtual ~Function() = default;
+
+  /**
+   * @brief Constructor to initialize with a specific delegate function.
+   * @param delegate The delegate function to initialize with.
+   */
+  explicit Function(HMAP_FCT_XY_TYPE delegate) : delegate(std::move(delegate))
   {
   }
 
-  HMAP_NOISE_FCT_TYPE get_function() const
+  /**
+   * @brief Get the current delegate function.
+   * @return The current delegate function.
+   */
+  HMAP_FCT_XY_TYPE get_delegate() const;
+
+  //  /**
+  //   * @brief Get a reference to the current instance cast to the specified
+  //   type.
+  //   *
+  //   * This method attempts to cast the current instance to the specified type
+  //   T.
+  //   * If the cast is successful, it returns a pointer to the casted type.
+  //   * If the cast fails, it throws a std::runtime_error.
+  //   *
+  //   * @tparam T The type to which the current instance should be cast.
+  //   Defaults
+  //   * to void.
+  //   * @return T* A pointer to the current instance cast to type T.
+  //   * @throws std::runtime_error if the cast is not compatible with the
+  //   current
+  //   * instance.
+  //   */
+  //  template <class T = void> T *get_ref()
+  //  {
+  //    T *ptr = dynamic_cast<T *>(this);
+  //    if (ptr)
+  //    {
+  //      return ptr;
+  //    }
+  //    else
+  //    {
+  //      throw std::runtime_error("Invalid cast to type: " +
+  //                               std::string(typeid(T).name()));
+  //    }
+  //  }
+
+  /**
+   * @brief Call the delegate function with given arguments.
+   * @param x The first float parameter.
+   * @param y The second float parameter.
+   * @param ctrl_param The third float parameter.
+   * @return The result of the delegate function call.
+   */
+  float get_value(float x, float y, float ctrl_param) const;
+
+  /**
+   * @brief Set a new delegate function.
+   * @param new_delegate The new delegate function to set.
+   */
+  void set_delegate(HMAP_FCT_XY_TYPE new_delegate);
+
+private:
+  HMAP_FCT_XY_TYPE delegate; ///< The stored delegate function object.
+};
+
+/**
+ * @class NoiseFunction
+ * @brief A class for generating noise functions.
+ *
+ * The `NoiseFunction` class provides an interface for generating noise-based
+ * functions. It inherits from the `Function` class and adds parameters for
+ * frequency scaling (`kw`) and a random seed (`seed`) to customize the noise
+ * generation.
+ */
+class NoiseFunction : public Function
+{
+public:
+  /**
+   * @brief Default constructor. Initializes with default frequency scaling and
+   * seed.
+   */
+  NoiseFunction() : Function(), kw(Vec2<float>(0.f, 0.f)), seed(0)
   {
-    return this->function;
   }
 
-  NoiseFunction *get_base_ref() const
+  /**
+   * @brief Constructor to initialize with specific frequency scaling.
+   * @param kw Frequency scaling vector.
+   */
+  NoiseFunction(Vec2<float> kw) : Function(), kw(kw), seed(0)
   {
-    return (NoiseFunction *)this;
   }
 
+  /**
+   * @brief Constructor to initialize with specific frequency scaling and seed.
+   * @param kw Frequency scaling vector.
+   * @param seed Random seed for noise generation.
+   */
+  NoiseFunction(Vec2<float> kw, uint seed) : Function(), kw(kw), seed(seed)
+  {
+  }
+
+  /**
+   * @brief Get the frequency scaling vector.
+   * @return The current frequency scaling vector.
+   */
   Vec2<float> get_kw() const
   {
     return this->kw;
   }
 
+  /**
+   * @brief Get the random seed.
+   * @return The current random seed.
+   */
   uint get_seed() const
   {
     return this->seed;
   }
 
+  /**
+   * @brief Set a new random seed for noise generation.
+   * @param new_seed The new random seed.
+   */
   virtual void set_seed(uint new_seed)
   {
     this->seed = new_seed;
   }
 
+  /**
+   * @brief Set a new frequency scaling vector.
+   * @param new_kw The new frequency scaling vector.
+   */
   virtual void set_kw(Vec2<float> new_kw)
   {
     this->kw = new_kw;
   }
 
 protected:
-  Vec2<float> kw;
-  uint        seed;
+  Vec2<float> kw;   ///< Frequency scaling vector.
+  uint        seed; ///< Random seed for noise generation.
 };
-
-// helper
-
-std::unique_ptr<hmap::NoiseFunction> create_noise_function_from_type(
-    NoiseType   noise_type,
-    Vec2<float> kw,
-    uint        seed);
 
 //----------------------------------------
 // Actual functions
 //----------------------------------------
 
 /**
+ * @class ArrayFunction
  * @brief Array (x, y) function class.
+ *
+ * This class functions like an image sampler with normalized coordinates found
+ * on a GPU. It is based on a 2D array, allowing interpolation of any value at a
+ * given (x, y) coordinate. Specific boundary conditions, such as periodicity,
+ * can also be used.
  */
 class ArrayFunction : public NoiseFunction
 {
 public:
   /**
-   * @brief Construct a new Array Function object
+   * @brief Construct a new ArrayFunction object.
    *
    * @param array Data array.
-   * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
-   * a unit domain.
-   * @param periodic Wether the domain is periodic or not.
+   * @param kw Noise wavenumbers {kx, ky} for each direction, with respect to
+   *           a unit domain.
+   * @param periodic Whether the domain is periodic or not.
    */
   ArrayFunction(hmap::Array array, Vec2<float> kw, bool periodic = true);
 
@@ -144,13 +264,14 @@ public:
   }
 
 private:
-  hmap::Array array;
+  hmap::Array array; ///< Data array representing the 2D field.
+  bool periodic;     ///< Flag indicating whether the domain is periodic or not.
 };
 
 /**
  * @brief Bump (x, y) function class.
  */
-class BumpFunction : public NoiseFunction
+class BumpFunction : public Function
 {
 public:
   /**
@@ -183,6 +304,9 @@ private:
    */
   float gain;
 
+  /**
+   * @brief Inverse of the gain.
+   */
   float inv_gain;
 };
 
@@ -276,7 +400,7 @@ public:
    */
   void set_seed(uint new_seed)
   {
-    this->seed = new_seed;
+    NoiseFunction::set_seed(new_seed);
     this->noise.SetSeed(new_seed);
   }
 
@@ -309,7 +433,7 @@ public:
    */
   void set_seed(uint new_seed)
   {
-    this->seed = new_seed;
+    NoiseFunction::set_seed(new_seed);
     this->noise.SetSeed(new_seed);
   }
 
@@ -345,7 +469,7 @@ public:
    */
   void set_seed(uint new_seed)
   {
-    this->seed = new_seed;
+    NoiseFunction::set_seed(new_seed);
     this->noise.SetSeed(new_seed);
   }
 
@@ -378,7 +502,7 @@ public:
    */
   void set_seed(uint new_seed)
   {
-    this->seed = new_seed;
+    NoiseFunction::set_seed(new_seed);
     this->noise.SetSeed(new_seed);
   }
 
@@ -411,7 +535,7 @@ public:
    */
   void set_seed(uint new_seed)
   {
-    this->seed = new_seed;
+    NoiseFunction::set_seed(new_seed);
     this->noise.SetSeed(new_seed);
   }
 
@@ -444,7 +568,7 @@ public:
    */
   void set_seed(uint new_seed)
   {
-    this->seed = new_seed;
+    NoiseFunction::set_seed(new_seed);
     this->noise.SetSeed(new_seed);
   }
 
@@ -458,7 +582,7 @@ private:
 /**
  * @brief Slope (x, y) function class.
  */
-class SlopeFunction : public NoiseFunction
+class SlopeFunction : public Function
 {
 public:
   /**
@@ -505,7 +629,7 @@ private:
 /**
  * @brief Step (x, y) function class.
  */
-class StepFunction : public NoiseFunction
+class StepFunction : public Function
 {
 public:
   /**
@@ -571,7 +695,7 @@ public:
    */
   void set_seed(uint new_seed)
   {
-    this->seed = new_seed;
+    NoiseFunction::set_seed(new_seed);
     this->noise.SetSeed(new_seed);
   }
 
@@ -604,7 +728,7 @@ public:
    */
   void set_seed(uint new_seed)
   {
-    this->seed = new_seed;
+    NoiseFunction::set_seed(new_seed);
     this->noise.SetSeed(new_seed);
   }
 
@@ -637,7 +761,7 @@ public:
    */
   void set_kw(Vec2<float> new_kw)
   {
-    this->kw = new_kw;
+    NoiseFunction::set_kw(new_kw);
     this->update_interpolation_function();
   }
 
@@ -648,27 +772,14 @@ public:
    */
   void set_seed(uint new_seed)
   {
-    this->seed = new_seed;
+    NoiseFunction::set_seed(new_seed);
     this->update_interpolation_function();
   }
 
   /**
    * @brief Update base interpolation.
    */
-  void update_interpolation_function()
-  {
-    // generate 'n' random grid points
-    int n = (int)(this->kw.x * this->kw.y);
-
-    std::vector<float> x(n);
-    std::vector<float> y(n);
-    std::vector<float> value(n);
-
-    random_grid(x, y, value, this->seed, {0.f, 1.f, 0.f, 1.f});
-    expand_grid(x, y, value, {0.f, 1.f, 0.f, 1.f});
-    this->interp = _2D::LinearDelaunayTriangleInterpolator<float>();
-    this->interp.setData(x, y, value);
-  }
+  void update_interpolation_function();
 
 private:
   /**
@@ -702,7 +813,7 @@ public:
    */
   void set_kw(Vec2<float> new_kw)
   {
-    this->kw = new_kw;
+    NoiseFunction::set_kw(new_kw);
     this->update_interpolation_function();
   }
 
@@ -713,50 +824,14 @@ public:
    */
   void set_seed(uint new_seed)
   {
-    this->seed = new_seed;
+    NoiseFunction::set_seed(new_seed);
     this->update_interpolation_function();
   }
 
   /**
    * @brief Update base interpolation.
    */
-  void update_interpolation_function()
-  {
-    // generate random values on a regular coarse grid (adjust extent
-    // according to the input noise in order to avoid "holes" in the
-    // data for large noise displacement)
-    Vec4<float> bbox = {-1.f, 2.f, -1.f, 2.f}; // bounding box
-
-    float lx = bbox.b - bbox.a;
-    float ly = bbox.d - bbox.c;
-
-    Vec2<int> shape_base = Vec2<int>((int)(kw.x * lx) + 1,
-                                     (int)(kw.y * ly) + 1);
-
-    std::vector<float> value;
-    value.reserve(shape_base.x * shape_base.y);
-
-    {
-      std::mt19937                          gen(seed);
-      std::uniform_real_distribution<float> dis(0.f, 1.f);
-      for (int k = 0; k < shape_base.x * shape_base.y; k++)
-        value.push_back(dis(gen));
-    }
-
-    // corresponding grids
-    Array xv = Array(shape_base);
-    Array yv = Array(shape_base);
-
-    for (int i = 0; i < shape_base.x; i++)
-      for (int j = 0; j < shape_base.y; j++)
-      {
-        xv(i, j) = bbox.a + lx * (float)i / (float)(shape_base.x - 1);
-        yv(i, j) = bbox.c + ly * (float)j / (float)(shape_base.y - 1);
-      }
-
-    this->interp = _2D::BilinearInterpolator<float>();
-    this->interp.setData(xv.vector, yv.vector, value);
-  }
+  void update_interpolation_function();
 
 private:
   /**
@@ -790,7 +865,7 @@ public:
    */
   void set_kw(Vec2<float> new_kw)
   {
-    this->kw = new_kw;
+    NoiseFunction::set_kw(new_kw);
     this->update_interpolation_function();
   }
 
@@ -801,27 +876,14 @@ public:
    */
   void set_seed(uint new_seed)
   {
-    this->seed = new_seed;
+    NoiseFunction::set_seed(new_seed);
     this->update_interpolation_function();
   }
 
   /**
    * @brief Update base interpolation.
    */
-  void update_interpolation_function()
-  {
-    // generate 'n' random grid points
-    int n = (int)(this->kw.x * this->kw.y);
-
-    std::vector<float> x(n);
-    std::vector<float> y(n);
-    std::vector<float> value(n);
-
-    random_grid(x, y, value, this->seed, {0.f, 1.f, 0.f, 1.f});
-    expand_grid(x, y, value, {0.f, 1.f, 0.f, 1.f});
-    this->interp = _2D::ThinPlateSplineInterpolator<float>();
-    this->interp.setData(x, y, value);
-  }
+  void update_interpolation_function();
 
 private:
   /**
@@ -855,7 +917,7 @@ public:
    */
   void set_seed(uint new_seed)
   {
-    this->seed = new_seed;
+    NoiseFunction::set_seed(new_seed);
     this->noise.SetSeed(new_seed);
   }
 
@@ -900,7 +962,7 @@ public:
    */
   void set_seed(uint new_seed)
   {
-    this->seed = new_seed;
+    NoiseFunction::set_seed(new_seed);
     this->noise1.SetSeed(new_seed);
     this->noise2.SetSeed(new_seed + 1);
   }
@@ -1111,87 +1173,160 @@ private:
 };
 
 //----------------------------------------
-// Fractal layering functions
+// Fractal layering functions (composite)
 //----------------------------------------
 
+/**
+ * @class GenericFractalFunction
+ * @brief A class for generating fractal noise functions based on an underlying
+ * noise function.
+ *
+ * The `GenericFractalFunction` class generates fractal noise using an
+ * underlying base noise function. It allows customization of the fractal
+ * properties such as octaves, weight, persistence, and lacunarity.
+ */
 class GenericFractalFunction : public NoiseFunction
 {
 public:
-  GenericFractalFunction(NoiseFunction *p_base,
-                         int            octaves,
-                         float          weight,
-                         float          persistence,
-                         float          lacunarity)
-      : p_base(p_base), octaves(octaves), weight(weight),
-        persistence(persistence), lacunarity(lacunarity)
-  {
-    // backup base noise infos
-    this->set_seed(this->p_base->get_seed());
-    this->set_kw(this->p_base->get_kw());
-    this->update_amp0();
-  }
+  /**
+   * @brief Construct a new GenericFractalFunction object.
+   *
+   * @param p_base Unique pointer to the base noise function.
+   * @param octaves Number of octaves in the fractal noise.
+   * @param weight Weight of the base noise function.
+   * @param persistence Persistence of the fractal noise.
+   * @param lacunarity Lacunarity of the fractal noise.
+   */
+  explicit GenericFractalFunction(std::unique_ptr<NoiseFunction> p_base,
+                                  int                            octaves,
+                                  float                          weight,
+                                  float                          persistence,
+                                  float                          lacunarity);
 
-  void set_kw(Vec2<float> new_kw)
+  /**
+   * @brief Set the frequency scaling vector.
+   *
+   * @param new_kw The new frequency scaling vector.
+   */
+  void set_kw(Vec2<float> new_kw) override
   {
-    this->kw = new_kw;
+    NoiseFunction::set_kw(new_kw);
     this->p_base->set_kw(new_kw);
   }
 
+  /**
+   * @brief Set the lacunarity of the fractal noise.
+   *
+   * @param new_lacunarity The new lacunarity value.
+   */
   void set_lacunarity(float new_lacunarity)
   {
     this->lacunarity = new_lacunarity;
   }
 
+  /**
+   * @brief Set the number of octaves in the fractal noise.
+   *
+   * @param new_octaves The new number of octaves.
+   */
   void set_octaves(int new_octaves)
   {
     this->octaves = new_octaves;
     this->update_amp0();
   }
 
+  /**
+   * @brief Set the persistence of the fractal noise.
+   *
+   * @param new_persistence The new persistence value.
+   */
   void set_persistence(float new_persistence)
   {
     this->persistence = new_persistence;
     this->update_amp0();
   }
 
-  void set_seed(uint new_seed)
+  /**
+   * @brief Set a new random seed for the noise generation.
+   *
+   * @param new_seed The new random seed.
+   */
+  void set_seed(uint new_seed) override
   {
-    this->seed = new_seed;
+    NoiseFunction::set_seed(new_seed);
     this->p_base->set_seed(new_seed);
   }
 
+  /**
+   * @brief Scale the initial amplitude of the fractal noise.
+   *
+   * @param scale The scale factor for the initial amplitude.
+   */
   void scale_amp0(float scale)
   {
     this->amp0 *= scale;
   }
 
-  void update_amp0()
+  /**
+   * @brief Get the lacunarity of the fractal noise.
+   *
+   * @return The current lacunarity value.
+   */
+  float get_lacunarity() const
   {
-    // determine initial amplitude so that the final field has roughly
-    // a unit peak-to-peak amplitude
-    {
-      float amp = this->persistence;
-      float amp_fractal = 1.0f;
-      for (int i = 1; i < this->octaves; i++)
-      {
-        amp_fractal += amp;
-        amp *= this->persistence;
-      }
-      this->amp0 = 1.f / amp_fractal;
-    }
+    return this->lacunarity;
+  }
+
+  /**
+   * @brief Get the number of octaves in the fractal noise.
+   *
+   * @return The current number of octaves.
+   */
+  int get_octaves() const
+  {
+    return this->octaves;
+  }
+
+  /**
+   * @brief Get the persistence of the fractal noise.
+   *
+   * @return The current persistence value.
+   */
+  float get_persistence() const
+  {
+    return this->persistence;
+  }
+
+  /**
+   * @brief Get the weight of the fractal noise.
+   *
+   * @return The current weight value.
+   */
+  float get_weight() const
+  {
+    return this->weight;
   }
 
 protected:
-  NoiseFunction *p_base;
-  int            octaves;
-  float          weight;
-  float          persistence;
-  float          lacunarity;
-  float          amp0;
+  /**
+   * @brief Update the initial amplitude (amp0) based on the current octaves and
+   * persistence.
+   */
+  void update_amp0();
+
+protected:
+  std::unique_ptr<NoiseFunction>
+        p_base;      ///< Unique pointer to the base noise function.
+  int   octaves;     ///< Number of octaves in the fractal noise.
+  float weight;      ///< Weight of the base noise function.
+  float persistence; ///< Persistence of the fractal noise.
+  float lacunarity;  ///< Lacunarity of the fractal noise.
+  float amp0;        ///< Initial amplitude of the fractal noise.
 };
 
 /**
- * @brief Fbm layering function
+ * @class FbmFunction
+ * @brief Fractional Brownian Motion (FBM) function class.
  */
 class FbmFunction : public GenericFractalFunction
 {
@@ -1199,81 +1334,136 @@ public:
   /**
    * @brief Construct a new Fbm Function object.
    *
+   * @param p_base Unique pointer to the base noise function.
    * @param octaves Number of octaves.
-   * @param weigth Octave weighting.
+   * @param weight Octave weighting.
    * @param persistence Octave persistence.
-   * @param lacunarity Defines the wavenumber ratio between each octaves.
+   * @param lacunarity Defines the wavenumber ratio between each octave.
    */
-  FbmFunction(NoiseFunction *p_base,
-              int            octaves,
-              float          weight,
-              float          persistence,
-              float          lacunarity);
+  FbmFunction(std::unique_ptr<NoiseFunction> p_base,
+              int                            octaves,
+              float                          weight,
+              float                          persistence,
+              float                          lacunarity);
 };
-
 /**
- * @brief Iq layering function
+ * @class FbmIqFunction
+ * @brief IQ layering function class.
  */
 class FbmIqFunction : public GenericFractalFunction
 {
 public:
   /**
-   * @brief Construct a new Fbm Iq Function object
+   * @brief Construct a new Fbm Iq Function object.
    *
+   * @param p_base Unique pointer to the base noise function.
    * @param octaves Number of octaves.
-   * @param weigth Octave weighting.
+   * @param weight Octave weighting.
    * @param persistence Octave persistence.
-   * @param lacunarity Defines the wavenumber ratio between each octaves.
+   * @param lacunarity Defines the wavenumber ratio between each octave.
    * @param gradient_scale Gradient scale influence.
    */
-  FbmIqFunction(NoiseFunction *p_base,
-                int            octaves,
-                float          weight,
-                float          persistence,
-                float          lacunarity,
-                float          gradient_scale);
+  FbmIqFunction(std::unique_ptr<NoiseFunction> p_base,
+                int                            octaves,
+                float                          weight,
+                float                          persistence,
+                float                          lacunarity,
+                float                          gradient_scale);
+
+  /**
+   * @brief Set the gradient scale.
+   *
+   * @param new_gradient_scale New gradient scale.
+   */
+  void set_gradient_scale(float new_gradient_scale)
+  {
+    this->gradient_scale = new_gradient_scale;
+  }
 
 protected:
-  float gradient_scale;
+  float gradient_scale; ///< Gradient scale influence.
 };
 
 /**
- * @brief Jordan layering function
+ * @class FbmJordanFunction
+ * @brief Jordan layering function class.
  */
 class FbmJordanFunction : public GenericFractalFunction
 {
 public:
   /**
-   * @brief Construct a new Fbm Jordan Function object
+   * @brief Construct a new Fbm Jordan Function object.
    *
+   * @param p_base Unique pointer to the base noise function.
    * @param octaves Number of octaves.
-   * @param weigth Octave weighting.
+   * @param weight Octave weighting.
    * @param persistence Octave persistence.
-   * @param lacunarity Defines the wavenumber ratio between each octaves.
+   * @param lacunarity Defines the wavenumber ratio between each octave.
    * @param warp0 Initial warp.
    * @param damp0 Initial damp.
    * @param warp_scale Warp scale.
    * @param damp_scale Damp scale.
    */
-  FbmJordanFunction(NoiseFunction *p_base,
-                    int            octaves,
-                    float          weight,
-                    float          persistence,
-                    float          lacunarity,
-                    float          warp0,
-                    float          damp0,
-                    float          warp_scale,
-                    float          damp_scale);
+  FbmJordanFunction(std::unique_ptr<NoiseFunction> p_base,
+                    int                            octaves,
+                    float                          weight,
+                    float                          persistence,
+                    float                          lacunarity,
+                    float                          warp0,
+                    float                          damp0,
+                    float                          warp_scale,
+                    float                          damp_scale);
+
+  /**
+   * @brief Set the initial warp.
+   *
+   * @param new_warp0 New initial warp.
+   */
+  void set_warp0(float new_warp0)
+  {
+    this->warp0 = new_warp0;
+  }
+
+  /**
+   * @brief Set the initial damp.
+   *
+   * @param new_damp0 New initial damp.
+   */
+  void set_damp0(float new_damp0)
+  {
+    this->damp0 = new_damp0;
+  }
+
+  /**
+   * @brief Set the warp scale.
+   *
+   * @param new_warp_scale New warp scale.
+   */
+  void set_warp_scale(float new_warp_scale)
+  {
+    this->warp_scale = new_warp_scale;
+  }
+
+  /**
+   * @brief Set the damp scale.
+   *
+   * @param new_damp_scale New damp scale.
+   */
+  void set_damp_scale(float new_damp_scale)
+  {
+    this->damp_scale = new_damp_scale;
+  }
 
 protected:
-  float warp0;
-  float damp0;
-  float warp_scale;
-  float damp_scale;
+  float warp0;      ///< Initial warp.
+  float damp0;      ///< Initial damp.
+  float warp_scale; ///< Warp scale.
+  float damp_scale; ///< Damp scale.
 };
 
 /**
- * @brief Pingpong layering function
+ * @class FbmPingpongFunction
+ * @brief Pingpong layering function class.
  */
 class FbmPingpongFunction : public GenericFractalFunction
 {
@@ -1281,23 +1471,35 @@ public:
   /**
    * @brief Construct a new Fbm Pingpong Function object.
    *
+   * @param p_base Unique pointer to the base noise function.
    * @param octaves Number of octaves.
-   * @param weigth Octave weighting.
+   * @param weight Octave weighting.
    * @param persistence Octave persistence.
-   * @param lacunarity Defines the wavenumber ratio between each octaves.
+   * @param lacunarity Defines the wavenumber ratio between each octave.
    */
-  FbmPingpongFunction(NoiseFunction *p_base,
-                      int            octaves,
-                      float          weight,
-                      float          persistence,
-                      float          lacunarity);
+  FbmPingpongFunction(std::unique_ptr<NoiseFunction> p_base,
+                      int                            octaves,
+                      float                          weight,
+                      float                          persistence,
+                      float                          lacunarity);
+
+  /**
+   * @brief Set the smoothing parameter.
+   *
+   * @param new_k_smoothing New smoothing parameter.
+   */
+  void set_k_smoothing(float new_k_smoothing)
+  {
+    this->k_smoothing = new_k_smoothing;
+  }
 
 protected:
-  float k_smoothing;
+  float k_smoothing; ///< Smoothing parameter.
 };
 
 /**
- * @brief Ridged layering function
+ * @class FbmRidgedFunction
+ * @brief Ridged layering function class.
  */
 class FbmRidgedFunction : public GenericFractalFunction
 {
@@ -1305,59 +1507,180 @@ public:
   /**
    * @brief Construct a new Fbm Ridged Function object.
    *
+   * @param p_base Unique pointer to the base noise function.
    * @param octaves Number of octaves.
-   * @param weigth Octave weighting.
+   * @param weight Octave weighting.
    * @param persistence Octave persistence.
-   * @param lacunarity Defines the wavenumber ratio between each octaves.
+   * @param lacunarity Defines the wavenumber ratio between each octave.
    * @param k_smoothing Smoothing parameter.
    */
-  FbmRidgedFunction(NoiseFunction *p_base,
-                    int            octaves,
-                    float          weight,
-                    float          persistence,
-                    float          lacunarity,
-                    float          k_smoothing);
+  FbmRidgedFunction(std::unique_ptr<NoiseFunction> p_base,
+                    int                            octaves,
+                    float                          weight,
+                    float                          persistence,
+                    float                          lacunarity,
+                    float                          k_smoothing);
+
+  /**
+   * @brief Set the smoothing parameter.
+   *
+   * @param new_k_smoothing New smoothing parameter.
+   */
+  void set_k_smoothing(float new_k_smoothing)
+  {
+    this->k_smoothing = new_k_smoothing;
+  }
 
 protected:
-  float k_smoothing;
+  float k_smoothing; ///< Smoothing parameter.
 };
 
 /**
- * @brief Swiss layering function
+ * @class FbmSwissFunction
+ * @brief Swiss layering function class.
  */
 class FbmSwissFunction : public GenericFractalFunction
 {
 public:
   /**
-   * @brief Construct a new Fbm Swiss Function object
+   * @brief Construct a new Fbm Swiss Function object.
    *
+   * @param p_base Unique pointer to the base noise function.
    * @param octaves Number of octaves.
-   * @param weigth Octave weighting.
+   * @param weight Octave weighting.
    * @param persistence Octave persistence.
-   * @param lacunarity Defines the wavenumber ratio between each octaves.
+   * @param lacunarity Defines the wavenumber ratio between each octave.
    * @param warp_scale Warping scale.
    */
-  FbmSwissFunction(NoiseFunction *p_base,
-                   int            octaves,
-                   float          weight,
-                   float          persistence,
-                   float          lacunarity,
-                   float          warp_scale);
+  FbmSwissFunction(std::unique_ptr<NoiseFunction> p_base,
+                   int                            octaves,
+                   float                          weight,
+                   float                          persistence,
+                   float                          lacunarity,
+                   float                          warp_scale);
 
   /**
-   * @brief Set the warp scale object
+   * @brief Set the warp scale.
    *
    * @param new_warp_scale New warp scale.
    */
   void set_warp_scale(float new_warp_scale)
   {
     this->warp_scale = new_warp_scale;
-    this->warp_scale_normalized = new_warp_scale / kw.x;
+    this->warp_scale_normalized = new_warp_scale / this->kw.x;
   }
 
 protected:
-  float warp_scale;
-  float warp_scale_normalized;
+  float warp_scale;            ///< Warping scale.
+  float warp_scale_normalized; ///< Normalized warping scale.
 };
+
+//----------------------------------------
+// Field functions
+//----------------------------------------
+
+#include <memory>
+#include <vector>
+
+/**
+ * @class FieldFunction
+ * @brief Field function class.
+ */
+class FieldFunction : public Function
+{
+public:
+  /**
+   * @brief Construct a new FieldFunction object.
+   *
+   * @param p_base Unique pointer to the base function.
+   */
+  FieldFunction(std::unique_ptr<Function> p_base);
+
+  /**
+   * @brief Construct a new FieldFunction object with given vectors.
+   *
+   * @param p_base Unique pointer to the base function.
+   * @param xr Vector of x coordinates representing the centers of the
+   * primitive.
+   * @param yr Vector of y coordinates representing the centers of the
+   * primitive.
+   * @param zr Vector of z coordinates used to scale the primitive in x and y
+   * directions, and also to scale the primitive amplitude if requested.
+   */
+  FieldFunction(std::unique_ptr<Function> p_base,
+                std::vector<float>        xr,
+                std::vector<float>        yr,
+                std::vector<float>        zr);
+
+  /**
+   * @brief Set the x coordinates representing the centers of the primitive.
+   *
+   * @param new_xr New vector of x coordinates.
+   */
+  void set_xr(std::vector<float> new_xr)
+  {
+    this->xr = new_xr;
+  }
+
+  /**
+   * @brief Set the y coordinates representing the centers of the primitive.
+   *
+   * @param new_yr New vector of y coordinates.
+   */
+  void set_yr(std::vector<float> new_yr)
+  {
+    this->yr = new_yr;
+  }
+
+  /**
+   * @brief Set the z coordinates used to scale the primitive in x and y
+   * directions, and also to scale the primitive amplitude if requested.
+   *
+   * @param new_zr New vector of z coordinates.
+   */
+  void set_zr(std::vector<float> new_zr)
+  {
+    this->zr = new_zr;
+  }
+
+protected:
+  std::vector<float> xr; ///< Vector of x coordinates representing the centers
+                         ///< of the primitive.
+  std::vector<float> yr; ///< Vector of y coordinates representing the centers
+                         ///< of the primitive.
+  std::vector<float>
+      zr; ///< Vector of z coordinates used to scale the primitive in x and y
+          ///< directions, and to scale the primitive amplitude if requested.
+
+private:
+  std::unique_ptr<Function> p_base; ///< Unique pointer to the base function.
+
+  /**
+   * @brief Setup the delegate function.
+   */
+  void setup_delegate();
+};
+
+//----------------------------------------
+// Helpers
+//----------------------------------------
+
+/**
+ * @brief Create a noise function based on the specified noise type.
+ *
+ * This function creates an instance of a noise function corresponding to the
+ * specified `noise_type`. It initializes the noise function with the given
+ * frequency scaling vector (`kw`) and random seed (`seed`).
+ *
+ * @param noise_type The type of noise function to create (e.g., PERLIN,
+ * SIMPLEX2, etc.).
+ * @param kw The frequency scaling vector to be used for the noise function.
+ * @param seed The random seed for noise generation.
+ * @return A `std::unique_ptr` to the created noise function.
+ */
+std::unique_ptr<hmap::NoiseFunction> create_noise_function_from_type(
+    NoiseType   noise_type,
+    Vec2<float> kw,
+    uint        seed);
 
 } // namespace hmap

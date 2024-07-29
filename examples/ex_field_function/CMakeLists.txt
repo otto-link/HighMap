@@ -1,0 +1,2 @@
+add_executable(ex_field_function ex_field_function.cpp)
+target_link_libraries(ex_field_function highmap)

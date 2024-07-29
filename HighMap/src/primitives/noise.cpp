@@ -6,7 +6,7 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
-#include "highmap/noise_function.hpp"
+#include "highmap/functions.hpp"
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 
@@ -32,7 +32,7 @@ Array noise(NoiseType   noise_type,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
-                               p.get()->get_function());
+                               p.get()->get_delegate());
   return array;
 }
 
@@ -56,7 +56,7 @@ Array noise_fbm(NoiseType   noise_type,
                                                                      kw,
                                                                      seed);
 
-  hmap::FbmFunction f = hmap::FbmFunction(p.get()->get_base_ref(),
+  hmap::FbmFunction f = hmap::FbmFunction(std::move(p),
                                           octaves,
                                           weight,
                                           persistence,
@@ -67,7 +67,7 @@ Array noise_fbm(NoiseType   noise_type,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
-                               f.get_function());
+                               f.get_delegate());
   return array;
 }
 
@@ -92,7 +92,7 @@ Array noise_iq(NoiseType   noise_type,
                                                                      kw,
                                                                      seed);
 
-  hmap::FbmIqFunction f = hmap::FbmIqFunction(p.get()->get_base_ref(),
+  hmap::FbmIqFunction f = hmap::FbmIqFunction(std::move(p),
                                               octaves,
                                               weight,
                                               persistence,
@@ -104,7 +104,7 @@ Array noise_iq(NoiseType   noise_type,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
-                               f.get_function());
+                               f.get_delegate());
   return array;
 }
 
@@ -132,7 +132,7 @@ Array noise_jordan(NoiseType   noise_type,
                                                                      kw,
                                                                      seed);
 
-  hmap::FbmJordanFunction f = hmap::FbmJordanFunction(p.get()->get_base_ref(),
+  hmap::FbmJordanFunction f = hmap::FbmJordanFunction(std::move(p),
                                                       octaves,
                                                       weight,
                                                       persistence,
@@ -147,7 +147,7 @@ Array noise_jordan(NoiseType   noise_type,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
-                               f.get_function());
+                               f.get_delegate());
   return array;
 }
 
@@ -167,9 +167,10 @@ Array noise_parberry(Vec2<int>   shape,
 {
   Array array = p_base_elevation == nullptr ? Array(shape) : *p_base_elevation;
 
-  hmap::ParberryFunction p = hmap::ParberryFunction(kw, seed, mu);
+  std::unique_ptr<NoiseFunction> p = std::unique_ptr<NoiseFunction>(
+      new ParberryFunction(kw, seed, mu));
 
-  hmap::FbmFunction f = hmap::FbmFunction(p.get_base_ref(),
+  hmap::FbmFunction f = hmap::FbmFunction(std::move(p),
                                           octaves,
                                           weight,
                                           persistence,
@@ -180,7 +181,7 @@ Array noise_parberry(Vec2<int>   shape,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
-                               f.get_function());
+                               f.get_delegate());
   return array;
 }
 
@@ -204,19 +205,18 @@ Array noise_pingpong(NoiseType   noise_type,
                                                                      kw,
                                                                      seed);
 
-  hmap::FbmPingpongFunction f = hmap::FbmPingpongFunction(
-      p.get()->get_base_ref(),
-      octaves,
-      weight,
-      persistence,
-      lacunarity);
+  hmap::FbmPingpongFunction f = hmap::FbmPingpongFunction(std::move(p),
+                                                          octaves,
+                                                          weight,
+                                                          persistence,
+                                                          lacunarity);
 
   fill_array_using_xy_function(array,
                                bbox,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
-                               f.get_function());
+                               f.get_delegate());
   return array;
 }
 
@@ -241,7 +241,7 @@ Array noise_ridged(NoiseType   noise_type,
                                                                      kw,
                                                                      seed);
 
-  hmap::FbmRidgedFunction f = hmap::FbmRidgedFunction(p.get()->get_base_ref(),
+  hmap::FbmRidgedFunction f = hmap::FbmRidgedFunction(std::move(p),
                                                       octaves,
                                                       weight,
                                                       persistence,
@@ -253,7 +253,7 @@ Array noise_ridged(NoiseType   noise_type,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
-                               f.get_function());
+                               f.get_delegate());
   return array;
 }
 
@@ -278,7 +278,7 @@ Array noise_swiss(NoiseType   noise_type,
                                                                      kw,
                                                                      seed);
 
-  hmap::FbmSwissFunction f = hmap::FbmSwissFunction(p.get()->get_base_ref(),
+  hmap::FbmSwissFunction f = hmap::FbmSwissFunction(std::move(p),
                                                     octaves,
                                                     weight,
                                                     persistence,
@@ -290,7 +290,7 @@ Array noise_swiss(NoiseType   noise_type,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
-                               f.get_function());
+                               f.get_delegate());
   return array;
 }
 

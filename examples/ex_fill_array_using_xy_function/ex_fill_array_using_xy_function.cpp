@@ -14,7 +14,7 @@ int main(void)
   auto z1 = hmap::Array(shape);
   auto z2 = hmap::Array(shape);
 
-  fill_array_using_xy_function(z1, bbox, &n, &n, nullptr, p.get_function());
+  fill_array_using_xy_function(z1, bbox, &n, &n, nullptr, p.get_delegate());
 
   int subsampling = 8;
 
@@ -23,7 +23,7 @@ int main(void)
                                &n,
                                &n,
                                nullptr,
-                               p.get_function(),
+                               p.get_delegate(),
                                subsampling);
 
   hmap::export_banner_png("ex_fill_array_using_xy_function.png",

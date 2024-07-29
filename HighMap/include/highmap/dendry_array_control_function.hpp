@@ -23,7 +23,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/dendry_array_control_function.hpp"
-#include "highmap/noise_function.hpp"
+#include "highmap/functions.hpp"
 
 namespace hmap
 {
@@ -141,7 +141,7 @@ public:
 protected:
   double EvaluateImpl(float x, float y) const
   {
-    return offset + scaling * noise_function.get_function()(x, y, 0.f);
+    return offset + scaling * noise_function.get_delegate()(x, y, 0.f);
   }
 
   bool InsideDomainImpl(float x, float y) const
