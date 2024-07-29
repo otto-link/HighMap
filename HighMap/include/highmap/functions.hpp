@@ -233,6 +233,88 @@ private:
 };
 
 /**
+ * @class SlopeFunction
+ * @brief Slope (x, y) function class.
+ *
+ * This class models a slope function with a specified angle, slope, and
+ * reference center. It extends the base Function class.
+ */
+class SlopeFunction : public Function
+{
+public:
+  /**
+   * @brief Construct a new Slope Function object.
+   *
+   * @param angle Overall rotation angle (in degrees).
+   * @param slope Step slope.
+   * @param center Primitive reference center.
+   */
+  SlopeFunction(float angle, float slope, Vec2<float> center);
+
+  /**
+   * @brief Set the angle.
+   *
+   * @param new_angle New angle in degrees.
+   */
+  void set_angle(float new_angle)
+  {
+    this->angle = new_angle;
+    this->ca = std::cos(angle / 180.f * M_PI);
+    this->sa = std::sin(angle / 180.f * M_PI);
+  }
+
+protected:
+  float       angle;  ///< Overall rotation angle (in degrees).
+  float       slope;  ///< Step slope.
+  Vec2<float> center; ///< Primitive reference center.
+
+private:
+  float ca; ///< Cached cosine of the angle.
+  float sa; ///< Cached sine of the angle.
+};
+
+/**
+ * @class StepFunction
+ * @brief Step (x, y) function class.
+ *
+ * This class models a step function with a specified angle, slope, and
+ * reference center. It extends the base Function class.
+ */
+class StepFunction : public Function
+{
+public:
+  /**
+   * @brief Construct a new Step Function object.
+   *
+   * @param angle Overall rotation angle (in degrees).
+   * @param slope Step slope.
+   * @param center Primitive reference center.
+   */
+  StepFunction(float angle, float slope, Vec2<float> center);
+
+  /**
+   * @brief Set the angle.
+   *
+   * @param new_angle New angle in degrees.
+   */
+  void set_angle(float new_angle)
+  {
+    this->angle = new_angle;
+    this->ca = std::cos(angle / 180.f * M_PI);
+    this->sa = std::sin(angle / 180.f * M_PI);
+  }
+
+protected:
+  float       angle;  ///< Overall rotation angle (in degrees).
+  float       slope;  ///< Step slope.
+  Vec2<float> center; ///< Primitive reference center.
+
+private:
+  float ca; ///< Cached cosine of the angle.
+  float sa; ///< Cached sine of the angle.
+};
+
+/**
  * @class WaveDuneFunction
  * @brief Wave dune (x, y) function class.
  *
@@ -770,100 +852,6 @@ private:
    * @brief FastNoiseLite noise generator object.
    */
   FastNoiseLite noise;
-};
-
-/**
- * @brief Slope (x, y) function class.
- */
-class SlopeFunction : public Function
-{
-public:
-  /**
-   * @brief Overall rotation angle (in degree).
-   */
-  float angle;
-
-  /**
-   * @brief Slope.
-   */
-  float slope;
-
-  /**
-   * @brief Primitive reference center.
-   */
-  Vec2<float> center;
-
-  /**
-   * @brief Construct a new Slope Function object
-   *
-   * @param angle Overall rotation angle (in degree).
-   * @param slope Step slope.
-   * @param center Primitive reference center.
-   */
-  SlopeFunction(float angle, float slope, Vec2<float> center);
-
-  /**
-   * @brief Set the angle.
-   *
-   * @param new_angle New angle
-   */
-  void set_angle(float new_angle)
-  {
-    this->angle = new_angle;
-    this->ca = std::cos(angle / 180.f * M_PI);
-    this->sa = std::sin(angle / 180.f * M_PI);
-  }
-
-private:
-  float ca;
-  float sa;
-};
-
-/**
- * @brief Step (x, y) function class.
- */
-class StepFunction : public Function
-{
-public:
-  /**
-   * @brief Overall rotation angle (in degree).
-   */
-  float angle;
-
-  /**
-   * @brief Step slope.
-   */
-  float slope;
-
-  /**
-   * @brief Primitive reference center.
-   */
-  Vec2<float> center;
-
-  /**
-   * @brief Construct a new Step Function object
-   *
-   * @param angle Overall rotation angle (in degree).
-   * @param slope Step slope.
-   * @param center Primitive reference center.
-   */
-  StepFunction(float angle, float slope, Vec2<float> center);
-
-  /**
-   * @brief Set the angle.
-   *
-   * @param new_angle New angle
-   */
-  void set_angle(float new_angle)
-  {
-    this->angle = new_angle;
-    this->ca = std::cos(angle / 180.f * M_PI);
-    this->sa = std::sin(angle / 180.f * M_PI);
-  }
-
-private:
-  float ca;
-  float sa;
 };
 
 /**

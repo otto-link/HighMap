@@ -99,41 +99,6 @@ Simplex2SFunction::Simplex2SFunction(Vec2<float> kw, uint seed)
       { return this->noise.GetNoise(this->kw.x * x, this->kw.y * y); });
 }
 
-SlopeFunction::SlopeFunction(float angle, float slope, Vec2<float> center)
-    : Function(), slope(slope), center(center)
-{
-  this->set_angle(angle);
-
-  this->set_delegate(
-      [this](float x, float y, float)
-      {
-        float r = this->ca * (x - this->center.x) +
-                  this->sa * (y - this->center.y);
-        return this->slope * r;
-      });
-}
-
-StepFunction::StepFunction(float angle, float slope, Vec2<float> center)
-    : Function(), slope(slope), center(center)
-{
-  this->set_angle(angle);
-
-  this->set_delegate(
-      [this](float x, float y, float)
-      {
-        float r = this->ca * (x - this->center.x) +
-                  this->sa * (y - this->center.y);
-        float dt = 0.5f / this->slope;
-        if (r > dt)
-          r = 1.f;
-        else if (r > -dt)
-          r = this->slope * (r + dt);
-        else
-          r = 0.f;
-        return r * r * (3.f - 2.f * r);
-      });
-}
-
 ValueNoiseFunction::ValueNoiseFunction(Vec2<float> kw, uint seed)
     : NoiseFunction(kw, seed)
 {

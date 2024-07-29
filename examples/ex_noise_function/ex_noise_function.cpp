@@ -20,7 +20,7 @@ int main(void)
 
   fill_array_using_xy_function(z,
                                bbox,
-			       nullptr,
+                               nullptr,
                                nullptr,
                                nullptr,
                                nullptr,
