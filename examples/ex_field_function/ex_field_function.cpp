@@ -12,10 +12,6 @@ int main(void)
   std::unique_ptr<hmap::Function> p = std::unique_ptr<hmap::Function>(
       new hmap::BumpFunction(gain, center));
 
-  // hmap::Vec2<float>      kw = {2.f, 2.f};
-  // float                  mu = 1.02f;
-  // hmap::ParberryFunction base_fct = hmap::ParberryFunction(kw, seed, mu);
-
   hmap::Cloud cloud = hmap::Cloud(15, seed, bbox);
   cloud.remap_values(1.f, 4.f);
 
