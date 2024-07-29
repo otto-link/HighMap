@@ -28,7 +28,7 @@ FbmFunction::FbmFunction(std::unique_ptr<NoiseFunction> p_base,
         float ki = 1.f;
         float kj = 1.f;
         int   kseed = this->seed;
-        float local_weight = this->weight * (1.f - ctrl_param);
+        float local_weight = (1.f - ctrl_param) + this->weight * ctrl_param;
 
         for (int k = 0; k < this->octaves; k++)
         {
@@ -70,7 +70,7 @@ FbmIqFunction::FbmIqFunction(std::unique_ptr<NoiseFunction> p_base,
         float ki = 1.f;
         float kj = 1.f;
         int   kseed = this->seed;
-        float local_weight = this->weight * (1.f - ctrl_param);
+        float local_weight = (1.f - ctrl_param) + this->weight * ctrl_param;
 
         for (int k = 0; k < this->octaves; k++)
         {
@@ -135,7 +135,7 @@ FbmJordanFunction::FbmJordanFunction(std::unique_ptr<NoiseFunction> p_base,
         float ki = 1.f;
         float kj = 1.f;
         int   kseed = this->seed;
-        float local_weight = this->weight * (1.f - ctrl_param);
+        float local_weight = (1.f - ctrl_param) + this->weight * ctrl_param;
 
         // --- 1st octave
 
@@ -224,7 +224,7 @@ FbmPingpongFunction::FbmPingpongFunction(std::unique_ptr<NoiseFunction> p_base,
         float ki = 1.f;
         float kj = 1.f;
         int   kseed = this->seed;
-        float local_weight = this->weight * (1.f - ctrl_param);
+        float local_weight = (1.f - ctrl_param) + this->weight * ctrl_param;
 
         for (int k = 0; k < this->octaves; k++)
         {
@@ -268,7 +268,7 @@ FbmRidgedFunction::FbmRidgedFunction(std::unique_ptr<NoiseFunction> p_base,
         float ki = 1.f;
         float kj = 1.f;
         int   kseed = this->seed;
-        float local_weight = this->weight * (1.f - ctrl_param);
+        float local_weight = (1.f - ctrl_param) + this->weight * ctrl_param;
 
         if (this->k_smoothing == 0.f)
           for (int k = 0; k < this->octaves; k++)
@@ -326,7 +326,7 @@ FbmSwissFunction::FbmSwissFunction(std::unique_ptr<NoiseFunction> p_base,
         float ki = 1.f;
         float kj = 1.f;
         int   kseed = this->seed;
-        float local_weight = this->weight * (1.f - ctrl_param);
+        float local_weight = (1.f - ctrl_param) + this->weight * ctrl_param;
 
         float dx_sum = 0.f;
         float dy_sum = 0.f;
