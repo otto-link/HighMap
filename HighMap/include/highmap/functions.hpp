@@ -159,28 +159,27 @@ private:
 };
 
 /**
- * @brief Bump (x, y) function class.
+ * @class BiquadFunction
+ * @brief Biquad (x, y) function class.
+ *
+ * This class models a biquad function with a specified gain and reference
+ * center. It extends the base Function class.
  */
-class BumpFunction : public Function
+class BiquadFunction : public Function
 {
 public:
   /**
-   * @brief Primitive reference center.
-   */
-  Vec2<float> center;
-
-  /**
-   * @brief Construct a new Bump Function object
+   * @brief Construct a new Biquad Function object.
    *
-   * @param gain Gain.
+   * @param gain Gain that controls the steepness of the bump.
    * @param center Primitive reference center.
    */
-  BumpFunction(float gain, Vec2<float> center);
+  BiquadFunction(float gain, Vec2<float> center);
 
   /**
    * @brief Set the gain.
    *
-   * @param new_gain New gain
+   * @param new_gain New gain value.
    */
   void set_gain(float new_gain)
   {
@@ -188,16 +187,49 @@ public:
     this->inv_gain = 1.f / gain;
   }
 
+protected:
+  Vec2<float> center; ///< Primitive reference center.
+  float       gain;   ///< Gain value that controls the steepness of the bump.
+
 private:
+  float inv_gain; ///< Cached inverse of the gain value.
+};
+
+/**
+ * @class BumpFunction
+ * @brief Bump (x, y) function class.
+ *
+ * This class models a bump function with a specified gain and reference center.
+ * It extends the base Function class.
+ */
+class BumpFunction : public Function
+{
+public:
   /**
-   * @brief Gain (the higher, the steeper the bump).
+   * @brief Construct a new Bump Function object.
+   *
+   * @param gain Gain that controls the steepness of the bump.
+   * @param center Primitive reference center.
    */
-  float gain;
+  BumpFunction(float gain, Vec2<float> center);
 
   /**
-   * @brief Inverse of the gain.
+   * @brief Set the gain.
+   *
+   * @param new_gain New gain value.
    */
-  float inv_gain;
+  void set_gain(float new_gain)
+  {
+    this->gain = new_gain;
+    this->inv_gain = 1.f / gain;
+  }
+
+protected:
+  Vec2<float> center; ///< Primitive reference center.
+  float       gain;   ///< Gain value that controls the steepness of the bump.
+
+private:
+  float inv_gain; ///< Cached inverse of the gain value.
 };
 
 /**

@@ -76,6 +76,19 @@ ArrayFunction::ArrayFunction(hmap::Array array, Vec2<float> kw, bool periodic)
         });
 }
 
+BiquadFunction::BiquadFunction(float gain, Vec2<float> center)
+    : Function(), center(center)
+{
+  this->set_gain(gain);
+  this->set_delegate(
+      [this](float x, float y, float)
+      {
+        float v = x * (x - 1.f) * y * (y - 1.f);
+        v = std::clamp(v, 0.f, 1.f);
+        return std::pow(v, this->inv_gain);
+      });
+}
+
 BumpFunction::BumpFunction(float gain, Vec2<float> center)
     : Function(), center(center)
 {

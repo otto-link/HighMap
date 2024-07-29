@@ -21,24 +21,18 @@ Array biquad_pulse(Vec2<int>   shape,
                    Array      *p_noise_x,
                    Array      *p_noise_y,
                    Array      *p_stretching,
+                   Vec2<float> center,
                    Vec4<float> bbox)
 {
-  Array array = Array(shape);
-  float gain_inv = 1.f / gain;
-
-  auto lambda = [&gain_inv](float x, float y, float)
-  {
-    float v = x * (x - 1.f) * y * (y - 1.f);
-    v = std::clamp(v, 0.f, 1.f);
-    return std::pow(v, gain_inv);
-  };
+  Array          array = Array(shape);
+  BiquadFunction f = BiquadFunction(gain, center);
 
   fill_array_using_xy_function(array,
                                bbox,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,
-                               lambda);
+                               f.get_delegate());
   return array;
 }
 

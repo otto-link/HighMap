@@ -45,6 +45,7 @@ Array biquad_pulse(Vec2<int>   shape,
                    Array      *p_noise_x = nullptr,
                    Array      *p_noise_y = nullptr,
                    Array      *p_stretching = nullptr,
+                   Vec2<float> center = {0.5f, 0.5f},
                    Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
