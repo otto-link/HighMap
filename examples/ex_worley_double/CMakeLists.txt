@@ -1,0 +1,2 @@
+add_executable(ex_worley_double ex_worley_double.cpp)
+target_link_libraries(ex_worley_double highmap)

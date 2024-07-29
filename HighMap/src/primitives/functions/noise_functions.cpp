@@ -260,16 +260,18 @@ WorleyDoubleFunction::WorleyDoubleFunction(Vec2<float> kw,
   this->noise2.SetNoiseType(FastNoiseLite::NoiseType_Cellular);
 
   this->set_delegate(
-      [this](float x, float y, float)
+      [this](float x, float y, float ctrl_param)
       {
+        float local_ratio = ctrl_param * this->ratio;
+
         float w1 = this->noise1.GetNoise(this->kw.x * x, this->kw.y * y);
         float w2 = this->noise2.GetNoise(this->kw.x * x, this->kw.y * y);
         if (this->k)
-          return maximum_smooth(this->ratio * w1,
-                                (1.f - this->ratio) * w2,
+          return maximum_smooth(local_ratio * w1,
+                                (1.f - local_ratio) * w2,
                                 this->k);
         else
-          return std::max(this->ratio * w1, (1.f - this->ratio) * w2);
+          return std::max(local_ratio * w1, (1.f - local_ratio) * w2);
       });
 }
 

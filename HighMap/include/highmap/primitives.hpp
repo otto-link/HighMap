@@ -915,6 +915,8 @@ Array white_sparse_binary(Vec2<int> shape, float density, uint seed);
  * @param seed Random seed number.
  * @param ratio Amplitude ratio between each Worley noise.
  * @param k Transition smoothing parameter.
+ * @param p_ctrl_param Reference to the control parameter array (acts as a
+ * multiplier for the ratio parameter).
  * @param p_noise_x, p_noise_y Reference to the input noise arrays.
  * @param p_stretching Local wavenumber multiplier.
  * @param bbox Domain bounding box.
@@ -931,6 +933,7 @@ Array worley_double(Vec2<int>   shape,
                     uint        seed,
                     float       ratio = 0.5f,
                     float       k = 0.f,
+                    Array      *p_ctrl_param = nullptr,
                     Array      *p_noise_x = nullptr,
                     Array      *p_noise_y = nullptr,
                     Array      *p_stretching = nullptr,
