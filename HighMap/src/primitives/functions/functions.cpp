@@ -77,15 +77,14 @@ ArrayFunction::ArrayFunction(hmap::Array array, Vec2<float> kw, bool periodic)
 }
 
 BiquadFunction::BiquadFunction(float gain, Vec2<float> center)
-    : Function(), center(center)
+    : Function(), gain(gain), center(center)
 {
-  this->set_gain(gain);
   this->set_delegate(
-      [this](float x, float y, float)
+      [this](float x, float y, float ctrl_param)
       {
         float v = x * (x - 1.f) * y * (y - 1.f);
         v = std::clamp(v, 0.f, 1.f);
-        return std::pow(v, this->inv_gain);
+        return std::pow(v, 1.f / (this->gain * ctrl_param));
       });
 }
 

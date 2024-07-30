@@ -18,6 +18,7 @@ namespace hmap
 
 Array biquad_pulse(Vec2<int>   shape,
                    float       gain,
+                   Array      *p_ctrl_param,
                    Array      *p_noise_x,
                    Array      *p_noise_y,
                    Array      *p_stretching,
@@ -29,7 +30,7 @@ Array biquad_pulse(Vec2<int>   shape,
 
   fill_array_using_xy_function(array,
                                bbox,
-                               nullptr,
+                               p_ctrl_param,
                                p_noise_x,
                                p_noise_y,
                                p_stretching,

@@ -176,23 +176,9 @@ public:
    */
   BiquadFunction(float gain, Vec2<float> center);
 
-  /**
-   * @brief Set the gain.
-   *
-   * @param new_gain New gain value.
-   */
-  void set_gain(float new_gain)
-  {
-    this->gain = new_gain;
-    this->inv_gain = 1.f / gain;
-  }
-
 protected:
   float       gain;   ///< Gain value that controls the steepness of the bump.
   Vec2<float> center; ///< Primitive reference center.
-
-private:
-  float inv_gain; ///< Cached inverse of the gain value.
 };
 
 /**
