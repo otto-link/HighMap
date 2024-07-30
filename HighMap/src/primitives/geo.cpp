@@ -96,48 +96,27 @@ Array crater(Vec2<int>   shape,
              float       depth,
              float       lip_decay,
              float       lip_height_ratio,
-             Array      *p_noise,
+             Array      *p_ctrl_param,
+             Array      *p_noise_x,
+             Array      *p_noise_y,
+             Vec2<float> center,
              Vec4<float> bbox)
 {
-  Array z = Array(shape);
+  Array          array = Array(shape);
+  CraterFunction f = CraterFunction(radius,
+                                    depth,
+                                    lip_decay,
+                                    lip_height_ratio,
+                                    center);
 
-  Vec2<float> shift = {bbox.a, bbox.c};
-  Vec2<float> scale = {bbox.b - bbox.a, bbox.d - bbox.c};
-
-  int ic = (int)((0.5f - shift.x) / scale.x * z.shape.x);
-  int jc = (int)((0.5f - shift.y) / scale.y * z.shape.y);
-
-  if (!p_noise)
-  {
-    for (int i = 0; i < z.shape.x; i++)
-      for (int j = 0; j < z.shape.y; j++)
-      {
-        float r = std::hypot((float)(i - ic), (float)(j - jc));
-
-        z(i, j) = std::min(r * r / (radius * radius),
-                           1.f + lip_height_ratio *
-                                     std::exp(-(r - radius) / lip_decay));
-        z(i, j) -= 1.f;
-        z(i, j) *= depth;
-      }
-  }
-  else
-  {
-    for (int i = 0; i < z.shape.x; i++)
-      for (int j = 0; j < z.shape.y; j++)
-      {
-        float r = std::hypot((float)(i - ic), (float)(j - jc));
-        r += (*p_noise)(i, j) * std::min(shape.x / scale.x, shape.y / scale.y);
-
-        z(i, j) = std::min(r * r / (radius * radius),
-                           1.f + lip_height_ratio *
-                                     std::exp(-(r - radius) / lip_decay));
-        z(i, j) -= 1.f;
-        z(i, j) *= depth;
-      }
-  }
-
-  return z;
+  fill_array_using_xy_function(array,
+                               bbox,
+                               p_ctrl_param,
+                               p_noise_x,
+                               p_noise_y,
+                               nullptr,
+                               f.get_delegate());
+  return array;
 }
 
 Array peak(Vec2<int>   shape,

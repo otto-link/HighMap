@@ -9,10 +9,19 @@ int main(void)
   float             gain = 1.f;
   hmap::Vec2<float> center = {0.f, 0.f};
 
-  std::unique_ptr<hmap::Function> p = std::unique_ptr<hmap::Function>(
-      new hmap::BumpFunction(gain, center));
+  // std::unique_ptr<hmap::Function> p = std::unique_ptr<hmap::Function>(
+  //     new hmap::BumpFunction(gain, center));
 
-  hmap::Cloud cloud = hmap::Cloud(15, seed, bbox);
+  std::unique_ptr<hmap::Function> p = std::unique_ptr<hmap::Function>(
+      new hmap::CraterFunction(0.2f, 0.12f, 0.5f, 0.5f, center));
+
+  // std::unique_ptr<hmap::NoiseFunction> f =
+  // std::unique_ptr<hmap::NoiseFunction>(
+  //     new hmap::PerlinFunction({1.f, 1.f}, seed));
+  // std::unique_ptr<hmap::Function> p = std::unique_ptr<hmap::Function>(
+  //     new hmap::FbmFunction(std::move(f), 8, 0.7f, 0.5f, 2.f));
+
+  hmap::Cloud cloud = hmap::Cloud(10, seed, bbox);
   cloud.remap_values(1.f, 4.f);
 
   hmap::FieldFunction field_fct = hmap::FieldFunction(std::move(p),

@@ -50,7 +50,9 @@ void FieldFunction::setup_delegate()
           float ys = (y - this->yr[k]) * this->zr[k];
 
           value += this->p_base->get_value(xs, ys, ctrl_param);
-          // value = std::max(value, this->p_base->get_value(xs, ys, payload));
+          // value = std::max(value, this->p_base->get_value(xs, ys,
+          // ctrl_param); value = std::min(value, this->p_base->get_value(xs,
+          // ys, ctrl_param));
         }
         return value;
       });

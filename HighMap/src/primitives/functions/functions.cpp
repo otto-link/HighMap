@@ -106,6 +106,31 @@ BumpFunction::BumpFunction(float gain, Vec2<float> center)
       });
 }
 
+CraterFunction::CraterFunction(float       radius,
+                               float       depth,
+                               float       lip_decay,
+                               float       lip_height_ratio,
+                               Vec2<float> center)
+    : Function(), radius(radius), depth(depth), lip_decay(lip_decay),
+      lip_height_ratio(lip_height_ratio), center(center)
+{
+  this->set_delegate(
+      [this](float x, float y, float ctrl_param)
+      {
+        float dx = x - this->center.x;
+        float dy = y - this->center.y;
+        float r = std::hypot(dx, dy);
+
+        float value = std::min(
+            r * r / (this->radius * this->radius),
+            1.f + this->lip_height_ratio * ctrl_param *
+                      std::exp(-(r - this->radius) / this->lip_decay));
+        value -= 1.f;
+        value *= this->depth;
+        return value;
+      });
+}
+
 SlopeFunction::SlopeFunction(float angle, float slope, Vec2<float> center)
     : Function(), slope(slope), center(center)
 {

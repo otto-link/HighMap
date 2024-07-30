@@ -188,8 +188,8 @@ public:
   }
 
 protected:
-  Vec2<float> center; ///< Primitive reference center.
   float       gain;   ///< Gain value that controls the steepness of the bump.
+  Vec2<float> center; ///< Primitive reference center.
 
 private:
   float inv_gain; ///< Cached inverse of the gain value.
@@ -225,11 +225,44 @@ public:
   }
 
 protected:
-  Vec2<float> center; ///< Primitive reference center.
   float       gain;   ///< Gain value that controls the steepness of the bump.
+  Vec2<float> center; ///< Primitive reference center.
 
 private:
   float inv_gain; ///< Cached inverse of the gain value.
+};
+
+/**
+ * @class CraterFunction
+ * @brief Crater (x, y) function class.
+ *
+ * This class models a crater function with specified radius, depth, lip decay,
+ * lip height ratio, and reference center. It extends the base Function class.
+ */
+class CraterFunction : public Function
+{
+public:
+  /**
+   * @brief Construct a new Crater Function object.
+   *
+   * @param radius Radius of the crater.
+   * @param depth Depth of the crater.
+   * @param lip_decay Decay rate of the crater's lip.
+   * @param lip_height_ratio Height ratio of the crater's lip.
+   * @param center Primitive reference center.
+   */
+  CraterFunction(float       radius,
+                 float       depth,
+                 float       lip_decay,
+                 float       lip_height_ratio,
+                 Vec2<float> center);
+
+protected:
+  float       radius;           ///< Radius of the crater.
+  float       depth;            ///< Depth of the crater.
+  float       lip_decay;        ///< Decay rate of the crater's lip.
+  float       lip_height_ratio; ///< Height ratio of the crater's lip.
+  Vec2<float> center;           ///< Primitive reference center.
 };
 
 /**

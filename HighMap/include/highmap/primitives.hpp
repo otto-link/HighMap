@@ -153,7 +153,9 @@ Array constant(Vec2<int> shape, float value = 0.f);
  * @param lip_decay Ejecta lip decay.
  * @param lip_height_ratio Controls the ejecta lip relative height, in [0, 1].
  * @param depth Crater depth.
- * @param p_noise Displacement noise.
+ * @param p_ctrl_param Reference to the control parameter array (acts as a
+ * multiplier for the lip_height_ratio parameter).
+ * @param p_noise_x, p_noise_y Reference to the input noise arrays.
  * @param bbox Domain bounding box.
  * @return Array New array.
  *
@@ -168,7 +170,10 @@ Array crater(Vec2<int>   shape,
              float       depth,
              float       lip_decay,
              float       lip_height_ratio = 0.5f,
-             Array      *p_noise = nullptr,
+             Array      *p_ctrl_param = nullptr,
+             Array      *p_noise_x = nullptr,
+             Array      *p_noise_y = nullptr,
+             Vec2<float> center = {0.5f, 0.5f},
              Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
