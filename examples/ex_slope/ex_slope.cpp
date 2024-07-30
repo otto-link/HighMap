@@ -6,10 +6,8 @@ int main(void)
   hmap::Vec2<float> kw = {4.f, 4.f};
   int               seed = 1;
 
-  hmap::Array noise = 0.2f * hmap::noise_fbm(hmap::NoiseType::PERLIN,
-                                             shape,
-                                             kw,
-                                             seed);
+  hmap::Array noise = 0.2f *
+                      hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, kw, seed);
 
   float slope = 1.f;
 
@@ -21,7 +19,7 @@ int main(void)
       0.1f);
 
   // with control array
-  hmap::Array       ctrl_array = hmap::noise(hmap::NoiseType::PERLIN,
+  hmap::Array ctrl_array = hmap::noise(hmap::NoiseType::PERLIN,
                                        shape,
                                        kw,
                                        seed);

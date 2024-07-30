@@ -19,7 +19,16 @@ int main(void)
                                       0.f);
 
   auto z1 = hmap::step(shape, angle, talus);
-  auto z2 = hmap::step(shape, angle, talus, &noise);
+  auto z2 = hmap::step(shape, angle, talus, nullptr, &noise);
 
-  hmap::export_banner_png("ex_step.png", {z1, z2}, hmap::cmap::viridis);
+  // with control array
+  hmap::Array ctrl_array = hmap::noise(hmap::NoiseType::PERLIN,
+                                       shape,
+                                       {kw, kw},
+                                       seed);
+  hmap::remap(ctrl_array, 0.8f, 1.2f);
+
+  hmap::Array z3 = hmap::step(shape, angle, talus, &ctrl_array);
+
+  hmap::export_banner_png("ex_step.png", {z1, z2, z3}, hmap::cmap::inferno);
 }
