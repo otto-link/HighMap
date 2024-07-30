@@ -90,11 +90,10 @@ BiquadFunction::BiquadFunction(float gain, Vec2<float> center)
 }
 
 BumpFunction::BumpFunction(float gain, Vec2<float> center)
-    : Function(), center(center)
+    : Function(), gain(gain), center(center)
 {
-  this->set_gain(gain);
   this->set_delegate(
-      [this](float x, float y, float)
+      [this](float x, float y, float ctrl_param)
       {
         float dx = x - this->center.x;
         float dy = y - this->center.y;
@@ -102,7 +101,7 @@ BumpFunction::BumpFunction(float gain, Vec2<float> center)
         float r2 = dx * dx + dy * dy;
         return r2 > 0.25f ? 0.f
                           : std::pow(std::exp(-1.f / (1.f - 4.f * r2)),
-                                     this->inv_gain);
+                                     1.f / (this->gain * ctrl_param));
       });
 }
 

@@ -53,6 +53,8 @@ Array biquad_pulse(Vec2<int>   shape,
  *
  * @param shape Array shape.
  * @param gain Gain (the higher, the steeper the bump).
+ *  @param p_ctrl_param Reference to the control parameter array (acts as a
+ * multiplier for the gain parameter).
  * @param p_noise_x, p_noise_y Reference to the input noise arrays.
  * @param p_stretching Local wavenumber multiplier.
  * @param center Primitive reference center.
@@ -67,6 +69,7 @@ Array biquad_pulse(Vec2<int>   shape,
  */
 Array bump(Vec2<int>   shape,
            float       gain = 1.f,
+           Array      *p_ctrl_param = nullptr,
            Array      *p_noise_x = nullptr,
            Array      *p_noise_y = nullptr,
            Array      *p_stretching = nullptr,
