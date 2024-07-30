@@ -20,6 +20,10 @@ int main(void)
   int         nclusters = 4;
   hmap::Array labels4 = hmap::kmeans_clustering2(z, dz, nclusters);
 
+  // (optional) continuous scoring can also be retrieved for each cluster
+  std::vector<hmap::Array> scoring4;
+  labels4 = hmap::kmeans_clustering2(z, dz, nclusters, &scoring4);
+
   // --- add some data mimicking some moisture increasing from west to east
   hmap::Array moisture = hmap::slope(shape, 0.f, 1.f);
   hmap::remap(moisture);
@@ -27,9 +31,26 @@ int main(void)
   // build up 6 clusters (cloud be biomes) based on dry/wet combined
   // with elevation/slope criteria
   nclusters = 6;
-  hmap::Array labels6 = hmap::kmeans_clustering3(z, dz, moisture, nclusters);
+  std::vector<hmap::Array> scoring6;
+  hmap::Array              labels6 = hmap::kmeans_clustering3(z,
+                                                 dz,
+                                                 moisture,
+                                                 nclusters,
+                                                 &scoring6);
 
   z.to_png("ex_kmeans_clustering0.png", hmap::cmap::inferno);
-  labels4.to_png("ex_kmeans_clustering1.png", hmap::cmap::nipy_spectral);
-  labels6.to_png("ex_kmeans_clustering2.png", hmap::cmap::nipy_spectral);
+
+  labels4.to_png("ex_kmeans_clustering1.png", hmap::cmap::jet);
+
+  hmap::export_banner_png("ex_kmeans_clustering2.png",
+                          scoring4,
+                          hmap::cmap::nipy_spectral,
+                          false);
+
+  labels6.to_png("ex_kmeans_clustering3.png", hmap::cmap::jet);
+
+  hmap::export_banner_png("ex_kmeans_clustering4.png",
+                          scoring6,
+                          hmap::cmap::nipy_spectral,
+                          false);
 }

@@ -128,6 +128,8 @@ Array geomorphons(const Array &array, int irmin, int irmax, float epsilon);
  * @param array1 Input array #1.
  * @param array2 Input array #2.
  * @param nclusters Number of clusters.
+ * @param p_scoring Reference to a vector of arrays containing the scoring for
+ * each cluster (vector is of the same size of the number of clusters).
  * @param weights Feature weights.
  * @param seed Random seed number.
  * @return Array Resulting label array.
@@ -139,19 +141,22 @@ Array geomorphons(const Array &array, int irmin, int irmax, float epsilon);
  * @image html ex_kmeans_clustering0.png
  * @image html ex_kmeans_clustering1.png
  * @image html ex_kmeans_clustering2.png
+ * @image html ex_kmeans_clustering3.png
  */
-Array kmeans_clustering2(const Array &array1,
-                         const Array &array2,
-                         int          nclusters,
-                         Vec2<float>  weights = {1.f, 1.f},
-                         uint         seed = 1);
+Array kmeans_clustering2(const Array        &array1,
+                         const Array        &array2,
+                         int                 nclusters,
+                         std::vector<Array> *p_scoring = nullptr,
+                         Vec2<float>         weights = {1.f, 1.f},
+                         uint                seed = 1);
 
-Array kmeans_clustering3(const Array &array1,
-                         const Array &array2,
-                         const Array &array3,
-                         int          nclusters,
-                         Vec3<float>  weights = {1.f, 1.f, 1.f},
-                         uint         seed = 1); ///< @overload
+Array kmeans_clustering3(const Array        &array1,
+                         const Array        &array2,
+                         const Array        &array3,
+                         int                 nclusters,
+                         std::vector<Array> *p_scoring = nullptr,
+                         Vec3<float>         weights = {1.f, 1.f, 1.f},
+                         uint                seed = 1); ///< @overload
 
 /**
  * @brief Return the relative elevation within a a radius `ir`.

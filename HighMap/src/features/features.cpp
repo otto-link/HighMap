@@ -121,11 +121,12 @@ Array connected_components(const Array &array,
   return labels;
 }
 
-Array kmeans_clustering2(const Array &array1,
-                         const Array &array2,
-                         int          nclusters,
-                         Vec2<float>  weights,
-                         uint         seed)
+Array kmeans_clustering2(const Array        &array1,
+                         const Array        &array2,
+                         int                 nclusters,
+                         std::vector<Array> *p_scoring,
+                         Vec2<float>         weights,
+                         uint                seed)
 {
   Vec2<int> shape = array1.shape;
   Array     kmeans = Array(shape); // output
@@ -171,15 +172,46 @@ Array kmeans_clustering2(const Array &array1,
     kmeans(i, j) = isort_rev[std::get<1>(dkm)[k]];
   }
 
+  // --- compute a score of belonging to a given cluster (see
+  // https://datascience.stackexchange.com/questions/14435)
+  if (p_scoring)
+  {
+    p_scoring->reserve(nclusters);
+    for (int r = 0; r < nclusters; r++)
+      p_scoring->push_back(Array(shape));
+
+    for (int i = 0; i < shape.x; i++)
+      for (int j = 0; j < shape.y; j++)
+      {
+        int k = i + j * shape.x; // linear index
+
+        // normalization factor
+        float sum = 0.f;
+        for (int r = 0; r < nclusters; r++)
+          sum += 1.f / std::hypot(data[k][0] - centroids[r].x,
+                                  data[k][1] - centroids[r].y);
+
+        // compute score for each cluster
+        for (int r = 0; r < nclusters; r++)
+        {
+          float score = 1.f / std::hypot(data[k][0] - centroids[r].x,
+                                         data[k][1] - centroids[r].y);
+          score /= sum;
+          p_scoring->at(r)(i, j) = score;
+        }
+      }
+  }
+
   return kmeans;
 }
 
-Array kmeans_clustering3(const Array &array1,
-                         const Array &array2,
-                         const Array &array3,
-                         int          nclusters,
-                         Vec3<float>  weights,
-                         uint         seed)
+Array kmeans_clustering3(const Array        &array1,
+                         const Array        &array2,
+                         const Array        &array3,
+                         int                 nclusters,
+                         std::vector<Array> *p_scoring,
+                         Vec3<float>         weights,
+                         uint                seed)
 {
   Vec2<int> shape = array1.shape;
   Array     kmeans = Array(shape); // output
@@ -225,6 +257,38 @@ Array kmeans_clustering3(const Array &array1,
     int j = int(k / shape.x);
     int i = k - j * shape.x;
     kmeans(i, j) = isort_rev[std::get<1>(dkm)[k]];
+  }
+
+  // --- compute a score of belonging to a given cluster (see
+  // https://datascience.stackexchange.com/questions/14435)
+  if (p_scoring)
+  {
+    p_scoring->reserve(nclusters);
+    for (int r = 0; r < nclusters; r++)
+      p_scoring->push_back(Array(shape));
+
+    for (int i = 0; i < shape.x; i++)
+      for (int j = 0; j < shape.y; j++)
+      {
+        int k = i + j * shape.x; // linear index
+
+        // normalization factor
+        float sum = 0.f;
+        for (int r = 0; r < nclusters; r++)
+          sum += 1.f / std::hypot(data[k][0] - centroids[r].x,
+                                  data[k][1] - centroids[r].y,
+                                  data[k][2] - centroids[r].v);
+
+        // compute score for each cluster
+        for (int r = 0; r < nclusters; r++)
+        {
+          float score = 1.f / std::hypot(data[k][0] - centroids[r].x,
+                                         data[k][1] - centroids[r].y,
+                                         data[k][2] - centroids[r].v);
+          score /= sum;
+          p_scoring->at(r)(i, j) = score;
+        }
+      }
   }
 
   return kmeans;
