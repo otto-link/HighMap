@@ -135,11 +135,11 @@ SlopeFunction::SlopeFunction(float angle, float slope, Vec2<float> center)
   this->set_angle(angle);
 
   this->set_delegate(
-      [this](float x, float y, float)
+      [this](float x, float y, float ctrl_param)
       {
         float r = this->ca * (x - this->center.x) +
                   this->sa * (y - this->center.y);
-        return this->slope * r;
+        return this->slope * ctrl_param * r;
       });
 }
 

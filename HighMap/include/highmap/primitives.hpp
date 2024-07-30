@@ -667,7 +667,10 @@ Array peak(Vec2<int>   shape,
  * @param shape Array shape.
  * @param angle Overall rotation angle (in degree).
  * @param slope Slope (assuming a unit domain).
- * @param p_noise Reference to the input noise array.
+ * @param p_ctrl_param Reference to the control parameter array (acts as a
+ * multiplier for the slope parameter).
+ * @param p_noise_x, p_noise_y Reference to the input noise arrays.
+ * @param p_stretching Local coordinate multiplier.
  * @param center Primitive reference center.
  * @param bbox Domain bounding box.
  * @return Array New array.
@@ -681,6 +684,7 @@ Array peak(Vec2<int>   shape,
 Array slope(Vec2<int>   shape,
             float       angle,
             float       slope,
+            Array      *p_ctrl_param = nullptr,
             Array      *p_noise_x = nullptr,
             Array      *p_noise_y = nullptr,
             Array      *p_stretching = nullptr,
