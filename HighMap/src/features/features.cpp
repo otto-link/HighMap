@@ -275,16 +275,18 @@ Array kmeans_clustering3(const Array        &array1,
         // normalization factor
         float sum = 0.f;
         for (int r = 0; r < nclusters; r++)
-          sum += 1.f / std::hypot(data[k][0] - centroids[r].x,
-                                  data[k][1] - centroids[r].y,
-                                  data[k][2] - centroids[r].v);
+          sum += 1.f / std::pow(std::hypot(data[k][0] - centroids[r].x,
+                                           data[k][1] - centroids[r].y,
+                                           data[k][2] - centroids[r].v),
+                                2);
 
         // compute score for each cluster
         for (int r = 0; r < nclusters; r++)
         {
-          float score = 1.f / std::hypot(data[k][0] - centroids[r].x,
-                                         data[k][1] - centroids[r].y,
-                                         data[k][2] - centroids[r].v);
+          float score = 1.f / std::pow(std::hypot(data[k][0] - centroids[r].x,
+                                                  data[k][1] - centroids[r].y,
+                                                  data[k][2] - centroids[r].v),
+                                       2);
           score /= sum;
           p_scoring->at(r)(i, j) = score;
         }
