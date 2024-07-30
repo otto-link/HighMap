@@ -46,14 +46,14 @@ void hydraulic_spl(Array &z,
     {
       auto zf = z;
       smooth_cpulse(zf, ir);
-      dz = gradient_norm(zf);
+      dz = gradient_norm(zf) * z.shape.x;
     }
 
     if (p_moisture_map)
-      z += -c_erosion * (*p_moisture_map) * facc * dz;
+      z += -c_erosion * (*p_moisture_map) * pow(facc, 0.8f) * dz * dz;
     else
-      z += -c_erosion * facc * dz;
-
+      z += -c_erosion * pow(facc, 0.8f) * dz * dz;
+    
     if (p_bedrock)
       z = maximum(z, *p_bedrock);
     else

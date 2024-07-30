@@ -9,9 +9,9 @@ int main(void)
   hmap::Array z = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, res, seed);
   hmap::remap(z);
 
-  float talus_ref = 10.f / (float)shape.x;
-  float c_erosion = 0.01f;
-  int   iterations = 10;
+  float talus_ref = 1.f / (float)shape.x;
+  float c_erosion = 0.0001f;
+  int   iterations = 3;
 
   int         iradius = 64;
   hmap::Array z_bedrock = hmap::minimum_local(z, iradius);
@@ -28,7 +28,8 @@ int main(void)
                       iterations,
                       &z_bedrock,
                       &moisture_map,
-                      &erosion_map);
+                      &erosion_map,
+		      1);
 
   hmap::export_banner_png("ex_hydraulic_spl0.png",
                           {z, z1, z2},
