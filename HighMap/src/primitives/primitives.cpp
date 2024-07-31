@@ -70,42 +70,23 @@ Array constant(Vec2<int> shape, float value)
 
 Array gaussian_pulse(Vec2<int>   shape,
                      float       sigma,
-                     Array      *p_noise,
+                     Array      *p_ctrl_param,
+                     Array      *p_noise_x,
+                     Array      *p_noise_y,
+                     Array      *p_stretching,
                      Vec2<float> center,
                      Vec4<float> bbox)
 {
-  Array array = Array(shape);
+  Array                 array = Array(shape);
+  GaussianPulseFunction f = GaussianPulseFunction(sigma, center);
 
-  Vec2<float> shift = {bbox.a, bbox.c};
-  Vec2<float> scale = {bbox.b - bbox.a, bbox.d - bbox.c};
-
-  int ic = (int)((center.x - shift.x) / scale.x * shape.x);
-  int jc = (int)((center.y - shift.y) / scale.y * shape.y);
-
-  float s2 = 1.f / (sigma * sigma);
-
-  if (!p_noise)
-  {
-    for (int i = 0; i < shape.x; i++)
-      for (int j = 0; j < shape.y; j++)
-      {
-        float r2 = (float)((i - ic) * (i - ic) + (j - jc) * (j - jc));
-        array(i, j) = std::exp(-0.5f * r2 * s2);
-      }
-  }
-  else
-  {
-    float noise_factor = (float)shape.x * (float)shape.y / scale.x / scale.y;
-
-    for (int i = 0; i < shape.x; i++)
-      for (int j = 0; j < shape.y; j++)
-      {
-        float r2 = (float)((i - ic) * (i - ic) + (j - jc) * (j - jc)) +
-                   (*p_noise)(i, j) * (*p_noise)(i, j) * noise_factor;
-        array(i, j) = std::exp(-0.5f * r2 * s2);
-      }
-  }
-
+  fill_array_using_xy_function(array,
+                               bbox,
+                               p_ctrl_param,
+                               p_noise_x,
+                               p_noise_y,
+                               p_stretching,
+                               f.get_delegate());
   return array;
 }
 

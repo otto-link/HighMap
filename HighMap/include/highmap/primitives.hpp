@@ -280,15 +280,27 @@ Array gabor_noise(Vec2<int> shape,
  *
  * @param shape Array shape.
  * @param sigma Gaussian sigma (in pixels).
- * @param p_noise Reference to the input noise array used for domain warping
- * (NOT in pixels, with respect to a unit domain).
+ *  @param p_ctrl_param Reference to the control parameter array (acts as a
+ * multiplier for the half-width parameter).
+ * @param p_noise_x, p_noise_y Reference to the input noise arrays.
+ * @param p_stretching Local wavenumber multiplier.
+ * @param center Primitive reference center.
  * @param center Primitive reference center.
  * @param bbox Domain bounding box.
  * @return Array
+ *
+ * **Example**
+ * @include ex_gaussian_pulse.cpp
+ *
+ * **Result**
+ * @image html ex_gaussian_pulse.png
  */
 Array gaussian_pulse(Vec2<int>   shape,
                      float       sigma,
-                     Array      *p_noise = nullptr,
+                     Array      *p_ctrl_param = nullptr,
+                     Array      *p_noise_x = nullptr,
+                     Array      *p_noise_y = nullptr,
+                     Array      *p_stretching = nullptr,
                      Vec2<float> center = {0.5f, 0.5f},
                      Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 

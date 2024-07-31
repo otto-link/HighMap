@@ -2,7 +2,8 @@
 
 int main(void)
 {
-  hmap::Vec2<int>   shape = {256, 256};
+  hmap::Vec2<int> shape = {256, 256};
+  shape = {1024, 1024};
   uint              seed = 0;
   hmap::Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f};
 
@@ -21,7 +22,7 @@ int main(void)
   // std::unique_ptr<hmap::Function> p = std::unique_ptr<hmap::Function>(
   //     new hmap::FbmFunction(std::move(f), 8, 0.7f, 0.5f, 2.f));
 
-  hmap::Cloud cloud = hmap::Cloud(10, seed, bbox);
+  hmap::Cloud cloud = hmap::Cloud(15, seed, bbox);
   cloud.remap_values(1.f, 4.f);
 
   hmap::FieldFunction field_fct = hmap::FieldFunction(std::move(p),
@@ -32,13 +33,20 @@ int main(void)
   //
 
   hmap::Array z = hmap::Array(shape);
+
+  hmap::Vec2<float> kw = {4.f, 4.f};
+  auto n = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, kw, seed);
+  hmap::remap(n);
+
   fill_array_using_xy_function(z,
                                hmap::Vec4<float>(0.f, 1.f, 0.f, 1.f),
-                               nullptr,
+                               &n,
                                nullptr,
                                nullptr,
                                nullptr,
                                field_fct.get_delegate());
 
-  z.to_png("ex_field_function.png", hmap::cmap::jet, true);
+  z.infos("z");
+
+  z.to_png("ex_field_function.png", hmap::cmap::gray, true);
 }

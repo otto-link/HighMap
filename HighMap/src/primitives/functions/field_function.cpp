@@ -49,10 +49,15 @@ void FieldFunction::setup_delegate()
           float xs = (x - this->xr[k]) * this->zr[k];
           float ys = (y - this->yr[k]) * this->zr[k];
 
-          value += this->p_base->get_value(xs, ys, ctrl_param);
-          // value = std::max(value, this->p_base->get_value(xs, ys,
-          // ctrl_param); value = std::min(value, this->p_base->get_value(xs,
-          // ys, ctrl_param));
+          float a = value;
+          float b = this->p_base->get_value(xs, ys, ctrl_param) /
+                    (1.f + this->zr[k]);
+
+          value = a + b;
+          // value = 0.5f - 2.f * (-0.5f + a) * (-0.5f + b);
+          // value = a < b ? a : 2.f * b - a;
+          // value = minimum_smooth(a, b, 0.01f);
+          // value = std::min(a, b);
         }
         return value;
       });

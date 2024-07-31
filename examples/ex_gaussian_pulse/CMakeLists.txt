@@ -1,0 +1,2 @@
+add_executable(ex_gaussian_pulse ex_gaussian_pulse.cpp)
+target_link_libraries(ex_gaussian_pulse highmap)

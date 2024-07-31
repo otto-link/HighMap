@@ -217,9 +217,10 @@ public:
   /**
    * @brief Construct a new Crater Function object.
    *
-   * @param radius Radius of the crater.
-   * @param depth Depth of the crater.
-   * @param lip_decay Decay rate of the crater's lip.
+   * @param radius Radius of the crater (with respect to a unit domain).
+   * @param depth Depth of the crater (with respect to a unit domain).
+   * @param lip_decay Decay rate of the crater's lip (with respect to a unit
+   * domain).
    * @param lip_height_ratio Height ratio of the crater's lip.
    * @param center Primitive reference center.
    */
@@ -235,6 +236,43 @@ protected:
   float       lip_decay;        ///< Decay rate of the crater's lip.
   float       lip_height_ratio; ///< Height ratio of the crater's lip.
   Vec2<float> center;           ///< Primitive reference center.
+};
+
+/**
+ * @class GaussianPulseFunction
+ * @brief GaussianPulse (x, y) function class.
+ *
+ * This class models a gaussian pulse function.
+ * It extends the base Function class.
+ */
+class GaussianPulseFunction : public Function
+{
+public:
+  /**
+   * @brief Construct a new GaussianPulse Function object.
+   *
+   * @param sigma Pulse half-width (with respect to a unit domain).
+   * @param center Primitive reference center.
+   */
+  GaussianPulseFunction(float sigma, Vec2<float> center);
+
+  /**
+   * @brief Set the half-width.
+   *
+   * @param new_sigma New half-width.
+   */
+  void set_sigma(float new_sigma)
+  {
+    this->sigma = new_sigma;
+    this->inv_sigma2 = 1.f / (this->sigma * this->sigma);
+  }
+
+protected:
+  float       sigma;  ///< Pulse half-width.
+  Vec2<float> center; ///< Primitive reference center.
+
+private:
+  float inv_sigma2; ///< Cached squared inverse of the half-width.
 };
 
 /**

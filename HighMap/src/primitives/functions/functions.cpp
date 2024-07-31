@@ -129,6 +129,20 @@ CraterFunction::CraterFunction(float       radius,
       });
 }
 
+GaussianPulseFunction::GaussianPulseFunction(float sigma, Vec2<float> center)
+    : Function(), center(center)
+{
+  this->set_sigma(sigma);
+  this->set_delegate(
+      [this](float x, float y, float ctrl_param)
+      {
+        float dx = x - this->center.x;
+        float dy = y - this->center.y;
+        float r2 = dx * dx + dy * dy;
+        return std::exp(-0.5f * r2 * this->inv_sigma2 * ctrl_param);
+      });
+}
+
 SlopeFunction::SlopeFunction(float angle, float slope, Vec2<float> center)
     : Function(), slope(slope), center(center)
 {
