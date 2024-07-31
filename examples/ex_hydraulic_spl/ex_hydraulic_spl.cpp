@@ -28,8 +28,7 @@ int main(void)
                       iterations,
                       &z_bedrock,
                       &moisture_map,
-                      &erosion_map,
-		      1);
+                      &erosion_map);
 
   hmap::export_banner_png("ex_hydraulic_spl0.png",
                           {z, z1, z2},

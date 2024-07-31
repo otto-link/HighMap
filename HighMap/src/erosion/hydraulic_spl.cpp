@@ -53,7 +53,7 @@ void hydraulic_spl(Array &z,
       z += -c_erosion * (*p_moisture_map) * pow(facc, 0.8f) * dz * dz;
     else
       z += -c_erosion * pow(facc, 0.8f) * dz * dz;
-    
+
     if (p_bedrock)
       z = maximum(z, *p_bedrock);
     else
