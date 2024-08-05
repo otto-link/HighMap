@@ -290,4 +290,13 @@ Array smoothstep5(const Array &array,
  */
 float smoothstep5(const float x);
 
+/**
+ * @brief Return the 3rd order smoothstep function, with zero derivative only
+ * at 1.
+ *
+ * @param x Input.
+ * @return float Output.
+ */
+float upper_smoothstep3(const float x);
+
 } // namespace hmap

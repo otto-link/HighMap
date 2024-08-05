@@ -681,6 +681,7 @@ Array peak(Vec2<int>   shape,
  * @param angle Overall rotation angle (in degree).
  * @param slope Step slope (assuming a unit domain).
  * @param width Rift width (assuming a unit domain).
+ * @param sharp_bottom Decide whether the rift bottom is sharp or not.
  * @param p_ctrl_param Reference to the control parameter array (acts as a
  * multiplier for the width parameter).
  * @param p_noise_x, p_noise_y Reference to the input noise arrays.
@@ -699,6 +700,7 @@ Array rift(Vec2<int>   shape,
            float       angle,
            float       slope,
            float       width,
+           bool        sharp_bottom = false,
            Array      *p_ctrl_param = nullptr,
            Array      *p_noise_x = nullptr,
            Array      *p_noise_y = nullptr,

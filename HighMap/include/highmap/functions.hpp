@@ -291,9 +291,14 @@ public:
    * @param angle Overall rotation angle (in degrees).
    * @param slope Rift slope.
    * @param width Rift width.
+   * @param sharp_bottom Decide whether the rift bottom is sharp or not.
    * @param center Primitive reference center.
    */
-  RiftFunction(float angle, float slope, float width, Vec2<float> center);
+  RiftFunction(float       angle,
+               float       slope,
+               float       width,
+               bool        sharp_bottom,
+               Vec2<float> center);
 
   /**
    * @brief Set the angle.
@@ -308,10 +313,11 @@ public:
   }
 
 protected:
-  float       angle;  ///< Overall rotation angle (in degrees).
-  float       slope;  ///< Rift slope.
-  float       width;  ///< Rift width.
-  Vec2<float> center; ///< Primitive reference center.
+  float       angle;        ///< Overall rotation angle (in degrees).
+  float       slope;        ///< Rift slope.
+  float       width;        ///< Rift width.
+  bool        sharp_bottom; ///< Rift bottom sharpness.
+  Vec2<float> center;       ///< Primitive reference center.
 
 private:
   float ca; ///< Cached cosine of the angle.

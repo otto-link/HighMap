@@ -287,4 +287,9 @@ float smoothstep5(const float x)
   return x * x * x * (x * (x * 6.f - 15.f) + 10.f);
 }
 
+float upper_smoothstep3(const float x)
+{
+  return x * (1.f + x - x * x);
+}
+
 } // namespace hmap

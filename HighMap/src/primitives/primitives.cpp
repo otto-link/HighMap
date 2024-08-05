@@ -134,6 +134,7 @@ Array rift(Vec2<int>         shape,
            float             angle,
            float             slope,
            float             width,
+           bool              sharp_bottom,
            Array            *p_ctrl_param,
            Array            *p_noise_x,
            Array            *p_noise_y,
@@ -142,7 +143,11 @@ Array rift(Vec2<int>         shape,
            hmap::Vec4<float> bbox)
 {
   Array              array = Array(shape);
-  hmap::RiftFunction f = hmap::RiftFunction(angle, slope, width, center);
+  hmap::RiftFunction f = hmap::RiftFunction(angle,
+                                            slope,
+                                            width,
+                                            sharp_bottom,
+                                            center);
 
   fill_array_using_xy_function(array,
                                bbox,

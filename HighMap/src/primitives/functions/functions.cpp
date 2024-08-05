@@ -146,30 +146,52 @@ GaussianPulseFunction::GaussianPulseFunction(float sigma, Vec2<float> center)
 RiftFunction::RiftFunction(float       angle,
                            float       slope,
                            float       width,
+                           bool        sharp_bottom,
                            Vec2<float> center)
     : Function(), slope(slope), width(width), center(center)
 {
   this->set_angle(angle);
 
-  this->set_delegate(
-      [this](float x, float y, float ctrl_param)
-      {
-        float local_width = 0.5f * this->width * ctrl_param;
-
-        float r = this->ca * (x - this->center.x) +
-                  this->sa * (y - this->center.y);
-        r = std::abs(r);
-
-        if (r > local_width + 1.f / this->slope)
-          return 1.f;
-        else if (r < local_width)
-          return 0.f;
-        else
+  if (sharp_bottom)
+    this->set_delegate(
+        [this](float x, float y, float ctrl_param)
         {
-          r = (r - local_width) * this->slope;
-          return r * r * (3.f - 2.f * r);
-        }
-      });
+          float local_width = 0.5f * this->width * ctrl_param;
+
+          float r = this->ca * (x - this->center.x) +
+                    this->sa * (y - this->center.y);
+          r = std::abs(r);
+
+          if (r > local_width + 1.f / this->slope)
+            return 1.f;
+          else if (r < local_width)
+            return 0.f;
+          else
+          {
+            r = (r - local_width) * this->slope;
+            return upper_smoothstep3(r);
+          }
+        });
+  else
+    this->set_delegate(
+        [this](float x, float y, float ctrl_param)
+        {
+          float local_width = 0.5f * this->width * ctrl_param;
+
+          float r = this->ca * (x - this->center.x) +
+                    this->sa * (y - this->center.y);
+          r = std::abs(r);
+
+          if (r > local_width + 1.f / this->slope)
+            return 1.f;
+          else if (r < local_width)
+            return 0.f;
+          else
+          {
+            r = (r - local_width) * this->slope;
+            return smoothstep3(r);
+          }
+        });
 }
 
 SlopeFunction::SlopeFunction(float angle, float slope, Vec2<float> center)
@@ -204,7 +226,7 @@ StepFunction::StepFunction(float angle, float slope, Vec2<float> center)
         else if (r > -dt)
         {
           r = local_slope * (r + dt);
-          return r * r * (3.f - 2.f * r);
+          return smoothstep3(r);
         }
         else
           return 0.f;
