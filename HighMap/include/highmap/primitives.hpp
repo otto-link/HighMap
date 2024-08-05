@@ -674,6 +674,39 @@ Array peak(Vec2<int>   shape,
            Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
+ * @brief Return a rift function (Heaviside with an optional talus slope at
+ * the transition).
+ *
+ * @param shape Array shape.
+ * @param angle Overall rotation angle (in degree).
+ * @param slope Step slope (assuming a unit domain).
+ * @param width Rift width (assuming a unit domain).
+ * @param p_ctrl_param Reference to the control parameter array (acts as a
+ * multiplier for the width parameter).
+ * @param p_noise_x, p_noise_y Reference to the input noise arrays.
+ * @param p_stretching Local coordinate multiplier.
+ * @param center Primitive reference center.
+ * @param bbox Domain bounding box.
+ * @return Array New array.
+ *
+ * **Example**
+ * @include ex_rift.cpp
+ *
+ * **Result**
+ * @image html ex_rift.png
+ */
+Array rift(Vec2<int>   shape,
+           float       angle,
+           float       slope,
+           float       width,
+           Array      *p_ctrl_param = nullptr,
+           Array      *p_noise_x = nullptr,
+           Array      *p_noise_y = nullptr,
+           Array      *p_stretching = nullptr,
+           Vec2<float> center = {0.5f, 0.5f},
+           Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
  * @brief Return an array corresponding to a slope with a given overall.
  *
  * @param shape Array shape.

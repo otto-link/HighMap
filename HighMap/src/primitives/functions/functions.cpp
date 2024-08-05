@@ -143,6 +143,35 @@ GaussianPulseFunction::GaussianPulseFunction(float sigma, Vec2<float> center)
       });
 }
 
+RiftFunction::RiftFunction(float       angle,
+                           float       slope,
+                           float       width,
+                           Vec2<float> center)
+    : Function(), slope(slope), width(width), center(center)
+{
+  this->set_angle(angle);
+
+  this->set_delegate(
+      [this](float x, float y, float ctrl_param)
+      {
+        float local_width = 0.5f * this->width * ctrl_param;
+
+        float r = this->ca * (x - this->center.x) +
+                  this->sa * (y - this->center.y);
+        r = std::abs(r);
+
+        if (r > local_width + 1.f / this->slope)
+          return 1.f;
+        else if (r < local_width)
+          return 0.f;
+        else
+        {
+          r = (r - local_width) * this->slope;
+          return r * r * (3.f - 2.f * r);
+        }
+      });
+}
+
 SlopeFunction::SlopeFunction(float angle, float slope, Vec2<float> center)
     : Function(), slope(slope), center(center)
 {

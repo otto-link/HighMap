@@ -276,6 +276,49 @@ private:
 };
 
 /**
+ * @class RiftFunction
+ * @brief Rift (x, y) function class.
+ *
+ * This class models a step function with a specified angle, slope, and
+ * reference center. It extends the base Function class.
+ */
+class RiftFunction : public Function
+{
+public:
+  /**
+   * @brief Construct a new Rift Function object.
+   *
+   * @param angle Overall rotation angle (in degrees).
+   * @param slope Rift slope.
+   * @param width Rift width.
+   * @param center Primitive reference center.
+   */
+  RiftFunction(float angle, float slope, float width, Vec2<float> center);
+
+  /**
+   * @brief Set the angle.
+   *
+   * @param new_angle New angle in degrees.
+   */
+  void set_angle(float new_angle)
+  {
+    this->angle = new_angle;
+    this->ca = std::cos(angle / 180.f * M_PI);
+    this->sa = std::sin(angle / 180.f * M_PI);
+  }
+
+protected:
+  float       angle;  ///< Overall rotation angle (in degrees).
+  float       slope;  ///< Rift slope.
+  float       width;  ///< Rift width.
+  Vec2<float> center; ///< Primitive reference center.
+
+private:
+  float ca; ///< Cached cosine of the angle.
+  float sa; ///< Cached sine of the angle.
+};
+
+/**
  * @class SlopeFunction
  * @brief Slope (x, y) function class.
  *
