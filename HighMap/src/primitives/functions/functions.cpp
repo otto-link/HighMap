@@ -200,12 +200,14 @@ StepFunction::StepFunction(float angle, float slope, Vec2<float> center)
                   this->sa * (y - this->center.y);
         float dt = 0.5f / local_slope;
         if (r > dt)
-          r = 1.f;
+          return 1.f;
         else if (r > -dt)
+        {
           r = local_slope * (r + dt);
+          return r * r * (3.f - 2.f * r);
+        }
         else
-          r = 0.f;
-        return r * r * (3.f - 2.f * r);
+          return 0.f;
       });
 }
 
