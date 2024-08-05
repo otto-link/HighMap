@@ -264,6 +264,24 @@ Array smoothstep3(const Array &array, float vmin = 0.f, float vmax = 1.f);
 float smoothstep3(const float x);
 
 /**
+ * @brief Return the 3rd order smoothstep function, with zero derivative only
+ * at 0.
+ *
+ * @param x Input.
+ * @return float Output.
+ */
+float smoothstep3_lower(const float x);
+
+/**
+ * @brief Return the 3rd order smoothstep function, with zero derivative only
+ * at 1.
+ *
+ * @param x Input.
+ * @return float Output.
+ */
+float smoothstep3_upper(const float x);
+
+/**
  * @brief Return the 5rd order smoothstep function of the array elements.
  *
  * @param array Input array.
@@ -289,14 +307,5 @@ Array smoothstep5(const Array &array,
  * @return float Output.
  */
 float smoothstep5(const float x);
-
-/**
- * @brief Return the 3rd order smoothstep function, with zero derivative only
- * at 1.
- *
- * @param x Input.
- * @return float Output.
- */
-float upper_smoothstep3(const float x);
 
 } // namespace hmap

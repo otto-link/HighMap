@@ -169,7 +169,7 @@ RiftFunction::RiftFunction(float       angle,
           else
           {
             r = (r - local_width) * this->slope;
-            return upper_smoothstep3(r);
+            return smoothstep3_upper(r);
           }
         });
   else

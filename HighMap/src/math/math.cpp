@@ -238,6 +238,16 @@ float smoothstep3(const float x)
   return x * x * (3.f - 2.f * x);
 }
 
+float smoothstep3_lower(const float x)
+{
+  return x * (2.f * x - x * x);
+}
+
+float smoothstep3_upper(const float x)
+{
+  return x * (1.f + x - x * x);
+}
+
 Array smoothstep5(const Array &array, float vmin, float vmax)
 {
   Array array_out = Array(array.shape);
@@ -285,11 +295,6 @@ Array smoothstep5(const Array &array, const Array &vmin, const Array &vmax)
 float smoothstep5(const float x)
 {
   return x * x * x * (x * (x * 6.f - 15.f) + 10.f);
-}
-
-float upper_smoothstep3(const float x)
-{
-  return x * (1.f + x - x * x);
 }
 
 } // namespace hmap
