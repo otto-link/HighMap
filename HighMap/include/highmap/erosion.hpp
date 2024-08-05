@@ -181,6 +181,24 @@ void hydraulic_benes(Array &z,
 
 /**
  * @brief Apply cell-based hydraulic erosion using a nonlinear diffusion model.
+ * @param z Input array.
+ * @param radius Gaussian filter radius (with respect to a unit domain).
+ * @param vmax Maximum elevation for the details.
+ * @param k_smoothing Smoothing factor, if any.
+ *
+ * **Example**
+ * @include ex_hydraulic_blur.cpp
+ *
+ * **Result**
+ * @image html ex_hydraulic_blur.png
+ */
+void hydraulic_blur(Array &z,
+                    float  radius,
+                    float  vmax,
+                    float  k_smoothing = 0.1f);
+
+/**
+ * @brief Apply cell-based hydraulic erosion using a nonlinear diffusion model.
  *
  * See @cite Roering2001.
  *

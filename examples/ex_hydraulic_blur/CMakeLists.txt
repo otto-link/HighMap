@@ -1,0 +1,2 @@
+add_executable(ex_hydraulic_blur ex_hydraulic_blur.cpp)
+target_link_libraries(ex_hydraulic_blur highmap)
