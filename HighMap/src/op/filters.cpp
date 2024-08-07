@@ -156,29 +156,23 @@ void fill_talus(Array &z, float talus, uint seed, float noise_ratio)
   // indices
   set_borders(z, 10.f * z.max(), 2);
 
+  // build queue (elevation, index (i, j))
+  std::vector<std::pair<float, std::pair<int, int>>> queue;
+
   for (int i = 2; i < z.shape.x - 2; i++)
     for (int j = 2; j < z.shape.y - 2; j++)
-    {
-      queue_i.push_back(i);
-      queue_j.push_back(j);
-      queue_z.push_back(z(i, j));
-    }
+      queue.push_back(std::pair(z(i, j), std::pair(i, j)));
 
-  // sort queue by elevation
-  std::vector<size_t> idx = argsort(queue_z);
-  reindex_vector(queue_i, idx);
-  reindex_vector(queue_j, idx);
-  reindex_vector(queue_z, idx);
+  std::make_heap(queue.begin(), queue.end());
 
   // fill
-  while (queue_i.size() > 0)
+  while (queue.size() > 0)
   {
-    int i = queue_i.back();
-    int j = queue_j.back();
+    std::pair<int, std::pair<int, int>> current = queue.back();
+    queue.pop_back();
 
-    queue_i.pop_back();
-    queue_j.pop_back();
-    queue_z.pop_back();
+    int i = current.second.first;
+    int j = current.second.second;
 
     for (uint k = 0; k < nb; k++) // loop over neighbors
     {
@@ -190,13 +184,8 @@ void fill_talus(Array &z, float talus, uint seed, float noise_ratio)
       if (h > z(p, q))
       {
         z(p, q) = h;
-
-        // sorting should be performed to insert this new cells at the
-        // right position but it is much faster to put it at the end
-        // (and does not change much the result)
-        queue_i.push_back(p);
-        queue_j.push_back(q);
-        queue_z.push_back(z(p, q));
+        queue.push_back(std::pair(z(p, q), std::pair(p, q)));
+        std::push_heap(queue.begin(), queue.end());
       }
     }
   }
