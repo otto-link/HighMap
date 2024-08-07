@@ -147,11 +147,6 @@ void fill_talus(Array &z, float talus, uint seed, float noise_ratio)
   std::vector<float> c = CD;
   const uint         nb = di.size();
 
-  // populate queue
-  std::vector<int>   queue_i = {};
-  std::vector<int>   queue_j = {};
-  std::vector<float> queue_z = {};
-
   // trick to exclude border cells, to avoid checking out of bounds
   // indices
   set_borders(z, 10.f * z.max(), 2);
