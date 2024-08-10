@@ -2218,6 +2218,7 @@ void sym_borders(Array &array, Vec4<int> buffer_sizes);
  * @param p_noise_y Optional pointer to a 2D array that contains y-direction
  * noise to be added to the translation. If provided, the noise values are added
  * to `dy` on a per-element basis.
+ * @param bbox Domain bounding box.
  *
  * @return A new 2D array that is the result of translating the input `array` by
  * the specified `dx` and `dy` values.
@@ -2233,7 +2234,8 @@ Array translate(const Array &array,
                 float        dy,
                 bool         periodic = false,
                 Array       *p_noise_x = nullptr,
-                Array       *p_noise_y = nullptr);
+                Array       *p_noise_y = nullptr,
+                Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return the transposed array.
@@ -2454,6 +2456,7 @@ void zeroed_edges(Array           &array,
  * @param p_noise_y Optional pointer to a 2D array that contains y-direction
  * noise to be added during the zoom operation. If provided, the noise values
  * are applied to the y-coordinates of the zoomed array on a per-element basis.
+ * @param bbox Domain bounding box.
  *
  * @return A new 2D array that is the result of applying the zoom effect to the
  * input `array` by the specified `zoom_factor` and centered at the specified
@@ -2470,7 +2473,8 @@ Array zoom(const Array &array,
            bool         periodic = false,
            Vec2<float>  center = {0.5f, 0.5f},
            Array       *p_noise_x = nullptr,
-           Array       *p_noise_y = nullptr);
+           Array       *p_noise_y = nullptr,
+           Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 // --- helpers
 

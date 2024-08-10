@@ -179,7 +179,8 @@ Array translate(const Array &array,
                 float        dy,
                 bool         periodic,
                 Array       *p_noise_x,
-                Array       *p_noise_y)
+                Array       *p_noise_y,
+                Vec4<float>  bbox)
 {
   hmap::ArrayFunction f = hmap::ArrayFunction(array,
                                               Vec2<float>(1.f, 1.f),
@@ -197,7 +198,7 @@ Array translate(const Array &array,
   Array array_out = Array(array.shape);
 
   fill_array_using_xy_function(array_out,
-                               {0.f, 1.f, 0.f, 1.f},
+                               bbox,
                                nullptr,
                                &dx_array,
                                &dy_array,
@@ -223,7 +224,8 @@ Array zoom(const Array &array,
            bool         periodic,
            Vec2<float>  center,
            Array       *p_noise_x,
-           Array       *p_noise_y)
+           Array       *p_noise_y,
+           Vec4<float>  bbox)
 {
 
   hmap::ArrayFunction f = hmap::ArrayFunction(
@@ -233,10 +235,13 @@ Array zoom(const Array &array,
 
   Array array_out = Array(array.shape);
 
-  Vec4<float> bbox = {center.x, 1.f + center.x, center.y, 1.f + center.y};
+  Vec4<float> bbox2 = {bbox.a + center.x,
+                       bbox.b + center.x,
+                       bbox.c + center.y,
+                       bbox.d + center.y};
 
   fill_array_using_xy_function(array_out,
-                               bbox,
+                               bbox2,
                                nullptr,
                                p_noise_x,
                                p_noise_y,
