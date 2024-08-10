@@ -218,4 +218,32 @@ Array transpose(const Array &array)
   return array_out;
 }
 
+Array zoom(const Array &array,
+           float        zoom_factor,
+           bool         periodic,
+           Vec2<float>  center,
+           Array       *p_noise_x,
+           Array       *p_noise_y)
+{
+
+  hmap::ArrayFunction f = hmap::ArrayFunction(
+      array,
+      Vec2<float>(1.f / zoom_factor, 1.f / zoom_factor),
+      periodic);
+
+  Array array_out = Array(array.shape);
+
+  Vec4<float> bbox = {center.x, 1.f + center.x, center.y, 1.f + center.y};
+
+  fill_array_using_xy_function(array_out,
+                               bbox,
+                               nullptr,
+                               p_noise_x,
+                               p_noise_y,
+                               nullptr,
+                               f.get_delegate());
+
+  return array_out;
+}
+
 } // namespace hmap

@@ -2428,6 +2428,50 @@ void zeroed_edges(Array           &array,
                   Array           *p_noise = nullptr,
                   Vec4<float>      bbox = {0.f, 1.f, 0.f, 1.f});
 
+/**
+ * @brief Applies a zoom effect to a 2D array with an adjustable center.
+ *
+ * This function scales the input 2D array by a specified zoom factor,
+ * effectively resizing the array's contents. The zoom operation is centered
+ * around a specified point within the array, allowing for flexible zooming
+ * behavior. The function supports both periodic boundary conditions, where the
+ * array wraps around, and non-periodic conditions, where areas outside the
+ * original array bounds are filled with zeros.
+ *
+ * @param array The input 2D array to be zoomed. This array remains unmodified.
+ * @param zoom_factor The factor by which to zoom the array. A value greater
+ * than 1 enlarges the contents, while a value between 0 and 1 reduces them.
+ * @param periodic If set to `true`, the zoom is periodic, meaning that elements
+ * moving out of the array bounds due to the zoom reappear on the opposite side.
+ * If `false`, areas outside the original array bounds are filled with zeros.
+ * The default is `false`.
+ * @param center The center of the zoom operation, specified as a `Vec2<float>`
+ * with coordinates in the range [0, 1], where {0.5f, 0.5f} represents the
+ * center of the array. The default center is {0.5f, 0.5f}.
+ * @param p_noise_x Optional pointer to a 2D array that contains x-direction
+ * noise to be added during the zoom operation. If provided, the noise values
+ * are applied to the x-coordinates of the zoomed array on a per-element basis.
+ * @param p_noise_y Optional pointer to a 2D array that contains y-direction
+ * noise to be added during the zoom operation. If provided, the noise values
+ * are applied to the y-coordinates of the zoomed array on a per-element basis.
+ *
+ * @return A new 2D array that is the result of applying the zoom effect to the
+ * input `array` by the specified `zoom_factor` and centered at the specified
+ * `center`.
+ *
+ * **Example**
+ * @include ex_zoom.cpp
+ *
+ * **Result**
+ * @image html ex_zoom.png
+ */
+Array zoom(const Array &array,
+           float        zoom_factor,
+           bool         periodic = false,
+           Vec2<float>  center = {0.5f, 0.5f},
+           Array       *p_noise_x = nullptr,
+           Array       *p_noise_y = nullptr);
+
 // --- helpers
 
 /**

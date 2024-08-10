@@ -69,9 +69,6 @@ ArrayFunction::ArrayFunction(hmap::Array array, Vec2<float> kw, bool periodic)
           int   i = (int)xg;
           int   j = (int)yg;
 
-          if (x > 1.f)
-            LOG_DEBUG("%f %f %d", x, xp, i);
-
           return this->array.get_value_bilinear_at(i, j, xg - i, yg - j);
         });
 }
