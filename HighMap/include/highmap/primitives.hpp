@@ -394,7 +394,13 @@ Array noise(NoiseType   noise_type,
  * @include ex_noise_fbm.cpp
  *
  * **Result**
- * @image html ex_noise_fbm.png
+ * @image html ex_noise_fbm0.png
+ * @image html ex_noise_fbm1.png
+ * @image html ex_noise_fbm2.png
+ * @image html ex_noise_fbm3.png
+ * @image html ex_noise_fbm4.png
+ * @image html ex_noise_fbm5.png
+ * @image html ex_noise_fbm6.png
  */
 Array noise_fbm(NoiseType   noise_type,
                 Vec2<int>   shape,
@@ -433,7 +439,13 @@ Array noise_fbm(NoiseType   noise_type,
  * @include ex_noise_fbm.cpp
  *
  * **Result**
- * @image html ex_noise_fbm.png
+ * @image html ex_noise_fbm0.png
+ * @image html ex_noise_fbm1.png
+ * @image html ex_noise_fbm2.png
+ * @image html ex_noise_fbm3.png
+ * @image html ex_noise_fbm4.png
+ * @image html ex_noise_fbm5.png
+ * @image html ex_noise_fbm6.png
  */
 Array noise_iq(NoiseType   noise_type,
                Vec2<int>   shape,
@@ -476,7 +488,13 @@ Array noise_iq(NoiseType   noise_type,
  * @include ex_noise_fbm.cpp
  *
  * **Result**
- * @image html ex_noise_fbm.png
+ * @image html ex_noise_fbm0.png
+ * @image html ex_noise_fbm1.png
+ * @image html ex_noise_fbm2.png
+ * @image html ex_noise_fbm3.png
+ * @image html ex_noise_fbm4.png
+ * @image html ex_noise_fbm5.png
+ * @image html ex_noise_fbm6.png
  */
 Array noise_jordan(NoiseType   noise_type,
                    Vec2<int>   shape,
@@ -519,7 +537,13 @@ Array noise_jordan(NoiseType   noise_type,
  * @include ex_noise_fbm.cpp
  *
  * **Result**
- * @image html ex_noise_fbm.png
+ * @image html ex_noise_fbm0.png
+ * @image html ex_noise_fbm1.png
+ * @image html ex_noise_fbm2.png
+ * @image html ex_noise_fbm3.png
+ * @image html ex_noise_fbm4.png
+ * @image html ex_noise_fbm5.png
+ * @image html ex_noise_fbm6.png
  */
 Array noise_parberry(Vec2<int>   shape,
                      Vec2<float> kw,
@@ -557,7 +581,13 @@ Array noise_parberry(Vec2<int>   shape,
  * @include ex_noise_fbm.cpp
  *
  * **Result**
- * @image html ex_noise_fbm.png
+ * @image html ex_noise_fbm0.png
+ * @image html ex_noise_fbm1.png
+ * @image html ex_noise_fbm2.png
+ * @image html ex_noise_fbm3.png
+ * @image html ex_noise_fbm4.png
+ * @image html ex_noise_fbm5.png
+ * @image html ex_noise_fbm6.png
  */
 Array noise_pingpong(NoiseType   noise_type,
                      Vec2<int>   shape,
@@ -596,7 +626,13 @@ Array noise_pingpong(NoiseType   noise_type,
  * @include ex_noise_fbm.cpp
  *
  * **Result**
- * @image html ex_noise_fbm.png
+ * @image html ex_noise_fbm0.png
+ * @image html ex_noise_fbm1.png
+ * @image html ex_noise_fbm2.png
+ * @image html ex_noise_fbm3.png
+ * @image html ex_noise_fbm4.png
+ * @image html ex_noise_fbm5.png
+ * @image html ex_noise_fbm6.png
  */
 Array noise_ridged(NoiseType   noise_type,
                    Vec2<int>   shape,
@@ -636,7 +672,13 @@ Array noise_ridged(NoiseType   noise_type,
  * @include ex_noise_fbm.cpp
  *
  * **Result**
- * @image html ex_noise_fbm.png
+ * @image html ex_noise_fbm0.png
+ * @image html ex_noise_fbm1.png
+ * @image html ex_noise_fbm2.png
+ * @image html ex_noise_fbm3.png
+ * @image html ex_noise_fbm4.png
+ * @image html ex_noise_fbm5.png
+ * @image html ex_noise_fbm6.png
  */
 Array noise_swiss(NoiseType   noise_type,
                   Vec2<int>   shape,
