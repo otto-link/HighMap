@@ -1,0 +1,2 @@
+add_executable(ex_translate ex_translate.cpp)
+target_link_libraries(ex_translate highmap)

@@ -174,6 +174,39 @@ void rotate(Array &array, float angle, bool zero_padding)
     }
 }
 
+Array translate(const Array &array,
+                float        dx,
+                float        dy,
+                bool         periodic,
+                Array       *p_noise_x,
+                Array       *p_noise_y)
+{
+  hmap::ArrayFunction f = hmap::ArrayFunction(array,
+                                              Vec2<float>(1.f, 1.f),
+                                              periodic);
+
+  Array dx_array = constant(array.shape, -dx);
+  Array dy_array = constant(array.shape, -dy);
+
+  if (p_noise_x)
+    dx_array += *p_noise_x;
+
+  if (p_noise_y)
+    dy_array += *p_noise_y;
+
+  Array array_out = Array(array.shape);
+
+  fill_array_using_xy_function(array_out,
+                               {0.f, 1.f, 0.f, 1.f},
+                               nullptr,
+                               &dx_array,
+                               &dy_array,
+                               nullptr,
+                               f.get_delegate());
+
+  return array_out;
+}
+
 Array transpose(const Array &array)
 {
   Array array_out = Array(Vec2<int>(array.shape.y, array.shape.x));

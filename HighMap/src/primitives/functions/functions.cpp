@@ -58,20 +58,27 @@ ArrayFunction::ArrayFunction(hmap::Array array, Vec2<float> kw, bool periodic)
     this->set_delegate(
         [this](float x, float y, float)
         {
-          float xp = std::clamp(this->kw.x * x,
-                                0.f,
-                                1.f - std::numeric_limits<float>::min());
-          float yp = std::clamp(this->kw.y * y,
-                                0.f,
-                                1.f - std::numeric_limits<float>::min());
+          // float xp = std::clamp(this->kw.x * x,
+          //                       0.f,
+          //                       1.f - std::numeric_limits<float>::min());
+          // float yp = std::clamp(this->kw.y * y,
+          //                       0.f,
+          //                       1.f - std::numeric_limits<float>::min());
 
-          xp = xp - int(xp);
-          yp = yp - int(yp);
+          float xp = this->kw.x * x;
+          float yp = this->kw.y * y;
+
+          xp = xp < 0.f ? 0.f : (xp >= 1.f ? 1.f : xp - int(xp));
+          yp = yp < 0.f ? 0.f : (yp >= 1.f ? 1.f : yp - int(yp));
 
           float xg = xp * (this->array.shape.x - 1);
           float yg = yp * (this->array.shape.y - 1);
           int   i = (int)xg;
           int   j = (int)yg;
+
+          if (x > 1.f)
+            LOG_DEBUG("%f %f %d", x, xp, i);
+
           return this->array.get_value_bilinear_at(i, j, xg - i, yg - j);
         });
 }

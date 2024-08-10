@@ -2195,6 +2195,47 @@ void steepen_convective(Array &array,
 void sym_borders(Array &array, Vec4<int> buffer_sizes);
 
 /**
+ * @brief Translates a 2D array by a specified amount along the x and y axes.
+ *
+ * This function shifts the contents of the input array by `dx` and `dy` units
+ * along the x and y axes, respectively. It supports both periodic boundary
+ * conditions, where the array wraps around, and non-periodic conditions, where
+ * the shifted areas are filled with zeros.
+ *
+ * @param array The input 2D array to be translated. This array remains
+ * unmodified.
+ * @param dx The translation distance along the x-axis. Positive values shift
+ * the array to the right.
+ * @param dy The translation distance along the y-axis. Positive values shift
+ * the array downward.
+ * @param periodic If set to `true`, the translation is periodic, meaning that
+ * elements that move out of one side of the array reappear on the opposite
+ * side. If `false`, the areas exposed by the translation are filled with zeros.
+ * The default is `false`.
+ * @param p_noise_x Optional pointer to a 2D array that contains x-direction
+ * noise to be added to the translation. If provided, the noise values are added
+ * to `dx` on a per-element basis.
+ * @param p_noise_y Optional pointer to a 2D array that contains y-direction
+ * noise to be added to the translation. If provided, the noise values are added
+ * to `dy` on a per-element basis.
+ *
+ * @return A new 2D array that is the result of translating the input `array` by
+ * the specified `dx` and `dy` values.
+ *
+ * **Example**
+ * @include ex_translate.cpp
+ *
+ * **Result**
+ * @image html ex_translate.png
+ */
+Array translate(const Array &array,
+                float        dx,
+                float        dy,
+                bool         periodic = false,
+                Array       *p_noise_x = nullptr,
+                Array       *p_noise_y = nullptr);
+
+/**
  * @brief Return the transposed array.
  * @param array Input array.
  * @return Transposed array.
