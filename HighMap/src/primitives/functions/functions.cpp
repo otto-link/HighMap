@@ -58,13 +58,6 @@ ArrayFunction::ArrayFunction(hmap::Array array, Vec2<float> kw, bool periodic)
     this->set_delegate(
         [this](float x, float y, float)
         {
-          // float xp = std::clamp(this->kw.x * x,
-          //                       0.f,
-          //                       1.f - std::numeric_limits<float>::min());
-          // float yp = std::clamp(this->kw.y * y,
-          //                       0.f,
-          //                       1.f - std::numeric_limits<float>::min());
-
           float xp = this->kw.x * x;
           float yp = this->kw.y * y;
 
