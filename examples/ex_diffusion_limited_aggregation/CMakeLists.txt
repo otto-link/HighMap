@@ -1,0 +1,2 @@
+add_executable(ex_diffusion_limited_aggregation ex_diffusion_limited_aggregation.cpp)
+target_link_libraries(ex_diffusion_limited_aggregation highmap)

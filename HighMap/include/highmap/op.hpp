@@ -568,13 +568,23 @@ void falloff(Array           &array,
 void fill_borders(Array &array);
 
 /**
- * @brief Fill values with a given downslope talus starting from the cell with
- * highest values.
+ * @brief Modifies a terrain array by filling it with talus slopes.
  *
- * @param z Input array.
- * @param talus Downslope talus.
- * @param seed Random seed number.
- * @param noise_ratio Noise ratio (used to avoid grid orientation artifacts).
+ * This function applies a talus formation algorithm to an existing terrain
+ * array, adjusting the heights to create natural-looking slopes. The process
+ * involves random perturbations influenced by noise to simulate erosion or
+ * sediment transport.
+ *
+ * @param z A reference to the 2D array representing the terrain heights. The
+ * function modifies this array in place to introduce talus slopes.
+ * @param talus The critical slope angle that determines where material will
+ * move from higher elevations to lower ones. Slopes steeper than this value
+ *              will be flattened by material transport.
+ * @param seed The seed for the random number generator, ensuring
+ * reproducibility of the noise effects in the talus formation process. The same
+ * seed will produce the same terrain modifications.
+ * @param noise_ratio A parameter that controls the amount of randomness or
+ * noise introduced in the talus formation process. The default value is 0.2.
  *
  * **Example**
  * @include ex_fill_talus.cpp

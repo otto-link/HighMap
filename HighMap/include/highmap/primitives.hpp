@@ -252,6 +252,47 @@ Array dendry(Vec2<int>      shape,
              Vec4<float>    bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
+ * @brief Generates a diffusion-limited aggregation (DLA) pattern.
+ *
+ * This function simulates the diffusion-limited aggregation process to generate
+ * a pattern within a grid of specified dimensions. The DLA process models
+ * particles that undergo a random walk until they stick to a seed, gradually
+ * forming complex fractal structures.
+ *
+ * @param shape The dimensions of the grid where the DLA pattern will be
+ * generated. It is represented as a `Vec2<int>` object, where the first element
+ * is the width and the second element is the height.
+ * @param scale A scaling factor that influences the density of the
+ * particles in the DLA pattern.
+ * @param seeding_radius The radius within which initial seeding of particles
+ * occurs. This radius defines the area where the first particles are placed.
+ * @param seeding_outer_radius_ratio The ratio between the outer seeding radius
+ * and the initial seeding radius. It determines the outer boundary for particle
+ * seeding.
+ * @param slope Slope of the talus added to the DLA pattern.
+ * @param noise_ratio A parameter that controls the amount of randomness or
+ * noise introduced in the talus formation process.
+ * @param seed The seed for the random number generator, ensuring
+ * reproducibility of the pattern. The same seed will generate the same pattern.
+ *
+ * @return A 2D array representing the generated DLA pattern. The array is of
+ * the same size as specified by `shape`.
+ *
+ * **Example**
+ * @include ex_diffusion_limited_aggregation.cpp
+ *
+ * **Result**
+ * @image html ex_diffusion_limited_aggregation.png
+ */
+Array diffusion_limited_aggregation(Vec2<int> shape,
+                                    float     scale,
+                                    uint      seed,
+                                    float     seeding_radius = 0.4f,
+                                    float     seeding_outer_radius_ratio = 0.2f,
+                                    float     slope = 8.f,
+                                    float     noise_ratio = 0.2f);
+
+/**
  * @brief Return a sparse Gabor noise.
  *
  * @param shape Array shape.
