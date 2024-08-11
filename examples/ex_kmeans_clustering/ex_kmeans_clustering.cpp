@@ -22,7 +22,12 @@ int main(void)
 
   // (optional) continuous scoring can also be retrieved for each cluster
   std::vector<hmap::Array> scoring4;
-  labels4 = hmap::kmeans_clustering2(z, dz, nclusters, &scoring4);
+  hmap::Array              aggregate_scoring4;
+  labels4 = hmap::kmeans_clustering2(z,
+                                     dz,
+                                     nclusters,
+                                     &scoring4,
+                                     &aggregate_scoring4);
 
   // --- add some data mimicking some moisture increasing from west to east
   hmap::Array moisture = hmap::slope(shape, 0.f, 1.f);
@@ -47,9 +52,12 @@ int main(void)
                           hmap::cmap::nipy_spectral,
                           false);
 
-  labels6.to_png("ex_kmeans_clustering3.png", hmap::cmap::jet);
+  aggregate_scoring4.to_png("ex_kmeans_clustering3.png", hmap::cmap::jet);
+  aggregate_scoring4.infos();
 
-  hmap::export_banner_png("ex_kmeans_clustering4.png",
+  labels6.to_png("ex_kmeans_clustering4.png", hmap::cmap::jet);
+
+  hmap::export_banner_png("ex_kmeans_clustering5.png",
                           scoring6,
                           hmap::cmap::nipy_spectral,
                           false);

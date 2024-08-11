@@ -122,17 +122,31 @@ Array curvature_mean(const Array &z);
 Array geomorphons(const Array &array, int irmin, int irmax, float epsilon);
 
 /**
- * @brief Return the labelling of each cell of the array based on a k-means
- * clustering, with two arrays of input data.
+ * @brief Performs k-means clustering on two input arrays.
  *
- * @param array1 Input array #1.
- * @param array2 Input array #2.
- * @param nclusters Number of clusters.
- * @param p_scoring Reference to a vector of arrays containing the scoring for
- * each cluster (vector is of the same size of the number of clusters).
- * @param weights Feature weights.
- * @param seed Random seed number.
- * @return Array Resulting label array.
+ * This function applies the k-means clustering algorithm on the given input
+ * arrays `array1` and `array2`. The number of clusters is specified by
+ * `nclusters`. The function optionally returns scoring data and aggregated
+ * scoring, and allows for custom weighting of the input arrays.
+ *
+ * @param[in] array1 The first input array on which clustering is to be
+ * performed.
+ * @param[in] array2 The second input array on which clustering is to be
+ * performed.
+ * @param[in] nclusters The number of clusters to form during the k-means
+ * clustering process.
+ * @param[out] p_scoring (optional) A pointer to a vector of arrays where the
+ * scoring of each cluster will be stored. If not needed, pass nullptr.
+ * @param[out] p_aggregate_scoring (optional) A pointer to an array where the
+ * aggregated scoring across all clusters will be stored. If not needed, pass
+ * nullptr.
+ * @param[in] weights A 2D vector of floats representing the weights applied to
+ * `array1` and `array2`. The default is {1.f, 1.f}.
+ * @param[in] seed A seed value for random number generation, used to initialize
+ * the k-means algorithm. The default is 1.
+ *
+ * @return An Array containing the clustered data resulting from the k-means
+ * algorithm.
  *
  * **Example**
  * @include ex_kmeans_clustering.cpp
@@ -142,11 +156,14 @@ Array geomorphons(const Array &array, int irmin, int irmax, float epsilon);
  * @image html ex_kmeans_clustering1.png
  * @image html ex_kmeans_clustering2.png
  * @image html ex_kmeans_clustering3.png
+ * @image html ex_kmeans_clustering4.png
+ * @image html ex_kmeans_clustering5.png
  */
 Array kmeans_clustering2(const Array        &array1,
                          const Array        &array2,
                          int                 nclusters,
                          std::vector<Array> *p_scoring = nullptr,
+                         Array              *p_aggregate_scoring = nullptr,
                          Vec2<float>         weights = {1.f, 1.f},
                          uint                seed = 1);
 
@@ -155,6 +172,7 @@ Array kmeans_clustering3(const Array        &array1,
                          const Array        &array3,
                          int                 nclusters,
                          std::vector<Array> *p_scoring = nullptr,
+                         Array              *p_aggregate_scoring = nullptr,
                          Vec3<float>         weights = {1.f, 1.f, 1.f},
                          uint                seed = 1); ///< @overload
 

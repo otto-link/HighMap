@@ -14,6 +14,7 @@ Array kmeans_clustering2(const Array        &array1,
                          const Array        &array2,
                          int                 nclusters,
                          std::vector<Array> *p_scoring,
+                         Array              *p_aggregate_scoring,
                          Vec2<float>         weights,
                          uint                seed)
 {
@@ -63,11 +64,24 @@ Array kmeans_clustering2(const Array        &array1,
 
   // --- compute a score of belonging to a given cluster (see
   // https://datascience.stackexchange.com/questions/14435)
+
+  // those scores are necessary for the aggregate score. If only the
+  // aggregate score is requested, then work on a local vector, if
+  // not, work on the input score vector of arrays
+  std::vector<Array>  scores = {};
+  std::vector<Array> *p_working_scores;
+
   if (p_scoring)
+    p_working_scores = p_scoring;
+  else
+    p_working_scores = &scores;
+
+  if (p_scoring || p_aggregate_scoring)
   {
-    p_scoring->reserve(nclusters);
+    p_working_scores->clear();
+    p_working_scores->reserve(nclusters);
     for (int r = 0; r < nclusters; r++)
-      p_scoring->push_back(Array(shape));
+      p_working_scores->push_back(Array(shape));
 
     for (int i = 0; i < shape.x; i++)
       for (int j = 0; j < shape.y; j++)
@@ -86,8 +100,30 @@ Array kmeans_clustering2(const Array        &array1,
           float score = 1.f / std::hypot(data[k][0] - centroids[r].x,
                                          data[k][1] - centroids[r].y);
           score /= sum;
-          p_scoring->at(r)(i, j) = score;
+          p_working_scores->at(r)(i, j) = score;
         }
+      }
+  }
+
+  // --- compute an aggregate score
+
+  if (p_aggregate_scoring)
+  {
+    *p_aggregate_scoring = Array(shape);
+
+    for (int i = 0; i < shape.x; i++)
+      for (int j = 0; j < shape.y; j++)
+      {
+        float max = 0.f;
+        int   rmax = 0;
+        for (int r = 0; r < nclusters; r++)
+          if (p_working_scores->at(r)(i, j) > max)
+          {
+            max = p_working_scores->at(r)(i, j);
+            rmax = r;
+          }
+
+        (*p_aggregate_scoring)(i, j) = ((float)rmax + max) / (float)nclusters;
       }
   }
 
@@ -99,6 +135,7 @@ Array kmeans_clustering3(const Array        &array1,
                          const Array        &array3,
                          int                 nclusters,
                          std::vector<Array> *p_scoring,
+                         Array              *p_aggregate_scoring,
                          Vec3<float>         weights,
                          uint                seed)
 {
@@ -150,11 +187,20 @@ Array kmeans_clustering3(const Array        &array1,
 
   // --- compute a score of belonging to a given cluster (see
   // https://datascience.stackexchange.com/questions/14435)
+
+  std::vector<Array>  scores = {};
+  std::vector<Array> *p_working_scores;
+
   if (p_scoring)
+    p_working_scores = p_scoring;
+  else
+    p_working_scores = &scores;
+
+  if (p_working_scores)
   {
-    p_scoring->reserve(nclusters);
+    p_working_scores->reserve(nclusters);
     for (int r = 0; r < nclusters; r++)
-      p_scoring->push_back(Array(shape));
+      p_working_scores->push_back(Array(shape));
 
     for (int i = 0; i < shape.x; i++)
       for (int j = 0; j < shape.y; j++)
@@ -177,8 +223,30 @@ Array kmeans_clustering3(const Array        &array1,
                                                   data[k][2] - centroids[r].v),
                                        2);
           score /= sum;
-          p_scoring->at(r)(i, j) = score;
+          p_working_scores->at(r)(i, j) = score;
         }
+      }
+  }
+
+  // --- compute an aggregate score
+
+  if (p_aggregate_scoring)
+  {
+    *p_aggregate_scoring = Array(shape);
+
+    for (int i = 0; i < shape.x; i++)
+      for (int j = 0; j < shape.y; j++)
+      {
+        float max = 0.f;
+        int   rmax = 0;
+        for (int r = 0; r < nclusters; r++)
+          if (p_working_scores->at(r)(i, j) > max)
+          {
+            max = p_working_scores->at(r)(i, j);
+            rmax = r;
+          }
+
+        (*p_aggregate_scoring)(i, j) = ((float)rmax + max) / (float)nclusters;
       }
   }
 
