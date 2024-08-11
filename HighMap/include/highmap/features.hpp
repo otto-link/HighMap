@@ -5,29 +5,37 @@
 /**
  * @file features.hpp
  * @author Otto Link (otto.link.bv@gmail.com)
- * @brief
+ * @brief Header file defining a collection of functions for terrain analysis
+ * and feature extraction from heightmaps.
  * @version 0.1
  * @date 2023-04-30
- *
- * @copyright Copyright (c) 2023
- *
+ * @copyright Copyright (c) 2023 Otto Link
  */
+
 #pragma once
 
 namespace hmap
 {
 
 /**
- * @brief This specific type of curvature reflects how the shape of the
- * heightmap influences the accumulation of water. Positive accumulation
- * curvature indicates converging flow, where water tends to accumulate and
- * concentrate, often leading to the formation of channels or gullies. Negative
- * accumulation curvature suggests diverging flow, where water is dispersed over
- * a broader area, which is typical of ridges or hilltops.
- * @param z Input array.
- * @param ir Pre-filter radius.
- * @return Output array.
+ * @brief Computes the accumulation curvature of a heightmap, highlighting areas
+ * where water is likely to converge or diverge.
  *
+ * Accumulation curvature is a useful metric in hydrological modeling and
+ * terrain analysis. Positive values indicate regions where water flow converges
+ * (e.g., valleys), leading to potential water accumulation, while negative
+ * values indicate regions where flow diverges (e.g., ridges).
+ *
+ * **Usage**
+ * - Apply this function when analyzing terrain for potential water paths or
+ * erosion patterns.
+ * - Useful in predicting areas prone to waterlogging or channel formation.
+ *
+ * @param z The input array representing the heightmap data (elevation values).
+ * @param ir The radius used for pre-filtering, which controls the scale of the
+ * analysis (in pixels).
+ * @return Array An output array containing the calculated accumulation
+ * curvature values for each point in the input heightmap.
  *
  * **Example**
  * @include ex_curvature_gaussian.cpp
@@ -43,15 +51,29 @@ namespace hmap
 Array accumulation_curvature(const Array &z, int ir);
 
 /**
- * @brief Return the connected-component labelling of the array.
+ * @brief Identifies and labels connected components within a binary or labeled
+ * array, with optional filtering by size.
  *
- * See https://en.wikipedia.org/wiki/Connected-component_labeling.
+ * Connected-component labeling is a technique used to identify clusters of
+ * connected pixels (or components) in an array. This function can be used in
+ * image processing and spatial analysis to isolate regions of interest, such as
+ * detecting distinct objects or areas within a heightmap.
  *
- * @param array Input array.
- * @param surface_threshold Surface threshold (in number of pixels): if not set
- * to zero, components with a surface smaller than the threshold are removed.
- * @param background_value Background value.
- * @return Array Resulting array.
+ * **Usage**
+ * - Use this function to label distinct features within an array, such as
+ * individual water bodies, forest patches, or elevation features.
+ * - Apply the surface threshold to filter out small, insignificant components
+ * that might be noise or irrelevant.
+ *
+ * @param array The input array where connected components are to be identified.
+ * @param surface_threshold The minimum number of pixels a component must have
+ * to be retained. Components smaller than this threshold will be removed. The
+ * default value is 0 (no filtering).
+ * @param background_value The value used to represent background pixels, which
+ * are not part of any component. Default is 0.
+ * @return Array An array with labeled connected components, where each
+ * component is assigned a unique identifier.
+ *
  *
  * **Example**
  * @include ex_connected_components.cpp
@@ -65,10 +87,23 @@ Array connected_components(const Array &array,
                            float        background_value = 0.f);
 
 /**
- * @brief Return the Gaussian curvature @cite Kurita1992.
+ * @brief Calculates the Gaussian curvature of a heightmap, providing insights
+ * into the surface's intrinsic curvature at each point.
  *
- * @param z Input array.
- * @return Array Resulting array.
+ * Gaussian curvature is a fundamental measure of surface curvature, indicating
+ * how the surface bends in multiple directions at each point. This metric is
+ * often used in geomorphology to understand landform shapes.
+ *
+ * **Usage**
+ * - Use this function to analyze the overall shape of terrain features,
+ * identifying whether regions are saddle-like, dome-like, or basin-like.
+ * - Useful in studies related to tectonics, erosion patterns, and landform
+ * development.
+ *
+ * @param z The input array representing the heightmap data (elevation values).
+ * @return Array An output array containing the Gaussian curvature values, with
+ * positive values indicating dome-like shapes and negative values indicating
+ * saddle shapes.
  *
  * **Example**
  * @include ex_curvature_gaussian.cpp
@@ -84,10 +119,24 @@ Array connected_components(const Array &array,
 Array curvature_gaussian(const Array &z);
 
 /**
- * @brief Return the mean curvature @cite Kurita1992.
+ * @brief Computes the mean curvature of a heightmap, indicating the average
+ * curvature at each point on the surface.
  *
- * @param z Input array.
- * @return Array Resulting array.
+ * Mean curvature is another critical metric in geomorphology, representing the
+ * average bending of the surface. This measure is useful in understanding
+ * terrain smoothness and can help identify areas of potential erosion or
+ * deposition.
+ *
+ * **Usage**
+ * - Apply this function to detect areas prone to erosion or sediment
+ * deposition.
+ * - Useful in landscape evolution models and in analyzing the stability of
+ * slopes.
+ *
+ * @param z The input array representing the heightmap data (elevation values).
+ * @return Array An output array containing the mean curvature values, where
+ * positive values indicate convex regions and negative values indicate concave
+ * regions.
  *
  * **Example**
  * @include ex_curvature_gaussian.cpp
@@ -103,14 +152,28 @@ Array curvature_gaussian(const Array &z);
 Array curvature_mean(const Array &z);
 
 /**
- * @brief Return the labelling of a geomorphons-based classification @cite
- * Jasiewicz2013.
+ * @brief Classifies terrain into geomorphological features based on the
+ * geomorphons method.
  *
- * @param array Input array.
- * @param irmin Minimum lookup radius (in pixels).
- * @param irmax Maximum lookup radius (in pixels).
- * @param epsilon Slope tolerance defining 'flatness'.
- * @return Array Output array.
+ * The geomorphons method classifies each point in a terrain into one of several
+ * landform types (e.g., ridge, valley, plain) based on the surrounding
+ * topography. This classification is useful for automated landform mapping and
+ * terrain analysis.
+ *
+ * **Usage**
+ * - Use this function to automatically categorize terrain into different
+ * geomorphological units.
+ * - Useful in large-scale landform mapping and environmental modeling.
+ *
+ * @param array The input array representing the terrain elevation data.
+ * @param irmin The minimum radius (in pixels) for considering the surrounding
+ * area during classification.
+ * @param irmax The maximum radius (in pixels) for considering the surrounding
+ * area during classification.
+ * @param epsilon The slope tolerance that defines 'flat' regions, affecting the
+ * classification.
+ * @return Array An output array with each pixel classified into a
+ * geomorphological feature.
  *
  * **Example**
  * @include ex_geomorphons.cpp
@@ -122,28 +185,36 @@ Array curvature_mean(const Array &z);
 Array geomorphons(const Array &array, int irmin, int irmax, float epsilon);
 
 /**
- * @brief Performs k-means clustering on two input arrays.
+ * @brief Performs k-means clustering on two input arrays, grouping similar data
+ * points into clusters.
  *
- * This function applies the k-means clustering algorithm on the given input
- * arrays `array1` and `array2`. The number of clusters is specified by
- * `nclusters`. The function optionally returns scoring data and aggregated
- * scoring, and allows for custom weighting of the input arrays.
+ * K-means clustering is a popular unsupervised learning algorithm used to
+ * partition data into clusters. This function applies k-means clustering to two
+ * arrays, which might represent different terrain attributes or environmental
+ * variables.
  *
- * @param[in] array1 The first input array on which clustering is to be
- * performed.
- * @param[in] array2 The second input array on which clustering is to be
- * performed.
- * @param[in] nclusters The number of clusters to form during the k-means
- * clustering process.
+ * **Usage**:
+ * - Use this function to identify regions with similar characteristics based on
+ * multiple terrain features.
+ * - Useful in ecological modeling, land cover classification, and resource
+ * management.
+ *
+ * @param[in] array1 The first input array for clustering, typically
+ * representing one attribute of the terrain.
+ * @param[in] array2 The second input array for clustering, representing another
+ * attribute.
+ * @param[in] nclusters The number of clusters (k) to be formed.
  * @param[out] p_scoring (optional) A pointer to a vector of arrays where the
- * scoring of each cluster will be stored. If not needed, pass nullptr.
+ * clustering scores will be stored. Pass nullptr if scoring is not required.
  * @param[out] p_aggregate_scoring (optional) A pointer to an array where the
- * aggregated scoring across all clusters will be stored. If not needed, pass
- * nullptr.
- * @param[in] weights A 2D vector of floats representing the weights applied to
- * `array1` and `array2`. The default is {1.f, 1.f}.
- * @param[in] seed A seed value for random number generation, used to initialize
- * the k-means algorithm. The default is 1.
+ * aggregate score across all clusters will be stored. Pass nullptr if not
+ * required.
+ * @param[in] weights A vector of two floats representing the weight given to
+ * `array1` and `array2`. The default weights are {1.f, 1.f}.
+ * @param[in] seed A seed value for random number generation, ensuring
+ * reproducibility of the clustering results. The default value is 1.
+ * @return Array An array representing the clustered data, with each pixel
+ * assigned to a cluster.
  *
  * @return An Array containing the clustered data resulting from the k-means
  * algorithm.
@@ -167,6 +238,46 @@ Array kmeans_clustering2(const Array        &array1,
                          Vec2<float>         weights = {1.f, 1.f},
                          uint                seed = 1);
 
+/**
+ * @brief Performs k-means clustering on three input arrays, providing more
+ * detailed cluster analysis by considering an additional dimension.
+ *
+ * This version of k-means clustering includes a third array, enabling more
+ * complex clustering based on three terrain attributes or environmental
+ * variables.
+ *
+ * **Usage**
+ * - Apply this function to analyze the relationships between three different
+ * terrain attributes, revealing complex patterns.
+ * - Useful in multi-dimensional environmental modeling and resource management.
+ *
+ * @param[in] array1 The first input array for clustering.
+ * @param[in] array2 The second input array for clustering.
+ * @param[in] array3 The third input array for clustering.
+ * @param[in] nclusters The number of clusters (k) to be formed.
+ * @param[out] p_scoring (optional) A pointer to a vector of arrays where the
+ * clustering scores will be stored. Pass nullptr if scoring is not required.
+ * @param[out] p_aggregate_scoring (optional) A pointer to an array where the
+ * aggregate score across all clusters will be stored. Pass nullptr if not
+ * required.
+ * @param[in] weights A vector of three floats representing the weight given to
+ * `array1`, `array2`, and `array3`. The default weights are {1.f, 1.f, 1.f}.
+ * @param[in] seed A seed value for random number generation, ensuring
+ * reproducibility of the clustering results. The default value is 1.
+ * @return Array An array representing the clustered data, with each pixel
+ * assigned to a cluster.
+ *
+ * **Example**
+ * @include ex_kmeans_clustering.cpp
+ *
+ * **Result**
+ * @image html ex_kmeans_clustering0.png
+ * @image html ex_kmeans_clustering1.png
+ * @image html ex_kmeans_clustering2.png
+ * @image html ex_kmeans_clustering3.png
+ * @image html ex_kmeans_clustering4.png
+ * @image html ex_kmeans_clustering5.png
+ */
 Array kmeans_clustering3(const Array        &array1,
                          const Array        &array2,
                          const Array        &array3,
@@ -174,14 +285,26 @@ Array kmeans_clustering3(const Array        &array1,
                          std::vector<Array> *p_scoring = nullptr,
                          Array              *p_aggregate_scoring = nullptr,
                          Vec3<float>         weights = {1.f, 1.f, 1.f},
-                         uint                seed = 1); ///< @overload
+                         uint                seed = 1);
 
 /**
- * @brief Return the relative elevation within a a radius `ir`.
+ * @brief Calculates the relative elevation within a specified radius, helping
+ * to identify local highs and lows.
  *
- * @param array Input array.
- * @param ir Lookup radius, in pixels.
- * @return Array Relative elevation, in [0, 1].
+ * Relative elevation analysis determines how high or low a point is relative to
+ * its surroundings, which can be critical in hydrological modeling and
+ * geomorphology.
+ *
+ * **Usage**:
+ * - Use this function to detect local depressions or peaks in the terrain,
+ * which could indicate potential water collection points or hilltops.
+ * - Useful in flood risk assessment and landscape classification.
+ *
+ * @param array The input array representing the terrain elevation data.
+ * @param ir The radius (in pixels) within which to calculate the relative
+ * elevation for each point.
+ * @return Array An output array containing the relative elevation values,
+ * normalized between 0 and 1.
  *
  * **Example**
  * @include relative_elevation.cpp
@@ -192,11 +315,24 @@ Array kmeans_clustering3(const Array        &array1,
 Array relative_elevation(const Array &array, int ir);
 
 /**
- * @brief Return rugosity estimate (based on the skewness).
+ * @brief Estimates the rugosity of a surface by analyzing the skewness of the
+ * elevation data, which reflects surface roughness.
  *
- * @param z Input array.
- * @param ir Square kernel footprint radius.
- * @return Array Resulting array.
+ * Rugosity is a measure of terrain roughness, often used in ecological studies
+ * and habitat mapping. Higher rugosity values indicate more rugged terrain,
+ * which can affect species distribution and water flow.
+ *
+ * **Usage**:
+ * - Apply this function to assess habitat suitability, especially in marine
+ * environments where surface complexity influences biodiversity.
+ * - Useful in erosion studies and in identifying areas with complex terrain
+ * features.
+ *
+ * @param z The input array representing the heightmap data (elevation values).
+ * @param ir The radius of the square kernel used for calculations, determining
+ * the scale of the analysis.
+ * @return Array An output array containing the rugosity estimates, where higher
+ * values indicate rougher terrain.
  *
  * **Example**
  * @include ex_rugosity.cpp
@@ -208,15 +344,25 @@ Array relative_elevation(const Array &array, int ir);
 Array rugosity(const Array &z, int ir);
 
 /**
- * @brief The Shape Index (SI) is a measure used to quantify the shape
- * complexity of landforms in a DEM. It is calculated based on the second
- * derivatives of the elevation surface.
+ * @brief Computes the Shape Index (SI) of the terrain, quantifying landform
+ * complexity based on curvature.
  *
- * See @cite Florinsky2011
+ * The Shape Index is a metric used to describe the shape of landforms,
+ * particularly in digital elevation models (DEMs). It differentiates between
+ * convex (e.g., hilltops), concave (e.g., valleys), and flat surfaces.
  *
- * @param z Input array.
- * @param ir Pre-filter radius.
- * @return Resulting array (> 0.5 for convex and < 0.5 for concave).
+ * **Usage**:
+ * - Use this function to classify terrain into different morphological types,
+ * which can be important in land use planning and environmental studies.
+ * - Useful in landscape ecology and in understanding geomorphological
+ * processes.
+ *
+ * @param z The input array representing the heightmap data (elevation values).
+ * @param ir The radius used for pre-filtering, which controls the scale of the
+ * analysis (in pixels).
+ * @return Array An output array containing Shape Index values, where values
+ * above 0.5 indicate convex shapes, and values below 0.5 indicate concave
+ * shapes.
  *
  * **Example**
  * @include ex_curvature_gaussian.cpp
@@ -232,12 +378,27 @@ Array rugosity(const Array &z, int ir);
 Array shape_index(const Array &z, int ir);
 
 /**
- * @brief Unsesphericity refers to the degree to which an object or surface
- * deviates from being perfectly spherical or symmetrical.
- * @param z Input array.
- * @param ir Pre-filter radius.
- * @return Resulting array.
- * @return Resulting array (> 0.5 for convex and < 0.5 for concave).
+ * @brief Calculates the unsphericity of a surface, indicating how much the
+ * terrain deviates from a perfect spherical shape.
+ *
+ * Unsphericity is a measure used to understand the degree of asymmetry in
+ * terrain surfaces. It quantifies how much a surface deviates from being
+ * perfectly spherical or symmetrical, which can be critical in various
+ * geomorphological analyses.
+ *
+ * **Usage**
+ * - Use this function to identify areas of terrain that significantly deviate
+ * from a spherical shape, which may indicate unique geological formations or
+ * erosion patterns.
+ * - Helpful in identifying and analyzing landforms that are not perfectly round
+ * or symmetrical, such as irregular hills or basins.
+ *
+ * @param z The input array representing the heightmap data (elevation values).
+ * @param ir The radius used for pre-filtering, controlling the scale of
+ * analysis (in pixels).
+ * @return Array An output array containing unsphericity values, where values
+ * greater than 0.5 indicate convex regions (e.g., peaks) and values less than
+ * 0.5 indicate concave regions (e.g., valleys).
  *
  * **Example**
  * @include ex_curvature_gaussian.cpp
@@ -253,12 +414,27 @@ Array shape_index(const Array &z, int ir);
 Array unsphericity(const Array &z, int ir);
 
 /**
- * @brief Return the "valley width", corresponding to the distance to the
- * concave region frontier (in this concave frontier).
+ * @brief Measures the valley width by calculating the distance from each point
+ * in a concave region to the frontier of that region.
  *
- * @param z Input array.
- * @param ir Pre-filter radius.
- * @return Array Resulting array.
+ * Valley width is a geomorphological metric that represents the distance across
+ * valleys or concave regions in a terrain. This measurement is particularly
+ * useful in hydrological modeling and landscape analysis, where valley
+ * dimensions are important.
+ *
+ * **Usage**
+ * - Use this function to assess the width of valleys within a terrain, which
+ * can be important for understanding water flow, sediment transport, and
+ * landform development.
+ * - Applicable in studies focusing on river valleys, canyon analysis, and
+ * erosion patterns.
+ *
+ * @param z The input array representing the heightmap data (elevation values).
+ * @param ir The radius used for pre-filtering, controlling the scale of
+ * analysis (in pixels). The default value is 0, meaning no pre-filtering is
+ * applied.
+ * @return Array An output array containing valley width values, representing
+ * the distance to the edge of the concave region for each point.
  *
  * **Example**
  * @include ex_valley_width.cpp
