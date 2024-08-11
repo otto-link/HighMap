@@ -1,0 +1,188 @@
+/* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
+ * Public License. The full license is in the file LICENSE, distributed with
+ * this software. */
+#include "dkm.hpp"
+#include "macrologger.h"
+
+#include "highmap/array.hpp"
+#include "highmap/geometry.hpp"
+
+namespace hmap
+{
+
+Array kmeans_clustering2(const Array        &array1,
+                         const Array        &array2,
+                         int                 nclusters,
+                         std::vector<Array> *p_scoring,
+                         Vec2<float>         weights,
+                         uint                seed)
+{
+  Vec2<int> shape = array1.shape;
+  Array     kmeans = Array(shape); // output
+
+  // recast data
+  std::vector<std::array<float, 2>> data = {};
+  data.resize(shape.x * shape.y);
+
+  for (int i = 0; i < shape.x; i++)
+    for (int j = 0; j < shape.y; j++)
+    {
+      int k = i + j * shape.x;
+      data[k][0] = weights.x * array1(i, j);
+      data[k][1] = weights.y * array2(i, j);
+    }
+
+  dkm::clustering_parameters<float> parameters =
+      dkm::clustering_parameters<float>(nclusters);
+  parameters.set_random_seed(seed);
+  auto dkm = dkm::kmeans_lloyd(data, parameters);
+
+  // modify labelling to ensure it remains fairly consistent when the
+  // data are modified (centroid are sorted by their coordinates)
+  std::vector<int>   isort_rev(nclusters);
+  std::vector<Point> centroids = {};
+
+  for (auto &p : std::get<0>(dkm))
+    centroids.push_back(Point(p[0], p[1]));
+
+  sort_points(centroids);
+
+  // TODO dirty
+  for (int i = 0; i < nclusters; i++)
+    for (int j = 0; j < nclusters; j++)
+      if ((centroids[i].x == std::get<0>(dkm)[j][0]) &
+          (centroids[i].y == std::get<0>(dkm)[j][1]))
+        isort_rev[j] = i;
+
+  for (size_t k = 0; k < std::get<1>(dkm).size(); k++)
+  {
+    int j = int(k / shape.x);
+    int i = k - j * shape.x;
+    kmeans(i, j) = isort_rev[std::get<1>(dkm)[k]];
+  }
+
+  // --- compute a score of belonging to a given cluster (see
+  // https://datascience.stackexchange.com/questions/14435)
+  if (p_scoring)
+  {
+    p_scoring->reserve(nclusters);
+    for (int r = 0; r < nclusters; r++)
+      p_scoring->push_back(Array(shape));
+
+    for (int i = 0; i < shape.x; i++)
+      for (int j = 0; j < shape.y; j++)
+      {
+        int k = i + j * shape.x; // linear index
+
+        // normalization factor
+        float sum = 0.f;
+        for (int r = 0; r < nclusters; r++)
+          sum += 1.f / std::hypot(data[k][0] - centroids[r].x,
+                                  data[k][1] - centroids[r].y);
+
+        // compute score for each cluster
+        for (int r = 0; r < nclusters; r++)
+        {
+          float score = 1.f / std::hypot(data[k][0] - centroids[r].x,
+                                         data[k][1] - centroids[r].y);
+          score /= sum;
+          p_scoring->at(r)(i, j) = score;
+        }
+      }
+  }
+
+  return kmeans;
+}
+
+Array kmeans_clustering3(const Array        &array1,
+                         const Array        &array2,
+                         const Array        &array3,
+                         int                 nclusters,
+                         std::vector<Array> *p_scoring,
+                         Vec3<float>         weights,
+                         uint                seed)
+{
+  Vec2<int> shape = array1.shape;
+  Array     kmeans = Array(shape); // output
+
+  // recast data
+  std::vector<std::array<float, 3>> data = {};
+  data.resize(shape.x * shape.y);
+
+  for (int i = 0; i < shape.x; i++)
+    for (int j = 0; j < shape.y; j++)
+    {
+      int k = i + j * shape.x;
+      data[k][0] = weights.x * array1(i, j);
+      data[k][1] = weights.y * array2(i, j);
+      data[k][2] = weights.z * array3(i, j);
+    }
+
+  dkm::clustering_parameters<float> parameters =
+      dkm::clustering_parameters<float>(nclusters);
+  parameters.set_random_seed(seed);
+  auto dkm = dkm::kmeans_lloyd(data, parameters);
+
+  // modify labelling to ensure it remains fairly consistent when the
+  // data are modified (centroid are sorted by their coordinates)
+  std::vector<int>   isort_rev(nclusters);
+  std::vector<Point> centroids = {};
+
+  for (auto &p : std::get<0>(dkm))
+    centroids.push_back(Point(p[0], p[1], p[2]));
+
+  sort_points(centroids);
+
+  // TODO dirty
+  for (int i = 0; i < nclusters; i++)
+    for (int j = 0; j < nclusters; j++)
+      if ((centroids[i].x == std::get<0>(dkm)[j][0]) &
+          (centroids[i].y == std::get<0>(dkm)[j][1]) &
+          (centroids[i].v == std::get<0>(dkm)[j][2]))
+        isort_rev[j] = i;
+
+  for (size_t k = 0; k < std::get<1>(dkm).size(); k++)
+  {
+    int j = int(k / shape.x);
+    int i = k - j * shape.x;
+    kmeans(i, j) = isort_rev[std::get<1>(dkm)[k]];
+  }
+
+  // --- compute a score of belonging to a given cluster (see
+  // https://datascience.stackexchange.com/questions/14435)
+  if (p_scoring)
+  {
+    p_scoring->reserve(nclusters);
+    for (int r = 0; r < nclusters; r++)
+      p_scoring->push_back(Array(shape));
+
+    for (int i = 0; i < shape.x; i++)
+      for (int j = 0; j < shape.y; j++)
+      {
+        int k = i + j * shape.x; // linear index
+
+        // normalization factor
+        float sum = 0.f;
+        for (int r = 0; r < nclusters; r++)
+          sum += 1.f / std::pow(std::hypot(data[k][0] - centroids[r].x,
+                                           data[k][1] - centroids[r].y,
+                                           data[k][2] - centroids[r].v),
+                                2);
+
+        // compute score for each cluster
+        for (int r = 0; r < nclusters; r++)
+        {
+          float score = 1.f / std::pow(std::hypot(data[k][0] - centroids[r].x,
+                                                  data[k][1] - centroids[r].y,
+                                                  data[k][2] - centroids[r].v),
+                                       2);
+          score /= sum;
+          p_scoring->at(r)(i, j) = score;
+        }
+      }
+  }
+
+  return kmeans;
+}
+
+} // namespace hmap
