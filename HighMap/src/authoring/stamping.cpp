@@ -5,6 +5,7 @@
 
 #include "highmap/authoring.hpp"
 #include "highmap/geometry.hpp"
+#include "highmap/range.hpp"
 #include "highmap/op.hpp"
 
 #include "highmap/internal/vector_utils.hpp"

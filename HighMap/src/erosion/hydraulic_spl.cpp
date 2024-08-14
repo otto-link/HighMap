@@ -10,6 +10,7 @@
 #include "highmap/hydrology.hpp"
 #include "highmap/math.hpp"
 #include "highmap/primitives.hpp"
+#include "highmap/range.hpp"
 
 namespace hmap
 {

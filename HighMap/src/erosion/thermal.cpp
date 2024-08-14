@@ -9,6 +9,7 @@
 #include "highmap/filters.hpp"
 #include "highmap/math.hpp"
 #include "highmap/primitives.hpp"
+#include "highmap/range.hpp"
 
 #include "macrologger.h"
 

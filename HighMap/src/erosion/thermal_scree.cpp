@@ -13,6 +13,7 @@
 #include "highmap/gradient.hpp"
 #include "highmap/math.hpp"
 #include "highmap/primitives.hpp"
+#include "highmap/range.hpp"
 
 #include "highmap/internal/vector_utils.hpp"
 

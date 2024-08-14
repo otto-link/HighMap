@@ -6,7 +6,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/erosion.hpp"
-#include "highmap/op.hpp"
+#include "highmap/range.hpp"
 #include "highmap/primitives.hpp"
 
 #include "highmap/dbg.hpp"

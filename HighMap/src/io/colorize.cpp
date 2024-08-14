@@ -10,9 +10,10 @@
 
 #include "highmap/array.hpp"
 #include "highmap/colormaps.hpp"
-#include "highmap/io.hpp"
+#include "highmap/range.hpp"
 #include "highmap/math.hpp"
-#include "highmap/primitives.hpp"
+#include "highmap/io.hpp"
+#include "highmap/op.hpp"
 
 namespace hmap
 {
@@ -25,7 +26,7 @@ void apply_hillshade(std::vector<uint8_t> &img,
                      bool                  is_img_rgba)
 {
   // compute and scale hillshading
-  Array hs = constant(array.shape, 1.f);
+  Array hs = Array(array.shape, 1.f);
   hs = hillshade(array, 180.f, 45.f, 10.f * array.ptp() / (float)array.shape.y);
   remap(hs, vmin, vmax);
 

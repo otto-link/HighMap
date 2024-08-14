@@ -9,6 +9,7 @@
 #include "highmap/gradient.hpp"
 #include "highmap/hydrology.hpp"
 #include "highmap/primitives.hpp"
+#include "highmap/range.hpp"
 
 // neighbor pattern search based on D8 flow direction neighborhood
 // coding

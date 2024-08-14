@@ -7,6 +7,7 @@
 #include "highmap/erosion.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/math.hpp"
+#include "highmap/range.hpp"
 #include "highmap/op.hpp"
 
 #define SPAWN_LOW_LIMIT 0.1f

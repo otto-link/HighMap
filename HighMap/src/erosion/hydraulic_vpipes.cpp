@@ -9,6 +9,7 @@
 #include "highmap/gradient.hpp"
 #include "highmap/math.hpp"
 #include "highmap/primitives.hpp"
+#include "highmap/range.hpp"
 
 #include "highmap/dbg.hpp"
 #include "macrologger.h"

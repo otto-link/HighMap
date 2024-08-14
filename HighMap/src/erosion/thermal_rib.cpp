@@ -6,6 +6,7 @@
 #include "highmap/erosion.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/math.hpp"
+#include "highmap/range.hpp"
 #include "highmap/op.hpp"
 
 #include "macrologger.h"

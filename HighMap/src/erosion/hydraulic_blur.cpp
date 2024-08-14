@@ -5,7 +5,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/filters.hpp"
-#include "highmap/op.hpp"
+#include "highmap/range.hpp"
 
 namespace hmap
 {
