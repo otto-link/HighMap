@@ -20,8 +20,8 @@
 #include <random>
 #include <vector>
 
+#include "highmap/algebra.hpp"
 #include "highmap/array.hpp"
-#include "highmap/vector.hpp"
 
 namespace hmap
 {

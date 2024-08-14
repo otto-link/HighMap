@@ -15,9 +15,9 @@
 #pragma once
 #include <png.h>
 
+#include "highmap/algebra.hpp"
 #include "highmap/colormaps.hpp"
 #include "highmap/geometry.hpp"
-#include "highmap/vector.hpp"
 
 namespace hmap
 {

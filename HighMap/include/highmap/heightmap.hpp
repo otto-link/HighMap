@@ -15,9 +15,9 @@
 #pragma once
 #include <functional>
 
+#include "highmap/algebra.hpp"
 #include "highmap/array.hpp"
 #include "highmap/io.hpp"
-#include "highmap/vector.hpp"
 
 namespace hmap
 {

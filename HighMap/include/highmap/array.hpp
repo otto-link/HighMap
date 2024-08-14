@@ -18,7 +18,7 @@ typedef unsigned int uint;
 
 #include <random>
 
-#include "highmap/vector.hpp"
+#include "highmap/algebra.hpp"
 
 namespace hmap
 {

@@ -14,6 +14,7 @@
  */
 #pragma once
 
+#include "highmap/algebra.hpp"
 #include "highmap/array.hpp"
 #include "highmap/authoring.hpp"
 #include "highmap/boundary.hpp"
@@ -37,4 +38,3 @@
 #include "highmap/range.hpp"
 #include "highmap/roads.hpp"
 #include "highmap/selector.hpp"
-#include "highmap/vector.hpp"
