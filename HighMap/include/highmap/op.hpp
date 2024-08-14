@@ -154,21 +154,6 @@ Array blend_overlay(const Array &array1, const Array &array2);
 Array blend_soft(const Array &array1, const Array &array2);
 
 /**
- * @brief Apply a closing algorithm to the input array using a square
- * structure.
- * @param array Input array.
- * @param ir Square kernel radius.
- * @return Output array.
- *
- * **Example**
- * @include ex_morphology_base.cpp
- *
- * **Result**
- * @image html ex_morphology_base.png
- */
-Array closing(const Array &array, int ir);
-
-/**
  * @brief Return the convolution product of the array with a 1D kernel (row, 'i'
  * direction).
  *
@@ -289,57 +274,6 @@ Array convolve2d_svd_rotated_kernel(const Array &z,
 Array detrend_reg(const Array &array);
 
 /**
- * @brief Apply a dilation algorithm to the input array using a square
- * structure.
- * @param array Input array.
- * @param ir Square kernel radius.
- * @return Output array.
- *
- * **Example**
- * @include ex_morphology_base.cpp
- *
- * **Result**
- * @image html ex_morphology_base.png
- */
-Array dilation(const Array &array, int ir);
-
-/**
- * @brief Return the Euclidean distance transform.
- *
- * Exact transform based on Meijster et al. algorithm @cite Meijster2000.
- *
- * @param array Input array to be transformed, will be converted into binary: 1
- * wherever input is greater than 0, 0 elsewhere.
- * @param return_squared_distance Wheter the distance returned is squared or
- * not.
- * @return Array Reference to the output array.
- *
- * **Example**
- * @include ex_distance_transform.cpp
- *
- * **Result**
- * @image html ex_distance_transform0.png
- * @image html ex_distance_transform1.png
- */
-Array distance_transform(const Array &array,
-                         bool         return_squared_distance = false);
-
-/**
- * @brief Apply an erosion algorithm to the input array using a square
- * structure.
- * @param array Input array.
- * @param ir Square kernel radius.
- * @return Output array.
- *
- *  **Example**
- * @include ex_morphology_base.cpp
- *
- * **Result**
- * @image html ex_morphology_base.png
- */
-Array erosion(const Array &array, int ir);
-
-/**
  * @brief Flip the array vertically (left/right).
  *
  * @param array Input array.
@@ -364,27 +298,6 @@ void flip_lr(Array &array);
  * @image html flip_ud.png
  */
 void flip_ud(Array &array);
-
-/**
- * @brief Apply a flood fill algorithm to the input array.
- *
- * @param array Input array.
- * @param i Seed point index.
- * @param j Seed point index.
- * @param fill_value Filling value.
- * @param background_value Background value.
- *
- * **Example**
- * @include ex_flood_fill.cpp
- *
- * **Result**
- * @image html ex_flood_fill.png
- */
-void flood_fill(Array &array,
-                int    i,
-                int    j,
-                float  fill_value = 1.f,
-                float  background_value = 0.f);
 
 /**
  * @brief Return the shaded relief map (or hillshading).
@@ -483,51 +396,6 @@ std::vector<float> linspace_jitted(float start,
 Array mixer(const Array &t, const std::vector<Array *> arrays);
 
 /**
- * @brief Apply a morphological_black_hat algorithm to the input array using a
- * square structure.
- * @param array Input array.
- * @param ir Square kernel radius.
- * @return Output array.
- *
- * **Example**
- * @include ex_morphology_base.cpp
- *
- * **Result**
- * @image html ex_morphology_base.png
- */
-Array morphological_black_hat(const Array &array, int ir);
-
-/**
- * @brief Apply a morphological_gradient algorithm to the input array using a
- * square structure.
- * @param array Input array.
- * @param ir Square kernel radius.
- * @return Output array.
- *
- * **Example**
- * @include ex_morphology_base.cpp
- *
- * **Result**
- * @image html ex_morphology_base.png
- */
-Array morphological_gradient(const Array &array, int ir);
-
-/**
- * @brief Apply a morphological_top_hat algorithm to the input array using a
- * square structure.
- * @param array Input array.
- * @param ir Square kernel radius.
- * @return Output array.
- *
- * **Example**
- * @include ex_morphology_base.cpp
- *
- * **Result**
- * @image html ex_morphology_base.png
- */
-Array morphological_top_hat(const Array &array, int ir);
-
-/**
  * @brief Synthesize a new heightmap based on an input array using a
  * non-parametric sampling method (very slow).
  *
@@ -549,21 +417,6 @@ Array non_parametric_sampling(Array          &array,
                               hmap::Vec2<int> patch_shape,
                               uint            seed,
                               float           error_threshold = 0.1f);
-
-/**
- * @brief Apply an opening algorithm to the input array using a square
- * structure.
- * @param array Input array.
- * @param ir Square kernel radius.
- * @return Output array.
- *
- * **Example**
- * @include ex_morphology_base.cpp
- *
- * **Result**
- * @image html ex_morphology_base.png
- */
-Array opening(const Array &array, int ir);
 
 /**
  * @brief Synthesize a new heightmap by stitching together small patches of the
