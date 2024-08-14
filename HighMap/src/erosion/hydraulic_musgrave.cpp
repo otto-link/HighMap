@@ -4,7 +4,7 @@
 #include <cmath>
 
 #include "highmap/array.hpp"
-#include "highmap/op.hpp"
+#include "highmap/filters.hpp"
 #include "highmap/primitives.hpp"
 
 namespace hmap

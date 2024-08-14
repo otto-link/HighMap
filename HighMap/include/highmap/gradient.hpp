@@ -114,4 +114,12 @@ Array gradient_y(const Array &array);
 
 void gradient_y(const Array &array, Array &dy); ///< @overload
 
+/**
+ * @brief Return the Laplacian of the input array.
+ *
+ * @param array Input array.
+ * @return Array Laplacian array.
+ */
+Array laplacian(const Array &array);
+
 } // namespace hmap

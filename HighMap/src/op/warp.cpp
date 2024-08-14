@@ -6,6 +6,7 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/filters.hpp"
 #include "highmap/functions.hpp"
 #include "highmap/gradient.hpp"
 #include "highmap/kernels.hpp"

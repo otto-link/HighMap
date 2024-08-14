@@ -7,10 +7,10 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/filters.hpp"
 #include "highmap/hydrology.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/math.hpp"
-#include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 
 namespace hmap

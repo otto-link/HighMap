@@ -19,6 +19,7 @@
 #include "highmap/colormaps.hpp"
 #include "highmap/erosion.hpp"
 #include "highmap/features.hpp"
+#include "highmap/filters.hpp"
 #include "highmap/functions.hpp"
 #include "highmap/geometry.hpp"
 #include "highmap/gpu.hpp"

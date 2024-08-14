@@ -8,17 +8,31 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
-#include "highmap/erosion.hpp"
+// #include "highmap/erosion.hpp"
 #include "highmap/features.hpp"
 #include "highmap/gradient.hpp"
 #include "highmap/kernels.hpp"
-#include "highmap/math.hpp"
+// #include "highmap/math.hpp"
+#include "highmap/filters.hpp"
 #include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 
 #include "highmap/internal/vector_utils.hpp"
 
 #define NSIGMA 2
+
+#define DI                                                                     \
+  {                                                                            \
+    -1, 0, 0, 1, -1, -1, 1, 1                                                  \
+  }
+#define DJ                                                                     \
+  {                                                                            \
+    0, 1, -1, 0, -1, 1, -1, 1                                                  \
+  }
+#define CD                                                                     \
+  {                                                                            \
+    1.f, 1.f, 1.f, 1.f, M_SQRT2, M_SQRT2, M_SQRT2, M_SQRT2                     \
+  }
 
 namespace hmap
 {

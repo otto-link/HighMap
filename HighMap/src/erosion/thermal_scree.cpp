@@ -9,9 +9,9 @@
 
 #include "highmap/array.hpp"
 #include "highmap/erosion.hpp"
+#include "highmap/filters.hpp"
 #include "highmap/gradient.hpp"
 #include "highmap/math.hpp"
-#include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 
 #include "highmap/internal/vector_utils.hpp"
