@@ -92,13 +92,13 @@ void Array::set_shape(Vec2<int> new_shape)
   this->vector.resize(this->shape.x * this->shape.y);
 }
 
-Array Array::operator=(const float value)
+Array &Array::operator=(const float value)
 {
   std::fill(this->vector.begin(), this->vector.end(), value);
   return *this;
 }
 
-Array Array::operator*=(const float value)
+Array &Array::operator*=(const float value)
 {
   std::transform(this->vector.begin(),
                  this->vector.end(),
@@ -107,7 +107,7 @@ Array Array::operator*=(const float value)
   return *this;
 }
 
-Array Array::operator*=(const Array &array)
+Array &Array::operator*=(const Array &array)
 {
   std::transform(this->vector.begin(),
                  this->vector.end(),
@@ -117,7 +117,7 @@ Array Array::operator*=(const Array &array)
   return *this;
 }
 
-Array Array::operator/=(const float value)
+Array &Array::operator/=(const float value)
 {
   std::transform(this->vector.begin(),
                  this->vector.end(),
@@ -126,7 +126,7 @@ Array Array::operator/=(const float value)
   return *this;
 }
 
-Array Array::operator/=(const Array &array)
+Array &Array::operator/=(const Array &array)
 {
   std::transform(this->vector.begin(),
                  this->vector.end(),
@@ -136,7 +136,7 @@ Array Array::operator/=(const Array &array)
   return *this;
 }
 
-Array Array::operator+=(const float value)
+Array &Array::operator+=(const float value)
 {
   std::transform(this->vector.begin(),
                  this->vector.end(),
@@ -145,7 +145,7 @@ Array Array::operator+=(const float value)
   return *this;
 }
 
-Array Array::operator+=(const Array &array)
+Array &Array::operator+=(const Array &array)
 {
   std::transform(this->vector.begin(),
                  this->vector.end(),
@@ -155,7 +155,7 @@ Array Array::operator+=(const Array &array)
   return *this;
 }
 
-Array Array::operator-=(const float value)
+Array &Array::operator-=(const float value)
 {
   std::transform(this->vector.begin(),
                  this->vector.end(),
@@ -164,7 +164,7 @@ Array Array::operator-=(const float value)
   return *this;
 }
 
-Array Array::operator-=(const Array &array)
+Array &Array::operator-=(const Array &array)
 {
   std::transform(this->vector.begin(),
                  this->vector.end(),

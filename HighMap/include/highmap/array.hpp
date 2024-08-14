@@ -109,7 +109,7 @@ public:
    * @param value The scalar value to assign.
    * @return Array& Reference to the current Array object.
    */
-  Array operator=(const float value);
+  Array &operator=(const float value);
 
   /**
    * @brief Overloads the multiplication-assignment operator for scalar
@@ -118,9 +118,9 @@ public:
    * @param value The scalar value to multiply.
    * @return Array& Reference to the current Array object.
    */
-  Array operator*=(const float value);
+  Array &operator*=(const float value);
 
-  Array operator*=(const Array &array); ///< @overload
+  Array &operator*=(const Array &array); ///< @overload
 
   /**
    * @brief Overloads the division-assignment operator for scalar division.
@@ -128,9 +128,9 @@ public:
    * @param value The scalar value to divide by.
    * @return Array& Reference to the current Array object.
    */
-  Array operator/=(const float value);
+  Array &operator/=(const float value);
 
-  Array operator/=(const Array &array); ///< @overload
+  Array &operator/=(const Array &array); ///< @overload
 
   /**
    * @brief Overloads the addition-assignment operator for scalar addition.
@@ -138,9 +138,9 @@ public:
    * @param value The scalar value to add.
    * @return Array& Reference to the current Array object.
    */
-  Array operator+=(const float value);
+  Array &operator+=(const float value);
 
-  Array operator+=(const Array &array); ///< @overload
+  Array &operator+=(const Array &array); ///< @overload
 
   /**
    * @brief Overloads the subtraction-assignment operator for scalar
@@ -149,9 +149,9 @@ public:
    * @param value The scalar value to subtract.
    * @return Array& Reference to the current Array object.
    */
-  Array operator-=(const float value);
+  Array &operator-=(const float value);
 
-  Array operator-=(const Array &array); ///< @overload
+  Array &operator-=(const Array &array); ///< @overload
 
   /**
    * @brief Overloads the multiplication operator for scalar multiplication.

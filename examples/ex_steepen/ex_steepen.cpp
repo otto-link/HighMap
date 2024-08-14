@@ -10,7 +10,7 @@ int main(void)
   auto        z1 = z;
   auto        z2 = z;
 
-  float scale = 4.f; // not in pixels
+  float scale = 0.05f; // not in pixels
   hmap::steepen(z1, scale);
 
   // using a negative scale will "flatten" the map
