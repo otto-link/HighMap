@@ -8,6 +8,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/filters.hpp"
+#include "highmap/geometry.hpp"
 #include "highmap/interpolate.hpp"
 #include "highmap/primitives.hpp"
 

@@ -7,9 +7,9 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/boundary.hpp"
 #include "highmap/gradient.hpp"
 #include "highmap/math.hpp"
-#include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 
 namespace hmap

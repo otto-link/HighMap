@@ -3,6 +3,7 @@
  * this software. */
 
 #include "highmap/array.hpp"
+#include "highmap/boundary.hpp"
 #include "highmap/erosion.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/primitives.hpp"

@@ -8,6 +8,7 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/boundary.hpp"
 #include "highmap/erosion.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/gradient.hpp"

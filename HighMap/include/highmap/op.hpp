@@ -13,11 +13,12 @@
  *
  */
 #pragma once
-#include "highmap/geometry.hpp"
 #include "highmap/math.hpp"
 
 namespace hmap
 {
+
+class Cloud; // from highmap/geometry.hpp
 
 /**
  * @brief Point-wise alteration: locally enforce a new elevation value while
@@ -339,49 +340,6 @@ Array distance_transform(const Array &array,
 Array erosion(const Array &array, int ir);
 
 /**
- * @brief Linear extrapolation of values at the borders (i = 0, j = 0, ...)
- * based on inner values.
- *
- * @param array Input array.
- * @param nbuffer Buffer depth.
- * @param sigma Relaxation coefficient.
- *
- * @see {@link fill_borders}
- *
- */
-void extrapolate_borders(Array &array, int nbuffer = 1, float sigma = 0.f);
-
-/**
- * @brief
- * @param array
- * @param strength
- * @param dist_fct
- * @param p_noise
- * @param bbox
- *
- * **Example**
- * @include ex_falloff.cpp
- *
- * **Result**
- * @image html ex_falloff.png
- */
-void falloff(Array           &array,
-             float            strength = 1.f,
-             DistanceFunction dist_fct = DistanceFunction::EUCLIDIAN,
-             Array           *p_noise = nullptr,
-             Vec4<float>      bbox = {0.f, 1.f, 0.f, 1.f});
-
-/**
- * @brief Fill values at the borders (i = 0, j = 0, ...) based on 1st neighbor
- * values.
- *
- * @param array Input array.
- *
- * @see {@link extrapolate_borders}
- */
-void fill_borders(Array &array);
-
-/**
  * @brief Flip the array vertically (left/right).
  *
  * @param array Input array.
@@ -427,19 +385,6 @@ void flood_fill(Array &array,
                 int    j,
                 float  fill_value = 1.f,
                 float  background_value = 0.f);
-
-/**
- * @brief Return an array with buffers at the boundaries (values filled by
- * symmetry).
- *
- * @param array Input array.
- * @param buffers Buffer size {east, west, south, north}.
- * @param zero_padding Use zero-padding instead of symmetry to fill values.
- * @return Array New array with buffers.
- */
-Array generate_buffered_array(const Array &array,
-                              Vec4<int>    buffers,
-                              bool         zero_padding = false);
 
 /**
  * @brief Return the shaded relief map (or hillshading).
@@ -519,56 +464,6 @@ std::vector<float> linspace_jitted(float start,
                                    float ratio,
                                    int   seed,
                                    bool  endpoint = true);
-
-/**
- * @brief Make the array periodic in both directions.
- *
- * @param array Input array.
- * @param nbuffer Transition width at the boundaries.
- *
- * **Example**
- * @include ex_make_periodic.cpp
- *
- * **Result**
- * @image html ex_make_periodic0.png
- * @image html ex_make_periodic1.png
- */
-void make_periodic(Array &array, int nbuffer);
-
-/**
- * @brief Make the array periodic in both directions using a stitching operation
- * minimizing errors.
- *
- * @param array Input array.
- * @param Overlap overlap based on domain half size (if overlap = 1, the
- * transition, made on both sides, then spans the whole domain).
- * @return Array Periodic array.
- *
- * **Example**
- * @include ex_make_periodic_stitching.cpp
- *
- * **Result**
- * @image html ex_make_periodic_stitching0.png
- * @image html ex_make_periodic_stitching1.png
- */
-Array make_periodic_stitching(Array &array, float overlap);
-
-/**
- * @brief
- *
- * @param array Input array.
- * @param Overlap overlap based on domain half size (if overlap = 1, the
- * transition, made on both sides, then spans the whole domain).
- * @param tiling Array tiling.
- * @return Tiled array.
- *
- * **Example**
- * @include make_periodic_tiling.cpp
- *
- * **Result**
- * @image html make_periodic_tiling.png
- */
-Array make_periodic_tiling(Array &array, float overlap, Vec2<int> tiling);
 
 /**
  * @brief Return the mixing of a set of arrays based on a parameter `t`.
@@ -879,27 +774,6 @@ void rot90(Array &array);
 void rotate(Array &array, float angle, bool zero_padding = false);
 
 /**
- * @brief Enforce values at the boundaries of the array.
- *
- * @param array Input array.
- * @param values Value at the borders {east, west, south, north}.
- * @param buffer_sizes Buffer size at the borders {east, west, south, north}.
- *
- * **Example**
- * @include ex_set_borders.cpp
- *
- * **Result**
- * @image html ex_set_borders.png
- */
-void set_borders(Array      &array,
-                 Vec4<float> border_values,
-                 Vec4<int>   buffer_sizes);
-
-void set_borders(Array &array,
-                 float  border_values,
-                 int    buffer_sizes); ///< @overload
-
-/**
  * @brief Return the shadow intensity using a grid-based technic.
  *
  * @param z Input array.
@@ -923,15 +797,6 @@ Array shadow_heightmap(const Array &z,
                        float        azimuth = 180.f,
                        float        zenith = 45.f,
                        float        distance = 0.2f);
-
-/**
- * @brief Use symmetry for to fill values at the domain borders, over a given
- * buffer depth.
- *
- * @param array Input array.
- * @param buffer_sizes Buffer size at the borders {east, west, south, north}.
- */
-void sym_borders(Array &array, Vec4<int> buffer_sizes);
 
 /**
  * @brief Translates a 2D array by a specified amount along the x and y axes.
@@ -1077,35 +942,6 @@ void warp_downslope(Array &array,
                     float  amount = 0.02f,
                     int    ir = 4,
                     bool   reverse = false); ///< @overload
-
-/**
- * @brief Fill values at the borders (i = 0, j = 0, ...) with zeros.
- *
- * @param array Input array.
- *
- * @see {@link fill_borders}
- */
-void zeroed_borders(Array &array);
-
-/**
- * @brief Apply a smooth transition to zero at the array borders.
- *
- * @param array Input array.
- * @param sigma Transition half-width ratio.
- * @param p_noise Reference to the input noise arrays.
- * @param bbox Domain bounding box.
- *
- * **Example**
- * @include ex_zeroed_edges.cpp
- *
- * **Result**
- * @image html ex_zeroed_edges.png
- */
-void zeroed_edges(Array           &array,
-                  float            sigma = 1.f,
-                  DistanceFunction dist_fct = DistanceFunction::EUCLIDIAN,
-                  Array           *p_noise = nullptr,
-                  Vec4<float>      bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Applies a zoom effect to a 2D array with an adjustable center.

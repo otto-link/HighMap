@@ -6,8 +6,8 @@
 
 #include "highmap/array.hpp"
 #include "highmap/erosion.hpp"
-#include "highmap/range.hpp"
 #include "highmap/primitives.hpp"
+#include "highmap/range.hpp"
 
 #include "highmap/dbg.hpp"
 #include "macrologger.h"

@@ -5,6 +5,7 @@
 #include <list>
 
 #include "highmap/array.hpp"
+#include "highmap/boundary.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/gradient.hpp"
 #include "highmap/hydrology.hpp"

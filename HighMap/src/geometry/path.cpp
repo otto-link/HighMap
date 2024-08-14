@@ -16,8 +16,8 @@
 #include "highmap/geometry.hpp"
 #include "highmap/io.hpp"
 #include "highmap/math.hpp"
-#include "highmap/range.hpp"
 #include "highmap/primitives.hpp"
+#include "highmap/range.hpp"
 
 namespace hmap
 {

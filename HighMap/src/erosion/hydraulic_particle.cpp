@@ -5,11 +5,12 @@
 #include <random>
 
 #include "highmap/array.hpp"
+#include "highmap/boundary.hpp"
 #include "highmap/erosion.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/math.hpp"
-#include "highmap/range.hpp"
 #include "highmap/primitives.hpp"
+#include "highmap/range.hpp"
 
 #include "highmap/dbg.hpp"
 #include "macrologger.h"

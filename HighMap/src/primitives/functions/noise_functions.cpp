@@ -7,7 +7,9 @@
 #include "libInterpolate/AnyInterpolator.hpp"
 #include "libInterpolate/Interpolate.hpp"
 
+#include "highmap/boundary.hpp"
 #include "highmap/functions.hpp"
+#include "highmap/geometry.hpp"
 #include "highmap/math.hpp"
 #include "highmap/primitives.hpp"
 #include "highmap/range.hpp"

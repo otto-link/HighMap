@@ -5,6 +5,7 @@
 #include <algorithm>
 
 #include "highmap/array.hpp"
+#include "highmap/boundary.hpp"
 #include "highmap/erosion.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/math.hpp"

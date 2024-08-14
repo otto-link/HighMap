@@ -8,12 +8,13 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/boundary.hpp"
 #include "highmap/features.hpp"
+#include "highmap/filters.hpp"
 #include "highmap/gradient.hpp"
 #include "highmap/kernels.hpp"
-#include "highmap/filters.hpp"
-#include "highmap/range.hpp"
 #include "highmap/primitives.hpp"
+#include "highmap/range.hpp"
 
 #include "highmap/internal/vector_utils.hpp"
 

@@ -9,8 +9,8 @@
 #include "highmap/array.hpp"
 #include "highmap/erosion.hpp"
 #include "highmap/math.hpp"
-#include "highmap/range.hpp"
 #include "highmap/pyramid.hpp"
+#include "highmap/range.hpp"
 
 #include "highmap/dbg.hpp"
 

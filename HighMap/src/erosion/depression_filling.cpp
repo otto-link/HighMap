@@ -4,8 +4,8 @@
 #include <cmath>
 
 #include "highmap/array.hpp"
+#include "highmap/boundary.hpp"
 #include "highmap/math.hpp"
-#include "highmap/op.hpp"
 
 // neighbor pattern search
 // 6 2 8

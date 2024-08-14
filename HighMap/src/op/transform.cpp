@@ -4,6 +4,7 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/boundary.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/geometry.hpp"
 #include "highmap/kernels.hpp"

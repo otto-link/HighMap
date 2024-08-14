@@ -4,6 +4,7 @@
 #include <cmath>
 
 #include "highmap/array.hpp"
+#include "highmap/boundary.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/primitives.hpp"
 

@@ -10,10 +10,10 @@
 
 #include "highmap/array.hpp"
 #include "highmap/colormaps.hpp"
-#include "highmap/range.hpp"
-#include "highmap/math.hpp"
 #include "highmap/io.hpp"
+#include "highmap/math.hpp"
 #include "highmap/op.hpp"
+#include "highmap/range.hpp"
 
 namespace hmap
 {

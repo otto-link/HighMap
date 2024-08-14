@@ -10,8 +10,8 @@
 #include "highmap/array.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/gradient.hpp"
-#include "highmap/range.hpp"
 #include "highmap/primitives.hpp"
+#include "highmap/range.hpp"
 #include "highmap/selector.hpp"
 
 namespace hmap

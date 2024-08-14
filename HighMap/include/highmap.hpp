@@ -16,6 +16,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/authoring.hpp"
+#include "highmap/boundary.hpp"
 #include "highmap/colormaps.hpp"
 #include "highmap/erosion.hpp"
 #include "highmap/features.hpp"

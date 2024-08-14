@@ -5,9 +5,9 @@
 #include <cmath>
 
 #include "highmap/array.hpp"
+#include "highmap/boundary.hpp"
 #include "highmap/gradient.hpp"
 #include "highmap/math.hpp"
-#include "highmap/op.hpp"
 
 namespace hmap
 {
