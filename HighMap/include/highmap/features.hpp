@@ -11,8 +11,34 @@
  * @date 2023-04-30
  * @copyright Copyright (c) 2023 Otto Link
  */
-
 #pragma once
+
+/**
+ * @brief Packs eight 2-bit values into a 16-bit integer.
+ *
+ * This macro takes eight 2-bit values (`a` through `h`) and packs them into
+ * a single 16-bit integer. The bits are shifted into position according to
+ * their specified offsets to form the final packed value.
+ *
+ * @param a The first 2-bit value (will be shifted left by 15 bits).
+ * @param b The second 2-bit value (will be shifted left by 13 bits).
+ * @param c The third 2-bit value (will be shifted left by 11 bits).
+ * @param d The fourth 2-bit value (will be shifted left by 9 bits).
+ * @param e The fifth 2-bit value (will be shifted left by 7 bits).
+ * @param f The sixth 2-bit value (will be shifted left by 5 bits).
+ * @param g The seventh 2-bit value (will be shifted left by 3 bits).
+ * @param h The eighth 2-bit value (will be shifted left by 1 bit).
+ *
+ * @return A 16-bit integer where the input values have been packed together
+ *         according to their respective shifts.
+ *
+ * @note Each parameter (`a` through `h`) should only occupy 2 bits (values
+ *       between 0 and 3). If the values exceed this range, the result may be
+ *       incorrect.
+ */
+#define HMAP_PACK8(a, b, c, d, e, f, g, h)                                     \
+  ((a << 15) + (b << 13) + (c << 11) + (d << 9) + (e << 7) + (f << 5) +        \
+   (g << 3) + (h << 1))
 
 namespace hmap
 {
