@@ -13,7 +13,7 @@
  *
  */
 #pragma once
-#include <cstdint>
+#include <png.h>
 
 #include "highmap/colormaps.hpp"
 #include "highmap/geometry.hpp"

@@ -16,17 +16,7 @@
 #pragma once
 typedef unsigned int uint;
 
-#include <algorithm>
-#include <cmath>
-#include <functional>
-#include <iomanip>
-#include <iostream>
-#include <numeric>
 #include <random>
-#include <string>
-#include <vector>
-
-#include <png.h>
 
 #include "highmap/vector.hpp"
 
