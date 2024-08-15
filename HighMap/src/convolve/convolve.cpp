@@ -8,7 +8,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/boundary.hpp"
-#include "highmap/op.hpp"
+#include "highmap/convolve.hpp"
 
 namespace hmap
 {

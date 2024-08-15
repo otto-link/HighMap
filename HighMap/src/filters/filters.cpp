@@ -9,6 +9,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/boundary.hpp"
+#include "highmap/convolve.hpp"
 #include "highmap/features.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/gradient.hpp"

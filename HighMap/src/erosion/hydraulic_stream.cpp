@@ -7,6 +7,7 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/convolve.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/hydrology.hpp"
 #include "highmap/kernels.hpp"

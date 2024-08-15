@@ -7,8 +7,8 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/convolve.hpp"
 #include "highmap/kernels.hpp"
-#include "highmap/op.hpp"
 #include "highmap/primitives.hpp"
 
 #define SVD_RANK 2

@@ -20,6 +20,7 @@
 #include "highmap/blending.hpp"
 #include "highmap/boundary.hpp"
 #include "highmap/colormaps.hpp"
+#include "highmap/convolve.hpp"
 #include "highmap/erosion.hpp"
 #include "highmap/features.hpp"
 #include "highmap/filters.hpp"
