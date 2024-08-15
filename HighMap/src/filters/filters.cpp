@@ -16,6 +16,7 @@
 #include "highmap/kernels.hpp"
 #include "highmap/primitives.hpp"
 #include "highmap/range.hpp"
+#include "highmap/transform.hpp"
 
 #include "highmap/internal/vector_utils.hpp"
 

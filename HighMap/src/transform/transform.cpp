@@ -10,6 +10,7 @@
 #include "highmap/kernels.hpp"
 #include "highmap/math.hpp"
 #include "highmap/primitives.hpp"
+#include "highmap/transform.hpp"
 
 namespace hmap
 {

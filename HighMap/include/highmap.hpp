@@ -40,3 +40,4 @@
 #include "highmap/range.hpp"
 #include "highmap/roads.hpp"
 #include "highmap/selector.hpp"
+#include "highmap/transform.hpp"
