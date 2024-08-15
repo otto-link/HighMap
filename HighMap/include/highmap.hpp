@@ -41,4 +41,5 @@
 #include "highmap/roads.hpp"
 #include "highmap/selector.hpp"
 #include "highmap/shadows.hpp"
+#include "highmap/synthesis.hpp"
 #include "highmap/transform.hpp"
