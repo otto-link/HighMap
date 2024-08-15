@@ -509,6 +509,58 @@ void median_3x3(Array &array, Array *p_mask)
   }
 }
 
+void normal_displacement(Array &array, float amount, int ir, bool reverse)
+{
+  Array array_f = array;
+  Array array_new = Array(array.shape);
+
+  if (ir > 0)
+    smooth_cpulse(array_f, ir);
+
+  // add a shape factor to avoid artifacts close to the boundaries
+  Array factor = smooth_cosine(array.shape);
+
+  if (reverse)
+    amount = -amount;
+
+  for (int i = 1; i < array.shape.x - 1; i++)
+    for (int j = 1; j < array.shape.y - 1; j++)
+    {
+      Vec3<float> n = array_f.get_normal_at(i, j);
+
+      float x = (float)i - amount * array.shape.x * n.x * factor(i, j);
+      float y = (float)j - amount * array.shape.y * n.y * factor(i, j);
+
+      // bilinear interpolation parameters
+      int ip = std::clamp((int)x, 0, array.shape.x - 1);
+      int jp = std::clamp((int)y, 0, array.shape.y - 1);
+
+      float u = std::clamp(x - (float)ip, 0.f, 1.f);
+      float v = std::clamp(y - (float)jp, 0.f, 1.f);
+
+      array_new(i, j) = array.get_value_bilinear_at(ip, jp, u, v);
+    }
+  fill_borders(array_new);
+
+  array = array_new;
+}
+
+void normal_displacement(Array &array,
+                         Array *p_mask,
+                         float  amount,
+                         int    ir,
+                         bool   reverse)
+{
+  if (!p_mask)
+    normal_displacement(array, amount, ir, reverse);
+  else
+  {
+    Array array_f = array;
+    normal_displacement(array_f, amount, ir, reverse);
+    array = lerp(array, array_f, *(p_mask));
+  }
+}
+
 void plateau(Array &array, int ir, float factor)
 {
   Array amin = minimum_local(array, ir);

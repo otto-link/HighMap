@@ -18,6 +18,8 @@
 namespace hmap
 {
 
+class Cloud; // from highmap/geometry.hpp
+
 /**
  * @brief Blending method for the stamping operator.
  */
@@ -31,6 +33,33 @@ enum StampingBlendMethod : int
   MULTIPLY,       ///< multiply
   SUBSTRACT,      ///< substract
 };
+
+/**
+ * @brief Point-wise alteration: locally enforce a new elevation value while
+    maintaining the 'shape' of the heightmap.
+ *
+ * @param array Input array.
+ * @param cloud Cloud object, defining alteration coordinates and elevation
+ variations.
+ * @param ir Alteration kernel minimal radius.
+ * @param footprint_ratio Defined how the radius is scales with variation
+ intensity (the greater the larger the alterations footprint)
+ * @param shift Noise shift {xs, ys} for each directions, with respect to a
+ * unit domain.
+ * @param scale Domain scaling, in [0, 1].
+ *
+ * **Example**
+ * @include ex_alter_elevation.cpp
+ *
+ * **Result**
+ * @image html ex_alter_elevation.png
+ */
+void alter_elevation(Array      &array,
+                     Cloud      &cloud,
+                     int         ir,
+                     float       footprint_ratio = 1.f,
+                     Vec2<float> shift = {0.f, 0.f},
+                     Vec2<float> scale = {1.f, 1.f});
 
 /**
  * @brief Return an heightmap defined by a set of elevation values defined on a
