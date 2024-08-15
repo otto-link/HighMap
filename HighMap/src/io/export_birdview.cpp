@@ -6,8 +6,8 @@
 #include "highmap/array.hpp"
 #include "highmap/io.hpp"
 #include "highmap/math.hpp"
-#include "highmap/shadows.hpp"
 #include "highmap/range.hpp"
+#include "highmap/shadows.hpp"
 
 namespace hmap
 {

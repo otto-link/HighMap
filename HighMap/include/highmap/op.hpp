@@ -293,27 +293,6 @@ Array quilting_shuffle(Array          &array,
  */
 std::vector<float> random_vector(float min, float max, int num, int seed);
 
-/**
- * @brief Apply the reverse midpoint displacement algorithm to the input array
- * (see @cite Belhadj2005).
- *
- * @param array Input array.
- * @param seed Random seed number.
- * @param noise_scale Noise scale amplitude.
- * @param threshold Theshold 'background' value.
- * @return Array Output array.
- *
- * **Example**
- * @include ex_reverse_midpoint.cpp
- *
- * **Result**
- * @image html ex_reverse_midpoint.png
- */
-Array reverse_midpoint(Array &array,
-                       uint   seed,
-                       float  noise_scale = 1.f,
-                       float  threshold = 0.f);
-
 // --- helpers
 
 /**
