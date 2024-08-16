@@ -67,11 +67,29 @@ Provided data structures are:
 
   - \ref hmap.Graph.
 
-## Usage examples
+### "Array" - Elementary Data Structure for Building Heightmaps
 
-Simple usage example are provided for most of the functions in the
-repertory `examples` located at the root of the repository
-[HighMap](https://github.com/otto-link/HighMap).
+The `Array` object is the fundamental class upon which the heightmap
+construction algorithms rely. A heightmap is a two-dimensional
+representation where each cell's value corresponds to a height or
+elevation at that point. An `Array` is simply a 2D array with
+dimensions defined by `shape` (length/width).
+
+Indexing is typically based on a pair of indices `(i, j)`. The cell at
+`(i=0, j=0)` is assumed to be at the bottom-left corner of the
+heightmap. This assumption is usually inconsequential, except when the
+heightmap needs to be aligned with specific spatial positions `(x,
+y)`. The conversion between indices `(i, j)` and spatial positions `(x, y)`
+depends on the heightmap's "bounding box," which is the spatial domain
+covered by the heightmap. By default, this bounding box is assumed to
+be a unit domain, meaning it spans a square of size 1 in both x and y
+directions.
+
+The values within the heightmap cells are generally within the range
+`[0, 1]`. While this range is not strictly enforced, some algorithms
+assume that the data adheres to this scale. It is always possible to
+use the \ref hmap::remap function to adjust the scale of the heightmap
+values to fit within the desired range.
 
 ### Generate classical coherent noises (Perlin, Simplex, fractal layering, etc...)
 
