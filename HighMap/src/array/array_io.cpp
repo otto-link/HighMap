@@ -4,6 +4,7 @@
 #include <fstream>
 
 #include "macrologger.h"
+#include "npy.hpp"
 
 #include "highmap/array.hpp"
 #include "highmap/io.hpp"
@@ -20,6 +21,35 @@ void Array::from_file(std::string fname)
   for (auto &v : this->vector)
     f.read(reinterpret_cast<char *>(&v), sizeof(float));
   f.close();
+}
+
+void Array::from_numpy(std::string fname)
+{
+  npy::npy_data d = npy::read_npy<float>(fname);
+
+  // update array shape
+  Vec2<int> new_shape = {(int)d.shape[0], (int)d.shape[1]};
+  this->set_shape(new_shape);
+
+  // copy the data
+  if (d.fortran_order)
+  {
+    for (int i = 0; i < this->shape.x; i++)
+      for (int j = 0; j < this->shape.y; j++)
+      {
+        int k = j * this->shape.x + i;
+        (*this)(i, j) = d.data[k];
+      }
+  }
+  else
+  {
+    for (int i = 0; i < this->shape.x; i++)
+      for (int j = 0; j < this->shape.y; j++)
+      {
+        int k = i * this->shape.y + j;
+        (*this)(i, j) = d.data[k];
+      }
+  }
 }
 
 void Array::infos(std::string msg) const
@@ -56,6 +86,16 @@ void Array::to_file(std::string fname)
     f.write(reinterpret_cast<const char *>(&v), sizeof(float));
 
   f.close();
+}
+
+void Array::to_numpy(std::string fname)
+{
+  npy::npy_data_ptr<float> d;
+  d.data_ptr = this->vector.data();
+  d.shape = {(uint)this->shape.x, (uint)this->shape.y};
+  d.fortran_order = false;
+
+  npy::write_npy(fname, d);
 }
 
 void Array::to_png(std::string fname, int cmap, bool hillshading)

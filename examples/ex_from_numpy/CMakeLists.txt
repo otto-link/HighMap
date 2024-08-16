@@ -1,0 +1,2 @@
+add_executable(ex_from_numpy ex_from_numpy.cpp)
+target_link_libraries(ex_from_numpy highmap)

@@ -20,3 +20,6 @@
 [submodule "external/Noise"]
 	path = external/Noise
 	url = git@github.com:otto-link/Noise.git
+[submodule "external/libnpy"]
+	path = external/libnpy
+	url = git@github.com:llohse/libnpy.git

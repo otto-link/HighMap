@@ -674,6 +674,16 @@ public:
   void from_file(std::string fname);
 
   /**
+   * @brief Import array data from a numpy binary file.
+   *
+   * @param fname The name of the file to import data from.
+   *
+   * **Example**
+   * @include ex_from_numpy.cpp
+   */
+  void from_numpy(std::string fname);
+
+  /**
    * @brief Display various information about the array.
    *
    *        This function outputs details about the array, such as its
@@ -864,6 +874,16 @@ public:
    * @param fname The name of the file to which the array data will be written.
    */
   void to_file(std::string fname);
+
+  /**
+   * @brief Export the array to a numpy binary file.
+   *
+   * @param fname The name of the file to which the array data will be written.
+   *
+   * **Example**
+   * @include ex_to_numpy.cpp
+   */
+  void to_numpy(std::string fname);
 
   /**
    * @brief Export the array as a PNG image file with a specified colormap and

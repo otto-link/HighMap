@@ -3,6 +3,7 @@ include(dkm.cmake)
 include(FastNoiseLite.cmake)
 include(hmm.cmake)
 include(libInterpolate.cmake)
+include(libnpy.cmake)
 include(macro-logger.cmake)
 include(xsimd.cmake)
 

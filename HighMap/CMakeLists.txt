@@ -31,6 +31,7 @@ target_link_libraries(
   FastNoiseLite::FastNoiseLite
   hmm::hmm
   libInterpolate::libInterpolate
+  libnpy::libnpy
   macro-logger::macro-logger
   NoiseLib
   OpenMP::OpenMP_CXX
