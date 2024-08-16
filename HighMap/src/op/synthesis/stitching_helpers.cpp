@@ -5,6 +5,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/filters.hpp"
+#include "highmap/transform.hpp"
 
 namespace hmap
 {
@@ -109,6 +110,51 @@ Array generate_mask(hmap::Vec2<int> shape, std::vector<int> cut_path_i, int ir)
   }
 
   return mask;
+}
+
+Array get_random_patch(Array          &array,
+                       hmap::Vec2<int> patch_shape,
+                       std::mt19937   &gen,
+                       bool            patch_flip,
+                       bool            patch_rotate,
+                       bool            patch_transpose)
+{
+  std::uniform_int_distribution<int> dis_i(0,
+                                           array.shape.x - 2 - patch_shape.x);
+  std::uniform_int_distribution<int> dis_j(0,
+                                           array.shape.y - 2 - patch_shape.y);
+
+  // random pair of indices
+  int i = dis_i(gen);
+  int j = dis_j(gen);
+
+  Array patch = array.extract_slice(
+      Vec4<int>(i, i + patch_shape.x, j, j + patch_shape.y));
+
+  // flipping, etc...
+  int imid = (int)(0.5f * (array.shape.x - 1 - patch_shape.x));
+
+  if (patch_flip)
+  {
+    if (dis_i(gen) > imid)
+      flip_ud(patch);
+    if (dis_i(gen) > imid)
+      flip_lr(patch);
+  }
+
+  // square patches only...
+  if (patch_shape.x == patch_shape.y)
+  {
+    if (patch_rotate)
+      if (dis_i(gen) > imid)
+        rot90(patch);
+
+    if (patch_transpose)
+      if (dis_i(gen) > imid)
+        patch = transpose(patch);
+  }
+
+  return patch;
 }
 
 } // namespace hmap

@@ -956,31 +956,4 @@ public:
   friend Array vstack(const Array &array1, const Array &array2);
 };
 
-/**
- * @brief Extract a random patch from the given input array.
- *
- *        This function samples a random sub-array (patch) from the provided
- * input array. The patch is extracted according to the specified shape and can
- * be optionally flipped, rotated, or transposed. The randomness is controlled
- * by a pseudo-random number generator.
- *
- * @param array The input array from which the patch is extracted.
- * @param patch_shape The dimensions of the patch to be extracted.
- * @param gen A pseudo-random number generator used to ensure randomness.
- * @param patch_flip If true, the patch may be flipped horizontally or
- * vertically with a 50% probability for each flip direction.
- * @param patch_rotate If true, the patch may be rotated by 90 degrees with a
- * 50% probability.
- * @param patch_transpose If true, the patch may be transposed (swapped rows and
- * columns) with a 50% probability.
- * @return Array The randomly sampled patch from the input array, potentially
- * modified by flipping, rotating, or transposing.
- */
-Array get_random_patch(Array          &array,
-                       hmap::Vec2<int> patch_shape,
-                       std::mt19937   &gen,
-                       bool            patch_flip = false,
-                       bool            patch_rotate = false,
-                       bool            patch_transpose = false);
-
 } // namespace hmap
