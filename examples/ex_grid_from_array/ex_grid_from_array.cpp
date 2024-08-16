@@ -1,6 +1,4 @@
-#include "highmap/array.hpp"
-#include "highmap/io.hpp"
-#include "highmap/primitives.hpp"
+#include "highmap.hpp"
 
 int main(void)
 {

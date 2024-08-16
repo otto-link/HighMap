@@ -13,7 +13,8 @@
  *
  */
 #pragma once
-#include "highmap/geometry.hpp"
+
+#include "highmap/array.hpp"
 
 namespace hmap
 {

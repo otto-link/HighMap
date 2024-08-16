@@ -20,7 +20,6 @@
 #include "libInterpolate/Interpolate.hpp"
 #include "macrologger.h"
 
-#include "highmap/algebra.hpp"
 #include "highmap/array.hpp"
 
 /**

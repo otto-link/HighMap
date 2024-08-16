@@ -13,6 +13,8 @@
  */
 #pragma once
 
+#include "highmap/array.hpp"
+
 /**
  * @brief Packs eight 2-bit values into a 16-bit integer.
  *

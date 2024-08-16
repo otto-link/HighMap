@@ -19,6 +19,8 @@
  */
 #pragma once
 
+#include "highmap/array.hpp"
+
 namespace hmap
 {
 

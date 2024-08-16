@@ -16,6 +16,7 @@
  * @copyright Copyright (c) 2023 Otto Link
  */
 #pragma once
+#include "highmap/array.hpp"
 #include "highmap/math.hpp"
 
 namespace hmap

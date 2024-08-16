@@ -13,9 +13,9 @@
  *
  */
 #pragma once
-#include "highmap/algebra.hpp"
-#include "highmap/array.hpp"
 #include <cmath>
+
+#include "highmap/array.hpp"
 
 // neighbor pattern search based on Moore pattern and define diagonal
 // weight coefficients ('c' corresponds to a weight coefficient

@@ -16,7 +16,7 @@
 
 #include "FastNoiseLite.h"
 
-#include "highmap/algebra.hpp"
+#include "highmap/array.hpp"
 #include "highmap/functions.hpp"
 
 #define HMAP_GRADIENT_OFFSET 0.001f

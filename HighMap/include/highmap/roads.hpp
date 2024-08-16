@@ -14,7 +14,6 @@
  */
 #pragma once
 
-#include "highmap/algebra.hpp"
 #include "highmap/array.hpp"
 #include "highmap/geometry.hpp"
 
