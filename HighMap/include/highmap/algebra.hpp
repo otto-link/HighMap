@@ -3,9 +3,16 @@
  * this software. */
 
 /**
- * @file vector.hpp
+ * @file algebra.hpp
  * @author Otto Link (otto.link.bv@gmail.com)
- * @brief
+ * @brief Header file defining basic vector and matrix manipulation classes.
+ *
+ * This header file provides basic implementations for 2D, 3D, and 4D vector
+ * classes (`Vec2`, `Vec3`, `Vec4`) and a simple matrix class (`Mat`). These
+ * classes offer fundamental operations such as addition, subtraction,
+ * multiplication, division, dot products, and basic matrix manipulation
+ * capabilities.
+ *
  * @version 0.1
  * @date 2023-08-01
  *
@@ -19,39 +26,88 @@ namespace hmap
 {
 
 /**
- * @brief Vec2 class, for very basic manipulation of 2D vectors.
+ * @brief Vec2 class for basic manipulation of 2D vectors.
  *
- * @tparam T Data type.
+ * This class provides basic operations for 2D vectors, such as addition,
+ * subtraction, multiplication, division, and dot product calculation.
+ * The class supports various data types through templating.
+ *
+ * @tparam T Data type for the vector components (e.g., int, float, double).
  */
 template <typename T> struct Vec2
 {
-  T x, y;
+  T x, y; /**< @brief The x and y components of the vector. */
 
+  /**
+   * @brief Default constructor initializing the vector to (0, 0).
+   *
+   * Initializes both x and y components to zero.
+   */
   Vec2() : x(0), y(0)
   {
   }
 
+  /**
+   * @brief Parameterized constructor initializing the vector to given values.
+   *
+   * @param x The x component of the vector.
+   * @param y The y component of the vector.
+   */
   Vec2(T x, T y) : x(x), y(y)
   {
   }
 
+  /**
+   * @brief Equality operator.
+   *
+   * Compares two vectors for equality.
+   *
+   * @param other_vec The vector to compare with.
+   * @return true if the vectors are equal, false otherwise.
+   */
   bool operator==(const Vec2 &other_vec) const
   {
-    return ((this->x == other_vec.x) and (this->y == other_vec.y));
+    return ((this->x == other_vec.x) && (this->y == other_vec.y));
   }
 
+  /**
+   * @brief Inequality operator.
+   *
+   * Compares two vectors for inequality.
+   *
+   * @param other_vec The vector to compare with.
+   * @return true if the vectors are not equal, false otherwise.
+   */
   bool operator!=(const Vec2 &other_vec) const
   {
-    return ((this->x != other_vec.x) or (this->y != other_vec.y));
+    return ((this->x != other_vec.x) || (this->y != other_vec.y));
   }
 
-  Vec2 operator/=(const T value)
+  /**
+   * @brief Division-assignment operator.
+   *
+   * Divides both components of the vector by a scalar value and assigns the
+   * result.
+   *
+   * @param value The scalar value to divide by.
+   * @return A reference to the current vector after division.
+   */
+  Vec2 &operator/=(const T value)
   {
     this->x /= value;
     this->y /= value;
     return *this;
   }
 
+  /**
+   * @brief Division operator.
+   *
+   * Divides each component of the vector by the corresponding component of
+   * another vector.
+   *
+   * @param other_vec The vector to divide by.
+   * @return A new vector that is the result of the division.
+   */
   Vec2 operator/(const Vec2 &other_vec) const
   {
     Vec2 out;
@@ -60,6 +116,15 @@ template <typename T> struct Vec2
     return out;
   }
 
+  /**
+   * @brief Multiplication operator.
+   *
+   * Multiplies each component of the vector by the corresponding component of
+   * another vector.
+   *
+   * @param other_vec The vector to multiply by.
+   * @return A new vector that is the result of the multiplication.
+   */
   Vec2 operator*(const Vec2 &other_vec) const
   {
     Vec2 out;
@@ -68,6 +133,15 @@ template <typename T> struct Vec2
     return out;
   }
 
+  /**
+   * @brief Addition operator.
+   *
+   * Adds each component of the vector to the corresponding component of another
+   * vector.
+   *
+   * @param other_vec The vector to add.
+   * @return A new vector that is the result of the addition.
+   */
   Vec2 operator+(const Vec2 &other_vec) const
   {
     Vec2 out;
@@ -76,6 +150,15 @@ template <typename T> struct Vec2
     return out;
   }
 
+  /**
+   * @brief Subtraction operator.
+   *
+   * Subtracts each component of another vector from the corresponding component
+   * of this vector.
+   *
+   * @param other_vec The vector to subtract.
+   * @return A new vector that is the result of the subtraction.
+   */
   Vec2 operator-(const Vec2 &other_vec) const
   {
     Vec2 out;
@@ -84,6 +167,16 @@ template <typename T> struct Vec2
     return out;
   }
 
+  /**
+   * @brief Friend function to calculate the dot product of two vectors.
+   *
+   * The dot product is the sum of the products of the corresponding components
+   * of the vectors.
+   *
+   * @param v1 The first vector.
+   * @param v2 The second vector.
+   * @return The dot product of the two vectors.
+   */
   friend float dot(const Vec2 v1, const Vec2 v2)
   {
     return v1.x * v2.x + v1.y * v2.y;
@@ -91,23 +184,76 @@ template <typename T> struct Vec2
 };
 
 /**
- * @brief Vec3 class, for very basic manipulation of 3D vectors.
+ * @brief Vec3 class for basic manipulation of 3D vectors.
  *
- * @tparam T Data type.
+ * This class provides basic operations for 3D vectors, such as addition,
+ * subtraction, multiplication, division, and dot product calculation.
+ * The class supports various data types through templating.
+ *
+ * @tparam T Data type for the vector components (e.g., int, float, double).
  */
 template <typename T> struct Vec3
 {
-  T x, y, z;
+  T x, y, z; /**< @brief The x, y, and z components of the vector. */
 
+  /**
+   * @brief Default constructor initializing the vector to (0, 0, 0).
+   *
+   * Initializes the x, y, and z components to zero.
+   */
   Vec3() : x(0), y(0), z(0)
   {
   }
 
+  /**
+   * @brief Parameterized constructor initializing the vector to given values.
+   *
+   * @param x The x component of the vector.
+   * @param y The y component of the vector.
+   * @param z The z component of the vector.
+   */
   Vec3(T x, T y, T z) : x(x), y(y), z(z)
   {
   }
 
-  Vec3 operator/=(const T value)
+  /**
+   * @brief Equality operator.
+   *
+   * Compares two vectors for equality.
+   *
+   * @param other_vec The vector to compare with.
+   * @return true if the vectors are equal, false otherwise.
+   */
+  bool operator==(const Vec3 &other_vec) const
+  {
+    return ((this->x == other_vec.x) && (this->y == other_vec.y) &&
+            (this->z == other_vec.z));
+  }
+
+  /**
+   * @brief Inequality operator.
+   *
+   * Compares two vectors for inequality.
+   *
+   * @param other_vec The vector to compare with.
+   * @return true if the vectors are not equal, false otherwise.
+   */
+  bool operator!=(const Vec3 &other_vec) const
+  {
+    return ((this->x != other_vec.x) || (this->y != other_vec.y) ||
+            (this->z != other_vec.z));
+  }
+
+  /**
+   * @brief Division-assignment operator.
+   *
+   * Divides all components of the vector by a scalar value and assigns the
+   * result.
+   *
+   * @param value The scalar value to divide by.
+   * @return A reference to the current vector after division.
+   */
+  Vec3 &operator/=(const T value)
   {
     this->x /= value;
     this->y /= value;
@@ -115,30 +261,185 @@ template <typename T> struct Vec3
     return *this;
   }
 
+  /**
+   * @brief Division operator.
+   *
+   * Divides each component of the vector by the corresponding component of
+   * another vector.
+   *
+   * @param other_vec The vector to divide by.
+   * @return A new vector that is the result of the division.
+   */
+  Vec3 operator/(const Vec3 &other_vec) const
+  {
+    Vec3 out;
+    out.x = this->x / other_vec.x;
+    out.y = this->y / other_vec.y;
+    out.z = this->z / other_vec.z;
+    return out;
+  }
+
+  /**
+   * @brief Multiplication operator.
+   *
+   * Multiplies each component of the vector by the corresponding component of
+   * another vector.
+   *
+   * @param other_vec The vector to multiply by.
+   * @return A new vector that is the result of the multiplication.
+   */
+  Vec3 operator*(const Vec3 &other_vec) const
+  {
+    Vec3 out;
+    out.x = this->x * other_vec.x;
+    out.y = this->y * other_vec.y;
+    out.z = this->z * other_vec.z;
+    return out;
+  }
+
+  /**
+   * @brief Addition operator.
+   *
+   * Adds each component of the vector to the corresponding component of another
+   * vector.
+   *
+   * @param other_vec The vector to add.
+   * @return A new vector that is the result of the addition.
+   */
+  Vec3 operator+(const Vec3 &other_vec) const
+  {
+    Vec3 out;
+    out.x = this->x + other_vec.x;
+    out.y = this->y + other_vec.y;
+    out.z = this->z + other_vec.z;
+    return out;
+  }
+
+  /**
+   * @brief Subtraction operator.
+   *
+   * Subtracts each component of another vector from the corresponding component
+   * of this vector.
+   *
+   * @param other_vec The vector to subtract.
+   * @return A new vector that is the result of the subtraction.
+   */
+  Vec3 operator-(const Vec3 &other_vec) const
+  {
+    Vec3 out;
+    out.x = this->x - other_vec.x;
+    out.y = this->y - other_vec.y;
+    out.z = this->z - other_vec.z;
+    return out;
+  }
+
+  /**
+   * @brief Friend function to calculate the dot product of two vectors.
+   *
+   * The dot product is the sum of the products of the corresponding components
+   * of the vectors.
+   *
+   * @param v1 The first vector.
+   * @param v2 The second vector.
+   * @return The dot product of the two vectors.
+   */
   friend float dot(const Vec3 v1, const Vec3 v2)
   {
     return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
   }
+
+  /**
+   * @brief Friend function to calculate the cross product of two vectors.
+   *
+   * The cross product results in a vector that is perpendicular to the plane
+   * formed by the two input vectors.
+   *
+   * @param v1 The first vector.
+   * @param v2 The second vector.
+   * @return A new vector that is the result of the cross product.
+   */
+  friend Vec3 cross(const Vec3 v1, const Vec3 v2)
+  {
+    Vec3 out;
+    out.x = v1.y * v2.z - v1.z * v2.y;
+    out.y = v1.z * v2.x - v1.x * v2.z;
+    out.z = v1.x * v2.y - v1.y * v2.x;
+    return out;
+  }
 };
 
 /**
- * @brief Vec4 class, for very basic manipulation of 4D vectors.
+ * @brief Vec4 class for basic manipulation of 4D vectors.
  *
- * @tparam T Data type.
+ * This class provides basic operations for 4D vectors, such as addition,
+ * subtraction, multiplication, division, and dot product calculation.
+ * The class supports various data types through templating.
+ *
+ * @tparam T Data type for the vector components (e.g., int, float, double).
  */
 template <typename T> struct Vec4
 {
-  T a, b, c, d;
+  T a, b, c, d; /**< @brief The a, b, c, and d components of the vector. */
 
+  /**
+   * @brief Default constructor initializing the vector to (0, 0, 0, 0).
+   *
+   * Initializes the a, b, c, and d components to zero.
+   */
   Vec4() : a(0), b(0), c(0), d(0)
   {
   }
 
+  /**
+   * @brief Parameterized constructor initializing the vector to given values.
+   *
+   * @param a The a component of the vector.
+   * @param b The b component of the vector.
+   * @param c The c component of the vector.
+   * @param d The d component of the vector.
+   */
   Vec4(T a, T b, T c, T d) : a(a), b(b), c(c), d(d)
   {
   }
 
-  Vec4 operator/=(const T value)
+  /**
+   * @brief Equality operator.
+   *
+   * Compares two vectors for equality.
+   *
+   * @param other_vec The vector to compare with.
+   * @return true if the vectors are equal, false otherwise.
+   */
+  bool operator==(const Vec4 &other_vec) const
+  {
+    return ((this->a == other_vec.a) && (this->b == other_vec.b) &&
+            (this->c == other_vec.c) && (this->d == other_vec.d));
+  }
+
+  /**
+   * @brief Inequality operator.
+   *
+   * Compares two vectors for inequality.
+   *
+   * @param other_vec The vector to compare with.
+   * @return true if the vectors are not equal, false otherwise.
+   */
+  bool operator!=(const Vec4 &other_vec) const
+  {
+    return ((this->a != other_vec.a) || (this->b != other_vec.b) ||
+            (this->c != other_vec.c) || (this->d != other_vec.d));
+  }
+
+  /**
+   * @brief Division-assignment operator.
+   *
+   * Divides all components of the vector by a scalar value and assigns the
+   * result.
+   *
+   * @param value The scalar value to divide by.
+   * @return A reference to the current vector after division.
+   */
+  Vec4 &operator/=(const T value)
   {
     this->a /= value;
     this->b /= value;
@@ -146,28 +447,153 @@ template <typename T> struct Vec4
     this->d /= value;
     return *this;
   }
+
+  /**
+   * @brief Division operator.
+   *
+   * Divides each component of the vector by the corresponding component of
+   * another vector.
+   *
+   * @param other_vec The vector to divide by.
+   * @return A new vector that is the result of the division.
+   */
+  Vec4 operator/(const Vec4 &other_vec) const
+  {
+    Vec4 out;
+    out.a = this->a / other_vec.a;
+    out.b = this->b / other_vec.b;
+    out.c = this->c / other_vec.c;
+    out.d = this->d / other_vec.d;
+    return out;
+  }
+
+  /**
+   * @brief Multiplication operator.
+   *
+   * Multiplies each component of the vector by the corresponding component of
+   * another vector.
+   *
+   * @param other_vec The vector to multiply by.
+   * @return A new vector that is the result of the multiplication.
+   */
+  Vec4 operator*(const Vec4 &other_vec) const
+  {
+    Vec4 out;
+    out.a = this->a * other_vec.a;
+    out.b = this->b * other_vec.b;
+    out.c = this->c * other_vec.c;
+    out.d = this->d * other_vec.d;
+    return out;
+  }
+
+  /**
+   * @brief Addition operator.
+   *
+   * Adds each component of the vector to the corresponding component of another
+   * vector.
+   *
+   * @param other_vec The vector to add.
+   * @return A new vector that is the result of the addition.
+   */
+  Vec4 operator+(const Vec4 &other_vec) const
+  {
+    Vec4 out;
+    out.a = this->a + other_vec.a;
+    out.b = this->b + other_vec.b;
+    out.c = this->c + other_vec.c;
+    out.d = this->d + other_vec.d;
+    return out;
+  }
+
+  /**
+   * @brief Subtraction operator.
+   *
+   * Subtracts each component of another vector from the corresponding component
+   * of this vector.
+   *
+   * @param other_vec The vector to subtract.
+   * @return A new vector that is the result of the subtraction.
+   */
+  Vec4 operator-(const Vec4 &other_vec) const
+  {
+    Vec4 out;
+    out.a = this->a - other_vec.a;
+    out.b = this->b - other_vec.b;
+    out.c = this->c - other_vec.c;
+    out.d = this->d - other_vec.d;
+    return out;
+  }
+
+  /**
+   * @brief Friend function to calculate the dot product of two vectors.
+   *
+   * The dot product is the sum of the products of the corresponding components
+   * of the vectors.
+   *
+   * @param v1 The first vector.
+   * @param v2 The second vector.
+   * @return The dot product of the two vectors.
+   */
+  friend float dot(const Vec4 v1, const Vec4 v2)
+  {
+    return v1.a * v2.a + v1.b * v2.b + v1.c * v2.c + v1.d * v2.d;
+  }
 };
 
 /**
- * @brief Mat class, for very basic manipulation of matrices.
+ * @brief Mat class for basic manipulation of 2D matrices.
  *
- * @tparam T Data type.
+ * This class provides basic operations for 2D matrices, such as element access
+ * and initialization. It stores the matrix elements in a 1D vector and provides
+ * a convenient interface for accessing elements using 2D indices.
+ *
+ * @tparam T Data type for the matrix elements (e.g., int, float, double).
  */
 template <typename T> struct Mat
 {
-  std::vector<T> vector;
-  Vec2<int>      shape;
+  std::vector<T> vector; /**< @brief 1D vector storing matrix elements in
+                            row-major order. */
+  Vec2<int> shape; /**< @brief Dimensions of the matrix (rows x columns). */
 
+  /**
+   * @brief Constructor to initialize a matrix with a given shape.
+   *
+   * Allocates memory for the matrix elements based on the specified shape.
+   * The matrix is initialized with the default value of the type T.
+   *
+   * @param shape A Vec2<int> representing the number of rows and columns in the
+   * matrix.
+   */
   Mat(Vec2<int> shape) : shape(shape)
   {
     this->vector.resize(shape.x * shape.y);
   }
 
+  /**
+   * @brief Access operator to get a reference to the element at (i, j).
+   *
+   * Provides non-const access to the matrix element at the specified row and
+   * column.
+   *
+   * @param i Row index (0-based).
+   * @param j Column index (0-based).
+   * @return A reference to the element at the specified position.
+   */
   T &operator()(int i, int j)
   {
     return this->vector[i * this->shape.y + j];
   }
 
+  /**
+   * @brief Const access operator to get the value of the element at (i, j).
+   *
+   * Provides const access to the matrix element at the specified row and
+   * column.
+   *
+   * @param i Row index (0-based).
+   * @param j Column index (0-based).
+   * @return A const reference to the element at the specified position.
+   */
   const T &operator()(int i, int j) const
   {
     return this->vector[i * this->shape.y + j];
