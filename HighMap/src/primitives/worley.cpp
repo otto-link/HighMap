@@ -6,7 +6,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/functions.hpp"
-#include "highmap/op.hpp"
+#include "highmap/operator.hpp"
 #include "highmap/primitives.hpp"
 
 namespace hmap

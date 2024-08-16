@@ -1,18 +1,12 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
-#include <cstdint>
 #include <fstream>
-#include <iostream>
-#include <memory>
-#include <stdint.h>
-#include <string>
 
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
 #include "highmap/io.hpp"
-#include "highmap/op.hpp"
 
 namespace hmap
 {

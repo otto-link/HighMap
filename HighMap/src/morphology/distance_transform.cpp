@@ -4,7 +4,7 @@
 #include "highmap/array.hpp"
 #include "highmap/dbg.hpp"
 #include "highmap/math.hpp"
-#include "highmap/op.hpp"
+#include "highmap/operator.hpp"
 
 float f(int i, float gi)
 {

@@ -9,6 +9,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/convolve.hpp"
+#include "highmap/operator.hpp"
 #include "highmap/primitives.hpp"
 #include "highmap/transform.hpp"
 

@@ -80,7 +80,7 @@ void rotate(Array &array, float angle, bool zero_padding = false);
  */
 Array transpose(const Array &array);
 
-/** 
+/**
  * @brief Translates a 2D array by a specified amount along the x and y axes.
  *
  * This function shifts the contents of the input array by `dx` and `dy` units

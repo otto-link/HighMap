@@ -9,7 +9,7 @@
 #include "highmap/algebra.hpp"
 #include "highmap/array.hpp"
 #include "highmap/geometry.hpp"
-#include "highmap/op.hpp"
+#include "highmap/operator.hpp"
 #include "highmap/transform.hpp"
 
 #include "highmap/internal/vector_utils.hpp"

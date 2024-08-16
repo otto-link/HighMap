@@ -3,7 +3,7 @@
  * this software. */
 
 #include "highmap/heightmap.hpp"
-#include "highmap/op.hpp"
+#include "highmap/operator.hpp"
 
 namespace hmap
 {

@@ -5,7 +5,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/io.hpp"
-#include "highmap/op.hpp"
+#include "highmap/operator.hpp"
 
 namespace hmap
 {

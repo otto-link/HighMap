@@ -2,6 +2,7 @@
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
 #include "highmap/functions.hpp"
+#include "highmap/math.hpp"
 
 namespace hmap
 {

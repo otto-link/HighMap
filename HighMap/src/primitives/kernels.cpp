@@ -9,7 +9,7 @@
 #include "highmap/array.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/math.hpp"
-#include "highmap/op.hpp"
+#include "highmap/operator.hpp"
 #include "highmap/primitives.hpp"
 
 namespace hmap

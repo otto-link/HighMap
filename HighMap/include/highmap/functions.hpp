@@ -20,8 +20,8 @@
 #include "libInterpolate/Interpolate.hpp"
 #include "macrologger.h"
 
-#include "highmap/math.hpp"
-#include "highmap/op.hpp"
+#include "highmap/algebra.hpp"
+#include "highmap/array.hpp"
 
 /**
  * @typedef HMAP_FCT_XY_TYPE
@@ -138,14 +138,14 @@ public:
    *           a unit domain.
    * @param periodic Whether the domain is periodic or not.
    */
-  ArrayFunction(hmap::Array array, Vec2<float> kw, bool periodic = true);
+  ArrayFunction(Array array, Vec2<float> kw, bool periodic = true);
 
   /**
    * @brief Set the array object.
    *
    * @param new_array New data array.
    */
-  void set_array(hmap::Array new_array)
+  void set_array(Array new_array)
   {
     this->array = new_array;
   }
@@ -155,7 +155,7 @@ protected:
   bool periodic;  ///< Flag indicating whether the domain is periodic or not.
 
 private:
-  hmap::Array array; ///< Data array representing the 2D field.
+  Array array; ///< Data array representing the 2D field.
 };
 
 /**

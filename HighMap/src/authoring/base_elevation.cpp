@@ -4,7 +4,7 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
-#include "highmap/op.hpp"
+#include "highmap/operator.hpp"
 
 namespace hmap
 {
