@@ -40,3 +40,7 @@ target_link_libraries(
 if(HIGHMAP_ENABLE_OPENCL)
   target_link_libraries(${PROJECT_NAME} ${OpenCL_LIBRARIES})
 endif(HIGHMAP_ENABLE_OPENCL)
+
+if(HIGHMAP_ENABLE_OPENCV)
+  target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
+endif(HIGHMAP_ENABLE_OPENCV)

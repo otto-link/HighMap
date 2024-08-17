@@ -1,0 +1,2 @@
+add_executable(ex_to_cv_mat ex_to_cv_mat.cpp)
+target_link_libraries(ex_to_cv_mat highmap)

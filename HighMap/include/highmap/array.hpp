@@ -18,6 +18,10 @@ typedef unsigned int uint;
 
 #include <random>
 
+#ifdef ENABLE_OPENCV
+#include <opencv2/core/mat.hpp>
+#endif
+
 #include "highmap/algebra.hpp"
 
 namespace hmap
@@ -975,5 +979,9 @@ public:
    */
   friend Array vstack(const Array &array1, const Array &array2);
 };
+
+#ifdef ENABLE_OPENCV
+cv::Mat array_to_cv_mat(Array &array);
+#endif
 
 } // namespace hmap
