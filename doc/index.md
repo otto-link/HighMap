@@ -91,13 +91,35 @@ assume that the data adheres to this scale. It is always possible to
 use the \ref hmap::remap function to adjust the scale of the heightmap
 values to fit within the desired range.
 
-### Generate classical coherent noises (Perlin, Simplex, fractal layering, etc...)
+### Example usage
 
-### Filters
+#### Generate classical coherent noises (Perlin, Simplex, fractal layering, etc...)
 
-### Physical processes
+#### Filters
 
-### Bivariate functions
+#### Physical processes
+
+#### Bivariate functions
+
+### Exporting
+
+#### Image formats (png, tiff, exr...)
+
+#### Numpy binary file
+
+The library includes a function that enables exporting data to the
+NumPy binary format (.npy), facilitating integration with Python's
+NumPy library.
+
+@include ex_to_numpy.cpp
+
+#### Raw binary file
+
+#### Asset export (3D mesh and texture)
+
+hmap::AssetExportFormat
+
+hmap::MeshType
 
 ## Library functionalities
 
