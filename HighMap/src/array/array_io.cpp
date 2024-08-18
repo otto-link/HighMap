@@ -7,6 +7,7 @@
 #include "npy.hpp"
 
 #include "highmap/array.hpp"
+#include "highmap/colorize.hpp"
 #include "highmap/io.hpp"
 
 namespace hmap

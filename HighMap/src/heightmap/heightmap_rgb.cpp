@@ -8,9 +8,9 @@
 #include "libInterpolate/Interpolate.hpp"
 #include "macrologger.h"
 
+#include "highmap/colorize.hpp"
 #include "highmap/colormaps.hpp"
 #include "highmap/heightmap.hpp"
-#include "highmap/io.hpp"
 #include "highmap/math.hpp"
 #include "highmap/operator.hpp"
 

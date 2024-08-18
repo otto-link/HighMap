@@ -11,8 +11,8 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/colormaps.hpp"
 #include "highmap/geometry.hpp"
-#include "highmap/io.hpp"
 #include "highmap/operator.hpp"
 #include "highmap/primitives.hpp"
 

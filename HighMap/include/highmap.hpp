@@ -19,6 +19,7 @@
 #include "highmap/authoring.hpp"
 #include "highmap/blending.hpp"
 #include "highmap/boundary.hpp"
+#include "highmap/colorize.hpp"
 #include "highmap/colormaps.hpp"
 #include "highmap/convolve.hpp"
 #include "highmap/erosion.hpp"
