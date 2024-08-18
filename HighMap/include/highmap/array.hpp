@@ -16,11 +16,8 @@
 #pragma once
 typedef unsigned int uint;
 
-#include <random>
-
-#ifdef ENABLE_OPENCV
 #include <opencv2/core/mat.hpp>
-#endif
+#include <random>
 
 #include "highmap/algebra.hpp"
 
@@ -980,7 +977,6 @@ public:
   friend Array vstack(const Array &array1, const Array &array2);
 };
 
-#ifdef ENABLE_OPENCV
 /**
  * @brief Converts a 2D `Array` to an OpenCV `cv::Mat`.
  *
@@ -999,11 +995,33 @@ public:
  * @param array Reference to the 2D `Array` object that will be converted.
  * @return A `cv::Mat` object that shares the data with the input `Array`.
  *
- *
  * **Example**
  * @include ex_to_cv_mat.cpp
  */
 cv::Mat array_to_cv_mat(Array &array);
-#endif
+
+/**
+ * @brief Converts an OpenCV `cv::Mat` to a 2D `Array` with optional value
+ * scaling to \[0, 1\].
+ *
+ * This function converts an OpenCV `cv::Mat` object into a 2D `Array`.
+ * The conversion process creates a new `Array` object and copies the data
+ * from the `cv::Mat` into this `Array`. If the `remap_values` parameter is set
+ * to `true` (the default), the values in the resulting `Array` will be scaled
+ * to the interval \[0, 1\]. If set to `false`, the values will be copied
+ * directly without scaling. Modifications to the `Array` will not affect the
+ * original `cv::Mat` and vice versa.
+ *
+ * @param mat Reference to the OpenCV `cv::Mat` object that will be converted.
+ * @param remap_values A boolean flag indicating whether to scale the values to
+ * \[0, 1\]. If `true`, the values will be scaled; if `false`, they will be
+ * copied directly. Default is `true`.
+ * @return A 2D `Array` object containing a copy of the data from the input
+ * `cv::Mat`, with optional scaling to the interval \[0, 1\].
+ *
+ * **Example**
+ * @include ex_cv_mat_to_array.cpp
+ */
+Array cv_mat_to_array(cv::Mat &mat, bool remap_values = true);
 
 } // namespace hmap

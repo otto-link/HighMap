@@ -33,18 +33,14 @@ find_package(PNG REQUIRED) # libpng
 find_package(assimp REQUIRED)
 find_package(glm REQUIRED) # by hmm
 find_package(OpenMP REQUIRED)
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS})
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
 
 if(HIGHMAP_ENABLE_OPENCL)
   find_package(OpenCL REQUIRED)
 endif(HIGHMAP_ENABLE_OPENCL)
-
-if(HIGHMAP_ENABLE_OPENCV)
-  find_package(OpenCV REQUIRED)
-  include_directories(${OpenCV_INCLUDE_DIRS})
-  set_directory_properties(PROPERTIES COMPILE_DEFINITIONS ENABLE_OPENCV=1)
-endif(HIGHMAP_ENABLE_OPENCV)
 
 add_subdirectory(external)
 

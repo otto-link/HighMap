@@ -5,8 +5,6 @@
 
 int main(void)
 {
-#ifdef ENABLE_OPENCV
-
   hmap::Vec2<int>   shape = {512, 256};
   hmap::Vec2<float> res = {4.f, 2.f};
   int               seed = 1;
@@ -40,6 +38,4 @@ int main(void)
 
   cv::imshow("example", img);
   cv::waitKey(0);
-
-#endif
 }
