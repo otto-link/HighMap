@@ -5,7 +5,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/geometry.hpp"
-#include "highmap/io.hpp"
+#include "highmap/export.hpp"
 #include "highmap/math.hpp"
 #include "highmap/operator.hpp"
 

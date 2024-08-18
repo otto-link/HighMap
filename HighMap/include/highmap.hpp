@@ -31,7 +31,7 @@
 #include "highmap/gradient.hpp"
 #include "highmap/heightmap.hpp"
 #include "highmap/hydrology.hpp"
-#include "highmap/io.hpp"
+#include "highmap/export.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/math.hpp"
 #include "highmap/morphology.hpp"

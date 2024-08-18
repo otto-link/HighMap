@@ -4,7 +4,7 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
-#include "highmap/io.hpp"
+#include "highmap/export.hpp"
 #include "highmap/range.hpp"
 #include "highmap/shadows.hpp"
 

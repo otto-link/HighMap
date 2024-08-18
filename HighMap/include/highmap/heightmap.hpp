@@ -16,7 +16,7 @@
 #include <functional>
 
 #include "highmap/array.hpp"
-#include "highmap/io.hpp"
+#include "highmap/export.hpp"
 
 namespace hmap
 {

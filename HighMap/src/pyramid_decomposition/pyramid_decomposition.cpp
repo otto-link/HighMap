@@ -5,7 +5,7 @@
 #include "highmap/array.hpp"
 #include "highmap/dbg.hpp"
 #include "highmap/filters.hpp"
-#include "highmap/io.hpp"
+#include "highmap/export.hpp"
 #include "highmap/math.hpp"
 #include "highmap/operator.hpp"
 #include "highmap/pyramid.hpp"

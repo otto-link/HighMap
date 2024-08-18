@@ -10,7 +10,7 @@
 
 #include "highmap/colormaps.hpp"
 #include "highmap/heightmap.hpp"
-#include "highmap/io.hpp"
+#include "highmap/export.hpp"
 #include "highmap/math.hpp"
 #include "highmap/operator.hpp"
 #include "highmap/primitives.hpp"
