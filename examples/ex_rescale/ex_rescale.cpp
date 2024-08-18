@@ -16,5 +16,5 @@ int main(void)
   float vref = z1.mean();
   hmap::rescale(z3, 0.5f, vref);
 
-  hmap::export_banner_png("ex_rescale.png", {z1, z2, z3}, hmap::cmap::inferno);
+  hmap::export_banner_png("ex_rescale.png", {z1, z2, z3}, hmap::Cmap::INFERNO);
 }

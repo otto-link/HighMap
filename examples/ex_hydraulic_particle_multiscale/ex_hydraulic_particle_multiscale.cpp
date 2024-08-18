@@ -34,10 +34,10 @@ int main(void)
 
   hmap::export_banner_png("ex_hydraulic_particle_multiscale0.png",
                           {z, z1},
-                          hmap::cmap::terrain,
+                          hmap::Cmap::TERRAIN,
                           true);
 
   hmap::export_banner_png("ex_hydraulic_particle_multiscale1.png",
                           {erosion_map, deposition_map},
-                          hmap::cmap::inferno);
+                          hmap::Cmap::INFERNO);
 }

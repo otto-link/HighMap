@@ -19,5 +19,5 @@ int main(void)
 
   hmap::Array z = hmap::peak(shape, radius, &noise, noise_r_amp, noise_z_ratio);
 
-  z.to_png("ex_peak.png", hmap::cmap::terrain, true);
+  z.to_png("ex_peak.png", hmap::Cmap::TERRAIN, true);
 }

@@ -374,7 +374,7 @@ void Graph::to_png(std::string fname, Vec2<int> shape)
 {
   Array array = Array(shape);
   this->to_array(array, this->get_bbox());
-  array.to_png(fname, cmap::inferno, false);
+  array.to_png(fname, Cmap::INFERNO, false);
 }
 
 void Graph::update_adjacency_matrix()

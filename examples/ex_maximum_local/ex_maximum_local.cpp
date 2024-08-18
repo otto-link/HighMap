@@ -14,5 +14,5 @@ int main(void)
 
   hmap::export_banner_png("ex_maximum_local.png",
                           {z, zmin, zmax, zdisk},
-                          hmap::cmap::viridis);
+                          hmap::Cmap::VIRIDIS);
 }

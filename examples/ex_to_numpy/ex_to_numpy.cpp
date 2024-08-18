@@ -13,7 +13,7 @@ int main(void)
   std::cout << z(10, 12) << std::endl;
 
   z.to_numpy("out.npy");
-  z.to_png("ex_to_numpy.png", hmap::cmap::jet);
+  z.to_png("ex_to_numpy.png", hmap::Cmap::JET);
 
   // --- python script to check this provided below in the comments
 

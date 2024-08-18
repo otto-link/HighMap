@@ -10,5 +10,5 @@ int main(void)
 
   auto z1 = detrend_reg(z0);
 
-  hmap::export_banner_png("ex_detrend.png", {z0, z1}, hmap::cmap::jet);
+  hmap::export_banner_png("ex_detrend.png", {z0, z1}, hmap::Cmap::JET);
 }

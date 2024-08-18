@@ -23,5 +23,5 @@ int main(void)
 
   hmap::export_banner_png("ex_dendry.png",
                           {control_hmap, z1, z2},
-                          hmap::cmap::viridis);
+                          hmap::Cmap::VIRIDIS);
 }

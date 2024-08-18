@@ -41,6 +41,6 @@ int main(void)
 
   hmap::export_banner_png("ex_hydraulic_ridge.png",
                           {z, z1, z2, z3, z4},
-                          hmap::cmap::terrain,
+                          hmap::Cmap::TERRAIN,
                           true);
 }

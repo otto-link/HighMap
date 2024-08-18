@@ -17,5 +17,5 @@ int main(void)
 
   hmap::export_banner_png("ex_select_cavities.png",
                           {z, c1, c2},
-                          hmap::cmap::inferno);
+                          hmap::Cmap::INFERNO);
 }

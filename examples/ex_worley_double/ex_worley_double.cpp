@@ -18,5 +18,5 @@ int main(void)
 
   hmap::Array z = hmap::worley_double(shape, kw, seed, ratio, k, &ctrl_array);
 
-  z.to_png("ex_worley_double.png", hmap::cmap::terrain, true);
+  z.to_png("ex_worley_double.png", hmap::Cmap::TERRAIN, true);
 }

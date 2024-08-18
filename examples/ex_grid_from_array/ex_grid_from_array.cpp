@@ -18,5 +18,5 @@ int main(void)
 
   hmap::export_banner_png("ex_grid_from_array.png",
                           {z, z},
-                          hmap::cmap::nipy_spectral);
+                          hmap::Cmap::NIPY_SPECTRAL);
 }

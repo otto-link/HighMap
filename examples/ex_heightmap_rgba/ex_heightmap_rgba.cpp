@@ -23,7 +23,7 @@ int main(void)
 
   hmap::export_banner_png("ex_heightmap_rgba0.png",
                           {zr, zg, zb, zsp},
-                          hmap::cmap::gray);
+                          hmap::Cmap::GRAY);
 
   auto hr = hmap::HeightMap(shape, tiling, overlap);
   auto hg = hmap::HeightMap(shape, tiling, overlap);
@@ -41,7 +41,7 @@ int main(void)
   h_rgba.to_png_16bit("ex_heightmap_rgba1.png");
 
   // colorize
-  h_rgba.colorize(hr, hr.min(), 0.8f * hr.max(), hmap::cmap::jet, &ha);
+  h_rgba.colorize(hr, hr.min(), 0.8f * hr.max(), hmap::Cmap::JET, &ha);
   h_rgba.to_png_16bit("ex_heightmap_rgba2.png");
 
   // mix

@@ -17,12 +17,12 @@ int main(void)
   hmap::Array z1 = z0;
   hmap::alter_elevation(z1, cloud, 32, 2.f);
 
-  z1.to_png("out.png", hmap::cmap::inferno);
+  z1.to_png("out.png", hmap::Cmap::INFERNO);
 
   z0.infos();
   z1.infos();
 
   hmap::export_banner_png("ex_alter_elevation.png",
                           {z0, z1},
-                          hmap::cmap::inferno);
+                          hmap::Cmap::INFERNO);
 }

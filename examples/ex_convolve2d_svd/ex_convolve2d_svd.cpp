@@ -22,5 +22,5 @@ int main(void)
 
   hmap::export_banner_png("ex_convolve2d_svd.png",
                           {z, zs, zc},
-                          hmap::cmap::viridis);
+                          hmap::Cmap::VIRIDIS);
 }

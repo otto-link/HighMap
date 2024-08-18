@@ -26,6 +26,6 @@ int main(void)
                                nullptr,
                                f.get_delegate());
 
-  z.to_png("out.png", hmap::cmap::terrain, true);
+  z.to_png("out.png", hmap::Cmap::TERRAIN, true);
   z.infos();
 }

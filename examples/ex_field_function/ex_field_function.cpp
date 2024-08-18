@@ -48,5 +48,5 @@ int main(void)
 
   z.infos("z");
 
-  z.to_png("ex_field_function.png", hmap::cmap::gray, true);
+  z.to_png("ex_field_function.png", hmap::Cmap::GRAY, true);
 }

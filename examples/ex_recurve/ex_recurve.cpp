@@ -17,5 +17,5 @@ int main(void)
 
   hmap::recurve(z, t, v);
 
-  hmap::export_banner_png("ex_recurve.png", {z0, z}, hmap::cmap::viridis);
+  hmap::export_banner_png("ex_recurve.png", {z0, z}, hmap::Cmap::VIRIDIS);
 }

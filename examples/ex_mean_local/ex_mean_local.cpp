@@ -10,6 +10,6 @@ int main(void)
   hmap::Array z = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, res, seed);
   hmap::Array zm = hmap::mean_local(z, radius);
 
-  z.to_png("ex_mean_local0.png", hmap::cmap::viridis);
-  zm.to_png("ex_mean_local1.png", hmap::cmap::viridis);
+  z.to_png("ex_mean_local0.png", hmap::Cmap::VIRIDIS);
+  zm.to_png("ex_mean_local1.png", hmap::Cmap::VIRIDIS);
 }

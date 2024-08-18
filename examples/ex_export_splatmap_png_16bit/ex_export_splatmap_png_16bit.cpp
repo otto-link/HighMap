@@ -14,7 +14,7 @@ int main(void)
 
   hmap::export_banner_png("ex_export_splatmap_png_16bit0.png",
                           {zr, zg, zb, za},
-                          hmap::cmap::gray);
+                          hmap::Cmap::GRAY);
 
   hmap::export_splatmap_png_16bit("ex_export_splatmap_png_16bit1.png",
                                   &zr,

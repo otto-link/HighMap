@@ -19,7 +19,7 @@ void show_influence(std::string                           label,
     std::cout << "- parameter value: " << v << "\n";
     hmap::Array x_tmp = x_bckp;
     unary_op(x_tmp, v);
-    x_tmp.to_png(label + "-" + std::to_string(v) + ".png", hmap::cmap::magma);
+    x_tmp.to_png(label + "-" + std::to_string(v) + ".png", hmap::Cmap::MAGMA);
   }
 }
 

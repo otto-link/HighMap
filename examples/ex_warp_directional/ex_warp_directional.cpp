@@ -17,5 +17,5 @@ int main(void)
 
   hmap::export_banner_png("ex_warp_directional.png",
                           {z1, z2},
-                          hmap::cmap::terrain);
+                          hmap::Cmap::TERRAIN);
 }

@@ -16,5 +16,5 @@ int main(void)
   // using a negative scale will "flatten" the map
   hmap::steepen(z2, -scale);
 
-  hmap::export_banner_png("ex_steepen.png", {z, z1, z2}, hmap::cmap::terrain);
+  hmap::export_banner_png("ex_steepen.png", {z, z1, z2}, hmap::Cmap::TERRAIN);
 }

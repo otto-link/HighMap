@@ -69,6 +69,6 @@ int main(void)
 
   hmap::export_banner_png("ex_recast.png",
                           {z, z1, z2, z3, z4, z5, z6, z7},
-                          hmap::cmap::terrain,
+                          hmap::Cmap::TERRAIN,
                           true);
 }

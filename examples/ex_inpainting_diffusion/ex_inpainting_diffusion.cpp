@@ -25,5 +25,5 @@ int main(void)
 
   hmap::export_banner_png("ex_inpainting_diffusion.png",
                           {z1, z2, z3},
-                          hmap::cmap::jet);
+                          hmap::Cmap::JET);
 }

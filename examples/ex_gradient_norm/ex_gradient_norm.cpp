@@ -15,5 +15,5 @@ int main(void)
 
   hmap::export_banner_png("ex_gradient_norm.png",
                           {dz, dz_p, dz_c, dz_s},
-                          hmap::cmap::viridis);
+                          hmap::Cmap::VIRIDIS);
 }

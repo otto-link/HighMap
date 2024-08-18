@@ -9,5 +9,5 @@ int main(void)
 
   hmap::Array z = hmap::diffusion_limited_aggregation(shape, scale, seed);
 
-  z.to_png("ex_diffusion_limited_aggregation.png", hmap::cmap::terrain, false);
+  z.to_png("ex_diffusion_limited_aggregation.png", hmap::Cmap::TERRAIN, false);
 }

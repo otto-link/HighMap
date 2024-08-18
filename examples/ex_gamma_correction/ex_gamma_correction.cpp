@@ -9,5 +9,5 @@ int main(void)
   hmap::Array z = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, res, seed);
   hmap::remap(z);
   hmap::gamma_correction(z, 0.5f);
-  z.to_png("ex_gamma_correction.png", hmap::cmap::viridis);
+  z.to_png("ex_gamma_correction.png", hmap::Cmap::VIRIDIS);
 }

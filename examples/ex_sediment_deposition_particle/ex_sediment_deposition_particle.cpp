@@ -13,6 +13,6 @@ int main(void)
 
   hmap::export_banner_png("ex_sediment_deposition_particle.png",
                           {z0, z},
-                          hmap::cmap::terrain,
+                          hmap::Cmap::TERRAIN,
                           true);
 }

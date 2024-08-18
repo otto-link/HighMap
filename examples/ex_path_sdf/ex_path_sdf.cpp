@@ -19,5 +19,5 @@ int main(void)
 
   hmap::export_banner_png("ex_path_sdf.png",
                           {z_sdf_o, z_sdf_c},
-                          hmap::cmap::jet);
+                          hmap::Cmap::JET);
 }

@@ -14,5 +14,5 @@ int main(void)
 
   hmap::export_banner_png("ex_smooth_gaussian.png",
                           {z0, z},
-                          hmap::cmap::viridis);
+                          hmap::Cmap::VIRIDIS);
 }

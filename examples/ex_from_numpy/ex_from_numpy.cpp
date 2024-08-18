@@ -15,5 +15,5 @@ int main(void)
   hmap::Array z2;
   z2.from_numpy("out.npy");
 
-  hmap::export_banner_png("ex_from_numpy.png", {z1, z2}, hmap::cmap::inferno);
+  hmap::export_banner_png("ex_from_numpy.png", {z1, z2}, hmap::Cmap::INFERNO);
 }

@@ -16,5 +16,5 @@ int main(void)
 
   hmap::export_banner_png("ex_smoothstep.png",
                           {z, z3, z5},
-                          hmap::cmap::inferno);
+                          hmap::Cmap::INFERNO);
 }

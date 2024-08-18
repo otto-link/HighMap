@@ -1,6 +1,4 @@
-#include "highmap/array.hpp"
-#include "highmap/geometry.hpp"
-#include "highmap/io.hpp"
+#include "highmap.hpp"
 
 int main(void)
 {
@@ -26,5 +24,5 @@ int main(void)
 
   hmap::export_banner_png("ex_path_bezier.png",
                           {z1, z2, z3},
-                          hmap::cmap::inferno);
+                          hmap::Cmap::INFERNO);
 }

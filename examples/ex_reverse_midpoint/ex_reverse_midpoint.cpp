@@ -17,5 +17,5 @@ int main(void)
   hmap::Array z1 = reverse_midpoint(z0, seed++);
   hmap::median_3x3(z1);
 
-  hmap::export_banner_png("ex_reverse_midpoint.png", {z0, z1}, hmap::cmap::jet);
+  hmap::export_banner_png("ex_reverse_midpoint.png", {z0, z1}, hmap::Cmap::JET);
 }

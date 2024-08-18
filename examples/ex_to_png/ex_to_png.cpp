@@ -14,7 +14,7 @@ int main(void)
                                    seed,
                                    8);
   hmap::remap(z1);
-  z1.to_png("out_rgb.png", hmap::cmap::jet);
+  z1.to_png("out_rgb.png", hmap::Cmap::JET);
   z1.to_png_grayscale_8bit("out_8bit.png");
   z1.to_png_grayscale_16bit("out_16bit.png");
 
@@ -24,5 +24,5 @@ int main(void)
 
   z1.to_raw_16bit("out.raw");
 
-  hmap::export_banner_png("ex_to_png.png", {z1, z2, z3}, hmap::cmap::inferno);
+  hmap::export_banner_png("ex_to_png.png", {z1, z2, z3}, hmap::Cmap::INFERNO);
 }

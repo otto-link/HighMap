@@ -15,5 +15,5 @@ int main(void)
   hmap::Array c = hmap::select_rivers(z, talus_ref, clipping_ratio);
   hmap::remap(c);
 
-  hmap::export_banner_png("ex_select_rivers.png", {z, c}, hmap::cmap::inferno);
+  hmap::export_banner_png("ex_select_rivers.png", {z, c}, hmap::Cmap::INFERNO);
 }

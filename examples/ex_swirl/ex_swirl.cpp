@@ -32,5 +32,5 @@ int main(void)
                                &dx,
                                &dy);
 
-  hmap::export_banner_png("ex_swirl.png", {z0, z1, z2}, hmap::cmap::inferno);
+  hmap::export_banner_png("ex_swirl.png", {z0, z1, z2}, hmap::Cmap::INFERNO);
 }

@@ -23,5 +23,5 @@ int main(void)
 
   hmap::export_banner_png("ex_morphology_base.png",
                           {z, zd, ze, zc, zo, zg, zt, zb},
-                          hmap::cmap::gray);
+                          hmap::Cmap::GRAY);
 }

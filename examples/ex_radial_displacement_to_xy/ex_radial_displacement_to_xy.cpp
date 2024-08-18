@@ -13,5 +13,5 @@ int main(void)
 
   hmap::export_banner_png("ex_radial_displacement_to_xy.png",
                           {dr, dx, dy},
-                          hmap::cmap::jet);
+                          hmap::Cmap::JET);
 }

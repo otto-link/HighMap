@@ -14,5 +14,5 @@ int main(void)
   auto z2 = z;
   hmap::flip_ud(z2);
 
-  hmap::export_banner_png("ex_flip_ud.png", {z, z1, z2}, hmap::cmap::viridis);
+  hmap::export_banner_png("ex_flip_ud.png", {z, z1, z2}, hmap::Cmap::VIRIDIS);
 }

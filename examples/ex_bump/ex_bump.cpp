@@ -17,5 +17,5 @@ int main(void)
 
   hmap::Array z2 = hmap::bump(shape, 1.f, &ctrl_array);
 
-  hmap::export_banner_png("ex_bump.png", {z1, z2}, hmap::cmap::inferno, false);
+  hmap::export_banner_png("ex_bump.png", {z1, z2}, hmap::Cmap::INFERNO, false);
 }

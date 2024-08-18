@@ -1,7 +1,4 @@
-#include "highmap/array.hpp"
-#include "highmap/erosion.hpp"
-#include "highmap/io.hpp"
-#include "highmap/primitives.hpp"
+#include "highmap.hpp"
 
 int main(void)
 {
@@ -16,5 +13,5 @@ int main(void)
 
   hmap::thermal(z, 0.1f / shape.x);
 
-  hmap::export_banner_png("ex_thermal.png", {z0, z}, hmap::cmap::terrain, true);
+  hmap::export_banner_png("ex_thermal.png", {z0, z}, hmap::Cmap::TERRAIN, true);
 }

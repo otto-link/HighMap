@@ -1,6 +1,4 @@
-#include "highmap/array.hpp"
-#include "highmap/io.hpp"
-#include "highmap/primitives.hpp"
+#include "highmap.hpp"
 
 int main(void)
 {
@@ -12,5 +10,5 @@ int main(void)
   uint            seed = 1;
 
   hmap::Array z = hmap::gabor_noise(shape, kw, angle, width, density, seed);
-  z.to_png("ex_gabor_noise.png", hmap::cmap::viridis);
+  z.to_png("ex_gabor_noise.png", hmap::Cmap::VIRIDIS);
 }

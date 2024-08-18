@@ -19,10 +19,10 @@ int main(void)
 
   hmap::export_banner_png("ex_erosions_maps0.png",
                           {z, z_eroded},
-                          hmap::cmap::terrain,
+                          hmap::Cmap::TERRAIN,
                           true);
 
   hmap::export_banner_png("ex_erosions_maps1.png",
                           {erosion_map, deposition_map},
-                          hmap::cmap::inferno);
+                          hmap::Cmap::INFERNO);
 }

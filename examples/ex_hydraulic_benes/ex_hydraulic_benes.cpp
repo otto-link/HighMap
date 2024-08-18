@@ -14,6 +14,6 @@ int main(void)
 
   hmap::export_banner_png("ex_hydraulic_benes.png",
                           {z0, z},
-                          hmap::cmap::terrain,
+                          hmap::Cmap::TERRAIN,
                           true);
 }

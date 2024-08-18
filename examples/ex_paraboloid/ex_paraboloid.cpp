@@ -7,5 +7,5 @@ int main(void)
 
   auto z = hmap::paraboloid(shape, angle, 1.f, 0.5f);
 
-  z.to_png("ex_paraboloid.png", hmap::cmap::inferno);
+  z.to_png("ex_paraboloid.png", hmap::Cmap::INFERNO);
 }

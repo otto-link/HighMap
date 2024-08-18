@@ -16,6 +16,6 @@ int main(void)
 
   hmap::Array labels = hmap::geomorphons(z, irmin, irmax, epsilon);
 
-  z.to_png("ex_geomorphons0.png", hmap::cmap::terrain);
-  labels.to_png("ex_geomorphons1.png", hmap::cmap::nipy_spectral);
+  z.to_png("ex_geomorphons0.png", hmap::Cmap::TERRAIN);
+  labels.to_png("ex_geomorphons1.png", hmap::Cmap::NIPY_SPECTRAL);
 }

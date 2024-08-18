@@ -22,5 +22,5 @@ int main(void)
   hmap::fold(z2, iterations, k_smooth);
   hmap::remap(z2);
 
-  hmap::export_banner_png("ex_fold.png", {z, z1, z2}, hmap::cmap::inferno);
+  hmap::export_banner_png("ex_fold.png", {z, z1, z2}, hmap::Cmap::INFERNO);
 }

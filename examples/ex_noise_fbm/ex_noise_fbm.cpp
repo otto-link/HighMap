@@ -42,7 +42,7 @@ int main(void)
       hmap::remap(n);
       z = hstack(z, n);
     }
-    z.to_png("ex_noise_fbm0.png", hmap::cmap::terrain, true);
+    z.to_png("ex_noise_fbm0.png", hmap::Cmap::TERRAIN, true);
   }
 
   // iq
@@ -54,7 +54,7 @@ int main(void)
       hmap::remap(n);
       z = hstack(z, n);
     }
-    z.to_png("ex_noise_fbm1.png", hmap::cmap::terrain, true);
+    z.to_png("ex_noise_fbm1.png", hmap::Cmap::TERRAIN, true);
   }
 
   // jordan
@@ -66,7 +66,7 @@ int main(void)
       hmap::remap(n);
       z = hstack(z, n);
     }
-    z.to_png("ex_noise_fbm2.png", hmap::cmap::terrain, true);
+    z.to_png("ex_noise_fbm2.png", hmap::Cmap::TERRAIN, true);
   }
 
   // pingpong
@@ -78,7 +78,7 @@ int main(void)
       hmap::remap(n);
       z = hstack(z, n);
     }
-    z.to_png("ex_noise_fbm3.png", hmap::cmap::terrain, true);
+    z.to_png("ex_noise_fbm3.png", hmap::Cmap::TERRAIN, true);
   }
 
   // ridged
@@ -90,7 +90,7 @@ int main(void)
       hmap::remap(n);
       z = hstack(z, n);
     }
-    z.to_png("ex_noise_fbm4.png", hmap::cmap::terrain, true);
+    z.to_png("ex_noise_fbm4.png", hmap::Cmap::TERRAIN, true);
   }
 
   // swiss
@@ -102,13 +102,13 @@ int main(void)
       hmap::remap(n);
       z = hstack(z, n);
     }
-    z.to_png("ex_noise_fbm5.png", hmap::cmap::terrain, true);
+    z.to_png("ex_noise_fbm5.png", hmap::Cmap::TERRAIN, true);
   }
 
   // Parberry
   {
     auto n = hmap::noise_parberry(shape, kw, seed);
     hmap::remap(n);
-    n.to_png("ex_noise_fbm6.png", hmap::cmap::terrain, true);
+    n.to_png("ex_noise_fbm6.png", hmap::Cmap::TERRAIN, true);
   }
 }

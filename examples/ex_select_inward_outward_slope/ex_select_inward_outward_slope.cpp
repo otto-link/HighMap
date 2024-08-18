@@ -14,5 +14,5 @@ int main(void)
 
   hmap::export_banner_png("ex_select_inward_outward_slope.png",
                           {z, c},
-                          hmap::cmap::magma);
+                          hmap::Cmap::MAGMA);
 }

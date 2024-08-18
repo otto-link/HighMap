@@ -12,5 +12,5 @@ int main(void)
   int ir = 16;
   hmap::sharpen_cone(z1, ir);
 
-  hmap::export_banner_png("ex_sharpen_clone.png", {z0, z1}, hmap::cmap::jet);
+  hmap::export_banner_png("ex_sharpen_clone.png", {z0, z1}, hmap::Cmap::JET);
 }

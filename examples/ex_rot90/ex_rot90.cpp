@@ -11,5 +11,5 @@ int main(void)
   auto z1 = z;
   hmap::rot90(z1);
 
-  hmap::export_banner_png("ex_rot90.png", {z, z1}, hmap::cmap::inferno);
+  hmap::export_banner_png("ex_rot90.png", {z, z1}, hmap::Cmap::INFERNO);
 }

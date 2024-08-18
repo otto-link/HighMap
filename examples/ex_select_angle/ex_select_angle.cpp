@@ -15,5 +15,5 @@ int main(void)
 
   hmap::Array c = hmap::select_angle(z, angle, sigma);
 
-  hmap::export_banner_png("ex_select_angle.png", {z, c}, hmap::cmap::jet);
+  hmap::export_banner_png("ex_select_angle.png", {z, c}, hmap::Cmap::JET);
 }

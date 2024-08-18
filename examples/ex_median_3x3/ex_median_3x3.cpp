@@ -12,5 +12,5 @@ int main(void)
 
   hmap::median_3x3(z);
 
-  hmap::export_banner_png("ex_median_3x3.png", {z0, z}, hmap::cmap::viridis);
+  hmap::export_banner_png("ex_median_3x3.png", {z0, z}, hmap::Cmap::VIRIDIS);
 }

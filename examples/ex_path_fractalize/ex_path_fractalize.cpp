@@ -37,5 +37,5 @@ int main(void)
 
   hmap::export_banner_png("ex_path_fractalize.png",
                           {z1, z_control, z3, z4},
-                          hmap::cmap::inferno);
+                          hmap::Cmap::INFERNO);
 }

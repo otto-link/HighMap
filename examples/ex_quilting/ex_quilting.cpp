@@ -28,7 +28,7 @@ int main(void)
                                   overlap,
                                   ++seed);
 
-  zq.to_png("ex_quilting0.png", hmap::cmap::magma, true);
+  zq.to_png("ex_quilting0.png", hmap::Cmap::MAGMA, true);
 
   // wrapper / shuffle
   hmap::Array zs0 = hmap::quilting_shuffle(z, patch_shape, overlap, ++seed);
@@ -36,7 +36,7 @@ int main(void)
 
   hmap::export_banner_png("ex_quilting1.png",
                           {z, zs0, zs1},
-                          hmap::cmap::terrain,
+                          hmap::Cmap::TERRAIN,
                           true);
 
   // wrapper / expand
@@ -50,7 +50,7 @@ int main(void)
                                           overlap,
                                           ++seed);
 
-  ze0.to_png("ex_quilting2.png", hmap::cmap::terrain, true);
+  ze0.to_png("ex_quilting2.png", hmap::Cmap::TERRAIN, true);
 
   // keep input shape for the output ('true' parameter)
   bool keep_input_shape = true;
@@ -71,7 +71,7 @@ int main(void)
 
   hmap::export_banner_png("ex_quilting3.png",
                           {z, ze1, ze2},
-                          hmap::cmap::terrain,
+                          hmap::Cmap::TERRAIN,
                           true);
 
   // wrapper / blend
@@ -82,6 +82,6 @@ int main(void)
 
   hmap::export_banner_png("ex_quilting4.png",
                           {z, zw, zb},
-                          hmap::cmap::terrain,
+                          hmap::Cmap::TERRAIN,
                           true);
 }

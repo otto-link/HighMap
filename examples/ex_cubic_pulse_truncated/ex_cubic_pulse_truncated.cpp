@@ -7,5 +7,5 @@ int main(void)
   float           angle = 30.f;
 
   hmap::Array z = hmap::cubic_pulse_truncated(shape, slant_ratio, angle);
-  z.to_png("ex_cubic_pulse_truncated.png", hmap::cmap::viridis);
+  z.to_png("ex_cubic_pulse_truncated.png", hmap::Cmap::VIRIDIS);
 }

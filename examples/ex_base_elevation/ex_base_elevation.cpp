@@ -22,5 +22,5 @@ int main(void)
 
   hmap::export_banner_png("ex_base_elevation.png",
                           {z1, z2},
-                          hmap::cmap::inferno);
+                          hmap::Cmap::INFERNO);
 }

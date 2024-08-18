@@ -12,7 +12,7 @@ int main(void)
                                         res,
                                         seed);
   hmap::remap(density);
-  density.to_png("ex_random_grid_density0.png", hmap::cmap::magma);
+  density.to_png("ex_random_grid_density0.png", hmap::Cmap::MAGMA);
 
   std::vector<float> x(n_grid_points);
   std::vector<float> y(n_grid_points);
@@ -24,6 +24,6 @@ int main(void)
     hmap::Cloud cloud = hmap::Cloud(x, y, 1.f);
     hmap::Array array = hmap::Array(shape);
     cloud.to_array(array);
-    array.to_png("ex_random_grid_density1.png", hmap::cmap::gray);
+    array.to_png("ex_random_grid_density1.png", hmap::Cmap::GRAY);
   }
 }

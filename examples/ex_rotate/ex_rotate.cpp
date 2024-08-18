@@ -11,5 +11,5 @@ int main(void)
   auto z1 = z;
   hmap::rotate(z1, 30.f);
 
-  hmap::export_banner_png("ex_rotate.png", {z, z1}, hmap::cmap::viridis);
+  hmap::export_banner_png("ex_rotate.png", {z, z1}, hmap::Cmap::VIRIDIS);
 }

@@ -16,6 +16,6 @@ int main(void)
 
   h.from_array_interp(z);
 
-  z.to_png("ex_heightmap_from_array0.png", hmap::cmap::inferno);
-  h.to_array().to_png("ex_heightmap_from_array1.png", hmap::cmap::inferno);
+  z.to_png("ex_heightmap_from_array0.png", hmap::Cmap::INFERNO);
+  h.to_array().to_png("ex_heightmap_from_array1.png", hmap::Cmap::INFERNO);
 }

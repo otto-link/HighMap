@@ -27,5 +27,5 @@ int main(void)
 
   hmap::Array z3 = hmap::step(shape, angle, talus, &ctrl_array);
 
-  hmap::export_banner_png("ex_step.png", {z1, z2, z3}, hmap::cmap::inferno);
+  hmap::export_banner_png("ex_step.png", {z1, z2, z3}, hmap::Cmap::INFERNO);
 }

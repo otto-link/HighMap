@@ -25,13 +25,13 @@ int main(void)
 
   hmap::export_banner_png("ex_select_transitions0.png",
                           {z1, z2},
-                          hmap::cmap::viridis);
+                          hmap::Cmap::VIRIDIS);
 
   hmap::export_banner_png("ex_select_transitions1.png",
                           {z_m, z_s},
-                          hmap::cmap::viridis);
+                          hmap::Cmap::VIRIDIS);
 
   hmap::export_banner_png("ex_select_transitions2.png",
                           {mask_m, mask_s},
-                          hmap::cmap::gray);
+                          hmap::Cmap::GRAY);
 }

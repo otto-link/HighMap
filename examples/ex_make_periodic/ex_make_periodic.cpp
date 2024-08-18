@@ -19,7 +19,7 @@ int main(void)
 
   hmap::export_banner_png("ex_make_periodic0.png",
                           {z, zp},
-                          hmap::cmap::viridis);
+                          hmap::Cmap::VIRIDIS);
 
-  zt.to_png("ex_make_periodic1.png", hmap::cmap::viridis);
+  zt.to_png("ex_make_periodic1.png", hmap::Cmap::VIRIDIS);
 }

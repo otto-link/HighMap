@@ -7,5 +7,5 @@ int main(void)
   float           angle = 30.f;
 
   hmap::Array z = hmap::gabor(shape, kw, angle);
-  z.to_png("ex_gabor.png", hmap::cmap::viridis);
+  z.to_png("ex_gabor.png", hmap::Cmap::VIRIDIS);
 }

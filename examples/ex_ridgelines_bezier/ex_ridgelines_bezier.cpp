@@ -24,5 +24,5 @@ int main(void)
 
   hmap::export_banner_png("ex_ridgelines_bezier.png",
                           {z1, z2},
-                          hmap::cmap::inferno);
+                          hmap::Cmap::INFERNO);
 }

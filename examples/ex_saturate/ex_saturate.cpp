@@ -14,5 +14,5 @@ int main(void)
   float k = 0.1f;
   hmap::saturate(zs, vmin, vmax, k);
 
-  hmap::export_banner_png("ex_saturate.png", {z, zs}, hmap::cmap::magma);
+  hmap::export_banner_png("ex_saturate.png", {z, zs}, hmap::Cmap::MAGMA);
 }

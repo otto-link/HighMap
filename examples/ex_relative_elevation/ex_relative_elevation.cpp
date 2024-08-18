@@ -14,5 +14,5 @@ int main(void)
 
   hmap::export_banner_png("ex_relative_elevation.png",
                           {z, zr},
-                          hmap::cmap::terrain);
+                          hmap::Cmap::TERRAIN);
 }

@@ -14,5 +14,5 @@ int main(void)
 
   hmap::export_banner_png("ex_low_pass_high_order.png",
                           {z, zf},
-                          hmap::cmap::viridis);
+                          hmap::Cmap::VIRIDIS);
 }

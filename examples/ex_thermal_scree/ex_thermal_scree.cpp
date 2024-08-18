@@ -22,6 +22,6 @@ int main(void)
 
   hmap::export_banner_png("ex_thermal_scree.png",
                           {z0, z, zf},
-                          hmap::cmap::terrain,
+                          hmap::Cmap::TERRAIN,
                           true);
 }

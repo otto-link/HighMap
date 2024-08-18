@@ -1,8 +1,4 @@
-#include "highmap/array.hpp"
-#include "highmap/geometry.hpp"
-#include "highmap/io.hpp"
-#include "highmap/primitives.hpp"
-#include "highmap/roads.hpp"
+#include "highmap.hpp"
 
 int main(void)
 {
@@ -13,7 +9,7 @@ int main(void)
                                   shape,
                                   {4.f, 4.f},
                                   seed);
-  z.to_png("ex_generate_network_alpha_model0.png", hmap::cmap::terrain, true);
+  z.to_png("ex_generate_network_alpha_model0.png", hmap::Cmap::TERRAIN, true);
 
   // "cities"
   int               npoints = 10;
@@ -42,5 +38,5 @@ int main(void)
   // values
   hmap::Array g = hmap::Array(shape);
   network.to_array(g, bbox);
-  g.to_png("ex_generate_network_alpha_model2.png", hmap::cmap::gray);
+  g.to_png("ex_generate_network_alpha_model2.png", hmap::Cmap::GRAY);
 }

@@ -14,7 +14,7 @@ int main(void)
   hmap::clamp_min_smooth(z, 0.f, 0.2f);
   hmap::remap(z);
 
-  z.to_png("hmap.png", hmap::cmap::terrain);
+  z.to_png("hmap.png", hmap::Cmap::TERRAIN);
 
   for (auto &[export_id, export_infos] : hmap::asset_export_format_as_string)
   {

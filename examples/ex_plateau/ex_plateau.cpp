@@ -11,5 +11,5 @@ int main(void)
   auto zp = z;
   hmap::plateau(zp, 64, 4.f);
 
-  hmap::export_banner_png("ex_plateau.png", {z, zp}, hmap::cmap::terrain);
+  hmap::export_banner_png("ex_plateau.png", {z, zp}, hmap::Cmap::TERRAIN);
 }

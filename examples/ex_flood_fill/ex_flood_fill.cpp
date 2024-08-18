@@ -17,5 +17,5 @@ int main(void)
 
   z2.infos();
 
-  hmap::export_banner_png("ex_flood_fill.png", {z, z1, z2}, hmap::cmap::gray);
+  hmap::export_banner_png("ex_flood_fill.png", {z, z1, z2}, hmap::Cmap::GRAY);
 }

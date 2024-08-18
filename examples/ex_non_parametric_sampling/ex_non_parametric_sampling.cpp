@@ -18,7 +18,7 @@ int main(void)
 
   hmap::export_banner_png("ex_non_parametric_sampling.png",
                           {z, zq1, zq2},
-                          hmap::cmap::terrain,
+                          hmap::Cmap::TERRAIN,
                           true);
 
   // // wrapper / shuffle

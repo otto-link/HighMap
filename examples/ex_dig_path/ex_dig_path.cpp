@@ -45,6 +45,6 @@ int main(void)
 
   hmap::export_banner_png("ex_dig_path.png",
                           {z, z1, z2, z3},
-                          hmap::cmap::terrain,
+                          hmap::Cmap::TERRAIN,
                           true);
 }

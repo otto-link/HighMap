@@ -26,6 +26,6 @@ int main(void)
 
   hmap::export_banner_png("ex_stratify_multiscale.png",
                           {z, z1},
-                          hmap::cmap::terrain,
+                          hmap::Cmap::TERRAIN,
                           true);
 }

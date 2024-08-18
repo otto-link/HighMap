@@ -20,7 +20,7 @@ int main(void)
 
   hmap::export_banner_png("ex_make_periodic_stitching0.png",
                           {z, zp},
-                          hmap::cmap::inferno);
+                          hmap::Cmap::INFERNO);
 
-  zt.to_png("ex_make_periodic_stitching1.png", hmap::cmap::inferno);
+  zt.to_png("ex_make_periodic_stitching1.png", hmap::Cmap::INFERNO);
 }

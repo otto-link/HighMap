@@ -1,6 +1,4 @@
-#include "highmap/array.hpp"
-#include "highmap/io.hpp"
-#include "highmap/primitives.hpp"
+#include "highmap.hpp"
 
 int main(void)
 {
@@ -12,5 +10,5 @@ int main(void)
 
   auto zr = z.resample_to_shape({32, 32});
 
-  zr.to_png("ex_resample_to_shape.png", hmap::cmap::viridis);
+  zr.to_png("ex_resample_to_shape.png", hmap::Cmap::VIRIDIS);
 }

@@ -21,11 +21,11 @@ int main(void)
 
   hmap::Array ac = hmap::accumulation_curvature(z, ir);
 
-  z.to_png("ex_curvature_gaussian0.png", hmap::cmap::terrain);
-  k.to_png("ex_curvature_gaussian1.png", hmap::cmap::jet);
-  h.to_png("ex_curvature_gaussian2.png", hmap::cmap::jet);
+  z.to_png("ex_curvature_gaussian0.png", hmap::Cmap::TERRAIN);
+  k.to_png("ex_curvature_gaussian1.png", hmap::Cmap::JET);
+  h.to_png("ex_curvature_gaussian2.png", hmap::Cmap::JET);
 
-  si.to_png("ex_curvature_gaussian3.png", hmap::cmap::jet);
-  un.to_png("ex_curvature_gaussian4.png", hmap::cmap::jet);
-  ac.to_png("ex_curvature_gaussian5.png", hmap::cmap::jet);
+  si.to_png("ex_curvature_gaussian3.png", hmap::Cmap::JET);
+  un.to_png("ex_curvature_gaussian4.png", hmap::Cmap::JET);
+  ac.to_png("ex_curvature_gaussian5.png", hmap::Cmap::JET);
 }

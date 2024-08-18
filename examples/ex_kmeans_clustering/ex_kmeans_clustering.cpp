@@ -43,22 +43,22 @@ int main(void)
                                                  nclusters,
                                                  &scoring6);
 
-  z.to_png("ex_kmeans_clustering0.png", hmap::cmap::inferno);
+  z.to_png("ex_kmeans_clustering0.png", hmap::Cmap::INFERNO);
 
-  labels4.to_png("ex_kmeans_clustering1.png", hmap::cmap::jet);
+  labels4.to_png("ex_kmeans_clustering1.png", hmap::Cmap::JET);
 
   hmap::export_banner_png("ex_kmeans_clustering2.png",
                           scoring4,
-                          hmap::cmap::nipy_spectral,
+                          hmap::Cmap::NIPY_SPECTRAL,
                           false);
 
-  aggregate_scoring4.to_png("ex_kmeans_clustering3.png", hmap::cmap::jet);
+  aggregate_scoring4.to_png("ex_kmeans_clustering3.png", hmap::Cmap::JET);
   aggregate_scoring4.infos();
 
-  labels6.to_png("ex_kmeans_clustering4.png", hmap::cmap::jet);
+  labels6.to_png("ex_kmeans_clustering4.png", hmap::Cmap::JET);
 
   hmap::export_banner_png("ex_kmeans_clustering5.png",
                           scoring6,
-                          hmap::cmap::nipy_spectral,
+                          hmap::Cmap::NIPY_SPECTRAL,
                           false);
 }

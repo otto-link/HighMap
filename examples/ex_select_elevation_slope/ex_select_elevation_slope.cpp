@@ -12,6 +12,6 @@ int main(void)
   float       gradient_scale = 0.05f;
   hmap::Array c = hmap::select_elevation_slope(z, gradient_scale);
 
-  z.to_png("ex_select_elevation_slope0.png", hmap::cmap::jet);
-  c.to_png("ex_select_elevation_slope1.png", hmap::cmap::jet);
+  z.to_png("ex_select_elevation_slope0.png", hmap::Cmap::JET);
+  c.to_png("ex_select_elevation_slope1.png", hmap::Cmap::JET);
 }

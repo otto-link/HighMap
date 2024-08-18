@@ -29,5 +29,5 @@ int main(void)
 
   hmap::export_banner_png("ex_slope.png",
                           {oblique, valley, wctrl},
-                          hmap::cmap::terrain);
+                          hmap::Cmap::TERRAIN);
 }

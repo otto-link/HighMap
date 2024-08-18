@@ -15,5 +15,5 @@ int main(void)
 
   hmap::export_banner_png("ex_white_density_map.png",
                           {dmap, w},
-                          hmap::cmap::viridis);
+                          hmap::Cmap::VIRIDIS);
 }

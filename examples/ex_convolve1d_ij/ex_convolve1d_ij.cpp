@@ -14,5 +14,5 @@ int main(void)
   auto zc = hmap::convolve1d_i(z, k);
   zc = hmap::convolve1d_j(zc, k);
 
-  hmap::export_banner_png("ex_convolve1d_ij.png", {z, zc}, hmap::cmap::viridis);
+  hmap::export_banner_png("ex_convolve1d_ij.png", {z, zc}, hmap::Cmap::VIRIDIS);
 }

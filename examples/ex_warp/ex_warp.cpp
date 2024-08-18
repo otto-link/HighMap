@@ -25,5 +25,5 @@ int main(void)
 
   hmap::warp(z, &dx, &dy);
 
-  hmap::export_banner_png("ex_warp.png", {z0, z}, hmap::cmap::viridis);
+  hmap::export_banner_png("ex_warp.png", {z0, z}, hmap::Cmap::VIRIDIS);
 }

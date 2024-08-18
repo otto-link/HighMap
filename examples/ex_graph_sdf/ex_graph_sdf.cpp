@@ -22,5 +22,5 @@ int main(void)
 
   hmap::Array zm = graph_mst.to_array_sdf(shape, bbox_array);
 
-  hmap::export_banner_png("ex_graph_sdf.png", {zd, zm}, hmap::cmap::jet);
+  hmap::export_banner_png("ex_graph_sdf.png", {zd, zm}, hmap::Cmap::JET);
 }

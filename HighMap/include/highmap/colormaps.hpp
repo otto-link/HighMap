@@ -18,20 +18,117 @@
 namespace hmap
 {
 
-enum cmap : int
+/**
+ * @enum Cmap
+ * @brief Enumeration of colormap types for image processing.
+ *
+ * This enumeration defines various colormap options that can be used
+ * for visualizing data in image processing. Each colormap provides a
+ * different color mapping scheme, which can be applied to grayscale
+ * images or data to enhance visual interpretation.
+ *
+ * @var Cmap::BONE
+ *     A colormap that resembles human bone, providing a grayscale-to-blue
+ * gradient.
+ *
+ * @var Cmap::GRAY
+ *     A simple grayscale colormap, mapping data values directly to shades of
+ * gray.
+ *
+ * @var Cmap::HOT
+ *     A colormap that transitions from black through red and yellow to white,
+ *     often used to represent heatmaps.
+ *
+ * @var Cmap::INFERNO
+ *     A perceptually uniform colormap that transitions from dark blue to
+ * yellow.
+ *
+ * @var Cmap::JET
+ *     A widely used colormap that transitions from blue to red via cyan and
+ * yellow, often criticized for creating misleading visual interpretations.
+ *
+ * @var Cmap::MAGMA
+ *     A perceptually uniform colormap that transitions from dark purple to
+ * yellow.
+ *
+ * @var Cmap::NIPY_SPECTRAL
+ *     A colormap that spans a wide range of colors, useful for scientific
+ * visualization.
+ *
+ * @var Cmap::SEISMIC
+ *     A diverging colormap that transitions from blue to red, typically used
+ * for visualizing differences from a central value.
+ *
+ * @var Cmap::TERRAIN
+ *     A colormap resembling natural terrain, with shades of green, brown, and
+ * white, often used in topographical data.
+ *
+ * @var Cmap::VIRIDIS
+ *     A perceptually uniform colormap that transitions from dark blue to
+ * yellow-green.
+ *
+ * @var Cmap::WHITE_UNIFORM
+ *     A uniform white colormap.
+ *
+ * **Example**
+ * @include ex_colormaps.cpp
+ *
+ * **Result**
+ * @image html ex_colormaps1.png
+ * @image html ex_colormaps2.png
+ * @image html ex_colormaps3.png
+ * @image html ex_colormaps4.png
+ * @image html ex_colormaps5.png
+ * @image html ex_colormaps6.png
+ * @image html ex_colormaps7.png
+ * @image html ex_colormaps8.png
+ * @image html ex_colormaps9.png
+ * @image html ex_colormaps10.png
+ */
+enum Cmap : int
 {
-  bone,
-  gray,
-  hot,
-  inferno,
-  jet,
-  magma,
-  nipy_spectral,
-  seismic,
-  terrain,
-  viridis,
-  white_uniform
+  BONE,
+  GRAY,
+  HOT,
+  INFERNO,
+  JET,
+  MAGMA,
+  NIPY_SPECTRAL,
+  SEISMIC,
+  TERRAIN,
+  VIRIDIS,
+  WHITE_UNIFORM
 };
+
+/**
+ * @brief Mapping between the `Cmap` enum and its corresponding lowercase string
+ * representation.
+ *
+ * This `std::map` provides a lookup table that associates each colormap defined
+ * in the `Cmap` enum with its plain text name in lowercase. This mapping allows
+ * for easy conversion between the enum values and their lowercase string
+ * equivalents, which can be useful for debugging, logging, or displaying the
+ * colormap names in a user interface.
+ *
+ * Example usage:
+ * @code
+ * Cmap selected_cmap = Cmap::JET;
+ * std::cout << "Selected colormap: " << cmap_as_string[selected_cmap] <<
+ * std::endl;
+ * @endcode
+ */
+static std::map<Cmap, std::string> cmap_as_string = {
+    {BONE, "bone"},
+    {GRAY, "gray"},
+    {HOT, "hot"},
+    {INFERNO, "inferno"},
+    {JET, "jet"},
+    {MAGMA, "magma"},
+    {NIPY_SPECTRAL, "nipy_spectral"},
+    {SEISMIC, "seismic"},
+    {TERRAIN, "terrain"},
+    {VIRIDIS, "viridis"},
+    {WHITE_UNIFORM, "white_uniform"}};
 
 #define CMAP_BONE                                                              \
   {                                                                            \

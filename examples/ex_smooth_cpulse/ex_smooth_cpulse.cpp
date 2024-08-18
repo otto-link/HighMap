@@ -12,5 +12,5 @@ int main(void)
 
   hmap::smooth_cpulse(z, radius);
 
-  hmap::export_banner_png("ex_smooth_cpulse.png", {z0, z}, hmap::cmap::viridis);
+  hmap::export_banner_png("ex_smooth_cpulse.png", {z0, z}, hmap::Cmap::VIRIDIS);
 }

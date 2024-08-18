@@ -10,5 +10,5 @@ int main(void)
 
   hmap::Array z2 = hmap::faceted(z1, hmap::neighborhood::CROSS);
 
-  hmap::export_banner_png("ex_faceted.png", {z1, z2}, hmap::cmap::jet, true);
+  hmap::export_banner_png("ex_faceted.png", {z1, z2}, hmap::Cmap::JET, true);
 }

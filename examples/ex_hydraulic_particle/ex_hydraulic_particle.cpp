@@ -30,10 +30,10 @@ int main(void)
 
   hmap::export_banner_png("ex_hydraulic_particle0.png",
                           {z, z1, z2},
-                          hmap::cmap::terrain,
+                          hmap::Cmap::TERRAIN,
                           true);
 
   hmap::export_banner_png("ex_hydraulic_particle1.png",
                           {erosion_map, deposition_map},
-                          hmap::cmap::inferno);
+                          hmap::Cmap::INFERNO);
 }

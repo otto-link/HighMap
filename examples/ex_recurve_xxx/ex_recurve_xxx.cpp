@@ -23,5 +23,5 @@ int main(void)
 
   hmap::export_banner_png("ex_recurve_xxx.png",
                           {z, zs, zb, ze, zk, zr},
-                          hmap::cmap::terrain);
+                          hmap::Cmap::TERRAIN);
 }

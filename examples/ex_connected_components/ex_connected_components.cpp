@@ -11,6 +11,6 @@ int main(void)
 
   hmap::Array labels = hmap::connected_components(z);
 
-  z.to_png("ex_connected_components0.png", hmap::cmap::inferno);
-  labels.to_png("ex_connected_components1.png", hmap::cmap::nipy_spectral);
+  z.to_png("ex_connected_components0.png", hmap::Cmap::INFERNO);
+  labels.to_png("ex_connected_components1.png", hmap::Cmap::NIPY_SPECTRAL);
 }

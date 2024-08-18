@@ -14,6 +14,6 @@ int main(void)
     hmap::Array z = hmap::noise(hmap::NoiseType::PERLIN, shape, res, seed);
     timer.stop("fbm_perlin");
 
-    z.to_png("out.png", hmap::cmap::inferno);
+    z.to_png("out.png", hmap::Cmap::INFERNO);
   }
 }

@@ -28,5 +28,5 @@ int main(void)
     z = hstack(z, n);
   }
 
-  z.to_png("ex_noise.png", hmap::cmap::terrain, true);
+  z.to_png("ex_noise.png", hmap::Cmap::TERRAIN, true);
 }

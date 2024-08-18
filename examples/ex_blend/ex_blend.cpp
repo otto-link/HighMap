@@ -25,21 +25,21 @@ int main(void)
 
   hmap::export_banner_png("ex_blend0.png",
                           {z1, z2, z_exclusion},
-                          hmap::cmap::viridis);
+                          hmap::Cmap::VIRIDIS);
 
   hmap::export_banner_png("ex_blend1.png",
                           {z1, z2, z_negate},
-                          hmap::cmap::viridis);
+                          hmap::Cmap::VIRIDIS);
 
   hmap::export_banner_png("ex_blend2.png",
                           {z1, z2, z_overlay},
-                          hmap::cmap::viridis);
+                          hmap::Cmap::VIRIDIS);
 
   hmap::export_banner_png("ex_blend3.png",
                           {z1, z2, z_soft},
-                          hmap::cmap::viridis);
+                          hmap::Cmap::VIRIDIS);
 
   hmap::export_banner_png("ex_blend4.png",
                           {z1, z2, z_gradients},
-                          hmap::cmap::viridis);
+                          hmap::Cmap::VIRIDIS);
 }

@@ -19,6 +19,6 @@ int main(void)
     hmap::Cloud cloud = hmap::Cloud(x, y, v);
     hmap::Array array = hmap::Array(shape);
     cloud.to_array(array, bbox);
-    array.to_png("ex_random_grid.png", hmap::cmap::viridis);
+    array.to_png("ex_random_grid.png", hmap::Cmap::VIRIDIS);
   }
 }

@@ -15,5 +15,5 @@ int main(void)
 
   hmap::export_banner_png("ex_make_periodic_tiling.png",
                           {z, zp},
-                          hmap::cmap::terrain);
+                          hmap::Cmap::TERRAIN);
 }

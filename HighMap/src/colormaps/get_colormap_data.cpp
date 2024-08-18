@@ -12,27 +12,27 @@ std::vector<std::vector<float>> get_colormap_data(int cmap)
 {
   switch (cmap)
   {
-  case cmap::bone:
+  case Cmap::BONE:
     return CMAP_BONE;
-  case cmap::gray:
+  case Cmap::GRAY:
     return CMAP_GRAY;
-  case cmap::hot:
+  case Cmap::HOT:
     return CMAP_HOT;
-  case cmap::inferno:
+  case Cmap::INFERNO:
     return CMAP_INFERNO;
-  case cmap::jet:
+  case Cmap::JET:
     return CMAP_JET;
-  case cmap::magma:
+  case Cmap::MAGMA:
     return CMAP_MAGMA;
-  case cmap::nipy_spectral:
+  case Cmap::NIPY_SPECTRAL:
     return CMAP_NIPY_SPECTRAL;
-  case cmap::seismic:
+  case Cmap::SEISMIC:
     return CMAP_SEISMIC;
-  case cmap::terrain:
+  case Cmap::TERRAIN:
     return CMAP_TERRAIN;
-  case cmap::viridis:
+  case Cmap::VIRIDIS:
     return CMAP_VIRIDIS;
-  case cmap::white_uniform:
+  case Cmap::WHITE_UNIFORM:
     return CMAP_WHITE_UNIFORM;
   }
 }

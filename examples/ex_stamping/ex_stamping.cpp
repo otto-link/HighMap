@@ -35,7 +35,7 @@ int main(void)
 
   z.infos();
 
-  c.to_png("ex_stamping0.png", hmap::cmap::inferno);
-  kernel.to_png("ex_stamping1.png", hmap::cmap::inferno);
-  z.to_png("ex_stamping2.png", hmap::cmap::inferno);
+  c.to_png("ex_stamping0.png", hmap::Cmap::INFERNO);
+  kernel.to_png("ex_stamping1.png", hmap::Cmap::INFERNO);
+  z.to_png("ex_stamping2.png", hmap::Cmap::INFERNO);
 }

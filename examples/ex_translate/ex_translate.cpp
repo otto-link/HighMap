@@ -10,5 +10,5 @@ int main(void)
 
   auto zt = hmap::translate(z, 0.25f, -0.1f, false);
 
-  hmap::export_banner_png("ex_translate.png", {z, zt}, hmap::cmap::jet);
+  hmap::export_banner_png("ex_translate.png", {z, zt}, hmap::Cmap::JET);
 }

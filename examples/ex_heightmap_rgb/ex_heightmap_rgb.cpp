@@ -19,7 +19,7 @@ int main(void)
 
   hmap::export_banner_png("ex_heightmap_rgb0.png",
                           {zr, zg, zb},
-                          hmap::cmap::gray);
+                          hmap::Cmap::GRAY);
 
   auto zs = hmap::slope(shape, 0.f, 1.f);
   hmap::remap(zs);
@@ -38,7 +38,7 @@ int main(void)
   hrgb.to_png_16bit("ex_heightmap_rgb1.png");
 
   // colorize
-  hrgb.colorize(hr, hr.min(), 0.8f * hr.max(), hmap::cmap::jet);
+  hrgb.colorize(hr, hr.min(), 0.8f * hr.max(), hmap::Cmap::JET);
   hrgb.to_png_16bit("ex_heightmap_rgb2.png");
 
   // mix

@@ -27,8 +27,8 @@ int main(void)
 
   hmap::export_banner_png("ex_wave0.png",
                           {zt, zq, zs, zd},
-                          hmap::cmap::viridis);
+                          hmap::Cmap::VIRIDIS);
   hmap::export_banner_png("ex_wave1.png",
                           {ztn, zqn, zsn, zdn},
-                          hmap::cmap::viridis);
+                          hmap::Cmap::VIRIDIS);
 }

@@ -15,5 +15,5 @@ int main(void)
 
   hmap::export_banner_png("ex_steepen_convective.png",
                           {z, z1},
-                          hmap::cmap::terrain);
+                          hmap::Cmap::TERRAIN);
 }

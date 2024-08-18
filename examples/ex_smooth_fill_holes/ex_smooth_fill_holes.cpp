@@ -17,7 +17,7 @@ int main(void)
 
   hmap::export_banner_png("ex_smooth_fill_holes.png",
                           {z, z1, z2},
-                          hmap::cmap::terrain,
+                          hmap::Cmap::TERRAIN,
                           true);
   z.to_file("out.bin");
 }

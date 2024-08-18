@@ -34,5 +34,5 @@ int main(void)
 
   hmap::export_banner_png("ex_cloud_to_array_interp.png",
                           {z0, z1, z2, z3},
-                          hmap::cmap::inferno);
+                          hmap::Cmap::INFERNO);
 }

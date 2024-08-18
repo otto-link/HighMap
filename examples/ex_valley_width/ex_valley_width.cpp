@@ -11,6 +11,6 @@ int main(void)
   int         ir = 8;
   hmap::Array w = hmap::valley_width(z, ir);
 
-  z.to_png("ex_valley_width0.png", hmap::cmap::terrain);
-  w.to_png("ex_valley_width1.png", hmap::cmap::inferno);
+  z.to_png("ex_valley_width0.png", hmap::Cmap::TERRAIN);
+  w.to_png("ex_valley_width1.png", hmap::Cmap::INFERNO);
 }

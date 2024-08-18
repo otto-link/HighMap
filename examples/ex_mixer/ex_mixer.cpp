@@ -26,5 +26,5 @@ int main(void)
 
   hmap::export_banner_png("ex_mixer.png",
                           {t, z1, z2, z3, zm},
-                          hmap::cmap::viridis);
+                          hmap::Cmap::VIRIDIS);
 }

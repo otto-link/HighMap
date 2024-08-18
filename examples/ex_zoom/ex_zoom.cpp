@@ -17,5 +17,5 @@ int main(void)
   // to avoid: zoom < 1.f, w/ periodic boundaries
   auto z3 = hmap::zoom(z, 0.5f, true);
 
-  hmap::export_banner_png("ex_zoom.png", {z, z1, z2, z3}, hmap::cmap::magma);
+  hmap::export_banner_png("ex_zoom.png", {z, z1, z2, z3}, hmap::Cmap::MAGMA);
 }

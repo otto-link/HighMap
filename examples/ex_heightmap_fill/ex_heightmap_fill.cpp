@@ -26,5 +26,5 @@ int main(void)
              });
 
   fname = "ex_heightmap_fill" + std::to_string(count++) + ".png";
-  h.to_array().to_png(fname.c_str(), hmap::cmap::inferno);
+  h.to_array().to_png(fname.c_str(), hmap::Cmap::INFERNO);
 }

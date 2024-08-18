@@ -29,6 +29,6 @@ int main(void)
                                 lip_height_ratio,
                                 &ctrl_array);
 
-  hmap::export_banner_png("ex_crater.png", {z1, z2}, hmap::cmap::terrain, true);
+  hmap::export_banner_png("ex_crater.png", {z1, z2}, hmap::Cmap::TERRAIN, true);
   z1.to_file("out.bin");
 }

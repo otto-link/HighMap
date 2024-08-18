@@ -13,5 +13,5 @@ int main(void)
   hmap::Array c = hmap::select_pulse(z, 0.5f, 0.2f);
   hmap::remap(c);
 
-  hmap::export_banner_png("ex_select_pulse.png", {z, c}, hmap::cmap::inferno);
+  hmap::export_banner_png("ex_select_pulse.png", {z, c}, hmap::Cmap::INFERNO);
 }

@@ -19,5 +19,5 @@ int main(void)
 
   hmap::export_banner_png("ex_fill_talus.png",
                           {z, z1, z2},
-                          hmap::cmap::inferno);
+                          hmap::Cmap::INFERNO);
 }

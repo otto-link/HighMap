@@ -7,5 +7,5 @@ int main(void)
 
   hmap::Array z = hmap::checkerboard(shape, kw);
 
-  z.to_png("ex_checkerboard.png", hmap::cmap::gray);
+  z.to_png("ex_checkerboard.png", hmap::Cmap::GRAY);
 }

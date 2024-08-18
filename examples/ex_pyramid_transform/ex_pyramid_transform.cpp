@@ -37,6 +37,6 @@ int main(void)
 
   hmap::export_banner_png("ex_pyramid_transform.png",
                           {z, zr},
-                          hmap::cmap::terrain,
+                          hmap::Cmap::TERRAIN,
                           true);
 }

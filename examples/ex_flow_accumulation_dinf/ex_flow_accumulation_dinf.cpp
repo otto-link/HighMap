@@ -14,6 +14,6 @@ int main(void)
   // very high values are less relevant
   hmap::clamp_max(facc, 100.f);
 
-  z.to_png("ex_flow_accumulation_dinf0.png", hmap::cmap::terrain, true);
-  facc.to_png("ex_flow_accumulation_dinf1.png", hmap::cmap::hot);
+  z.to_png("ex_flow_accumulation_dinf0.png", hmap::Cmap::TERRAIN, true);
+  facc.to_png("ex_flow_accumulation_dinf1.png", hmap::Cmap::HOT);
 }

@@ -19,5 +19,5 @@ int main(void)
   auto z2 = hmap::ridgelines(shape, x, y, v, -slope);
   hmap::remap(z2);
 
-  hmap::export_banner_png("ex_ridgelines.png", {z1, z2}, hmap::cmap::inferno);
+  hmap::export_banner_png("ex_ridgelines.png", {z1, z2}, hmap::Cmap::INFERNO);
 }

@@ -16,7 +16,7 @@ int main(void)
   hmap::Array z = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, res, seed);
   hmap::remap(z, 0.f, 1.f);
 
-  z.to_png("out.png", hmap::cmap::gray);
+  z.to_png("out.png", hmap::Cmap::GRAY);
 
   z.infos();
 

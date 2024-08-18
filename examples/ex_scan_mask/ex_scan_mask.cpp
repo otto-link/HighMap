@@ -13,5 +13,5 @@ int main(void)
   auto z1 = hmap::scan_mask(z, 0.8f, 0.5f);
   auto z2 = hmap::scan_mask(z, 0.5f, 0.2f);
 
-  hmap::export_banner_png("ex_scan_mask.png", {z, z1, z2}, hmap::cmap::magma);
+  hmap::export_banner_png("ex_scan_mask.png", {z, z1, z2}, hmap::Cmap::MAGMA);
 }

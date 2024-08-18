@@ -14,5 +14,5 @@ int main(void)
 
   hmap::export_banner_png("ex_gaussian_decay.png",
                           {z, zg},
-                          hmap::cmap::viridis);
+                          hmap::Cmap::VIRIDIS);
 }

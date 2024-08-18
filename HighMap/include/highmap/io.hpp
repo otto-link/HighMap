@@ -20,7 +20,7 @@
 namespace hmap
 {
 
-enum cmap : int; // highmap/colormap.hpp
+enum Cmap : int; // highmap/colormap.hpp
 
 /**
  * @brief Mesh type.

@@ -20,6 +20,6 @@ int main(void)
 
   hmap::export_banner_png("ex_laplace.png",
                           {z, z1, z2},
-                          hmap::cmap::viridis,
+                          hmap::Cmap::VIRIDIS,
                           true);
 }

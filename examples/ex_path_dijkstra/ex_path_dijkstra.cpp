@@ -28,5 +28,5 @@ int main(void)
 
   hmap::export_banner_png("ex_path_dijkstra.png",
                           {z, z1, z2},
-                          hmap::cmap::inferno);
+                          hmap::Cmap::INFERNO);
 }

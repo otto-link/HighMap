@@ -32,8 +32,8 @@ int main(void)
 
   hmap::export_banner_png("ex_hydraulic_spl0.png",
                           {z, z1, z2},
-                          hmap::cmap::terrain,
+                          hmap::Cmap::TERRAIN,
                           true);
 
-  erosion_map.to_png("ex_hydraulic_spl1.png", hmap::cmap::inferno);
+  erosion_map.to_png("ex_hydraulic_spl1.png", hmap::Cmap::INFERNO);
 }

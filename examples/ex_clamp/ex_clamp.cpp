@@ -22,5 +22,5 @@ int main(void)
 
   hmap::export_banner_png("ex_clamp.png",
                           {z1, z2, z3, z4},
-                          hmap::cmap::viridis);
+                          hmap::Cmap::VIRIDIS);
 }

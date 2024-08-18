@@ -16,5 +16,5 @@ int main(void)
 
   hmap::export_banner_png("ex_normal_displacement.png",
                           {z1, z2},
-                          hmap::cmap::terrain);
+                          hmap::Cmap::TERRAIN);
 }
