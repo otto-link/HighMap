@@ -1,5 +1,6 @@
+#include <iostream>
+
 #include "highmap.hpp"
-#include "highmap/dbg.hpp"
 
 int main(void)
 {
@@ -27,6 +28,6 @@ int main(void)
 
   hmap::export_banner_png("ex_gpu_simplex.png", {z1, z2}, hmap::cmap::viridis);
 #else
-  LOG_ERROR("OpenCL not activated");
+  std::cout << "OpenCL not activated\n";
 #endif
 }

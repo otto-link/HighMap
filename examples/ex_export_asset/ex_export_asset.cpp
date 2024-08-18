@@ -1,5 +1,6 @@
+#include <iostream>
+
 #include "highmap.hpp"
-#include "highmap/dbg.hpp"
 
 int main(void)
 {
@@ -18,7 +19,7 @@ int main(void)
 
   for (auto &[export_id, export_infos] : hmap::asset_export_format_as_string)
   {
-    LOG_INFO("exporting format: %s", export_infos[0].c_str());
+    std::cout << "exporting format: " << export_infos[0] << "\n";
 
     float error_tolerance = 1e-2f; // for tri_optimized only
 

@@ -1,5 +1,6 @@
+#include <iostream>
+
 #include "highmap.hpp"
-#include "highmap/dbg.hpp"
 
 int main(void)
 {

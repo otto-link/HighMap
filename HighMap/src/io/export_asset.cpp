@@ -11,9 +11,9 @@
 #include <assimp/scene.h>
 
 #include "highmap/array.hpp"
+#include "highmap/export.hpp"
 #include "highmap/geometry.hpp"
 #include "highmap/interpolate.hpp"
-#include "highmap/export.hpp"
 #include "highmap/operator.hpp"
 
 namespace hmap

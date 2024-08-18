@@ -10,8 +10,6 @@
 #include "highmap/geometry.hpp"
 #include "highmap/gpu.hpp"
 
-#include "highmap/dbg.hpp"
-
 namespace hmap::gpu
 {
 
@@ -28,8 +26,6 @@ void hydraulic_particle(OpenCLConfig &config,
                         const float   dt)
 {
   int err = 0;
-
-  Timer timer = Timer("hydraulic_particle");
 
   int nparticles_resized = closest_smaller_multiple<int>(nparticles,
                                                          config.block_size);
@@ -81,12 +77,9 @@ void hydraulic_particle(OpenCLConfig &config,
 
   OPENCL_ERROR_MESSAGE(err, "enqueueNDRangeKernel");
 
-  timer.start("core");
-
   err = queue.finish();
 
   OPENCL_ERROR_MESSAGE(err, "finish");
-  timer.stop("core");
 
   cl::array<size_t, 3> origin = {0, 0, 0};
   cl::array<size_t, 3> region = {(size_t)array.shape.y,
@@ -129,8 +122,6 @@ void maximum_local_weighted(OpenCLConfig &config, Array &array, Array &weights)
   }
   else
     p_weights = &weights;
-
-  Timer timer = Timer("maximum_local_weighted");
 
   cl::CommandQueue queue(config.context, config.device);
 
@@ -180,12 +171,9 @@ void maximum_local_weighted(OpenCLConfig &config, Array &array, Array &weights)
 
   OPENCL_ERROR_MESSAGE(err, "enqueueNDRangeKernel");
 
-  timer.start("core");
-
   err = queue.finish();
 
   OPENCL_ERROR_MESSAGE(err, "finish");
-  timer.stop("core");
 
   err = queue.enqueueReadBuffer(buffer_out,
                                 CL_TRUE,
@@ -201,8 +189,6 @@ void median_3x3(OpenCLConfig     &config,
                 const cl::NDRange local_work_size)
 {
   int err = 0;
-
-  Timer timer = Timer("median_3x3");
 
   // --- wrapper to GPU host
 
@@ -243,12 +229,9 @@ void median_3x3(OpenCLConfig     &config,
 
   OPENCL_ERROR_MESSAGE(err, "enqueueNDRangeKernel");
 
-  timer.start("core");
-
   err = queue.finish();
 
   OPENCL_ERROR_MESSAGE(err, "finish");
-  timer.stop("core");
 
   err = queue.enqueueReadBuffer(buffer_out,
                                 CL_TRUE,
@@ -264,8 +247,6 @@ void median_3x3_img(OpenCLConfig     &config,
                     const cl::NDRange local_work_size)
 {
   int err = 0;
-
-  Timer timer = Timer("median_3x3_img");
 
   // --- wrapper to GPU host
 
@@ -314,12 +295,9 @@ void median_3x3_img(OpenCLConfig     &config,
 
   OPENCL_ERROR_MESSAGE(err, "enqueueNDRangeKernel");
 
-  timer.start("core");
-
   err = queue.finish();
 
   OPENCL_ERROR_MESSAGE(err, "finish");
-  timer.stop("core");
 
   cl::array<size_t, 3> origin = {0, 0, 0};
   cl::array<size_t, 3> region = {(size_t)array.shape.y,
@@ -357,8 +335,6 @@ Array ridgelines(OpenCLConfig      &config,
   std::vector<float> yr_scaled = yr;
 
   rescale_grid_to_unit_square(xr_scaled, yr_scaled, bbox);
-
-  Timer timer = Timer("ridgelines");
 
   cl::CommandQueue queue(config.context, config.device);
 
@@ -414,12 +390,9 @@ Array ridgelines(OpenCLConfig      &config,
 
   OPENCL_ERROR_MESSAGE(err, "enqueueNDRangeKernel");
 
-  timer.start("core");
-
   err = queue.finish();
 
   OPENCL_ERROR_MESSAGE(err, "finish");
-  timer.stop("core");
 
   err = queue.enqueueReadBuffer(buffer_out,
                                 CL_TRUE,
@@ -440,8 +413,6 @@ Array simplex(OpenCLConfig     &config,
 {
   int   err = 0;
   Array array = Array(shape); // output
-
-  Timer timer = Timer("simplex");
 
   cl::CommandQueue queue(config.context, config.device);
 
@@ -477,12 +448,9 @@ Array simplex(OpenCLConfig     &config,
 
   OPENCL_ERROR_MESSAGE(err, "enqueueNDRangeKernel");
 
-  timer.start("core");
-
   err = queue.finish();
 
   OPENCL_ERROR_MESSAGE(err, "finish");
-  timer.stop("core");
 
   err = queue.enqueueReadBuffer(buffer_out,
                                 CL_TRUE,
@@ -505,8 +473,6 @@ Array voronoise(OpenCLConfig     &config,
 {
   int   err = 0;
   Array array = Array(shape); // output
-
-  Timer timer = Timer("voronoise");
 
   cl::CommandQueue queue(config.context, config.device);
 
@@ -544,12 +510,9 @@ Array voronoise(OpenCLConfig     &config,
 
   OPENCL_ERROR_MESSAGE(err, "enqueueNDRangeKernel");
 
-  timer.start("core");
-
   err = queue.finish();
 
   OPENCL_ERROR_MESSAGE(err, "finish");
-  timer.stop("core");
 
   err = queue.enqueueReadBuffer(buffer_out,
                                 CL_TRUE,

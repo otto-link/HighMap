@@ -1,5 +1,6 @@
+#include <iostream>
+
 #include "highmap.hpp"
-#include "highmap/dbg.hpp"
 
 int main(void)
 {
@@ -39,6 +40,6 @@ int main(void)
                           {z, z1, z2},
                           hmap::cmap::inferno);
 #else
-  LOG_ERROR("OpenCL not activated");
+  std::cout << "OpenCL not activated\n";
 #endif
 }

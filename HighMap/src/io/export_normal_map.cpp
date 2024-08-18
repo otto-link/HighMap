@@ -4,8 +4,8 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
-#include "highmap/gradient.hpp"
 #include "highmap/export.hpp"
+#include "highmap/gradient.hpp"
 #include "highmap/operator.hpp"
 
 namespace hmap

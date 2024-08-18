@@ -2,12 +2,10 @@
 #include <opencv2/opencv.hpp>
 
 #include "highmap.hpp"
-#include "highmap/dbg.hpp"
 
 int main(void)
 {
 #ifdef ENABLE_OPENCV
-  LOG_DEBUG("opencv enabled");
 
   hmap::Vec2<int>   shape = {512, 256};
   hmap::Vec2<float> res = {4.f, 2.f};
@@ -42,9 +40,6 @@ int main(void)
 
   cv::imshow("example", img);
   cv::waitKey(0);
-
-#else
-  LOG_DEBUG("opencv not available");
 
 #endif
 }

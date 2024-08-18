@@ -1,6 +1,6 @@
 #include "highmap/array.hpp"
-#include "highmap/geometry.hpp"
 #include "highmap/export.hpp"
+#include "highmap/geometry.hpp"
 
 int main(void)
 {

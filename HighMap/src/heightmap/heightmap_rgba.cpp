@@ -9,8 +9,8 @@
 #include "macrologger.h"
 
 #include "highmap/colormaps.hpp"
-#include "highmap/heightmap.hpp"
 #include "highmap/export.hpp"
+#include "highmap/heightmap.hpp"
 #include "highmap/math.hpp"
 #include "highmap/operator.hpp"
 #include "highmap/primitives.hpp"

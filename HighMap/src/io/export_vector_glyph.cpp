@@ -4,8 +4,8 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
-#include "highmap/geometry.hpp"
 #include "highmap/export.hpp"
+#include "highmap/geometry.hpp"
 #include "highmap/math.hpp"
 #include "highmap/operator.hpp"
 

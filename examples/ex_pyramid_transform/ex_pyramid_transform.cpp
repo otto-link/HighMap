@@ -1,5 +1,6 @@
+#include <iostream>
+
 #include "highmap.hpp"
-#include "highmap/dbg.hpp"
 
 int main(void)
 {
@@ -19,10 +20,8 @@ int main(void)
   // 'transform' function
   auto fct = [&seed](const hmap::Array &input, const int current_level)
   {
-    LOG_INFO("applying erosion to level: %d, shape: {%d, %d}",
-             current_level,
-             input.shape.x,
-             input.shape.y);
+    std::cout << "applying erosion to level and shape: " << current_level << " "
+              << input.shape.x << " " << input.shape.y << "\n";
 
     // apply hydraulic erosion to each component
     hmap::Array output = input;

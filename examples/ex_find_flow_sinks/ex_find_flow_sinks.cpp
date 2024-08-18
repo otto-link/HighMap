@@ -1,5 +1,6 @@
+#include <iostream>
+
 #include "highmap.hpp"
-#include "highmap/dbg.hpp"
 
 int main(void)
 {
@@ -13,5 +14,5 @@ int main(void)
   hmap::find_flow_sinks(z, is, js);
 
   for (size_t k = 0; k < is.size(); k++)
-    LOG_INFO("%d %d", is[k], js[k]);
+    std::cout << is[k] << " " << js[k] << "\n";
 }
