@@ -1,2 +1,0 @@
-add_executable(parameter_influence main.cpp)
-target_link_libraries(parameter_influence highmap)

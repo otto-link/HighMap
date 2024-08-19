@@ -3,10 +3,8 @@ cmake_minimum_required(VERSION 3.22)
 project(highmap-root)
 
 option(HIGHMAP_ENABLE_OPENCL "" OFF)
-option(HIGHMAP_ENABLE_OPENCV "" ON)
 option(HIGHMAP_ENABLE_DOCS "" ON)
 option(HIGHMAP_ENABLE_EXAMPLES "" ON)
-option(HIGHMAP_ENABLE_TESTS "" ON)
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -60,7 +58,3 @@ if(HIGHMAP_ENABLE_EXAMPLES)
   endif(HIGHMAP_ENABLE_OPENCL)
   add_subdirectory(${PROJECT_SOURCE_DIR}/examples)
 endif(HIGHMAP_ENABLE_EXAMPLES)
-
-if(HIGHMAP_ENABLE_TESTS)
-  add_subdirectory(${PROJECT_SOURCE_DIR}/tests)
-endif(HIGHMAP_ENABLE_TESTS)
