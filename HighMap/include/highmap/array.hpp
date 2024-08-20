@@ -17,7 +17,7 @@
 typedef unsigned int uint;
 
 #include <functional>
-#include <opencv2/opencv.hpp> //core/mat.hpp>
+#include <opencv2/core/mat.hpp>
 #include <random>
 
 #include "highmap/algebra.hpp"
