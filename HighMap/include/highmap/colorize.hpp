@@ -37,16 +37,31 @@ void apply_hillshade(Array3            &img,
                      float              exponent = 1.f);
 
 /**
-* @brief 
-* @param array
-* @param vmin
-* @param vmax
-* @param cmap
-* @param hillshading
-* @param reverse
-* @param p_noise
-* @return
-*/
+ * @brief Apply hillshading to an image.
+ *
+ * @param img Input image.
+ * @param array Elevation array.
+ * @param exponent Power exponent applied to the hillshade values.
+ * @param is_img_rgba Whether the input image as an alpha channel or not.
+ */
+void apply_hillshade(std::vector<uint8_t> &img,
+                     const hmap::Array    &array,
+                     float                 vmin = 0.f,
+                     float                 vmax = 1.f,
+                     float                 exponent = 1.f,
+                     bool                  is_img_rgba = false);
+
+/**
+ * @brief
+ * @param array
+ * @param vmin
+ * @param vmax
+ * @param cmap
+ * @param hillshading
+ * @param reverse
+ * @param p_noise
+ * @return
+ */
 Array3 colorize(Array &array,
                 float  vmin,
                 float  vmax,

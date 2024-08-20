@@ -49,6 +49,8 @@ public:
   void to_png_8bit(std::string fname);
 
   void to_png_16bit(std::string fname);
+
+  std::vector<uint8_t> to_img_8bit();
 };
 
 } // namespace hmap
