@@ -14,6 +14,7 @@
  */
 #pragma once
 #include <map>
+#include <opencv2/imgcodecs.hpp>
 #include <png.h>
 
 #include "highmap/array.hpp"
