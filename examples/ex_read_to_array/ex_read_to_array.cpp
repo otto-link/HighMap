@@ -15,7 +15,9 @@ int main(void)
   hmap::Array z1 = hmap::read_to_array("out1.png");
   hmap::Array z2 = hmap::read_to_array("out2.png"); // converted to grayscale
 
+  hmap::Array z3 = hmap::Array("out1.png");
+
   hmap::export_banner_png("ex_read_to_array.png",
-                          {z0, z1, z2},
+                          {z0, z1, z2, z3},
                           hmap::Cmap::INFERNO);
 }

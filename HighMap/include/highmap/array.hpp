@@ -64,7 +64,7 @@ public:
 
   Array(Vec2<int> shape, float value); ///< @overload
 
-  Array(std::string filename, bool resize_array = true); ///< @overload
+  Array(std::string filename); ///< @overload
 
   //----------------------------------------
   // accessors

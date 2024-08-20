@@ -259,37 +259,6 @@ void export_vector_glyph_png_16bit(const std::string fname,
 Array read_to_array(std::string fname);
 
 /**
- * @brief Read an 8bit grayscale image to a png file.
- *
- * @param fname File name.
- * @param shape Image shape.
- */
-std::vector<uint8_t> read_png_grayscale_8bit(std::string fname);
-
-/**
- * @brief Read an 16bit grayscale image to a png file.
- *
- * @param fname File name.
- * @param shape Image shape.
- */
-std::vector<uint16_t> read_png_grayscale_16bit(std::string fname);
-
-/**
- * @brief
- *
- * @param fname File name.
- * @param width Image width.
- * @param height Image width.
- * @param color_type Color type.
- * @param bit_depth Bit depth.
- */
-void read_png_header(std::string fname,
-                     int        &width,
-                     int        &height,
-                     png_byte   &color_type,
-                     png_byte   &bit_depth);
-
-/**
  * @brief Export an 8bit grayscale image to a png file.
  *
  * @param fname File name.

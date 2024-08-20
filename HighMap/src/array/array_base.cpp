@@ -27,53 +27,9 @@ Array::Array(Vec2<int> shape, float value) : shape(shape)
   std::fill(this->vector.begin(), this->vector.end(), value);
 }
 
-Array::Array(std::string filename, bool resize_array)
+Array::Array(std::string filename)
 {
-  int      width;
-  int      height;
-  png_byte color_type;
-  png_byte bit_depth;
-
-  read_png_header(filename, width, height, color_type, bit_depth);
-
-  if (resize_array)
-    this->set_shape(Vec2<int>(width, height));
-  else if (this->shape.x != width || this->shape.y != height)
-  {
-    // exit if image size does not match current array size
-    LOG_ERROR("image size (%d, %d) does not match current size (%d, %d)",
-              width,
-              height,
-              this->shape.x,
-              this->shape.y);
-    return;
-  }
-
-  if (bit_depth == 8)
-  {
-    LOG_DEBUG("8bit");
-    std::vector<uint8_t> img = read_png_grayscale_8bit(filename);
-
-    for (int i = 0; i < this->shape.x; i++)
-      for (int j = 0; j < this->shape.y; j++)
-      {
-        int k = (this->shape.y - 1 - j) * this->shape.y + i;
-        (*this)(i, j) = (float)img[k] / 255.f;
-      }
-  }
-
-  if (bit_depth == 16)
-  {
-    LOG_DEBUG("16bit");
-    std::vector<uint16_t> img = read_png_grayscale_16bit(filename);
-
-    for (int i = 0; i < this->shape.x; i++)
-      for (int j = 0; j < this->shape.y; j++)
-      {
-        int k = (this->shape.y - 1 - j) * this->shape.x + i;
-        (*this)(i, j) = (float)img[k] / 65535.f;
-      }
-  }
+  *this = read_to_array(filename);
 }
 
 Vec2<int> Array::get_shape()
