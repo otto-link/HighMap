@@ -7,7 +7,6 @@ int main(void)
   hmap::Array x = hmap::slope(shape, 0.f, 1.f);
   hmap::Array y = hmap::slope(shape, 90.f, 1.f);
 
-  std::vector<uint8_t> img = hmap::colorize_vec2(x, y);
-
-  hmap::write_png_rgb_8bit("ex_colorize_vec2.png", img, shape);
+  hmap::Array3 col3 = hmap::colorize_vec2(x, y);
+  col3.to_png_8bit("ex_colorize_vec2.png");
 }

@@ -16,6 +16,7 @@
 #include <png.h>
 
 #include "highmap/array.hpp"
+#include "highmap/array3.hpp"
 
 namespace hmap
 {
@@ -28,34 +29,31 @@ enum Cmap : int; // highmap/colormap.hpp
  * @param img Input image.
  * @param array Elevation array.
  * @param exponent Power exponent applied to the hillshade values.
- * @param is_img_rgba Whether the input image as an alpha channel or not.
  */
-void apply_hillshade(std::vector<uint8_t> &img,
-                     const hmap::Array    &array,
-                     float                 vmin = 0.f,
-                     float                 vmax = 1.f,
-                     float                 exponent = 1.f,
-                     bool                  is_img_rgba = false);
+void apply_hillshade(Array3            &img,
+                     const hmap::Array &array,
+                     float              vmin = 0.f,
+                     float              vmax = 1.f,
+                     float              exponent = 1.f);
 
 /**
- * @brief Convert array element values to a color data (3 channels RGB in [0,
- * 255]).
- *
- * @param array Input array.
- * @param vmin Lower bound for scaling to array [0, 1].
- * @param vmax Upper bound for scaling to array [0, 1]
- * @param cmap Colormap (see {@link cmap}).
- * @param hillshading Activate hillshading.
- * @param reverse Reverse colormap.
- * @return std::vector<uint8_t> Vector containing colors (size : shape[0] *
- * shape[1] * 3 channels for RGB).
- */
-std::vector<uint8_t> colorize(Array &array,
-                              float  vmin,
-                              float  vmax,
-                              int    cmap,
-                              bool   hillshading,
-                              bool   reverse = false);
+* @brief 
+* @param array
+* @param vmin
+* @param vmax
+* @param cmap
+* @param hillshading
+* @param reverse
+* @param p_noise
+* @return
+*/
+Array3 colorize(Array &array,
+                float  vmin,
+                float  vmax,
+                int    cmap,
+                bool   hillshading,
+                bool   reverse = false,
+                Array *p_noise = nullptr);
 
 /**
  * @brief Export array values to a 8 bit grayscale image.
@@ -89,7 +87,7 @@ std::vector<uint8_t> colorize_histogram(const Array &array,
  * **Result**
  * @image html ex_colorize_vec2.png
  */
-std::vector<uint8_t> colorize_vec2(const Array &array1, const Array &array2);
+Array3 colorize_vec2(const Array &array1, const Array &array2);
 
 void convert_rgb_to_ryb(Array &r,
                         Array &g,

@@ -4,6 +4,7 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/array3.hpp"
 #include "highmap/export.hpp"
 #include "highmap/gradient.hpp"
 #include "highmap/operator.hpp"
@@ -11,46 +12,36 @@
 namespace hmap
 {
 
-void export_normal_map_png_8bit(std::string fname, const Array &array)
+Array3 compute_nmap(const Array &array)
 {
-  std::vector<uint8_t> img(array.shape.x * array.shape.y * 3);
+  Array3 nmap = Array3(array.shape, 3);
 
   Array dx = gradient_x(array) * array.shape.x;
   Array dy = gradient_y(array) * array.shape.y;
 
-  int k = 0;
-  for (int j = array.shape.y - 1; j > -1; j -= 1)
-    for (int i = 0; i < array.shape.x; i++)
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
     {
       Vec3<float> n = Vec3<float>(-dx(i, j), -dy(i, j), 1.f);
       n /= std::hypot(n.x, n.y, n.z);
 
-      img[k++] = (uint8_t)(127.5f * (n.x + 1.f)); // R
-      img[k++] = (uint8_t)(127.5f * (n.y + 1.f)); // G
-      img[k++] = (uint8_t)(127.5f * (n.z + 1.f)); // B
+      nmap(i, j, 0) = 0.5f * (n.x + 1.f);
+      nmap(i, j, 1) = 0.5f * (n.y + 1.f);
+      nmap(i, j, 2) = 0.5f * (n.z + 1.f);
     }
-  write_png_rgb_8bit(fname, img, array.shape);
+  return nmap;
+}
+
+void export_normal_map_png_8bit(std::string fname, const Array &array)
+{
+  Array3 nmap = compute_nmap(array);
+  nmap.to_png_8bit(fname);
 }
 
 void export_normal_map_png_16bit(std::string fname, const Array &array)
 {
-  std::vector<uint16_t> img(array.shape.x * array.shape.y * 3);
-
-  Array dx = gradient_x(array) * array.shape.x;
-  Array dy = gradient_y(array) * array.shape.y;
-
-  int k = 0;
-  for (int j = array.shape.y - 1; j > -1; j -= 1)
-    for (int i = 0; i < array.shape.x; i++)
-    {
-      Vec3<float> n = Vec3<float>(-dx(i, j), -dy(i, j), 1.f);
-      n /= std::hypot(n.x, n.y, n.z);
-
-      img[k++] = (uint16_t)(32767.5f * (n.x + 1.f)); // R
-      img[k++] = (uint16_t)(32767.5f * (n.y + 1.f)); // G
-      img[k++] = (uint16_t)(32767.5f * (n.z + 1.f)); // B
-    }
-  write_png_rgb_16bit(fname, img, array.shape);
+  Array3 nmap = compute_nmap(array);
+  nmap.to_png_16bit(fname);
 }
 
 } // namespace hmap

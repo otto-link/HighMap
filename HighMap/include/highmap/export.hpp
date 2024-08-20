@@ -133,32 +133,6 @@ void export_banner_png(std::string        fname,
                        bool               hillshading = false);
 
 /**
- * @brief Export a 'bird view' (top view) of the heightmap as a 16 bit png file.
- *
- * @param fname File name.
- * @param array Input array.
- */
-void export_birdview_png_16bit(std::string  fname,
-                               const Array &array,
-                               const float  gamma = 1.f);
-
-/**
- * @brief Export the hillshade map to a 8 bit png file.
- *
- * @param fname File name.
- * @param array Input array.
- */
-void export_hillshade_png_8bit(std::string fname, const Array &array);
-
-/**
- * @brief Export the hillshade map to a 16 bit png file.
- *
- * @param fname File name.
- * @param array Input array.
- */
-void export_hillshade_png_16bit(std::string fname, const Array &array);
-
-/**
  * @brief Export the heightmap normal map to a 8 bit png file.
  *
  * @param fname File name.
@@ -177,6 +151,10 @@ void export_normal_map_png_8bit(std::string fname, const Array &array);
  *
  * **Example**
  * @include ex_export_normal_map.cpp
+ *
+ * **Result**
+ * @include ex_export_normal_map0.png
+ * @include ex_export_normal_map1.png
  */
 void export_normal_map_png_16bit(std::string fname, const Array &array);
 
@@ -188,60 +166,42 @@ void export_normal_map_png_16bit(std::string fname, const Array &array);
  * @param p_g Reference to array for channel G.
  * @param p_b Reference to array for channel B.
  * @param p_a Reference to array for channel A.
+ *
+ * **Example**
+ * @include ex_export_splatmap_png_16bit.cpp
+ *
+ * **Result**
+ * @image html ex_export_splatmap_png_16bit0.png
+ * @image html ex_export_splatmap_png_16bit1.png
+ */
+void export_splatmap_png_8bit(std::string fname,
+                              Array      *p_r,
+                              Array      *p_g = nullptr,
+                              Array      *p_b = nullptr,
+                              Array      *p_a = nullptr);
+
+/**
+ * @brief Export 4 arrays as a RGBA png splatmap.
+ *
+ * @param fname File name.
+ * @param p_r Reference to array for channel R.
+ * @param p_g Reference to array for channel G.
+ * @param p_b Reference to array for channel B.
+ * @param p_a Reference to array for channel A.
+ *
+ *
+ * **Example**
+ * @include ex_export_splatmap_png_16bit.cpp
+ *
+ * **Result**
+ * @image html ex_export_splatmap_png_16bit0.png
+ * @image html ex_export_splatmap_png_16bit1.png
  */
 void export_splatmap_png_16bit(std::string fname,
                                Array      *p_r,
                                Array      *p_g = nullptr,
                                Array      *p_b = nullptr,
                                Array      *p_a = nullptr);
-
-/**
- * @brief Export a pair of heightmaps as a glyph vector field representation to
- * a 8 bit png file.
- *
- * @param fname File name.
- * @param array_u Vector component.
- * @param array_v Vector component.
- * @param density Glyph density.
- * @param scale Glyph scale.
- * @param seed Random seed number.
- *
- * **Example**
- * @include ex_export_vector_glyph.cpp
- *
- * **Result**
- * @image html ex_export_vector_glyph.png
- */
-void export_vector_glyph_png_8bit(const std::string fname,
-                                  const Array      &array_u,
-                                  const Array      &array_v,
-                                  const float       density = 0.05f,
-                                  const float       scale = 0.05f,
-                                  const uint        seed = 0);
-
-/**
- * @brief Export a pair of heightmaps as a glyph vector field representation to
- * a 16 bit png file.
- *
- * @param fname File name.
- * @param array_u Vector component.
- * @param array_v Vector component.
- * @param density Glyph density.
- * @param scale Glyph scale.
- * @param seed Random seed number.
- *
- * **Example**
- * @include ex_export_vector_glyph.cpp
- *
- * **Result**
- * @image html ex_export_vector_glyph.png
- */
-void export_vector_glyph_png_16bit(const std::string fname,
-                                   const Array      &array_u,
-                                   const Array      &array_v,
-                                   const float       density = 0.05f,
-                                   const float       scale = 0.05f,
-                                   const uint        seed = 0);
 
 /**
  * @brief Reads an image file and converts it to a 2D array.
@@ -257,72 +217,50 @@ void export_vector_glyph_png_16bit(const std::string fname,
  * @return Array A 2D array containing the pixel values of the grayscale image.
  */
 Array read_to_array(std::string fname);
-
-/**
- * @brief Export an 8bit grayscale image to a png file.
- *
- * @param fname File name.
- * @param img Image data.
- * @param shape Image shape.
- */
-void write_png_grayscale_8bit(std::string           fname,
-                              std::vector<uint8_t> &img,
-                              Vec2<int>             shape);
-
-/**
- * @brief Export an 16bit grayscale image to a png file.
- *
- * @param fname File name.
- * @param img Image data.
- * @param shape Image shape.
- */
-void write_png_grayscale_16bit(std::string            fname,
-                               std::vector<uint16_t> &img,
-                               Vec2<int>              shape);
-
-/**
- * @brief Export an 8bit RGB image to a png file.
- *
- * @param fname File name.
- * @param img Image data.
- * @param shape Image shape.
- */
-void write_png_rgb_8bit(std::string           fname,
-                        std::vector<uint8_t> &img,
-                        Vec2<int>             shape);
-
-/**
- * @brief Export an 16bit RGB image to a png file.
- *
- * @param fname File name.
- * @param img Image data.
- * @param shape Image shape.
- */
-void write_png_rgb_16bit(std::string            fname,
-                         std::vector<uint16_t> &img,
-                         Vec2<int>              shape);
-
-/**
- * @brief Export an 8bit RGBA image to a png file.
- *
- * @param fname File name.
- * @param img Image data.
- * @param shape Image shape.
- */
-void write_png_rgba_8bit(std::string           fname,
-                         std::vector<uint8_t> &img,
-                         Vec2<int>             shape);
-
-/**
- * @brief Export an 16bit RGBA image to a png file.
- *
- * @param fname File name.
- * @param img Image data.
- * @param shape Image shape.
- */
-void write_png_rgba_16bit(std::string            fname,
-                          std::vector<uint16_t> &img,
-                          Vec2<int>              shape);
+//
+///**
+// * @brief Export an 8bit RGB image to a png file.
+// *
+// * @param fname File name.
+// * @param img Image data.
+// * @param shape Image shape.
+// */
+// void write_png_rgb_8bit(std::string           fname,
+//                        std::vector<uint8_t> &img,
+//                        Vec2<int>             shape);
+//
+///**
+// * @brief Export an 16bit RGB image to a png file.
+// *
+// * @param fname File name.
+// * @param img Image data.
+// * @param shape Image shape.
+// */
+// void write_png_rgb_16bit(std::string            fname,
+//                         std::vector<uint16_t> &img,
+//                         Vec2<int>              shape);
+//
+///**
+// * @brief Export an 8bit RGBA image to a png file.
+// *
+// * @param fname File name.
+// * @param img Image data.
+// * @param shape Image shape.
+// */
+// void write_png_rgba_8bit(std::string           fname,
+//                         std::vector<uint8_t> &img,
+//                         Vec2<int>             shape);
+//
+///**
+// * @brief Export an 16bit RGBA image to a png file.
+// *
+// * @param fname File name.
+// * @param img Image data.
+// * @param shape Image shape.
+// */
+// void write_png_rgba_16bit(std::string            fname,
+//                          std::vector<uint16_t> &img,
+//                          Vec2<int>              shape);
 
 /**
  * @brief Export an array to a 16bit 'raw' file (Unity import terrain format).

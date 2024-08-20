@@ -7,6 +7,7 @@
 
 #include "macrologger.h"
 
+#include "highmap/array3.hpp"
 #include "highmap/colorize.hpp"
 #include "highmap/colormaps.hpp"
 #include "highmap/heightmap.hpp"
@@ -132,21 +133,10 @@ std::vector<uint8_t> HeightMapRGB::to_img_8bit(Vec2<int> shape_img)
 
 void HeightMapRGB::to_png_16bit(std::string fname)
 {
-  std::vector<uint16_t> img(this->shape.x * this->shape.y * 3);
-
-  Array r_array = this->rgb[0].to_array();
-  Array g_array = this->rgb[1].to_array();
-  Array b_array = this->rgb[2].to_array();
-
-  int k = 0;
-  for (int j = this->shape.y - 1; j > -1; j -= 1)
-    for (int i = 0; i < this->shape.x; i++)
-    {
-      img[k++] = (uint16_t)(65535.f * r_array(i, j));
-      img[k++] = (uint16_t)(65535.f * g_array(i, j));
-      img[k++] = (uint16_t)(65535.f * b_array(i, j));
-    }
-  write_png_rgb_16bit(fname, img, this->shape);
+  Array3 col3 = Array3(this->shape, 3);
+  for (int ch = 0; ch < col3.shape.z; ch++)
+    col3.set_slice(ch, this->rgb[ch].to_array());
+  col3.to_png_16bit(fname);
 }
 
 // FRIEND

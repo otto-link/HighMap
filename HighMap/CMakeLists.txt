@@ -25,7 +25,6 @@ target_link_libraries(
   delaunator::delaunator
   GSL::gsl
   GSL::gslcblas
-  PNG::PNG
   cpp-spline::cpp-spline
   dkm::dkm
   FastNoiseLite::FastNoiseLite

@@ -4,11 +4,37 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/array3.hpp"
 #include "highmap/export.hpp"
 #include "highmap/operator.hpp"
 
 namespace hmap
 {
+
+Array3 compute_splatmap(Array *p_r, Array *p_g, Array *p_b, Array *p_a)
+{
+  Array3 smap = Array3(p_r->shape, 4);
+
+  smap.set_slice(0, *p_r);
+
+  if (p_g)
+    smap.set_slice(1, *p_g);
+  if (p_b)
+    smap.set_slice(2, *p_b);
+  if (p_a)
+    smap.set_slice(3, *p_a);
+  return smap;
+}
+
+void export_splatmap_png_8bit(std::string fname,
+                              Array      *p_r,
+                              Array      *p_g,
+                              Array      *p_b,
+                              Array      *p_a)
+{
+  Array3 smap = compute_splatmap(p_r, p_g, p_b, p_a);
+  smap.to_png_8bit(fname);
+}
 
 void export_splatmap_png_16bit(std::string fname,
                                Array      *p_r,
@@ -16,83 +42,8 @@ void export_splatmap_png_16bit(std::string fname,
                                Array      *p_b,
                                Array      *p_a)
 {
-  std::vector<uint16_t> img(p_r->shape.x * p_r->shape.y * 4);
-
-  float vmin;
-  float vmax;
-
-  float a_r = 0.f;
-  float b_r = 0.f;
-  float a_g = 0.f;
-  float b_g = 0.f;
-  float a_b = 0.f;
-  float b_b = 0.f;
-  float a_a = 0.f;
-  float b_a = 0.f;
-
-  vmin = p_r->min();
-  vmax = p_r->max();
-  if (vmin != vmax)
-  {
-    a_r = 65535.f / (vmax - vmin);
-    b_r = -65535.f * vmin / (vmax - vmin);
-  }
-
-  if (p_g)
-  {
-    vmin = p_g->min();
-    vmax = p_g->max();
-    if (vmin != vmax)
-    {
-      a_g = 65535.f / (vmax - vmin);
-      b_g = -65535.f * vmin / (vmax - vmin);
-    }
-  }
-
-  if (p_b)
-  {
-    vmin = p_b->min();
-    vmax = p_b->max();
-    if (vmin != vmax)
-    {
-      a_b = 65535.f / (vmax - vmin);
-      b_b = -65535.f * vmin / (vmax - vmin);
-    }
-  }
-
-  if (p_a)
-  {
-    vmin = p_a->min();
-    vmax = p_a->max();
-    if (vmin != vmax)
-    {
-      a_a = 65535.f / (vmax - vmin);
-      b_a = -65535.f * vmin / (vmax - vmin);
-    }
-  }
-
-  int k = 0;
-  for (int j = p_r->shape.y - 1; j > -1; j -= 1)
-    for (int i = 0; i < p_r->shape.x; i++)
-    {
-      img[k++] = (uint16_t)(a_r * (*p_r)(i, j) + b_r);
-
-      if (p_g)
-        img[k++] = (uint16_t)(a_g * (*p_g)(i, j) + b_g);
-      else
-        img[k++] = 0;
-
-      if (p_b)
-        img[k++] = (uint16_t)(a_b * (*p_b)(i, j) + b_b);
-      else
-        img[k++] = 0;
-
-      if (p_a)
-        img[k++] = (uint16_t)(a_a * (*p_a)(i, j) + b_a);
-      else
-        img[k++] = 0;
-    }
-  write_png_rgba_16bit(fname, img, p_r->shape);
+  Array3 smap = compute_splatmap(p_r, p_g, p_b, p_a);
+  smap.to_png_16bit(fname);
 }
 
 } // namespace hmap

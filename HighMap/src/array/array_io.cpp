@@ -10,6 +10,7 @@
 #include "highmap/array.hpp"
 #include "highmap/colorize.hpp"
 #include "highmap/export.hpp"
+#include "highmap/range.hpp"
 
 namespace hmap
 {
@@ -78,6 +79,22 @@ void Array::print()
   }
 }
 
+void Array::to_exr(std::string fname)
+{
+  Array array_copy = *this;
+  remap(array_copy);
+
+  cv::Mat mat = hmap::array_to_cv_mat(array_copy);
+  cv::rotate(mat, mat, cv::ROTATE_90_COUNTERCLOCKWISE);
+
+  std::vector<int> codec_params = {cv::IMWRITE_EXR_TYPE,
+                                   cv::IMWRITE_EXR_TYPE_FLOAT,
+                                   cv::IMWRITE_EXR_COMPRESSION,
+                                   cv::IMWRITE_EXR_COMPRESSION_NO};
+
+  cv::imwrite(fname, mat, codec_params);
+}
+
 void Array::to_file(std::string fname)
 {
   LOG_DEBUG("writing binary file");
@@ -102,73 +119,54 @@ void Array::to_numpy(std::string fname)
 
 void Array::to_png(std::string fname, int cmap, bool hillshading)
 {
-  std::vector<uint8_t> img(3 * this->shape.x * this->shape.y);
-  const float          vmin = this->min();
-  const float          vmax = this->max();
+  const float vmin = this->min();
+  const float vmax = this->max();
 
-  img = colorize(*this, vmin, vmax, cmap, hillshading);
-  write_png_rgb_8bit(fname, img, this->shape);
+  Array3 color3 =
+      colorize(*this, vmin, vmax, cmap, hillshading, false, nullptr);
+  color3.to_png_8bit(fname);
 }
 
 void Array::to_png_grayscale_8bit(std::string fname)
 {
-  const float vmin = this->min();
-  const float vmax = this->max();
+  Array array_copy = *this;
+  remap(array_copy);
 
-  std::vector<uint8_t> img(this->shape.x * this->shape.y);
-
-  float a = 0.f;
-  float b = 0.f;
-
-  if (vmin != vmax)
-  {
-    a = 1.f / (vmax - vmin);
-    b = -vmin / (vmax - vmin);
-  }
-
-  int k = 0;
-
-  for (int j = this->shape.y - 1; j > -1; j -= 1)
-    for (int i = 0; i < this->shape.x; i += 1)
-    {
-      float v = a * (*this)(i, j) + b;
-      img[k++] = (uint8_t)(v * 255.f);
-    }
-
-  write_png_grayscale_8bit(fname, img, this->shape);
+  cv::Mat mat = hmap::array_to_cv_mat(array_copy);
+  cv::rotate(mat, mat, cv::ROTATE_90_COUNTERCLOCKWISE);
+  mat.convertTo(mat, CV_8U, 255);
+  cv::imwrite(fname, mat);
 }
 
 void Array::to_png_grayscale_16bit(std::string fname)
 {
-  const float vmin = this->min();
-  const float vmax = this->max();
+  Array array_copy = *this;
+  remap(array_copy);
 
-  std::vector<uint16_t> img(this->shape.x * this->shape.y);
-
-  float a = 0.f;
-  float b = 0.f;
-
-  if (vmin != vmax)
-  {
-    a = 1.f / (vmax - vmin);
-    b = -vmin / (vmax - vmin);
-  }
-
-  int k = 0;
-
-  for (int j = this->shape.y - 1; j > -1; j -= 1)
-    for (int i = 0; i < this->shape.x; i += 1)
-    {
-      float v = a * (*this)(i, j) + b;
-      img[k++] = (uint16_t)(v * 65535.f);
-    }
-
-  write_png_grayscale_16bit(fname, img, this->shape);
+  cv::Mat mat = hmap::array_to_cv_mat(array_copy);
+  cv::rotate(mat, mat, cv::ROTATE_90_COUNTERCLOCKWISE);
+  mat.convertTo(mat, CV_16U, 65535);
+  cv::imwrite(fname, mat);
 }
 
 void Array::to_raw_16bit(std::string fname)
 {
   write_raw_16bit(fname, *this);
+}
+
+void Array::to_tiff(std::string fname)
+{
+  Array array_copy = *this;
+  remap(array_copy);
+
+  cv::Mat mat = hmap::array_to_cv_mat(array_copy);
+  cv::rotate(mat, mat, cv::ROTATE_90_COUNTERCLOCKWISE);
+
+  // set compression to cv::IMWRITE_TIFF_COMPRESSION_LZW (apparently
+  // not available in openCV public header?)
+  std::vector<int> codec_params = {cv::IMWRITE_TIFF_COMPRESSION, 5};
+
+  cv::imwrite(fname, mat, codec_params);
 }
 
 } // namespace hmap

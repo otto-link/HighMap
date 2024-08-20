@@ -21,6 +21,7 @@ typedef unsigned int uint;
 #include <random>
 
 #include "highmap/algebra.hpp"
+#include "highmap/colormaps.hpp"
 
 namespace hmap
 {
@@ -922,6 +923,34 @@ public:
    * @include ex_to_png.cpp
    */
   void to_png_grayscale_8bit(std::string fname);
+
+  /**
+   * @brief Export the array as an OpenEXR image file.
+   *
+   *        This function saves the array data as an OpenEXR image file. OpenEXR
+   * is a high dynamic range (HDR) image file format.
+   * The file will be created or overwritten with the name specified by `fname`.
+   *
+   * @param fname The name of the OpenEXR file to be created or overwritten.
+   *
+   * **Example**
+   * @include ex_to_exr.cpp
+   */
+  void to_exr(std::string fname);
+
+  /**
+   * @brief Export the array as a TIFF image file.
+   *
+   *        This function saves the array data as a TIFF (Tagged Image File
+   * Format) image file. The file will be created or overwritten with the name
+   * specified by `fname`.
+   *
+   * @param fname The name of the TIFF file to be created or overwritten.
+   *
+   * **Example**
+   * @include ex_to_tiff.cpp
+   */
+  void to_tiff(std::string fname);
 
   /**
    * @brief Export the array as a 16-bit grayscale PNG image file.

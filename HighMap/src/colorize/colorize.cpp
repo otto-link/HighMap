@@ -18,12 +18,11 @@
 namespace hmap
 {
 
-void apply_hillshade(std::vector<uint8_t> &img,
-                     const hmap::Array    &array,
-                     float                 vmin,
-                     float                 vmax,
-                     float                 exponent,
-                     bool                  is_img_rgba)
+void apply_hillshade(Array3            &color3,
+                     const hmap::Array &array,
+                     float              vmin,
+                     float              vmax,
+                     float              exponent)
 {
   // compute and scale hillshading
   Array hs = Array(array.shape, 1.f);
@@ -36,79 +35,76 @@ void apply_hillshade(std::vector<uint8_t> &img,
   clamp(hs);
 
   // apply to image
-  int k = 0;
-
-  if (is_img_rgba)
-  {
-    for (int j = array.shape.y - 1; j > -1; j--)
-      for (int i = 0; i < array.shape.x; i++)
-      {
-        img[k] = (uint8_t)((float)img[k] * hs(i, j));
-        img[k + 1] = (uint8_t)((float)img[k + 1] * hs(i, j));
-        img[k + 2] = (uint8_t)((float)img[k + 2] * hs(i, j));
-        // skip alpha channel
-        k += 4;
-      }
-  }
-  else
-  {
-    for (int j = array.shape.y - 1; j > -1; j--)
-      for (int i = 0; i < array.shape.x; i++)
-      {
-        img[k] = (uint8_t)((float)img[k] * hs(i, j));
-        img[k + 1] = (uint8_t)((float)img[k + 1] * hs(i, j));
-        img[k + 2] = (uint8_t)((float)img[k + 2] * hs(i, j));
-        k += 3;
-      }
-  }
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
+      for (int ch = 0; ch < 3; ch++)
+        color3(i, j, ch) *= hs(i, j);
 }
 
-std::vector<uint8_t> colorize(hmap::Array &array,
-                              float        vmin,
-                              float        vmax,
-                              int          cmap,
-                              bool         hillshading,
-                              bool         reverse)
+Array3 colorize(Array &array,
+                float  vmin,
+                float  vmax,
+                int    cmap,
+                bool   hillshading,
+                bool   reverse,
+                Array *p_noise)
 {
-  std::vector<std::vector<float>> colors = get_colormap_data(cmap);
+  std::vector<std::vector<float>> colormap_colors = get_colormap_data(cmap);
 
   if (reverse)
     std::swap(vmin, vmax);
 
-  // create image
-  std::vector<uint8_t> img(3 * array.shape.x * array.shape.y);
+  Array3 color3 = Array3(array.shape, 3);
 
   // normalization factors
-  int         nc = (int)colors.size();
+  int         nc = (int)colormap_colors.size();
   Vec2<float> a = array.normalization_coeff(vmin, vmax);
   a.x *= (nc - 1);
   a.y *= (nc - 1);
 
-  // reorganize things to get an image with (i, j) used as (x, y)
-  // coordinates, i.e. with (0, 0) at the bottom left
-  int k = 0;
+  // colorize
 
-  for (int j = array.shape.y - 1; j > -1; j--)
+  if (!p_noise)
     for (int i = 0; i < array.shape.x; i++)
-    {
-      float v = std::clamp(a.x * array(i, j) + a.y, 0.f, (float)nc - 1.f);
-      int   q = (int)v;
-      float t = v - q;
+      for (int j = 0; j < array.shape.y; j++)
+      {
+        float v = std::clamp(a.x * array(i, j) + a.y, 0.f, (float)nc - 1.f);
+        int   q = (int)v;
+        float t = v - q;
 
-      if (q < nc - 1)
-        for (int ch = 0; ch < 3; ch++)
-          img[k++] = (uint8_t)(255.f * ((1.f - t) * colors[q][ch] +
-                                        t * colors[q + 1][ch]));
-      else
-        for (int ch = 0; ch < 3; ch++)
-          img[k++] = (uint8_t)(255.f * colors[q][ch]);
-    }
+        if (q < nc - 1)
+          for (int ch = 0; ch < 3; ch++)
+            color3(i, j, ch) = (1.f - t) * colormap_colors[q][ch] +
+                               t * colormap_colors[q + 1][ch];
+        else
+          for (int ch = 0; ch < 3; ch++)
+            color3(i, j, ch) = colormap_colors[q][ch];
+      }
+
+  else
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
+      {
+        float v = std::clamp(a.x * (array(i, j) + (*p_noise)(i, j)) + a.y,
+                             0.f,
+                             (float)nc - 1.f);
+        int   q = (int)v;
+        float t = v - q;
+
+        if (q < nc - 1)
+          for (int ch = 0; ch < 3; ch++)
+            color3(i, j, ch) = (1.f - t) * colormap_colors[q][ch] +
+                               t * colormap_colors[q + 1][ch];
+        else
+          for (int ch = 0; ch < 3; ch++)
+            color3(i, j, ch) = colormap_colors[q][ch];
+      }
 
   // add hillshading
   if (hillshading)
-    apply_hillshade(img, array);
+    apply_hillshade(color3, array);
 
-  return img;
+  return color3;
 }
 
 std::vector<uint8_t> colorize_grayscale(const Array &array, Vec2<int> step)
@@ -182,10 +178,10 @@ std::vector<uint8_t> colorize_histogram(const Array &array, Vec2<int> step)
   return img;
 }
 
-std::vector<uint8_t> colorize_vec2(const Array &array1, const Array &array2)
+Array3 colorize_vec2(const Array &array1, const Array &array2)
 {
   // create image
-  std::vector<uint8_t> img(3 * array1.shape.x * array1.shape.y);
+  Array3 col3 = Array3(array1.shape, 3);
 
   // normalization factors / 1
   float a1 = 0.f;
@@ -211,21 +207,19 @@ std::vector<uint8_t> colorize_vec2(const Array &array1, const Array &array2)
     b2 = -vmin2 / (vmax2 - vmin2);
   }
 
-  int k = 0;
-
-  for (int j = array1.shape.y - 1; j > -1; j--)
-    for (int i = 0; i < array1.shape.x; i++)
+  for (int i = 0; i < array1.shape.x; i++)
+    for (int j = 0; j < array1.shape.y; j++)
     {
       float u = a1 * array1(i, j) + b1;
       float v = a2 * array2(i, j) + b2;
       float w = u * v * (1.f - u) * (1.f - v);
 
-      img[k++] = (uint8_t)(255.f * u);
-      img[k++] = (uint8_t)(255.f * v);
-      img[k++] = (uint8_t)(255.f * w);
+      col3(i, j, 0) = u;
+      col3(i, j, 1) = v;
+      col3(i, j, 2) = w;
     }
 
-  return img;
+  return col3;
 }
 
 } // namespace hmap
