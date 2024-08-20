@@ -25,6 +25,10 @@ enum InterpolationMethod2D : int
   NEAREST,  ///< Nearest point
 };
 
+static std::map<InterpolationMethod2D, std::string>
+    interpolation_method_2d_as_string = {{DELAUNAY, "Delaunay linear"},
+                                         {NEAREST, "nearest neighbor"}};
+
 /**
  * @brief Generic 2D interpolation.
  *
