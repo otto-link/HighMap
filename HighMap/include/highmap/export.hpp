@@ -244,6 +244,21 @@ void export_vector_glyph_png_16bit(const std::string fname,
                                    const uint        seed = 0);
 
 /**
+ * @brief Reads an image file and converts it to a 2D array.
+ *
+ * This function uses the OpenCV `imread` function to load an image from the
+ * specified file. The supported file formats are those recognized by OpenCV's
+ * `imread` function, such as JPEG, PNG, BMP, and others. If the image is in
+ * color, it is automatically converted to grayscale using the built-in OpenCV
+ * codec converter. This conversion process may introduce artifacts depending on
+ * the image's original format and content.
+ *
+ * @param fname The name of the image file to be read.
+ * @return Array A 2D array containing the pixel values of the grayscale image.
+ */
+Array read_to_array(std::string fname);
+
+/**
  * @brief Read an 8bit grayscale image to a png file.
  *
  * @param fname File name.
