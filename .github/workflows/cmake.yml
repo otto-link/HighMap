@@ -56,7 +56,7 @@ jobs:
       run: |
         sudo apt update
         sudo apt-get update
-        sudo apt-get -y install libboost-all-dev libeigen3-dev libglm-dev fuse libfuse2 ocl-icd-opencl-dev libassimp-dev libopencv-dev
+        sudo apt-get -y install libglm-dev fuse libfuse2 ocl-icd-opencl-dev libassimp-dev libopencv-dev
 
     - name: Set reusable strings
       # Turn repeated input strings (such as the build output directory) into step outputs. These step outputs can be used throughout the workflow file.
