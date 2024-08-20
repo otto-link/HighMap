@@ -221,9 +221,6 @@ void gamma_correction(Array &array, float gamma, Array *p_mask);
 
 void gamma_correction(Array &array, float gamma); ///< @overload
 
-void gamma_correction_thread(Array &array, float gamma);
-void gamma_correction_xsimd(Array &array, float gamma);
-
 /**
  * @brief Apply a "local" gamma correction to the input array.
  *
@@ -334,8 +331,6 @@ void low_pass_high_order(Array &array, int order = 9, float sigma = 1.f);
  * @param threshold Threshold value above which an array value is set to 1.
  */
 void make_binary(Array &array, float threshold = 0.f);
-
-void make_binary_xsimd(Array &array, float threshold = 0.f);
 
 /**
  * @brief Return the 'local maxima' based on a maximum filter.

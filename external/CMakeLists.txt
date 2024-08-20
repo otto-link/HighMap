@@ -5,6 +5,5 @@ include(FastNoiseLite.cmake)
 include(hmm.cmake)
 include(libnpy.cmake)
 include(macro-logger.cmake)
-include(xsimd.cmake)
 
 add_subdirectory(Noise/NoiseLib)

@@ -34,8 +34,7 @@ target_link_libraries(
   macro-logger::macro-logger
   NoiseLib
   OpenMP::OpenMP_CXX
-  ${OpenCV_LIBS}
-  xsimd::xsimd)
+  ${OpenCV_LIBS})
 
 if(HIGHMAP_ENABLE_OPENCL)
   target_link_libraries(${PROJECT_NAME} ${OpenCL_LIBRARIES})
