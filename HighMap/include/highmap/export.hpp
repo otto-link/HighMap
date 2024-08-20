@@ -13,6 +13,7 @@
  *
  */
 #pragma once
+#include <map>
 #include <png.h>
 
 #include "highmap/array.hpp"

@@ -19,14 +19,10 @@
 namespace hmap
 {
 
-/**
- * @brief 2D interpolation type.
- */
-enum interpolator2d : int
+enum InterpolationMethod2D : int
 {
-  DELAUNAY, ///< Delaunay triangular
-  BILINEAR, ///< Bilinear
-  THINPLATE ///< Thinplate
+  DELAUNAY, ///< Delaunay triangulation
+  NEAREST,  ///< Nearest point
 };
 
 /**
@@ -42,14 +38,32 @@ enum interpolator2d : int
  * @param bbox Domain bounding box.
  * @return Array Output array.
  */
-Array interpolate2d(Vec2<int>          shape,
-                    std::vector<float> x,
-                    std::vector<float> y,
-                    std::vector<float> values,
-                    int                interpolation_method,
-                    Array             *p_noise_x = nullptr,
-                    Array             *p_noise_y = nullptr,
-                    Array             *p_stretching = nullptr,
-                    Vec4<float>        bbox = {0.f, 1.f, 0.f, 1.f});
+Array interpolate2d(Vec2<int>             shape,
+                    std::vector<float>    x,
+                    std::vector<float>    y,
+                    std::vector<float>    values,
+                    InterpolationMethod2D interpolation_method,
+                    Array                *p_noise_x = nullptr,
+                    Array                *p_noise_y = nullptr,
+                    Array                *p_stretching = nullptr,
+                    Vec4<float>           bbox = {0.f, 1.f, 0.f, 1.f});
+
+Array interpolate2d_nearest(Vec2<int>          shape,
+                            std::vector<float> x,
+                            std::vector<float> y,
+                            std::vector<float> values,
+                            Array             *p_noise_x = nullptr,
+                            Array             *p_noise_y = nullptr,
+                            Array             *p_stretching = nullptr,
+                            Vec4<float>        bbox = {0.f, 1.f, 0.f, 1.f});
+
+Array interpolate2d_delaunay(Vec2<int>          shape,
+                             std::vector<float> x,
+                             std::vector<float> y,
+                             std::vector<float> values,
+                             Array             *p_noise_x = nullptr,
+                             Array             *p_noise_y = nullptr,
+                             Array             *p_stretching = nullptr,
+                             Vec4<float>        bbox = {0.f, 1.f, 0.f, 1.f});
 
 } // namespace hmap

@@ -21,6 +21,7 @@
 #include <vector>
 
 #include "highmap/array.hpp"
+#include "highmap/interpolate.hpp"
 
 namespace hmap
 {
@@ -370,9 +371,10 @@ public:
    * **Result**
    * @image html ex_cloud_to_array_interp.png
    */
-  void to_array_interp(Array      &array,
-                       Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f},
-                       int         interpolation_method = 0,
+  void to_array_interp(Array                &array,
+                       Vec4<float>           bbox = {0.f, 1.f, 0.f, 1.f},
+                       InterpolationMethod2D interpolation_method =
+                           InterpolationMethod2D::NEAREST,
                        Array      *p_noise_x = nullptr,
                        Array      *p_noise_y = nullptr,
                        Vec4<float> bbox_array = {0.f, 1.f, 0.f, 1.f});

@@ -22,19 +22,19 @@ set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${PROJECT_VERSION})
 target_link_libraries(
   ${PROJECT_NAME}
   assimp::assimp
+  delaunator::delaunator
   GSL::gsl
   GSL::gslcblas
-  Eigen3::Eigen
   PNG::PNG
   cpp-spline::cpp-spline
   dkm::dkm
   FastNoiseLite::FastNoiseLite
   hmm::hmm
-  libInterpolate::libInterpolate
   libnpy::libnpy
   macro-logger::macro-logger
   NoiseLib
   OpenMP::OpenMP_CXX
+  ${OpenCV_LIBS}
   xsimd::xsimd)
 
 if(HIGHMAP_ENABLE_OPENCL)

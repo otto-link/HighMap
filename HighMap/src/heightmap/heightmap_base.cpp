@@ -2,9 +2,9 @@
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
 #include <future>
+#include <iostream>
 #include <thread>
 
-#include "libInterpolate/Interpolate.hpp"
 #include "macrologger.h"
 
 #include "highmap/heightmap.hpp"

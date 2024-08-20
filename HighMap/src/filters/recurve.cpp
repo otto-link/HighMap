@@ -1,11 +1,9 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
-
 #include <cmath>
 #include <random>
 
-#include "libInterpolate/Interpolate.hpp"
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
@@ -22,10 +20,12 @@ void recurve(Array                    &array,
              const std::vector<float> &t,
              const std::vector<float> &v)
 {
-  _1D::MonotonicInterpolator<float> interp;
-  interp.setData(t, v);
+  // _1D::MonotonicInterpolator<float> interp;
+  // interp.setData(t, v);
 
-  auto lambda = [&interp](float a) { return interp(a); };
+  // auto lambda = [&interp](float a) { interp(a); };
+
+  auto lambda = [](float a) { return a; };
 
   std::transform(array.vector.begin(),
                  array.vector.end(),

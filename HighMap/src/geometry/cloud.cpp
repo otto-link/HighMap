@@ -1,17 +1,16 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
-
 #include <cmath>
 #include <fstream>
 #include <iomanip>
 #include <string>
 
-#include "libInterpolate/AnyInterpolator.hpp"
-#include "libInterpolate/Interpolate.hpp"
+#include "delaunator-cpp.hpp"
 #include "macrologger.h"
 
 #include "highmap/geometry.hpp"
+#include "highmap/interpolate.hpp"
 #include "highmap/operator.hpp"
 #include "highmap/primitives.hpp"
 
@@ -168,12 +167,12 @@ void Cloud::to_array(Array &array, Vec4<float> bbox)
   }
 }
 
-void Cloud::to_array_interp(Array      &array,
-                            Vec4<float> bbox,
-                            int         interpolation_method,
-                            Array      *p_noise_x,
-                            Array      *p_noise_y,
-                            Vec4<float> bbox_array)
+void Cloud::to_array_interp(Array                &array,
+                            Vec4<float>           bbox,
+                            InterpolationMethod2D interpolation_method,
+                            Array                *p_noise_x,
+                            Array                *p_noise_y,
+                            Vec4<float>           bbox_array)
 {
   std::vector<float> x = this->get_x();
   std::vector<float> y = this->get_y();
@@ -187,28 +186,15 @@ void Cloud::to_array_interp(Array      &array,
                                bbox.d + ly};
   expand_grid_corners(x, y, v, bbox_expanded, 0.f);
 
-  _2D::AnyInterpolator<
-      float,
-      void(std::vector<float>, std::vector<float>, std::vector<float>)>
-      interp;
-
-  if (interpolation_method == 0)
-    interp = _2D::LinearDelaunayTriangleInterpolator<float>();
-  else if (interpolation_method == 1)
-    interp = _2D::ThinPlateSplineInterpolator<float>();
-  else
-    LOG_ERROR("unknown interpolation method");
-
-  interp.setData(x, y, v);
-
-  fill_array_using_xy_function(array,
-                               bbox_array,
-                               nullptr,
-                               p_noise_x,
-                               p_noise_y,
-                               nullptr,
-                               [&interp](float x, float y, float)
-                               { return interp(x, y); });
+  array = interpolate2d(array.shape,
+                        x,
+                        y,
+                        v,
+                        interpolation_method,
+                        p_noise_x,
+                        p_noise_y,
+                        nullptr,
+                        bbox_array);
 }
 
 Array Cloud::to_array_sdf(Vec2<int>   shape,
@@ -258,9 +244,8 @@ void Cloud::to_csv(std::string fname)
 
 Graph Cloud::to_graph_delaunay()
 {
-  std::vector<float>            coords = this->get_xy();
-  delaunator::Delaunator<float> d(coords);
-  Graph                         graph = Graph(*this);
+  delaunator::Delaunator d(this->get_xy());
+  Graph                  graph = Graph(*this);
 
   for (std::size_t e = 0; e < d.triangles.size(); e++)
   {

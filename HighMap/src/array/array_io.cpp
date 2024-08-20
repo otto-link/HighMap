@@ -2,6 +2,7 @@
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
 #include <fstream>
+#include <iomanip>
 
 #include "macrologger.h"
 #include "npy.hpp"

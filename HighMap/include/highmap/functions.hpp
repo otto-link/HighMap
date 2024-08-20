@@ -16,8 +16,6 @@
 #include <functional>
 
 #include "FastNoiseLite.h"
-#include "libInterpolate/AnyInterpolator.hpp"
-#include "libInterpolate/Interpolate.hpp"
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
@@ -43,20 +41,19 @@ namespace hmap
  */
 enum NoiseType : int
 {
-  PARBERRY,        ///< Parberry (Perlin variant)
-  PERLIN,          ///< Perlin
-  PERLIN_BILLOW,   ///< Perlin billow
-  PERLIN_HALF,     ///< Perlin half
-  SIMPLEX2,        ///< OpenSimplex2
-  SIMPLEX2S,       ///< OpenSimplex2S
-  VALUE,           ///< Value
-  VALUE_CUBIC,     ///< Value (cubic)
-  VALUE_DELAUNAY,  ///< Value (delaunay)
-  VALUE_LINEAR,    ///< Value (linear)
-  VALUE_THINPLATE, ///< Value (thinplate)
-  WORLEY,          ///< Worley
-  WORLEY_DOUBLE,   ///< Worley double
-  WORLEY_VALUE,    ///< Worley (cell value return)
+  PARBERRY,       ///< Parberry (Perlin variant)
+  PERLIN,         ///< Perlin
+  PERLIN_BILLOW,  ///< Perlin billow
+  PERLIN_HALF,    ///< Perlin half
+  SIMPLEX2,       ///< OpenSimplex2
+  SIMPLEX2S,      ///< OpenSimplex2S
+  VALUE,          ///< Value
+  VALUE_CUBIC,    ///< Value (cubic)
+  VALUE_DELAUNAY, ///< Value (delaunay)
+  VALUE_LINEAR,   ///< Value (linear)
+  WORLEY,         ///< Worley
+  WORLEY_DOUBLE,  ///< Worley double
+  WORLEY_VALUE,   ///< Worley (cell value return)
 };
 
 //----------------------------------------
@@ -1052,15 +1049,6 @@ public:
    * @brief Update base interpolation.
    */
   void update_interpolation_function();
-
-private:
-  /**
-   * @brief Interpolation function object.
-   */
-  _2D::AnyInterpolator<
-      float,
-      void(std::vector<float>, std::vector<float>, std::vector<float>)>
-      interp;
 };
 
 /**
@@ -1104,67 +1092,6 @@ public:
    * @brief Update base interpolation.
    */
   void update_interpolation_function();
-
-private:
-  /**
-   * @brief Interpolation function object.
-   */
-  _2D::AnyInterpolator<
-      float,
-      void(std::vector<float>, std::vector<float>, std::vector<float>)>
-      interp;
-};
-
-/**
- * @brief ValueThinplateNoise (x, y) function class.
- */
-class ValueThinplateNoiseFunction : public NoiseFunction
-{
-public:
-  /**
-   * @brief Construct a new ValueThinplateNoiseFunction object.
-   *
-   * @param kw Noise wavenumber, with respect to
-   * a unit domain.
-   * @param seed Random seed number.
-   */
-  ValueThinplateNoiseFunction(Vec2<float> kw, uint seed);
-
-  /**
-   * @brief Set the wavenumber attribute.
-   *
-   * @param new_kw New kw.
-   */
-  void set_kw(Vec2<float> new_kw)
-  {
-    NoiseFunction::set_kw(new_kw);
-    this->update_interpolation_function();
-  }
-
-  /**
-   * @brief Set the seed attribute.
-   *
-   * @param new_seed New seed.
-   */
-  void set_seed(uint new_seed)
-  {
-    NoiseFunction::set_seed(new_seed);
-    this->update_interpolation_function();
-  }
-
-  /**
-   * @brief Update base interpolation.
-   */
-  void update_interpolation_function();
-
-private:
-  /**
-   * @brief Interpolation function object.
-   */
-  _2D::AnyInterpolator<
-      float,
-      void(std::vector<float>, std::vector<float>, std::vector<float>)>
-      interp;
 };
 
 /**

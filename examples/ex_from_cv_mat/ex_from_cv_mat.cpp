@@ -15,7 +15,7 @@ int main(void)
 
   // accepts various matrix CV types and if multiple channels are
   // available, only the first one is used
-  
+
   // mat.convertTo(mat, CV_8UC1, 255);
   // mat.convertTo(mat, CV_16UC3, 65535);
   // mat.convertTo(mat, CV_64F);

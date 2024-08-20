@@ -1,7 +1,6 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
-
 #include <cmath>
 
 #include "macrologger.h"
@@ -21,7 +20,7 @@ Array faceted(const Array &array,
               Array       *p_noise_y)
 {
   // find sinks and preaks to use their positions and elevations as
-  // reference points for the Delauney interpolation
+  // reference points for the Delaunay interpolation
   std::vector<float> x;
   std::vector<float> y;
   std::vector<float> value;
@@ -108,7 +107,7 @@ Array faceted(const Array &array,
                                   x,
                                   y,
                                   value,
-                                  interpolator2d::DELAUNAY,
+                                  InterpolationMethod2D::DELAUNAY,
                                   p_noise_x,
                                   p_noise_y,
                                   nullptr,

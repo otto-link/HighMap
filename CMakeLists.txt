@@ -14,18 +14,14 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 else()
   # GNU compiler options
   set(CMAKE_CXX_FLAGS
-      "${CMAKE_CXX_FLAGS} -Wall -Wextra -O3 -pthread -DLOG_LEVEL=3 -Wno-free-nonheap-object"
+      "${CMAKE_CXX_FLAGS} -Wall -Wextra -O3 -pthread -DLOG_LEVEL=3 -Wno-free-nonheap-object -Wno-deprecated-enum-enum-conversion"
   )
 endif()
-
-add_definitions("-DBOOST_ALLOW_DEPRECATED_HEADERS")
-add_definitions("-DBOOST_BIND_GLOBAL_PLACEHOLDERS")
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 
 # --- dependencies
 
-find_package(Eigen3 REQUIRED) # libInterpolate
 find_package(GSL REQUIRED COMPONENTS gsl gslcblas)
 find_package(PNG REQUIRED) # libpng
 find_package(assimp REQUIRED)

@@ -15,7 +15,6 @@ int main(void)
                                              hmap::NoiseType::VALUE_CUBIC,
                                              hmap::NoiseType::VALUE_DELAUNAY,
                                              hmap::NoiseType::VALUE_LINEAR,
-                                             hmap::NoiseType::VALUE_THINPLATE,
                                              hmap::NoiseType::WORLEY,
                                              hmap::NoiseType::WORLEY_DOUBLE,
                                              hmap::NoiseType::WORLEY_VALUE};

@@ -1,7 +1,6 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
-
 #include <cmath>
 
 #include "macrologger.h"
@@ -47,7 +46,7 @@ Array tessellate(Array &array, uint seed, float node_density, Array *p_weight)
                                   x,
                                   y,
                                   cloud.get_values(),
-                                  interpolator2d::DELAUNAY,
+                                  InterpolationMethod2D::DELAUNAY,
                                   nullptr, // noise
                                   nullptr, // noise
                                   nullptr,

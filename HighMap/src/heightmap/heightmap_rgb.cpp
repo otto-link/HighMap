@@ -5,7 +5,6 @@
 #include <future>
 #include <thread>
 
-#include "libInterpolate/Interpolate.hpp"
 #include "macrologger.h"
 
 #include "highmap/colorize.hpp"
