@@ -123,6 +123,13 @@ public:
   cv::Mat to_cv_mat();
 
   /**
+   * @brief Convert the tensor to an 8-bit image represented as a vector.
+   *
+   * @return std::vector<uint8_t> Vector containing the 8-bit image data.
+   */
+  std::vector<uint8_t> to_img_8bit();
+
+  /**
    * @brief Export the tensor to an 8-bit PNG image.
    *
    * @param fname File name of the PNG image.
@@ -135,13 +142,6 @@ public:
    * @param fname File name of the PNG image.
    */
   void to_png_16bit(std::string fname);
-
-  /**
-   * @brief Convert the tensor to an 8-bit image represented as a vector.
-   *
-   * @return std::vector<uint8_t> Vector containing the 8-bit image data.
-   */
-  std::vector<uint8_t> to_img_8bit();
 };
 
 } // namespace hmap

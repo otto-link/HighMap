@@ -5,11 +5,18 @@
 /**
  * @file colorize.hpp
  * @author Otto Link (otto.link.bv@gmail.com)
- * @brief
+ * @brief Header file for functions related to applying colorization and
+ * hillshading.
+ *
+ * This file contains the declarations of functions that are used to apply
+ * colorization and hillshading effects to images and arrays. The functions
+ * allow for creating grayscale, histogram-based, and colored images from
+ * elevation data and other input arrays.
+ *
  * @version 0.1
  * @date 2023-05-08
  *
- * @copyright Copyright (c) 2023
+ * @copyright Copyright (c) 2023 Otto Link
  *
  */
 #pragma once
@@ -21,14 +28,31 @@
 namespace hmap
 {
 
+/**
+ * @enum Cmap
+ * @brief Enumeration for different colormap types.
+ *
+ * This enumeration is defined in the highmap/colormap.hpp file
+ * and is used for selecting the colormap to be applied during colorization.
+ */
 enum Cmap : int; // highmap/colormap.hpp
 
 /**
- * @brief Apply hillshading to an image.
+ * @brief Apply hillshading to a Tensor image.
  *
- * @param img Input image.
- * @param array Elevation array.
- * @param exponent Power exponent applied to the hillshade values.
+ * This function applies a hillshading effect to the provided tensor image
+ * using the elevation data in the input array. The effect is controlled
+ * by the power exponent and can be scaled by specifying the minimum and
+ * maximum values.
+ *
+ * @param img Input image represented as a Tensor.
+ * @param array Elevation data used to generate the hillshading effect.
+ * @param vmin Minimum value for scaling the hillshading effect (default is
+ * 0.f).
+ * @param vmax Maximum value for scaling the hillshading effect (default
+ * is 1.f).
+ * @param exponent Power exponent applied to the hillshade values (default
+ * is 1.f).
  */
 void apply_hillshade(Tensor            &img,
                      const hmap::Array &array,
@@ -37,12 +61,22 @@ void apply_hillshade(Tensor            &img,
                      float              exponent = 1.f);
 
 /**
- * @brief Apply hillshading to an image.
+ * @brief Apply hillshading to an 8-bit image.
  *
- * @param img Input image.
- * @param array Elevation array.
- * @param exponent Power exponent applied to the hillshade values.
- * @param is_img_rgba Whether the input image as an alpha channel or not.
+ * This function applies a hillshading effect to a vector of 8-bit image data.
+ * The effect is computed based on the elevation data in the input array.
+ * The image can be either RGB or RGBA format depending on the is_img_rgba flag.
+ *
+ * @param img Input image represented as a vector of 8-bit data.
+ * @param array Elevation data used to generate the hillshading effect.
+ * @param vmin Minimum value for scaling the hillshading effect (default is
+ * 0.f).
+ * @param vmax Maximum value for scaling the hillshading effect (default
+ * is 1.f).
+ * @param exponent Power exponent applied to the hillshade values (default
+ * is 1.f).
+ * @param is_img_rgba Boolean flag indicating if the input image has an alpha
+ * channel (default is false).
  */
 void apply_hillshade(std::vector<uint8_t> &img,
                      const hmap::Array    &array,
@@ -52,15 +86,20 @@ void apply_hillshade(std::vector<uint8_t> &img,
                      bool                  is_img_rgba = false);
 
 /**
- * @brief
- * @param array
- * @param vmin
- * @param vmax
- * @param cmap
- * @param hillshading
- * @param reverse
- * @param p_noise
- * @return
+ * @brief Apply colorization to an array.
+ *
+ * This function applies a colormap to the input array and optionally applies
+ * hillshading and noise. The colorization can be reversed, and the function
+ * returns a Tensor representing the colorized image.
+ *
+ * @param array Input array to be colorized.
+ * @param vmin Minimum value for scaling the colormap.
+ * @param vmax Maximum value for scaling the colormap.
+ * @param cmap Colormap to be applied (using the Cmap enum).
+ * @param hillshading Boolean flag to apply hillshading.
+ * @param reverse Boolean flag to reverse the colormap (default is false).
+ * @param p_noise Optional pointer to a noise array (default is nullptr).
+ * @return Tensor Colorized Tensor image.
  */
 Tensor colorize(Array &array,
                 float  vmin,
@@ -71,25 +110,36 @@ Tensor colorize(Array &array,
                 Array *p_noise = nullptr);
 
 /**
- * @brief Export array values to a 8 bit grayscale image.
+ * @brief Convert an array to a grayscale image.
+ *
+ * This function converts the input array to an 8-bit grayscale Tensor image.
  *
  * @param array Input array.
- * @return std::vector<uint8_t> Output image.
+ * @return Tensor Grayscale Tensor image.
  */
 Tensor colorize_grayscale(const Array &array);
 
 /**
- * @brief Export array values to a 8 bit grayscale histogram image.
+ * @brief Convert an array to a histogram-based grayscale image.
+ *
+ * This function converts the input array to an 8-bit grayscale Tensor image
+ * using a histogram-based method for enhanced contrast.
  *
  * @param array Input array.
+ * @return Tensor Grayscale Tensor image with histogram-based contrast.
  */
 Tensor colorize_histogram(const Array &array);
 
 /**
- * @brief Export a pair of arrays to a 8 bit colored image.
- * @param array1 Input array.
- * @param array2 Input array.
- * @return Output image.
+ * @brief Combine two arrays into a colored image.
+ *
+ * This function takes two input arrays and combines them into a single
+ * 8-bit colored Tensor image. The resulting image uses the data from
+ * both arrays to create a composite color representation.
+ *
+ * @param array1 First input array.
+ * @param array2 Second input array.
+ * @return Tensor Colorized Tensor image.
  *
  * **Example**
  * @include ex_colorize_vec2.cpp

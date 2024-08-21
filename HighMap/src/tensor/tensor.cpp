@@ -24,6 +24,16 @@ Tensor::Tensor(Vec2<int> shape_xy, int shape_z)
   this->vector.resize(shape.x * shape.y * shape.z);
 }
 
+float &Tensor::operator()(int i, int j, int k)
+{
+  return this->vector[(i * this->shape.y + j) * this->shape.z + k];
+}
+
+const float &Tensor::operator()(int i, int j, int k) const ///< @overload
+{
+  return this->vector[(i * this->shape.y + j) * this->shape.z + k];
+}
+
 float Tensor::max() const
 {
   return *std::max_element(this->vector.begin(), this->vector.end());
