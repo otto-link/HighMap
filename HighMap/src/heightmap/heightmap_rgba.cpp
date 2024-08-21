@@ -7,7 +7,7 @@
 
 #include "macrologger.h"
 
-#include "highmap/array3.hpp"
+#include "highmap/tensor.hpp"
 #include "highmap/colormaps.hpp"
 #include "highmap/export.hpp"
 #include "highmap/heightmap.hpp"
@@ -216,7 +216,7 @@ void HeightMapRGBA::normalize()
 
 void HeightMapRGBA::to_png_8bit(std::string fname)
 {
-  Array3 col3 = Array3(this->shape, 4);
+  Tensor col3 = Tensor(this->shape, 4);
   for (int ch = 0; ch < col3.shape.z; ch++)
     col3.set_slice(ch, this->rgba[ch].to_array());
   col3.to_png_8bit(fname);
@@ -224,7 +224,7 @@ void HeightMapRGBA::to_png_8bit(std::string fname)
 
 void HeightMapRGBA::to_png_16bit(std::string fname)
 {
-  Array3 col3 = Array3(this->shape, 4);
+  Tensor col3 = Tensor(this->shape, 4);
   for (int ch = 0; ch < col3.shape.z; ch++)
     col3.set_slice(ch, this->rgba[ch].to_array());
   col3.to_png_16bit(fname);

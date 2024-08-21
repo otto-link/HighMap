@@ -122,7 +122,7 @@ void Array::to_png(std::string fname, int cmap, bool hillshading)
   const float vmin = this->min();
   const float vmax = this->max();
 
-  Array3 color3 =
+  Tensor color3 =
       colorize(*this, vmin, vmax, cmap, hillshading, false, nullptr);
   color3.to_png_8bit(fname);
 }

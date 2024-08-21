@@ -7,7 +7,7 @@
 
 #include "macrologger.h"
 
-#include "highmap/array3.hpp"
+#include "highmap/tensor.hpp"
 #include "highmap/colorize.hpp"
 #include "highmap/colormaps.hpp"
 #include "highmap/heightmap.hpp"
@@ -133,7 +133,7 @@ std::vector<uint8_t> HeightMapRGB::to_img_8bit(Vec2<int> shape_img)
 
 void HeightMapRGB::to_png_16bit(std::string fname)
 {
-  Array3 col3 = Array3(this->shape, 3);
+  Tensor col3 = Tensor(this->shape, 3);
   for (int ch = 0; ch < col3.shape.z; ch++)
     col3.set_slice(ch, this->rgb[ch].to_array());
   col3.to_png_16bit(fname);
