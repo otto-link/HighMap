@@ -602,6 +602,35 @@ template <typename T> struct Vec4
   }
 
   /**
+   * @brief Scalar multiplication (Vec4 * scalar).
+   *
+   * Multiplies each component of the vector by a scalar value.
+   *
+   * @param scalar The scalar value to multiply with.
+   * @return Vec4 A new vector with each component multiplied by the scalar.
+   */
+  Vec4 operator*(T scalar) const
+  {
+    return Vec4(a * scalar, b * scalar, c * scalar, d * scalar);
+  }
+
+  /**
+   * @brief Scalar multiplication (scalar * Vec4).
+   *
+   * Multiplies each component of the vector by a scalar value. This function
+   * allows expressions where the scalar is on the left side of the
+   * multiplication operator.
+   *
+   * @param scalar The scalar value to multiply with.
+   * @param vec The vector to multiply.
+   * @return Vec4 A new vector with each component multiplied by the scalar.
+   */
+  friend Vec4 operator*(T scalar, const Vec4 &vec)
+  {
+    return Vec4(scalar * vec.a, scalar * vec.b, scalar * vec.c, scalar * vec.d);
+  }
+
+  /**
    * @brief Friend function to calculate the dot product of two vectors.
    *
    * The dot product is the sum of the products of the corresponding components

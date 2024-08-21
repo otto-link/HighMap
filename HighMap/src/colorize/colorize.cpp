@@ -123,13 +123,12 @@ Tensor colorize(Array &array,
       float value = array(i, j);
       if (p_noise) value += (*p_noise)(i, j);
 
-      float vnorm = normalization_factors.x *value +
-                    normalization_factors.y
+      float vnorm = normalization_factors.x * value + normalization_factors.y;
 
-                    float normalized_value = std::clamp(
-                        vnorm,
-                        0.f,
-                        static_cast<float>(nc - 1));
+      float normalized_value = std::clamp(vnorm,
+                                          0.f,
+                                          static_cast<float>(nc - 1));
+
       Vec3<float> color = apply_colormap(normalized_value);
 
       // assign color values to the tensor
