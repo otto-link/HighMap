@@ -3,9 +3,9 @@
  * this software. */
 
 /**
- * @file array_vec3.hpp
+ * @file tensor.hpp
  * @author Otto Link (otto.link.bv@gmail.com)
- * @brief Header file for the ArrayVec class.
+ * @brief Header file for the Tensor class.
  *
  * @version 0.1
  * @date 2023-05-07
@@ -22,15 +22,15 @@
 namespace hmap
 {
 
-class Array3
+class Tensor
 {
 public:
   Vec3<int>          shape;
   std::vector<float> vector;
 
-  Array3(Vec3<int> shape);
+  Tensor(Vec3<int> shape);
 
-  Array3(Vec2<int> shape_xy, int shape_z);
+  Tensor(Vec2<int> shape_xy, int shape_z);
 
   float &operator()(int i, int j, int k)
   {

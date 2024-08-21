@@ -4,16 +4,16 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
-#include "highmap/array3.hpp"
+#include "highmap/tensor.hpp"
 #include "highmap/export.hpp"
 #include "highmap/operator.hpp"
 
 namespace hmap
 {
 
-Array3 compute_splatmap(Array *p_r, Array *p_g, Array *p_b, Array *p_a)
+Tensor compute_splatmap(Array *p_r, Array *p_g, Array *p_b, Array *p_a)
 {
-  Array3 smap = Array3(p_r->shape, 4);
+  Tensor smap = Tensor(p_r->shape, 4);
 
   smap.set_slice(0, *p_r);
 
@@ -32,7 +32,7 @@ void export_splatmap_png_8bit(std::string fname,
                               Array      *p_b,
                               Array      *p_a)
 {
-  Array3 smap = compute_splatmap(p_r, p_g, p_b, p_a);
+  Tensor smap = compute_splatmap(p_r, p_g, p_b, p_a);
   smap.to_png_8bit(fname);
 }
 
@@ -42,7 +42,7 @@ void export_splatmap_png_16bit(std::string fname,
                                Array      *p_b,
                                Array      *p_a)
 {
-  Array3 smap = compute_splatmap(p_r, p_g, p_b, p_a);
+  Tensor smap = compute_splatmap(p_r, p_g, p_b, p_a);
   smap.to_png_16bit(fname);
 }
 

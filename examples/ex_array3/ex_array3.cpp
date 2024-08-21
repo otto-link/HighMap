@@ -3,7 +3,7 @@
 int main(void)
 {
   hmap::Vec3<int> shape = {512, 256, 4};
-  hmap::Array3    array3 = hmap::Array3(shape);
+  hmap::Tensor    array3 = hmap::Tensor(shape);
 
   array3.set_slice(1, hmap::Array({shape.x, shape.y}, 1.f));
 

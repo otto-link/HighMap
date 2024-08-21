@@ -16,7 +16,7 @@
 #include <png.h>
 
 #include "highmap/array.hpp"
-#include "highmap/array3.hpp"
+#include "highmap/tensor.hpp"
 
 namespace hmap
 {
@@ -30,7 +30,7 @@ enum Cmap : int; // highmap/colormap.hpp
  * @param array Elevation array.
  * @param exponent Power exponent applied to the hillshade values.
  */
-void apply_hillshade(Array3            &img,
+void apply_hillshade(Tensor            &img,
                      const hmap::Array &array,
                      float              vmin = 0.f,
                      float              vmax = 1.f,
@@ -62,7 +62,7 @@ void apply_hillshade(std::vector<uint8_t> &img,
  * @param p_noise
  * @return
  */
-Array3 colorize(Array &array,
+Tensor colorize(Array &array,
                 float  vmin,
                 float  vmax,
                 int    cmap,
@@ -76,14 +76,14 @@ Array3 colorize(Array &array,
  * @param array Input array.
  * @return std::vector<uint8_t> Output image.
  */
-Array3 colorize_grayscale(const Array &array);
+Tensor colorize_grayscale(const Array &array);
 
 /**
  * @brief Export array values to a 8 bit grayscale histogram image.
  *
  * @param array Input array.
  */
-Array3 colorize_histogram(const Array &array);
+Tensor colorize_histogram(const Array &array);
 
 /**
  * @brief Export a pair of arrays to a 8 bit colored image.
@@ -97,6 +97,6 @@ Array3 colorize_histogram(const Array &array);
  * **Result**
  * @image html ex_colorize_vec2.png
  */
-Array3 colorize_vec2(const Array &array1, const Array &array2);
+Tensor colorize_vec2(const Array &array1, const Array &array2);
 
 } // namespace hmap
