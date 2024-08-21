@@ -43,8 +43,7 @@ void HeightMapRGB::colorize(HeightMap                      &h,
                             std::vector<std::vector<float>> colormap_colors,
                             bool                            reverse)
 {
-  if (reverse)
-    std::swap(vmin, vmax);
+  if (reverse) std::swap(vmin, vmax);
 
   // write colorize function for each tile
   auto lambda =
@@ -110,8 +109,7 @@ void HeightMapRGB::normalize()
 
 std::vector<uint8_t> HeightMapRGB::to_img_8bit(Vec2<int> shape_img)
 {
-  if (shape_img.x * shape_img.y == 0)
-    shape_img = this->shape;
+  if (shape_img.x * shape_img.y == 0) shape_img = this->shape;
 
   std::vector<uint8_t> img(shape_img.x * shape_img.y * 3);
 

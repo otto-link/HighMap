@@ -27,8 +27,7 @@ Array biweight(Vec2<int> shape)
       float xi = ((float)i - ri) / ((float)(ri + 1));
       float yi = ((float)j - rj) / ((float)(rj + 1));
       float r2 = xi * xi + yi * yi;
-      if (r2 < 1.f)
-        array(i, j) = (1.f - r2) * (1.f - r2);
+      if (r2 < 1.f) array(i, j) = (1.f - r2) * (1.f - r2);
     }
 
   return array;
@@ -88,8 +87,7 @@ Array cubic_pulse(Vec2<int> shape)
       float yi = (float)j - rj;
       float r = std::hypot(xi / float(ri + 1), yi / float(rj + 1));
 
-      if (r < 1.f)
-        array(i, j) = 1.f - r * r * (3.f - 2.f * r);
+      if (r < 1.f) array(i, j) = 1.f - r * r * (3.f - 2.f * r);
     }
 
   return array;
@@ -120,13 +118,11 @@ Array cubic_pulse_directional(Vec2<int> shape,
       float xt = ca * xi + sa * yi;
       float yt = sa * xi - ca * yi;
 
-      if (xt < 0.f)
-        xt *= (1.f + anisotropy);
+      if (xt < 0.f) xt *= (1.f + anisotropy);
 
       float r = std::hypot(xt / float(ri + 1), yt / float(rj + 1));
 
-      if (r < 1.f)
-        array(i, j) = 1.f - r * r * (3.f - 2.f * r);
+      if (r < 1.f) array(i, j) = 1.f - r * r * (3.f - 2.f * r);
     }
 
   return array;
@@ -284,8 +280,7 @@ Array smooth_cosine(Vec2<int> shape)
       float xi = (float)i - ri;
       float yi = (float)j - rj;
       float r = M_PI * std::hypot(xi / float(ri + 1), yi / float(rj + 1));
-      if (r < M_PI)
-        array(i, j) = 0.5f + 0.5f * std::cos(r);
+      if (r < M_PI) array(i, j) = 0.5f + 0.5f * std::cos(r);
     }
 
   return array;
@@ -308,8 +303,7 @@ Array tricube(Vec2<int> shape)
       float xi = (float)i - ri;
       float yi = (float)j - rj;
       float r = std::hypot(xi / float(ri + 1), yi / float(rj + 1));
-      if (r < 1.f)
-        array(i, j) = std::pow(1.f - std::pow(r, 3.f), 3.f);
+      if (r < 1.f) array(i, j) = std::pow(1.f - std::pow(r, 3.f), 3.f);
     }
 
   return array;

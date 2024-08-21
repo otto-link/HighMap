@@ -47,8 +47,7 @@ std::vector<int> Graph::dijkstra(int source_point_index, int target_point_index)
         i = k;
       }
 
-    if (i == target_point_index)
-      break;
+    if (i == target_point_index) break;
 
     queue.remove(i);
 
@@ -281,8 +280,7 @@ void Graph::to_array_fractalize(Array      &array,
   for (size_t k = 0; k < this->get_nedges(); k++)
   {
     float dist = this->get_edge_length(k);
-    if (dist < dmin)
-      dmin = dist;
+    if (dist < dmin) dmin = dist;
   }
 
   // fractalize and project to array
@@ -361,8 +359,7 @@ void Graph::to_csv(std::string fname_xy, std::string fname_adjacency)
         v = this->adjacency_matrix[{i, j}];
       f << v;
 
-      if (j < (int)this->get_npoints() - 1)
-        f << ",";
+      if (j < (int)this->get_npoints() - 1) f << ",";
     }
     f << std::endl;
   }

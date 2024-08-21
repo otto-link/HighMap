@@ -107,8 +107,7 @@ void hydraulic_musgrave(Array &z,
 
     // apply low-pass filtering to smooth spurious spatial
     // oscillations
-    if (it % LAPLACE_PERIOD == 0)
-      laplace(z, LAPLACE_SIGMA, LAPLACE_ITERATIONS);
+    if (it % LAPLACE_PERIOD == 0) laplace(z, LAPLACE_SIGMA, LAPLACE_ITERATIONS);
 
   } // it
 

@@ -37,8 +37,7 @@ void thermal(Array       &z,
   // keep a backup of the input if the erosion / deposition maps need
   // to be computed
   Array z_bckp = Array();
-  if (p_deposition_map != nullptr)
-    z_bckp = z;
+  if (p_deposition_map != nullptr) z_bckp = z;
 
   // main loop
   for (int it = 0; it < iterations; it++)
@@ -233,8 +232,7 @@ void thermal(Array       &z,
   extrapolate_borders(z);
   laplace(z);
 
-  if (p_bedrock)
-    clamp_min(z, (*p_bedrock));
+  if (p_bedrock) clamp_min(z, (*p_bedrock));
 
   if (p_deposition_map)
   {
@@ -290,8 +288,7 @@ void thermal_auto_bedrock(Array       &z,
   int   ncycle = 10;
 
   Array z_bckp = Array();
-  if (p_deposition_map != nullptr)
-    z_bckp = z;
+  if (p_deposition_map != nullptr) z_bckp = z;
 
   for (int ic = 0; ic < ncycle; ic++) // thermal weathering cycles
   {

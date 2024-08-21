@@ -17,12 +17,9 @@ Tensor compute_splatmap(Array *p_r, Array *p_g, Array *p_b, Array *p_a)
 
   smap.set_slice(0, *p_r);
 
-  if (p_g)
-    smap.set_slice(1, *p_g);
-  if (p_b)
-    smap.set_slice(2, *p_b);
-  if (p_a)
-    smap.set_slice(3, *p_a);
+  if (p_g) smap.set_slice(1, *p_g);
+  if (p_b) smap.set_slice(2, *p_b);
+  if (p_a) smap.set_slice(3, *p_a);
   return smap;
 }
 

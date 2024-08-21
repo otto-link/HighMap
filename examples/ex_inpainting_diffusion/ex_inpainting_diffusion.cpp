@@ -16,8 +16,7 @@ int main(void)
 
   for (int i = 0; i < shape.x; i++)
     for (int j = 0; j < shape.y; j++)
-      if (mask(i, j) == 0.f)
-        z2(i, j) = z1(i, j);
+      if (mask(i, j) == 0.f) z2(i, j) = z1(i, j);
 
   // holes filled with inpainting
   int         iterations = 200;

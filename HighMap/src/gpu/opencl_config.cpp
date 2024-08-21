@@ -37,8 +37,7 @@ void OpenCLConfig::build_program()
 #include "kernel_ridgelines.cl"
       ;
 
-  if (kernel_code.length() == 0)
-    throw std::runtime_error("empty kernel code");
+  if (kernel_code.length() == 0) throw std::runtime_error("empty kernel code");
 
   sources.push_back({kernel_code.c_str(), kernel_code.length()});
 

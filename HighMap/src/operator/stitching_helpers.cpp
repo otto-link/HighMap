@@ -136,22 +136,18 @@ Array get_random_patch(Array          &array,
 
   if (patch_flip)
   {
-    if (dis_i(gen) > imid)
-      flip_ud(patch);
-    if (dis_i(gen) > imid)
-      flip_lr(patch);
+    if (dis_i(gen) > imid) flip_ud(patch);
+    if (dis_i(gen) > imid) flip_lr(patch);
   }
 
   // square patches only...
   if (patch_shape.x == patch_shape.y)
   {
     if (patch_rotate)
-      if (dis_i(gen) > imid)
-        rot90(patch);
+      if (dis_i(gen) > imid) rot90(patch);
 
     if (patch_transpose)
-      if (dis_i(gen) > imid)
-        patch = transpose(patch);
+      if (dis_i(gen) > imid) patch = transpose(patch);
   }
 
   return patch;

@@ -91,11 +91,9 @@ Array translate(const Array &array,
   Array dx_array = constant(array.shape, -dx);
   Array dy_array = constant(array.shape, -dy);
 
-  if (p_noise_x)
-    dx_array += *p_noise_x;
+  if (p_noise_x) dx_array += *p_noise_x;
 
-  if (p_noise_y)
-    dy_array += *p_noise_y;
+  if (p_noise_y) dy_array += *p_noise_y;
 
   Array array_out = Array(array.shape);
 

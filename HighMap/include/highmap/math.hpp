@@ -98,8 +98,7 @@ inline float approx_hypot(float a, float b)
 {
   a = std::abs(a);
   b = std::abs(b);
-  if (a > b)
-    std::swap(a, b);
+  if (a > b) std::swap(a, b);
   return 0.414 * a + b;
 }
 

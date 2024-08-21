@@ -40,8 +40,7 @@ Array cv_mat_to_array(const cv::Mat &mat, bool remap_values)
   default: throw std::invalid_argument("Unsupported matrix type.");
   }
 
-  if (remap_values)
-    remap(array);
+  if (remap_values) remap(array);
 
   return array;
 }

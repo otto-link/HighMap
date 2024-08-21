@@ -109,24 +109,18 @@ Array stamping(Vec2<int>           shape,
     // transform
     if (kernel_flip)
     {
-      if (dis(gen) > 0.5f)
-        flip_ud(kernel_local);
-      if (dis(gen) > 0.5f)
-        flip_lr(kernel_local);
-      if (dis(gen) > 0.5f)
-        rot90(kernel_local);
-      if (dis(gen) > 0.5f)
-        kernel_local = transpose(kernel_local);
+      if (dis(gen) > 0.5f) flip_ud(kernel_local);
+      if (dis(gen) > 0.5f) flip_lr(kernel_local);
+      if (dis(gen) > 0.5f) rot90(kernel_local);
+      if (dis(gen) > 0.5f) kernel_local = transpose(kernel_local);
     }
 
     // any rotation angle, time consuming and add some scaling
     // distortions to the input kernel
-    if (kernel_rotate)
-      rotate(kernel_local, 360.f * dis(gen), true);
+    if (kernel_rotate) rotate(kernel_local, 360.f * dis(gen), true);
 
     // amplitude
-    if (kernel_scale_amplitude)
-      kernel_local *= zr[k];
+    if (kernel_scale_amplitude) kernel_local *= zr[k];
 
     // blend (center kernel on point)
     int i0 = (int)(xrs[k] * (shape.x - 1));

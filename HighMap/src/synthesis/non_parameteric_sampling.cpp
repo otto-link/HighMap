@@ -81,8 +81,7 @@ Array non_parametric_sampling(Array          &array,
       {
         int nbrs = count_neighbors_to_fill(i, j, is_cell_done);
 
-        if (nbrs > 0)
-          queue.push_back(std::pair(-nbrs, std::pair(i, j)));
+        if (nbrs > 0) queue.push_back(std::pair(-nbrs, std::pair(i, j)));
       }
 
   std::make_heap(queue.begin(), queue.end(), cmp_queue);
@@ -92,8 +91,7 @@ Array non_parametric_sampling(Array          &array,
   while (queue.size() > 0)
   {
 
-    if (queue.size() % 5000 == 0)
-      LOG_DEBUG("queue size: %ld", queue.size());
+    if (queue.size() % 5000 == 0) LOG_DEBUG("queue size: %ld", queue.size());
 
     std::pair<int, std::pair<int, int>> current = queue.back();
     queue.pop_back();
@@ -133,8 +131,7 @@ Array non_parametric_sampling(Array          &array,
               }
           }
 
-        if (dsum > 0.f)
-          ssd_sum = ssd_sum / dsum;
+        if (dsum > 0.f) ssd_sum = ssd_sum / dsum;
 
         ssd_list.push_back(ssd_sum);
         value_list.push_back(patch(npx2, npy2));

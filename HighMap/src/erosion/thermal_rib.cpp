@@ -40,8 +40,7 @@ void thermal_rib(Array &z, int iterations, Array *p_bedrock)
     median_3x3(de);
     z -= de;
 
-    if (p_bedrock)
-      z = maximum(z, *p_bedrock);
+    if (p_bedrock) z = maximum(z, *p_bedrock);
   }
 }
 

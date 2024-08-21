@@ -38,8 +38,7 @@ void sediment_deposition(Array       &z,
   }
   z = z + smap;
 
-  if (p_deposition_map)
-    *p_deposition_map = smap;
+  if (p_deposition_map) *p_deposition_map = smap;
 }
 
 void sediment_deposition(Array       &z,
@@ -89,8 +88,7 @@ void sediment_deposition_particle(Array &z,
   // keep a backup of the input if the erosion / deposition maps need
   // to be computed
   Array z_bckp = Array();
-  if (p_deposition_map != nullptr)
-    z_bckp = z;
+  if (p_deposition_map != nullptr) z_bckp = z;
 
   Array kernel = cone(Vec2<int>(2 * ir + 1, 2 * ir + 1));
   kernel.normalize();
@@ -136,8 +134,7 @@ void sediment_deposition_particle(Array &z,
       float nx = -z.get_gradient_x_bilinear_at(i, j, u, v);
       float ny = -z.get_gradient_y_bilinear_at(i, j, u, v);
 
-      if (approx_hypot(nx, ny) < GRADIENT_MIN)
-        break;
+      if (approx_hypot(nx, ny) < GRADIENT_MIN) break;
 
       // classical mechanics (with gravity = 1)
       vx += nx;

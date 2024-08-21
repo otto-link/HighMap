@@ -58,8 +58,7 @@ Array flow_accumulation_dinf(const Array &z, float talus_ref)
       for (uint k = 0; k < nb; k++)
         // count the number of neighbors with flow directions pointing
         // to the current cell
-        if (dinf[kp[k]](i + di[k], j + dj[k]) > 0.f)
-          nidp(i, j) += 1.f;
+        if (dinf[kp[k]](i + di[k], j + dj[k]) > 0.f) nidp(i, j) += 1.f;
 
   // --- flow accumulation (same as D8 with minor adjustements)
 
@@ -131,8 +130,7 @@ std::vector<Array> flow_direction_dinf(const Array &z, float talus_ref)
       for (uint k = 0; k < nb; k++)
       {
         float dz = z(i, j) - z(i + di[k], j + dj[k]);
-        if (dz > 0)
-          dinf[k](i, j) = std::pow(dz * c[k], p(i, j)) * ecl[k];
+        if (dz > 0) dinf[k](i, j) = std::pow(dz * c[k], p(i, j)) * ecl[k];
       }
 
       // normalize

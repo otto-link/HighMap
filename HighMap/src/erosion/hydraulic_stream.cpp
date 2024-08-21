@@ -30,8 +30,7 @@ void hydraulic_stream(Array &z,
   // keep a backup of the input if the erosion / deposition maps need
   // to be computed
   Array z_bckp = Array();
-  if (p_erosion_map)
-    z_bckp = z;
+  if (p_erosion_map) z_bckp = z;
 
   // use flow accumulation to determine erosion intensity
   Array facc = flow_accumulation_dinf(z, talus_ref);
@@ -55,8 +54,7 @@ void hydraulic_stream(Array &z,
   else
     z -= c_erosion * facc;
 
-  if (p_bedrock)
-    z = maximum(*p_bedrock, z);
+  if (p_bedrock) z = maximum(*p_bedrock, z);
 
   // splatmaps
   if (p_erosion_map)
@@ -112,8 +110,7 @@ void hydraulic_stream_log(Array &z,
   // keep a backup of the input if the erosion / deposition maps need
   // to be computed
   Array z_bckp = Array();
-  if (p_erosion_map)
-    z_bckp = z;
+  if (p_erosion_map) z_bckp = z;
 
   // use flow accumulation to determine erosion intensity
   Array facc = flow_accumulation_dinf(z, talus_ref);
@@ -134,8 +131,7 @@ void hydraulic_stream_log(Array &z,
   else
     z -= c_erosion * facc;
 
-  if (p_bedrock)
-    z = maximum(*p_bedrock, z);
+  if (p_bedrock) z = maximum(*p_bedrock, z);
 
   // splatmaps
   if (p_erosion_map)

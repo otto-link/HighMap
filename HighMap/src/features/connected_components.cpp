@@ -63,8 +63,7 @@ Array connected_components(const Array &array,
 
           // keep track of links between label values
           for (auto &v : nbrs_label)
-            if (lmin != v)
-              labels_mapping[lmin].push_back(v);
+            if (lmin != v) labels_mapping[lmin].push_back(v);
         }
       }
 

@@ -48,8 +48,7 @@ void thermal_scree(Array &z,
   // keep a backup of the input if the erosion / deposition maps need
   // to be computed
   Array z_bckp = Array();
-  if (p_deposition_map != nullptr)
-    z_bckp = z;
+  if (p_deposition_map != nullptr) z_bckp = z;
 
   // populate queue
   std::vector<int>   queue_i = {};

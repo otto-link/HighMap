@@ -162,8 +162,7 @@ void Cloud::to_array(Array &array, Vec4<float> bbox)
     int i = (int)(ai * p.x + bi);
     int j = (int)(aj * p.y + bj);
 
-    if ((i > -1) and (i < ni) and (j > -1) and (j < nj))
-      array(i, j) = p.v;
+    if ((i > -1) and (i < ni) and (j > -1) and (j < nj)) array(i, j) = p.v;
   }
 }
 

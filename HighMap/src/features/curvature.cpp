@@ -38,8 +38,7 @@ Array compute_k(Array &zx, Array &zy, Array &zxx, Array &zxy, Array &zyy)
 Array accumulation_curvature(const Array &z, int ir)
 {
   Array ac = z;
-  if (ir > 0)
-    smooth_cpulse(ac, ir);
+  if (ir > 0) smooth_cpulse(ac, ir);
 
   Array zx = gradient_x(ac);
   Array zy = gradient_y(ac);
@@ -92,8 +91,7 @@ Array curvature_mean(const Array &z)
 Array shape_index(const Array &z, int ir)
 {
   Array si = z;
-  if (ir > 0)
-    smooth_cpulse(si, ir);
+  if (ir > 0) smooth_cpulse(si, ir);
 
   // compute curvature criteria
   Array zx = gradient_x(si);
@@ -124,8 +122,7 @@ Array shape_index(const Array &z, int ir)
 Array unsphericity(const Array &z, int ir)
 {
   Array si = z;
-  if (ir > 0)
-    smooth_cpulse(si, ir);
+  if (ir > 0) smooth_cpulse(si, ir);
 
   // compute curvature criteria
   Array zx = gradient_x(si);
@@ -153,8 +150,7 @@ Array unsphericity(const Array &z, int ir)
 Array valley_width(const Array &z, int ir)
 {
   Array vw = z;
-  if (ir > 0)
-    smooth_cpulse(vw, ir);
+  if (ir > 0) smooth_cpulse(vw, ir);
 
   vw = curvature_mean(-vw);
   vw = distance_transform(vw);

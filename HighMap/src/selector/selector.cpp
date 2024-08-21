@@ -46,8 +46,7 @@ Array select_angle(const Array &array, float angle, float sigma, int ir)
   Array c = array;
 
   // prefiltering
-  if (ir > 0)
-    smooth_cpulse(c, ir);
+  if (ir > 0) smooth_cpulse(c, ir);
 
   c = gradient_angle(c) + M_PI;
   c = select_pulse(c, angle / 180.f * M_PI, sigma / 180.f * M_PI);
@@ -70,8 +69,7 @@ Array select_cavities(const Array &array, int ir, bool concave)
   smooth_cpulse(array_smooth, ir);
   Array c = curvature_mean(array_smooth);
 
-  if (!concave)
-    c *= -1.f;
+  if (!concave) c *= -1.f;
 
   clamp_min(c, 0.f);
   return c;
@@ -217,8 +215,7 @@ Array select_pulse(const Array &array, float value, float sigma)
     for (int j = 0; j < array.shape.y; j++)
     {
       float r = std::abs(a * array(i, j) + b);
-      if (r < 1.f)
-        c(i, j) = 1.f - r * r * (3.f - 2.f * r);
+      if (r < 1.f) c(i, j) = 1.f - r * r * (3.f - 2.f * r);
     }
   return c;
 }

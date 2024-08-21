@@ -51,10 +51,8 @@ Array compute_gradient_norm(const Array &array,
   Array dx(array.shape), dy(array.shape);
   compute_gradient(array, dx, dy, x_coeff, y_coeff, normalize_factor);
 
-  if (p_dx)
-    *p_dx = dx;
-  if (p_dy)
-    *p_dy = dy;
+  if (p_dx) *p_dx = dx;
+  if (p_dy) *p_dy = dy;
 
   return hypot(dx, dy);
 }
@@ -88,10 +86,8 @@ Array gradient_norm(const Array &array, Array *p_dx, Array *p_dy)
   Array dy = gradient_y(array);
 
   // store directional gradients is requested
-  if (p_dx)
-    *p_dx = dx;
-  if (p_dy)
-    *p_dy = dy;
+  if (p_dx) *p_dx = dx;
+  if (p_dy) *p_dy = dy;
 
   Array dm = hypot(dx, dy);
   return dm;

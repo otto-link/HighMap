@@ -54,8 +54,7 @@ Array geomorphons(const Array &array, int irmin, int irmax, float epsilon)
           }
         }
 
-        if (slope_up > -slope_dw && slope_up > epsilon_normed)
-          signature[k] = 1;
+        if (slope_up > -slope_dw && slope_up > epsilon_normed) signature[k] = 1;
         if (slope_up < -slope_dw && slope_dw < -epsilon_normed)
           signature[k] = -1;
       }

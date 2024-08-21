@@ -30,13 +30,11 @@ void hydraulic_spl(Array &z,
   // keep a backup of the input if the erosion / deposition maps need
   // to be computed
   Array z_bckp = Array();
-  if (p_erosion_map)
-    z_bckp = z;
+  if (p_erosion_map) z_bckp = z;
 
   // default bedrock
   Array z_bedrock = Array();
-  if (!p_bedrock)
-    z_bedrock = hmap::minimum_local(z, 8 * ir);
+  if (!p_bedrock) z_bedrock = hmap::minimum_local(z, 8 * ir);
 
   // main loop
   for (int it = 0; it < iterations; it++)

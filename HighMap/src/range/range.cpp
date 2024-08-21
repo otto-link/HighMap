@@ -212,8 +212,7 @@ Array maximum_local(const Array &array, int ir)
     {
       float max = array(i, j);
       for (int u = i1; u < i2; u++)
-        if (array(u, j) > max)
-          max = array(u, j);
+        if (array(u, j) > max) max = array(u, j);
       array_tmp(i, j) = max;
     }
   }
@@ -227,8 +226,7 @@ Array maximum_local(const Array &array, int ir)
     {
       float max = array_tmp(i, j);
       for (int v = j1; v < j2; v++)
-        if (array_tmp(i, v) > max)
-          max = array_tmp(i, v);
+        if (array_tmp(i, v) > max) max = array_tmp(i, v);
       array_out(i, j) = max;
     }
   }

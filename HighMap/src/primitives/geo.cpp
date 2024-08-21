@@ -140,8 +140,7 @@ Array peak(Vec2<int>   shape,
       {
         float r = std::hypot((float)(i - ic), (float)(j - jc)) / radius;
 
-        if (r < 1.f)
-          z(i, j) = 1.f - r * r * (3.f - 2.f * r);
+        if (r < 1.f) z(i, j) = 1.f - r * r * (3.f - 2.f * r);
       }
   }
   else
@@ -152,8 +151,7 @@ Array peak(Vec2<int>   shape,
         float r = std::hypot((float)(i - ic), (float)(j - jc)) / radius;
         r += r * noise_r_amp / radius * (2 * (*p_noise)(i, j) - 1);
 
-        if (r < 1.f)
-          z(i, j) = 1.f - r * r * (3.f - 2.f * r);
+        if (r < 1.f) z(i, j) = 1.f - r * r * (3.f - 2.f * r);
 
         z(i, j) *= 1.f + noise_z_ratio * (2.f * (*p_noise)(i, j) - 1.f);
       }

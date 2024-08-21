@@ -692,8 +692,7 @@ public:
     for (size_t i = 0; i < this->get_npoints(); i++)
       v[i] = this->points[i].v;
 
-    if (this->closed && this->get_npoints() > 0)
-      v.push_back(this->points[0].v);
+    if (this->closed && this->get_npoints() > 0) v.push_back(this->points[0].v);
     return v;
   }
 
@@ -707,8 +706,7 @@ public:
     for (size_t i = 0; i < this->get_npoints(); i++)
       x[i] = this->points[i].x;
 
-    if (this->closed && this->get_npoints() > 0)
-      x.push_back(this->points[0].x);
+    if (this->closed && this->get_npoints() > 0) x.push_back(this->points[0].x);
     return x;
   }
 
@@ -743,8 +741,7 @@ public:
     for (size_t i = 0; i < this->get_npoints(); i++)
       y[i] = this->points[i].y;
 
-    if (this->closed && this->get_npoints() > 0)
-      y.push_back(this->points[0].y);
+    if (this->closed && this->get_npoints() > 0) y.push_back(this->points[0].y);
     return y;
   }
 

@@ -41,8 +41,7 @@ Array d8_compute_ndip(const Array &d8)
       // count the number of neighbors with flow directions pointing
       // to the current cell
       for (uint k = 0; k < nb; k++)
-        if (d8(i + di[k], j + dj[k]) == kp[k])
-          nidp(i, j) += 1;
+        if (d8(i + di[k], j + dj[k]) == kp[k]) nidp(i, j) += 1;
 
   return nidp;
 }

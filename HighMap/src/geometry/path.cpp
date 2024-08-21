@@ -450,8 +450,7 @@ void Path::reorder_nns(int start_index)
   // brute force nearest neighbor search...
   std::list<int> queue_search = {};
   for (size_t k = 0; k < this->get_npoints(); k++)
-    if ((int)k != start_index)
-      queue_search.push_back((int)k);
+    if ((int)k != start_index) queue_search.push_back((int)k);
 
   while (idx.size() < this->get_npoints())
   {
@@ -521,8 +520,7 @@ void Path::resample_uniform()
   {
     size_t knext = (k + 1) % this->get_npoints();
     float  dist = distance(this->points[k], this->points[knext]);
-    if (dist < dmin)
-      dmin = dist;
+    if (dist < dmin) dmin = dist;
   }
 
   this->resample(dmin);
@@ -601,8 +599,7 @@ float Path::sdf_closed(float x, float y)
     Vec3<bool> c = Vec3<bool>(y >= this->points[i].y,
                               y<this->points[j].y, e.x * w.y> e.y * w.x);
 
-    if ((c.x && c.y && c.z) || (not(c.x) && not(c.y) && not(c.z)))
-      s *= -1.f;
+    if ((c.x && c.y && c.z) || (not(c.x) && not(c.y) && not(c.z))) s *= -1.f;
   }
   return s * std::sqrt(d);
 }
@@ -707,8 +704,7 @@ void Path::to_array(Array &array, Vec4<float> bbox, bool filled)
   }
 
   // if filled, set the border to the same value of the filling value
-  if (filled)
-    cloud.set_values(1.f);
+  if (filled) cloud.set_values(1.f);
 
   cloud.to_array(array, bbox);
 

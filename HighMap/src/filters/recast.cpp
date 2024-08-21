@@ -252,8 +252,7 @@ void recast_rocky_slopes(Array      &array,
     gamma_correction_local(noise, gamma, ir, 0.1f);
     {
       int ir2 = (int)(ir / 4.f);
-      if (ir2 > 1)
-        gamma_correction_local(noise, gamma, ir2, 0.1f);
+      if (ir2 > 1) gamma_correction_local(noise, gamma, ir2, 0.1f);
     }
     array += amplitude * noise * c;
   }

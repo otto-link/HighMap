@@ -88,8 +88,7 @@ void Array::find_path_dijkstra(Vec2<int>         ij_start,
                                            (*this)(p * step.x, q * step.y) -
                                                (*this)(i * step.x, j * step.y));
 
-        if (p_mask_nogo)
-          dist += 1e5f * (*p_mask_nogo)(p * step.x, q * step.y);
+        if (p_mask_nogo) dist += 1e5f * (*p_mask_nogo)(p * step.x, q * step.y);
 
         if (distance(p, q) == 0.f)
           if ((mask(p, q) == 0) or (dist < distance(p, q)))

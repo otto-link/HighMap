@@ -29,8 +29,7 @@ void apply_hillshade(Tensor            &color3,
   hs = hillshade(array, 180.f, 45.f, 10.f * array.ptp() / (float)array.shape.y);
   remap(hs, vmin, vmax);
 
-  if (exponent != 1.f)
-    hs = hmap::pow(hs, exponent);
+  if (exponent != 1.f) hs = hmap::pow(hs, exponent);
 
   clamp(hs);
 
@@ -53,8 +52,7 @@ void apply_hillshade(std::vector<uint8_t> &img,
   hs = hillshade(array, 180.f, 45.f, 10.f * array.ptp() / (float)array.shape.y);
   remap(hs, vmin, vmax);
 
-  if (exponent != 1.f)
-    hs = hmap::pow(hs, exponent);
+  if (exponent != 1.f) hs = hmap::pow(hs, exponent);
 
   clamp(hs);
 
@@ -96,8 +94,7 @@ Tensor colorize(Array &array,
 {
   std::vector<std::vector<float>> colormap_colors = get_colormap_data(cmap);
 
-  if (reverse)
-    std::swap(vmin, vmax);
+  if (reverse) std::swap(vmin, vmax);
 
   Tensor color3 = Tensor(array.shape, 3);
 
@@ -146,8 +143,7 @@ Tensor colorize(Array &array,
       }
 
   // add hillshading
-  if (hillshading)
-    apply_hillshade(color3, array);
+  if (hillshading) apply_hillshade(color3, array);
 
   return color3;
 }
@@ -189,8 +185,7 @@ Tensor colorize_histogram(const Array &array)
   // create histogram image
   for (int i = 0; i < array.shape.x; i++)
     for (int j = 0; j < array.shape.y; j++)
-      if (j < hist[i])
-        color1(i, j, 0) = 1.f;
+      if (j < hist[i]) color1(i, j, 0) = 1.f;
 
   return color1;
 }

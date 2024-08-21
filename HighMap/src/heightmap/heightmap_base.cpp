@@ -324,14 +324,10 @@ void HeightMap::update_tile_parameters()
       int buffer_i = 0;
       int buffer_j = 0;
 
-      if (it > 0)
-        buffer_i += delta_buffer_i;
-      if (it < this->tiling.x - 1)
-        buffer_i += delta_buffer_i;
-      if (jt > 0)
-        buffer_j += delta_buffer_j;
-      if (jt < this->tiling.y - 1)
-        buffer_j += delta_buffer_j;
+      if (it > 0) buffer_i += delta_buffer_i;
+      if (it < this->tiling.x - 1) buffer_i += delta_buffer_i;
+      if (jt > 0) buffer_j += delta_buffer_j;
+      if (jt < this->tiling.y - 1) buffer_j += delta_buffer_j;
 
       // geometry: shape, shift and scale
       Vec2<int> tile_shape = Vec2<int>(
@@ -342,10 +338,8 @@ void HeightMap::update_tile_parameters()
                                       (float)jt / (float)this->tiling.y);
 
       // take into account buffers
-      if (it > 0)
-        shift.x -= (float)delta_buffer_i / (float)this->shape.x;
-      if (jt > 0)
-        shift.y -= (float)delta_buffer_j / (float)this->shape.y;
+      if (it > 0) shift.x -= (float)delta_buffer_i / (float)this->shape.x;
+      if (jt > 0) shift.y -= (float)delta_buffer_j / (float)this->shape.y;
 
       Vec2<float> scale = Vec2((float)tile_shape.x / (float)this->shape.x,
                                (float)tile_shape.y / (float)this->shape.y);

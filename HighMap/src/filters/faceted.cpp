@@ -57,10 +57,8 @@ Array faceted(const Array &array,
         if ((ip > -1) && (ip < array.shape.x) && (jp > -1) &&
             (jp < array.shape.y))
         {
-          if (array(ip, jp) > array(i, j))
-            signature[k] = 1;
-          if (array(ip, jp) < array(i, j))
-            signature[k] = -1;
+          if (array(ip, jp) > array(i, j)) signature[k] = 1;
+          if (array(ip, jp) < array(i, j)) signature[k] = -1;
         }
       }
 
@@ -78,8 +76,7 @@ Array faceted(const Array &array,
         bool all_minus_ones = std::all_of(signature.begin(),
                                           signature.end(),
                                           [](int i) { return i == -1; });
-        if (all_minus_ones)
-          store_xyz = true;
+        if (all_minus_ones) store_xyz = true;
       }
 
       if (store_xyz)

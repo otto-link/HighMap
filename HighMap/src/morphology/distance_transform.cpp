@@ -48,8 +48,7 @@ Array distance_transform(const Array &array, bool return_squared_distance)
 
     // scan 2
     for (int j = nj - 2; j > -1; j--)
-      if (g(i, j + 1) < g(i, j))
-        g(i, j) = 1.f + g(i, j + 1);
+      if (g(i, j + 1) < g(i, j)) g(i, j) = 1.f + g(i, j + 1);
   }
 
   // phase 2
@@ -90,8 +89,7 @@ Array distance_transform(const Array &array, bool return_squared_distance)
     for (int u = ni - 1; u > -1; u--)
     {
       dt(u, j) = f(u - s[q], g(s[q], j));
-      if (u == t[q])
-        q--;
+      if (u == t[q]) q--;
     }
   }
 

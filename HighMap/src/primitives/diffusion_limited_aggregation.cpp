@@ -85,8 +85,7 @@ Array diffusion_limited_aggregation(Vec2<int> shape,
       float dy = (float)(j - jc) / (shape_wrk.y - 1);
       float r = std::hypot(dx, dy);
 
-      if (r > 0.95f * seeding_radius)
-        wrk(i, j) = 0.f;
+      if (r > 0.95f * seeding_radius) wrk(i, j) = 0.f;
     }
 
   fill_borders(wrk);

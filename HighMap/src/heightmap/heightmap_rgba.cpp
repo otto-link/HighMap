@@ -58,8 +58,7 @@ void HeightMapRGBA::colorize(HeightMap                      &color_level,
                              HeightMap                      *p_alpha,
                              bool                            reverse)
 {
-  if (reverse)
-    std::swap(vmin, vmax);
+  if (reverse) std::swap(vmin, vmax);
 
   // write colorize function for each tile
   auto lambda =
@@ -224,8 +223,7 @@ void HeightMapRGBA::to_png(const std::string &fname, int depth)
 
 std::vector<uint8_t> HeightMapRGBA::to_img_8bit(Vec2<int> shape_img)
 {
-  if (shape_img.x == 0 || shape_img.y == 0)
-    shape_img = this->shape;
+  if (shape_img.x == 0 || shape_img.y == 0) shape_img = this->shape;
 
   std::vector<uint8_t> img(shape_img.x * shape_img.y * 4);
   Array                r_array = this->rgba[0].to_array(shape_img);

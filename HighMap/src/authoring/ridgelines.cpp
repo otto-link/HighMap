@@ -54,8 +54,7 @@ Array ridgelines(Vec2<int>          shape,
         Vec2<float> b = {w.x - coeff * e.x, w.y - coeff * e.y};
 
         float dist = sqrt(dot(b, b));
-        if (dist <= width)
-          dist = width * almost_unit_identity_c2(dist / width);
+        if (dist <= width) dist = width * almost_unit_identity_c2(dist / width);
 
         float t = smoothstep3(coeff);
         float dtmp = (1.f - t) * zr[i] + t * zr[j] - slope * dist;
@@ -79,8 +78,7 @@ Array ridgelines(Vec2<int>          shape,
         Vec2<float> b = {w.x - coeff * e.x, w.y - coeff * e.y};
 
         float dist = sqrt(dot(b, b));
-        if (dist <= width)
-          dist = width * almost_unit_identity_c2(dist / width);
+        if (dist <= width) dist = width * almost_unit_identity_c2(dist / width);
 
         float t = smoothstep3(coeff);
         float dtmp = (1.f - t) * zr[i] + t * zr[j] - slope * dist;

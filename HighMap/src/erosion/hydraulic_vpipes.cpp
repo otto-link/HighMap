@@ -62,13 +62,11 @@ void hydraulic_vpipes(Array &z,
   // keep a backup of the input if the erosion / deposition maps need
   // to be computed
   Array z_bckp = Array();
-  if ((p_erosion_map != nullptr) | (p_deposition_map != nullptr))
-    z_bckp = z;
+  if ((p_erosion_map != nullptr) | (p_deposition_map != nullptr)) z_bckp = z;
 
   for (int it = 0; it < iterations; it++)
   {
-    if (it % 10 == 0)
-      LOG_DEBUG("iteration: %d", it);
+    if (it % 10 == 0) LOG_DEBUG("iteration: %d", it);
 
     // --- water increase
     Array d1 = (1.f - dt * rain_rate) * d + dt * rain_rate * rain_map;

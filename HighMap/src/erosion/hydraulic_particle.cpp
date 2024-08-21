@@ -61,8 +61,7 @@ void hydraulic_particle(Array &z,
   // keep a backup of the input if the erosion / deposition maps need
   // to be computed
   Array z_bckp = Array();
-  if ((p_erosion_map != nullptr) | (p_deposition_map != nullptr))
-    z_bckp = z;
+  if ((p_erosion_map != nullptr) | (p_deposition_map != nullptr)) z_bckp = z;
 
   // --- main loop
 
@@ -114,8 +113,7 @@ void hydraulic_particle(Array &z,
       float nx = -z.get_gradient_x_bilinear_at(i, j, u, v);
       float ny = -z.get_gradient_y_bilinear_at(i, j, u, v);
 
-      if (approx_hypot(nx, ny) < GRADIENT_MIN)
-        break;
+      if (approx_hypot(nx, ny) < GRADIENT_MIN) break;
 
       // classical mechanics (with gravity = 1)
       vx += dt * nx;
@@ -127,8 +125,7 @@ void hydraulic_particle(Array &z,
 
       float vnorm = approx_hypot(vx, vy);
 
-      if (vnorm < VELOCITY_MIN)
-        break;
+      if (vnorm < VELOCITY_MIN) break;
 
       // move particle
       x += dt * vx;
@@ -168,8 +165,7 @@ void hydraulic_particle(Array &z,
         z.depose_amount_kernel_bilinear_at(i, j, u, v, ir, -amount);
 
       // make sure bedrock is not eroded
-      if (p_bedrock)
-        z(i, j) = std::max(z(i, j), (*p_bedrock)(i, j));
+      if (p_bedrock) z(i, j) = std::max(z(i, j), (*p_bedrock)(i, j));
 
       volume *= (1 - dt * evap_rate);
     }

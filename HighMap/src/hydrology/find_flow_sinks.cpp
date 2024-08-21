@@ -26,8 +26,7 @@ void find_flow_sinks(const Array &z, std::vector<int> &is, std::vector<int> &js)
       {
         int ik = i + di[k];
         int jk = j + dj[k];
-        if (z(i, j) < z(ik, jk))
-          n_higher_cells++;
+        if (z(i, j) < z(ik, jk)) n_higher_cells++;
       }
 
       if (n_higher_cells == 8)

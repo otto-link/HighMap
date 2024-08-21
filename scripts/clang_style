@@ -4,6 +4,7 @@ AllowAllArgumentsOnNextLine: false
 AllowAllParametersOfDeclarationOnNextLine: false
 AllowShortCaseLabelsOnASingleLine: true
 AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: true
 
 BasedOnStyle: llvm
 BinPackArguments: false

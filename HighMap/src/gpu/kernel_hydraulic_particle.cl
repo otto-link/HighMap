@@ -43,8 +43,7 @@ void kernel hydraulic_particle(read_write image2d_t img,
       update_interp_param(pos, shape, &i, &j, &u, &v);
 
       // stop if the particle reaches the domain limits
-      if (is_outside(i, j, shape))
-        break;
+      if (is_outside(i, j, shape)) break;
 
       /* float dzx = -image_gradient_x_bilinear_interp(img, i, j, u, v); */
       /* float dzy = -image_gradient_y_bilinear_interp(img, i, j, u, v); */
@@ -69,8 +68,7 @@ void kernel hydraulic_particle(read_write image2d_t img,
 
       float vnorm = hypot(vel.x, vel.y);
 
-      if (vnorm < VELOCITY_MIN)
-        break;
+      if (vnorm < VELOCITY_MIN) break;
 
       float2 pos_prev = pos;
       int    i_prev = i;
@@ -84,8 +82,7 @@ void kernel hydraulic_particle(read_write image2d_t img,
 
       // elevation at new position
       update_interp_param(pos, shape, &i, &j, &u, &v);
-      if (is_outside(i, j, shape))
-        break;
+      if (is_outside(i, j, shape)) break;
 
       float z = image_bilinear_interp(img, i, j, u, v);
 

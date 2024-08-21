@@ -32,8 +32,7 @@ void kernel ridgelines(global float   *output,
       float2 b = w - coeff * e;
 
       float dist = sqrt(dot(b, b));
-      if (dist <= width)
-        dist = width * almost_unit_identity_c2(dist / width);
+      if (dist <= width) dist = width * almost_unit_identity_c2(dist / width);
 
       float coeff_z = smoothstep3(coeff);
       float dtmp = (1.f - coeff_z) * z[i] + coeff_z * z[j] - slope * dist;
@@ -53,8 +52,7 @@ void kernel ridgelines(global float   *output,
       float2 b = w - coeff * e;
 
       float dist = sqrt(dot(b, b));
-      if (dist <= width)
-        dist = width * almost_unit_identity_c2(dist / width);
+      if (dist <= width) dist = width * almost_unit_identity_c2(dist / width);
 
       float coeff_z = smoothstep3(coeff);
       float dtmp = (1.f - coeff_z) * z[i] + coeff_z * z[j] - slope * dist;

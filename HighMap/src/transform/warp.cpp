@@ -46,13 +46,11 @@ void warp_directional(Array &array,
 
   {
     Array array_f = array;
-    if (ir > 0)
-      smooth_cpulse(array_f, ir);
+    if (ir > 0) smooth_cpulse(array_f, ir);
     alpha = gradient_angle(array_f);
   }
 
-  if (reverse)
-    amount = -amount;
+  if (reverse) amount = -amount;
 
   Array ca = amount * cos(alpha - angle_rad);
   Array sa = amount * sin(alpha - angle_rad);
@@ -85,14 +83,12 @@ void warp_downslope(Array &array, float amount, int ir, bool reverse)
 
   {
     Array array_f = array;
-    if (ir > 0)
-      smooth_cpulse(array_f, ir);
+    if (ir > 0) smooth_cpulse(array_f, ir);
 
     alpha = gradient_angle(array_f);
   }
 
-  if (reverse)
-    amount = -amount;
+  if (reverse) amount = -amount;
 
   Array ca = amount * cos(alpha);
   Array sa = amount * sin(alpha);

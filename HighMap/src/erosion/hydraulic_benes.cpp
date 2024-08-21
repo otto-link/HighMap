@@ -41,13 +41,11 @@ void hydraulic_benes(Array &z,
   // keep a backup of the input if the erosion / deposition maps need
   // to be computed
   Array z_bckp = Array();
-  if ((p_erosion_map != nullptr) | (p_deposition_map != nullptr))
-    z_bckp = z;
+  if ((p_erosion_map != nullptr) | (p_deposition_map != nullptr)) z_bckp = z;
 
   Array w = water_level * constant(z.shape, 1.f);
 
-  if (p_moisture_map)
-    w *= (*p_moisture_map); // water map
+  if (p_moisture_map) w *= (*p_moisture_map); // water map
 
   Array w_init = w;                 // backup water initial map
   Array s = constant(z.shape, 0.f); // sediment map (disolved in the water)

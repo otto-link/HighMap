@@ -514,14 +514,12 @@ void normal_displacement(Array &array, float amount, int ir, bool reverse)
   Array array_f = array;
   Array array_new = Array(array.shape);
 
-  if (ir > 0)
-    smooth_cpulse(array_f, ir);
+  if (ir > 0) smooth_cpulse(array_f, ir);
 
   // add a shape factor to avoid artifacts close to the boundaries
   Array factor = smooth_cosine(array.shape);
 
-  if (reverse)
-    amount = -amount;
+  if (reverse) amount = -amount;
 
   for (int i = 1; i < array.shape.x - 1; i++)
     for (int j = 1; j < array.shape.y - 1; j++)
@@ -806,8 +804,7 @@ void smooth_fill(Array &array, int ir, float k, Array *p_deposition_map)
 {
   // keep a backup of the input for the deposition map
   Array array_bckp = Array();
-  if (p_deposition_map != nullptr)
-    array_bckp = array;
+  if (p_deposition_map != nullptr) array_bckp = array;
 
   // smooth filling
   Array array_smooth = array;
@@ -849,8 +846,7 @@ void smooth_fill_holes(Array &array, int ir)
   make_binary(mask);
 
   int ic = (int)((float)ir / 2.f);
-  if (ic > 1)
-    smooth_cpulse(mask, ic);
+  if (ic > 1) smooth_cpulse(mask, ic);
 
   array = lerp(array, array_smooth, mask);
 }
@@ -878,8 +874,7 @@ void smooth_fill_smear_peaks(Array &array, int ir)
   make_binary(mask);
 
   int ic = (int)((float)ir / 2.f);
-  if (ic > 0)
-    smooth_cpulse(mask, ic);
+  if (ic > 0) smooth_cpulse(mask, ic);
 
   array = lerp(array, array_smooth, mask);
 }
@@ -981,8 +976,7 @@ void wrinkle(Array      &array,
 {
   Array dr = displacement_amplitude * array;
 
-  if (ir > 0)
-    smooth_cpulse(dr, ir);
+  if (ir > 0) smooth_cpulse(dr, ir);
 
   Array w = noise_fbm(NoiseType::PERLIN,
                       array.shape,

@@ -31,8 +31,7 @@ Array white_density_map(const Array &density_map, uint seed)
     for (int j = 0; j < density_map.shape.y; j++)
     {
       float r = dis(gen);
-      if (r < density_map(i, j))
-        array(i, j) = r / density_map(i, j);
+      if (r < density_map(i, j)) array(i, j) = r / density_map(i, j);
     }
   return array;
 }
@@ -46,8 +45,7 @@ Array white_sparse(Vec2<int> shape, float a, float b, float density, uint seed)
 
   for (auto &v : array.vector)
   {
-    if (dis1(gen) < density)
-      v = dis2(gen);
+    if (dis1(gen) < density) v = dis2(gen);
   }
   return array;
 }
@@ -61,8 +59,7 @@ Array white_sparse_binary(Vec2<int> shape, float density, uint seed)
   for (auto &v : array.vector)
   {
     float r = dis(gen);
-    if (r < density)
-      v = 1.f;
+    if (r < density) v = 1.f;
   }
   return array;
 }

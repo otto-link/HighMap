@@ -29,8 +29,7 @@ void hydraulic_algebric(Array &z,
   Array zf = Array(z.shape);
 
   Array z_bckp = Array();
-  if ((p_erosion_map != nullptr) | (p_deposition_map != nullptr))
-    z_bckp = z;
+  if ((p_erosion_map != nullptr) | (p_deposition_map != nullptr)) z_bckp = z;
 
   for (int it = 0; it < iterations; it++)
   {
@@ -54,8 +53,7 @@ void hydraulic_algebric(Array &z,
       }
 
     // make sure bedrock is not eroded
-    if (p_bedrock)
-      z = maximum(z, *p_bedrock);
+    if (p_bedrock) z = maximum(z, *p_bedrock);
   }
 
   // splatmaps
