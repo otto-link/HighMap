@@ -18,7 +18,7 @@
 namespace hmap
 {
 
-void apply_hillshade(Tensor            &color3,
+void apply_hillshade(Array3            &color3,
                      const hmap::Array &array,
                      float              vmin,
                      float              vmax,
@@ -86,7 +86,7 @@ void apply_hillshade(std::vector<uint8_t> &img,
   }
 }
 
-Tensor colorize(Array &array,
+Array3 colorize(Array &array,
                 float  vmin,
                 float  vmax,
                 int    cmap,
@@ -99,7 +99,7 @@ Tensor colorize(Array &array,
   if (reverse)
     std::swap(vmin, vmax);
 
-  Tensor color3 = Tensor(array.shape, 3);
+  Array3 color3 = Array3(array.shape, 3);
 
   // normalization factors
   int         nc = (int)colormap_colors.size();
@@ -152,16 +152,16 @@ Tensor colorize(Array &array,
   return color3;
 }
 
-Tensor colorize_grayscale(const Array &array)
+Array3 colorize_grayscale(const Array &array)
 {
-  Tensor color1 = Tensor(array.shape, 1);
+  Array3 color1 = Array3(array.shape, 1);
   color1.remap();
   return color1;
 }
 
-Tensor colorize_histogram(const Array &array)
+Array3 colorize_histogram(const Array &array)
 {
-  Tensor color1 = Tensor(array.shape, 1);
+  Array3 color1 = Array3(array.shape, 1);
 
   // normalization factors
   float a = 0.f;
@@ -194,10 +194,10 @@ Tensor colorize_histogram(const Array &array)
   return color1;
 }
 
-Tensor colorize_vec2(const Array &array1, const Array &array2)
+Array3 colorize_vec2(const Array &array1, const Array &array2)
 {
   // create image
-  Tensor col3 = Tensor(array1.shape, 3);
+  Array3 col3 = Array3(array1.shape, 3);
 
   // normalization factors / 1
   float a1 = 0.f;

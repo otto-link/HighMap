@@ -6,35 +6,35 @@
 
 #include "macrologger.h"
 
-#include "highmap/tensor.hpp"
+#include "highmap/array3.hpp"
 
 namespace hmap
 {
 
-Tensor::Tensor(Vec3<int> shape) : shape(shape)
+Array3::Array3(Vec3<int> shape) : shape(shape)
 {
   this->vector.clear();
   this->vector.resize(shape.x * shape.y * shape.z);
 }
 
-Tensor::Tensor(Vec2<int> shape_xy, int shape_z)
+Array3::Array3(Vec2<int> shape_xy, int shape_z)
 {
   this->shape = {shape_xy.x, shape_xy.y, shape_z};
   this->vector.clear();
   this->vector.resize(shape.x * shape.y * shape.z);
 }
 
-float Tensor::max() const
+float Array3::max() const
 {
   return *std::max_element(this->vector.begin(), this->vector.end());
 }
 
-float Tensor::min() const
+float Array3::min() const
 {
   return *std::min_element(this->vector.begin(), this->vector.end());
 };
 
-void Tensor::remap(float vmin, float vmax)
+void Array3::remap(float vmin, float vmax)
 {
   float min = this->min();
   float max = this->max();
@@ -47,7 +47,7 @@ void Tensor::remap(float vmin, float vmax)
       v = vmin;
 }
 
-void Tensor::set_slice(int k, const Array &slice)
+void Array3::set_slice(int k, const Array &slice)
 {
   // TODO check shapes
 
@@ -56,7 +56,7 @@ void Tensor::set_slice(int k, const Array &slice)
       (*this)(i, j, k) = slice(i, j);
 }
 
-cv::Mat Tensor::to_cv_mat()
+cv::Mat Array3::to_cv_mat()
 {
   int cv_mat_type = CV_32FC1;
 
@@ -80,7 +80,7 @@ cv::Mat Tensor::to_cv_mat()
   return mat;
 }
 
-void Tensor::to_png_8bit(std::string fname)
+void Array3::to_png_8bit(std::string fname)
 {
   cv::Mat mat = this->to_cv_mat();
   mat.convertTo(mat, CV_8U, 255);
@@ -88,7 +88,7 @@ void Tensor::to_png_8bit(std::string fname)
   cv::imwrite(fname, mat);
 }
 
-void Tensor::to_png_16bit(std::string fname)
+void Array3::to_png_16bit(std::string fname)
 {
   cv::Mat mat = this->to_cv_mat();
   mat.convertTo(mat, CV_16U, 65535);
@@ -96,7 +96,7 @@ void Tensor::to_png_16bit(std::string fname)
   cv::imwrite(fname, mat);
 }
 
-std::vector<uint8_t> Tensor::to_img_8bit()
+std::vector<uint8_t> Array3::to_img_8bit()
 {
   std::vector<uint8_t> vec;
   vec.reserve(this->vector.size());

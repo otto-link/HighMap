@@ -4,7 +4,7 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
-#include "highmap/tensor.hpp"
+#include "highmap/array3.hpp"
 #include "highmap/export.hpp"
 #include "highmap/gradient.hpp"
 #include "highmap/operator.hpp"
@@ -12,9 +12,9 @@
 namespace hmap
 {
 
-Tensor compute_nmap(const Array &array)
+Array3 compute_nmap(const Array &array)
 {
-  Tensor nmap = Tensor(array.shape, 3);
+  Array3 nmap = Array3(array.shape, 3);
 
   Array dx = gradient_x(array) * array.shape.x;
   Array dy = gradient_y(array) * array.shape.y;
@@ -34,13 +34,13 @@ Tensor compute_nmap(const Array &array)
 
 void export_normal_map_png_8bit(std::string fname, const Array &array)
 {
-  Tensor nmap = compute_nmap(array);
+  Array3 nmap = compute_nmap(array);
   nmap.to_png_8bit(fname);
 }
 
 void export_normal_map_png_16bit(std::string fname, const Array &array)
 {
-  Tensor nmap = compute_nmap(array);
+  Array3 nmap = compute_nmap(array);
   nmap.to_png_16bit(fname);
 }
 
