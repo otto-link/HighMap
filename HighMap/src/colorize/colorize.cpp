@@ -155,6 +155,7 @@ Tensor colorize(Array &array,
 Tensor colorize_grayscale(const Array &array)
 {
   Tensor color1 = Tensor(array.shape, 1);
+  color1.set_slice(0, array);
   color1.remap();
   return color1;
 }
