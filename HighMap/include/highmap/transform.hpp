@@ -5,11 +5,20 @@
 /**
  * @file transform.hpp
  * @author Otto Link (otto.link.bv@gmail.com)
- * @brief
+ * @brief Header file for array transformation functions including rotation,
+ *        flipping, warping, and transposition.
+ *
+ * This header file provides declarations for various functions used to
+ * transform arrays in different ways. It includes functionalities for
+ * rotating arrays, flipping them horizontally or vertically, applying
+ * warping effects, and transposing arrays. These transformations are useful
+ * in image processing, data manipulation, and other applications requiring
+ * geometric modifications of arrays.
+ *
  * @version 0.1
  * @date 2023-04-30
  *
- * @copyright Copyright (c) 2023
+ * @copyright Copyright (c) 2023 Otto Link
  *
  */
 #pragma once
@@ -22,22 +31,28 @@ namespace hmap
 {
 
 /**
- * @brief Flip the array vertically (left/right).
+ * @brief Flip the array horizontally (left/right).
  *
- * @param array Input array.
+ * This function flips the input array along the vertical axis, resulting in
+ * a left-to-right mirror image of the original array.
+ *
+ * @param array Input array to be flipped horizontally.
  *
  * **Example**
- * @include flip_ud.cpp
+ * @include flip_lr.cpp
  *
  * **Result**
- * @image html flip_ud.png
+ * @image html flip_lr.png
  */
 void flip_lr(Array &array);
 
 /**
- * @brief Flip the array horizontally (up/down).
+ * @brief Flip the array vertically (up/down).
  *
- * @param array Input array.
+ * This function flips the input array along the horizontal axis, resulting in
+ * an up-to-down mirror image of the original array.
+ *
+ * @param array Input array to be flipped vertically.
  *
  * **Example**
  * @include flip_ud.cpp
@@ -49,7 +64,11 @@ void flip_ud(Array &array);
 
 /**
  * @brief Rotate the array by 90 degrees.
- * @param array Input array.
+ *
+ * This function rotates the input array by 90 degrees in the counterclockwise
+ * direction. The dimensions of the array will be adjusted accordingly.
+ *
+ * @param array Input array to be rotated by 90 degrees.
  *
  * **Example**
  * @include ex_rot90.cpp
@@ -60,12 +79,17 @@ void flip_ud(Array &array);
 void rot90(Array &array);
 
 /**
- * @brief Rotate the array.
+ * @brief Rotate the array by a specified angle.
  *
- * @param array Input array.
+ * This function rotates the input array by a given angle in degrees. The
+ * rotation can be performed with optional zero-padding, which fills in the
+ * borders with zeros instead of using symmetric padding. This is particularly
+ * useful when the array contains zero values at its borders.
+ *
+ * @param array Input array to be rotated.
  * @param angle Rotation angle in degrees.
- * @param zero_padding Use zero-padding instead of symmetry to fill values (can
- * be useful when rotating array with zero values at the domain borders).
+ * @param zero_padding If true, use zero-padding to fill the borders; otherwise,
+ * use symmetry (default is false).
  *
  * **Example**
  * @include ex_rotate.cpp
@@ -77,8 +101,13 @@ void rotate(Array &array, float angle, bool zero_padding = false);
 
 /**
  * @brief Return the transposed array.
- * @param array Input array.
- * @return Transposed array.
+ *
+ * This function returns a new array that is the transpose of the input array.
+ * The transpose operation swaps the rows and columns of the array, effectively
+ * flipping the array over its diagonal.
+ *
+ * @param array Input array to be transposed.
+ * @return Array The transposed array.
  */
 Array transpose(const Array &array);
 
@@ -128,9 +157,14 @@ Array translate(const Array &array,
 /**
  * @brief Apply a warping effect to the array.
  *
- * @param array Input array.
- * @param p_dx Reference to the x translation array.
- * @param p_dy Reference to the y translation array.
+ * This function applies a warping effect to the input array by translating its
+ * elements according to the specified x and y translation arrays. The warp
+ * effect distorts the array based on the displacement values provided by `p_dx`
+ * and `p_dy`.
+ *
+ * @param array Input array to be warped.
+ * @param p_dx Pointer to the array containing x-axis translation values.
+ * @param p_dy Pointer to the array containing y-axis translation values.
  *
  * **Example**
  * @include ex_warp.cpp
@@ -142,13 +176,19 @@ void warp(Array &array, Array *p_dx, Array *p_dy);
 
 /**
  * @brief Apply a warping effect following the downward local gradient direction
- * (deflate / inflate effect).
+ * (deflate/inflate effect).
  *
- * @param array Input array.
- * @param p_mask Filter mask, expected in [0, 1].
- * @param amount Amount of displacement.
- * @param ir Pre-filtering radius.
- * @param reverse Reverse displacement direction.
+ * This function applies a warping effect to the input array based on the
+ * downward local gradient direction, creating a deflate or inflate effect. The
+ * warp amount, pre-filtering radius, and displacement direction can be
+ * customized.
+ *
+ * @param array Input array to be warped.
+ * @param angle The angle to determine the gradient direction.
+ * @param amount Amount of displacement (default is 0.02f).
+ * @param ir Pre-filtering radius to smooth the input data (default is 4).
+ * @param reverse Reverse the displacement direction if set to true (default is
+ * false).
  *
  * **Example**
  * @include ex_warp_directional.cpp
@@ -162,6 +202,30 @@ void warp_directional(Array &array,
                       int    ir = 4,
                       bool   reverse = false);
 
+/**
+ * @brief Apply a warping effect following the downward local gradient direction
+ * (deflate/inflate effect) with a mask.
+ *
+ * This overloaded function applies a warping effect to the input array using
+ * a specified mask. The mask controls the regions where the warp effect is
+ * applied, with values expected in the range [0, 1]. The warp is based on the
+ * downward local gradient direction.
+ *
+ * @param array Input array to be warped.
+ * @param angle The angle to determine the gradient direction.
+ * @param p_mask Pointer to the mask array that filters the effect, expected in
+ * [0, 1].
+ * @param amount Amount of displacement (default is 0.02f).
+ * @param ir Pre-filtering radius to smooth the input data (default is 4).
+ * @param reverse Reverse the displacement direction if set to true (default is
+ * false).
+ *
+ * **Example**
+ * @include ex_warp_directional.cpp
+ *
+ * **Result**
+ * @image html ex_warp_directional.png
+ */
 void warp_directional(Array &array,
                       float  angle,
                       Array *p_mask,
@@ -171,13 +235,18 @@ void warp_directional(Array &array,
 
 /**
  * @brief Apply a warping effect following the downward local gradient direction
- * (deflate / inflate effect).
+ * (deflate/inflate effect).
  *
- * @param array Input array.
- * @param p_mask Filter mask, expected in [0, 1].
- * @param amount Amount of displacement.
- * @param ir Pre-filtering radius.
- * @param reverse Reverse displacement direction.
+ * This function applies a warping effect to the input array based on the
+ * downward local gradient direction, simulating a deflate or inflate effect.
+ * The effect can be customized by adjusting the displacement amount,
+ * pre-filtering radius, and whether the displacement direction is reversed.
+ *
+ * @param array Input array to be warped.
+ * @param amount Amount of displacement (default is 0.02f).
+ * @param ir Pre-filtering radius to smooth the input data (default is 4).
+ * @param reverse Reverse the displacement direction if set to true (default is
+ * false).
  *
  * **Example**
  * @include ex_warp_downslope.cpp
@@ -190,6 +259,29 @@ void warp_downslope(Array &array,
                     int    ir = 4,
                     bool   reverse = false);
 
+/**
+ * @brief Apply a warping effect following the downward local gradient direction
+ * (deflate/inflate effect) with a mask.
+ *
+ * This overloaded function applies a warping effect to the input array based
+ * on the downward local gradient direction using a specified mask. The mask
+ * controls where the warp effect is applied, with values expected in the range
+ * [0, 1]. This function allows for additional customization of the warp effect.
+ *
+ * @param array Input array to be warped.
+ * @param p_mask Pointer to the mask array that filters the effect, expected in
+ * [0, 1].
+ * @param amount Amount of displacement (default is 0.02f).
+ * @param ir Pre-filtering radius to smooth the input data (default is 4).
+ * @param reverse Reverse the displacement direction if set to true (default is
+ * false).
+ *
+ * **Example**
+ * @include ex_warp_downslope.cpp
+ *
+ * **Result**
+ * @image html ex_warp_downslope.png
+ */
 void warp_downslope(Array &array,
                     Array *p_mask,
                     float  amount = 0.02f,
