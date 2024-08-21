@@ -12,6 +12,55 @@
 namespace hmap
 {
 
+// Helper for generic gradient function to compute different types of gradients
+void compute_gradient(const Array &array,
+                      Array       &dx,
+                      Array       &dy,
+                      float        x_coeff[3],
+                      float        y_coeff[3],
+                      float        normalize_factor)
+{
+  for (int i = 1; i < array.shape.x - 1; ++i)
+  {
+    for (int j = 1; j < array.shape.y - 1; ++j)
+    {
+      dx(i, j) = x_coeff[0] * (array(i + 1, j) - array(i - 1, j)) +
+                 x_coeff[1] * (array(i + 1, j - 1) - array(i - 1, j - 1)) +
+                 x_coeff[2] * (array(i + 1, j + 1) - array(i - 1, j + 1));
+
+      dy(i, j) = y_coeff[0] * (array(i, j + 1) - array(i, j - 1)) +
+                 y_coeff[1] * (array(i - 1, j + 1) - array(i - 1, j - 1)) +
+                 y_coeff[2] * (array(i + 1, j + 1) - array(i + 1, j - 1));
+    }
+  }
+
+  extrapolate_borders(dx);
+  extrapolate_borders(dy);
+
+  dx *= normalize_factor;
+  dy *= normalize_factor;
+}
+
+Array compute_gradient_norm(const Array &array,
+                            float        x_coeff[3],
+                            float        y_coeff[3],
+                            float        normalize_factor,
+                            Array       *p_dx = nullptr,
+                            Array       *p_dy = nullptr)
+{
+  Array dx(array.shape), dy(array.shape);
+  compute_gradient(array, dx, dy, x_coeff, y_coeff, normalize_factor);
+
+  if (p_dx)
+    *p_dx = dx;
+  if (p_dy)
+    *p_dy = dy;
+
+  return hypot(dx, dy);
+}
+
+// functions
+
 Array gradient_angle(const Array &array, bool downward)
 {
   Array dx = gradient_x(array);
@@ -50,95 +99,40 @@ Array gradient_norm(const Array &array, Array *p_dx, Array *p_dy)
 
 Array gradient_norm_prewitt(const Array &array, Array *p_dx, Array *p_dy)
 {
-  Array dx = Array(array.shape);
-  Array dy = Array(array.shape);
-
-  for (int i = 1; i < array.shape.x - 1; i++)
-    for (int j = 1; j < array.shape.y - 1; j++)
-    {
-      dx(i, j) = array(i + 1, j) - array(i - 1, j);
-      dx(i, j) += array(i + 1, j - 1) - array(i - 1, j - 1);
-      dx(i, j) += array(i + 1, j + 1) - array(i - 1, j + 1);
-
-      dy(i, j) = array(i, j + 1) - array(i, j - 1);
-      dy(i, j) += array(i - 1, j + 1) - array(i - 1, j - 1);
-      dy(i, j) += array(i + 1, j + 1) - array(i + 1, j - 1);
-    }
-
-  extrapolate_borders(dx);
-  extrapolate_borders(dy);
-
-  // store directional gradients is requested
-  if (p_dx)
-    *p_dx = dx;
-  if (p_dy)
-    *p_dy = dy;
-
-  // normalize by 1/6th to get the proper gradient amplitudes
-  Array dm = hypot(dx, dy) / 6.f;
-  return dm;
+  float x_coeff[3] = {1.0f, 1.0f, 1.0f};
+  float y_coeff[3] = {1.0f, 1.0f, 1.0f};
+  return compute_gradient_norm(array,
+                               x_coeff,
+                               y_coeff,
+                               1.0f / 6.0f,
+                               p_dx,
+                               p_dy);
 }
 
-Array gradient_norm_scharr(const Array &array, Array *p_dx, Array *p_dy)
-{
-  Array dx = Array(array.shape);
-  Array dy = Array(array.shape);
-
-  for (int i = 1; i < array.shape.x - 1; i++)
-    for (int j = 1; j < array.shape.y - 1; j++)
-    {
-      dx(i, j) = 10.f * array(i + 1, j) - 10.f * array(i - 1, j);
-      dx(i, j) += 3.f * array(i + 1, j - 1) - 3.f * array(i - 1, j - 1);
-      dx(i, j) += 3.f * array(i + 1, j + 1) - 3.f * array(i - 1, j + 1);
-
-      dy(i, j) = 10.f * array(i, j + 1) - 10.f * array(i, j - 1);
-      dy(i, j) += 3.f * array(i - 1, j + 1) - 3.f * array(i - 1, j - 1);
-      dy(i, j) += 3.f * array(i + 1, j + 1) - 3.f * array(i + 1, j - 1);
-    }
-
-  extrapolate_borders(dx);
-  extrapolate_borders(dy);
-
-  // store directional gradients is requested
-  if (p_dx)
-    *p_dx = dx;
-  if (p_dy)
-    *p_dy = dy;
-
-  // normalize by 1/32th to get the proper gradient amplitudes
-  Array dm = hypot(dx, dy) / 32.f;
-  return dm;
-}
-
+// Sobel gradient function
 Array gradient_norm_sobel(const Array &array, Array *p_dx, Array *p_dy)
 {
-  Array dx = Array(array.shape);
-  Array dy = Array(array.shape);
+  float x_coeff[3] = {2.0f, 1.0f, 1.0f};
+  float y_coeff[3] = {2.0f, 1.0f, 1.0f};
+  return compute_gradient_norm(array,
+                               x_coeff,
+                               y_coeff,
+                               1.0f / 8.0f,
+                               p_dx,
+                               p_dy);
+}
 
-  for (int i = 1; i < array.shape.x - 1; i++)
-    for (int j = 1; j < array.shape.y - 1; j++)
-    {
-      dx(i, j) = 2.f * array(i + 1, j) - 2.f * array(i - 1, j);
-      dx(i, j) += array(i + 1, j - 1) - array(i - 1, j - 1);
-      dx(i, j) += array(i + 1, j + 1) - array(i - 1, j + 1);
-
-      dy(i, j) = 2.f * array(i, j + 1) - 2.f * array(i, j - 1);
-      dy(i, j) += array(i - 1, j + 1) - array(i - 1, j - 1);
-      dy(i, j) += array(i + 1, j + 1) - array(i + 1, j - 1);
-    }
-
-  extrapolate_borders(dx);
-  extrapolate_borders(dy);
-
-  // store directional gradients is requested
-  if (p_dx)
-    *p_dx = dx;
-  if (p_dy)
-    *p_dy = dy;
-
-  // normalize by 1/8th to get the proper gradient amplitudes
-  Array dm = hypot(dx, dy) / 8.f;
-  return dm;
+// Scharr gradient function
+Array gradient_norm_scharr(const Array &array, Array *p_dx, Array *p_dy)
+{
+  float x_coeff[3] = {10.0f, 3.0f, 3.0f};
+  float y_coeff[3] = {10.0f, 3.0f, 3.0f};
+  return compute_gradient_norm(array,
+                               x_coeff,
+                               y_coeff,
+                               1.0f / 32.0f,
+                               p_dx,
+                               p_dy);
 }
 
 Array gradient_x(const Array &array)
