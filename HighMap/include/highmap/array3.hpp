@@ -42,6 +42,12 @@ public:
     return this->vector[(i * this->shape.y + j) * this->shape.z + k];
   }
 
+  float max() const;
+
+  float min() const;
+
+  void remap(float vmin = 0.f, float vmax = 1.f);
+
   void set_slice(int k, const Array &slice);
 
   cv::Mat to_cv_mat();

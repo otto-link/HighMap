@@ -74,21 +74,16 @@ Array3 colorize(Array &array,
  * @brief Export array values to a 8 bit grayscale image.
  *
  * @param array Input array.
- * @param step Step for each direction (to skip data).
  * @return std::vector<uint8_t> Output image.
  */
-std::vector<uint8_t> colorize_grayscale(const Array &array,
-                                        Vec2<int>    step = {1, 1});
+Array3 colorize_grayscale(const Array &array);
 
 /**
  * @brief Export array values to a 8 bit grayscale histogram image.
  *
  * @param array Input array.
- * @param step Step for each direction (to skip data).
- * @return std::vector<uint8_t> Output image.
  */
-std::vector<uint8_t> colorize_histogram(const Array &array,
-                                        Vec2<int>    step = {1, 1});
+Array3 colorize_histogram(const Array &array);
 
 /**
  * @brief Export a pair of arrays to a 8 bit colored image.
@@ -103,19 +98,5 @@ std::vector<uint8_t> colorize_histogram(const Array &array,
  * @image html ex_colorize_vec2.png
  */
 Array3 colorize_vec2(const Array &array1, const Array &array2);
-
-void convert_rgb_to_ryb(Array &r,
-                        Array &g,
-                        Array &b,
-                        Array &r_out,
-                        Array &y_out,
-                        Array &b_out);
-
-void convert_ryb_to_rgb(Array &r,
-                        Array &y,
-                        Array &b,
-                        Array &r_out,
-                        Array &g_out,
-                        Array &b_out);
 
 } // namespace hmap

@@ -428,22 +428,6 @@ struct HeightMapRGB
                                         float         t); ///< @overload
 
   /**
-   * @brief Mix two RGB heightmap using linear interpolation in the RYB color
-   * space.
-   * @param rgb1 1st RGB heightmap.
-   * @param rgb2 2st RGB heightmap.
-   * @param t Mixing parameter, in [0, 1].
-   * @return RGB heightmap.
-   */
-  friend HeightMapRGB mix_heightmap_rgb_ryb(HeightMapRGB &rgb1,
-                                            HeightMapRGB &rgb2,
-                                            HeightMap    &t);
-
-  friend HeightMapRGB mix_heightmap_rgb_ryb(HeightMapRGB &rgb1,
-                                            HeightMapRGB &rgb2,
-                                            float         t);
-
-  /**
    * @brief Mix two RGB heightmap using weighted quadratic averaging.
    * @param rgb1 1st RGB heightmap.
    * @param rgb2 2st RGB heightmap.

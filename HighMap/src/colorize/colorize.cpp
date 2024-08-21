@@ -152,39 +152,16 @@ Array3 colorize(Array &array,
   return color3;
 }
 
-std::vector<uint8_t> colorize_grayscale(const Array &array, Vec2<int> step)
+Array3 colorize_grayscale(const Array &array)
 {
-  // create image
-  std::vector<uint8_t> img(array.shape.x * array.shape.y / step.x / step.y);
-
-  // normalization factors
-  float a = 0.f;
-  float b = 0.f;
-  float vmin = array.min();
-  float vmax = array.max();
-
-  if (vmin != vmax)
-  {
-    a = 1.f / (vmax - vmin);
-    b = -vmin / (vmax - vmin);
-  }
-
-  int k = 0;
-
-  for (int j = array.shape.y - 1; j > -1; j -= step.y)
-    for (int i = 0; i < array.shape.x; i += step.x)
-    {
-      float v = a * array(i, j) + b;
-      img[k++] = (uint8_t)(v * 255.f);
-    }
-
-  return img;
+  Array3 color1 = Array3(array.shape, 1);
+  color1.remap();
+  return color1;
 }
 
-std::vector<uint8_t> colorize_histogram(const Array &array, Vec2<int> step)
+Array3 colorize_histogram(const Array &array)
 {
-  // create image
-  std::vector<uint8_t> img(array.shape.x * array.shape.y / step.x / step.y);
+  Array3 color1 = Array3(array.shape, 1);
 
   // normalization factors
   float a = 0.f;
@@ -194,33 +171,27 @@ std::vector<uint8_t> colorize_histogram(const Array &array, Vec2<int> step)
 
   if (vmin != vmax)
   {
-    a = 1.f / (vmax - vmin) * (float)(array.shape.x / step.x - 1);
-    b = -vmin / (vmax - vmin) * (float)(array.shape.x / step.x - 1);
+    a = 1.f / (vmax - vmin) * (float)(array.shape.x - 1);
+    b = -vmin / (vmax - vmin) * (float)(array.shape.x - 1);
   }
 
   // compute histogram
-  std::vector<int> hist(array.shape.x / step.x);
-  for (int i = 0; i < array.shape.x; i += step.x)
-    for (int j = 0; j < array.shape.y; j += step.y)
+  std::vector<int> hist(array.shape.x);
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
       hist[(int)(a * array(i, j) + b)] += 1;
 
   int hmax = *std::max_element(hist.begin(), hist.end());
   for (auto &v : hist)
-    v = (int)((float)v / (float)hmax * (float)(array.shape.y / step.y - 1));
+    v = (int)((float)v / (float)hmax * (float)(array.shape.y - 1));
 
   // create histogram image
-  int k = 0;
-
-  for (int j = array.shape.y / step.y - 1; j > -1; j--)
-    for (int i = 0; i < array.shape.x / step.x; i++)
-    {
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
       if (j < hist[i])
-        img[k++] = 255;
-      else
-        img[k++] = 0;
-    }
+        color1(i, j, 0) = 1.f;
 
-  return img;
+  return color1;
 }
 
 Array3 colorize_vec2(const Array &array1, const Array &array2)

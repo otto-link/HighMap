@@ -24,6 +24,29 @@ Array3::Array3(Vec2<int> shape_xy, int shape_z)
   this->vector.resize(shape.x * shape.y * shape.z);
 }
 
+float Array3::max() const
+{
+  return *std::max_element(this->vector.begin(), this->vector.end());
+}
+
+float Array3::min() const
+{
+  return *std::min_element(this->vector.begin(), this->vector.end());
+};
+
+void Array3::remap(float vmin, float vmax)
+{
+  float min = this->min();
+  float max = this->max();
+
+  if (min != max)
+    for (auto &v : this->vector)
+      v = (v - min) / (max - min) * (vmax - vmin) + vmin;
+  else
+    for (auto &v : this->vector)
+      v = vmin;
+}
+
 void Array3::set_slice(int k, const Array &slice)
 {
   // TODO check shapes
