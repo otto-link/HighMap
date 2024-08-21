@@ -410,7 +410,7 @@ struct HeightMapRGB
    * @brief Export the RGB heightmap to a 16bit png file.
    * @param fname File name.
    */
-  void to_png_16bit(std::string fname);
+  void to_png(const std::string &fname, int depth = CV_8U);
 
   /**
    * @brief Mix two RGB heightmap using linear interpolation.
@@ -501,13 +501,7 @@ struct HeightMapRGBA
    * @brief Export the RGB heightmap to a 8bit png file.
    * @param fname File name.
    */
-  void to_png_8bit(std::string fname);
-
-  /**
-   * @brief Export the RGB heightmap to a 16bit png file.
-   * @param fname File name.
-   */
-  void to_png_16bit(std::string fname);
+  void to_png(const std::string &fname, int depth = CV_8U);
 
   /**
    * @brief Fill RGB heightmap components based on a colormap and an

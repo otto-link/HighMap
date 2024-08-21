@@ -141,22 +141,9 @@ void export_banner_png(std::string        fname,
  * **Example**
  * @include ex_export_normal_map.cpp
  */
-void export_normal_map_png_8bit(std::string fname, const Array &array);
-
-/**
- * @brief Export the heightmap normal map to a 16 bit png file.
- *
- * @param fname File name.
- * @param array Input array.
- *
- * **Example**
- * @include ex_export_normal_map.cpp
- *
- * **Result**
- * @include ex_export_normal_map0.png
- * @include ex_export_normal_map1.png
- */
-void export_normal_map_png_16bit(std::string fname, const Array &array);
+void export_normal_map_png(std::string  fname,
+                           const Array &array,
+                           int          depth = CV_8U);
 
 /**
  * @brief Export 4 arrays as a RGBA png splatmap.
@@ -174,34 +161,12 @@ void export_normal_map_png_16bit(std::string fname, const Array &array);
  * @image html ex_export_splatmap_png_16bit0.png
  * @image html ex_export_splatmap_png_16bit1.png
  */
-void export_splatmap_png_8bit(std::string fname,
-                              Array      *p_r,
-                              Array      *p_g = nullptr,
-                              Array      *p_b = nullptr,
-                              Array      *p_a = nullptr);
-
-/**
- * @brief Export 4 arrays as a RGBA png splatmap.
- *
- * @param fname File name.
- * @param p_r Reference to array for channel R.
- * @param p_g Reference to array for channel G.
- * @param p_b Reference to array for channel B.
- * @param p_a Reference to array for channel A.
- *
- *
- * **Example**
- * @include ex_export_splatmap_png_16bit.cpp
- *
- * **Result**
- * @image html ex_export_splatmap_png_16bit0.png
- * @image html ex_export_splatmap_png_16bit1.png
- */
-void export_splatmap_png_16bit(std::string fname,
-                               Array      *p_r,
-                               Array      *p_g = nullptr,
-                               Array      *p_b = nullptr,
-                               Array      *p_a = nullptr);
+void export_splatmap_png(std::string fname,
+                         Array      *p_r,
+                         Array      *p_g = nullptr,
+                         Array      *p_b = nullptr,
+                         Array      *p_a = nullptr,
+                         int         depth = CV_8U);
 
 /**
  * @brief Reads an image file and converts it to a 2D array.

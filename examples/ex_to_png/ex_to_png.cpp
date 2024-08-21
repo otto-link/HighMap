@@ -15,8 +15,8 @@ int main(void)
                                    8);
   hmap::remap(z1);
   z1.to_png("out_rgb.png", hmap::Cmap::JET);
-  z1.to_png_grayscale_8bit("out_8bit.png");
-  z1.to_png_grayscale_16bit("out_16bit.png");
+  z1.to_png_grayscale("out_8bit.png");
+  z1.to_png_grayscale("out_16bit.png", CV_16U);
 
   // create Array from png
   hmap::Array z2 = hmap::Array("out_8bit.png");

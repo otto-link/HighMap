@@ -16,9 +16,10 @@ int main(void)
                           {zr, zg, zb, za},
                           hmap::Cmap::GRAY);
 
-  hmap::export_splatmap_png_16bit("ex_export_splatmap_png_16bit1.png",
-                                  &zr,
-                                  &zg,
-                                  &zb,
-                                  &za);
+  hmap::export_splatmap_png("ex_export_splatmap_png_16bit1.png",
+                            &zr,
+                            &zg,
+                            &zb,
+                            &za,
+                            CV_16U);
 }

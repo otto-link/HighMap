@@ -68,40 +68,30 @@ void Tensor::set_slice(int k, const Array &slice)
 
 cv::Mat Tensor::to_cv_mat()
 {
-  int cv_mat_type = CV_32FC1;
+  int cv_mat_type;
+  switch (shape.z)
+  {
+  case 2: cv_mat_type = CV_32FC2; break;
+  case 3: cv_mat_type = CV_32FC3; break;
+  case 4: cv_mat_type = CV_32FC4; break;
+  default: cv_mat_type = CV_32FC1; break;
+  }
 
-  if (this->shape.z == 2)
-    cv_mat_type = CV_32FC2;
-  else if (this->shape.z == 3)
-    cv_mat_type = CV_32FC3;
-  else if (this->shape.z == 4)
-    cv_mat_type = CV_32FC4;
+  cv::Mat mat(shape.x, shape.y, cv_mat_type, vector.data());
 
-  cv::Mat mat = cv::Mat(this->shape.x,
-                        this->shape.y,
-                        cv_mat_type,
-                        this->vector.data());
-
-  if (this->shape.z == 3)
+  if (shape.z == 3)
     cv::cvtColor(mat, mat, cv::COLOR_BGR2RGB);
-  else if (this->shape.z == 4)
+  else if (shape.z == 4)
     cv::cvtColor(mat, mat, cv::COLOR_BGRA2RGBA);
 
   return mat;
 }
 
-void Tensor::to_png_8bit(std::string fname)
+void Tensor::to_png(const std::string &fname, int depth)
 {
-  cv::Mat mat = this->to_cv_mat();
-  mat.convertTo(mat, CV_8U, 255);
-  cv::rotate(mat, mat, cv::ROTATE_90_COUNTERCLOCKWISE);
-  cv::imwrite(fname, mat);
-}
-
-void Tensor::to_png_16bit(std::string fname)
-{
-  cv::Mat mat = this->to_cv_mat();
-  mat.convertTo(mat, CV_16U, 65535);
+  cv::Mat mat = to_cv_mat();
+  int     scale_factor = (depth == CV_8U) ? 255 : 65535;
+  mat.convertTo(mat, depth, scale_factor);
   cv::rotate(mat, mat, cv::ROTATE_90_COUNTERCLOCKWISE);
   cv::imwrite(fname, mat);
 }
@@ -114,7 +104,7 @@ std::vector<uint8_t> Tensor::to_img_8bit()
   for (int j = this->shape.y - 1; j > -1; j--)
     for (int i = 0; i < this->shape.x; i++)
       for (int k = 0; k < this->shape.z; k++)
-        vec.push_back((uint8_t)(255.f * (*this)(i, j, k)));
+        vec.push_back(static_cast<uint8_t>(255.f * (*this)(i, j, k)));
 
   return vec;
 }

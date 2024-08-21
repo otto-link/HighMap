@@ -130,18 +130,18 @@ public:
   std::vector<uint8_t> to_img_8bit();
 
   /**
-   * @brief Export the tensor to an 8-bit PNG image.
+   * @brief Saves the Tensor as a PNG image file.
    *
-   * @param fname File name of the PNG image.
-   */
-  void to_png_8bit(std::string fname);
-
-  /**
-   * @brief Export the tensor to a 16-bit PNG image.
+   * This function converts the Tensor into a `cv::Mat` object and then saves it
+   * as a PNG image file. The image can be saved in either 8-bit or 16-bit
+   * depth, based on the `depth` parameter. The image is rotated 90 degrees
+   * counterclockwise before saving.
    *
-   * @param fname File name of the PNG image.
+   * @param fname The filename for the output PNG image, including the path.
+   * @param depth The bit depth of the output image. The default is 8-bit
+   * (`CV_8U`). Set to `CV_16U` for 16-bit output.
    */
-  void to_png_16bit(std::string fname);
+  void to_png(const std::string &fname, int depth = CV_8U);
 };
 
 } // namespace hmap

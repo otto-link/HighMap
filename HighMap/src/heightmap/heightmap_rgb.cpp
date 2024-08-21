@@ -131,12 +131,12 @@ std::vector<uint8_t> HeightMapRGB::to_img_8bit(Vec2<int> shape_img)
   return img;
 }
 
-void HeightMapRGB::to_png_16bit(std::string fname)
+void HeightMapRGB::to_png(const std::string &fname, int depth)
 {
   Tensor col3 = Tensor(this->shape, 3);
   for (int ch = 0; ch < col3.shape.z; ch++)
     col3.set_slice(ch, this->rgb[ch].to_array());
-  col3.to_png_16bit(fname);
+  col3.to_png(fname, depth);
 }
 
 // FRIEND

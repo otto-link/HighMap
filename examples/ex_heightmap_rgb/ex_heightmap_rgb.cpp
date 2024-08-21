@@ -35,11 +35,11 @@ int main(void)
   hs.from_array_interp(zs);
 
   hmap::HeightMapRGB hrgb = hmap::HeightMapRGB(hr, hg, hb);
-  hrgb.to_png_16bit("ex_heightmap_rgb1.png");
+  hrgb.to_png("ex_heightmap_rgb1.png");
 
   // colorize
   hrgb.colorize(hr, hr.min(), 0.8f * hr.max(), hmap::Cmap::JET);
-  hrgb.to_png_16bit("ex_heightmap_rgb2.png");
+  hrgb.to_png("ex_heightmap_rgb2.png");
 
   // mix
   auto               h0 = hmap::HeightMap(shape, tiling, overlap);
@@ -47,5 +47,5 @@ int main(void)
   hmap::HeightMapRGB hrgb2 = hmap::HeightMapRGB(h0, h0, hr);
 
   auto hmix = mix_heightmap_rgb(hrgb1, hrgb2, hs);
-  hmix.to_png_16bit("ex_heightmap_rgb3.png");
+  hmix.to_png("ex_heightmap_rgb3.png");
 }

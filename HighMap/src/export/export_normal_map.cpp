@@ -32,16 +32,10 @@ Tensor compute_nmap(const Array &array)
   return nmap;
 }
 
-void export_normal_map_png_8bit(std::string fname, const Array &array)
+void export_normal_map_png(std::string fname, const Array &array, int depth)
 {
   Tensor nmap = compute_nmap(array);
-  nmap.to_png_8bit(fname);
-}
-
-void export_normal_map_png_16bit(std::string fname, const Array &array)
-{
-  Tensor nmap = compute_nmap(array);
-  nmap.to_png_16bit(fname);
+  nmap.to_png(fname, depth);
 }
 
 } // namespace hmap

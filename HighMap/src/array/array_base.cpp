@@ -27,7 +27,7 @@ Array::Array(Vec2<int> shape, float value) : shape(shape)
   std::fill(this->vector.begin(), this->vector.end(), value);
 }
 
-Array::Array(std::string filename)
+Array::Array(const std::string &filename)
 {
   *this = read_to_array(filename);
 }

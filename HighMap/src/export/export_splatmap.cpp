@@ -26,24 +26,15 @@ Tensor compute_splatmap(Array *p_r, Array *p_g, Array *p_b, Array *p_a)
   return smap;
 }
 
-void export_splatmap_png_8bit(std::string fname,
-                              Array      *p_r,
-                              Array      *p_g,
-                              Array      *p_b,
-                              Array      *p_a)
+void export_splatmap_png(std::string fname,
+                         Array      *p_r,
+                         Array      *p_g,
+                         Array      *p_b,
+                         Array      *p_a,
+                         int         depth)
 {
   Tensor smap = compute_splatmap(p_r, p_g, p_b, p_a);
-  smap.to_png_8bit(fname);
-}
-
-void export_splatmap_png_16bit(std::string fname,
-                               Array      *p_r,
-                               Array      *p_g,
-                               Array      *p_b,
-                               Array      *p_a)
-{
-  Tensor smap = compute_splatmap(p_r, p_g, p_b, p_a);
-  smap.to_png_16bit(fname);
+  smap.to_png(fname, depth);
 }
 
 } // namespace hmap

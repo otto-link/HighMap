@@ -38,11 +38,11 @@ int main(void)
   hm.from_array_interp(zsm);
 
   hmap::HeightMapRGBA h_rgba = hmap::HeightMapRGBA(hr, hg, hb, ha);
-  h_rgba.to_png_16bit("ex_heightmap_rgba1.png");
+  h_rgba.to_png("ex_heightmap_rgba1.png");
 
   // colorize
   h_rgba.colorize(hr, hr.min(), 0.8f * hr.max(), hmap::Cmap::JET, &ha);
-  h_rgba.to_png_16bit("ex_heightmap_rgba2.png");
+  h_rgba.to_png("ex_heightmap_rgba2.png");
 
   // mix
   auto h0 = hmap::HeightMap(shape, tiling, overlap, 0.f);
@@ -52,16 +52,16 @@ int main(void)
   hmap::HeightMapRGBA h_rgba2 = hmap::HeightMapRGBA(h0, h0, hb, hm);
 
   auto hmix = mix_heightmap_rgba(h_rgba1, h_rgba2);
-  hmix.to_png_16bit("ex_heightmap_rgba3.png");
+  hmix.to_png("ex_heightmap_rgba3.png");
 
   // mix list of heightmaps
   hmap::HeightMapRGBA h_rgba3 = hmap::HeightMapRGBA(h0, hr, h0, ha);
 
   std::vector<hmap::HeightMapRGBA *> list = {&h_rgba1, &h_rgba2, &h_rgba3};
   auto                               hmix_list = mix_heightmap_rgba(list, true);
-  hmix_list.to_png_16bit("ex_heightmap_rgba4.png");
+  hmix_list.to_png("ex_heightmap_rgba4.png");
 
-  h_rgba1.to_png_16bit("rgba1.png");
-  h_rgba2.to_png_16bit("rgba2.png");
-  h_rgba3.to_png_16bit("rgba3.png");
+  h_rgba1.to_png("rgba1.png");
+  h_rgba2.to_png("rgba2.png");
+  h_rgba3.to_png("rgba3.png");
 }

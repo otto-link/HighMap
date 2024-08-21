@@ -214,42 +214,33 @@ void HeightMapRGBA::normalize()
       this->rgba[k].remap(0.f, 1.f, min, max); // RGB
 }
 
-void HeightMapRGBA::to_png_8bit(std::string fname)
+void HeightMapRGBA::to_png(const std::string &fname, int depth)
 {
   Tensor col3 = Tensor(this->shape, 4);
   for (int ch = 0; ch < col3.shape.z; ch++)
     col3.set_slice(ch, this->rgba[ch].to_array());
-  col3.to_png_8bit(fname);
-}
-
-void HeightMapRGBA::to_png_16bit(std::string fname)
-{
-  Tensor col3 = Tensor(this->shape, 4);
-  for (int ch = 0; ch < col3.shape.z; ch++)
-    col3.set_slice(ch, this->rgba[ch].to_array());
-  col3.to_png_16bit(fname);
+  col3.to_png(fname, depth);
 }
 
 std::vector<uint8_t> HeightMapRGBA::to_img_8bit(Vec2<int> shape_img)
 {
-  if (shape_img.x * shape_img.y == 0)
+  if (shape_img.x == 0 || shape_img.y == 0)
     shape_img = this->shape;
 
   std::vector<uint8_t> img(shape_img.x * shape_img.y * 4);
+  Array                r_array = this->rgba[0].to_array(shape_img);
+  Array                g_array = this->rgba[1].to_array(shape_img);
+  Array                b_array = this->rgba[2].to_array(shape_img);
+  Array                a_array = this->rgba[3].to_array(shape_img);
 
-  Array r_array = this->rgba[0].to_array(shape_img);
-  Array g_array = this->rgba[1].to_array(shape_img);
-  Array b_array = this->rgba[2].to_array(shape_img);
-  Array a_array = this->rgba[3].to_array(shape_img);
-
-  int k = 0;
-  for (int j = shape_img.y - 1; j > -1; j -= 1)
+  int index = 0;
+  for (int j = shape_img.y - 1; j >= 0; j--)
     for (int i = 0; i < shape_img.x; i++)
     {
-      img[k++] = (uint8_t)(255.f * r_array(i, j));
-      img[k++] = (uint8_t)(255.f * g_array(i, j));
-      img[k++] = (uint8_t)(255.f * b_array(i, j));
-      img[k++] = (uint8_t)(255.f * a_array(i, j));
+      img[index++] = static_cast<uint8_t>(r_array(i, j) * 255.f);
+      img[index++] = static_cast<uint8_t>(g_array(i, j) * 255.f);
+      img[index++] = static_cast<uint8_t>(b_array(i, j) * 255.f);
+      img[index++] = static_cast<uint8_t>(a_array(i, j) * 255.f);
     }
 
   return img;

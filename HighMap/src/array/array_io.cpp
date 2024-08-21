@@ -15,7 +15,7 @@
 namespace hmap
 {
 
-void Array::from_file(std::string fname)
+void Array::from_file(const std::string &fname)
 {
   LOG_DEBUG("reading binary file");
   std::ifstream f;
@@ -26,7 +26,7 @@ void Array::from_file(std::string fname)
   f.close();
 }
 
-void Array::from_numpy(std::string fname)
+void Array::from_numpy(const std::string &fname)
 {
   npy::npy_data d = npy::read_npy<float>(fname);
 
@@ -79,7 +79,7 @@ void Array::print()
   }
 }
 
-void Array::to_exr(std::string fname)
+void Array::to_exr(const std::string &fname)
 {
   Array array_copy = *this;
   remap(array_copy);
@@ -95,7 +95,7 @@ void Array::to_exr(std::string fname)
   cv::imwrite(fname, mat, codec_params);
 }
 
-void Array::to_file(std::string fname)
+void Array::to_file(const std::string &fname)
 {
   LOG_DEBUG("writing binary file");
   std::ofstream f;
@@ -107,7 +107,7 @@ void Array::to_file(std::string fname)
   f.close();
 }
 
-void Array::to_numpy(std::string fname)
+void Array::to_numpy(const std::string &fname)
 {
   npy::npy_data_ptr<float> d;
   d.data_ptr = this->vector.data();
@@ -117,44 +117,37 @@ void Array::to_numpy(std::string fname)
   npy::write_npy(fname, d);
 }
 
-void Array::to_png(std::string fname, int cmap, bool hillshading)
+void Array::to_png(const std::string &fname,
+                   int                cmap,
+                   bool               hillshading,
+                   int                depth)
 {
   const float vmin = this->min();
   const float vmax = this->max();
 
   Tensor color3 =
       colorize(*this, vmin, vmax, cmap, hillshading, false, nullptr);
-  color3.to_png_8bit(fname);
+  color3.to_png(fname, depth);
 }
 
-void Array::to_png_grayscale_8bit(std::string fname)
+void Array::to_png_grayscale(const std::string &fname, int depth)
 {
   Array array_copy = *this;
   remap(array_copy);
 
   cv::Mat mat = array_copy.to_cv_mat();
+  int     scale_factor = (depth == CV_8U) ? 255 : 65535;
+  mat.convertTo(mat, depth, scale_factor);
   cv::rotate(mat, mat, cv::ROTATE_90_COUNTERCLOCKWISE);
-  mat.convertTo(mat, CV_8U, 255);
   cv::imwrite(fname, mat);
 }
 
-void Array::to_png_grayscale_16bit(std::string fname)
-{
-  Array array_copy = *this;
-  remap(array_copy);
-
-  cv::Mat mat = array_copy.to_cv_mat();
-  cv::rotate(mat, mat, cv::ROTATE_90_COUNTERCLOCKWISE);
-  mat.convertTo(mat, CV_16U, 65535);
-  cv::imwrite(fname, mat);
-}
-
-void Array::to_raw_16bit(std::string fname)
+void Array::to_raw_16bit(const std::string &fname)
 {
   write_raw_16bit(fname, *this);
 }
 
-void Array::to_tiff(std::string fname)
+void Array::to_tiff(const std::string &fname)
 {
   Array array_copy = *this;
   remap(array_copy);

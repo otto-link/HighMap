@@ -65,7 +65,7 @@ public:
 
   Array(Vec2<int> shape, float value); ///< @overload
 
-  Array(std::string filename); ///< @overload
+  Array(const std::string &filename); ///< @overload
 
   //----------------------------------------
   // overload
@@ -363,6 +363,28 @@ public:
                           Array            *p_mask_nogo = nullptr);
 
   /**
+   * @brief Import array data from a raw binary file.
+   *
+   *        This function loads the array data from a binary file specified by
+   * `fname`. The file should contain raw binary data that corresponds to the
+   * internal representation of the array. The array's size and data type must
+   * match the expected format in the file.
+   *
+   * @param fname The name of the file to import data from.
+   */
+  void from_file(const std::string &fname);
+
+  /**
+   * @brief Import array data from a numpy binary file.
+   *
+   * @param fname The name of the file to import data from.
+   *
+   * **Example**
+   * @include ex_from_numpy.cpp
+   */
+  void from_numpy(const std::string &fname);
+
+  /**
    * @brief Calculates the gradient in the 'x' (or 'i') direction at a specified
    *        index (i, j) using a 2nd order central difference scheme.
    *
@@ -531,28 +553,6 @@ public:
    * @return std::vector<float> The vector containing the array's data.
    */
   std::vector<float> get_vector() const;
-
-  /**
-   * @brief Import array data from a raw binary file.
-   *
-   *        This function loads the array data from a binary file specified by
-   * `fname`. The file should contain raw binary data that corresponds to the
-   * internal representation of the array. The array's size and data type must
-   * match the expected format in the file.
-   *
-   * @param fname The name of the file to import data from.
-   */
-  void from_file(std::string fname);
-
-  /**
-   * @brief Import array data from a numpy binary file.
-   *
-   * @param fname The name of the file to import data from.
-   *
-   * **Example**
-   * @include ex_from_numpy.cpp
-   */
-  void from_numpy(std::string fname);
 
   /**
    * @brief Display various information about the array.
@@ -791,7 +791,7 @@ public:
    * **Example**
    * @include ex_to_exr.cpp
    */
-  void to_exr(std::string fname);
+  void to_exr(const std::string &fname);
 
   /**
    * @brief Export the array to a raw binary file.
@@ -803,7 +803,7 @@ public:
    *
    * @param fname The name of the file to which the array data will be written.
    */
-  void to_file(std::string fname);
+  void to_file(const std::string &fname);
 
   /**
    * @brief Export the array to a numpy binary file.
@@ -813,7 +813,7 @@ public:
    * **Example**
    * @include ex_to_numpy.cpp
    */
-  void to_numpy(std::string fname);
+  void to_numpy(const std::string &fname);
 
   /**
    * @brief Export the array as a PNG image file with a specified colormap and
@@ -834,22 +834,28 @@ public:
    * **Example**
    * @include ex_to_png.cpp
    */
-  void to_png(std::string fname, int cmap, bool hillshading = false);
+  void to_png(const std::string &fname,
+              int                cmap,
+              bool               hillshading = false,
+              int                depth = CV_8U);
 
   /**
-   * @brief Export the array as an 8-bit grayscale PNG image file.
+   * @brief Export the array as a grayscale PNG image file with specified bit
+   * depth.
    *
-   *        This function saves the array data as a grayscale PNG image file
-   * with 8-bit depth, meaning each pixel represents a shade of gray from 0 to
-   * 255. The file will be created or overwritten with the name specified by
-   * `fname`.
+   * This function saves the array data as a grayscale PNG image file. The bit
+   * depth of the image is determined by the `depth` parameter, allowing for
+   * either 8-bit (0-255) or 16-bit (0-65535) grayscale values. The resulting
+   * image will be created or overwritten with the name specified by `fname`.
    *
    * @param fname The name of the PNG file to be created or overwritten.
+   * @param depth The bit depth of the PNG image. Default is 8-bit (CV_8U).
+   *              Use CV_16U for 16-bit depth if higher precision is needed.
    *
    * **Example**
    * @include ex_to_png.cpp
    */
-  void to_png_grayscale_8bit(std::string fname);
+  void to_png_grayscale(const std::string &fname, int depth = CV_8U);
 
   /**
    * @brief Export the array as a TIFF image file.
@@ -863,22 +869,7 @@ public:
    * **Example**
    * @include ex_to_tiff.cpp
    */
-  void to_tiff(std::string fname);
-
-  /**
-   * @brief Export the array as a 16-bit grayscale PNG image file.
-   *
-   *        This function saves the array data as a grayscale PNG image file
-   * with 16-bit depth, meaning each pixel represents a shade of gray from 0 to
-   * 65535. The file will be created or overwritten with the name specified by
-   * `fname`.
-   *
-   * @param fname The name of the PNG file to be created or overwritten.
-   *
-   * **Example**
-   * @include ex_to_png.cpp
-   */
-  void to_png_grayscale_16bit(std::string fname);
+  void to_tiff(const std::string &fname);
 
   /**
    * @brief Export the array as a 16-bit raw file for Unity terrain import.
@@ -893,7 +884,7 @@ public:
    * **Example**
    * @include ex_to_raw_16bit.cpp
    */
-  void to_raw_16bit(std::string fname);
+  void to_raw_16bit(const std::string &fname);
 
   /**
    * @brief Return the unique elements of the array.
