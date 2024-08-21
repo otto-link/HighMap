@@ -22,7 +22,6 @@
 #include "NoiseLib/include/utils.h"
 
 #include "highmap/array.hpp"
-#include "highmap/dendry_array_control_function.hpp"
 #include "highmap/functions.hpp"
 
 namespace hmap

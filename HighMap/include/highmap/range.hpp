@@ -210,6 +210,64 @@ Array maximum(const Array &array1, const Array &array2);
 Array maximum(const Array &array1, const float value); ///< @overload
 
 /**
+ * @brief Return the polynomial cubic smooth element-wise maximum of two arrays.
+ *
+ * This function computes the element-wise maximum of two input arrays with a
+ * smooth transition to avoid discontinuities that are present in the standard
+ * `maximum` function. The smoothness is controlled by the parameter `k`, which
+ * determines how smoothly the transition between the two arrays occurs.
+ *
+ * The smooth transition is achieved using a polynomial cubic function, which
+ * provides a smooth blend between the two arrays. This approach helps in
+ * avoiding abrupt changes and can be useful in applications requiring smooth
+ * transitions.
+ *
+ * @param array1 First array to be compared.
+ * @param array2 Second array to be compared.
+ * @param k Smoothing parameter in the range [0, 1]. Higher values result in
+ * smoother transitions between the arrays (default is 0.2).
+ * @return Array Element-wise smooth maximum between the two input arrays.
+ *
+ * **Example**
+ * @include ex_maximum_smooth.cpp
+ *
+ * **Result**
+ * @image html ex_maximum_smooth.png
+ *
+ * @see {@link minimum_smooth}, {@link minimum}, {@link maximum}
+ */
+Array maximum_smooth(const Array &array1, const Array &array2, float k = 0.2);
+
+/**
+ * @brief Return the polynomial cubic smooth maximum of two scalar values.
+ *
+ * This function computes the smooth maximum of two scalar values with a
+ * polynomial cubic smooth transition. The parameter `k` controls the degree of
+ * smoothness applied to the maximum calculation, ensuring a continuous and
+ * smooth blend between the two values.
+ *
+ * The smooth transition helps in avoiding abrupt changes, making this function
+ * suitable for applications that require smooth variations.
+ *
+ * @param a First scalar value.
+ * @param b Second scalar value.
+ * @param k Smoothing parameter in the range [0, 1]. Higher values result in
+ * smoother transitions between the values (default is 0.2).
+ * @return float Smooth maximum value between the two input values.
+ *
+ * **Example**
+ * @include ex_maximum_smooth_scalar.cpp
+ *
+ * **Result**
+ * @image html ex_maximum_smooth_scalar.png
+ *
+ * @see {@link minimum_smooth}, {@link minimum}, {@link maximum}
+ */
+float maximum_smooth(const float a,
+                     const float b,
+                     float       k = 0.2); ///< @overload
+
+/**
  * @brief Return the element-wise minimum of two arrays.
  *
  * This function computes the element-wise minimum between two input arrays.
@@ -233,17 +291,6 @@ Array minimum(const Array &array1, const Array &array2);
  * @param value Scalar value to compare with each element of the array.
  * @return Array The element-wise minimum between `array1` and `value`.
  */
-Array minimum(const Array &array1, const float value); ///< @overload
-
-/**
- * @brief Return the element-wise minimum of two arrays.
- *
- * @param array1 First array.
- * @param array2 Second array.
- * @return Array Element-wise minimum array.
- */
-Array minimum(const Array &array1, const Array &array2);
-
 Array minimum(const Array &array1, const float value); ///< @overload
 
 /**

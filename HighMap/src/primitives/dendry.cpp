@@ -9,7 +9,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/boundary.hpp"
-#include "highmap/dendry_array_control_function.hpp"
+#include "highmap/internal/dendry_array_control_function.hpp"
 #include "highmap/primitives.hpp"
 
 namespace hmap
