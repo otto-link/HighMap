@@ -504,22 +504,6 @@ public:
   size_t get_sizeof() const;
 
   /**
-   * @brief Computes normalization coefficients (a, b) such that a * array + b
-   *        maps the values to the range [vmin, vmax].
-   *
-   *        This function calculates the coefficients used to normalize the
-   * array values so that they fit within the specified range [vmin, vmax]. The
-   * normalization is performed using the linear transformation: `a * array +
-   * b`.
-   *
-   * @param vmin Lower bound of the desired range.
-   * @param vmax Upper bound of the desired range.
-   * @return Vec2<float> Normalization coefficients (a, b) where `a` scales the
-   * values and `b` shifts them.
-   */
-  Vec2<float> normalization_coeff(float vmin = 0.f, float vmax = 1.f);
-
-  /**
    * @brief Retrieves the array value at the location (x, y) near the index (i,
    * j) using bilinear interpolation.
    *
@@ -658,6 +642,22 @@ public:
    * represents a probability distribution.
    */
   void normalize();
+
+  /**
+   * @brief Computes normalization coefficients (a, b) such that a * array + b
+   *        maps the values to the range [vmin, vmax].
+   *
+   *        This function calculates the coefficients used to normalize the
+   * array values so that they fit within the specified range [vmin, vmax]. The
+   * normalization is performed using the linear transformation: `a * array +
+   * b`.
+   *
+   * @param vmin Lower bound of the desired range.
+   * @param vmax Upper bound of the desired range.
+   * @return Vec2<float> Normalization coefficients (a, b) where `a` scales the
+   * values and `b` shifts them.
+   */
+  Vec2<float> normalization_coeff(float vmin = 0.f, float vmax = 1.f);
 
   /**
    * @brief Print the array values to the standard output (stdout).
