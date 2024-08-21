@@ -16,7 +16,6 @@
 
 #include "highmap/algebra.hpp"
 #include "highmap/array.hpp"
-#include "highmap/tensor.hpp"
 #include "highmap/authoring.hpp"
 #include "highmap/blending.hpp"
 #include "highmap/boundary.hpp"
@@ -45,4 +44,5 @@
 #include "highmap/selector.hpp"
 #include "highmap/shadows.hpp"
 #include "highmap/synthesis.hpp"
+#include "highmap/tensor.hpp"
 #include "highmap/transform.hpp"

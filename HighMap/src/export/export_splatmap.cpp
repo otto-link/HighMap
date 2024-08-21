@@ -4,9 +4,9 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
-#include "highmap/tensor.hpp"
 #include "highmap/export.hpp"
 #include "highmap/operator.hpp"
+#include "highmap/tensor.hpp"
 
 namespace hmap
 {
