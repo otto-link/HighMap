@@ -84,7 +84,7 @@ void Array::to_exr(std::string fname)
   Array array_copy = *this;
   remap(array_copy);
 
-  cv::Mat mat = hmap::array_to_cv_mat(array_copy);
+  cv::Mat mat = array_copy.to_cv_mat();
   cv::rotate(mat, mat, cv::ROTATE_90_COUNTERCLOCKWISE);
 
   std::vector<int> codec_params = {cv::IMWRITE_EXR_TYPE,
@@ -132,7 +132,7 @@ void Array::to_png_grayscale_8bit(std::string fname)
   Array array_copy = *this;
   remap(array_copy);
 
-  cv::Mat mat = hmap::array_to_cv_mat(array_copy);
+  cv::Mat mat = array_copy.to_cv_mat();
   cv::rotate(mat, mat, cv::ROTATE_90_COUNTERCLOCKWISE);
   mat.convertTo(mat, CV_8U, 255);
   cv::imwrite(fname, mat);
@@ -143,7 +143,7 @@ void Array::to_png_grayscale_16bit(std::string fname)
   Array array_copy = *this;
   remap(array_copy);
 
-  cv::Mat mat = hmap::array_to_cv_mat(array_copy);
+  cv::Mat mat = array_copy.to_cv_mat();
   cv::rotate(mat, mat, cv::ROTATE_90_COUNTERCLOCKWISE);
   mat.convertTo(mat, CV_16U, 65535);
   cv::imwrite(fname, mat);
@@ -159,7 +159,7 @@ void Array::to_tiff(std::string fname)
   Array array_copy = *this;
   remap(array_copy);
 
-  cv::Mat mat = hmap::array_to_cv_mat(array_copy);
+  cv::Mat mat = array_copy.to_cv_mat();
   cv::rotate(mat, mat, cv::ROTATE_90_COUNTERCLOCKWISE);
 
   // set compression to cv::IMWRITE_TIFF_COMPRESSION_LZW (apparently

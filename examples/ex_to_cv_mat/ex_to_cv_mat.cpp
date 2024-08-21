@@ -15,7 +15,7 @@ int main(void)
 
   z.infos();
 
-  cv::Mat img = hmap::array_to_cv_mat(z);
+  cv::Mat img = z.to_cv_mat();
   cv::cvtColor(img, img, cv::COLOR_GRAY2BGR);
   cv::rotate(img, img, cv::ROTATE_90_COUNTERCLOCKWISE);
 

@@ -762,6 +762,42 @@ public:
   float sum() const;
 
   /**
+   * @brief Converts a 2D `Array` to an OpenCV `cv::Mat`.
+   *
+   * This function converts a 2D `Array` object into an OpenCV `cv::Mat`.
+   * The conversion process does not involve copying the data; instead, it uses
+   * pointers to the original data in the `Array`. As a result, any
+   * modifications to the `Array` will directly affect the corresponding
+   * `cv::Mat` and vice versa.
+   *
+   * @note Since this function relies on pointers to the original data, it is
+   * crucial for the user to ensure that the `Array` object remains in scope and
+   * valid for the entire lifetime of the `cv::Mat`. If the `Array` is destroyed
+   * or goes out of scope, the `cv::Mat` will reference invalid memory, which
+   * can lead to undefined behavior.
+   *
+   * @return A `cv::Mat` object that shares the data with the input `Array`.
+   *
+   * **Example**
+   * @include ex_to_cv_mat.cpp
+   */
+  cv::Mat to_cv_mat();
+
+  /**
+   * @brief Export the array as an OpenEXR image file.
+   *
+   *        This function saves the array data as an OpenEXR image file. OpenEXR
+   * is a high dynamic range (HDR) image file format.
+   * The file will be created or overwritten with the name specified by `fname`.
+   *
+   * @param fname The name of the OpenEXR file to be created or overwritten.
+   *
+   * **Example**
+   * @include ex_to_exr.cpp
+   */
+  void to_exr(std::string fname);
+
+  /**
    * @brief Export the array to a raw binary file.
    *
    *        This function writes the contents of the array to a file in raw
@@ -820,20 +856,6 @@ public:
   void to_png_grayscale_8bit(std::string fname);
 
   /**
-   * @brief Export the array as an OpenEXR image file.
-   *
-   *        This function saves the array data as an OpenEXR image file. OpenEXR
-   * is a high dynamic range (HDR) image file format.
-   * The file will be created or overwritten with the name specified by `fname`.
-   *
-   * @param fname The name of the OpenEXR file to be created or overwritten.
-   *
-   * **Example**
-   * @include ex_to_exr.cpp
-   */
-  void to_exr(std::string fname);
-
-  /**
    * @brief Export the array as a TIFF image file.
    *
    *        This function saves the array data as a TIFF (Tagged Image File
@@ -887,29 +909,6 @@ public:
    */
   std::vector<float> unique_values();
 };
-
-/**
- * @brief Converts a 2D `Array` to an OpenCV `cv::Mat`.
- *
- * This function converts a 2D `Array` object into an OpenCV `cv::Mat`.
- * The conversion process does not involve copying the data; instead, it uses
- * pointers to the original data in the `Array`. As a result, any modifications
- * to the `Array` will directly affect the corresponding `cv::Mat` and vice
- * versa.
- *
- * @note Since this function relies on pointers to the original data, it is
- * crucial for the user to ensure that the `Array` object remains in scope and
- * valid for the entire lifetime of the `cv::Mat`. If the `Array` is destroyed
- * or goes out of scope, the `cv::Mat` will reference invalid memory, which can
- * lead to undefined behavior.
- *
- * @param array Reference to the 2D `Array` object that will be converted.
- * @return A `cv::Mat` object that shares the data with the input `Array`.
- *
- * **Example**
- * @include ex_to_cv_mat.cpp
- */
-cv::Mat array_to_cv_mat(Array &array);
 
 /**
  * @brief Converts an OpenCV `cv::Mat` to a 2D `Array` with optional value

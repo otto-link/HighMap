@@ -9,9 +9,9 @@
 namespace hmap
 {
 
-cv::Mat array_to_cv_mat(Array &array)
+cv::Mat Array::to_cv_mat()
 {
-  return cv::Mat(array.shape.x, array.shape.y, CV_32FC1, array.vector.data());
+  return cv::Mat(this->shape.x, this->shape.y, CV_32FC1, this->vector.data());
 }
 
 Array cv_mat_to_array(cv::Mat &mat, bool remap_values)
