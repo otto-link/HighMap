@@ -92,57 +92,53 @@ Tensor colorize(Array &array,
                 bool   reverse,
                 Array *p_noise)
 {
-  std::vector<std::vector<float>> colormap_colors = get_colormap_data(cmap);
-
+  // get the colormap and reverse if needed
+  const auto colormap_colors = get_colormap_data(cmap);
   if (reverse) std::swap(vmin, vmax);
 
-  Tensor color3 = Tensor(array.shape, 3);
+  // initialize color tensor and normalization factors
+  const int   nc = static_cast<int>(colormap_colors.size());
+  Vec2<float> normalization_factors = array.normalization_coeff(vmin, vmax);
+  normalization_factors.x *= (nc - 1);
+  normalization_factors.y *= (nc - 1);
 
-  // normalization factors
-  int         nc = (int)colormap_colors.size();
-  Vec2<float> a = array.normalization_coeff(vmin, vmax);
-  a.x *= (nc - 1);
-  a.y *= (nc - 1);
+  Tensor color3(array.shape, 3);
 
-  // colorize
+  // lambda function to apply colormap
+  auto apply_colormap = [&](float value) -> Vec3<float>
+  {
+    int   q = static_cast<int>(value);
+    float t = value - q;
+    if (q < nc - 1)
+      return (1.f - t) * Vec3<float>(colormap_colors[q]) +
+             t * Vec3<float>(colormap_colors[q + 1]);
+    else
+      return Vec3<float>(colormap_colors[q]);
+  };
 
-  if (!p_noise)
-    for (int i = 0; i < array.shape.x; i++)
-      for (int j = 0; j < array.shape.y; j++)
-      {
-        float v = std::clamp(a.x * array(i, j) + a.y, 0.f, (float)nc - 1.f);
-        int   q = (int)v;
-        float t = v - q;
+  // process each pixel
+  for (int i = 0; i < array.shape.x; ++i)
+    for (int j = 0; j < array.shape.y; ++j)
+    {
+      float value = array(i, j);
+      if (p_noise) value += (*p_noise)(i, j);
 
-        if (q < nc - 1)
-          for (int ch = 0; ch < 3; ch++)
-            color3(i, j, ch) = (1.f - t) * colormap_colors[q][ch] +
-                               t * colormap_colors[q + 1][ch];
-        else
-          for (int ch = 0; ch < 3; ch++)
-            color3(i, j, ch) = colormap_colors[q][ch];
-      }
+      float vnorm = normalization_factors.x *value +
+                    normalization_factors.y
 
-  else
-    for (int i = 0; i < array.shape.x; i++)
-      for (int j = 0; j < array.shape.y; j++)
-      {
-        float v = std::clamp(a.x * (array(i, j) + (*p_noise)(i, j)) + a.y,
-                             0.f,
-                             (float)nc - 1.f);
-        int   q = (int)v;
-        float t = v - q;
+                    float normalized_value = std::clamp(
+                        vnorm,
+                        0.f,
+                        static_cast<float>(nc - 1));
+      Vec3<float> color = apply_colormap(normalized_value);
 
-        if (q < nc - 1)
-          for (int ch = 0; ch < 3; ch++)
-            color3(i, j, ch) = (1.f - t) * colormap_colors[q][ch] +
-                               t * colormap_colors[q + 1][ch];
-        else
-          for (int ch = 0; ch < 3; ch++)
-            color3(i, j, ch) = colormap_colors[q][ch];
-      }
+      // assign color values to the tensor
+      color3(i, j, 0) = color.x;
+      color3(i, j, 1) = color.y;
+      color3(i, j, 2) = color.z;
+    }
 
-  // add hillshading
+  // apply hillshading if required
   if (hillshading) apply_hillshade(color3, array);
 
   return color3;

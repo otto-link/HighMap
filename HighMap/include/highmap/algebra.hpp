@@ -168,6 +168,35 @@ template <typename T> struct Vec2
   }
 
   /**
+   * @brief Scalar multiplication (Vec2 * scalar).
+   *
+   * Multiplies each component of the vector by a scalar value.
+   *
+   * @param scalar The scalar value to multiply with.
+   * @return Vec2 A new vector with each component multiplied by the scalar.
+   */
+  Vec2 operator*(T scalar) const
+  {
+    return Vec2(x * scalar, y * scalar);
+  }
+
+  /**
+   * @brief Scalar multiplication (scalar * Vec2).
+   *
+   * Multiplies each component of the vector by a scalar value. This function
+   * allows expressions where the scalar is on the left side of the
+   * multiplication operator.
+   *
+   * @param scalar The scalar value to multiply with.
+   * @param vec The vector to multiply.
+   * @return Vec2 A new vector with each component multiplied by the scalar.
+   */
+  friend Vec2 operator*(T scalar, const Vec2 &vec)
+  {
+    return Vec2(scalar * vec.x, scalar * vec.y);
+  }
+
+  /**
    * @brief Friend function to calculate the dot product of two vectors.
    *
    * The dot product is the sum of the products of the corresponding components
@@ -214,6 +243,25 @@ template <typename T> struct Vec3
    */
   Vec3(T x, T y, T z) : x(x), y(y), z(z)
   {
+  }
+
+  /**
+   * @brief Constructs a Vec3 instance from a vector of components.
+   *
+   * This constructor initializes the vector using the values stored in a
+   * `std::vector<T>`. The vector is expected to have at least three elements
+   * where the first element represents the x component, the second element
+   * represents the y component, and the third element represents the z
+   * component.
+   *
+   * @param xyz A vector containing the x, y, and z components of the vector.
+   *            The size of the vector must be at least 3.
+   */
+  Vec3(const std::vector<T> &xyz)
+  {
+    this->x = xyz[0];
+    this->y = xyz[1];
+    this->z = xyz[2];
   }
 
   /**
@@ -331,6 +379,35 @@ template <typename T> struct Vec3
     out.y = this->y - other_vec.y;
     out.z = this->z - other_vec.z;
     return out;
+  }
+
+  /**
+   * @brief Scalar multiplication (Vec3 * scalar).
+   *
+   * Multiplies each component of the vector by a scalar value.
+   *
+   * @param scalar The scalar value to multiply with.
+   * @return Vec3 A new vector with each component multiplied by the scalar.
+   */
+  Vec3 operator*(T scalar) const
+  {
+    return Vec3(x * scalar, y * scalar, z * scalar);
+  }
+
+  /**
+   * @brief Scalar multiplication (scalar * Vec3).
+   *
+   * Multiplies each component of the vector by a scalar value. This function
+   * allows expressions where the scalar is on the left side of the
+   * multiplication operator.
+   *
+   * @param scalar The scalar value to multiply with.
+   * @param vec The vector to multiply.
+   * @return Vec3 A new vector with each component multiplied by the scalar.
+   */
+  friend Vec3 operator*(T scalar, const Vec3 &vec)
+  {
+    return Vec3(scalar * vec.x, scalar * vec.y, scalar * vec.z);
   }
 
   /**
