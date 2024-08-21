@@ -217,50 +217,6 @@ void export_splatmap_png_16bit(std::string fname,
  * @return Array A 2D array containing the pixel values of the grayscale image.
  */
 Array read_to_array(std::string fname);
-//
-///**
-// * @brief Export an 8bit RGB image to a png file.
-// *
-// * @param fname File name.
-// * @param img Image data.
-// * @param shape Image shape.
-// */
-// void write_png_rgb_8bit(std::string           fname,
-//                        std::vector<uint8_t> &img,
-//                        Vec2<int>             shape);
-//
-///**
-// * @brief Export an 16bit RGB image to a png file.
-// *
-// * @param fname File name.
-// * @param img Image data.
-// * @param shape Image shape.
-// */
-// void write_png_rgb_16bit(std::string            fname,
-//                         std::vector<uint16_t> &img,
-//                         Vec2<int>              shape);
-//
-///**
-// * @brief Export an 8bit RGBA image to a png file.
-// *
-// * @param fname File name.
-// * @param img Image data.
-// * @param shape Image shape.
-// */
-// void write_png_rgba_8bit(std::string           fname,
-//                         std::vector<uint8_t> &img,
-//                         Vec2<int>             shape);
-//
-///**
-// * @brief Export an 16bit RGBA image to a png file.
-// *
-// * @param fname File name.
-// * @param img Image data.
-// * @param shape Image shape.
-// */
-// void write_png_rgba_16bit(std::string            fname,
-//                          std::vector<uint16_t> &img,
-//                          Vec2<int>              shape);
 
 /**
  * @brief Export an array to a 16bit 'raw' file (Unity import terrain format).
