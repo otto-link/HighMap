@@ -928,6 +928,6 @@ public:
  * **Example**
  * @include ex_cv_mat_to_array.cpp
  */
-Array cv_mat_to_array(cv::Mat &mat, bool remap_values = true);
+Array cv_mat_to_array(const cv::Mat &mat, bool remap_values = true);
 
 } // namespace hmap

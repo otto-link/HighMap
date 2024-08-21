@@ -183,8 +183,7 @@ bool export_asset(std::string       fname,
   }
   break;
 
-  default:
-    LOG_ERROR("unknown mesh type");
+  default: LOG_ERROR("unknown mesh type");
   }
 
   // --- export

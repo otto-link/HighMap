@@ -120,17 +120,12 @@ void OpenCLConfig::initialize_context()
 
     switch (dev.getInfo<CL_DEVICE_TYPE>())
     {
-    case CL_DEVICE_TYPE_GPU:
-      LOG_DEBUG(" - device Type: GPU");
-      break;
-    case CL_DEVICE_TYPE_CPU:
-      LOG_DEBUG(" - device Type: CPU");
-      break;
+    case CL_DEVICE_TYPE_GPU: LOG_DEBUG(" - device Type: GPU"); break;
+    case CL_DEVICE_TYPE_CPU: LOG_DEBUG(" - device Type: CPU"); break;
     case CL_DEVICE_TYPE_ACCELERATOR:
       LOG_DEBUG(" - device Type: ACCELERATOR");
       break;
-    default:
-      LOG_DEBUG(" - device Type: unknown");
+    default: LOG_DEBUG(" - device Type: unknown");
     }
   }
 

@@ -321,24 +321,15 @@ Array get_kernel(Vec2<int> shape, KernelType kernel_type)
 {
   switch (kernel_type)
   {
-  case KernelType::BIWEIGHT:
-    return biweight(shape);
-  case KernelType::CUBIC_PULSE:
-    return cubic_pulse(shape);
-  case KernelType::CONE:
-    return cone(shape);
-  case KernelType::CONE_SMOOTH:
-    return cone_smooth(shape);
-  case KernelType::DISK:
-    return disk(shape);
-  case KernelType::LORENTZIAN:
-    return lorentzian(shape);
-  case KernelType::SMOOTH_COSINE:
-    return smooth_cosine(shape);
-  case KernelType::SQUARE:
-    return square(shape);
-  case KernelType::TRICUBE:
-    return tricube(shape);
+  case KernelType::BIWEIGHT: return biweight(shape);
+  case KernelType::CUBIC_PULSE: return cubic_pulse(shape);
+  case KernelType::CONE: return cone(shape);
+  case KernelType::CONE_SMOOTH: return cone_smooth(shape);
+  case KernelType::DISK: return disk(shape);
+  case KernelType::LORENTZIAN: return lorentzian(shape);
+  case KernelType::SMOOTH_COSINE: return smooth_cosine(shape);
+  case KernelType::SQUARE: return square(shape);
+  case KernelType::TRICUBE: return tricube(shape);
   }
 }
 

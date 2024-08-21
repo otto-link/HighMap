@@ -14,54 +14,30 @@ cv::Mat Array::to_cv_mat()
   return cv::Mat(this->shape.x, this->shape.y, CV_32FC1, this->vector.data());
 }
 
-Array cv_mat_to_array(cv::Mat &mat, bool remap_values)
+// Helper function to convert OpenCV matrix to Array
+template <typename T>
+void convert_mat_to_array(const cv::Mat &mat, Array &array)
 {
-  Vec2<int> shape = {mat.size().height, mat.size().width};
+  for (int i = 0; i < array.shape.x; ++i)
+    for (int j = 0; j < array.shape.y; ++j)
+      array(i, j) = static_cast<float>(mat.at<T>(i, j));
+}
+
+Array cv_mat_to_array(const cv::Mat &mat, bool remap_values)
+{
+  Vec2<int> shape = {mat.rows, mat.cols};
   Array     array(shape);
 
   switch (mat.type())
   {
-  case (CV_8U):
-    for (int i = 0; i < array.shape.x; i++)
-      for (int j = 0; j < array.shape.y; j++)
-        array(i, j) = (float)mat.at<uint8_t>(i, j);
-    break;
-
-  case (CV_8S):
-    for (int i = 0; i < array.shape.x; i++)
-      for (int j = 0; j < array.shape.y; j++)
-        array(i, j) = (float)mat.at<int8_t>(i, j);
-    break;
-
-  case (CV_16U):
-    for (int i = 0; i < array.shape.x; i++)
-      for (int j = 0; j < array.shape.y; j++)
-        array(i, j) = (float)mat.at<uint16_t>(i, j);
-    break;
-
-  case (CV_16S):
-    for (int i = 0; i < array.shape.x; i++)
-      for (int j = 0; j < array.shape.y; j++)
-        array(i, j) = (float)mat.at<int16_t>(i, j);
-    break;
-
-  case (CV_32S):
-    for (int i = 0; i < array.shape.x; i++)
-      for (int j = 0; j < array.shape.y; j++)
-        array(i, j) = (float)mat.at<int>(i, j);
-    break;
-
-  case (CV_32F):
-    for (int i = 0; i < array.shape.x; i++)
-      for (int j = 0; j < array.shape.y; j++)
-        array(i, j) = mat.at<float>(i, j);
-    break;
-
-  case (CV_64F):
-    for (int i = 0; i < array.shape.x; i++)
-      for (int j = 0; j < array.shape.y; j++)
-        array(i, j) = (float)mat.at<double>(i, j);
-    break;
+  case CV_8U: convert_mat_to_array<uint8_t>(mat, array); break;
+  case CV_8S: convert_mat_to_array<int8_t>(mat, array); break;
+  case CV_16U: convert_mat_to_array<uint16_t>(mat, array); break;
+  case CV_16S: convert_mat_to_array<int16_t>(mat, array); break;
+  case CV_32S: convert_mat_to_array<int>(mat, array); break;
+  case CV_32F: convert_mat_to_array<float>(mat, array); break;
+  case CV_64F: convert_mat_to_array<double>(mat, array); break;
+  default: throw std::invalid_argument("Unsupported matrix type.");
   }
 
   if (remap_values)

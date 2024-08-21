@@ -44,8 +44,7 @@ Array interpolate2d(Vec2<int>             shape,
                                  p_noise_y,
                                  p_stretching,
                                  bbox);
-  default:
-    throw std::runtime_error("unknown 2D interpolation method");
+  default: throw std::runtime_error("unknown 2D interpolation method");
   }
 }
 

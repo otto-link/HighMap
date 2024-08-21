@@ -2,6 +2,7 @@ AlignConsecutiveDeclarations: true
 AlignOperands: true
 AllowAllArgumentsOnNextLine: false
 AllowAllParametersOfDeclarationOnNextLine: false
+AllowShortCaseLabelsOnASingleLine: true
 AllowShortFunctionsOnASingleLine: None
 
 BasedOnStyle: llvm

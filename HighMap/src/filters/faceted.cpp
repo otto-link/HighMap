@@ -39,9 +39,7 @@ Array faceted(const Array &array,
     dj = {0, 1, 0, -1};
     break;
 
-  case neighborhood::CROSS:
-    di = {-1, 1, 1, -1};
-    dj = {1, 1, -1, -1};
+  case neighborhood::CROSS: di = {-1, 1, 1, -1}; dj = {1, 1, -1, -1};
   }
 
   const uint nb = di.size();

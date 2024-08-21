@@ -416,9 +416,7 @@ void low_pass_high_order(Array &array, int order, float sigma)
 
   switch (order)
   {
-  case (5):
-    kernel = {0.0625f, -0.25f, 0.375f, -0.25f, 0.0625f};
-    break;
+  case (5): kernel = {0.0625f, -0.25f, 0.375f, -0.25f, 0.0625f}; break;
 
   case (7):
     kernel = {-0.015625f,

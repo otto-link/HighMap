@@ -89,9 +89,7 @@ Array geomorphons(const Array &array, int irmin, int irmax, float epsilon)
       case HMAP_PACK8(0, 0, 0, 0, 1, 0, 0, 0):
       case HMAP_PACK8(0, 0, 0, 0, 0, 1, 0, 0):
       case HMAP_PACK8(0, 0, 0, 0, 0, 0, 1, 0):
-      case HMAP_PACK8(0, 0, 0, 0, 0, 0, 0, 1):
-        gm(i, j) = 1.f;
-        break;
+      case HMAP_PACK8(0, 0, 0, 0, 0, 0, 0, 1): gm(i, j) = 1.f; break;
 
       case HMAP_PACK8(-1, -1, -1, -1, -1, -1, -1, -1): // PEAK
         gm(i, j) = 2.f;
@@ -133,9 +131,7 @@ Array geomorphons(const Array &array, int irmin, int irmax, float epsilon)
       case HMAP_PACK8(-1, -1, -1, -1, 1, 1, 1, 1):
       case HMAP_PACK8(1, -1, -1, -1, -1, 1, 1, 1):
       case HMAP_PACK8(1, 1, -1, -1, -1, -1, 1, 1):
-      case HMAP_PACK8(1, 1, 1, -1, -1, -1, -1, 1):
-        gm(i, j) = 6.f;
-        break;
+      case HMAP_PACK8(1, 1, 1, -1, -1, -1, -1, 1): gm(i, j) = 6.f; break;
 
       case HMAP_PACK8(1, 1, 1, 1, 1, -1, -1, -1): // SPUR
       case HMAP_PACK8(-1, 1, 1, 1, 1, 1, -1, -1):
@@ -168,9 +164,7 @@ Array geomorphons(const Array &array, int irmin, int irmax, float epsilon)
       case HMAP_PACK8(0, 0, 0, 0, 1, 1, 1, 0):
       case HMAP_PACK8(0, 0, 0, 0, 0, 1, 1, 1):
       case HMAP_PACK8(1, 0, 0, 0, 0, 0, 1, 1):
-      case HMAP_PACK8(1, 1, 0, 0, 0, 0, 0, 1):
-        gm(i, j) = 8.f;
-        break;
+      case HMAP_PACK8(1, 1, 0, 0, 0, 0, 0, 1): gm(i, j) = 8.f; break;
 
       case HMAP_PACK8(-1, -1, -1, 0, 0, 0, 0, 0): // SHOULDER
       case HMAP_PACK8(0, -1, -1, -1, 0, 0, 0, 0):
@@ -179,9 +173,7 @@ Array geomorphons(const Array &array, int irmin, int irmax, float epsilon)
       case HMAP_PACK8(0, 0, 0, 0, -1, -1, -1, 0):
       case HMAP_PACK8(0, 0, 0, 0, 0, -1, -1, -1):
       case HMAP_PACK8(-1, 0, 0, 0, 0, 0, -1, -1):
-      case HMAP_PACK8(-1, -1, 0, 0, 0, 0, 0, -1):
-        gm(i, j) = 4.f;
-        break;
+      case HMAP_PACK8(-1, -1, 0, 0, 0, 0, 0, -1): gm(i, j) = 4.f; break;
 
       default: // unknown patterns are classified as SLOPEs
         gm(i, j) = 6.f;
