@@ -68,31 +68,6 @@ public:
   Array(std::string filename); ///< @overload
 
   //----------------------------------------
-  // accessors
-  //----------------------------------------
-
-  /**
-   * @brief Retrieves the shape of the array.
-   *
-   * @return Vec2<int> The shape {ni, nj}.
-   */
-  Vec2<int> get_shape();
-
-  /**
-   * @brief Retrieves the underlying data vector.
-   *
-   * @return std::vector<float> The vector containing the array's data.
-   */
-  std::vector<float> get_vector() const;
-
-  /**
-   * @brief Sets a new shape for the array.
-   *
-   * @param new_shape The new shape of the array.
-   */
-  void set_shape(Vec2<int> new_shape);
-
-  //----------------------------------------
   // overload
   //----------------------------------------
 
@@ -493,6 +468,13 @@ public:
   Vec3<float> get_normal_at(int i, int j) const;
 
   /**
+   * @brief Retrieves the shape of the array.
+   *
+   * @return Vec2<int> The shape {ni, nj}.
+   */
+  Vec2<int> get_shape();
+
+  /**
    * @brief Retrieves the number of bytes occupied by the array data.
    *
    *        This function returns the total size in bytes of the underlying
@@ -542,6 +524,13 @@ public:
    * @return float The nearest value at the clamped location (x, y).
    */
   float get_value_nearest(float x, float y, Vec4<float> bbox);
+
+  /**
+   * @brief Retrieves the underlying data vector.
+   *
+   * @return std::vector<float> The vector containing the array's data.
+   */
+  std::vector<float> get_vector() const;
 
   /**
    * @brief Import array data from a raw binary file.
@@ -724,6 +713,13 @@ public:
    * @return std::vector<float> The values of the specified row as a vector.
    */
   std::vector<float> row_to_vector(int i);
+
+  /**
+   * @brief Sets a new shape for the array.
+   *
+   * @param new_shape The new shape of the array.
+   */
+  void set_shape(Vec2<int> new_shape);
 
   /**
    * @brief Set the value of a slice defined by indices {i1, i2, j1, j2} to a
