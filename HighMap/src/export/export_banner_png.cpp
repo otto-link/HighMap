@@ -3,6 +3,7 @@
  * this software. */
 
 #include "highmap/array.hpp"
+#include "highmap/operator.hpp"
 
 namespace hmap
 {
@@ -15,9 +16,9 @@ void export_banner_png(std::string        fname,
   // build up big array by stacking input arrays
   if (arrays.size() > 1)
   {
-    Array banner_array = hstack(arrays[0], arrays[1]);
+    Array banner_array = hmap::hstack(arrays[0], arrays[1]);
     for (uint i = 2; i < arrays.size(); i++)
-      banner_array = hstack(banner_array, arrays[i]);
+      banner_array = hmap::hstack(banner_array, arrays[i]);
     banner_array.to_png(fname, cmap, hillshading);
   }
   else

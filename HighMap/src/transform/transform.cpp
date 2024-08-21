@@ -11,6 +11,7 @@
 #include "highmap/math.hpp"
 #include "highmap/primitives.hpp"
 #include "highmap/transform.hpp"
+#include "highmap/operator.hpp"
 
 namespace hmap
 {

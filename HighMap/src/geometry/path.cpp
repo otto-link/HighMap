@@ -18,6 +18,7 @@
 #include "highmap/geometry.hpp"
 #include "highmap/math.hpp"
 #include "highmap/morphology.hpp"
+#include "highmap/operator.hpp"
 #include "highmap/primitives.hpp"
 #include "highmap/range.hpp"
 

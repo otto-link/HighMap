@@ -18,40 +18,6 @@ namespace hmap
 
 {
 
-void add_kernel(Array &array, const Array &kernel, int ic, int jc)
-{
-  // truncate kernel to make it fit into the heightmap array
-  int nk_i0 = (int)(std::floor(0.5f * kernel.shape.x)); // left
-  int nk_i1 = kernel.shape.x - nk_i0;                   // right
-  int nk_j0 = (int)(std::floor(0.5f * kernel.shape.y));
-  int nk_j1 = kernel.shape.y - nk_j0;
-
-  int ik0 = std::max(0, nk_i0 - ic);
-  int jk0 = std::max(0, nk_j0 - jc);
-  int ik1 = std::min(kernel.shape.x,
-                     kernel.shape.x - (ic + nk_i1 - array.shape.x));
-  int jk1 = std::min(kernel.shape.y,
-                     kernel.shape.y - (jc + nk_j1 - array.shape.y));
-
-  // LOG_DEBUG("%d %d", ic, jc);
-  // LOG_DEBUG("%d %d %d %d", ik0, ik1, jk0, jk1);
-
-  // where it goes in the array
-  int i0 = std::max(ic - nk_i0, 0);
-  int j0 = std::max(jc - nk_j0, 0);
-  // i1 = std::min(i + nk1, array.shape.x);
-  // j1 = std::min(j + nk1, array.shape.y);
-
-  for (int i = ik0; i < ik1; i++)
-    for (int j = jk0; j < jk1; j++)
-    {
-      // int ia = ic + i - ik1;
-      // int ja = jc + j - jk1;
-      // LOG_DEBUG("%d %d", ia, ja);
-      array(i - ik0 + i0, j - jk0 + j0) += kernel(i, j);
-    }
-}
-
 std::vector<float> Array::col_to_vector(int j)
 {
   std::vector<float> vec(this->shape.x);
@@ -121,160 +87,6 @@ Array Array::extract_slice(Vec4<int> idx)
       array_out(i - idx.a, j - idx.c) = (*this)(i, j);
 
   return array_out;
-}
-
-void fill_array_using_xy_function(
-    Array                                    &array,
-    Vec4<float>                               bbox,
-    Array                                    *p_ctrl_param,
-    Array                                    *p_noise_x,
-    Array                                    *p_noise_y,
-    Array                                    *p_stretching,
-    std::function<float(float, float, float)> fct_xy)
-{
-  Vec2<int>          shape = array.shape;
-  std::vector<float> x, y;
-  grid_xy_vector(x, y, shape, bbox, false); // no endpoint
-
-  Array ctrl_array = p_ctrl_param == nullptr ? Array(shape, 1.f)
-                                             : *p_ctrl_param;
-
-  if (p_stretching) // with stretching
-  {
-    if ((!p_noise_x) and (!p_noise_y))
-    {
-      for (int i = 0; i < shape.x; i++)
-        for (int j = 0; j < shape.y; j++)
-          array(i, j) = fct_xy(x[i] * (*p_stretching)(i, j),
-                               y[j] * (*p_stretching)(i, j),
-                               ctrl_array(i, j));
-    }
-    else if (p_noise_x and (!p_noise_y))
-    {
-      for (int i = 0; i < shape.x; i++)
-        for (int j = 0; j < shape.y; j++)
-          array(i,
-                j) = fct_xy(x[i] * (*p_stretching)(i, j) + (*p_noise_x)(i, j),
-                            y[j] * (*p_stretching)(i, j),
-                            ctrl_array(i, j));
-    }
-    else if ((!p_noise_x) and p_noise_y)
-    {
-      for (int i = 0; i < shape.x; i++)
-        for (int j = 0; j < shape.y; j++)
-          array(i,
-                j) = fct_xy(x[i] * (*p_stretching)(i, j),
-                            y[j] * (*p_stretching)(i, j) + (*p_noise_y)(i, j),
-                            ctrl_array(i, j));
-    }
-    else if (p_noise_x and p_noise_y)
-    {
-      for (int i = 0; i < shape.x; i++)
-        for (int j = 0; j < shape.y; j++)
-          array(i,
-                j) = fct_xy(x[i] * (*p_stretching)(i, j) + (*p_noise_x)(i, j),
-                            y[j] * (*p_stretching)(i, j) + (*p_noise_y)(i, j),
-                            ctrl_array(i, j));
-    }
-  }
-  else // without stretching
-  {
-    if ((!p_noise_x) and (!p_noise_y))
-    {
-      for (int i = 0; i < shape.x; i++)
-        for (int j = 0; j < shape.y; j++)
-          array(i, j) = fct_xy(x[i], y[j], ctrl_array(i, j));
-    }
-    else if (p_noise_x and (!p_noise_y))
-    {
-      for (int i = 0; i < shape.x; i++)
-        for (int j = 0; j < shape.y; j++)
-          array(i,
-                j) = fct_xy(x[i] + (*p_noise_x)(i, j), y[j], ctrl_array(i, j));
-    }
-    else if ((!p_noise_x) and p_noise_y)
-    {
-      for (int i = 0; i < shape.x; i++)
-        for (int j = 0; j < shape.y; j++)
-          array(i,
-                j) = fct_xy(x[i], y[j] + (*p_noise_y)(i, j), ctrl_array(i, j));
-    }
-    else if (p_noise_x and p_noise_y)
-    {
-      for (int i = 0; i < shape.x; i++)
-        for (int j = 0; j < shape.y; j++)
-          array(i, j) = fct_xy(x[i] + (*p_noise_x)(i, j),
-                               y[j] + (*p_noise_y)(i, j),
-                               ctrl_array(i, j));
-    }
-  }
-}
-
-void fill_array_using_xy_function(
-    Array                                    &array,
-    Vec4<float>                               bbox,
-    Array                                    *p_ctrl_param,
-    Array                                    *p_noise_x,
-    Array                                    *p_noise_y,
-    Array                                    *p_stretching,
-    std::function<float(float, float, float)> fct_xy,
-    int                                       subsampling)
-{
-  Vec2<int> shape = array.shape;
-  Vec2<int> shape_sub = Vec2<int>((int)(shape.x / subsampling),
-                                  (int)(shape.y / subsampling));
-  Array     array_sub = Array(shape_sub);
-
-  std::vector<float> x, y;
-  grid_xy_vector(x, y, shape, bbox, false);
-
-  Array ctrl_array = p_ctrl_param == nullptr ? Array(shape, 1.f)
-                                             : *p_ctrl_param;
-
-  // subsampled grid (with endpoints to cover the exact same domain as
-  // the original grid)
-  Vec4<float> bbox_sub = Vec4<float>(x.front(), x.back(), y.front(), y.back());
-
-  // resample control parameter
-  Array ctrl_array_sub = ctrl_array.resample_to_shape(shape_sub);
-
-  // also resample input noise and stretching
-  Array noise_x_sub;
-  Array noise_y_sub;
-  Array stretching_sub;
-
-  Array *p_noise_x_sub = nullptr;
-  Array *p_noise_y_sub = nullptr;
-  Array *p_stretching_sub = nullptr;
-
-  if (p_noise_x != nullptr)
-  {
-    noise_x_sub = p_noise_x->resample_to_shape(shape_sub);
-    p_noise_x_sub = &noise_x_sub;
-  }
-
-  if (p_noise_y != nullptr)
-  {
-    noise_x_sub = p_noise_y->resample_to_shape(shape_sub);
-    p_noise_y_sub = &noise_x_sub;
-  }
-
-  if (p_stretching != nullptr)
-  {
-    noise_x_sub = p_stretching->resample_to_shape(shape_sub);
-    p_stretching_sub = &noise_x_sub;
-  }
-
-  fill_array_using_xy_function(array_sub,
-                               bbox_sub,
-                               &ctrl_array_sub,
-                               p_noise_x_sub,
-                               p_noise_y_sub,
-                               p_stretching_sub,
-                               fct_xy);
-
-  // interpolate on finer grid
-  array = array_sub.resample_to_shape(shape);
 }
 
 float Array::get_gradient_x_at(int i, int j) const
@@ -363,22 +175,6 @@ float Array::get_value_nearest(float x, float y, Vec4<float> bbox)
   int j = (int)(std::clamp((y - bbox.c) / (bbox.d - bbox.c), 0.f, 1.f) *
                 (this->shape.y - 1));
   return (*this)(i, j);
-}
-
-Array hstack(const Array &array1, const Array &array2) // friend function
-{
-  Array array_out = Array(
-      Vec2<int>(array1.shape.x + array2.shape.x, array1.shape.y));
-
-  for (int i = 0; i < array1.shape.x; i++)
-    for (int j = 0; j < array1.shape.y; j++)
-      array_out(i, j) = array1(i, j);
-
-  for (int i = 0; i < array2.shape.x; i++)
-    for (int j = 0; j < array1.shape.y; j++)
-      array_out(i + array1.shape.x, j) = array2(i, j);
-
-  return array_out;
 }
 
 int Array::linear_index(int i, int j) const
@@ -514,23 +310,6 @@ std::vector<float> Array::unique_values()
   std::vector<float> v = this->vector;
   vector_unique_values(v);
   return v;
-}
-
-Array vstack(const Array &array1, const Array &array2) // friend function
-{
-  Array array_out = Array(
-      Vec2<int>(array1.shape.x, array1.shape.y + array2.shape.y));
-
-  for (int i = 0; i < array1.shape.x; i++)
-  {
-    for (int j = 0; j < array1.shape.y; j++)
-      array_out(i, j) = array1(i, j);
-
-    for (int j = 0; j < array2.shape.y; j++)
-      array_out(i, j + array1.shape.y) = array2(i, j);
-  }
-
-  return array_out;
 }
 
 } // namespace hmap

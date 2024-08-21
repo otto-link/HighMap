@@ -21,6 +21,17 @@ namespace hmap
 {
 
 /**
+ * @brief Adds a kernel (with a smaller shape) to a given array, centered on
+ * indices (i, j).
+ *
+ * @param array The input Array.
+ * @param kernel The kernel to add.
+ * @param i The row index in the input array where the kernel is added.
+ * @param j The column index in the input array where the kernel is added.
+ */
+void add_kernel(Array &array, const Array &kernel, int i, int j);
+
+/**
  * @brief Return the bilinear interpolated value based on four input values.
  *
  * @param f00 Value at (u, v) = (0, 0).
@@ -57,6 +68,20 @@ inline float bilinear_interp(float f00,
  * @image html ex_detrend.png
  */
 Array detrend_reg(const Array &array);
+
+/**
+ * @brief Horizontally stacks two arrays in sequence (column-wise).
+ *
+ *        This function concatenates two arrays side by side (column-wise) to
+ * form a new array. The resulting array has the columns of the first array
+ * followed by the columns of the second array.
+ *
+ * @param array1 The first array to stack.
+ * @param array2 The second array to stack.
+ * @return Array The resulting array obtained by horizontally stacking
+ * `array1` and `array2`.
+ */
+Array hstack(const Array &array1, const Array &array2);
 
 /**
  * @brief Apply diffusion-based inpainting to fill a region (defined by mask) of
@@ -124,7 +149,85 @@ std::vector<float> linspace_jitted(float start,
  */
 std::vector<float> random_vector(float min, float max, int num, int seed);
 
-// --- helpers
+/**
+ * @brief Fills an array using a scalar function based on (x, y) coordinates.
+ *
+ *        This function fills the specified array with values computed from a
+ * scalar function that depends on (x, y) coordinates. The function takes into
+ * account domain warping and local wavenumber multipliers through additional
+ * input arrays. The function `fct_xy` is applied to each point within the
+ * domain defined by `bbox`.
+ *
+ * @param array The array to be filled with computed values.
+ * @param bbox The bounding box of the domain, specified as {xmin, xmax, ymin,
+ * ymax}.
+ * @param p_ctrl_param Pointer to an array of control parameters, affecting
+ * the scalar function.
+ * @param p_noise_x Pointer to an array of noise values along the x-direction
+ * for domain warping.
+ * @param p_noise_y Pointer to an array of noise values along the y-direction
+ * for domain warping.
+ * @param p_stretching Pointer to an array of local wavenumber multipliers for
+ * adjusting the function.
+ * @param fct_xy The scalar function to compute values at (x, y) with an
+ * initial value.
+ *
+ * **Example**
+ * @include ex_fill_array_using_xy_function.cpp
+ *
+ * **Result**
+ * @image html ex_fill_array_using_xy_function.png
+ */
+void fill_array_using_xy_function(
+    Array                                    &array,
+    Vec4<float>                               bbox,
+    Array                                    *p_ctrl_param,
+    Array                                    *p_noise_x,
+    Array                                    *p_noise_y,
+    Array                                    *p_stretching,
+    std::function<float(float, float, float)> fct_xy);
+
+/**
+ * @brief Fills an array using a scalar function based on (x, y) coordinates
+ * with subsampling.
+ *
+ *        This function is similar to the one above but includes an additional
+ * `subsampling` parameter. It fills the specified array with values computed
+ * from a scalar function while considering subsampling for performance
+ * optimization. The `subsampling` factor determines how frequently the
+ * function is applied across the array.
+ *
+ * @param array The array to be filled with computed values.
+ * @param bbox The bounding box of the domain, specified as {xmin, xmax, ymin,
+ * ymax}.
+ * @param p_ctrl_param Pointer to an array of control parameters, affecting
+ * the scalar function.
+ * @param p_noise_x Pointer to an array of noise values along the x-direction
+ * for domain warping.
+ * @param p_noise_y Pointer to an array of noise values along the y-direction
+ * for domain warping.
+ * @param p_stretching Pointer to an array of local wavenumber multipliers for
+ * adjusting the function.
+ * @param fct_xy The scalar function to compute values at (x, y) with an
+ * initial value.
+ * @param subsampling The factor by which the array is subsampled during
+ * computation.
+ *
+ * **Example**
+ * @include ex_fill_array_using_xy_function.cpp
+ *
+ * **Result**
+ * @image html ex_fill_array_using_xy_function.png
+ */
+void fill_array_using_xy_function(
+    Array                                    &array,
+    Vec4<float>                               bbox,
+    Array                                    *p_ctrl_param,
+    Array                                    *p_noise_x,
+    Array                                    *p_noise_y,
+    Array                                    *p_stretching,
+    std::function<float(float, float, float)> fct_xy,
+    int                                       subsampling); ///< @overload
 
 /**
  * @brief Among all the possible cut paths in an array from bottom to top and
@@ -171,5 +274,19 @@ Array get_random_patch(Array          &array,
                        bool            patch_flip = false,
                        bool            patch_rotate = false,
                        bool            patch_transpose = false);
+
+/**
+ * @brief Return stacked arrays in sequence vertically (row-wise).
+ *
+ *        This function concatenates two arrays along their vertical axis
+ * (row-wise) to produce a new array. The resulting array has the rows of the
+ * second array stacked below the rows of the first array.
+ *
+ * @param array1 The first array to be stacked.
+ * @param array2 The second array to be stacked.
+ * @return Array A new array consisting of `array1` stacked vertically on top
+ * of `array2`.
+ */
+Array vstack(const Array &array1, const Array &array2);
 
 } // namespace hmap
