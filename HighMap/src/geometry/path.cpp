@@ -378,6 +378,53 @@ std::vector<float> Path::get_cumulative_distance()
   return dacc;
 }
 
+std::vector<float> Path::get_values() const
+{
+  std::vector<float> v(this->get_npoints());
+  for (size_t i = 0; i < this->get_npoints(); i++)
+    v[i] = this->points[i].v;
+
+  if (this->closed && this->get_npoints() > 0) v.push_back(this->points[0].v);
+  return v;
+}
+
+std::vector<float> Path::get_x() const
+{
+  std::vector<float> x(this->get_npoints());
+  for (size_t i = 0; i < this->get_npoints(); i++)
+    x[i] = this->points[i].x;
+
+  if (this->closed && this->get_npoints() > 0) x.push_back(this->points[0].x);
+  return x;
+}
+
+std::vector<float> Path::get_xy() const
+{
+  std::vector<float> xy(2 * this->get_npoints());
+  for (size_t i = 0; i < this->get_npoints(); i++)
+  {
+    xy[2 * i] = this->points[i].x;
+    xy[2 * i + 1] = this->points[i].y;
+  }
+
+  if (this->closed && this->get_npoints() > 0)
+  {
+    xy.push_back(this->points[0].x);
+    xy.push_back(this->points[0].y);
+  }
+  return xy;
+}
+
+std::vector<float> Path::get_y() const
+{
+  std::vector<float> y(this->get_npoints());
+  for (size_t i = 0; i < this->get_npoints(); i++)
+    y[i] = this->points[i].y;
+
+  if (this->closed && this->get_npoints() > 0) y.push_back(this->points[0].y);
+  return y;
+}
+
 void Path::meanderize(float ratio,
                       float noise_ratio,
                       uint  seed,

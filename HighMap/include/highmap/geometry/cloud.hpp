@@ -99,11 +99,7 @@ public:
    * @param default_value The default value assigned to each point.
    *                      Defaults to 0 if not specified.
    */
-  Cloud(std::vector<float> x, std::vector<float> y, float default_value = 0.f)
-  {
-    for (size_t k = 0; k < x.size(); k++)
-      this->add_point(Point(x[k], y[k], default_value));
-  };
+  Cloud(std::vector<float> x, std::vector<float> y, float default_value = 0.f);
 
   /**
    * @brief Constructs a new Cloud object from lists of `x` and `y` coordinates
@@ -117,11 +113,7 @@ public:
    * @param y A vector of `y` coordinates for the points.
    * @param v A vector of values associated with each point.
    */
-  Cloud(std::vector<float> x, std::vector<float> y, std::vector<float> v)
-  {
-    for (size_t k = 0; k < x.size(); k++)
-      this->add_point(Point(x[k], y[k], v[k]));
-  };
+  Cloud(std::vector<float> x, std::vector<float> y, std::vector<float> v);
 
   /**
    * @brief Add a new point to the cloud.
@@ -130,10 +122,7 @@ public:
    *
    * @param p The point to be added to the cloud.
    */
-  void add_point(const Point &p)
-  {
-    this->points.push_back(p);
-  }
+  void add_point(const Point &p);
 
   /**
    * @brief Clear all data from the cloud.
@@ -152,20 +141,7 @@ public:
    * @return Vec4<float> The bounding box of the cloud in the format `[xmin,
    * xmax, ymin, ymax]`.
    */
-  Vec4<float> get_bbox()
-  {
-    std::vector<float> x = this->get_x();
-    std::vector<float> y = this->get_y();
-    Vec4<float>        bbox;
-    {
-      float xmin = *std::min_element(x.begin(), x.end());
-      float xmax = *std::max_element(x.begin(), x.end());
-      float ymin = *std::min_element(y.begin(), y.end());
-      float ymax = *std::max_element(y.begin(), y.end());
-      bbox = {xmin, xmax, ymin, ymax};
-    }
-    return bbox;
-  }
+  Vec4<float> get_bbox();
 
   /**
    * @brief Calculates the centroid of a set of points.
@@ -178,13 +154,7 @@ public:
    * @return Point The computed center, represented as a `Point` object, which
    * contains the average (x, y) coordinates of the points.
    */
-  Point get_center()
-  {
-    Point center = Point();
-    for (auto &p : this->points)
-      center = center + p;
-    return center / (float)this->points.size();
-  }
+  Point get_center();
 
   /**
    * @brief Computes the indices of the points that form the convex hull of a
@@ -214,10 +184,7 @@ public:
    *
    * @return size_t The number of points in the cloud.
    */
-  size_t get_npoints() const
-  {
-    return this->points.size();
-  }
+  size_t get_npoints() const;
 
   /**
    * @brief Get the values assigned to the points in the cloud.
@@ -228,14 +195,7 @@ public:
    * @return std::vector<float> A vector containing the values of all points in
    * the cloud.
    */
-  std::vector<float> get_values() const
-  {
-    std::vector<float> values;
-    values.reserve(this->get_npoints());
-    for (auto &p : this->points)
-      values.push_back(p.v);
-    return values;
-  }
+  std::vector<float> get_values() const;
 
   /**
    * @brief Get the maximum value among the points in the cloud.
@@ -266,14 +226,7 @@ public:
    * @return std::vector<float> A vector containing the `x` coordinates of the
    * points.
    */
-  virtual std::vector<float> get_x() const
-  {
-    std::vector<float> x;
-    x.reserve(this->get_npoints());
-    for (auto &p : this->points)
-      x.push_back(p.x);
-    return x;
-  }
+  virtual std::vector<float> get_x() const;
 
   /**
    * @brief Get the concatenated `x` and `y` coordinates of the points in the
@@ -285,17 +238,7 @@ public:
    * @return std::vector<float> A vector containing the concatenated `x` and `y`
    * coordinates of the points.
    */
-  virtual std::vector<float> get_xy() const
-  {
-    std::vector<float> xy;
-    xy.reserve(2 * this->get_npoints());
-    for (auto &p : this->points)
-    {
-      xy.push_back(p.x);
-      xy.push_back(p.y);
-    }
-    return xy;
-  }
+  virtual std::vector<float> get_xy() const;
 
   /**
    * @brief Get the `y` coordinates of the points in the cloud.
@@ -306,14 +249,7 @@ public:
    * @return std::vector<float> A vector containing the `y` coordinates of the
    * points.
    */
-  virtual std::vector<float> get_y() const
-  {
-    std::vector<float> y;
-    y.reserve(this->get_npoints());
-    for (auto &p : this->points)
-      y.push_back(p.y);
-    return y;
-  }
+  virtual std::vector<float> get_y() const;
 
   /**
    * @brief Interpolate values from an array at the points' `(x, y)` locations.
@@ -368,10 +304,7 @@ public:
    *
    * @param point_idx Index of the point to be removed.
    */
-  void remove_point(int point_idx)
-  {
-    this->points.erase(this->points.begin() + point_idx);
-  }
+  void remove_point(int point_idx);
 
   /**
    * @brief Set new values for the cloud points.
@@ -382,11 +315,7 @@ public:
    *
    * @param new_values A vector of new values to assign to the points.
    */
-  void set_values(std::vector<float> new_values)
-  {
-    for (size_t k = 0; k < this->get_npoints(); k++)
-      this->points[k].v = new_values[k];
-  }
+  void set_values(std::vector<float> new_values);
 
   /**
    * @brief Set a single value for all cloud points.
@@ -395,11 +324,7 @@ public:
    *
    * @param new_value The value to assign to all points.
    */
-  void set_values(float new_value)
-  {
-    for (auto &p : this->points)
-      p.v = new_value;
-  }
+  void set_values(float new_value);
 
   /**
    * @brief Set the values of the cloud points using values from an underlying

@@ -158,11 +158,7 @@ public:
    * @param weight The weight of the edge. If not provided, the default weight
    * is calculated as the Euclidean distance between the points.
    */
-  void add_edge(std::vector<int> edge, float weight)
-  {
-    this->edges.push_back(edge);
-    this->weights.push_back(weight);
-  }
+  void add_edge(std::vector<int> edge, float weight);
 
   /**
    * @brief Add an edge to the graph with default weight.
@@ -175,11 +171,7 @@ public:
    * @param edge A vector of two integers representing the indices of the points
    * connected by the edge.
    */
-  void add_edge(std::vector<int> edge)
-  {
-    this->edges.push_back(edge);
-    this->weights.push_back(this->get_edge_length(this->get_nedges() - 1));
-  } ///< @overload
+  void add_edge(std::vector<int> edge);
 
   /**
    * @brief Return the shortest route between two points using Dijkstra's
@@ -254,10 +246,7 @@ public:
    *
    * @return size_t The number of edges in the graph.
    */
-  size_t get_nedges()
-  {
-    return this->edges.size();
-  }
+  size_t get_nedges();
 
   /**
    * @brief Generate a Minimum Spanning Tree (MST) of the graph using Prim's

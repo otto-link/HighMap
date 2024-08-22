@@ -85,6 +85,18 @@ std::vector<int> Graph::dijkstra(int source_point_index, int target_point_index)
   return path;
 }
 
+void Graph::add_edge(std::vector<int> edge, float weight)
+{
+  this->edges.push_back(edge);
+  this->weights.push_back(weight);
+}
+
+void Graph::add_edge(std::vector<int> edge)
+{
+  this->edges.push_back(edge);
+  this->weights.push_back(this->get_edge_length(this->get_nedges() - 1));
+}
+
 float Graph::get_edge_length(int k)
 {
   return distance(this->points[this->edges[k][0]],
@@ -124,6 +136,11 @@ std::vector<float> Graph::get_edge_y_pairs()
     y.push_back(this->points[e[1]].y);
   }
   return y;
+}
+
+size_t Graph::get_nedges()
+{
+  return this->edges.size();
 }
 
 Graph Graph::minimum_spanning_tree_prim()

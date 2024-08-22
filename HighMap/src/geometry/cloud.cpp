@@ -25,9 +25,49 @@ Cloud::Cloud(int npoints, uint seed, Vec4<float> bbox)
   this->randomize(seed, bbox);
 };
 
+Cloud::Cloud(std::vector<float> x, std::vector<float> y, float default_value)
+{
+  for (size_t k = 0; k < x.size(); k++)
+    this->add_point(Point(x[k], y[k], default_value));
+};
+
+Cloud::Cloud(std::vector<float> x, std::vector<float> y, std::vector<float> v)
+{
+  for (size_t k = 0; k < x.size(); k++)
+    this->add_point(Point(x[k], y[k], v[k]));
+};
+
+void Cloud::add_point(const Point &p)
+{
+  this->points.push_back(p);
+}
+
 void Cloud::clear()
 {
   this->points.clear();
+}
+
+Vec4<float> Cloud::get_bbox()
+{
+  std::vector<float> x = this->get_x();
+  std::vector<float> y = this->get_y();
+  Vec4<float>        bbox;
+  {
+    float xmin = *std::min_element(x.begin(), x.end());
+    float xmax = *std::max_element(x.begin(), x.end());
+    float ymin = *std::min_element(y.begin(), y.end());
+    float ymax = *std::max_element(y.begin(), y.end());
+    bbox = {xmin, xmax, ymin, ymax};
+  }
+  return bbox;
+}
+
+Point Cloud::get_center()
+{
+  Point center = Point();
+  for (auto &p : this->points)
+    center = center + p;
+  return center / (float)this->points.size();
 }
 
 std::vector<int> Cloud::get_convex_hull_point_indices()
@@ -46,6 +86,20 @@ std::vector<int> Cloud::get_convex_hull_point_indices()
   return chull;
 }
 
+size_t Cloud::get_npoints() const
+{
+  return this->points.size();
+}
+
+std::vector<float> Cloud::get_values() const
+{
+  std::vector<float> values;
+  values.reserve(this->get_npoints());
+  for (auto &p : this->points)
+    values.push_back(p.v);
+  return values;
+}
+
 float Cloud::get_values_max()
 {
   std::vector<float> values = this->get_values();
@@ -56,6 +110,36 @@ float Cloud::get_values_min()
 {
   std::vector<float> values = this->get_values();
   return *std::min_element(values.begin(), values.end());
+}
+
+std::vector<float> Cloud::get_x() const
+{
+  std::vector<float> x;
+  x.reserve(this->get_npoints());
+  for (auto &p : this->points)
+    x.push_back(p.x);
+  return x;
+}
+
+std::vector<float> Cloud::get_xy() const
+{
+  std::vector<float> xy;
+  xy.reserve(2 * this->get_npoints());
+  for (auto &p : this->points)
+  {
+    xy.push_back(p.x);
+    xy.push_back(p.y);
+  }
+  return xy;
+}
+
+std::vector<float> Cloud::get_y() const
+{
+  std::vector<float> y;
+  y.reserve(this->get_npoints());
+  for (auto &p : this->points)
+    y.push_back(p.y);
+  return y;
 }
 
 std::vector<float> Cloud::interpolate_values_from_array(const Array &array,
@@ -134,6 +218,23 @@ void Cloud::remap_values(float vmin, float vmax)
   if (from_min != from_max)
     for (auto &p : this->points)
       p.v = (p.v - from_min) / (from_max - from_min) * (vmax - vmin) + vmin;
+}
+
+void Cloud::remove_point(int point_idx)
+{
+  this->points.erase(this->points.begin() + point_idx);
+}
+
+void Cloud::set_values(std::vector<float> new_values)
+{
+  for (size_t k = 0; k < this->get_npoints(); k++)
+    this->points[k].v = new_values[k];
+}
+
+void Cloud::set_values(float new_value)
+{
+  for (auto &p : this->points)
+    p.v = new_value;
 }
 
 void Cloud::set_values_from_array(const Array &array, Vec4<float> bbox)
