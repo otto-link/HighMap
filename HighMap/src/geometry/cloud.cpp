@@ -14,7 +14,6 @@
 #include "highmap/geometry/grids.hpp"
 #include "highmap/interpolate2d.hpp"
 #include "highmap/operator.hpp"
-#include "highmap/primitives.hpp"
 
 namespace hmap
 {
