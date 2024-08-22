@@ -4,7 +4,7 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
-#include "highmap/geometry.hpp"
+#include "highmap/geometry/cloud.hpp"
 #include "highmap/kernels.hpp"
 
 namespace hmap

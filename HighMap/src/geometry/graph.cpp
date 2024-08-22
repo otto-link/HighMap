@@ -12,7 +12,8 @@
 
 #include "highmap/array.hpp"
 #include "highmap/colormaps.hpp"
-#include "highmap/geometry.hpp"
+#include "highmap/geometry/graph.hpp"
+#include "highmap/geometry/path.hpp"
 #include "highmap/operator.hpp"
 #include "highmap/primitives.hpp"
 

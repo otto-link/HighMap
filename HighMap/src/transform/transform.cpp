@@ -6,7 +6,6 @@
 #include "highmap/array.hpp"
 #include "highmap/boundary.hpp"
 #include "highmap/filters.hpp"
-#include "highmap/geometry.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/math.hpp"
 #include "highmap/operator.hpp"

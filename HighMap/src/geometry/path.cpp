@@ -15,7 +15,7 @@
 #include "highmap/colorize.hpp"
 #include "highmap/colormaps.hpp"
 #include "highmap/filters.hpp"
-#include "highmap/geometry.hpp"
+#include "highmap/geometry/path.hpp"
 #include "highmap/math.hpp"
 #include "highmap/morphology.hpp"
 #include "highmap/operator.hpp"
@@ -195,7 +195,6 @@ void Path::catmullrom(int edge_divisions)
 void Path::clear()
 {
   this->points.clear();
-  this->convex_hull.clear();
   this->closed = false;
 }
 

@@ -12,7 +12,6 @@
 
 #include "highmap/array.hpp"
 #include "highmap/export.hpp"
-#include "highmap/geometry.hpp"
 #include "highmap/interpolate.hpp"
 #include "highmap/operator.hpp"
 

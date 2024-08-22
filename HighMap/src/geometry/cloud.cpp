@@ -9,7 +9,9 @@
 #include "delaunator-cpp.hpp"
 #include "macrologger.h"
 
-#include "highmap/geometry.hpp"
+#include "highmap/geometry/cloud.hpp"
+#include "highmap/geometry/graph.hpp"
+#include "highmap/geometry/grid.hpp"
 #include "highmap/interpolate.hpp"
 #include "highmap/operator.hpp"
 #include "highmap/primitives.hpp"
@@ -26,7 +28,22 @@ Cloud::Cloud(int npoints, uint seed, Vec4<float> bbox)
 void Cloud::clear()
 {
   this->points.clear();
-  this->convex_hull.clear();
+}
+
+std::vector<int> Cloud::get_convex_hull_point_indices()
+{
+  delaunator::Delaunator d(this->get_xy());
+
+  std::vector<int> chull = {(int)d.hull_start};
+
+  int inext = d.hull_next[chull.back()];
+  while (inext != chull[0])
+  {
+    chull.push_back(inext);
+    inext = d.hull_next[chull.back()];
+  }
+
+  return chull;
 }
 
 float Cloud::get_values_max()
@@ -44,32 +61,48 @@ float Cloud::get_values_min()
 std::vector<float> Cloud::interpolate_values_from_array(const Array &array,
                                                         Vec4<float>  bbox)
 {
-  std::vector<float> v_out(this->get_npoints());
-  float              ax = (float)(array.shape.x - 1) / (bbox.b - bbox.a);
-  float bx = (float)(array.shape.x - 1) * (-bbox.a) / (bbox.b - bbox.a);
-  float ay = (float)(array.shape.y - 1) / (bbox.d - bbox.c);
-  float by = (float)(array.shape.y - 1) * (-bbox.c) / (bbox.d - bbox.c);
+  std::vector<float> values;
+  values.reserve(this->get_npoints());
 
-  for (size_t k = 0; k < this->get_npoints(); k++)
+  for (auto &p : points)
   {
-    float x = ax * this->points[k].x + bx;
-    float y = ay * this->points[k].y + by;
-    int   i = (int)x;
-    int   j = (int)y;
+    float xn = (p.x - bbox.a) / (bbox.b - bbox.a);
+    float yn = (p.y - bbox.c) / (bbox.d - bbox.c);
 
-    if ((i > -1) and (i < array.shape.x) and (j > -1) and (j < array.shape.y))
+    // scale to array shape
+    xn *= (float)(array.shape.x - 1);
+    yn *= (float)(array.shape.y - 1);
+
+    int i = (int)xn;
+    int j = (int)yn;
+
+    if (i >= 0 && i < array.shape.x && j >= 0 && j < array.shape.y)
     {
-      float u = x - (float)i;
-      float v = y - (float)j;
-      v_out[k] = array.get_value_bilinear_at(i, j, u, v);
+      float uu = xn - (float)i;
+      float vv = yn - (float)j;
+      values.push_back(array.get_value_bilinear_at(i, j, uu, vv));
     }
+    else
+      values.push_back(0.f); // if outside array bounding box
   }
-  return v_out;
+
+  return values;
 }
 
 void Cloud::print()
 {
-  std::cout << "Points:" << std::endl;
+  std::cout << "Cloud" << std::endl;
+
+  Vec4<float> bbox = this->get_bbox();
+  Point       center = this->get_center();
+
+  std::cout << "  - bounding box: {" << bbox.a << ", " << bbox.b << ", "
+            << bbox.c << ", " << bbox.d << "}" << std::endl;
+
+  std::cout << "  - center: {" << center.x << ", " << center.y << "}"
+            << std::endl;
+
+  std::cout << "  - points:" << std::endl;
   for (size_t k = 0; k < this->get_npoints(); k++)
   {
     std::cout << std::setw(6) << k;
@@ -78,10 +111,6 @@ void Cloud::print()
     std::cout << std::setw(12) << this->points[k].v;
     std::cout << std::endl;
   }
-
-  Vec4<float> bbox = this->get_bbox();
-  std::cout << "   bounding box: {" << bbox.a << ", " << bbox.b << ", "
-            << bbox.c << ", " << bbox.d << "}" << std::endl;
 }
 
 void Cloud::randomize(uint seed, Vec4<float> bbox)
@@ -109,36 +138,20 @@ void Cloud::remap_values(float vmin, float vmax)
 
 void Cloud::set_values_from_array(const Array &array, Vec4<float> bbox)
 {
-  float ax = (float)(array.shape.x - 1) / (bbox.b - bbox.a);
-  float bx = (float)(array.shape.x - 1) * (-bbox.a) / (bbox.b - bbox.a);
-  float ay = (float)(array.shape.y - 1) / (bbox.d - bbox.c);
-  float by = (float)(array.shape.y - 1) * (-bbox.c) / (bbox.d - bbox.c);
-
-  for (size_t k = 0; k < this->get_npoints(); k++)
-  {
-    float x = ax * this->points[k].x + bx;
-    float y = ay * this->points[k].y + by;
-    int   i = (int)x;
-    int   j = (int)y;
-
-    if ((i > -1) and (i < array.shape.x) and (j > -1) and (j < array.shape.y))
-    {
-      float u = x - (float)i;
-      float v = y - (float)j;
-      this->points[k].v = array.get_value_bilinear_at(i, j, u, v);
-    }
-  }
+  for (auto &p : this->points)
+    p.update_value_from_array(array, bbox);
 }
 
 void Cloud::set_values_from_chull_distance()
 {
+  std::vector<int> chull = this->get_convex_hull_point_indices();
+
   for (size_t i = 0; i < this->get_npoints(); i++)
   {
     float dmax = std::numeric_limits<float>::max();
-    for (size_t k = 0; k < this->convex_hull.size(); k++)
+    for (size_t k = 0; k < chull.size(); k++)
     {
-      float dist = distance(this->points[i],
-                            this->points[this->convex_hull[k]]);
+      float dist = distance(this->points[i], this->points[chull[k]]);
       if (dist < dmax)
       {
         dmax = dist;
@@ -256,24 +269,21 @@ Graph Cloud::to_graph_delaunay()
     }
   }
 
-  // store convex hull indices
-  graph.convex_hull = {(int)d.hull_start};
-
-  int inext = d.hull_next[graph.convex_hull.back()];
-  while (inext != graph.convex_hull[0])
-  {
-    graph.convex_hull.push_back(inext);
-    inext = d.hull_next[graph.convex_hull.back()];
-  }
-
   return graph;
 }
 
-//----------------------------------------------------------------------
-// functions
-//----------------------------------------------------------------------
+void Cloud::to_png(const std::string &fname,
+                   int                cmap,
+                   Vec4<float>        bbox,
+                   int                depth,
+                   Vec2<int>          shape)
+{
+  Array array = Array(shape);
+  this->to_array(array, bbox);
+  array.to_png(fname, cmap, depth);
+}
 
-Cloud merge_cloud(Cloud &cloud1, Cloud &cloud2)
+Cloud merge_cloud(const Cloud &cloud1, const Cloud &cloud2)
 {
   std::vector<float> x1 = cloud1.get_x();
   std::vector<float> y1 = cloud1.get_y();

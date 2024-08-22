@@ -5,7 +5,8 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
-#include "highmap/geometry.hpp"
+#include "highmap/geometry/graph.hpp"
+#include "highmap/geometry/grid.hpp"
 
 #include "highmap/internal/vector_utils.hpp"
 

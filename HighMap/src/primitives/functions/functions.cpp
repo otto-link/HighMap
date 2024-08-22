@@ -107,8 +107,12 @@ CraterFunction::CraterFunction(float       radius,
                                float       lip_decay,
                                float       lip_height_ratio,
                                Vec2<float> center)
-    : Function(), radius(radius), depth(depth), lip_decay(lip_decay),
-      lip_height_ratio(lip_height_ratio), center(center)
+    : Function(),
+      radius(radius),
+      depth(depth),
+      lip_decay(lip_decay),
+      lip_height_ratio(lip_height_ratio),
+      center(center)
 {
   this->set_delegate(
       [this](float x, float y, float ctrl_param)

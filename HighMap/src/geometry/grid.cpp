@@ -6,7 +6,7 @@
 
 #include "macrologger.h"
 
-#include "highmap/geometry.hpp"
+#include "highmap/geometry/grid.hpp"
 #include "highmap/operator.hpp"
 
 namespace hmap

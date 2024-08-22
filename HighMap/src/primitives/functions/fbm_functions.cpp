@@ -123,7 +123,10 @@ FbmJordanFunction::FbmJordanFunction(std::unique_ptr<NoiseFunction> p_base,
                              weight,
                              persistence,
                              lacunarity),
-      warp0(warp0), damp0(damp0), warp_scale(warp_scale), damp_scale(damp_scale)
+      warp0(warp0),
+      damp0(damp0),
+      warp_scale(warp_scale),
+      damp_scale(damp_scale)
 {
   this->set_delegate(
       [this](float x, float y, float ctrl_param)
@@ -370,8 +373,11 @@ GenericFractalFunction::GenericFractalFunction(
     float                          weight,
     float                          persistence,
     float                          lacunarity)
-    : p_base(std::move(p_base)), octaves(octaves), weight(weight),
-      persistence(persistence), lacunarity(lacunarity)
+    : p_base(std::move(p_base)),
+      octaves(octaves),
+      weight(weight),
+      persistence(persistence),
+      lacunarity(lacunarity)
 {
   if (!this->p_base)
   {

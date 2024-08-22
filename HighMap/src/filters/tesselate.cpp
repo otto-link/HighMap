@@ -6,7 +6,8 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
-#include "highmap/geometry.hpp"
+#include "highmap/geometry/cloud.hpp"
+#include "highmap/geometry/grid.hpp"
 #include "highmap/interpolate.hpp"
 #include "highmap/primitives.hpp"
 

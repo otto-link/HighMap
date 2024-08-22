@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "highmap.hpp"
 
 int main(void)

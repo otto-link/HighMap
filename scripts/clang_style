@@ -6,6 +6,8 @@ AllowShortCaseLabelsOnASingleLine: true
 AllowShortFunctionsOnASingleLine: None
 AllowShortIfStatementsOnASingleLine: true
 
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+
 BasedOnStyle: llvm
 BinPackArguments: false
 BinPackParameters: false

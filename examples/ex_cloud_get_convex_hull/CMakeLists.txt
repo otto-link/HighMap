@@ -1,0 +1,2 @@
+add_executable(ex_cloud_get_convex_hull ex_cloud_get_convex_hull.cpp)
+target_link_libraries(ex_cloud_get_convex_hull highmap)

@@ -8,7 +8,6 @@
 
 #include "highmap/algebra.hpp"
 #include "highmap/array.hpp"
-#include "highmap/geometry.hpp"
 #include "highmap/operator.hpp"
 #include "highmap/transform.hpp"
 
