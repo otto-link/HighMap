@@ -12,7 +12,7 @@
 #include "highmap/geometry/cloud.hpp"
 #include "highmap/geometry/graph.hpp"
 #include "highmap/geometry/grids.hpp"
-#include "highmap/interpolate.hpp"
+#include "highmap/interpolate2d.hpp"
 #include "highmap/operator.hpp"
 #include "highmap/primitives.hpp"
 

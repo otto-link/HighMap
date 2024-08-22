@@ -8,7 +8,7 @@
 #include "highmap/array.hpp"
 #include "highmap/geometry/cloud.hpp"
 #include "highmap/geometry/grids.hpp"
-#include "highmap/interpolate.hpp"
+#include "highmap/interpolate2d.hpp"
 #include "highmap/primitives.hpp"
 
 namespace hmap

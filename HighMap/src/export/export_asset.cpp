@@ -12,7 +12,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/export.hpp"
-#include "highmap/interpolate.hpp"
+#include "highmap/interpolate2d.hpp"
 #include "highmap/operator.hpp"
 
 namespace hmap
