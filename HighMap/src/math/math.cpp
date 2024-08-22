@@ -5,7 +5,7 @@
 #include <cmath>
 
 #include "highmap/array.hpp"
-#include "highmap/geometry/grid.hpp"
+#include "highmap/geometry/grids.hpp"
 
 namespace hmap
 {

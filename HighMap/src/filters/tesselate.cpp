@@ -7,7 +7,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/geometry/cloud.hpp"
-#include "highmap/geometry/grid.hpp"
+#include "highmap/geometry/grids.hpp"
 #include "highmap/interpolate.hpp"
 #include "highmap/primitives.hpp"
 

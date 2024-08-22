@@ -8,7 +8,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/functions.hpp"
-#include "highmap/geometry/grid.hpp"
+#include "highmap/geometry/grids.hpp"
 #include "highmap/math.hpp"
 #include "highmap/operator.hpp"
 #include "highmap/primitives.hpp"

@@ -5,7 +5,7 @@
 
 #include "highmap/authoring.hpp"
 #include "highmap/geometry/cloud.hpp"
-#include "highmap/geometry/grid.hpp"
+#include "highmap/geometry/grids.hpp"
 #include "highmap/range.hpp"
 #include "highmap/transform.hpp"
 

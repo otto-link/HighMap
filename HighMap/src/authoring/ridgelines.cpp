@@ -5,7 +5,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/geometry/cloud.hpp"
-#include "highmap/geometry/grid.hpp"
+#include "highmap/geometry/grids.hpp"
 #include "highmap/math.hpp"
 #include "highmap/operator.hpp"
 #include "highmap/range.hpp"
