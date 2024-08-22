@@ -8,6 +8,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/erosion.hpp"
+#include "highmap/interpolate1d.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/math.hpp"
 #include "highmap/primitives.hpp"
@@ -20,12 +21,9 @@ void recurve(Array                    &array,
              const std::vector<float> &t,
              const std::vector<float> &v)
 {
-  // _1D::MonotonicInterpolator<float> interp;
-  // interp.setData(t, v);
+  Interpolator1D interp = Interpolator1D(t, v, InterpolationMethod1D::STEFFEN);
 
-  // auto lambda = [&interp](float a) { interp(a); };
-
-  auto lambda = [](float a) { return a; };
+  auto lambda = [&interp](float a) { return interp(a); };
 
   std::transform(array.vector.begin(),
                  array.vector.end(),

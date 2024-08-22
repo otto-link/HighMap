@@ -1,0 +1,2 @@
+add_executable(ex_interpolate1d ex_interpolate1d.cpp)
+target_link_libraries(ex_interpolate1d highmap)

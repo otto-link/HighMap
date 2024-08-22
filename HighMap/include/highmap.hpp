@@ -36,6 +36,7 @@
 #include "highmap/gradient.hpp"
 #include "highmap/heightmap.hpp"
 #include "highmap/hydrology.hpp"
+#include "highmap/interpolate1d.hpp"
 #include "highmap/interpolate2d.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/math.hpp"

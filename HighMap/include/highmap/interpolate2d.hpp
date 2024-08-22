@@ -3,7 +3,7 @@
  * this software. */
 
 /**
- * @file interpolate.hpp
+ * @file interpolate2d.hpp
  * @author Otto Link (otto.link.bv@gmail.com)
  * @brief Header file for 2D interpolation methods.
  *
