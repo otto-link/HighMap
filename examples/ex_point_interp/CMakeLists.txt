@@ -1,0 +1,2 @@
+add_executable(ex_point_interp ex_point_interp.cpp)
+target_link_libraries(ex_point_interp highmap)

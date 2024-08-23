@@ -220,6 +220,92 @@ float angle(const Point &p0, const Point &p1, const Point &p2);
 float distance(const Point &p1, const Point &p2);
 
 /**
+ * @brief Performs a cubic Bezier interpolation.
+ *
+ * Interpolates a point on a cubic Bezier curve defined by the control points
+ * `p_start`, `p_ctrl_start`, `p_ctrl_end`, and `p_end`, using the parameter
+ * `t`. The parameter `t` should be within the range [0, 1], where `t = 0`
+ * corresponds to the start point `p_start` and `t = 1` corresponds to the end
+ * point `p_end`.
+ *
+ * @param p_start The first control point (start point).
+ * @param p_ctrl_start The second control point.
+ * @param p_ctrl_end The third control point.
+ * @param p_end The fourth control point (end point).
+ * @param t The interpolation parameter, ranging from 0 to 1.
+ * @return The interpolated point on the Bezier curve.
+ *
+ * **Example**
+ * @include ex_point_interp.cpp
+ *
+ * **Result**
+ * @image html ex_point_interp.png
+ */
+Point interp_bezier(const Point &p_start,
+                    const Point &p_ctrl_start,
+                    const Point &p_ctrl_end,
+                    const Point &p_end,
+                    float        t);
+
+/**
+ * @brief Performs a cubic B-spline interpolation.
+ *
+ * Interpolates a point on a cubic B-spline curve using the control points
+ * `p0`, `p1`, `p2`, and `p3`. The points `p1` and `p2` define the segment of
+ * the curve to be interpolated, while `p0` and `p3` are used as additional
+ * control points. The parameter `t` should be within the range [0, 1], where
+ * `t = 0` corresponds to the start point `p1` and `t = 1` corresponds to the
+ * end point `p2`.
+ *
+ * @param p0 The first control point (influence for the start point).
+ * @param p1 The second control point (start point of the segment).
+ * @param p2 The third control point (end point of the segment).
+ * @param p3 The fourth control point (influence for the end point).
+ * @param t The interpolation parameter, ranging from 0 to 1.
+ * @return The interpolated point on the B-spline curve.
+ *
+ * **Example**
+ * @include ex_point_interp.cpp
+ *
+ * **Result**
+ * @image html ex_point_interp.png
+ */
+Point interp_bspline(const Point &p0,
+                     const Point &p1,
+                     const Point &p2,
+                     const Point &p3,
+                     float        t);
+
+/**
+ * @brief Performs a Catmull-Rom spline interpolation.
+ *
+ * Interpolates a point on a Catmull-Rom spline defined by the points `p0`,
+ * `p1`, `p2`, and `p3`. The points `p1` and `p2` define the segment of the
+ * curve to be interpolated, while `p0` and `p3` are used as additional control
+ * points. The parameter `t` should be within the range [0, 1], where `t = 0`
+ * corresponds to the start point `p1` and `t = 1` corresponds to the end point
+ * `p2`.
+ *
+ * @param p0 The first control point (influence for the start point).
+ * @param p1 The second control point (start point of the segment).
+ * @param p2 The third control point (end point of the segment).
+ * @param p3 The fourth control point (influence for the end point).
+ * @param t The interpolation parameter, ranging from 0 to 1.
+ * @return The interpolated point on the Catmull-Rom spline.
+ *
+ * **Example**
+ * @include ex_point_interp.cpp
+ *
+ * **Result**
+ * @image html ex_point_interp.png
+ */
+Point interp_catmullrom(const Point &p0,
+                        const Point &p1,
+                        const Point &p2,
+                        const Point &p3,
+                        float        t);
+
+/**
  * @brief Linearly interpolates between two points.
  *
  * This function performs linear interpolation between two points based on a

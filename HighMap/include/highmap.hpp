@@ -38,6 +38,7 @@
 #include "highmap/hydrology.hpp"
 #include "highmap/interpolate1d.hpp"
 #include "highmap/interpolate2d.hpp"
+#include "highmap/interpolate_curve.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/math.hpp"
 #include "highmap/morphology.hpp"

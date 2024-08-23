@@ -1,0 +1,2 @@
+add_executable(ex_interpolate_curve ex_interpolate_curve.cpp)
+target_link_libraries(ex_interpolate_curve highmap)
