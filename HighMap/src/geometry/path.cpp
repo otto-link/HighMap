@@ -483,45 +483,50 @@ void Path::meanderize(float ratio,
 
   this->bspline(edge_divisions);
 }
-
 void Path::reorder_nns(int start_index)
 {
-  // new path indices
-  std::vector<int> idx = {start_index};
+  // reserve space in idx vector upfront
+  std::vector<int> idx;
+  idx.reserve(this->get_npoints());
+  idx.push_back(start_index);
 
-  // brute force nearest neighbor search...
-  std::list<int> queue_search = {};
-  for (size_t k = 0; k < this->get_npoints(); k++)
-    if ((int)k != start_index) queue_search.push_back((int)k);
+  // populate the search queue with all other indices
+  std::list<int> queue_search;
+  for (int k = 0; k < static_cast<int>(this->get_npoints()); ++k)
+    if (k != start_index) queue_search.push_back(k);
 
   while (idx.size() < this->get_npoints())
   {
     int   k = idx.back(); // current point
-    int   knext = 0;      // what we are looking: the next point
+    int   knext = -1;     // next point to add to idx
     float dmin = std::numeric_limits<float>::max();
 
-    for (auto &i : queue_search)
+    for (const auto &i : queue_search)
     {
-      if (i != k)
+      float dist = distance(this->points[k], this->points[i]);
+      if (dist < dmin)
       {
-        float dist = distance(this->points[k], this->points[i]);
-        if (dist < dmin)
-        {
-          dmin = dist;
-          knext = i;
-        }
+        dmin = dist;
+        knext = i;
       }
     }
-    queue_search.remove(knext);
-    idx.push_back(knext);
+
+    // ensure knext was found
+    if (knext != -1)
+    {
+      queue_search.remove(knext);
+      idx.push_back(knext);
+    }
   }
 
-  // new set of reordered points
-  std::vector<Point> points = {};
-  for (size_t k = 0; k < this->get_npoints(); k++)
-    points.push_back(this->points[idx[k]]);
+  // reorder the points based on the new indices
+  std::vector<Point> reordered_points;
+  reordered_points.reserve(this->get_npoints());
+  for (const int &i : idx)
+    reordered_points.push_back(this->points[i]);
 
-  this->points = points;
+  // assign the reordered points back to the object's points vector
+  this->points = std::move(reordered_points);
 }
 
 void Path::resample(float delta)
