@@ -60,6 +60,18 @@ float angle(const Point &p0, const Point &p1, const Point &p2)
   return angle;
 }
 
+float cross_product(const Point &p0, const Point &p1, const Point &p2)
+{
+  // calculate vectors v1 = p1 - p0 and v2 = p2 - p0
+  float v1x = p1.x - p0.x;
+  float v1y = p1.y - p0.y;
+  float v2x = p2.x - p0.x;
+  float v2y = p2.y - p0.y;
+
+  // calculate the 2D cross product v1 x v2
+  return v1x * v2y - v1y * v2x;
+}
+
 float distance(const Point &p1, const Point &p2)
 {
   float dx = p1.x - p2.x;

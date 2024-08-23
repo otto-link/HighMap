@@ -208,6 +208,26 @@ float angle(const Point &p1, const Point &p2);
 float angle(const Point &p0, const Point &p1, const Point &p2);
 
 /**
+ * @brief Computes the 2D cross product of vectors formed by three points.
+ *
+ * Given three points p0, p1, and p2 in 2D space, this function computes the
+ * scalar cross product of the vectors (p1 - p0) and (p2 - p0). In 2D, the
+ * cross product is a scalar value and is often used to determine the
+ * orientation of the three points or the signed area of the parallelogram they
+ * form.
+ *
+ * @param p0 The first point, which serves as the common origin of the two
+ * vectors.
+ * @param p1 The second point, forming the first vector p1 - p0.
+ * @param p2 The third point, forming the second vector p2 - p0.
+ * @return The scalar value of the 2D cross product.
+ *         - Positive if the points p0, p1, p2 are oriented counterclockwise.
+ *         - Negative if they are oriented clockwise.
+ *         - Zero if the points are collinear.
+ */
+float cross_product(const Point &p0, const Point &p1, const Point &p2);
+
+/**
  * @brief Calculates the distance between two points.
  *
  * This function computes the Euclidean distance between two points
