@@ -132,6 +132,23 @@ void Path::clear()
   this->closed = false;
 }
 
+void Path::decasteljau(int edge_divisions)
+{
+  std::vector<Point> new_points = this->points;
+
+  if (this->closed) new_points.push_back(this->points.front());
+
+  InterpolatorCurve fitp = InterpolatorCurve(
+      new_points,
+      InterpolationMethodCurve::DECASTELJAU);
+  int                npts = edge_divisions * (int)new_points.size();
+  std::vector<float> t = hmap::linspace(0.f, 1.f, npts);
+
+  Path new_path = Path(fitp(t));
+
+  *this = std::move(new_path);
+}
+
 void Path::dijkstra(Array      &array,
                     Vec4<float> bbox,
                     int         edge_divisions,

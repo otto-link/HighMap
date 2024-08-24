@@ -214,6 +214,32 @@ public:
   void clear();
 
   /**
+   * @brief Smooth the path using De Casteljau curves.
+   *
+   * This function smooths a path by applying De Casteljau's algorithm to
+   * generate intermediate points along the path, effectively creating a Bézier
+   * curve that approximates the original path. The path is divided into
+   * segments, and the De Casteljau algorithm is applied to each segment,
+   * resulting in a smooth curve.
+   *
+   * The parameter `edge_divisions` controls the number of divisions
+   * (sub-segments) created along each segment of the path. A higher number of
+   * divisions will result in a smoother curve, but will also increase the
+   * computational cost.
+   *
+   * @param edge_divisions The number of divisions for each edge of the path.
+   *                       Default is 10, which provides a balanced level of
+   * smoothing.
+   *
+   * **Example**
+   * @include ex_path_decasteljau.cpp
+   *
+   * **Result**
+   * @image html ex_path_decasteljau.png
+   */
+  void decasteljau(int edge_divisions = 10);
+
+  /**
    * @brief Divide the path by adding points based on the lowest elevation
    * difference between each pair of edge endpoints.
    *
