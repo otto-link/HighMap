@@ -137,6 +137,15 @@ public:
   }
 
   /**
+   * @brief Prints the coordinates and value of the Point object.
+   *
+   * This function outputs the Point's x, y coordinates, and an additional value
+   * `v` to the standard output in the format `(x, y, v)`, followed by a
+   * newline.
+   */
+  void print();
+
+  /**
    * @brief Set the point value by interpolating values of an array at the point
    * position.
    * @param array Input array.
@@ -231,7 +240,7 @@ float cross_product(const Point &p0, const Point &p1, const Point &p2);
  * @brief Calculates the distance between two points.
  *
  * This function computes the Euclidean distance between two points
- * in 3D space.
+ * in 2D space.
  *
  * @param p1 The first point.
  * @param p2 The second point.
@@ -324,6 +333,36 @@ Point interp_catmullrom(const Point &p0,
                         const Point &p2,
                         const Point &p3,
                         float        t);
+
+/**
+ * @brief Computes the midpoint displacement in 1D with a perpendicular
+ * displacement.
+ *
+ * This function generates a midpoint between two points `p1` and `p2` based on
+ * a linear interpolation parameter `t`. It then displaces this midpoint in the
+ * direction perpendicular to the line segment formed by `p1` and `p2`. The
+ * displacement distance is determined by the `distance_ratio` parameter and the
+ * `orientation` (which can be -1 or 1).
+ *
+ * @param p1 The first point.
+ * @param p2 The second point.
+ * @param orientation Determines the direction of the perpendicular
+ * displacement.
+ *                    - A value of `1` displaces the midpoint in the positive
+ * perpendicular direction.
+ *                    - A value of `-1` displaces the midpoint in the negative
+ * perpendicular direction.
+ * @param distance_ratio The ratio of the displacement distance relative to the
+ * length of the line segment `p1p2`.
+ * @param t The interpolation factor (default is 0.5) for computing the midpoint
+ * between `p1` and `p2`, before the displacement.
+ * @return A `Point` representing the displaced midpoint.
+ */
+Point midpoint(const Point &p1,
+               const Point &p2,
+               int          orientation,
+               float        distance_ratio,
+               float        t = 0.5f);
 
 /**
  * @brief Linearly interpolates between two points.

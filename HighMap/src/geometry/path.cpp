@@ -276,76 +276,57 @@ void Path::divide()
   }
 }
 
-void Path::fractalize(int   iterations,
-                      uint  seed,
-                      float sigma,
-                      int   orientation,
-                      float persistence)
-{
-  std::mt19937                    gen(seed);
-  std::normal_distribution<float> dis(0.f, sigma);
-
-  for (int it = 0; it < iterations; it++)
-  {
-    // add a mid point between each points and shuffle the position of
-    // this new point
-    this->divide();
-
-    size_t ks = this->closed ? 0 : 1;
-    for (size_t k = 1; k < this->get_npoints() - ks; k += 2)
-    {
-      size_t knext = (k + 1) % this->get_npoints();
-
-      float amp = dis(gen);
-      float alpha = angle(this->points[k - 1], this->points[knext]) + M_PI_2;
-      float dist = distance(this->points[k - 1], this->points[knext]);
-
-      if (orientation != 0)
-        amp = std::abs(amp) * (float)std::copysign(1, orientation);
-
-      this->points[k].x += amp * dist * std::cos(alpha);
-      this->points[k].y += amp * dist * std::sin(alpha);
-    }
-    sigma *= persistence;
-  }
-}
-
 void Path::fractalize(int         iterations,
                       uint        seed,
-                      Array      &control_field,
-                      Vec4<float> bbox,
                       float       sigma,
                       int         orientation,
-                      float       persistence)
+                      float       persistence,
+                      Array      *p_ctrl_array,
+                      Vec4<float> bbox)
 {
   std::mt19937                    gen(seed);
-  std::normal_distribution<float> dis(0.f, sigma);
+  std::normal_distribution<float> dis(0.f, 1.f);
 
   for (int it = 0; it < iterations; it++)
   {
-    // add a mid point between each points and shuffle the position of
-    // this new point
-    this->divide();
+    std::vector<Point> new_points = {};
 
-    size_t ks = this->closed ? 0 : 1;
-    for (size_t k = 1; k < this->get_npoints() - ks; k += 2)
+    // determine the ending index based on whether the list is
+    // closed (circular)
+    size_t npoints = this->get_npoints();
+    size_t end = npoints - 1 + this->closed;
+
+    for (size_t k = 0; k < end; k++)
     {
-      size_t knext = (k + 1) % this->get_npoints();
+      // determine the index of the next point, wrapping around if circular
+      size_t knext = (k + 1) % npoints;
 
-      float amp = dis(gen);
-      float alpha = angle(this->points[k - 1], this->points[knext]) + M_PI_2;
-      float dist = distance(this->points[k - 1], this->points[knext]);
+      // generate random displacement amplitude (as a ratio to the
+      // point distance)
+      float amp = sigma * dis(gen);
 
-      if (orientation != 0)
-        amp = std::abs(amp) * (float)std::copysign(1, orientation);
+      // if provided, modulate amplitude based on underlying field
+      if (p_ctrl_array)
+        amp *= p_ctrl_array->get_value_nearest(this->points[k].x,
+                                               this->points[k].y,
+                                               bbox);
 
-      amp *= control_field.get_value_nearest(this->points[k].x,
-                                             this->points[k].y,
-                                             bbox);
+      // insert midpoint between current edge start and end
+      Point pnew = midpoint(this->points[k],
+                            this->points[knext],
+                            orientation,
+                            amp);
 
-      this->points[k].x += amp * dist * std::cos(alpha);
-      this->points[k].y += amp * dist * std::sin(alpha);
+      new_points.push_back(this->points[k]);
+      new_points.push_back(pnew);
     }
+
+    // eventually add very last point
+    new_points.push_back(this->points.back());
+
+    this->points = new_points;
+
+    // update sigma by multiplying with persistence factor
     sigma *= persistence;
   }
 }

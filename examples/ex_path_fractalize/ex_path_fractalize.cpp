@@ -31,7 +31,17 @@ int main(void)
   hmap::Array z3 = hmap::Array(shape);
   pn.to_array(z3, bbox);
 
-  pc.fractalize(iterations, seed, z_control, bbox, sigma);
+  int   orientation = 0;
+  float persistence = 1.f;
+
+  pc.fractalize(iterations,
+                seed,
+                sigma,
+                orientation,
+                persistence,
+                &z_control,
+                bbox);
+
   hmap::Array z4 = hmap::Array(shape);
   pc.to_array(z4, bbox);
 

@@ -2,6 +2,7 @@
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
 #include <cmath>
+#include <iostream>
 
 #include "highmap/geometry/point.hpp"
 
@@ -29,6 +30,12 @@ void Point::update_value_from_array(const Array &array, Vec4<float> bbox)
   }
   else
     this->v = 0.f; // if outside array bounding box
+}
+
+void Point::print()
+{
+  std::cout << "(" << this->x << ", " << this->y << ", " << this->v << ")"
+            << std::endl;
 }
 
 float angle(const Point &p1, const Point &p2)
@@ -129,6 +136,35 @@ Point lerp(const Point &p1, const Point &p2, float t)
   // Clamp t to the range [0, 1] to restrict interpolation between p1 and p2
   t = std::clamp(t, 0.0f, 1.0f);
   return p1 + t * (p2 - p1);
+}
+
+Point midpoint(const Point &p1,
+               const Point &p2,
+               int          orientation,
+               float        distance_ratio,
+               float        t)
+{
+  // interpolated midpoint based on t
+  Point pmid = lerp(p1, p2, t);
+
+  // apply orientation (0 for random direction, 1 for inflation, -1
+  // for deflation)
+  distance_ratio = orientation == 0 ? distance_ratio
+                                    : std::abs(distance_ratio) *
+                                          std::copysign(1.0f, orientation);
+
+  // normalize the perpendicular vector and apply the orientation and
+  // distance ratio (NB - point distance is embedded in dx and dy)
+  float dx = p2.x - p1.x;
+  float dy = p2.y - p1.y;
+
+  float perp_x = -dy * distance_ratio;
+  float perp_y = dx * distance_ratio;
+
+  // apply the perpendicular displacement to the midpoint
+  Point displaced_midpoint(pmid.x + perp_x, pmid.y + perp_y, pmid.v);
+
+  return displaced_midpoint;
 }
 
 // HELPER

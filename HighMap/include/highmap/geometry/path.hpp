@@ -251,16 +251,26 @@ public:
   void divide();
 
   /**
-   * @brief "Fractalize" the path by adding points and randomly displacing their
-   * positions.
+   * @brief Applies fractalization to the path by adding points and randomly
+   * displacing their positions.
    *
-   * This method introduces randomness to the path by adding new points and
-   * applying Gaussian displacement to these points. The `iterations` parameter
-   * determines how many times this process is repeated. The `sigma` parameter
-   * controls the width of the Gaussian noise, and `orientation` adjusts the
-   * direction of the displacement. The `persistence` parameter affects the
-   * noise strength over iterations. The `control_field` array can be used to
-   * locally control the amplitude of the displacement.
+   * This method enhances the complexity of a path by iteratively adding new
+   * points between existing ones and displacing them using Gaussian noise. The
+   * process can simulate natural phenomena like terrain generation or random
+   * walk paths. The number of iterations determines the level of detail added
+   * to the path.
+   *
+   * - `sigma` controls the magnitude of the displacement, normalized by the
+   * distance between points.
+   * - `orientation` directs the displacement:
+   *    - `0` for random directions,
+   *    - `1` for inflation (outward displacement),
+   *    - `-1` for deflation (inward displacement).
+   * - `persistence` governs how the noise strength evolves over iterations,
+   * typically reducing it gradually.
+   * - An optional `control_field` array allows for local adjustments of
+   * displacement amplitude, guided by the `bbox` (bounding box), which defines
+   * the spatial extent within which the control field is applied.
    *
    * **Example**
    * @include ex_path_fractalize.cpp
@@ -268,31 +278,27 @@ public:
    * **Result**
    * @image html ex_path_fractalize.png
    *
-   * @param iterations Number of times to apply the fractalization process.
-   * @param seed Random seed for noise generation.
-   * @param sigma Half-width of the Gaussian displacement, normalized by the
-   * distance between points.
-   * @param orientation Orientation of the displacement: 0 for random direction,
-   * 1 for inflation, -1 for deflation.
-   * @param persistence Noise persistence with respect to iteration number.
-   * @param control_field Optional array for locally controlling the amplitude
-   * of displacement.
-   * @param bbox Bounding box defining the area for which control field values
-   * are valid.
+   * @param iterations Number of iterations to apply the fractalization process.
+   * @param seed Seed value for random number generation, ensuring
+   * reproducibility.
+   * @param sigma Standard deviation of the Gaussian displacement, relative to
+   * the distance between points.
+   * @param orientation Determines the displacement direction: `0` for random,
+   * `1` for inflation, `-1` for deflation.
+   * @param persistence Factor that adjusts the noise intensity across
+   * iterations.
+   * @param control_field Optional pointer to an array that locally modifies the
+   * displacement amplitude.
+   * @param bbox Bounding box that defines the valid area for the control
+   * field's influence.
    */
-  void fractalize(int   iterations,
-                  uint  seed,
-                  float sigma = 0.3f,
-                  int   orientation = 0,
-                  float persistence = 1.f);
-
   void fractalize(int         iterations,
                   uint        seed,
-                  Array      &control_field,
-                  Vec4<float> bbox,
                   float       sigma = 0.3f,
                   int         orientation = 0,
-                  float       persistence = 1.f); ///< @overload
+                  float       persistence = 1.f,
+                  Array      *p_control_field = nullptr,
+                  Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
   /**
    * @brief Get the arc length of the path.
