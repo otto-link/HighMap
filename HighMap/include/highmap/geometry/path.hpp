@@ -163,6 +163,10 @@ public:
    * parameter defines the number of subdivisions per edge for achieving smooth
    * curves.
    *
+   * **Important**: This function does not correctly handle closed polylines
+   * (circular contours). If the path is closed, the smoothing may not correctly
+   * close the loop, potentially leaving a gap between the start and end points.
+   *
    * **Example**
    * @include ex_path_bspline.cpp
    *
@@ -171,6 +175,8 @@ public:
    *
    * @param edge_divisions Number of subdivisions per edge to achieve a smooth
    * B-Spline curve.
+   *
+   * @warning This function does not correctly handle closed polylines.
    */
   void bspline(int edge_divisions = 10);
 
@@ -182,6 +188,10 @@ public:
    * `edge_divisions` parameter determines the number of subdivisions per edge
    * for smoothing.
    *
+   * **Important**: This function does not correctly handle closed polylines
+   * (circular contours). If the path is closed, the smoothing may not correctly
+   * close the loop, potentially leaving a gap between the start and end points.
+   *
    * **Example**
    * @include ex_path_catmullrom.cpp
    *
@@ -190,6 +200,8 @@ public:
    *
    * @param edge_divisions Number of edge subdivisions to create a smooth
    * Catmull-Rom curve.
+   *
+   * @warning This function does not correctly handle closed polylines.
    */
   void catmullrom(int edge_divisions = 10);
 

@@ -6,14 +6,12 @@
 #include <list>
 #include <random>
 
-#include "BSpline.h"
-#include "Bezier.h"
-#include "CatmullRom.h"
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/geometry/path.hpp"
+#include "highmap/interpolate_curve.hpp"
 #include "highmap/morphology.hpp"
 #include "highmap/operator.hpp"
 #include "highmap/range.hpp"
@@ -23,169 +21,109 @@ namespace hmap
 
 void Path::bezier(float curvature_ratio, int edge_divisions)
 {
-  Path new_path = Path();
+  // --- generate a new set of points by adding control points
+  // --- inbetween path points
 
-  size_t ks = this->closed ? 0 : 1;
-  for (size_t k = 0; k < this->get_npoints() - ks; k++)
+  std::vector<Point> new_points = {};
+  new_points.reserve(this->get_npoints() + 2 * (this->get_npoints() - 1));
+
+  size_t npoints = this->get_npoints();
+  size_t end = this->closed ? npoints : npoints - 1;
+
+  for (size_t k = 0; k < end; k++)
   {
-    size_t kp1 = (k + 1) % this->get_npoints();
-    size_t kp2 = (k + 2) % this->get_npoints();
+    size_t knext = (k + 1) % npoints;
+    size_t knext_after = (k + 2) % npoints;
 
-    Bezier curve = Bezier();
-    curve.set_steps(edge_divisions);
+    Point pc1 = lerp(this->points[k], this->points[knext], curvature_ratio);
+    Point pc2 = lerp(this->points[knext],
+                     this->points[knext_after],
+                     -curvature_ratio);
 
-    curve.add_way_point(Vector(this->points[k].x, this->points[k].y, 0.f));
-
-    {
-      Point p = lerp(this->points[k], this->points[kp1], curvature_ratio);
-      curve.add_way_point(Vector(p.x, p.y, 0.f));
-    }
-
-    if (!this->closed && k == this->get_npoints() - 2)
-    {
-      Point p = lerp(this->points[k], this->points[kp1], curvature_ratio);
-      curve.add_way_point(Vector(p.x, p.y, 0.f));
-    }
-    else
-    {
-      Point p = lerp(this->points[kp1], this->points[kp2], -curvature_ratio);
-      curve.add_way_point(Vector(p.x, p.y, 0.f));
-    }
-
-    curve.add_way_point(Vector(this->points[kp1].x, this->points[kp1].y, 0.f));
-
-    for (int i = 0; i < curve.node_count(); ++i)
-    {
-      // interpolate value
-      float s = curve.length_from_starting_point(i) / curve.total_length();
-      float v = (1. - s) * this->points[k].v + s * this->points[kp1].v;
-
-      new_path.add_point(Point(curve.node(i).x, curve.node(i).y, v));
-    }
+    new_points.push_back(this->points[k]);
+    new_points.push_back(pc1);
+    new_points.push_back(pc2);
   }
 
-  *this = new_path;
+  // add **first** point to close the loop
+  if (this->closed) new_points.push_back(this->points.front());
+
+  // --- interpolate
+
+  InterpolatorCurve  fitp = InterpolatorCurve(new_points,
+                                             InterpolationMethodCurve::BEZIER);
+  int                npts = edge_divisions * (int)this->get_npoints();
+  std::vector<float> t = hmap::linspace(0.f, 1.f, npts);
+
+  Path new_path = Path(fitp(t));
+  *this = std::move(new_path);
 }
 
 void Path::bezier_round(float curvature_ratio, int edge_divisions)
 {
-  Path new_path = Path();
+  // --- generate a new set of points by adding control points
+  // --- inbetween path points
 
-  size_t ks = this->closed ? 0 : 1;
-  for (size_t k = 0; k < this->get_npoints() - ks; k++)
+  std::vector<Point> new_points = {};
+  new_points.reserve(this->get_npoints() + 2 * (this->get_npoints() - 1));
+
+  size_t npoints = this->get_npoints();
+  size_t end = this->closed ? npoints : npoints - 1;
+
+  for (size_t k = 0; k < end; k++)
   {
-    size_t km1 = (k - 1) % this->get_npoints();
-    size_t kp1 = (k + 1) % this->get_npoints();
-    size_t kp2 = (k + 2) % this->get_npoints();
+    size_t kprev = (k - 1) % npoints;
+    size_t knext = (k + 1) % npoints;
+    size_t knext_after = (k + 2) % npoints;
 
-    Bezier curve = Bezier();
-    curve.set_steps(edge_divisions);
+    Point delta_p1 = this->points[knext] - this->points[kprev];
+    Point delta_p2 = this->points[k] - this->points[knext_after];
 
-    curve.add_way_point(Vector(this->points[k].x, this->points[k].y, 0.f));
+    Point pc1 = this->points[k] + curvature_ratio * delta_p1;
+    Point pc2 = this->points[knext] + curvature_ratio * delta_p2;
 
-    if (!this->closed && k == 0)
-    {
-      Point p = lerp(this->points[k], this->points[kp1], curvature_ratio);
-      curve.add_way_point(Vector(p.x, p.y, 0.f));
-    }
-    else
-    {
-      float dx = this->points[kp1].x - this->points[km1].x;
-      float dy = this->points[kp1].y - this->points[km1].y;
-      Point p = Point(this->points[k].x + curvature_ratio * dx,
-                      this->points[k].y + curvature_ratio * dy,
-                      0.f);
-      curve.add_way_point(Vector(p.x, p.y, 0.f));
-    }
-
-    if (!this->closed && k == this->get_npoints() - 1)
-    {
-      Point p = lerp(this->points[kp1], this->points[kp2], curvature_ratio);
-      curve.add_way_point(Vector(p.x, p.y, 0.f));
-    }
-    else
-    {
-      float dx = this->points[kp2].x - this->points[k].x;
-      float dy = this->points[kp2].y - this->points[k].y;
-      Point p = Point(this->points[kp1].x - curvature_ratio * dx,
-                      this->points[kp1].y - curvature_ratio * dy,
-                      0.f);
-      curve.add_way_point(Vector(p.x, p.y, 0.f));
-    }
-
-    curve.add_way_point(Vector(this->points[kp1].x, this->points[kp1].y, 0.f));
-
-    for (int i = 0; i < curve.node_count(); ++i)
-    {
-      // interpolate value
-      float s = curve.length_from_starting_point(i) / curve.total_length();
-      float v = (1. - s) * this->points[k].v + s * this->points[kp1].v;
-
-      new_path.add_point(Point(curve.node(i).x, curve.node(i).y, v));
-    }
+    new_points.push_back(this->points[k]);
+    new_points.push_back(pc1);
+    new_points.push_back(pc2);
   }
 
-  *this = new_path;
+  // add **first** point to close the loop
+  if (this->closed) new_points.push_back(this->points.front());
+
+  // --- interpolate
+
+  InterpolatorCurve  fitp = InterpolatorCurve(new_points,
+                                             InterpolationMethodCurve::BEZIER);
+  int                npts = edge_divisions * (int)this->get_npoints();
+  std::vector<float> t = hmap::linspace(0.f, 1.f, npts);
+
+  Path new_path = Path(fitp(t));
+  *this = std::move(new_path);
 }
 
 void Path::bspline(int edge_divisions)
 {
-  Path new_path = Path();
+  InterpolatorCurve  fitp = InterpolatorCurve(this->points,
+                                             InterpolationMethodCurve::BSPLINE);
+  int                npts = edge_divisions * (int)this->get_npoints();
+  std::vector<float> t = hmap::linspace(0.f, 1.f, npts);
 
-  BSpline curve = BSpline();
-  curve.set_steps(edge_divisions * (int)this->get_npoints());
+  Path new_path = Path(fitp(t));
 
-  size_t ks = this->closed ? 1 : 0;
-  for (size_t k = 0; k < this->get_npoints() + ks; k++)
-  {
-    if (k == 0)
-      curve.add_way_point(
-          Vector(this->points[0].x, this->points[0].y, this->points[0].v));
-
-    size_t k0 = k % this->get_npoints();
-    curve.add_way_point(
-        Vector(this->points[k0].x, this->points[k0].y, this->points[k0].v));
-
-    if (k == (this->get_npoints() + ks - 1))
-      curve.add_way_point(
-          Vector(this->points[k0].x, this->points[k0].y, this->points[k0].v));
-  }
-
-  for (int i = 0; i < curve.node_count(); ++i)
-    new_path.add_point(
-        Point(curve.node(i).x, curve.node(i).y, curve.node(i).z));
-
-  *this = new_path;
+  *this = std::move(new_path);
 }
 
 void Path::catmullrom(int edge_divisions)
 {
-  Path new_path = Path();
+  InterpolatorCurve fitp = InterpolatorCurve(
+      this->points,
+      InterpolationMethodCurve::CATMULLROM);
+  int                npts = edge_divisions * (int)this->get_npoints();
+  std::vector<float> t = hmap::linspace(0.f, 1.f, npts);
 
-  CatmullRom curve = CatmullRom();
-  curve.set_steps(edge_divisions * (int)this->get_npoints());
+  Path new_path = Path(fitp(t));
 
-  size_t ks = this->closed ? 1 : 0;
-  for (size_t k = 0; k < this->get_npoints() + ks; k++)
-  {
-    if (k == 0)
-      curve.add_way_point(
-          Vector(this->points[0].x, this->points[0].y, this->points[0].v));
-
-    size_t k0 = k % this->get_npoints();
-    curve.add_way_point(
-        Vector(this->points[k0].x, this->points[k0].y, this->points[k0].v));
-
-    if (k == (this->get_npoints() + ks - 1))
-      curve.add_way_point(
-          Vector(this->points[k0].x, this->points[k0].y, this->points[k0].v));
-  }
-
-  for (int i = 0; i < curve.node_count(); ++i)
-    new_path.add_point(
-        Point(curve.node(i).x, curve.node(i).y, curve.node(i).z));
-
-  *this = new_path;
+  *this = std::move(new_path);
 }
 
 void Path::clear()

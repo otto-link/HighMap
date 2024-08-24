@@ -133,8 +133,6 @@ Point interp_catmullrom(const Point &p0,
 
 Point lerp(const Point &p1, const Point &p2, float t)
 {
-  // Clamp t to the range [0, 1] to restrict interpolation between p1 and p2
-  t = std::clamp(t, 0.0f, 1.0f);
   return p1 + t * (p2 - p1);
 }
 
