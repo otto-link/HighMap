@@ -266,14 +266,27 @@ void Path::dijkstra(Array      &array,
 
 void Path::divide()
 {
-  size_t ks = this->closed ? 0 : 1; // trick to handle closed contours
-  for (size_t k = 0; k < this->get_npoints() - ks; k++)
+  size_t npoints = this->get_npoints();
+  size_t end = this->closed ? npoints : npoints - 1;
+
+  std::vector<Point> new_points;
+  new_points.reserve(2 * npoints); // reserve space for the new points
+
+  for (size_t k = 0; k < end; ++k)
   {
-    size_t knext = (k + 1) % this->get_npoints();
-    Point  p = lerp(this->points[k], this->points[knext], 0.5f);
-    this->points.insert(this->points.begin() + k + 1, p);
-    ++k;
+    size_t knext = (k + 1) % npoints;
+
+    // add the original point
+    new_points.push_back(this->points[k]);
+
+    // calculate and add the midpoint
+    Point midpoint = lerp(this->points[k], this->points[knext], 0.5f);
+    new_points.push_back(midpoint);
   }
+
+  new_points.push_back(this->points.back());
+
+  this->points = std::move(new_points);
 }
 
 void Path::fractalize(int         iterations,
@@ -294,7 +307,7 @@ void Path::fractalize(int         iterations,
     // determine the ending index based on whether the list is
     // closed (circular)
     size_t npoints = this->get_npoints();
-    size_t end = npoints - 1 + this->closed;
+    size_t end = this->closed ? npoints : npoints - 1;
 
     for (size_t k = 0; k < end; k++)
     {
@@ -324,7 +337,7 @@ void Path::fractalize(int         iterations,
     // eventually add very last point
     new_points.push_back(this->points.back());
 
-    this->points = new_points;
+    this->points = std::move(new_points);
 
     // update sigma by multiplying with persistence factor
     sigma *= persistence;
