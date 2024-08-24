@@ -1,4 +1,3 @@
-include(cpp-spline.cmake)
 include(delaunator.cmake)
 include(dkm.cmake)
 include(FastNoiseLite.cmake)
