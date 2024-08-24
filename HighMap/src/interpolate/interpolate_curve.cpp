@@ -162,6 +162,18 @@ InterpolatorCurve::InterpolatorCurve(std::vector<Point>       points,
       }
     };
     break;
+
+  case InterpolationMethodCurve::DECASTELJAU:
+    this->interp = [this](float t)
+    {
+      if (t == 0.f)
+        return this->points_data.front();
+      else if (t == 1.f)
+        return this->points_data.back();
+      else
+        return interp_decasteljau(this->points_data, t);
+    };
+    break;
   }
 }
 

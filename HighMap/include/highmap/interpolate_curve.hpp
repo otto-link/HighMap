@@ -31,14 +31,18 @@ namespace hmap
  * (4 * n - 1).
  * - `BSPLINE`: B-spline interpolation method.
  * - `CATMULLROM`: Catmull-Rom spline interpolation method.
+ * - `DECASTELJAU`: Uses De Casteljau's algorithm to compute Bézier curves at a
+ *   given parameter. This is an alternative to the standard Bézier curve
+ * method.
  * - `POINTS_LERP`: Linear interpolation between points.
  */
 enum InterpolationMethodCurve : int
 {
-  BEZIER,     ///< Bezier curve interpolation
-  BSPLINE,    ///< B-spline interpolation
-  CATMULLROM, ///< Catmull-Rom spline interpolation
-  POINTS_LERP ///< Linear interpolation between points
+  BEZIER,      ///< Bezier curve interpolation
+  BSPLINE,     ///< B-spline interpolation
+  CATMULLROM,  ///< Catmull-Rom spline interpolation
+  DECASTELJAU, ///< De Casteljau algorithm for Bézier curve computation
+  POINTS_LERP  ///< Linear interpolation between points
 };
 
 /**

@@ -131,6 +131,17 @@ Point interp_catmullrom(const Point &p0,
   return pi;
 }
 
+Point interp_decasteljau(const std::vector<Point> &points, float t)
+{
+  if (points.size() == 1) return points[0];
+
+  std::vector<Point> new_points;
+  for (size_t i = 0; i < points.size() - 1; ++i)
+    new_points.push_back(points[i] * (1 - t) + points[i + 1] * t);
+
+  return interp_decasteljau(new_points, t);
+}
+
 Point lerp(const Point &p1, const Point &p2, float t)
 {
   return p1 + t * (p2 - p1);

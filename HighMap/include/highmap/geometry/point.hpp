@@ -335,6 +335,31 @@ Point interp_catmullrom(const Point &p0,
                         float        t);
 
 /**
+ * @brief Performs a De Casteljau algorithm-based interpolation for Bezier
+ * curves.
+ *
+ * Interpolates a point on a Bézier curve defined by a set of control points
+ * using De Casteljau's algorithm. The algorithm is recursive and provides
+ * a stable and numerically robust method to evaluate Bézier curves at a
+ * given parameter `t`.
+ *
+ * The parameter `t` should be within the range [0, 1], where `t = 0`
+ * corresponds to the first control point and `t = 1` corresponds to the last
+ * control point.
+ *
+ * @param points A vector of control points defining the Bézier curve.
+ * @param t The interpolation parameter, ranging from 0 to 1.
+ * @return The interpolated point on the Bézier curve.
+ *
+ * **Example**
+ * @include ex_point_interp.cpp
+ *
+ * **Result**
+ * @image html ex_point_interp.png
+ */
+Point interp_decasteljau(const std::vector<Point> &points, float t);
+
+/**
  * @brief Computes the midpoint displacement in 1D with a perpendicular
  * displacement.
  *
