@@ -284,7 +284,7 @@ void Path::divide()
     new_points.push_back(midpoint);
   }
 
-  new_points.push_back(this->points.back());
+  if (!this->closed) new_points.push_back(this->points.back());
 
   this->points = std::move(new_points);
 }
@@ -334,9 +334,10 @@ void Path::fractalize(int         iterations,
       new_points.push_back(pnew);
     }
 
-    // eventually add very last point
-    new_points.push_back(this->points.back());
+    // if the path is not closed, ensure the last original point is added
+    if (!this->closed) new_points.push_back(this->points.back());
 
+    // replace the original points with the resampled points
     this->points = std::move(new_points);
 
     // update sigma by multiplying with persistence factor
@@ -525,28 +526,50 @@ void Path::reorder_nns(int start_index)
 
 void Path::resample(float delta)
 {
-  // redivide each edge
-  size_t ks = this->closed ? 0 : 1;
+  // determine the ending index based on whether the list is closed
+  // (circular)
+  size_t npoints = this->get_npoints();
+  size_t end = this->closed ? npoints : npoints - 1;
 
-  for (size_t k = 0; k < this->get_npoints() - ks; k++)
+  // initialize a vector to store the new resampled points
+  std::vector<Point> new_points = {};
+
+  // loop through each segment of the path
+  for (size_t k = 0; k < end; k++)
   {
-    size_t knext = (k + 1) % this->get_npoints();
-    float  dist = distance(this->points[k], this->points[knext]);
-    int    ndiv = (int)(dist / delta);
-    Point  p1 = this->points[k];
-    Point  p2 = this->points[knext];
+    // get the index of the next point, wrapping around if the path is closed
+    size_t knext = (k + 1) % npoints;
 
+    // calculate the number of divisions needed based on the distance
+    // and the desired delta
+    float dist = distance(this->points[k], this->points[knext]);
+
+    int   ndiv = static_cast<int>(dist / delta);
+    Point p1 = this->points[k];     // Current point
+    Point p2 = this->points[knext]; // Next point
+
+    // if more than one division is required, generate intermediate points
     if (ndiv > 1)
     {
-      for (int i = 1; i < ndiv; i++)
-      {
-        float r = (float)i / (float)ndiv;
-        Point p = lerp(p1, p2, r);
-        this->points.insert(this->points.begin() + k + i, p);
-      }
-      k += ndiv - 1;
+      // generate linearly spaced interpolation factors between 0 and 1,
+      // excluding the endpoint
+      std::vector<float> t = linspace(0.f, 1.f, ndiv, false);
+
+      for (auto &t_ : t)
+        new_points.push_back(lerp(p1, p2, t_));
+    }
+    else
+    {
+      // if the segment is shorter than delta, just add the current point
+      new_points.push_back(p1);
     }
   }
+
+  // if the path is not closed, ensure the last original point is added
+  if (!this->closed) new_points.push_back(this->points.back());
+
+  // replace the original points with the resampled points
+  this->points = std::move(new_points);
 }
 
 void Path::resample_uniform()
@@ -556,14 +579,17 @@ void Path::resample_uniform()
   // step)
   float dmin = std::numeric_limits<float>::max();
 
-  size_t ks = this->closed ? 0 : 1;
-  for (size_t k = 0; k < this->get_npoints() - ks; k++)
+  size_t npoints = this->get_npoints();
+  size_t end = this->closed ? npoints : npoints - 1;
+
+  for (size_t k = 0; k < end; k++)
   {
-    size_t knext = (k + 1) % this->get_npoints();
+    size_t knext = (k + 1) % npoints;
     float  dist = distance(this->points[k], this->points[knext]);
     if (dist < dmin) dmin = dist;
   }
 
+  // resample
   this->resample(dmin);
 }
 

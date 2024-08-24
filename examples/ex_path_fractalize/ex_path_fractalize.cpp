@@ -27,6 +27,9 @@ int main(void)
   hmap::Path pn = path;
   hmap::Path pc = path;
 
+  // pn.closed = true;
+  // pn.resample_uniform();
+
   pn.fractalize(iterations, seed, sigma);
   hmap::Array z3 = hmap::Array(shape);
   pn.to_array(z3, bbox);
@@ -34,6 +37,7 @@ int main(void)
   int   orientation = 0;
   float persistence = 1.f;
 
+  // pc.closed = true;
   pc.fractalize(iterations,
                 seed,
                 sigma,
