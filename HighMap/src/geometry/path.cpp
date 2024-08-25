@@ -433,6 +433,7 @@ void Path::meanderize(float ratio,
 
   this->bspline(edge_divisions);
 }
+
 void Path::reorder_nns(int start_index)
 {
   // reserve space in idx vector upfront
