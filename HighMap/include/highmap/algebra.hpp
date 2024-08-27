@@ -20,6 +20,7 @@
  *
  */
 #pragma once
+#include <cmath>
 #include <vector>
 
 namespace hmap
@@ -209,6 +210,32 @@ template <typename T> struct Vec2
   friend float dot(const Vec2 v1, const Vec2 v2)
   {
     return v1.x * v2.x + v1.y * v2.y;
+  }
+
+  /**
+   * @brief Calculate the magnitude (length) of the vector.
+   *
+   * @return The magnitude of the vector.
+   */
+  T magnitude() const
+  {
+    return std::sqrt(x * x + y * y);
+  }
+
+  /**
+   * @brief Normalize the vector to have a magnitude of 1.
+   *
+   * This method modifies the vector in place. If the vector has zero length,
+   * the components remain unchanged to avoid division by zero.
+   */
+  void normalize()
+  {
+    T mag = magnitude();
+    if (mag > 0) // Avoid division by zero
+    {
+      x /= mag;
+      y /= mag;
+    }
   }
 };
 
@@ -411,21 +438,6 @@ template <typename T> struct Vec3
   }
 
   /**
-   * @brief Friend function to calculate the dot product of two vectors.
-   *
-   * The dot product is the sum of the products of the corresponding components
-   * of the vectors.
-   *
-   * @param v1 The first vector.
-   * @param v2 The second vector.
-   * @return The dot product of the two vectors.
-   */
-  friend float dot(const Vec3 v1, const Vec3 v2)
-  {
-    return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
-  }
-
-  /**
    * @brief Friend function to calculate the cross product of two vectors.
    *
    * The cross product results in a vector that is perpendicular to the plane
@@ -442,6 +454,48 @@ template <typename T> struct Vec3
     out.y = v1.z * v2.x - v1.x * v2.z;
     out.z = v1.x * v2.y - v1.y * v2.x;
     return out;
+  }
+
+  /**
+   * @brief Friend function to calculate the dot product of two vectors.
+   *
+   * The dot product is the sum of the products of the corresponding components
+   * of the vectors.
+   *
+   * @param v1 The first vector.
+   * @param v2 The second vector.
+   * @return The dot product of the two vectors.
+   */
+  friend float dot(const Vec3 v1, const Vec3 v2)
+  {
+    return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
+  }
+
+  /**
+   * @brief Calculate the magnitude (length) of the vector.
+   *
+   * @return The magnitude of the vector.
+   */
+  T magnitude() const
+  {
+    return std::sqrt(x * x + y * y + z * z);
+  }
+
+  /**
+   * @brief Normalize the vector to have a magnitude of 1.
+   *
+   * This method modifies the vector in place. If the vector has zero length,
+   * the components remain unchanged to avoid division by zero.
+   */
+  void normalize()
+  {
+    T mag = magnitude();
+    if (mag > 0) // Avoid division by zero
+    {
+      x /= mag;
+      y /= mag;
+      z /= mag;
+    }
   }
 };
 
