@@ -7,8 +7,10 @@
  * @author Otto Link (otto.link.bv@gmail.com)
  * @brief Header file for boundary condition functions and utilities.
  *
- * This header file contains function declarations and utilities for managing
- * heightmap values at the boundary conditions.
+ * This header file contains declarations for functions and utilities that
+ * manage and enforce boundary conditions in heightmap arrays. The functions
+ * include methods for filling, extrapolating, and smoothing values at the
+ * boundaries, as well as making arrays periodic and handling symmetry.
  *
  * @version 0.1
  * @date 2023-04-30
@@ -23,15 +25,22 @@ namespace hmap
 {
 
 /**
- * @brief Linear extrapolation of values at the borders (i = 0, j = 0, ...)
- * based on inner values.
+ * @brief Performs linear extrapolation of values at the borders of an array
+ * (e.g., `i = 0`, `j = 0`, etc.) based on the inner values of the array.
  *
- * @param array Input array.
- * @param nbuffer Buffer depth.
- * @param sigma Relaxation coefficient.
+ * This function modifies the borders of the input array by applying a linear
+ * extrapolation method, which uses the values inside the array to estimate
+ * and fill in the border values. The extrapolation is influenced by a
+ * relaxation coefficient (`sigma`) and a buffer depth (`nbuffer`), which
+ * determines how many layers of the border are extrapolated.
  *
- * @see {@link fill_borders}
+ * @param array Reference to the input array whose borders need extrapolation.
+ * @param nbuffer Optional parameter specifying the buffer depth, i.e., the
+ * number of layers at the border to extrapolate. Default is 1.
+ * @param sigma Optional relaxation coefficient that adjusts the influence of
+ * inner values on the extrapolated border values. Default is 0.0.
  *
+ * @see fill_borders()
  */
 void extrapolate_borders(Array &array, int nbuffer = 1, float sigma = 0.f);
 
@@ -68,32 +77,53 @@ void falloff(Array           &array,
              Vec4<float>      bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
- * @brief Fill values at the borders (i = 0, j = 0, ...) based on 1st neighbor
- * values.
+ * @brief Fills the border values of an array (e.g., `i = 0`, `j = 0`, etc.)
+ * based on the values of the first neighboring cells.
  *
- * @param array Input array.
+ * This function modifies the border values of the input array by copying
+ * values from their immediate neighbors. The operation ensures that border
+ * values are consistent with their adjacent cells, typically used to prepare
+ * the array for further processing.
  *
- * @see {@link extrapolate_borders}
+ * @param array Reference to the input array whose borders need to be filled.
+ *
+ * @see extrapolate_borders()
  */
 void fill_borders(Array &array);
+
 /**
- * @brief Return an array with buffers at the boundaries (values filled by
- * symmetry).
+ * @brief Creates and returns a new array with additional buffer zones at the
+ * boundaries, where the buffer values are filled either by symmetry or by
+ * zero-padding.
  *
- * @param array Input array.
- * @param buffers Buffer size {east, west, south, north}.
- * @param zero_padding Use zero-padding instead of symmetry to fill values.
- * @return Array New array with buffers.
+ * This function takes an input array and generates a new array with extra
+ * layers (buffers) added to its boundaries. The size of these buffer zones is
+ * specified by the `buffers` parameter, and the values within these buffers
+ * can be filled either by reflecting the values at the boundaries (symmetry)
+ * or by padding with zeros.
+ *
+ * @param array Reference to the input array.
+ * @param buffers A vector specifying the buffer sizes for the east, west,
+ * south, and north boundaries.
+ * @param zero_padding Optional boolean flag to use zero-padding instead of
+ * symmetry for filling the buffer values. Default is `false`.
+ * @return Array A new array with buffers added at the boundaries.
  */
 Array generate_buffered_array(const Array &array,
                               Vec4<int>    buffers,
                               bool         zero_padding = false);
 
 /**
- * @brief Make the array periodic in both directions.
+ * @brief Adjusts the input array to be periodic in both directions by
+ * transitioning smoothly at the boundaries.
  *
- * @param array Input array.
- * @param nbuffer Transition width at the boundaries.
+ * This function modifies the input array so that the values at the boundaries
+ * transition smoothly, making the array periodic in both the horizontal and
+ * vertical directions. The width of the transition zone at the boundaries is
+ * controlled by the `nbuffer` parameter.
+ *
+ * @param array Reference to the input array to be made periodic.
+ * @param nbuffer The width of the transition zone at the boundaries.
  *
  * **Example**
  * @include ex_make_periodic.cpp
@@ -105,13 +135,21 @@ Array generate_buffered_array(const Array &array,
 void make_periodic(Array &array, int nbuffer);
 
 /**
- * @brief Make the array periodic in both directions using a stitching operation
- * minimizing errors.
+ * @brief Creates a periodic array in both directions using a stitching
+ * operation that minimizes errors at the boundaries.
  *
- * @param array Input array.
- * @param Overlap overlap based on domain half size (if overlap = 1, the
- * transition, made on both sides, then spans the whole domain).
- * @return Array Periodic array.
+ * This function generates a new array that is periodic in both directions by
+ * applying a stitching operation at the boundaries. The stitching process
+ * aims to minimize discrepancies, creating a seamless transition between the
+ * edges of the array. The `overlap` parameter determines the extent of the
+ * overlap during the stitching, based on the half-size of the domain. If
+ * `overlap` is set to 1, the transition spans the entire domain.
+ *
+ * @param array Reference to the input array to be made periodic.
+ * @param overlap A float value representing the overlap based on the domain's
+ * half-size. An overlap of 1 means the transition spans the whole domain.
+ * @return Array A new array that is periodic in both directions with minimized
+ * boundary errors.
  *
  * **Example**
  * @include ex_make_periodic_stitching.cpp
@@ -123,13 +161,22 @@ void make_periodic(Array &array, int nbuffer);
 Array make_periodic_stitching(Array &array, float overlap);
 
 /**
- * @brief
+ * @brief Creates a tiled, periodic array by applying a transition with overlap
+ * in both directions.
  *
- * @param array Input array.
- * @param Overlap overlap based on domain half size (if overlap = 1, the
- * transition, made on both sides, then spans the whole domain).
- * @param tiling Array tiling.
- * @return Tiled array.
+ * This function generates a new array that is periodic and tiled according to
+ * the specified tiling dimensions. The periodicity is achieved by applying a
+ * transition at the boundaries, where the extent of overlap is determined by
+ * the `overlap` parameter. The `tiling` parameter specifies the number of
+ * tiles in the horizontal and vertical directions.
+ *
+ * @param array Reference to the input array to be tiled and made periodic.
+ * @param overlap A float value representing the overlap based on the domain's
+ * half-size. If `overlap` is 1, the transition spans the entire domain on both
+ * sides.
+ * @param tiling A 2D vector specifying the number of tiles in the horizontal
+ * and vertical directions.
+ * @return Array A new tiled array that is periodic in both directions.
  *
  * **Example**
  * @include make_periodic_tiling.cpp
@@ -140,11 +187,18 @@ Array make_periodic_stitching(Array &array, float overlap);
 Array make_periodic_tiling(Array &array, float overlap, Vec2<int> tiling);
 
 /**
- * @brief Enforce values at the boundaries of the array.
+ * @brief Enforces specific values at the boundaries of the array.
  *
- * @param array Input array.
- * @param values Value at the borders {east, west, south, north}.
- * @param buffer_sizes Buffer size at the borders {east, west, south, north}.
+ * This function sets the values at the borders of the input array to specified
+ * values for each side (east, west, south, and north). The size of the buffer
+ * zone at each border can also be defined, allowing precise control over how
+ * much of the boundary is modified.
+ *
+ * @param array Reference to the input array whose borders are to be modified.
+ * @param border_values A vector specifying the values to set at the east,
+ * west, south, and north borders.
+ * @param buffer_sizes A vector specifying the size of the buffer zones at the
+ * east, west, south, and north borders.
  *
  * **Example**
  * @include ex_set_borders.cpp
@@ -156,35 +210,68 @@ void set_borders(Array      &array,
                  Vec4<float> border_values,
                  Vec4<int>   buffer_sizes);
 
-void set_borders(Array &array,
-                 float  border_values,
-                 int    buffer_sizes); ///< @overload
+/**
+ * @brief Enforces a uniform value at all boundaries of the array.
+ *
+ * This overloaded function sets the same value at all borders of the input
+ * array. The size of the buffer zone at each border can be defined with a
+ * single value that applies uniformly to all sides.
+ *
+ * @param array Reference to the input array whose borders are to be modified.
+ * @param border_values The value to set at all borders.
+ * @param buffer_sizes The size of the buffer zone to apply uniformly at all
+ * borders.
+ */
+void set_borders(Array &array, float border_values, int buffer_sizes);
 
 /**
- * @brief Use symmetry for to fill values at the domain borders, over a given
+ * @brief Fills the values at the domain borders using symmetry over a specified
  * buffer depth.
  *
- * @param array Input array.
- * @param buffer_sizes Buffer size at the borders {east, west, south, north}.
+ * This function fills the borders of the input array by reflecting the values
+ * inside the array symmetrically. The depth of the buffer at each border
+ * (east, west, south, north) is specified by the `buffer_sizes` parameter.
+ *
+ * @param array Reference to the input array whose borders are to be filled
+ * using symmetry.
+ * @param buffer_sizes A vector specifying the buffer sizes at the east, west,
+ * south, and north borders.
  */
 void sym_borders(Array &array, Vec4<int> buffer_sizes);
 
 /**
- * @brief Fill values at the borders (i = 0, j = 0, ...) with zeros.
+ * @brief Fills the border values (e.g., `i = 0`, `j = 0`, etc.) of the array
+ * with zeros.
  *
- * @param array Input array.
+ * This function sets all the values at the borders of the input array to zero.
+ * It can be used to zero out boundary values, preparing the array for specific
+ * computations.
  *
- * @see {@link fill_borders}
+ * @param array Reference to the input array whose borders are to be zeroed.
+ *
+ * @see fill_borders()
  */
 void zeroed_borders(Array &array);
 
 /**
- * @brief Apply a smooth transition to zero at the array borders.
+ * @brief Applies a smooth transition to zero at the array borders.
  *
- * @param array Input array.
- * @param sigma Transition half-width ratio.
- * @param p_noise Reference to the input noise arrays.
- * @param bbox Domain bounding box.
+ * This function gradually transitions the values at the borders of the array
+ * to zero, using a smoothing function defined by the `sigma` parameter, which
+ * controls the half-width of the transition. The transition can be further
+ * customized by providing a noise array (`p_noise`) and a bounding box (`bbox`)
+ * that defines the domain of the operation.
+ *
+ * @param array Reference to the input array whose borders will be smoothly
+ * transitioned to zero.
+ * @param sigma A float value controlling the half-width ratio of the
+ * transition. Default is 1.0.
+ * @param dist_fct Distance function used for determining the smoothing
+ * (default is Euclidean distance).
+ * @param p_noise Optional pointer to an input noise array, which can be used
+ * during the transition process. Default is `nullptr`.
+ * @param bbox A vector defining the domain's bounding box. Default is
+ * {0.f, 1.f, 0.f, 1.f}.
  *
  * **Example**
  * @include ex_zeroed_edges.cpp
