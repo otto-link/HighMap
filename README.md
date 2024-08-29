@@ -11,6 +11,14 @@ A C++ library to generate two-dimensional terrain heightmaps for software render
 
 This project is licensed under the GNU General Public License v3.0.
 
+## Python binding
+
+[pyHighMap](https://github.com/otto-link/pyHighMap) allows you to use a few functionalities (for now) of HighMap directly in your Python projects.
+
+```bash
+pip3 install pyhighmap
+```
+
 ## Getting started
 
 ### Getting the sources
