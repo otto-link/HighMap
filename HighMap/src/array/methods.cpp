@@ -2,6 +2,7 @@
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
 #include <functional>
+#include <numeric>
 #include <vector>
 
 #include "macrologger.h"

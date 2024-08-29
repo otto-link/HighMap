@@ -19,6 +19,7 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/math.hpp"
 
 /**
  * @typedef HMAP_FCT_XY_TYPE

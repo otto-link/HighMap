@@ -22,7 +22,7 @@
 #define DI {-1, 0, 0, 1, -1, -1, 1, 1}
 #define DJ {0, 1, -1, 0, -1, 1, -1, 1}
 #define KP {3, 2, 1, 0, 7, 6, 5, 4}  // reverse neighbor index
-#define C  {1.f, 1.f, 1.f, 1.f, M_SQRT1_2, M_SQRT1_2, M_SQRT1_2}
+#define C  {1.f, 1.f, 1.f, 1.f, M_SQRT1_2, M_SQRT1_2, M_SQRT1_2, M_SQRT1_2}
   
 // the "effective contour length" of pixel i. The value of L i is 0.5
 // for pixels in cardinal directions and 0.354 for pixels in diagonal
