@@ -32,7 +32,7 @@ int main(void)
   std::vector<float> t = hmap::linspace(0.f, 1.f, npts);
 
   // plots
-  hmap::Array z = hmap::Array(hmap::Vec2<int>({512, 512}));
+  hmap::Array z = hmap::Array(hmap::Vec2<int>(512, 512));
 
   path.to_array(z, bbox);
   hmap::Path(fb(t)).to_array(z, bbox);
