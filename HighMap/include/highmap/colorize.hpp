@@ -20,8 +20,6 @@
  *
  */
 #pragma once
-#include <png.h>
-
 #include "highmap/array.hpp"
 #include "highmap/tensor.hpp"
 
