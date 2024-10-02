@@ -33,7 +33,7 @@ int main(void)
   }
 
   // plots
-  hmap::Array z = hmap::Array(hmap::Vec2<int>({512, 512}));
+  hmap::Array z = hmap::Array(hmap::Vec2<int>(512, 512));
   path.to_array(z, bbox);
   hmap::Path(points_bezier).to_array(z, bbox);
   hmap::Path(points_bspline).to_array(z, bbox);

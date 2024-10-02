@@ -21,6 +21,7 @@
  */
 #pragma once
 #include <cmath>
+#include <stdexcept>
 #include <vector>
 
 namespace hmap
@@ -56,6 +57,29 @@ template <typename T> struct Vec2
    */
   Vec2(T x, T y) : x(x), y(y)
   {
+  }
+
+  /**
+   * @brief Constructs a Vec2 object from a std::vector.
+   *
+   * This constructor takes a vector containing exactly two elements and assigns
+   * the first element to `x` and the second element to `y`.
+   *
+   * @tparam T The type of elements in the vector (e.g., float, int, double).
+   * @param vec A const reference to a vector of size 2, where the first element
+   * corresponds to `x` and the second to `y`.
+   *
+   * @throw std::invalid_argument If the vector does not contain exactly two
+   * elements.
+   */
+  Vec2(const std::vector<T> &vec) : x(0), y(0)
+  {
+    if (vec.size() != 2)
+    {
+      throw std::invalid_argument("Vector must contain exactly two elements.");
+    }
+    x = vec[0];
+    y = vec[1];
   }
 
   /**
@@ -273,22 +297,29 @@ template <typename T> struct Vec3
   }
 
   /**
-   * @brief Constructs a Vec3 instance from a vector of components.
+   * @brief Constructs a Vec3 object from a std::vector.
    *
-   * This constructor initializes the vector using the values stored in a
-   * `std::vector<T>`. The vector is expected to have at least three elements
-   * where the first element represents the x component, the second element
-   * represents the y component, and the third element represents the z
-   * component.
+   * This constructor takes a vector containing exactly three elements and
+   * assigns the first element to `x`, the second element to `y`, and the third
+   * to `z`.
    *
-   * @param xyz A vector containing the x, y, and z components of the vector.
-   *            The size of the vector must be at least 3.
+   * @tparam T The type of elements in the vector (e.g., float, int, double).
+   * @param vec A const reference to a vector of size 3, where the first element
+   * corresponds to `x`, the second to `y`, and the third to `z`.
+   *
+   * @throw std::invalid_argument If the vector does not contain exactly three
+   * elements.
    */
-  Vec3(const std::vector<T> &xyz)
+  Vec3(const std::vector<T> &vec) : x(0), y(0), z(0)
   {
-    this->x = xyz[0];
-    this->y = xyz[1];
-    this->z = xyz[2];
+    if (vec.size() != 3)
+    {
+      throw std::invalid_argument(
+          "Vector must contain exactly three elements.");
+    }
+    x = vec[0];
+    y = vec[1];
+    z = vec[2];
   }
 
   /**
@@ -531,6 +562,33 @@ template <typename T> struct Vec4
    */
   Vec4(T a, T b, T c, T d) : a(a), b(b), c(c), d(d)
   {
+  }
+
+  /**
+   * @brief Constructs a Vec4 object from a std::vector.
+   *
+   * This constructor takes a vector containing exactly four elements and
+   * assigns the first element to `a`, the second to `b`, the third to `c`, and
+   * the fourth to `d`.
+   *
+   * @tparam T The type of elements in the vector (e.g., float, int, double).
+   * @param vec A const reference to a vector of size 4, where the first element
+   * corresponds to `a`, the second to `b`, the third to `c`, and the fourth to
+   * `d`.
+   *
+   * @throw std::invalid_argument If the vector does not contain exactly four
+   * elements.
+   */
+  Vec4(const std::vector<T> &vec) : a(0), b(0), c(0), d(0)
+  {
+    if (vec.size() != 4)
+    {
+      throw std::invalid_argument("Vector must contain exactly four elements.");
+    }
+    a = vec[0];
+    b = vec[1];
+    c = vec[2];
+    d = vec[3];
   }
 
   /**

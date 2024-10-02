@@ -11,6 +11,7 @@
 #include "highmap/array.hpp"
 #include "highmap/colorize.hpp"
 #include "highmap/colormaps.hpp"
+#include "highmap/gradient.hpp"
 #include "highmap/math.hpp"
 #include "highmap/range.hpp"
 #include "highmap/shadows.hpp"
@@ -183,6 +184,52 @@ Tensor colorize_histogram(const Array &array)
       if (j < hist[i]) color1(i, j, 0) = 1.f;
 
   return color1;
+}
+
+Tensor colorize_slope_height_heatmap(const Array &array, int cmap)
+{
+  Array dz = gradient_norm(array);
+
+  // normalization factors / 1
+  float a1 = 0.f;
+  float b1 = 0.f;
+  float vmin1 = array.min();
+  float vmax1 = array.max();
+
+  if (vmin1 != vmax1)
+  {
+    a1 = 1.f / (vmax1 - vmin1) * (float)(array.shape.x - 1);
+    b1 = -vmin1 / (vmax1 - vmin1) * (float)(array.shape.x - 1);
+  }
+
+  // normalization factors / 2
+  float a2 = 0.f;
+  float b2 = 0.f;
+  float vmin2 = dz.min();
+  float vmax2 = dz.max();
+
+  if (vmin2 != vmax2)
+  {
+    a2 = 1.f / (vmax2 - vmin2) * (float)(array.shape.y - 1);
+    b2 = -vmin2 / (vmax2 - vmin2) * (float)(array.shape.y - 1);
+  }
+
+  // compute 2D histogram
+  Array sum = Array(array.shape);
+
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
+    {
+      int p = (int)(a1 * array(i, j) + b1);
+      int q = (int)(a2 * dz(i, j) + b2);
+
+      sum(p, q) += 1.f;
+    }
+
+  bool   hillshading = false;
+  Tensor col3 = colorize(sum, sum.min(), sum.max(), cmap, hillshading);
+
+  return col3;
 }
 
 Tensor colorize_vec2(const Array &array1, const Array &array2)
