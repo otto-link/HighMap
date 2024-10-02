@@ -40,6 +40,35 @@ enum neighborhood : int
 };
 
 /**
+ * @brief Applies diffusion retargeting by detecting local maxima and adjusting
+ * based on the difference between two arrays.
+ *
+ * This function identifies points of interest in the `array_before` (local
+ * maxima in a 3x3 neighborhood), computes the difference between the
+ * corresponding points in `array_before` and `array_after`, and stores these
+ * differences in a delta array. It then applies smoothing to the delta values,
+ * remaps them within the original min-max range, and returns the corrected
+ * array by adding the adjusted delta to `array_after`.
+ *
+ * @param array_before   The original 2D array used to detect local maxima for
+ * retargeting.
+ * @param array_after    The 2D array representing the state after the diffusion
+ * process.
+ * @param ir             The smoothing radius used in the smoothing step
+ * (`smooth_cpulse`).
+ *
+ * @return A new 2D array where the delta between the two input arrays has been
+ * smoothed and applied as a correction to `array_after`.
+ *
+ * **Example**
+ * @include ex_diffusion_retargeting.cpp
+ *
+ * **Result**
+ * @image html ex_diffusion_retargeting.png
+ */
+Array diffusion_retargeting(Array &array_before, Array &array_after, int ir);
+
+/**
  * @brief Apply histogram equalization to the array values.
  *
  * This function performs histogram equalization on the input array to enhance

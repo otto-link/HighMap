@@ -39,6 +39,35 @@ namespace hmap
 void add_kernel(Array &array, const Array &kernel, int i, int j);
 
 /**
+ * @brief Adds a smoothed maximum value from a kernel to a specified position in
+ * a 2D array.
+ *
+ * This function applies a truncated kernel to the given array at position (ic,
+ * jc), where the kernel is truncated to ensure it fits within the array's
+ * bounds. The maximum value between the current array value and the kernel
+ * value is computed using a smoothing factor, and the result is stored back in
+ * the array.
+ *
+ * @param array Reference to the 2D array (heightmap) where the kernel is
+ * applied.
+ * @param kernel The kernel array containing values to be applied to the array.
+ * @param k_smooth The smoothing factor used in the maximum_smooth function.
+ * @param ic The x-coordinate of the center in the array where the kernel is
+ * applied.
+ * @param jc The y-coordinate of the center in the array where the kernel is
+ * applied.
+ *
+ * The kernel is truncated to ensure it fits within the bounds of the array.
+ * After applying the kernel, the values in the array are updated with the
+ * result of the maximum_smooth function.
+ */
+void add_kernel_maximum_smooth(Array       &array,
+                               const Array &kernel,
+                               float        k_smooth,
+                               int          i,
+                               int          j);
+
+/**
  * @brief Compute the bilinear interpolated value from four input values.
  *
  * This function calculates the interpolated value at a point within a grid

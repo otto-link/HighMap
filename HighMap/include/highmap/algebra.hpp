@@ -21,8 +21,8 @@
  */
 #pragma once
 #include <cmath>
-#include <vector>
 #include <stdexcept>
+#include <vector>
 
 namespace hmap
 {
