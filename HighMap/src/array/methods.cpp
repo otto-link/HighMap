@@ -158,6 +158,36 @@ Vec2<float> Array::normalization_coeff(float vmin, float vmax)
   return Vec2<float>(a, b);
 }
 
+float cubic_interpolate(float p[4], float x) // helper
+{
+  return p[1] + 0.5 * x *
+                    (p[2] - p[0] +
+                     x * (2.0 * p[0] - 5.0 * p[1] + 4.0 * p[2] - p[3] +
+                          x * (3.0 * (p[1] - p[2]) + p[3] - p[0])));
+}
+
+float Array::get_value_bicubic_at(int i, int j, float u, float v) const
+{
+  float arr[4][4];
+
+  // Get the 4x4 surrounding grid points
+  for (int m = -1; m <= 2; ++m)
+    for (int n = -1; n <= 2; ++n)
+    {
+      int ip = std::clamp(i + m, 0, this->shape.x - 1);
+      int jp = std::clamp(j + n, 0, this->shape.y - 1);
+      arr[m + 1][n + 1] = (*this)(ip, jp);
+    }
+
+  // interpolate in the x direction
+  float col_results[4];
+  for (int i = 0; i < 4; ++i)
+    col_results[i] = cubic_interpolate(arr[i], v);
+
+  // interpolate in the y direction
+  return cubic_interpolate(col_results, u);
+}
+
 float Array::get_value_bilinear_at(int i, int j, float u, float v) const
 {
   float a10 = (*this)(i + 1, j) - (*this)(i, j);
@@ -252,6 +282,44 @@ Array Array::resample_to_shape(Vec2<int> new_shape) const
       }
 
       array_out(i, j) = this->get_value_bilinear_at(iref, jref, u, v);
+    }
+  }
+
+  return array_out;
+}
+
+Array Array::resample_to_shape_bicubic(Vec2<int> new_shape) const
+{
+  Array array_out = Array(new_shape);
+
+  // interpolation grid scaled to the starting grid to ease seeking of
+  // the reference (i, j) indices during bilinear interpolation
+  std::vector<float> x = linspace(0.f, (float)this->shape.x - 1, new_shape.x);
+  std::vector<float> y = linspace(0.f, (float)this->shape.y - 1, new_shape.y);
+
+  for (int i = 0; i < new_shape.x; i++)
+  {
+    int iref = (int)x[i];
+    for (int j = 0; j < new_shape.y; j++)
+    {
+      int   jref = (int)y[j];
+      float u = x[i] - (float)iref;
+      float v = y[j] - (float)jref;
+
+      // handle bordline cases
+      if (iref == this->shape.x - 1)
+      {
+        iref = this->shape.x - 2;
+        u = 1.f;
+      }
+
+      if (jref == this->shape.y - 1)
+      {
+        jref = this->shape.y - 2;
+        v = 1.f;
+      }
+
+      array_out(i, j) = this->get_value_bicubic_at(iref, jref, u, v);
     }
   }
 

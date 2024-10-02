@@ -509,6 +509,30 @@ public:
 
   /**
    * @brief Retrieves the array value at the location (x, y) near the index (i,
+   * j) using bicubic interpolation.
+   *
+   *        This function uses bicubic interpolation to estimate the value at a
+   * point within the cell defined by (i, j). Bicubic interpolation provides a
+   * smoother result compared to bilinear interpolation by taking into account
+   * the values of the surrounding 4x4 grid of points, resulting in better
+   * accuracy when interpolating in areas with gradients or curves.
+   *
+   * @warning This function cannot be used at the upper borders of the array,
+   * specifically for i = shape.x - 2 or j = shape.y - 2, as bicubic
+   * interpolation requires surrounding data points from a 4x4 neighborhood.
+   *
+   * @param i Index along the x-direction, expected to be in the range [1,
+   * shape.x - 3].
+   * @param j Index along the y-direction, expected to be in the range [1,
+   * shape.y - 3].
+   * @param u 'u' interpolation parameter, expected to be in the range [0, 1[.
+   * @param v 'v' interpolation parameter, expected to be in the range [0, 1[.
+   * @return float The interpolated value at the specified location (x, y).
+   */
+  float get_value_bicubic_at(int i, int j, float u, float v) const;
+
+  /**
+   * @brief Retrieves the array value at the location (x, y) near the index (i,
    * j) using bilinear interpolation.
    *
    *        This function uses bilinear interpolation to estimate the value at a
@@ -687,6 +711,26 @@ public:
    * @image html ex_resample_to_shape.png
    */
   Array resample_to_shape(Vec2<int> new_shape) const;
+
+  /**
+   * @brief Return a resampled array of shape `new_shape` using bicubic
+   * interpolation.
+   *
+   *        This function resamples the array to a new shape `new_shape` using
+   * bicubic interpolation. The resampling changes the dimensions of the array
+   * while preserving the data's spatial relationships with a higher degree of
+   * smoothness compared to bilinear interpolation.
+   *
+   * @param new_shape The target shape for the resampled array.
+   * @return Array The resampled array with the specified `new_shape`.
+   *
+   * **Example**
+   * @include ex_array_interp.cpp
+   *
+   * **Result**
+   * @image html ex_array_interp.png
+   */
+  Array resample_to_shape_bicubic(Vec2<int> new_shape) const;
 
   /**
    * @brief Return a resampled array of shape `new_shape` using nearest neighbor
