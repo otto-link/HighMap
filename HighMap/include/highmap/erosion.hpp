@@ -495,6 +495,79 @@ void hydraulic_stream(Array &z,
                       float  clipping_ratio = 10.f); ///< @overload
 
 /**
+ * @brief Applies hydraulic erosion with upscaling amplification.
+ *
+ * This function progressively upscales the input array `z` by powers of 2 and
+ * applies hydraulic erosion based on flow accumulation at each level of
+ * upscaling. After all upscaling levels are processed, the array is resampled
+ * back to its original resolution using bilinear interpolation.
+ *
+ * @param z Input array representing elevation data.
+ * @param c_erosion Erosion coefficient.
+ * @param talus_ref Reference talus used to locally define the flow-partition
+ * exponent. Smaller values lead to thinner flow streams.
+ * @param upscaling_levels Number of upscaling levels to apply. The function
+ * will resample the array at each level.
+ * @param ir Kernel radius. If `ir > 1`, a cone kernel is used to carve channel
+ * flow erosion.
+ * @param clipping_ratio Flow accumulation clipping ratio.
+ *
+ * @note The function first applies upscaling using bicubic resampling, performs
+ * hydraulic erosion at each level, and finally resamples the array back to its
+ * initial resolution using bilinear interpolation.
+ *
+ * **Example**
+ * @include ex_hydraulic_stream_upscale_amplification.cpp
+ *
+ * **Result**
+ * @image html ex_hydraulic_stream_upscale_amplification.png
+ */
+void hydraulic_stream_upscale_amplification(Array &z,
+                                            float  c_erosion,
+                                            float  talus_ref,
+                                            int    upscaling_levels = 1,
+                                            int    ir = 1,
+                                            float  clipping_ratio = 10.f);
+
+/**
+ * @brief Applies hydraulic erosion with upscaling amplification, with a
+ * post-processing intensity mask.
+ *
+ * Similar to the overloaded version, this function progressively upscales the
+ * input array `z` and applies hydraulic erosion. Additionally, an intensity
+ * mask `p_mask` is applied as a post-processing step.
+ *
+ * @param z Input array representing elevation data.
+ * @param p_mask Intensity mask, expected in [0, 1], which is applied as a
+ * post-processing step.
+ * @param c_erosion Erosion coefficient.
+ * @param talus_ref Reference talus used to locally define the flow-partition
+ * exponent. Smaller values lead to thinner flow streams.
+ * @param upscaling_levels Number of upscaling levels to apply. The function
+ * will resample the array at each level.
+ * @param ir Kernel radius. If `ir > 1`, a cone kernel is used to carve channel
+ * flow erosion.
+ * @param clipping_ratio Flow accumulation clipping ratio.
+ *
+ * @note This version of the function applies an additional intensity mask as
+ * part of the upscaling amplification process.
+ *
+ * **Example**
+ * @include ex_hydraulic_stream_upscale_amplification.cpp
+ *
+ * **Result**
+ * @image html ex_hydraulic_stream_upscale_amplification.png
+ */
+void hydraulic_stream_upscale_amplification(
+    Array &z,
+    Array *p_mask,
+    float  c_erosion,
+    float  talus_ref,
+    int    upscaling_levels = 1,
+    int    ir = 1,
+    float  clipping_ratio = 10.f); ///< @overload
+
+/**
  * @brief Apply hydraulic erosion based on a flow accumulation map, alternative
  * formulation.
  *
