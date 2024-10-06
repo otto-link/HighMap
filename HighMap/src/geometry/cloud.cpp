@@ -101,12 +101,16 @@ std::vector<float> Cloud::get_values() const
 
 float Cloud::get_values_max()
 {
+  if (this->get_npoints() == 0) return 0.f;
+
   std::vector<float> values = this->get_values();
   return *std::max_element(values.begin(), values.end());
 }
 
 float Cloud::get_values_min()
 {
+  if (this->get_npoints() == 0) return 0.f;
+
   std::vector<float> values = this->get_values();
   return *std::min_element(values.begin(), values.end());
 }
