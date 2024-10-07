@@ -263,4 +263,7 @@ Array read_to_array(std::string fname);
  */
 void write_raw_16bit(std::string fname, const Array &array);
 
+// helper
+Tensor compute_nmap(const Array &array);
+
 } // namespace hmap
