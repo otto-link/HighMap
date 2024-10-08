@@ -23,8 +23,15 @@ int main(void)
                                                talus_ref,
                                                upscaling_levels);
 
+  auto z3 = z;
+  upscaling_levels = 3;
+  hmap::hydraulic_stream_upscale_amplification(z3,
+                                               c_erosion,
+                                               talus_ref,
+                                               upscaling_levels);
+
   hmap::export_banner_png("ex_hydraulic_stream_upscale_amplification.png",
-                          {z0, z1, z2},
+                          {z0, z1, z2, z3},
                           hmap::Cmap::TERRAIN,
                           true);
 }
