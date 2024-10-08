@@ -25,10 +25,12 @@ int main(void)
 
   auto z3 = z;
   upscaling_levels = 3;
+  float persistence = 0.75f; // decrease ratio of erosion coeff at each level
   hmap::hydraulic_stream_upscale_amplification(z3,
                                                c_erosion,
                                                talus_ref,
-                                               upscaling_levels);
+                                               upscaling_levels,
+                                               persistence);
 
   hmap::export_banner_png("ex_hydraulic_stream_upscale_amplification.png",
                           {z0, z1, z2, z3},

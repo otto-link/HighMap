@@ -508,6 +508,9 @@ void hydraulic_stream(Array &z,
  * exponent. Smaller values lead to thinner flow streams.
  * @param upscaling_levels Number of upscaling levels to apply. The function
  * will resample the array at each level.
+ * @param persistence A scaling factor applied at each level to adjust the
+ * impact of the unary operation. Higher persistence values will amplify the
+ * effects at each level.
  * @param ir Kernel radius. If `ir > 1`, a cone kernel is used to carve channel
  * flow erosion.
  * @param clipping_ratio Flow accumulation clipping ratio.
@@ -526,6 +529,7 @@ void hydraulic_stream_upscale_amplification(Array &z,
                                             float  c_erosion,
                                             float  talus_ref,
                                             int    upscaling_levels = 1,
+                                            float  persistence = 1.f,
                                             int    ir = 1,
                                             float  clipping_ratio = 10.f);
 
@@ -545,6 +549,9 @@ void hydraulic_stream_upscale_amplification(Array &z,
  * exponent. Smaller values lead to thinner flow streams.
  * @param upscaling_levels Number of upscaling levels to apply. The function
  * will resample the array at each level.
+ * @param persistence A scaling factor applied at each level to adjust the
+ * impact of the unary operation. Higher persistence values will amplify the
+ * effects at each level.
  * @param ir Kernel radius. If `ir > 1`, a cone kernel is used to carve channel
  * flow erosion.
  * @param clipping_ratio Flow accumulation clipping ratio.
@@ -564,6 +571,7 @@ void hydraulic_stream_upscale_amplification(
     float  c_erosion,
     float  talus_ref,
     int    upscaling_levels = 1,
+    float  persistence = 1.f,
     int    ir = 1,
     float  clipping_ratio = 10.f); ///< @overload
 

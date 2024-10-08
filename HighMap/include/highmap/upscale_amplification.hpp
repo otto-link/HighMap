@@ -30,6 +30,9 @@ namespace hmap
  * @param array A reference to the array that will be upscaled and processed.
  * @param upscaling_levels The number of upscaling levels to apply. The function
  * will resample the array for each level.
+ * @param persistence A scaling factor applied at each level to adjust the
+ * impact of the unary operation. Higher persistence values will amplify the
+ * effects at each level.
  * @param unary_op A user-defined unary operation to apply to the array at each
  * upscaling level. The operation takes a reference to the array.
  *
@@ -38,8 +41,10 @@ namespace hmap
  * levels are processed, the array is resampled back to its initial shape using
  * bilinear interpolation.
  */
-void upscale_amplification(Array                        &array,
-                           int                           upscaling_levels,
-                           std::function<void(Array &x)> unary_op);
+void upscale_amplification(
+    Array                                               &array,
+    int                                                  upscaling_levels,
+    float                                                persistence,
+    std::function<void(Array &x, float current_scaling)> unary_op);
 
 } // namespace hmap

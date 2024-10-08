@@ -8,9 +8,11 @@
 namespace hmap
 {
 
-void upscale_amplification(Array                        &array,
-                           int                           upscaling_levels,
-                           std::function<void(Array &x)> unary_op)
+void upscale_amplification(
+    Array                                               &array,
+    int                                                  upscaling_levels,
+    float                                                persistence,
+    std::function<void(Array &x, float current_scaling)> unary_op)
 {
   Vec2<int> initial_shape = array.shape;
 
@@ -18,9 +20,10 @@ void upscale_amplification(Array                        &array,
   for (int k = 0; k < upscaling_levels + 1; k++)
   {
     Vec2<int> upscaled_shape = std::pow(2, k) * initial_shape;
+    float     current_scaling = std::pow(persistence, k);
 
     array = array.resample_to_shape_bicubic(upscaled_shape);
-    unary_op(array);
+    unary_op(array, current_scaling);
   }
 
   // go back to original resolution (bilinear interpolation)

@@ -18,13 +18,16 @@ void hydraulic_stream_upscale_amplification(Array &z,
                                             float  c_erosion,
                                             float  talus_ref,
                                             int    upscaling_levels,
+                                            float  persistence,
                                             int    ir,
                                             float  clipping_ratio)
 {
-  auto lambda_erode = [c_erosion, talus_ref, ir, clipping_ratio](Array &x)
+  auto lambda_erode =
+      [c_erosion, talus_ref, ir, clipping_ratio](Array &x,
+                                                 float  current_scaling)
   {
     hydraulic_stream(x,
-                     c_erosion,
+                     current_scaling * c_erosion,
                      talus_ref,
                      nullptr,
                      nullptr,
@@ -33,7 +36,7 @@ void hydraulic_stream_upscale_amplification(Array &z,
                      clipping_ratio);
   };
 
-  upscale_amplification(z, upscaling_levels, lambda_erode);
+  upscale_amplification(z, upscaling_levels, persistence, lambda_erode);
 }
 
 void hydraulic_stream_upscale_amplification(Array &z,
@@ -41,6 +44,7 @@ void hydraulic_stream_upscale_amplification(Array &z,
                                             float  c_erosion,
                                             float  talus_ref,
                                             int    upscaling_levels,
+                                            float  persistence,
                                             int    ir,
                                             float  clipping_ratio)
 {
@@ -49,6 +53,7 @@ void hydraulic_stream_upscale_amplification(Array &z,
                                            c_erosion,
                                            talus_ref,
                                            upscaling_levels,
+                                           persistence,
                                            ir,
                                            clipping_ratio);
   else
@@ -58,6 +63,7 @@ void hydraulic_stream_upscale_amplification(Array &z,
                                            c_erosion,
                                            talus_ref,
                                            upscaling_levels,
+                                           persistence,
                                            ir,
                                            clipping_ratio);
     z = lerp(z, z_f, *(p_mask));
