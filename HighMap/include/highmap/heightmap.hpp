@@ -478,6 +478,8 @@ struct HeightMapRGBA
    */
   HeightMapRGBA(HeightMap r, HeightMap g, HeightMap b, HeightMap a);
 
+  HeightMapRGBA(Vec2<int> shape, Vec2<int> tiling, float overlap);
+
   HeightMapRGBA(); ///< @overload
 
   /**

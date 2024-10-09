@@ -28,6 +28,11 @@ HeightMapRGBA::HeightMapRGBA(HeightMap r, HeightMap g, HeightMap b, HeightMap a)
 {
 }
 
+HeightMapRGBA::HeightMapRGBA(Vec2<int> shape, Vec2<int> tiling, float overlap)
+{
+  this->set_sto(shape, tiling, overlap);
+}
+
 void HeightMapRGBA::set_alpha(HeightMap new_alpha)
 {
   this->rgba[3] = new_alpha;
