@@ -61,32 +61,56 @@ void HeightMapRGBA::colorize(HeightMap                      &color_level,
                              float                           vmax,
                              std::vector<std::vector<float>> colormap_colors,
                              HeightMap                      *p_alpha,
-                             bool                            reverse)
+                             bool                            reverse,
+                             HeightMap                      *p_noise)
 {
   if (reverse) std::swap(vmin, vmax);
 
   // write colorize function for each tile
-  auto lambda =
-      [&vmin, &vmax, &colormap_colors](Array &in, Array &out, int channel)
+  auto lambda = [&vmin, &vmax, &colormap_colors](Array &in,
+                                                 Array &out,
+                                                 Array *p_noise_array,
+                                                 int    channel)
   {
     int         nc = (int)colormap_colors.size();
     Vec2<float> a = in.normalization_coeff(vmin, vmax);
     a.x *= (nc - 1);
     a.y *= (nc - 1);
 
-    for (int i = 0; i < in.shape.x; i++)
-      for (int j = 0; j < in.shape.y; j++)
-      {
-        float v = std::clamp(a.x * in(i, j) + a.y, 0.f, (float)nc - 1.f);
-        int   k = (int)v;
-        float t = v - k;
+    if (p_noise_array)
+    {
+      for (int i = 0; i < in.shape.x; i++)
+        for (int j = 0; j < in.shape.y; j++)
+        {
+          float v = std::clamp(a.x * (in(i, j) + (*p_noise_array)(i, j)) + a.y,
+                               0.f,
+                               (float)nc - 1.f);
+          int   k = (int)v;
+          float t = v - k;
 
-        if (k < nc - 1)
-          out(i, j) = (1.f - t) * colormap_colors[k][channel] +
-                      t * colormap_colors[k + 1][channel];
-        else
-          out(i, j) = colormap_colors[k][channel];
-      }
+          if (k < nc - 1)
+            out(i, j) = (1.f - t) * colormap_colors[k][channel] +
+                        t * colormap_colors[k + 1][channel];
+          else
+            out(i, j) = colormap_colors[k][channel];
+        }
+    }
+    else
+    {
+      for (int i = 0; i < in.shape.x; i++)
+        for (int j = 0; j < in.shape.y; j++)
+        {
+          float v = std::clamp(a.x * in(i, j) + a.y, 0.f, (float)nc - 1.f);
+          int   k = (int)v;
+          float t = v - k;
+
+          if (k < nc - 1)
+            out(i, j) = (1.f - t) * colormap_colors[k][channel] +
+                        t * colormap_colors[k + 1][channel];
+          else
+            out(i, j) = colormap_colors[k][channel];
+        }
+    }
   };
 
   // apply to the each rgb heightmaps (but not the alpha channel)
@@ -96,10 +120,15 @@ void HeightMapRGBA::colorize(HeightMap                      &color_level,
     std::vector<std::future<void>> futures(nthreads);
 
     for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+    {
+      Array *p_n = (p_noise == nullptr) ? nullptr : &p_noise->tiles[i];
+
       futures[i] = std::async(lambda,
                               std::ref(color_level.tiles[i]),
                               std::ref(this->rgba[kc].tiles[i]),
+                              p_n,
                               kc);
+    }
 
     for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
       futures[i].get();
@@ -117,10 +146,11 @@ void HeightMapRGBA::colorize(HeightMap &color_level,
                              float      vmax,
                              int        cmap,
                              HeightMap *p_alpha,
-                             bool       reverse)
+                             bool       reverse,
+                             HeightMap *p_noise)
 {
   std::vector<std::vector<float>> colors = get_colormap_data(cmap);
-  this->colorize(color_level, vmin, vmax, colors, p_alpha, reverse);
+  this->colorize(color_level, vmin, vmax, colors, p_alpha, reverse, p_noise);
 }
 
 HeightMapRGBA mix_heightmap_rgba(HeightMapRGBA &rgba1,

@@ -522,7 +522,8 @@ struct HeightMapRGBA
                 float      vmax,
                 int        cmap,
                 HeightMap *p_alpha = nullptr,
-                bool       reverse = false);
+                bool       reverse = false,
+                HeightMap *p_noise = nullptr);
 
   /**
    * @brief Fill RGBA heightmap components based on a colormap and
@@ -541,7 +542,8 @@ struct HeightMapRGBA
                 float                           vmax,
                 std::vector<std::vector<float>> colormap_colors,
                 HeightMap                      *p_alpha = nullptr,
-                bool                            reverse = false);
+                bool                            reverse = false,
+                HeightMap                      *p_noise = nullptr);
 
   /**
    * @brief Mix two RGBA heightmap using alpha compositing ("over").
