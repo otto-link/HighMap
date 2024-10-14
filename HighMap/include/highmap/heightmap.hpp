@@ -228,7 +228,7 @@ public:
    * @image html ex_heightmap_from_array0.png
    * @image html ex_heightmap_from_array1.png
    */
-  void from_array_interp(const Array &array);
+  void from_array_interp(Array &array);
 
   /**
    * @brief Fill tile values by interpolating (nearest neighbor) values from
@@ -236,7 +236,7 @@ public:
    *
    * @param array Input array.
    */
-  void from_array_interp_nearest(const Array &array);
+  void from_array_interp_nearest(Array &array);
 
   /**
    * @brief Print some informations about the object.

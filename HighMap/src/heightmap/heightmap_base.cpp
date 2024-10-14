@@ -111,7 +111,7 @@ void HeightMap::set_tiling(Vec2<int> new_tiling)
   this->update_tile_parameters();
 }
 
-void HeightMap::from_array_interp(const Array &array)
+void HeightMap::from_array_interp(Array &array)
 {
   std::vector<std::future<void>> futures(this->get_ntiles());
 
@@ -124,7 +124,7 @@ void HeightMap::from_array_interp(const Array &array)
     futures[i].get();
 }
 
-void HeightMap::from_array_interp_nearest(const Array &array)
+void HeightMap::from_array_interp_nearest(Array &array)
 {
   std::vector<std::future<void>> futures(this->get_ntiles());
 
