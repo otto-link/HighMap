@@ -15,7 +15,7 @@ jobs:
       - name: Generate Doxygen documentation
         run: |
           cd doc
-	  doxygen doxygen/Doxyfile.in
+          doxygen doxygen/Doxyfile.in
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
