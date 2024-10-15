@@ -2,7 +2,8 @@ name: Generate and Deploy Doxygen Documentation
 on:
   push:
     branches:
-      -  [ "main", "dev" ]
+      - main
+      - dev
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,7 +15,7 @@ jobs:
       - name: Generate Doxygen documentation
         run: |
           cd doc
-	  doxygen dxogyen/Doxyfile.in
+	  doxygen doxygen/Doxyfile.in
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
