@@ -254,6 +254,75 @@ Array select_inward_outward_slope(const Array &array,
 Array select_lt(const Array &array, float value);
 
 /**
+ * @brief Splits the input array into three bands (low, mid, and high) based on
+ * given ratios and overlap.
+ *
+ * This function processes the input array and divides it into three value
+ * bands: low, mid, and high. The bands are determined by the provided ratios
+ * and overlap. Optionally, a range (vmin, vmax) can be applied to the values in
+ * the array.
+ *
+ * @param array The input array that contains the data to be split into bands.
+ * @param band_low The output array for the low-value band.
+ * @param band_mid The output array for the mid-value band.
+ * @param band_high The output array for the high-value band.
+ * @param ratio1 The ratio that defines the split between the low and mid bands.
+ * @param ratio2 The ratio that defines the split between the mid and high
+ * bands.
+ * @param overlap The amount of overlap between adjacent bands.
+ * @param vmin The minimum value for range filtering. Values below vmin will be
+ * clamped. (Optional, only in the first function)
+ * @param vmax The maximum value for range filtering. Values above vmax will be
+ * clamped. (Optional, only in the first function)
+ *
+ * **Example**
+ * @include ex_select_multiband3.cpp
+ *
+ * **Result**
+ * @image html ex_select_multiband3.png
+ */
+void select_multiband3(const Array &array,
+                       Array       &band_low,
+                       Array       &band_mid,
+                       Array       &band_high,
+                       float        ratio1,
+                       float        ratio2,
+                       float        overlap,
+                       float        vmin,
+                       float        vmax);
+
+/**
+ * @brief Splits the input array into three bands (low, mid, and high) based on
+ * given ratios and overlap.
+ *
+ * This function processes the input array and divides it into three value
+ * bands: low, mid, and high. The bands are determined by the provided ratios
+ * and overlap.
+ *
+ * @param array The input array that contains the data to be split into bands.
+ * @param band_low The output array for the low-value band.
+ * @param band_mid The output array for the mid-value band.
+ * @param band_high The output array for the high-value band.
+ * @param ratio1 The ratio that defines the split between the low and mid bands.
+ * @param ratio2 The ratio that defines the split between the mid and high
+ * bands.
+ * @param overlap The amount of overlap between adjacent bands.
+ *
+ * **Example**
+ * @include ex_select_multiband3.cpp
+ *
+ * **Result**
+ * @image html ex_select_multiband3.png
+ */
+void select_multiband3(const Array &array,
+                       Array       &band_low,
+                       Array       &band_mid,
+                       Array       &band_high,
+                       float        ratio1,
+                       float        ratio2,
+                       float        overlap);
+
+/**
  * @brief Return an array filled with non-zero values where the input is in the
  * interval [value - sigma, value + sigma]. Output array values have a cubic
  * pulse distribution within this interval.

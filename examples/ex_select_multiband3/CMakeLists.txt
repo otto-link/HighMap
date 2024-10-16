@@ -1,0 +1,2 @@
+add_executable(ex_select_multiband3 ex_select_multiband3.cpp)
+target_link_libraries(ex_select_multiband3 highmap)
