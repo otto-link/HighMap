@@ -232,7 +232,7 @@ void select_multiband3(const Array &array,
 
     if (r > r0 + w0 && r < r2 - w2) return 1.f;
 
-    float rn;
+    float rn = 0.f;
     if (r < r0 + w0) rn = (r - r0 + w0) / 2.f / w0;
     if (r > r2 - w2) rn = 1.f - (r - r2 + w2) / 2.f / w2;
     return rn * rn * (3.f - 2.f * rn);
