@@ -205,6 +205,29 @@ Array select_lt(const Array &array, float value)
   return c;
 }
 
+Array select_midrange(const Array &array, float gain, float vmin, float vmax)
+{
+  Array c = array;
+  hmap::remap(c, -1.f, 1.f, vmin, vmax);
+
+  float norm_coeff = 1.f / std::exp(-1.f);
+
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
+    {
+      float v = c(i, j) * c(i, j);
+      c(i, j) = norm_coeff * std::pow(std::exp(-1.f / (1.f - v)), 1.f / gain);
+    }
+
+  c.infos();
+  return c;
+}
+
+Array select_midrange(const Array &array, float gain)
+{
+  return select_midrange(array, gain, array.min(), array.max());
+}
+
 void select_multiband3(const Array &array,
                        Array       &band_low,
                        Array       &band_mid,

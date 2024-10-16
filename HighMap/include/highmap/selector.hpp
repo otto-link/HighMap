@@ -254,6 +254,42 @@ Array select_inward_outward_slope(const Array &array,
 Array select_lt(const Array &array, float value);
 
 /**
+ * @brief Selects the midrange values of the input array within a specified
+ * range.
+ *
+ * @param array The input array from which the midrange values are selected.
+ * @param gain The gain factor to scale the selected midrange values.
+ * @param vmin The minimum value for range.
+ * @param vmax The maximum value for range.
+ * @return An array containing the midrange values.
+ *
+ * **Example**
+ * @include ex_select_midrange.cpp
+ *
+ * **Result**
+ * @image html ex_select_midrange.png
+ */
+Array select_midrange(const Array &array, float gain, float vmin, float vmax);
+
+/**
+ * @brief Selects and scales the midrange values of the input array.
+ *
+ * This function extracts the midrange portion of the input array and scales it
+ * by the specified gain.
+ *
+ * @param array The input array from which the midrange values are selected.
+ * @param gain The gain factor to scale the selected midrange values.
+ * @return An array containing the midrange values scaled by the gain.
+ *
+ * **Example**
+ * @include ex_select_midrange.cpp
+ *
+ * **Result**
+ * @image html ex_select_midrange.png
+ */
+Array select_midrange(const Array &array, float gain);
+
+/**
  * @brief Splits the input array into three bands (low, mid, and high) based on
  * given ratios and overlap.
  *
