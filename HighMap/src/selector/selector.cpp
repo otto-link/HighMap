@@ -216,10 +216,8 @@ Array select_midrange(const Array &array, float gain, float vmin, float vmax)
     for (int j = 0; j < array.shape.y; j++)
     {
       float v = c(i, j) * c(i, j);
-      c(i, j) = norm_coeff * std::pow(std::exp(-1.f / (1.f - v)), 1.f / gain);
+      c(i, j) = std::pow(norm_coeff * std::exp(-1.f / (1.f - v)), 1.f / gain);
     }
-
-  c.infos();
   return c;
 }
 
