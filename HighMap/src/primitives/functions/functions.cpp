@@ -290,7 +290,7 @@ WaveSquareFunction::WaveSquareFunction(Vec2<float> kw,
   this->set_delegate(
       [this](float x, float y, float)
       {
-        float r = ca * this->kw.x * x + sa * this->kw.y * y;
+        float r = ca * this->kw.x * x + sa * this->kw.y * y + this->phase_shift;
         return r = 2.f * (int)r - (int)(2.f * r) + 1.f;
       });
 }
@@ -306,7 +306,7 @@ WaveTriangularFunction::WaveTriangularFunction(Vec2<float> kw,
   this->set_delegate(
       [this](float x, float y, float)
       {
-        float r = ca * this->kw.x * x + sa * this->kw.y * y;
+        float r = ca * this->kw.x * x + sa * this->kw.y * y + this->phase_shift;
 
         r = r - (int)r;
         if (r < this->slant_ratio)
