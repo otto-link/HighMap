@@ -11,9 +11,14 @@ int main(void)
   auto        z2 = z;
 
   float angle = 30.f;
-  hmap::steepen_convective(z1, angle, 1, 0.5f);
+  int   iterations = 3;
+  int   ir = 16;
+  hmap::steepen_convective(z1, angle, iterations, ir);
+
+  z1.infos();
 
   hmap::export_banner_png("ex_steepen_convective.png",
                           {z, z1},
-                          hmap::Cmap::TERRAIN);
+                          hmap::Cmap::TERRAIN,
+                          true);
 }
