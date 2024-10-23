@@ -21,6 +21,24 @@
 namespace hmap
 {
 
+enum NormalMapBlendingMethod : int
+{
+  NMAP_LINEAR,
+  NMAP_DERIVATIVE,
+  NMAP_UDN,
+  NMAP_UNITY,
+  NMAP_WHITEOUT
+};
+
+static std::map<NormalMapBlendingMethod, std::string>
+    normal_map_blending_method_as_string = {
+        {NMAP_LINEAR, "Linear"},
+        {NMAP_DERIVATIVE, "Partial derivative"},
+        {NMAP_UDN, "Unreal Developer Network"},
+        {NMAP_UNITY, "Unity"},
+        {NMAP_WHITEOUT, "Whiteout"},
+};
+
 // --- forward declarations
 class HeightMapRGBA;
 HeightMapRGBA mix_heightmap_rgba(HeightMapRGBA &rgba1,
@@ -478,6 +496,14 @@ struct HeightMapRGBA
    */
   HeightMapRGBA(HeightMap r, HeightMap g, HeightMap b, HeightMap a);
 
+  HeightMapRGBA(Vec2<int> shape,
+                Vec2<int> tiling,
+                float     overlap,
+                Array     array_r,
+                Array     array_g,
+                Array     array_b,
+                Array     array_a);
+
   HeightMapRGBA(Vec2<int> shape, Vec2<int> tiling, float overlap);
 
   HeightMapRGBA(); ///< @overload
@@ -578,6 +604,41 @@ struct HeightMapRGBA
    */
   std::vector<uint8_t> to_img_8bit(Vec2<int> shape_img = {0, 0});
 };
+
+/**
+ * @brief Mixes two normal maps in RGBA format to create a blended normal map.
+ *
+ * This function blends a base normal map and a detail normal map using a
+ * specified blending method. The detail map can be scaled to control the
+ * intensity of its effect.
+ *
+ * @param nmap_base       Reference to the base normal map in RGBA format.
+ * @param nmap_detail     Reference to the detail normal map in RGBA format.
+ * @param detail_scaling  Scaling factor for the detail normal map intensity in
+ * [-1.f, 1.f]. Default is 1.0f.
+ * @param blending_method Method to blend the two normal maps. Options are
+ * specified by the NormalMapBlendingMethod enum (e.g., NMAP_DERIVATIVE).
+ *
+ * @return A HeightMapRGBA object that contains the result of blending the base
+ * and detail normal maps.
+ *
+ * **Example**
+ * @include ex_mix_normal_map_rgba.cpp
+ *
+ * **Result**
+ * @image html ex_mix_normal_map_rgba0.png
+ * @image html ex_mix_normal_map_rgba1.png
+ * @image html ex_mix_normal_map_rgba2.png
+ * @image html ex_mix_normal_map_rgba3.png
+ * @image html ex_mix_normal_map_rgba4.png
+ * @image html ex_mix_normal_map_rgba5.png
+ * @image html ex_mix_normal_map_rgba6.png
+ */
+HeightMapRGBA mix_normal_map_rgba(HeightMapRGBA          &nmap_base,
+                                  HeightMapRGBA          &nmap_detail,
+                                  float                   detail_scaling = 1.f,
+                                  NormalMapBlendingMethod blending_method =
+                                      NormalMapBlendingMethod::NMAP_DERIVATIVE);
 
 // shape, shift, scale, noise_x, noise_y
 
@@ -717,5 +778,15 @@ void transform(
     HeightMap                                              &h3,
     HeightMap                                              &h4,
     std::function<void(Array &, Array &, Array &, Array &)> ternary_op);
+
+void transform(
+    HeightMap &h1,
+    HeightMap &h2,
+    HeightMap &h3,
+    HeightMap &h4,
+    HeightMap &h5,
+    HeightMap &h6,
+    std::function<void(Array &, Array &, Array &, Array &, Array &, Array &)>
+        op);
 
 } // namespace hmap

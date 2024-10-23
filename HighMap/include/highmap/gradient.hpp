@@ -19,6 +19,7 @@
 #pragma once
 
 #include "highmap/array.hpp"
+#include "highmap/tensor.hpp"
 
 namespace hmap
 {
@@ -211,5 +212,7 @@ void gradient_y(const Array &array, Array &dy); ///< @overload
  * @return Array Laplacian of the input array.
  */
 Array laplacian(const Array &array);
+
+Tensor normal_map(const Array &array);
 
 } // namespace hmap

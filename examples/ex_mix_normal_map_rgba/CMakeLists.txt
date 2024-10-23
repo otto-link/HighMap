@@ -1,0 +1,2 @@
+add_executable(ex_mix_normal_map_rgba ex_mix_normal_map_rgba.cpp)
+target_link_libraries(ex_mix_normal_map_rgba highmap)

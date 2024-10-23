@@ -28,6 +28,21 @@ HeightMapRGBA::HeightMapRGBA(HeightMap r, HeightMap g, HeightMap b, HeightMap a)
 {
 }
 
+HeightMapRGBA::HeightMapRGBA(Vec2<int> shape,
+                             Vec2<int> tiling,
+                             float     overlap,
+                             Array     array_r,
+                             Array     array_g,
+                             Array     array_b,
+                             Array     array_a)
+{
+  this->set_sto(shape, tiling, overlap);
+  this->rgba[0].from_array_interp_nearest(array_r);
+  this->rgba[1].from_array_interp_nearest(array_g);
+  this->rgba[2].from_array_interp_nearest(array_b);
+  this->rgba[3].from_array_interp_nearest(array_a);
+}
+
 HeightMapRGBA::HeightMapRGBA(Vec2<int> shape, Vec2<int> tiling, float overlap)
 {
   this->set_sto(shape, tiling, overlap);
@@ -232,6 +247,123 @@ HeightMapRGBA mix_heightmap_rgba(std::vector<HeightMapRGBA *> rgba_plist,
   }
 
   return rgba_out;
+}
+
+HeightMapRGBA mix_normal_map_rgba(HeightMapRGBA          &nmap_base,
+                                  HeightMapRGBA          &nmap_detail,
+                                  float                   detail_scaling,
+                                  NormalMapBlendingMethod blending_method)
+{
+  // mix two RGBA arrays assuming they represent normal maps
+
+  // https://blog.selfshadow.com/publications/blending-in-detail/
+
+  // https://j3l7h.de/talks/2008-02-18_Care_and_Feeding_of_Normal_Vectors.pdf
+
+  // output, also used to store first normal map
+  HeightMapRGBA nmap_out = nmap_base;
+
+  // mix and then re-normalize values assuming a RGB channels
+  // represent a normal vector
+  auto lambda = [&detail_scaling, &blending_method](Array &r1,
+                                                    Array &g1,
+                                                    Array &b1,
+                                                    Array &r2,
+                                                    Array &g2,
+                                                    Array &b2)
+  {
+    std::function<Vec3<float>(Vec3<float> &, Vec3<float> &)> blending_fct;
+
+    switch (blending_method)
+    {
+    case NormalMapBlendingMethod::NMAP_LINEAR:
+    {
+      blending_fct = [](Vec3<float> &n1, Vec3<float> &n2) { return n1 + n2; };
+    }
+    break;
+    //
+    case NormalMapBlendingMethod::NMAP_DERIVATIVE:
+    {
+      blending_fct = [](Vec3<float> &n1, Vec3<float> &n2)
+      {
+        Vec3<float> vn = Vec3<float>(n1.x * n2.z + n2.x * n1.z,
+                                     n1.y * n2.z + n2.y * n1.z,
+                                     n1.z * n2.z);
+        return vn;
+      };
+    }
+    break;
+    //
+    case NormalMapBlendingMethod::NMAP_UDN:
+    {
+      blending_fct = [](Vec3<float> &n1, Vec3<float> &n2)
+      {
+        Vec3<float> vn = Vec3<float>(n1.x + n2.x, n1.y + n2.y, n1.z);
+        return vn;
+      };
+    }
+    break;
+      //
+    case NormalMapBlendingMethod::NMAP_UNITY:
+    {
+      blending_fct = [](Vec3<float> &n1, Vec3<float> &n2)
+      {
+        Vec3<float> m0 = Vec3<float>(n1.z, n1.x, -n1.x);
+        Vec3<float> m1 = Vec3<float>(n1.x, n1.z, -n1.y);
+        Vec3<float> m2 = Vec3<float>(n1.x, n1.y, n1.z);
+
+        Vec3<float> vn = Vec3<float>(n2.x * m0.x + n2.y * m1.x + n2.z * m2.x,
+                                     n2.x * m0.y + n2.y * m1.y + n2.z * m2.y,
+                                     n2.x * m0.z + n2.y * m1.z + n2.z * m2.z);
+        return vn;
+      };
+    }
+    break;
+    //
+    case NormalMapBlendingMethod::NMAP_WHITEOUT:
+    default:
+    {
+      blending_fct = [](Vec3<float> &n1, Vec3<float> &n2)
+      {
+        Vec3<float> vn = Vec3<float>(n1.x + n2.x, n1.y + n2.y, n1.z * n2.z);
+        return vn;
+      };
+    }
+    }
+
+    for (int i = 0; i < r1.shape.x; i++)
+      for (int j = 0; j < r1.shape.y; j++)
+      {
+        // do some rescaling because RGBA texture expected in [0, 1]
+        // but normal vector expected in [-1, 1]
+
+        Vec3<float> v111 = Vec3<float>(1.f, 1.f, 1.f);
+        Vec3<float> n1 = 2.f * Vec3<float>(r1(i, j), g1(i, j), b1(i, j)) - v111;
+        Vec3<float> n2 = 2.f * Vec3<float>(r2(i, j), g2(i, j), b2(i, j)) - v111;
+
+        n2.x *= detail_scaling;
+        n2.y *= detail_scaling;
+        n2.z *= detail_scaling;
+
+        Vec3<float> vn = blending_fct(n1, n2);
+        vn.normalize();
+
+        r1(i, j) = 0.5f * vn.x + 0.5f;
+        g1(i, j) = 0.5f * vn.y + 0.5f;
+        b1(i, j) = 0.5f * vn.z + 0.5f;
+      }
+  };
+
+  // apply...
+  transform(nmap_out.rgba[0],
+            nmap_out.rgba[1],
+            nmap_out.rgba[2],
+            nmap_detail.rgba[0],
+            nmap_detail.rgba[1],
+            nmap_detail.rgba[2],
+            lambda);
+
+  return nmap_out;
 }
 
 void HeightMapRGBA::normalize()
