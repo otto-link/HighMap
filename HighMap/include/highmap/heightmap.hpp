@@ -326,6 +326,18 @@ public:
   Array to_array(); ///< @overload
 
   /**
+   * @brief Converts the heightmap to a 16-bit grayscale representation.
+   *
+   * @return A `std::vector<uint16_t>` containing the 16-bit grayscale image
+   * data.
+   */
+  std::vector<uint16_t> to_grayscale_image_16bit();
+
+  std::vector<uint16_t> to_grayscale_image_16bit_multithread();
+
+  std::vector<uint8_t> to_grayscale_image_8bit();
+
+  /**
    * @brief Returns the unique elements of the heightmap.
    *
    * @return std::vector<float> Unique values.

@@ -303,6 +303,127 @@ Array HeightMap::to_array(Vec2<int> shape_export)
   return array;
 }
 
+std::vector<uint8_t> HeightMap::to_grayscale_image_8bit()
+{
+  std::vector<uint8_t> img(this->shape.x * this->shape.y);
+
+  float vmin = this->min();
+  float vmax = this->max();
+  float inv_vptp = vmin != vmax ? 1.f / (this->max() - vmin) : 0.f;
+
+  for (int it = 0; it < tiling.x; it++)
+    for (int jt = 0; jt < tiling.y; jt++)
+    {
+      // tile array position within the global array
+      int k = this->get_tile_index(it, jt);
+
+      // bottom-left indices of the current tile
+      int i1 = (int)(tiles[k].shift.x * this->shape.x);
+      int j1 = (int)(tiles[k].shift.y * this->shape.y);
+
+      for (int p = 0; p < tiles[k].shape.x; p++)
+        for (int q = 0; q < tiles[k].shape.y; q++)
+        {
+          // linear index for the global image array (flip y axis and
+          // change to row/col major)
+          int r = (this->shape.y - 1 - q - j1) * this->shape.x + (p + i1);
+
+          // int r = (p + i1) * this->shape.y + (q + j1);
+
+          // remap to [0, 1)
+          float v = (tiles[k](p, q) - vmin) * inv_vptp;
+
+          img[r] = static_cast<uint8_t>(v * 255.f);
+        }
+    }
+
+  return img;
+}
+
+std::vector<uint16_t> HeightMap::to_grayscale_image_16bit()
+{
+  std::vector<uint16_t> img(this->shape.x * this->shape.y);
+
+  float vmin = this->min();
+  float vmax = this->max();
+  float inv_vptp = vmin != vmax ? 1.f / (this->max() - vmin) : 0.f;
+
+  for (int it = 0; it < tiling.x; it++)
+    for (int jt = 0; jt < tiling.y; jt++)
+    {
+      // tile array position within the global array
+      int k = this->get_tile_index(it, jt);
+
+      // bottom-left indices of the current tile
+      int i1 = (int)(tiles[k].shift.x * this->shape.x);
+      int j1 = (int)(tiles[k].shift.y * this->shape.y);
+
+      for (int p = 0; p < tiles[k].shape.x; p++)
+        for (int q = 0; q < tiles[k].shape.y; q++)
+        {
+          // linear index for the global image array (flip y axis and
+          // change to row/col major)
+          int r = (this->shape.y - 1 - q - j1) * this->shape.x + (p + i1);
+
+          // int r = (p + i1) * this->shape.y + (q + j1);
+
+          // remap to [0, 1)
+          float v = (tiles[k](p, q) - vmin) * inv_vptp;
+
+          img[r] = static_cast<uint16_t>(v * 65535.f);
+        }
+    }
+
+  return img;
+}
+
+std::vector<uint16_t> HeightMap::to_grayscale_image_16bit_multithread()
+{
+  std::vector<uint16_t> img(this->shape.x * this->shape.y);
+
+  float vmin = this->min();
+  float vmax = this->max();
+  float inv_vptp = vmin != vmax ? 1.f / (this->max() - vmin) : 0.f;
+
+  std::vector<std::future<void>> futures;
+
+  // --- function to compute for each tile
+
+  auto lambda = [this, &img, vmin, inv_vptp](int it, int jt)
+  {
+    // tile array position within the global array
+    int k = this->get_tile_index(it, jt);
+
+    // bottom-left indices of the current tile
+    int i1 = (int)(tiles[k].shift.x * this->shape.x);
+    int j1 = (int)(tiles[k].shift.y * this->shape.y);
+
+    for (int p = 0; p < tiles[k].shape.x; p++)
+      for (int q = 0; q < tiles[k].shape.y; q++)
+      {
+        // linear index for the global image array (flip y axis and
+        // change to row/col major)
+        int r = (this->shape.y - 1 - q - j1) * this->shape.x + (p + i1);
+
+        // remap to [0, 1)
+        float v = (tiles[k](p, q) - vmin) * inv_vptp;
+
+        img[r] = static_cast<uint16_t>(v * 65535.f);
+      }
+  };
+
+  // --- distribute
+
+  for (int it = 0; it < tiling.x; it++)
+    for (int jt = 0; jt < tiling.y; jt++)
+      futures.push_back(std::async(lambda, it, jt));
+
+  for (auto &f : futures)
+    f.get();
+
+  return img;
+}
+
 void HeightMap::update_tile_parameters()
 {
   tiles.resize(this->tiling.x * this->tiling.y);
