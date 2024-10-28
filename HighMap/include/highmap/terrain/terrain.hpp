@@ -92,7 +92,10 @@ public:
 
   Vec4<float> compute_bounding_box() const;
 
-  float get_heightmap_value_nearest(HeightMap &h, float gx, float gy);
+  float get_heightmap_value_nearest(HeightMap &h,
+                                    float      gx,
+                                    float      gy,
+                                    float      fill_value = 0.f);
 
   HeightMap *get_heightmap_ref(const std::string &id);
 

@@ -155,8 +155,6 @@ float HeightMap::get_value_nearest(float x, float y)
   float lxt = this->tiles[k].bbox.b - this->tiles[k].bbox.a;
   float lyt = this->tiles[k].bbox.d - this->tiles[k].bbox.c;
 
-  // LOG_DEBUG("%f %f %f %f", xt, yt, lxt, lyt);
-
   int i = static_cast<int>(xt / lxt * (this->tiles[k].shape.x - 1));
   int j = static_cast<int>(yt / lyt * (this->tiles[k].shape.y - 1));
 
