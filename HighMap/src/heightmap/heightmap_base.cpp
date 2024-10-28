@@ -137,6 +137,32 @@ void HeightMap::from_array_interp_nearest(Array &array)
     futures[i].get();
 }
 
+float HeightMap::get_value_nearest(float x, float y)
+{
+  // find corresponding tile
+  float lx = this->bbox.b - this->bbox.a;
+  float ly = this->bbox.d - this->bbox.c;
+
+  int it = static_cast<int>(x / lx * this->tiling.x);
+  int jt = static_cast<int>(y / ly * this->tiling.y);
+
+  int k = this->get_tile_index(it, jt);
+
+  // coordinates with respect to the tile
+  float xt = x - this->tiles[k].bbox.a;
+  float yt = y - this->tiles[k].bbox.c;
+
+  float lxt = this->tiles[k].bbox.b - this->tiles[k].bbox.a;
+  float lyt = this->tiles[k].bbox.d - this->tiles[k].bbox.c;
+
+  // LOG_DEBUG("%f %f %f %f", xt, yt, lxt, lyt);
+
+  int i = static_cast<int>(xt / lxt * (this->tiles[k].shape.x - 1));
+  int j = static_cast<int>(yt / lyt * (this->tiles[k].shape.y - 1));
+
+  return this->tiles[k](i, j);
+}
+
 void HeightMap::infos()
 {
   std::cout << "Heightmap, ";
@@ -253,6 +279,29 @@ void HeightMap::remap(float vmin, float vmax, float from_min, float from_max)
   transform(*this,
             [vmin, vmax, from_min, from_max](Array &x)
             { hmap::remap(x, vmin, vmax, from_min, from_max); });
+}
+
+void HeightMap::set_bbox(Vec4<float> new_bbox)
+{
+  this->bbox = new_bbox;
+
+  float lx = this->bbox.b - this->bbox.a;
+  float ly = this->bbox.d - this->bbox.c;
+
+  for (int it = 0; it < tiling.x; it++)
+    for (int jt = 0; jt < tiling.y; jt++)
+    {
+      int k = this->get_tile_index(it, jt);
+
+      Vec4<float> tile_bbox = Vec4(
+          this->bbox.a + this->tiles[k].shift.x * lx,
+          this->bbox.a + (this->tiles[k].shift.x + this->tiles[k].scale.x) * lx,
+          this->bbox.c + this->tiles[k].shift.y * ly,
+          this->bbox.c +
+              (this->tiles[k].shift.y + this->tiles[k].scale.y) * ly);
+
+      this->tiles[k].bbox = tile_bbox;
+    }
 }
 
 float HeightMap::sum()

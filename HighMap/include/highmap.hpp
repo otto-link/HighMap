@@ -52,3 +52,4 @@
 #include "highmap/synthesis.hpp"
 #include "highmap/tensor.hpp"
 #include "highmap/transform.hpp"
+#include "highmap/upscale_amplification.hpp"
