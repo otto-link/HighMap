@@ -30,13 +30,12 @@ enum NormalMapBlendingMethod : int
   NMAP_WHITEOUT
 };
 
-static std::map<NormalMapBlendingMethod, std::string>
-    normal_map_blending_method_as_string = {
-        {NMAP_LINEAR, "Linear"},
-        {NMAP_DERIVATIVE, "Partial derivative"},
-        {NMAP_UDN, "Unreal Developer Network"},
-        {NMAP_UNITY, "Unity"},
-        {NMAP_WHITEOUT, "Whiteout"},
+static std::map<std::string, int> normal_map_blending_method_as_string = {
+    {"Linear", NMAP_LINEAR},
+    {"Partial derivative", NMAP_DERIVATIVE},
+    {"Unreal Developer Network", NMAP_UDN},
+    {"Unity", NMAP_UNITY},
+    {"Whiteout", NMAP_WHITEOUT},
 };
 
 // --- forward declarations
