@@ -18,6 +18,15 @@ void interpolate_terrain_heightmap(Terrain           &t_source,
   hmap::HeightMap *p_s = t_source.get_heightmap_ref(heightmap_id_source);
   hmap::HeightMap *p_t = t_target.get_heightmap_ref(heightmap_id_target);
 
+  if (!(p_s && p_t))
+  {
+    LOG_DEBUG("interpolate_terrain_heightmap, at least one heightmap not "
+              "found: %s %s",
+              heightmap_id_source.c_str(),
+              heightmap_id_target.c_str());
+    return;
+  }
+
   for (size_t k = 0; k < p_t->tiles.size(); k++)
   {
     // for the current tile
