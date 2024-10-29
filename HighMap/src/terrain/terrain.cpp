@@ -65,6 +65,22 @@ Vec4<float> Terrain::compute_bounding_box() const
   return Vec4<float>(min_x, max_x, min_y, max_y);
 }
 
+float Terrain::get_heightmap_value_bilinear(HeightMap &h,
+                                            float      gx,
+                                            float      gy,
+                                            float      fill_value)
+{
+  Vec2<float> rel = this->map_to_relative_coords(gx, gy);
+
+  if (rel.x >= 0.f && rel.x <= this->size.x && rel.y >= 0.f &&
+      rel.y <= this->size.y)
+  {
+    return h.get_value_bilinear(rel.x, rel.y);
+  }
+  else
+    return fill_value;
+}
+
 float Terrain::get_heightmap_value_nearest(HeightMap &h,
                                            float      gx,
                                            float      gy,

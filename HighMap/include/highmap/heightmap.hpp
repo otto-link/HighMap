@@ -202,6 +202,8 @@ public:
    */
   int get_tile_index(int i, int j);
 
+  float get_value_bilinear(float x, float y);
+
   float get_value_nearest(float x, float y);
 
   void set_bbox(Vec4<float> new_bbox);

@@ -4,7 +4,7 @@
 
 int main(void)
 {
-  hmap::Vec2<int>   shape = {256, 256};
+  hmap::Vec2<int>   shape = {64, 32};
   hmap::Vec2<int>   tiling = {4, 2};
   float             overlap = 0.25;
   hmap::Vec2<float> kw = {4.f, 4.f};

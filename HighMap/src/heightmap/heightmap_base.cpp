@@ -8,6 +8,7 @@
 #include "macrologger.h"
 
 #include "highmap/heightmap.hpp"
+#include "highmap/operator.hpp"
 #include "highmap/range.hpp"
 
 #include "highmap/internal/vector_utils.hpp"
@@ -135,6 +136,46 @@ void HeightMap::from_array_interp_nearest(Array &array)
 
   for (decltype(futures)::size_type i = 0; i < this->get_ntiles(); ++i)
     futures[i].get();
+}
+
+float HeightMap::get_value_bilinear(float x, float y)
+{
+  // find corresponding tile
+  float lx = this->bbox.b - this->bbox.a;
+  float ly = this->bbox.d - this->bbox.c;
+
+  int it = static_cast<int>(x / lx * this->tiling.x);
+  int jt = static_cast<int>(y / ly * this->tiling.y);
+
+  int k = this->get_tile_index(it, jt);
+
+  // coordinates with respect to the tile
+  float xt = x - this->tiles[k].bbox.a;
+  float yt = y - this->tiles[k].bbox.c;
+
+  float lxt = this->tiles[k].bbox.b - this->tiles[k].bbox.a;
+  float lyt = this->tiles[k].bbox.d - this->tiles[k].bbox.c;
+
+  float xgrid = xt / lxt * (this->tiles[k].shape.x - 1);
+  float ygrid = yt / lyt * (this->tiles[k].shape.y - 1);
+
+  int i = static_cast<int>(xgrid);
+  int j = static_cast<int>(ygrid);
+
+  float u = xgrid - i;
+  float v = ygrid - j;
+
+  int i1 = (i == this->tiles[k].shape.x - 1) ? i - 1 : i + 1;
+  int j1 = (j == this->tiles[k].shape.y - 1) ? j - 1 : j + 1;
+
+  float value = bilinear_interp(this->tiles[k](i, j),
+                                this->tiles[k](i1, j),
+                                this->tiles[k](i, j1),
+                                this->tiles[k](i1, j1),
+                                u,
+                                v);
+
+  return value;
 }
 
 float HeightMap::get_value_nearest(float x, float y)
