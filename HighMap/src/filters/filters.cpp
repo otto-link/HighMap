@@ -992,7 +992,7 @@ void wrinkle(Array      &array,
                       nullptr,
                       bbox);
 
-  array += wrinkle_amplitude * gradient_norm(w);
+  array += wrinkle_amplitude * gradient_norm(w) * array.shape.x;
 }
 
 void wrinkle(Array      &array,
