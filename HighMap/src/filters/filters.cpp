@@ -966,6 +966,7 @@ void steepen_convective(Array &array,
 
 void wrinkle(Array      &array,
              float       wrinkle_amplitude,
+             float       wrinkle_angle,
              float       displacement_amplitude,
              int         ir,
              float       kw,
@@ -974,9 +975,12 @@ void wrinkle(Array      &array,
              float       weight,
              Vec4<float> bbox)
 {
-  Array dr = displacement_amplitude * array;
+  Array dx = displacement_amplitude * array;
 
-  if (ir > 0) smooth_cpulse(dr, ir);
+  if (ir > 0) smooth_cpulse(dx, ir);
+
+  Array dy = std::sin(wrinkle_angle / 180.f * M_PI) * dx;
+  dx *= std::cos(wrinkle_angle / 180.f * M_PI);
 
   Array w = noise_fbm(NoiseType::PERLIN,
                       array.shape,
@@ -987,8 +991,8 @@ void wrinkle(Array      &array,
                       0.5f,
                       2.f,
                       nullptr,
-                      &dr,
-                      &dr,
+                      &dx,
+                      &dy,
                       nullptr,
                       bbox);
 
@@ -998,6 +1002,7 @@ void wrinkle(Array      &array,
 void wrinkle(Array      &array,
              float       wrinkle_amplitude,
              Array      *p_mask,
+             float       wrinkle_angle,
              float       displacement_amplitude,
              int         ir,
              float       kw,
@@ -1009,6 +1014,7 @@ void wrinkle(Array      &array,
   if (!p_mask)
     wrinkle(array,
             wrinkle_amplitude,
+            wrinkle_angle,
             displacement_amplitude,
             ir,
             kw,
@@ -1021,6 +1027,7 @@ void wrinkle(Array      &array,
     Array array_f = array;
     wrinkle(array_f,
             wrinkle_amplitude,
+            wrinkle_angle,
             displacement_amplitude,
             ir,
             kw,

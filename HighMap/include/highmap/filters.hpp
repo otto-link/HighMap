@@ -1770,6 +1770,7 @@ Array tessellate(Array &array,
  * @param p_mask Optional filter mask, expected in the range [0, 1]. If
  * provided, the wrinkle effect is applied according to this mask. If not
  * provided, the entire array is processed.
+ * @param wrinkle_angle Overall rotation angle (in degree).
  * @param displacement_amplitude Drives the displacement of the wrinkles.
  * @param ir Smooth filter radius applied during wrinkle generation.
  * @param kw Underlying primitive wavenumber, affecting the frequency of
@@ -1789,6 +1790,7 @@ Array tessellate(Array &array,
 void wrinkle(Array      &array,
              float       wrinkle_amplitude,
              Array      *p_mask,
+             float       wrinkle_angle = 0.f,
              float       displacement_amplitude = 1.f,
              int         ir = 0,
              float       kw = 2.f,
@@ -1799,6 +1801,7 @@ void wrinkle(Array      &array,
 
 void wrinkle(Array      &array,
              float       wrinkle_amplitude,
+             float       wrinkle_angle = 0.f,
              float       displacement_amplitude = 1.f,
              int         ir = 0,
              float       kw = 2.f,
