@@ -626,6 +626,40 @@ public:
   float sdf_open(float x, float y);
 
   /**
+   * @brief Applies a smoothing operation to the path points using a moving
+   * average filter.
+   *
+   * This method smooths the path points based on a specified number of
+   * neighboring points, an averaging intensity, and an inertia factor. The
+   * smoothing involves calculating the average of neighboring points within a
+   * range defined by `navg`, and then applying an intensity-based weighted
+   * average to blend the original and smoothed values. Additionally, an inertia
+   * effect can be applied to gradually adjust point positions based on previous
+   * points.
+   *
+   * @param navg Number of neighboring points to consider on each side of the
+   * current point during the smoothing process. Higher values result in broader
+   * smoothing.
+   * @param averaging_intensity The weight given to the averaged points. A value
+   * of 1.0 applies full intensity, resulting in a complete averaging of the
+   * neighboring points. Lower values retain more of the original point's
+   * position.
+   * @param inertia The factor by which each point is influenced by its previous
+   * point after the initial smoothing pass. A value of 0 has no inertia effect,
+   * while a higher value blends the current point's position with that of the
+   * preceding point, creating a trailing effect.
+   *
+   * **Example**
+   * @include ex_path_smooth.cpp
+   *
+   * **Result**
+   * @image html ex_path_smooth.png
+   */
+  void smooth(int   navg = 1,
+              float averaging_intensity = 1.f,
+              float inertia = 0.f);
+
+  /**
    * @brief Subsample the path by keeping only every n-th point.
    *
    * This method reduces the number of points in the path by retaining only
