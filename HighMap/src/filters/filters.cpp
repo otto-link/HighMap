@@ -760,6 +760,19 @@ void smooth_cpulse(Array &array, int ir, Array *p_mask)
   }
 }
 
+void smooth_flat(Array &array, int ir)
+{
+  // define kernel
+  const int          nk = 2 * ir + 1;
+  std::vector<float> k(nk);
+
+  std::fill(k.begin(), k.end(), 1.f / (2.f * nk + 1.f));
+
+  // eventually convolve
+  array = convolve1d_i(array, k);
+  array = convolve1d_j(array, k);
+}
+
 void smooth_gaussian(Array &array, int ir)
 {
   // define Gaussian kernel (we keep NSIGMA standard deviations of the

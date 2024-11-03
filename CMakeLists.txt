@@ -14,7 +14,7 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 else()
   # GNU compiler options
   set(CMAKE_CXX_FLAGS
-      "${CMAKE_CXX_FLAGS} -Wall -Wextra -O3 -pthread -fPIC -DLOG_LEVEL=3 -Wno-free-nonheap-object -Wno-deprecated-enum-enum-conversion"
+      "${CMAKE_CXX_FLAGS} -Wall -Wextra -O3 -Ofast -ffast-math -pthread -fPIC -DLOG_LEVEL=3 -Wno-free-nonheap-object -Wno-deprecated-enum-enum-conversion"
   )
 endif()
 

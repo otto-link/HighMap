@@ -1027,6 +1027,91 @@ void recast_cliff_directional(Array &array,
                               float  gain = 2.f); ///< @overload
 
 /**
+ * @brief Applies an escarpment effect to the given 2D array, modifying its
+ * values based on cumulative displacement with optional directional and
+ * transpositional transformations.
+ *
+ * This function calculates cumulative displacement along the x-axis based on
+ * relative elevation differences between adjacent cells. The displacement is
+ * scaled and optionally reversed, then used to apply a warping effect to the
+ * array, simulating an escarpment feature. An optional global scaling factor
+ * can further adjust the displacement effect intensity.
+ *
+ * @param array Reference to the 2D array where the escarpment effect will be
+ * applied.
+ * @param ir Radius for the smoothing kernel used on the displacement,
+ * controlling the smoothness of the effect. Larger values result in smoother
+ * transitions.
+ * @param ratio The ratio influencing displacement; values > 1.0 increase
+ * displacement sensitivity to height differences.
+ * @param scale The scaling factor for the cumulative displacement, affecting
+ * the intensity of the effect.
+ * @param reverse If true, reverses the direction of the displacement effect.
+ * @param transpose_effect If true, transposes the array before and after
+ * applying the effect.
+ * @param global_scaling An additional scaling factor for the displacement; if
+ * set to 0, a default value is computed based on the array's range and size.
+ * Higher values increase the overall effect.
+ *
+ * **Example**
+ * @include ex_recast.cpp
+ *
+ * **Result**
+ * @image html ex_recast.png
+ */
+void recast_escarpment(Array &array,
+                       int    ir = 16,
+                       float  ratio = 0.1f,
+                       float  scale = 1.f,
+                       bool   reverse = false,
+                       bool   transpose_effect = false,
+                       float  global_scaling = 0.f);
+
+/**
+ * @brief Applies an escarpment effect to the given 2D array, with an optional
+ * mask to blend the effect.
+ *
+ * This overload allows for a blending mask that controls the intensity of the
+ * escarpment effect at each point in the array. The mask values range between 0
+ * and 1, where values closer to 1 fully apply the effect, and values closer to
+ * 0 reduce it. An optional global scaling factor can further adjust the
+ * displacement effect intensity.
+ *
+ * @param array Reference to the 2D array where the escarpment effect will be
+ * applied.
+ * @param p_mask Pointer to an optional mask array for blending the effect,
+ * where values range from 0 to 1. A nullptr applies the effect fully without
+ * blending.
+ * @param ir Radius for the smoothing kernel used on the displacement,
+ * controlling the smoothness of the effect. Larger values result in smoother
+ * transitions.
+ * @param ratio The ratio influencing displacement; values > 1.0 increase
+ * displacement sensitivity to height differences.
+ * @param scale The scaling factor for the cumulative displacement, affecting
+ * the intensity of the effect.
+ * @param reverse If true, reverses the direction of the displacement effect.
+ * @param transpose_effect If true, transposes the array before and after
+ * applying the effect.
+ * @param global_scaling An additional scaling factor for the displacement; if
+ * set to 0, a default value is computed based on the array's range and size.
+ * Higher values increase the overall effect.
+ *
+ * **Example**
+ * @include ex_recast.cpp
+ *
+ * **Result**
+ * @image html ex_recast.png
+ */
+void recast_escarpment(Array &array,
+                       Array *p_mask,
+                       int    ir = 16,
+                       float  ratio = 0.1f,
+                       float  scale = 1.f,
+                       bool   reverse = false,
+                       bool   transpose_effect = false,
+                       float  global_scaling = 0.f);
+
+/**
  * @brief Transform heightmap to give a "peak" like appearance.
  *
  * This function modifies the heightmap to create a "peak" effect, where the
@@ -1515,6 +1600,7 @@ void shrink_directional(Array &array,
  */
 void smooth_cone(Array &array, int ir);
 void smooth_cone(Array &array, int ir, Array *p_mask); ///< @overload
+
 /**
  * @brief Apply filtering to the array using convolution with a cubic pulse
  * kernel.
@@ -1542,6 +1628,20 @@ void smooth_cone(Array &array, int ir, Array *p_mask); ///< @overload
  */
 void smooth_cpulse(Array &array, int ir);
 void smooth_cpulse(Array &array, int ir, Array *p_mask); ///< @overload
+
+/**
+ * @brief Applies a smoothing average filter to the given 2D array in both
+ * dimensions.
+ *
+ * This function creates a smoothing kernel of size \(2 \times \text{ir} + 1\)
+ * with uniform weights, then applies a 1D convolution along both the i (rows)
+ * and j (columns) dimensions of the array to achieve a 2D smoothing effect.
+ *
+ * @param array Reference to the 2D array to be smoothed.
+ * @param ir Radius of the smoothing kernel, determining its size as \(2 \times
+ * \text{ir} + 1\). Larger values produce more smoothing.
+ */
+void smooth_flat(Array &array, int ir);
 
 /**
  * @brief Apply Gaussian filtering to the array.
