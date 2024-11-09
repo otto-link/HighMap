@@ -313,30 +313,40 @@ void find_vertical_cut_path(Array &error, std::vector<int> &path_i);
 Array generate_mask(hmap::Vec2<int> shape, std::vector<int> cut_path_i, int ir);
 
 /**
- * @brief Extract a random patch from an input array.
+ * @brief Extracts a random sub-array (patch) from the input array, with
+ * optional transformations.
  *
- * This function samples a random sub-array (patch) from the provided input
- * array. The extracted patch can be flipped, rotated, or transposed based on
- * the specified parameters. Randomness is controlled by a pseudo-random number
- * generator.
+ * This function selects a random patch from the specified input array and
+ * applies optional transformations such as flipping, rotation, and
+ * transposition. Additionally, if a list of secondary arrays is provided,
+ * corresponding patches are extracted and transformed in the same way.
  *
- * @param array The input array from which the patch is extracted.
- * @param patch_shape The dimensions of the patch to be extracted.
- * @param gen A pseudo-random number generator to ensure randomness.
- * @param patch_flip If true, the patch may be flipped horizontally or
- * vertically.
- * @param patch_rotate If true, the patch may be rotated by 90 degrees.
- * @param patch_transpose If true, the patch may be transposed (swapped rows and
- * columns).
- * @return Array The randomly sampled patch from the input array, with possible
- * modifications.
+ * @param array             The main input array from which the patch is
+ * extracted.
+ * @param patch_shape       The shape (dimensions) of the patch to be extracted.
+ * @param gen               Random number generator for selecting patch
+ * location.
+ * @param patch_flip        If true, allows the patch to be flipped vertically
+ * or horizontally.
+ * @param patch_rotate      If true, allows the patch to be rotated by 90
+ * degrees.
+ * @param patch_transpose   If true, allows the patch to be transposed.
+ * @param p_secondary_arrays  Optional pointer to a list of secondary arrays. If
+ * provided, patches will be extracted and transformed from each array in the
+ * list, with the same transformations as the primary patch.
+ * @param p_secondary_patches Optional pointer to a list for storing the
+ * transformed patches from each secondary array.
+ *
+ * @return The extracted and transformed patch from the main input array.
  */
-Array get_random_patch(Array          &array,
-                       hmap::Vec2<int> patch_shape,
-                       std::mt19937   &gen,
-                       bool            patch_flip = false,
-                       bool            patch_rotate = false,
-                       bool            patch_transpose = false);
+Array get_random_patch(Array                &array,
+                       hmap::Vec2<int>       patch_shape,
+                       std::mt19937         &gen,
+                       bool                  patch_flip = false,
+                       bool                  patch_rotate = false,
+                       bool                  patch_transpose = false,
+                       std::vector<Array *> *p_secondary_arrays = nullptr,
+                       std::vector<Array>   *p_secondary_patches = nullptr);
 
 /**
  * @brief Vertically stack two arrays.
