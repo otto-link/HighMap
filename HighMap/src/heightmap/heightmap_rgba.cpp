@@ -48,6 +48,23 @@ HeightMapRGBA::HeightMapRGBA(Vec2<int> shape, Vec2<int> tiling, float overlap)
   this->set_sto(shape, tiling, overlap);
 }
 
+HeightMap HeightMapRGBA::luminance()
+{
+  // https://stackoverflow.com/questions/596216
+  HeightMap out = HeightMap(this->rgba[0].shape,
+                            this->rgba[0].tiling,
+                            this->rgba[0].overlap);
+
+  transform(out,
+            this->rgba[0],
+            this->rgba[1],
+            this->rgba[2],
+            [](Array &y, Array &r, Array &g, Array &b)
+            { y = 0.299f * r + 0.587f * g + 0.114f * b; });
+
+  return out;
+}
+
 void HeightMapRGBA::set_alpha(HeightMap new_alpha)
 {
   this->rgba[3] = new_alpha;

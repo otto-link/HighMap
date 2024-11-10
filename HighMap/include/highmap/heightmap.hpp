@@ -589,6 +589,22 @@ struct HeightMapRGBA
                 HeightMap                      *p_noise = nullptr);
 
   /**
+   * @brief Computes the luminance of an RGBA height map.
+   *
+   * This method creates a grayscale `HeightMap` based on the luminance
+   * values calculated from the red, green, and blue channels of the RGBA height
+   * map. The luminance is computed using the standard formula: \f$ L = 0.299
+   * \times R + 0.587 \times G + 0.114 \times B \f$.
+   *
+   * @return A `HeightMap` representing the grayscale luminance of the current
+   * RGBA height map.
+   *
+   * @see https://stackoverflow.com/questions/596216 for details on the
+   * luminance calculation.
+   */
+  HeightMap luminance();
+
+  /**
    * @brief Mix two RGBA heightmap using alpha compositing ("over").
    * @param rgba1 1st RGBA heightmap.
    * @param rgba2 2st RGBA heightmap.
