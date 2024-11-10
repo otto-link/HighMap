@@ -1006,10 +1006,11 @@ void terrace(Array &array,
     levels[k] += dis(gen) * delta;
 
   // apply a gain like filter
-  auto lambda = [&gain, &levels](float x, float noise = 0.f)
+  auto lambda = [gain, &levels, vmin, vmax](float x, float noise = 0.f)
   {
     // find level interval
     float y = x + noise;
+    y = std::clamp(y, vmin, vmax);
 
     size_t n = 1;
     while (y > levels[n] && n < levels.size())
@@ -1024,7 +1025,7 @@ void terrace(Array &array,
                 : 1.f - 0.5f * std::pow(2.f * (1.f - y), gain);
 
     // rescale back to original ammplitude interval
-    return y * (levels[n + 1] - levels[n]) + levels[n];
+    return y * (levels[n + 1] - levels[n]) + levels[n] - noise;
   };
 
   if (p_noise)
