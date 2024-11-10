@@ -1827,6 +1827,39 @@ void steepen_convective(Array &array,
                         int    ir = 0,
                         float  dt = 0.1f); ///< @overload
 
+/**
+ * @brief Applies a terrace effect to the values in an array.
+ *
+ * This function adjusts the values in the `array` by applying a terrace or
+ * stepped effect, often used for terrain generation or other natural-looking
+ * height variations. The terrace effect is controlled by several parameters
+ * such as the number of levels, gain, noise ratio, and optional min/max range.
+ * The noise is applied to levels for added randomness, and a gain function is
+ * applied to smooth the transitions.
+ *
+ * @param array        The array of values to modify with the terrace effect.
+ * @param seed         Seed value for random number generation.
+ * @param nlevels      Number of terrace levels to apply.
+ * @param gain         Gain factor for controlling the sharpness of the terrace
+ * levels.
+ * @param noise_ratio  Ratio of noise applied to each terrace level, except the
+ * first and last.
+ * @param p_noise      Optional noise array to introduce additional variation
+ * per element.
+ * @param vmin         Minimum value for terracing; if less than `vmax`, will be
+ * auto-determined.
+ * @param vmax         Maximum value for terracing; if less than `vmin`, will be
+ * auto-determined.
+ *
+ * @note If `p_noise` is provided, each value in `array` is transformed using
+ * both the original value and the corresponding noise value from `p_noise`.
+ *
+ * **Example**
+ * @include ex_terrace.cpp
+ *
+ * **Result**
+ * @image html ex_terrace.png
+ */
 void terrace(Array &array,
              uint   seed,
              int    nlevels,
@@ -1836,6 +1869,46 @@ void terrace(Array &array,
              float  vmin = 0.f,
              float  vmax = -1.f);
 
+/**
+ * @brief Applies a terrace effect to an array with optional masking.
+ *
+ * This overloaded version of the terrace function modifies `array` based on the
+ * terrace levels, gain, noise ratio, and an optional mask array. If a mask is
+ * provided, the terrace effect is applied conditionally based on the mask
+ * values.
+ *
+ * @param array        The array of values to modify with the terrace effect.
+ * @param seed         Seed value for random number generation.
+ * @param nlevels      Number of terrace levels to apply.
+ * @param p_mask       Optional mask array. If provided, blends the terrace
+ * effect with original values based on the mask.
+ * @param gain         Gain factor for controlling the sharpness of the terrace
+ * levels.
+ * @param noise_ratio  Ratio of noise applied to each terrace level, except the
+ * first and last.
+ * @param p_noise      Optional noise array to introduce additional variation
+ * per element.
+ * @param vmin         Minimum value for terracing; if less than `vmax`, will be
+ * auto-determined.
+ * @param vmax         Maximum value for terracing; if less than `vmin`, will be
+ * auto-determined.
+ *
+ * This function:
+ * - If no mask is provided, directly applies the terrace effect using the first
+ * terrace overload.
+ * - If a mask is provided, creates a temporary copy of `array`, applies the
+ * terrace effect to it, and then interpolates between `array` and the modified
+ * copy based on mask values.
+ *
+ * @note The mask array allows for blending the terrace effect with the original
+ * array for more localized effects.
+ *
+ * **Example**
+ * @include ex_terrace.cpp
+ *
+ * **Result**
+ * @image html ex_terrace.png
+ */
 void terrace(Array &array,
              uint   seed,
              int    nlevels,
