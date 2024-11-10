@@ -1246,6 +1246,7 @@ void recast_sag(Array &array,
                 float  vref,
                 float  k,
                 Array *p_mask); ///< @overload
+
 /**
  * @brief Apply a curve adjustment filter to the array.
  *
@@ -1825,6 +1826,25 @@ void steepen_convective(Array &array,
                         int    iterations = 1,
                         int    ir = 0,
                         float  dt = 0.1f); ///< @overload
+
+void terrace(Array &array,
+             uint   seed,
+             int    nlevels,
+             float  gain = 4.f,
+             float  noise_ratio = 0.f,
+             Array *p_noise = nullptr,
+             float  vmin = 0.f,
+             float  vmax = -1.f);
+
+void terrace(Array &array,
+             uint   seed,
+             int    nlevels,
+             Array *p_mask,
+             float  gain = 4.f,
+             float  noise_ratio = 0.f,
+             Array *p_noise = nullptr,
+             float  vmin = 0.f,
+             float  vmax = -1.f);
 
 /**
  * @brief Apply tessellation to the array with random node placement.

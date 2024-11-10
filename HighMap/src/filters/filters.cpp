@@ -14,6 +14,7 @@
 #include "highmap/filters.hpp"
 #include "highmap/gradient.hpp"
 #include "highmap/kernels.hpp"
+#include "highmap/operator.hpp"
 #include "highmap/primitives.hpp"
 #include "highmap/range.hpp"
 #include "highmap/transform.hpp"
@@ -973,6 +974,88 @@ void steepen_convective(Array &array,
   {
     Array array_f = array;
     steepen_convective(array_f, angle, iterations, ir, dt);
+    array = lerp(array, array_f, *(p_mask));
+  }
+}
+
+void terrace(Array &array,
+             uint   seed,
+             int    nlevels,
+             float  gain,
+             float  noise_ratio,
+             Array *p_noise,
+             float  vmin,
+             float  vmax)
+{
+  std::mt19937                          gen(seed);
+  std::uniform_real_distribution<float> dis(-noise_ratio, noise_ratio);
+
+  // redefine min/max if sentinels values are detected
+  if (vmax < vmin)
+  {
+    vmin = array.min();
+    vmax = array.max();
+  }
+
+  // defines levels
+  std::vector<float> levels = linspace(vmin, vmax, nlevels + 1);
+  float              delta = (vmax - vmin) / (float)nlevels;
+
+  // add noise, except for the first and last levels
+  for (size_t k = 1; k < levels.size() - 1; k++)
+    levels[k] += dis(gen) * delta;
+
+  // apply a gain like filter
+  auto lambda = [&gain, &levels](float x, float noise = 0.f)
+  {
+    // find level interval
+    float y = x + noise;
+
+    size_t n = 1;
+    while (y > levels[n] && n < levels.size())
+      n++;
+    n--;
+
+    // rescale value to [0, 1]
+    y = (y - levels[n]) / (levels[n + 1] - levels[n]);
+
+    // apply gain
+    y = y < 0.5 ? 0.5f * std::pow(2.f * y, gain)
+                : 1.f - 0.5f * std::pow(2.f * (1.f - y), gain);
+
+    // rescale back to original ammplitude interval
+    return y * (levels[n + 1] - levels[n]) + levels[n];
+  };
+
+  if (p_noise)
+    std::transform(array.vector.begin(),
+                   array.vector.end(),
+                   p_noise->vector.begin(),
+                   array.vector.begin(),
+                   lambda);
+  else
+    std::transform(array.vector.begin(),
+                   array.vector.end(),
+                   array.vector.begin(),
+                   lambda);
+}
+
+void terrace(Array &array,
+             uint   seed,
+             int    nlevels,
+             Array *p_mask,
+             float  gain,
+             float  noise_ratio,
+             Array *p_noise,
+             float  vmin,
+             float  vmax)
+{
+  if (!p_mask)
+    terrace(array, seed, nlevels, gain, noise_ratio, p_noise, vmin, vmax);
+  else
+  {
+    Array array_f = array;
+    terrace(array_f, seed, nlevels, gain, noise_ratio, p_noise, vmin, vmax);
     array = lerp(array, array_f, *(p_mask));
   }
 }
