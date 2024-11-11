@@ -977,6 +977,60 @@ void thermal_flatten(Array &z, float talus, int iterations = 10); ///< @overload
 void thermal_rib(Array &z, int iterations, Array *p_bedrock = nullptr);
 
 /**
+ * @brief Applies the thermal erosion process to an array of elevation values.
+ *
+ * This function simulates thermal erosion by modifying the elevation values in
+ * the array `z`. It compares the slope between each cell and its neighbors with
+ * a specified threshold (`talus`). If the slope exceeds the threshold, material
+ * is considered to move from higher to lower cells, resulting in a smoother
+ * terrain.
+ *
+ * @param z         Reference to the array of elevation values that will be
+ * modified.
+ * @param talus     Array of threshold slope values for each cell, representing
+ * stability criteria.
+ * @param iterations Number of erosion iterations to apply.
+ * @param intensity Intensity factor controlling the amount of change per
+ * iteration.
+ *
+ * **Example**
+ * @include ex_thermal_schott.cpp
+ *
+ * **Result**
+ * @image html ex_thermal_schott.png
+ */
+void thermal_schott(Array       &z,
+                    const Array &talus,
+                    int          iterations = 10,
+                    float        intensity = 0.001f);
+
+/**
+ * @brief Applies the thermal erosion process with a uniform slope threshold.
+ *
+ * This overload of `thermal_schott` applies thermal erosion with a uniform
+ * threshold value. It generates an internal talus map using the specified
+ * constant `talus` value and applies the erosion process in the same manner as
+ * the other overload.
+ *
+ * @param z         Reference to the array of elevation values that will be
+ * modified.
+ * @param talus     Constant threshold slope value used for all cells.
+ * @param iterations Number of erosion iterations to apply.
+ * @param intensity Intensity factor controlling the amount of change per
+ * iteration.
+ *
+ *  **Example**
+ * @include ex_thermal_schott.cpp
+ *
+ * **Result**
+ * @image html ex_thermal_schott.png
+ */
+void thermal_schott(Array      &z,
+                    const float talus,
+                    int         iterations = 10,
+                    float       intensity = 0.001f);
+
+/**
  * @brief Apply thermal weathering erosion simulating scree deposition.
  *
  * @param z Input array.
