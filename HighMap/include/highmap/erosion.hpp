@@ -405,6 +405,23 @@ void hydraulic_ridge(Array &z,
                      int    ir = 0,
                      uint   seed = 1); ///< @overload
 
+void hydraulic_schott(Array &z,
+                      int    iterations = 10,
+                      float  deposition_iterations_ratio = 2,
+                      float  c_erosion = 0.3f,
+                      float  c_deposition = 0.5f,
+                      Array *p_softness = nullptr,
+                      Array *p_flow = nullptr);
+
+void hydraulic_schott(Array &z,
+                      Array *p_mask,
+                      int    iterations = 10,
+                      float  deposition_iterations_ratio = 2,
+                      float  c_erosion = 0.3f,
+                      float  c_deposition = 0.5f,
+                      Array *p_softness = nullptr,
+                      Array *p_flow = nullptr);
+
 /**
  * @brief Apply hydraulic erosion based on the Stream Power Law formulation.
  *

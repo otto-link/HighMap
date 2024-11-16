@@ -8,22 +8,24 @@ int main(void)
 
   hmap::Array z = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, res, seed);
   hmap::remap(z);
-  auto z0 = z;
 
-  int   iterations = 10;
+  auto z1 = z;
+  auto z2 = z;
+
+  int   iterations = 100;
   float intensity = 0.001f;
   float talus = 2.f / shape.x;
 
-  hmap::thermal_schott(z, talus, iterations, intensity);
+  hmap::thermal_schott(z1, talus, iterations, intensity);
 
   // align talus constraint with the elevation
   hmap::Array talus_map = z;
-  hmap::remap(talus_map, talus / 100.f, talus);
+  hmap::remap(talus_map, talus / 2.f, talus);
 
-  hmap::thermal_schott(z, talus_map, iterations, intensity);
+  hmap::thermal_schott(z2, talus_map, iterations, intensity);
 
   hmap::export_banner_png("ex_thermal_schott.png",
-                          {z0, z},
+                          {z, z1, z2},
                           hmap::Cmap::TERRAIN,
-                          true);  
+                          true);
 }

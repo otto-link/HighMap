@@ -131,6 +131,26 @@ void fill_borders(Array &array)
   }
 }
 
+void fill_borders(Array &array, int nbuffer)
+{
+  const int ni = array.shape.x;
+  const int nj = array.shape.y;
+
+  for (int i = nbuffer - 1; i >= 0; i--)
+    for (int j = 0; j < nj; j++)
+    {
+      array(i, j) = array(i + 1, j);
+      array(ni - i - 1, j) = array(ni - i - 2, j);
+    }
+
+  for (int j = nbuffer - 1; j >= 0; j--)
+    for (int i = 0; i < ni; i++)
+    {
+      array(i, j) = array(i, j + 1);
+      array(i, nj - j - 1) = array(i, nj - j - 2);
+    }
+}
+
 Array generate_buffered_array(const Array &array,
                               Vec4<int>    buffers,
                               bool         zero_padding)

@@ -53,7 +53,7 @@ void thermal_schott(Array       &z,
 
           if (slope > talus(i, j))
             down++;
-          else
+          else if (slope < -talus(i, j))
             up++;
         }
 
