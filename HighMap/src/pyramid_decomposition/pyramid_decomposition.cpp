@@ -91,7 +91,7 @@ Array PyramidDecomposition::reconstruct()
     if (n > 0)
     {
       shape = Vec2<int>(shape.x * 2, shape.y * 2);
-      array_out = array_out.resample_to_shape(shape);
+      array_out = array_out.resample_to_shape_bicubic(shape);
     }
   }
 
@@ -121,7 +121,7 @@ void PyramidDecomposition::to_png(std::string fname, int cmap, bool hillshading)
     if (n > 0)
     {
       shape = {shape.x * 2, shape.y * 2};
-      array_out = array_out.resample_to_shape(shape);
+      array_out = array_out.resample_to_shape_bicubic(shape);
     }
   }
   export_banner_png(fname, banner_arrays, cmap, hillshading);
@@ -181,7 +181,7 @@ Array PyramidDecomposition::transform(
     if (n > 0)
     {
       shape = {shape.x * 2, shape.y * 2};
-      array_out = array_out.resample_to_shape(shape);
+      array_out = array_out.resample_to_shape_bicubic(shape);
     }
   }
 
