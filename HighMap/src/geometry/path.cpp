@@ -683,6 +683,41 @@ float Path::sdf_open(float x, float y)
   return std::sqrt(d);
 }
 
+void Path::smooth(int navg, float averaging_intensity, float inertia)
+{
+  // moving average (start and end points are not modified)
+  std::vector<Point> smooth_points = {};
+  smooth_points.reserve(this->get_npoints());
+
+  for (int i = 0; i < (int)this->get_npoints(); i++)
+  {
+    int i1 = (i >= navg) ? navg : i;
+    int i2 = (i <= (int)this->get_npoints() - 1 - navg)
+                 ? navg
+                 : (int)this->get_npoints() - 1 - i;
+    int is = std::min(i1, i2);
+
+    Point psum(0.f, 0.f);
+
+    for (int k = i - is; k < i + is + 1; k++)
+      psum = psum + this->points[k];
+
+    Point new_point = psum / (float)(2 * is + 1);
+    new_point = (1.f - averaging_intensity) * this->points[i] +
+                averaging_intensity * new_point;
+
+    smooth_points.push_back(new_point);
+  }
+
+  this->points = smooth_points;
+
+  // inertia (same, start and end points are not modified)
+  if (inertia > 0.f)
+    for (size_t i = 1; i < this->get_npoints() - 1; i++)
+      this->points[i] = (1.f - inertia) * this->points[i] +
+                        inertia * this->points[i - 1];
+}
+
 void Path::subsample(int step)
 {
   size_t k_global = 0;

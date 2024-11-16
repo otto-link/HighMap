@@ -24,6 +24,32 @@ Tensor::Tensor(Vec2<int> shape_xy, int shape_z)
   this->vector.resize(shape.x * shape.y * shape.z);
 }
 
+Tensor::Tensor(const std::string &fname)
+{
+  cv::Mat mat = cv::imread(fname, cv::IMREAD_COLOR);
+  cv::cvtColor(mat, mat, cv::COLOR_BGR2RGB);
+  mat.convertTo(mat, CV_32FC3, 1.f / 255.f);
+
+  // RGBA image
+  *this = Tensor(Vec2<int>(mat.cols, mat.rows), 4);
+
+  // fill tensor
+  for (int i = 0; i < shape.x; i++)
+    for (int j = 0; j < shape.y; j++)
+    {
+      // OpenCV stores pixels as (row, column), hence (mat.rows - 1 - j, i)
+      cv::Vec3f pixel = mat.at<cv::Vec3f>(mat.rows - 1 - j, i);
+
+      // assign RGB values to the tensor
+      (*this)(i, j, 0) = pixel[0]; // red
+      (*this)(i, j, 1) = pixel[1]; // green
+      (*this)(i, j, 2) = pixel[2]; // blue
+
+      // set alpha channel to 1.0
+      (*this)(i, j, 3) = 1.f;
+    }
+}
+
 float &Tensor::operator()(int i, int j, int k)
 {
   return this->vector[(i * this->shape.y + j) * this->shape.z + k];
@@ -32,6 +58,17 @@ float &Tensor::operator()(int i, int j, int k)
 const float &Tensor::operator()(int i, int j, int k) const ///< @overload
 {
   return this->vector[(i * this->shape.y + j) * this->shape.z + k];
+}
+
+Array Tensor::get_slice(int k) const
+{
+  Array out = Array(Vec2<int>(this->shape.x, this->shape.y));
+
+  for (int i = 0; i < this->shape.x; i++)
+    for (int j = 0; j < this->shape.y; j++)
+      out(i, j) = (*this)(i, j, k);
+
+  return out;
 }
 
 float Tensor::max() const
@@ -55,6 +92,19 @@ void Tensor::remap(float vmin, float vmax)
   else
     for (auto &v : this->vector)
       v = vmin;
+}
+
+Tensor Tensor::resample_to_shape_xy(Vec2<int> new_shape_xy)
+{
+  Tensor out = Tensor(new_shape_xy, this->shape.z);
+
+  for (int k = 0; k < this->shape.z; k++)
+  {
+    Array slice = this->get_slice(k);
+    out.set_slice(k, slice.resample_to_shape(new_shape_xy));
+  }
+
+  return out;
 }
 
 void Tensor::set_slice(int k, const Array &slice)

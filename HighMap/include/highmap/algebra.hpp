@@ -528,6 +528,16 @@ template <typename T> struct Vec3
       z /= mag;
     }
   }
+
+  /**
+   * @brief Calculate the sum of the vector components.
+   *
+   * @return The sum of the vector components.
+   */
+  T sum() const
+  {
+    return x + y + z;
+  }
 };
 
 /**
@@ -817,5 +827,24 @@ template <typename T> struct Mat
     return this->vector[i * this->shape.y + j];
   }
 };
+
+/**
+ * @brief Constructs a normalized 3D vector.
+ *
+ * This function takes three components of a vector (x, y, z), creates a
+ * Vec3<T> object, normalizes it, and returns the normalized vector.
+ *
+ * @tparam T The data type of the vector components (e.g., float, double, etc.).
+ * @param x The x-component of the vector.
+ * @param y The y-component of the vector.
+ * @param z The z-component of the vector.
+ * @return Vec3<T> A normalized 3D vector of type T.
+ */
+template <typename T> Vec3<T> normalized_vec3(T x, T y, T z)
+{
+  Vec3<T> v = Vec3<T>(x, y, z);
+  v.normalize();
+  return v;
+}
 
 } // namespace hmap

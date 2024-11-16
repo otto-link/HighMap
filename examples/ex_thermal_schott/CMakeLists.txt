@@ -1,0 +1,2 @@
+add_executable(ex_thermal_schott ex_thermal_schott.cpp)
+target_link_libraries(ex_thermal_schott highmap)

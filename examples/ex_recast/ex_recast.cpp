@@ -2,7 +2,8 @@
 
 int main(void)
 {
-  hmap::Vec2<int>   shape = {256, 256};
+  hmap::Vec2<int> shape = {256, 256};
+  shape = {512, 512};
   hmap::Vec2<float> res = {2.f, 2.f};
   int               seed = 1;
 
@@ -64,11 +65,18 @@ int main(void)
 
     hmap::recast_sag(z7, 0.5f, k);
     hmap::remap(z7);
-    z7.infos();
+  }
+
+  auto z8 = z;
+  {
+    z8.to_png("out0.png", hmap::Cmap::GRAY, false, CV_16U);
+    hmap::recast_escarpment(z8, 16, 0.1f, 1.f, false, true);
+
+    z8.to_png("out1.png", hmap::Cmap::GRAY, false, CV_16U);
   }
 
   hmap::export_banner_png("ex_recast.png",
-                          {z, z1, z2, z3, z4, z5, z6, z7},
+                          {z, z1, z2, z3, z4, z5, z6, z7, z8},
                           hmap::Cmap::TERRAIN,
                           true);
 }

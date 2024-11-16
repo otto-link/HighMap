@@ -1027,6 +1027,91 @@ void recast_cliff_directional(Array &array,
                               float  gain = 2.f); ///< @overload
 
 /**
+ * @brief Applies an escarpment effect to the given 2D array, modifying its
+ * values based on cumulative displacement with optional directional and
+ * transpositional transformations.
+ *
+ * This function calculates cumulative displacement along the x-axis based on
+ * relative elevation differences between adjacent cells. The displacement is
+ * scaled and optionally reversed, then used to apply a warping effect to the
+ * array, simulating an escarpment feature. An optional global scaling factor
+ * can further adjust the displacement effect intensity.
+ *
+ * @param array Reference to the 2D array where the escarpment effect will be
+ * applied.
+ * @param ir Radius for the smoothing kernel used on the displacement,
+ * controlling the smoothness of the effect. Larger values result in smoother
+ * transitions.
+ * @param ratio The ratio influencing displacement; values > 1.0 increase
+ * displacement sensitivity to height differences.
+ * @param scale The scaling factor for the cumulative displacement, affecting
+ * the intensity of the effect.
+ * @param reverse If true, reverses the direction of the displacement effect.
+ * @param transpose_effect If true, transposes the array before and after
+ * applying the effect.
+ * @param global_scaling An additional scaling factor for the displacement; if
+ * set to 0, a default value is computed based on the array's range and size.
+ * Higher values increase the overall effect.
+ *
+ * **Example**
+ * @include ex_recast.cpp
+ *
+ * **Result**
+ * @image html ex_recast.png
+ */
+void recast_escarpment(Array &array,
+                       int    ir = 16,
+                       float  ratio = 0.1f,
+                       float  scale = 1.f,
+                       bool   reverse = false,
+                       bool   transpose_effect = false,
+                       float  global_scaling = 0.f);
+
+/**
+ * @brief Applies an escarpment effect to the given 2D array, with an optional
+ * mask to blend the effect.
+ *
+ * This overload allows for a blending mask that controls the intensity of the
+ * escarpment effect at each point in the array. The mask values range between 0
+ * and 1, where values closer to 1 fully apply the effect, and values closer to
+ * 0 reduce it. An optional global scaling factor can further adjust the
+ * displacement effect intensity.
+ *
+ * @param array Reference to the 2D array where the escarpment effect will be
+ * applied.
+ * @param p_mask Pointer to an optional mask array for blending the effect,
+ * where values range from 0 to 1. A nullptr applies the effect fully without
+ * blending.
+ * @param ir Radius for the smoothing kernel used on the displacement,
+ * controlling the smoothness of the effect. Larger values result in smoother
+ * transitions.
+ * @param ratio The ratio influencing displacement; values > 1.0 increase
+ * displacement sensitivity to height differences.
+ * @param scale The scaling factor for the cumulative displacement, affecting
+ * the intensity of the effect.
+ * @param reverse If true, reverses the direction of the displacement effect.
+ * @param transpose_effect If true, transposes the array before and after
+ * applying the effect.
+ * @param global_scaling An additional scaling factor for the displacement; if
+ * set to 0, a default value is computed based on the array's range and size.
+ * Higher values increase the overall effect.
+ *
+ * **Example**
+ * @include ex_recast.cpp
+ *
+ * **Result**
+ * @image html ex_recast.png
+ */
+void recast_escarpment(Array &array,
+                       Array *p_mask,
+                       int    ir = 16,
+                       float  ratio = 0.1f,
+                       float  scale = 1.f,
+                       bool   reverse = false,
+                       bool   transpose_effect = false,
+                       float  global_scaling = 0.f);
+
+/**
  * @brief Transform heightmap to give a "peak" like appearance.
  *
  * This function modifies the heightmap to create a "peak" effect, where the
@@ -1161,6 +1246,7 @@ void recast_sag(Array &array,
                 float  vref,
                 float  k,
                 Array *p_mask); ///< @overload
+
 /**
  * @brief Apply a curve adjustment filter to the array.
  *
@@ -1515,6 +1601,7 @@ void shrink_directional(Array &array,
  */
 void smooth_cone(Array &array, int ir);
 void smooth_cone(Array &array, int ir, Array *p_mask); ///< @overload
+
 /**
  * @brief Apply filtering to the array using convolution with a cubic pulse
  * kernel.
@@ -1542,6 +1629,20 @@ void smooth_cone(Array &array, int ir, Array *p_mask); ///< @overload
  */
 void smooth_cpulse(Array &array, int ir);
 void smooth_cpulse(Array &array, int ir, Array *p_mask); ///< @overload
+
+/**
+ * @brief Applies a smoothing average filter to the given 2D array in both
+ * dimensions.
+ *
+ * This function creates a smoothing kernel of size \(2 \times \text{ir} + 1\)
+ * with uniform weights, then applies a 1D convolution along both the i (rows)
+ * and j (columns) dimensions of the array to achieve a 2D smoothing effect.
+ *
+ * @param array Reference to the 2D array to be smoothed.
+ * @param ir Radius of the smoothing kernel, determining its size as \(2 \times
+ * \text{ir} + 1\). Larger values produce more smoothing.
+ */
+void smooth_flat(Array &array, int ir);
 
 /**
  * @brief Apply Gaussian filtering to the array.
@@ -1727,6 +1828,98 @@ void steepen_convective(Array &array,
                         float  dt = 0.1f); ///< @overload
 
 /**
+ * @brief Applies a terrace effect to the values in an array.
+ *
+ * This function adjusts the values in the `array` by applying a terrace or
+ * stepped effect, often used for terrain generation or other natural-looking
+ * height variations. The terrace effect is controlled by several parameters
+ * such as the number of levels, gain, noise ratio, and optional min/max range.
+ * The noise is applied to levels for added randomness, and a gain function is
+ * applied to smooth the transitions.
+ *
+ * @param array        The array of values to modify with the terrace effect.
+ * @param seed         Seed value for random number generation.
+ * @param nlevels      Number of terrace levels to apply.
+ * @param gain         Gain factor for controlling the sharpness of the terrace
+ * levels.
+ * @param noise_ratio  Ratio of noise applied to each terrace level, except the
+ * first and last.
+ * @param p_noise      Optional noise array to introduce additional variation
+ * per element.
+ * @param vmin         Minimum value for terracing; if less than `vmax`, will be
+ * auto-determined.
+ * @param vmax         Maximum value for terracing; if less than `vmin`, will be
+ * auto-determined.
+ *
+ * @note If `p_noise` is provided, each value in `array` is transformed using
+ * both the original value and the corresponding noise value from `p_noise`.
+ *
+ * **Example**
+ * @include ex_terrace.cpp
+ *
+ * **Result**
+ * @image html ex_terrace.png
+ */
+void terrace(Array &array,
+             uint   seed,
+             int    nlevels,
+             float  gain = 4.f,
+             float  noise_ratio = 0.f,
+             Array *p_noise = nullptr,
+             float  vmin = 0.f,
+             float  vmax = -1.f);
+
+/**
+ * @brief Applies a terrace effect to an array with optional masking.
+ *
+ * This overloaded version of the terrace function modifies `array` based on the
+ * terrace levels, gain, noise ratio, and an optional mask array. If a mask is
+ * provided, the terrace effect is applied conditionally based on the mask
+ * values.
+ *
+ * @param array        The array of values to modify with the terrace effect.
+ * @param seed         Seed value for random number generation.
+ * @param nlevels      Number of terrace levels to apply.
+ * @param p_mask       Optional mask array. If provided, blends the terrace
+ * effect with original values based on the mask.
+ * @param gain         Gain factor for controlling the sharpness of the terrace
+ * levels.
+ * @param noise_ratio  Ratio of noise applied to each terrace level, except the
+ * first and last.
+ * @param p_noise      Optional noise array to introduce additional variation
+ * per element.
+ * @param vmin         Minimum value for terracing; if less than `vmax`, will be
+ * auto-determined.
+ * @param vmax         Maximum value for terracing; if less than `vmin`, will be
+ * auto-determined.
+ *
+ * This function:
+ * - If no mask is provided, directly applies the terrace effect using the first
+ * terrace overload.
+ * - If a mask is provided, creates a temporary copy of `array`, applies the
+ * terrace effect to it, and then interpolates between `array` and the modified
+ * copy based on mask values.
+ *
+ * @note The mask array allows for blending the terrace effect with the original
+ * array for more localized effects.
+ *
+ * **Example**
+ * @include ex_terrace.cpp
+ *
+ * **Result**
+ * @image html ex_terrace.png
+ */
+void terrace(Array &array,
+             uint   seed,
+             int    nlevels,
+             Array *p_mask,
+             float  gain = 4.f,
+             float  noise_ratio = 0.f,
+             Array *p_noise = nullptr,
+             float  vmin = 0.f,
+             float  vmax = -1.f);
+
+/**
  * @brief Apply tessellation to the array with random node placement.
  *
  * This function applies tessellation to the input array, creating a denser mesh
@@ -1770,6 +1963,7 @@ Array tessellate(Array &array,
  * @param p_mask Optional filter mask, expected in the range [0, 1]. If
  * provided, the wrinkle effect is applied according to this mask. If not
  * provided, the entire array is processed.
+ * @param wrinkle_angle Overall rotation angle (in degree).
  * @param displacement_amplitude Drives the displacement of the wrinkles.
  * @param ir Smooth filter radius applied during wrinkle generation.
  * @param kw Underlying primitive wavenumber, affecting the frequency of
@@ -1789,6 +1983,7 @@ Array tessellate(Array &array,
 void wrinkle(Array      &array,
              float       wrinkle_amplitude,
              Array      *p_mask,
+             float       wrinkle_angle = 0.f,
              float       displacement_amplitude = 1.f,
              int         ir = 0,
              float       kw = 2.f,
@@ -1799,6 +1994,7 @@ void wrinkle(Array      &array,
 
 void wrinkle(Array      &array,
              float       wrinkle_amplitude,
+             float       wrinkle_angle = 0.f,
              float       displacement_amplitude = 1.f,
              int         ir = 0,
              float       kw = 2.f,

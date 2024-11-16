@@ -66,6 +66,13 @@ public:
   Tensor(Vec2<int> shape_xy, int shape_z);
 
   /**
+   * @brief Constructs a new Tensor object from a file.
+   *
+   * @param fname The name of the file to load the tensor from.
+   */
+  Tensor(const std::string &fname);
+
+  /**
    * @brief Access an element of the tensor.
    *
    * @param i Index along the x-axis.
@@ -84,6 +91,15 @@ public:
    * @return const float& Reference to the element at position (i, j, k).
    */
   const float &operator()(int i, int j, int k) const;
+
+  /**
+   * @brief Get a 2D slice of the tensor along the z-axis.
+   *
+   * @param k Index along the z-axis.
+   * @return An Array representing the 2D slice of the tensor at the specified
+   * z-axis index.
+   */
+  Array get_slice(int k) const;
 
   /**
    * @brief Find the maximum value in the tensor.
@@ -106,6 +122,16 @@ public:
    * @param vmax Maximum value of the new range (default is 1.0).
    */
   void remap(float vmin = 0.f, float vmax = 1.f);
+
+  /**
+   * @brief Resamples the tensor to a new 2D shape (x, y), shape along z is not
+   * changed.
+   *
+   * @param new_shape_xy A 2D vector representing the new shape (x, y) of the
+   * tensor.
+   * @return A new Tensor object with the resampled shape.
+   */
+  Tensor resample_to_shape_xy(Vec2<int> new_shape_xy);
 
   /**
    * @brief Set a 2D slice of the tensor along the z-axis.

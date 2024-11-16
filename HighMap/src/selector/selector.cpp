@@ -205,6 +205,93 @@ Array select_lt(const Array &array, float value)
   return c;
 }
 
+Array select_midrange(const Array &array, float gain, float vmin, float vmax)
+{
+  Array c = array;
+  hmap::remap(c, -1.f, 1.f, vmin, vmax);
+
+  float norm_coeff = 1.f / std::exp(-1.f);
+
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
+    {
+      float v = c(i, j) * c(i, j);
+      c(i, j) = std::pow(norm_coeff * std::exp(-1.f / (1.f - v)), 1.f / gain);
+    }
+  return c;
+}
+
+Array select_midrange(const Array &array, float gain)
+{
+  return select_midrange(array, gain, array.min(), array.max());
+}
+
+void select_multiband3(const Array &array,
+                       Array       &band_low,
+                       Array       &band_mid,
+                       Array       &band_high,
+                       float        ratio1,
+                       float        ratio2,
+                       float        overlap,
+                       float        vmin,
+                       float        vmax)
+{
+  band_low = Array(array.shape);
+  band_mid = Array(array.shape);
+  band_high = Array(array.shape);
+
+  float v1 = vmin + ratio1 * (vmax - vmin);
+  float v2 = vmin + ratio2 * (vmax - vmin);
+
+  auto lambda = [](float r, float r0, float r1, float r2, float overlap)
+  {
+    float w0 = overlap * (r1 - r0);
+    float w2 = overlap * (r2 - r1);
+
+    if (r < r0 - w0) return 0.f;
+    if (r > r2 + w2) return 0.f;
+
+    if (r > r0 + w0 && r < r2 - w2) return 1.f;
+
+    float rn = 0.f;
+    if (r < r0 + w0) rn = (r - r0 + w0) / 2.f / w0;
+    if (r > r2 - w2) rn = 1.f - (r - r2 + w2) / 2.f / w2;
+    return rn * rn * (3.f - 2.f * rn);
+  };
+
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
+    {
+      band_low(i,
+               j) = lambda(array(i, j), vmin, 0.5f * (vmin + v1), v1, overlap);
+      band_mid(i, j) = lambda(array(i, j), v1, 0.5f * (v1 + v2), v2, overlap);
+      band_high(i,
+                j) = lambda(array(i, j), v2, 0.5f * (v2 + vmax), vmax, overlap);
+    }
+}
+
+void select_multiband3(const Array &array,
+                       Array       &band_low,
+                       Array       &band_mid,
+                       Array       &band_high,
+                       float        ratio1,
+                       float        ratio2,
+                       float        overlap)
+{
+  float vmin = array.min();
+  float vmax = array.max();
+
+  select_multiband3(array,
+                    band_low,
+                    band_mid,
+                    band_high,
+                    ratio1,
+                    ratio2,
+                    overlap,
+                    vmin,
+                    vmax);
+}
+
 Array select_pulse(const Array &array, float value, float sigma)
 {
   Array c = Array(array.shape);

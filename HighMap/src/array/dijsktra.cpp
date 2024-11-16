@@ -25,9 +25,11 @@ void Array::find_path_dijkstra(Vec2<int>         ij_start,
   Vec2<int> ij_end_coarse = ij_end / step;
 
   // neighbors pattern
-  const std::vector<int> di = {-1, 0, 0, 1, -1, -1, 1, 1};
-  const std::vector<int> dj = {0, 1, -1, 0, -1, 1, -1, 1};
-  const size_t           nb = di.size();
+  const std::vector<int>   di = {-1, 0, 0, 1, -1, -1, 1, 1};
+  const std::vector<int>   dj = {0, 1, -1, 0, -1, 1, -1, 1};
+  const std::vector<float> cd =
+      {1.f, 1.f, 1.f, 1.f, M_SQRT2, M_SQRT2, M_SQRT2, M_SQRT2};
+  const size_t nb = di.size();
 
   // working queue and arrays
   std::vector<int>   queue_i;
@@ -76,17 +78,20 @@ void Array::find_path_dijkstra(Vec2<int>         ij_start,
         // previous cumulative value
         float dist = distance(i, j);
 
-        // elevation difference contribution
+        // elevation difference contribution (weighted for diagonal
+        // directions to avoid artifacts)
         dist += (1.f - elevation_ratio) *
                 std::pow(std::abs((*this)(i * step.x, j * step.y) -
-                                  (*this)(p * step.x, q * step.y)),
+                                  (*this)(p * step.x, q * step.y)) *
+                             cd[k],
                          distance_exponent);
 
-        // aboslute elevation contribution (puts the emphasize on
+        // absolute elevation contribution (puts the emphasize on
         // going downslope rather than upslope)
-        dist += elevation_ratio * std::max(0.f,
-                                           (*this)(p * step.x, q * step.y) -
-                                               (*this)(i * step.x, j * step.y));
+        dist += elevation_ratio *
+                std::max(0.f,
+                         cd[k] * ((*this)(p * step.x, q * step.y) -
+                                  (*this)(i * step.x, j * step.y)));
 
         if (p_mask_nogo) dist += 1e5f * (*p_mask_nogo)(p * step.x, q * step.y);
 

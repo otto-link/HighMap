@@ -360,6 +360,68 @@ Point interp_catmullrom(const Point &p0,
 Point interp_decasteljau(const std::vector<Point> &points, float t);
 
 /**
+ * @brief Determines the intersection of two bounding boxes.
+ *
+ * This function calculates the intersection of two bounding boxes, `bbox1` and
+ * `bbox2`. If they intersect, it returns the intersecting bounding box. If they
+ * are disjoint, it returns `std::nullopt`.
+ *
+ * @param bbox1 The first bounding box defined as `Vec4<float>`.
+ * @param bbox2 The second bounding box defined as `Vec4<float>`.
+ * @return An `std::optional<Vec4<float>>` containing the intersecting bounding
+ * box if an intersection exists; `std::nullopt` otherwise.
+ */
+Vec4<float> intersect_bounding_boxes(const Vec4<float> &bbox1,
+                                     const Vec4<float> &bbox2);
+
+/**
+ * @brief Checks if a point is within a specified bounding box.
+ *
+ * This function determines if a given point `p` lies within the rectangular
+ * bounding box defined by `bbox`.
+ *
+ * @param p The point to check, represented as a `Point` with `x` and `y`
+ * coordinates.
+ * @param bbox The bounding box defined as a `Vec4<float>`, where `a` and `b`
+ * are the horizontal boundaries (min and max x), and `c` and `d` are the
+ * vertical boundaries (min and max y).
+ * @return `true` if the point is within the bounding box; `false` otherwise.
+ */
+bool is_point_within_bounding_box(Point p, Vec4<float> bbox);
+
+/**
+ * @brief Checks if a point is within a specified bounding box.
+ *
+ * This function determines if a point with coordinates `(x, y)` lies within the
+ * rectangular bounding box defined by `bbox`.
+ *
+ * @param x The x-coordinate of the point to check.
+ * @param y The y-coordinate of the point to check.
+ * @param bbox The bounding box defined as a `Vec4<float>`, where `a` and `b`
+ * are the horizontal boundaries (min and max x), and `c` and `d` are the
+ * vertical boundaries (min and max y).
+ * @return `true` if the point is within the bounding box; `false` otherwise.
+ */
+bool is_point_within_bounding_box(float x, float y, Vec4<float> bbox);
+
+/**
+ * @brief Linearly interpolates between two points.
+ *
+ * This function performs linear interpolation between two points based on a
+ * given factor. The interpolation factor `t` should be in the range [0, 1],
+ * where 0 corresponds to the first point and 1 corresponds to the second point.
+ *
+ * @param p1 The starting point.
+ * @param p2 The ending point.
+ * @param t The interpolation factor (0 <= t <= 1).
+ * @return The interpolated point between `p1` and `p2`.
+ *
+ * @note If `t` is outside the range [0, 1], the function will still return a
+ * point outside the segment defined by `p1` and `p2`.
+ */
+Point lerp(const Point &p1, const Point &p2, float t);
+
+/**
  * @brief Computes the midpoint displacement in 1D with a perpendicular
  * displacement.
  *
@@ -388,23 +450,6 @@ Point midpoint(const Point &p1,
                int          orientation,
                float        distance_ratio,
                float        t = 0.5f);
-
-/**
- * @brief Linearly interpolates between two points.
- *
- * This function performs linear interpolation between two points based on a
- * given factor. The interpolation factor `t` should be in the range [0, 1],
- * where 0 corresponds to the first point and 1 corresponds to the second point.
- *
- * @param p1 The starting point.
- * @param p2 The ending point.
- * @param t The interpolation factor (0 <= t <= 1).
- * @return The interpolated point between `p1` and `p2`.
- *
- * @note If `t` is outside the range [0, 1], the function will still return a
- * point outside the segment defined by `p1` and `p2`.
- */
-Point lerp(const Point &p1, const Point &p2, float t);
 
 /**
  * @brief Sorts a vector of points in ascending order based on their

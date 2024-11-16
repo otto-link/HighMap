@@ -16,6 +16,8 @@
 
 #include <vector>
 
+typedef unsigned int uint;
+
 namespace hmap
 {
 

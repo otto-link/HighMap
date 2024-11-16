@@ -1,0 +1,2 @@
+add_executable(ex_select_midrange ex_select_midrange.cpp)
+target_link_libraries(ex_select_midrange highmap)

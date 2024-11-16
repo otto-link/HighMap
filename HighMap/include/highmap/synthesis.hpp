@@ -99,6 +99,7 @@ Array quilting(std::vector<Array *> p_arrays,
                hmap::Vec2<int>      tiling,
                float                overlap,
                uint                 seed,
+               std::vector<Array *> secondary_arrays = {},
                bool                 patch_flip = true,
                bool                 patch_rotate = true,
                bool                 patch_transpose = true,
@@ -178,16 +179,17 @@ Array quilting_blend(std::vector<Array *> p_arrays,
  * @image html ex_quilting3.png
  * @image html ex_quilting4.png
  */
-Array quilting_expand(Array          &array,
-                      float           expansion_ratio,
-                      hmap::Vec2<int> patch_base_shape,
-                      float           overlap,
-                      uint            seed,
-                      bool            keep_input_shape = false,
-                      bool            patch_flip = true,
-                      bool            patch_rotate = true,
-                      bool            patch_transpose = true,
-                      float           filter_width_ratio = 0.25f);
+Array quilting_expand(Array               &array,
+                      float                expansion_ratio,
+                      hmap::Vec2<int>      patch_base_shape,
+                      float                overlap,
+                      uint                 seed,
+                      std::vector<Array *> secondary_arrays = {},
+                      bool                 keep_input_shape = false,
+                      bool                 patch_flip = true,
+                      bool                 patch_rotate = true,
+                      bool                 patch_transpose = true,
+                      float                filter_width_ratio = 0.25f);
 
 /**
  * @brief Synthesize a new heightmap by reshuffling patches of the input
@@ -219,13 +221,14 @@ Array quilting_expand(Array          &array,
  * @image html ex_quilting3.png
  * @image html ex_quilting4.png
  */
-Array quilting_shuffle(Array          &array,
-                       hmap::Vec2<int> patch_base_shape,
-                       float           overlap,
-                       uint            seed,
-                       bool            patch_flip = true,
-                       bool            patch_rotate = true,
-                       bool            patch_transpose = true,
-                       float           filter_width_ratio = 0.25f);
+Array quilting_shuffle(Array               &array,
+                       hmap::Vec2<int>      patch_base_shape,
+                       float                overlap,
+                       uint                 seed,
+                       std::vector<Array *> secondary_arrays = {},
+                       bool                 patch_flip = true,
+                       bool                 patch_rotate = true,
+                       bool                 patch_transpose = true,
+                       float                filter_width_ratio = 0.25f);
 
 } // namespace hmap

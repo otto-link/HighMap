@@ -14,6 +14,7 @@
 #include "highmap/filters.hpp"
 #include "highmap/gradient.hpp"
 #include "highmap/kernels.hpp"
+#include "highmap/operator.hpp"
 #include "highmap/primitives.hpp"
 #include "highmap/range.hpp"
 #include "highmap/transform.hpp"
@@ -760,6 +761,19 @@ void smooth_cpulse(Array &array, int ir, Array *p_mask)
   }
 }
 
+void smooth_flat(Array &array, int ir)
+{
+  // define kernel
+  const int          nk = 2 * ir + 1;
+  std::vector<float> k(nk);
+
+  std::fill(k.begin(), k.end(), 1.f / (2.f * nk + 1.f));
+
+  // eventually convolve
+  array = convolve1d_i(array, k);
+  array = convolve1d_j(array, k);
+}
+
 void smooth_gaussian(Array &array, int ir)
 {
   // define Gaussian kernel (we keep NSIGMA standard deviations of the
@@ -964,8 +978,92 @@ void steepen_convective(Array &array,
   }
 }
 
+void terrace(Array &array,
+             uint   seed,
+             int    nlevels,
+             float  gain,
+             float  noise_ratio,
+             Array *p_noise,
+             float  vmin,
+             float  vmax)
+{
+  std::mt19937                          gen(seed);
+  std::uniform_real_distribution<float> dis(-noise_ratio, noise_ratio);
+
+  // redefine min/max if sentinels values are detected
+  if (vmax < vmin)
+  {
+    vmin = array.min();
+    vmax = array.max();
+  }
+
+  // defines levels
+  std::vector<float> levels = linspace(vmin, vmax, nlevels + 1);
+  float              delta = (vmax - vmin) / (float)nlevels;
+
+  // add noise, except for the first and last levels
+  for (size_t k = 1; k < levels.size() - 1; k++)
+    levels[k] += dis(gen) * delta;
+
+  // apply a gain like filter
+  auto lambda = [gain, &levels, vmin, vmax](float x, float noise = 0.f)
+  {
+    // find level interval
+    float y = x + noise;
+    y = std::clamp(y, vmin, vmax);
+
+    size_t n = 1;
+    while (y > levels[n] && n < levels.size())
+      n++;
+    n--;
+
+    // rescale value to [0, 1]
+    y = (y - levels[n]) / (levels[n + 1] - levels[n]);
+
+    // apply gain
+    y = y < 0.5 ? 0.5f * std::pow(2.f * y, gain)
+                : 1.f - 0.5f * std::pow(2.f * (1.f - y), gain);
+
+    // rescale back to original ammplitude interval
+    return y * (levels[n + 1] - levels[n]) + levels[n] - noise;
+  };
+
+  if (p_noise)
+    std::transform(array.vector.begin(),
+                   array.vector.end(),
+                   p_noise->vector.begin(),
+                   array.vector.begin(),
+                   lambda);
+  else
+    std::transform(array.vector.begin(),
+                   array.vector.end(),
+                   array.vector.begin(),
+                   lambda);
+}
+
+void terrace(Array &array,
+             uint   seed,
+             int    nlevels,
+             Array *p_mask,
+             float  gain,
+             float  noise_ratio,
+             Array *p_noise,
+             float  vmin,
+             float  vmax)
+{
+  if (!p_mask)
+    terrace(array, seed, nlevels, gain, noise_ratio, p_noise, vmin, vmax);
+  else
+  {
+    Array array_f = array;
+    terrace(array_f, seed, nlevels, gain, noise_ratio, p_noise, vmin, vmax);
+    array = lerp(array, array_f, *(p_mask));
+  }
+}
+
 void wrinkle(Array      &array,
              float       wrinkle_amplitude,
+             float       wrinkle_angle,
              float       displacement_amplitude,
              int         ir,
              float       kw,
@@ -974,9 +1072,12 @@ void wrinkle(Array      &array,
              float       weight,
              Vec4<float> bbox)
 {
-  Array dr = displacement_amplitude * array;
+  Array dx = displacement_amplitude * array;
 
-  if (ir > 0) smooth_cpulse(dr, ir);
+  if (ir > 0) smooth_cpulse(dx, ir);
+
+  Array dy = std::sin(wrinkle_angle / 180.f * M_PI) * dx;
+  dx *= std::cos(wrinkle_angle / 180.f * M_PI);
 
   Array w = noise_fbm(NoiseType::PERLIN,
                       array.shape,
@@ -987,17 +1088,18 @@ void wrinkle(Array      &array,
                       0.5f,
                       2.f,
                       nullptr,
-                      &dr,
-                      &dr,
+                      &dx,
+                      &dy,
                       nullptr,
                       bbox);
 
-  array += wrinkle_amplitude * gradient_norm(w);
+  array += wrinkle_amplitude * gradient_norm(w) * array.shape.x;
 }
 
 void wrinkle(Array      &array,
              float       wrinkle_amplitude,
              Array      *p_mask,
+             float       wrinkle_angle,
              float       displacement_amplitude,
              int         ir,
              float       kw,
@@ -1009,6 +1111,7 @@ void wrinkle(Array      &array,
   if (!p_mask)
     wrinkle(array,
             wrinkle_amplitude,
+            wrinkle_angle,
             displacement_amplitude,
             ir,
             kw,
@@ -1021,6 +1124,7 @@ void wrinkle(Array      &array,
     Array array_f = array;
     wrinkle(array_f,
             wrinkle_amplitude,
+            wrinkle_angle,
             displacement_amplitude,
             ir,
             kw,

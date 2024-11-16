@@ -143,6 +143,35 @@ Point interp_decasteljau(const std::vector<Point> &points, float t)
   return interp_decasteljau(new_points, t);
 }
 
+Vec4<float> intersect_bounding_boxes(const Vec4<float> &bbox1,
+                                     const Vec4<float> &bbox2)
+{
+  // Calculate the boundaries of the intersection
+  float min_x = std::max(bbox1.a, bbox2.a);
+  float max_x = std::min(bbox1.b, bbox2.b);
+  float min_y = std::max(bbox1.c, bbox2.c);
+  float max_y = std::min(bbox1.d, bbox2.d);
+
+  // Check if there is an overlap
+  if (min_x <= max_x && min_y <= max_y)
+  {
+    return Vec4<float>{min_x, max_x, min_y, max_y};
+  }
+
+  // else return an "impossible" bounding box with xmin > xmax and ymin > ymax
+  return Vec4<float>(1.f, -1.f, 1.f, -1.f);
+}
+
+bool is_point_within_bounding_box(Point p, Vec4<float> bbox)
+{
+  return p.x >= bbox.a && p.x <= bbox.b && p.y >= bbox.c && p.y <= bbox.d;
+}
+
+bool is_point_within_bounding_box(float x, float y, Vec4<float> bbox)
+{
+  return x >= bbox.a && x <= bbox.b && y >= bbox.c && y <= bbox.d;
+}
+
 Point lerp(const Point &p1, const Point &p2, float t)
 {
   return p1 + t * (p2 - p1);

@@ -23,6 +23,7 @@
 #include <png.h>
 
 #include "highmap/array.hpp"
+#include "highmap/tensor.hpp"
 
 namespace hmap
 {
@@ -262,5 +263,8 @@ Array read_to_array(std::string fname);
  * @param array The input array containing the data to be exported.
  */
 void write_raw_16bit(std::string fname, const Array &array);
+
+// helper
+Tensor compute_nmap(const Array &array);
 
 } // namespace hmap

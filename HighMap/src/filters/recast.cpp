@@ -14,6 +14,7 @@
 #include "highmap/primitives.hpp"
 #include "highmap/range.hpp"
 #include "highmap/selector.hpp"
+#include "highmap/transform.hpp"
 
 namespace hmap
 {
@@ -199,6 +200,84 @@ void recast_cliff_directional(Array &array,
     array = lerp(array, array_f, *(p_mask));
   }
 }
+
+void recast_escarpment(Array &array,
+                       int    ir,
+                       float  ratio,
+                       float  scale,
+                       bool   reverse,
+                       bool   transpose_effect,
+                       float  global_scaling)
+{
+  if (transpose_effect) array = transpose(array);
+
+  if (global_scaling == 0.f)
+    global_scaling = 20.f * (array.max() - array.min()) / array.shape.x;
+
+  // cumulated displacement /x
+  Array cdx(array.shape);
+
+  if (!reverse)
+  {
+    for (int i = 1; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
+      {
+        float v = array(i, j) > array(i - 1, j) ? -ratio : 1.f;
+        cdx(i, j) = std::min(cdx(i - 1, j) + v, 0.f);
+      }
+    cdx *= scale * global_scaling;
+  }
+  else
+  {
+    for (int i = array.shape.x - 2; i > -1; i--)
+      for (int j = 0; j < array.shape.y; j++)
+      {
+        float v = array(i, j) > array(i + 1, j) ? -ratio : 1.f;
+        cdx(i, j) = std::min(cdx(i + 1, j) + v, 0.f);
+      }
+    cdx.infos();
+    cdx *= -scale * global_scaling;
+  }
+
+  smooth_flat(cdx, ir);
+
+  // warp
+  warp(array, &cdx, nullptr);
+
+  if (transpose_effect) array = transpose(array);
+}
+
+void recast_escarpment(Array &array,
+                       Array *p_mask,
+                       int    ir,
+                       float  ratio,
+                       float  scale,
+                       bool   reverse,
+                       bool   transpose_effect,
+                       float  global_scaling)
+{
+  if (!p_mask)
+    recast_escarpment(array,
+                      ir,
+                      ratio,
+                      scale,
+                      reverse,
+                      transpose_effect,
+                      global_scaling);
+  else
+  {
+    Array array_f = array;
+    recast_escarpment(array_f,
+                      ir,
+                      ratio,
+                      scale,
+                      reverse,
+                      transpose_effect,
+                      global_scaling);
+    array = lerp(array, array_f, *(p_mask));
+  }
+}
+
 void recast_peak(Array &array, int ir, float gamma, float k)
 {
   Array ac = array;

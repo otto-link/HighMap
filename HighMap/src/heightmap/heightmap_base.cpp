@@ -8,6 +8,7 @@
 #include "macrologger.h"
 
 #include "highmap/heightmap.hpp"
+#include "highmap/operator.hpp"
 #include "highmap/range.hpp"
 
 #include "highmap/internal/vector_utils.hpp"
@@ -137,6 +138,70 @@ void HeightMap::from_array_interp_nearest(Array &array)
     futures[i].get();
 }
 
+float HeightMap::get_value_bilinear(float x, float y)
+{
+  // find corresponding tile
+  float lx = this->bbox.b - this->bbox.a;
+  float ly = this->bbox.d - this->bbox.c;
+
+  int it = static_cast<int>(x / lx * this->tiling.x);
+  int jt = static_cast<int>(y / ly * this->tiling.y);
+
+  int k = this->get_tile_index(it, jt);
+
+  // coordinates with respect to the tile
+  float xt = x - this->tiles[k].bbox.a;
+  float yt = y - this->tiles[k].bbox.c;
+
+  float lxt = this->tiles[k].bbox.b - this->tiles[k].bbox.a;
+  float lyt = this->tiles[k].bbox.d - this->tiles[k].bbox.c;
+
+  float xgrid = xt / lxt * (this->tiles[k].shape.x - 1);
+  float ygrid = yt / lyt * (this->tiles[k].shape.y - 1);
+
+  int i = static_cast<int>(xgrid);
+  int j = static_cast<int>(ygrid);
+
+  float u = xgrid - i;
+  float v = ygrid - j;
+
+  int i1 = (i == this->tiles[k].shape.x - 1) ? i - 1 : i + 1;
+  int j1 = (j == this->tiles[k].shape.y - 1) ? j - 1 : j + 1;
+
+  float value = bilinear_interp(this->tiles[k](i, j),
+                                this->tiles[k](i1, j),
+                                this->tiles[k](i, j1),
+                                this->tiles[k](i1, j1),
+                                u,
+                                v);
+
+  return value;
+}
+
+float HeightMap::get_value_nearest(float x, float y)
+{
+  // find corresponding tile
+  float lx = this->bbox.b - this->bbox.a;
+  float ly = this->bbox.d - this->bbox.c;
+
+  int it = static_cast<int>(x / lx * this->tiling.x);
+  int jt = static_cast<int>(y / ly * this->tiling.y);
+
+  int k = this->get_tile_index(it, jt);
+
+  // coordinates with respect to the tile
+  float xt = x - this->tiles[k].bbox.a;
+  float yt = y - this->tiles[k].bbox.c;
+
+  float lxt = this->tiles[k].bbox.b - this->tiles[k].bbox.a;
+  float lyt = this->tiles[k].bbox.d - this->tiles[k].bbox.c;
+
+  int i = static_cast<int>(xt / lxt * (this->tiles[k].shape.x - 1));
+  int j = static_cast<int>(yt / lyt * (this->tiles[k].shape.y - 1));
+
+  return this->tiles[k](i, j);
+}
+
 void HeightMap::infos()
 {
   std::cout << "Heightmap, ";
@@ -255,6 +320,29 @@ void HeightMap::remap(float vmin, float vmax, float from_min, float from_max)
             { hmap::remap(x, vmin, vmax, from_min, from_max); });
 }
 
+void HeightMap::set_bbox(Vec4<float> new_bbox)
+{
+  this->bbox = new_bbox;
+
+  float lx = this->bbox.b - this->bbox.a;
+  float ly = this->bbox.d - this->bbox.c;
+
+  for (int it = 0; it < tiling.x; it++)
+    for (int jt = 0; jt < tiling.y; jt++)
+    {
+      int k = this->get_tile_index(it, jt);
+
+      Vec4<float> tile_bbox = Vec4(
+          this->bbox.a + this->tiles[k].shift.x * lx,
+          this->bbox.a + (this->tiles[k].shift.x + this->tiles[k].scale.x) * lx,
+          this->bbox.c + this->tiles[k].shift.y * ly,
+          this->bbox.c +
+              (this->tiles[k].shift.y + this->tiles[k].scale.y) * ly);
+
+      this->tiles[k].bbox = tile_bbox;
+    }
+}
+
 float HeightMap::sum()
 {
   std::vector<float>              sum_tiles(this->get_ntiles());
@@ -301,6 +389,127 @@ Array HeightMap::to_array(Vec2<int> shape_export)
     }
 
   return array;
+}
+
+std::vector<uint8_t> HeightMap::to_grayscale_image_8bit()
+{
+  std::vector<uint8_t> img(this->shape.x * this->shape.y);
+
+  float vmin = this->min();
+  float vmax = this->max();
+  float inv_vptp = vmin != vmax ? 1.f / (this->max() - vmin) : 0.f;
+
+  for (int it = 0; it < tiling.x; it++)
+    for (int jt = 0; jt < tiling.y; jt++)
+    {
+      // tile array position within the global array
+      int k = this->get_tile_index(it, jt);
+
+      // bottom-left indices of the current tile
+      int i1 = (int)(tiles[k].shift.x * this->shape.x);
+      int j1 = (int)(tiles[k].shift.y * this->shape.y);
+
+      for (int p = 0; p < tiles[k].shape.x; p++)
+        for (int q = 0; q < tiles[k].shape.y; q++)
+        {
+          // linear index for the global image array (flip y axis and
+          // change to row/col major)
+          int r = (this->shape.y - 1 - q - j1) * this->shape.x + (p + i1);
+
+          // int r = (p + i1) * this->shape.y + (q + j1);
+
+          // remap to [0, 1)
+          float v = (tiles[k](p, q) - vmin) * inv_vptp;
+
+          img[r] = static_cast<uint8_t>(v * 255.f);
+        }
+    }
+
+  return img;
+}
+
+std::vector<uint16_t> HeightMap::to_grayscale_image_16bit()
+{
+  std::vector<uint16_t> img(this->shape.x * this->shape.y);
+
+  float vmin = this->min();
+  float vmax = this->max();
+  float inv_vptp = vmin != vmax ? 1.f / (this->max() - vmin) : 0.f;
+
+  for (int it = 0; it < tiling.x; it++)
+    for (int jt = 0; jt < tiling.y; jt++)
+    {
+      // tile array position within the global array
+      int k = this->get_tile_index(it, jt);
+
+      // bottom-left indices of the current tile
+      int i1 = (int)(tiles[k].shift.x * this->shape.x);
+      int j1 = (int)(tiles[k].shift.y * this->shape.y);
+
+      for (int p = 0; p < tiles[k].shape.x; p++)
+        for (int q = 0; q < tiles[k].shape.y; q++)
+        {
+          // linear index for the global image array (flip y axis and
+          // change to row/col major)
+          int r = (this->shape.y - 1 - q - j1) * this->shape.x + (p + i1);
+
+          // int r = (p + i1) * this->shape.y + (q + j1);
+
+          // remap to [0, 1)
+          float v = (tiles[k](p, q) - vmin) * inv_vptp;
+
+          img[r] = static_cast<uint16_t>(v * 65535.f);
+        }
+    }
+
+  return img;
+}
+
+std::vector<uint16_t> HeightMap::to_grayscale_image_16bit_multithread()
+{
+  std::vector<uint16_t> img(this->shape.x * this->shape.y);
+
+  float vmin = this->min();
+  float vmax = this->max();
+  float inv_vptp = vmin != vmax ? 1.f / (this->max() - vmin) : 0.f;
+
+  std::vector<std::future<void>> futures;
+
+  // --- function to compute for each tile
+
+  auto lambda = [this, &img, vmin, inv_vptp](int it, int jt)
+  {
+    // tile array position within the global array
+    int k = this->get_tile_index(it, jt);
+
+    // bottom-left indices of the current tile
+    int i1 = (int)(tiles[k].shift.x * this->shape.x);
+    int j1 = (int)(tiles[k].shift.y * this->shape.y);
+
+    for (int p = 0; p < tiles[k].shape.x; p++)
+      for (int q = 0; q < tiles[k].shape.y; q++)
+      {
+        // linear index for the global image array (flip y axis and
+        // change to row/col major)
+        int r = (this->shape.y - 1 - q - j1) * this->shape.x + (p + i1);
+
+        // remap to [0, 1)
+        float v = (tiles[k](p, q) - vmin) * inv_vptp;
+
+        img[r] = static_cast<uint16_t>(v * 65535.f);
+      }
+  };
+
+  // --- distribute
+
+  for (int it = 0; it < tiling.x; it++)
+    for (int jt = 0; jt < tiling.y; jt++)
+      futures.push_back(std::async(lambda, it, jt));
+
+  for (auto &f : futures)
+    f.get();
+
+  return img;
 }
 
 void HeightMap::update_tile_parameters()

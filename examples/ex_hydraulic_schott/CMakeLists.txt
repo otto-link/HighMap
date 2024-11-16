@@ -1,0 +1,2 @@
+add_executable(ex_hydraulic_schott ex_hydraulic_schott.cpp)
+target_link_libraries(ex_hydraulic_schott highmap)

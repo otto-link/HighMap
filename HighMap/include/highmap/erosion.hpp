@@ -405,6 +405,23 @@ void hydraulic_ridge(Array &z,
                      int    ir = 0,
                      uint   seed = 1); ///< @overload
 
+void hydraulic_schott(Array &z,
+                      int    iterations = 10,
+                      float  deposition_iterations_ratio = 2,
+                      float  c_erosion = 0.3f,
+                      float  c_deposition = 0.5f,
+                      Array *p_softness = nullptr,
+                      Array *p_flow = nullptr);
+
+void hydraulic_schott(Array &z,
+                      Array *p_mask,
+                      int    iterations = 10,
+                      float  deposition_iterations_ratio = 2,
+                      float  c_erosion = 0.3f,
+                      float  c_deposition = 0.5f,
+                      Array *p_softness = nullptr,
+                      Array *p_flow = nullptr);
+
 /**
  * @brief Apply hydraulic erosion based on the Stream Power Law formulation.
  *
@@ -493,6 +510,87 @@ void hydraulic_stream(Array &z,
                       Array *p_erosion_map = nullptr, // -> out
                       int    ir = 1,
                       float  clipping_ratio = 10.f); ///< @overload
+
+/**
+ * @brief Applies hydraulic erosion with upscaling amplification.
+ *
+ * This function progressively upscales the input array `z` by powers of 2 and
+ * applies hydraulic erosion based on flow accumulation at each level of
+ * upscaling. After all upscaling levels are processed, the array is resampled
+ * back to its original resolution using bilinear interpolation.
+ *
+ * @param z Input array representing elevation data.
+ * @param c_erosion Erosion coefficient.
+ * @param talus_ref Reference talus used to locally define the flow-partition
+ * exponent. Smaller values lead to thinner flow streams.
+ * @param upscaling_levels Number of upscaling levels to apply. The function
+ * will resample the array at each level.
+ * @param persistence A scaling factor applied at each level to adjust the
+ * impact of the unary operation. Higher persistence values will amplify the
+ * effects at each level.
+ * @param ir Kernel radius. If `ir > 1`, a cone kernel is used to carve channel
+ * flow erosion.
+ * @param clipping_ratio Flow accumulation clipping ratio.
+ *
+ * @note The function first applies upscaling using bicubic resampling, performs
+ * hydraulic erosion at each level, and finally resamples the array back to its
+ * initial resolution using bilinear interpolation.
+ *
+ * **Example**
+ * @include ex_hydraulic_stream_upscale_amplification.cpp
+ *
+ * **Result**
+ * @image html ex_hydraulic_stream_upscale_amplification.png
+ */
+void hydraulic_stream_upscale_amplification(Array &z,
+                                            float  c_erosion,
+                                            float  talus_ref,
+                                            int    upscaling_levels = 1,
+                                            float  persistence = 1.f,
+                                            int    ir = 1,
+                                            float  clipping_ratio = 10.f);
+
+/**
+ * @brief Applies hydraulic erosion with upscaling amplification, with a
+ * post-processing intensity mask.
+ *
+ * Similar to the overloaded version, this function progressively upscales the
+ * input array `z` and applies hydraulic erosion. Additionally, an intensity
+ * mask `p_mask` is applied as a post-processing step.
+ *
+ * @param z Input array representing elevation data.
+ * @param p_mask Intensity mask, expected in [0, 1], which is applied as a
+ * post-processing step.
+ * @param c_erosion Erosion coefficient.
+ * @param talus_ref Reference talus used to locally define the flow-partition
+ * exponent. Smaller values lead to thinner flow streams.
+ * @param upscaling_levels Number of upscaling levels to apply. The function
+ * will resample the array at each level.
+ * @param persistence A scaling factor applied at each level to adjust the
+ * impact of the unary operation. Higher persistence values will amplify the
+ * effects at each level.
+ * @param ir Kernel radius. If `ir > 1`, a cone kernel is used to carve channel
+ * flow erosion.
+ * @param clipping_ratio Flow accumulation clipping ratio.
+ *
+ * @note This version of the function applies an additional intensity mask as
+ * part of the upscaling amplification process.
+ *
+ * **Example**
+ * @include ex_hydraulic_stream_upscale_amplification.cpp
+ *
+ * **Result**
+ * @image html ex_hydraulic_stream_upscale_amplification.png
+ */
+void hydraulic_stream_upscale_amplification(
+    Array &z,
+    Array *p_mask,
+    float  c_erosion,
+    float  talus_ref,
+    int    upscaling_levels = 1,
+    float  persistence = 1.f,
+    int    ir = 1,
+    float  clipping_ratio = 10.f); ///< @overload
 
 /**
  * @brief Apply hydraulic erosion based on a flow accumulation map, alternative
@@ -894,6 +992,60 @@ void thermal_flatten(Array &z, float talus, int iterations = 10); ///< @overload
  * @image html ex_thermal_rib.png
  */
 void thermal_rib(Array &z, int iterations, Array *p_bedrock = nullptr);
+
+/**
+ * @brief Applies the thermal erosion process to an array of elevation values.
+ *
+ * This function simulates thermal erosion by modifying the elevation values in
+ * the array `z`. It compares the slope between each cell and its neighbors with
+ * a specified threshold (`talus`). If the slope exceeds the threshold, material
+ * is considered to move from higher to lower cells, resulting in a smoother
+ * terrain.
+ *
+ * @param z         Reference to the array of elevation values that will be
+ * modified.
+ * @param talus     Array of threshold slope values for each cell, representing
+ * stability criteria.
+ * @param iterations Number of erosion iterations to apply.
+ * @param intensity Intensity factor controlling the amount of change per
+ * iteration.
+ *
+ * **Example**
+ * @include ex_thermal_schott.cpp
+ *
+ * **Result**
+ * @image html ex_thermal_schott.png
+ */
+void thermal_schott(Array       &z,
+                    const Array &talus,
+                    int          iterations = 10,
+                    float        intensity = 0.001f);
+
+/**
+ * @brief Applies the thermal erosion process with a uniform slope threshold.
+ *
+ * This overload of `thermal_schott` applies thermal erosion with a uniform
+ * threshold value. It generates an internal talus map using the specified
+ * constant `talus` value and applies the erosion process in the same manner as
+ * the other overload.
+ *
+ * @param z         Reference to the array of elevation values that will be
+ * modified.
+ * @param talus     Constant threshold slope value used for all cells.
+ * @param iterations Number of erosion iterations to apply.
+ * @param intensity Intensity factor controlling the amount of change per
+ * iteration.
+ *
+ *  **Example**
+ * @include ex_thermal_schott.cpp
+ *
+ * **Result**
+ * @image html ex_thermal_schott.png
+ */
+void thermal_schott(Array      &z,
+                    const float talus,
+                    int         iterations = 10,
+                    float       intensity = 0.001f);
 
 /**
  * @brief Apply thermal weathering erosion simulating scree deposition.

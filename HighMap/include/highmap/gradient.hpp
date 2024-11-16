@@ -19,6 +19,7 @@
 #pragma once
 
 #include "highmap/array.hpp"
+#include "highmap/tensor.hpp"
 
 namespace hmap
 {
@@ -211,5 +212,38 @@ void gradient_y(const Array &array, Array &dy); ///< @overload
  * @return Array Laplacian of the input array.
  */
 Array laplacian(const Array &array);
+
+/**
+ * @brief Generates a normal map from a given 2D array.
+ *
+ * This function calculates the normal vectors for each element in the 2D array
+ * and returns them as a tensor. The normal map is commonly used in image
+ * processing and 3D graphics to represent surface orientations based on height
+ * values.
+ *
+ * @param array A 2D array representing the height values from which normals are
+ * computed.
+ * @return A tensor containing the normal vectors for each position in the input
+ * array.
+ */
+Tensor normal_map(const Array &array);
+
+/**
+ * @brief Unwraps a 2D phase array to correct discontinuities in phase data.
+ *
+ * This function unwraps phase values in the given array, ensuring that
+ * discontinuities exceeding \f$ \pi \f$ are adjusted to provide a continuous
+ * phase result.
+ *
+ * @param alpha A 2D array of wrapped phase values.
+ * @return A 2D array of unwrapped phase values.
+ *
+ * **Example**
+ * @include ex_unwrap_phase.cpp
+ *
+ * **Result**
+ * @image html ex_unwrap_phase.png
+ */
+Array unwrap_phase(const Array &alpha);
 
 } // namespace hmap

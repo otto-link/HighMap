@@ -1,0 +1,2 @@
+add_executable(ex_array_interp ex_array_interp.cpp)
+target_link_libraries(ex_array_interp highmap)

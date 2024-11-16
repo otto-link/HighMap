@@ -452,4 +452,30 @@ void transform(
     futures[i].get();
 }
 
+void transform(
+    HeightMap &h1,
+    HeightMap &h2,
+    HeightMap &h3,
+    HeightMap &h4,
+    HeightMap &h5,
+    HeightMap &h6,
+    std::function<void(Array &, Array &, Array &, Array &, Array &, Array &)>
+        op)
+{
+  size_t                         nthreads = h1.get_ntiles();
+  std::vector<std::future<void>> futures(nthreads);
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+    futures[i] = std::async(op,
+                            std::ref(h1.tiles[i]),
+                            std::ref(h2.tiles[i]),
+                            std::ref(h3.tiles[i]),
+                            std::ref(h4.tiles[i]),
+                            std::ref(h5.tiles[i]),
+                            std::ref(h6.tiles[i]));
+
+  for (decltype(futures)::size_type i = 0; i < nthreads; ++i)
+    futures[i].get();
+}
+
 } // namespace hmap

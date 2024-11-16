@@ -112,12 +112,31 @@ Array generate_mask(hmap::Vec2<int> shape, std::vector<int> cut_path_i, int ir)
   return mask;
 }
 
-Array get_random_patch(Array          &array,
-                       hmap::Vec2<int> patch_shape,
-                       std::mt19937   &gen,
-                       bool            patch_flip,
-                       bool            patch_rotate,
-                       bool            patch_transpose)
+void helper_flip_rot_transpose(Array &array,
+                               bool   do_flip_ud,
+                               bool   do_flip_lr,
+                               bool   do_rot90,
+                               bool   do_transpose)
+{
+  if (do_flip_ud) flip_ud(array);
+  if (do_flip_lr) flip_lr(array);
+
+  // square patches only...
+  if (array.shape.x == array.shape.y)
+  {
+    if (do_rot90) rot90(array);
+    if (do_transpose) transpose(array);
+  }
+}
+
+Array get_random_patch(Array                &array,
+                       hmap::Vec2<int>       patch_shape,
+                       std::mt19937         &gen,
+                       bool                  patch_flip,
+                       bool                  patch_rotate,
+                       bool                  patch_transpose,
+                       std::vector<Array *> *p_secondary_arrays,
+                       std::vector<Array>   *p_secondary_patches)
 {
   std::uniform_int_distribution<int> dis_i(0,
                                            array.shape.x - 2 - patch_shape.x);
@@ -134,20 +153,34 @@ Array get_random_patch(Array          &array,
   // flipping, etc...
   int imid = (int)(0.5f * (array.shape.x - 1 - patch_shape.x));
 
-  if (patch_flip)
-  {
-    if (dis_i(gen) > imid) flip_ud(patch);
-    if (dis_i(gen) > imid) flip_lr(patch);
-  }
+  bool do_flip_ud = patch_flip && (dis_i(gen) > imid);
+  bool do_flip_lr = patch_flip && (dis_i(gen) > imid);
+  bool do_rot90 = patch_rotate && (dis_i(gen) > imid);
+  bool do_transpose = patch_transpose && (dis_i(gen) > imid);
 
-  // square patches only...
-  if (patch_shape.x == patch_shape.y)
-  {
-    if (patch_rotate)
-      if (dis_i(gen) > imid) rot90(patch);
+  helper_flip_rot_transpose(patch,
+                            do_flip_ud,
+                            do_flip_lr,
+                            do_rot90,
+                            do_transpose);
 
-    if (patch_transpose)
-      if (dis_i(gen) > imid) patch = transpose(patch);
+  // apply the patch extraction with the same parameters to the
+  // secondary arrays
+  if (p_secondary_arrays && p_secondary_patches)
+  {
+    p_secondary_patches->clear();
+
+    for (auto pa : *p_secondary_arrays)
+    {
+      Array sec_patch = pa->extract_slice(
+          Vec4<int>(i, i + patch_shape.x, j, j + patch_shape.y));
+      helper_flip_rot_transpose(sec_patch,
+                                do_flip_ud,
+                                do_flip_lr,
+                                do_rot90,
+                                do_transpose);
+      p_secondary_patches->push_back(sec_patch);
+    }
   }
 
   return patch;

@@ -88,6 +88,7 @@ void find_flow_sinks(const Array      &z,
  * @see flow_direction_d8
  */
 Array flow_accumulation_d8(const Array &z);
+
 /**
  * @brief Computes the flow accumulation for each cell using the Multiple Flow
  * Direction (MFD) model.

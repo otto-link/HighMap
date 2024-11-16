@@ -16,6 +16,7 @@ Array quilting(std::vector<Array *> p_arrays,
                hmap::Vec2<int>      tiling,
                float                overlap,
                uint                 seed,
+               std::vector<Array *> secondary_arrays,
                bool                 patch_flip,
                bool                 patch_rotate,
                bool                 patch_transpose,
@@ -36,6 +37,11 @@ Array quilting(std::vector<Array *> p_arrays,
 
   Array array_out = Array(shape_output);
 
+  // reserve outputs for secondary arrays transformed using primary
+  // array(s) as guide(s)
+  std::vector<Array> secondary_arrays_output(secondary_arrays.size(),
+                                             shape_output);
+
   // smoothing radius for the patch transitions
   int ir = (int)(noverlap.x * filter_width_ratio);
 
@@ -44,6 +50,9 @@ Array quilting(std::vector<Array *> p_arrays,
     int   j1 = jt * patch_base_shape.y; // tile start
     Array array_strip = Array(Vec2<int>(array_out.shape.x, patch_shape.y));
 
+    std::vector<Array> secondary_arrays_strips(secondary_arrays_output.size(),
+                                               array_strip);
+
     // build up domain-wide horizontal strips
     for (int it = 0; it < tiling.x; it++)
     {
@@ -51,12 +60,17 @@ Array quilting(std::vector<Array *> p_arrays,
 
       int array_idx = dis_a(gen);
 
+      // used only if secondary_arrays is not empty
+      std::vector<Array> secondary_patches = {};
+
       Array patch = get_random_patch(*p_arrays[array_idx],
                                      patch_shape,
                                      gen,
                                      patch_flip,
                                      patch_rotate,
-                                     patch_transpose);
+                                     patch_transpose,
+                                     &secondary_arrays,
+                                     &secondary_patches);
 
       if (it > 0)
       {
@@ -72,14 +86,35 @@ Array quilting(std::vector<Array *> p_arrays,
         // define lerp factor
         Array mask = generate_mask(error.shape, cut_path_i, ir);
 
+        // primary patches
         for (int i = 0; i < noverlap.x; i++)
           for (int j = 0; j < patch_shape.y; j++)
             patch(i, j) = lerp(array_strip(i1 + i, j), patch(i, j), mask(i, j));
+
+        // same for secondary patches
+        for (size_t k = 0; k < secondary_patches.size(); k++)
+        {
+          for (int i = 0; i < noverlap.x; i++)
+            for (int j = 0; j < patch_shape.y; j++)
+              secondary_patches[k](i, j) = lerp(
+                  secondary_arrays_strips[k](i1 + i, j),
+                  secondary_patches[k](i, j),
+                  mask(i, j));
+        }
       }
 
+      // primary array
       for (int i = 0; i < patch_shape.x; i++)
         for (int j = 0; j < patch_shape.y; j++)
           array_strip(i1 + i, j) = patch(i, j);
+
+      // apply the same patching to the secondary arrays
+      for (size_t k = 0; k < secondary_arrays_output.size(); k++)
+      {
+        for (int i = 0; i < patch_shape.x; i++)
+          for (int j = 0; j < patch_shape.y; j++)
+            secondary_arrays_strips[k](i1 + i, j) = secondary_patches[k](i, j);
+      }
     }
 
     // patch the horizontal stripes
@@ -100,6 +135,7 @@ Array quilting(std::vector<Array *> p_arrays,
         mask = transpose(mask_t);
       }
 
+      // primary array
       for (int i = 0; i < shape_output.x; i++)
       {
         for (int j = 0; j < noverlap.y; j++)
@@ -110,14 +146,47 @@ Array quilting(std::vector<Array *> p_arrays,
         for (int j = noverlap.y; j < patch_shape.y; j++)
           array_out(i, j1 + j) = array_strip(i, j);
       }
+
+      // apply the same patching to the secondary arrays
+      for (size_t k = 0; k < secondary_arrays_output.size(); k++)
+      {
+        for (int i = 0; i < shape_output.x; i++)
+        {
+          for (int j = 0; j < noverlap.y; j++)
+            secondary_arrays_output[k](i, j1 + j) = lerp(
+                secondary_arrays_output[k](i, j1 + j),
+                secondary_arrays_strips[k](i, j),
+                mask(i, j));
+
+          for (int j = noverlap.y; j < patch_shape.y; j++)
+            secondary_arrays_output[k](i,
+                                       j1 + j) = secondary_arrays_strips[k](i,
+                                                                            j);
+        }
+      }
     }
     else
     {
+      // primary array
       for (int i = 0; i < array_out.shape.x; i++)
         for (int j = 0; j < patch_shape.y; j++)
           array_out(i, j1 + j) = array_strip(i, j);
+
+      // apply the same patching to the secondary arrays
+      for (size_t k = 0; k < secondary_arrays_output.size(); k++)
+      {
+        for (int i = 0; i < array_out.shape.x; i++)
+          for (int j = 0; j < patch_shape.y; j++)
+            secondary_arrays_output[k](i,
+                                       j1 + j) = secondary_arrays_strips[k](i,
+                                                                            j);
+      }
     }
   }
+
+  // override content of input secondary arrays with output
+  for (size_t k = 0; k < secondary_arrays_output.size(); k++)
+    *secondary_arrays[k] = secondary_arrays_output[k];
 
   return array_out;
 }
@@ -141,6 +210,7 @@ Array quilting_blend(std::vector<Array *> p_arrays,
                              tiling,
                              overlap,
                              seed,
+                             {}, // no secondary arrays
                              patch_flip,
                              patch_rotate,
                              patch_transpose,
@@ -150,16 +220,17 @@ Array quilting_blend(std::vector<Array *> p_arrays,
   return array_out.extract_slice(Vec4<int>(0, shape.x, 0, shape.y));
 }
 
-Array quilting_expand(Array          &array,
-                      float           expansion_ratio,
-                      hmap::Vec2<int> patch_base_shape,
-                      float           overlap,
-                      uint            seed,
-                      bool            keep_input_shape,
-                      bool            patch_flip,
-                      bool            patch_rotate,
-                      bool            patch_transpose,
-                      float           filter_width_ratio)
+Array quilting_expand(Array               &array,
+                      float                expansion_ratio,
+                      hmap::Vec2<int>      patch_base_shape,
+                      float                overlap,
+                      uint                 seed,
+                      std::vector<Array *> secondary_arrays,
+                      bool                 keep_input_shape,
+                      bool                 patch_flip,
+                      bool                 patch_rotate,
+                      bool                 patch_transpose,
+                      float                filter_width_ratio)
 {
   expansion_ratio = std::max(1.f, expansion_ratio);
 
@@ -171,6 +242,17 @@ Array quilting_expand(Array          &array,
 
     Array array_work = array.resample_to_shape(work_shape);
 
+    // secondary arrays
+    std::vector<Array>   secondary_arrays_storage = {};
+    std::vector<Array *> secondary_arrays_work = {};
+
+    for (auto v : secondary_arrays)
+      secondary_arrays_storage.push_back(v->resample_to_shape(work_shape));
+
+    for (auto &v : secondary_arrays_storage)
+      secondary_arrays_work.push_back(&v);
+
+    // apply
     Vec2<int> patch_base_shape_work = Vec2<int>(
         (int)(patch_base_shape.x / expansion_ratio),
         (int)(patch_base_shape.y / expansion_ratio));
@@ -184,11 +266,18 @@ Array quilting_expand(Array          &array,
                                tiling,
                                overlap,
                                seed,
+                               secondary_arrays_work,
                                patch_flip,
                                patch_rotate,
                                patch_transpose,
                                filter_width_ratio);
 
+    // override p_secondary_arrays content with output
+    for (size_t k = 0; k < secondary_arrays.size(); k++)
+      *secondary_arrays[k] = secondary_arrays_work[k]->extract_slice(
+          Vec4<int>(0, array.shape.x, 0, array.shape.y));
+
+    // return an array with the same shape as the input
     return array_out.extract_slice(
         Vec4<int>(0, array.shape.x, 0, array.shape.y));
   }
@@ -208,24 +297,32 @@ Array quilting_expand(Array          &array,
                                tiling,
                                overlap,
                                seed,
+                               secondary_arrays,
                                patch_flip,
                                patch_rotate,
                                patch_transpose,
                                filter_width_ratio);
 
+    // override p_secondary_arrays content with output
+    for (auto v : secondary_arrays)
+      *v = v->extract_slice(
+          Vec4<int>(0, expanded_shape.x, 0, expanded_shape.y));
+
+    // return an array with the expanded shape
     return array_out.extract_slice(
         Vec4<int>(0, expanded_shape.x, 0, expanded_shape.y));
   }
 }
 
-Array quilting_shuffle(Array          &array,
-                       hmap::Vec2<int> patch_base_shape,
-                       float           overlap,
-                       uint            seed,
-                       bool            patch_flip,
-                       bool            patch_rotate,
-                       bool            patch_transpose,
-                       float           filter_width_ratio)
+Array quilting_shuffle(Array               &array,
+                       hmap::Vec2<int>      patch_base_shape,
+                       float                overlap,
+                       uint                 seed,
+                       std::vector<Array *> secondary_arrays,
+                       bool                 patch_flip,
+                       bool                 patch_rotate,
+                       bool                 patch_transpose,
+                       float                filter_width_ratio)
 {
   Vec2<int> tiling = Vec2<int>(
       (int)(std::ceil(array.shape.x / patch_base_shape.x)),
@@ -236,10 +333,15 @@ Array quilting_shuffle(Array          &array,
                              tiling,
                              overlap,
                              seed,
+                             secondary_arrays,
                              patch_flip,
                              patch_rotate,
                              patch_transpose,
                              filter_width_ratio);
+
+  // override p_secondary_arrays content with output
+  for (auto v : secondary_arrays)
+    *v = v->extract_slice(Vec4<int>(0, array.shape.x, 0, array.shape.y));
 
   // return an array with the same shape as the input
   return array_out.extract_slice(Vec4<int>(0, array.shape.x, 0, array.shape.y));

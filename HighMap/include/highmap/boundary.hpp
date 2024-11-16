@@ -91,6 +91,8 @@ void falloff(Array           &array,
  */
 void fill_borders(Array &array);
 
+void fill_borders(Array &array, int nbuffer); ///< @overload
+
 /**
  * @brief Creates and returns a new array with additional buffer zones at the
  * boundaries, where the buffer values are filled either by symmetry or by
