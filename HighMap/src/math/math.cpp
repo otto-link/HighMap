@@ -95,6 +95,18 @@ Array atan(const Array &array)
   return array_out;
 }
 
+Array atan2(const Array &y, const Array &x)
+{
+  Array array_out = Array(x.shape);
+
+  std::transform(y.vector.begin(),
+                 y.vector.end(),
+                 x.vector.begin(),
+                 array_out.vector.begin(),
+                 [](float y_, float x_) { return std::atan2(y_, x_); });
+  return array_out;
+}
+
 Array cos(const Array &array)
 {
   Array array_out = Array(array.shape);
@@ -295,6 +307,17 @@ Array smoothstep5(const Array &array, const Array &vmin, const Array &vmax)
 float smoothstep5(const float x)
 {
   return x * x * x * (x * (x * 6.f - 15.f) + 10.f);
+}
+
+float smoothstep7(const float x)
+{
+  float x2 = x * x;
+  float x3 = x2 * x;
+  float x4 = x3 * x;
+  float x5 = x4 * x;
+  float x6 = x5 * x;
+  float x7 = x6 * x;
+  return -20.f * x7 + 70.f * x6 - 84.f * x5 + 35.f * x4;
 }
 
 } // namespace hmap

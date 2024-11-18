@@ -34,7 +34,17 @@
 namespace hmap
 {
 
-// void depression_breaching(Array &z);
+/**
+ * @brief Procedural erosion angular profile type.
+ */
+enum ErosionProfile : int
+{
+  COSINE,
+  SHARP_VALLEYS,
+  TRIANGLE_GRENIER,
+  TRIANGLE_SHARP,
+  TRIANGLE_SMOOTH,
+};
 
 /**
  * @brief Fill the depressions of the heightmap using the Planchon-Darboux
@@ -366,6 +376,69 @@ void hydraulic_particle_multiscale(Array &z,
                                    int    pyramid_finest_level = 0);
 
 /**
+ * @brief Generates a procedurally eroded terrain using hydraulic erosion and
+ * ridge generation techniques.
+ *
+ * This function applies a combination of hydraulic erosion and ridge formation
+ * to modify a heightmap, leveraging parameters such as erosion profiles, ridge
+ * scaling, and noise characteristics. It also supports custom or default masks
+ * to influence the erosion process.
+ *
+ * @param[out] z The heightmap to be modified, represented as a 2D array.
+ * @param[in] seed Random seed for procedural generation.
+ * @param[in] ridge_wavelength Wavelength of the ridge structures in the
+ * heightmap.
+ * @param[in] ridge_scaling Scaling factor for the ridge height.
+ * @param[in] erosion_profile The profile that defines the erosion curve
+ * behavior.
+ * @param[in] delta Parameter controlling the erosion intensity.
+ * @param[in] noise_ratio Ratio of noise added to the ridge crest lines.
+ * @param[in] prefilter_ir Kernel radius for pre-smoothing the heightmap. If
+ * negative, a default value is computed.
+ * @param[in] density_factor Factor influencing the density of the ridges.
+ * @param[in] kernel_width_ratio Ratio defining the width of the ridge
+ * generation kernel.
+ * @param[in] phase_smoothing Smoothing factor for the phase field used in ridge
+ * generation.
+ * @param[in] use_default_mask Whether to use a default mask for erosion if no
+ * mask is provided.
+ * @param[in] talus_mask Threshold for default mask slope to identify regions
+ * prone to erosion.
+ * @param[in] p_mask Optional pointer to a custom mask array to influence the
+ * erosion process.
+ * @param[out] p_ridge_mask Optional pointer to store the ridge mask resulting
+ * from the operation.
+ * @param[in] vmin Minimum elevation value. If set to a sentinel value (vmax <
+ * vmin), it is calculated from the heightmap.
+ * @param[in] vmax Maximum elevation value. If set to a sentinel value (vmax <
+ * vmin), it is calculated from the heightmap.
+ *
+ * **Example**
+ * @include ex_hydraulic_procedural.cpp
+ *
+ * **Result**
+ * @image html ex_hydraulic_procedural.png
+ */
+void hydraulic_procedural(
+    Array         &z,
+    uint           seed,
+    float          ridge_wavelength,
+    float          ridge_scaling = 0.1f,
+    ErosionProfile erosion_profile = ErosionProfile::TRIANGLE_SMOOTH,
+    float          delta = 0.02f,
+    float          noise_ratio = 0.2f,
+    int            prefilter_ir = -1,
+    float          density_factor = 1.f,
+    float          kernel_width_ratio = 2.f,
+    float          phase_smoothing = 2.f,
+    bool           use_default_mask = true,
+    float          talus_mask = 0.f,
+    Array         *p_mask = nullptr,
+    Array         *p_ridge_mask = nullptr,
+    float          vmin = 0.f,
+    float          vmax = -1.f);
+
+/**
  * @brief Apply large-scale hydraulic erosion to produce "deep" ridges.
  *
  * @param z Input array.
@@ -405,6 +478,34 @@ void hydraulic_ridge(Array &z,
                      int    ir = 0,
                      uint   seed = 1); ///< @overload
 
+/**
+ * @brief Simulates hydraulic erosion and deposition on a terrain heightmap.
+ *
+ * The `hydraulic_schott` function applies hydraulic erosion and deposition
+ * processes on a 2D heightmap to simulate natural terrain changes over time. It
+ * optionally incorporates softness and flow maps to influence the simulation,
+ * and can handle an additional mask for selective terrain modification.
+ *
+ * @param z The input/output heightmap represented as a 2D array.
+ * @param iterations The number of erosion iterations to perform.
+ * @param deposition_iterations_ratio The ratio of deposition iterations to
+ * erosion iterations.
+ * @param c_erosion Coefficient controlling the intensity of erosion.
+ * @param c_deposition Coefficient controlling the intensity of deposition.
+ * @param p_softness Pointer to a 2D array representing terrain softness. If
+ * nullptr, a default uniform softness is used.
+ * @param p_flow Pointer to a 2D array representing water flow. If nullptr, a
+ * default uniform flow is used.
+ *
+ * @note The implementation is based on the ShaderToy example available at
+ * https://www.shadertoy.com/view/XX2XWD.
+ *
+ * **Example**
+ * @include ex_hydraulic_schott.cpp
+ *
+ * **Result**
+ * @image html ex_hydraulic_schott.png
+ */
 void hydraulic_schott(Array &z,
                       int    iterations = 10,
                       float  deposition_iterations_ratio = 2,
@@ -413,6 +514,35 @@ void hydraulic_schott(Array &z,
                       Array *p_softness = nullptr,
                       Array *p_flow = nullptr);
 
+/**
+ * @brief Simulates hydraulic erosion and deposition with an optional mask.
+ *
+ * The `hydraulic_schott` function extends the basic erosion and deposition
+ * simulation by allowing the use of a mask to selectively apply modifications
+ * to the terrain.
+ *
+ * @param z The input/output heightmap represented as a 2D array.
+ * @param p_mask Pointer to a 2D array representing a mask for selective terrain
+ * modification. If nullptr, the entire terrain is processed.
+ * @param iterations The number of erosion iterations to perform.
+ * @param deposition_iterations_ratio The ratio of deposition iterations to
+ * erosion iterations.
+ * @param c_erosion Coefficient controlling the intensity of erosion.
+ * @param c_deposition Coefficient controlling the intensity of deposition.
+ * @param p_softness Pointer to a 2D array representing terrain softness. If
+ * nullptr, a default uniform softness is used.
+ * @param p_flow Pointer to a 2D array representing water flow. If nullptr, a
+ * default uniform flow is used.
+ *
+ * @note If the mask is not provided, this function delegates to the simpler
+ * version of `hydraulic_schott`.
+ *
+ *  * **Example**
+ * @include ex_hydraulic_schott.cpp
+ *
+ * **Result**
+ * @image html ex_hydraulic_schott.png
+ */
 void hydraulic_schott(Array &z,
                       Array *p_mask,
                       int    iterations = 10,

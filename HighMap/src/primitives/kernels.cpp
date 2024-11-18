@@ -171,7 +171,7 @@ Array disk(Vec2<int> shape)
   return array;
 }
 
-Array gabor(Vec2<int> shape, float kw, float angle)
+Array gabor(Vec2<int> shape, float kw, float angle, bool quad_phase_shift)
 {
   Array array = Array(shape);
 
@@ -184,11 +184,22 @@ Array gabor(Vec2<int> shape, float kw, float angle)
   // gaussian_decay shape approximate using a cubic pulse
   Array cpulse = cubic_pulse(shape);
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
-      // "kw" and not "2 kw" since the domain is [-1, 1]
-      array(i, j) = cpulse(i, j) *
-                    std::cos(M_PI * kw * (x[i] * ca + y[j] * sa));
+  if (!quad_phase_shift)
+  {
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
+        // "kw" and not "2 kw" since the domain is [-1, 1]
+        array(i, j) = cpulse(i, j) *
+                      std::cos(M_PI * kw * (x[i] * ca + y[j] * sa));
+  }
+  else
+  {
+    for (int i = 0; i < array.shape.x; i++)
+      for (int j = 0; j < array.shape.y; j++)
+        // "kw" and not "2 kw" since the domain is [-1, 1]
+        array(i, j) = cpulse(i, j) *
+                      std::sin(M_PI * kw * (x[i] * ca + y[j] * sa));
+  }
 
   return array;
 }

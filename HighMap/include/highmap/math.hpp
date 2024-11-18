@@ -138,6 +138,22 @@ inline float approx_rsqrt(float a)
 Array atan(const Array &array);
 
 /**
+ * @brief Computes the element-wise arctangent of two arrays, considering the
+ * signs of both inputs.
+ *
+ * This function calculates the arctangent of the ratio `y/x` for each
+ * corresponding element in the input arrays, while taking into account the
+ * quadrant of the angle. The output values are in radians and range from `-π`
+ * to `π`.
+ *
+ * @param y A 2D array representing the numerator values.
+ * @param x A 2D array representing the denominator values.
+ * @return A 2D array where each element is the result of `atan2(y(i, j), x(i,
+ * j))`.
+ */
+Array atan2(const Array &y, const Array &x);
+
+/**
  * @brief Return the cosine of the array elements.
  *
  * @param array Input array.
@@ -315,5 +331,13 @@ Array smoothstep5(const Array &array,
  * @return float Output.
  */
 float smoothstep5(const float x);
+
+/**
+ * @brief Return the 7th order smoothstep function.
+ *
+ * @param x Input.
+ * @return float Output.
+ */
+float smoothstep7(const float x);
 
 } // namespace hmap

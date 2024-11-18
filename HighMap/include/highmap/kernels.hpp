@@ -191,7 +191,10 @@ Array disk(Vec2<int> shape);
  * **Result**
  * @image html ex_gabor.png
  */
-Array gabor(Vec2<int> shape, float kw, float angle);
+Array gabor(Vec2<int> shape,
+            float     kw,
+            float     angle,
+            bool      quad_phase_shift = false);
 
 /**
  * @brief Generates a modified dune-like Gabor kernel.
