@@ -11,10 +11,12 @@ int main(void)
 
   float kp = 4.f;
   int   width = 64;
+
+  float density = 4.f;
   bool  rotate90 = true;
 
-  hmap::Array phi0 = hmap::phase_field(z, kp, width, ++seed);
-  hmap::Array phi1 = hmap::phase_field(z, kp, width, ++seed, -1, 1.f, rotate90);
+  hmap::Array phi0 = hmap::phase_field(z, kp, width, ++seed, -1, density);
+  hmap::Array phi1 = hmap::phase_field(z, kp, width, ++seed, -1, density, rotate90);
 
   hmap::remap(phi0);
   hmap::remap(phi1);
