@@ -202,6 +202,16 @@ Array gradient_y(const Array &array);
  */
 void gradient_y(const Array &array, Array &dy); ///< @overload
 
+Array phase_field(const Array &array,
+                  float        kw,
+                  int          width,
+                  uint         seed,
+                  int          prefilter_ir = -1,
+                  float        density_factor = 1.f,
+                  bool         rotate90 = false,
+                  Array       *p_gnoise_x = nullptr,
+                  Array       *p_gnoise_y = nullptr);
+
 /**
  * @brief Compute the Laplacian of a 2D array.
  *

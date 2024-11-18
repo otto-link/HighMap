@@ -1,0 +1,2 @@
+add_executable(ex_hydraulic_procedural ex_hydraulic_procedural.cpp)
+target_link_libraries(ex_hydraulic_procedural highmap)
