@@ -16,7 +16,8 @@ int main(void)
   bool  rotate90 = true;
 
   hmap::Array phi0 = hmap::phase_field(z, kp, width, ++seed, -1, density);
-  hmap::Array phi1 = hmap::phase_field(z, kp, width, ++seed, -1, density, rotate90);
+  hmap::Array phi1 =
+      hmap::phase_field(z, kp, width, ++seed, -1, density, rotate90);
 
   hmap::remap(phi0);
   hmap::remap(phi1);
