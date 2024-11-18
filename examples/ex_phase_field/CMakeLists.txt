@@ -1,0 +1,2 @@
+add_executable(ex_phase_field ex_phase_field.cpp)
+target_link_libraries(ex_phase_field highmap)
