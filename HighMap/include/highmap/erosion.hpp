@@ -436,7 +436,7 @@ void hydraulic_procedural(
     float          kernel_width_ratio = 2.f,
     float          phase_smoothing = 2.f,
     float          phase_noise_amp = M_PI,
-    bool reverse_phase = false,
+    bool           reverse_phase = false,
     bool           use_default_mask = true,
     float          talus_mask = 0.f,
     Array         *p_mask = nullptr,

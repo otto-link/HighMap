@@ -7,15 +7,10 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/erosion.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/gradient.hpp"
-#include "highmap/kernels.hpp"
 #include "highmap/operator.hpp"
-
-#include "highmap/erosion.hpp"
-#include "highmap/features.hpp"
-#include "highmap/hydrology.hpp"
-#include "highmap/morphology.hpp"
 #include "highmap/primitives.hpp"
 #include "highmap/range.hpp"
 
@@ -161,7 +156,7 @@ void hydraulic_procedural(Array         &z,
                           float          kernel_width_ratio,
                           float          phase_smoothing,
                           float          phase_noise_amp,
-			  bool reverse_phase,
+                          bool           reverse_phase,
                           bool           use_default_mask,
                           float          talus_mask,
                           Array         *p_mask,
@@ -209,9 +204,8 @@ void hydraulic_procedural(Array         &z,
                             &gnoise_x,
                             &gnoise_y);
 
-  if (reverse_phase)
-    phase *= -1.f;
-    
+  if (reverse_phase) phase *= -1.f;
+
   // --- apply profile
 
   float                       profile_avg = 0.f;

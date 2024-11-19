@@ -7,7 +7,6 @@
 #include "highmap/gradient.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/operator.hpp"
-
 #include "highmap/primitives.hpp"
 #include "highmap/range.hpp"
 
