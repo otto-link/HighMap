@@ -40,7 +40,10 @@ namespace hmap
 enum ErosionProfile : int
 {
   COSINE,
+  SAW_SHARP,
+  SAW_SMOOTH,
   SHARP_VALLEYS,
+  SQUARE_SMOOTH,
   TRIANGLE_GRENIER,
   TRIANGLE_SHARP,
   TRIANGLE_SMOOTH,
@@ -417,7 +420,8 @@ void hydraulic_particle_multiscale(Array &z,
  * @include ex_hydraulic_procedural.cpp
  *
  * **Result**
- * @image html ex_hydraulic_procedural.png
+ * @image html ex_hydraulic_procedural0.png
+ * @image html ex_hydraulic_procedural1.png
  */
 void hydraulic_procedural(
     Array         &z,
@@ -432,6 +436,7 @@ void hydraulic_procedural(
     float          kernel_width_ratio = 2.f,
     float          phase_smoothing = 2.f,
     float          phase_noise_amp = M_PI,
+    bool reverse_phase = false,
     bool           use_default_mask = true,
     float          talus_mask = 0.f,
     Array         *p_mask = nullptr,
