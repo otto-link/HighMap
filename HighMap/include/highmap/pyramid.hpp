@@ -27,7 +27,7 @@ namespace hmap
  */
 enum pyramid_transform_support : int
 {
-  FULL,         ///< Complete field (sum of low and high pass
+  FULL,         ///< Complete field (sum of low and high pass)
   LOWPASS_ONLY, ///< Low pass component only
   HIGHPASS_ONLY ///< High pass component only
 };
@@ -126,9 +126,5 @@ private:
    */
   Array *p_array = nullptr;
 };
-
-// --- HELPERS
-
-int highest_power_of_2(int n); // TODO put this somewhere else
 
 } // namespace hmap

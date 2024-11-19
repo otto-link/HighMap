@@ -169,6 +169,8 @@ Array cos(const Array &array);
  */
 Array exp(const Array &array);
 
+int highest_power_of_2(int n);
+
 /**
  * @brief Return the Gaussian of the array elements.
  *
