@@ -203,47 +203,6 @@ Array gradient_y(const Array &array);
 void gradient_y(const Array &array, Array &dy); ///< @overload
 
 /**
- * @brief Computes a phase field using spatially varying Gabor noise based on
- * the input heightmap.
- *
- * This function generates a 2D phase field by combining gradient angles from
- * the input array and Gabor noise, which is spatially distributed with varying
- * parameters. The resulting phase field can be used for procedural terrain
- * generation or other simulations.
- *
- * @param[in] array The input 2D heightmap array.
- * @param[in] kw Wave number for the Gabor kernel, determining the frequency of
- * the noise.
- * @param[in] width Width of the Gabor kernel.
- * @param[in] seed Random seed for reproducible Gabor noise generation.
- * @param[in] prefilter_ir Kernel radius for pre-smoothing the input array. If
- * negative, a default value is computed.
- * @param[in] density_factor Factor controlling the density of the noise points.
- * @param[in] rotate90 Boolean flag to rotate the gradient angles by 90 degrees.
- * @param[out] p_gnoise_x Optional pointer to store the generated Gabor noise in
- * the X direction.
- * @param[out] p_gnoise_y Optional pointer to store the generated Gabor noise in
- * the Y direction.
- *
- * @return A 2D array representing the computed phase field.
- *
- * * **Example**
- * @include ex_phase_field.cpp
- *
- * **Result**
- * @image html ex_phase_field.png
- */
-Array phase_field(const Array &array,
-                  float        kw,
-                  int          width,
-                  uint         seed,
-                  int          prefilter_ir = -1,
-                  float        density_factor = 1.f,
-                  bool         rotate90 = false,
-                  Array       *p_gnoise_x = nullptr,
-                  Array       *p_gnoise_y = nullptr);
-
-/**
  * @brief Compute the Laplacian of a 2D array.
  *
  * The Laplacian is a measure of the second-order spatial derivative of the
@@ -268,6 +227,49 @@ Array laplacian(const Array &array);
  * array.
  */
 Tensor normal_map(const Array &array);
+
+/**
+ * @brief Computes a phase field using spatially varying Gabor noise based on
+ * the input heightmap.
+ *
+ * This function generates a 2D phase field by combining gradient angles from
+ * the input array and Gabor noise, which is spatially distributed with varying
+ * parameters. The resulting phase field can be used for procedural terrain
+ * generation or other simulations.
+ *
+ * @param[in] array The input 2D heightmap array.
+ * @param[in] kw Wave number for the Gabor kernel, determining the frequency of
+ * the noise.
+ * @param[in] width Width of the Gabor kernel.
+ * @param[in] seed Random seed for reproducible Gabor noise generation.
+ * @param[in] noise_amp Noise amplitude added to the phase field.
+ * @param[in] prefilter_ir Kernel radius for pre-smoothing the input array. If
+ * negative, a default value is computed.
+ * @param[in] density_factor Factor controlling the density of the noise points.
+ * @param[in] rotate90 Boolean flag to rotate the gradient angles by 90 degrees.
+ * @param[out] p_gnoise_x Optional pointer to store the generated Gabor noise in
+ * the X direction.
+ * @param[out] p_gnoise_y Optional pointer to store the generated Gabor noise in
+ * the Y direction.
+ *
+ * @return A 2D array representing the computed phase field.
+ *
+ * * **Example**
+ * @include ex_phase_field.cpp
+ *
+ * **Result**
+ * @image html ex_phase_field.png
+ */
+Array phase_field(const Array &array,
+                  float        kw,
+                  int          width,
+                  uint         seed,
+                  float        noise_amp = 0.f,
+                  int          prefilter_ir = -1,
+                  float        density_factor = 1.f,
+                  bool         rotate90 = false,
+                  Array       *p_gnoise_x = nullptr,
+                  Array       *p_gnoise_y = nullptr);
 
 /**
  * @brief Unwraps a 2D phase array to correct discontinuities in phase data.

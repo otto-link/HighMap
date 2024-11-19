@@ -15,10 +15,12 @@ int main(void)
   hmap::ErosionProfile ep = hmap::ErosionProfile::TRIANGLE_SMOOTH;
 
   hmap::hydraulic_procedural(z, ++seed, 1.f / 8.f, 0.2f, ep);
+  auto z1 = z;
+
   hmap::hydraulic_procedural(z, ++seed, 1.f / 32.f, 0.2f / 8.f, ep);
 
   hmap::export_banner_png("ex_hydraulic_procedural.png",
-                          {z0, z},
+                          {z0, z1, z},
                           hmap::Cmap::TERRAIN,
                           true);
 

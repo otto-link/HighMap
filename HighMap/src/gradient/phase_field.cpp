@@ -8,6 +8,9 @@
 #include "highmap/kernels.hpp"
 #include "highmap/operator.hpp"
 
+#include "highmap/primitives.hpp"
+#include "highmap/range.hpp"
+
 namespace hmap
 {
 
@@ -15,6 +18,7 @@ Array phase_field(const Array &array,
                   float        kw,
                   int          width,
                   uint         seed,
+                  float        noise_amp,
                   int          prefilter_ir,
                   float        density_factor,
                   bool         rotate90,
@@ -66,6 +70,20 @@ Array phase_field(const Array &array,
 
   // phase field
   Array phase = atan2(gnoise_y, gnoise_x);
+
+  // add noise if requested
+  if (noise_amp)
+  {
+    int   octaves = 4;
+    float kw_noise = kw * shape.x / width;
+    Array phase_noise = noise_fbm(hmap::NoiseType::PERLIN,
+                                  shape,
+                                  {kw_noise, kw_noise},
+                                  ++seed,
+                                  octaves);
+    remap(phase_noise, -noise_amp, noise_amp);
+    phase += phase_noise;
+  }
 
   return phase;
 }
