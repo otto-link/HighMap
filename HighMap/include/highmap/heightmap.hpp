@@ -104,6 +104,14 @@ public:
   void from_array_interp(Array &array);
 
   /**
+   * @brief Fill tile values by interpolating (bicubic) values from
+   * another array.
+   *
+   * @param array Input array.
+   */
+  void from_array_interp_bicubic(Array &array);
+
+  /**
    * @brief Fill tile values by interpolating (nearest) values from
    * another array.
    *
@@ -252,6 +260,14 @@ public:
    * @image html ex_heightmap_from_array1.png
    */
   void from_array_interp(Array &array);
+
+  /**
+   * @brief Fill tile values by interpolating (bicubic) values from
+   * another array.
+   *
+   * @param array Input array.
+   */
+  void from_array_interp_bicubic(Array &array);
 
   /**
    * @brief Fill tile values by interpolating (nearest neighbor) values from
