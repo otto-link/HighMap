@@ -59,10 +59,10 @@ Array fft_filter(Array &array, float kc, bool smooth_cutoff = false);
  * @note If the input array is not square, a zero-filled array is returned.
  *
  *  * **Example**
- * @include ex_fft_modulous.cpp
+ * @include ex_fft_modulus.cpp
  *
  * **Result**
- * @image html ex_fft_modulous.png
+ * @image html ex_fft_modulus.png
  */
 Array fft_modulus(Array &array, bool shift_to_center = true);
 
