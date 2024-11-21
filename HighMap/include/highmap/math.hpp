@@ -169,8 +169,6 @@ Array cos(const Array &array);
  */
 Array exp(const Array &array);
 
-int highest_power_of_2(int n);
-
 /**
  * @brief Return the Gaussian of the array elements.
  *
@@ -193,6 +191,16 @@ Array gaussian_decay(const Array &array, float sigma);
  */
 std::function<float(float, float)> get_distance_function(
     DistanceFunction dist_fct);
+
+/**
+ * @brief Computes the highest power of 2 less than or equal to the given
+ * number.
+ *
+ * @param n The input integer for which the highest power of 2 is to be
+ * determined.
+ * @return The highest power of 2 less than or equal to `n`.
+ */
+int highest_power_of_2(int n);
 
 /**
  * @brief Return the square root of the sum of the squares of the two input
