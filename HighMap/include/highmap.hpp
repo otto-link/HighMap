@@ -25,6 +25,7 @@
 #include "highmap/erosion.hpp"
 #include "highmap/export.hpp"
 #include "highmap/features.hpp"
+#include "highmap/fft.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/functions.hpp"
 #include "highmap/geometry/cloud.hpp"

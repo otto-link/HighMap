@@ -9,7 +9,7 @@
  * @version 0.1
  * @date 2023-04-29
  *
- * @copyright Copyright (c) 2023
+ * @copyright Copyright (c) 2023 Otto Link.
  *
  */
 #pragma once

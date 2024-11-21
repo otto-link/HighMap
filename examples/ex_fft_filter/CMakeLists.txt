@@ -1,0 +1,2 @@
+add_executable(ex_fft_filter ex_fft_filter.cpp)
+target_link_libraries(ex_fft_filter highmap)

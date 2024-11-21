@@ -23,6 +23,7 @@ target_link_libraries(
   ${PROJECT_NAME}
   assimp::assimp
   delaunator::delaunator
+  ${FFTW_LIBRARIES}
   GSL::gsl
   GSL::gslcblas
   dkm::dkm
