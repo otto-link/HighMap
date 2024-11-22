@@ -1425,6 +1425,31 @@ void recurve_smoothstep_rational(Array &array,
                                  float  n,
                                  Array *p_mask); ///< @overload
 
+/**
+ * @brief Applies a spectral recurve filter to the given array using the
+ * specified weights.
+ *
+ * This function performs a frequency domain filter on the provided `array`
+ * using a Fast Fourier Transform (FFT) approach. If the input array is not
+ * square, it resamples it to the nearest square shape to apply the filter.
+ * After filtering, the array is resampled back to its original shape.
+ *
+ * @param array The input array to which the spectral filter is applied. This is
+ * modified in place.
+ * @param weights A vector of weights used to filter the array in the frequency
+ * domain.
+ *
+ * @note If the size of the weights vector is less than 2, the function does
+ * nothing.
+ *
+ * @see fft_filter for the details of the frequency domain filtering process.
+ *
+ * **Example**
+ * @include ex_recurve_spectral.cpp
+ *
+ * **Result**
+ * @image html ex_recurve_spectral.png
+ */
 void recurve_spectral(Array &array, const std::vector<float> &amp);
 
 /**
