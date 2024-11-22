@@ -21,6 +21,7 @@ void recurve(Array                    &array,
              const std::vector<float> &t,
              const std::vector<float> &v)
 {
+  // monotonic interpolator
   Interpolator1D interp = Interpolator1D(t, v, InterpolationMethod1D::STEFFEN);
 
   auto lambda = [&interp](float a) { return interp(a); };

@@ -1425,6 +1425,8 @@ void recurve_smoothstep_rational(Array &array,
                                  float  n,
                                  Array *p_mask); ///< @overload
 
+void recurve_spectral(Array &array, const std::vector<float> &amp);
+
 /**
  * @brief Saturate the array values based on the input interval [vmin, vmax]
  * (the output amplitude is not modified).

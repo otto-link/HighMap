@@ -6,7 +6,9 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/interpolate1d.hpp"
 #include "highmap/math.hpp"
+#include "highmap/operator.hpp"
 
 namespace hmap
 {
@@ -114,6 +116,98 @@ Array fft_filter(Array &array, float kc, bool smooth_cutoff)
   return array_out;
 }
 
+Array fft_filter(Array &array, const std::vector<float> &weights)
+{
+  if (array.shape.x != array.shape.y)
+  {
+    LOG_ERROR("Input data must be square. Returning a zero-filled array.");
+    return Array(array.shape);
+  }
+
+  int n = array.shape.x;
+
+  // weights interpolator
+  std::vector<float> kw = linspace(0.f, (float)(n - 1), weights.size());
+  Interpolator1D     interp = Interpolator1D(kw,
+                                         weights,
+                                         InterpolationMethod1D::LINEAR);
+
+  // output array for complex numbers in single precision (n * (n/2+1)
+  // because of symmetry)
+  std::vector<fftwf_complex> out(n * (n / 2 + 1));
+
+  // output array for the filtered data
+  std::vector<float> filtered(n * n);
+
+  // create the FFTW plans for forward and backward transformations
+  fftwf_plan forward_plan = fftwf_plan_dft_r2c_2d(n,
+                                                  n,
+                                                  array.vector.data(),
+                                                  out.data(),
+                                                  FFTW_ESTIMATE);
+  fftwf_plan backward_plan = fftwf_plan_dft_c2r_2d(n,
+                                                   n,
+                                                   out.data(),
+                                                   filtered.data(),
+                                                   FFTW_ESTIMATE);
+
+  // execute the forward FFT
+  fftwf_execute(forward_plan);
+
+  // apply the low-pass filter in the frequency domain
+  float kmax = 0.f;
+
+  for (int i = 0; i < n; ++i)
+    for (int j = 0; j <= n / 2; ++j)
+    {
+      int idx = i * (n / 2 + 1) + j;
+
+      // compute the wavenumbers (wrap around for negative frequencies)
+      int kx = (i <= n / 2) ? i : i - n;
+      int ky = j;
+
+      float wavenumber = std::sqrt(kx * kx + ky * ky);
+
+      // apply the weights
+      if (wavenumber < (float)(0.5f * n))
+      {
+        float c = interp(wavenumber);
+        out[idx][0] *= c;
+        out[idx][1] *= c;
+      }
+      else
+      {
+        out[idx][0] *= weights.back();
+        out[idx][1] *= weights.back();
+      }
+
+      kmax = std::max(kmax, wavenumber);
+    }
+
+  // execute the inverse FFT
+  fftwf_execute(backward_plan);
+
+  // normalize the filtered output
+  Array array_out(array.shape);
+  float norm_coeff = 1.f / (n * n);
+
+  for (int k = 0; k < n * n; k++)
+  {
+    Vec2<int> ij;
+    ij.x = std::floor(k / n);
+    ij.y = k - ij.x * n;
+
+    array_out(ij.x, ij.y) = norm_coeff * filtered[k];
+  }
+
+  // clean up FFTW resources
+  fftwf_destroy_plan(forward_plan);
+  fftwf_destroy_plan(backward_plan);
+  fftwf_cleanup();
+
+  return array_out;
+}
+
 Array fft_modulus(Array &array, bool shift_to_center)
 {
   if (array.shape.x != array.shape.y)
@@ -125,7 +219,6 @@ Array fft_modulus(Array &array, bool shift_to_center)
   Array modulus(array.shape);
   int   n = array.shape.x;
 
-  // TODO interpolate to square array if input is not
   // TODO work on a fix resolution
 
   // output array for complex numbers in single precision (n * (n/2+1)

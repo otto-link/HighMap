@@ -44,6 +44,8 @@ namespace hmap
  */
 Array fft_filter(Array &array, float kc, bool smooth_cutoff = false);
 
+Array fft_filter(Array &array, const std::vector<float> &weights);
+
 /**
  * @brief Computes the modulus of the FFT of a 2D array.
  *
