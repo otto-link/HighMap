@@ -8,7 +8,7 @@ int main(void)
   hmap::Vec2<float> kw = {4.f, 4.f};
   int               seed = 1;
 
-  hmap::HeightMap h = hmap::HeightMap(shape, tiling, overlap);
+  hmap::Heightmap h = hmap::Heightmap(shape, tiling, overlap);
 
   hmap::fill(h,
              [&kw, &seed](hmap::Vec2<int> shape, hmap::Vec4<float> bbox)

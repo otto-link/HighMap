@@ -24,17 +24,17 @@ int main(void)
   auto zs = hmap::slope(shape, 0.f, 1.f);
   hmap::remap(zs);
 
-  auto hr = hmap::HeightMap(shape, tiling, overlap);
-  auto hg = hmap::HeightMap(shape, tiling, overlap);
-  auto hb = hmap::HeightMap(shape, tiling, overlap);
-  auto hs = hmap::HeightMap(shape, tiling, overlap);
+  auto hr = hmap::Heightmap(shape, tiling, overlap);
+  auto hg = hmap::Heightmap(shape, tiling, overlap);
+  auto hb = hmap::Heightmap(shape, tiling, overlap);
+  auto hs = hmap::Heightmap(shape, tiling, overlap);
 
   hr.from_array_interp(zr);
   hg.from_array_interp(zg);
   hb.from_array_interp(zb);
   hs.from_array_interp(zs);
 
-  hmap::HeightMapRGB hrgb = hmap::HeightMapRGB(hr, hg, hb);
+  hmap::HeightmapRGB hrgb = hmap::HeightmapRGB(hr, hg, hb);
   hrgb.to_png("ex_heightmap_rgb1.png");
 
   // colorize
@@ -42,9 +42,9 @@ int main(void)
   hrgb.to_png("ex_heightmap_rgb2.png");
 
   // mix
-  auto               h0 = hmap::HeightMap(shape, tiling, overlap);
-  hmap::HeightMapRGB hrgb1 = hmap::HeightMapRGB(hr, hr, h0);
-  hmap::HeightMapRGB hrgb2 = hmap::HeightMapRGB(h0, h0, hr);
+  auto               h0 = hmap::Heightmap(shape, tiling, overlap);
+  hmap::HeightmapRGB hrgb1 = hmap::HeightmapRGB(hr, hr, h0);
+  hmap::HeightmapRGB hrgb2 = hmap::HeightmapRGB(h0, h0, hr);
 
   auto hmix = mix_heightmap_rgb(hrgb1, hrgb2, hs);
   hmix.to_png("ex_heightmap_rgb3.png");

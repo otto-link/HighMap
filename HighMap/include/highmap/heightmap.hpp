@@ -39,11 +39,11 @@ static std::map<std::string, int> normal_map_blending_method_as_string = {
 };
 
 // --- forward declarations
-class HeightMapRGBA;
-HeightMapRGBA mix_heightmap_rgba(HeightMapRGBA &rgba1,
-                                 HeightMapRGBA &rgba2,
+class HeightmapRGBA;
+HeightmapRGBA mix_heightmap_rgba(HeightmapRGBA &rgba1,
+                                 HeightmapRGBA &rgba2,
                                  bool           use_sqrt_avg = true);
-HeightMapRGBA mix_heightmap_rgba(std::vector<HeightMapRGBA *> p_rgba_list,
+HeightmapRGBA mix_heightmap_rgba(std::vector<HeightmapRGBA *> p_rgba_list,
                                  bool use_sqrt_avg = true);
 
 // --- classes
@@ -129,7 +129,7 @@ public:
  * @brief HeightMap class, to manipulate heightmap (with contextual
  * informations).
  */
-class HeightMap
+class Heightmap
 {
 public:
   /**
@@ -165,26 +165,26 @@ public:
    * @param tiling Tiling setup.
    * @param overlap Tile overlapping.
    */
-  HeightMap(Vec2<int> shape, Vec4<float> bbox, Vec2<int> tiling, float overlap);
+  Heightmap(Vec2<int> shape, Vec4<float> bbox, Vec2<int> tiling, float overlap);
 
-  HeightMap(Vec2<int> shape, Vec2<int> tiling,
+  Heightmap(Vec2<int> shape, Vec2<int> tiling,
             float overlap); ///< @overload
 
-  HeightMap(Vec2<int> shape,
+  Heightmap(Vec2<int> shape,
             Vec2<int> tiling,
             float     overlap,
             float     fill_value); ///< @overload
 
-  HeightMap(Vec2<int> shape, Vec4<float> bbox,
+  Heightmap(Vec2<int> shape, Vec4<float> bbox,
             Vec2<int> tiling); ///< @overload
 
-  HeightMap(Vec2<int> shape, Vec4<float> bbox); ///< @overload
+  Heightmap(Vec2<int> shape, Vec4<float> bbox); ///< @overload
 
-  HeightMap(Vec2<int> shape, Vec2<int> tiling); ///< @overload
+  Heightmap(Vec2<int> shape, Vec2<int> tiling); ///< @overload
 
-  HeightMap(Vec2<int> shape); ///< @overload
+  Heightmap(Vec2<int> shape); ///< @overload
 
-  HeightMap(); ///< @overload
+  Heightmap(); ///< @overload
 
   //----------------------------------------
   // accessors
@@ -375,7 +375,7 @@ public:
  * @brief HeightMap class, to manipulate a set of RGB heightmap for heightmap
  * texturing.
  */
-struct HeightMapRGB
+struct HeightmapRGB
 {
   /**
    * @brief RGB component heightmap storage.
@@ -389,7 +389,7 @@ struct HeightMapRGB
    * @image html ex_ex_heightmap_rgb2.png
    * @image html ex_ex_heightmap_rgb3.png
    */
-  std::vector<HeightMap> rgb;
+  std::vector<Heightmap> rgb;
 
   /**
    * @brief Shape.
@@ -402,9 +402,9 @@ struct HeightMapRGB
    * @param g Heightmap for G (green) component.
    * @param b Heightmap for B (blue) component.
    */
-  HeightMapRGB(HeightMap r, HeightMap g, HeightMap b);
+  HeightmapRGB(Heightmap r, Heightmap g, Heightmap b);
 
-  HeightMapRGB(); ///< @overload
+  HeightmapRGB(); ///< @overload
 
   /**
    * @brief Set the shape / tiling / overlap in one pass.
@@ -424,7 +424,7 @@ struct HeightMapRGB
    * @param cmap Colormap (see {@link cmap}).
    * @param reverse Reverse colormap.
    */
-  void colorize(HeightMap &h,
+  void colorize(Heightmap &h,
                 float      vmin,
                 float      vmax,
                 int        cmap,
@@ -439,7 +439,7 @@ struct HeightMapRGB
    * @param colormap_colors Colormap RGB colors as a vector of RGB colors.
    * @param reverse Reverse colormap.
    */
-  void colorize(HeightMap                      &h,
+  void colorize(Heightmap                      &h,
                 float                           vmin,
                 float                           vmax,
                 std::vector<std::vector<float>> colormap_colors,
@@ -470,12 +470,12 @@ struct HeightMapRGB
    * @param t Mixing parameter, in [0, 1].
    * @return RGB heightmap.
    */
-  friend HeightMapRGB mix_heightmap_rgb(HeightMapRGB &rgb1,
-                                        HeightMapRGB &rgb2,
-                                        HeightMap    &t);
+  friend HeightmapRGB mix_heightmap_rgb(HeightmapRGB &rgb1,
+                                        HeightmapRGB &rgb2,
+                                        Heightmap    &t);
 
-  friend HeightMapRGB mix_heightmap_rgb(HeightMapRGB &rgb1,
-                                        HeightMapRGB &rgb2,
+  friend HeightmapRGB mix_heightmap_rgb(HeightmapRGB &rgb1,
+                                        HeightmapRGB &rgb2,
                                         float         t); ///< @overload
 
   /**
@@ -485,12 +485,12 @@ struct HeightMapRGB
    * @param t Mixing parameter, in [0, 1].
    * @return RGB heightmap.
    */
-  friend HeightMapRGB mix_heightmap_rgb_sqrt(HeightMapRGB &rgb1,
-                                             HeightMapRGB &rgb2,
-                                             HeightMap    &t);
+  friend HeightmapRGB mix_heightmap_rgb_sqrt(HeightmapRGB &rgb1,
+                                             HeightmapRGB &rgb2,
+                                             Heightmap    &t);
 
-  friend HeightMapRGB mix_heightmap_rgb_sqrt(HeightMapRGB &rgb1,
-                                             HeightMapRGB &rgb2,
+  friend HeightmapRGB mix_heightmap_rgb_sqrt(HeightmapRGB &rgb1,
+                                             HeightmapRGB &rgb2,
                                              float         t);
 };
 
@@ -508,12 +508,12 @@ struct HeightMapRGB
  * @image html ex_ex_heightmap_rgba3.png
  * @image html ex_ex_heightmap_rgba4.png
  */
-struct HeightMapRGBA
+struct HeightmapRGBA
 {
   /**
    * @brief RGBA component heightmap storage.
    */
-  std::vector<HeightMap> rgba;
+  std::vector<Heightmap> rgba;
 
   /**
    * @brief Shape.
@@ -527,9 +527,9 @@ struct HeightMapRGBA
    * @param b Heightmap for B (blue) component.
    * @param a Heightmap for A (alpha) component.
    */
-  HeightMapRGBA(HeightMap r, HeightMap g, HeightMap b, HeightMap a);
+  HeightmapRGBA(Heightmap r, Heightmap g, Heightmap b, Heightmap a);
 
-  HeightMapRGBA(Vec2<int> shape,
+  HeightmapRGBA(Vec2<int> shape,
                 Vec2<int> tiling,
                 float     overlap,
                 Array     array_r,
@@ -537,15 +537,15 @@ struct HeightMapRGBA
                 Array     array_b,
                 Array     array_a);
 
-  HeightMapRGBA(Vec2<int> shape, Vec2<int> tiling, float overlap);
+  HeightmapRGBA(Vec2<int> shape, Vec2<int> tiling, float overlap);
 
-  HeightMapRGBA(); ///< @overload
+  HeightmapRGBA(); ///< @overload
 
   /**
    * @brief Set the alpha channel.
    * @param new_alpha Alpha value(s).
    */
-  void set_alpha(HeightMap new_alpha);
+  void set_alpha(Heightmap new_alpha);
 
   void set_alpha(float new_alpha);
 
@@ -576,13 +576,13 @@ struct HeightMapRGBA
    [0, 1].
    * @param reverse Reverse colormap.
    */
-  void colorize(HeightMap &color_level,
+  void colorize(Heightmap &color_level,
                 float      vmin,
                 float      vmax,
                 int        cmap,
-                HeightMap *p_alpha = nullptr,
+                Heightmap *p_alpha = nullptr,
                 bool       reverse = false,
-                HeightMap *p_noise = nullptr);
+                Heightmap *p_noise = nullptr);
 
   /**
    * @brief Fill RGBA heightmap components based on a colormap and
@@ -596,13 +596,13 @@ struct HeightMapRGBA
    [0, 1].
    * @param reverse Reverse colormap.
    */
-  void colorize(HeightMap                      &color_level,
+  void colorize(Heightmap                      &color_level,
                 float                           vmin,
                 float                           vmax,
                 std::vector<std::vector<float>> colormap_colors,
-                HeightMap                      *p_alpha = nullptr,
+                Heightmap                      *p_alpha = nullptr,
                 bool                            reverse = false,
-                HeightMap                      *p_noise = nullptr);
+                Heightmap                      *p_noise = nullptr);
 
   /**
    * @brief Computes the luminance of an RGBA height map.
@@ -618,7 +618,7 @@ struct HeightMapRGBA
    * @see https://stackoverflow.com/questions/596216 for details on the
    * luminance calculation.
    */
-  HeightMap luminance();
+  Heightmap luminance();
 
   /**
    * @brief Mix two RGBA heightmap using alpha compositing ("over").
@@ -627,8 +627,8 @@ struct HeightMapRGBA
    * @param use_sqrt_avg Whether to use or not square averaging.
    * @return RGBA heightmap.
    */
-  friend HeightMapRGBA mix_heightmap_rgba(HeightMapRGBA &rgba1,
-                                          HeightMapRGBA &rgba2,
+  friend HeightmapRGBA mix_heightmap_rgba(HeightmapRGBA &rgba1,
+                                          HeightmapRGBA &rgba2,
                                           bool           use_sqrt_avg);
 
   /**
@@ -637,8 +637,8 @@ struct HeightMapRGBA
    * @param use_sqrt_avg Whether to use or not square averaging.
    * @return RGBA heightmap.
    */
-  friend HeightMapRGBA mix_heightmap_rgba(
-      std::vector<HeightMapRGBA *> rgba_plist,
+  friend HeightmapRGBA mix_heightmap_rgba(
+      std::vector<HeightmapRGBA *> rgba_plist,
       bool                         use_sqrt_avg);
 
   /**
@@ -683,8 +683,8 @@ struct HeightMapRGBA
  * @image html ex_mix_normal_map_rgba5.png
  * @image html ex_mix_normal_map_rgba6.png
  */
-HeightMapRGBA mix_normal_map_rgba(HeightMapRGBA          &nmap_base,
-                                  HeightMapRGBA          &nmap_detail,
+HeightmapRGBA mix_normal_map_rgba(HeightmapRGBA          &nmap_base,
+                                  HeightmapRGBA          &nmap_detail,
                                   float                   detail_scaling = 1.f,
                                   NormalMapBlendingMethod blending_method =
                                       NormalMapBlendingMethod::NMAP_DERIVATIVE);
@@ -706,27 +706,27 @@ HeightMapRGBA mix_normal_map_rgba(HeightMapRGBA          &nmap_base,
  * @image html ex_heightmap_fill0.png
  * @image html ex_heightmap_fill1.png
  */
-void fill(HeightMap &h,
-          HeightMap *p_noise_x,
-          HeightMap *p_noise_y,
+void fill(Heightmap &h,
+          Heightmap *p_noise_x,
+          Heightmap *p_noise_y,
           std::function<
               Array(Vec2<int>, Vec4<float>, Array *p_noise_x, Array *p_noise_y)>
               nullary_op);
 
-void fill(HeightMap                          &h,
-          HeightMap                          &hin,
-          HeightMap                          *p_noise_x,
-          HeightMap                          *p_noise_y,
+void fill(Heightmap                          &h,
+          Heightmap                          &hin,
+          Heightmap                          *p_noise_x,
+          Heightmap                          *p_noise_y,
           std::function<Array(hmap::Array &,
                               Vec2<int>,
                               Vec4<float>,
                               hmap::Array *,
                               hmap::Array *)> nullary_op);
 
-void fill(HeightMap                          &h,
-          HeightMap                          *p_noise_x,
-          HeightMap                          *p_noise_y,
-          HeightMap                          *p_stretching,
+void fill(Heightmap                          &h,
+          Heightmap                          *p_noise_x,
+          Heightmap                          *p_noise_y,
+          Heightmap                          *p_stretching,
           std::function<Array(Vec2<int>,
                               Vec4<float>,
                               hmap::Array *,
@@ -735,106 +735,106 @@ void fill(HeightMap                          &h,
 
 // shape, shift, scale and noise
 void fill(
-    HeightMap                                                   &h,
-    HeightMap                                                   *p_noise,
+    Heightmap                                                   &h,
+    Heightmap                                                   *p_noise,
     std::function<Array(Vec2<int>, Vec4<float>, Array *p_noise)> nullary_op);
 
 // shape, shift and scale
-void fill(HeightMap                                   &h,
+void fill(Heightmap                                   &h,
           std::function<Array(Vec2<int>, Vec4<float>)> nullary_op);
 
 // shape only
-void fill(HeightMap &h, std::function<Array(Vec2<int>)> nullary_op);
+void fill(Heightmap &h, std::function<Array(Vec2<int>)> nullary_op);
 
-void transform(HeightMap &h, std::function<void(Array &)> unary_op);
+void transform(Heightmap &h, std::function<void(Array &)> unary_op);
 
-void transform(HeightMap                                &h,
+void transform(Heightmap                                &h,
                std::function<void(Array &, Vec4<float>)> unary_op);
 
-void transform(HeightMap                                         &h,
-               HeightMap                                         *p_noise_x,
+void transform(Heightmap                                         &h,
+               Heightmap                                         *p_noise_x,
                std::function<void(Array &, Vec4<float>, Array *)> unary_op);
 
 void transform(
-    HeightMap                                                  &h,
-    HeightMap                                                  *p_noise_x,
-    HeightMap                                                  *p_noise_y,
+    Heightmap                                                  &h,
+    Heightmap                                                  *p_noise_x,
+    Heightmap                                                  *p_noise_y,
     std::function<void(Array &, Vec4<float>, Array *, Array *)> unary_op);
 
-void transform(HeightMap                                             &h,
+void transform(Heightmap                                             &h,
                std::function<void(Array &, Vec2<float>, Vec2<float>)> unary_op);
 
 // input array and mask
-void transform(HeightMap                            &h,
-               HeightMap                            *p_mask,
+void transform(Heightmap                            &h,
+               Heightmap                            *p_mask,
                std::function<void(Array &, Array *)> unary_op);
 
 // for erosion
 void transform(
-    HeightMap       &h,
-    hmap::HeightMap *p_1,
-    hmap::HeightMap *p_2,
-    hmap::HeightMap *p_3,
-    hmap::HeightMap *p_4,
-    hmap::HeightMap *p_5,
+    Heightmap       &h,
+    hmap::Heightmap *p_1,
+    hmap::Heightmap *p_2,
+    hmap::Heightmap *p_3,
+    hmap::Heightmap *p_4,
+    hmap::Heightmap *p_5,
     std::function<void(Array &, Array *, Array *, Array *, Array *, Array *)>
         unary_op);
 
 void transform(
-    HeightMap                                              &h,
-    hmap::HeightMap                                        *p_1,
-    hmap::HeightMap                                        *p_2,
-    hmap::HeightMap                                        *p_3,
+    Heightmap                                              &h,
+    hmap::Heightmap                                        *p_1,
+    hmap::Heightmap                                        *p_2,
+    hmap::Heightmap                                        *p_3,
     std::function<void(Array &, Array *, Array *, Array *)> unary_op);
 
-void transform(HeightMap                                     &h,
-               hmap::HeightMap                               *p_1,
-               hmap::HeightMap                               *p_2,
+void transform(Heightmap                                     &h,
+               hmap::Heightmap                               *p_1,
+               hmap::Heightmap                               *p_2,
                std::function<void(Array &, Array *, Array *)> unary_op);
 
-void transform(HeightMap                            &h1,
-               HeightMap                            &h2,
+void transform(Heightmap                            &h1,
+               Heightmap                            &h2,
                std::function<void(Array &, Array &)> binary_op);
 
-void transform(HeightMap                                         &h1,
-               HeightMap                                         &h2,
+void transform(Heightmap                                         &h1,
+               Heightmap                                         &h2,
                std::function<void(Array &, Array &, Vec4<float>)> binary_op);
 
-void transform(HeightMap                                     &h1,
-               HeightMap                                     &h2,
-               HeightMap                                     &h3,
+void transform(Heightmap                                     &h1,
+               Heightmap                                     &h2,
+               Heightmap                                     &h3,
                std::function<void(Array &, Array &, Array &)> ternary_op);
 
 void transform(
-    HeightMap                                                  &h1,
-    HeightMap                                                  &h2,
-    HeightMap                                                  &h3,
+    Heightmap                                                  &h1,
+    Heightmap                                                  &h2,
+    Heightmap                                                  &h3,
     std::function<void(Array &, Array &, Array &, Vec4<float>)> ternary_op);
 
 // with returned array
-void transform(HeightMap                    &h_out, // output
-               HeightMap                    &h1,    // in 1
+void transform(Heightmap                    &h_out, // output
+               Heightmap                    &h1,    // in 1
                std::function<Array(Array &)> unary_op);
 
-void transform(HeightMap                             &h_out, // output
-               HeightMap                             &h1,    // in 1
-               HeightMap                             &h2,    // in 2
+void transform(Heightmap                             &h_out, // output
+               Heightmap                             &h1,    // in 1
+               Heightmap                             &h2,    // in 2
                std::function<Array(Array &, Array &)> binary_op);
 
 void transform(
-    HeightMap                                              &h1,
-    HeightMap                                              &h2,
-    HeightMap                                              &h3,
-    HeightMap                                              &h4,
+    Heightmap                                              &h1,
+    Heightmap                                              &h2,
+    Heightmap                                              &h3,
+    Heightmap                                              &h4,
     std::function<void(Array &, Array &, Array &, Array &)> ternary_op);
 
 void transform(
-    HeightMap &h1,
-    HeightMap &h2,
-    HeightMap &h3,
-    HeightMap &h4,
-    HeightMap &h5,
-    HeightMap &h6,
+    Heightmap &h1,
+    Heightmap &h2,
+    Heightmap &h3,
+    Heightmap &h4,
+    Heightmap &h5,
+    Heightmap &h6,
     std::function<void(Array &, Array &, Array &, Array &, Array &, Array &)>
         op);
 

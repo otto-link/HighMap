@@ -12,7 +12,7 @@ int main(void)
                               hmap::Vec2<int>(64, 64),
                               kw,
                               seed);
-  hmap::HeightMap h = hmap::HeightMap(shape, tiling, overlap);
+  hmap::Heightmap h = hmap::Heightmap(shape, tiling, overlap);
 
   h.from_array_interp(z);
 

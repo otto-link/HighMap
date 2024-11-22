@@ -16,7 +16,7 @@
 namespace hmap
 {
 
-HeightMap::HeightMap(Vec2<int>   shape,
+Heightmap::Heightmap(Vec2<int>   shape,
                      Vec4<float> bbox,
                      Vec2<int>   tiling,
                      float       overlap)
@@ -25,13 +25,13 @@ HeightMap::HeightMap(Vec2<int>   shape,
   this->update_tile_parameters();
 }
 
-HeightMap::HeightMap(Vec2<int> shape, Vec2<int> tiling, float overlap)
+Heightmap::Heightmap(Vec2<int> shape, Vec2<int> tiling, float overlap)
     : shape(shape), tiling(tiling), overlap(overlap)
 {
   this->update_tile_parameters();
 }
 
-HeightMap::HeightMap(Vec2<int> shape,
+Heightmap::Heightmap(Vec2<int> shape,
                      Vec2<int> tiling,
                      float     overlap,
                      float     fill_value)
@@ -42,57 +42,57 @@ HeightMap::HeightMap(Vec2<int> shape,
   transform(*this, [&fill_value](Array &x) { x = fill_value; });
 }
 
-HeightMap::HeightMap(Vec2<int> shape, Vec4<float> bbox, Vec2<int> tiling)
+Heightmap::Heightmap(Vec2<int> shape, Vec4<float> bbox, Vec2<int> tiling)
     : shape(shape), bbox(bbox), tiling(tiling)
 {
   this->update_tile_parameters();
 }
 
-HeightMap::HeightMap(Vec2<int> shape, Vec2<int> tiling)
+Heightmap::Heightmap(Vec2<int> shape, Vec2<int> tiling)
     : shape(shape), tiling(tiling)
 {
   this->update_tile_parameters();
 }
 
-HeightMap::HeightMap(Vec2<int> shape, Vec4<float> bbox)
+Heightmap::Heightmap(Vec2<int> shape, Vec4<float> bbox)
     : shape(shape), bbox(bbox)
 {
   this->update_tile_parameters();
 }
 
-HeightMap::HeightMap(Vec2<int> shape) : shape(shape)
+Heightmap::Heightmap(Vec2<int> shape) : shape(shape)
 {
   this->update_tile_parameters();
 }
 
-HeightMap::HeightMap() : shape(0, 0)
+Heightmap::Heightmap() : shape(0, 0)
 {
   this->update_tile_parameters();
 }
 
-size_t HeightMap::get_ntiles()
+size_t Heightmap::get_ntiles()
 {
   return this->tiles.size();
 }
 
-int HeightMap::get_tile_index(int i, int j)
+int Heightmap::get_tile_index(int i, int j)
 {
   return i + j * this->tiling.x;
 }
 
-void HeightMap::set_overlap(float new_overlap)
+void Heightmap::set_overlap(float new_overlap)
 {
   this->overlap = new_overlap;
   this->update_tile_parameters();
 }
 
-void HeightMap::set_shape(Vec2<int> new_shape)
+void Heightmap::set_shape(Vec2<int> new_shape)
 {
   this->shape = new_shape;
   this->update_tile_parameters();
 }
 
-void HeightMap::set_sto(Vec2<int> new_shape,
+void Heightmap::set_sto(Vec2<int> new_shape,
                         Vec2<int> new_tiling,
                         float     new_overlap)
 {
@@ -106,13 +106,13 @@ void HeightMap::set_sto(Vec2<int> new_shape,
   }
 }
 
-void HeightMap::set_tiling(Vec2<int> new_tiling)
+void Heightmap::set_tiling(Vec2<int> new_tiling)
 {
   this->tiling = new_tiling;
   this->update_tile_parameters();
 }
 
-void HeightMap::from_array_interp(Array &array)
+void Heightmap::from_array_interp(Array &array)
 {
   std::vector<std::future<void>> futures(this->get_ntiles());
 
@@ -125,7 +125,7 @@ void HeightMap::from_array_interp(Array &array)
     futures[i].get();
 }
 
-void HeightMap::from_array_interp_bicubic(Array &array)
+void Heightmap::from_array_interp_bicubic(Array &array)
 {
   std::vector<std::future<void>> futures(this->get_ntiles());
 
@@ -138,7 +138,7 @@ void HeightMap::from_array_interp_bicubic(Array &array)
     futures[i].get();
 }
 
-void HeightMap::from_array_interp_nearest(Array &array)
+void Heightmap::from_array_interp_nearest(Array &array)
 {
   std::vector<std::future<void>> futures(this->get_ntiles());
 
@@ -151,7 +151,7 @@ void HeightMap::from_array_interp_nearest(Array &array)
     futures[i].get();
 }
 
-float HeightMap::get_value_bilinear(float x, float y)
+float Heightmap::get_value_bilinear(float x, float y)
 {
   // find corresponding tile
   float lx = this->bbox.b - this->bbox.a;
@@ -191,7 +191,7 @@ float HeightMap::get_value_bilinear(float x, float y)
   return value;
 }
 
-float HeightMap::get_value_nearest(float x, float y)
+float Heightmap::get_value_nearest(float x, float y)
 {
   // find corresponding tile
   float lx = this->bbox.b - this->bbox.a;
@@ -215,7 +215,7 @@ float HeightMap::get_value_nearest(float x, float y)
   return this->tiles[k](i, j);
 }
 
-void HeightMap::infos()
+void Heightmap::infos()
 {
   std::cout << "Heightmap, ";
   std::cout << "address: " << this << ", ";
@@ -230,7 +230,7 @@ void HeightMap::infos()
     t.infos();
 }
 
-void HeightMap::inverse()
+void Heightmap::inverse()
 {
   float hmax = this->max();
   transform(*this,
@@ -241,7 +241,7 @@ void HeightMap::inverse()
             });
 }
 
-float HeightMap::max()
+float Heightmap::max()
 {
   std::vector<float>              max_tiles(this->get_ntiles());
   std::vector<std::future<float>> futures(this->get_ntiles());
@@ -255,7 +255,7 @@ float HeightMap::max()
   return *std::max_element(max_tiles.begin(), max_tiles.end());
 }
 
-void HeightMap::smooth_overlap_buffers()
+void Heightmap::smooth_overlap_buffers()
 {
   int delta_buffer_i = (int)(this->overlap * this->shape.x / this->tiling.x);
   int delta_buffer_j = (int)(this->overlap * this->shape.y / this->tiling.y);
@@ -297,7 +297,7 @@ void HeightMap::smooth_overlap_buffers()
     }
 }
 
-float HeightMap::min()
+float Heightmap::min()
 {
   std::vector<float>              min_tiles(this->get_ntiles());
   std::vector<std::future<float>> futures(this->get_ntiles());
@@ -311,13 +311,13 @@ float HeightMap::min()
   return *std::min_element(min_tiles.begin(), min_tiles.end());
 }
 
-float HeightMap::mean()
+float Heightmap::mean()
 {
   float mean = this->sum() / (float)(this->shape.x * this->shape.y);
   return mean;
 }
 
-void HeightMap::remap(float vmin, float vmax)
+void Heightmap::remap(float vmin, float vmax)
 {
   float hmin = this->min();
   float hmax = this->max();
@@ -326,14 +326,14 @@ void HeightMap::remap(float vmin, float vmax)
             { hmap::remap(x, vmin, vmax, hmin, hmax); });
 }
 
-void HeightMap::remap(float vmin, float vmax, float from_min, float from_max)
+void Heightmap::remap(float vmin, float vmax, float from_min, float from_max)
 {
   transform(*this,
             [vmin, vmax, from_min, from_max](Array &x)
             { hmap::remap(x, vmin, vmax, from_min, from_max); });
 }
 
-void HeightMap::set_bbox(Vec4<float> new_bbox)
+void Heightmap::set_bbox(Vec4<float> new_bbox)
 {
   this->bbox = new_bbox;
 
@@ -356,7 +356,7 @@ void HeightMap::set_bbox(Vec4<float> new_bbox)
     }
 }
 
-float HeightMap::sum()
+float Heightmap::sum()
 {
   std::vector<float>              sum_tiles(this->get_ntiles());
   std::vector<std::future<float>> futures(this->get_ntiles());
@@ -374,12 +374,12 @@ float HeightMap::sum()
   return sum;
 }
 
-Array HeightMap::to_array()
+Array Heightmap::to_array()
 {
   return this->to_array(this->shape);
 }
 
-Array HeightMap::to_array(Vec2<int> shape_export)
+Array Heightmap::to_array(Vec2<int> shape_export)
 {
   // TODO: stepping not robust with overlapping
   Vec2<int> step = {this->shape.x / shape_export.x,
@@ -404,7 +404,7 @@ Array HeightMap::to_array(Vec2<int> shape_export)
   return array;
 }
 
-std::vector<uint8_t> HeightMap::to_grayscale_image_8bit()
+std::vector<uint8_t> Heightmap::to_grayscale_image_8bit()
 {
   std::vector<uint8_t> img(this->shape.x * this->shape.y);
 
@@ -441,7 +441,7 @@ std::vector<uint8_t> HeightMap::to_grayscale_image_8bit()
   return img;
 }
 
-std::vector<uint16_t> HeightMap::to_grayscale_image_16bit()
+std::vector<uint16_t> Heightmap::to_grayscale_image_16bit()
 {
   std::vector<uint16_t> img(this->shape.x * this->shape.y);
 
@@ -478,7 +478,7 @@ std::vector<uint16_t> HeightMap::to_grayscale_image_16bit()
   return img;
 }
 
-std::vector<uint16_t> HeightMap::to_grayscale_image_16bit_multithread()
+std::vector<uint16_t> Heightmap::to_grayscale_image_16bit_multithread()
 {
   std::vector<uint16_t> img(this->shape.x * this->shape.y);
 
@@ -525,7 +525,7 @@ std::vector<uint16_t> HeightMap::to_grayscale_image_16bit_multithread()
   return img;
 }
 
-void HeightMap::update_tile_parameters()
+void Heightmap::update_tile_parameters()
 {
   tiles.resize(this->tiling.x * this->tiling.y);
 
@@ -575,7 +575,7 @@ void HeightMap::update_tile_parameters()
     }
 }
 
-std::vector<float> HeightMap::unique_values()
+std::vector<float> Heightmap::unique_values()
 {
   std::vector<std::vector<float>> tile_unique_values(this->get_ntiles());
   std::vector<std::future<std::vector<float>>> futures(this->get_ntiles());

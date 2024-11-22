@@ -9,7 +9,7 @@ int main(void)
   float             overlap = 0.25;
   hmap::Vec2<float> kw = {4.f, 4.f};
   int               seed = 1;
-  hmap::HeightMap   h = hmap::HeightMap(shape, tiling, overlap);
+  hmap::Heightmap   h = hmap::Heightmap(shape, tiling, overlap);
 
   hmap::fill(h,
              [&kw, &seed](hmap::Vec2<int> shape, hmap::Vec4<float> bbox)
@@ -44,7 +44,7 @@ int main(void)
                                          -30.f,
                                          1);
 
-  hmap::HeightMap h2 = hmap::HeightMap({512, 256}, {2, 4}, 0.5f);
+  hmap::Heightmap h2 = hmap::Heightmap({512, 256}, {2, 4}, 0.5f);
   std::string     id2 = terrain2.add_heightmap(h2);
 
   hmap::Vec4<float> bbox1 = terrain1.compute_bounding_box();
@@ -81,7 +81,7 @@ int main(void)
   //
   hmap::Array array_itp(shape2);
 
-  hmap::HeightMap *p_h = terrain1.get_heightmap_ref(id1);
+  hmap::Heightmap *p_h = terrain1.get_heightmap_ref(id1);
 
   for (int i = 0; i < shape2.x; i++)
     for (int j = 0; j < shape2.y; j++)
@@ -95,7 +95,7 @@ int main(void)
   hmap::interpolate_terrain_heightmap(terrain1, id1, terrain2, id2);
 
   hmap::Array      array_itp2(shape2);
-  hmap::HeightMap *p_h2 = terrain2.get_heightmap_ref(id2);
+  hmap::Heightmap *p_h2 = terrain2.get_heightmap_ref(id2);
 
   for (int i = 0; i < shape2.x; i++)
     for (int j = 0; j < shape2.y; j++)

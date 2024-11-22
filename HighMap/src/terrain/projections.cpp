@@ -15,8 +15,8 @@ void interpolate_terrain_heightmap(Terrain           &t_source,
                                    Terrain           &t_target,
                                    const std::string &heightmap_id_target)
 {
-  hmap::HeightMap *p_s = t_source.get_heightmap_ref(heightmap_id_source);
-  hmap::HeightMap *p_t = t_target.get_heightmap_ref(heightmap_id_target);
+  hmap::Heightmap *p_s = t_source.get_heightmap_ref(heightmap_id_source);
+  hmap::Heightmap *p_t = t_target.get_heightmap_ref(heightmap_id_target);
 
   if (!(p_s && p_t))
   {
