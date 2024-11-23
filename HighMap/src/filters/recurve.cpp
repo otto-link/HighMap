@@ -21,7 +21,7 @@ void recurve(Array                    &array,
              const std::vector<float> &t,
              const std::vector<float> &v)
 {
-  Interpolator1D interp = Interpolator1D(t, v, InterpolationMethod1D::AKIMA);
+  Interpolator1D interp = Interpolator1D(t, v, InterpolationMethod1D::CUBIC);
 
   auto lambda = [&interp](float a) { return interp(a); };
 
