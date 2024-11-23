@@ -44,6 +44,37 @@ namespace hmap
  */
 Array fft_filter(Array &array, float kc, bool smooth_cutoff = false);
 
+/**
+ * @brief Applies a low-pass filter to an input array using FFT.
+ *
+ * This function performs a forward Fast Fourier Transform (FFT) on the input
+ * array, applies a low-pass filter in the frequency domain based on the
+ * provided weights, and then performs an inverse FFT to return the filtered
+ * array. The input array must be square.
+ *
+ * @param array The input `Array` object to be filtered. Must be square (same
+ * dimensions for x and y).
+ * @param weights A vector of weights defining the low-pass filter. The weights
+ * are linearly interpolated to determine the filter values for each frequency.
+ *
+ * @return A filtered `Array` object with the same shape as the input. If the
+ * input array is not square, a zero-filled array of the same shape is returned.
+ *
+ * ### Error Handling:
+ * - If the input array is not square, an error is logged, and a zero-filled
+ * array is returned.
+ *
+ * ### Resource Management:
+ * - FFTW plans are destroyed using `fftwf_destroy_plan`.
+ * - Calls `fftwf_cleanup` to release FFTW resources.
+ *
+ * ### Example Usage:
+ * @code
+ * Array input_array({128, 128});  // Example input data
+ * std::vector<float> weights = {1.0f, 0.8f, 0.6f, 0.4f, 0.2f};
+ * Array result = fft_filter(input_array, weights);
+ * @endcode
+ */
 Array fft_filter(Array &array, const std::vector<float> &weights);
 
 /**
