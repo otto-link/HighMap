@@ -75,7 +75,7 @@ std::vector<int> Cloud::get_convex_hull_point_indices()
 
   std::vector<int> chull = {(int)d.hull_start};
 
-  int inext = d.hull_next[chull.back()];
+  int inext = (int)d.hull_next[chull.back()];
   while (inext != chull[0])
   {
     chull.push_back(inext);
@@ -365,7 +365,7 @@ Graph Cloud::to_graph_delaunay()
 
   for (std::size_t e = 0; e < d.triangles.size(); e++)
   {
-    int i = d.halfedges[e];
+    int i = (int)d.halfedges[e];
     if (((int)e > i) or (i == -1))
     {
       int next_he = (e % 3 == 2) ? e - 2 : e + 1;

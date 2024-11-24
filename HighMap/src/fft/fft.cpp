@@ -57,7 +57,7 @@ Array fft_filter(Array &array, float kc, bool smooth_cutoff)
         int kx = (i <= n / 2) ? i : i - n;
         int ky = j;
 
-        float wavenumber = std::sqrt(kx * kx + ky * ky);
+        float wavenumber = (float)std::sqrt(kx * kx + ky * ky);
 
         // apply the cutoff: zero out high wavenumbers
         if (wavenumber > kc)
@@ -102,7 +102,7 @@ Array fft_filter(Array &array, float kc, bool smooth_cutoff)
   for (int k = 0; k < n * n; k++)
   {
     Vec2<int> ij;
-    ij.x = std::floor(k / n);
+    ij.x = (int)std::floor(k / n);
     ij.y = k - ij.x * n;
 
     array_out(ij.x, ij.y) = norm_coeff * filtered[k];
@@ -127,7 +127,7 @@ Array fft_filter(Array &array, const std::vector<float> &weights)
   int n = array.shape.x;
 
   // weights interpolator
-  std::vector<float> kw = linspace(0.f, (float)(n - 1), weights.size());
+  std::vector<float> kw = linspace(0.f, (float)(n - 1), (int)weights.size());
   Interpolator1D     interp = Interpolator1D(kw,
                                          weights,
                                          InterpolationMethod1D::LINEAR);
@@ -166,7 +166,7 @@ Array fft_filter(Array &array, const std::vector<float> &weights)
       int kx = (i <= n / 2) ? i : i - n;
       int ky = j;
 
-      float wavenumber = std::sqrt(kx * kx + ky * ky);
+      float wavenumber = (float)std::sqrt(kx * kx + ky * ky);
 
       // apply the weights
       if (wavenumber < (float)(0.5f * n))
@@ -194,7 +194,7 @@ Array fft_filter(Array &array, const std::vector<float> &weights)
   for (int k = 0; k < n * n; k++)
   {
     Vec2<int> ij;
-    ij.x = std::floor(k / n);
+    ij.x = (int)std::floor(k / n);
     ij.y = k - ij.x * n;
 
     array_out(ij.x, ij.y) = norm_coeff * filtered[k];

@@ -39,8 +39,8 @@ void flood_fill(Array &array,
 
   while (queue_i.size() > 0)
   {
-    int i = queue_i.back();
-    int j = queue_j.back();
+    i = queue_i.back();
+    j = queue_j.back();
     queue_i.pop_back();
     queue_j.pop_back();
 
