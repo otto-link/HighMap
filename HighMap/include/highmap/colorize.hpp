@@ -129,6 +129,32 @@ Tensor colorize_grayscale(const Array &array);
 Tensor colorize_histogram(const Array &array);
 
 /**
+ * @brief Applies a colorized power spectral density (PSD) visualization to the
+ * input array.
+ *
+ * This function computes the power spectral density (PSD) of the input array,
+ * enhances its contrast by removing the mean, adjusts its dimensions to be
+ * square for FFT processing, and applies a color map for visualization. The PSD
+ * values are remapped, scaled logarithmically, and then colorized.
+ *
+ * @param array The input 2D array to process.
+ * @param cmap The colormap identifier to use for colorization.
+ * @param threshold The lower bound for remapping PSD values.
+ * @return A Tensor containing the colorized PSD representation of the input
+ * array.
+ *
+ * @details
+ * - If the input array is not square, it will be resized to the largest
+ * dimension to ensure proper FFT processing. After FFT processing, the array is
+ * resized back to the original shape.
+ * - The PSD is calculated using the modulus of the FFT of the input array.
+ * - The resulting PSD is remapped to the range [threshold, 1.0], scaled
+ * logarithmically, and then colorized using the specified colormap.
+ * - This function supports visualization through a specified colormap.
+ */
+Tensor colorize_psd(const Array &array, int cmap, float threshold = 1e-3f);
+
+/**
  * @brief Colorizes a slope height heatmap based on the gradient norms of a
  * given array.
  *
