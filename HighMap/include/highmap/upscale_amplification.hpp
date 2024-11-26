@@ -58,6 +58,29 @@ void downscale_transform(Array                        &array,
                          std::function<void(Array &x)> unary_op);
 
 /**
+ * @brief Applies a downscaling transformation to a 2D array using spatial-based
+ * filtering (sinc kernel).
+ *
+ * This function performs a series of operations on a 2D array to isolate and
+ * transform its low-frequency components
+ *
+ * @param array A reference to the input 2D array to be transformed.
+ * @param kc The cutoff wavenumber for isolating low-frequency components during
+ * filtering.
+ * @param unary_op A user-defined function that applies a transformation to the
+ * downscaled array.
+ *
+ * * **Example**
+ * @include ex_downscale_transform_sinc.cpp
+ *
+ * **Result**
+ * @image html ex_downscale_transform_sinc.png
+ */
+void downscale_transform_sinc(Array                        &array,
+                              float                         kc,
+                              std::function<void(Array &x)> unary_op);
+
+/**
  * @brief Applies an upscaling amplification process to an array, followed by a
  * unary operation.
  *
