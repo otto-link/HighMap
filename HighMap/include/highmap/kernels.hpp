@@ -294,8 +294,38 @@ Array lorentzian(Vec2<int> shape, float footprint_threshold = 0.1f);
  */
 Array lorentzian_compact(Vec2<int> shape);
 
+/**
+ * @brief Generates a radial sinc function array with the specified shape and
+ * wave number.
+ *
+ * This function creates a 2D array of values representing the radial sinc
+ * function, calculated based on the given shape and wave number. The sinc
+ * function is defined as `sin(x) / x` and is useful in signal processing and
+ * analysis.
+ *
+ * @param shape A 2D vector representing the dimensions of the array.
+ * @param kw The wave number used to scale the radial sinc function.
+ *
+ * @return An `Array` object containing the radial sinc function values of the
+ * specified shape.
+ */
 Array sinc_radial(Vec2<int> shape, float kw);
 
+/**
+ * @brief Generates a separable sinc function array with the specified shape and
+ * wave number.
+ *
+ * This function creates a 2D array of values representing the separable sinc
+ * function, calculated as the product of 1D sinc functions along each dimension
+ * of the array. The sinc function is defined as `sin(x) / x` and is useful in
+ * signal processing and analysis.
+ *
+ * @param shape A 2D vector representing the dimensions of the array.
+ * @param kw The wave number used to scale the separable sinc function.
+ *
+ * @return An `Array` object containing the separable sinc function values of
+ * the specified shape.
+ */
 Array sinc_separable(Vec2<int> shape, float kw);
 
 /**
