@@ -33,6 +33,27 @@ Array biweight(Vec2<int> shape)
   return array;
 }
 
+Array blackman(Vec2<int> shape)
+{
+  Array              array = Array(shape);
+  std::vector<float> x = linspace(0.f, 2.f * M_PI, shape.x);
+  std::vector<float> y = linspace(0.f, 2.f * M_PI, shape.y);
+  std::vector<float> wx(shape.x);
+  std::vector<float> wy(shape.y);
+
+  for (int i = 0; i < array.shape.x; i++)
+    wx[i] = 0.42f - 0.5f * std::cos(x[i]) + 0.08f * std::cos(2.f * x[i]);
+
+  for (int j = 0; j < array.shape.y; j++)
+    wy[j] = 0.42f - 0.5f * std::cos(y[j]) + 0.08f * std::cos(2.f * y[j]);
+
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
+      array(i, j) = wx[i] * wy[j];
+
+  return array;
+}
+
 Array cone(Vec2<int> shape)
 {
   Array array = Array(shape);
@@ -263,6 +284,22 @@ Array lorentzian(Vec2<int> shape, float footprint_threshold)
   return array;
 }
 
+Array hann(Vec2<int> shape)
+{
+  Array              array = Array(shape);
+  std::vector<float> x = linspace(0.f, 2.f * M_PI, shape.x);
+  std::vector<float> y = linspace(0.f, 2.f * M_PI, shape.y);
+
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
+      array(i, j) = (0.5f - 0.5f * std::cos(x[i])) *
+                    (0.5f - 0.5f * std::cos(y[j]));
+
+  array.infos();
+
+  return array;
+}
+
 Array lorentzian_compact(Vec2<int> shape)
 {
   Array array = Array(shape);
@@ -275,6 +312,43 @@ Array lorentzian_compact(Vec2<int> shape)
       float r2 = x * x + y * y;
       array(i, j) = r2 < 1.f ? (1.f - r2) / (1.f + 4.f * r2) : 0.f;
     }
+
+  return array;
+}
+
+Array sinc_radial(Vec2<int> shape, float kw)
+{
+  Array              array = Array(shape);
+  std::vector<float> x = linspace(-kw * M_PI, kw * M_PI, shape.x);
+  std::vector<float> y = linspace(-kw * M_PI, kw * M_PI, shape.y);
+
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
+    {
+      float r = std::hypot(x[i], y[j]);
+      array(i, j) = r == 0.f ? 1.f : std::sin(r) / r;
+    }
+
+  return array;
+}
+
+Array sinc_separable(Vec2<int> shape, float kw)
+{
+  Array              array = Array(shape);
+  std::vector<float> x = linspace(-kw * M_PI, kw * M_PI, shape.x);
+  std::vector<float> y = linspace(-kw * M_PI, kw * M_PI, shape.y);
+  std::vector<float> wx(shape.x);
+  std::vector<float> wy(shape.y);
+
+  for (int i = 0; i < array.shape.x; i++)
+    wx[i] = x[i] == 0.f ? 1.f : std::sin(x[i]) / x[i];
+
+  for (int j = 0; j < array.shape.y; j++)
+    wy[j] = y[j] == 0.f ? 1.f : std::sin(y[j]) / y[j];
+
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
+      array(i, j) = wx[i] * wy[j];
 
   return array;
 }
