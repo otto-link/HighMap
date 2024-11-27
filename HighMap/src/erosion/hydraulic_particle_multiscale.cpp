@@ -8,7 +8,7 @@
 #include "highmap/array.hpp"
 #include "highmap/erosion.hpp"
 #include "highmap/math.hpp"
-#include "highmap/pyramid.hpp"
+#include "highmap/multiscale/pyramid.hpp"
 #include "highmap/range.hpp"
 
 namespace hmap

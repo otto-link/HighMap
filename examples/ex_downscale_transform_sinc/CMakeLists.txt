@@ -1,2 +1,0 @@
-add_executable(ex_downscale_transform_sinc ex_downscale_transform_sinc.cpp)
-target_link_libraries(ex_downscale_transform_sinc highmap)

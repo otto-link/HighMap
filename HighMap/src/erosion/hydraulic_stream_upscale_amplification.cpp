@@ -9,7 +9,7 @@
 #include "highmap/array.hpp"
 #include "highmap/erosion.hpp"
 #include "highmap/math.hpp"
-#include "highmap/upscale_amplification.hpp"
+#include "highmap/multiscale/upscaling.hpp"
 
 namespace hmap
 {
