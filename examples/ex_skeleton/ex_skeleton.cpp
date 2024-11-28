@@ -13,5 +13,7 @@ int main(void)
 
   auto sk = hmap::skeleton(z);
 
-  hmap::export_banner_png("ex_skeleton.png", {z, sk}, hmap::Cmap::GRAY);
+  hmap::export_banner_png("ex_skeleton.png",
+                          {z, sk, 0.5f * (z + sk)},
+                          hmap::Cmap::GRAY);
 }
