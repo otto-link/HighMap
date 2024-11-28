@@ -58,4 +58,24 @@ void downscale_transform(Array                        &array,
   array = array_coarse + (array - array_filtered);
 }
 
+void downscale_transform_multi(
+    Array                                                 &array,
+    std::vector<float>                                     kc_list,
+    std::function<void(Array &x, const int current_index)> unary_op,
+    bool                                                   apply_prefiltering)
+{
+  int current_index = 0;
+
+  for (auto kc : kc_list)
+  {
+    LOG_DEBUG("kc: %f", kc);
+
+    auto unary_op_single = [current_index, &unary_op](Array &x)
+    { unary_op(x, current_index); };
+    current_index++;
+
+    downscale_transform(array, kc, unary_op_single, apply_prefiltering);
+  }
+}
+
 } // namespace hmap
