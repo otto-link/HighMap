@@ -174,6 +174,39 @@ Array morphological_top_hat(const Array &array, int ir);
 Array opening(const Array &array, int ir);
 
 /**
+ * @brief Computes the relative distance of each non-zero cell in a binary array
+ * from the skeleton and border.
+ *
+ * This function calculates a relative distance measure for each non-zero cell
+ * in the input array. The measure is defined as the ratio of the cell's
+ * distance to the nearest border and the combined distances to the nearest
+ * skeleton and border cells. The skeleton is computed using the Zhang-Suen
+ * skeletonization algorithm.
+ *
+ * @param array The input binary array for which the relative distance map is to
+ * be calculated. Non-zero values are considered for processing.
+ * @param ir_search The search radius for finding the nearest skeleton and
+ * border cells.
+ * @param zeroed_borders If true, the borders of the skeletonized image will be
+ * set to zero.
+ * @return An array representing the relative distance map, where each cell has
+ * a value between 0 and 1. A value closer to 1 indicates proximity to the
+ * skeleton, while a value closer to 0 indicates proximity to the border.
+ *
+ * @note The skeleton is computed using the Zhang-Suen skeletonization
+ * algorithm.
+ *
+ * **Example**
+ * @include ex_skeleton.cpp
+ *
+ * **Result**
+ * @image html ex_skeleton.png
+ */
+Array relative_distance_from_skeleton(const Array &array,
+                                      int          ir_search,
+                                      bool         zeroed_borders = true);
+
+/**
  * @brief Computes the skeleton of a binary image using the Zhang-Suen
  * skeletonization algorithm.
  *

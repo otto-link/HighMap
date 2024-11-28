@@ -13,7 +13,10 @@ int main(void)
 
   auto sk = hmap::skeleton(z);
 
+  int  ir_search = 32;
+  auto rdist = relative_distance_from_skeleton(z, ir_search);
+
   hmap::export_banner_png("ex_skeleton.png",
-                          {z, sk, 0.5f * (z + sk)},
+                          {z, sk, 0.5f * (z + sk), rdist},
                           hmap::Cmap::GRAY);
 }

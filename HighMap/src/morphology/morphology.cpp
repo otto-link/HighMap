@@ -127,6 +127,54 @@ void helper_thinning(Array &in, int iter)
       in(i, j) *= 1.f - marker(i, j);
 }
 
+Array relative_distance_from_skeleton(const Array &array,
+                                      int          ir_search,
+                                      bool         zeroed_borders)
+{
+  Array border = array - erosion(array, 1);
+  Array sk = skeleton(array, zeroed_borders);
+
+  Array rdist(array.shape);
+
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
+      // only work for cells within the non-zero regions
+      if (array(i, j) != 0.f)
+      {
+        // find the closest skeleton and border cells
+        float dmax_sk = std::numeric_limits<float>::max();
+        float dmax_bd = std::numeric_limits<float>::max();
+
+        int p1 = std::max(i - ir_search, 0);
+        int p2 = std::min(i + ir_search, array.shape.x);
+        int q1 = std::max(j - ir_search, 0);
+        int q2 = std::min(j + ir_search, array.shape.y);
+
+        for (int p = p1; p < p2; p++)
+          for (int q = q1; q < q2; q++)
+          {
+            if (sk(p, q) == 1.f)
+            {
+              float d2 = (float)((i - p) * (i - p) + (j - q) * (j - q));
+              if (d2 < dmax_sk) dmax_sk = d2;
+            }
+
+            if (border(p, q) == 1.f)
+            {
+              float d2 = (float)((i - p) * (i - p) + (j - q) * (j - q));
+              if (d2 < dmax_bd) dmax_bd = d2;
+            }
+          }
+
+        // relative distance (from 1.f on the skeleton to 0.f and
+        // the border)
+        float sum = dmax_bd + dmax_sk;
+        if (sum) rdist(i, j) = dmax_bd / sum;
+      }
+
+  return rdist;
+}
+
 Array skeleton(const Array &array, bool zeroed_borders)
 {
   // https://github.com/krishraghuram/Zhang-Suen-Skeletonization
