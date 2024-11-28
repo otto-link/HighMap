@@ -12,6 +12,7 @@
 #include "highmap/gradient.hpp"
 #include "highmap/hydrology.hpp"
 #include "highmap/math.hpp"
+#include "highmap/morphology.hpp"
 #include "highmap/primitives.hpp"
 #include "highmap/range.hpp"
 #include "highmap/selector.hpp"
@@ -375,6 +376,19 @@ Array select_transitions(const Array &array1,
   }
 
   return mask;
+}
+
+Array select_valley(const Array &z, int ir, bool zero_at_borders)
+{
+
+  Array w = z;
+  smooth_cpulse(w, std::max(1, ir));
+
+  w = curvature_mean(w);
+  make_binary(w);
+  w = relative_distance_from_skeleton(w, ir, zero_at_borders);
+
+  return w;
 }
 
 } // namespace hmap

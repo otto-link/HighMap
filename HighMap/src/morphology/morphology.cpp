@@ -129,10 +129,10 @@ void helper_thinning(Array &in, int iter)
 
 Array relative_distance_from_skeleton(const Array &array,
                                       int          ir_search,
-                                      bool         zeroed_borders)
+                                      bool         zero_at_borders)
 {
   Array border = array - erosion(array, 1);
-  Array sk = skeleton(array, zeroed_borders);
+  Array sk = skeleton(array, zero_at_borders);
 
   Array rdist(array.shape);
 
@@ -146,9 +146,9 @@ Array relative_distance_from_skeleton(const Array &array,
         float dmax_bd = std::numeric_limits<float>::max();
 
         int p1 = std::max(i - ir_search, 0);
-        int p2 = std::min(i + ir_search, array.shape.x);
+        int p2 = std::min(i + ir_search + 1, array.shape.x);
         int q1 = std::max(j - ir_search, 0);
-        int q2 = std::min(j + ir_search, array.shape.y);
+        int q2 = std::min(j + ir_search + 1, array.shape.y);
 
         for (int p = p1; p < p2; p++)
           for (int q = q1; q < q2; q++)
@@ -175,7 +175,7 @@ Array relative_distance_from_skeleton(const Array &array,
   return rdist;
 }
 
-Array skeleton(const Array &array, bool zeroed_borders)
+Array skeleton(const Array &array, bool zero_at_borders)
 {
   // https://github.com/krishraghuram/Zhang-Suen-Skeletonization
 
@@ -195,7 +195,7 @@ Array skeleton(const Array &array, bool zeroed_borders)
   } while (diff.count_non_zero() > 0);
 
   // set border to zero
-  if (zeroed_borders) set_borders(sk, 0.f, 1);
+  if (zero_at_borders) zeroed_borders(sk);
 
   return sk;
 }

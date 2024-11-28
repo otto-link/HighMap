@@ -187,7 +187,7 @@ Array opening(const Array &array, int ir);
  * be calculated. Non-zero values are considered for processing.
  * @param ir_search The search radius for finding the nearest skeleton and
  * border cells.
- * @param zeroed_borders If true, the borders of the skeletonized image will be
+ * @param zero_at_borders If true, the borders of the skeletonized image will be
  * set to zero.
  * @return An array representing the relative distance map, where each cell has
  * a value between 0 and 1. A value closer to 1 indicates proximity to the
@@ -204,7 +204,7 @@ Array opening(const Array &array, int ir);
  */
 Array relative_distance_from_skeleton(const Array &array,
                                       int          ir_search,
-                                      bool         zeroed_borders = true);
+                                      bool         zero_at_borders = true);
 
 /**
  * @brief Computes the skeleton of a binary image using the Zhang-Suen
@@ -216,8 +216,8 @@ Array relative_distance_from_skeleton(const Array &array,
  *
  * @param array The input binary array to be skeletonized. Values should
  * typically be 0 or 1.
- * @param zeroed_borders If true, the borders of the resulting array will be set
- * to zero.
+ * @param zero_at_borders If true, the borders of the resulting array will be
+ * set to zero.
  * @return The skeletonized version of the input array.
  *
  * @note This implementation is based on the algorithm described at
@@ -229,6 +229,6 @@ Array relative_distance_from_skeleton(const Array &array,
  * **Result**
  * @image html ex_skeleton.png
  */
-Array skeleton(const Array &array, bool zeroed_borders = true);
+Array skeleton(const Array &array, bool zero_at_borders = true);
 
 } // namespace hmap

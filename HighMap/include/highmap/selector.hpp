@@ -414,4 +414,6 @@ Array select_transitions(const Array &array1,
                          const Array &array2,
                          const Array &array_blend);
 
+Array select_valley(const Array &z, int ir, bool zero_at_borders = true);
+
 } // namespace hmap

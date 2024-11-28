@@ -1,0 +1,2 @@
+add_executable(ex_select_valley ex_select_valley.cpp)
+target_link_libraries(ex_select_valley highmap)
