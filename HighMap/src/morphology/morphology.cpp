@@ -4,6 +4,7 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/boundary.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/morphology.hpp"
 
@@ -90,6 +91,65 @@ Array morphological_top_hat(const Array &array, int ir)
 Array opening(const Array &array, int ir)
 {
   return dilation(erosion(array, ir), ir);
+}
+
+// helper
+
+void helper_thinning(Array &in, int iter)
+{
+  Array marker(in.shape);
+
+  for (int i = 1; i < in.shape.x - 1; i++)
+    for (int j = 1; j < in.shape.y - 1; j++)
+    {
+      int a = (in(i - 1, j) == 0.f && in(i - 1, j + 1) == 1.f) +
+              (in(i - 1, j + 1) == 0.f && in(i, j + 1) == 1.f) +
+              (in(i, j + 1) == 0.f && in(i + 1, j + 1) == 1.f) +
+              (in(i + 1, j + 1) == 0.f && in(i + 1, j) == 1.f) +
+              (in(i + 1, j) == 0.f && in(i + 1, j - 1) == 1.f) +
+              (in(i + 1, j - 1) == 0.f && in(i, j - 1) == 1.f) +
+              (in(i, j - 1) == 0.f && in(i - 1, j - 1) == 1.f) +
+              (in(i - 1, j - 1) == 0.f && in(i - 1, j) == 1.f);
+      int b = in(i - 1, j) + in(i - 1, j + 1) + in(i, j + 1) +
+              in(i + 1, j + 1) + in(i + 1, j) + in(i + 1, j - 1) +
+              in(i, j - 1) + in(i - 1, j - 1);
+      int m1 = iter == 0 ? (in(i - 1, j) * in(i, j + 1) * in(i + 1, j))
+                         : (in(i - 1, j) * in(i, j + 1) * in(i, j - 1));
+      int m2 = iter == 0 ? (in(i, j + 1) * in(i + 1, j) * in(i, j - 1))
+                         : (in(i - 1, j) * in(i + 1, j) * in(i, j - 1));
+
+      if (a == 1 && (b >= 2 && b <= 6) && m1 == 0 && m2 == 0)
+        marker(i, j) = 1.f;
+    }
+
+  for (int i = 0; i < in.shape.x; i++)
+    for (int j = 0; j < in.shape.y; j++)
+      in(i, j) *= 1.f - marker(i, j);
+}
+
+Array skeleton(const Array &array, bool zeroed_borders)
+{
+  // https://github.com/krishraghuram/Zhang-Suen-Skeletonization
+
+  Array sk = array;
+  Array prev;
+  Array diff;
+
+  do
+  {
+    prev = sk;
+
+    helper_thinning(sk, 0);
+    helper_thinning(sk, 1);
+
+    diff = sk - prev;
+
+  } while (diff.count_non_zero() > 0);
+
+  // set border to zero
+  if (zeroed_borders) set_borders(sk, 0.f, 1);
+
+  return sk;
 }
 
 } // namespace hmap

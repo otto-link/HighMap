@@ -271,6 +271,13 @@ public:
   std::vector<float> col_to_vector(int j);
 
   /**
+   * @brief Return the number of non-zero elements in the array.
+   *
+   * @return int The number of non-zero elements.
+   */
+  int count_non_zero();
+
+  /**
    * @brief Distribute a value 'amount' around the four cells (i, j), (i + 1,
    * j), (i, j + 1), (i + 1, j + 1) by "reversing" the bilinear interpolation.
    *

@@ -173,4 +173,29 @@ Array morphological_top_hat(const Array &array, int ir);
  */
 Array opening(const Array &array, int ir);
 
+/**
+ * @brief Computes the skeleton of a binary image using the Zhang-Suen
+ * skeletonization algorithm.
+ *
+ * This function processes a binary input array to extract its skeleton by
+ * iteratively thinning the image until no further changes occur. It optionally
+ * sets the borders of the resulting skeletonized image to zero.
+ *
+ * @param array The input binary array to be skeletonized. Values should
+ * typically be 0 or 1.
+ * @param zeroed_borders If true, the borders of the resulting array will be set
+ * to zero.
+ * @return The skeletonized version of the input array.
+ *
+ * @note This implementation is based on the algorithm described at
+ *       https://github.com/krishraghuram/Zhang-Suen-Skeletonization.
+ *
+ * **Example**
+ * @include ex_skeleton.cpp
+ *
+ * **Result**
+ * @image html ex_skeleton.png
+ */
+Array skeleton(const Array &array, bool zeroed_borders = true);
+
 } // namespace hmap

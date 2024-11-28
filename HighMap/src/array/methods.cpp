@@ -26,6 +26,14 @@ std::vector<float> Array::col_to_vector(int j)
   return vec;
 }
 
+int Array::count_non_zero()
+{
+  int count = 0;
+  for (auto &v : this->vector)
+    if (v != 0.f) count++;
+  return count++;
+}
+
 void Array::depose_amount_bilinear_at(int   i,
                                       int   j,
                                       float u,
