@@ -11,7 +11,6 @@
 #include "highmap/array.hpp"
 #include "highmap/colorize.hpp"
 #include "highmap/colormaps.hpp"
-#include "highmap/fft.hpp"
 #include "highmap/gradient.hpp"
 #include "highmap/math.hpp"
 #include "highmap/range.hpp"
@@ -185,35 +184,6 @@ Tensor colorize_histogram(const Array &array)
       if (j < hist[i]) color1(i, j, 0) = 1.f;
 
   return color1;
-}
-
-Tensor colorize_psd(const Array &array, int cmap, float threshold)
-{
-  // remove zero-component to enhance contrast visualization
-  Array array_wrk = array - array.mean();
-
-  // work on a square array because of the fft filter
-  int n = std::max(array.shape.x, array.shape.y);
-
-  if (array.shape.x != array.shape.y)
-    array_wrk = array_wrk.resample_to_shape(Vec2<int>(n, n));
-
-  hmap::Array psd = fft_modulus(array_wrk, /* shift_to_center */ true);
-
-  if (array.shape.x != array.shape.y) psd = psd.resample_to_shape(array.shape);
-
-  remap(psd, threshold, 1.f);
-  psd = log10(psd);
-
-  Tensor color3 = colorize(psd,
-                           psd.min(),
-                           psd.max(),
-                           cmap,
-                           /* hillshading */ false,
-                           /* reverse */ false,
-                           /* p_noise */ nullptr);
-
-  return color3;
 }
 
 Tensor colorize_slope_height_heatmap(const Array &array, int cmap)

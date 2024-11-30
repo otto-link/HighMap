@@ -1,2 +1,0 @@
-add_executable(ex_fft_modulus ex_fft_modulus.cpp)
-target_link_libraries(ex_fft_modulus highmap)

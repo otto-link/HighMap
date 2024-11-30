@@ -1,2 +1,0 @@
-add_executable(ex_recurve_spectral ex_recurve_spectral.cpp)
-target_link_libraries(ex_recurve_spectral highmap)

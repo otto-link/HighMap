@@ -32,10 +32,6 @@ find_package(OpenMP REQUIRED)
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(FFTW REQUIRED fftw3f) # float version
-include_directories(${FFTW_INCLUDE_DIRS})
-
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
 
 if(HIGHMAP_ENABLE_OPENCL)
