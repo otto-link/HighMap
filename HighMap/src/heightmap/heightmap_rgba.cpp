@@ -18,17 +18,17 @@
 namespace hmap
 {
 
-HeightMapRGBA::HeightMapRGBA()
+HeightmapRGBA::HeightmapRGBA()
 {
   this->rgba.resize(4);
 }
 
-HeightMapRGBA::HeightMapRGBA(HeightMap r, HeightMap g, HeightMap b, HeightMap a)
+HeightmapRGBA::HeightmapRGBA(Heightmap r, Heightmap g, Heightmap b, Heightmap a)
     : rgba({r, g, b, a}), shape(r.shape)
 {
 }
 
-HeightMapRGBA::HeightMapRGBA(Vec2<int> shape,
+HeightmapRGBA::HeightmapRGBA(Vec2<int> shape,
                              Vec2<int> tiling,
                              float     overlap,
                              Array     array_r,
@@ -43,15 +43,15 @@ HeightMapRGBA::HeightMapRGBA(Vec2<int> shape,
   this->rgba[3].from_array_interp_nearest(array_a);
 }
 
-HeightMapRGBA::HeightMapRGBA(Vec2<int> shape, Vec2<int> tiling, float overlap)
+HeightmapRGBA::HeightmapRGBA(Vec2<int> shape, Vec2<int> tiling, float overlap)
 {
   this->set_sto(shape, tiling, overlap);
 }
 
-HeightMap HeightMapRGBA::luminance()
+Heightmap HeightmapRGBA::luminance()
 {
   // https://stackoverflow.com/questions/596216
-  HeightMap out = HeightMap(this->rgba[0].shape,
+  Heightmap out = Heightmap(this->rgba[0].shape,
                             this->rgba[0].tiling,
                             this->rgba[0].overlap);
 
@@ -65,20 +65,20 @@ HeightMap HeightMapRGBA::luminance()
   return out;
 }
 
-void HeightMapRGBA::set_alpha(HeightMap new_alpha)
+void HeightmapRGBA::set_alpha(Heightmap new_alpha)
 {
   this->rgba[3] = new_alpha;
 }
 
-void HeightMapRGBA::set_alpha(float new_alpha)
+void HeightmapRGBA::set_alpha(float new_alpha)
 {
-  this->rgba[3] = HeightMap(this->rgba[3].shape,
+  this->rgba[3] = Heightmap(this->rgba[3].shape,
                             this->rgba[3].tiling,
                             this->rgba[3].overlap,
                             new_alpha);
 }
 
-void HeightMapRGBA::set_sto(Vec2<int> new_shape,
+void HeightmapRGBA::set_sto(Vec2<int> new_shape,
                             Vec2<int> new_tiling,
                             float     new_overlap)
 {
@@ -88,13 +88,13 @@ void HeightMapRGBA::set_sto(Vec2<int> new_shape,
     channel.set_sto(new_shape, new_tiling, new_overlap);
 }
 
-void HeightMapRGBA::colorize(HeightMap                      &color_level,
+void HeightmapRGBA::colorize(Heightmap                      &color_level,
                              float                           vmin,
                              float                           vmax,
                              std::vector<std::vector<float>> colormap_colors,
-                             HeightMap                      *p_alpha,
+                             Heightmap                      *p_alpha,
                              bool                            reverse,
-                             HeightMap                      *p_noise)
+                             Heightmap                      *p_noise)
 {
   if (reverse) std::swap(vmin, vmax);
 
@@ -173,23 +173,23 @@ void HeightMapRGBA::colorize(HeightMap                      &color_level,
     transform(this->rgba[3], [](Array &x) { x = 1.f; });
 }
 
-void HeightMapRGBA::colorize(HeightMap &color_level,
+void HeightmapRGBA::colorize(Heightmap &color_level,
                              float      vmin,
                              float      vmax,
                              int        cmap,
-                             HeightMap *p_alpha,
+                             Heightmap *p_alpha,
                              bool       reverse,
-                             HeightMap *p_noise)
+                             Heightmap *p_noise)
 {
   std::vector<std::vector<float>> colors = get_colormap_data(cmap);
   this->colorize(color_level, vmin, vmax, colors, p_alpha, reverse, p_noise);
 }
 
-HeightMapRGBA mix_heightmap_rgba(HeightMapRGBA &rgba1,
-                                 HeightMapRGBA &rgba2,
+HeightmapRGBA mix_heightmap_rgba(HeightmapRGBA &rgba1,
+                                 HeightmapRGBA &rgba2,
                                  bool           use_sqrt_avg)
 {
-  HeightMapRGBA rgba_out;
+  HeightmapRGBA rgba_out;
   rgba_out.set_sto(rgba1.rgba[0].shape,
                    rgba1.rgba[0].tiling,
                    rgba1.rgba[0].overlap);
@@ -208,7 +208,7 @@ HeightMapRGBA mix_heightmap_rgba(HeightMapRGBA &rgba1,
   // between the layers
 
   // using "over" algo
-  HeightMap t;
+  Heightmap t;
   t.set_sto(rgba1.rgba[0].shape, rgba1.rgba[0].tiling, rgba1.rgba[0].overlap);
 
   transform(t,
@@ -246,10 +246,10 @@ HeightMapRGBA mix_heightmap_rgba(HeightMapRGBA &rgba1,
   return rgba_out;
 }
 
-HeightMapRGBA mix_heightmap_rgba(std::vector<HeightMapRGBA *> rgba_plist,
+HeightmapRGBA mix_heightmap_rgba(std::vector<HeightmapRGBA *> rgba_plist,
                                  bool                         use_sqrt_avg)
 {
-  HeightMapRGBA rgba_out;
+  HeightmapRGBA rgba_out;
 
   // overlay the RGBA "2 by 2"
   if (rgba_plist.size() == 0)
@@ -266,8 +266,8 @@ HeightMapRGBA mix_heightmap_rgba(std::vector<HeightMapRGBA *> rgba_plist,
   return rgba_out;
 }
 
-HeightMapRGBA mix_normal_map_rgba(HeightMapRGBA          &nmap_base,
-                                  HeightMapRGBA          &nmap_detail,
+HeightmapRGBA mix_normal_map_rgba(HeightmapRGBA          &nmap_base,
+                                  HeightmapRGBA          &nmap_detail,
                                   float                   detail_scaling,
                                   NormalMapBlendingMethod blending_method)
 {
@@ -278,7 +278,7 @@ HeightMapRGBA mix_normal_map_rgba(HeightMapRGBA          &nmap_base,
   // https://j3l7h.de/talks/2008-02-18_Care_and_Feeding_of_Normal_Vectors.pdf
 
   // output, also used to store first normal map
-  HeightMapRGBA nmap_out = nmap_base;
+  HeightmapRGBA nmap_out = nmap_base;
 
   // mix and then re-normalize values assuming a RGB channels
   // represent a normal vector
@@ -383,7 +383,7 @@ HeightMapRGBA mix_normal_map_rgba(HeightMapRGBA          &nmap_base,
   return nmap_out;
 }
 
-void HeightMapRGBA::normalize()
+void HeightmapRGBA::normalize()
 {
   float min = std::min(std::min(this->rgba[0].min(), this->rgba[1].min()),
                        this->rgba[2].min());
@@ -397,7 +397,7 @@ void HeightMapRGBA::normalize()
       this->rgba[k].remap(0.f, 1.f, min, max); // RGB
 }
 
-void HeightMapRGBA::to_png(const std::string &fname, int depth)
+void HeightmapRGBA::to_png(const std::string &fname, int depth)
 {
   Tensor col3 = Tensor(this->shape, 4);
   for (int ch = 0; ch < col3.shape.z; ch++)
@@ -405,7 +405,7 @@ void HeightMapRGBA::to_png(const std::string &fname, int depth)
   col3.to_png(fname, depth);
 }
 
-std::vector<uint8_t> HeightMapRGBA::to_img_8bit(Vec2<int> shape_img)
+std::vector<uint8_t> HeightmapRGBA::to_img_8bit(Vec2<int> shape_img)
 {
   if (shape_img.x == 0 || shape_img.y == 0) shape_img = this->shape;
 

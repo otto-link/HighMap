@@ -153,7 +153,7 @@ void recast_cliff_directional(Array &array,
   // reference talus (0 elsewhere)
   Array dn = gradient_norm(array);
   dn -= talus;
-  dn *= array.shape.x;
+  dn *= (float)array.shape.x;
   clamp_min(dn, 0.f);
   smooth_cpulse(dn, ir);
 

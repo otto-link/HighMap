@@ -17,7 +17,7 @@ int main(void)
   hmap::Tensor n1 = hmap::normal_map(z1);
   hmap::Tensor n2 = hmap::normal_map(z2);
 
-  auto h1 = hmap::HeightMapRGBA(shape,
+  auto h1 = hmap::HeightmapRGBA(shape,
                                 tiling,
                                 overlap,
                                 n1.get_slice(0),
@@ -25,7 +25,7 @@ int main(void)
                                 n1.get_slice(2),
                                 hmap::Array(shape, 1.f));
 
-  auto h2 = hmap::HeightMapRGBA(shape,
+  auto h2 = hmap::HeightmapRGBA(shape,
                                 tiling,
                                 overlap,
                                 n2.get_slice(0),

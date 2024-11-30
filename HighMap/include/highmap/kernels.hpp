@@ -63,6 +63,20 @@ enum KernelType : int
 Array biweight(Vec2<int> shape);
 
 /**
+ * @brief Generates a Blackman window array with the specified shape.
+ *
+ * The Blackman window is commonly used in signal processing for smoothing
+ * or tapering. This function creates a 2D array of values representing
+ * the Blackman window, calculated based on the given shape dimensions.
+ *
+ * @param shape A 2D vector representing the dimensions of the array.
+ *
+ * @return An `Array` object containing the Blackman window values of the
+ * specified shape.
+ */
+Array blackman(Vec2<int> shape);
+
+/**
  * @brief Generates a cone-shaped kernel array.
  *
  * This function creates a cone-shaped kernel. The maximum value of the kernel
@@ -241,6 +255,20 @@ Array gabor_dune(Vec2<int> shape,
 Array get_kernel(Vec2<int> shape, KernelType kernel_type);
 
 /**
+ * @brief Generates a Hann window array with the specified shape.
+ *
+ * The Hann window is commonly used in signal processing for smoothing
+ * or tapering. This function creates a 2D array of values representing
+ * the Hann window, calculated based on the given shape dimensions.
+ *
+ * @param shape A 2D vector representing the dimensions of the array.
+ *
+ * @return An `Array` object containing the Hann window values of the
+ * specified shape.
+ */
+Array hann(Vec2<int> shape);
+
+/**
  * @brief Generate a Lorentzian kernel.
  *
  * The Lorentzian kernel is characterized by its peak and tails that decay with
@@ -265,6 +293,40 @@ Array lorentzian(Vec2<int> shape, float footprint_threshold = 0.1f);
  * @return Array The modified Lorentzian kernel with compact support.
  */
 Array lorentzian_compact(Vec2<int> shape);
+
+/**
+ * @brief Generates a radial sinc function array with the specified shape and
+ * wave number.
+ *
+ * This function creates a 2D array of values representing the radial sinc
+ * function, calculated based on the given shape and wave number. The sinc
+ * function is defined as `sin(x) / x` and is useful in signal processing and
+ * analysis.
+ *
+ * @param shape A 2D vector representing the dimensions of the array.
+ * @param kw The wave number used to scale the radial sinc function.
+ *
+ * @return An `Array` object containing the radial sinc function values of the
+ * specified shape.
+ */
+Array sinc_radial(Vec2<int> shape, float kw);
+
+/**
+ * @brief Generates a separable sinc function array with the specified shape and
+ * wave number.
+ *
+ * This function creates a 2D array of values representing the separable sinc
+ * function, calculated as the product of 1D sinc functions along each dimension
+ * of the array. The sinc function is defined as `sin(x) / x` and is useful in
+ * signal processing and analysis.
+ *
+ * @param shape A 2D vector representing the dimensions of the array.
+ * @param kw The wave number used to scale the separable sinc function.
+ *
+ * @return An `Array` object containing the separable sinc function values of
+ * the specified shape.
+ */
+Array sinc_separable(Vec2<int> shape, float kw);
 
 /**
  * @brief Generate a smooth cosine kernel.

@@ -25,11 +25,11 @@ int main(void)
                           {zr, zg, zb, zsp},
                           hmap::Cmap::GRAY);
 
-  auto hr = hmap::HeightMap(shape, tiling, overlap);
-  auto hg = hmap::HeightMap(shape, tiling, overlap);
-  auto hb = hmap::HeightMap(shape, tiling, overlap);
-  auto ha = hmap::HeightMap(shape, tiling, overlap);
-  auto hm = hmap::HeightMap(shape, tiling, overlap);
+  auto hr = hmap::Heightmap(shape, tiling, overlap);
+  auto hg = hmap::Heightmap(shape, tiling, overlap);
+  auto hb = hmap::Heightmap(shape, tiling, overlap);
+  auto ha = hmap::Heightmap(shape, tiling, overlap);
+  auto hm = hmap::Heightmap(shape, tiling, overlap);
 
   hr.from_array_interp(zr);
   hg.from_array_interp(zg);
@@ -37,7 +37,7 @@ int main(void)
   ha.from_array_interp(zsp);
   hm.from_array_interp(zsm);
 
-  hmap::HeightMapRGBA h_rgba = hmap::HeightMapRGBA(hr, hg, hb, ha);
+  hmap::HeightmapRGBA h_rgba = hmap::HeightmapRGBA(hr, hg, hb, ha);
   h_rgba.to_png("ex_heightmap_rgba1.png");
 
   // colorize
@@ -45,19 +45,19 @@ int main(void)
   h_rgba.to_png("ex_heightmap_rgba2.png");
 
   // mix
-  auto h0 = hmap::HeightMap(shape, tiling, overlap, 0.f);
-  auto h1 = hmap::HeightMap(shape, tiling, overlap, 1.f);
+  auto h0 = hmap::Heightmap(shape, tiling, overlap, 0.f);
+  auto h1 = hmap::Heightmap(shape, tiling, overlap, 1.f);
 
-  hmap::HeightMapRGBA h_rgba1 = hmap::HeightMapRGBA(hr, hr, h0, h1);
-  hmap::HeightMapRGBA h_rgba2 = hmap::HeightMapRGBA(h0, h0, hb, hm);
+  hmap::HeightmapRGBA h_rgba1 = hmap::HeightmapRGBA(hr, hr, h0, h1);
+  hmap::HeightmapRGBA h_rgba2 = hmap::HeightmapRGBA(h0, h0, hb, hm);
 
   auto hmix = mix_heightmap_rgba(h_rgba1, h_rgba2);
   hmix.to_png("ex_heightmap_rgba3.png");
 
   // mix list of heightmaps
-  hmap::HeightMapRGBA h_rgba3 = hmap::HeightMapRGBA(h0, hr, h0, ha);
+  hmap::HeightmapRGBA h_rgba3 = hmap::HeightmapRGBA(h0, hr, h0, ha);
 
-  std::vector<hmap::HeightMapRGBA *> list = {&h_rgba1, &h_rgba2, &h_rgba3};
+  std::vector<hmap::HeightmapRGBA *> list = {&h_rgba1, &h_rgba2, &h_rgba3};
   auto                               hmix_list = mix_heightmap_rgba(list, true);
   hmix_list.to_png("ex_heightmap_rgba4.png");
 

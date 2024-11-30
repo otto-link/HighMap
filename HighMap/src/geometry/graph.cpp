@@ -30,7 +30,7 @@ std::vector<int> Graph::dijkstra(int source_point_index, int target_point_index)
   {
     dist[i] = std::numeric_limits<float>::max();
     prev[i] = -1;
-    queue.push_back(i);
+    queue.push_back((int)i);
   }
   dist[source_point_index] = 0.f;
 
@@ -92,7 +92,7 @@ void Graph::add_edge(std::vector<int> edge, float weight)
 void Graph::add_edge(std::vector<int> edge)
 {
   this->edges.push_back(edge);
-  this->weights.push_back(this->get_edge_length(this->get_nedges() - 1));
+  this->weights.push_back(this->get_edge_length((int)this->get_nedges() - 1));
 }
 
 float Graph::get_edge_length(int k)
@@ -166,7 +166,7 @@ Graph Graph::minimum_spanning_tree_prim()
       if ((key[p] < key_max) and (is_point_in_mst[p] == false))
       {
         key_max = key[p];
-        k = p;
+        k = (int)p;
       }
 
     is_point_in_mst[k] = true;
@@ -234,7 +234,7 @@ Graph Graph::remove_orphan_points()
       if (new_point_idx[k] == -1)
       {
         graph_out.add_point(this->points[k]);
-        new_point_idx[k] = graph_out.get_npoints() - 1;
+        new_point_idx[k] = (int)graph_out.get_npoints() - 1;
       }
 
       for (size_t r = 0; r < this->connectivity[k].size(); r++)
@@ -243,7 +243,7 @@ Graph Graph::remove_orphan_points()
         if ((j > (int)k) and (new_point_idx[j] == -1))
         {
           graph_out.add_point(this->points[j]);
-          new_point_idx[j] = graph_out.get_npoints() - 1;
+          new_point_idx[j] = (int)graph_out.get_npoints() - 1;
         }
       }
     }
@@ -295,7 +295,7 @@ void Graph::to_array_fractalize(Array      &array,
 
   for (size_t k = 0; k < this->get_nedges(); k++)
   {
-    float dist = this->get_edge_length(k);
+    float dist = this->get_edge_length((int)k);
     if (dist < dmin) dmin = dist;
   }
 

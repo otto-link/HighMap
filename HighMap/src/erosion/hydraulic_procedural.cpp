@@ -7,15 +7,10 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/erosion.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/gradient.hpp"
-#include "highmap/kernels.hpp"
 #include "highmap/operator.hpp"
-
-#include "highmap/erosion.hpp"
-#include "highmap/features.hpp"
-#include "highmap/hydrology.hpp"
-#include "highmap/morphology.hpp"
 #include "highmap/primitives.hpp"
 #include "highmap/range.hpp"
 
@@ -39,12 +34,53 @@ std::function<float(float)> helper_get_profile_function(
     lambda_p = [](float phi) { return 0.5f - 0.5f * std::cos(phi); };
     break;
   //
+  case ErosionProfile::SAW_SHARP:
+  {
+    lambda_p = [](float phi)
+    {
+      float t = phi / M_PI;
+      t = std::fmod(t + 2.f, 2.f) - 1.f;
+      return t - int(t);
+    };
+  }
+  break;
+  //
+  case ErosionProfile::SAW_SMOOTH:
+  {
+    float n = 1.f + 0.02f / delta;
+    float dn = 2.f * n + 1.f;
+    float coeff = std::pow(1.f / dn, 1.f / 2.f / n) * 2.f * n / dn;
+    coeff = 1.f / coeff;
+
+    lambda_p = [n, coeff](float phi)
+    {
+      float t = phi / M_PI;
+      t = std::fmod(t + 2.f, 2.f) - 1.f;
+      t = coeff * t * (1.f - std::pow(t, 2.f * n));
+      t = 0.5f * (1.f + t);
+      return t;
+    };
+  }
+  break;
+  //
   case ErosionProfile::SHARP_VALLEYS:
   {
     lambda_p = [delta](float phi)
     {
       float t = phi / M_PI;
+      t = std::fmod(t + 2.f, 2.f) - 1.f;
       float v = (1.f - t * t) / (1.f + t * t / delta);
+      return v;
+    };
+  }
+  break;
+  //
+  case ErosionProfile::SQUARE_SMOOTH:
+  {
+    // https://mathematica.stackexchange.com/questions/38293
+    lambda_p = [delta](float phi)
+    {
+      float v = 2.f * std::atan(std::sin(phi) / 25.f / delta) / M_PI;
       return v;
     };
   }
@@ -54,9 +90,10 @@ std::function<float(float)> helper_get_profile_function(
   {
     lambda_p = [delta](float phi)
     {
-      float value = std::sqrt((1.f + 2.f * std::sqrt(delta)) * phi * phi /
-                                  (M_PI * M_PI) +
-                              delta) -
+      float t = phi / M_PI;
+      t = std::fmod(t + 2.f, 2.f) - 1.f;
+
+      float value = std::sqrt((1.f + 2.f * std::sqrt(delta)) * t * t + delta) -
                     std::sqrt(delta);
       return value;
     };
@@ -68,6 +105,7 @@ std::function<float(float)> helper_get_profile_function(
     lambda_p = [](float phi)
     {
       float t = phi / M_PI;
+      t = std::fmod(t + 2.f, 2.f) - 1.f;
       return 1.f + std::abs(t);
     };
   }
@@ -117,6 +155,8 @@ void hydraulic_procedural(Array         &z,
                           float          density_factor,
                           float          kernel_width_ratio,
                           float          phase_smoothing,
+                          float          phase_noise_amp,
+                          bool           reverse_phase,
                           bool           use_default_mask,
                           float          talus_mask,
                           Array         *p_mask,
@@ -157,11 +197,14 @@ void hydraulic_procedural(Array         &z,
                             kw,
                             width,
                             seed,
+                            phase_noise_amp,
                             prefilter_ir,
                             density_factor,
                             rotate90,
                             &gnoise_x,
                             &gnoise_y);
+
+  if (reverse_phase) phase *= -1.f;
 
   // --- apply profile
 

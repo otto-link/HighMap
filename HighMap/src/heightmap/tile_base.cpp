@@ -54,6 +54,35 @@ void Tile::from_array_interp(Array &array)
     }
 }
 
+void Tile::from_array_interp_bicubic(Array &array)
+{
+  std::vector<float> x = linspace(this->shift.x,
+                                  this->shift.x + this->scale.x,
+                                  this->shape.x,
+                                  false);
+  std::vector<float> y = linspace(this->shift.y,
+                                  this->shift.y + this->scale.y,
+                                  this->shape.y,
+                                  false);
+
+  for (auto &v : x)
+    v *= array.shape.x - 1;
+
+  for (auto &v : y)
+    v *= array.shape.y - 1;
+
+  for (int i = 0; i < shape.x; i++)
+    for (int j = 0; j < shape.y; j++)
+    {
+      int ip = std::clamp((int)x[i], 0, array.shape.x - 1);
+      int jp = std::clamp((int)y[j], 0, array.shape.y - 1);
+
+      float u = x[i] - ip;
+      float v = y[j] - jp;
+      (*this)(i, j) = array.get_value_bicubic_at(ip, jp, u, v);
+    }
+}
+
 void Tile::from_array_interp_nearest(Array &array)
 {
   std::vector<float> x = linspace(this->shift.x,

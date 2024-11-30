@@ -88,21 +88,21 @@ public:
 
   // Methods
 
-  std::string add_heightmap(const HeightMap &h, const std::string &id = "");
+  std::string add_heightmap(const Heightmap &h, const std::string &id = "");
 
   Vec4<float> compute_bounding_box() const;
 
-  float get_heightmap_value_bilinear(HeightMap &h,
+  float get_heightmap_value_bilinear(Heightmap &h,
                                      float      gx,
                                      float      gy,
                                      float      fill_value = 0.f);
 
-  float get_heightmap_value_nearest(HeightMap &h,
+  float get_heightmap_value_nearest(Heightmap &h,
                                     float      gx,
                                     float      gy,
                                     float      fill_value = 0.f);
 
-  HeightMap *get_heightmap_ref(const std::string &id);
+  Heightmap *get_heightmap_ref(const std::string &id);
 
   bool is_point_within(float gx, float gy) const;
 
@@ -123,7 +123,7 @@ private:
 
   int id_count = 0;
 
-  std::map<std::string, HeightMap> heightmaps = {};
+  std::map<std::string, Heightmap> heightmaps = {};
 };
 
 void interpolate_terrain_heightmap(Terrain           &t_source,

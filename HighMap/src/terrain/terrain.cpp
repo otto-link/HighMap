@@ -25,12 +25,12 @@ Terrain::Terrain(Vec2<float> origin,
   this->set_rotation_angle(rotation_angle);
 }
 
-std::string Terrain::add_heightmap(const HeightMap &h, const std::string &id)
+std::string Terrain::add_heightmap(const Heightmap &h, const std::string &id)
 {
   std::string hid = id;
   if (hid.empty()) hid = std::to_string(id_count++);
 
-  HeightMap h_copy = h;
+  Heightmap h_copy = h;
   h_copy.set_bbox(Vec4<float>(0.f, this->size.x, 0.f, this->size.y));
 
   this->heightmaps[hid] = std::move(h_copy);
@@ -65,7 +65,7 @@ Vec4<float> Terrain::compute_bounding_box() const
   return Vec4<float>(min_x, max_x, min_y, max_y);
 }
 
-float Terrain::get_heightmap_value_bilinear(HeightMap &h,
+float Terrain::get_heightmap_value_bilinear(Heightmap &h,
                                             float      gx,
                                             float      gy,
                                             float      fill_value)
@@ -81,7 +81,7 @@ float Terrain::get_heightmap_value_bilinear(HeightMap &h,
     return fill_value;
 }
 
-float Terrain::get_heightmap_value_nearest(HeightMap &h,
+float Terrain::get_heightmap_value_nearest(Heightmap &h,
                                            float      gx,
                                            float      gy,
                                            float      fill_value)
@@ -97,7 +97,7 @@ float Terrain::get_heightmap_value_nearest(HeightMap &h,
     return fill_value;
 }
 
-HeightMap *Terrain::get_heightmap_ref(const std::string &id)
+Heightmap *Terrain::get_heightmap_ref(const std::string &id)
 {
   if (!this->heightmaps.contains(id))
     return nullptr;

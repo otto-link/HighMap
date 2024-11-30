@@ -17,17 +17,17 @@
 namespace hmap
 {
 
-HeightMapRGB::HeightMapRGB()
+HeightmapRGB::HeightmapRGB()
 {
   this->rgb.resize(3);
 }
 
-HeightMapRGB::HeightMapRGB(HeightMap r, HeightMap g, HeightMap b)
+HeightmapRGB::HeightmapRGB(Heightmap r, Heightmap g, Heightmap b)
     : rgb({r, g, b}), shape(r.shape)
 {
 }
 
-void HeightMapRGB::set_sto(Vec2<int> new_shape,
+void HeightmapRGB::set_sto(Vec2<int> new_shape,
                            Vec2<int> new_tiling,
                            float     new_overlap)
 {
@@ -37,7 +37,7 @@ void HeightMapRGB::set_sto(Vec2<int> new_shape,
     channel.set_sto(new_shape, new_tiling, new_overlap);
 }
 
-void HeightMapRGB::colorize(HeightMap                      &h,
+void HeightmapRGB::colorize(Heightmap                      &h,
                             float                           vmin,
                             float                           vmax,
                             std::vector<std::vector<float>> colormap_colors,
@@ -86,7 +86,7 @@ void HeightMapRGB::colorize(HeightMap                      &h,
   }
 }
 
-void HeightMapRGB::colorize(HeightMap &h,
+void HeightmapRGB::colorize(Heightmap &h,
                             float      vmin,
                             float      vmax,
                             int        cmap,
@@ -96,7 +96,7 @@ void HeightMapRGB::colorize(HeightMap &h,
   this->colorize(h, vmin, vmax, colors, reverse);
 }
 
-void HeightMapRGB::normalize()
+void HeightmapRGB::normalize()
 {
   float min = std::min(std::min(this->rgb[0].min(), this->rgb[1].min()),
                        this->rgb[2].min());
@@ -107,7 +107,7 @@ void HeightMapRGB::normalize()
     channel.remap(0.f, 1.f, min, max);
 }
 
-std::vector<uint8_t> HeightMapRGB::to_img_8bit(Vec2<int> shape_img)
+std::vector<uint8_t> HeightmapRGB::to_img_8bit(Vec2<int> shape_img)
 {
   if (shape_img.x * shape_img.y == 0) shape_img = this->shape;
 
@@ -129,7 +129,7 @@ std::vector<uint8_t> HeightMapRGB::to_img_8bit(Vec2<int> shape_img)
   return img;
 }
 
-void HeightMapRGB::to_png(const std::string &fname, int depth)
+void HeightmapRGB::to_png(const std::string &fname, int depth)
 {
   Tensor col3 = Tensor(this->shape, 3);
   for (int ch = 0; ch < col3.shape.z; ch++)
@@ -139,11 +139,11 @@ void HeightMapRGB::to_png(const std::string &fname, int depth)
 
 // FRIEND
 
-HeightMapRGB mix_heightmap_rgb(HeightMapRGB &rgb1,
-                               HeightMapRGB &rgb2,
-                               HeightMap    &t)
+HeightmapRGB mix_heightmap_rgb(HeightmapRGB &rgb1,
+                               HeightmapRGB &rgb2,
+                               Heightmap    &t)
 {
-  HeightMapRGB rgb_out;
+  HeightmapRGB rgb_out;
   rgb_out.set_sto(rgb1.rgb[0].shape, rgb1.rgb[0].tiling, rgb1.rgb[0].overlap);
 
   // mixing function
@@ -170,9 +170,9 @@ HeightMapRGB mix_heightmap_rgb(HeightMapRGB &rgb1,
   return rgb_out;
 }
 
-HeightMapRGB mix_heightmap_rgb(HeightMapRGB &rgb1, HeightMapRGB &rgb2, float t)
+HeightmapRGB mix_heightmap_rgb(HeightmapRGB &rgb1, HeightmapRGB &rgb2, float t)
 {
-  HeightMapRGB rgb_out;
+  HeightmapRGB rgb_out;
   rgb_out.set_sto(rgb1.rgb[0].shape, rgb1.rgb[0].tiling, rgb1.rgb[0].overlap);
 
   // mixing function
@@ -198,11 +198,11 @@ HeightMapRGB mix_heightmap_rgb(HeightMapRGB &rgb1, HeightMapRGB &rgb2, float t)
   return rgb_out;
 }
 
-HeightMapRGB mix_heightmap_rgb_sqrt(HeightMapRGB &rgb1,
-                                    HeightMapRGB &rgb2,
-                                    HeightMap    &t)
+HeightmapRGB mix_heightmap_rgb_sqrt(HeightmapRGB &rgb1,
+                                    HeightmapRGB &rgb2,
+                                    Heightmap    &t)
 {
-  HeightMapRGB rgb_out;
+  HeightmapRGB rgb_out;
   rgb_out.set_sto(rgb1.rgb[0].shape, rgb1.rgb[0].tiling, rgb1.rgb[0].overlap);
 
   // mixing function
@@ -229,11 +229,11 @@ HeightMapRGB mix_heightmap_rgb_sqrt(HeightMapRGB &rgb1,
   return rgb_out;
 }
 
-HeightMapRGB mix_heightmap_rgb_sqrt(HeightMapRGB &rgb1,
-                                    HeightMapRGB &rgb2,
+HeightmapRGB mix_heightmap_rgb_sqrt(HeightmapRGB &rgb1,
+                                    HeightmapRGB &rgb2,
                                     float         t)
 {
-  HeightMapRGB rgb_out;
+  HeightmapRGB rgb_out;
   rgb_out.set_sto(rgb1.rgb[0].shape, rgb1.rgb[0].tiling, rgb1.rgb[0].overlap);
 
   // mixing function

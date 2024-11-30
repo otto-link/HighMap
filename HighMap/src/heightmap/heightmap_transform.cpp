@@ -14,7 +14,7 @@
 namespace hmap
 {
 
-void fill(HeightMap &h, std::function<Array(Vec2<int>)> nullary_op)
+void fill(Heightmap &h, std::function<Array(Vec2<int>)> nullary_op)
 {
   size_t                          nthreads = h.get_ntiles();
   std::vector<std::future<Array>> futures(nthreads);
@@ -26,7 +26,7 @@ void fill(HeightMap &h, std::function<Array(Vec2<int>)> nullary_op)
     h.tiles[i] = futures[i].get();
 }
 
-void fill(HeightMap &h, std::function<Array(Vec2<int>, Vec4<float>)> nullary_op)
+void fill(Heightmap &h, std::function<Array(Vec2<int>, Vec4<float>)> nullary_op)
 {
   size_t                          nthreads = h.get_ntiles();
   std::vector<std::future<Array>> futures(nthreads);
@@ -39,9 +39,9 @@ void fill(HeightMap &h, std::function<Array(Vec2<int>, Vec4<float>)> nullary_op)
 }
 
 void fill(
-    HeightMap &h,
-    HeightMap *p_noise_x,
-    HeightMap *p_noise_y,
+    Heightmap &h,
+    Heightmap *p_noise_x,
+    Heightmap *p_noise_y,
     std::function<Array(Vec2<int>, Vec4<float>, hmap::Array *, hmap::Array *)>
         nullary_op)
 {
@@ -64,10 +64,10 @@ void fill(
     h.tiles[i] = futures[i].get();
 }
 
-void fill(HeightMap                          &h,
-          HeightMap                          &hin,
-          HeightMap                          *p_noise_x,
-          HeightMap                          *p_noise_y,
+void fill(Heightmap                          &h,
+          Heightmap                          &hin,
+          Heightmap                          *p_noise_x,
+          Heightmap                          *p_noise_y,
           std::function<Array(hmap::Array &,
                               Vec2<int>,
                               Vec4<float>,
@@ -94,10 +94,10 @@ void fill(HeightMap                          &h,
     h.tiles[i] = futures[i].get();
 }
 
-void fill(HeightMap                          &h,
-          HeightMap                          *p_noise_x,
-          HeightMap                          *p_noise_y,
-          HeightMap                          *p_stretching,
+void fill(Heightmap                          &h,
+          Heightmap                          *p_noise_x,
+          Heightmap                          *p_noise_y,
+          Heightmap                          *p_stretching,
           std::function<Array(Vec2<int>,
                               Vec4<float>,
                               hmap::Array *,
@@ -126,8 +126,8 @@ void fill(HeightMap                          &h,
 }
 
 void fill(
-    HeightMap                                                  &h,
-    HeightMap                                                  *p_noise,
+    Heightmap                                                  &h,
+    Heightmap                                                  *p_noise,
     std::function<Array(Vec2<int>, Vec4<float>, hmap::Array *)> nullary_op)
 {
   size_t                          nthreads = h.get_ntiles();
@@ -144,8 +144,8 @@ void fill(
     h.tiles[i] = futures[i].get();
 }
 
-void transform(HeightMap                    &h_out,
-               HeightMap                    &h1,
+void transform(Heightmap                    &h_out,
+               Heightmap                    &h1,
                std::function<Array(Array &)> unary_op)
 {
   size_t                          nthreads = h1.get_ntiles();
@@ -158,9 +158,9 @@ void transform(HeightMap                    &h_out,
     h_out.tiles[i] = futures[i].get();
 }
 
-void transform(HeightMap                             &h_out,
-               HeightMap                             &h1,
-               HeightMap                             &h2,
+void transform(Heightmap                             &h_out,
+               Heightmap                             &h1,
+               Heightmap                             &h2,
                std::function<Array(Array &, Array &)> binary_op)
 {
   size_t                          nthreads = h1.get_ntiles();
@@ -175,7 +175,7 @@ void transform(HeightMap                             &h_out,
     h_out.tiles[i] = futures[i].get();
 }
 
-void transform(HeightMap &h, std::function<void(Array &)> unary_op)
+void transform(Heightmap &h, std::function<void(Array &)> unary_op)
 {
   size_t                         nthreads = h.get_ntiles();
   std::vector<std::future<void>> futures(nthreads);
@@ -202,7 +202,7 @@ void transform(HeightMap &h, std::function<void(Array &)> unary_op)
 //     futures[i].get();
 // }
 
-void transform(HeightMap &h, std::function<void(Array &, Vec4<float>)> unary_op)
+void transform(Heightmap &h, std::function<void(Array &, Vec4<float>)> unary_op)
 {
   size_t                         nthreads = h.get_ntiles();
   std::vector<std::future<void>> futures(nthreads);
@@ -214,8 +214,8 @@ void transform(HeightMap &h, std::function<void(Array &, Vec4<float>)> unary_op)
     futures[i].get();
 }
 
-void transform(HeightMap                                         &h,
-               HeightMap                                         *p_noise_x,
+void transform(Heightmap                                         &h,
+               Heightmap                                         *p_noise_x,
                std::function<void(Array &, Vec4<float>, Array *)> unary_op)
 {
   size_t                         nthreads = h.get_ntiles();
@@ -236,9 +236,9 @@ void transform(HeightMap                                         &h,
 }
 
 void transform(
-    HeightMap                                                  &h,
-    HeightMap                                                  *p_noise_x,
-    HeightMap                                                  *p_noise_y,
+    Heightmap                                                  &h,
+    Heightmap                                                  *p_noise_x,
+    Heightmap                                                  *p_noise_y,
     std::function<void(Array &, Vec4<float>, Array *, Array *)> unary_op)
 {
   size_t                         nthreads = h.get_ntiles();
@@ -260,8 +260,8 @@ void transform(
     futures[i].get();
 }
 
-void transform(HeightMap                            &h,
-               HeightMap                            *p_mask,
+void transform(Heightmap                            &h,
+               Heightmap                            *p_mask,
                std::function<void(Array &, Array *)> unary_op)
 {
   size_t                         nthreads = h.get_ntiles();
@@ -277,10 +277,10 @@ void transform(HeightMap                            &h,
     futures[i].get();
 }
 
-void transform(HeightMap                                              &h,
-               hmap::HeightMap                                        *p_1,
-               hmap::HeightMap                                        *p_2,
-               hmap::HeightMap                                        *p_3,
+void transform(Heightmap                                              &h,
+               hmap::Heightmap                                        *p_1,
+               hmap::Heightmap                                        *p_2,
+               hmap::Heightmap                                        *p_3,
                std::function<void(Array &, Array *, Array *, Array *)> unary_op)
 {
   size_t                         nthreads = h.get_ntiles();
@@ -304,12 +304,12 @@ void transform(HeightMap                                              &h,
 }
 
 void transform(
-    HeightMap       &h,
-    hmap::HeightMap *p_1,
-    hmap::HeightMap *p_2,
-    hmap::HeightMap *p_3,
-    hmap::HeightMap *p_4,
-    hmap::HeightMap *p_5,
+    Heightmap       &h,
+    hmap::Heightmap *p_1,
+    hmap::Heightmap *p_2,
+    hmap::Heightmap *p_3,
+    hmap::Heightmap *p_4,
+    hmap::Heightmap *p_5,
     std::function<void(Array &, Array *, Array *, Array *, Array *, Array *)>
         unary_op)
 {
@@ -337,9 +337,9 @@ void transform(
     futures[i].get();
 }
 
-void transform(HeightMap                                     &h,
-               hmap::HeightMap                               *p_1,
-               hmap::HeightMap                               *p_2,
+void transform(Heightmap                                     &h,
+               hmap::Heightmap                               *p_1,
+               hmap::Heightmap                               *p_2,
                std::function<void(Array &, Array *, Array *)> unary_op)
 {
   size_t                         nthreads = h.get_ntiles();
@@ -360,8 +360,8 @@ void transform(HeightMap                                     &h,
     futures[i].get();
 }
 
-void transform(HeightMap                            &h1,
-               HeightMap                            &h2,
+void transform(Heightmap                            &h1,
+               Heightmap                            &h2,
                std::function<void(Array &, Array &)> binary_op)
 {
   size_t                         nthreads = h1.get_ntiles();
@@ -376,8 +376,8 @@ void transform(HeightMap                            &h1,
     futures[i].get();
 }
 
-void transform(HeightMap                                         &h1,
-               HeightMap                                         &h2,
+void transform(Heightmap                                         &h1,
+               Heightmap                                         &h2,
                std::function<void(Array &, Array &, Vec4<float>)> binary_op)
 {
   size_t                         nthreads = h1.get_ntiles();
@@ -393,9 +393,9 @@ void transform(HeightMap                                         &h1,
     futures[i].get();
 }
 
-void transform(HeightMap                                     &h1,
-               HeightMap                                     &h2,
-               HeightMap                                     &h3,
+void transform(Heightmap                                     &h1,
+               Heightmap                                     &h2,
+               Heightmap                                     &h3,
                std::function<void(Array &, Array &, Array &)> ternary_op)
 {
   size_t                         nthreads = h1.get_ntiles();
@@ -412,9 +412,9 @@ void transform(HeightMap                                     &h1,
 }
 
 void transform(
-    HeightMap                                                  &h1,
-    HeightMap                                                  &h2,
-    HeightMap                                                  &h3,
+    Heightmap                                                  &h1,
+    Heightmap                                                  &h2,
+    Heightmap                                                  &h3,
     std::function<void(Array &, Array &, Array &, Vec4<float>)> ternary_op)
 {
   size_t                         nthreads = h1.get_ntiles();
@@ -432,10 +432,10 @@ void transform(
 }
 
 void transform(
-    HeightMap                                              &h1,
-    HeightMap                                              &h2,
-    HeightMap                                              &h3,
-    HeightMap                                              &h4,
+    Heightmap                                              &h1,
+    Heightmap                                              &h2,
+    Heightmap                                              &h3,
+    Heightmap                                              &h4,
     std::function<void(Array &, Array &, Array &, Array &)> quaternary_op)
 {
   size_t                         nthreads = h1.get_ntiles();
@@ -453,12 +453,12 @@ void transform(
 }
 
 void transform(
-    HeightMap &h1,
-    HeightMap &h2,
-    HeightMap &h3,
-    HeightMap &h4,
-    HeightMap &h5,
-    HeightMap &h6,
+    Heightmap &h1,
+    Heightmap &h2,
+    Heightmap &h3,
+    Heightmap &h4,
+    Heightmap &h5,
+    Heightmap &h6,
     std::function<void(Array &, Array &, Array &, Array &, Array &, Array &)>
         op)
 {

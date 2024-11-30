@@ -4,6 +4,7 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/boundary.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/morphology.hpp"
 
@@ -39,8 +40,8 @@ void flood_fill(Array &array,
 
   while (queue_i.size() > 0)
   {
-    int i = queue_i.back();
-    int j = queue_j.back();
+    i = queue_i.back();
+    j = queue_j.back();
     queue_i.pop_back();
     queue_j.pop_back();
 
@@ -90,6 +91,113 @@ Array morphological_top_hat(const Array &array, int ir)
 Array opening(const Array &array, int ir)
 {
   return dilation(erosion(array, ir), ir);
+}
+
+// helper
+
+void helper_thinning(Array &in, int iter)
+{
+  Array marker(in.shape);
+
+  for (int i = 1; i < in.shape.x - 1; i++)
+    for (int j = 1; j < in.shape.y - 1; j++)
+    {
+      int a = (in(i - 1, j) == 0.f && in(i - 1, j + 1) == 1.f) +
+              (in(i - 1, j + 1) == 0.f && in(i, j + 1) == 1.f) +
+              (in(i, j + 1) == 0.f && in(i + 1, j + 1) == 1.f) +
+              (in(i + 1, j + 1) == 0.f && in(i + 1, j) == 1.f) +
+              (in(i + 1, j) == 0.f && in(i + 1, j - 1) == 1.f) +
+              (in(i + 1, j - 1) == 0.f && in(i, j - 1) == 1.f) +
+              (in(i, j - 1) == 0.f && in(i - 1, j - 1) == 1.f) +
+              (in(i - 1, j - 1) == 0.f && in(i - 1, j) == 1.f);
+      int b = in(i - 1, j) + in(i - 1, j + 1) + in(i, j + 1) +
+              in(i + 1, j + 1) + in(i + 1, j) + in(i + 1, j - 1) +
+              in(i, j - 1) + in(i - 1, j - 1);
+      int m1 = iter == 0 ? (in(i - 1, j) * in(i, j + 1) * in(i + 1, j))
+                         : (in(i - 1, j) * in(i, j + 1) * in(i, j - 1));
+      int m2 = iter == 0 ? (in(i, j + 1) * in(i + 1, j) * in(i, j - 1))
+                         : (in(i - 1, j) * in(i + 1, j) * in(i, j - 1));
+
+      if (a == 1 && (b >= 2 && b <= 6) && m1 == 0 && m2 == 0)
+        marker(i, j) = 1.f;
+    }
+
+  for (int i = 0; i < in.shape.x; i++)
+    for (int j = 0; j < in.shape.y; j++)
+      in(i, j) *= 1.f - marker(i, j);
+}
+
+Array relative_distance_from_skeleton(const Array &array,
+                                      int          ir_search,
+                                      bool         zero_at_borders)
+{
+  Array border = array - erosion(array, 1);
+  Array sk = skeleton(array, zero_at_borders);
+
+  Array rdist(array.shape);
+
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
+      // only work for cells within the non-zero regions
+      if (array(i, j) != 0.f)
+      {
+        // find the closest skeleton and border cells
+        float dmax_sk = std::numeric_limits<float>::max();
+        float dmax_bd = std::numeric_limits<float>::max();
+
+        int p1 = std::max(i - ir_search, 0);
+        int p2 = std::min(i + ir_search + 1, array.shape.x);
+        int q1 = std::max(j - ir_search, 0);
+        int q2 = std::min(j + ir_search + 1, array.shape.y);
+
+        for (int p = p1; p < p2; p++)
+          for (int q = q1; q < q2; q++)
+          {
+            if (sk(p, q) == 1.f)
+            {
+              float d2 = (float)((i - p) * (i - p) + (j - q) * (j - q));
+              if (d2 < dmax_sk) dmax_sk = d2;
+            }
+
+            if (border(p, q) == 1.f)
+            {
+              float d2 = (float)((i - p) * (i - p) + (j - q) * (j - q));
+              if (d2 < dmax_bd) dmax_bd = d2;
+            }
+          }
+
+        // relative distance (from 1.f on the skeleton to 0.f and
+        // the border)
+        float sum = dmax_bd + dmax_sk;
+        if (sum) rdist(i, j) = dmax_bd / sum;
+      }
+
+  return rdist;
+}
+
+Array skeleton(const Array &array, bool zero_at_borders)
+{
+  // https://github.com/krishraghuram/Zhang-Suen-Skeletonization
+
+  Array sk = array;
+  Array prev;
+  Array diff;
+
+  do
+  {
+    prev = sk;
+
+    helper_thinning(sk, 0);
+    helper_thinning(sk, 1);
+
+    diff = sk - prev;
+
+  } while (diff.count_non_zero() > 0);
+
+  // set border to zero
+  if (zero_at_borders) zeroed_borders(sk);
+
+  return sk;
 }
 
 } // namespace hmap

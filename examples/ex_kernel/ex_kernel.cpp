@@ -13,6 +13,15 @@ int main(void)
   kernels.push_back(hmap::square(shape));
   kernels.push_back(hmap::tricube(shape));
 
+  // windows
+  kernels.push_back(hmap::blackman(shape));
+  kernels.push_back(hmap::hann(shape));
+
+  // specific kernel(s)
+  float kw = 4.f;
+  kernels.push_back(hmap::sinc_radial(shape, kw));
+  kernels.push_back(hmap::sinc_separable(shape, kw));
+
   // generic call function
   kernels.push_back(hmap::get_kernel(shape, hmap::KernelType::TRICUBE));
 
