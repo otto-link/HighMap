@@ -157,6 +157,7 @@ void hydraulic_procedural(Array         &z,
                           float          phase_smoothing,
                           float          phase_noise_amp,
                           bool           reverse_phase,
+                          bool           rotate90,
                           bool           use_default_mask,
                           float          talus_mask,
                           Array         *p_mask,
@@ -192,7 +193,6 @@ void hydraulic_procedural(Array         &z,
   Array gnoise_x;
   Array gnoise_y;
 
-  bool  rotate90 = false;
   Array phase = phase_field(z,
                             kw,
                             width,
