@@ -15,6 +15,8 @@ namespace hmap
 
 Array fft_filter(Array &array, float kc, bool smooth_cutoff)
 {
+#ifndef HMAP_MSVC
+
   if (array.shape.x != array.shape.y)
   {
     LOG_ERROR("Input data must be square. Returning a zero-filled array.");
@@ -114,10 +116,16 @@ Array fft_filter(Array &array, float kc, bool smooth_cutoff)
   fftwf_cleanup();
 
   return array_out;
+
+#else
+  LOG_WARNING("fft filters deactivated, returning zeroed output.");
+  return Array(array.shape);
+#endif
 }
 
 Array fft_filter(Array &array, const std::vector<float> &weights)
 {
+#ifndef HMAP_MSVC
   if (array.shape.x != array.shape.y)
   {
     LOG_ERROR("Input data must be square. Returning a zero-filled array.");
@@ -206,10 +214,16 @@ Array fft_filter(Array &array, const std::vector<float> &weights)
   fftwf_cleanup();
 
   return array_out;
+
+#else
+  LOG_WARNING("fft filters deactivated, returning zeroed output.");
+  return Array(array.shape);
+#endif
 }
 
 Array fft_modulus(Array &array, bool shift_to_center)
 {
+#ifndef HMAP_MSVC
   if (array.shape.x != array.shape.y)
   {
     LOG_ERROR("Input data must be square. Returning a zero-filled array.");
@@ -275,6 +289,11 @@ Array fft_modulus(Array &array, bool shift_to_center)
   fftwf_cleanup();
 
   return modulus;
+
+#else
+  LOG_WARNING("fft filters deactivated, returning zeroed output.");
+  return Array(array.shape);
+#endif
 }
 
 } // namespace hmap
