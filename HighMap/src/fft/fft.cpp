@@ -118,7 +118,7 @@ Array fft_filter(Array &array, float kc, bool smooth_cutoff)
   return array_out;
 
 #else
-  LOG_WARNING("fft filters deactivated, returning zeroed output.");
+  LOG_ERROR("fft filters deactivated, returning zeroed output.");
   return Array(array.shape);
 #endif
 }
@@ -216,7 +216,7 @@ Array fft_filter(Array &array, const std::vector<float> &weights)
   return array_out;
 
 #else
-  LOG_WARNING("fft filters deactivated, returning zeroed output.");
+  LOG_ERROR("fft filters deactivated, returning zeroed output.");
   return Array(array.shape);
 #endif
 }
@@ -291,7 +291,7 @@ Array fft_modulus(Array &array, bool shift_to_center)
   return modulus;
 
 #else
-  LOG_WARNING("fft filters deactivated, returning zeroed output.");
+  LOG_ERROR("fft filters deactivated, returning zeroed output.");
   return Array(array.shape);
 #endif
 }
