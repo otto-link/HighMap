@@ -29,6 +29,18 @@ void flip_ud(Array &array)
       std::swap(array(i, j), array(i, array.shape.y - j - 1));
 }
 
+void rot180(Array &array)
+{
+  flip_lr(array);
+  flip_ud(array);
+}
+
+void rot270(Array &array)
+{
+  array = transpose(array);
+  flip_lr(array);
+}
+
 void rot90(Array &array)
 {
   array = transpose(array);

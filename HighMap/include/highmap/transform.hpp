@@ -63,6 +63,26 @@ void flip_lr(Array &array);
 void flip_ud(Array &array);
 
 /**
+ * @brief Rotate the array by 180 degrees.
+ *
+ * This function rotates the input array by 180 degrees in the counterclockwise
+ * direction. The dimensions of the array will be adjusted accordingly.
+ *
+ * @param array Input array to be rotated by 180 degrees.
+ */
+void rot180(Array &array);
+
+/**
+ * @brief Rotate the array by 270 degrees.
+ *
+ * This function rotates the input array by 270 degrees in the counterclockwise
+ * direction. The dimensions of the array will be adjusted accordingly.
+ *
+ * @param array Input array to be rotated by 270 degrees.
+ */
+void rot270(Array &array);
+
+/**
  * @brief Rotate the array by 90 degrees.
  *
  * This function rotates the input array by 90 degrees in the counterclockwise
