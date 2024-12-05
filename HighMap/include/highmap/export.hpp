@@ -18,6 +18,7 @@
  * @copyright Copyright (c) 2023 Otto Link
  */
 #pragma once
+#include <filesystem>
 #include <map>
 #include <opencv2/imgcodecs.hpp>
 #include <png.h>
@@ -163,6 +164,50 @@ bool export_asset(std::string       fname,
                   float             max_error = 5e-4f);
 
 /**
+ * @brief Exports a 2D array as a cubemap texture with continuity enforcement
+ * and overlapping regions.
+ *
+ * This function generates a cubemap texture from the input array `z`, resamples
+ * the data to fit the cubemap resolution with optional overlapping regions, and
+ * ensures seamless transitions between the six faces of the cubemap. The
+ * cubemap can either be saved as a single texture or split into individual face
+ * textures.
+ *
+ * @param fname Output file name or base name for the cubemap files.
+ * @param z Input 2D array representing the data to be converted into a cubemap.
+ * @param cubemap_resolution Resolution (width and height) of each individual
+ * face of the cubemap.
+ * @param overlap Fraction (0 to 1) of overlap between adjacent faces to ensure
+ * smooth transitions.
+ * @param ir Radius parameter for smoothing at triple corners.
+ * @param cmap Colormap to be applied when exporting the textures.
+ * @param splitted If true, exports each face of the cubemap as a separate
+ * image; otherwise, exports the entire cubemap as a single texture.
+ * @param p_cubemap Pointer to an optional output array where the final cubemap
+ * data will be stored.
+ *
+ * The generated cubemap maintains continuity between faces, adjusting values at
+ * overlapping regions and corners using smooth transitions. If the `splitted`
+ * flag is set, six individual PNG images are generated for the cubemap faces
+ * with appropriate suffixes appended to the base name. Otherwise, the entire
+ * cubemap is exported as a single texture file.
+ *
+ * **Example**
+ * @include ex_export_as_cubemap.cpp
+ *
+ * **Result**
+ * @image html ex_export_as_cubemap.png
+ */
+void export_as_cubemap(std::string  fname,
+                       const Array &z,
+                       int          cubemap_resolution = 128,
+                       float        overlap = 0.25f,
+                       int          ir = 16,
+                       Cmap         cmap = Cmap::GRAY,
+                       bool         splitted = false,
+                       Array       *p_cubemap = nullptr);
+
+/**
  * @brief Exports a set of arrays as a banner PNG image file.
  *
  * This function takes a vector of arrays and exports them as a single banner
@@ -265,6 +310,10 @@ Array read_to_array(std::string fname);
 void write_raw_16bit(std::string fname, const Array &array);
 
 // helper
+std::filesystem::path add_filename_suffix(
+    const std::filesystem::path &file_path,
+    const std::string           &suffix);
+
 Tensor compute_nmap(const Array &array);
 
 } // namespace hmap

@@ -786,6 +786,8 @@ public:
    */
   void set_slice(Vec4<int> idx, float value);
 
+  void set_slice(Vec4<int> idx, const Array array); ///< @overload
+
   /**
    * @brief Return the total number of elements in the array.
    *

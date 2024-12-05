@@ -1,0 +1,2 @@
+add_executable(ex_export_as_cubemap ex_export_as_cubemap.cpp)
+target_link_libraries(ex_export_as_cubemap highmap)

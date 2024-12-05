@@ -371,6 +371,13 @@ void Array::set_slice(Vec4<int> idx, float value)
       (*this)(i, j) = value;
 }
 
+void Array::set_slice(Vec4<int> idx, const Array array)
+{
+  for (int i = idx.a; i < idx.b; i++)
+    for (int j = idx.c; j < idx.d; j++)
+      (*this)(i, j) = array(i - idx.a, j - idx.c);
+}
+
 int Array::size() const
 {
   return this->shape.x * this->shape.y;
