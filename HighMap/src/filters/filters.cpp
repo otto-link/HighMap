@@ -905,6 +905,34 @@ void smooth_fill_smear_peaks(Array &array, int ir, Array *p_mask)
   }
 }
 
+void smoothstep_local(Array &array, int ir)
+{
+  Array amin = minimum_local(array, ir);
+  Array amax = maximum_local(array, ir);
+
+  smooth_cpulse(amin, ir);
+  smooth_cpulse(amax, ir);
+
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
+    {
+      float v = (array(i, j) - amin(i, j)) / (amax(i, j) - amin(i, j) + 1e-30);
+      array(i, j) = smoothstep3(v) * (amax(i, j) - amin(i, j)) + amin(i, j);
+    }
+}
+
+void smoothstep_local(Array &array, int ir, Array *p_mask)
+{
+  if (!p_mask)
+    smoothstep_local(array, ir);
+  else
+  {
+    Array array_f = array;
+    smoothstep_local(array_f, ir);
+    array = lerp(array, array_f, *(p_mask));
+  }
+}
+
 void steepen(Array &array, float scale, int ir)
 {
   Array dx = gradient_x(array) * ((float)array.shape.x * -scale);

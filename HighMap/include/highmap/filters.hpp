@@ -1758,6 +1758,45 @@ void smooth_fill_smear_peaks(Array &array,
                              Array *p_mask); ///< @overload
 
 /**
+ * @brief Applies a localized smoothstep operation to the provided array.
+ *
+ * This function modifies the input array using a localized smoothstep
+ * operation. It calculates the local minimum and maximum values within a radius
+ * (`ir`) and smooths the values in the array based on these bounds.
+ *
+ * @param array The 2D array to be smoothed.
+ * @param ir The radius used to compute the local minimum and maximum values.
+ *
+ * **Example**
+ * @include ex_smoothstep_local.cpp
+ *
+ * **Result**
+ * @image html ex_smoothstep_local.png
+ */
+void smoothstep_local(Array &array, int ir);
+
+/**
+ * @brief Applies a localized smoothstep operation to the provided array with an
+ * optional mask.
+ *
+ * If a mask is provided, the function blends the smoothed values with the
+ * original array using the mask. Otherwise, it directly applies the localized
+ * smoothstep operation.
+ *
+ * @param array The 2D array to be smoothed.
+ * @param ir The radius used to compute the local minimum and maximum values.
+ * @param p_mask A pointer to an optional mask array. If provided, the smoothed
+ * array is blended with the original using this mask.
+ *
+ * **Example**
+ * @include ex_smoothstep_local.cpp
+ *
+ * **Result**
+ * @image html ex_smoothstep_local.png
+ */
+void smoothstep_local(Array &array, int ir, Array *p_mask);
+
+/**
  * @brief Steepen (or flatten) the array map.
  *
  * This function applies a steepening effect to the input array, enhancing the

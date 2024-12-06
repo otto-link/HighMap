@@ -1,0 +1,2 @@
+add_executable(ex_smoothstep_local ex_smoothstep_local.cpp)
+target_link_libraries(ex_smoothstep_local highmap)
