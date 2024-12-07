@@ -36,6 +36,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
 
 if(HIGHMAP_ENABLE_OPENCL)
   find_package(OpenCL REQUIRED)
+  message(STATUS "OpenCL enabled")
+  add_definitions("-DENABLE_OPENCL")
+else()
+  message(STATUS "OpenCL disabled")
 endif(HIGHMAP_ENABLE_OPENCL)
 
 add_subdirectory(external)

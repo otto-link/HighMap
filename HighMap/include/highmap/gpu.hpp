@@ -20,7 +20,7 @@
 #include <CL/opencl.hpp>
 
 #include "highmap/array.hpp"
-#include "highmap/dbg.hpp"
+#include "highmap/dbg/timer.hpp"
 
 // https://streamhpc.com/blog/2013-04-28/opencl-error-codes/
 #define OPENCL_ERROR_MESSAGE(err, msg)                                         \

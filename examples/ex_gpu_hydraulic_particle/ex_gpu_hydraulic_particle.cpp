@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "highmap.hpp"
+#include "highmap/gpu.hpp"
 
 int main(void)
 {
@@ -12,9 +13,9 @@ int main(void)
   hmap::gpu::OpenCLConfig gpu_config;
   // gpu_config.infos();
 
-  hmap::Timer timer = hmap::Timer("main");
+  hmap::Timer::Start("main");
 
-  hmap::Array z = hmap::fbm_simplex(shape, res, seed);
+  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, res, seed);
   hmap::remap(z);
 
   int nparticles = 100000;
@@ -27,18 +28,18 @@ int main(void)
 
     z1 = z;
 
-    timer.start("full GPU");
+    hmap::Timer::Start("full GPU");
     hmap::gpu::hydraulic_particle(gpu_config, z1, nparticles, seed);
-    timer.stop("full GPU");
+    hmap::Timer::Stop("full GPU");
 
-    timer.start("median filter GPU");
+    hmap::Timer::Start("median filter GPU");
     hmap::gpu::median_3x3_img(gpu_config, z1);
-    timer.stop("median filter GPU");
+    hmap::Timer::Stop("median filter GPU");
   }
 
   hmap::export_banner_png("ex_gpu_hydraulic_particle.png",
                           {z, z1},
-                          hmap::cmap::terrain,
+                          hmap::Cmap::TERRAIN,
                           true);
 #else
   LOG_ERROR("OpenCL not activated");
