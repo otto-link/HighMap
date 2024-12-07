@@ -69,6 +69,61 @@ enum neighborhood : int
 Array diffusion_retargeting(Array &array_before, Array &array_after, int ir);
 
 /**
+ * @brief Applies a directional blur to the provided 2D array based on a
+ * spatially varying angle.
+ *
+ * This function blurs the input array by interpolating values along the
+ * direction specified by the `angle` array. The blur intensity decreases with
+ * distance up to the given radius (`ir`), and smoothing weights are computed
+ * using a smoothstep function.
+ *
+ * @param array The 2D array to be blurred.
+ * @param ir The radius of the blur operation (number of steps).
+ * @param angle A 2D array specifying the directional angle (in degrees) for
+ * each pixel.
+ * @param intensity The maximum intensity of the blur at the starting point of
+ * the radius.
+ *
+ * @note The `angle` values should be in degrees, where 0° points to the right
+ * (positive x-direction).
+ *
+ * **Example**
+ * @include ex_directional_blur.cpp
+ *
+ * **Result**
+ * @image html ex_directional_blur.png
+ */
+void directional_blur(Array &array, int ir, float angle, float intensity);
+
+/**
+ * @brief Applies a directional blur to the provided 2D array with a constant
+ * angle.
+ *
+ * This function is a convenience wrapper that applies a directional blur using
+ * a constant angle for all pixels. Internally, it creates a uniform angle array
+ * and calls the primary `directional_blur` function.
+ *
+ * @param array The 2D array to be blurred.
+ * @param ir The radius of the blur operation (number of steps).
+ * @param angle The constant directional angle (in degrees) for the blur.
+ * @param intensity The maximum intensity of the blur at the starting point of
+ * the radius.
+ *
+ * @note The `angle` value should be in degrees, where 0° points to the right
+ * (positive x-direction).
+ *
+ * **Example**
+ * @include ex_directional_blur.cpp
+ *
+ * **Result**
+ * @image html ex_directional_blur.png
+ */
+void directional_blur(Array       &array,
+                      int          ir,
+                      const Array &angle,
+                      float        intensity);
+
+/**
  * @brief Apply histogram equalization to the array values.
  *
  * This function performs histogram equalization on the input array to enhance

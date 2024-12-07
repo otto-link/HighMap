@@ -1,0 +1,2 @@
+add_executable(ex_directional_blur ex_directional_blur.cpp)
+target_link_libraries(ex_directional_blur highmap)
