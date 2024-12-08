@@ -8,18 +8,18 @@
 #include "highmap/array.hpp"
 #include "highmap/boundary.hpp"
 #include "highmap/erosion.hpp"
+#include "highmap/geometry/grids.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/math.hpp"
 #include "highmap/primitives.hpp"
 #include "highmap/range.hpp"
 
-#define DT 1.f
-#define VOLUME_INIT 1.f
-#define VOLUME_MIN 0.01f
-#define SPAWN_MOISTURE_LOW_LIMIT 0.1f
-#define VELOCITY_INIT 0.f
-#define VELOCITY_MIN 0.001f
-#define GRADIENT_MIN 0.0001f
+#include "highmap/geometry/cloud.hpp"
+
+#include "highmap/internal/particles.hpp"
+
+#define HMAP_EROSION_DT 1.f
+#define HMAP_EROSION_VOLUME_MIN 0.01f
 
 namespace hmap
 {
@@ -35,7 +35,6 @@ void hydraulic_particle(Array &z,
                         Array *p_moisture_map,
                         Array *p_erosion_map,
                         Array *p_deposition_map,
-                        int    c_radius,
                         float  c_capacity,
                         float  c_erosion,
                         float  c_deposition,
@@ -44,130 +43,106 @@ void hydraulic_particle(Array &z,
 {
   const int ni = z.shape.x;
   const int nj = z.shape.y;
-  float     dt = DT;
+  float     dt = HMAP_EROSION_DT;
 
   std::mt19937                          gen(seed);
   std::uniform_real_distribution<float> dis(0, 1);
 
   // --- initialization
 
-  // define erosion kernel
-  const int ir = c_radius;
-  const int nk = 2 * ir + 1;
-  Array     kernel = tricube({nk, nk});
-
-  kernel.normalize();
-
   // keep a backup of the input if the erosion / deposition maps need
   // to be computed
   Array z_bckp = Array();
   if ((p_erosion_map != nullptr) | (p_deposition_map != nullptr)) z_bckp = z;
 
-  // --- main loop
+  // particles spawning positions defined using the moisture map as a density
+  // map
+  std::vector<float> x0(nparticles);
+  std::vector<float> y0(nparticles);
+  Array       density = p_moisture_map ? *p_moisture_map : Array(z.shape, 1.f);
+  Vec4<float> bbox(1.f, (float)z.shape.x - 2.f, 1.f, (float)z.shape.y - 2.f);
+
+  random_grid_density(x0, y0, density, seed, bbox);
+
+  // spawn particles
+  std::vector<Particle> particles;
+  particles.reserve(nparticles);
 
   for (int ip = 0; ip < nparticles; ip++)
   {
-    float x = 0.f;
-    float y = 0.f;
-    float vx = VELOCITY_INIT * (2.f * dis(gen) - 1.f);
-    float vy = VELOCITY_INIT * (2.f * dis(gen) - 1.f);
-    float s = 0.f; // sediment
-    float volume = 0.f;
+    Particle p(c_capacity, c_erosion, c_deposition, drag_rate);
+    p.set_xy(x0[ip], y0[ip]);
+    p.volume = density(p.pos.i, p.pos.j);
+    
+    particles.push_back(p);
+  }
 
-    // keep spawning new particle in [1, shape[...] - 2] until the
-    // initial volume is large enough (to avoid using particle from
-    // dry regions)
-    if (p_moisture_map)
+  // --- main loop
+  
+  // keep track of the number of active particles
+  int n_active_particles = nparticles;
+
+  // loop over particles
+  while (n_active_particles > 0)
+  {
+    for (auto &particle : particles)
     {
-      int count = 0;
-      do
+      if (particle.is_active)
       {
-        x = dis(gen) * (float)(ni - 3) + 1;
-        y = dis(gen) * (float)(nj - 3) + 1;
-        count++;
-      } while (((*p_moisture_map)((int)x, (int)y) < SPAWN_MOISTURE_LOW_LIMIT) &&
-               (count < 20));
-      volume = VOLUME_INIT * (*p_moisture_map)((int)x, (int)y);
-    }
-    else
-    {
-      x = dis(gen) * (float)(ni - 3) + 1;
-      y = dis(gen) * (float)(nj - 3) + 1;
-      volume = VOLUME_INIT;
-    }
+        float z_prev = z.get_value_bilinear_at(particle.pos.i,
+                                               particle.pos.j,
+                                               particle.pos.u,
+                                               particle.pos.v);
+        Pos   pos_prev = particle.pos;
 
-    int i_next = (int)x;
-    int j_next = (int)y;
+        particle.move(z, dt);
 
-    while (volume > VOLUME_MIN)
-    {
-      int   i = i_next;
-      int   j = j_next;
-      float u = x - (float)i_next;
-      float v = y - (float)j_next;
-      float z_old = z.get_value_bilinear_at(i, j, u, v);
+        if ((particle.pos.i < 1) or (particle.pos.i > ni - 2) or
+            (particle.pos.j < 1) or (particle.pos.j > nj - 2))
+        {
+          particle.is_active = false;
+        }
+        else
+        {
+          float z_next = z.get_value_bilinear_at(particle.pos.i,
+                                                 particle.pos.j,
+                                                 particle.pos.u,
+                                                 particle.pos.v);
 
-      // surface normal \nabla z = (-dz/dx, -dz/dy, 1), not normalized
-      // since its norm is already very close to one, assuming 'z'
-      // scales with unity
-      float nx = -z.get_gradient_x_bilinear_at(i, j, u, v);
-      float ny = -z.get_gradient_y_bilinear_at(i, j, u, v);
+          // particle sediment capacity
+          float dz = z_prev - z_next;
+          float sc = particle.c_capacity * particle.volume * particle.vnorm *
+                     dz;
+          float delta_sc = dt * (sc - particle.sediment);
+          float amount;
 
-      if (approx_hypot(nx, ny) < GRADIENT_MIN) break;
+          if (delta_sc > 0.f)
+            amount = particle.c_erosion * delta_sc; // erosion
+          else
+            amount = particle.c_deposition * delta_sc; // deposition
 
-      // classical mechanics (with gravity = 1)
-      vx += dt * nx;
-      vy += dt * ny;
+          particle.sediment += amount;
 
-      // drag
-      vx *= (1.f - dt * drag_rate);
-      vy *= (1.f - dt * drag_rate);
+          z.depose_amount_bilinear_at(pos_prev.i,
+                                      pos_prev.j,
+                                      pos_prev.u,
+                                      pos_prev.v,
+                                      -amount);
 
-      float vnorm = approx_hypot(vx, vy);
+          // make sure bedrock is not eroded
+          if (p_bedrock)
+            z(pos_prev.i,
+              pos_prev.j) = std::max(z(pos_prev.i, pos_prev.j),
+                                     (*p_bedrock)(pos_prev.i, pos_prev.j));
 
-      if (vnorm < VELOCITY_MIN) break;
+          particle.volume *= (1 - dt * evap_rate);
 
-      // move particle
-      x += dt * vx;
-      y += dt * vy;
+          if (particle.volume < HMAP_EROSION_VOLUME_MIN)
+            particle.is_active = false;
+        }
 
-      // perform erosion / deposition
-      i_next = (int)x;
-      j_next = (int)y;
-
-      float u_next = x - (float)i_next;
-      float v_next = y - (float)j_next;
-
-      if ((i_next < 1) or (i_next > ni - 2) or (j_next < 1) or
-          (j_next > nj - 2))
-        break;
-
-      float z_next = z.get_value_bilinear_at(i_next, j_next, u_next, v_next);
-
-      // particle sediment capacity
-      float dz = z_old - z_next;
-      float sc = c_capacity * volume * vnorm * dz;
-      float delta_sc = dt * (sc - s);
-      float amount;
-
-      if (delta_sc > 0.f)
-        amount = c_erosion * delta_sc; // erosion
-      else
-        amount = c_deposition * delta_sc; // deposition
-
-      s += amount;
-
-      if (ir == 0)
-        z.depose_amount_bilinear_at(i, j, u, v, -amount);
-      else if ((i > ir) and (i < ni - ir - 1) and (j > ir) and
-               (j < nj - ir - 1))
-        // kernel-based - VERY SLOW
-        z.depose_amount_kernel_bilinear_at(i, j, u, v, ir, -amount);
-
-      // make sure bedrock is not eroded
-      if (p_bedrock) z(i, j) = std::max(z(i, j), (*p_bedrock)(i, j));
-
-      volume *= (1 - dt * evap_rate);
+        if (!particle.is_active) n_active_particles--;
+      }
     }
   }
 
@@ -201,8 +176,7 @@ void hydraulic_particle(Array &z,
                         Array *p_moisture_map,
                         Array *p_erosion_map,
                         Array *p_deposition_map,
-                        int    c_radius,
-                        float  c_capacity,
+                         float  c_capacity,
                         float  c_erosion,
                         float  c_deposition,
                         float  drag_rate,
@@ -216,7 +190,6 @@ void hydraulic_particle(Array &z,
                        p_moisture_map,
                        p_erosion_map,
                        p_deposition_map,
-                       c_radius,
                        c_capacity,
                        c_erosion,
                        c_deposition,
@@ -232,7 +205,6 @@ void hydraulic_particle(Array &z,
                        p_moisture_map,
                        p_erosion_map,
                        p_deposition_map,
-                       c_radius,
                        c_capacity,
                        c_erosion,
                        c_deposition,
