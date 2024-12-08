@@ -537,6 +537,8 @@ void gamma_correction_local(Array &array,
                             Array *p_mask,
                             float  k = 0.1f);
 
+void kuwahara(Array &array, int ir, float mix_ratio = 1.f);
+
 /**
  * @brief Apply a low-pass Laplace filter to the input array.
  *

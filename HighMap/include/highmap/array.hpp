@@ -800,6 +800,12 @@ public:
   int size() const;
 
   /**
+   * @brief Return the standard deviation of all array values.
+   * @return float The standard deviation of all elements in the array.
+   */
+  float std() const;
+
+  /**
    * @brief Return the sum of all array values.
    *
    *        This function calculates and returns the sum of all elements in the

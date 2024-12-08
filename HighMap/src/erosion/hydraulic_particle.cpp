@@ -73,12 +73,12 @@ void hydraulic_particle(Array &z,
     Particle p(c_capacity, c_erosion, c_deposition, drag_rate);
     p.set_xy(x0[ip], y0[ip]);
     p.volume = density(p.pos.i, p.pos.j);
-    
+
     particles.push_back(p);
   }
 
   // --- main loop
-  
+
   // keep track of the number of active particles
   int n_active_particles = nparticles;
 
@@ -176,7 +176,7 @@ void hydraulic_particle(Array &z,
                         Array *p_moisture_map,
                         Array *p_erosion_map,
                         Array *p_deposition_map,
-                         float  c_capacity,
+                        float  c_capacity,
                         float  c_erosion,
                         float  c_deposition,
                         float  drag_rate,
