@@ -757,6 +757,118 @@ Array peak(Vec2<int>   shape,
            Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
+ * @brief Generates a phasor noise field based on a Gabor noise model and phase
+ * profile.
+ *
+ * This function creates a phasor noise array using a Gabor kernel approach,
+ * applying a specified phase profile, smoothing, and density settings. The
+ * output is influenced by the shape, frequency, and various noise
+ * characteristics, allowing fine control over the generated noise field.
+ *
+ * @param phasor_profile The phase profile to apply. Determines the type of
+ * phasor function used (e.g., bulky cosine, peaky cosine).
+ * @param shape The dimensions of the output array as a 2D vector (width x
+ * height).
+ * @param kw The wave number (frequency) of the Gabor kernel.
+ * @param angle An array specifying the angle field for the Gabor kernel
+ * orientation.
+ * @param seed A seed value for the random number generator used to create
+ * jittered spawn points for Gabor kernels.
+ * @param profile_delta A parameter for adjusting the delta in the phase profile
+ * function.
+ * @param density_factor A scaling factor for the density of Gabor kernel spawn
+ * points.
+ * @param kernel_width_ratio The ratio of the kernel width to the phase field
+ * resolution.
+ * @param phase_smoothing A factor for controlling the blending of the phase
+ * profile. Larger values result in smoother transitions.
+ * @return An `Array` containing the generated phasor noise field.
+ *
+ * @throws std::invalid_argument If an invalid `phasor_profile` is provided.
+ *
+ * @note If the kernel width is too small (less than 4), the function returns a
+ * zeroed array.
+ *
+ * @details
+ * The function performs the following steps:
+ * - Generates Gabor kernel spawn points using jittered random sampling.
+ * - Constructs Gabor kernels based on the input angle field and applies them to
+ * noise arrays.
+ * - Computes a phase field from the Gabor noise using `atan2`.
+ * - Applies the specified phase profile using the
+ * `get_phasor_profile_function`.
+ * - Smooths the phase field if `phase_smoothing` is greater than zero.
+ *
+ * **Example**
+ * @include ex_phasor.cpp
+ *
+ * **Result**
+ * @image html ex_phasor.png
+ */
+Array phasor(PhasorProfile phasor_profile,
+             Vec2<int>     shape,
+             float         kw,
+             const Array  &angle,
+             uint          seed,
+             float         profile_delta = 0.1f,
+             float         density_factor = 1.f,
+             float         kernel_width_ratio = 2.f,
+             float         phase_smoothing = 2.f);
+
+/**
+ * @brief Generates a fractal Brownian motion (fBm) noise field using layered
+ * phasor profiles.
+ *
+ * @param phasor_profile The phase profile to apply for each noise layer (e.g.,
+ * bulky cosine, peaky cosine).
+ * @param shape The dimensions of the output array as a 2D vector (width x
+ * height).
+ * @param kw The base wave number (frequency) for the first noise layer.
+ * @param angle An array specifying the angle field for the Gabor kernel
+ * orientation in each layer.
+ * @param seed A seed value for the random number generator used in all noise
+ * layers.
+ * @param profile_delta A parameter for adjusting the delta in the phase profile
+ * function.
+ * @param density_factor A scaling factor for the density of Gabor kernel spawn
+ * points in each layer.
+ * @param kernel_width_ratio The ratio of the kernel width to the phase field
+ * resolution.
+ * @param phase_smoothing A factor for controlling the blending of the phase
+ * profile. Larger values result in smoother transitions.
+ * @param octaves The number of noise layers (octaves) to generate.
+ * @param weight A factor for controlling amplitude adjustments based on the
+ * previous layer's values.
+ * @param persistence A factor controlling how amplitude decreases across
+ * successive octaves. Values <1 cause rapid decay.
+ * @param lacunarity A factor controlling how frequency increases across
+ * successive octaves. Values >1 cause rapid growth.
+ * @return An `Array` containing the generated fBm noise field.
+ *
+ * @throws std::invalid_argument If an invalid `phasor_profile` is provided to
+ * the underlying `phasor` function.
+ *
+ * **Example**
+ * @include ex_phasor.cpp
+ *
+ * **Result**
+ * @image html ex_phasor.png
+ */
+Array phasor_fbm(PhasorProfile phasor_profile,
+                 Vec2<int>     shape,
+                 float         kw,
+                 const Array  &angle,
+                 uint          seed,
+                 float         profile_delta = 0.1f,
+                 float         density_factor = 1.f,
+                 float         kernel_width_ratio = 2.f,
+                 float         phase_smoothing = 2.f,
+                 int           octaves = 8,
+                 float         weight = 0.7f,
+                 float         persistence = 0.5f,
+                 float         lacunarity = 2.f);
+
+/**
  * @brief Return a rift function (Heaviside with an optional talus slope at
  * the transition).
  *

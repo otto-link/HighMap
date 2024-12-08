@@ -47,6 +47,18 @@ enum DistanceFunction : int
 };
 
 /**
+ * @brief Phasor angular profile type.
+ */
+enum PhasorProfile : int
+{
+  COSINE_BULKY,
+  COSINE_PEAKY,
+  COSINE_SQUARE,
+  COSINE_STD,
+  TRIANGLE,
+};
+
+/**
  * @brief Return the absolute value of the array elements.
  *
  * @param array Input array.
@@ -191,6 +203,33 @@ Array gaussian_decay(const Array &array, float sigma);
  */
 std::function<float(float, float)> get_distance_function(
     DistanceFunction dist_fct);
+
+/**
+ * @brief Generates a function representing a phasor profile based on the
+ * specified type and parameters.
+ *
+ * This function returns a callable object (`std::function`) that computes the
+ * value of the specified phasor profile for a given phase angle (phi).
+ * Optionally, it can compute the average value of the profile over the range
+ * [-π, π].
+ *
+ * @param phasor_profile The type of phasor profile to generate.
+ * @param delta A parameter that can influence the profile (depending on the
+ * profile choice).
+ * @param p_profile_avg Optional pointer to a float. If not `nullptr`, it will
+ * store the average value of the profile over the range [-π, π].
+ * @return A `std::function<float(float)>` that computes the phasor profile for
+ * a given phase angle.
+ *
+ * @throws std::invalid_argument If the provided `phasor_profile` is invalid.
+ *
+ * @note The average value is computed using numerical integration over 50
+ * sample points within [-π, π].
+ */
+std::function<float(float)> get_phasor_profile_function(
+    const PhasorProfile &phasor_profile,
+    float                delta,
+    float               *p_profile_avg = nullptr);
 
 /**
  * @brief Computes the highest power of 2 less than or equal to the given
