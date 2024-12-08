@@ -351,6 +351,52 @@ void gamma_correction_local(Array &array,
   }
 }
 
+void kuwahara(Array &array, int ir, float mix_ratio)
+{
+
+  Array array_buffered = generate_buffered_array(array,
+                                                 Vec4<int>(ir, ir, ir, ir));
+  Array array_out(array_buffered.shape);
+
+  for (int i = ir; i < array_buffered.shape.x - ir; i++)
+    for (int j = ir; j < array_buffered.shape.y - ir; j++)
+    {
+      // build quadrants
+      Array q1 = array_buffered.extract_slice(
+          Vec4<int>(i - ir, i + 1, j - ir, j + 1));
+      Array q2 = array_buffered.extract_slice(
+          Vec4<int>(i - ir, i + 1, j + 1, j + ir));
+      Array q3 = array_buffered.extract_slice(
+          Vec4<int>(i + 1, i + ir, j - ir, j + 1));
+      Array q4 = array_buffered.extract_slice(
+          Vec4<int>(i + 1, i + ir, j + 1, j + ir));
+
+      std::vector<float> means = {q1.mean(), q2.mean(), q3.mean(), q4.mean()};
+      std::vector<float> stds = {q1.std(), q2.std(), q3.std(), q4.std()};
+
+      size_t imin = std::min_element(stds.begin(), stds.end()) - stds.begin();
+      array_out(i, j) = means[imin];
+    }
+
+  if (mix_ratio == 1.f)
+  {
+    array = array_out.extract_slice(Vec4<int>(ir,
+                                              array_buffered.shape.x - ir,
+                                              ir,
+                                              array_buffered.shape.y - ir));
+  }
+  else
+  {
+    array = lerp(
+        array,
+        array_out.extract_slice(Vec4<int>(ir,
+                                          array_buffered.shape.x - ir,
+                                          ir,
+                                          array_buffered.shape.y - ir)),
+        mix_ratio);
+  }
+}
+
 void laplace(Array &array, float sigma, int iterations)
 {
   for (int it = 0; it < iterations; it++)
@@ -901,6 +947,34 @@ void smooth_fill_smear_peaks(Array &array, int ir, Array *p_mask)
   {
     Array array_f = array;
     smooth_fill_smear_peaks(array_f, ir);
+    array = lerp(array, array_f, *(p_mask));
+  }
+}
+
+void smoothstep_local(Array &array, int ir)
+{
+  Array amin = minimum_local(array, ir);
+  Array amax = maximum_local(array, ir);
+
+  smooth_cpulse(amin, ir);
+  smooth_cpulse(amax, ir);
+
+  for (int i = 0; i < array.shape.x; i++)
+    for (int j = 0; j < array.shape.y; j++)
+    {
+      float v = (array(i, j) - amin(i, j)) / (amax(i, j) - amin(i, j) + 1e-30);
+      array(i, j) = smoothstep3(v) * (amax(i, j) - amin(i, j)) + amin(i, j);
+    }
+}
+
+void smoothstep_local(Array &array, int ir, Array *p_mask)
+{
+  if (!p_mask)
+    smoothstep_local(array, ir);
+  else
+  {
+    Array array_f = array;
+    smoothstep_local(array_f, ir);
     array = lerp(array, array_f, *(p_mask));
   }
 }

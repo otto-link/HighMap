@@ -69,6 +69,61 @@ enum neighborhood : int
 Array diffusion_retargeting(Array &array_before, Array &array_after, int ir);
 
 /**
+ * @brief Applies a directional blur to the provided 2D array based on a
+ * spatially varying angle.
+ *
+ * This function blurs the input array by interpolating values along the
+ * direction specified by the `angle` array. The blur intensity decreases with
+ * distance up to the given radius (`ir`), and smoothing weights are computed
+ * using a smoothstep function.
+ *
+ * @param array The 2D array to be blurred.
+ * @param ir The radius of the blur operation (number of steps).
+ * @param angle A 2D array specifying the directional angle (in degrees) for
+ * each pixel.
+ * @param intensity The maximum intensity of the blur at the starting point of
+ * the radius.
+ *
+ * @note The `angle` values should be in degrees, where 0° points to the right
+ * (positive x-direction).
+ *
+ * **Example**
+ * @include ex_directional_blur.cpp
+ *
+ * **Result**
+ * @image html ex_directional_blur.png
+ */
+void directional_blur(Array &array, int ir, float angle, float intensity);
+
+/**
+ * @brief Applies a directional blur to the provided 2D array with a constant
+ * angle.
+ *
+ * This function is a convenience wrapper that applies a directional blur using
+ * a constant angle for all pixels. Internally, it creates a uniform angle array
+ * and calls the primary `directional_blur` function.
+ *
+ * @param array The 2D array to be blurred.
+ * @param ir The radius of the blur operation (number of steps).
+ * @param angle The constant directional angle (in degrees) for the blur.
+ * @param intensity The maximum intensity of the blur at the starting point of
+ * the radius.
+ *
+ * @note The `angle` value should be in degrees, where 0° points to the right
+ * (positive x-direction).
+ *
+ * **Example**
+ * @include ex_directional_blur.cpp
+ *
+ * **Result**
+ * @image html ex_directional_blur.png
+ */
+void directional_blur(Array       &array,
+                      int          ir,
+                      const Array &angle,
+                      float        intensity);
+
+/**
  * @brief Apply histogram equalization to the array values.
  *
  * This function performs histogram equalization on the input array to enhance
@@ -481,6 +536,8 @@ void gamma_correction_local(Array &array,
                             int    ir,
                             Array *p_mask,
                             float  k = 0.1f);
+
+void kuwahara(Array &array, int ir, float mix_ratio = 1.f);
 
 /**
  * @brief Apply a low-pass Laplace filter to the input array.
@@ -1756,6 +1813,45 @@ void smooth_fill_smear_peaks(Array &array, int ir);
 void smooth_fill_smear_peaks(Array &array,
                              int    ir,
                              Array *p_mask); ///< @overload
+
+/**
+ * @brief Applies a localized smoothstep operation to the provided array.
+ *
+ * This function modifies the input array using a localized smoothstep
+ * operation. It calculates the local minimum and maximum values within a radius
+ * (`ir`) and smooths the values in the array based on these bounds.
+ *
+ * @param array The 2D array to be smoothed.
+ * @param ir The radius used to compute the local minimum and maximum values.
+ *
+ * **Example**
+ * @include ex_smoothstep_local.cpp
+ *
+ * **Result**
+ * @image html ex_smoothstep_local.png
+ */
+void smoothstep_local(Array &array, int ir);
+
+/**
+ * @brief Applies a localized smoothstep operation to the provided array with an
+ * optional mask.
+ *
+ * If a mask is provided, the function blends the smoothed values with the
+ * original array using the mask. Otherwise, it directly applies the localized
+ * smoothstep operation.
+ *
+ * @param array The 2D array to be smoothed.
+ * @param ir The radius used to compute the local minimum and maximum values.
+ * @param p_mask A pointer to an optional mask array. If provided, the smoothed
+ * array is blended with the original using this mask.
+ *
+ * **Example**
+ * @include ex_smoothstep_local.cpp
+ *
+ * **Result**
+ * @image html ex_smoothstep_local.png
+ */
+void smoothstep_local(Array &array, int ir, Array *p_mask);
 
 /**
  * @brief Steepen (or flatten) the array map.

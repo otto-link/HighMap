@@ -12,9 +12,7 @@ int main(void)
   hmap::gpu::OpenCLConfig gpu_config;
   // gpu_config.infos();
 
-  hmap::Timer timer = hmap::Timer("main");
-
-  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::n_perlin, shape, res, seed);
+  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, res, seed);
   hmap::remap(z);
 
   // CPU
@@ -38,7 +36,7 @@ int main(void)
 
   hmap::export_banner_png("ex_gpu_maximum_local_weighted.png",
                           {z, z1, z2},
-                          hmap::cmap::inferno);
+                          hmap::Cmap::INFERNO);
 #else
   std::cout << "OpenCL not activated\n";
 #endif

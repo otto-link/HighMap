@@ -288,7 +288,6 @@ void hydraulic_musgrave(Array &z,
  * field.
  * @param p_deposition_map [out] Reference to the deposition map, provided as an
  * output field.
- * @param c_radius Particle radius in pixel(s) (>= 0).
  * @param c_capacity Sediment capacity.
  * @param c_deposition Deposition coefficient.
  * @param c_erosion Erosion coefficient.
@@ -310,7 +309,6 @@ void hydraulic_particle(Array &z,
                         Array *p_moisture_map = nullptr,
                         Array *p_erosion_map = nullptr,    // -> out
                         Array *p_deposition_map = nullptr, // -> out
-                        int    c_radius = 0,
                         float  c_capacity = 10.f,
                         float  c_erosion = 0.05f,
                         float  c_deposition = 0.01f,
@@ -324,7 +322,6 @@ void hydraulic_particle(Array &z,
                         Array *p_moisture_map = nullptr,
                         Array *p_erosion_map = nullptr,    // -> out
                         Array *p_deposition_map = nullptr, // -> out
-                        int    c_radius = 0,
                         float  c_capacity = 10.f,
                         float  c_erosion = 0.05f,
                         float  c_deposition = 0.01f,
@@ -345,7 +342,6 @@ void hydraulic_particle(Array &z,
  * field.
  * @param p_deposition_map [out] Reference to the deposition map, provided as an
  * output field.
- * @param c_radius Particle radius in pixel(s) (>= 0).
  * @param c_capacity Sediment capacity.
  * @param c_deposition Deposition coefficient.
  * @param c_erosion Erosion coefficient.
@@ -370,7 +366,6 @@ void hydraulic_particle_multiscale(Array &z,
                                    Array *p_moisture_map = nullptr,
                                    Array *p_erosion_map = nullptr,    // -> out
                                    Array *p_deposition_map = nullptr, // -> out
-                                   int    c_radius = 0,
                                    float  c_capacity = 10.f,
                                    float  c_erosion = 0.05f,
                                    float  c_deposition = 0.01f,

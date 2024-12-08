@@ -383,6 +383,14 @@ int Array::size() const
   return this->shape.x * this->shape.y;
 }
 
+float Array::std() const
+{
+  float mean = this->mean();
+  Array a2 = (*this) - mean;
+  a2 *= a2;
+  return a2.mean();
+};
+
 float Array::sum() const
 {
   return std::accumulate(this->vector.begin(), this->vector.end(), 0.f);

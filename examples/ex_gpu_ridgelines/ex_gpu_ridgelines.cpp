@@ -27,11 +27,9 @@ int main(void)
   auto z3 = hmap::ridgelines(shape, x, y, v, slope);
   hmap::remap(z3);
 
-  hmap::export_wavefront_obj("hmap.obj", z2, hmap::mesh_type::quad);
-
   hmap::export_banner_png("ex_gpu_ridgelines.png",
                           {z1, z2, z3},
-                          hmap::cmap::inferno);
+                          hmap::Cmap::INFERNO);
 #else
   std::cout << "OpenCL not activated\n";
 #endif

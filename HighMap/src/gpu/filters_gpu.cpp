@@ -7,7 +7,7 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
-#include "highmap/geometry.hpp"
+#include "highmap/geometry/grids.hpp"
 #include "highmap/gpu.hpp"
 
 namespace hmap::gpu
