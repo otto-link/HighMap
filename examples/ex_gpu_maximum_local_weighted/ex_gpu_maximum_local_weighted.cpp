@@ -18,7 +18,9 @@ int main(void)
   // CPU
   int         ir = 32;
   hmap::Array z1 = z;
+  hmap::Timer::Start("CPU");
   hmap::expand(z1, ir);
+  hmap::Timer::Stop("CPU");
 
   // GPU
   hmap::Vec2<int> size = {ir * 2, ir * 2};
@@ -31,7 +33,9 @@ int main(void)
     gpu_config.set_block_size(bsize);
 
     z2 = z;
+    hmap::Timer::Start("GPU");
     hmap::gpu::maximum_local_weighted(gpu_config, z2, kernel);
+    hmap::Timer::Stop("GPU");
   }
 
   hmap::export_banner_png("ex_gpu_maximum_local_weighted.png",
