@@ -8,6 +8,7 @@
 #include "highmap/boundary.hpp"
 #include "highmap/erosion.hpp"
 #include "highmap/filters.hpp"
+#include "highmap/gradient.hpp"
 #include "highmap/math.hpp"
 #include "highmap/primitives.hpp"
 #include "highmap/range.hpp"
@@ -59,31 +60,8 @@ void thermal(Array       &z,
         qmax = z.shape.x;
       }
 
-      int dp, dq;
-
-      if (it % 4 == 0)
-      {
-        dp = 1;
-        dq = 1;
-      }
-      else if (it % 4 == 1)
-      {
-        dp = 1;
-        dq = 1;
-      }
-      else if (it % 4 == 2)
-      {
-        dp = 1;
-        dq = 1;
-      }
-      else if (it % 4 == 3)
-      {
-        dp = 1;
-        dq = 1;
-      }
-
-      for (int p = 1; p < pmax - 1; p += dp)
-        for (int q = 1; q < qmax - 1; q += dq)
+      for (int p = 1; p < pmax - 1; p++)
+        for (int q = 1; q < qmax - 1; q++)
         {
           int i, j;
 
@@ -150,31 +128,8 @@ void thermal(Array       &z,
         qmax = z.shape.x;
       }
 
-      int dp, dq;
-
-      if (it % 4 == 0)
-      {
-        dp = 1;
-        dq = 1;
-      }
-      else if (it % 4 == 1)
-      {
-        dp = 1;
-        dq = 1;
-      }
-      else if (it % 4 == 2)
-      {
-        dp = 1;
-        dq = 1;
-      }
-      else if (it % 4 == 3)
-      {
-        dp = 1;
-        dq = 1;
-      }
-
-      for (int p = 1; p < pmax - 1; p += dp)
-        for (int q = 1; q < qmax - 1; q += dq)
+      for (int p = 1; p < pmax - 1; p++)
+        for (int q = 1; q < qmax - 1; q++)
         {
           int i, j;
 
