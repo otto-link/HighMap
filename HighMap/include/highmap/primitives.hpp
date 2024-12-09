@@ -292,6 +292,38 @@ Array diffusion_limited_aggregation(Vec2<int> shape,
                                     float     slope = 8.f,
                                     float     noise_ratio = 0.2f);
 
+/**
+ * @brief Generates a disk-shaped heightmap with optional modifications.
+ *
+ * This function creates a 2D array representing a disk shape with a specified
+ * radius, slope, and other optional parameters such as control parameters,
+ * noise, and stretching for additional customization.
+ *
+ * @param shape Dimensions of the output array (width, height).
+ * @param radius Radius of the disk, in normalized coordinates (0.0 to 1.0).
+ * @param slope Slope of the disk edge transition. A larger value makes the edge
+ *        transition sharper. Defaults to 1.0.
+ * @param p_ctrl_param Optional pointer to an `Array` controlling custom
+ * parameters for the disk generation.
+ * @param p_noise_x Optional pointer to an `Array` for adding noise in the
+ * x-direction.
+ * @param p_noise_y Optional pointer to an `Array` for adding noise in the
+ * y-direction.
+ * @param p_stretching Optional pointer to an `Array` for stretching the disk
+ *        horizontally or vertically.
+ * @param center Center of the disk in normalized coordinates (0.0 to 1.0).
+ * Defaults to {0.5, 0.5}.
+ * @param bbox Bounding box for the disk in normalized coordinates {x_min,
+ * x_max, y_min, y_max}. Defaults to {0.0, 1.0, 0.0, 1.0}.
+ *
+ * @return A 2D array representing the generated disk shape.
+ *
+ * * **Example**
+ * @include ex_disk.cpp
+ *
+ * **Result**
+ * @image html ex_disk.png
+ */
 Array disk(Vec2<int>   shape,
            float       radius,
            float       slope = 1.f,
