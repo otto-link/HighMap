@@ -236,6 +236,28 @@ protected:
 };
 
 /**
+ * @class DiskFunction
+ * @brief DiskFunction (x, y) function class.
+ */
+class DiskFunction : public Function
+{
+public:
+  /**
+   * @brief Construct a new Disk Function object.
+   *
+   * @param radius Radius of the disk (with respect to a unit domain).
+   * @param slope Side slope (with respect to a unit domain).
+   * @param center Primitive reference center.
+   */
+  DiskFunction(float radius, float slope, Vec2<float> center);
+
+protected:
+  float       radius; ///< Radius of the disk.
+  float       slope;  ///< Slope of the disk.
+  Vec2<float> center; ///< Primitive reference center.
+};
+
+/**
  * @class GaussianPulseFunction
  * @brief GaussianPulse (x, y) function class.
  *

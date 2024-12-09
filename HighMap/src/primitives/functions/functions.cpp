@@ -131,6 +131,26 @@ CraterFunction::CraterFunction(float       radius,
       });
 }
 
+DiskFunction::DiskFunction(float radius, float slope, Vec2<float> center)
+    : Function(), radius(radius), slope(slope), center(center)
+{
+  this->set_delegate(
+      [this](float x, float y, float ctrl_param)
+      {
+        float dx = x - this->center.x;
+        float dy = y - this->center.y;
+        float r = std::hypot(dx, dy);
+
+        if (r < this->radius)
+          return ctrl_param;
+        else
+        {
+          float t = std::max(0.f, 1.f - this->slope * (r - this->radius));
+          return ctrl_param * smoothstep3(t);
+        }
+      });
+}
+
 GaussianPulseFunction::GaussianPulseFunction(float sigma, Vec2<float> center)
     : Function(), center(center)
 {

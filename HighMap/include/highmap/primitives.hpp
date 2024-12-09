@@ -292,6 +292,16 @@ Array diffusion_limited_aggregation(Vec2<int> shape,
                                     float     slope = 8.f,
                                     float     noise_ratio = 0.2f);
 
+Array disk(Vec2<int>   shape,
+           float       radius,
+           float       slope = 1.f,
+           Array      *p_ctrl_param = nullptr,
+           Array      *p_noise_x = nullptr,
+           Array      *p_noise_y = nullptr,
+           Array      *p_stretching = nullptr,
+           Vec2<float> center = {0.5f, 0.5f},
+           Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
 /**
  * @brief Return a sparse Gabor noise.
  *
