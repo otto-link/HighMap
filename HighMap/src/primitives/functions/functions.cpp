@@ -165,6 +165,50 @@ GaussianPulseFunction::GaussianPulseFunction(float sigma, Vec2<float> center)
       });
 }
 
+RectangleFunction::RectangleFunction(float       rx,
+                                     float       ry,
+                                     float       angle,
+                                     float       slope,
+                                     Vec2<float> center)
+    : Function(), rx(rx), ry(ry), slope(slope), center(center)
+{
+  this->set_angle(angle);
+
+  this->set_delegate(
+      [this](float x, float y, float ctrl_param)
+      {
+        x = x - this->center.x;
+        y = y - this->center.y;
+
+        float xc = this->ca * x + this->sa * y;
+        float yc = -this->sa * x + this->ca * y;
+
+        xc = std::abs(xc);
+        yc = std::abs(yc);
+
+        float ax;
+        float ay;
+
+        if (xc < this->rx)
+          ax = ctrl_param;
+        else
+        {
+          float t = std::max(0.f, 1.f - this->slope * (xc - this->rx));
+          ax = ctrl_param * smoothstep3(t);
+        }
+
+        if (yc < this->ry)
+          ay = ctrl_param;
+        else
+        {
+          float t = std::max(0.f, 1.f - this->slope * (yc - this->ry));
+          ay = ctrl_param * smoothstep3(t);
+        }
+
+        return ax * ay;
+      });
+}
+
 RiftFunction::RiftFunction(float       angle,
                            float       slope,
                            float       width,

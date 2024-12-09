@@ -911,6 +911,55 @@ Array phasor_fbm(PhasorProfile phasor_profile,
                  float         lacunarity = 2.f);
 
 /**
+ * @brief Generates a rectangle-shaped heightmap with optional modifications.
+ *
+ * This function creates a 2D array representing a rectangle with specified
+ * dimensions, rotation, and optional parameters for customization such as
+ * control parameters, noise, and stretching.
+ *
+ * @param shape Dimensions of the output array (width, height).
+ * @param rx Half-width of the rectangle, in normalized coordinates (0.0
+ * to 1.0).
+ * @param ry Half-height of the rectangle, in normalized coordinates (0.0
+ * to 1.0).
+ * @param angle Rotation angle of the rectangle in radians. Positive values
+ *        rotate counterclockwise.
+ * @param slope Slope of the rectangle edge transition. A larger value makes
+ *        the edge transition sharper. Defaults to 1.0.
+ * @param p_ctrl_param Optional pointer to an `Array` controlling custom
+ * parameters for the rectangle generation.
+ * @param p_noise_x Optional pointer to an `Array` for adding noise in the
+ * x-direction.
+ * @param p_noise_y Optional pointer to an `Array` for adding noise in the
+ * y-direction.
+ * @param p_stretching Optional pointer to an `Array` for stretching the
+ * rectangle horizontally or vertically.
+ * @param center Center of the rectangle in normalized coordinates (0.0 to 1.0).
+ *        Defaults to {0.5, 0.5}.
+ * @param bbox Bounding box for the rectangle in normalized coordinates {x_min,
+ * x_max, y_min, y_max}. Defaults to {0.0, 1.0, 0.0, 1.0}.
+ *
+ * @return A 2D array representing the generated rectangle shape.
+ *    *
+ * **Example**
+ * @include ex_rectangle.cpp
+ *
+ * **Result**
+ * @image html ex_rectangle.png
+ */
+Array rectangle(Vec2<int>   shape,
+                float       rx,
+                float       ry,
+                float       angle,
+                float       slope = 1.f,
+                Array      *p_ctrl_param = nullptr,
+                Array      *p_noise_x = nullptr,
+                Array      *p_noise_y = nullptr,
+                Array      *p_stretching = nullptr,
+                Vec2<float> center = {0.5f, 0.5f},
+                Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
  * @brief Return a rift function (Heaviside with an optional talus slope at
  * the transition).
  *

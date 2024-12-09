@@ -153,6 +153,31 @@ Array paraboloid(Vec2<int>   shape,
   return array;
 }
 
+Array rectangle(Vec2<int>   shape,
+                float       rx,
+                float       ry,
+                float       angle,
+                float       slope,
+                Array      *p_ctrl_param,
+                Array      *p_noise_x,
+                Array      *p_noise_y,
+                Array      *p_stretching,
+                Vec2<float> center,
+                Vec4<float> bbox)
+{
+  Array             array = Array(shape);
+  RectangleFunction f = RectangleFunction(rx, ry, angle, slope, center);
+
+  fill_array_using_xy_function(array,
+                               bbox,
+                               p_ctrl_param,
+                               p_noise_x,
+                               p_noise_y,
+                               p_stretching,
+                               f.get_delegate());
+  return array;
+}
+
 Array rift(Vec2<int>         shape,
            float             angle,
            float             slope,
