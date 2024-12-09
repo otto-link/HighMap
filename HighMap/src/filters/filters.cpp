@@ -397,6 +397,19 @@ void kuwahara(Array &array, int ir, float mix_ratio)
   }
 }
 
+void kuwahara(Array &array, int ir, Array *p_mask, float mix_ratio)
+{
+  if (!p_mask)
+    kuwahara(array, ir, mix_ratio);
+  else
+  {
+    Array array_f = array;
+    float forced_mix_ratio = 1.f;
+    kuwahara(array_f, ir, forced_mix_ratio);
+    array = lerp(array, array_f, *(p_mask));
+  }
+}
+
 void laplace(Array &array, float sigma, int iterations)
 {
   for (int it = 0; it < iterations; it++)
