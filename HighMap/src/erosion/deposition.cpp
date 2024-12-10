@@ -25,7 +25,7 @@ void sediment_deposition(Array       &z,
                          int          iterations,
                          int          thermal_subiterations)
 {
-  float deposition_step = 0.5f * max_deposition;
+  float deposition_step = max_deposition / (int)iterations;
   Array smap = Array(z.shape); // sediment map
 
   for (int it = 0; it < iterations; it++)

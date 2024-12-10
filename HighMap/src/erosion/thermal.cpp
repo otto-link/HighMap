@@ -185,7 +185,6 @@ void thermal(Array       &z,
   // clean-up: fix boundaries, remove spurious oscillations and make
   // sure final elevation is not lower than the bedrock
   extrapolate_borders(z);
-  laplace(z);
 
   if (p_bedrock) clamp_min(z, (*p_bedrock));
 
