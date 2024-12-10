@@ -1,0 +1,2 @@
+add_executable(ex_sediment_layer ex_sediment_layer.cpp)
+target_link_libraries(ex_sediment_layer highmap)

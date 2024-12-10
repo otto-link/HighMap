@@ -905,6 +905,13 @@ void sediment_deposition_particle(Array &z,
                                   float  deposition_velocity_limit = 0.01f,
                                   float  drag_rate = 0.001f);
 
+void sediment_layer(Array       &z,
+                    const Array &talus_layer,
+                    const Array &talus_upper_limit,
+                    int          iterations,
+                    bool         apply_post_filter = true,
+                    Array       *p_deposition_map = nullptr);
+
 /**
  * @brief Stratify the heightmap by creating a series of layers with elevations
  * corrected by a gamma factor.
