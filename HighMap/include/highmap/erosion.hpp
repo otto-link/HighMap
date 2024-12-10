@@ -1153,6 +1153,12 @@ void thermal_schott(Array       &z,
                     int          iterations = 10,
                     float        intensity = 0.001f);
 
+void thermal_schott(Array       &z,
+                    const Array &talus,
+                    Array       *p_mask,
+                    int          iterations = 10,
+                    float        intensity = 0.001f); ///< @overload
+
 /**
  * @brief Applies the thermal erosion process with a uniform slope threshold.
  *
@@ -1178,6 +1184,12 @@ void thermal_schott(Array      &z,
                     const float talus,
                     int         iterations = 10,
                     float       intensity = 0.001f);
+
+void thermal_schott(Array      &z,
+                    const float talus,
+                    Array      *p_mask,
+                    int         iterations = 10,
+                    float       intensity = 0.001f); ///< @overload
 
 /**
  * @brief Apply thermal weathering erosion simulating scree deposition.

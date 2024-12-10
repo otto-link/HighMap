@@ -65,6 +65,22 @@ void thermal_schott(Array       &z,
   }
 }
 
+void thermal_schott(Array       &z,
+                    const Array &talus,
+                    Array       *p_mask,
+                    int          iterations,
+                    float        intensity)
+{
+  if (!p_mask)
+    thermal_schott(z, talus, iterations, intensity);
+  else
+  {
+    Array z_f = z;
+    thermal_schott(z_f, talus, iterations, intensity);
+    z = lerp(z, z_f, *(p_mask));
+  }
+}
+
 void thermal_schott(Array      &z,
                     const float talus,
                     int         iterations,
@@ -72,6 +88,22 @@ void thermal_schott(Array      &z,
 {
   Array talus_map = constant(z.shape, talus);
   thermal_schott(z, talus_map, iterations, intensity);
+}
+
+void thermal_schott(Array      &z,
+                    const float talus,
+                    Array      *p_mask,
+                    int         iterations,
+                    float       intensity)
+{
+  if (!p_mask)
+    thermal_schott(z, talus, iterations, intensity);
+  else
+  {
+    Array z_f = z;
+    thermal_schott(z_f, talus, iterations, intensity);
+    z = lerp(z, z_f, *(p_mask));
+  }
 }
 
 } // namespace hmap
