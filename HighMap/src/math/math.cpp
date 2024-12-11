@@ -320,4 +320,14 @@ float smoothstep7(const float x)
   return -20.f * x7 + 70.f * x6 - 84.f * x5 + 35.f * x4;
 }
 
+Array sqrt(const Array &array)
+{
+  Array array_out = Array(array.shape);
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array_out.vector.begin(),
+                 [](float v) { return std::sqrt(v); });
+  return array_out;
+}
+
 } // namespace hmap

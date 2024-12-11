@@ -73,9 +73,51 @@ Array dilation(const Array &array, int ir);
  * **Result**
  * @image html ex_distance_transform0.png
  * @image html ex_distance_transform1.png
+ * @image html ex_distance_transform2.png
  */
 Array distance_transform(const Array &array,
                          bool         return_squared_distance = false);
+
+/**
+ * @brief Calculates an approximate distance transform of the input array.
+ *
+ * @param array Input array to calculate the distance transform for.
+ * @param return_squared_distance Optional parameter to return squared
+ * distances. Defaults to false.
+ *
+ * @return Array containing the approximate distance transform of the input
+ * array.
+ *
+ * **Example**
+ * @include ex_distance_transform.cpp
+ *
+ * **Result**
+ * @image html ex_distance_transform0.png
+ * @image html ex_distance_transform1.png
+ * @image html ex_distance_transform2.png
+
+ */
+Array distance_transform_approx(const Array &array,
+                                bool         return_squared_distance = false);
+
+/**
+ * @brief Calculates the Manhattan distance transform of an array.
+ *
+ * @param array Input array.
+ * @param return_squared_distance If true, returns the squared Manhattan
+ * distance instead of the actual distance.
+ * @return Array containing the Manhattan distance transform of the input array.
+ *
+ * **Example**
+ * @include ex_distance_transform.cpp
+ *
+ * **Result**
+ * @image html ex_distance_transform0.png
+ * @image html ex_distance_transform1.png
+ * @image html ex_distance_transform2.png
+ */
+Array distance_transform_manhattan(const Array &array,
+                                   bool return_squared_distance = false);
 
 /**
  * @brief Apply an erosion algorithm to the input array using a square

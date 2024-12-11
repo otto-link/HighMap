@@ -389,4 +389,12 @@ float smoothstep5(const float x);
  */
 float smoothstep7(const float x);
 
+/**
+ * @brief Return the square root of the array elements.
+ *
+ * @param array Input array.
+ * @return Array Reference to the current object.
+ */
+Array sqrt(const Array &array);
+
 } // namespace hmap

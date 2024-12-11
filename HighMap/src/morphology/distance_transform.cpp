@@ -96,7 +96,7 @@ Array distance_transform(const Array &array, bool return_squared_distance)
   if (return_squared_distance)
     return dt;
   else
-    return pow(dt, 0.5f);
+    return sqrt(dt);
 }
 
 } // namespace hmap
