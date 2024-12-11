@@ -46,9 +46,9 @@ Array distance_transform_approx(const Array &array,
       }
 
   if (return_squared_distance)
-    return edt;
+    return edt * edt;
   else
-    return sqrt(edt);
+    return edt;
 }
 
 Array distance_transform_manhattan(const Array &array,
@@ -84,9 +84,9 @@ Array distance_transform_manhattan(const Array &array,
       }
 
   if (return_squared_distance)
-    return edt;
+    return edt * edt;
   else
-    return sqrt(edt);
+    return edt;
 }
 
 } // namespace hmap
