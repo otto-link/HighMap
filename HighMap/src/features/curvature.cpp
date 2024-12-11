@@ -155,8 +155,6 @@ Array valley_width(const Array &z, int ir)
   vw = curvature_mean(-vw);
   vw = distance_transform_approx(vw);
 
-  vw.infos();
-
   return vw;
 }
 
