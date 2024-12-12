@@ -65,6 +65,12 @@ void find_flow_sinks(const Array      &z,
                      std::vector<int> &is,
                      std::vector<int> &js);
 
+Array flooding_from_point(const Array &z, const int i, const int j);
+
+Array flooding_from_point(const Array            &z,
+                          const std::vector<int> &i,
+                          const std::vector<int> &j);
+
 /**
  * @brief Computes the flow accumulation for each cell using the D8 flow
  * direction model.

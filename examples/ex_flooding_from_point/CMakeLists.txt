@@ -1,0 +1,2 @@
+add_executable(ex_flooding_from_point ex_flooding_from_point.cpp)
+target_link_libraries(ex_flooding_from_point highmap)
