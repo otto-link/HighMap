@@ -45,6 +45,7 @@
 #include "highmap/multiscale/downscaling.hpp"
 #include "highmap/multiscale/pyramid.hpp"
 #include "highmap/multiscale/upscaling.hpp"
+#include "highmap/opencl/gpu_opencl.hpp"
 #include "highmap/operator.hpp"
 #include "highmap/primitives.hpp"
 #include "highmap/range.hpp"

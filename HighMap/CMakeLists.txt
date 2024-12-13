@@ -22,6 +22,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${PROJECT_VERSION})
 target_link_libraries(
   ${PROJECT_NAME}
   assimp::assimp
+  clwrapper
   delaunator::delaunator
   GSL::gsl
   GSL::gslcblas
