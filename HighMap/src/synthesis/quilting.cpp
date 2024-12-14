@@ -75,8 +75,8 @@ Array quilting(std::vector<Array *> p_arrays,
       if (it > 0)
       {
         Array error = Array(Vec2<int>(noverlap.x, patch_shape.y));
-        for (int i = 0; i < noverlap.x; i++)
-          for (int j = 0; j < patch_shape.y; j++)
+        for (int j = 0; j < patch_shape.y; j++)
+          for (int i = 0; i < noverlap.x; i++)
             error(i, j) = std::abs(array_strip(i1 + i, j) - patch(i, j));
 
         // find cut path
@@ -87,15 +87,15 @@ Array quilting(std::vector<Array *> p_arrays,
         Array mask = generate_mask(error.shape, cut_path_i, ir);
 
         // primary patches
-        for (int i = 0; i < noverlap.x; i++)
-          for (int j = 0; j < patch_shape.y; j++)
+        for (int j = 0; j < patch_shape.y; j++)
+          for (int i = 0; i < noverlap.x; i++)
             patch(i, j) = lerp(array_strip(i1 + i, j), patch(i, j), mask(i, j));
 
         // same for secondary patches
         for (size_t k = 0; k < secondary_patches.size(); k++)
         {
-          for (int i = 0; i < noverlap.x; i++)
-            for (int j = 0; j < patch_shape.y; j++)
+          for (int j = 0; j < patch_shape.y; j++)
+            for (int i = 0; i < noverlap.x; i++)
               secondary_patches[k](i, j) = lerp(
                   secondary_arrays_strips[k](i1 + i, j),
                   secondary_patches[k](i, j),
@@ -104,15 +104,15 @@ Array quilting(std::vector<Array *> p_arrays,
       }
 
       // primary array
-      for (int i = 0; i < patch_shape.x; i++)
-        for (int j = 0; j < patch_shape.y; j++)
+      for (int j = 0; j < patch_shape.y; j++)
+        for (int i = 0; i < patch_shape.x; i++)
           array_strip(i1 + i, j) = patch(i, j);
 
       // apply the same patching to the secondary arrays
       for (size_t k = 0; k < secondary_arrays_output.size(); k++)
       {
-        for (int i = 0; i < patch_shape.x; i++)
-          for (int j = 0; j < patch_shape.y; j++)
+        for (int j = 0; j < patch_shape.y; j++)
+          for (int i = 0; i < patch_shape.x; i++)
             secondary_arrays_strips[k](i1 + i, j) = secondary_patches[k](i, j);
       }
     }
@@ -122,8 +122,8 @@ Array quilting(std::vector<Array *> p_arrays,
     {
       Array error = Array(Vec2<int>(shape_output.x, noverlap.y));
 
-      for (int i = 0; i < shape_output.x; i++)
-        for (int j = 0; j < noverlap.y; j++)
+      for (int j = 0; j < noverlap.y; j++)
+        for (int i = 0; i < shape_output.x; i++)
           error(i, j) = std::abs(array_strip(i, j) - array_out(i, j1 + j));
 
       Array mask = Array(error.shape);
@@ -168,15 +168,15 @@ Array quilting(std::vector<Array *> p_arrays,
     else
     {
       // primary array
-      for (int i = 0; i < array_out.shape.x; i++)
-        for (int j = 0; j < patch_shape.y; j++)
+      for (int j = 0; j < patch_shape.y; j++)
+        for (int i = 0; i < array_out.shape.x; i++)
           array_out(i, j1 + j) = array_strip(i, j);
 
       // apply the same patching to the secondary arrays
       for (size_t k = 0; k < secondary_arrays_output.size(); k++)
       {
-        for (int i = 0; i < array_out.shape.x; i++)
-          for (int j = 0; j < patch_shape.y; j++)
+        for (int j = 0; j < patch_shape.y; j++)
+          for (int i = 0; i < array_out.shape.x; i++)
             secondary_arrays_output[k](i,
                                        j1 + j) = secondary_arrays_strips[k](i,
                                                                             j);

@@ -36,8 +36,8 @@ Array d8_compute_ndip(const Array &d8)
   // direction pointing to the current cell
   const std::vector<int> kp = {4, 5, 6, 7, 0, 1, 2, 3};
 
-  for (int i = 1; i < d8.shape.x - 1; i++)
-    for (int j = 1; j < d8.shape.y - 1; j++)
+  for (int j = 1; j < d8.shape.y - 1; j++)
+    for (int i = 1; i < d8.shape.x - 1; i++)
       // count the number of neighbors with flow directions pointing
       // to the current cell
       for (uint k = 0; k < nb; k++)
@@ -60,8 +60,8 @@ Array flow_accumulation_d8(const Array &z)
   std::list<int> i_queue = {};
   std::list<int> j_queue = {};
 
-  for (int i = 1; i < z.shape.x - 1; i++)
-    for (int j = 1; j < z.shape.y - 1; j++)
+  for (int j = 1; j < z.shape.y - 1; j++)
+    for (int i = 1; i < z.shape.x - 1; i++)
       if (nidp(i, j) == 0)
       {
         i_queue.push_back(i);
@@ -106,8 +106,8 @@ Array flow_direction_d8(const Array &z)
   const std::vector<float> c = C;
   const uint               nb = di.size();
 
-  for (int i = 1; i < z.shape.x - 1; i++)
-    for (int j = 1; j < z.shape.y - 1; j++)
+  for (int j = 1; j < z.shape.y - 1; j++)
+    for (int i = 1; i < z.shape.x - 1; i++)
     {
       float dmax = 0.f;
       int   kn = 0;

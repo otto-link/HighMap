@@ -37,8 +37,8 @@ void thermal_schott(Array       &z,
   {
     Array z_new = z;
 
-    for (int i = 1; i < z.shape.x - 1; i++)
-      for (int j = 1; j < z.shape.y - 1; j++)
+    for (int j = 1; j < z.shape.y - 1; j++)
+      for (int i = 1; i < z.shape.x - 1; i++)
       {
         int up = 0;
         int down = 0;

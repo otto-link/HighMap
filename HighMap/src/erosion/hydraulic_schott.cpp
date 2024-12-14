@@ -147,8 +147,8 @@ void hydraulic_schott(Array &z,
     Array flow_new = flow;
     Array deposition_new = deposition;
 
-    for (int i = 2; i < z.shape.x - 2; i++)
-      for (int j = 2; j < z.shape.y - 2; j++)
+    for (int j = 2; j < z.shape.y - 2; j++)
+      for (int i = 2; i < z.shape.x - 2; i++)
       {
         int is = i;
         int js = j;
@@ -172,8 +172,8 @@ void hydraulic_schott(Array &z,
       }
 
     // flow map update
-    for (int i = 2; i < z.shape.x - 2; i++)
-      for (int j = 2; j < z.shape.y - 2; j++)
+    for (int j = 2; j < z.shape.y - 2; j++)
+      for (int i = 2; i < z.shape.x - 2; i++)
         flow_new(i, j) = 1.f + helper_get_flow(z, flow, i, j, di, dj, c);
 
     z = z_new;
@@ -193,8 +193,8 @@ void hydraulic_schott(Array &z,
     Array deposition_new = deposition;
     Array sediment_new = sediment;
 
-    for (int i = 2; i < z.shape.x - 2; i++)
-      for (int j = 2; j < z.shape.y - 2; j++)
+    for (int j = 2; j < z.shape.y - 2; j++)
+      for (int i = 2; i < z.shape.x - 2; i++)
       {
         int is = i;
         int js = j;
@@ -214,8 +214,8 @@ void hydraulic_schott(Array &z,
       }
 
     // flow map update
-    for (int i = 2; i < z.shape.x - 2; i++)
-      for (int j = 2; j < z.shape.y - 2; j++)
+    for (int j = 2; j < z.shape.y - 2; j++)
+      for (int i = 2; i < z.shape.x - 2; i++)
         flow_new(i, j) = 1.f + helper_get_flow(z, flow, i, j, di, dj, c);
 
     z = z_new;

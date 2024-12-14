@@ -111,8 +111,8 @@ void HeightmapRGBA::colorize(Heightmap                      &color_level,
 
     if (p_noise_array)
     {
-      for (int i = 0; i < in.shape.x; i++)
-        for (int j = 0; j < in.shape.y; j++)
+      for (int j = 0; j < in.shape.y; j++)
+        for (int i = 0; i < in.shape.x; i++)
         {
           float v = std::clamp(a.x * (in(i, j) + (*p_noise_array)(i, j)) + a.y,
                                0.f,
@@ -129,8 +129,8 @@ void HeightmapRGBA::colorize(Heightmap                      &color_level,
     }
     else
     {
-      for (int i = 0; i < in.shape.x; i++)
-        for (int j = 0; j < in.shape.y; j++)
+      for (int j = 0; j < in.shape.y; j++)
+        for (int i = 0; i < in.shape.x; i++)
         {
           float v = std::clamp(a.x * in(i, j) + a.y, 0.f, (float)nc - 1.f);
           int   k = (int)v;
@@ -348,8 +348,8 @@ HeightmapRGBA mix_normal_map_rgba(HeightmapRGBA          &nmap_base,
     }
     }
 
-    for (int i = 0; i < r1.shape.x; i++)
-      for (int j = 0; j < r1.shape.y; j++)
+    for (int j = 0; j < r1.shape.y; j++)
+      for (int i = 0; i < r1.shape.x; i++)
       {
         // do some rescaling because RGBA texture expected in [0, 1]
         // but normal vector expected in [-1, 1]

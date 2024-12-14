@@ -42,8 +42,8 @@ void Tile::from_array_interp(Array &array)
   for (auto &v : y)
     v *= array.shape.y - 1;
 
-  for (int i = 0; i < shape.x; i++)
-    for (int j = 0; j < shape.y; j++)
+  for (int j = 0; j < shape.y; j++)
+    for (int i = 0; i < shape.x; i++)
     {
       int ip = std::clamp((int)x[i], 0, array.shape.x - 1);
       int jp = std::clamp((int)y[j], 0, array.shape.y - 1);
@@ -71,8 +71,8 @@ void Tile::from_array_interp_bicubic(Array &array)
   for (auto &v : y)
     v *= array.shape.y - 1;
 
-  for (int i = 0; i < shape.x; i++)
-    for (int j = 0; j < shape.y; j++)
+  for (int j = 0; j < shape.y; j++)
+    for (int i = 0; i < shape.x; i++)
     {
       int ip = std::clamp((int)x[i], 0, array.shape.x - 1);
       int jp = std::clamp((int)y[j], 0, array.shape.y - 1);
@@ -100,8 +100,8 @@ void Tile::from_array_interp_nearest(Array &array)
   for (auto &v : y)
     v *= array.shape.y - 1;
 
-  for (int i = 0; i < shape.x; i++)
-    for (int j = 0; j < shape.y; j++)
+  for (int j = 0; j < shape.y; j++)
+    for (int i = 0; i < shape.x; i++)
     {
       int ip = (int)x[i];
       int jp = (int)y[j];

@@ -49,8 +49,8 @@ Array rugosity(const Array &z, int ir)
 
   float tol = 1e-30f * z.ptp();
 
-  for (int i = 0; i < z.shape.x; i++)
-    for (int j = 0; j < z.shape.y; j++)
+  for (int j = 0; j < z.shape.y; j++)
+    for (int i = 0; i < z.shape.x; i++)
       if (z_std(i, j) > tol)
         z_skw(i, j) /= std::pow(z_std(i, j), 1.5f);
       else

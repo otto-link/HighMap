@@ -34,8 +34,8 @@ Tensor::Tensor(const std::string &fname)
   *this = Tensor(Vec2<int>(mat.cols, mat.rows), 4);
 
   // fill tensor
-  for (int i = 0; i < shape.x; i++)
-    for (int j = 0; j < shape.y; j++)
+  for (int j = 0; j < shape.y; j++)
+    for (int i = 0; i < shape.x; i++)
     {
       // OpenCV stores pixels as (row, column), hence (mat.rows - 1 - j, i)
       cv::Vec3f pixel = mat.at<cv::Vec3f>(mat.rows - 1 - j, i);
@@ -52,20 +52,20 @@ Tensor::Tensor(const std::string &fname)
 
 float &Tensor::operator()(int i, int j, int k)
 {
-  return this->vector[(i * this->shape.y + j) * this->shape.z + k];
+  return this->vector[(j * this->shape.x + i) * this->shape.z + k];
 }
 
 const float &Tensor::operator()(int i, int j, int k) const ///< @overload
 {
-  return this->vector[(i * this->shape.y + j) * this->shape.z + k];
+  return this->vector[(j * this->shape.x + i) * this->shape.z + k];
 }
 
 Array Tensor::get_slice(int k) const
 {
   Array out = Array(Vec2<int>(this->shape.x, this->shape.y));
 
-  for (int i = 0; i < this->shape.x; i++)
-    for (int j = 0; j < this->shape.y; j++)
+  for (int j = 0; j < this->shape.y; j++)
+    for (int i = 0; i < this->shape.x; i++)
       out(i, j) = (*this)(i, j, k);
 
   return out;
@@ -111,8 +111,8 @@ void Tensor::set_slice(int k, const Array &slice)
 {
   // TODO check shapes
 
-  for (int i = 0; i < this->shape.x; i++)
-    for (int j = 0; j < this->shape.y; j++)
+  for (int j = 0; j < this->shape.y; j++)
+    for (int i = 0; i < this->shape.x; i++)
       (*this)(i, j, k) = slice(i, j);
 }
 

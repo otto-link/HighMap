@@ -64,11 +64,12 @@ void kernel avg(read_only image2d_t  img_in,
 
   for (int p = -ir; p < ir + 1; p++)
     for (int q = -ir; q < ir + 1; q++)
-      {
-	float w = 1.f - hypot((float)p, (float)q) / (float)ir;
-	val = max(val, w * read_imagef(img_in, sampler, (int2)(g.x + p, g.y + q)).x);
-      }
-  
+    {
+      float w = 1.f - hypot((float)p, (float)q) / (float)ir;
+      val = max(val,
+                w * read_imagef(img_in, sampler, (int2)(g.x + p, g.y + q)).x);
+    }
+
   // val /= (float)(2.f * ir + 1.f) * (2.f * ir + 1.f);
 
   write_imagef(img_out, (int2)(g.x, g.y), val);

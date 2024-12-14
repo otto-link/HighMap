@@ -17,13 +17,13 @@ Array distance_transform_approx(const Array &array,
   Array edt(shape);
 
   // initialize the output with INF for background and 0 for foreground
-  for (int i = 0; i < shape.x; ++i)
-    for (int j = 0; j < shape.y; ++j)
+  for (int j = 0; j < shape.y; ++j)
+    for (int i = 0; i < shape.x; ++i)
       edt(i, j) = array(i, j) > 0.f ? 0.f : std::numeric_limits<float>::max();
 
   // first pass: top-left to nottom-right
-  for (int i = 0; i < shape.x; ++i)
-    for (int j = 0; j < shape.y; ++j)
+  for (int j = 0; j < shape.y; ++j)
+    for (int i = 0; i < shape.x; ++i)
       if (edt(i, j) > 0)
       {
         if (i > 0) edt(i, j) = std::min(edt(i, j), edt(i - 1, j) + 1.f);
@@ -33,8 +33,8 @@ Array distance_transform_approx(const Array &array,
       }
 
   // second pass: bottom-right to top-left
-  for (int i = shape.x - 1; i >= 0; --i)
-    for (int j = shape.y - 1; j >= 0; --j)
+  for (int j = shape.y - 1; j >= 0; --j)
+    for (int i = shape.x - 1; i >= 0; --i)
       if (edt(i, j) > 0)
       {
         if (i < shape.x - 1)
@@ -59,13 +59,13 @@ Array distance_transform_manhattan(const Array &array,
   Array edt(shape);
 
   // initialize the output with INF for background and 0 for foreground
-  for (int i = 0; i < shape.x; ++i)
-    for (int j = 0; j < shape.y; ++j)
+  for (int j = 0; j < shape.y; ++j)
+    for (int i = 0; i < shape.x; ++i)
       edt(i, j) = array(i, j) > 0.f ? 0.f : std::numeric_limits<float>::max();
 
   // first pass: top-left to nottom-right
-  for (int i = 0; i < shape.x; ++i)
-    for (int j = 0; j < shape.y; ++j)
+  for (int j = 0; j < shape.y; ++j)
+    for (int i = 0; i < shape.x; ++i)
       if (edt(i, j) > 0)
       {
         if (i > 0) edt(i, j) = std::min(edt(i, j), edt(i - 1, j) + 1.f);
@@ -73,8 +73,8 @@ Array distance_transform_manhattan(const Array &array,
       }
 
   // second pass: bottom-right to top-left
-  for (int i = shape.x - 1; i >= 0; --i)
-    for (int j = shape.y - 1; j >= 0; --j)
+  for (int j = shape.y - 1; j >= 0; --j)
+    for (int i = shape.x - 1; i >= 0; --i)
       if (edt(i, j) > 0)
       {
         if (i < shape.x - 1)

@@ -29,16 +29,16 @@ void fill_array_using_xy_function(
   {
     if ((!p_noise_x) and (!p_noise_y))
     {
-      for (int i = 0; i < shape.x; i++)
-        for (int j = 0; j < shape.y; j++)
+      for (int j = 0; j < shape.y; j++)
+        for (int i = 0; i < shape.x; i++)
           array(i, j) = fct_xy(x[i] * (*p_stretching)(i, j),
                                y[j] * (*p_stretching)(i, j),
                                ctrl_array(i, j));
     }
     else if (p_noise_x and (!p_noise_y))
     {
-      for (int i = 0; i < shape.x; i++)
-        for (int j = 0; j < shape.y; j++)
+      for (int j = 0; j < shape.y; j++)
+        for (int i = 0; i < shape.x; i++)
           array(i,
                 j) = fct_xy(x[i] * (*p_stretching)(i, j) + (*p_noise_x)(i, j),
                             y[j] * (*p_stretching)(i, j),
@@ -46,8 +46,8 @@ void fill_array_using_xy_function(
     }
     else if ((!p_noise_x) and p_noise_y)
     {
-      for (int i = 0; i < shape.x; i++)
-        for (int j = 0; j < shape.y; j++)
+      for (int j = 0; j < shape.y; j++)
+        for (int i = 0; i < shape.x; i++)
           array(i,
                 j) = fct_xy(x[i] * (*p_stretching)(i, j),
                             y[j] * (*p_stretching)(i, j) + (*p_noise_y)(i, j),
@@ -55,8 +55,8 @@ void fill_array_using_xy_function(
     }
     else if (p_noise_x and p_noise_y)
     {
-      for (int i = 0; i < shape.x; i++)
-        for (int j = 0; j < shape.y; j++)
+      for (int j = 0; j < shape.y; j++)
+        for (int i = 0; i < shape.x; i++)
           array(i,
                 j) = fct_xy(x[i] * (*p_stretching)(i, j) + (*p_noise_x)(i, j),
                             y[j] * (*p_stretching)(i, j) + (*p_noise_y)(i, j),
@@ -67,28 +67,28 @@ void fill_array_using_xy_function(
   {
     if ((!p_noise_x) and (!p_noise_y))
     {
-      for (int i = 0; i < shape.x; i++)
-        for (int j = 0; j < shape.y; j++)
+      for (int j = 0; j < shape.y; j++)
+        for (int i = 0; i < shape.x; i++)
           array(i, j) = fct_xy(x[i], y[j], ctrl_array(i, j));
     }
     else if (p_noise_x and (!p_noise_y))
     {
-      for (int i = 0; i < shape.x; i++)
-        for (int j = 0; j < shape.y; j++)
+      for (int j = 0; j < shape.y; j++)
+        for (int i = 0; i < shape.x; i++)
           array(i,
                 j) = fct_xy(x[i] + (*p_noise_x)(i, j), y[j], ctrl_array(i, j));
     }
     else if ((!p_noise_x) and p_noise_y)
     {
-      for (int i = 0; i < shape.x; i++)
-        for (int j = 0; j < shape.y; j++)
+      for (int j = 0; j < shape.y; j++)
+        for (int i = 0; i < shape.x; i++)
           array(i,
                 j) = fct_xy(x[i], y[j] + (*p_noise_y)(i, j), ctrl_array(i, j));
     }
     else if (p_noise_x and p_noise_y)
     {
-      for (int i = 0; i < shape.x; i++)
-        for (int j = 0; j < shape.y; j++)
+      for (int j = 0; j < shape.y; j++)
+        for (int i = 0; i < shape.x; i++)
           array(i, j) = fct_xy(x[i] + (*p_noise_x)(i, j),
                                y[j] + (*p_noise_y)(i, j),
                                ctrl_array(i, j));

@@ -27,8 +27,8 @@ void stratify(Array             &z,
     for (uint k = 0; k < hs.size() - 1; k++)
     {
       float dh = hs[k + 1] - hs[k];
-      for (int i = 0; i < z.shape.x; i++)
-        for (int j = 0; j < z.shape.y; j++)
+      for (int j = 0; j < z.shape.y; j++)
+        for (int i = 0; i < z.shape.x; i++)
         {
           float zt = z(i, j) - (*p_noise)(i, j);
           if ((zt >= hs[k]) and (zt < hs[k + 1]))
@@ -44,8 +44,8 @@ void stratify(Array             &z,
     for (uint k = 0; k < hs.size() - 1; k++)
     {
       float dh = hs[k + 1] - hs[k];
-      for (int i = 0; i < z.shape.x; i++)
-        for (int j = 0; j < z.shape.y; j++)
+      for (int j = 0; j < z.shape.y; j++)
+        for (int i = 0; i < z.shape.x; i++)
           if ((z(i, j) >= hs[k]) and (z(i, j) < hs[k + 1]))
           {
             float v = (z(i, j) - hs[k]) / dh;
@@ -153,8 +153,8 @@ void stratify_oblique(Array             &z,
   float ca = std::cos(angle / 180.f * M_PI);
   float sa = std::sin(angle / 180.f * M_PI);
 
-  for (int i = 0; i < z.shape.x; i++)
-    for (int j = 0; j < z.shape.y; j++)
+  for (int j = 0; j < z.shape.y; j++)
+    for (int i = 0; i < z.shape.x; i++)
       shift(i, j) = talus * (ca * (float)i + sa * (float)j);
 
   Array zs = z + shift;

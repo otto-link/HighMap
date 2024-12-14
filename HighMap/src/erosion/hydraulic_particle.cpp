@@ -150,8 +150,8 @@ void hydraulic_particle(Array &z,
 
   // last pass for bedrock
   if (p_bedrock)
-    for (int i = 0; i < z.shape.x; i++)
-      for (int j = 0; j < z.shape.y; j++)
+    for (int j = 0; j < z.shape.y; j++)
+      for (int i = 0; i < z.shape.x; i++)
         z(i, j) = std::max(z(i, j), (*p_bedrock)(i, j));
 
   // splatmaps

@@ -35,8 +35,8 @@ void apply_hillshade(Tensor            &color3,
   clamp(hs);
 
   // apply to image
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
       for (int ch = 0; ch < 3; ch++)
         color3(i, j, ch) *= hs(i, j);
 }
@@ -118,8 +118,8 @@ Tensor colorize(Array &array,
   };
 
   // process each pixel
-  for (int i = 0; i < array.shape.x; ++i)
-    for (int j = 0; j < array.shape.y; ++j)
+  for (int j = 0; j < array.shape.y; ++j)
+    for (int i = 0; i < array.shape.x; ++i)
     {
       float value = array(i, j);
       if (p_noise) value += (*p_noise)(i, j);
@@ -170,8 +170,8 @@ Tensor colorize_histogram(const Array &array)
 
   // compute histogram
   std::vector<int> hist(array.shape.x);
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
       hist[(int)(a * array(i, j) + b)] += 1;
 
   int hmax = *std::max_element(hist.begin(), hist.end());
@@ -179,8 +179,8 @@ Tensor colorize_histogram(const Array &array)
     v = (int)((float)v / (float)hmax * (float)(array.shape.y - 1));
 
   // create histogram image
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
       if (j < hist[i]) color1(i, j, 0) = 1.f;
 
   return color1;
@@ -217,8 +217,8 @@ Tensor colorize_slope_height_heatmap(const Array &array, int cmap)
   // compute 2D histogram
   Array sum = Array(array.shape);
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       int p = (int)(a1 * array(i, j) + b1);
       int q = (int)(a2 * dz(i, j) + b2);
@@ -261,8 +261,8 @@ Tensor colorize_vec2(const Array &array1, const Array &array2)
     b2 = -vmin2 / (vmax2 - vmin2);
   }
 
-  for (int i = 0; i < array1.shape.x; i++)
-    for (int j = 0; j < array1.shape.y; j++)
+  for (int j = 0; j < array1.shape.y; j++)
+    for (int i = 0; i < array1.shape.x; i++)
     {
       float u = a1 * array1(i, j) + b1;
       float v = a2 * array2(i, j) + b2;

@@ -16,8 +16,8 @@ void find_flow_sinks(const Array &z, std::vector<int> &is, std::vector<int> &js)
   const std::vector<int> dj = {0, 1, 1, 1, 0, -1, -1, -1};
   const uint             nb = di.size();
 
-  for (int i = 1; i < z.shape.x - 1; i++)
-    for (int j = 1; j < z.shape.y - 1; j++)
+  for (int j = 1; j < z.shape.y - 1; j++)
+    for (int i = 1; i < z.shape.x - 1; i++)
     {
       // count neighbor cells with a higher elevation than the
       // current cell

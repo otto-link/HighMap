@@ -29,19 +29,13 @@ void median_3x3(Array &array)
 
   auto run = clwrapper::Run("median_3x3");
 
-  // FIX ME transpose / row-col major compatibility issue
+  run.bind_imagef("in", array.vector, shape.x, shape.y);
+  run.bind_imagef("out", array.vector, shape.x, shape.y, true); // out
+  run.bind_arguments(shape.x, shape.y);
 
-  transpose(array);
-
-  run.bind_imagef("in", array.vector, shape.y, shape.x);
-  run.bind_imagef("out", array.vector, shape.y, shape.x, true); // out
-  run.bind_arguments(shape.y, shape.x);
-
-  run.execute({shape.y, shape.x});
+  run.execute({shape.x, shape.y});
 
   run.read_imagef("out");
-
-  transpose(array);
 }
 
 void avg(Array &array, int ir)

@@ -99,8 +99,8 @@ void helper_thinning(Array &in, int iter)
 {
   Array marker(in.shape);
 
-  for (int i = 1; i < in.shape.x - 1; i++)
-    for (int j = 1; j < in.shape.y - 1; j++)
+  for (int j = 1; j < in.shape.y - 1; j++)
+    for (int i = 1; i < in.shape.x - 1; i++)
     {
       int a = (in(i - 1, j) == 0.f && in(i - 1, j + 1) == 1.f) +
               (in(i - 1, j + 1) == 0.f && in(i, j + 1) == 1.f) +
@@ -122,8 +122,8 @@ void helper_thinning(Array &in, int iter)
         marker(i, j) = 1.f;
     }
 
-  for (int i = 0; i < in.shape.x; i++)
-    for (int j = 0; j < in.shape.y; j++)
+  for (int j = 0; j < in.shape.y; j++)
+    for (int i = 0; i < in.shape.x; i++)
       in(i, j) *= 1.f - marker(i, j);
 }
 
@@ -136,8 +136,8 @@ Array relative_distance_from_skeleton(const Array &array,
 
   Array rdist(array.shape);
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
       // only work for cells within the non-zero regions
       if (array(i, j) != 0.f)
       {
@@ -150,8 +150,8 @@ Array relative_distance_from_skeleton(const Array &array,
         int q1 = std::max(j - ir_search, 0);
         int q2 = std::min(j + ir_search + 1, array.shape.y);
 
-        for (int p = p1; p < p2; p++)
-          for (int q = q1; q < q2; q++)
+        for (int q = q1; q < q2; q++)
+          for (int p = p1; p < p2; p++)
           {
             if (sk(p, q) == 1.f)
             {

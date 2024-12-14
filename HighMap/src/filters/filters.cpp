@@ -64,14 +64,15 @@ void expand(Array &array, int ir)
   int   nj = array.shape.y;
   Array k = cubic_pulse({2 * ir + 1, 2 * ir + 1});
 
-  for (int i = 0; i < ni; i++)
+  for (int j = 0; j < nj; j++)
   {
-    int p1 = std::max(0, i - ir) - i;
-    int p2 = std::min(ni, i + ir + 1) - i;
-    for (int j = 0; j < nj; j++)
+    int q1 = std::max(0, j - ir) - j;
+    int q2 = std::min(nj, j + ir + 1) - j;
+    for (int i = 0; i < ni; i++)
     {
-      int q1 = std::max(0, j - ir) - j;
-      int q2 = std::min(nj, j + ir + 1) - j;
+      int p1 = std::max(0, i - ir) - i;
+      int p2 = std::min(ni, i + ir + 1) - i;
+
       for (int p = p1; p < p2; p++)
         for (int q = q1; q < q2; q++)
         {
@@ -107,14 +108,14 @@ void expand(Array &array, Array &kernel)
   int rj1 = (int)(0.5f * kernel.shape.y);
   int rj2 = kernel.shape.y - rj1 - 1;
 
-  for (int i = 0; i < ni; i++)
+  for (int j = 0; j < nj; j++)
   {
-    int p1 = std::max(0, i - ri1) - i;
-    int p2 = std::min(ni, i + ri2 + 1) - i;
-    for (int j = 0; j < nj; j++)
+    int q1 = std::max(0, j - rj1) - j;
+    int q2 = std::min(nj, j + rj2 + 1) - j;
+    for (int i = 0; i < ni; i++)
     {
-      int q1 = std::max(0, j - rj1) - j;
-      int q2 = std::min(nj, j + rj2 + 1) - j;
+      int p1 = std::max(0, i - ri1) - i;
+      int p2 = std::min(ni, i + ri2 + 1) - i;
       for (int p = p1; p < p2; p++)
         for (int q = q1; q < q2; q++)
         {
@@ -312,8 +313,8 @@ void gamma_correction_local(Array &array, float gamma, int ir, float k)
 
   if (k != 0) // with smoothing
   {
-    for (int i = 0; i < array.shape.x; i++)
-      for (int j = 0; j < array.shape.y; j++)
+    for (int j = 0; j < array.shape.y; j++)
+      for (int i = 0; i < array.shape.x; i++)
       {
         float v = std::abs(array(i, j) - amin(i, j)) /
                   (amax(i, j) - amin(i, j) + 1e-30);
@@ -324,8 +325,8 @@ void gamma_correction_local(Array &array, float gamma, int ir, float k)
   }
   else // without smoothing
   {
-    for (int i = 0; i < array.shape.x; i++)
-      for (int j = 0; j < array.shape.y; j++)
+    for (int j = 0; j < array.shape.y; j++)
+      for (int i = 0; i < array.shape.x; i++)
       {
         float v = std::abs(array(i, j) - amin(i, j)) /
                   (amax(i, j) - amin(i, j) + 1e-30);
@@ -358,8 +359,8 @@ void kuwahara(Array &array, int ir, float mix_ratio)
                                                  Vec4<int>(ir, ir, ir, ir));
   Array array_out(array_buffered.shape);
 
-  for (int i = ir; i < array_buffered.shape.x - ir; i++)
-    for (int j = ir; j < array_buffered.shape.y - ir; j++)
+  for (int j = ir; j < array_buffered.shape.y - ir; j++)
+    for (int i = ir; i < array_buffered.shape.x - ir; i++)
     {
       // build quadrants
       Array q1 = array_buffered.extract_slice(
@@ -533,8 +534,8 @@ void median_3x3(Array &array)
 
   std::vector<float> v(9);
 
-  for (int i = 1; i < array.shape.x - 1; i++)
-    for (int j = 1; j < array.shape.y - 1; j++)
+  for (int j = 1; j < array.shape.y - 1; j++)
+    for (int i = 1; i < array.shape.x - 1; i++)
     {
       v[0] = array(i - 1, j - 1);
       v[1] = array(i - 1, j);
@@ -550,8 +551,8 @@ void median_3x3(Array &array)
       array_out(i, j) = v[4];
     }
 
-  for (int i = 1; i < array.shape.x - 1; i++)
-    for (int j = 1; j < array.shape.y - 1; j++)
+  for (int j = 1; j < array.shape.y - 1; j++)
+    for (int i = 1; i < array.shape.x - 1; i++)
     {
       array(i, j) = array_out(i, j);
     }
@@ -581,8 +582,8 @@ void normal_displacement(Array &array, float amount, int ir, bool reverse)
 
   if (reverse) amount = -amount;
 
-  for (int i = 1; i < array.shape.x - 1; i++)
-    for (int j = 1; j < array.shape.y - 1; j++)
+  for (int j = 1; j < array.shape.y - 1; j++)
+    for (int i = 1; i < array.shape.x - 1; i++)
     {
       Vec3<float> n = array_f.get_normal_at(i, j);
 
@@ -649,8 +650,8 @@ void sharpen(Array &array, float ratio)
 {
   Array lp = Array(array.shape);
 
-  for (int i = 1; i < array.shape.x - 1; i++)
-    for (int j = 1; j < array.shape.y - 1; j++)
+  for (int j = 1; j < array.shape.y - 1; j++)
+    for (int i = 1; i < array.shape.x - 1; i++)
     {
       lp(i, j) = 5.f * array(i, j) - array(i + 1, j) - array(i - 1, j) -
                  array(i, j - 1) - array(i, j + 1);
@@ -972,8 +973,8 @@ void smoothstep_local(Array &array, int ir)
   smooth_cpulse(amin, ir);
   smooth_cpulse(amax, ir);
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       float v = (array(i, j) - amin(i, j)) / (amax(i, j) - amin(i, j) + 1e-30);
       array(i, j) = smoothstep3(v) * (amax(i, j) - amin(i, j)) + amin(i, j);

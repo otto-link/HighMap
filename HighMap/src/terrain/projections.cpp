@@ -34,8 +34,8 @@ void interpolate_terrain_heightmap(Terrain           &t_source,
     float       lx = bbox.b - bbox.a;
     float       ly = bbox.d - bbox.c;
 
-    for (int i = 0; i < p_t->tiles[k].shape.x; i++)
-      for (int j = 0; j < p_t->tiles[k].shape.y; j++)
+    for (int j = 0; j < p_t->tiles[k].shape.y; j++)
+      for (int i = 0; i < p_t->tiles[k].shape.x; i++)
       {
         // relative position within the heightmap
         float xrel = (float)(i / (p_t->tiles[k].shape.x - 1.f) * lx + bbox.a);

@@ -242,7 +242,7 @@ public:
    */
   float &operator()(int i, int j)
   {
-    return this->vector[i * this->shape.y + j];
+    return this->vector[j * this->shape.x + i];
   }
 
   /**
@@ -255,7 +255,7 @@ public:
    */
   const float &operator()(int i, int j) const ///< @overload
   {
-    return this->vector[i * this->shape.y + j];
+    return this->vector[j * this->shape.x + i];
   }
 
   //----------------------------------------

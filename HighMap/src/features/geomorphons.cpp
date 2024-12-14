@@ -27,8 +27,8 @@ Array geomorphons(const Array &array, int irmin, int irmax, float epsilon)
 
   Mat<int> code = Mat<int>(array.shape);
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       std::vector<int> signature(nb);
 
@@ -74,8 +74,8 @@ Array geomorphons(const Array &array, int irmin, int irmax, float epsilon)
 
   // https://geomorphometry.org/wp-content/uploads/2021/07/StepinskiJasiewicz2011geomorphometry.pdf
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       switch (code(i, j))
       {

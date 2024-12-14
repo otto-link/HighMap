@@ -66,8 +66,8 @@ void thermal_scree(Array &z,
   if (talus_constraint)
   {
     Array tz = gradient_talus(z);
-    for (int i = 2; i < z.shape.x - 2; i++)
-      for (int j = 2; j < z.shape.y - 2; j++)
+    for (int j = 2; j < z.shape.y - 2; j++)
+      for (int i = 2; i < z.shape.x - 2; i++)
       {
         float rd = dis(gen);
         if ((z(i, j) > zmin) and (z(i, j) < zmax * rd) and (tz(i, j) <= talus))
@@ -80,8 +80,8 @@ void thermal_scree(Array &z,
   }
   else
   {
-    for (int i = 2; i < z.shape.x - 2; i++)
-      for (int j = 2; j < z.shape.y - 2; j++)
+    for (int j = 2; j < z.shape.y - 2; j++)
+      for (int i = 2; i < z.shape.x - 2; i++)
       {
         float rd = dis(gen);
         if ((z(i, j) > zmin) and (z(i, j) < zmax * rd))

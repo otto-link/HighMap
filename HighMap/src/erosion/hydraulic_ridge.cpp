@@ -32,8 +32,8 @@ void hydraulic_ridge(Array &z,
   // flat heightmap
   {
     float talus_fix = 1e-3 / (float)z.shape.x;
-    for (int i = 0; i < z.shape.x; i++)
-      for (int j = 0; j < z.shape.y; j++)
+    for (int j = 0; j < z.shape.y; j++)
+      for (int i = 0; i < z.shape.x; i++)
         ze(i, j) += talus_fix * (float)i;
   }
 

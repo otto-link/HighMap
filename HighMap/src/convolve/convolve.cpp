@@ -96,19 +96,11 @@ Array convolve2d_truncated(const Array &array, const Array &kernel)
   Array array_out = Array(Vec2<int>(array.shape.x - kernel.shape.x,
                                     array.shape.y - kernel.shape.y));
 
-  for (int i = 0; i < array_out.shape.x; i++)
-  {
-    for (int j = 0; j < array_out.shape.y; j++)
-    {
-      for (int p = 0; p < kernel.shape.x; p++)
-      {
-        for (int q = 0; q < kernel.shape.y; q++)
-        {
+  for (int j = 0; j < array_out.shape.y; j++)
+    for (int i = 0; i < array_out.shape.x; i++)
+      for (int q = 0; q < kernel.shape.y; q++)
+        for (int p = 0; p < kernel.shape.x; p++)
           array_out(i, j) += array(i + p, j + q) * kernel(p, q);
-        }
-      }
-    }
-  }
 
   return array_out;
 }

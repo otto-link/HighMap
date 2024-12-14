@@ -200,8 +200,8 @@ void radial_displacement_to_xy(const Array &dr,
   std::vector<float> x, y;
   grid_xy_vector(x, y, shape, bbox, false); // no endpoint
 
-  for (int i = 0; i < shape.x; i++)
-    for (int j = 0; j < shape.y; j++)
+  for (int j = 0; j < shape.y; j++)
+    for (int i = 0; i < shape.x; i++)
     {
       float xr = x[i] - center.x;
       float yr = y[j] - center.y;
@@ -286,8 +286,8 @@ Array smoothstep5(const Array &array, const Array &vmin, const Array &vmax)
 {
   Array array_out = Array(array.shape);
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       if (array(i, j) < vmin(i, j))
         array_out(i, j) = vmin(i, j);

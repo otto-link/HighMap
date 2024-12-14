@@ -16,8 +16,8 @@ Tensor normal_map(const Array &array)
   Array dx = gradient_x(array) * array.shape.x;
   Array dy = gradient_y(array) * array.shape.y;
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       Vec3<float> n = Vec3<float>(-dx(i, j), -dy(i, j), 1.f);
       n /= std::hypot(n.x, n.y, n.z);

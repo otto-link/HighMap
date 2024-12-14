@@ -90,8 +90,8 @@ Array Array::extract_slice(Vec4<int> idx)
 {
   Array array_out = Array(Vec2<int>(idx.b - idx.a, idx.d - idx.c));
 
-  for (int i = idx.a; i < idx.b; i++)
-    for (int j = idx.c; j < idx.d; j++)
+  for (int j = idx.c; j < idx.d; j++)
+    for (int i = idx.a; i < idx.b; i++)
       array_out(i - idx.a, j - idx.c) = (*this)(i, j);
 
   return array_out;
@@ -179,8 +179,8 @@ float Array::get_value_bicubic_at(int i, int j, float u, float v) const
   float arr[4][4];
 
   // Get the 4x4 surrounding grid points
-  for (int m = -1; m <= 2; ++m)
-    for (int n = -1; n <= 2; ++n)
+  for (int n = -1; n <= 2; ++n)
+    for (int m = -1; m <= 2; ++m)
     {
       int ip = std::clamp(i + m, 0, this->shape.x - 1);
       int jp = std::clamp(j + n, 0, this->shape.y - 1);
@@ -217,14 +217,14 @@ float Array::get_value_nearest(float x, float y, Vec4<float> bbox)
 
 int Array::linear_index(int i, int j) const
 {
-  return i * this->shape.y + j;
+  return j * this->shape.x + i;
 }
 
 Vec2<int> Array::linear_index_reverse(int k) const
 {
   Vec2<int> ij;
-  ij.x = std::floor(k / shape.y);
-  ij.y = k - ij.x * shape.y;
+  ij.y = std::floor(k / shape.x);
+  ij.x = k - ij.y * shape.x;
   return ij;
 }
 
@@ -267,12 +267,13 @@ Array Array::resample_to_shape(Vec2<int> new_shape) const
   std::vector<float> x = linspace(0.f, (float)this->shape.x - 1, new_shape.x);
   std::vector<float> y = linspace(0.f, (float)this->shape.y - 1, new_shape.y);
 
-  for (int i = 0; i < new_shape.x; i++)
+  for (int j = 0; j < new_shape.y; j++)
   {
-    int iref = (int)x[i];
-    for (int j = 0; j < new_shape.y; j++)
+    int jref = (int)y[j];
+    for (int i = 0; i < new_shape.x; i++)
     {
-      int   jref = (int)y[j];
+      int iref = (int)x[i];
+
       float u = x[i] - (float)iref;
       float v = y[j] - (float)jref;
 
@@ -305,12 +306,12 @@ Array Array::resample_to_shape_bicubic(Vec2<int> new_shape) const
   std::vector<float> x = linspace(0.f, (float)this->shape.x - 1, new_shape.x);
   std::vector<float> y = linspace(0.f, (float)this->shape.y - 1, new_shape.y);
 
-  for (int i = 0; i < new_shape.x; i++)
+  for (int j = 0; j < new_shape.y; j++)
   {
-    int iref = (int)x[i];
-    for (int j = 0; j < new_shape.y; j++)
+    int jref = (int)y[j];
+    for (int i = 0; i < new_shape.x; i++)
     {
-      int   jref = (int)y[j];
+      int   iref = (int)x[i];
       float u = x[i] - (float)iref;
       float v = y[j] - (float)jref;
 

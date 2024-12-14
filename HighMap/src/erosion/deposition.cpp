@@ -221,8 +221,8 @@ void sediment_layer(Array       &z,
   Array talus_ref = talus_layer;
   Array fmask = Array(z.shape, 1.f);
 
-  for (int i = 0; i < z.shape.x; i++)
-    for (int j = 0; j < z.shape.y; j++)
+  for (int j = 0; j < z.shape.y; j++)
+    for (int i = 0; i < z.shape.x; i++)
       if (g_talus(i, j) > talus_upper_limit(i, j))
       {
         fmask(i, j) = 0.f;

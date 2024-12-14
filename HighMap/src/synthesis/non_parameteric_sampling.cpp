@@ -59,8 +59,8 @@ Array non_parametric_sampling(Array          &array,
   {
     Array patch = get_random_patch(array, size, gen);
 
-    for (int i = i1; i < i1 + size.x; i++)
-      for (int j = j1; j < j1 + size.y; j++)
+    for (int j = j1; j < j1 + size.y; j++)
+      for (int i = i1; i < i1 + size.x; i++)
       {
         array_out(i, j) = patch(i - i1, j - j1);
         is_cell_done(i, j) = 1;
@@ -75,8 +75,8 @@ Array non_parametric_sampling(Array          &array,
 
   // count number of defined neighbors for each cell (and restrict this
   // search to the initial patch)
-  for (int i = i1 - 1; i < i1 + size.x + 1; i++)
-    for (int j = j1 - 1; j < j1 + size.y + 1; j++)
+  for (int j = j1 - 1; j < j1 + size.y + 1; j++)
+    for (int i = i1 - 1; i < i1 + size.x + 1; i++)
       if (is_cell_done(i, j) == 0)
       {
         int nbrs = count_neighbors_to_fill(i, j, is_cell_done);
@@ -103,8 +103,8 @@ Array non_parametric_sampling(Array          &array,
     std::vector<float> ssd_list = {};
     std::vector<float> value_list = {};
 
-    for (int p = 0; p < shape.x - patch_shape.x; p++)
-      for (int q = 0; q < shape.y - patch_shape.y; q++)
+    for (int q = 0; q < shape.y - patch_shape.y; q++)
+      for (int p = 0; p < shape.x - patch_shape.x; p++)
       {
         Vec4<int> idx = Vec4<int>(p, p + patch_shape.x, q, q + patch_shape.y);
         Array     patch = array.extract_slice(idx);
@@ -116,8 +116,8 @@ Array non_parametric_sampling(Array          &array,
         float ssd_sum = 0.f;
         float dsum = 0.f;
 
-        for (int r = 0; r < patch_shape.x; r++)
-          for (int s = 0; s < patch_shape.y; s++)
+        for (int s = 0; s < patch_shape.y; s++)
+          for (int r = 0; r < patch_shape.x; r++)
           {
             int ip = i - npx2 + r;
             int jq = j - npy2 + s;
@@ -150,8 +150,8 @@ Array non_parametric_sampling(Array          &array,
     is_cell_done(i, j) = 1;
 
     // add neighbors
-    for (int p = -1; p < 2; p++)
-      for (int q = -1; q < 2; q++)
+    for (int q = -1; q < 2; q++)
+      for (int p = -1; p < 2; p++)
       {
         int ip = i + p;
         int jq = j + q;

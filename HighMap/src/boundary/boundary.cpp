@@ -95,16 +95,16 @@ void falloff(Array           &array,
   std::function<float(float, float)> r_fct = get_distance_function(dist_fct);
 
   if (!p_noise)
-    for (int i = 0; i < array.shape.x; i++)
-      for (int j = 0; j < array.shape.y; j++)
+    for (int j = 0; j < array.shape.y; j++)
+      for (int i = 0; i < array.shape.x; i++)
       {
         float r = r_fct(2.f * x[i], 2.f * y[j]);
         r = 1.f - strength * r * r;
         array(i, j) *= r;
       }
   else
-    for (int i = 0; i < array.shape.x; i++)
-      for (int j = 0; j < array.shape.y; j++)
+    for (int j = 0; j < array.shape.y; j++)
+      for (int i = 0; i < array.shape.x; i++)
       {
         float r = r_fct(x[i], y[j]);
         r += (*p_noise)(i, j) * (*p_noise)(i, j);
@@ -136,8 +136,8 @@ void fill_borders(Array &array, int nbuffer)
   const int ni = array.shape.x;
   const int nj = array.shape.y;
 
-  for (int i = nbuffer - 1; i >= 0; i--)
-    for (int j = 0; j < nj; j++)
+  for (int j = 0; j < nj; j++)
+    for (int i = nbuffer - 1; i >= 0; i--)
     {
       array(i, j) = array(i + 1, j);
       array(ni - i - 1, j) = array(ni - i - 2, j);
@@ -158,8 +158,8 @@ Array generate_buffered_array(const Array &array,
   Array array_out = Array(Vec2<int>(array.shape.x + buffers.a + buffers.b,
                                     array.shape.y + buffers.c + buffers.d));
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
       array_out(i + buffers.a, j + buffers.c) = array(i, j);
 
   if (!zero_padding)
@@ -169,20 +169,20 @@ Array generate_buffered_array(const Array &array,
     int j1 = buffers.c;
     int j2 = buffers.d;
 
-    for (int i = 0; i < i1; i++)
-      for (int j = j1; j < array_out.shape.y - j2; j++)
+    for (int j = j1; j < array_out.shape.y - j2; j++)
+      for (int i = 0; i < i1; i++)
         array_out(i, j) = array_out(2 * i1 - i, j);
 
-    for (int i = array_out.shape.x - i2; i < array_out.shape.x; i++)
-      for (int j = j1; j < array_out.shape.y - j2; j++)
+    for (int j = j1; j < array_out.shape.y - j2; j++)
+      for (int i = array_out.shape.x - i2; i < array_out.shape.x; i++)
         array_out(i, j) = array_out(2 * (array_out.shape.x - i2) - i - 1, j);
 
-    for (int i = 0; i < array_out.shape.x; i++)
-      for (int j = 0; j < j1; j++)
+    for (int j = 0; j < j1; j++)
+      for (int i = 0; i < array_out.shape.x; i++)
         array_out(i, j) = array_out(i, 2 * j1 - j);
 
-    for (int i = 0; i < array_out.shape.x; i++)
-      for (int j = array_out.shape.y - j2; j < array_out.shape.y; j++)
+    for (int j = array_out.shape.y - j2; j < array_out.shape.y; j++)
+      for (int i = 0; i < array_out.shape.x; i++)
         array_out(i, j) = array_out(i, 2 * (array_out.shape.y - j2) - j - 1);
   }
 
@@ -234,8 +234,8 @@ Array make_periodic_stitching(Array &array, float overlap)
   // east frontier
   {
     Array error = Array(Vec2<int>(noverlap.x, shape.y));
-    for (int i = 0; i < noverlap.x; i++)
-      for (int j = 0; j < shape.y; j++)
+    for (int j = 0; j < shape.y; j++)
+      for (int i = 0; i < noverlap.x; i++)
         error(i, j) = std::abs(array(i, j) -
                                array(shape.x - 1 - noverlap.x + i, j));
 
@@ -246,8 +246,8 @@ Array make_periodic_stitching(Array &array, float overlap)
     // define lerp factor
     Array mask = generate_mask(error.shape, cut_path_i, ir);
 
-    for (int i = 0; i < noverlap.x; i++)
-      for (int j = 0; j < shape.y; j++)
+    for (int j = 0; j < shape.y; j++)
+      for (int i = 0; i < noverlap.x; i++)
         array_p(i, j) = lerp(array(shape.x - 1 - noverlap.x + i, j),
                              array(i, j),
                              mask(i, j));
@@ -256,8 +256,8 @@ Array make_periodic_stitching(Array &array, float overlap)
   // south frontier
   {
     Array error = Array(Vec2<int>(shape.x, noverlap.y));
-    for (int i = 0; i < shape.x; i++)
-      for (int j = 0; j < noverlap.y; j++)
+    for (int j = 0; j < noverlap.y; j++)
+      for (int i = 0; i < shape.x; i++)
         error(i, j) = std::abs(array_p(i, j) -
                                array_p(i, shape.y - 1 - noverlap.y + j));
 
@@ -270,8 +270,8 @@ Array make_periodic_stitching(Array &array, float overlap)
       mask = transpose(mask_t);
     }
 
-    for (int i = 0; i < shape.x; i++)
-      for (int j = 0; j < noverlap.y; j++)
+    for (int j = 0; j < noverlap.y; j++)
+      for (int i = 0; i < shape.x; i++)
         array_p(i, j) = lerp(array_p(i, shape.y - 1 - noverlap.y + j),
                              array_p(i, j),
                              mask(i, j));
@@ -321,8 +321,8 @@ void set_borders(Array      &array,
                  Vec4<int>   buffer_sizes)
 {
   // west
-  for (int i = 0; i < buffer_sizes.a; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < buffer_sizes.a; i++)
     {
       float r = (float)i / (float)buffer_sizes.a;
       r = r * r * (3.f - 2.f * r);
@@ -330,8 +330,8 @@ void set_borders(Array      &array,
     }
 
   // east
-  for (int i = array.shape.x - buffer_sizes.b; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = array.shape.x - buffer_sizes.b; i < array.shape.x; i++)
     {
       float r = 1.f - (float)(i - array.shape.x + buffer_sizes.b) /
                           (float)buffer_sizes.b;
@@ -340,8 +340,8 @@ void set_borders(Array      &array,
     }
 
   // south
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < buffer_sizes.c; j++)
+  for (int j = 0; j < buffer_sizes.c; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       float r = (float)j / (float)buffer_sizes.c;
       r = r * r * (3.f - 2.f * r);
@@ -349,8 +349,8 @@ void set_borders(Array      &array,
     }
 
   // north
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = array.shape.y - buffer_sizes.d; j < array.shape.y; j++)
+  for (int j = array.shape.y - buffer_sizes.d; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       float r = 1.f - (float)(j - array.shape.y + buffer_sizes.d) /
                           (float)buffer_sizes.d;
@@ -380,37 +380,21 @@ void sym_borders(Array &array, Vec4<int> buffer_sizes)
   const int j2 = buffer_sizes.d;
 
   // fill-in the blanks...
-  for (int i = 0; i < i1; i++)
-  {
-    for (int j = j1; j < array.shape.y - j2; j++)
-    {
+  for (int j = j1; j < array.shape.y - j2; j++)
+    for (int i = 0; i < i1; i++)
       array(i, j) = array(2 * i1 - i, j);
-    }
-  }
 
-  for (int i = array.shape.x - i2; i < array.shape.x; i++)
-  {
-    for (int j = j1; j < array.shape.y - j2; j++)
-    {
+  for (int j = j1; j < array.shape.y - j2; j++)
+    for (int i = array.shape.x - i2; i < array.shape.x; i++)
       array(i, j) = array(2 * (array.shape.x - i2) - i - 1, j);
-    }
-  }
 
-  for (int i = 0; i < array.shape.x; i++)
-  {
-    for (int j = 0; j < j1; j++)
-    {
+  for (int j = 0; j < j1; j++)
+    for (int i = 0; i < array.shape.x; i++)
       array(i, j) = array(i, 2 * j1 - j);
-    }
-  }
 
-  for (int i = 0; i < array.shape.x; i++)
-  {
-    for (int j = array.shape.y - j2; j < array.shape.y; j++)
-    {
+  for (int j = array.shape.y - j2; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
       array(i, j) = array(i, 2 * (array.shape.y - j2) - j - 1);
-    }
-  }
 }
 
 void zeroed_borders(Array &array)
@@ -452,16 +436,16 @@ void zeroed_edges(Array           &array,
   std::function<float(float, float)> r_fct = get_distance_function(dist_fct);
 
   if (!p_noise)
-    for (int i = 0; i < array.shape.x; i++)
-      for (int j = 0; j < array.shape.y; j++)
+    for (int j = 0; j < array.shape.y; j++)
+      for (int i = 0; i < array.shape.x; i++)
       {
         float r = r_fct(2.f * x[i], 2.f * y[j]);
         float ra = r < 1.f ? std::pow(1.f - r, sigma) : 0.f;
         array(i, j) *= ra / (ra + std::pow(r, sigma));
       }
   else
-    for (int i = 0; i < array.shape.x; i++)
-      for (int j = 0; j < array.shape.y; j++)
+    for (int j = 0; j < array.shape.y; j++)
+      for (int i = 0; i < array.shape.x; i++)
       {
         float r = r_fct(2.f * x[i], 2.f * y[j]);
         r += (*p_noise)(i, j) * (*p_noise)(i, j);

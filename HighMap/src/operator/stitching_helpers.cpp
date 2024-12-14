@@ -79,8 +79,8 @@ Array generate_mask(hmap::Vec2<int> shape, std::vector<int> cut_path_i, int ir)
   // in order to avoid visible discontinuities
   int istart = std::min(ir, (int)(0.5f * shape.x));
 
-  for (int i = istart; i < shape.x; i++)
-    for (int j = 0; j < shape.y; j++)
+  for (int j = 0; j < shape.y; j++)
+    for (int i = istart; i < shape.x; i++)
       mask(i, j) = (i > cut_path_i[j]) ? 1.f : 0.f;
 
   for (int j = 0; j < shape.y; j++)
