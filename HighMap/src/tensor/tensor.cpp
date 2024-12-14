@@ -142,7 +142,6 @@ void Tensor::to_png(const std::string &fname, int depth)
   cv::Mat mat = to_cv_mat();
   int     scale_factor = (depth == CV_8U) ? 255 : 65535;
   mat.convertTo(mat, depth, scale_factor);
-  // cv::rotate(mat, mat, cv::ROTATE_90_COUNTERCLOCKWISE);
   cv::imwrite(fname, mat);
 }
 
@@ -151,7 +150,7 @@ std::vector<uint8_t> Tensor::to_img_8bit()
   std::vector<uint8_t> vec;
   vec.reserve(this->vector.size());
 
-  for (int j = this->shape.y - 1; j > -1; j--)
+  for (int j = 0; j < this->shape.y - 1; j++)
     for (int i = 0; i < this->shape.x; i++)
       for (int k = 0; k < this->shape.z; k++)
         vec.push_back(static_cast<uint8_t>(255.f * (*this)(i, j, k)));
