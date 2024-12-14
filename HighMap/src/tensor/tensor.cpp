@@ -127,7 +127,7 @@ cv::Mat Tensor::to_cv_mat()
   default: cv_mat_type = CV_32FC1; break;
   }
 
-  cv::Mat mat(shape.x, shape.y, cv_mat_type, vector.data());
+  cv::Mat mat(shape.y, shape.x, cv_mat_type, vector.data());
 
   if (shape.z == 3)
     cv::cvtColor(mat, mat, cv::COLOR_BGR2RGB);
@@ -142,7 +142,7 @@ void Tensor::to_png(const std::string &fname, int depth)
   cv::Mat mat = to_cv_mat();
   int     scale_factor = (depth == CV_8U) ? 255 : 65535;
   mat.convertTo(mat, depth, scale_factor);
-  cv::rotate(mat, mat, cv::ROTATE_90_COUNTERCLOCKWISE);
+  // cv::rotate(mat, mat, cv::ROTATE_90_COUNTERCLOCKWISE);
   cv::imwrite(fname, mat);
 }
 

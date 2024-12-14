@@ -25,7 +25,7 @@ void convert_mat_to_array(const cv::Mat &mat, Array &array)
 
 Array cv_mat_to_array(const cv::Mat &mat, bool remap_values)
 {
-  Vec2<int> shape = {mat.rows, mat.cols};
+  Vec2<int> shape = {mat.cols, mat.rows};
   Array     array(shape);
 
   switch (mat.type())
