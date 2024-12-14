@@ -22,7 +22,6 @@ Array read_to_array(std::string fname)
   }
   else
   {
-    cv::rotate(mat, mat, cv::ROTATE_90_CLOCKWISE);
     bool remap = true;
     return cv_mat_to_array(mat, remap);
   }
