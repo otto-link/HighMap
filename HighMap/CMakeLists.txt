@@ -22,7 +22,6 @@ set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${PROJECT_VERSION})
 target_link_libraries(
   ${PROJECT_NAME}
   assimp::assimp
-  clwrapper
   delaunator::delaunator
   GSL::gsl
   GSL::gslcblas
@@ -34,6 +33,10 @@ target_link_libraries(
   NoiseLib
   OpenMP::OpenMP_CXX
   ${OpenCV_LIBS})
+
+if(HIGHMAP_ENABLE_OPENCL)
+  target_link_libraries(${PROJECT_NAME} clwrapper)
+endif()
 
 if(HIGHMAP_ENABLE_OPENCL)
   target_link_libraries(${PROJECT_NAME} ${OpenCL_LIBRARIES})
