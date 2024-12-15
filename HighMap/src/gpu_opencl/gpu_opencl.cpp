@@ -4,7 +4,6 @@
 #ifdef ENABLE_OPENCL
 
 #include "highmap/opencl/gpu_opencl.hpp"
-#include "highmap/transform.hpp"
 
 namespace hmap::gpu
 {
@@ -15,48 +14,24 @@ bool init_opencl()
 
   // load and build kernels
   const std::string code =
+#include "kernels/_common_index.cl"
+#include "kernels/_common_math.cl"
+#include "kernels/_common_rand.cl"
+#include "kernels/_common_sort.cl"
+  //
+#include "kernels/expand.cl"
+#include "kernels/laplace.cl"
+#include "kernels/maximum_smooth.cl"
 #include "kernels/median_3x3.cl"
+#include "kernels/minimum_smooth.cl"
+#include "kernels/smooth_cpulse.cl"
+#include "kernels/thermal.cl"
+#include "kernels/warp.cl"
       ;
 
   clwrapper::KernelManager::get_instance().add_kernel(code);
 
   return true;
-}
-
-void median_3x3(Array &array)
-{
-  Vec2<int> shape = array.shape;
-
-  auto run = clwrapper::Run("median_3x3");
-
-  run.bind_imagef("in", array.vector, shape.x, shape.y);
-  run.bind_imagef("out", array.vector, shape.x, shape.y, true); // out
-  run.bind_arguments(shape.x, shape.y);
-
-  run.execute({shape.x, shape.y});
-
-  run.read_imagef("out");
-}
-
-void avg(Array &array, int ir)
-{
-  Vec2<int> shape = array.shape;
-
-  auto run = clwrapper::Run("avg");
-
-  // FIX ME transpose / row-col major compatibility issue
-
-  transpose(array);
-
-  run.bind_imagef("in", array.vector, shape.y, shape.x);
-  run.bind_imagef("out", array.vector, shape.y, shape.x, true); // out
-  run.bind_arguments(shape.y, shape.x, ir);
-
-  run.execute({shape.y, shape.x});
-
-  run.read_imagef("out");
-
-  transpose(array);
 }
 
 } // namespace hmap::gpu

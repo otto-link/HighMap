@@ -142,6 +142,7 @@ void Tensor::to_png(const std::string &fname, int depth)
   cv::Mat mat = to_cv_mat();
   int     scale_factor = (depth == CV_8U) ? 255 : 65535;
   mat.convertTo(mat, depth, scale_factor);
+  cv::flip(mat, mat, 0); // up-down
   cv::imwrite(fname, mat);
 }
 

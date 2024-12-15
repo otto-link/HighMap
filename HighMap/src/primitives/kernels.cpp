@@ -114,6 +114,28 @@ Array cubic_pulse(Vec2<int> shape)
   return array;
 }
 
+std::vector<float> cubic_pulse_1d(int nk)
+{
+  std::vector<float> kernel_1d(nk);
+
+  float sum = 0.f;
+  float x0 = (float)nk / 2.f;
+  for (int i = 0; i < nk; i++)
+  {
+    float x = std::abs((float)i - x0) / x0;
+    kernel_1d[i] = 1.f - x * x * (3.f - 2.f * x);
+    sum += kernel_1d[i];
+  }
+
+  // normalize
+  for (int i = 0; i < nk; i++)
+  {
+    kernel_1d[i] /= sum;
+  }
+
+  return kernel_1d;
+}
+
 Array cubic_pulse_directional(Vec2<int> shape,
                               float     angle,
                               float     aspect_ratio,

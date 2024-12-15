@@ -24,9 +24,35 @@ namespace hmap::gpu
 
 bool init_opencl();
 
-void avg(Array &array, int ir);
+// --- function wrappers
+
+// clang-format off
+void expand(Array &array, int ir);
+void expand(Array &array, int ir, Array *p_mask);
+void expand(Array &array, Array &kernel);
+void expand(Array &array, Array &kernel, Array *p_mask);
+
+void laplace(Array &array, float sigma = 0.2f, int iterations = 3);
+void laplace(Array &array, Array *p_mask, float sigma = 0.2f, int iterations = 3);
+
+Array maximum_smooth(const Array &array1, const Array &array2, float k = 0.2f);
 
 void median_3x3(Array &array);
+
+Array minimum_smooth(const Array &array1, const Array &array2, float k = 0.2f);
+
+void smooth_cpulse(Array &array, int ir);
+void smooth_cpulse(Array &array, int ir, Array *p_mask);
+
+void smooth_fill(Array &array, int ir, float k = 0.1f, Array *p_deposition_map = nullptr);
+void smooth_fill(Array &array, int ir, Array *p_mask, float k = 0.1f, Array *p_deposition_map = nullptr);
+
+void thermal(Array &z, const Array &talus, int iterations = 10);
+
+void thermal_bf(Array &z, const Array &talus, int iterations);
+
+void warp(Array &array, Array *p_dx, Array *p_dy);
+// clang-format on
 
 } // namespace hmap::gpu
 

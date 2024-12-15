@@ -73,8 +73,8 @@ void expand(Array &array, int ir)
       int p1 = std::max(0, i - ir) - i;
       int p2 = std::min(ni, i + ir + 1) - i;
 
-      for (int p = p1; p < p2; p++)
-        for (int q = q1; q < q2; q++)
+      for (int q = q1; q < q2; q++)
+        for (int p = p1; p < p2; p++)
         {
           float v = array(i + p, j + q) * k(p + ir, q + ir);
           array_new(i, j) = std::max(array_new(i, j), v);
@@ -116,8 +116,9 @@ void expand(Array &array, Array &kernel)
     {
       int p1 = std::max(0, i - ri1) - i;
       int p2 = std::min(ni, i + ri2 + 1) - i;
-      for (int p = p1; p < p2; p++)
-        for (int q = q1; q < q2; q++)
+
+      for (int q = q1; q < q2; q++)
+        for (int p = p1; p < p2; p++)
         {
           float v = array(i + p, j + q) * kernel(p + ri1, q + rj1);
           array_new(i, j) = std::max(array_new(i, j), v);
@@ -553,9 +554,7 @@ void median_3x3(Array &array)
 
   for (int j = 1; j < array.shape.y - 1; j++)
     for (int i = 1; i < array.shape.x - 1; i++)
-    {
       array(i, j) = array_out(i, j);
-    }
 }
 
 void median_3x3(Array &array, Array *p_mask)
