@@ -55,10 +55,10 @@ int main(void)
 
   clwrapper::KernelManager::get_instance().set_block_size(32);
 
-  compare([](hmap::Array &z) { hmap::median_3x3(z); },
-          [](hmap::Array &z) { hmap::gpu::median_3x3(z); },
-          1e-3f,
-          "diff_median_3x3.png");
+  // compare([](hmap::Array &z) { hmap::median_3x3(z); },
+  //         [](hmap::Array &z) { hmap::gpu::median_3x3(z); },
+  //         1e-3f,
+  //         "diff_median_3x3.png");
 
   // {
   //   hmap::Array talus(shape, 1.f / shape.x);
@@ -157,22 +157,28 @@ int main(void)
   //           "diff_minimum_smooth.png");
   // }
 
-  {
-    int   ir = 64;
-    float k = 0.01f;
-    compare([&ir, &k](hmap::Array &z) { hmap::smooth_fill(z, ir, k); },
-            [&ir, &k](hmap::Array &z) { hmap::gpu::smooth_fill(z, ir, k); },
-            1e-3f,
-            "diff_smooth_fill.png");
-  }
+  // {
+  //   int   ir = 64;
+  //   float k = 0.01f;
+  //   compare([&ir, &k](hmap::Array &z) { hmap::smooth_fill(z, ir, k); },
+  //           [&ir, &k](hmap::Array &z) { hmap::gpu::smooth_fill(z, ir, k); },
+  //           1e-3f,
+  //           "diff_smooth_fill.png");
+  // }
+
+  // {
+  //   int   ir = 8;
+  //   float k = 0.01f;
+  //   compare([&ir, &k](hmap::Array &z) { hmap::smooth_fill(z, ir, &z, k); },
+  //           [&ir, &k](hmap::Array &z) { hmap::gpu::smooth_fill(z, ir, &z, k);
+  //           }, 1e-3f, "diff_smooth_fill_masked.png");
+  // }
 
   {
-    int   ir = 8;
-    float k = 0.01f;
-    compare([&ir, &k](hmap::Array &z) { hmap::smooth_fill(z, ir, &z, k); },
-            [&ir, &k](hmap::Array &z) { hmap::gpu::smooth_fill(z, ir, &z, k); },
+    compare([](hmap::Array &z) { z = hmap::gradient_norm(z); },
+            [](hmap::Array &z) { z = hmap::gpu::gradient_norm(z); },
             1e-3f,
-            "diff_smooth_fill_masked.png");
+            "diff_gradient_norm.png");
   }
 
   // clwrapper::KernelManager::get_instance().set_block_size(32);

@@ -26,10 +26,6 @@ void kernel thermal(read_only image2d_t  z,
   int   dj[8] = {0, 1, -1, 0, -1, 1, -1, 1};
   float c[8] = {1.f, 1.f, 1.f, 1.f, 1.414f, 1.414f, 1.414f, 1.414f};
 
-  /* shuffle_array_i(di, 8, 0); */
-  /* shuffle_array_i(dj, 8, 0); */
-  /* shuffle_array_f(c, 8, 0); */
-
   float neighborhood[8];
   for (int k = 0; k < 8; k++)
     neighborhood[k] = read_imagef(z, sampler, (int2)(g.x + di[k], g.y + dj[k]))

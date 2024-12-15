@@ -69,6 +69,27 @@ void expand(Array &array, Array &kernel, Array *p_mask)
   }
 }
 
+Array gradient_norm(const Array &array)
+{
+  Vec2<int> shape = array.shape;
+  Array     dm(shape);
+
+  auto run = clwrapper::Run("gradient_norm");
+
+  run.bind_buffer<float>("array",
+                         const_cast<std::vector<float> &>(array.vector));
+  run.bind_buffer<float>("dm", dm.vector);
+  run.bind_arguments(shape.x, shape.y);
+
+  run.write_buffer("array");
+
+  run.execute({shape.x, shape.y});
+
+  run.read_buffer("dm");
+
+  return dm;
+}
+
 void laplace(Array &array, float sigma, int iterations)
 {
   Vec2<int> shape = array.shape;

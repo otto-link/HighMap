@@ -20,6 +20,7 @@ bool init_opencl()
 #include "kernels/_common_sort.cl"
   //
 #include "kernels/expand.cl"
+#include "kernels/gradient_norm.cl"
 #include "kernels/laplace.cl"
 #include "kernels/maximum_smooth.cl"
 #include "kernels/median_3x3.cl"

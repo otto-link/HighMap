@@ -32,6 +32,8 @@ void expand(Array &array, int ir, Array *p_mask);
 void expand(Array &array, Array &kernel);
 void expand(Array &array, Array &kernel, Array *p_mask);
 
+Array gradient_norm(const Array &array);
+
 void laplace(Array &array, float sigma = 0.2f, int iterations = 3);
 void laplace(Array &array, Array *p_mask, float sigma = 0.2f, int iterations = 3);
 
