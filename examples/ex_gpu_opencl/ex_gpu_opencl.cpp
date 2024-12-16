@@ -11,6 +11,7 @@ void compare(F1 fct1, F2 fct2, float tolerance, const std::string &fname)
   hmap::Vec2<int> shape = {256, 512};
   shape = {512, 512};
   // shape = {2048, 2048};
+  // shape = {4096 * 2, 4096 * 2};
   hmap::Vec2<float> kw = {2.f, 4.f};
   int               seed = 1;
 
@@ -71,21 +72,46 @@ int main(void)
   //           "diff_thermal.png");
   // }
 
-  // {
-  //   int ir = 64;
-  //   compare([&ir](hmap::Array &z) { hmap::expand(z, ir); },
-  //           [&ir](hmap::Array &z) { hmap::gpu::expand(z, ir); },
-  //           1e-3f,
-  //           "diff_expand.png");
-  // }
+  {
+    int ir = 64;
+    compare([&ir](hmap::Array &z) { hmap::expand(z, ir); },
+            [&ir](hmap::Array &z) { hmap::gpu::expand(z, ir); },
+            1e-3f,
+            "diff_expand.png");
+  }
 
-  // {
-  //   int ir = 64;
-  //   compare([&ir](hmap::Array &z) { hmap::expand(z, ir, &z); },
-  //           [&ir](hmap::Array &z) { hmap::gpu::expand(z, ir, &z); },
-  //           1e-3f,
-  //           "diff_expand_mask.png");
-  // }
+  {
+    int ir = 64;
+    compare([&ir](hmap::Array &z) { hmap::expand(z, ir, &z); },
+            [&ir](hmap::Array &z) { hmap::gpu::expand(z, ir, &z); },
+            1e-3f,
+            "diff_expand_mask.png");
+  }
+
+  {
+    int ir = 64;
+    compare([&ir](hmap::Array &z) { hmap::shrink(z, ir); },
+            [&ir](hmap::Array &z) { hmap::gpu::shrink(z, ir); },
+            1e-3f,
+            "diff_shrink.png");
+  }
+
+  {
+    int ir = 64;
+    compare(
+        [&ir](hmap::Array &z)
+        {
+          hmap::Array mask = z;
+          hmap::shrink(z, ir, &mask);
+        },
+        [&ir](hmap::Array &z)
+        {
+          hmap::Array mask = z;
+          hmap::gpu::shrink(z, ir, &mask);
+        },
+        1e-3f,
+        "diff_shrink_mask.png");
+  }
 
   // {
   //   int ir = 64;
@@ -174,12 +200,28 @@ int main(void)
   //           }, 1e-3f, "diff_smooth_fill_masked.png");
   // }
 
-  {
-    compare([](hmap::Array &z) { z = hmap::gradient_norm(z); },
-            [](hmap::Array &z) { z = hmap::gpu::gradient_norm(z); },
-            1e-3f,
-            "diff_gradient_norm.png");
-  }
+  // {
+  //   compare([](hmap::Array &z) { z = hmap::gradient_norm(z); },
+  //           [](hmap::Array &z) { z = hmap::gpu::gradient_norm(z); },
+  //           1e-3f,
+  //           "diff_gradient_norm.png");
+  // }
+
+  // {
+  //   int ir = 64;
+  //   compare([&ir](hmap::Array &z) { hmap::maximum_local_disk(z, ir); },
+  //           [&ir](hmap::Array &z) { hmap::gpu::maximum_local_disk(z, ir); },
+  //           1e-3f,
+  //           "diff_maximum_local_disk.png");
+  // }
+
+  // {
+  //   int ir = 64;
+  //   compare([&ir](hmap::Array &z) { hmap::maximum_local_disk(z, ir); },
+  //           [&ir](hmap::Array &z) { hmap::gpu::maximum_local_disk(z, ir); },
+  //           1e-3f,
+  //           "diff_minimum_local_disk.png");
+  // }
 
   // clwrapper::KernelManager::get_instance().set_block_size(32);
   // z2 = z;

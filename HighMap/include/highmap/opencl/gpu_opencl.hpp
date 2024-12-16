@@ -37,11 +37,20 @@ Array gradient_norm(const Array &array);
 void laplace(Array &array, float sigma = 0.2f, int iterations = 3);
 void laplace(Array &array, Array *p_mask, float sigma = 0.2f, int iterations = 3);
 
+Array maximum_local_disk(const Array &array, int ir);
+
 Array maximum_smooth(const Array &array1, const Array &array2, float k = 0.2f);
 
 void median_3x3(Array &array);
 
+Array minimum_local_disk(const Array &array, int ir);
+
 Array minimum_smooth(const Array &array1, const Array &array2, float k = 0.2f);
+
+void shrink(Array &array, int ir);
+void shrink(Array &array, int ir, Array *p_mask);       
+void shrink(Array &array, Array &kernel);              
+void shrink(Array &array, Array &kernel, Array *p_mask);
 
 void smooth_cpulse(Array &array, int ir);
 void smooth_cpulse(Array &array, int ir, Array *p_mask);
