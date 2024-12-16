@@ -207,6 +207,40 @@ void median_3x3(Array &array)
   run.read_imagef("out");
 }
 
+Array rugosity(const Array &z, int ir, bool convex)
+{
+  Array z_avg(z.shape);
+  Array z_std(z.shape);
+  Array z_skw(z.shape);
+  Array zf = z;
+  float tol = 1e-30f;
+
+  // use a kernels only for filtering
+  smooth_cpulse(zf, 2 * ir);
+  zf = z - zf;
+  z_avg = zf;
+  smooth_cpulse(z_avg, ir);
+  z_std = (zf - z_avg) * (zf - z_avg);
+  smooth_cpulse(z_std, ir);
+  z_skw = (zf - z_avg) * (zf - z_avg) * (zf - z_avg);
+
+  // last part with dedicated kernel
+  auto run = clwrapper::Run("rugosity_post");
+
+  run.bind_buffer("z_skw", z_skw.vector);
+  run.bind_buffer("z_std", z_std.vector);
+  run.bind_arguments(z.shape.x, z.shape.y, tol, (int)(convex ? 1 : 0));
+
+  run.write_buffer("z_skw");
+  run.write_buffer("z_std");
+
+  run.execute({z.shape.x, z.shape.y});
+
+  run.read_buffer("z_skw");
+
+  return z_skw;
+}
+
 void shrink(Array &array, int ir)
 {
   Array kernel = cubic_pulse({2 * ir + 1, 2 * ir + 1});

@@ -350,15 +350,11 @@ Array relative_elevation(const Array &array, int ir);
  * and habitat mapping. Higher rugosity values indicate more rugged terrain,
  * which can affect species distribution and water flow.
  *
- * **Usage**:
- * - Apply this function to assess habitat suitability, especially in marine
- * environments where surface complexity influences biodiversity.
- * - Useful in erosion studies and in identifying areas with complex terrain
- * features.
- *
  * @param z The input array representing the heightmap data (elevation values).
  * @param ir The radius of the square kernel used for calculations, determining
  * the scale of the analysis.
+ * @param convex Return the convex rugosity if true, and the concave ones if
+ * not.
  * @return Array An output array containing the rugosity estimates, where higher
  * values indicate rougher terrain.
  *
@@ -369,7 +365,7 @@ Array relative_elevation(const Array &array, int ir);
  * @image html ex_rugosity0.png
  * @image html ex_rugosity1.png
  */
-Array rugosity(const Array &z, int ir);
+Array rugosity(const Array &z, int ir, bool convex = true);
 
 /**
  * @brief Computes the Shape Index (SI) of the terrain, quantifying landform

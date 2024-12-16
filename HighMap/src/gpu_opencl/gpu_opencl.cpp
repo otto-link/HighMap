@@ -25,6 +25,7 @@ bool init_opencl()
 #include "kernels/maximum_smooth.cl"
 #include "kernels/median_3x3.cl"
 #include "kernels/minimum_smooth.cl"
+#include "kernels/rugosity.cl"
 #include "kernels/smooth_cpulse.cl"
 #include "kernels/thermal.cl"
 #include "kernels/warp.cl"

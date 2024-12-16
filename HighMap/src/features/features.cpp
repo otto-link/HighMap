@@ -22,7 +22,7 @@ Array relative_elevation(const Array &array, int ir)
   return (array - amin) / (amax - amin + std::numeric_limits<float>::min());
 }
 
-Array rugosity(const Array &z, int ir)
+Array rugosity(const Array &z, int ir, bool convex)
 {
   hmap::Array z_avg = Array(z.shape);
   hmap::Array z_std = Array(z.shape);
@@ -57,7 +57,10 @@ Array rugosity(const Array &z, int ir)
         z_skw(i, j) = 0.f;
 
   // keep only "bumpy" rugosities
-  clamp_min(z_skw, 0.f);
+  if (convex)
+    clamp_min(z_skw, 0.f);
+  else
+    clamp_max(z_skw, 0.f);
 
   return z_skw;
 }
