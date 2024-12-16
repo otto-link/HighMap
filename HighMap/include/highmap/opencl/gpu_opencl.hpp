@@ -61,8 +61,8 @@ void smooth_fill(Array &array, int ir, float k = 0.1f, Array *p_deposition_map =
 void smooth_fill(Array &array, int ir, Array *p_mask, float k = 0.1f, Array *p_deposition_map = nullptr);
 
 void thermal(Array &z, const Array &talus, int iterations = 10);
-
-void thermal_bf(Array &z, const Array &talus, int iterations);
+void thermal_bf(Array &z, const Array &talus, int iterations = 10);
+void thermal_std(Array &z, const Array &talus, int iterations = 10);
 
 void warp(Array &array, Array *p_dx, Array *p_dy);
 // clang-format on

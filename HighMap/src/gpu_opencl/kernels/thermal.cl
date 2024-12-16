@@ -148,4 +148,88 @@ void kernel thermal_bf(global float       *z,
       z[linear_index(g.x + di[k], g.y + dj[k], nx)] += amount;
     }
 }
+
+void kernel thermal_std(global float       *z,
+                        global const float *talus,
+                        const int           nx,
+                        const int           ny,
+                        const int           it)
+{
+  int2 g = {get_global_id(0), get_global_id(1)};
+
+  if (it % 4 == 0)
+    g.x = nx - 1 - g.x;
+  else if (it % 4 == 1)
+    g.y = ny - 1 - g.y;
+  else if (it % 4 == 2)
+  {
+    g.x = nx - 1 - g.x;
+    g.y = ny - 1 - g.y;
+  }
+
+  int step = 4;
+
+  uint rng = wang_hash((uint)it);
+  int  d1 = (int)(get_local_size(0) * rand(&rng));
+  int  d2 = (int)(get_local_size(1) * rand(&rng));
+
+  int2 stride = {floor((float)(step * g.x) / nx + d1),
+                 floor((float)(step * g.y) / ny + d2)};
+
+  g.x = (step * g.x + stride.x) % nx;
+  g.y = (step * g.y + stride.y) % ny;
+
+  if (g.x >= nx || g.y >= ny) return;
+
+  // --- boundaries
+
+  int index = linear_index(g.x, g.y, nx);
+
+  if (g.x == 0)
+  {
+    z[index] = z[linear_index(1, g.y, nx)];
+    return;
+  }
+  if (g.x == nx - 1)
+  {
+    z[index] = z[linear_index(nx - 2, g.y, nx)];
+    return;
+  }
+  if (g.y == 0)
+  {
+    z[index] = z[linear_index(g.x, 1, nx)];
+    return;
+  }
+  if (g.y == ny - 1)
+  {
+    z[index] = z[linear_index(g.x, ny - 2, nx)];
+    return;
+  }
+
+  // --- thermal erosion
+
+  const float talus_val = talus[index];
+  const int   di[8] = {-1, 0, 0, 1, -1, -1, 1, 1};
+  const int   dj[8] = {0, 1, -1, 0, -1, 1, -1, 1};
+  const float c[8] = {1.f, 1.f, 1.f, 1.f, 1.414f, 1.414f, 1.414f, 1.414f};
+
+  float dz[8];
+  float dmax = 0.f;
+  float dsum = 0.f;
+  float val = z[index];
+
+  for (int k = 0; k < 8; k++)
+  {
+    dz[k] = z[linear_index(g.x + di[k], g.y + dj[k], nx)] - val;
+    float dz_abs = fabs(dz[k]);
+    dsum += fabs(talus_val * c[k] - dz_abs);
+    dmax = max(dmax, dz_abs);
+  }
+
+  for (int k = 0; k < 8; k++)
+  {
+    float amount = 0.5f * (dmax - talus_val * c[k]) * dz[k] / dsum;
+    z[index] += amount;
+  }
+}
 )""

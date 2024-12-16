@@ -52,7 +52,8 @@ int main(void)
   hmap::gpu::init_opencl();
 
   hmap::Vec2<int> shape = {256, 512};
-  shape = {512, 512};
+  // shape = {512, 512};
+  shape = {1024, 1024};
 
   clwrapper::KernelManager::get_instance().set_block_size(32);
 
@@ -61,16 +62,16 @@ int main(void)
   //         1e-3f,
   //         "diff_median_3x3.png");
 
-  // {
-  //   hmap::Array talus(shape, 1.f / shape.x);
-  //   int         iterations = 100;
-  //   compare([&talus, &iterations](hmap::Array &z)
-  //           { hmap::thermal(z, talus, iterations); },
-  //           [&talus, &iterations](hmap::Array &z)
-  //           { hmap::gpu::thermal_bf(z, talus, iterations); },
-  //           1e-3f,
-  //           "diff_thermal.png");
-  // }
+  {
+    hmap::Array talus(shape, 1.f / shape.x);
+    int         iterations = 100;
+    compare([&talus, &iterations](hmap::Array &z)
+            { hmap::thermal(z, talus, iterations); },
+            [&talus, &iterations](hmap::Array &z)
+            { hmap::gpu::thermal_std(z, talus, iterations); },
+            1e-3f,
+            "diff_thermal.png");
+  }
 
   // {
   //   int ir = 64;
@@ -223,13 +224,13 @@ int main(void)
   //           "diff_minimum_local_disk.png");
   // }
 
-  {
-    int ir = 64;
-    compare([&ir](hmap::Array &z) { z = hmap::rugosity(z, ir); },
-            [&ir](hmap::Array &z) { z = hmap::gpu::rugosity(z, ir); },
-            1e-3f,
-            "diff_rugosity.png");
-  }
+  // {
+  //   int ir = 64;
+  //   compare([&ir](hmap::Array &z) { z = hmap::rugosity(z, ir); },
+  //           [&ir](hmap::Array &z) { z = hmap::gpu::rugosity(z, ir); },
+  //           1e-3f,
+  //           "diff_rugosity.png");
+  // }
 
   // clwrapper::KernelManager::get_instance().set_block_size(32);
   // z2 = z;

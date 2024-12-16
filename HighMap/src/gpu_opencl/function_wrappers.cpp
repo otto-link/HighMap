@@ -479,6 +479,34 @@ void thermal_bf(Array &z, const Array &talus, int iterations)
   run.read_buffer("z");
 }
 
+void thermal_std(Array &z, const Array &talus, int iterations)
+{
+  auto run = clwrapper::Run("thermal_std");
+
+  run.bind_buffer<float>("z", z.vector);
+  run.bind_buffer<float>("talus",
+                         const_cast<std::vector<float> &>(talus.vector));
+  run.bind_arguments(z.shape.x, z.shape.y, 0);
+
+  run.write_buffer("z");
+  run.write_buffer("talus");
+
+  for (int it = 0; it < iterations; it++)
+  {
+    run.set_argument(4, it);
+    run.execute({z.shape.x, z.shape.y});
+  }
+
+  run.read_buffer("z");
+
+  // Laplacian filter to remove background spurious oscillations
+  {
+    float sigma = 0.25f;
+    int   iterations = 1;
+    laplace(z, sigma, iterations);
+  }
+}
+
 void warp(Array &array, Array *p_dx, Array *p_dy)
 {
   if (p_dx && p_dy)
