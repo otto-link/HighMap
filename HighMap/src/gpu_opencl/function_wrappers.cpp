@@ -547,6 +547,24 @@ void thermal_auto_bedrock(Array &z,
   thermal_auto_bedrock(z, talus_map, iterations, p_deposition_map);
 }
 
+void thermal_rib(Array &z, int iterations, Array *p_bedrock)
+{
+  auto run = clwrapper::Run("thermal_rib");
+
+  run.bind_buffer<float>("z", z.vector);
+  run.bind_arguments(z.shape.x, z.shape.y, 0);
+
+  run.write_buffer("z");
+
+  for (int it = 0; it < iterations; it++)
+  {
+    run.set_argument(3, it);
+    run.execute({z.shape.x, z.shape.y});
+  }
+
+  run.read_buffer("z");
+}
+
 void warp(Array &array, Array *p_dx, Array *p_dy)
 {
   if (p_dx && p_dy)

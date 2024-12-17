@@ -67,6 +67,8 @@ void thermal(Array &z, float  talus, int iterations = 10, Array *p_bedrock = nul
 void thermal_auto_bedrock(Array &z, const Array &talus, int iterations = 10, Array *p_deposition_map = nullptr);
 void thermal_auto_bedrock(Array &z, float, int iterations = 10, Array *p_deposition_map = nullptr);
 
+void thermal_rib(Array &z, int iterations, Array *p_bedrock = nullptr);
+
 void warp(Array &array, Array *p_dx, Array *p_dy);
 // clang-format on
 
