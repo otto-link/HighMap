@@ -6,6 +6,7 @@
 #include "highmap/kernels.hpp"
 #include "highmap/math.hpp"
 #include "highmap/opencl/gpu_opencl.hpp"
+#include "highmap/range.hpp"
 
 namespace hmap::gpu
 {
@@ -403,13 +404,9 @@ void smooth_fill(Array &array, int ir, float k, Array *p_deposition_map)
   Array array_bckp = array;
 
   smooth_cpulse(array, ir);
-  array = maximum_smooth(array, array_bckp, k);
+  array = gpu::maximum_smooth(array, array_bckp, k);
 
-  if (p_deposition_map)
-  {
-    *p_deposition_map = array - array_bckp;
-    // clamp_min(*p_deposition_map, 0.f); // TODO
-  }
+  if (p_deposition_map) *p_deposition_map = maximum(array - array_bckp, 0.f);
 }
 
 void smooth_fill(Array &array,
@@ -421,13 +418,9 @@ void smooth_fill(Array &array,
   Array array_bckp = array;
 
   smooth_cpulse(array, ir, p_mask);
-  array = maximum_smooth(array, array_bckp, k);
+  array = gpu::maximum_smooth(array, array_bckp, k);
 
-  if (p_deposition_map)
-  {
-    *p_deposition_map = array - array_bckp;
-    // clamp_min(*p_deposition_map, 0.f); // TODO
-  }
+  if (p_deposition_map) *p_deposition_map = maximum(array - array_bckp, 0.f);
 }
 
 void thermal(Array       &z,
@@ -482,11 +475,7 @@ void thermal(Array       &z,
     run.read_buffer("z");
   }
 
-  if (p_deposition_map)
-  {
-    *p_deposition_map = z - z_bckp;
-    // clamp_min(*p_deposition_map, 0.f); // TODO
-  }
+  if (p_deposition_map) *p_deposition_map = maximum(z - z_bckp, 0.f);
 }
 
 void thermal(Array       &z,
