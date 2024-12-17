@@ -47,6 +47,8 @@ Array minimum_local_disk(const Array &array, int ir);
 
 Array minimum_smooth(const Array &array1, const Array &array2, float k = 0.2f);
 
+void normal_displacement(Array &array, float amount = 0.1f, int ir = 0, bool reverse = false);
+
 Array rugosity(const Array &z, int ir, bool convex = true);
 
 void shrink(Array &array, int ir);

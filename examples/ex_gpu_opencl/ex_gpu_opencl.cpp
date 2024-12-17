@@ -73,14 +73,15 @@ int main(void)
   //           "diff_thermal.png");
   // }
 
-  {
-    int iterations = 10;
-    compare([&iterations](hmap::Array &z) { hmap::thermal_rib(z, iterations); },
-            [&iterations](hmap::Array &z)
-            { hmap::gpu::thermal_rib(z, iterations); },
-            1e-3f,
-            "diff_thermal_rib.png");
-  }
+  // {
+  //   int iterations = 10;
+  //   compare([&iterations](hmap::Array &z) { hmap::thermal_rib(z, iterations);
+  //   },
+  //           [&iterations](hmap::Array &z)
+  //           { hmap::gpu::thermal_rib(z, iterations); },
+  //           1e-3f,
+  //           "diff_thermal_rib.png");
+  // }
 
   // {
   //   hmap::Array talus(shape, 2.f / shape.x);
@@ -271,6 +272,17 @@ int main(void)
   //           1e-3f,
   //           "diff_rugosity.png");
   // }
+
+  {
+    int   ir = 32;
+    float amount = 2.f;
+    compare([&ir, &amount](hmap::Array &z)
+            { hmap::normal_displacement(z, amount, ir); },
+            [&ir, &amount](hmap::Array &z)
+            { hmap::gpu::normal_displacement(z, amount, ir); },
+            1e-3f,
+            "diff_normal_displacement.png");
+  }
 
   // clwrapper::KernelManager::get_instance().set_block_size(32);
   // z2 = z;
