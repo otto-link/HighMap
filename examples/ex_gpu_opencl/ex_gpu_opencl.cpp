@@ -63,10 +63,10 @@ int main(void)
   //         "diff_median_3x3.png");
 
   // {
-  //   hmap::Array talus(shape, 2.f / shape.x);
-  //   int         iterations = 100;
+  //   hmap::Array talus(shape, 0.5f / shape.x);
+  //   int         iterations = 5000;
   //   compare([&talus, &iterations](hmap::Array &z)
-  //           { hmap::thermal(z, talus, iterations); },
+  //           { hmap::thermal(z, talus, 10); },
   //           [&talus, &iterations](hmap::Array &z)
   //           { hmap::gpu::thermal(z, talus, iterations); },
   //           1e-3f,
@@ -273,15 +273,26 @@ int main(void)
   //           "diff_rugosity.png");
   // }
 
+  // {
+  //   int   ir = 32;
+  //   float amount = 2.f;
+  //   compare([&ir, &amount](hmap::Array &z)
+  //           { hmap::normal_displacement(z, amount, ir); },
+  //           [&ir, &amount](hmap::Array &z)
+  //           { hmap::gpu::normal_displacement(z, amount, ir); },
+  //           1e-3f,
+  //           "diff_normal_displacement.png");
+  // }
+
   {
     int   ir = 32;
     float amount = 2.f;
     compare([&ir, &amount](hmap::Array &z)
-            { hmap::normal_displacement(z, amount, ir); },
+            { hmap::normal_displacement(z, &z, amount, ir); },
             [&ir, &amount](hmap::Array &z)
-            { hmap::gpu::normal_displacement(z, amount, ir); },
+            { hmap::gpu::normal_displacement(z, &z, amount, ir); },
             1e-3f,
-            "diff_normal_displacement.png");
+            "diff_normal_displacement_masked.png");
   }
 
   // clwrapper::KernelManager::get_instance().set_block_size(32);

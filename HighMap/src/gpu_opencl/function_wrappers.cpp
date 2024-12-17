@@ -228,6 +228,37 @@ void normal_displacement(Array &array, float amount, int ir, bool reverse)
   run.read_imagef("out");
 }
 
+void normal_displacement(Array &array,
+                         Array *p_mask,
+                         float  amount,
+                         int    ir,
+                         bool   reverse)
+{
+  if (!p_mask)
+  {
+    normal_displacement(array, amount, ir, reverse);
+  }
+  else
+  {
+    auto run = clwrapper::Run("normal_displacement_masked");
+
+    Array array_f = array;
+    if (ir > 0) smooth_cpulse(array_f, ir);
+
+    if (reverse) amount *= -1.f;
+
+    run.bind_imagef("array", array.vector, array.shape.x, array.shape.y);
+    run.bind_imagef("array_f", array_f.vector, array.shape.x, array.shape.y);
+    run.bind_imagef("mask", p_mask->vector, array.shape.x, array.shape.y);
+    run.bind_imagef("out", array.vector, array.shape.x, array.shape.y, true);
+    run.bind_arguments(array.shape.x, array.shape.y, amount);
+
+    run.execute({array.shape.x, array.shape.y});
+
+    run.read_imagef("out");
+  }
+}
+
 Array rugosity(const Array &z, int ir, bool convex)
 {
   Array z_avg(z.shape);
