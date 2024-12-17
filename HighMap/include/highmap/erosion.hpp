@@ -1017,15 +1017,7 @@ void stratify_oblique(Array             &z,
 /**
  * @brief Apply thermal weathering erosion.
  *
- * Based on averaging over first neighbors, see \cite Olsen2004. Refer to \cite
- * Musgrave1989 for the original formulation.
- *
- * @todo optimize memory usage (to avoid large constant arrays).
- *
- * Thermal erosion refers to the process in which surface sediment weakens
- * due to temperature and detaches, falling down the slopes of the terrain
- * until a resting place is reached, where smooth plateaus tend to form
- * @cite Musgrave1989.
+ * Based on https://www.shadertoy.com/view/XtKSWh
  *
  * @param z Input array.
  * @param p_mask Filter mask, expected in [0, 1].
@@ -1117,6 +1109,31 @@ void thermal_auto_bedrock(Array &z,
 void thermal_flatten(Array &z, const Array &talus, int iterations = 10);
 
 void thermal_flatten(Array &z, float talus, int iterations = 10); ///< @overload
+
+/**
+ * @brief Apply thermal weathering erosion.
+ *
+ * Based on averaging over first neighbors, see \cite Olsen2004. Refer to \cite
+ * Musgrave1989 for the original formulation.
+ *
+ * Thermal erosion refers to the process in which surface sediment weakens
+ * due to temperature and detaches, falling down the slopes of the terrain
+ * until a resting place is reached, where smooth plateaus tend to form
+ * @cite Musgrave1989.
+ *
+ * @param z Input array.
+ * @param p_mask Filter mask, expected in [0, 1].
+ * @param talus Talus limit.
+ * @param p_bedrock Lower elevation limit.
+ * @param p_deposition_map [out] Reference to the deposition map, provided as an
+ * output field.
+ * @param iterations Number of iterations.
+ */
+void thermal_olsen(Array       &z,
+                   const Array &talus,
+                   int          iterations = 10,
+                   Array       *p_bedrock = nullptr,
+                   Array       *p_deposition_map = nullptr);
 
 /**
  * @brief Apply thermal erosion using a 'rib' algorithm (taken from Geomorph).

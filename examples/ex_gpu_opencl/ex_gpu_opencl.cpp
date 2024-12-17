@@ -63,14 +63,34 @@ int main(void)
   //         "diff_median_3x3.png");
 
   {
-    hmap::Array talus(shape, 1.f / shape.x);
+    hmap::Array talus(shape, 2.f / shape.x);
     int         iterations = 100;
     compare([&talus, &iterations](hmap::Array &z)
             { hmap::thermal(z, talus, iterations); },
             [&talus, &iterations](hmap::Array &z)
-            { hmap::gpu::thermal_std(z, talus, iterations); },
+            { hmap::gpu::thermal(z, talus, iterations); },
             1e-3f,
             "diff_thermal.png");
+  }
+
+  {
+    hmap::Array talus(shape, 2.f / shape.x);
+    int         iterations = 100;
+    compare(
+        [&talus, &iterations](hmap::Array &z)
+        {
+          hmap::Array bedrock = z;
+          hmap::remap(bedrock, z.min(), 1.1f * z.max());
+          hmap::thermal(z, talus, iterations, &bedrock);
+        },
+        [&talus, &iterations](hmap::Array &z)
+        {
+          hmap::Array bedrock = z;
+          hmap::remap(bedrock, z.min(), 1.1f * z.max());
+          hmap::gpu::thermal(z, talus, iterations, &bedrock);
+        },
+        1e-3f,
+        "diff_thermal_bedrock.png");
   }
 
   // {

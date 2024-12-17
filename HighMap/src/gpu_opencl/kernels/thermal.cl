@@ -2,182 +2,35 @@ R""(
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
-void kernel thermal(read_only image2d_t  z,
-                    read_only image2d_t  talus,
-                    write_only image2d_t out,
-                    int                  nx,
-                    int                  ny)
+float helper_thermal_exchange(float self, float other, float dist, float talus)
 {
-  const int2 g = {get_global_id(0), get_global_id(1)};
+  float max_dif = dist * talus;
+  float rate = 0.2f;
 
-  if (g.x >= nx || g.y >= ny) return;
-
-  const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE |
-                            CLK_ADDRESS_CLAMP_TO_EDGE | CLK_FILTER_NEAREST;
-
-  const float z_val = read_imagef(z, sampler, (int2)(g.x, g.y)).x;
-  const float talus_val = read_imagef(talus, sampler, (int2)(g.x, g.y)).x;
-
-  write_imagef(out, (int2)(g.x, g.y), z_val);
-
-  if (g.x == 0 || g.x == nx - 1 || g.y == 0 || g.y == ny - 1) return;
-
-  int   di[8] = {-1, 0, 0, 1, -1, -1, 1, 1};
-  int   dj[8] = {0, 1, -1, 0, -1, 1, -1, 1};
-  float c[8] = {1.f, 1.f, 1.f, 1.f, 1.414f, 1.414f, 1.414f, 1.414f};
-
-  float neighborhood[8];
-  for (int k = 0; k < 8; k++)
-    neighborhood[k] = read_imagef(z, sampler, (int2)(g.x + di[k], g.y + dj[k]))
-                          .x;
-
-  float dz[8];
-  float dmax = 0.f;
-  float dsum = 0.f;
-
-  for (int k = 0; k < 8; k++)
+  if (self > other)
   {
-    dz[k] = z_val - neighborhood[k];
-    if (dz[k] > talus_val * c[k])
-    {
-      dsum += dz[k];
-      dmax = max(dmax, dz[k]);
-    }
+    if (self - other > max_dif)
+      return -rate * ((self - other) - max_dif) / dist;
+    else
+      return 0.f;
   }
-
-  if (dmax > 0.f)
-    for (int k = 0; k < 8; k++)
-    {
-      float amount = 0.5f * (dmax - talus_val * c[k]) * dz[k] / dsum;
-      write_imagef(out,
-                   (int2)(g.x + di[k], g.y + dj[k]),
-                   neighborhood[k] + amount);
-
-      /* write_imagef(out, */
-      /*              (int2)(g.x + di[k], g.y + dj[k]), */
-      /*              talus_val); */
-    }
+  else
+  {
+    if (other - self > max_dif)
+      return rate * ((other - self) - max_dif) / dist;
+    else
+      return 0.f;
+  }
 }
 
-void kernel thermal_bf(global float       *z,
-                       global const float *talus,
-                       const int           nx,
-                       const int           ny,
-                       const int           it)
+void kernel thermal(global float       *z,
+                    global const float *talus,
+                    const int           nx,
+                    const int           ny,
+                    const int           it)
 {
+  // https://www.shadertoy.com/view/XtKSWh
   int2 g = {get_global_id(0), get_global_id(1)};
-
-  if (it % 4 == 0)
-    g.x = nx - 1 - g.x;
-  else if (it % 4 == 1)
-    g.y = ny - 1 - g.y;
-  else if (it % 4 == 2)
-  {
-    g.x = nx - 1 - g.x;
-    g.y = ny - 1 - g.y;
-  }
-
-  int step = 4;
-
-  uint rng = wang_hash((uint)it);
-  int  d1 = (int)(get_local_size(0) * rand(&rng));
-  int  d2 = (int)(get_local_size(1) * rand(&rng));
-
-  int2 stride = {floor((float)(step * g.x) / nx + d1),
-                 floor((float)(step * g.y) / ny + d2)};
-
-  g.x = (step * g.x + stride.x) % nx;
-  g.y = (step * g.y + stride.y) % ny;
-
-  if (g.x >= nx || g.y >= ny) return;
-
-  // --- boundaries
-
-  int index = linear_index(g.x, g.y, nx);
-
-  if (g.x == 0)
-  {
-    z[index] = z[linear_index(1, g.y, nx)];
-    return;
-  }
-  if (g.x == nx - 1)
-  {
-    z[index] = z[linear_index(nx - 2, g.y, nx)];
-    return;
-  }
-  if (g.y == 0)
-  {
-    z[index] = z[linear_index(g.x, 1, nx)];
-    return;
-  }
-  if (g.y == ny - 1)
-  {
-    z[index] = z[linear_index(g.x, ny - 2, nx)];
-    return;
-  }
-
-  // --- thermal erosion
-
-  float talus_val = talus[index];
-
-  int   di[8] = {-1, 0, 0, 1, -1, -1, 1, 1};
-  int   dj[8] = {0, 1, -1, 0, -1, 1, -1, 1};
-  float c[8] = {1.f, 1.f, 1.f, 1.f, 1.414f, 1.414f, 1.414f, 1.414f};
-
-  float dmax = 0.f;
-  float dsum = 0.f;
-
-  for (int k = 0; k < 8; k++)
-  {
-    float dz = z[index] - z[linear_index(g.x + di[k], g.y + dj[k], nx)];
-    if (dz > talus_val * c[k])
-    {
-      dsum += dz;
-      dmax = max(dmax, dz);
-    }
-  }
-
-  barrier(CLK_LOCAL_MEM_FENCE);
-
-  if (dmax > 0.f)
-    for (int k = 0; k < 8; k++)
-    {
-      float dz = z[index] - z[linear_index(g.x + di[k], g.y + dj[k], nx)];
-      float amount = 0.5f * (dmax - talus_val * c[k]) * dz / dsum;
-      // amount = min(amount, 0.5f * talus_val);
-      z[linear_index(g.x + di[k], g.y + dj[k], nx)] += amount;
-    }
-}
-
-void kernel thermal_std(global float       *z,
-                        global const float *talus,
-                        const int           nx,
-                        const int           ny,
-                        const int           it)
-{
-  int2 g = {get_global_id(0), get_global_id(1)};
-
-  if (it % 4 == 0)
-    g.x = nx - 1 - g.x;
-  else if (it % 4 == 1)
-    g.y = ny - 1 - g.y;
-  else if (it % 4 == 2)
-  {
-    g.x = nx - 1 - g.x;
-    g.y = ny - 1 - g.y;
-  }
-
-  int step = 4;
-
-  uint rng = wang_hash((uint)it);
-  int  d1 = (int)(get_local_size(0) * rand(&rng));
-  int  d2 = (int)(get_local_size(1) * rand(&rng));
-
-  int2 stride = {floor((float)(step * g.x) / nx + d1),
-                 floor((float)(step * g.y) / ny + d2)};
-
-  g.x = (step * g.x + stride.x) % nx;
-  g.y = (step * g.y + stride.y) % ny;
 
   if (g.x >= nx || g.y >= ny) return;
 
@@ -214,22 +67,81 @@ void kernel thermal_std(global float       *z,
   const float c[8] = {1.f, 1.f, 1.f, 1.f, 1.414f, 1.414f, 1.414f, 1.414f};
 
   float dz[8];
-  float dmax = 0.f;
-  float dsum = 0.f;
+  float amount = 0.f;
   float val = z[index];
 
   for (int k = 0; k < 8; k++)
+    amount += helper_thermal_exchange(
+        val,
+        z[linear_index(g.x + di[k], g.y + dj[k], nx)],
+        c[k],
+        talus_val);
+
+  z[index] += amount;
+}
+
+void kernel thermal_with_bedrock(global float       *z,
+                                 global const float *talus,
+                                 global const float *bedrock,
+                                 const int           nx,
+                                 const int           ny,
+                                 const int           it)
+{
+  // https://www.shadertoy.com/view/XtKSWh
+  int2 g = {get_global_id(0), get_global_id(1)};
+
+  if (g.x >= nx || g.y >= ny) return;
+
+  // --- boundaries
+
+  int index = linear_index(g.x, g.y, nx);
+
+  if (g.x == 0)
   {
-    dz[k] = z[linear_index(g.x + di[k], g.y + dj[k], nx)] - val;
-    float dz_abs = fabs(dz[k]);
-    dsum += fabs(talus_val * c[k] - dz_abs);
-    dmax = max(dmax, dz_abs);
+    z[index] = z[linear_index(1, g.y, nx)];
+    return;
+  }
+  if (g.x == nx - 1)
+  {
+    z[index] = z[linear_index(nx - 2, g.y, nx)];
+    return;
+  }
+  if (g.y == 0)
+  {
+    z[index] = z[linear_index(g.x, 1, nx)];
+    return;
+  }
+  if (g.y == ny - 1)
+  {
+    z[index] = z[linear_index(g.x, ny - 2, nx)];
+    return;
   }
 
-  for (int k = 0; k < 8; k++)
+  // --- thermal erosion
+
+  float val = z[index];
+  float z_bedrock = bedrock[index];
+
+  if (val >= z_bedrock)
   {
-    float amount = 0.5f * (dmax - talus_val * c[k]) * dz[k] / dsum;
+    const float talus_val = talus[index];
+    const int   di[8] = {-1, 0, 0, 1, -1, -1, 1, 1};
+    const int   dj[8] = {0, 1, -1, 0, -1, 1, -1, 1};
+    const float c[8] = {1.f, 1.f, 1.f, 1.f, 1.414f, 1.414f, 1.414f, 1.414f};
+
+    float dz[8];
+    float amount = 0.f;
+
+    for (int k = 0; k < 8; k++)
+      amount += helper_thermal_exchange(
+          val,
+          z[linear_index(g.x + di[k], g.y + dj[k], nx)],
+          c[k],
+          talus_val);
+
     z[index] += amount;
   }
+
+  z[index] = max(val, z_bedrock);
 }
 )""

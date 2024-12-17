@@ -429,81 +429,62 @@ void smooth_fill(Array &array,
   }
 }
 
-void thermal(Array &z, const Array &talus, int iterations)
+void thermal(Array       &z,
+             const Array &talus,
+             int          iterations,
+             Array       *p_bedrock,
+             Array       *p_deposition_map)
 {
-  auto run = clwrapper::Run("thermal");
+  Array z_bckp = Array();
+  if (p_deposition_map != nullptr) z_bckp = z;
 
-  Array z2(z.shape);
-
-  run.bind_imagef("z", z.vector, z.shape.x, z.shape.y);
-  run.bind_imagef("talus",
-                  const_cast<std::vector<float> &>(talus.vector),
-                  z.shape.x,
-                  z.shape.y);
-  run.bind_imagef("out", z.vector, z.shape.x, z.shape.y, true); // out
-  run.bind_arguments(z.shape.x, z.shape.y);
-
-  for (int it = 0; it < 50; it++)
+  if (p_bedrock)
   {
-    run.write_imagef("z");
-    run.execute({z.shape.x, z.shape.y});
-    run.read_imagef("out");
+    auto run = clwrapper::Run("thermal_with_bedrock");
+
+    run.bind_buffer<float>("z", z.vector);
+    run.bind_buffer<float>("talus",
+                           const_cast<std::vector<float> &>(talus.vector));
+    run.bind_buffer<float>("bedrock", p_bedrock->vector);
+    run.bind_arguments(z.shape.x, z.shape.y, 0);
+
+    run.write_buffer("z");
+    run.write_buffer("talus");
+    run.write_buffer("bedrock");
+
+    for (int it = 0; it < iterations; it++)
+    {
+      run.set_argument(5, it);
+      run.execute({z.shape.x, z.shape.y});
+    }
+
+    run.read_buffer("z");
   }
-}
-
-void thermal_bf(Array &z, const Array &talus, int iterations)
-{
-  auto run = clwrapper::Run("thermal_bf");
-
-  run.bind_buffer<float>("z", z.vector);
-  run.bind_buffer<float>("talus",
-                         const_cast<std::vector<float> &>(talus.vector));
-  run.bind_arguments(z.shape.x, z.shape.y, 0);
-
-  run.write_buffer("z");
-  run.write_buffer("talus");
-
-  run.execute({z.shape.x, z.shape.y});
-
-  run.read_buffer("z");
-
-  for (int it = 0; it < 100; it++)
+  else
   {
-    run.set_argument(4, it);
-    run.execute({z.shape.x, z.shape.y});
-    // run.read_buffer("z");
-    // fill_borders(z);
-    // run.write_buffer("z");
-  }
+    auto run = clwrapper::Run("thermal");
 
-  run.read_buffer("z");
-}
+    run.bind_buffer<float>("z", z.vector);
+    run.bind_buffer<float>("talus",
+                           const_cast<std::vector<float> &>(talus.vector));
+    run.bind_arguments(z.shape.x, z.shape.y, 0);
 
-void thermal_std(Array &z, const Array &talus, int iterations)
-{
-  auto run = clwrapper::Run("thermal_std");
+    run.write_buffer("z");
+    run.write_buffer("talus");
 
-  run.bind_buffer<float>("z", z.vector);
-  run.bind_buffer<float>("talus",
-                         const_cast<std::vector<float> &>(talus.vector));
-  run.bind_arguments(z.shape.x, z.shape.y, 0);
+    for (int it = 0; it < iterations; it++)
+    {
+      run.set_argument(4, it);
+      run.execute({z.shape.x, z.shape.y});
+    }
 
-  run.write_buffer("z");
-  run.write_buffer("talus");
-
-  for (int it = 0; it < iterations; it++)
-  {
-    run.set_argument(4, it);
-    run.execute({z.shape.x, z.shape.y});
+    run.read_buffer("z");
   }
 
-  run.read_buffer("z");
-
-  // Laplacian filter to remove background spurious oscillations
+  if (p_deposition_map)
   {
-    float sigma = 0.25f;
-    int   iterations = 1;
-    laplace(z, sigma, iterations);
+    *p_deposition_map = z - z_bckp;
+    // clamp_min(*p_deposition_map, 0.f); // TODO
   }
 }
 

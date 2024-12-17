@@ -15,14 +15,33 @@
 
 #include "macrologger.h"
 
-#define CT 0.5f // avalanching intensity
-
 namespace hmap
 {
 
 //----------------------------------------------------------------------
 // Main operator
 //----------------------------------------------------------------------
+
+float helper_thermal_exchange(float self, float other, float dist, float talus)
+{
+  float max_dif = dist * talus;
+  float rate = 0.2f;
+
+  if (self > other)
+  {
+    if (self - other > max_dif)
+      return -rate * ((self - other) - max_dif) / dist;
+    else
+      return 0.f;
+  }
+  else
+  {
+    if (other - self > max_dif)
+      return rate * ((other - self) - max_dif) / dist;
+    else
+      return 0.f;
+  }
+}
 
 void thermal(Array       &z,
              const Array &talus,
@@ -80,32 +99,16 @@ void thermal(Array       &z,
 
           if (z(i, j) >= (*p_bedrock)(i, j))
           {
-            float              dmax = 0.f;
-            float              dsum = 0.f;
             std::vector<float> dz(nb);
+            float              amount = 0.f;
 
-            for (uint k = 0; k < nb; k++)
-            {
-              dz[k] = z(i, j) - z(i + di[k], j + dj[k]);
-              if (dz[k] > talus(i, j) * c[k])
-              {
-                dsum += dz[k];
-                dmax = std::max(dmax, dz[k]);
-              }
-            }
+            for (int k = 0; k < 8; k++)
+              amount += helper_thermal_exchange(z(i, j),
+                                                z(i + di[k], j + dj[k]),
+                                                c[k],
+                                                talus(i, j));
 
-            if (dmax > 0.f)
-            {
-              for (uint k = 0; k < nb; k++)
-              {
-                int   ia = i + di[k];
-                int   ja = j + dj[k];
-                float amount = std::min(CT * (dmax - talus(i, j) * c[k]) *
-                                            dz[k] / dsum,
-                                        z(i, j) - (*p_bedrock)(i, j));
-                z(ia, ja) += amount;
-              }
-            }
+            z(i, j) += amount;
           }
         }
     }
@@ -138,31 +141,16 @@ void thermal(Array       &z,
             j = q;
           }
 
-          float              dmax = 0.f;
-          float              dsum = 0.f;
           std::vector<float> dz(nb);
+          float              amount = 0.f;
 
-          for (uint k = 0; k < nb; k++)
-          {
-            dz[k] = z(i, j) - z(i + di[k], j + dj[k]);
-            if (dz[k] > talus(i, j) * c[k])
-            {
-              dsum += dz[k];
-              dmax = std::max(dmax, dz[k]);
-            }
-          }
+          for (int k = 0; k < 8; k++)
+            amount += helper_thermal_exchange(z(i, j),
+                                              z(i + di[k], j + dj[k]),
+                                              c[k],
+                                              talus(i, j));
 
-          if (dmax > 0.f)
-          {
-            for (uint k = 0; k < nb; k++)
-            {
-              int   ia = i + di[k];
-              int   ja = j + dj[k];
-              float amount = CT * (dmax - talus(i, j) * c[k]) * dz[k] / dsum;
-              // amount = std::min(amount, 0.5f * talus(i, j)); // limiter
-              z(ia, ja) += amount;
-            }
-          }
+          z(i, j) += amount;
         }
     }
   }
