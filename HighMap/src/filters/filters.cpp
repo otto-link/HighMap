@@ -577,7 +577,7 @@ void normal_displacement(Array &array, float amount, int ir, bool reverse)
   if (ir > 0) smooth_cpulse(array_f, ir);
 
   // add a shape factor to avoid artifacts close to the boundaries
-  Array factor = smooth_cosine(array.shape);
+  Array factor = biweight(array.shape); // smooth_cosine(array.shape);
 
   if (reverse) amount = -amount;
 

@@ -273,27 +273,27 @@ int main(void)
   //           "diff_rugosity.png");
   // }
 
+  {
+    int   ir = 32;
+    float amount = 5.f;
+    compare([&ir, &amount](hmap::Array &z)
+            { hmap::normal_displacement(z, amount, ir); },
+            [&ir, &amount](hmap::Array &z)
+            { hmap::gpu::normal_displacement(z, amount, ir); },
+            1e-3f,
+            "diff_normal_displacement.png");
+  }
+
   // {
   //   int   ir = 32;
   //   float amount = 2.f;
   //   compare([&ir, &amount](hmap::Array &z)
-  //           { hmap::normal_displacement(z, amount, ir); },
+  //           { hmap::normal_displacement(z, &z, amount, ir); },
   //           [&ir, &amount](hmap::Array &z)
-  //           { hmap::gpu::normal_displacement(z, amount, ir); },
+  //           { hmap::gpu::normal_displacement(z, &z, amount, ir); },
   //           1e-3f,
-  //           "diff_normal_displacement.png");
+  //           "diff_normal_displacement_masked.png");
   // }
-
-  {
-    int   ir = 32;
-    float amount = 2.f;
-    compare([&ir, &amount](hmap::Array &z)
-            { hmap::normal_displacement(z, &z, amount, ir); },
-            [&ir, &amount](hmap::Array &z)
-            { hmap::gpu::normal_displacement(z, &z, amount, ir); },
-            1e-3f,
-            "diff_normal_displacement_masked.png");
-  }
 
   // clwrapper::KernelManager::get_instance().set_block_size(32);
   // z2 = z;
