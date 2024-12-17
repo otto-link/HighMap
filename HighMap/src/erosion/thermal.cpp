@@ -10,7 +10,6 @@
 #include "highmap/filters.hpp"
 #include "highmap/gradient.hpp"
 #include "highmap/math.hpp"
-#include "highmap/primitives.hpp"
 #include "highmap/range.hpp"
 
 #include "macrologger.h"
@@ -196,7 +195,7 @@ void thermal(Array &z,
              Array *p_bedrock,
              Array *p_deposition_map)
 {
-  Array talus_map = constant(z.shape, talus);
+  Array talus_map(z.shape, talus);
   thermal(z, talus_map, iterations, p_bedrock, p_deposition_map);
 }
 
@@ -210,7 +209,7 @@ void thermal_auto_bedrock(Array       &z,
                           Array       *p_deposition_map)
 {
   Array z_init = z; // backup initial map
-  Array bedrock = constant(z.shape, -std::numeric_limits<float>::max());
+  Array bedrock(z.shape, -std::numeric_limits<float>::max());
   int   ncycle = 10;
 
   Array z_bckp = Array();
@@ -247,7 +246,7 @@ void thermal_auto_bedrock(Array &z,
                           int    iterations,
                           Array *p_deposition_map)
 {
-  Array talus_map = constant(z.shape, talus);
+  Array talus_map(z.shape, talus);
   thermal_auto_bedrock(z, talus_map, iterations, p_deposition_map);
 }
 

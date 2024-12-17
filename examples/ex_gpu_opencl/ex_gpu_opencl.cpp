@@ -62,16 +62,16 @@ int main(void)
   //         1e-3f,
   //         "diff_median_3x3.png");
 
-  {
-    hmap::Array talus(shape, 2.f / shape.x);
-    int         iterations = 100;
-    compare([&talus, &iterations](hmap::Array &z)
-            { hmap::thermal(z, talus, iterations); },
-            [&talus, &iterations](hmap::Array &z)
-            { hmap::gpu::thermal(z, talus, iterations); },
-            1e-3f,
-            "diff_thermal.png");
-  }
+  // {
+  //   hmap::Array talus(shape, 2.f / shape.x);
+  //   int         iterations = 100;
+  //   compare([&talus, &iterations](hmap::Array &z)
+  //           { hmap::thermal(z, talus, iterations); },
+  //           [&talus, &iterations](hmap::Array &z)
+  //           { hmap::gpu::thermal(z, talus, iterations); },
+  //           1e-3f,
+  //           "diff_thermal.png");
+  // }
 
   // {
   //   hmap::Array talus(shape, 2.f / shape.x);
@@ -92,6 +92,17 @@ int main(void)
   //       1e-3f,
   //       "diff_thermal_bedrock.png");
   // }
+
+  {
+    hmap::Array talus(shape, 1.f / shape.x);
+    int         iterations = 100;
+    compare([&talus, &iterations](hmap::Array &z)
+            { hmap::thermal_auto_bedrock(z, talus, iterations); },
+            [&talus, &iterations](hmap::Array &z)
+            { hmap::gpu::thermal_auto_bedrock(z, talus, iterations); },
+            1e-3f,
+            "diff_thermal_auto_bedrock.png");
+  }
 
   // {
   //   int ir = 64;

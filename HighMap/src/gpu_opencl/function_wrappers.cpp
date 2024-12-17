@@ -505,6 +505,48 @@ void thermal(Array &z,
   thermal(z, talus_map, iterations, p_bedrock, p_deposition_map);
 }
 
+void thermal_auto_bedrock(Array       &z,
+                          const Array &talus,
+                          int          iterations,
+                          Array       *p_deposition_map)
+{
+  Array z_bckp = z;
+  Array bedrock(z.shape);
+
+  auto run = clwrapper::Run("thermal_auto_bedrock");
+
+  run.bind_buffer<float>("z", z.vector);
+  run.bind_buffer<float>("talus",
+                         const_cast<std::vector<float> &>(talus.vector));
+  run.bind_buffer<float>("bedrock", bedrock.vector);
+  run.bind_buffer<float>("z0", z_bckp.vector);
+  run.bind_arguments(z.shape.x, z.shape.y, 0);
+
+  run.write_buffer("z");
+  run.write_buffer("talus");
+  run.write_buffer("bedrock");
+  run.write_buffer("z0");
+
+  for (int it = 0; it < iterations; it++)
+  {
+    run.set_argument(6, it);
+    run.execute({z.shape.x, z.shape.y});
+  }
+
+  run.read_buffer("z");
+
+  if (p_deposition_map) *p_deposition_map = maximum(z - z_bckp, 0.f);
+}
+
+void thermal_auto_bedrock(Array &z,
+                          float  talus,
+                          int    iterations,
+                          Array *p_deposition_map)
+{
+  Array talus_map(z.shape, talus);
+  thermal_auto_bedrock(z, talus_map, iterations, p_deposition_map);
+}
+
 void warp(Array &array, Array *p_dx, Array *p_dy)
 {
   if (p_dx && p_dy)
