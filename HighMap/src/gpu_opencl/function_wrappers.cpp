@@ -4,6 +4,7 @@
 #ifdef ENABLE_OPENCL
 
 #include "highmap/kernels.hpp"
+#include "highmap/math.hpp"
 #include "highmap/opencl/gpu_opencl.hpp"
 
 namespace hmap::gpu
@@ -486,6 +487,33 @@ void thermal(Array       &z,
     *p_deposition_map = z - z_bckp;
     // clamp_min(*p_deposition_map, 0.f); // TODO
   }
+}
+
+void thermal(Array       &z,
+             Array       *p_mask,
+             const Array &talus,
+             int          iterations,
+             Array       *p_bedrock,
+             Array       *p_deposition_map)
+{
+  if (!p_mask)
+    thermal(z, talus, iterations, p_bedrock, p_deposition_map);
+  else
+  {
+    Array z_f = z;
+    thermal(z_f, talus, iterations, p_bedrock, p_deposition_map);
+    z = lerp(z, z_f, *(p_mask));
+  }
+}
+
+void thermal(Array &z,
+             float  talus,
+             int    iterations,
+             Array *p_bedrock,
+             Array *p_deposition_map)
+{
+  Array talus_map(z.shape, talus);
+  thermal(z, talus_map, iterations, p_bedrock, p_deposition_map);
 }
 
 void warp(Array &array, Array *p_dx, Array *p_dy)

@@ -197,7 +197,6 @@ void thermal(Array &z,
              Array *p_deposition_map)
 {
   Array talus_map = constant(z.shape, talus);
-  Array bedrock = constant(z.shape, std::numeric_limits<float>::min());
   thermal(z, talus_map, iterations, p_bedrock, p_deposition_map);
 }
 
