@@ -99,12 +99,16 @@ void kernel gabor_wave(global float *output,
                        const float4  bbox)
 {
   int2 g = {get_global_id(0), get_global_id(1)};
-  int  index = linear_index(g.x, g.y, ny);
+
+  if (g.x >= nx || g.y >= ny) return;
+
+  int index = linear_index(g.x, g.y, ny);
 
   uint  rng_state = wang_hash(seed);
   float fseed = rand(&rng_state);
 
-  float2 pos = g_to_xy(g, nx, ny, kx, ky, bbox);
+  // "0.5f * kx" to keep it coherent with Perlin
+  float2 pos = g_to_xy(g, nx, ny, 0.5f * kx, 0.5f * ky, bbox);
 
   output[index] = gabor_wave_scalar(pos, fseed);
 }
@@ -122,12 +126,16 @@ void kernel gabor_wave_fbm(global float *output,
                            const float4  bbox)
 {
   int2 g = {get_global_id(0), get_global_id(1)};
-  int  index = linear_index(g.x, g.y, ny);
+
+  if (g.x >= nx || g.y >= ny) return;
+
+  int index = linear_index(g.x, g.y, ny);
 
   uint  rng_state = wang_hash(seed);
   float fseed = rand(&rng_state);
 
-  float2 pos = g_to_xy(g, nx, ny, kx, ky, bbox);
+  // "0.5f * kx" to keep it coherent with Perlin
+  float2 pos = g_to_xy(g, nx, ny, 0.5f * kx, 0.5f * ky, bbox);
 
   output[index] = gabor_wave_scalar_fbm(pos,
                                         octaves,

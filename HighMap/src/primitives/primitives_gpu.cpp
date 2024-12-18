@@ -18,7 +18,6 @@ Array gabor_wave(Vec2<int> shape, Vec2<float> kw, uint seed, Vec4<float> bbox)
   run.bind_buffer<float>("array", array.vector);
   run.bind_arguments(array.shape.x, array.shape.y, kw.x, kw.y, seed, bbox);
 
-  run.write_buffer("array");
   run.execute({array.shape.x, array.shape.y});
   run.read_buffer("array");
 
@@ -50,7 +49,6 @@ Array gabor_wave_fbm(Vec2<int>   shape,
                      lacunarity,
                      bbox);
 
-  run.write_buffer("array");
   run.execute({array.shape.x, array.shape.y});
   run.read_buffer("array");
 
@@ -78,7 +76,6 @@ Array voronoise(Vec2<int>   shape,
                      seed,
                      bbox);
 
-  run.write_buffer("array");
   run.execute({array.shape.x, array.shape.y});
   run.read_buffer("array");
 
