@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.22)
 
 project(highmap-root)
 
-option(HIGHMAP_ENABLE_OPENCL "" OFF)
+option(HIGHMAP_ENABLE_OPENCL "" ON)
 option(HIGHMAP_ENABLE_DOCS "" ON)
 option(HIGHMAP_ENABLE_EXAMPLES "" ON)
 
