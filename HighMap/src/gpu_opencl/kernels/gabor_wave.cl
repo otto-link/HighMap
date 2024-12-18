@@ -108,12 +108,15 @@ void kernel gabor_wave(global float *output,
   float fseed = rand(&rng_state);
 
   // "0.5f * kx" to keep it coherent with Perlin
-  float2 pos = g_to_xy(g, nx, ny, 0.5f * kx, 0.5f * ky, bbox);
+  float2 pos = g_to_xy(g, nx, ny, 0.5f * kx, 0.5f * ky, 0.f, 0.f, bbox);
 
   output[index] = gabor_wave_scalar(pos, fseed);
 }
 
 void kernel gabor_wave_fbm(global float *output,
+                           global float *ctrl_param,
+                           global float *noise_x,
+                           global float *noise_y,
                            const int     nx,
                            const int     ny,
                            const float   kx,
@@ -123,6 +126,9 @@ void kernel gabor_wave_fbm(global float *output,
                            const float   weight,
                            const float   persistence,
                            const float   lacunarity,
+                           const int     has_ctrl_param,
+                           const int     has_noise_x,
+                           const int     has_noise_y,
                            const float4  bbox)
 {
   int2 g = {get_global_id(0), get_global_id(1)};
@@ -134,12 +140,16 @@ void kernel gabor_wave_fbm(global float *output,
   uint  rng_state = wang_hash(seed);
   float fseed = rand(&rng_state);
 
+  float ct = has_ctrl_param > 0 ? ctrl_param[index] : 1.f;
+  float dx = has_noise_x > 0 ? noise_x[index] : 0.f;
+  float dy = has_noise_y > 0 ? noise_y[index] : 0.f;
+
   // "0.5f * kx" to keep it coherent with Perlin
-  float2 pos = g_to_xy(g, nx, ny, 0.5f * kx, 0.5f * ky, bbox);
+  float2 pos = g_to_xy(g, nx, ny, 0.5f * kx, 0.5f * ky, dx, dy, bbox);
 
   output[index] = gabor_wave_scalar_fbm(pos,
                                         octaves,
-                                        weight,
+                                        (1.f - ct) + ct * weight,
                                         persistence,
                                         lacunarity,
                                         fseed);

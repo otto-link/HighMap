@@ -1333,6 +1333,9 @@ Array gabor_wave(Vec2<int>   shape,
  * @param weigth Octave weighting.
  * @param persistence Octave persistence.
  * @param lacunarity Defines the wavenumber ratio between each octaves.
+ * @param p_ctrl_param Reference to the control parameter array (acts as a
+ * multiplier for the weight parameter).
+ * @param p_noise_x, p_noise_y Reference to the input noise arrays.
  * @param bbox Domain bounding box.
  * @return Array Fractal noise.
  *
@@ -1353,6 +1356,9 @@ Array gabor_wave_fbm(Vec2<int>   shape,
                      float       weight = 0.7f,
                      float       persistence = 0.5f,
                      float       lacunarity = 2.f,
+                     Array      *p_ctrl_param = nullptr,
+                     Array      *p_noise_x = nullptr,
+                     Array      *p_noise_y = nullptr,
                      Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**

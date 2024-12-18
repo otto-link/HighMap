@@ -31,13 +31,43 @@ Array gabor_wave_fbm(Vec2<int>   shape,
                      float       weight,
                      float       persistence,
                      float       lacunarity,
+                     Array      *p_ctrl_param,
+                     Array      *p_noise_x,
+                     Array      *p_noise_y,
                      Vec4<float> bbox)
 {
   Array array(shape);
 
   auto run = clwrapper::Run("gabor_wave_fbm");
 
+  std::vector<float> dummy_vector(1);
+
   run.bind_buffer<float>("array", array.vector);
+
+  if (p_ctrl_param)
+  {
+    run.bind_buffer<float>("ctrl_param", p_ctrl_param->vector);
+    run.write_buffer("ctrl_param");
+  }
+  else
+    run.bind_buffer<float>("ctrl_param", dummy_vector);
+
+  if (p_noise_x)
+  {
+    run.bind_buffer<float>("noise_x", p_noise_x->vector);
+    run.write_buffer("noise_x");
+  }
+  else
+    run.bind_buffer<float>("noise_x", dummy_vector);
+
+  if (p_noise_y)
+  {
+    run.bind_buffer<float>("noise_y", p_noise_y->vector);
+    run.write_buffer("noise_y");
+  }
+  else
+    run.bind_buffer<float>("noise_y", dummy_vector);
+
   run.bind_arguments(array.shape.x,
                      array.shape.y,
                      kw.x,
@@ -47,6 +77,9 @@ Array gabor_wave_fbm(Vec2<int>   shape,
                      weight,
                      persistence,
                      lacunarity,
+                     p_ctrl_param ? 1 : 0,
+                     p_noise_x ? 1 : 0,
+                     p_noise_y ? 1 : 0,
                      bbox);
 
   run.execute({array.shape.x, array.shape.y});

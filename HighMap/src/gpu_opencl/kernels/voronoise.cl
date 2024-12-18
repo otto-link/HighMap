@@ -79,7 +79,7 @@ void kernel voronoise(global float *output,
   uint  rng_state = wang_hash(seed);
   float fseed = rand(&rng_state);
 
-  float2 pos = g_to_xy(g, nx, ny, kx, ky, bbox);
+  float2 pos = g_to_xy(g, nx, ny, kx, ky, 0.f, 0.f, bbox);
 
   output[index] = noise_voronoise(pos, u_param, v_param, fseed);
 }
