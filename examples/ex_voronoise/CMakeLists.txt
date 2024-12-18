@@ -1,0 +1,2 @@
+add_executable(ex_voronoise ex_voronoise.cpp)
+target_link_libraries(ex_voronoise highmap)

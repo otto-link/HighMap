@@ -1292,3 +1292,105 @@ Array worley_double(Vec2<int>   shape,
                     Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
 } // namespace hmap
+
+#ifdef ENABLE_OPENCL
+#include "highmap/opencl/gpu_opencl.hpp"
+
+namespace hmap::gpu
+{
+
+/**
+ * @brief Return an array filled with coherence Gabor noise.
+ *
+ * @param shape Array shape.
+ * @param kw Noise wavenumbers {kx, ky} for each directions.
+ * @param seed Random seed number.
+ * @param bbox Domain bounding box.
+ * @return Array Fractal noise.
+ *
+ * @note Taken from https://www.shadertoy.com/view/clGyWm
+ *
+ * @note Only available if OpenCL is enabled.
+ *
+ * **Example**
+ * @include ex_gabor_wave.cpp
+ *
+ * **Result**
+ * @image html ex_gabor_wave.png
+ */
+Array gabor_wave(Vec2<int>   shape,
+                 Vec2<float> kw,
+                 uint        seed,
+                 Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
+ * @brief Return an array filled with coherence Gabor noise.
+ *
+ * @param shape Array shape.
+ * @param kw Noise wavenumbers {kx, ky} for each directions.
+ * @param seed Random seed number.
+ * @param octaves Number of octaves.
+ * @param weigth Octave weighting.
+ * @param persistence Octave persistence.
+ * @param lacunarity Defines the wavenumber ratio between each octaves.
+ * @param bbox Domain bounding box.
+ * @return Array Fractal noise.
+ *
+ * @note Taken from https://www.shadertoy.com/view/clGyWm
+ *
+ * @note Only available if OpenCL is enabled.
+ *
+ * **Example**
+ * @include ex_gabor_wave.cpp
+ *
+ * **Result**
+ * @image html ex_gabor_wave.png
+ */
+Array gabor_wave_fbm(Vec2<int>   shape,
+                     Vec2<float> kw,
+                     uint        seed,
+                     int         octaves = 8,
+                     float       weight = 0.7f,
+                     float       persistence = 0.5f,
+                     float       lacunarity = 2.f,
+                     Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
+ * @brief Generates a 2D Voronoi noise array.
+ *
+ * This function computes a Voronoi noise pattern based on the input parameters
+ * and returns it as a 2D array. The noise is calculated in the OpenCL kernel
+ * `noise_voronoise`, which uses a combination of hashing and smoothstep
+ * functions to generate a weighted Voronoi noise field.
+ *
+ * @note Taken from https://www.shadertoy.com/view/Xd23Dh
+ *
+ * @note Only available if OpenCL is enabled.
+ *
+ * @param shape   The dimensions of the 2D output array as a vector (width and
+ * height).
+ * @param kw      Wave numbers for scaling the noise pattern, represented as a
+ * 2D vector.
+ * @param u_param A control parameter for the noise, adjusting the contribution
+ * of random offsets.
+ * @param v_param A control parameter for the noise, affecting the smoothness of
+ * the pattern.
+ * @param seed    A seed value for random number generation, ensuring
+ * reproducibility.
+ *
+ * @return An `Array` object containing the generated 2D Voronoi noise values.
+ *
+ * **Example**
+ * @include ex_voronoise.cpp
+ *
+ * **Result**
+ * @image html ex_voronoise.png
+ */
+Array voronoise(Vec2<int>   shape,
+                Vec2<float> kw,
+                float       u_param,
+                float       v_param,
+                uint        seed,
+                Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+} // namespace hmap::gpu
+#endif

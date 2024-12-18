@@ -30,6 +30,10 @@ bool init_opencl()
 #include "kernels/smooth_cpulse.cl"
 #include "kernels/thermal.cl"
 #include "kernels/warp.cl"
+  //
+  // kernels only available on GPU
+#include "kernels/gabor_wave.cl"
+#include "kernels/voronoise.cl"
       ;
 
   clwrapper::KernelManager::get_instance().add_kernel(code);
