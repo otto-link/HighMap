@@ -70,8 +70,8 @@ void kernel voronoise(global float *output,
                       const float   u_param,
                       const float   v_param,
                       const uint    seed,
-		      const int     has_noise_x,
-		      const int     has_noise_y,
+                      const int     has_noise_x,
+                      const int     has_noise_y,
                       const float4  bbox)
 {
   int2 g = {get_global_id(0), get_global_id(1)};
