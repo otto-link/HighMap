@@ -1381,6 +1381,7 @@ Array gabor_wave_fbm(Vec2<int>   shape,
  * of random offsets.
  * @param v_param A control parameter for the noise, affecting the smoothness of
  * the pattern.
+ * @param p_noise_x, p_noise_y Reference to the input noise arrays.
  * @param seed    A seed value for random number generation, ensuring
  * reproducibility.
  *
@@ -1397,6 +1398,8 @@ Array voronoise(Vec2<int>   shape,
                 float       u_param,
                 float       v_param,
                 uint        seed,
+                Array      *p_noise_x = nullptr,
+                Array      *p_noise_y = nullptr,
                 Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 } // namespace hmap::gpu
 #endif

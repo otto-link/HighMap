@@ -61,6 +61,8 @@ float noise_voronoise(const float2 p,
 // <<<
 
 void kernel voronoise(global float *output,
+                      global float *noise_x,
+                      global float *noise_y,
                       const int     nx,
                       const int     ny,
                       const float   kx,
@@ -68,6 +70,8 @@ void kernel voronoise(global float *output,
                       const float   u_param,
                       const float   v_param,
                       const uint    seed,
+		      const int     has_noise_x,
+		      const int     has_noise_y,
                       const float4  bbox)
 {
   int2 g = {get_global_id(0), get_global_id(1)};
@@ -79,7 +83,10 @@ void kernel voronoise(global float *output,
   uint  rng_state = wang_hash(seed);
   float fseed = rand(&rng_state);
 
-  float2 pos = g_to_xy(g, nx, ny, kx, ky, 0.f, 0.f, bbox);
+  float dx = has_noise_x > 0 ? noise_x[index] : 0.f;
+  float dy = has_noise_y > 0 ? noise_y[index] : 0.f;
+
+  float2 pos = g_to_xy(g, nx, ny, kx, ky, dx, dy, bbox);
 
   output[index] = noise_voronoise(pos, u_param, v_param, fseed);
 }

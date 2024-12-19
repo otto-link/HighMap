@@ -9,6 +9,61 @@
 namespace hmap::gpu
 {
 
+void helper_bind_optional_buffers(clwrapper::Run &run,
+                                  Array          *p_ctrl_param,
+                                  Array          *p_noise_x,
+                                  Array          *p_noise_y)
+{
+  std::vector<float> dummy_vector(1);
+
+  if (p_ctrl_param)
+  {
+    run.bind_buffer<float>("ctrl_param", p_ctrl_param->vector);
+    run.write_buffer("ctrl_param");
+  }
+  else
+    run.bind_buffer<float>("ctrl_param", dummy_vector);
+
+  if (p_noise_x)
+  {
+    run.bind_buffer<float>("noise_x", p_noise_x->vector);
+    run.write_buffer("noise_x");
+  }
+  else
+    run.bind_buffer<float>("noise_x", dummy_vector);
+
+  if (p_noise_y)
+  {
+    run.bind_buffer<float>("noise_y", p_noise_y->vector);
+    run.write_buffer("noise_y");
+  }
+  else
+    run.bind_buffer<float>("noise_y", dummy_vector);
+}
+
+void helper_bind_optional_buffers(clwrapper::Run &run,
+                                  Array          *p_noise_x,
+                                  Array          *p_noise_y)
+{
+  std::vector<float> dummy_vector(1);
+
+  if (p_noise_x)
+  {
+    run.bind_buffer<float>("noise_x", p_noise_x->vector);
+    run.write_buffer("noise_x");
+  }
+  else
+    run.bind_buffer<float>("noise_x", dummy_vector);
+
+  if (p_noise_y)
+  {
+    run.bind_buffer<float>("noise_y", p_noise_y->vector);
+    run.write_buffer("noise_y");
+  }
+  else
+    run.bind_buffer<float>("noise_y", dummy_vector);
+}
+
 Array gabor_wave(Vec2<int> shape, Vec2<float> kw, uint seed, Vec4<float> bbox)
 {
   Array array(shape);
@@ -40,33 +95,8 @@ Array gabor_wave_fbm(Vec2<int>   shape,
 
   auto run = clwrapper::Run("gabor_wave_fbm");
 
-  std::vector<float> dummy_vector(1);
-
   run.bind_buffer<float>("array", array.vector);
-
-  if (p_ctrl_param)
-  {
-    run.bind_buffer<float>("ctrl_param", p_ctrl_param->vector);
-    run.write_buffer("ctrl_param");
-  }
-  else
-    run.bind_buffer<float>("ctrl_param", dummy_vector);
-
-  if (p_noise_x)
-  {
-    run.bind_buffer<float>("noise_x", p_noise_x->vector);
-    run.write_buffer("noise_x");
-  }
-  else
-    run.bind_buffer<float>("noise_x", dummy_vector);
-
-  if (p_noise_y)
-  {
-    run.bind_buffer<float>("noise_y", p_noise_y->vector);
-    run.write_buffer("noise_y");
-  }
-  else
-    run.bind_buffer<float>("noise_y", dummy_vector);
+  helper_bind_optional_buffers(run, p_ctrl_param, p_noise_x, p_noise_y);
 
   run.bind_arguments(array.shape.x,
                      array.shape.y,
@@ -93,6 +123,8 @@ Array voronoise(Vec2<int>   shape,
                 float       u_param,
                 float       v_param,
                 uint        seed,
+                Array      *p_noise_x,
+                Array      *p_noise_y,
                 Vec4<float> bbox)
 {
   Array array(shape);
@@ -100,6 +132,8 @@ Array voronoise(Vec2<int>   shape,
   auto run = clwrapper::Run("voronoise");
 
   run.bind_buffer<float>("array", array.vector);
+  helper_bind_optional_buffers(run, p_noise_x, p_noise_y);
+
   run.bind_arguments(array.shape.x,
                      array.shape.y,
                      kw.x,
@@ -107,6 +141,8 @@ Array voronoise(Vec2<int>   shape,
                      u_param,
                      v_param,
                      seed,
+                     p_noise_x ? 1 : 0,
+                     p_noise_y ? 1 : 0,
                      bbox);
 
   run.execute({array.shape.x, array.shape.y});
