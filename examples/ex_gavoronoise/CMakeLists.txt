@@ -1,0 +1,2 @@
+add_executable(ex_gavoronoise ex_gavoronoise.cpp)
+target_link_libraries(ex_gavoronoise highmap)
