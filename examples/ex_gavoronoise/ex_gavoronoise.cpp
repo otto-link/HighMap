@@ -13,19 +13,22 @@ int main(void)
 
   clwrapper::KernelManager::get_instance().set_block_size(32);
 
-  float       amp = 0.025f;
-  hmap::Array z1 = hmap::gpu::gavoronoise(shape, kw, seed, amp);
+  // --- base usage
 
+  hmap::Array z1 = hmap::gpu::gavoronoise(shape, kw, seed);
+
+  float       amp = 0.05f;
   float       angle = 45.f;
   float       angle_spread_ratio = 0.f;
   hmap::Array z2 = hmap::gpu::gavoronoise(shape,
                                           kw,
                                           seed,
-                                          amp,
                                           angle,
+                                          amp,
                                           angle_spread_ratio);
 
-  // with input base noise
+  // --- with input base noise
+
   int         octaves = 2;
   hmap::Array base = hmap::noise_fbm(hmap::NoiseType::PERLIN,
                                      shape,
@@ -37,10 +40,21 @@ int main(void)
   hmap::remap(base, -1.f, 1.f);
   hmap::Array z3 = hmap::gpu::gavoronoise(base, kw, seed, amp);
 
-  z2.to_png_grayscale("out2.png", CV_16U);
+  // --- local angle
+
+  hmap::Array field = hmap::noise(hmap::NoiseType::PERLIN, shape, kw, seed);
+  hmap::Array array_angle = hmap::gradient_angle(field) * 180.f / 3.14159f;
+
+  angle_spread_ratio = 0.f;
+  hmap::Array z4 = hmap::gpu::gavoronoise(shape,
+                                          {8.f, 8.f},
+                                          seed,
+                                          array_angle,
+                                          amp,
+                                          angle_spread_ratio);
 
   hmap::export_banner_png("ex_gavoronoise.png",
-                          {z1, z2, z3},
+                          {z1, z2, z3, z4},
                           hmap::Cmap::JET,
                           true);
 

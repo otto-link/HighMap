@@ -11,10 +11,13 @@ int main(void)
 
   clwrapper::KernelManager::get_instance().set_block_size(32);
 
+  // --- base
+
   hmap::Array z = hmap::gpu::gabor_wave(shape, kw, seed);
   hmap::Array z_fbm = hmap::gpu::gabor_wave_fbm(shape, kw, seed);
 
-  // angle control
+  // --- angle control
+
   float       angle = 45.f;
   float       angle_spread_ratio = 0.f;
   hmap::Array za0 = hmap::gpu::gabor_wave(shape,
@@ -30,8 +33,26 @@ int main(void)
                                               0.f,
                                               0.1f);
 
+  // --- local angle
+
+  hmap::Array field = hmap::noise(hmap::NoiseType::PERLIN, shape, kw, seed);
+  hmap::Array array_angle = hmap::gradient_angle(field) * 180.f / 3.14159f;
+
+  angle_spread_ratio = 0.f;
+  hmap::Array zr1 = hmap::gpu::gabor_wave(shape,
+                                          {16.f, 16.f},
+                                          seed,
+                                          array_angle,
+                                          angle_spread_ratio);
+
+  hmap::Array zr2 = hmap::gpu::gabor_wave_fbm(shape,
+                                              {16.f, 16.f},
+                                              seed,
+                                              array_angle,
+                                              angle_spread_ratio);
+
   hmap::export_banner_png("ex_gabor_wave.png",
-                          {z, z_fbm, za0, za1, za2},
+                          {z, z_fbm, za0, za1, za2, zr1, zr2},
                           hmap::Cmap::JET,
                           true);
 

@@ -77,6 +77,7 @@ float gavoronoise_eroder_fbm(const float2 p,
 }
 
 void kernel gavoronoise(global float *output,
+                        global float *angle,
                         global float *ctrl_param,
                         global float *noise_x,
                         global float *noise_y,
@@ -86,7 +87,6 @@ void kernel gavoronoise(global float *output,
                         const float   ky,
                         const uint    seed,
                         const float   amplitude,
-                        const float   angle,
                         const float   angle_spread_ratio,
                         const float2  kw_multiplier,
                         const float   slope_strength,
@@ -115,27 +115,28 @@ void kernel gavoronoise(global float *output,
   float dy = has_noise_y > 0 ? noise_y[index] : 0.f;
 
   float2 pos = g_to_xy(g, nx, ny, kx, ky, dx, dy, bbox);
+  float  angle_val = angle[index];
 
   float base = helper_gavoronoise_base_fbm(pos,
-                                           angle,
+                                           angle_val,
                                            angle_spread_ratio,
                                            fseed);
 
   float eps = 0.1f;
   float mx = helper_gavoronoise_base_fbm(pos + (float2)(eps, 0.0),
-                                         angle,
+                                         angle_val,
                                          angle_spread_ratio,
                                          fseed) -
              helper_gavoronoise_base_fbm(pos - (float2)(eps, 0.0),
-                                         angle,
+                                         angle_val,
                                          angle_spread_ratio,
                                          fseed);
   float my = helper_gavoronoise_base_fbm(pos + (float2)(0.f, eps),
-                                         angle,
+                                         angle_val,
                                          angle_spread_ratio,
                                          fseed) -
              helper_gavoronoise_base_fbm(pos - (float2)(0.f, eps),
-                                         angle,
+                                         angle_val,
                                          angle_spread_ratio,
                                          fseed);
 

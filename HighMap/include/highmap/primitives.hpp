@@ -1322,6 +1322,13 @@ namespace hmap::gpu
  * **Result**
  * @image html ex_gabor_wave.png
  */
+Array gabor_wave(Vec2<int>    shape,
+                 Vec2<float>  kw,
+                 uint         seed,
+                 const Array &angle,
+                 float        angle_spread_ratio = 1.f,
+                 Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
+
 Array gabor_wave(Vec2<int>   shape,
                  Vec2<float> kw,
                  uint        seed,
@@ -1359,6 +1366,20 @@ Array gabor_wave(Vec2<int>   shape,
  * **Result**
  * @image html ex_gabor_wave.png
  */
+Array gabor_wave_fbm(Vec2<int>    shape,
+                     Vec2<float>  kw,
+                     uint         seed,
+                     const Array &angle,
+                     float        angle_spread_ratio = 1.f,
+                     int          octaves = 8,
+                     float        weight = 0.7f,
+                     float        persistence = 0.5f,
+                     float        lacunarity = 2.f,
+                     Array       *p_ctrl_param = nullptr,
+                     Array       *p_noise_x = nullptr,
+                     Array       *p_noise_y = nullptr,
+                     Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
+
 Array gabor_wave_fbm(Vec2<int>   shape,
                      Vec2<float> kw,
                      uint        seed,
@@ -1420,11 +1441,30 @@ Array gabor_wave_fbm(Vec2<int>   shape,
  * **Result**
  * @image html ex_gavoronoise.png
  */
+Array gavoronoise(Vec2<int>    shape,
+                  Vec2<float>  kw,
+                  uint         seed,
+                  const Array &angle,
+                  float        amplitude = 0.05f,
+                  float        angle_spread_ratio = 1.f,
+                  Vec2<float>  kw_multiplier = {4.f, 4.f},
+                  float        slope_strength = 1.f,
+                  float        branch_strength = 2.f,
+                  float        z_cut_min = 0.2f,
+                  float        z_cut_max = 1.f,
+                  int          octaves = 8,
+                  float        persistence = 0.4f,
+                  float        lacunarity = 2.f,
+                  Array       *p_ctrl_param = nullptr,
+                  Array       *p_noise_x = nullptr,
+                  Array       *p_noise_y = nullptr,
+                  Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
+
 Array gavoronoise(Vec2<int>   shape,
                   Vec2<float> kw,
                   uint        seed,
-                  float       amplitude = 0.05f,
                   float       angle = 0.f,
+                  float       amplitude = 0.05f,
                   float       angle_spread_ratio = 1.f,
                   Vec2<float> kw_multiplier = {4.f, 4.f},
                   float       slope_strength = 1.f,
