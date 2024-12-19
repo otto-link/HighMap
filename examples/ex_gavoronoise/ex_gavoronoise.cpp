@@ -16,6 +16,15 @@ int main(void)
   float       amp = 0.025f;
   hmap::Array z1 = hmap::gpu::gavoronoise(shape, kw, seed, amp);
 
+  float       angle = 45.f;
+  float       angle_spread_ratio = 0.f;
+  hmap::Array z2 = hmap::gpu::gavoronoise(shape,
+                                          kw,
+                                          seed,
+                                          amp,
+                                          angle,
+                                          angle_spread_ratio);
+
   // with input base noise
   int         octaves = 2;
   hmap::Array base = hmap::noise_fbm(hmap::NoiseType::PERLIN,
@@ -26,12 +35,12 @@ int main(void)
 
   // base amplitude amplitude expected to be in [-1, 1] (approx.)
   hmap::remap(base, -1.f, 1.f);
-  hmap::Array z2 = hmap::gpu::gavoronoise(base, kw, seed, amp);
+  hmap::Array z3 = hmap::gpu::gavoronoise(base, kw, seed, amp);
 
   z2.to_png_grayscale("out2.png", CV_16U);
 
   hmap::export_banner_png("ex_gavoronoise.png",
-                          {z1, z2},
+                          {z1, z2, z3},
                           hmap::Cmap::JET,
                           true);
 

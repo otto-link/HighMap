@@ -2,6 +2,11 @@ R""(
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
+float2 angle_to_dir(float angle)
+{
+  return (float2)(cos(angle / 180.f * 3.14159f), sin(angle / 180.f * 3.14159f));
+}
+
 float lerp(float a, float b, float t)
 {
   return (1.f - t) * a + t * b;

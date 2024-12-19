@@ -2,11 +2,16 @@ R""(
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
-float helper_gavoronoise_base_fbm(const float2 p, const float fseed)
+float helper_gavoronoise_base_fbm(const float2 p,
+                                  const float  angle,
+                                  const float  angle_spread_ratio,
+                                  const float  fseed)
 {
+  float2 dir = angle_to_dir(angle);
+
   float v = gabor_wave_scalar_fbm(p,
-                                  (float2)(0.f, 0.f),
-                                  1.f,
+                                  dir,
+                                  angle_spread_ratio,
                                   8,
                                   1.f,
                                   0.5f,
@@ -81,6 +86,8 @@ void kernel gavoronoise(global float *output,
                         const float   ky,
                         const uint    seed,
                         const float   amplitude,
+                        const float   angle,
+                        const float   angle_spread_ratio,
                         const float2  kw_multiplier,
                         const float   slope_strength,
                         const float   branch_strength,
@@ -109,13 +116,28 @@ void kernel gavoronoise(global float *output,
 
   float2 pos = g_to_xy(g, nx, ny, kx, ky, dx, dy, bbox);
 
-  float base = helper_gavoronoise_base_fbm(pos, fseed);
+  float base = helper_gavoronoise_base_fbm(pos,
+                                           angle,
+                                           angle_spread_ratio,
+                                           fseed);
 
   float eps = 0.1f;
-  float mx = helper_gavoronoise_base_fbm(pos + (float2)(eps, 0.0), fseed) -
-             helper_gavoronoise_base_fbm(pos - (float2)(eps, 0.0), fseed);
-  float my = helper_gavoronoise_base_fbm(pos + (float2)(0.f, eps), fseed) -
-             helper_gavoronoise_base_fbm(pos - (float2)(0.f, eps), fseed);
+  float mx = helper_gavoronoise_base_fbm(pos + (float2)(eps, 0.0),
+                                         angle,
+                                         angle_spread_ratio,
+                                         fseed) -
+             helper_gavoronoise_base_fbm(pos - (float2)(eps, 0.0),
+                                         angle,
+                                         angle_spread_ratio,
+                                         fseed);
+  float my = helper_gavoronoise_base_fbm(pos + (float2)(0.f, eps),
+                                         angle,
+                                         angle_spread_ratio,
+                                         fseed) -
+             helper_gavoronoise_base_fbm(pos - (float2)(0.f, eps),
+                                         angle,
+                                         angle_spread_ratio,
+                                         fseed);
 
   float2 dir = (float2)(my / eps * 0.5f, -mx / eps * 0.5f) * slope_strength;
 

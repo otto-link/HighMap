@@ -110,8 +110,7 @@ void kernel gabor_wave(global float *output,
   // "0.5f * kx" to keep it coherent with Perlin
   float2 pos = g_to_xy(g, nx, ny, 0.5f * kx, 0.5f * ky, 0.f, 0.f, bbox);
 
-  float2 dir = (float2)(cos(angle / 180.f * 3.14159f),
-                        sin(angle / 180.f * 3.14159f));
+  float2 dir = angle_to_dir(angle);
 
   output[index] = gabor_wave_scalar(pos, dir, angle_spread_ratio, fseed);
 }
@@ -152,8 +151,7 @@ void kernel gabor_wave_fbm(global float *output,
   // "0.5f * kx" to keep it coherent with Perlin
   float2 pos = g_to_xy(g, nx, ny, 0.5f * kx, 0.5f * ky, dx, dy, bbox);
 
-  float2 dir = (float2)(cos(angle / 180.f * 3.14159f),
-                        sin(angle / 180.f * 3.14159f));
+  float2 dir = angle_to_dir(angle);
 
   output[index] = gabor_wave_scalar_fbm(pos,
                                         dir,
