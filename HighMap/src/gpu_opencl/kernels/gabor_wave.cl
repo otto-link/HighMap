@@ -25,7 +25,10 @@ R""(
 // https://www.youtube.com/c/InigoQuilez
 // https://iquilezles.org
 
-float gabor_wave_scalar(const float2 p, const float fseed)
+float gabor_wave_scalar(const float2 p,
+                        const float2 dir,
+                        const float  angle_spread_ratio,
+                        const float  fseed)
 {
   float2 ip = floor(p);
   float2 qi;
@@ -45,7 +48,8 @@ float gabor_wave_scalar(const float2 p, const float fseed)
       float2 r = fp - (o + h);
 
       float2 s = {11.f + fseed, 31.f + fseed};
-      float2 k = normalize(-1.f + 2.f * hash2f(ip + o + s));
+      float2 k = normalize(dir + angle_spread_ratio *
+                                     (2.f * hash2f(ip + o + s) - 1.f));
 
       float d = dot(r, r);
       float l = dot(r, k);
@@ -62,6 +66,8 @@ float gabor_wave_scalar(const float2 p, const float fseed)
 // <<<
 
 float gabor_wave_scalar_fbm(const float2 p,
+                            const float2 dir,
+                            const float  angle_spread_ratio,
                             const int    octaves,
                             const float  weight,
                             const float  persistence,
@@ -73,7 +79,7 @@ float gabor_wave_scalar_fbm(const float2 p,
   float na = 0.6f;
   for (int i = 0; i < octaves; i++)
   {
-    float v = gabor_wave_scalar(p * nf, fseed);
+    float v = gabor_wave_scalar(p * nf, dir, angle_spread_ratio, fseed);
     n += v * na;
     na *= (1.f - weight) + weight * min(v + 1.f, 2.f) * 0.5f;
     na *= persistence;
@@ -88,6 +94,8 @@ void kernel gabor_wave(global float *output,
                        const float   kx,
                        const float   ky,
                        const uint    seed,
+                       const float   angle,
+                       const float   angle_spread_ratio,
                        const float4  bbox)
 {
   int2 g = {get_global_id(0), get_global_id(1)};
@@ -102,7 +110,10 @@ void kernel gabor_wave(global float *output,
   // "0.5f * kx" to keep it coherent with Perlin
   float2 pos = g_to_xy(g, nx, ny, 0.5f * kx, 0.5f * ky, 0.f, 0.f, bbox);
 
-  output[index] = gabor_wave_scalar(pos, fseed);
+  float2 dir = (float2)(cos(angle / 180.f * 3.14159f),
+                        sin(angle / 180.f * 3.14159f));
+
+  output[index] = gabor_wave_scalar(pos, dir, angle_spread_ratio, fseed);
 }
 
 void kernel gabor_wave_fbm(global float *output,
@@ -114,6 +125,8 @@ void kernel gabor_wave_fbm(global float *output,
                            const float   kx,
                            const float   ky,
                            const uint    seed,
+                           const float   angle,
+                           const float   angle_spread_ratio,
                            const int     octaves,
                            const float   weight,
                            const float   persistence,
@@ -139,7 +152,12 @@ void kernel gabor_wave_fbm(global float *output,
   // "0.5f * kx" to keep it coherent with Perlin
   float2 pos = g_to_xy(g, nx, ny, 0.5f * kx, 0.5f * ky, dx, dy, bbox);
 
+  float2 dir = (float2)(cos(angle / 180.f * 3.14159f),
+                        sin(angle / 180.f * 3.14159f));
+
   output[index] = gabor_wave_scalar_fbm(pos,
+                                        dir,
+                                        angle_spread_ratio,
                                         octaves,
                                         (1.f - ct) + ct * weight,
                                         persistence,

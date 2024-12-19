@@ -64,14 +64,26 @@ void helper_bind_optional_buffers(clwrapper::Run &run,
     run.bind_buffer<float>("noise_y", dummy_vector);
 }
 
-Array gabor_wave(Vec2<int> shape, Vec2<float> kw, uint seed, Vec4<float> bbox)
+Array gabor_wave(Vec2<int>   shape,
+                 Vec2<float> kw,
+                 uint        seed,
+                 float       angle,
+                 float       angle_spread_ratio,
+                 Vec4<float> bbox)
 {
   Array array(shape);
 
   auto run = clwrapper::Run("gabor_wave");
 
   run.bind_buffer<float>("array", array.vector);
-  run.bind_arguments(array.shape.x, array.shape.y, kw.x, kw.y, seed, bbox);
+  run.bind_arguments(array.shape.x,
+                     array.shape.y,
+                     kw.x,
+                     kw.y,
+                     seed,
+                     angle,
+                     angle_spread_ratio,
+                     bbox);
 
   run.execute({array.shape.x, array.shape.y});
   run.read_buffer("array");
@@ -82,6 +94,8 @@ Array gabor_wave(Vec2<int> shape, Vec2<float> kw, uint seed, Vec4<float> bbox)
 Array gabor_wave_fbm(Vec2<int>   shape,
                      Vec2<float> kw,
                      uint        seed,
+                     float       angle,
+                     float       angle_spread_ratio,
                      int         octaves,
                      float       weight,
                      float       persistence,
@@ -103,6 +117,8 @@ Array gabor_wave_fbm(Vec2<int>   shape,
                      kw.x,
                      kw.y,
                      seed,
+                     angle,
+                     angle_spread_ratio,
                      octaves,
                      weight,
                      persistence,
@@ -139,6 +155,59 @@ Array gavoronoise(Vec2<int>   shape,
 
   auto run = clwrapper::Run("gavoronoise");
 
+  run.bind_buffer<float>("array", array.vector);
+  helper_bind_optional_buffers(run, p_ctrl_param, p_noise_x, p_noise_y);
+
+  run.bind_arguments(array.shape.x,
+                     array.shape.y,
+                     kw.x,
+                     kw.y,
+                     seed,
+                     amplitude,
+                     kw_multiplier,
+                     slope_strength,
+                     branch_strength,
+                     z_cut_min,
+                     z_cut_max,
+                     octaves,
+                     persistence,
+                     lacunarity,
+                     p_ctrl_param ? 1 : 0,
+                     p_noise_x ? 1 : 0,
+                     p_noise_y ? 1 : 0,
+                     bbox);
+
+  run.execute({array.shape.x, array.shape.y});
+  run.read_buffer("array");
+
+  return array;
+}
+
+Array gavoronoise(const Array &base,
+                  Vec2<float>  kw,
+                  uint         seed,
+                  float        amplitude,
+                  Vec2<float>  kw_multiplier,
+                  float        slope_strength,
+                  float        branch_strength,
+                  float        z_cut_min,
+                  float        z_cut_max,
+                  int          octaves,
+                  float        persistence,
+                  float        lacunarity,
+                  Array       *p_ctrl_param,
+                  Array       *p_noise_x,
+                  Array       *p_noise_y,
+                  Vec4<float>  bbox)
+{
+  Array array(base.shape);
+
+  auto run = clwrapper::Run("gavoronoise_with_base");
+
+  run.bind_imagef("base",
+                  const_cast<std::vector<float> &>(base.vector),
+                  base.shape.x,
+                  base.shape.y);
   run.bind_buffer<float>("array", array.vector);
   helper_bind_optional_buffers(run, p_ctrl_param, p_noise_x, p_noise_y);
 

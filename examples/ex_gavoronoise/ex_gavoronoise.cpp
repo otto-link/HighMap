@@ -14,9 +14,26 @@ int main(void)
   clwrapper::KernelManager::get_instance().set_block_size(32);
 
   float       amp = 0.025f;
-  hmap::Array z = hmap::gpu::gavoronoise(shape, kw, seed, amp);
+  hmap::Array z1 = hmap::gpu::gavoronoise(shape, kw, seed, amp);
 
-  hmap::export_banner_png("ex_gavoronoise.png", {z}, hmap::Cmap::JET, true);
+  // with input base noise
+  int         octaves = 2;
+  hmap::Array base = hmap::noise_fbm(hmap::NoiseType::PERLIN,
+                                     shape,
+                                     kw,
+                                     ++seed,
+                                     octaves);
+
+  // base amplitude amplitude expected to be in [-1, 1] (approx.)
+  hmap::remap(base, -1.f, 1.f);
+  hmap::Array z2 = hmap::gpu::gavoronoise(base, kw, seed, amp);
+
+  z2.to_png_grayscale("out2.png", CV_16U);
+
+  hmap::export_banner_png("ex_gavoronoise.png",
+                          {z1, z2},
+                          hmap::Cmap::JET,
+                          true);
 
 #else
   std::cout << "OpenCL not activated\n";

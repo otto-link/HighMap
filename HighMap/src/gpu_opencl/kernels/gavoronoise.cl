@@ -4,7 +4,14 @@ R""(
  * this software. */
 float helper_gavoronoise_base_fbm(const float2 p, const float fseed)
 {
-  float v = gabor_wave_scalar_fbm(p, 8, 1.f, 0.5f, 2.f, fseed);
+  float v = gabor_wave_scalar_fbm(p,
+                                  (float2)(0.f, 0.f),
+                                  1.f,
+                                  8,
+                                  1.f,
+                                  0.5f,
+                                  2.f,
+                                  fseed);
   return v;
 }
 
@@ -126,5 +133,70 @@ void kernel gavoronoise(global float *output,
                                          fseed);
 
   // output[index] = base;
+}
+
+void kernel gavoronoise_with_base(read_only image2d_t base_in,
+                                  global float       *output,
+                                  global float       *ctrl_param,
+                                  global float       *noise_x,
+                                  global float       *noise_y,
+                                  const int           nx,
+                                  const int           ny,
+                                  const float         kx,
+                                  const float         ky,
+                                  const uint          seed,
+                                  const float         amplitude,
+                                  const float2        kw_multiplier,
+                                  const float         slope_strength,
+                                  const float         branch_strength,
+                                  const float         z_cut_min,
+                                  const float         z_cut_max,
+                                  const int           octaves,
+                                  const float         persistence,
+                                  const float         lacunarity,
+                                  const int           has_ctrl_param,
+                                  const int           has_noise_x,
+                                  const int           has_noise_y,
+                                  const float4        bbox)
+{
+  int2 g = {get_global_id(0), get_global_id(1)};
+
+  if (g.x >= nx || g.y >= ny) return;
+
+  int index = linear_index(g.x, g.y, ny);
+
+  uint  rng_state = wang_hash(seed);
+  float fseed = rand(&rng_state);
+
+  float ct = has_ctrl_param > 0 ? ctrl_param[index] : 1.f;
+  float dx = has_noise_x > 0 ? noise_x[index] : 0.f;
+  float dy = has_noise_y > 0 ? noise_y[index] : 0.f;
+
+  float2 pos = g_to_xy(g, nx, ny, 1.f, 1.f, dx, dy, bbox);
+
+  const sampler_t sampler_itp = CLK_NORMALIZED_COORDS_TRUE |
+                                CLK_ADDRESS_MIRRORED_REPEAT | CLK_FILTER_LINEAR;
+  float base = read_imagef(base_in, sampler_itp, pos).x;
+
+  float eps = 0.001f;
+  float mx = read_imagef(base_in, sampler_itp, pos + (float2)(eps, 0.0)).x -
+             read_imagef(base_in, sampler_itp, pos - (float2)(eps, 0.0)).x;
+  float my = read_imagef(base_in, sampler_itp, pos + (float2)(0.f, eps)).x -
+             read_imagef(base_in, sampler_itp, pos - (float2)(0.f, eps)).x;
+
+  float2 dir = (float2)(my / eps * 0.5f, -mx / eps * 0.5f) * slope_strength;
+
+  output[index] = gavoronoise_eroder_fbm(pos,
+                                         base,
+                                         kw_multiplier,
+                                         dir,
+                                         branch_strength,
+                                         amplitude,
+                                         z_cut_min,
+                                         z_cut_max * ct,
+                                         octaves,
+                                         persistence,
+                                         lacunarity,
+                                         fseed);
 }
 )""

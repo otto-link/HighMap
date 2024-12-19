@@ -1305,6 +1305,10 @@ namespace hmap::gpu
  * @param shape Array shape.
  * @param kw Noise wavenumbers {kx, ky} for each directions.
  * @param seed Random seed number.
+ * @param angle Base orientation angle for the Gabor wavelets (in
+ * radians). Defaults to 0.
+ * @param angle_spread_ratio Ratio that controls the spread of wave orientations
+ * around the base angle. Defaults to 1.
  * @param bbox Domain bounding box.
  * @return Array Fractal noise.
  *
@@ -1321,6 +1325,8 @@ namespace hmap::gpu
 Array gabor_wave(Vec2<int>   shape,
                  Vec2<float> kw,
                  uint        seed,
+                 float       angle = 0.f,
+                 float       angle_spread_ratio = 1.f,
                  Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
@@ -1329,6 +1335,10 @@ Array gabor_wave(Vec2<int>   shape,
  * @param shape Array shape.
  * @param kw Noise wavenumbers {kx, ky} for each directions.
  * @param seed Random seed number.
+ * @param angle Base orientation angle for the Gabor wavelets (in
+ * radians). Defaults to 0.
+ * @param angle_spread_ratio Ratio that controls the spread of wave orientations
+ * around the base angle. Defaults to 1.
  * @param octaves Number of octaves.
  * @param weigth Octave weighting.
  * @param persistence Octave persistence.
@@ -1352,6 +1362,8 @@ Array gabor_wave(Vec2<int>   shape,
 Array gabor_wave_fbm(Vec2<int>   shape,
                      Vec2<float> kw,
                      uint        seed,
+                     float       angle = 0.f,
+                     float       angle_spread_ratio = 1.f,
                      int         octaves = 8,
                      float       weight = 0.7f,
                      float       persistence = 0.5f,
@@ -1424,6 +1436,23 @@ Array gavoronoise(Vec2<int>   shape,
                   Array      *p_noise_x = nullptr,
                   Array      *p_noise_y = nullptr,
                   Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+Array gavoronoise(const Array &base,
+                  Vec2<float>  kw,
+                  uint         seed,
+                  float        amplitude = 0.05f,
+                  Vec2<float>  kw_multiplier = {4.f, 4.f},
+                  float        slope_strength = 1.f,
+                  float        branch_strength = 2.f,
+                  float        z_cut_min = 0.2f,
+                  float        z_cut_max = 1.f,
+                  int          octaves = 8,
+                  float        persistence = 0.4f,
+                  float        lacunarity = 2.f,
+                  Array       *p_ctrl_param = nullptr,
+                  Array       *p_noise_x = nullptr,
+                  Array       *p_noise_y = nullptr,
+                  Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Generates a 2D Voronoi noise array.
