@@ -16,8 +16,12 @@ int main(void)
   hmap::Array z01 = hmap::gpu::voronoise(shape, kw, 0.f, 1.f, seed);
   hmap::Array z11 = hmap::gpu::voronoise(shape, kw, 1.f, 1.f, seed);
 
+  hmap::Array zfbm = hmap::gpu::voronoise_fbm(shape, kw, 1.f, 0.3f, seed);
+
+  zfbm.infos();
+
   hmap::export_banner_png("ex_voronoise.png",
-                          {z00, z10, z01, z11},
+                          {z00, z10, z01, z11, zfbm},
                           hmap::Cmap::JET);
 
 #else

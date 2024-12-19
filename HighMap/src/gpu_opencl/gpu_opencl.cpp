@@ -33,6 +33,7 @@ bool init_opencl()
   //
   // kernels only available on GPU
 #include "kernels/gabor_wave.cl"
+#include "kernels/gavoronoise.cl"
 #include "kernels/voronoise.cl"
       ;
 

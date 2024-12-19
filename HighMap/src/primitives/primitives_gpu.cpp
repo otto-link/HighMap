@@ -118,6 +118,55 @@ Array gabor_wave_fbm(Vec2<int>   shape,
   return array;
 }
 
+Array gavoronoise(Vec2<int>   shape,
+                  Vec2<float> kw,
+                  uint        seed,
+                  float       amplitude,
+                  Vec2<float> kw_multiplier,
+                  float       slope_strength,
+                  float       branch_strength,
+                  float       z_cut_min,
+                  float       z_cut_max,
+                  int         octaves,
+                  float       persistence,
+                  float       lacunarity,
+                  Array      *p_ctrl_param,
+                  Array      *p_noise_x,
+                  Array      *p_noise_y,
+                  Vec4<float> bbox)
+{
+  Array array(shape);
+
+  auto run = clwrapper::Run("gavoronoise");
+
+  run.bind_buffer<float>("array", array.vector);
+  helper_bind_optional_buffers(run, p_ctrl_param, p_noise_x, p_noise_y);
+
+  run.bind_arguments(array.shape.x,
+                     array.shape.y,
+                     kw.x,
+                     kw.y,
+                     seed,
+                     amplitude,
+                     kw_multiplier,
+                     slope_strength,
+                     branch_strength,
+                     z_cut_min,
+                     z_cut_max,
+                     octaves,
+                     persistence,
+                     lacunarity,
+                     p_ctrl_param ? 1 : 0,
+                     p_noise_x ? 1 : 0,
+                     p_noise_y ? 1 : 0,
+                     bbox);
+
+  run.execute({array.shape.x, array.shape.y});
+  run.read_buffer("array");
+
+  return array;
+}
+
 Array voronoise(Vec2<int>   shape,
                 Vec2<float> kw,
                 float       u_param,
@@ -141,6 +190,49 @@ Array voronoise(Vec2<int>   shape,
                      u_param,
                      v_param,
                      seed,
+                     p_noise_x ? 1 : 0,
+                     p_noise_y ? 1 : 0,
+                     bbox);
+
+  run.execute({array.shape.x, array.shape.y});
+  run.read_buffer("array");
+
+  return array;
+}
+
+Array voronoise_fbm(Vec2<int>   shape,
+                    Vec2<float> kw,
+                    float       u_param,
+                    float       v_param,
+                    uint        seed,
+                    int         octaves,
+                    float       weight,
+                    float       persistence,
+                    float       lacunarity,
+                    Array      *p_ctrl_param,
+                    Array      *p_noise_x,
+                    Array      *p_noise_y,
+                    Vec4<float> bbox)
+{
+  Array array(shape);
+
+  auto run = clwrapper::Run("voronoise_fbm");
+
+  run.bind_buffer<float>("array", array.vector);
+  helper_bind_optional_buffers(run, p_ctrl_param, p_noise_x, p_noise_y);
+
+  run.bind_arguments(array.shape.x,
+                     array.shape.y,
+                     kw.x,
+                     kw.y,
+                     u_param,
+                     v_param,
+                     seed,
+                     octaves,
+                     weight,
+                     persistence,
+                     lacunarity,
+                     p_ctrl_param ? 1 : 0,
                      p_noise_x ? 1 : 0,
                      p_noise_y ? 1 : 0,
                      bbox);

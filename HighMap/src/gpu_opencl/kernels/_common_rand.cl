@@ -2,6 +2,14 @@ R""(
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
+float2 hash2f(float2 x)
+{
+  const float2 k = {0.3183099f, 0.3678794f};
+  x = x * k + k.yx;
+  float2 qi;
+  return fract(16.f * k * fract(x.x * x.y * (x.x + x.y), &qi), &qi);
+}
+
 uint wang_hash(uint seed)
 {
   seed = (seed ^ 61) ^ (seed >> 16);

@@ -25,14 +25,6 @@ R""(
 // https://www.youtube.com/c/InigoQuilez
 // https://iquilezles.org
 
-float2 hash(float2 x)
-{
-  const float2 k = {0.3183099f, 0.3678794f};
-  x = x * k + k.yx;
-  float2 qi;
-  return fract(16.f * k * fract(x.x * x.y * (x.x + x.y), &qi), &qi);
-}
-
 float gabor_wave_scalar(const float2 p, const float fseed)
 {
   float2 ip = floor(p);
@@ -49,11 +41,11 @@ float gabor_wave_scalar(const float2 p, const float fseed)
     for (int i = -2; i <= 2; i++)
     {
       float2 o = {i, j};
-      float2 h = hash(ip + o);
+      float2 h = hash2f(ip + o);
       float2 r = fp - (o + h);
 
       float2 s = {11.f + fseed, 31.f + fseed};
-      float2 k = normalize(-1.f + 2.f * hash(ip + o + s));
+      float2 k = normalize(-1.f + 2.f * hash2f(ip + o + s));
 
       float d = dot(r, r);
       float l = dot(r, k);

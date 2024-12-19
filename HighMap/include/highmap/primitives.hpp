@@ -1362,6 +1362,70 @@ Array gabor_wave_fbm(Vec2<int>   shape,
                      Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
+ * @brief Generates a 2D array using the GavoroNoise algorithm,
+ *        which is a procedural noise technique for terrain generation and other
+ * applications.
+ *
+ * @param shape         Dimensions of the output array.
+ * @param kw            Wave number vector controlling the noise frequency.
+ * @param seed          Seed value for random number generation.
+ * @param amplitude     Amplitude of the noise.
+ * @param kw_multiplier Multiplier for wave numbers in the noise function.
+ * @param slope_strength Strength of slope-based directional erosion in the
+ * noise.
+ * @param branch_strength Strength of branch-like structures in the generated
+ * noise.
+ * @param z_cut_min     Minimum cutoff for Z-value in the noise.
+ * @param z_cut_max     Maximum cutoff for Z-value in the noise.
+ * @param octaves       Number of octaves for fractal Brownian motion (fBm).
+ * @param persistence   Amplitude scaling factor between noise octaves.
+ * @param lacunarity    Frequency scaling factor between noise octaves.
+ * @param p_ctrl_param  Optional array for control parameters, can modify the Z
+ * cutoff dynamically.
+ * @param p_noise_x     Optional array for X-axis noise perturbation.
+ * @param p_noise_y     Optional array for Y-axis noise perturbation.
+ * @param bbox          Bounding box for mapping grid coordinates to world
+ * space.
+ *
+ * @return A 2D array containing the generated GavoroNoise values.
+ *
+ * @note Taken from https://www.shadertoy.com/view/MtGcWh
+ *
+ * @note Only available if OpenCL is enabled.
+ *
+ * This function leverages an OpenCL kernel to compute the GavoroNoise values on
+ * the GPU, allowing for efficient large-scale generation. The kernel applies a
+ * combination of fractal Brownian motion (fBm), directional erosion, and other
+ * procedural techniques to generate intricate noise patterns.
+ *
+ * The optional `p_ctrl_param`, `p_noise_x`, and `p_noise_y` buffers provide
+ * additional flexibility for dynamically adjusting noise parameters and
+ * perturbations.
+ *
+ * **Example**
+ * @include ex_gavoronoise.cpp
+ *
+ * **Result**
+ * @image html ex_gavoronoise.png
+ */
+Array gavoronoise(Vec2<int>   shape,
+                  Vec2<float> kw,
+                  uint        seed,
+                  float       amplitude = 0.05f,
+                  Vec2<float> kw_multiplier = {4.f, 4.f},
+                  float       slope_strength = 1.f,
+                  float       branch_strength = 2.f,
+                  float       z_cut_min = 0.2f,
+                  float       z_cut_max = 1.f,
+                  int         octaves = 8,
+                  float       persistence = 0.4f,
+                  float       lacunarity = 2.f,
+                  Array      *p_ctrl_param = nullptr,
+                  Array      *p_noise_x = nullptr,
+                  Array      *p_noise_y = nullptr,
+                  Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
  * @brief Generates a 2D Voronoi noise array.
  *
  * This function computes a Voronoi noise pattern based on the input parameters
@@ -1401,5 +1465,45 @@ Array voronoise(Vec2<int>   shape,
                 Array      *p_noise_x = nullptr,
                 Array      *p_noise_y = nullptr,
                 Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
+ * @brief Return an array filled with coherence Voronoise.
+ *
+ * @param shape Array shape.
+ * @param kw Noise wavenumbers {kx, ky} for each directions.
+ * @param seed Random seed number.
+ * @param octaves Number of octaves.
+ * @param weigth Octave weighting.
+ * @param persistence Octave persistence.
+ * @param lacunarity Defines the wavenumber ratio between each octaves.
+ * @param p_ctrl_param Reference to the control parameter array (acts as a
+ * multiplier for the weight parameter).
+ * @param p_noise_x, p_noise_y Reference to the input noise arrays.
+ * @param bbox Domain bounding box.
+ * @return Array Fractal noise.
+ *
+ * @note Taken from https://www.shadertoy.com/view/clGyWm
+ *
+ * @note Only available if OpenCL is enabled.
+ *
+ * **Example**
+ * @include ex_voronoise.cpp
+ *
+ * **Result**
+ * @image html ex_voronoise.png
+ */
+Array voronoise_fbm(Vec2<int>   shape,
+                    Vec2<float> kw,
+                    float       u_param,
+                    float       v_param,
+                    uint        seed,
+                    int         octaves = 8,
+                    float       weight = 0.7f,
+                    float       persistence = 0.5f,
+                    float       lacunarity = 2.f,
+                    Array      *p_ctrl_param = nullptr,
+                    Array      *p_noise_x = nullptr,
+                    Array      *p_noise_y = nullptr,
+                    Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 } // namespace hmap::gpu
 #endif
