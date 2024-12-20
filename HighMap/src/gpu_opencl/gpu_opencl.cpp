@@ -32,6 +32,7 @@ bool init_opencl()
 #include "kernels/warp.cl"
   //
   // kernels only available on GPU
+#include "kernels/cracks.cl"
 #include "kernels/gabor_wave.cl"
 #include "kernels/gavoronoise.cl"
 #include "kernels/voronoise.cl"

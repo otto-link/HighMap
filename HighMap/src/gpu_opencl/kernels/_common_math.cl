@@ -63,4 +63,20 @@ float smoothstep3_gl(float x, float vmin, float vmax)
   x = clamp((x - vmin) / (vmax - vmin), 0.f, 1.f);
   return x * x * (3.f - 2.f * x);
 }
+
+float smoothstep3_lower(const float x)
+{
+  return x * (2.f * x - x * x);
+}
+
+float smoothstep3_upper(const float x)
+{
+  return x * (1.f + x - x * x);
+}
+
+float smoothstep_rational(float x, float n)
+{
+  // https://iquilezles.org/articles/smoothsteps/
+  return pow(x, n) / (pow(x, n) + pow(1.f - x, n));
+}
 )""

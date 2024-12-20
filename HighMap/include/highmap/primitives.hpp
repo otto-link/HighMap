@@ -1497,6 +1497,35 @@ Array gavoronoise(const Array &base,
                   Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
+ * @brief Computes the Voronoi edge distance.
+ *
+ * @param shape The shape of the grid as a 2D vector (width, height).
+ * @param kw The weights for the Voronoi kernel as a 2D vector.
+ * @param seed The random seed used for generating Voronoi points.
+ * @param jitter Optional parameter for controlling jitter in Voronoi point
+ * placement (default is {0.5f, 0.5f}).
+ * @param p_ctrl_param Optional pointer to an Array specifying control
+ * parameters for Voronoi grid jitter (default is nullptr).
+ * @param p_noise_x, p_noise_y Reference to the input noise arrays.
+ * @param bbox The bounding box for the Voronoi diagram as {x_min, x_max, y_min,
+ * y_max} (default is {0.f, 1.f, 0.f, 1.f}).
+ *
+ * @note Taken from https://www.shadertoy.com/view/llG3zy
+ *
+ * @note Only available if OpenCL is enabled.
+ *
+ * @note The resulting Array has the same dimensions as the input shape.
+ */
+Array voronoi_edge_distance(Vec2<int>   shape,
+                            Vec2<float> kw,
+                            uint        seed,
+                            Vec2<float> jitter = {0.5f, 0.5f},
+                            Array      *p_ctrl_param = nullptr,
+                            Array      *p_noise_x = nullptr,
+                            Array      *p_noise_y = nullptr,
+                            Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
  * @brief Generates a 2D Voronoi noise array.
  *
  * This function computes a Voronoi noise pattern based on the input parameters

@@ -115,33 +115,6 @@ void kernel gabor_wave(global float *output,
   output[index] = gabor_wave_scalar(pos, dir, angle_spread_ratio, fseed);
 }
 
-/* void kernel gabor_wave(global float *output, */
-/*                        const int     nx, */
-/*                        const int     ny, */
-/*                        const float   kx, */
-/*                        const float   ky, */
-/*                        const uint    seed, */
-/*                        const float   angle, */
-/*                        const float   angle_spread_ratio, */
-/*                        const float4  bbox) */
-/* { */
-/*   int2 g = {get_global_id(0), get_global_id(1)}; */
-
-/*   if (g.x >= nx || g.y >= ny) return; */
-
-/*   int index = linear_index(g.x, g.y, ny); */
-
-/*   uint  rng_state = wang_hash(seed); */
-/*   float fseed = rand(&rng_state); */
-
-/*   // "0.5f * kx" to keep it coherent with Perlin */
-/*   float2 pos = g_to_xy(g, nx, ny, 0.5f * kx, 0.5f * ky, 0.f, 0.f, bbox); */
-
-/*   float2 dir = angle_to_dir(angle); */
-
-/*   output[index] = gabor_wave_scalar(pos, dir, angle_spread_ratio, fseed); */
-/* } */
-
 void kernel gabor_wave_fbm(global float *output,
                            global float *angle,
                            global float *ctrl_param,

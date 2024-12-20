@@ -1,0 +1,2 @@
+add_executable(ex_voronoi_edge_distance ex_voronoi_edge_distance.cpp)
+target_link_libraries(ex_voronoi_edge_distance highmap)

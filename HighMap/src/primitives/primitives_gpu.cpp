@@ -9,6 +9,8 @@
 namespace hmap::gpu
 {
 
+// --- helpers
+
 void helper_bind_optional_buffers(clwrapper::Run &run,
                                   Array          *p_ctrl_param,
                                   Array          *p_noise_x,
@@ -63,6 +65,8 @@ void helper_bind_optional_buffers(clwrapper::Run &run,
   else
     run.bind_buffer<float>("noise_y", dummy_vector);
 }
+
+// --- functions
 
 Array gabor_wave(Vec2<int>    shape,
                  Vec2<float>  kw,
@@ -411,6 +415,40 @@ Array voronoise_fbm(Vec2<int>   shape,
 
   run.execute({array.shape.x, array.shape.y});
   run.read_buffer("array");
+
+  return array;
+}
+
+Array voronoi_edge_distance(Vec2<int>   shape,
+                            Vec2<float> kw,
+                            uint        seed,
+                            Vec2<float> jitter,
+                            Array      *p_ctrl_param,
+                            Array      *p_noise_x,
+                            Array      *p_noise_y,
+                            Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f})
+{
+  Array array(shape);
+
+  auto run = clwrapper::Run("voronoi_edge_distance");
+
+  run.bind_buffer<float>("array", array.vector);
+  helper_bind_optional_buffers(run, p_ctrl_param, p_noise_x, p_noise_y);
+  run.bind_arguments(array.shape.x,
+                     array.shape.y,
+                     kw.x,
+                     kw.y,
+                     seed,
+                     jitter,
+                     p_ctrl_param ? 1 : 0,
+                     p_noise_x ? 1 : 0,
+                     p_noise_y ? 1 : 0,
+                     bbox);
+
+  run.execute({array.shape.x, array.shape.y});
+  run.read_buffer("array");
+
+  array.infos();
 
   return array;
 }
