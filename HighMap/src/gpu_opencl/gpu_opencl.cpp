@@ -32,10 +32,10 @@ bool init_opencl()
 #include "kernels/warp.cl"
   //
   // kernels only available on GPU
-#include "kernels/cracks.cl"
 #include "kernels/gabor_wave.cl"
 #include "kernels/gavoronoise.cl"
 #include "kernels/voronoise.cl"
+#include "kernels/voronoi_edge_distance.cl"
       ;
 
   clwrapper::KernelManager::get_instance().add_kernel(code);
