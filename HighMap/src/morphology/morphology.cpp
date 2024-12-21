@@ -153,12 +153,14 @@ Array relative_distance_from_skeleton(const Array &array,
         for (int q = q1; q < q2; q++)
           for (int p = p1; p < p2; p++)
           {
+            // distance to skeleton
             if (sk(p, q) == 1.f)
             {
               float d2 = (float)((i - p) * (i - p) + (j - q) * (j - q));
               if (d2 < dmax_sk) dmax_sk = d2;
             }
 
+            // distance to border
             if (border(p, q) == 1.f)
             {
               float d2 = (float)((i - p) * (i - p) + (j - q) * (j - q));
