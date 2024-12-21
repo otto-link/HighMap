@@ -129,6 +129,10 @@ void hydraulic_particle(Array &z,
                         float  drag_rate,
                         float  evap_rate)
 {
+  Array z_bckp = Array();
+  if ((p_erosion_map != nullptr) | (p_deposition_map != nullptr)) z_bckp = z;
+
+  // kernel
   auto run = clwrapper::Run("hydraulic_particle");
 
   run.bind_buffer<float>("z", z.vector);
@@ -153,6 +157,19 @@ void hydraulic_particle(Array &z,
   run.execute(nparticles);
 
   run.read_buffer("z");
+
+  // splatmaps
+  if (p_erosion_map)
+  {
+    *p_erosion_map = z_bckp - z;
+    clamp_min(*p_erosion_map, 0.f);
+  }
+
+  if (p_deposition_map)
+  {
+    *p_deposition_map = z - z_bckp;
+    clamp_min(*p_deposition_map, 0.f);
+  }
 }
 void hydraulic_particle(Array &z,
                         Array *p_mask,
