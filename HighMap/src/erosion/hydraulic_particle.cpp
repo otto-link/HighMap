@@ -18,7 +18,7 @@
 
 #include "highmap/internal/particles.hpp"
 
-#define HMAP_EROSION_DT 1.f
+#define HMAP_EROSION_DT 3.f
 #define HMAP_EROSION_VOLUME_MIN 0.01f
 
 namespace hmap

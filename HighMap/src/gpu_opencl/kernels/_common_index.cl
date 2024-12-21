@@ -25,4 +25,12 @@ int linear_index(const int i, const int j, const int nx)
 {
   return j * nx + i;
 }
+
+void update_interp_param(float2 pos, int *i, int *j, float *u, float *v)
+{
+  *i = (int)pos.x;
+  *j = (int)pos.y;
+  *u = pos.x - *i;
+  *v = pos.y - *j;
+}
 )""

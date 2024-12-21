@@ -311,8 +311,8 @@ void hydraulic_particle(Array &z,
                         Array *p_deposition_map = nullptr, // -> out
                         float  c_capacity = 10.f,
                         float  c_erosion = 0.05f,
-                        float  c_deposition = 0.01f,
-                        float  drag_rate = 0.01f,
+                        float  c_deposition = 0.05f,
+                        float  drag_rate = 0.001f,
                         float  evap_rate = 0.001f);
 
 void hydraulic_particle(Array &z,
@@ -324,8 +324,8 @@ void hydraulic_particle(Array &z,
                         Array *p_deposition_map = nullptr, // -> out
                         float  c_capacity = 10.f,
                         float  c_erosion = 0.05f,
-                        float  c_deposition = 0.01f,
-                        float  drag_rate = 0.01f,
+                        float  c_deposition = 0.05f,
+                        float  drag_rate = 0.001f,
                         float  evap_rate = 0.001f); ///< @overload
 
 /**

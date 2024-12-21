@@ -10,6 +10,7 @@ void compare(F1 fct1, F2 fct2, float tolerance, const std::string &fname)
 {
   hmap::Vec2<int> shape = {256, 512};
   shape = {512, 512};
+  // shape = {1024, 1024};
   // shape = {2048, 2048};
   // shape = {4096 * 2, 4096 * 2};
   hmap::Vec2<float> kw = {2.f, 4.f};
@@ -273,16 +274,16 @@ int main(void)
   //           "diff_rugosity.png");
   // }
 
-  {
-    int   ir = 32;
-    float amount = 5.f;
-    compare([&ir, &amount](hmap::Array &z)
-            { hmap::normal_displacement(z, amount, ir); },
-            [&ir, &amount](hmap::Array &z)
-            { hmap::gpu::normal_displacement(z, amount, ir); },
-            1e-3f,
-            "diff_normal_displacement.png");
-  }
+  // {
+  //   int   ir = 32;
+  //   float amount = 5.f;
+  //   compare([&ir, &amount](hmap::Array &z)
+  //           { hmap::normal_displacement(z, amount, ir); },
+  //           [&ir, &amount](hmap::Array &z)
+  //           { hmap::gpu::normal_displacement(z, amount, ir); },
+  //           1e-3f,
+  //           "diff_normal_displacement.png");
+  // }
 
   // {
   //   int   ir = 32;
@@ -294,6 +295,16 @@ int main(void)
   //           1e-3f,
   //           "diff_normal_displacement_masked.png");
   // }
+
+  {
+    int nparticles = 50000;
+    compare([&nparticles](hmap::Array &z)
+            { hmap::hydraulic_particle(z, nparticles, 0); },
+            [&nparticles](hmap::Array &z)
+            { hmap::gpu::hydraulic_particle(z, &z, nparticles, 0); },
+            1e-3f,
+            "diff_hydraulic_particle.png");
+  }
 
   // clwrapper::KernelManager::get_instance().set_block_size(32);
   // z2 = z;

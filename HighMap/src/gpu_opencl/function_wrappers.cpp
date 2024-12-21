@@ -11,6 +11,21 @@
 namespace hmap::gpu
 {
 
+void helper_bind_optional_buffer(clwrapper::Run    &run,
+                                 const std::string &id,
+                                 Array             *p_array)
+{
+  std::vector<float> dummy_vector(1);
+
+  if (p_array)
+  {
+    run.bind_buffer<float>(id, p_array->vector);
+    run.write_buffer(id);
+  }
+  else
+    run.bind_buffer<float>(id, dummy_vector);
+}
+
 void expand(Array &array, int ir)
 {
   Array kernel = cubic_pulse({2 * ir + 1, 2 * ir + 1});
@@ -99,6 +114,90 @@ Array gradient_norm(const Array &array)
   run.read_buffer("dm");
 
   return dm;
+}
+
+void hydraulic_particle(Array &z,
+                        int    nparticles,
+                        int    seed,
+                        Array *p_bedrock,
+                        Array *p_moisture_map,
+                        Array *p_erosion_map,
+                        Array *p_deposition_map,
+                        float  c_capacity,
+                        float  c_erosion,
+                        float  c_deposition,
+                        float  drag_rate,
+                        float  evap_rate)
+{
+  auto run = clwrapper::Run("hydraulic_particle");
+
+  run.bind_buffer<float>("z", z.vector);
+
+  helper_bind_optional_buffer(run, "bedrock", p_bedrock);
+  helper_bind_optional_buffer(run, "moisture_map", p_moisture_map);
+
+  run.bind_arguments(z.shape.x,
+                     z.shape.y,
+                     nparticles,
+                     seed,
+                     c_capacity,
+                     c_erosion,
+                     c_deposition,
+                     drag_rate,
+                     evap_rate,
+                     p_bedrock ? 1 : 0,
+                     p_moisture_map ? 1 : 0);
+
+  run.write_buffer("z");
+
+  run.execute(nparticles);
+
+  run.read_buffer("z");
+}
+void hydraulic_particle(Array &z,
+                        Array *p_mask,
+                        int    nparticles,
+                        int    seed,
+                        Array *p_bedrock,
+                        Array *p_moisture_map,
+                        Array *p_erosion_map,
+                        Array *p_deposition_map,
+                        float  c_capacity,
+                        float  c_erosion,
+                        float  c_deposition,
+                        float  drag_rate,
+                        float  evap_rate)
+{
+  if (!p_mask)
+    gpu::hydraulic_particle(z,
+                            nparticles,
+                            seed,
+                            p_bedrock,
+                            p_moisture_map,
+                            p_erosion_map,
+                            p_deposition_map,
+                            c_capacity,
+                            c_erosion,
+                            c_deposition,
+                            drag_rate,
+                            evap_rate);
+  else
+  {
+    Array z_f = z;
+    gpu::hydraulic_particle(z_f,
+                            nparticles,
+                            seed,
+                            p_bedrock,
+                            p_moisture_map,
+                            p_erosion_map,
+                            p_deposition_map,
+                            c_capacity,
+                            c_erosion,
+                            c_deposition,
+                            drag_rate,
+                            evap_rate);
+    z = lerp(z, z_f, *(p_mask));
+  }
 }
 
 void laplace(Array &array, float sigma, int iterations)

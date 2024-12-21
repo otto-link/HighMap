@@ -56,6 +56,12 @@ void Particle::move(const Array &h, float dt)
     return;
   }
 
+  // clip velocity to ensure stability
+  if (vnorm > vlim / dt)
+  {
+    this->vel = this->vel * (vlim / dt / vnorm);
+  }
+
   // eventually move particle
   float new_x = this->pos.x + dt * this->vel.x;
   float new_y = this->pos.y + dt * this->vel.y;
