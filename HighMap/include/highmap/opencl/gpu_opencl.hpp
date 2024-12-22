@@ -90,7 +90,7 @@ void normal_displacement(Array &array,
                          bool   reverse = false);
 
 void plateau(Array &array, Array *p_mask, int ir, float factor);
-// void plateau(Array &array, int ir, float factor);
+void plateau(Array &array, int ir, float factor);
 
 Array rugosity(const Array &z, int ir, bool convex = true);
 

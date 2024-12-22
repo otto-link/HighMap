@@ -172,6 +172,7 @@ void hydraulic_particle(Array &z,
     clamp_min(*p_deposition_map, 0.f);
   }
 }
+
 void hydraulic_particle(Array &z,
                         Array *p_mask,
                         int    nparticles,
@@ -412,12 +413,29 @@ void plateau(Array &array, Array *p_mask, int ir, float factor)
   gpu::smooth_cpulse(amin, ir);
   gpu::smooth_cpulse(amax, ir);
 
-  array = (array - amin) / (amax - amin + std::numeric_limits<float>::min());
+  // last part
+  auto run = clwrapper::Run("plateau_post");
 
-  clamp(array);        // TODO CPU
-  gain(array, factor); // TODO CPU
+  run.bind_buffer<float>("array", array.vector);
+  run.bind_buffer<float>("amin", amin.vector);
+  run.bind_buffer<float>("amax", amax.vector);
 
-  array = amin + (amax - amin) * array;
+  helper_bind_optional_buffer(run, "mask", p_mask);
+
+  run.bind_arguments(array.shape.x, array.shape.y, factor, p_mask ? 1 : 0);
+
+  run.write_buffer("array");
+  run.write_buffer("amin");
+  run.write_buffer("amax");
+
+  run.execute({array.shape.x, array.shape.y});
+
+  run.read_buffer("array");
+}
+
+void plateau(Array &array, int ir, float factor)
+{
+  gpu::plateau(array, nullptr, ir, factor);
 }
 
 Array rugosity(const Array &z, int ir, bool convex)
