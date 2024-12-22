@@ -246,7 +246,8 @@ Array opening(const Array &array, int ir);
  */
 Array relative_distance_from_skeleton(const Array &array,
                                       int          ir_search,
-                                      bool         zero_at_borders = true);
+                                      bool         zero_at_borders = true,
+                                      int          ir_erosion = 1);
 
 /**
  * @brief Computes the skeleton of a binary image using the Zhang-Suen

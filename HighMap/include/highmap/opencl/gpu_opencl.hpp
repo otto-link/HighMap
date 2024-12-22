@@ -104,7 +104,8 @@ void plateau(Array &array, int ir, float factor);
 
 Array relative_distance_from_skeleton(const Array &array,
                                       int          ir_search,
-                                      bool         zero_at_borders = true);
+                                      bool         zero_at_borders = true,
+                                      int          ir_erosion = 1);
 
 Array relative_elevation(const Array &array, int ir);
 

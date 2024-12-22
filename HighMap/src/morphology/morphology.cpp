@@ -129,9 +129,10 @@ void helper_thinning(Array &in, int iter)
 
 Array relative_distance_from_skeleton(const Array &array,
                                       int          ir_search,
-                                      bool         zero_at_borders)
+                                      bool         zero_at_borders,
+                                      int          ir_erosion)
 {
-  Array border = array - erosion(array, 1);
+  Array border = array - erosion(array, ir_erosion);
   Array sk = skeleton(array, zero_at_borders);
 
   Array rdist(array.shape);
