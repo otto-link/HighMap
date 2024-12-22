@@ -3,6 +3,7 @@
  * this software. */
 #ifdef ENABLE_OPENCL
 
+#include "highmap/filters.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/math.hpp"
 #include "highmap/opencl/gpu_opencl.hpp"
@@ -29,7 +30,7 @@ void helper_bind_optional_buffer(clwrapper::Run    &run,
 void expand(Array &array, int ir)
 {
   Array kernel = cubic_pulse({2 * ir + 1, 2 * ir + 1});
-  expand(array, kernel);
+  gpu::expand(array, kernel);
 }
 
 void expand(Array &array, int ir, Array *p_mask)
@@ -38,11 +39,11 @@ void expand(Array &array, int ir, Array *p_mask)
 
   if (!p_mask)
   {
-    expand(array, kernel);
+    gpu::expand(array, kernel);
   }
   else
   {
-    expand(array, kernel, p_mask);
+    gpu::expand(array, kernel, p_mask);
   }
 }
 
@@ -71,7 +72,7 @@ void expand(Array &array, Array &kernel, Array *p_mask)
 {
   if (!p_mask)
   {
-    expand(array, kernel);
+    gpu::expand(array, kernel);
   }
   else
   {
@@ -236,7 +237,7 @@ void laplace(Array &array, Array *p_mask, float sigma, int iterations)
 {
   if (!p_mask)
   {
-    laplace(array, sigma, iterations);
+    gpu::laplace(array, sigma, iterations);
   }
   else
   {
@@ -256,11 +257,34 @@ void laplace(Array &array, Array *p_mask, float sigma, int iterations)
   }
 }
 
+Array maximum_local(const Array &array, int ir)
+{
+  auto run = clwrapper::Run("maximum_local");
+
+  Array array_out = array;
+
+  run.bind_imagef("in", array_out.vector, array.shape.x, array.shape.y);
+  run.bind_imagef("out", array_out.vector, array.shape.x, array.shape.y, true);
+  run.bind_arguments(array.shape.x, array.shape.y, ir, 0);
+
+  // row pass
+  run.execute({array.shape.x, array.shape.y});
+  run.read_imagef("out");
+
+  // col pass
+  run.write_imagef("in");
+  run.set_argument(5, 1); // pass_number
+  run.execute({array.shape.x, array.shape.y});
+  run.read_imagef("out");
+
+  return array_out;
+}
+
 Array maximum_local_disk(const Array &array, int ir)
 {
   Array kernel = disk({2 * ir + 1, 2 * ir + 1});
   Array array_out = array;
-  expand(array_out, kernel);
+  gpu::expand(array_out, kernel);
   return array_out;
 }
 
@@ -284,11 +308,16 @@ Array maximum_smooth(const Array &array1, const Array &array2, float k)
   return array_out;
 }
 
+Array minimum_local(const Array &array, int ir)
+{
+  return -gpu::maximum_local(-array, ir);
+}
+
 Array minimum_local_disk(const Array &array, int ir)
 {
   Array kernel = disk({2 * ir + 1, 2 * ir + 1});
   Array array_out = array;
-  shrink(array_out, kernel);
+  gpu::shrink(array_out, kernel);
   return array_out;
 }
 
@@ -330,7 +359,7 @@ void normal_displacement(Array &array, float amount, int ir, bool reverse)
   auto run = clwrapper::Run("normal_displacement");
 
   Array array_f = array;
-  if (ir > 0) smooth_cpulse(array_f, ir);
+  if (ir > 0) gpu::smooth_cpulse(array_f, ir);
 
   if (reverse) amount *= -1.f;
 
@@ -352,14 +381,14 @@ void normal_displacement(Array &array,
 {
   if (!p_mask)
   {
-    normal_displacement(array, amount, ir, reverse);
+    gpu::normal_displacement(array, amount, ir, reverse);
   }
   else
   {
     auto run = clwrapper::Run("normal_displacement_masked");
 
     Array array_f = array;
-    if (ir > 0) smooth_cpulse(array_f, ir);
+    if (ir > 0) gpu::smooth_cpulse(array_f, ir);
 
     if (reverse) amount *= -1.f;
 
@@ -375,6 +404,22 @@ void normal_displacement(Array &array,
   }
 }
 
+void plateau(Array &array, Array *p_mask, int ir, float factor)
+{
+  Array amin = gpu::minimum_local(array, ir);
+  Array amax = gpu::maximum_local(array, ir);
+
+  gpu::smooth_cpulse(amin, ir);
+  gpu::smooth_cpulse(amax, ir);
+
+  array = (array - amin) / (amax - amin + std::numeric_limits<float>::min());
+
+  clamp(array);        // TODO CPU
+  gain(array, factor); // TODO CPU
+
+  array = amin + (amax - amin) * array;
+}
+
 Array rugosity(const Array &z, int ir, bool convex)
 {
   Array z_avg(z.shape);
@@ -384,12 +429,12 @@ Array rugosity(const Array &z, int ir, bool convex)
   float tol = 1e-30f;
 
   // use a kernels only for filtering
-  smooth_cpulse(zf, 2 * ir);
+  gpu::smooth_cpulse(zf, 2 * ir);
   zf = z - zf;
   z_avg = zf;
-  smooth_cpulse(z_avg, ir);
+  gpu::smooth_cpulse(z_avg, ir);
   z_std = (zf - z_avg) * (zf - z_avg);
-  smooth_cpulse(z_std, ir);
+  gpu::smooth_cpulse(z_std, ir);
   z_skw = (zf - z_avg) * (zf - z_avg) * (zf - z_avg);
 
   // last part with dedicated kernel
@@ -412,7 +457,7 @@ Array rugosity(const Array &z, int ir, bool convex)
 void shrink(Array &array, int ir)
 {
   Array kernel = cubic_pulse({2 * ir + 1, 2 * ir + 1});
-  shrink(array, kernel);
+  gpu::shrink(array, kernel);
 }
 
 void shrink(Array &array, int ir, Array *p_mask)
@@ -421,11 +466,11 @@ void shrink(Array &array, int ir, Array *p_mask)
 
   if (!p_mask)
   {
-    shrink(array, kernel);
+    gpu::shrink(array, kernel);
   }
   else
   {
-    shrink(array, kernel, p_mask);
+    gpu::shrink(array, kernel, p_mask);
   }
 }
 
@@ -461,7 +506,7 @@ void shrink(Array &array, Array &kernel, Array *p_mask)
 {
   if (!p_mask)
   {
-    shrink(array, kernel);
+    gpu::shrink(array, kernel);
   }
   else
   {
@@ -529,7 +574,7 @@ void smooth_cpulse(Array &array, int ir, Array *p_mask)
 {
   if (!p_mask)
   {
-    smooth_cpulse(array, ir);
+    gpu::smooth_cpulse(array, ir);
   }
   else
   {
@@ -569,7 +614,7 @@ void smooth_fill(Array &array, int ir, float k, Array *p_deposition_map)
 {
   Array array_bckp = array;
 
-  smooth_cpulse(array, ir);
+  gpu::smooth_cpulse(array, ir);
   array = gpu::maximum_smooth(array, array_bckp, k);
 
   if (p_deposition_map) *p_deposition_map = maximum(array - array_bckp, 0.f);
@@ -583,7 +628,7 @@ void smooth_fill(Array &array,
 {
   Array array_bckp = array;
 
-  smooth_cpulse(array, ir, p_mask);
+  gpu::smooth_cpulse(array, ir, p_mask);
   array = gpu::maximum_smooth(array, array_bckp, k);
 
   if (p_deposition_map) *p_deposition_map = maximum(array - array_bckp, 0.f);
@@ -652,11 +697,11 @@ void thermal(Array       &z,
              Array       *p_deposition_map)
 {
   if (!p_mask)
-    thermal(z, talus, iterations, p_bedrock, p_deposition_map);
+    gpu::thermal(z, talus, iterations, p_bedrock, p_deposition_map);
   else
   {
     Array z_f = z;
-    thermal(z_f, talus, iterations, p_bedrock, p_deposition_map);
+    gpu::thermal(z_f, talus, iterations, p_bedrock, p_deposition_map);
     z = lerp(z, z_f, *(p_mask));
   }
 }
@@ -668,7 +713,7 @@ void thermal(Array &z,
              Array *p_deposition_map)
 {
   Array talus_map(z.shape, talus);
-  thermal(z, talus_map, iterations, p_bedrock, p_deposition_map);
+  gpu::thermal(z, talus_map, iterations, p_bedrock, p_deposition_map);
 }
 
 void thermal_auto_bedrock(Array       &z,
@@ -710,7 +755,7 @@ void thermal_auto_bedrock(Array &z,
                           Array *p_deposition_map)
 {
   Array talus_map(z.shape, talus);
-  thermal_auto_bedrock(z, talus_map, iterations, p_deposition_map);
+  gpu::thermal_auto_bedrock(z, talus_map, iterations, p_deposition_map);
 }
 
 void thermal_rib(Array &z, int iterations, Array *p_bedrock)

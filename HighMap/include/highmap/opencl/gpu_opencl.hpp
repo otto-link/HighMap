@@ -65,11 +65,15 @@ void laplace(Array &array,
              float  sigma = 0.2f,
              int    iterations = 3);
 
+Array maximum_local(const Array &array, int ir);
+
 Array maximum_local_disk(const Array &array, int ir);
 
 Array maximum_smooth(const Array &array1, const Array &array2, float k = 0.2f);
 
 void median_3x3(Array &array);
+
+Array minimum_local(const Array &array, int ir);
 
 Array minimum_local_disk(const Array &array, int ir);
 
@@ -84,6 +88,9 @@ void normal_displacement(Array &array,
                          float  amount = 0.1f,
                          int    ir = 0,
                          bool   reverse = false);
+
+void plateau(Array &array, Array *p_mask, int ir, float factor);
+// void plateau(Array &array, int ir, float factor);
 
 Array rugosity(const Array &z, int ir, bool convex = true);
 

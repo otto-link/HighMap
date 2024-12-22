@@ -6,11 +6,11 @@ R""(
 #define VOLUME_MIN 0.001f
 
 float helper_bilinear_interp(const float f00,
-                      const float f10,
-                      const float f01,
-                      const float f11,
-                      const float u,
-                      const float v)
+                             const float f10,
+                             const float f01,
+                             const float f11,
+                             const float u,
+                             const float v)
 {
   float a10 = f10 - f00;
   float a01 = f01 - f00;
@@ -107,11 +107,11 @@ void kernel hydraulic_particle(global float *z_in,
     if (i < 1 || i > nx - 2 || j < 1 || j > ny - 2) break;
 
     float z = helper_bilinear_interp(z_in[linear_index(i, j, nx)],
-                              z_in[linear_index(i + 1, j, nx)],
-                              z_in[linear_index(i, j + 1, nx)],
-                              z_in[linear_index(i + 1, j + 1, nx)],
-                              u,
-                              v);
+                                     z_in[linear_index(i + 1, j, nx)],
+                                     z_in[linear_index(i, j + 1, nx)],
+                                     z_in[linear_index(i + 1, j + 1, nx)],
+                                     u,
+                                     v);
 
     float dz = z_p - z;
     float sc = c_capacity * volume * vnorm * dz;

@@ -296,14 +296,40 @@ int main(void)
   //           "diff_normal_displacement_masked.png");
   // }
 
+  // {
+  //   int nparticles = 50000;
+  //   compare([&nparticles](hmap::Array &z)
+  //           { hmap::hydraulic_particle(z, nparticles, 0); },
+  //           [&nparticles](hmap::Array &z)
+  //           { hmap::gpu::hydraulic_particle(z, &z, nparticles, 0); },
+  //           1e-3f,
+  //           "diff_hydraulic_particle.png");
+  // }
+
+  // {
+  //   int   ir = 32;
+  //   float factor = 4.f;
+  //   compare([&ir, &factor](hmap::Array &z) { hmap::plateau(z, ir, factor); },
+  //           [&ir, &factor](hmap::Array &z)
+  //           { hmap::gpu::plateau(z, nullptr, ir, factor); },
+  //           1e-3f,
+  //           "diff_plateau.png");
+  // }
+
   {
-    int nparticles = 50000;
-    compare([&nparticles](hmap::Array &z)
-            { hmap::hydraulic_particle(z, nparticles, 0); },
-            [&nparticles](hmap::Array &z)
-            { hmap::gpu::hydraulic_particle(z, &z, nparticles, 0); },
+    int ir = 32;
+    compare([&ir](hmap::Array &z) { z = hmap::maximum_local(z, ir); },
+            [&ir](hmap::Array &z) { z = hmap::gpu::maximum_local(z, ir); },
             1e-3f,
-            "diff_hydraulic_particle.png");
+            "diff_maximum_local.png");
+  }
+
+  {
+    int ir = 32;
+    compare([&ir](hmap::Array &z) { z = hmap::minimum_local(z, ir); },
+            [&ir](hmap::Array &z) { z = hmap::gpu::minimum_local(z, ir); },
+            1e-3f,
+            "diff_minimum_local.png");
   }
 
   // clwrapper::KernelManager::get_instance().set_block_size(32);

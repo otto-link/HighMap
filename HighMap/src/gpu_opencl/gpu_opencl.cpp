@@ -23,6 +23,7 @@ bool init_opencl()
 #include "kernels/gradient_norm.cl"
 #include "kernels/hydraulic_particle.cl"
 #include "kernels/laplace.cl"
+#include "kernels/maximum_local.cl"
 #include "kernels/maximum_smooth.cl"
 #include "kernels/median_3x3.cl"
 #include "kernels/minimum_smooth.cl"
