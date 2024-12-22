@@ -231,6 +231,20 @@ int main(void)
       1e-3f,
       "shrink_mask");
 
+  {
+    hmap::Array base = hmap::noise_fbm(hmap::NoiseType::PERLIN,
+                                       shape,
+                                       {2.f, 8.f},
+                                       0);
+    hmap::remap(base, -0.5f, 0.4f);
+    hmap::make_binary(base);
+
+    compare([&base](hmap::Array &z) { z = hmap::skeleton(base); },
+            [&base](hmap::Array &z) { z = hmap::gpu::skeleton(base); },
+            1e-3f,
+            "skeleton.png");
+  }
+
   compare([&ir](hmap::Array &z) { hmap::smooth_cpulse(z, ir); },
           [&ir](hmap::Array &z) { hmap::gpu::smooth_cpulse(z, ir); },
           1e-3f,

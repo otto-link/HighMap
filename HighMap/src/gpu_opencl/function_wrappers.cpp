@@ -3,6 +3,7 @@
  * this software. */
 #ifdef ENABLE_OPENCL
 
+#include "highmap/boundary.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/math.hpp"
@@ -309,6 +310,19 @@ Array maximum_smooth(const Array &array1, const Array &array2, float k)
   return array_out;
 }
 
+void median_3x3(Array &array)
+{
+  auto run = clwrapper::Run("median_3x3");
+
+  run.bind_imagef("in", array.vector, array.shape.x, array.shape.y);
+  run.bind_imagef("out", array.vector, array.shape.x, array.shape.y, true);
+  run.bind_arguments(array.shape.x, array.shape.y);
+
+  run.execute({array.shape.x, array.shape.y});
+
+  run.read_imagef("out");
+}
+
 Array minimum_local(const Array &array, int ir)
 {
   return -gpu::maximum_local(-array, ir);
@@ -340,19 +354,6 @@ Array minimum_smooth(const Array &array1, const Array &array2, float k)
   run.read_buffer("array1");
 
   return array_out;
-}
-
-void median_3x3(Array &array)
-{
-  auto run = clwrapper::Run("median_3x3");
-
-  run.bind_imagef("in", array.vector, array.shape.x, array.shape.y);
-  run.bind_imagef("out", array.vector, array.shape.x, array.shape.y, true);
-  run.bind_arguments(array.shape.x, array.shape.y);
-
-  run.execute({array.shape.x, array.shape.y});
-
-  run.read_imagef("out");
 }
 
 void normal_displacement(Array &array, float amount, int ir, bool reverse)
@@ -565,6 +566,42 @@ void shrink(Array &array, Array &kernel, Array *p_mask)
     array *= -1.f; // array <- amax - array;
     array += amax;
   }
+}
+
+Array skeleton(const Array &array, bool zero_at_borders)
+{
+  Array sk = array;
+  Array prev;
+  Array diff;
+
+  auto run = clwrapper::Run("thinning");
+
+  run.bind_imagef("in", sk.vector, array.shape.x, array.shape.y);
+  run.bind_imagef("out", sk.vector, array.shape.x, sk.shape.y, true);
+  run.bind_arguments(array.shape.x, array.shape.y, 0);
+
+  do
+  {
+    prev = sk;
+
+    run.set_argument(4, 0); // pass 1
+    run.write_imagef("in");
+    run.execute({array.shape.x, array.shape.y});
+    run.read_imagef("out");
+
+    run.set_argument(4, 1); // pass 2
+    run.write_imagef("in");
+    run.execute({array.shape.x, array.shape.y});
+    run.read_imagef("out");
+
+    diff = sk - prev;
+
+  } while (diff.count_non_zero() > 0);
+
+  // set border to zero
+  if (zero_at_borders) zeroed_borders(sk);
+
+  return sk;
 }
 
 void smooth_cpulse(Array &array, int ir)

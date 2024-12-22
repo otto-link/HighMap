@@ -30,6 +30,7 @@ bool init_opencl()
 #include "kernels/normal_displacement.cl"
 #include "kernels/plateau.cl"
 #include "kernels/rugosity.cl"
+#include "kernels/skeleton.cl"
 #include "kernels/smooth_cpulse.cl"
 #include "kernels/thermal.cl"
 #include "kernels/warp.cl"

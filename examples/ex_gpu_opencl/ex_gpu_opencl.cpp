@@ -53,8 +53,8 @@ int main(void)
   hmap::gpu::init_opencl();
 
   hmap::Vec2<int> shape = {256, 512};
-  // shape = {512, 512};
-  shape = {1024, 1024};
+  shape = {512, 512};
+  // shape = {1024, 1024};
 
   clwrapper::KernelManager::get_instance().set_block_size(32);
 
@@ -62,6 +62,20 @@ int main(void)
   //         [](hmap::Array &z) { hmap::gpu::median_3x3(z); },
   //         1e-3f,
   //         "diff_median_3x3.png");
+
+  {
+    hmap::Array base = hmap::noise_fbm(hmap::NoiseType::PERLIN,
+                                       shape,
+                                       {2.f, 8.f},
+                                       0);
+    hmap::remap(base, -0.5f, 0.4f);
+    hmap::make_binary(base);
+
+    compare([&base](hmap::Array &z) { z = hmap::skeleton(base); },
+            [&base](hmap::Array &z) { z = hmap::gpu::skeleton(base); },
+            1e-3f,
+            "skeleton.png");
+  }
 
 #else
   std::cout << "OpenCL not activated\n";
