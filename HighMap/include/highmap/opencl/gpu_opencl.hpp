@@ -92,6 +92,10 @@ void normal_displacement(Array &array,
 void plateau(Array &array, Array *p_mask, int ir, float factor);
 void plateau(Array &array, int ir, float factor);
 
+Array relative_distance_from_skeleton(const Array &array,
+                                      int          ir_search,
+                                      bool         zero_at_borders = true);
+
 Array relative_elevation(const Array &array, int ir);
 
 Array rugosity(const Array &z, int ir, bool convex = true);

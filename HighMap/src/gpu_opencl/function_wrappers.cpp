@@ -7,6 +7,7 @@
 #include "highmap/filters.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/math.hpp"
+#include "highmap/morphology.hpp"
 #include "highmap/opencl/gpu_opencl.hpp"
 #include "highmap/range.hpp"
 
@@ -437,6 +438,32 @@ void plateau(Array &array, Array *p_mask, int ir, float factor)
 void plateau(Array &array, int ir, float factor)
 {
   gpu::plateau(array, nullptr, ir, factor);
+}
+
+Array relative_distance_from_skeleton(const Array &array,
+                                      int          ir_search,
+                                      bool         zero_at_borders)
+{
+  Array border = array - erosion(array, 1); // TODO CPU
+  Array sk = gpu::skeleton(array, zero_at_borders);
+  Array rdist(array.shape);
+
+  auto run = clwrapper::Run("relative_distance_from_skeleton");
+
+  run.bind_imagef("array",
+                  const_cast<std::vector<float> &>(array.vector),
+                  array.shape.x,
+                  array.shape.y);
+  run.bind_imagef("sk", sk.vector, array.shape.x, array.shape.y);
+  run.bind_imagef("border", border.vector, array.shape.x, array.shape.y);
+  run.bind_imagef("rdist", rdist.vector, array.shape.x, array.shape.y, true);
+  run.bind_arguments(array.shape.x, array.shape.y, ir_search);
+
+  run.execute({array.shape.x, array.shape.y});
+
+  run.read_imagef("rdist");
+
+  return rdist;
 }
 
 Array relative_elevation(const Array &array, int ir)

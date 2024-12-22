@@ -71,10 +71,14 @@ int main(void)
     hmap::remap(base, -0.5f, 0.4f);
     hmap::make_binary(base);
 
-    compare([&base](hmap::Array &z) { z = hmap::skeleton(base); },
-            [&base](hmap::Array &z) { z = hmap::gpu::skeleton(base); },
+    int ir = 32;
+
+    compare([&base, &ir](hmap::Array &z)
+            { z = hmap::relative_distance_from_skeleton(base, ir); },
+            [&base, &ir](hmap::Array &z)
+            { z = hmap::gpu::relative_distance_from_skeleton(base, ir); },
             1e-3f,
-            "skeleton.png");
+            "tmp.png");
   }
 
 #else

@@ -242,7 +242,7 @@ int main(void)
     compare([&base](hmap::Array &z) { z = hmap::skeleton(base); },
             [&base](hmap::Array &z) { z = hmap::gpu::skeleton(base); },
             1e-3f,
-            "skeleton.png");
+            "skeleton");
   }
 
   compare([&ir](hmap::Array &z) { hmap::smooth_cpulse(z, ir); },
