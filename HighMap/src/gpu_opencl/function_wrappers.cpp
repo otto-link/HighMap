@@ -438,6 +438,17 @@ void plateau(Array &array, int ir, float factor)
   gpu::plateau(array, nullptr, ir, factor);
 }
 
+Array relative_elevation(const Array &array, int ir)
+{
+  Array amin = gpu::minimum_local(array, ir);
+  Array amax = gpu::maximum_local(array, ir);
+
+  gpu::smooth_cpulse(amin, ir);
+  gpu::smooth_cpulse(amax, ir);
+
+  return (array - amin) / (amax - amin + std::numeric_limits<float>::min());
+}
+
 Array rugosity(const Array &z, int ir, bool convex)
 {
   Array z_avg(z.shape);

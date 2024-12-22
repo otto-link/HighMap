@@ -306,26 +306,26 @@ int main(void)
   //           "diff_hydraulic_particle.png");
   // }
 
-  {
-    int   ir = 32;
-    float factor = 4.f;
-    compare([&ir, &factor](hmap::Array &z) { hmap::plateau(z, ir, factor); },
-            [&ir, &factor](hmap::Array &z)
-            { hmap::gpu::plateau(z, ir, factor); },
-            1e-3f,
-            "diff_plateau.png");
-  }
+  //   {
+  //   int   ir = 32;
+  //   float factor = 4.f;
+  //   compare([&ir, &factor](hmap::Array &z) { hmap::plateau(z, ir, factor); },
+  //           [&ir, &factor](hmap::Array &z)
+  //           { hmap::gpu::plateau(z, ir, factor); },
+  //           1e-3f,
+  //           "diff_plateau.png");
+  // }
 
-  {
-    int   ir = 32;
-    float factor = 4.f;
-    compare([&ir, &factor](hmap::Array &z)
-            { hmap::plateau(z, &z, ir, factor); },
-            [&ir, &factor](hmap::Array &z)
-            { hmap::gpu::plateau(z, &z, ir, factor); },
-            1e-3f,
-            "diff_plateau_masked.png");
-  }
+  // {
+  //   int   ir = 32;
+  //   float factor = 4.f;
+  //   compare([&ir, &factor](hmap::Array &z)
+  //           { hmap::plateau(z, &z, ir, factor); },
+  //           [&ir, &factor](hmap::Array &z)
+  //           { hmap::gpu::plateau(z, &z, ir, factor); },
+  //           1e-3f,
+  //           "diff_plateau_masked.png");
+  // }
 
   // {
   //   int ir = 32;
@@ -342,6 +342,14 @@ int main(void)
   //           1e-3f,
   //           "diff_minimum_local.png");
   // }
+
+  {
+    int ir = 32;
+    compare([&ir](hmap::Array &z) { z = hmap::relative_elevation(z, ir); },
+            [&ir](hmap::Array &z) { z = hmap::gpu::relative_elevation(z, ir); },
+            1e-3f,
+            "diff_relative_elevation.png");
+  }
 
   // clwrapper::KernelManager::get_instance().set_block_size(32);
   // z2 = z;
