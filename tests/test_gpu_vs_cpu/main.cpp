@@ -86,6 +86,21 @@ int main(void)
 
   int ir = 64;
 
+  compare([ir](hmap::Array &z) { z = hmap::closing(z, ir); },
+          [ir](hmap::Array &z) { z = hmap::gpu::closing(z, ir); },
+          1e-3f,
+          "closing.png");
+
+  compare([ir](hmap::Array &z) { z = hmap::dilation(z, ir); },
+          [ir](hmap::Array &z) { z = hmap::gpu::dilation(z, ir); },
+          1e-3f,
+          "dilation.png");
+
+  compare([ir](hmap::Array &z) { z = hmap::erosion(z, ir); },
+          [ir](hmap::Array &z) { z = hmap::gpu::erosion(z, ir); },
+          1e-3f,
+          "erosion.png");
+
   compare([&ir](hmap::Array &z) { hmap::expand(z, ir); },
           [&ir](hmap::Array &z) { hmap::gpu::expand(z, ir); },
           1e-3f,
@@ -121,6 +136,16 @@ int main(void)
           1e-3f,
           "laplace_masked");
 
+  compare([&ir](hmap::Array &z) { z = hmap::maximum_local(z, ir); },
+          [&ir](hmap::Array &z) { z = hmap::gpu::maximum_local(z, ir); },
+          1e-3f,
+          "maximum_local");
+
+  compare([&ir](hmap::Array &z) { hmap::maximum_local_disk(z, ir); },
+          [&ir](hmap::Array &z) { hmap::gpu::maximum_local_disk(z, ir); },
+          1e-3f,
+          "maximum_local_disk");
+
   {
     hmap::Array zr = hmap::noise_fbm(hmap::NoiseType::PERLIN,
                                      shape,
@@ -133,15 +158,20 @@ int main(void)
             "maximum_smooth");
   }
 
-  compare([&ir](hmap::Array &z) { hmap::maximum_local_disk(z, ir); },
-          [&ir](hmap::Array &z) { hmap::gpu::maximum_local_disk(z, ir); },
-          1e-3f,
-          "maximum_local_disk");
-
   compare([](hmap::Array &z) { hmap::median_3x3(z); },
           [](hmap::Array &z) { hmap::gpu::median_3x3(z); },
           1e-3f,
           "median_3x3");
+
+  compare([&ir](hmap::Array &z) { z = hmap::minimum_local(z, ir); },
+          [&ir](hmap::Array &z) { z = hmap::gpu::minimum_local(z, ir); },
+          1e-3f,
+          "minimum_local");
+
+  compare([&ir](hmap::Array &z) { hmap::maximum_local_disk(z, ir); },
+          [&ir](hmap::Array &z) { hmap::gpu::maximum_local_disk(z, ir); },
+          1e-3f,
+          "minimum_local_disk");
 
   {
     hmap::Array zr = hmap::noise_fbm(hmap::NoiseType::PERLIN,
@@ -155,20 +185,11 @@ int main(void)
             "minimum_smooth");
   }
 
-  compare([&ir](hmap::Array &z) { z = hmap::maximum_local(z, ir); },
-          [&ir](hmap::Array &z) { z = hmap::gpu::maximum_local(z, ir); },
+  compare([ir](hmap::Array &z) { z = hmap::morphological_gradient(z, ir); },
+          [ir](hmap::Array &z)
+          { z = hmap::gpu::morphological_gradient(z, ir); },
           1e-3f,
-          "maximum_local");
-
-  compare([&ir](hmap::Array &z) { z = hmap::minimum_local(z, ir); },
-          [&ir](hmap::Array &z) { z = hmap::gpu::minimum_local(z, ir); },
-          1e-3f,
-          "minimum_local");
-
-  compare([&ir](hmap::Array &z) { hmap::maximum_local_disk(z, ir); },
-          [&ir](hmap::Array &z) { hmap::gpu::maximum_local_disk(z, ir); },
-          1e-3f,
-          "minimum_local_disk");
+          "morphological_gradient.png");
 
   {
     int   ir = 32;
@@ -191,6 +212,11 @@ int main(void)
             1e-3f,
             "normal_displacement_mask");
   }
+
+  compare([ir](hmap::Array &z) { z = hmap::opening(z, ir); },
+          [ir](hmap::Array &z) { z = hmap::gpu::opening(z, ir); },
+          1e-3f,
+          "opening.png");
 
   compare([&ir](hmap::Array &z) { hmap::plateau(z, ir, 4.f); },
           [&ir](hmap::Array &z) { hmap::gpu::plateau(z, ir, 4.f); },
@@ -219,7 +245,7 @@ int main(void)
             1e-3f,
             "relative_distance_from_skeleton");
   }
-  
+
   compare([&ir](hmap::Array &z) { z = hmap::relative_elevation(z, ir); },
           [&ir](hmap::Array &z) { z = hmap::gpu::relative_elevation(z, ir); },
           1e-3f,

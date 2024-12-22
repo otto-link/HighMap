@@ -29,6 +29,21 @@ void helper_bind_optional_buffer(clwrapper::Run    &run,
     run.bind_buffer<float>(id, dummy_vector);
 }
 
+Array closing(const Array &array, int ir)
+{
+  return gpu::erosion(gpu::dilation(array, ir), ir);
+}
+
+Array dilation(const Array &array, int ir)
+{
+  return gpu::maximum_local(array, ir);
+}
+
+Array erosion(const Array &array, int ir)
+{
+  return gpu::minimum_local(array, ir);
+}
+
 void expand(Array &array, int ir)
 {
   Array kernel = cubic_pulse({2 * ir + 1, 2 * ir + 1});
@@ -357,6 +372,11 @@ Array minimum_smooth(const Array &array1, const Array &array2, float k)
   return array_out;
 }
 
+Array morphological_gradient(const Array &array, int ir)
+{
+  return gpu::dilation(array, ir) - gpu::erosion(array, ir);
+}
+
 void normal_displacement(Array &array, float amount, int ir, bool reverse)
 {
   auto run = clwrapper::Run("normal_displacement");
@@ -407,6 +427,11 @@ void normal_displacement(Array &array,
   }
 }
 
+Array opening(const Array &array, int ir)
+{
+  return gpu::dilation(gpu::erosion(array, ir), ir);
+}
+
 void plateau(Array &array, Array *p_mask, int ir, float factor)
 {
   Array amin = gpu::minimum_local(array, ir);
@@ -444,7 +469,7 @@ Array relative_distance_from_skeleton(const Array &array,
                                       int          ir_search,
                                       bool         zero_at_borders)
 {
-  Array border = array - erosion(array, 1); // TODO CPU
+  Array border = array - gpu::erosion(array, 1);
   Array sk = gpu::skeleton(array, zero_at_borders);
   Array rdist(array.shape);
 

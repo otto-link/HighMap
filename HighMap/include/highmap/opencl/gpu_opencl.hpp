@@ -26,6 +26,12 @@ bool init_opencl();
 
 // --- function wrappers
 
+Array closing(const Array &array, int ir);
+
+Array dilation(const Array &array, int ir);
+
+Array erosion(const Array &array, int ir);
+
 void expand(Array &array, int ir);
 void expand(Array &array, int ir, Array *p_mask);
 void expand(Array &array, Array &kernel);
@@ -79,6 +85,8 @@ Array minimum_local_disk(const Array &array, int ir);
 
 Array minimum_smooth(const Array &array1, const Array &array2, float k = 0.2f);
 
+Array morphological_gradient(const Array &array, int ir);
+
 void normal_displacement(Array &array,
                          float  amount = 0.1f,
                          int    ir = 0,
@@ -88,6 +96,8 @@ void normal_displacement(Array &array,
                          float  amount = 0.1f,
                          int    ir = 0,
                          bool   reverse = false);
+
+Array opening(const Array &array, int ir);
 
 void plateau(Array &array, Array *p_mask, int ir, float factor);
 void plateau(Array &array, int ir, float factor);
