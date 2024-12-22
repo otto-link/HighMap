@@ -5,6 +5,7 @@ project(highmap-root)
 option(HIGHMAP_ENABLE_OPENCL "" ON)
 option(HIGHMAP_ENABLE_DOCS "" ON)
 option(HIGHMAP_ENABLE_EXAMPLES "" ON)
+option(HIGHMAP_ENABLE_TESTS "" ON)
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -42,7 +43,7 @@ if(HIGHMAP_ENABLE_OPENCL)
   add_definitions("-DCL_HPP_TARGET_OPENCL_VERSION=120")
 else()
   message(STATUS "OpenCL disabled")
-endif(HIGHMAP_ENABLE_OPENCL)
+endif()
 
 add_subdirectory(external)
 
@@ -53,12 +54,18 @@ add_subdirectory(HighMap)
 # --- everything else...
 
 if(HIGHMAP_ENABLE_DOCS)
+  message(STATUS "HighMap docs enabled")
   add_subdirectory(${PROJECT_SOURCE_DIR}/doc)
-endif(HIGHMAP_ENABLE_DOCS)
+endif()
 
 if(HIGHMAP_ENABLE_EXAMPLES)
   if(HIGHMAP_ENABLE_OPENCL)
     set_directory_properties(PROPERTIES COMPILE_DEFINITIONS ENABLE_OPENCL=1)
   endif(HIGHMAP_ENABLE_OPENCL)
   add_subdirectory(${PROJECT_SOURCE_DIR}/examples)
-endif(HIGHMAP_ENABLE_EXAMPLES)
+endif()
+
+if(HIGHMAP_ENABLE_TESTS)
+  message(STATUS "HighMap tests enabled")
+  add_subdirectory(${PROJECT_SOURCE_DIR}/tests)
+endif()

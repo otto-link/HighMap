@@ -30,7 +30,7 @@ namespace hmap
  * @brief The Recorder class is responsible for recording timing information for
  * individual events.
  */
-class Recorder
+struct Recorder
 {
 public:
   /**
@@ -56,7 +56,6 @@ public:
    */
   void stop();
 
-private:
   std::string name; ///< The name of the event.
   int nb_calls = 0; ///< The number of times the event has been recorded.
   std::chrono::high_resolution_clock::time_point
@@ -130,6 +129,11 @@ public:
    * @brief Dumps the timing information for all recorded events to the console.
    */
   static void Dump();
+
+  std::map<std::string, Recorder *> get_records() const
+  {
+    return this->records;
+  }
 
 private:
   /**
