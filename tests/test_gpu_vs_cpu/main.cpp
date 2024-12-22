@@ -202,6 +202,24 @@ int main(void)
           1e-3f,
           "plateau_mask");
 
+  {
+    hmap::Array base = hmap::noise_fbm(hmap::NoiseType::PERLIN,
+                                       shape,
+                                       {2.f, 8.f},
+                                       0);
+    hmap::remap(base, -0.5f, 0.4f);
+    hmap::make_binary(base);
+
+    int ir = 32;
+
+    compare([&base, &ir](hmap::Array &z)
+            { z = hmap::relative_distance_from_skeleton(base, ir); },
+            [&base, &ir](hmap::Array &z)
+            { z = hmap::gpu::relative_distance_from_skeleton(base, ir); },
+            1e-3f,
+            "relative_distance_from_skeleton");
+  }
+  
   compare([&ir](hmap::Array &z) { z = hmap::relative_elevation(z, ir); },
           [&ir](hmap::Array &z) { z = hmap::gpu::relative_elevation(z, ir); },
           1e-3f,
