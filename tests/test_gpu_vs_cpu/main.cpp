@@ -9,6 +9,7 @@
 #include "highmap/dbg/assert.hpp"
 
 const int block_size = 32;
+// const hmap::Vec2<int>   shape = {2048, 2048};
 // const hmap::Vec2<int>   shape = {1024, 1024};
 const hmap::Vec2<int>   shape = {256, 512};
 const hmap::Vec2<float> kw = {2.f, 4.f};
