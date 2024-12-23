@@ -65,31 +65,10 @@ int main(void)
 
   int ir = 32;
 
-  compare([ir](hmap::Array &z) { z = hmap::closing(z, ir); },
-          [ir](hmap::Array &z) { z = hmap::gpu::closing(z, ir); },
+  compare([ir](hmap::Array &z) { z = hmap::mean_local(z, ir); },
+          [ir](hmap::Array &z) { z = hmap::gpu::mean_local(z, ir); },
           1e-3f,
-          "closing.png");
-
-  compare([ir](hmap::Array &z) { z = hmap::dilation(z, ir); },
-          [ir](hmap::Array &z) { z = hmap::gpu::dilation(z, ir); },
-          1e-3f,
-          "dilation.png");
-
-  compare([ir](hmap::Array &z) { z = hmap::erosion(z, ir); },
-          [ir](hmap::Array &z) { z = hmap::gpu::erosion(z, ir); },
-          1e-3f,
-          "erosion.png");
-
-  compare([ir](hmap::Array &z) { z = hmap::morphological_gradient(z, ir); },
-          [ir](hmap::Array &z)
-          { z = hmap::gpu::morphological_gradient(z, ir); },
-          1e-3f,
-          "morphological_gradient.png");
-
-  compare([ir](hmap::Array &z) { z = hmap::opening(z, ir); },
-          [ir](hmap::Array &z) { z = hmap::gpu::opening(z, ir); },
-          1e-3f,
-          "opening.png");
+          "mean_local.png");
 
 #else
   std::cout << "OpenCL not activated\n";

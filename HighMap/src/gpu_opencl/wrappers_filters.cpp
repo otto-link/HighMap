@@ -150,6 +150,26 @@ Array maximum_local_disk(const Array &array, int ir)
   return array_out;
 }
 
+Array mean_local(const Array &array, int ir)
+{
+  Array array_out(array.shape);
+
+  auto run = clwrapper::Run("mean_local");
+
+  run.bind_imagef("in",
+                  const_cast<std::vector<float> &>(array.vector),
+                  array.shape.x,
+                  array.shape.y);
+  run.bind_imagef("out", array_out.vector, array.shape.x, array.shape.y, true);
+  run.bind_arguments(array.shape.x, array.shape.y, ir);
+
+  run.execute({array.shape.x, array.shape.y});
+
+  run.read_imagef("out");
+
+  return array_out;
+}
+
 void median_3x3(Array &array)
 {
   auto run = clwrapper::Run("median_3x3");
