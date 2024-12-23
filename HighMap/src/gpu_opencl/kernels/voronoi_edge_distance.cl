@@ -20,7 +20,7 @@ float3 voronoi_edge_distance_fct(const float2 x,
     for (int i = -1; i <= 1; i++)
     {
       float2 g = (float2)(i, j);
-      float2 o = jitter * hash2f(n + g + fseed);
+      float2 o = jitter * hash22f(n + g, fseed);
       float2 r = g + o - f;
       float  d = dot(r, r);
 
@@ -38,7 +38,7 @@ float3 voronoi_edge_distance_fct(const float2 x,
     for (int i = -2; i <= 2; i++)
     {
       float2 g = mg + (float2)(i, j);
-      float2 o = jitter * hash2f(n + g + fseed);
+      float2 o = jitter * hash22f(n + g, fseed);
       float2 r = g + o - f;
 
       if (dot(mr - r, mr - r) > 0.00001f)

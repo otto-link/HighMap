@@ -44,12 +44,13 @@ float gabor_wave_scalar(const float2 p,
     for (int i = -2; i <= 2; i++)
     {
       float2 o = {i, j};
-      float2 h = hash2f(ip + o);
+      float2 h = hash22f_poly(ip + o, fseed);
       float2 r = fp - (o + h);
 
-      float2 s = {11.f + fseed, 31.f + fseed};
-      float2 k = normalize(dir + angle_spread_ratio *
-                                     (2.f * hash2f(ip + o + s) - 1.f));
+      float2 s = {11.f, 31.f};
+      float2 k = normalize(dir +
+                           angle_spread_ratio *
+                               (2.f * hash22f_poly(ip + o + s, fseed) - 1.f));
 
       float d = dot(r, r);
       float l = dot(r, k);

@@ -2,6 +2,7 @@ R""(
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
+
 float helper_gavoronoise_base_fbm(const float2 p,
                                   const float  angle,
                                   const float  angle_spread_ratio,
@@ -35,7 +36,7 @@ float3 gavoronoise_eroder(const float2 p, const float2 dir, const float fseed)
     for (int j = -2; j <= 2; j++)
     {
       float2 o = (float2)(i, j);
-      float2 h = hash2f(ip - o + (float2)(fseed, fseed)) * 0.5f;
+      float2 h = hash22f_poly(ip - o, fseed) * 0.5f;
       float2 pp = fp + o - h;
       float  d = dot(pp, pp);
       float  w = exp(-d * 2.f);
