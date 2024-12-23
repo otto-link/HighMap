@@ -448,8 +448,6 @@ Array voronoi_edge_distance(Vec2<int>   shape,
   run.execute({array.shape.x, array.shape.y});
   run.read_buffer("array");
 
-  array.infos();
-
   return array;
 }
 
