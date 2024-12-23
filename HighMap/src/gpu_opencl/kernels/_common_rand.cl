@@ -2,12 +2,12 @@ R""(
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
-float2 hash2f(float2 x)
+float2 hash2f(float2 p)
 {
-  const float2 k = {0.3183099f, 0.3678794f};
-  x = x * k + k.yx;
-  float2 qi;
-  return fract(16.f * k * fract(x.x * x.y * (x.x + x.y), &qi), &qi);
+  p = (float2)(dot(p, (float2)(127.1f, 311.7f)),
+               dot(p, (float2)(269.5f, 183.3f)));
+  float2 pi;
+  return -1.f + 2.f * fract(sin(p) * 43758.5453123f, &pi);
 }
 
 uint wang_hash(uint seed)
