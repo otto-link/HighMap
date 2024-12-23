@@ -287,20 +287,6 @@ float maximum_smooth(const float a, const float b, float k)
   return std::max(a, b) + std::pow(h, 3) * k / 6.f;
 }
 
-Array mean_local(const Array &array, int ir)
-{
-  Array array_out = Array(array.shape);
-
-  std::vector<float> k1d(2 * ir + 1);
-  for (auto &v : k1d)
-    v = 1.f / (float)(2 * ir + 1);
-
-  array_out = convolve1d_i(array, k1d);
-  array_out = convolve1d_j(array_out, k1d);
-
-  return array_out;
-}
-
 Array minimum(const Array &array1, const Array &array2)
 {
   Array array_out = Array(array1.shape);

@@ -6,7 +6,8 @@ void kernel mean_local(read_only image2d_t  in,
                        write_only image2d_t out,
                        const int            nx,
                        const int            ny,
-                       const int            ir)
+                       const int            ir,
+                       const int            iter)
 {
   const int2 g = {get_global_id(0), get_global_id(1)};
 
@@ -17,14 +18,14 @@ void kernel mean_local(read_only image2d_t  in,
 
   float sum = 0.f;
 
-  for (int k = -ir; k < ir + 1; k++)
-    for (int r = -ir; r < ir + 1; r++)
-    {
-      sum += read_imagef(in, sampler, (int2)(g.x + k, g.y + r)).x;
-    }
+  if (iter == 0)
+    for (int k = -ir; k < ir + 1; k++)
+      sum += read_imagef(in, sampler, (int2)(g.x + k, g.y)).x;
+  else
+    for (int k = -ir; k < ir + 1; k++)
+      sum += read_imagef(in, sampler, (int2)(g.x, g.y + k)).x;
 
-  float nvalues = (2.f * ir + 1.f) * (2.f * ir + 1.f);
-  sum /= nvalues;
+  sum /= (2.f * ir + 1.f);
 
   write_imagef(out, g, sum);
 }

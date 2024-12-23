@@ -159,6 +159,11 @@ int main(void)
             "maximum_smooth");
   }
 
+  compare([ir](hmap::Array &z) { z = hmap::mean_local(z, ir); },
+          [ir](hmap::Array &z) { z = hmap::gpu::mean_local(z, ir); },
+          1e-3f,
+          "mean_local");
+
   compare([](hmap::Array &z) { hmap::median_3x3(z); },
           [](hmap::Array &z) { hmap::gpu::median_3x3(z); },
           1e-3f,
