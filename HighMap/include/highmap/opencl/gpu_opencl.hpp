@@ -22,6 +22,10 @@
 namespace hmap::gpu
 {
 
+void helper_bind_optional_buffer(clwrapper::Run    &run,
+                                 const std::string &id,
+                                 Array             *p_array);
+
 bool init_opencl();
 
 // --- function wrappers

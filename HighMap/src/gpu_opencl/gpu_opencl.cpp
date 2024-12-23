@@ -8,6 +8,21 @@
 namespace hmap::gpu
 {
 
+void helper_bind_optional_buffer(clwrapper::Run    &run,
+                                 const std::string &id,
+                                 Array             *p_array)
+{
+  std::vector<float> dummy_vector(1);
+
+  if (p_array)
+  {
+    run.bind_buffer<float>(id, p_array->vector);
+    run.write_buffer(id);
+  }
+  else
+    run.bind_buffer<float>(id, dummy_vector);
+}
+
 bool init_opencl()
 {
   if (!clwrapper::DeviceManager::get_instance().is_ready()) return false;
