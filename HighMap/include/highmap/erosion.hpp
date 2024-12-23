@@ -313,7 +313,8 @@ void hydraulic_particle(Array &z,
                         float  c_erosion = 0.05f,
                         float  c_deposition = 0.05f,
                         float  drag_rate = 0.001f,
-                        float  evap_rate = 0.001f);
+                        float  evap_rate = 0.001f,
+                        bool   post_filtering = false);
 
 void hydraulic_particle(Array &z,
                         int    nparticles,
@@ -326,7 +327,8 @@ void hydraulic_particle(Array &z,
                         float  c_erosion = 0.05f,
                         float  c_deposition = 0.05f,
                         float  drag_rate = 0.001f,
-                        float  evap_rate = 0.001f); ///< @overload
+                        float  evap_rate = 0.001f,
+                        bool   post_filtering = false); ///< @overload
 
 /**
  * @brief Apply hydraulic erosion using a particle based procedure, using a

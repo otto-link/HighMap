@@ -8,6 +8,7 @@
 #include "highmap/array.hpp"
 #include "highmap/boundary.hpp"
 #include "highmap/erosion.hpp"
+#include "highmap/filters.hpp"
 #include "highmap/geometry/grids.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/math.hpp"
@@ -39,7 +40,8 @@ void hydraulic_particle(Array &z,
                         float  c_erosion,
                         float  c_deposition,
                         float  drag_rate,
-                        float  evap_rate)
+                        float  evap_rate,
+                        bool   post_filtering)
 {
   const int ni = z.shape.x;
   const int nj = z.shape.y;
@@ -154,6 +156,14 @@ void hydraulic_particle(Array &z,
       for (int i = 0; i < z.shape.x; i++)
         z(i, j) = std::max(z(i, j), (*p_bedrock)(i, j));
 
+  // post-filter
+  if (post_filtering)
+  {
+    float sigma = 0.25f;
+    int   iterations = 1;
+    laplace(z, sigma, iterations);
+  }
+
   // splatmaps
   if (p_erosion_map)
   {
@@ -180,7 +190,8 @@ void hydraulic_particle(Array &z,
                         float  c_erosion,
                         float  c_deposition,
                         float  drag_rate,
-                        float  evap_rate)
+                        float  evap_rate,
+                        bool   post_filtering)
 {
   if (!p_mask)
     hydraulic_particle(z,
@@ -194,7 +205,8 @@ void hydraulic_particle(Array &z,
                        c_erosion,
                        c_deposition,
                        drag_rate,
-                       evap_rate);
+                       evap_rate,
+                       post_filtering);
   else
   {
     Array z_f = z;
@@ -209,7 +221,8 @@ void hydraulic_particle(Array &z,
                        c_erosion,
                        c_deposition,
                        drag_rate,
-                       evap_rate);
+                       evap_rate,
+                       post_filtering);
     z = lerp(z, z_f, *(p_mask));
   }
 }

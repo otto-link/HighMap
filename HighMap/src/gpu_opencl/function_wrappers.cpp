@@ -145,7 +145,8 @@ void hydraulic_particle(Array &z,
                         float  c_erosion,
                         float  c_deposition,
                         float  drag_rate,
-                        float  evap_rate)
+                        float  evap_rate,
+                        bool   post_filtering)
 {
   Array z_bckp = Array();
   if ((p_erosion_map != nullptr) | (p_deposition_map != nullptr)) z_bckp = z;
@@ -176,6 +177,14 @@ void hydraulic_particle(Array &z,
 
   run.read_buffer("z");
 
+  // post-filter
+  if (post_filtering)
+  {
+    float sigma = 0.25f;
+    int   iterations = 1;
+    gpu::laplace(z, sigma, iterations);
+  }
+
   // splatmaps
   if (p_erosion_map)
   {
@@ -202,7 +211,8 @@ void hydraulic_particle(Array &z,
                         float  c_erosion,
                         float  c_deposition,
                         float  drag_rate,
-                        float  evap_rate)
+                        float  evap_rate,
+                        bool   post_filtering)
 {
   if (!p_mask)
     gpu::hydraulic_particle(z,
@@ -216,7 +226,8 @@ void hydraulic_particle(Array &z,
                             c_erosion,
                             c_deposition,
                             drag_rate,
-                            evap_rate);
+                            evap_rate,
+                            post_filtering);
   else
   {
     Array z_f = z;
@@ -231,7 +242,8 @@ void hydraulic_particle(Array &z,
                             c_erosion,
                             c_deposition,
                             drag_rate,
-                            evap_rate);
+                            evap_rate,
+                            post_filtering);
     z = lerp(z, z_f, *(p_mask));
   }
 }

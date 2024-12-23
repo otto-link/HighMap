@@ -50,7 +50,8 @@ void hydraulic_particle(Array &z,
                         float  c_erosion = 0.05f,
                         float  c_deposition = 0.05f,
                         float  drag_rate = 0.001f,
-                        float  evap_rate = 0.001f);
+                        float  evap_rate = 0.001f,
+                        bool   post_filtering = false);
 void hydraulic_particle(Array &z,
                         Array *p_mask,
                         int    nparticles,
@@ -63,7 +64,8 @@ void hydraulic_particle(Array &z,
                         float  c_erosion = 0.05f,
                         float  c_deposition = 0.05f,
                         float  drag_rate = 0.001f,
-                        float  evap_rate = 0.001f);
+                        float  evap_rate = 0.001f,
+                        bool   post_filtering = false);
 
 void laplace(Array &array, float sigma = 0.2f, int iterations = 3);
 void laplace(Array &array,
