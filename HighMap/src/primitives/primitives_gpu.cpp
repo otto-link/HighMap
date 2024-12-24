@@ -5,6 +5,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/opencl/gpu_opencl.hpp"
+#include "highmap/primitives.hpp"
 
 namespace hmap::gpu
 {
@@ -343,6 +344,85 @@ Array gavoronoise(const Array &base,
   return array;
 }
 
+Array voronoi(Vec2<int>         shape,
+              Vec2<float>       kw,
+              uint              seed,
+              Vec2<float>       jitter,
+              VoronoiReturnType return_type,
+              Array            *p_ctrl_param,
+              Array            *p_noise_x,
+              Array            *p_noise_y,
+              Vec4<float>       bbox)
+{
+  Array array(shape);
+
+  auto run = clwrapper::Run("voronoi");
+
+  run.bind_buffer<float>("array", array.vector);
+  helper_bind_optional_buffers(run, p_ctrl_param, p_noise_x, p_noise_y);
+  run.bind_arguments(array.shape.x,
+                     array.shape.y,
+                     kw.x,
+                     kw.y,
+                     seed,
+                     jitter,
+                     (int)return_type,
+                     p_ctrl_param ? 1 : 0,
+                     p_noise_x ? 1 : 0,
+                     p_noise_y ? 1 : 0,
+                     bbox);
+
+  run.execute({array.shape.x, array.shape.y});
+  run.read_buffer("array");
+
+  return array;
+}
+
+Array voronoi_fbm(Vec2<int>         shape,
+                  Vec2<float>       kw,
+                  uint              seed,
+                  Vec2<float>       jitter,
+                  VoronoiReturnType return_type,
+                  int               octaves,
+                  float             weight,
+                  float             persistence,
+                  float             lacunarity,
+                  Array            *p_ctrl_param,
+                  Array            *p_noise_x,
+                  Array            *p_noise_y,
+                  Vec4<float>       bbox)
+{
+  Array array(shape);
+
+  auto run = clwrapper::Run("voronoi_fbm");
+
+  run.bind_buffer<float>("array", array.vector);
+  helper_bind_optional_buffer(run, "ctrl_param", p_ctrl_param);
+  helper_bind_optional_buffer(run, "noise_x", p_noise_x);
+  helper_bind_optional_buffer(run, "noise_y", p_noise_y);
+
+  run.bind_arguments(array.shape.x,
+                     array.shape.y,
+                     kw.x,
+                     kw.y,
+                     seed,
+                     jitter,
+                     (int)return_type,
+                     octaves,
+                     weight,
+                     persistence,
+                     lacunarity,
+                     p_ctrl_param ? 1 : 0,
+                     p_noise_x ? 1 : 0,
+                     p_noise_y ? 1 : 0,
+                     bbox);
+
+  run.execute({array.shape.x, array.shape.y});
+  run.read_buffer("array");
+
+  return array;
+}
+
 Array voronoise(Vec2<int>   shape,
                 Vec2<float> kw,
                 float       u_param,
@@ -426,7 +506,7 @@ Array voronoi_edge_distance(Vec2<int>   shape,
                             Array      *p_ctrl_param,
                             Array      *p_noise_x,
                             Array      *p_noise_y,
-                            Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f})
+                            Vec4<float> bbox)
 {
   Array array(shape);
 

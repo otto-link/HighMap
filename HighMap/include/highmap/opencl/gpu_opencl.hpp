@@ -18,6 +18,7 @@
 #include "cl_wrapper.hpp"
 
 #include "highmap/array.hpp"
+#include "highmap/functions.hpp" // NoiseType
 
 namespace hmap::gpu
 {

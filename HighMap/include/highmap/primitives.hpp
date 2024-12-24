@@ -24,6 +24,16 @@
 namespace hmap
 {
 
+enum VoronoiReturnType : int
+{
+  F1_SQRT,
+  F1_SQUARED,
+  F2_SQRT,
+  F2_SQUARED,
+  F1F2_SQRT,
+  F1F2_SQUARED,
+};
+
 /**
  * @brief Return a 'biquadratic pulse'.
  *
@@ -1495,6 +1505,108 @@ Array gavoronoise(const Array &base,
                   Array       *p_noise_x = nullptr,
                   Array       *p_noise_y = nullptr,
                   Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
+ * @brief Generates a Voronoi diagram in a 2D array with configurable
+ * properties.
+ *
+ * @param shape The dimensions of the output array as a 2D vector of integers.
+ * @param kw The frequency scale factors for the Voronoi cells, given as a 2D
+ * vector of floats.
+ * @param seed A seed value for random number generation, ensuring
+ * reproducibility.
+ * @param jitter (Optional) The amount of random variation in the positions of
+ * Voronoi cell sites, given as a 2D vector of floats. Defaults to {0.5f, 0.5f}.
+ * @param return_type (Optional) The type of value to compute for the Voronoi
+ * diagram. Defaults to `VoronoiReturnType::F1_SQUARED`.
+ * @param p_ctrl_param (Optional) A pointer to an `Array` used to control the
+ * Voronoi computation. If nullptr, no control is applied.
+ * @param p_noise_x (Optional) A pointer to an `Array` providing additional
+ * noise in the x-direction for cell positions. If nullptr, no x-noise is
+ * applied.
+ * @param p_noise_y (Optional) A pointer to an `Array` providing additional
+ * noise in the y-direction for cell positions. If nullptr, no y-noise is
+ * applied.
+ * @param bbox (Optional) The bounding box for the Voronoi computation, given as
+ * a 4D vector of floats representing {min_x, max_x, min_y, max_y}. Defaults to
+ * {0.f, 1.f, 0.f, 1.f}.
+ *
+ * @return A 2D array representing the generated Voronoi diagram.
+ *
+ *  @note Only available if OpenCL is enabled.
+ *
+ * **Example**
+ * @include ex_voronoi.cpp
+ *
+ * **Result**
+ * @image html ex_voronoi.png
+ */
+Array voronoi(Vec2<int>         shape,
+              Vec2<float>       kw,
+              uint              seed,
+              Vec2<float>       jitter = {0.5f, 0.5f},
+              VoronoiReturnType return_type = VoronoiReturnType::F1_SQUARED,
+              Array            *p_ctrl_param = nullptr,
+              Array            *p_noise_x = nullptr,
+              Array            *p_noise_y = nullptr,
+              Vec4<float>       bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
+ * @brief Generates a Voronoi diagram in a 2D array with configurable
+ * properties.
+ *
+ * @param shape The dimensions of the output array as a 2D vector of integers.
+ * @param kw The frequency scale factors for the base Voronoi cells, given as a
+ * 2D vector of floats.
+ * @param seed A seed value for random number generation, ensuring
+ * reproducibility.
+ * @param jitter (Optional) The amount of random variation in the positions of
+ * Voronoi cell sites, given as a 2D vector of floats. Defaults to {0.5f, 0.5f}.
+ * @param return_type (Optional) The type of value to compute for the Voronoi
+ * diagram. Defaults to `VoronoiReturnType::F1_SQUARED`.
+ * @param octaves (Optional) The number of layers (octaves) in the fractal
+ * Brownian motion. Defaults to 8.
+ * @param weight (Optional) The initial weight of the base layer in the FBM
+ * computation. Defaults to 0.7f.
+ * @param persistence (Optional) The persistence factor that controls the
+ * amplitude reduction between octaves. Defaults to 0.5f.
+ * @param lacunarity (Optional) The lacunarity factor that controls the
+ * frequency increase between octaves. Defaults to 2.f.
+ * @param p_ctrl_param (Optional) A pointer to an `Array` used to control the
+ * Voronoi computation. If nullptr, no control is applied.
+ * @param p_noise_x (Optional) A pointer to an `Array` providing additional
+ * noise in the x-direction for cell positions. If nullptr, no x-noise is
+ * applied.
+ * @param p_noise_y (Optional) A pointer to an `Array` providing additional
+ * noise in the y-direction for cell positions. If nullptr, no y-noise is
+ * applied.
+ * @param bbox (Optional) The bounding box for the Voronoi computation, given as
+ * a 4D vector of floats representing {min_x, max_x, min_y, max_y}. Defaults to
+ * {0.f, 1.f, 0.f, 1.f}.
+ *
+ * @return A 2D array representing the generated Voronoi diagram.
+ *
+ *  @note Only available if OpenCL is enabled.
+ *
+ * **Example**
+ * @include ex_voronoi.cpp
+ *
+ * **Result**
+ * @image html ex_voronoi.png
+ */
+Array voronoi_fbm(Vec2<int>         shape,
+                  Vec2<float>       kw,
+                  uint              seed,
+                  Vec2<float>       jitter = {0.5f, 0.5f},
+                  VoronoiReturnType return_type = VoronoiReturnType::F1_SQUARED,
+                  int               octaves = 8,
+                  float             weight = 0.7f,
+                  float             persistence = 0.5f,
+                  float             lacunarity = 2.f,
+                  Array            *p_ctrl_param = nullptr,
+                  Array            *p_noise_x = nullptr,
+                  Array            *p_noise_y = nullptr,
+                  Vec4<float>       bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Computes the Voronoi edge distance.
