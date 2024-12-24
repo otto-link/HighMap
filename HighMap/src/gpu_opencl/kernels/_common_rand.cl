@@ -3,12 +3,19 @@ R""(
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
 
+float hash12f(float2 p, float fseed)
+{
+  float pi;
+  return fract(sin(dot(p, (float2)(127.1f, 311.7f)) + fseed) * 43758.5453123f,
+               &pi);
+}
+
 float2 hash22f(float2 p, float fseed)
 {
   p = (float2)(dot(p, (float2)(127.1f, 311.7f)),
                dot(p, (float2)(269.5f, 183.3f)));
   float2 pi;
-  return -1.f + 2.f * fract(sin(p) * 43758.5453123f, &pi);
+  return -1.f + 2.f * fract(sin(p + fseed) * 43758.5453123f, &pi);
 }
 
 float2 hash22f_poly(float2 x, float fseed)
@@ -17,6 +24,12 @@ float2 hash22f_poly(float2 x, float fseed)
   x = x * k + k.yx;
   float2 qi;
   return fract(16.f * k * fract(x.x * x.y * (x.x + x.y) + fseed, &qi), &qi);
+}
+
+float2 grad22f(float2 p, float fseed)
+{
+  float angle = 6.2831853f * hash12f(p, fseed); // 2 * PI
+  return (float2)(cos(angle), sin(angle));
 }
 
 uint wang_hash(uint seed)

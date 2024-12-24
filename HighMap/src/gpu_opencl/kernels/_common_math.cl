@@ -7,6 +7,15 @@ float2 angle_to_dir(float angle)
   return (float2)(cos(angle / 180.f * 3.14159f), sin(angle / 180.f * 3.14159f));
 }
 
+float cubic_interp(float p0, float p1, float p2, float p3, float t)
+{
+  float a = p3 - p2 - p0 + p1;
+  float b = p0 - p1 - a;
+  float c = p2 - p0;
+  float d = p1;
+  return a * t * t * t + b * t * t + c * t + d;
+}
+
 float lerp(float a, float b, float t)
 {
   return (1.f - t) * a + t * b;
@@ -53,7 +62,17 @@ float smoothstep3(float x)
   return x * x * (3.f - 2.f * x);
 }
 
+float2 smoothstep3_f2(float2 x)
+{
+  return x * x * (3.f - 2.f * x);
+}
+
 float smoothstep5(float x)
+{
+  return x * x * x * (x * (6.f * x - 15.f) + 10.f);
+}
+
+float2 smoothstep5_f2(float2 x)
 {
   return x * x * x * (x * (6.f * x - 15.f) + 10.f);
 }

@@ -65,10 +65,39 @@ int main(void)
 
   int ir = 32;
 
-  compare([ir](hmap::Array &z) { z = hmap::mean_local(z, ir); },
-          [ir](hmap::Array &z) { z = hmap::gpu::mean_local(z, ir); },
+  {
+    hmap::Vec2<float> kw = {32.f, 32.f};
+
+    std::vector<hmap::NoiseType> types = {
+        // hmap::NoiseType::PARBERRY,
+        hmap::NoiseType::PERLIN,
+        hmap::NoiseType::PERLIN_BILLOW,
+        hmap::NoiseType::PERLIN_HALF,
+        hmap::NoiseType::SIMPLEX2,
+        // hmap::NoiseType::SIMPLEX2S,
+        hmap::NoiseType::VALUE,
+        hmap::NoiseType::VALUE_CUBIC,
+        // hmap::NoiseType::VALUE_DELAUNAY,
+        hmap::NoiseType::VALUE_LINEAR,
+        hmap::NoiseType::WORLEY
+        // hmap::NoiseType::WORLEY_DOUBLE,
+        // hmap::NoiseType::WORLEY_VALUE
+    };
+
+    for (auto type : types)
+    {
+      compare(
+          [type, shape, kw](hmap::Array &z)
+          {
+            z = hmap::noise(type, shape, kw, 1);
+            z.infos();
+          },
+          [type, shape, kw](hmap::Array &z)
+          { z = hmap::gpu::noise(type, shape, kw, 1); },
           1e-3f,
-          "mean_local.png");
+          "noise" + std::to_string(type) + ".png");
+    }
+  }
 
 #else
   std::cout << "OpenCL not activated\n";

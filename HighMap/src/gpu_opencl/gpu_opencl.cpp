@@ -43,6 +43,7 @@ bool init_opencl()
 #include "kernels/mean_local.cl"
 #include "kernels/median_3x3.cl"
 #include "kernels/minimum_smooth.cl"
+#include "kernels/noise.cl"
 #include "kernels/normal_displacement.cl"
 #include "kernels/plateau.cl"
 #include "kernels/rugosity.cl"

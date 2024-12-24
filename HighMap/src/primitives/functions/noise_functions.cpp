@@ -122,7 +122,7 @@ ValueCubicNoiseFunction::ValueCubicNoiseFunction(Vec2<float> kw, uint seed)
 
   this->set_delegate(
       [this](float x, float y, float)
-      { return this->noise.GetNoise(this->kw.x * x, this->kw.y * y); });
+      { return 1.43f * this->noise.GetNoise(this->kw.x * x, this->kw.y * y); });
 }
 
 ValueDelaunayNoiseFunction::ValueDelaunayNoiseFunction(Vec2<float> kw,
@@ -226,7 +226,7 @@ void ValueLinearNoiseFunction::update_interpolation_function()
   Vec2<int> shape_base = Vec2<int>((int)(this->kw.x * lx) + 1,
                                    (int)(this->kw.y * ly) + 1);
 
-  Array value = white(shape_base, 0.f, 1.f, seed);
+  Array value = 2.f * white(shape_base, 0.f, 1.f, seed) - 1.f;
 
   // corresponding grids
   std::vector<float> xv(shape_base.x);
@@ -286,7 +286,10 @@ WorleyFunction::WorleyFunction(Vec2<float> kw,
 
   this->set_delegate(
       [this](float x, float y, float)
-      { return this->noise.GetNoise(this->kw.x * x, this->kw.y * y); });
+      {
+        return 1.66f *
+               (0.4f + this->noise.GetNoise(this->kw.x * x, this->kw.y * y));
+      });
 }
 
 WorleyDoubleFunction::WorleyDoubleFunction(Vec2<float> kw,
