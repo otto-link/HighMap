@@ -95,6 +95,15 @@ Array minimum_smooth(const Array &array1, const Array &array2, float k = 0.2f);
 
 Array morphological_gradient(const Array &array, int ir);
 
+Array noise(NoiseType   noise_type,
+            Vec2<int>   shape,
+            Vec2<float> kw,
+            uint        seed,
+            Array      *p_noise_x = nullptr,
+            Array      *p_noise_y = nullptr,
+            Array      *p_stretching = nullptr,
+            Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
 void normal_displacement(Array &array,
                          float  amount = 0.1f,
                          int    ir = 0,

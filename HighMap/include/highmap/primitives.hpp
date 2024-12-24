@@ -1496,15 +1496,6 @@ Array gavoronoise(const Array &base,
                   Array       *p_noise_y = nullptr,
                   Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
-Array noise(NoiseType   noise_type,
-            Vec2<int>   shape,
-            Vec2<float> kw,
-            uint        seed,
-            Array      *p_noise_x = nullptr,
-            Array      *p_noise_y = nullptr,
-            Array      *p_stretching = nullptr,
-            Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
-
 /**
  * @brief Computes the Voronoi edge distance.
  *
