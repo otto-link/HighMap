@@ -3,7 +3,9 @@ R""(
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
 
-float base_perlin(float2 p, float fseed)
+// --- BASE NOISE
+
+float base_perlin(const float2 p, const float fseed)
 {
   // lattice points
   float2 i = floor(p);
@@ -40,14 +42,17 @@ float base_perlin(float2 p, float fseed)
   return 1.42857f * nxy;
 }
 
-float base_simplex2(float2 p, float fseed)
+float base_simplex2(const float2 p, const float fseed)
 {
   const float K1 = 0.366025403f; // (sqrt(3)-1)/2
   const float K2 = 0.211324865f; // (3-sqrt(3))/6
 
+  // adjust to have consistent wavenb definition with other noises
+  float2 p2 = 0.5f * p;
+
   // skew the input space to find the simplex cell
-  float2 i = floor(p + dot(p, (float2)(K1, K1)));
-  float2 a = p - i + dot(i, (float2)(K2, K2));
+  float2 i = floor(p2 + dot(p2, (float2)(K1, K1)));
+  float2 a = p2 - i + dot(i, (float2)(K2, K2));
 
   // determine which simplex we are in
   float  m = step(a.y, a.x);
@@ -73,7 +78,7 @@ float base_simplex2(float2 p, float fseed)
   return 100.f * (n0 + n1 + n2);
 }
 
-float base_value(float2 p, float fseed)
+float base_value(const float2 p, const float fseed)
 {
   float2 i = floor(p);
   float2 pi;
@@ -93,7 +98,7 @@ float base_value(float2 p, float fseed)
   return 2.f * nxy - 1.f;
 }
 
-float base_value_cubic(float2 p, float fseed)
+float base_value_cubic(const float2 p, const float fseed)
 {
   float2 i = floor(p);
   float2 pi;
@@ -120,7 +125,7 @@ float base_value_cubic(float2 p, float fseed)
   return 1.43f * (value - 0.5f);
 }
 
-float base_value_linear(float2 p, float fseed)
+float base_value_linear(const float2 p, const float fseed)
 {
   float2 i = floor(p);
   float2 pi;
@@ -138,7 +143,7 @@ float base_value_linear(float2 p, float fseed)
   return 2.f * nxy - 1.f;
 }
 
-float base_worley(float2 p, float fseed)
+float base_worley(const float2 p, const float fseed)
 {
   float2 i = floor(p);
   float2 pi;
@@ -164,14 +169,186 @@ float base_worley(float2 p, float fseed)
   return 1.66f * min_dist - 1.f;
 }
 
+// --- FBM
+
+float base_perlin_fbm(const float2 p,
+                      const int    octaves,
+                      const float  weight,
+                      const float  persistence,
+                      const float  lacunarity,
+                      const float  fseed)
+{
+  float n = 0.f;
+  float nf = 1.f;
+  float na = 0.6f;
+  for (int i = 0; i < octaves; i++)
+  {
+    float v = base_perlin(p * nf, fseed);
+    n += v * na;
+    na *= (1.f - weight) + weight * min(v + 1.f, 2.f) * 0.5f;
+    na *= persistence;
+    nf *= lacunarity;
+  }
+  return n;
+}
+
+float base_perlin_billow_fbm(const float2 p,
+                             const int    octaves,
+                             const float  weight,
+                             const float  persistence,
+                             const float  lacunarity,
+                             const float  fseed)
+{
+  float n = 0.f;
+  float nf = 1.f;
+  float na = 0.6f;
+  for (int i = 0; i < octaves; i++)
+  {
+    float v = 2.f * fabs(base_perlin(p * nf, fseed)) - 1.f;
+    n += v * na;
+    na *= (1.f - weight) + weight * min(v + 1.f, 2.f) * 0.5f;
+    na *= persistence;
+    nf *= lacunarity;
+  }
+  return n;
+}
+
+float base_perlin_half_fbm(const float2 p,
+                           const int    octaves,
+                           const float  weight,
+                           const float  persistence,
+                           const float  lacunarity,
+                           const float  fseed)
+{
+  float n = 0.f;
+  float nf = 1.f;
+  float na = 0.6f;
+  for (int i = 0; i < octaves; i++)
+  {
+    float v = max_smooth(base_perlin(p * nf, fseed), 0.f, 0.5f);
+    n += v * na;
+    na *= (1.f - weight) + weight * min(v + 1.f, 2.f) * 0.5f;
+    na *= persistence;
+    nf *= lacunarity;
+  }
+  return n;
+}
+
+float base_simplex2_fbm(const float2 p,
+                        const int    octaves,
+                        const float  weight,
+                        const float  persistence,
+                        const float  lacunarity,
+                        const float  fseed)
+{
+  float n = 0.f;
+  float nf = 1.f;
+  float na = 0.6f;
+  for (int i = 0; i < octaves; i++)
+  {
+    float v = base_simplex2(p * nf, fseed);
+    n += v * na;
+    na *= (1.f - weight) + weight * min(v + 1.f, 2.f) * 0.5f;
+    na *= persistence;
+    nf *= lacunarity;
+  }
+  return n;
+}
+
+float base_value_fbm(const float2 p,
+                     const int    octaves,
+                     const float  weight,
+                     const float  persistence,
+                     const float  lacunarity,
+                     const float  fseed)
+{
+  float n = 0.f;
+  float nf = 1.f;
+  float na = 0.6f;
+  for (int i = 0; i < octaves; i++)
+  {
+    float v = base_value(p * nf, fseed);
+    n += v * na;
+    na *= (1.f - weight) + weight * min(v + 1.f, 2.f) * 0.5f;
+    na *= persistence;
+    nf *= lacunarity;
+  }
+  return n;
+}
+
+float base_value_cubic_fbm(const float2 p,
+                           const int    octaves,
+                           const float  weight,
+                           const float  persistence,
+                           const float  lacunarity,
+                           const float  fseed)
+{
+  float n = 0.f;
+  float nf = 1.f;
+  float na = 0.6f;
+  for (int i = 0; i < octaves; i++)
+  {
+    float v = base_value_cubic(p * nf, fseed);
+    n += v * na;
+    na *= (1.f - weight) + weight * min(v + 1.f, 2.f) * 0.5f;
+    na *= persistence;
+    nf *= lacunarity;
+  }
+  return n;
+}
+
+float base_value_linear_fbm(const float2 p,
+                            const int    octaves,
+                            const float  weight,
+                            const float  persistence,
+                            const float  lacunarity,
+                            const float  fseed)
+{
+  float n = 0.f;
+  float nf = 1.f;
+  float na = 0.6f;
+  for (int i = 0; i < octaves; i++)
+  {
+    float v = base_value_linear(p * nf, fseed);
+    n += v * na;
+    na *= (1.f - weight) + weight * min(v + 1.f, 2.f) * 0.5f;
+    na *= persistence;
+    nf *= lacunarity;
+  }
+  return n;
+}
+
+float base_worley_fbm(const float2 p,
+                      const int    octaves,
+                      const float  weight,
+                      const float  persistence,
+                      const float  lacunarity,
+                      const float  fseed)
+{
+  float n = 0.f;
+  float nf = 1.f;
+  float na = 0.6f;
+  for (int i = 0; i < octaves; i++)
+  {
+    float v = base_worley(p * nf, fseed);
+    n += v * na;
+    na *= (1.f - weight) + weight * min(v + 1.f, 2.f) * 0.5f;
+    na *= persistence;
+    nf *= lacunarity;
+  }
+  return n;
+}
+
+// --- OCL KERNEL
+
 void kernel noise(global float *output,
                   global float *noise_x,
                   global float *noise_y,
                   const int     nx,
                   const int     ny,
                   const int     noise_id,
-                  float         kx,
-                  float         ky,
+                  const float   kx,
+                  const float   ky,
                   const uint    seed,
                   const int     has_noise_x,
                   const int     has_noise_y,
@@ -188,13 +365,6 @@ void kernel noise(global float *output,
 
   float dx = has_noise_x > 0 ? noise_x[index] : 0.f;
   float dy = has_noise_y > 0 ? noise_y[index] : 0.f;
-
-  // for SIMPLEX noises
-  if (noise_id == 4 || noise_id == 5)
-  {
-    kx *= 0.5f;
-    ky *= 0.5f;
-  }
 
   float2 pos = g_to_xy(g, nx, ny, kx, ky, dx, dy, bbox);
 
@@ -231,6 +401,119 @@ void kernel noise(global float *output,
   else if (noise_id == 10)
   {
     output[index] = base_worley(pos, fseed);
+  }
+  else
+  {
+    output[index] = 0.f;
+  }
+}
+
+void kernel noise_fbm(global float *output,
+                      global float *ctrl_param,
+                      global float *noise_x,
+                      global float *noise_y,
+                      const int     nx,
+                      const int     ny,
+                      const int     noise_id,
+                      float         kx,
+                      float         ky,
+                      const uint    seed,
+                      const int     octaves,
+                      const float   weight,
+                      const float   persistence,
+                      const float   lacunarity,
+                      const int     has_ctrl_param,
+                      const int     has_noise_x,
+                      const int     has_noise_y,
+                      const float4  bbox)
+{
+  int2 g = {get_global_id(0), get_global_id(1)};
+
+  if (g.x >= nx || g.y >= ny) return;
+
+  int index = linear_index(g.x, g.y, ny);
+
+  uint  rng_state = wang_hash(seed);
+  float fseed = rand(&rng_state);
+
+  float ct = has_ctrl_param > 0 ? ctrl_param[index] : 1.f;
+  float dx = has_noise_x > 0 ? noise_x[index] : 0.f;
+  float dy = has_noise_y > 0 ? noise_y[index] : 0.f;
+
+  float  new_weight = (1.f - ct) + ct * weight;
+  float2 pos = g_to_xy(g, nx, ny, kx, ky, dx, dy, bbox);
+
+  if (noise_id == 1)
+  {
+    output[index] = base_perlin_fbm(pos,
+                                    octaves,
+                                    new_weight,
+                                    persistence,
+                                    lacunarity,
+                                    fseed);
+  }
+  else if (noise_id == 2)
+  {
+    output[index] = base_perlin_billow_fbm(pos,
+                                           octaves,
+                                           new_weight,
+                                           persistence,
+                                           lacunarity,
+                                           fseed);
+  }
+  else if (noise_id == 3)
+  {
+    output[index] = base_perlin_half_fbm(pos,
+                                         octaves,
+                                         new_weight,
+                                         persistence,
+                                         lacunarity,
+                                         fseed);
+  }
+  else if (noise_id == 4)
+  {
+    output[index] = base_simplex2_fbm(pos,
+                                      octaves,
+                                      new_weight,
+                                      persistence,
+                                      lacunarity,
+                                      fseed);
+  }
+  else if (noise_id == 6)
+  {
+    output[index] = base_value_fbm(pos,
+                                   octaves,
+                                   new_weight,
+                                   persistence,
+                                   lacunarity,
+                                   fseed);
+  }
+  else if (noise_id == 7)
+  {
+    output[index] = base_value_cubic_fbm(pos,
+                                         octaves,
+                                         new_weight,
+                                         persistence,
+                                         lacunarity,
+                                         fseed);
+  }
+  else if (noise_id == 9)
+  {
+    output[index] = base_value_linear_fbm(pos,
+                                          octaves,
+                                          new_weight,
+                                          persistence,
+                                          lacunarity,
+                                          fseed);
+  }
+  else if (noise_id == 10)
+  {
+    output[index] = base_worley_fbm(pos,
+                                    octaves,
+                                    new_weight,
+                                    persistence,
+                                    lacunarity,
+                                    fseed);
   }
   else
   {

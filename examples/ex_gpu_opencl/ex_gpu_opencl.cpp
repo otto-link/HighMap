@@ -66,7 +66,6 @@ int main(void)
   int ir = 32;
 
   {
-    hmap::Vec2<float> kw = {32.f, 32.f};
 
     std::vector<hmap::NoiseType> types = {
         // hmap::NoiseType::PARBERRY,
@@ -84,18 +83,34 @@ int main(void)
         // hmap::NoiseType::WORLEY_VALUE
     };
 
+    hmap::Vec2<float> kw = {32.f, 32.f};
+
+    for (auto type : types)
+    {
+      compare([type, shape, kw](hmap::Array &z)
+              { z = hmap::noise(type, shape, kw, 1); },
+              [type, shape, kw](hmap::Array &z)
+              { z = hmap::gpu::noise(type, shape, kw, 1); },
+              1e-3f,
+              "noise" + std::to_string(type) + ".png");
+    }
+
+    // fbm
+    kw = {4.f, 4.f};
     for (auto type : types)
     {
       compare(
           [type, shape, kw](hmap::Array &z)
           {
-            z = hmap::noise(type, shape, kw, 1);
-            z.infos();
+            if (type != hmap::NoiseType::VALUE_LINEAR)
+              z = hmap::noise_fbm(type, shape, kw, 1);
+            else
+              z = 0.f;
           },
           [type, shape, kw](hmap::Array &z)
-          { z = hmap::gpu::noise(type, shape, kw, 1); },
+          { z = hmap::gpu::noise_fbm(type, shape, kw, 1); },
           1e-3f,
-          "noise" + std::to_string(type) + ".png");
+          "noise_fbm" + std::to_string(type) + ".png");
     }
   }
 

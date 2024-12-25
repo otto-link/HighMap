@@ -105,6 +105,20 @@ Array noise(NoiseType   noise_type,
             Array      *p_stretching = nullptr,
             Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
+Array noise_fbm(NoiseType   noise_type,
+                Vec2<int>   shape,
+                Vec2<float> kw,
+                uint        seed,
+                int         octaves = 8,
+                float       weight = 0.7f,
+                float       persistence = 0.5f,
+                float       lacunarity = 2.f,
+                Array      *p_ctrl_param = nullptr,
+                Array      *p_noise_x = nullptr,
+                Array      *p_noise_y = nullptr,
+                Array      *p_stretching = nullptr,
+                Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
 void normal_displacement(Array &array,
                          float  amount = 0.1f,
                          int    ir = 0,
