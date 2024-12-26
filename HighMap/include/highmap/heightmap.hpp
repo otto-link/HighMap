@@ -30,6 +30,13 @@ enum NormalMapBlendingMethod : int
   NMAP_WHITEOUT
 };
 
+enum TransformMode : int
+{
+  DISTRIBUTED,
+  SEQUENTIAL,
+  SINGLE_ARRAY,
+};
+
 static std::map<std::string, int> normal_map_blending_method_as_string = {
     {"Linear", NMAP_LINEAR},
     {"Partial derivative", NMAP_DERIVATIVE},
@@ -837,5 +844,12 @@ void transform(
     Heightmap &h6,
     std::function<void(Array &, Array &, Array &, Array &, Array &, Array &)>
         op);
+
+// generic transform
+void transform(std::vector<Heightmap *>                     p_hmaps,
+               std::function<void(const std::vector<Array *>,
+                                  const hmap::Vec2<int>,
+                                  const hmap::Vec4<float>)> op,
+               TransformMode transform_mode = TransformMode::DISTRIBUTED);
 
 } // namespace hmap
