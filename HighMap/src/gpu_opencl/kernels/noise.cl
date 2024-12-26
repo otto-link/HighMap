@@ -384,7 +384,7 @@ void kernel noise(global float *output,
   }
   else if (noise_id == 4)
   {
-    output[index] = g.x; // base_simplex2(pos, fseed);
+    output[index] = base_simplex2(pos, fseed);
   }
   else if (noise_id == 6)
   {
