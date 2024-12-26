@@ -106,7 +106,7 @@ void kernel gavoronoise(global float *output,
 
   if (g.x >= nx || g.y >= ny) return;
 
-  int index = linear_index(g.x, g.y, ny);
+  int index = linear_index(g.x, g.y, nx);
 
   uint  rng_state = wang_hash(seed);
   float fseed = rand(&rng_state);
@@ -187,7 +187,7 @@ void kernel gavoronoise_with_base(read_only image2d_t base_in,
 
   if (g.x >= nx || g.y >= ny) return;
 
-  int index = linear_index(g.x, g.y, ny);
+  int index = linear_index(g.x, g.y, nx);
 
   uint  rng_state = wang_hash(seed);
   float fseed = rand(&rng_state);

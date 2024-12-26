@@ -69,7 +69,7 @@ void kernel voronoi_edge_distance(global float *output,
 
   if (g.x >= nx || g.y >= ny) return;
 
-  int index = linear_index(g.x, g.y, ny);
+  int index = linear_index(g.x, g.y, nx);
 
   uint  rng_state = wang_hash(seed);
   float fseed = rand(&rng_state);

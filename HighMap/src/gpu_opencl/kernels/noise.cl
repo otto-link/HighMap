@@ -358,7 +358,7 @@ void kernel noise(global float *output,
 
   if (g.x >= nx || g.y >= ny) return;
 
-  int index = linear_index(g.x, g.y, ny);
+  int index = linear_index(g.x, g.y, nx);
 
   uint  rng_state = wang_hash(seed);
   float fseed = rand(&rng_state);
@@ -384,7 +384,7 @@ void kernel noise(global float *output,
   }
   else if (noise_id == 4)
   {
-    output[index] = base_simplex2(pos, fseed);
+    output[index] = g.x; // base_simplex2(pos, fseed);
   }
   else if (noise_id == 6)
   {
@@ -431,7 +431,7 @@ void kernel noise_fbm(global float *output,
 
   if (g.x >= nx || g.y >= ny) return;
 
-  int index = linear_index(g.x, g.y, ny);
+  int index = linear_index(g.x, g.y, nx);
 
   uint  rng_state = wang_hash(seed);
   float fseed = rand(&rng_state);
