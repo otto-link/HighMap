@@ -42,7 +42,13 @@ enum TransformMode : int
 {
   DISTRIBUTED,  ///< Distributed across multiple processors or threads.
   SEQUENTIAL,   ///< Performed sequentially in a single thread.
-  SINGLE_ARRAY, //< Transformation is applied to a single array of data.
+  SINGLE_ARRAY, ///< Transformation is applied to a single array of data.
+};
+
+static std::map<std::string, int> transform_mode_as_string = {
+    {"Distributed", DISTRIBUTED},
+    {"Sequential", SEQUENTIAL},
+    {"Single array", SINGLE_ARRAY},
 };
 
 // --- forward declarations
