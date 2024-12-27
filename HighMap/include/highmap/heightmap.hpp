@@ -30,13 +30,6 @@ enum NormalMapBlendingMethod : int
   NMAP_WHITEOUT
 };
 
-enum TransformMode : int
-{
-  DISTRIBUTED,
-  SEQUENTIAL,
-  SINGLE_ARRAY,
-};
-
 static std::map<std::string, int> normal_map_blending_method_as_string = {
     {"Linear", NMAP_LINEAR},
     {"Partial derivative", NMAP_DERIVATIVE},
@@ -44,6 +37,19 @@ static std::map<std::string, int> normal_map_blending_method_as_string = {
     {"Unity", NMAP_UNITY},
     {"Whiteout", NMAP_WHITEOUT},
 };
+
+/**
+ * @brief
+ *
+ */ @ enum TransformMode *@brief Enum representing the different modes of
+        transformation
+            .**This enum defines the modes that can be used to transform data
+                in the *heightmap.* /
+    enum TransformMode : int {
+      DISTRIBUTED,  ///< Distributed across multiple processors or threads.
+      SEQUENTIAL,   ///< Performed sequentially in a single thread.
+      SINGLE_ARRAY, //< Transformation is applied to a single array of data.
+    };
 
 // --- forward declarations
 class HeightmapRGBA;
@@ -579,8 +585,8 @@ struct HeightmapRGBA
    * @param vmin Lower bound for scaling to array [0, 1].
    * @param vmax Upper bound for scaling to array [0, 1]
    * @param cmap Colormap (see {@link cmap}).
-   * @param p_alpha Reference to input heightmap for alpha channel, expected in
-   [0, 1].
+   * @param p_alpha Reference to input heightmap for alpha channel, expected
+   in [0, 1].
    * @param reverse Reverse colormap.
    */
   void colorize(Heightmap &color_level,
@@ -599,8 +605,8 @@ struct HeightmapRGBA
    * @param vmax Upper bound for scaling to array [0, 1]
    * @param colormap_colors Colormap RGB colors as a vector of RGB
    colors.
-   * @param p_alpha Reference to input heightmap for alpha channel, expected in
-   [0, 1].
+   * @param p_alpha Reference to input heightmap for alpha channel, expected
+   in [0, 1].
    * @param reverse Reverse colormap.
    */
   void colorize(Heightmap                      &color_level,
@@ -615,9 +621,9 @@ struct HeightmapRGBA
    * @brief Computes the luminance of an RGBA height map.
    *
    * This method creates a grayscale `HeightMap` based on the luminance
-   * values calculated from the red, green, and blue channels of the RGBA height
-   * map. The luminance is computed using the standard formula: \f$ L = 0.299
-   * \times R + 0.587 \times G + 0.114 \times B \f$.
+   * values calculated from the red, green, and blue channels of the RGBA
+   * height map. The luminance is computed using the standard formula: \f$ L =
+   * 0.299 \times R + 0.587 \times G + 0.114 \times B \f$.
    *
    * @return A `HeightMap` representing the grayscale luminance of the current
    * RGBA height map.
@@ -670,13 +676,14 @@ struct HeightmapRGBA
  *
  * @param nmap_base       Reference to the base normal map in RGBA format.
  * @param nmap_detail     Reference to the detail normal map in RGBA format.
- * @param detail_scaling  Scaling factor for the detail normal map intensity in
+ * @param detail_scaling  Scaling factor for the detail normal map intensity
+ * in
  * [-1.f, 1.f]. Default is 1.0f.
  * @param blending_method Method to blend the two normal maps. Options are
  * specified by the NormalMapBlendingMethod enum (e.g., NMAP_DERIVATIVE).
  *
- * @return A HeightMapRGBA object that contains the result of blending the base
- * and detail normal maps.
+ * @return A HeightMapRGBA object that contains the result of blending the
+ * base and detail normal maps.
  *
  * **Example**
  * @include ex_mix_normal_map_rgba.cpp
@@ -696,15 +703,18 @@ HeightmapRGBA mix_normal_map_rgba(HeightmapRGBA          &nmap_base,
                                   NormalMapBlendingMethod blending_method =
                                       NormalMapBlendingMethod::NMAP_DERIVATIVE);
 
-// shape, shift, scale, noise_x, noise_y
-
 /**
- * @brief
+ * @brief Fills the heightmap using the provided noise maps and operation.
  *
- * @param h
- * @param p_noise_x
- * @param p_noise_y
- * @param nullary_op
+ * This function fills the heightmap `h` using the noise maps `p_noise_x` and
+ * `p_noise_y` and the provided `nullary_op` function. The `nullary_op` function
+ * is expected to take a `Vec2<int>` and `Vec4<float>` as input and return an
+ * `Array` using the noise maps.
+ *
+ * @param h The heightmap to be filled.
+ * @param p_noise_x Pointer to the noise map for the x-axis.
+ * @param p_noise_y Pointer to the noise map for the y-axis.
+ * @param nullary_op The operation to be applied for filling the heightmap.
  *
  * **Example**
  * @include ex_heightmap_fill.cpp
@@ -845,7 +855,16 @@ void transform(
     std::function<void(Array &, Array &, Array &, Array &, Array &, Array &)>
         op);
 
-// generic transform
+/**
+ * @brief Applies a transformation operation to a collection of heightmaps.
+ *
+ * @param p_hmaps A vector of pointers to Heightmap objects to be transformed.
+ * @param op A function that defines the transformation operation. It takes a
+ *           vector of Array pointers, a Vec2<int> representing dimensions,
+ * and a Vec4<float> representing transformation parameters.
+ * @param transform_mode The mode of transformation to be applied. Default is
+ *                       TransformMode::DISTRIBUTED.
+ */
 void transform(std::vector<Heightmap *>                     p_hmaps,
                std::function<void(const std::vector<Array *>,
                                   const hmap::Vec2<int>,
