@@ -306,6 +306,11 @@ int main(void)
           1e-3f,
           "relative_elevation");
 
+  compare([&ir](hmap::Array &z) { z = hmap::ruggedness(z, ir); },
+          [&ir](hmap::Array &z) { z = hmap::gpu::ruggedness(z, ir); },
+          1e-3f,
+          "ruggedness");
+
   compare([&ir](hmap::Array &z) { z = hmap::rugosity(z, ir); },
           [&ir](hmap::Array &z) { z = hmap::gpu::rugosity(z, ir); },
           1e-3f,

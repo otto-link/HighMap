@@ -141,6 +141,8 @@ Array relative_distance_from_skeleton(const Array &array,
 
 Array relative_elevation(const Array &array, int ir);
 
+Array ruggedness(const Array &array, int ir);
+
 Array rugosity(const Array &z, int ir, bool convex = true);
 
 void shrink(Array &array, int ir);

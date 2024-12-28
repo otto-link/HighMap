@@ -343,6 +343,27 @@ Array kmeans_clustering3(const Array        &array1,
 Array relative_elevation(const Array &array, int ir);
 
 /**
+ * @brief Computes the ruggedness of each element in the input array.
+ *
+ * The ruggedness is calculated as the square root of the sum of squared
+ * differences between each element and its neighbors within a specified radius.
+ *
+ * @param array The input array for which ruggedness is to be computed.
+ * @param ir The radius within which neighbors are considered for ruggedness
+ * calculation.
+ * @return An array containing the ruggedness values for each element in the
+ * input array.
+ *
+ * **Example**
+ * @include relative_ruggedness.cpp
+ *
+ * **Result**
+ * @image html relative_ruggedness0.png
+ * @image html relative_ruggedness1.png
+ */
+Array ruggedness(const Array &array, int ir);
+
+/**
  * @brief Estimates the rugosity of a surface by analyzing the skewness of the
  * elevation data, which reflects surface roughness.
  *

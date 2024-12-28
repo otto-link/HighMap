@@ -19,6 +19,26 @@ Array relative_elevation(const Array &array, int ir)
   return (array - amin) / (amax - amin + std::numeric_limits<float>::min());
 }
 
+Array ruggedness(const Array &array, int ir)
+{
+  Array rg(array.shape);
+
+  auto run = clwrapper::Run("ruggedness");
+
+  run.bind_imagef("array",
+                  const_cast<std::vector<float> &>(array.vector),
+                  array.shape.x,
+                  array.shape.y);
+  run.bind_imagef("out", rg.vector, array.shape.x, array.shape.y, true);
+  run.bind_arguments(array.shape.x, array.shape.y, ir);
+
+  run.execute({array.shape.x, array.shape.y});
+
+  run.read_imagef("out");
+
+  return rg;
+}
+
 Array rugosity(const Array &z, int ir, bool convex)
 {
   Array z_avg(z.shape);

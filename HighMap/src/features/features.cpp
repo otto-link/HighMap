@@ -22,6 +22,33 @@ Array relative_elevation(const Array &array, int ir)
   return (array - amin) / (amax - amin + std::numeric_limits<float>::min());
 }
 
+Array ruggedness(const Array &array, int ir)
+{
+  Array rg(array.shape);
+
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
+    {
+      int i1 = std::max(i - ir, 0);
+      int i2 = std::min(i + ir + 1, array.shape.x);
+      int j1 = std::max(j - ir, 0);
+      int j2 = std::min(j + ir + 1, array.shape.y);
+
+      for (int p = i1; p < i2; p++)
+        for (int q = j1; q < j2; q++)
+        {
+          float delta = array(i, j) - array(p, q);
+          rg(i, j) += delta * delta;
+        }
+    }
+
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
+      rg(i, j) = std::sqrt(rg(i, j));
+
+  return rg;
+}
+
 Array rugosity(const Array &z, int ir, bool convex)
 {
   hmap::Array z_avg = Array(z.shape);

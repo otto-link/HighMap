@@ -65,54 +65,53 @@ int main(void)
 
   int ir = 32;
 
-  {
+  // {
+  //   std::vector<hmap::NoiseType> types = {
+  //       // hmap::NoiseType::PARBERRY,
+  //       hmap::NoiseType::PERLIN,
+  //       hmap::NoiseType::PERLIN_BILLOW,
+  //       hmap::NoiseType::PERLIN_HALF,
+  //       hmap::NoiseType::SIMPLEX2,
+  //       // hmap::NoiseType::SIMPLEX2S,
+  //       hmap::NoiseType::VALUE,
+  //       hmap::NoiseType::VALUE_CUBIC,
+  //       // hmap::NoiseType::VALUE_DELAUNAY,
+  //       hmap::NoiseType::VALUE_LINEAR,
+  //       hmap::NoiseType::WORLEY
+  //       // hmap::NoiseType::WORLEY_DOUBLE,
+  //       // hmap::NoiseType::WORLEY_VALUE
+  //   };
 
-    std::vector<hmap::NoiseType> types = {
-        // hmap::NoiseType::PARBERRY,
-        hmap::NoiseType::PERLIN,
-        hmap::NoiseType::PERLIN_BILLOW,
-        hmap::NoiseType::PERLIN_HALF,
-        hmap::NoiseType::SIMPLEX2,
-        // hmap::NoiseType::SIMPLEX2S,
-        hmap::NoiseType::VALUE,
-        hmap::NoiseType::VALUE_CUBIC,
-        // hmap::NoiseType::VALUE_DELAUNAY,
-        hmap::NoiseType::VALUE_LINEAR,
-        hmap::NoiseType::WORLEY
-        // hmap::NoiseType::WORLEY_DOUBLE,
-        // hmap::NoiseType::WORLEY_VALUE
-    };
+  //   hmap::Vec2<float> kw = {32.f, 32.f};
 
-    hmap::Vec2<float> kw = {32.f, 32.f};
+  //   for (auto type : types)
+  //   {
+  //     compare([type, shape, kw](hmap::Array &z)
+  //             { z = hmap::noise(type, shape, kw, 1); },
+  //             [type, shape, kw](hmap::Array &z)
+  //             { z = hmap::gpu::noise(type, shape, kw, 1); },
+  //             1e-3f,
+  //             "noise" + std::to_string(type) + ".png");
+  //   }
 
-    for (auto type : types)
-    {
-      compare([type, shape, kw](hmap::Array &z)
-              { z = hmap::noise(type, shape, kw, 1); },
-              [type, shape, kw](hmap::Array &z)
-              { z = hmap::gpu::noise(type, shape, kw, 1); },
-              1e-3f,
-              "noise" + std::to_string(type) + ".png");
-    }
-
-    // fbm
-    kw = {4.f, 4.f};
-    for (auto type : types)
-    {
-      compare(
-          [type, shape, kw](hmap::Array &z)
-          {
-            if (type != hmap::NoiseType::VALUE_LINEAR)
-              z = hmap::noise_fbm(type, shape, kw, 1);
-            else
-              z = 0.f;
-          },
-          [type, shape, kw](hmap::Array &z)
-          { z = hmap::gpu::noise_fbm(type, shape, kw, 1); },
-          1e-3f,
-          "noise_fbm" + std::to_string(type) + ".png");
-    }
-  }
+  //   // fbm
+  //   kw = {4.f, 4.f};
+  //   for (auto type : types)
+  //   {
+  //     compare(
+  //         [type, shape, kw](hmap::Array &z)
+  //         {
+  //           if (type != hmap::NoiseType::VALUE_LINEAR)
+  //             z = hmap::noise_fbm(type, shape, kw, 1);
+  //           else
+  //             z = 0.f;
+  //         },
+  //         [type, shape, kw](hmap::Array &z)
+  //         { z = hmap::gpu::noise_fbm(type, shape, kw, 1); },
+  //         1e-3f,
+  //         "noise_fbm" + std::to_string(type) + ".png");
+  //   }
+  // }
 
 #else
   std::cout << "OpenCL not activated\n";
