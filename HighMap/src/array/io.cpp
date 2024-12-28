@@ -114,7 +114,7 @@ void Array::to_numpy(const std::string &fname)
   npy::npy_data_ptr<float> d;
   d.data_ptr = this->vector.data();
   d.shape = {(uint)this->shape.x, (uint)this->shape.y};
-  d.fortran_order = false;
+  d.fortran_order = true;
 
   npy::write_npy(fname, d);
 }

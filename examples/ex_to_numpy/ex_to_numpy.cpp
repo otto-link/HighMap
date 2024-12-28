@@ -17,8 +17,11 @@ int main(void)
 
   // --- python script to check this provided below in the comments
 
+  // import matplotlib.pyplot as plt
   // import numpy as np
   // z = np.load('out.npy')
   // print(z.shape)
   // print(z[10, 12])
+  // plt.imshow(z, cmap='jet')
+  // plt.show()
 }
