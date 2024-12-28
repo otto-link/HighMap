@@ -12,11 +12,11 @@ float2 g_to_xy(const int2   g,
                const float  dy,
                const float4 bbox)
 {
-  float x = dx + (float)g.x / (float)nx;
-  float y = dy + (float)g.y / (float)ny;
+  float x = (float)g.x / (float)nx;
+  float y = (float)g.y / (float)ny;
 
-  x = kx * (x * (bbox.y - bbox.x) + bbox.x);
-  y = ky * (y * (bbox.w - bbox.z) + bbox.z);
+  x = kx * (x * (bbox.y - bbox.x) + bbox.x) + kx * dx;
+  y = ky * (y * (bbox.w - bbox.z) + bbox.z) + ky * dy;
 
   return (float2)(x, y);
 }
