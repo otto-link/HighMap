@@ -354,6 +354,8 @@ Array relative_elevation(const Array &array, int ir);
  * @return An array containing the ruggedness values for each element in the
  * input array.
  *
+ * @note https://xdem.readthedocs.io/en/latest/terrain.html
+ *
  * **Example**
  * @include relative_ruggedness.cpp
  *

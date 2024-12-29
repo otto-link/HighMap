@@ -1586,7 +1586,7 @@ Array voronoi(Vec2<int>         shape,
  *
  * @return A 2D array representing the generated Voronoi diagram.
  *
- *  @note Only available if OpenCL is enabled.
+ * @note Only available if OpenCL is enabled.
  *
  * **Example**
  * @include ex_voronoi.cpp
