@@ -357,11 +357,11 @@ Array relative_elevation(const Array &array, int ir);
  * @note https://xdem.readthedocs.io/en/latest/terrain.html
  *
  * **Example**
- * @include relative_ruggedness.cpp
+ * @include ex_ruggedness.cpp
  *
  * **Result**
- * @image html relative_ruggedness0.png
- * @image html relative_ruggedness1.png
+ * @image html ex_ruggedness0.png
+ * @image html ex_ruggedness1.png
  */
 Array ruggedness(const Array &array, int ir);
 
