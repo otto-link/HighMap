@@ -309,6 +309,16 @@ float smoothstep5(const float x)
   return x * x * x * (x * (x * 6.f - 15.f) + 10.f);
 }
 
+float smoothstep5_lower(const float x)
+{
+  return x * x * x * (6.f - 8.f * x + 3.f * x * x);
+}
+
+float smoothstep5_upper(const float x)
+{
+  return x * (1.f + x * x * (4.f - 7.f * x + 3.f * x * x));
+}
+
 float smoothstep7(const float x)
 {
   float x2 = x * x;

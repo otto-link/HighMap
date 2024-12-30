@@ -1507,6 +1507,67 @@ Array gavoronoise(const Array &base,
                   Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
+ * @brief Generates a heightmap representing a radial mountain range.
+ *
+ * This function creates a heightmap that simulates a mountain range emanating
+ * radially from a specified center. The mountain range is influenced by various
+ * noise parameters and control attributes.
+ *
+ * @param shape            The dimensions of the output heightmap as a 2D
+ * vector.
+ * @param kw               The wave numbers (frequency components) as a 2D
+ * vector.
+ * @param seed             The seed for random noise generation.
+ * @param half_width       The half-width of the radial mountain range,
+ * controlling its spread. Default is 0.2f.
+ * @param angle_spread_ratio The ratio controlling the angular spread of the
+ * mountain range. Default is 0.5f.
+ * @param center           The center point of the radial mountain range as
+ * normalized coordinates within [0, 1]. Default is {0.5f, 0.5f}.
+ * @param octaves          The number of octaves for fractal noise generation.
+ * Default is 8.
+ * @param weight           The initial weight for noise contribution. Default is
+ * 0.7f.
+ * @param persistence      The amplitude scaling factor for subsequent noise
+ * octaves. Default is 0.5f.
+ * @param lacunarity       The frequency scaling factor for subsequent noise
+ * octaves. Default is 2.0f.
+ * @param p_ctrl_param     Optional pointer to an array of control parameters
+ * influencing the terrain generation.
+ * @param p_noise_x        Optional pointer to a precomputed noise array for the
+ * X-axis.
+ * @param p_noise_y        Optional pointer to a precomputed noise array for the
+ * Y-axis.
+ * @param bbox             The bounding box of the output heightmap in
+ * normalized coordinates [xmin, xmax, ymin, ymax]. Default is {0.0f, 1.0f,
+ * 0.0f, 1.0f}.
+ *
+ * @return Array The generated heightmap representing the radial mountain range.
+ *
+ * @note Only available if OpenCL is enabled.
+ *
+ * **Example**
+ * @include ex_mountain_range_radial.cpp
+ *
+ * **Result**
+ * @image html ex_mountain_range_radial.png
+ */
+Array mountain_range_radial(Vec2<int>   shape,
+                            Vec2<float> kw,
+                            uint        seed,
+                            float       half_width = 0.2f,
+                            float       angle_spread_ratio = 0.5f,
+                            Vec2<float> center = {0.5f, 0.5f},
+                            int         octaves = 8,
+                            float       weight = 0.7f,
+                            float       persistence = 0.5f,
+                            float       lacunarity = 2.f,
+                            Array      *p_ctrl_param = nullptr,
+                            Array      *p_noise_x = nullptr,
+                            Array      *p_noise_y = nullptr,
+                            Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
  * @brief Generates a Voronoi diagram in a 2D array with configurable
  * properties.
  *
@@ -1533,7 +1594,7 @@ Array gavoronoise(const Array &base,
  *
  * @return A 2D array representing the generated Voronoi diagram.
  *
- *  @note Only available if OpenCL is enabled.
+ * @note Only available if OpenCL is enabled.
  *
  * **Example**
  * @include ex_voronoi.cpp

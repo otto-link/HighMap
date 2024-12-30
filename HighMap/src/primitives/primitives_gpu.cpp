@@ -344,6 +344,56 @@ Array gavoronoise(const Array &base,
   return array;
 }
 
+Array mountain_range_radial(Vec2<int>   shape,
+                            Vec2<float> kw,
+                            uint        seed,
+                            float       half_width,
+                            float       angle_spread_ratio,
+                            Vec2<float> center,
+                            int         octaves,
+                            float       weight,
+                            float       persistence,
+                            float       lacunarity,
+                            Array      *p_ctrl_param,
+                            Array      *p_noise_x,
+                            Array      *p_noise_y,
+                            Vec4<float> bbox)
+{
+  Array array(shape);
+
+  auto run = clwrapper::Run("mountain_range_radial");
+
+  run.bind_buffer<float>("array", array.vector);
+
+  helper_bind_optional_buffer(run, "ctrl_param", p_ctrl_param);
+  helper_bind_optional_buffer(run, "noise_x", p_noise_x);
+  helper_bind_optional_buffer(run, "noise_y", p_noise_y);
+
+  run.bind_arguments(array.shape.x,
+                     array.shape.y,
+                     kw.x,
+                     kw.y,
+                     seed,
+                     half_width,
+                     angle_spread_ratio,
+                     center,
+                     octaves,
+                     weight,
+                     persistence,
+                     lacunarity,
+                     p_ctrl_param ? 1 : 0,
+                     p_noise_x ? 1 : 0,
+                     p_noise_y ? 1 : 0,
+                     bbox);
+
+  run.execute({array.shape.x, array.shape.y});
+  run.read_buffer("array");
+
+  array.to_png_grayscale("out1.png", CV_16U);
+
+  return array;
+}
+
 Array voronoi(Vec2<int>         shape,
               Vec2<float>       kw,
               uint              seed,

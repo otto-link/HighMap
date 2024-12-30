@@ -56,6 +56,7 @@ bool init_opencl()
   // kernels only available on GPU
 #include "kernels/gabor_wave.cl"
 #include "kernels/gavoronoise.cl"
+#include "kernels/mountain_range_radial.cl"
 #include "kernels/voronoi.cl"
 #include "kernels/voronoi_edge_distance.cl"
 #include "kernels/voronoise.cl"
