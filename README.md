@@ -52,6 +52,17 @@ vcpkg install libpng glm ocl-icd-opencl-dev assimp opencv
 
 You should then be able to build the sources using Visual Studio.
 
+### CMake Integration
+
+To integrate HighMap into your CMake-based project, follow these steps:
+
+1. Add the library to your project's `CMakeLists.txt`:
+   ```cmake
+   add_subdirectory(HighMap)
+   target_link_libraries(your_project_target highmap)
+   ```
+2. Link the `highmap` library to your target, as shown above.
+   
 ### Usage examples
 
 See the `examples` folder.
