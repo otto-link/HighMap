@@ -94,8 +94,8 @@ Array select_elevation_slope(const Array &array, float gradient_scale)
 Array select_eq(const Array &array, float value)
 {
   Array c = array;
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
       c(i, j) = c(i, j) == value ? 1.f : 0.f;
   return c;
 }
@@ -103,8 +103,8 @@ Array select_eq(const Array &array, float value)
 Array select_gt(const Array &array, float value)
 {
   Array c = array;
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
       c(i, j) = c(i, j) > value ? 1.f : 0.f;
   return c;
 }
@@ -114,8 +114,8 @@ Array select_gradient_angle(const Array &array, float angle)
   Array c = gradient_angle(array);
   float alpha = angle / 180.f * M_PI;
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
       c(i, j) = std::max(0.f, std::cos(alpha + c(i, j)));
   return c;
 }
@@ -123,8 +123,8 @@ Array select_gradient_angle(const Array &array, float angle)
 Array select_gradient_binary(const Array &array, float talus_center)
 {
   Array c = gradient_norm(array);
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
       c(i, j) = c(i, j) > talus_center ? 1.f : 0.f;
   return c;
 }
@@ -152,8 +152,8 @@ Array select_gradient_inv(const Array &array,
 Array select_interval(const Array &array, float value1, float value2)
 {
   Array c = array;
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       if ((c(i, j) > value1) and (c(i, j) < value2))
         c(i, j) = 1.f;
@@ -175,8 +175,8 @@ Array select_inward_outward_slope(const Array &array,
   int ic = (int)((center.x - shift.x) / scale.x * array.shape.x);
   int jc = (int)((center.y - shift.y) / scale.y * array.shape.y);
 
-  for (int i = 0; i < array.shape.x - 1; i++)
-    for (int j = 0; j < array.shape.y - 1; j++)
+  for (int j = 0; j < array.shape.y - 1; j++)
+    for (int i = 0; i < array.shape.x - 1; i++)
     {
       float hypot = (float)std::hypot(i - ic, j - jc);
       if (hypot > 0.f)
@@ -200,8 +200,8 @@ Array select_inward_outward_slope(const Array &array,
 Array select_lt(const Array &array, float value)
 {
   Array c = array;
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
       c(i, j) = c(i, j) < value ? 1.f : 0.f;
   return c;
 }
@@ -213,8 +213,8 @@ Array select_midrange(const Array &array, float gain, float vmin, float vmax)
 
   float norm_coeff = 1.f / std::exp(-1.f);
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       float v = c(i, j) * c(i, j);
       c(i, j) = std::pow(norm_coeff * std::exp(-1.f / (1.f - v)), 1.f / gain);
@@ -260,8 +260,8 @@ void select_multiband3(const Array &array,
     return rn * rn * (3.f - 2.f * rn);
   };
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       band_low(i,
                j) = lambda(array(i, j), vmin, 0.5f * (vmin + v1), v1, overlap);
@@ -299,8 +299,8 @@ Array select_pulse(const Array &array, float value, float sigma)
   float a = 1.f / sigma;
   float b = -value / sigma;
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       float r = std::abs(a * array(i, j) + b);
       if (r < 1.f) c(i, j) = 1.f - r * r * (3.f - 2.f * r);
@@ -324,8 +324,8 @@ Array select_transitions(const Array &array1,
   // set the whole mask to 1 and look for "non-transitioning" regions
   Array mask = Array(array1.shape, 1.f);
 
-  for (int i = 0; i < array1.shape.x - 1; i++)
-    for (int j = 0; j < array1.shape.y - 1; j++)
+  for (int j = 0; j < array1.shape.y - 1; j++)
+    for (int i = 0; i < array1.shape.x - 1; i++)
     {
       if ((array_blend(i, j) == array1(i, j)) &
           (array_blend(i + 1, j) == array1(i + 1, j)) &

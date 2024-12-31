@@ -21,8 +21,8 @@ Array biweight(Vec2<int> shape)
   int   ri = (int)(0.5f * ((float)shape.x - 1.f));
   int   rj = (int)(0.5f * ((float)shape.y - 1.f));
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       float xi = ((float)i - ri) / ((float)(ri + 1));
       float yi = ((float)j - rj) / ((float)(rj + 1));
@@ -47,8 +47,8 @@ Array blackman(Vec2<int> shape)
   for (int j = 0; j < array.shape.y; j++)
     wy[j] = 0.42f - 0.5f * std::cos(y[j]) + 0.08f * std::cos(2.f * y[j]);
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
       array(i, j) = wx[i] * wy[j];
 
   return array;
@@ -60,8 +60,8 @@ Array cone(Vec2<int> shape)
   int   ri = (int)(0.5f * ((float)shape.x - 1.f));
   int   rj = (int)(0.5f * ((float)shape.y - 1.f));
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       float xi = (float)i - ri;
       float yi = (float)j - rj;
@@ -101,8 +101,8 @@ Array cubic_pulse(Vec2<int> shape)
   int   ri = (int)(0.5f * ((float)shape.x - 1.f));
   int   rj = (int)(0.5f * ((float)shape.y - 1.f));
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       float xi = (float)i - ri;
       float yi = (float)j - rj;
@@ -112,6 +112,28 @@ Array cubic_pulse(Vec2<int> shape)
     }
 
   return array;
+}
+
+std::vector<float> cubic_pulse_1d(int nk)
+{
+  std::vector<float> kernel_1d(nk);
+
+  float sum = 0.f;
+  float x0 = (float)nk / 2.f;
+  for (int i = 0; i < nk; i++)
+  {
+    float x = std::abs((float)i - x0) / x0;
+    kernel_1d[i] = 1.f - x * x * (3.f - 2.f * x);
+    sum += kernel_1d[i];
+  }
+
+  // normalize
+  for (int i = 0; i < nk; i++)
+  {
+    kernel_1d[i] /= sum;
+  }
+
+  return kernel_1d;
 }
 
 Array cubic_pulse_directional(Vec2<int> shape,
@@ -130,8 +152,8 @@ Array cubic_pulse_directional(Vec2<int> shape,
   float ca = std::cos(angle / 180.f * M_PI);
   float sa = std::sin(angle / 180.f * M_PI);
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       float xi = (float)i - ci;
       float yi = (float)j - cj;
@@ -158,8 +180,8 @@ Array cubic_pulse_truncated(Vec2<int> shape, float slant_ratio, float angle)
   float ca = std::cos(angle / 180.f * M_PI);
   float sa = std::sin(angle / 180.f * M_PI);
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       float xi = ((float)i - ri) / float(ri + 1);
       float yi = ((float)j - rj) / float(rj + 1);
@@ -182,8 +204,8 @@ Array disk(Vec2<int> shape)
   int   ri = (int)(0.5f * ((float)shape.x - 1.f));
   int   rj = (int)(0.5f * ((float)shape.y - 1.f));
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       if ((i - ri) * (i - ri) + (j - rj) * (j - rj) <= ri * rj)
         array(i, j) = 1.f;
@@ -207,16 +229,16 @@ Array gabor(Vec2<int> shape, float kw, float angle, bool quad_phase_shift)
 
   if (!quad_phase_shift)
   {
-    for (int i = 0; i < array.shape.x; i++)
-      for (int j = 0; j < array.shape.y; j++)
+    for (int j = 0; j < array.shape.y; j++)
+      for (int i = 0; i < array.shape.x; i++)
         // "kw" and not "2 kw" since the domain is [-1, 1]
         array(i, j) = cpulse(i, j) *
                       std::cos(M_PI * kw * (x[i] * ca + y[j] * sa));
   }
   else
   {
-    for (int i = 0; i < array.shape.x; i++)
-      for (int j = 0; j < array.shape.y; j++)
+    for (int j = 0; j < array.shape.y; j++)
+      for (int i = 0; i < array.shape.x; i++)
         // "kw" and not "2 kw" since the domain is [-1, 1]
         array(i, j) = cpulse(i, j) *
                       std::sin(M_PI * kw * (x[i] * ca + y[j] * sa));
@@ -243,8 +265,8 @@ Array gabor_dune(Vec2<int> shape,
   // gaussian_decay shape approximate using a cubic pulse
   Array cpulse = cubic_pulse(shape);
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       float xp = std::fmod(kw * (x[i] * ca + y[j] * sa), 1.f);
       float yp = 0.f;
@@ -272,8 +294,8 @@ Array lorentzian(Vec2<int> shape, float footprint_threshold)
   float cross_width = std::sqrt(1.f / (1.f / footprint_threshold - 1.f));
   float cw2 = 1.f / (cross_width * cross_width);
 
-  for (int i = 0; i < shape.x; i++)
-    for (int j = 0; j < shape.y; j++)
+  for (int j = 0; j < shape.y; j++)
+    for (int i = 0; i < shape.x; i++)
     {
       float x = 2.f * (float)i / (float)shape.x - 1.f;
       float y = 2.f * (float)j / (float)shape.y - 1.f;
@@ -290,8 +312,8 @@ Array hann(Vec2<int> shape)
   std::vector<float> x = linspace(0.f, 2.f * M_PI, shape.x);
   std::vector<float> y = linspace(0.f, 2.f * M_PI, shape.y);
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
       array(i, j) = (0.5f - 0.5f * std::cos(x[i])) *
                     (0.5f - 0.5f * std::cos(y[j]));
 
@@ -304,8 +326,8 @@ Array lorentzian_compact(Vec2<int> shape)
 {
   Array array = Array(shape);
 
-  for (int i = 0; i < shape.x; i++)
-    for (int j = 0; j < shape.y; j++)
+  for (int j = 0; j < shape.y; j++)
+    for (int i = 0; i < shape.x; i++)
     {
       float x = 2.f * (float)i / (float)shape.x - 1.f;
       float y = 2.f * (float)j / (float)shape.y - 1.f;
@@ -322,8 +344,8 @@ Array sinc_radial(Vec2<int> shape, float kw)
   std::vector<float> x = linspace(-kw * M_PI, kw * M_PI, shape.x);
   std::vector<float> y = linspace(-kw * M_PI, kw * M_PI, shape.y);
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       float r = std::hypot(x[i], y[j]);
       array(i, j) = r == 0.f ? 1.f : std::sin(r) / r;
@@ -346,8 +368,8 @@ Array sinc_separable(Vec2<int> shape, float kw)
   for (int j = 0; j < array.shape.y; j++)
     wy[j] = y[j] == 0.f ? 1.f : std::sin(y[j]) / y[j];
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
       array(i, j) = wx[i] * wy[j];
 
   return array;
@@ -359,8 +381,8 @@ Array smooth_cosine(Vec2<int> shape)
   int   ri = (int)(0.5f * ((float)shape.x - 1.f));
   int   rj = (int)(0.5f * ((float)shape.y - 1.f));
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       float xi = (float)i - ri;
       float yi = (float)j - rj;
@@ -382,8 +404,8 @@ Array tricube(Vec2<int> shape)
   int   ri = (int)(0.5f * ((float)shape.x - 1.f));
   int   rj = (int)(0.5f * ((float)shape.y - 1.f));
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       float xi = (float)i - ri;
       float yi = (float)j - rj;

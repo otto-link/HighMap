@@ -30,8 +30,8 @@ void swirl(Array            &dx,
 
   if (!p_noise)
   {
-    for (int i = 0; i < shape.x; i++)
-      for (int j = 0; j < shape.y; j++)
+    for (int j = 0; j < shape.y; j++)
+      for (int i = 0; i < shape.x; i++)
       {
         float x = (float)i / (float)(shape.x - 1) * scale.x - xc;
         float y = (float)j / (float)(shape.y - 1) * scale.y - yc;
@@ -44,8 +44,8 @@ void swirl(Array            &dx,
   }
   else
   {
-    for (int i = 0; i < shape.x; i++)
-      for (int j = 0; j < shape.y; j++)
+    for (int j = 0; j < shape.y; j++)
+      for (int i = 0; i < shape.x; i++)
       {
         float x = (float)i / (float)(shape.x - 1) * scale.x - xc;
         float y = (float)j / (float)(shape.y - 1) * scale.y - yc;

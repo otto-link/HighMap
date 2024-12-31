@@ -537,7 +537,57 @@ void gamma_correction_local(Array &array,
                             Array *p_mask,
                             float  k = 0.1f);
 
+/**
+ * @brief Applies the Kuwahara filter to an array with optional per-pixel
+ * masking.
+ *
+ * This overloaded version of the Kuwahara filter allows applying the filter
+ * with a per-pixel mask. The mask determines the blending ratio for each pixel,
+ * allowing selective smoothing.
+ *
+ * @param array The input/output array to apply the filter on. The array is
+ * modified in place.
+ * @param ir The radius of the region to analyze for each pixel. Larger values
+ * result in stronger smoothing.
+ * @param mix_ratio A blending factor between the original and filtered arrays
+ * when `p_mask` is `nullptr`. Ignored if `p_mask` is provided.
+ *
+ * **Example**
+ * @include ex_kuwahara.cpp
+ *
+ * **Result**
+ * @image html ex_kuwahara.png
+ */
 void kuwahara(Array &array, int ir, float mix_ratio = 1.f);
+
+/**
+ * @brief Applies the Kuwahara filter to an array with optional per-pixel
+ * masking.
+ *
+ * This overloaded version of the Kuwahara filter allows applying the filter
+ * with a per-pixel mask. The mask determines the blending ratio for each pixel,
+ * allowing selective smoothing.
+ *
+ * @param array The input/output array to apply the filter on. The array is
+ * modified in place.
+ * @param ir The radius of the region to analyze for each pixel. Larger values
+ * result in stronger smoothing.
+ * @param p_mask A pointer to an array representing the mask. The values in the
+ * mask range from 0.0 to 1.0, specifying the blending ratio for each pixel. If
+ * `nullptr`, the filter is applied without masking.
+ * @param mix_ratio A blending factor between the original and filtered arrays
+ * when `p_mask` is `nullptr`. Ignored if `p_mask` is provided.
+ *
+ * If no mask is provided:
+ * - The function behaves like the single-argument version of `kuwahara`.
+ *
+ * **Example**
+ * @include ex_kuwahara.cpp
+ *
+ * **Result**
+ * @image html ex_kuwahara.png
+ */
+void kuwahara(Array &array, int ir, Array *p_mask, float mix_ratio = 1.f);
 
 /**
  * @brief Apply a low-pass Laplace filter to the input array.

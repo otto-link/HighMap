@@ -49,6 +49,7 @@ struct Particle
   Pos         pos;
   Vec2<float> vel;
   float       vnorm;
+  bool        vlim = 1.f;
   bool        is_active = true;
 
   // constructor

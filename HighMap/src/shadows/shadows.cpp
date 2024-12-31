@@ -54,8 +54,8 @@ Array shadow_grid(const Array &z, float shadow_talus)
   for (int j = 0; j < z.shape.y; j++)
     sh(0, j) = z(0, j);
 
-  for (int i = 1; i < z.shape.x; i++)
-    for (int j = 0; j < z.shape.y; j++)
+  for (int j = 0; j < z.shape.y; j++)
+    for (int i = 1; i < z.shape.x; i++)
       sh(i, j) = std::max(z(i, j), sh(i - 1, j) - shadow_talus);
 
   sh -= z;
@@ -78,8 +78,8 @@ Array shadow_heightmap(const Array &z,
 
   Vec3<float> light_vector = Vec3<float>(vx, vy, std::sin(zenith_rad));
 
-  for (int i = 1; i < z.shape.x - 1; i++)
-    for (int j = 1; j < z.shape.y - 1; j++)
+  for (int j = 1; j < z.shape.y - 1; j++)
+    for (int i = 1; i < z.shape.x - 1; i++)
     {
       Vec3<float> normal = z.get_normal_at(i, j);
       Vec3<float> pos;

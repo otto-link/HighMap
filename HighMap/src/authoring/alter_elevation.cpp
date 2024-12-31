@@ -49,8 +49,8 @@ void alter_elevation(Array      &array,
 
     float sign = (array(ic, jc) > 0.f) - (array(ic, jc) < 0.f);
 
-    for (int i = ik0; i < ik1; i++)
-      for (int j = jk0; j < jk1; j++)
+    for (int j = jk0; j < jk1; j++)
+      for (int i = ik0; i < ik1; i++)
         amp(i - ik0 + i0, j - jk0 + j0) += p.v * kernel(i, j) *
                                            array(i - ik0 + i0, j - jk0 + j0) *
                                            sign;

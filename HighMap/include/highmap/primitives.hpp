@@ -24,6 +24,16 @@
 namespace hmap
 {
 
+enum VoronoiReturnType : int
+{
+  F1_SQRT,
+  F1_SQUARED,
+  F2_SQRT,
+  F2_SQUARED,
+  F1F2_SQRT,
+  F1F2_SQUARED,
+};
+
 /**
  * @brief Return a 'biquadratic pulse'.
  *
@@ -291,6 +301,48 @@ Array diffusion_limited_aggregation(Vec2<int> shape,
                                     float     seeding_outer_radius_ratio = 0.2f,
                                     float     slope = 8.f,
                                     float     noise_ratio = 0.2f);
+
+/**
+ * @brief Generates a disk-shaped heightmap with optional modifications.
+ *
+ * This function creates a 2D array representing a disk shape with a specified
+ * radius, slope, and other optional parameters such as control parameters,
+ * noise, and stretching for additional customization.
+ *
+ * @param shape Dimensions of the output array (width, height).
+ * @param radius Radius of the disk, in normalized coordinates (0.0 to 1.0).
+ * @param slope Slope of the disk edge transition. A larger value makes the edge
+ *        transition sharper. Defaults to 1.0.
+ * @param p_ctrl_param Optional pointer to an `Array` controlling custom
+ * parameters for the disk generation.
+ * @param p_noise_x Optional pointer to an `Array` for adding noise in the
+ * x-direction.
+ * @param p_noise_y Optional pointer to an `Array` for adding noise in the
+ * y-direction.
+ * @param p_stretching Optional pointer to an `Array` for stretching the disk
+ *        horizontally or vertically.
+ * @param center Center of the disk in normalized coordinates (0.0 to 1.0).
+ * Defaults to {0.5, 0.5}.
+ * @param bbox Bounding box for the disk in normalized coordinates {x_min,
+ * x_max, y_min, y_max}. Defaults to {0.0, 1.0, 0.0, 1.0}.
+ *
+ * @return A 2D array representing the generated disk shape.
+ *
+ * * **Example**
+ * @include ex_disk.cpp
+ *
+ * **Result**
+ * @image html ex_disk.png
+ */
+Array disk(Vec2<int>   shape,
+           float       radius,
+           float       slope = 1.f,
+           Array      *p_ctrl_param = nullptr,
+           Array      *p_noise_x = nullptr,
+           Array      *p_noise_y = nullptr,
+           Array      *p_stretching = nullptr,
+           Vec2<float> center = {0.5f, 0.5f},
+           Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return a sparse Gabor noise.
@@ -869,6 +921,55 @@ Array phasor_fbm(PhasorProfile phasor_profile,
                  float         lacunarity = 2.f);
 
 /**
+ * @brief Generates a rectangle-shaped heightmap with optional modifications.
+ *
+ * This function creates a 2D array representing a rectangle with specified
+ * dimensions, rotation, and optional parameters for customization such as
+ * control parameters, noise, and stretching.
+ *
+ * @param shape Dimensions of the output array (width, height).
+ * @param rx Half-width of the rectangle, in normalized coordinates (0.0
+ * to 1.0).
+ * @param ry Half-height of the rectangle, in normalized coordinates (0.0
+ * to 1.0).
+ * @param angle Rotation angle of the rectangle in radians. Positive values
+ *        rotate counterclockwise.
+ * @param slope Slope of the rectangle edge transition. A larger value makes
+ *        the edge transition sharper. Defaults to 1.0.
+ * @param p_ctrl_param Optional pointer to an `Array` controlling custom
+ * parameters for the rectangle generation.
+ * @param p_noise_x Optional pointer to an `Array` for adding noise in the
+ * x-direction.
+ * @param p_noise_y Optional pointer to an `Array` for adding noise in the
+ * y-direction.
+ * @param p_stretching Optional pointer to an `Array` for stretching the
+ * rectangle horizontally or vertically.
+ * @param center Center of the rectangle in normalized coordinates (0.0 to 1.0).
+ *        Defaults to {0.5, 0.5}.
+ * @param bbox Bounding box for the rectangle in normalized coordinates {x_min,
+ * x_max, y_min, y_max}. Defaults to {0.0, 1.0, 0.0, 1.0}.
+ *
+ * @return A 2D array representing the generated rectangle shape.
+ *    *
+ * **Example**
+ * @include ex_rectangle.cpp
+ *
+ * **Result**
+ * @image html ex_rectangle.png
+ */
+Array rectangle(Vec2<int>   shape,
+                float       rx,
+                float       ry,
+                float       angle,
+                float       slope = 1.f,
+                Array      *p_ctrl_param = nullptr,
+                Array      *p_noise_x = nullptr,
+                Array      *p_noise_y = nullptr,
+                Array      *p_stretching = nullptr,
+                Vec2<float> center = {0.5f, 0.5f},
+                Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
  * @brief Return a rift function (Heaviside with an optional talus slope at
  * the transition).
  *
@@ -1201,3 +1302,481 @@ Array worley_double(Vec2<int>   shape,
                     Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
 } // namespace hmap
+
+#ifdef ENABLE_OPENCL
+#include "highmap/opencl/gpu_opencl.hpp"
+
+namespace hmap::gpu
+{
+
+/**
+ * @brief Return an array filled with coherence Gabor noise.
+ *
+ * @param shape Array shape.
+ * @param kw Noise wavenumbers {kx, ky} for each directions.
+ * @param seed Random seed number.
+ * @param angle Base orientation angle for the Gabor wavelets (in
+ * radians). Defaults to 0.
+ * @param angle_spread_ratio Ratio that controls the spread of wave orientations
+ * around the base angle. Defaults to 1.
+ * @param bbox Domain bounding box.
+ * @return Array Fractal noise.
+ *
+ * @note Taken from https://www.shadertoy.com/view/clGyWm
+ *
+ * @note Only available if OpenCL is enabled.
+ *
+ * **Example**
+ * @include ex_gabor_wave.cpp
+ *
+ * **Result**
+ * @image html ex_gabor_wave.png
+ */
+Array gabor_wave(Vec2<int>    shape,
+                 Vec2<float>  kw,
+                 uint         seed,
+                 const Array &angle,
+                 float        angle_spread_ratio = 1.f,
+                 Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
+
+Array gabor_wave(Vec2<int>   shape,
+                 Vec2<float> kw,
+                 uint        seed,
+                 float       angle = 0.f,
+                 float       angle_spread_ratio = 1.f,
+                 Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
+ * @brief Return an array filled with coherence Gabor noise.
+ *
+ * @param shape Array shape.
+ * @param kw Noise wavenumbers {kx, ky} for each directions.
+ * @param seed Random seed number.
+ * @param angle Base orientation angle for the Gabor wavelets (in
+ * radians). Defaults to 0.
+ * @param angle_spread_ratio Ratio that controls the spread of wave orientations
+ * around the base angle. Defaults to 1.
+ * @param octaves Number of octaves.
+ * @param weigth Octave weighting.
+ * @param persistence Octave persistence.
+ * @param lacunarity Defines the wavenumber ratio between each octaves.
+ * @param p_ctrl_param Reference to the control parameter array (acts as a
+ * multiplier for the weight parameter).
+ * @param p_noise_x, p_noise_y Reference to the input noise arrays.
+ * @param bbox Domain bounding box.
+ * @return Array Fractal noise.
+ *
+ * @note Taken from https://www.shadertoy.com/view/clGyWm
+ *
+ * @note Only available if OpenCL is enabled.
+ *
+ * **Example**
+ * @include ex_gabor_wave.cpp
+ *
+ * **Result**
+ * @image html ex_gabor_wave.png
+ */
+Array gabor_wave_fbm(Vec2<int>    shape,
+                     Vec2<float>  kw,
+                     uint         seed,
+                     const Array &angle,
+                     float        angle_spread_ratio = 1.f,
+                     int          octaves = 8,
+                     float        weight = 0.7f,
+                     float        persistence = 0.5f,
+                     float        lacunarity = 2.f,
+                     Array       *p_ctrl_param = nullptr,
+                     Array       *p_noise_x = nullptr,
+                     Array       *p_noise_y = nullptr,
+                     Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
+
+Array gabor_wave_fbm(Vec2<int>   shape,
+                     Vec2<float> kw,
+                     uint        seed,
+                     float       angle = 0.f,
+                     float       angle_spread_ratio = 1.f,
+                     int         octaves = 8,
+                     float       weight = 0.7f,
+                     float       persistence = 0.5f,
+                     float       lacunarity = 2.f,
+                     Array      *p_ctrl_param = nullptr,
+                     Array      *p_noise_x = nullptr,
+                     Array      *p_noise_y = nullptr,
+                     Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
+ * @brief Generates a 2D array using the GavoroNoise algorithm,
+ *        which is a procedural noise technique for terrain generation and other
+ * applications.
+ *
+ * @param shape         Dimensions of the output array.
+ * @param kw            Wave number vector controlling the noise frequency.
+ * @param seed          Seed value for random number generation.
+ * @param amplitude     Amplitude of the noise.
+ * @param kw_multiplier Multiplier for wave numbers in the noise function.
+ * @param slope_strength Strength of slope-based directional erosion in the
+ * noise.
+ * @param branch_strength Strength of branch-like structures in the generated
+ * noise.
+ * @param z_cut_min     Minimum cutoff for Z-value in the noise.
+ * @param z_cut_max     Maximum cutoff for Z-value in the noise.
+ * @param octaves       Number of octaves for fractal Brownian motion (fBm).
+ * @param persistence   Amplitude scaling factor between noise octaves.
+ * @param lacunarity    Frequency scaling factor between noise octaves.
+ * @param p_ctrl_param  Optional array for control parameters, can modify the Z
+ * cutoff dynamically.
+ * @param p_noise_x     Optional array for X-axis noise perturbation.
+ * @param p_noise_y     Optional array for Y-axis noise perturbation.
+ * @param bbox          Bounding box for mapping grid coordinates to world
+ * space.
+ *
+ * @return A 2D array containing the generated GavoroNoise values.
+ *
+ * @note Taken from https://www.shadertoy.com/view/MtGcWh
+ *
+ * @note Only available if OpenCL is enabled.
+ *
+ * This function leverages an OpenCL kernel to compute the GavoroNoise values on
+ * the GPU, allowing for efficient large-scale generation. The kernel applies a
+ * combination of fractal Brownian motion (fBm), directional erosion, and other
+ * procedural techniques to generate intricate noise patterns.
+ *
+ * The optional `p_ctrl_param`, `p_noise_x`, and `p_noise_y` buffers provide
+ * additional flexibility for dynamically adjusting noise parameters and
+ * perturbations.
+ *
+ * **Example**
+ * @include ex_gavoronoise.cpp
+ *
+ * **Result**
+ * @image html ex_gavoronoise.png
+ */
+Array gavoronoise(Vec2<int>    shape,
+                  Vec2<float>  kw,
+                  uint         seed,
+                  const Array &angle,
+                  float        amplitude = 0.05f,
+                  float        angle_spread_ratio = 1.f,
+                  Vec2<float>  kw_multiplier = {4.f, 4.f},
+                  float        slope_strength = 1.f,
+                  float        branch_strength = 2.f,
+                  float        z_cut_min = 0.2f,
+                  float        z_cut_max = 1.f,
+                  int          octaves = 8,
+                  float        persistence = 0.4f,
+                  float        lacunarity = 2.f,
+                  Array       *p_ctrl_param = nullptr,
+                  Array       *p_noise_x = nullptr,
+                  Array       *p_noise_y = nullptr,
+                  Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
+
+Array gavoronoise(Vec2<int>   shape,
+                  Vec2<float> kw,
+                  uint        seed,
+                  float       angle = 0.f,
+                  float       amplitude = 0.05f,
+                  float       angle_spread_ratio = 1.f,
+                  Vec2<float> kw_multiplier = {4.f, 4.f},
+                  float       slope_strength = 1.f,
+                  float       branch_strength = 2.f,
+                  float       z_cut_min = 0.2f,
+                  float       z_cut_max = 1.f,
+                  int         octaves = 8,
+                  float       persistence = 0.4f,
+                  float       lacunarity = 2.f,
+                  Array      *p_ctrl_param = nullptr,
+                  Array      *p_noise_x = nullptr,
+                  Array      *p_noise_y = nullptr,
+                  Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+Array gavoronoise(const Array &base,
+                  Vec2<float>  kw,
+                  uint         seed,
+                  float        amplitude = 0.05f,
+                  Vec2<float>  kw_multiplier = {4.f, 4.f},
+                  float        slope_strength = 1.f,
+                  float        branch_strength = 2.f,
+                  float        z_cut_min = 0.2f,
+                  float        z_cut_max = 1.f,
+                  int          octaves = 8,
+                  float        persistence = 0.4f,
+                  float        lacunarity = 2.f,
+                  Array       *p_ctrl_param = nullptr,
+                  Array       *p_noise_x = nullptr,
+                  Array       *p_noise_y = nullptr,
+                  Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
+ * @brief Generates a heightmap representing a radial mountain range.
+ *
+ * This function creates a heightmap that simulates a mountain range emanating
+ * radially from a specified center. The mountain range is influenced by various
+ * noise parameters and control attributes.
+ *
+ * @param shape            The dimensions of the output heightmap as a 2D
+ * vector.
+ * @param kw               The wave numbers (frequency components) as a 2D
+ * vector.
+ * @param seed             The seed for random noise generation.
+ * @param half_width       The half-width of the radial mountain range,
+ * controlling its spread. Default is 0.2f.
+ * @param angle_spread_ratio The ratio controlling the angular spread of the
+ * mountain range. Default is 0.5f.
+ * @param center           The center point of the radial mountain range as
+ * normalized coordinates within [0, 1]. Default is {0.5f, 0.5f}.
+ * @param octaves          The number of octaves for fractal noise generation.
+ * Default is 8.
+ * @param weight           The initial weight for noise contribution. Default is
+ * 0.7f.
+ * @param persistence      The amplitude scaling factor for subsequent noise
+ * octaves. Default is 0.5f.
+ * @param lacunarity       The frequency scaling factor for subsequent noise
+ * octaves. Default is 2.0f.
+ * @param p_ctrl_param     Optional pointer to an array of control parameters
+ * influencing the terrain generation.
+ * @param p_noise_x        Optional pointer to a precomputed noise array for the
+ * X-axis.
+ * @param p_noise_y        Optional pointer to a precomputed noise array for the
+ * Y-axis.
+ * @param bbox             The bounding box of the output heightmap in
+ * normalized coordinates [xmin, xmax, ymin, ymax]. Default is {0.0f, 1.0f,
+ * 0.0f, 1.0f}.
+ *
+ * @return Array The generated heightmap representing the radial mountain range.
+ *
+ * @note Only available if OpenCL is enabled.
+ *
+ * **Example**
+ * @include ex_mountain_range_radial.cpp
+ *
+ * **Result**
+ * @image html ex_mountain_range_radial.png
+ */
+Array mountain_range_radial(Vec2<int>   shape,
+                            Vec2<float> kw,
+                            uint        seed,
+                            float       half_width = 0.2f,
+                            float       angle_spread_ratio = 0.5f,
+                            Vec2<float> center = {0.5f, 0.5f},
+                            int         octaves = 8,
+                            float       weight = 0.7f,
+                            float       persistence = 0.5f,
+                            float       lacunarity = 2.f,
+                            Array      *p_ctrl_param = nullptr,
+                            Array      *p_noise_x = nullptr,
+                            Array      *p_noise_y = nullptr,
+                            Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
+ * @brief Generates a Voronoi diagram in a 2D array with configurable
+ * properties.
+ *
+ * @param shape The dimensions of the output array as a 2D vector of integers.
+ * @param kw The frequency scale factors for the Voronoi cells, given as a 2D
+ * vector of floats.
+ * @param seed A seed value for random number generation, ensuring
+ * reproducibility.
+ * @param jitter (Optional) The amount of random variation in the positions of
+ * Voronoi cell sites, given as a 2D vector of floats. Defaults to {0.5f, 0.5f}.
+ * @param return_type (Optional) The type of value to compute for the Voronoi
+ * diagram. Defaults to `VoronoiReturnType::F1_SQUARED`.
+ * @param p_ctrl_param (Optional) A pointer to an `Array` used to control the
+ * Voronoi computation. If nullptr, no control is applied.
+ * @param p_noise_x (Optional) A pointer to an `Array` providing additional
+ * noise in the x-direction for cell positions. If nullptr, no x-noise is
+ * applied.
+ * @param p_noise_y (Optional) A pointer to an `Array` providing additional
+ * noise in the y-direction for cell positions. If nullptr, no y-noise is
+ * applied.
+ * @param bbox (Optional) The bounding box for the Voronoi computation, given as
+ * a 4D vector of floats representing {min_x, max_x, min_y, max_y}. Defaults to
+ * {0.f, 1.f, 0.f, 1.f}.
+ *
+ * @return A 2D array representing the generated Voronoi diagram.
+ *
+ * @note Only available if OpenCL is enabled.
+ *
+ * **Example**
+ * @include ex_voronoi.cpp
+ *
+ * **Result**
+ * @image html ex_voronoi.png
+ */
+Array voronoi(Vec2<int>         shape,
+              Vec2<float>       kw,
+              uint              seed,
+              Vec2<float>       jitter = {0.5f, 0.5f},
+              VoronoiReturnType return_type = VoronoiReturnType::F1_SQUARED,
+              Array            *p_ctrl_param = nullptr,
+              Array            *p_noise_x = nullptr,
+              Array            *p_noise_y = nullptr,
+              Vec4<float>       bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
+ * @brief Generates a Voronoi diagram in a 2D array with configurable
+ * properties.
+ *
+ * @param shape The dimensions of the output array as a 2D vector of integers.
+ * @param kw The frequency scale factors for the base Voronoi cells, given as a
+ * 2D vector of floats.
+ * @param seed A seed value for random number generation, ensuring
+ * reproducibility.
+ * @param jitter (Optional) The amount of random variation in the positions of
+ * Voronoi cell sites, given as a 2D vector of floats. Defaults to {0.5f, 0.5f}.
+ * @param return_type (Optional) The type of value to compute for the Voronoi
+ * diagram. Defaults to `VoronoiReturnType::F1_SQUARED`.
+ * @param octaves (Optional) The number of layers (octaves) in the fractal
+ * Brownian motion. Defaults to 8.
+ * @param weight (Optional) The initial weight of the base layer in the FBM
+ * computation. Defaults to 0.7f.
+ * @param persistence (Optional) The persistence factor that controls the
+ * amplitude reduction between octaves. Defaults to 0.5f.
+ * @param lacunarity (Optional) The lacunarity factor that controls the
+ * frequency increase between octaves. Defaults to 2.f.
+ * @param p_ctrl_param (Optional) A pointer to an `Array` used to control the
+ * Voronoi computation. If nullptr, no control is applied.
+ * @param p_noise_x (Optional) A pointer to an `Array` providing additional
+ * noise in the x-direction for cell positions. If nullptr, no x-noise is
+ * applied.
+ * @param p_noise_y (Optional) A pointer to an `Array` providing additional
+ * noise in the y-direction for cell positions. If nullptr, no y-noise is
+ * applied.
+ * @param bbox (Optional) The bounding box for the Voronoi computation, given as
+ * a 4D vector of floats representing {min_x, max_x, min_y, max_y}. Defaults to
+ * {0.f, 1.f, 0.f, 1.f}.
+ *
+ * @return A 2D array representing the generated Voronoi diagram.
+ *
+ * @note Only available if OpenCL is enabled.
+ *
+ * **Example**
+ * @include ex_voronoi.cpp
+ *
+ * **Result**
+ * @image html ex_voronoi.png
+ */
+Array voronoi_fbm(Vec2<int>         shape,
+                  Vec2<float>       kw,
+                  uint              seed,
+                  Vec2<float>       jitter = {0.5f, 0.5f},
+                  VoronoiReturnType return_type = VoronoiReturnType::F1_SQUARED,
+                  int               octaves = 8,
+                  float             weight = 0.7f,
+                  float             persistence = 0.5f,
+                  float             lacunarity = 2.f,
+                  Array            *p_ctrl_param = nullptr,
+                  Array            *p_noise_x = nullptr,
+                  Array            *p_noise_y = nullptr,
+                  Vec4<float>       bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
+ * @brief Computes the Voronoi edge distance.
+ *
+ * @param shape The shape of the grid as a 2D vector (width, height).
+ * @param kw The weights for the Voronoi kernel as a 2D vector.
+ * @param seed The random seed used for generating Voronoi points.
+ * @param jitter Optional parameter for controlling jitter in Voronoi point
+ * placement (default is {0.5f, 0.5f}).
+ * @param p_ctrl_param Optional pointer to an Array specifying control
+ * parameters for Voronoi grid jitter (default is nullptr).
+ * @param p_noise_x, p_noise_y Reference to the input noise arrays.
+ * @param bbox The bounding box for the Voronoi diagram as {x_min, x_max, y_min,
+ * y_max} (default is {0.f, 1.f, 0.f, 1.f}).
+ *
+ * @note Taken from https://www.shadertoy.com/view/llG3zy
+ *
+ * @note Only available if OpenCL is enabled.
+ *
+ * @note The resulting Array has the same dimensions as the input shape.
+ */
+Array voronoi_edge_distance(Vec2<int>   shape,
+                            Vec2<float> kw,
+                            uint        seed,
+                            Vec2<float> jitter = {0.5f, 0.5f},
+                            Array      *p_ctrl_param = nullptr,
+                            Array      *p_noise_x = nullptr,
+                            Array      *p_noise_y = nullptr,
+                            Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
+ * @brief Generates a 2D Voronoi noise array.
+ *
+ * This function computes a Voronoi noise pattern based on the input parameters
+ * and returns it as a 2D array. The noise is calculated in the OpenCL kernel
+ * `noise_voronoise`, which uses a combination of hashing and smoothstep
+ * functions to generate a weighted Voronoi noise field.
+ *
+ * @note Taken from https://www.shadertoy.com/view/Xd23Dh
+ *
+ * @note Only available if OpenCL is enabled.
+ *
+ * @param shape   The dimensions of the 2D output array as a vector (width and
+ * height).
+ * @param kw      Wave numbers for scaling the noise pattern, represented as a
+ * 2D vector.
+ * @param u_param A control parameter for the noise, adjusting the contribution
+ * of random offsets.
+ * @param v_param A control parameter for the noise, affecting the smoothness of
+ * the pattern.
+ * @param p_noise_x, p_noise_y Reference to the input noise arrays.
+ * @param seed    A seed value for random number generation, ensuring
+ * reproducibility.
+ *
+ * @return An `Array` object containing the generated 2D Voronoi noise values.
+ *
+ * **Example**
+ * @include ex_voronoise.cpp
+ *
+ * **Result**
+ * @image html ex_voronoise.png
+ */
+Array voronoise(Vec2<int>   shape,
+                Vec2<float> kw,
+                float       u_param,
+                float       v_param,
+                uint        seed,
+                Array      *p_noise_x = nullptr,
+                Array      *p_noise_y = nullptr,
+                Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
+ * @brief Return an array filled with coherence Voronoise.
+ *
+ * @param shape Array shape.
+ * @param kw Noise wavenumbers {kx, ky} for each directions.
+ * @param seed Random seed number.
+ * @param octaves Number of octaves.
+ * @param weigth Octave weighting.
+ * @param persistence Octave persistence.
+ * @param lacunarity Defines the wavenumber ratio between each octaves.
+ * @param p_ctrl_param Reference to the control parameter array (acts as a
+ * multiplier for the weight parameter).
+ * @param p_noise_x, p_noise_y Reference to the input noise arrays.
+ * @param bbox Domain bounding box.
+ * @return Array Fractal noise.
+ *
+ * @note Taken from https://www.shadertoy.com/view/clGyWm
+ *
+ * @note Only available if OpenCL is enabled.
+ *
+ * **Example**
+ * @include ex_voronoise.cpp
+ *
+ * **Result**
+ * @image html ex_voronoise.png
+ */
+Array voronoise_fbm(Vec2<int>   shape,
+                    Vec2<float> kw,
+                    float       u_param,
+                    float       v_param,
+                    uint        seed,
+                    int         octaves = 8,
+                    float       weight = 0.7f,
+                    float       persistence = 0.5f,
+                    float       lacunarity = 2.f,
+                    Array      *p_ctrl_param = nullptr,
+                    Array      *p_noise_x = nullptr,
+                    Array      *p_noise_y = nullptr,
+                    Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+} // namespace hmap::gpu
+#endif

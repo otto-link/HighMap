@@ -82,29 +82,29 @@ void hydraulic_vpipes(Array &z,
       Array fT_next = Array(z.shape);
       Array fB_next = Array(z.shape);
 
-      for (int i = 1; i < ni; i++)
-        for (int j = 0; j < nj; j++)
+      for (int j = 0; j < nj; j++)
+        for (int i = 1; i < ni; i++)
         {
           float dh = z(i, j) + d1(i, j) - z(i - 1, j) - d1(i - 1, j);
           fL_next(i, j) = std::max(0.f, fL(i, j) + dt * g * dh / pipe_length);
         }
 
-      for (int i = 0; i < ni - 1; i++)
-        for (int j = 0; j < nj; j++)
+      for (int j = 0; j < nj; j++)
+        for (int i = 0; i < ni - 1; i++)
         {
           float dh = z(i, j) + d1(i, j) - z(i + 1, j) - d1(i + 1, j);
           fR_next(i, j) = std::max(0.f, fR(i, j) + dt * g * dh / pipe_length);
         }
 
-      for (int i = 0; i < ni; i++)
-        for (int j = 0; j < nj - 1; j++)
+      for (int j = 0; j < nj - 1; j++)
+        for (int i = 0; i < ni; i++)
         {
           float dh = z(i, j) + d1(i, j) - z(i, j + 1) - d1(i, j + 1);
           fT_next(i, j) = std::max(0.f, fT(i, j) + dt * g * dh / pipe_length);
         }
 
-      for (int i = 0; i < ni; i++)
-        for (int j = 1; j < nj; j++)
+      for (int j = 1; j < nj; j++)
+        for (int i = 0; i < ni; i++)
         {
           float dh = z(i, j) + d1(i, j) - z(i, j - 1) - d1(i, j - 1);
           fB_next(i, j) = std::max(0.f, fB(i, j) + dt * g * dh / pipe_length);
@@ -116,8 +116,8 @@ void hydraulic_vpipes(Array &z,
       fill_borders(fB_next);
 
       // normalize
-      for (int i = 0; i < ni; i++)
-        for (int j = 0; j < nj; j++)
+      for (int j = 0; j < nj; j++)
+        for (int i = 0; i < ni; i++)
         {
           float k = d1(i, j) * pipe_length * pipe_length /
                     (fL_next(i, j) + fR_next(i, j) + fT_next(i, j) +
@@ -137,8 +137,8 @@ void hydraulic_vpipes(Array &z,
       fB = fB_next;
 
       // water transport
-      for (int i = 1; i < ni - 1; i++)
-        for (int j = 1; j < nj - 1; j++)
+      for (int j = 1; j < nj - 1; j++)
+        for (int i = 1; i < ni - 1; i++)
         {
           float dv = dt *
                      (fR(i - 1, j) + fT(i, j - 1) + fL(i + 1, j) +
@@ -192,8 +192,8 @@ void hydraulic_vpipes(Array &z,
       d2(0, nj - 1) = 0.5f * (d2(0, nj - 2) + d2(1, nj - 1));
 
       // flow velocities
-      for (int i = 1; i < ni - 1; i++)
-        for (int j = 1; j < nj - 1; j++)
+      for (int j = 1; j < nj - 1; j++)
+        for (int i = 1; i < ni - 1; i++)
         {
           u(i, j) = 0.5f * (fR(i - 1, j) - fL(i, j) + fR(i, j) - fL(i + 1, j));
           v(i, j) = 0.5f * (fT(i, j - 1) - fB(i, j) + fT(i, j) - fB(i, j + 1));
@@ -216,8 +216,8 @@ void hydraulic_vpipes(Array &z,
 
     // smooth_cpulse(talus, 16);
 
-    for (int i = 1; i < ni - 1; i++)
-      for (int j = 1; j < nj - 1; j++)
+    for (int j = 1; j < nj - 1; j++)
+      for (int i = 1; i < ni - 1; i++)
       {
         // sin(alpha), sin of tilt angle
         float salpha = std::max(0.001f,
@@ -241,13 +241,13 @@ void hydraulic_vpipes(Array &z,
 
     // bedrock pass
     if (p_bedrock)
-      for (int i = 0; i < z.shape.x; i++)
-        for (int j = 0; j < z.shape.y; j++)
+      for (int j = 0; j < z.shape.y; j++)
+        for (int i = 0; i < z.shape.x; i++)
           z(i, j) = std::max(z(i, j), (*p_bedrock)(i, j));
 
     // --- sediment transport
-    for (int i = 1; i < ni - 1; i++)
-      for (int j = 1; j < nj - 1; j++)
+    for (int j = 1; j < nj - 1; j++)
+      for (int i = 1; i < ni - 1; i++)
       {
         // sediment convection
         float x = (float)i - dt * u(i, j);

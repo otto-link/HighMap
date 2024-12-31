@@ -17,7 +17,6 @@ int main(void)
 
   cv::Mat img = z.to_cv_mat();
   cv::cvtColor(img, img, cv::COLOR_GRAY2BGR);
-  cv::rotate(img, img, cv::ROTATE_90_COUNTERCLOCKWISE);
 
   std::vector<int> codec_params = {cv::IMWRITE_EXR_TYPE,
                                    cv::IMWRITE_EXR_TYPE_FLOAT,

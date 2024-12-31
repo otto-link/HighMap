@@ -66,9 +66,8 @@ void hydraulic_benes(Array &z,
 
     // --- water flow dynamic and sediment transport
 
-    for (int i = 1; i < z.shape.x - 1; i++)
-    {
-      for (int j = 1; j < z.shape.y - 1; j++)
+    for (int j = 1; j < z.shape.y - 1; j++)
+      for (int i = 1; i < z.shape.x - 1; i++)
       {
         float              dsum = 0.f;
         float              zsavg = 0.f;
@@ -121,8 +120,7 @@ void hydraulic_benes(Array &z,
             }
           }
         }
-      } // j
-    } // i
+      }
 
     // --- erosion and deposition
     for (int i = 1; i < z.shape.x - 1; i++)

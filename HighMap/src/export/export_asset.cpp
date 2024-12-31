@@ -86,8 +86,8 @@ bool export_asset(std::string       fname,
     p_mesh->mTextureCoords[0] = new aiVector3D[n_vertices];
     p_mesh->mNumUVComponents[0] = 2;
 
-    for (int i = 0; i < array.shape.x; i++)
-      for (int j = 0; j < array.shape.y; j++)
+    for (int j = 0; j < array.shape.y; j++)
+      for (int i = 0; i < array.shape.x; i++)
       {
         int k = array.linear_index(i, j);
         p_mesh->mVertices[k] = aiVector3D(x[i],
@@ -103,8 +103,8 @@ bool export_asset(std::string       fname,
 
     int k = 0;
 
-    for (int i = 0; i < array.shape.x - 1; i++)
-      for (int j = 0; j < array.shape.y - 1; j++)
+    for (int j = 0; j < array.shape.y - 1; j++)
+      for (int i = 0; i < array.shape.x - 1; i++)
       {
         p_mesh->mFaces[k].mNumIndices = 3;
         p_mesh->mFaces[k].mIndices = new unsigned[]{

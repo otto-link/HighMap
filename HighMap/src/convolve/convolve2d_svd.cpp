@@ -27,8 +27,8 @@ Array convolve2d_svd(const Array &array, const Array &kernel, int rank)
   gsl_vector *vec_s = gsl_vector_alloc(kernel.shape.y);
   gsl_vector *vec_w = gsl_vector_alloc(kernel.shape.y); // work vector
 
-  for (int i = 0; i < kernel.shape.x; i++)
-    for (int j = 0; j < kernel.shape.y; j++)
+  for (int j = 0; j < kernel.shape.y; j++)
+    for (int i = 0; i < kernel.shape.x; i++)
       gsl_matrix_set(mat_u, i, j, kernel(i, j));
 
   // (NB - mat_v is the transpose of classical "V" of SVD formulation)

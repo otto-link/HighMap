@@ -8,13 +8,11 @@
 #include "highmap/boundary.hpp"
 #include "highmap/erosion.hpp"
 #include "highmap/filters.hpp"
+#include "highmap/gradient.hpp"
 #include "highmap/math.hpp"
-#include "highmap/primitives.hpp"
 #include "highmap/range.hpp"
 
 #include "macrologger.h"
-
-#define CT 0.5f // avalanching intensity
 
 namespace hmap
 {
@@ -22,6 +20,27 @@ namespace hmap
 //----------------------------------------------------------------------
 // Main operator
 //----------------------------------------------------------------------
+
+float helper_thermal_exchange(float self, float other, float dist, float talus)
+{
+  float max_dif = dist * talus;
+  float rate = 0.2f;
+
+  if (self > other)
+  {
+    if (self - other > max_dif)
+      return -rate * ((self - other) - max_dif) / dist;
+    else
+      return 0.f;
+  }
+  else
+  {
+    if (other - self > max_dif)
+      return rate * ((other - self) - max_dif) / dist;
+    else
+      return 0.f;
+  }
+}
 
 void thermal(Array       &z,
              const Array &talus,
@@ -50,179 +69,87 @@ void thermal(Array       &z,
 
     if (p_bedrock) // with bedrock
     {
-      int pmax = z.shape.x;
-      int qmax = z.shape.y;
-
-      if (it % 2 == 1)
-      {
-        pmax = z.shape.y;
-        qmax = z.shape.x;
-      }
-
-      int dp, dq;
-
-      if (it % 4 == 0)
-      {
-        dp = 1;
-        dq = 1;
-      }
-      else if (it % 4 == 1)
-      {
-        dp = 1;
-        dq = 1;
-      }
-      else if (it % 4 == 2)
-      {
-        dp = 1;
-        dq = 1;
-      }
-      else if (it % 4 == 3)
-      {
-        dp = 1;
-        dq = 1;
-      }
-
-      for (int p = 1; p < pmax - 1; p += dp)
-        for (int q = 1; q < qmax - 1; q += dq)
+      for (int q = 1; q < z.shape.y - 1; q++)
+        for (int p = 1; p < z.shape.x - 1; p++)
         {
           int i, j;
 
+          // alternate row / col order to limit artifacts
           if (it % 4 == 0)
           {
-            i = p;
+            i = z.shape.x - 1 - p;
             j = q;
           }
           else if (it % 4 == 1)
           {
-            i = q;
-            j = p;
+            i = p;
+            j = z.shape.y - 1 - q;
           }
           else if (it % 4 == 2)
           {
-            i = pmax - p - 1;
-            j = qmax - q - 1;
+            i = z.shape.x - 1 - p;
+            j = z.shape.y - 1 - q;
           }
-          else if (it % 4 == 3)
+          else
           {
-            i = qmax - q - 1;
-            j = pmax - p - 1;
+            i = p;
+            j = q;
           }
 
           if (z(i, j) >= (*p_bedrock)(i, j))
           {
-            float              dmax = 0.f;
-            float              dsum = 0.f;
             std::vector<float> dz(nb);
+            float              amount = 0.f;
 
-            for (uint k = 0; k < nb; k++)
-            {
-              dz[k] = z(i, j) - z(i + di[k], j + dj[k]);
-              if (dz[k] > talus(i, j) * c[k])
-              {
-                dsum += dz[k];
-                dmax = std::max(dmax, dz[k]);
-              }
-            }
+            for (int k = 0; k < 8; k++)
+              amount += helper_thermal_exchange(z(i, j),
+                                                z(i + di[k], j + dj[k]),
+                                                c[k],
+                                                talus(i, j));
 
-            if (dmax > 0.f)
-            {
-              for (uint k = 0; k < nb; k++)
-              {
-                int   ia = i + di[k];
-                int   ja = j + dj[k];
-                float amount = std::min(CT * (dmax - talus(i, j) * c[k]) *
-                                            dz[k] / dsum,
-                                        z(i, j) - (*p_bedrock)(i, j));
-                z(ia, ja) += amount;
-              }
-            }
+            z(i, j) += amount;
           }
         }
     }
     else // no bedrock
     {
-      int pmax = z.shape.x;
-      int qmax = z.shape.y;
-
-      if (it % 2 == 1)
-      {
-        pmax = z.shape.y;
-        qmax = z.shape.x;
-      }
-
-      int dp, dq;
-
-      if (it % 4 == 0)
-      {
-        dp = 1;
-        dq = 1;
-      }
-      else if (it % 4 == 1)
-      {
-        dp = 1;
-        dq = 1;
-      }
-      else if (it % 4 == 2)
-      {
-        dp = 1;
-        dq = 1;
-      }
-      else if (it % 4 == 3)
-      {
-        dp = 1;
-        dq = 1;
-      }
-
-      for (int p = 1; p < pmax - 1; p += dp)
-        for (int q = 1; q < qmax - 1; q += dq)
+      for (int q = 1; q < z.shape.y - 1; q++)
+        for (int p = 1; p < z.shape.x - 1; p++)
         {
           int i, j;
 
+          // alternate row / col order to limit artifacts
           if (it % 4 == 0)
           {
-            i = p;
+            i = z.shape.x - 1 - p;
             j = q;
           }
           else if (it % 4 == 1)
           {
-            i = q;
-            j = p;
+            i = p;
+            j = z.shape.y - 1 - q;
           }
           else if (it % 4 == 2)
           {
-            i = pmax - p - 1;
-            j = qmax - q - 1;
+            i = z.shape.x - 1 - p;
+            j = z.shape.y - 1 - q;
           }
-          else if (it % 4 == 3)
+          else
           {
-            i = qmax - q - 1;
-            j = pmax - p - 1;
+            i = p;
+            j = q;
           }
 
-          float              dmax = 0.f;
-          float              dsum = 0.f;
           std::vector<float> dz(nb);
+          float              amount = 0.f;
 
-          for (uint k = 0; k < nb; k++)
-          {
-            dz[k] = z(i, j) - z(i + di[k], j + dj[k]);
-            if (dz[k] > talus(i, j) * c[k])
-            {
-              dsum += dz[k];
-              dmax = std::max(dmax, dz[k]);
-            }
-          }
+          for (int k = 0; k < 8; k++)
+            amount += helper_thermal_exchange(z(i, j),
+                                              z(i + di[k], j + dj[k]),
+                                              c[k],
+                                              talus(i, j));
 
-          if (dmax > 0.f)
-          {
-            for (uint k = 0; k < nb; k++)
-            {
-              int   ia = i + di[k];
-              int   ja = j + dj[k];
-              float amount = CT * (dmax - talus(i, j) * c[k]) * dz[k] / dsum;
-              z(ia, ja) += amount;
-            }
-          }
+          z(i, j) += amount;
         }
     }
   }
@@ -230,7 +157,6 @@ void thermal(Array       &z,
   // clean-up: fix boundaries, remove spurious oscillations and make
   // sure final elevation is not lower than the bedrock
   extrapolate_borders(z);
-  laplace(z);
 
   if (p_bedrock) clamp_min(z, (*p_bedrock));
 
@@ -269,8 +195,7 @@ void thermal(Array &z,
              Array *p_bedrock,
              Array *p_deposition_map)
 {
-  Array talus_map = constant(z.shape, talus);
-  Array bedrock = constant(z.shape, std::numeric_limits<float>::min());
+  Array talus_map(z.shape, talus);
   thermal(z, talus_map, iterations, p_bedrock, p_deposition_map);
 }
 
@@ -284,7 +209,7 @@ void thermal_auto_bedrock(Array       &z,
                           Array       *p_deposition_map)
 {
   Array z_init = z; // backup initial map
-  Array bedrock = constant(z.shape, std::numeric_limits<float>::min());
+  Array bedrock(z.shape, -std::numeric_limits<float>::max());
   int   ncycle = 10;
 
   Array z_bckp = Array();
@@ -306,7 +231,7 @@ void thermal_auto_bedrock(Array       &z,
                    z.vector.begin(),
                    bedrock.vector.begin(),
                    [](float a, float b)
-                   { return a > b ? a : std::numeric_limits<float>::min(); });
+                   { return a > b ? a : -std::numeric_limits<float>::max(); });
   }
 
   if (p_deposition_map)
@@ -321,7 +246,7 @@ void thermal_auto_bedrock(Array &z,
                           int    iterations,
                           Array *p_deposition_map)
 {
-  Array talus_map = constant(z.shape, talus);
+  Array talus_map(z.shape, talus);
   thermal_auto_bedrock(z, talus_map, iterations, p_deposition_map);
 }
 

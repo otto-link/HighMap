@@ -37,8 +37,8 @@ Array caldera(Vec2<int>   shape,
 
   if (p_noise)
   {
-    for (int i = 0; i < z.shape.x; i++)
-      for (int j = 0; j < z.shape.y; j++)
+    for (int j = 0; j < z.shape.y; j++)
+      for (int i = 0; i < z.shape.x; i++)
       {
         float r = std::hypot((float)(i - ic), (float)(j - jc)) - radius;
 
@@ -54,8 +54,8 @@ Array caldera(Vec2<int>   shape,
   }
   else
   {
-    for (int i = 0; i < z.shape.x; i++)
-      for (int j = 0; j < z.shape.y; j++)
+    for (int j = 0; j < z.shape.y; j++)
+      for (int i = 0; i < z.shape.x; i++)
       {
         float r = std::hypot((float)(i - ic), (float)(j - jc)) - radius;
 
@@ -135,8 +135,8 @@ Array peak(Vec2<int>   shape,
 
   if (!p_noise)
   {
-    for (int i = 0; i < z.shape.x; i++)
-      for (int j = 0; j < z.shape.y; j++)
+    for (int j = 0; j < z.shape.y; j++)
+      for (int i = 0; i < z.shape.x; i++)
       {
         float r = std::hypot((float)(i - ic), (float)(j - jc)) / radius;
 
@@ -145,8 +145,8 @@ Array peak(Vec2<int>   shape,
   }
   else
   {
-    for (int i = 0; i < z.shape.x; i++)
-      for (int j = 0; j < z.shape.y; j++)
+    for (int j = 0; j < z.shape.y; j++)
+      for (int i = 0; i < z.shape.x; i++)
       {
         float r = std::hypot((float)(i - ic), (float)(j - jc)) / radius;
         r += r * noise_r_amp / radius * (2 * (*p_noise)(i, j) - 1);

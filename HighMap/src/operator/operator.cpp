@@ -28,8 +28,8 @@ void add_kernel(Array &array, const Array &kernel, int ic, int jc)
   int i0 = std::max(ic - nk_i0, 0);
   int j0 = std::max(jc - nk_j0, 0);
 
-  for (int i = ik0; i < ik1; i++)
-    for (int j = jk0; j < jk1; j++)
+  for (int j = jk0; j < jk1; j++)
+    for (int i = ik0; i < ik1; i++)
       array(i - ik0 + i0, j - jk0 + j0) += kernel(i, j);
 }
 
@@ -56,8 +56,8 @@ void add_kernel_maximum_smooth(Array       &array,
   int i0 = std::max(ic - nk_i0, 0);
   int j0 = std::max(jc - nk_j0, 0);
 
-  for (int i = ik0; i < ik1; i++)
-    for (int j = jk0; j < jk1; j++)
+  for (int j = jk0; j < jk1; j++)
+    for (int i = ik0; i < ik1; i++)
     {
       float v_prev = array(i - ik0 + i0, j - jk0 + j0);
       float v_new = kernel(i, j);
@@ -71,12 +71,12 @@ Array hstack(const Array &array1, const Array &array2) // friend function
   Array array_out = Array(
       Vec2<int>(array1.shape.x + array2.shape.x, array1.shape.y));
 
-  for (int i = 0; i < array1.shape.x; i++)
-    for (int j = 0; j < array1.shape.y; j++)
+  for (int j = 0; j < array1.shape.y; j++)
+    for (int i = 0; i < array1.shape.x; i++)
       array_out(i, j) = array1(i, j);
 
-  for (int i = 0; i < array2.shape.x; i++)
-    for (int j = 0; j < array1.shape.y; j++)
+  for (int j = 0; j < array1.shape.y; j++)
+    for (int i = 0; i < array2.shape.x; i++)
       array_out(i + array1.shape.x, j) = array2(i, j);
 
   return array_out;

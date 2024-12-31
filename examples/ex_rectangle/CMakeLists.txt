@@ -1,0 +1,2 @@
+add_executable(ex_rectangle ex_rectangle.cpp)
+target_link_libraries(ex_rectangle highmap)

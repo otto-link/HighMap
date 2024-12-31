@@ -872,7 +872,7 @@ void dig_path(Array      &z,
   }
 
   mask = maximum_local(mask, width);
-  mask = distance_transform(mask);
+  mask = distance_transform_approx(mask);
   mask = exp(-mask * mask * 0.5f / ((float)(decay * decay)));
   smooth_cpulse(mask, decay);
 

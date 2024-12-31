@@ -27,8 +27,8 @@ Array white_density_map(const Array &density_map, uint seed)
   std::mt19937                          gen(seed);
   std::uniform_real_distribution<float> dis(0.f, 1.f);
 
-  for (int i = 0; i < density_map.shape.x; i++)
-    for (int j = 0; j < density_map.shape.y; j++)
+  for (int j = 0; j < density_map.shape.y; j++)
+    for (int i = 0; i < density_map.shape.x; i++)
     {
       float r = dis(gen);
       if (r < density_map(i, j)) array(i, j) = r / density_map(i, j);

@@ -27,8 +27,8 @@ void directional_blur(Array &array, int ir, const Array &angle, float intensity)
 
   Array blured = array;
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
       for (int k = 0; k < ir; k++)
       {
         float alpha = angle(i, j) / 180.f * M_PI;

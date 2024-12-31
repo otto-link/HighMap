@@ -130,8 +130,8 @@ Array stamping(Vec2<int>           shape,
     i0 -= (int)(0.5f * scaled_kernel_shape.x);
     j0 -= (int)(0.5f * scaled_kernel_shape.y);
 
-    for (int i = 0; i < scaled_kernel_shape.x; i++)
-      for (int j = 0; j < scaled_kernel_shape.y; j++)
+    for (int j = 0; j < scaled_kernel_shape.y; j++)
+      for (int i = 0; i < scaled_kernel_shape.x; i++)
       {
         if (i0 + i >= 0 && i0 + i < shape.x && j0 + j >= 0 && j0 + j < shape.y)
           blend_function(array(i0 + i, j0 + j), kernel_local(i, j));

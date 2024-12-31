@@ -33,8 +33,8 @@ Array connected_components(const Array &array,
   int                                 current_label = 0;
   std::map<float, std::vector<float>> labels_mapping = {};
 
-  for (int i = 0; i < npi; i++)
-    for (int j = 0; j < npj; j++)
+  for (int j = 0; j < npj; j++)
+    for (int i = 0; i < npi; i++)
       if (array_pad(i, j) != background_value)
       {
         // scan neighbors and count those that are "background"
@@ -95,8 +95,8 @@ Array connected_components(const Array &array,
 
   std::map<float, float> labels_surface = {};
 
-  for (int i = 0; i < npi; i++)
-    for (int j = 0; j < npj; j++)
+  for (int j = 0; j < npj; j++)
+    for (int i = 0; i < npi; i++)
     {
       if ((labels(i, j) > 0) & (labels_mapping_reverse.contains(labels(i, j))))
         labels(i, j) = labels_mapping_reverse[labels(i, j)];
@@ -108,8 +108,8 @@ Array connected_components(const Array &array,
 
   // --- remove component with a "small" surface
   if (surface_threshold > 0.f)
-    for (int i = 0; i < labels.shape.x; i++)
-      for (int j = 0; j < labels.shape.y; j++)
+    for (int j = 0; j < labels.shape.y; j++)
+      for (int i = 0; i < labels.shape.x; i++)
         if (labels_surface[labels(i, j)] < surface_threshold)
           labels(i, j) = background_value;
 

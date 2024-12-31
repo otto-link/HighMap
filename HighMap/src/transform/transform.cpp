@@ -17,15 +17,15 @@ namespace hmap
 
 void flip_lr(Array &array)
 {
-  for (int i = 0; i < (int)(0.5f * array.shape.y); i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < (int)(0.5f * array.shape.y); i++)
       std::swap(array(i, j), array(array.shape.x - i - 1, j));
 }
 
 void flip_ud(Array &array)
 {
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < (int)(0.5f * array.shape.y); j++)
+  for (int j = 0; j < (int)(0.5f * array.shape.y); j++)
+    for (int i = 0; i < array.shape.x; i++)
       std::swap(array(i, j), array(i, array.shape.y - j - 1));
 }
 
@@ -66,8 +66,8 @@ void rotate(Array &array, float angle, bool zero_padding)
   float xc = 0.5f * array.shape.x;
   float yc = 0.5f * array.shape.y;
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       float x = xc + ca * (i - xc) - sa * (j - yc);
       float y = yc + sa * (i - xc) + ca * (j - yc);
@@ -123,8 +123,8 @@ Array transpose(const Array &array)
 {
   Array array_out = Array(Vec2<int>(array.shape.y, array.shape.x));
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
       array_out(j, i) = array(i, j);
 
   return array_out;

@@ -1,0 +1,2 @@
+add_executable(ex_mountain_range_radial ex_mountain_range_radial.cpp)
+target_link_libraries(ex_mountain_range_radial highmap)

@@ -60,58 +60,17 @@ vcpkg install libpng glm ocl-icd-opencl-dev assimp opencv
 
 You should then be able to build the sources using Visual Studio.
 
+### CMake Integration
+
+To integrate HighMap into your CMake-based project, follow these steps:
+
+1. Add the library to your project's `CMakeLists.txt`:
+   ```cmake
+   add_subdirectory(HighMap)
+   target_link_libraries(your_project_target highmap)
+   ```
+2. Link the `highmap` library to your target, as shown above.
+   
 ### Usage examples
 
-ToDo.
-
-### Documentation
-
-## Development roadmap
-
-- Heightmap generation and alteration
-  - [X] procedural noise (Perlin, fractal...)
-  - controlled generation
-    - [X] terrain surface from a set of points (thinplate interpolation)
-    - [ ] terrain surface from a sketch / splatmap
-    - [X] pointwise modifications
-- Physics-based mechanisms
-  - erosion / deposition
-    - [X] thermal
-    - [X] hydraulic
-    - [X] sediment deposition
-    - [ ] wind
-  - hydrology
-    - [ ] surface water system (stream and pool maps)
-    - [ ] downcutting (vertical erosion of stream's bed or valley's floor)
-    - [ ] heightmap fixing to ensure unbroken flow streams
-    - [ ] snow deposition
-    - [ ] ice floe
-    - [ ] lava/glacier viscous flow
-- Biomes
-  - micro-climate
-    - [ ] dominant wind
-    - [ ] precipitation map
-    - [ ] snowfall map
-    - [ ] sun exposure
-  - [ ] soil type
-  - [ ] vegetation (flora)
-  - [ ] animals (fauna)
-- Object automatic placement
-  - [ ] rocks, boulders, cliffs...
-  - [ ] trees
-  - [ ] cities
-- Anthropic features
-  - roads / paths
-    - [X] communication network
-    - [ ] path/road digging and leveling
-  - cities
-    - [ ] ground leveling
-    - [ ] inner structure (streets)
-  - [ ] agriculture
-- UI
-  - [ ] splatmap generation
-  - [ ] multiscale terrain class
-  - [ ] gateways to Unity, Unreal Engine...
-- Performances
-  - [X] distributed / tiled computation
-  - [X] multithreading
+See the `examples` folder.

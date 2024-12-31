@@ -6,9 +6,12 @@
 #include "highmap/array.hpp"
 #include "highmap/boundary.hpp"
 #include "highmap/erosion.hpp"
+#include "highmap/filters.hpp"
+#include "highmap/gradient.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/math.hpp"
 #include "highmap/range.hpp"
+#include "highmap/selector.hpp"
 
 #define SPAWN_LOW_LIMIT 0.1f
 #define GRADIENT_MIN 0.0001f
@@ -25,7 +28,7 @@ void sediment_deposition(Array       &z,
                          int          iterations,
                          int          thermal_subiterations)
 {
-  float deposition_step = 0.5f * max_deposition;
+  float deposition_step = max_deposition / (int)iterations;
   Array smap = Array(z.shape); // sediment map
 
   for (int it = 0; it < iterations; it++)
@@ -201,6 +204,51 @@ void sediment_deposition_particle(Array &z,
                                  drag_rate);
     z = lerp(z, z_f, *(p_mask));
   }
+}
+
+void sediment_layer(Array       &z,
+                    const Array &talus_layer,
+                    const Array &talus_upper_limit,
+                    int          iterations,
+                    bool         apply_post_filter,
+                    Array       *p_deposition_map)
+{
+  // backup input
+  Array z_bckp = z;
+
+  // prepare talus
+  Array g_talus = gradient_talus(z);
+  Array talus_ref = talus_layer;
+  Array fmask = Array(z.shape, 1.f);
+
+  for (int j = 0; j < z.shape.y; j++)
+    for (int i = 0; i < z.shape.x; i++)
+      if (g_talus(i, j) > talus_upper_limit(i, j))
+      {
+        fmask(i, j) = 0.f;
+        talus_ref(i, j) = 4.f * (g_talus(i, j) - talus_upper_limit(i, j)) +
+                          talus_upper_limit(i, j);
+      }
+
+  // apply thermal erosion with prepared inputs
+  Array sediment_layer_map(z.shape);
+
+  thermal(z, talus_ref, iterations, nullptr, &sediment_layer_map);
+
+  // smooth transitions
+  if (apply_post_filter)
+  {
+    laplace(sediment_layer_map, 0.2f);
+    z = z_bckp + sediment_layer_map;
+
+    // filter also the deposition layer only (and also filter the mask
+    // itself to avoid kinky spatial transitions)
+    laplace(fmask, 0.2f);
+    laplace(z, &fmask, 0.2f);
+  }
+
+  // output deposition map
+  if (p_deposition_map) *p_deposition_map = sediment_layer_map;
 }
 
 } // namespace hmap

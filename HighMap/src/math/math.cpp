@@ -200,8 +200,8 @@ void radial_displacement_to_xy(const Array &dr,
   std::vector<float> x, y;
   grid_xy_vector(x, y, shape, bbox, false); // no endpoint
 
-  for (int i = 0; i < shape.x; i++)
-    for (int j = 0; j < shape.y; j++)
+  for (int j = 0; j < shape.y; j++)
+    for (int i = 0; i < shape.x; i++)
     {
       float xr = x[i] - center.x;
       float yr = y[j] - center.y;
@@ -286,8 +286,8 @@ Array smoothstep5(const Array &array, const Array &vmin, const Array &vmax)
 {
   Array array_out = Array(array.shape);
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       if (array(i, j) < vmin(i, j))
         array_out(i, j) = vmin(i, j);
@@ -309,6 +309,16 @@ float smoothstep5(const float x)
   return x * x * x * (x * (x * 6.f - 15.f) + 10.f);
 }
 
+float smoothstep5_lower(const float x)
+{
+  return x * x * x * (6.f - 8.f * x + 3.f * x * x);
+}
+
+float smoothstep5_upper(const float x)
+{
+  return x * (1.f + x * x * (4.f - 7.f * x + 3.f * x * x));
+}
+
 float smoothstep7(const float x)
 {
   float x2 = x * x;
@@ -318,6 +328,16 @@ float smoothstep7(const float x)
   float x6 = x5 * x;
   float x7 = x6 * x;
   return -20.f * x7 + 70.f * x6 - 84.f * x5 + 35.f * x4;
+}
+
+Array sqrt(const Array &array)
+{
+  Array array_out = Array(array.shape);
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array_out.vector.begin(),
+                 [](float v) { return std::sqrt(v); });
+  return array_out;
 }
 
 } // namespace hmap

@@ -34,8 +34,8 @@ Tensor::Tensor(const std::string &fname)
   *this = Tensor(Vec2<int>(mat.cols, mat.rows), 4);
 
   // fill tensor
-  for (int i = 0; i < shape.x; i++)
-    for (int j = 0; j < shape.y; j++)
+  for (int j = 0; j < shape.y; j++)
+    for (int i = 0; i < shape.x; i++)
     {
       // OpenCV stores pixels as (row, column), hence (mat.rows - 1 - j, i)
       cv::Vec3f pixel = mat.at<cv::Vec3f>(mat.rows - 1 - j, i);
@@ -52,20 +52,20 @@ Tensor::Tensor(const std::string &fname)
 
 float &Tensor::operator()(int i, int j, int k)
 {
-  return this->vector[(i * this->shape.y + j) * this->shape.z + k];
+  return this->vector[(j * this->shape.x + i) * this->shape.z + k];
 }
 
 const float &Tensor::operator()(int i, int j, int k) const ///< @overload
 {
-  return this->vector[(i * this->shape.y + j) * this->shape.z + k];
+  return this->vector[(j * this->shape.x + i) * this->shape.z + k];
 }
 
 Array Tensor::get_slice(int k) const
 {
   Array out = Array(Vec2<int>(this->shape.x, this->shape.y));
 
-  for (int i = 0; i < this->shape.x; i++)
-    for (int j = 0; j < this->shape.y; j++)
+  for (int j = 0; j < this->shape.y; j++)
+    for (int i = 0; i < this->shape.x; i++)
       out(i, j) = (*this)(i, j, k);
 
   return out;
@@ -111,8 +111,8 @@ void Tensor::set_slice(int k, const Array &slice)
 {
   // TODO check shapes
 
-  for (int i = 0; i < this->shape.x; i++)
-    for (int j = 0; j < this->shape.y; j++)
+  for (int j = 0; j < this->shape.y; j++)
+    for (int i = 0; i < this->shape.x; i++)
       (*this)(i, j, k) = slice(i, j);
 }
 
@@ -127,7 +127,7 @@ cv::Mat Tensor::to_cv_mat()
   default: cv_mat_type = CV_32FC1; break;
   }
 
-  cv::Mat mat(shape.x, shape.y, cv_mat_type, vector.data());
+  cv::Mat mat(shape.y, shape.x, cv_mat_type, vector.data());
 
   if (shape.z == 3)
     cv::cvtColor(mat, mat, cv::COLOR_BGR2RGB);
@@ -142,7 +142,7 @@ void Tensor::to_png(const std::string &fname, int depth)
   cv::Mat mat = to_cv_mat();
   int     scale_factor = (depth == CV_8U) ? 255 : 65535;
   mat.convertTo(mat, depth, scale_factor);
-  cv::rotate(mat, mat, cv::ROTATE_90_COUNTERCLOCKWISE);
+  cv::flip(mat, mat, 0); // up-down
   cv::imwrite(fname, mat);
 }
 
@@ -151,7 +151,7 @@ std::vector<uint8_t> Tensor::to_img_8bit()
   std::vector<uint8_t> vec;
   vec.reserve(this->vector.size());
 
-  for (int j = this->shape.y - 1; j > -1; j--)
+  for (int j = this->shape.y - 1; j >= 0; j--)
     for (int i = 0; i < this->shape.x; i++)
       for (int k = 0; k < this->shape.z; k++)
         vec.push_back(static_cast<uint8_t>(255.f * (*this)(i, j, k)));

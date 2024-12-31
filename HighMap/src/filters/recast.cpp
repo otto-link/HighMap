@@ -108,8 +108,8 @@ void recast_cliff(Array &array,
   Array vmax = vmin + amplitude * dn;
 
   // apply gain filter
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       if (array(i, j) > vmin(i, j) && array(i, j) < vmax(i, j))
       {
@@ -168,8 +168,8 @@ void recast_cliff_directional(Array &array,
   Array vmax = vmin + amplitude * dn * da;
 
   // apply gain filter
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       if (array(i, j) > vmin(i, j) && array(i, j) < vmax(i, j))
       {
@@ -219,8 +219,8 @@ void recast_escarpment(Array &array,
 
   if (!reverse)
   {
-    for (int i = 1; i < array.shape.x; i++)
-      for (int j = 0; j < array.shape.y; j++)
+    for (int j = 0; j < array.shape.y; j++)
+      for (int i = 1; i < array.shape.x; i++)
       {
         float v = array(i, j) > array(i - 1, j) ? -ratio : 1.f;
         cdx(i, j) = std::min(cdx(i - 1, j) + v, 0.f);
@@ -229,8 +229,8 @@ void recast_escarpment(Array &array,
   }
   else
   {
-    for (int i = array.shape.x - 2; i > -1; i--)
-      for (int j = 0; j < array.shape.y; j++)
+    for (int j = 0; j < array.shape.y; j++)
+      for (int i = array.shape.x - 2; i > -1; i--)
       {
         float v = array(i, j) > array(i + 1, j) ? -ratio : 1.f;
         cdx(i, j) = std::min(cdx(i + 1, j) + v, 0.f);

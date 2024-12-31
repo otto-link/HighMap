@@ -217,8 +217,8 @@ void hydraulic_procedural(Array         &z,
   Array ridges(shape);
   Array rho(shape);
 
-  for (int i = 0; i < shape.x; i++)
-    for (int j = 0; j < shape.y; j++)
+  for (int j = 0; j < shape.y; j++)
+    for (int i = 0; i < shape.x; i++)
     {
       rho(i, j) = 2.f / M_PI *
                   std::atan(phase_smoothing *
@@ -241,8 +241,8 @@ void hydraulic_procedural(Array         &z,
 
   Array ridge_mask(shape);
 
-  for (int i = 0; i < shape.x; i++)
-    for (int j = 0; j < shape.y; j++)
+  for (int j = 0; j < shape.y; j++)
+    for (int i = 0; i < shape.x; i++)
     {
       ridge_mask(i, j) = ridges(i, j);
       ridges(i, j) += ridge_mask(i, j) * noise(i, j);
@@ -267,8 +267,8 @@ void hydraulic_procedural(Array         &z,
 
     if (talus_mask == 0.f) talus_mask = 2.f / shape.x;
 
-    for (int i = 0; i < shape.x; i++)
-      for (int j = 0; j < shape.y; j++)
+    for (int j = 0; j < shape.y; j++)
+      for (int i = 0; i < shape.x; i++)
       {
         if (mask(i, j) > talus_mask) mask(i, j) = talus_mask;
         mask(i, j) = mask(i, j) / talus_mask;

@@ -32,9 +32,8 @@ void depression_filling(Array &z, int iterations, float epsilon)
 
   for (int it = 0; it < iterations; it++)
   {
-    for (int i = 1; i < z.shape.x - 1; i++)
-    {
-      for (int j = 1; j < z.shape.y - 1; j++)
+    for (int j = 1; j < z.shape.y - 1; j++)
+      for (int i = 1; i < z.shape.x - 1; i++)
       {
         if (z_new(i, j) > z(i, j))
         {
@@ -54,7 +53,6 @@ void depression_filling(Array &z, int iterations, float epsilon)
           }
         }
       }
-    }
   }
   extrapolate_borders(z_new);
   z = z_new;

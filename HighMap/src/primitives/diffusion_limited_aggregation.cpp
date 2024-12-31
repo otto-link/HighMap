@@ -78,8 +78,8 @@ Array diffusion_limited_aggregation(Vec2<int> shape,
   }
 
   // clean-up, remove spurious values outward the seeding radius
-  for (int i = 0; i < shape_wrk.x; i++)
-    for (int j = 0; j < shape_wrk.y; j++)
+  for (int j = 0; j < shape_wrk.y; j++)
+    for (int i = 0; i < shape_wrk.x; i++)
     {
       float dx = (float)(i - ic) / (shape_wrk.x - 1);
       float dy = (float)(j - jc) / (shape_wrk.y - 1);

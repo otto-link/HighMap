@@ -236,6 +236,28 @@ protected:
 };
 
 /**
+ * @class DiskFunction
+ * @brief DiskFunction (x, y) function class.
+ */
+class DiskFunction : public Function
+{
+public:
+  /**
+   * @brief Construct a new Disk Function object.
+   *
+   * @param radius Radius of the disk (with respect to a unit domain).
+   * @param slope Side slope (with respect to a unit domain).
+   * @param center Primitive reference center.
+   */
+  DiskFunction(float radius, float slope, Vec2<float> center);
+
+protected:
+  float       radius; ///< Radius of the disk.
+  float       slope;  ///< Slope of the disk.
+  Vec2<float> center; ///< Primitive reference center.
+};
+
+/**
  * @class GaussianPulseFunction
  * @brief GaussianPulse (x, y) function class.
  *
@@ -270,6 +292,51 @@ protected:
 
 private:
   float inv_sigma2; ///< Cached squared inverse of the half-width.
+};
+
+/**
+ * @class RectangleFunction
+ * @brief RectangleFunction (x, y) function class.
+ */
+class RectangleFunction : public Function
+{
+public:
+  /**
+   * @brief Construct a new Rectangle Function object.
+   *
+   * @param rx Radius of the rectangle (with respect to a unit domain).
+   * @param ry Radius of the rectangle (with respect to a unit domain).
+   * @param angle Overall rotation angle (in degrees).
+   * @param slope Side slope (with respect to a unit domain).
+   * @param center Primitive reference center.
+   */
+  RectangleFunction(float       rx,
+                    float       ry,
+                    float       angle,
+                    float       slope,
+                    Vec2<float> center);
+
+  /**
+   * @brief Set the angle.
+   *
+   * @param new_angle New angle in degrees.
+   */
+  void set_angle(float new_angle)
+  {
+    this->angle = new_angle;
+    this->ca = std::cos(angle / 180.f * M_PI);
+    this->sa = std::sin(angle / 180.f * M_PI);
+  }
+
+protected:
+  float       rx, ry; ///< Radius of the rectangle.
+  float       angle;  ///< Angle of the rectangle.
+  float       slope;  ///< Slope of the rectangle.
+  Vec2<float> center; ///< Primitive reference center.
+
+private:
+  float ca; ///< Cached cosine of the angle.
+  float sa; ///< Cached sine of the angle.
 };
 
 /**

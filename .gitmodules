@@ -17,3 +17,6 @@
 [submodule "external/libnpy"]
 	path = external/libnpy
 	url = git@github.com:llohse/libnpy.git
+[submodule "external/CLWrapper"]
+	path = external/CLWrapper
+	url = git@github.com:otto-link/CLWrapper.git

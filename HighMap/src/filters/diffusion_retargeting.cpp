@@ -20,8 +20,8 @@ Array diffusion_retargeting(Array &array_before, Array &array_after, int ir)
   // select points of interest
   Array delta(shape);
 
-  for (int i = 1; i < shape.x - 1; i++)
-    for (int j = 1; j < shape.y - 1; j++)
+  for (int j = 1; j < shape.y - 1; j++)
+    for (int i = 1; i < shape.x - 1; i++)
     {
       if (array_before(i, j) > array_before(i + 1, j) &&
           array_before(i, j) > array_before(i + 1, j + 1) &&

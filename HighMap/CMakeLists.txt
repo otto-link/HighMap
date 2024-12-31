@@ -35,6 +35,10 @@ target_link_libraries(
   ${OpenCV_LIBS})
 
 if(HIGHMAP_ENABLE_OPENCL)
+  target_link_libraries(${PROJECT_NAME} clwrapper)
+endif()
+
+if(HIGHMAP_ENABLE_OPENCL)
   target_link_libraries(${PROJECT_NAME} ${OpenCL_LIBRARIES})
 endif(HIGHMAP_ENABLE_OPENCL)
 

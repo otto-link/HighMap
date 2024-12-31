@@ -1,0 +1,2 @@
+add_executable(ex_gpu_opencl ex_gpu_opencl.cpp)
+target_link_libraries(ex_gpu_opencl highmap)

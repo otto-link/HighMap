@@ -128,6 +128,14 @@ Array cone_smooth(Vec2<int> shape);
 Array cubic_pulse(Vec2<int> shape);
 
 /**
+ * @brief Generates a 1D cubic pulse kernel.
+ *
+ * @param nk The number of samples in the 1D kernel.
+ * @return std::vector<float> A vector containing the cubic pulse kernel values.
+ */
+std::vector<float> cubic_pulse_1d(int nk);
+
+/**
  * @brief Generates a "directional" cubic pulse kernel.
  *
  * This function creates a cubic pulse kernel with directional properties. The

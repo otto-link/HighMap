@@ -78,8 +78,8 @@ Array phasor(PhasorProfile phasor_profile,
 
   if (phase_smoothing > 0.f)
   {
-    for (int i = 0; i < shape.x; i++)
-      for (int j = 0; j < shape.y; j++)
+    for (int j = 0; j < shape.y; j++)
+      for (int i = 0; i < shape.x; i++)
       {
         float rho = 2.f / M_PI *
                     std::atan(phase_smoothing *
@@ -91,8 +91,8 @@ Array phasor(PhasorProfile phasor_profile,
   }
   else
   {
-    for (int i = 0; i < shape.x; i++)
-      for (int j = 0; j < shape.y; j++)
+    for (int j = 0; j < shape.y; j++)
+      for (int i = 0; i < shape.x; i++)
         phasor_noise(i, j) = lambda_p(phase(i, j));
   }
 

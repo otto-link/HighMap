@@ -27,8 +27,8 @@ Array inpainting_diffusion(const Array &array,
   std::vector<int> idx = {};
   idx.reserve(array.size());
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       if (mask(i, j) == 0.f)
         out(i, j) = array(i, j);

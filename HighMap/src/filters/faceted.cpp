@@ -44,8 +44,8 @@ Array faceted(const Array &array,
 
   const uint nb = di.size();
 
-  for (int i = 0; i < array.shape.x; i++)
-    for (int j = 0; j < array.shape.y; j++)
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
     {
       std::vector<int> signature(nb);
 

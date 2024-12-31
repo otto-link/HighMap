@@ -25,8 +25,8 @@ void thermal_rib(Array &z, int iterations, Array *p_bedrock)
 
   for (int it = 0; it < iterations; it++)
   {
-    for (int i = 1; i < z.shape.x - 1; i++)
-      for (int j = 1; j < z.shape.y - 1; j++)
+    for (int j = 1; j < z.shape.y - 1; j++)
+      for (int i = 1; i < z.shape.x - 1; i++)
       {
         float delta_min = std::numeric_limits<float>::max();
         for (size_t k = 0; k < nb; k++)

@@ -11,21 +11,21 @@ namespace hmap
 
 cv::Mat Array::to_cv_mat()
 {
-  return cv::Mat(this->shape.x, this->shape.y, CV_32FC1, this->vector.data());
+  return cv::Mat(this->shape.y, this->shape.x, CV_32FC1, this->vector.data());
 }
 
 // Helper function to convert OpenCV matrix to Array
 template <typename T>
 void convert_mat_to_array(const cv::Mat &mat, Array &array)
 {
-  for (int i = 0; i < array.shape.x; ++i)
-    for (int j = 0; j < array.shape.y; ++j)
-      array(i, j) = static_cast<float>(mat.at<T>(i, j));
+  for (int j = 0; j < array.shape.y; ++j)
+    for (int i = 0; i < array.shape.x; ++i)
+      array(i, j) = static_cast<float>(mat.at<T>(j, i));
 }
 
 Array cv_mat_to_array(const cv::Mat &mat, bool remap_values)
 {
-  Vec2<int> shape = {mat.rows, mat.cols};
+  Vec2<int> shape = {mat.cols, mat.rows};
   Array     array(shape);
 
   switch (mat.type())

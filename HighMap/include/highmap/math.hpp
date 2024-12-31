@@ -382,11 +382,37 @@ Array smoothstep5(const Array &array,
 float smoothstep5(const float x);
 
 /**
+ * @brief Return the 5rd order smoothstep function, with zero derivative only
+ * at 0.
+ *
+ * @param x Input.
+ * @return float Output.
+ */
+float smoothstep5_lower(const float x);
+
+/**
+ * @brief Return the 5rd order smoothstep function, with zero derivative only
+ * at 1.
+ *
+ * @param x Input.
+ * @return float Output.
+ */
+float smoothstep5_upper(const float x);
+
+/**
  * @brief Return the 7th order smoothstep function.
  *
  * @param x Input.
  * @return float Output.
  */
 float smoothstep7(const float x);
+
+/**
+ * @brief Return the square root of the array elements.
+ *
+ * @param array Input array.
+ * @return Array Reference to the current object.
+ */
+Array sqrt(const Array &array);
 
 } // namespace hmap

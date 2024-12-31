@@ -25,8 +25,8 @@ Array kmeans_clustering2(const Array        &array1,
   std::vector<std::array<float, 2>> data = {};
   data.resize(shape.x * shape.y);
 
-  for (int i = 0; i < shape.x; i++)
-    for (int j = 0; j < shape.y; j++)
+  for (int j = 0; j < shape.y; j++)
+    for (int i = 0; i < shape.x; i++)
     {
       int k = i + j * shape.x;
       data[k][0] = weights.x * array1(i, j);
@@ -83,8 +83,8 @@ Array kmeans_clustering2(const Array        &array1,
     for (int r = 0; r < nclusters; r++)
       p_working_scores->push_back(Array(shape));
 
-    for (int i = 0; i < shape.x; i++)
-      for (int j = 0; j < shape.y; j++)
+    for (int j = 0; j < shape.y; j++)
+      for (int i = 0; i < shape.x; i++)
       {
         int k = i + j * shape.x; // linear index
 
@@ -111,8 +111,8 @@ Array kmeans_clustering2(const Array        &array1,
   {
     *p_aggregate_scoring = Array(shape);
 
-    for (int i = 0; i < shape.x; i++)
-      for (int j = 0; j < shape.y; j++)
+    for (int j = 0; j < shape.y; j++)
+      for (int i = 0; i < shape.x; i++)
       {
         float max = 0.f;
         int   rmax = 0;
@@ -146,8 +146,8 @@ Array kmeans_clustering3(const Array        &array1,
   std::vector<std::array<float, 3>> data = {};
   data.resize(shape.x * shape.y);
 
-  for (int i = 0; i < shape.x; i++)
-    for (int j = 0; j < shape.y; j++)
+  for (int j = 0; j < shape.y; j++)
+    for (int i = 0; i < shape.x; i++)
     {
       int k = i + j * shape.x;
       data[k][0] = weights.x * array1(i, j);

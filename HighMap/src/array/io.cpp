@@ -37,8 +37,8 @@ void Array::from_numpy(const std::string &fname)
   // copy the data
   if (d.fortran_order)
   {
-    for (int i = 0; i < this->shape.x; i++)
-      for (int j = 0; j < this->shape.y; j++)
+    for (int j = 0; j < this->shape.y; j++)
+      for (int i = 0; i < this->shape.x; i++)
       {
         int k = j * this->shape.x + i;
         (*this)(i, j) = d.data[k];
@@ -46,8 +46,8 @@ void Array::from_numpy(const std::string &fname)
   }
   else
   {
-    for (int i = 0; i < this->shape.x; i++)
-      for (int j = 0; j < this->shape.y; j++)
+    for (int j = 0; j < this->shape.y; j++)
+      for (int i = 0; i < this->shape.x; i++)
       {
         int k = i * this->shape.y + j;
         (*this)(i, j) = d.data[k];
@@ -88,7 +88,6 @@ void Array::to_exr(const std::string &fname)
   remap(array_copy);
 
   cv::Mat mat = array_copy.to_cv_mat();
-  cv::rotate(mat, mat, cv::ROTATE_90_COUNTERCLOCKWISE);
 
   std::vector<int> codec_params = {cv::IMWRITE_EXR_TYPE,
                                    cv::IMWRITE_EXR_TYPE_FLOAT,
@@ -115,7 +114,7 @@ void Array::to_numpy(const std::string &fname)
   npy::npy_data_ptr<float> d;
   d.data_ptr = this->vector.data();
   d.shape = {(uint)this->shape.x, (uint)this->shape.y};
-  d.fortran_order = false;
+  d.fortran_order = true;
 
   npy::write_npy(fname, d);
 }
@@ -141,7 +140,6 @@ void Array::to_png_grayscale(const std::string &fname, int depth)
   cv::Mat mat = array_copy.to_cv_mat();
   int     scale_factor = (depth == CV_8U) ? 255 : 65535;
   mat.convertTo(mat, depth, scale_factor);
-  cv::rotate(mat, mat, cv::ROTATE_90_COUNTERCLOCKWISE);
   cv::imwrite(fname, mat);
 }
 
@@ -156,7 +154,6 @@ void Array::to_tiff(const std::string &fname)
   remap(array_copy);
 
   cv::Mat mat = array_copy.to_cv_mat();
-  cv::rotate(mat, mat, cv::ROTATE_90_COUNTERCLOCKWISE);
 
   // set compression to cv::IMWRITE_TIFF_COMPRESSION_LZW (apparently
   // not available in openCV public header?)

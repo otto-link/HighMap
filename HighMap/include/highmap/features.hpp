@@ -343,6 +343,29 @@ Array kmeans_clustering3(const Array        &array1,
 Array relative_elevation(const Array &array, int ir);
 
 /**
+ * @brief Computes the ruggedness of each element in the input array.
+ *
+ * The ruggedness is calculated as the square root of the sum of squared
+ * differences between each element and its neighbors within a specified radius.
+ *
+ * @param array The input array for which ruggedness is to be computed.
+ * @param ir The radius within which neighbors are considered for ruggedness
+ * calculation.
+ * @return An array containing the ruggedness values for each element in the
+ * input array.
+ *
+ * @note https://xdem.readthedocs.io/en/latest/terrain.html
+ *
+ * **Example**
+ * @include ex_ruggedness.cpp
+ *
+ * **Result**
+ * @image html ex_ruggedness0.png
+ * @image html ex_ruggedness1.png
+ */
+Array ruggedness(const Array &array, int ir);
+
+/**
  * @brief Estimates the rugosity of a surface by analyzing the skewness of the
  * elevation data, which reflects surface roughness.
  *
@@ -350,15 +373,11 @@ Array relative_elevation(const Array &array, int ir);
  * and habitat mapping. Higher rugosity values indicate more rugged terrain,
  * which can affect species distribution and water flow.
  *
- * **Usage**:
- * - Apply this function to assess habitat suitability, especially in marine
- * environments where surface complexity influences biodiversity.
- * - Useful in erosion studies and in identifying areas with complex terrain
- * features.
- *
  * @param z The input array representing the heightmap data (elevation values).
  * @param ir The radius of the square kernel used for calculations, determining
  * the scale of the analysis.
+ * @param convex Return the convex rugosity if true, and the concave ones if
+ * not.
  * @return Array An output array containing the rugosity estimates, where higher
  * values indicate rougher terrain.
  *
@@ -369,7 +388,7 @@ Array relative_elevation(const Array &array, int ir);
  * @image html ex_rugosity0.png
  * @image html ex_rugosity1.png
  */
-Array rugosity(const Array &z, int ir);
+Array rugosity(const Array &z, int ir, bool convex = true);
 
 /**
  * @brief Computes the Shape Index (SI) of the terrain, quantifying landform

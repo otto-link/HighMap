@@ -1,0 +1,2 @@
+add_executable(ex_gabor_wave ex_gabor_wave.cpp)
+target_link_libraries(ex_gabor_wave highmap)
