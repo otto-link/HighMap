@@ -29,4 +29,37 @@ Tensor normal_map(const Array &array)
   return nmap;
 }
 
+Array normal_map_to_heightmap(const Tensor &nmap)
+{
+  Vec2<int> shape(nmap.shape.x, nmap.shape.y);
+  Array     z1(shape);
+  Array     z2(shape);
+  Array     dx(shape);
+  Array     dy(shape);
+
+  for (int j = 1; j < shape.y; ++j)
+    for (int i = 1; i < shape.x; ++i)
+    {
+      float nz = std::max(1e-6f, 2.f * nmap(i, j, 2) - 1.f);
+      dx(i, j) = -(2.f * nmap(i, j, 0) - 1.f) / nz;
+      dy(i, j) = -(2.f * nmap(i, j, 1) - 1.f) / nz;
+    }
+
+  for (int j = 1; j < shape.y; ++j)
+    for (int i = 1; i < shape.x; ++i)
+    {
+      z1(i, j) = z1(i, j - 1) + dy(i, j);
+      z1(i, j) = z1(i - 1, j) + dx(i, j);
+    }
+
+  for (int j = 1; j < shape.y; ++j)
+    for (int i = 1; i < shape.x; ++i)
+    {
+      z2(i, j) = z2(i - 1, j) + dx(i, j);
+      z2(i, j) = z2(i, j - 1) + dy(i, j);
+    }
+
+  return z1 + z2;
+}
+
 } // namespace hmap
