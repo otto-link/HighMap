@@ -14,6 +14,7 @@ void kernel mountain_range_radial(global float *output,
                                   const uint    seed,
                                   const float   half_width,
                                   const float   angle_spread_ratio,
+                                  const float   core_size_ratio,
                                   const float2  center,
                                   const int     octaves,
                                   const float   weight,
@@ -60,11 +61,11 @@ void kernel mountain_range_radial(global float *output,
                                       fseed);
 
   // smoothing at origin to avoid numerical artifacts
-  float r2_max = 1.f / max(kx, ky);
+  float r2_max = core_size_ratio / max(kx, ky);
   float t = min(1.f, r2 / r2_max);
   t = sqrt(t) * (1.f - exp(-500.f * t));
   t = smoothstep3_upper(t);
 
-  output[index] = amp * lerp(1.f, noise, t);
+  output[index] = amp * lerp(1.f, 0.5f * noise + 0.5f, t);
 }
 )""

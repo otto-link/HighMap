@@ -349,6 +349,7 @@ Array mountain_range_radial(Vec2<int>   shape,
                             uint        seed,
                             float       half_width,
                             float       angle_spread_ratio,
+                            float       core_size_ratio,
                             Vec2<float> center,
                             int         octaves,
                             float       weight,
@@ -376,6 +377,7 @@ Array mountain_range_radial(Vec2<int>   shape,
                      seed,
                      half_width,
                      angle_spread_ratio,
+                     core_size_ratio,
                      center,
                      octaves,
                      weight,
@@ -388,8 +390,6 @@ Array mountain_range_radial(Vec2<int>   shape,
 
   run.execute({array.shape.x, array.shape.y});
   run.read_buffer("array");
-
-  array.to_png_grayscale("out1.png", CV_16U);
 
   return array;
 }
