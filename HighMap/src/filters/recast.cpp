@@ -201,6 +201,30 @@ void recast_cliff_directional(Array &array,
   }
 }
 
+void recast_cracks(Array &array,
+                   float  cut_min,
+                   float  cut_max,
+                   float  k_smoothing,
+                   float  vmin,
+                   float  vmax)
+{
+  // redefine min/max if sentinels values are detected
+  if (vmax < vmin)
+  {
+    vmin = array.min();
+    vmax = array.max();
+  }
+
+  remap(array, 0.f, 1.f, vmin, vmax);
+
+  Array z1 = array - cut_max;
+  Array z2 = cut_max - array;
+
+  array = maximum_smooth(z1, z2, k_smoothing);
+  array = minimum_smooth(array, Array(array.shape, cut_min), k_smoothing);
+  array /= cut_min;
+}
+
 void recast_escarpment(Array &array,
                        int    ir,
                        float  ratio,

@@ -265,20 +265,25 @@ Array maximum_local_disk(const Array &array, int ir)
 
 Array maximum_smooth(const Array &array1, const Array &array2, float k)
 {
-  Array array_out = Array(array1.shape);
-
-  auto lambda = [&k](float a, float b)
+  if (k > 0.f)
   {
-    float h = std::max(k - std::abs(a - b), 0.f) / k;
-    return std::max(a, b) + std::pow(h, 3) * k / 6.f;
-  };
+    Array array_out = Array(array1.shape);
 
-  std::transform(array1.vector.begin(),
-                 array1.vector.end(),
-                 array2.vector.begin(),
-                 array_out.vector.begin(),
-                 lambda);
-  return array_out;
+    auto lambda = [&k](float a, float b)
+    {
+      float h = std::max(k - std::abs(a - b), 0.f) / k;
+      return std::max(a, b) + std::pow(h, 3) * k / 6.f;
+    };
+
+    std::transform(array1.vector.begin(),
+                   array1.vector.end(),
+                   array2.vector.begin(),
+                   array_out.vector.begin(),
+                   lambda);
+    return array_out;
+  }
+  else
+    return maximum(array1, array2);
 }
 
 float maximum_smooth(const float a, const float b, float k)
@@ -320,20 +325,25 @@ Array minimum_local_disk(const Array &array, int ir)
 
 Array minimum_smooth(const Array &array1, const Array &array2, float k)
 {
-  Array array_out = Array(array1.shape);
-
-  auto lambda = [&k](float a, float b)
+  if (k > 0.f)
   {
-    float h = std::max(k - std::abs(a - b), 0.f) / k;
-    return std::min(a, b) - std::pow(h, 3) * k / 6.f;
-  };
+    Array array_out = Array(array1.shape);
 
-  std::transform(array1.vector.begin(),
-                 array1.vector.end(),
-                 array2.vector.begin(),
-                 array_out.vector.begin(),
-                 lambda);
-  return array_out;
+    auto lambda = [&k](float a, float b)
+    {
+      float h = std::max(k - std::abs(a - b), 0.f) / k;
+      return std::min(a, b) - std::pow(h, 3) * k / 6.f;
+    };
+
+    std::transform(array1.vector.begin(),
+                   array1.vector.end(),
+                   array2.vector.begin(),
+                   array_out.vector.begin(),
+                   lambda);
+    return array_out;
+  }
+  else
+    return minimum(array1, array2);
 }
 
 float minimum_smooth(const float a, const float b, float k)

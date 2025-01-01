@@ -1133,6 +1133,13 @@ void recast_cliff_directional(Array &array,
                               Array *p_mask,
                               float  gain = 2.f); ///< @overload
 
+void recast_cracks(Array &array,
+                   float  cut_min = 0.05f,
+                   float  cut_max = 0.5f,
+                   float  k_smoothing = 0.01f,
+                   float  vmin = 0.f,
+                   float  vmax = -1.f);
+
 /**
  * @brief Applies an escarpment effect to the given 2D array, modifying its
  * values based on cumulative displacement with optional directional and
