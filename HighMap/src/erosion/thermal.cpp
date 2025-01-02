@@ -261,7 +261,7 @@ void thermal_auto_bedrock(Array &z,
   else
   {
     Array z_f = z;
-    thermal_auto_bedrock(z, talus, iterations, p_deposition_map);
+    thermal_auto_bedrock(z_f, talus, iterations, p_deposition_map);
     z = lerp(z, z_f, *(p_mask));
   }
 }
