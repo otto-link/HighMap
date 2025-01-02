@@ -23,7 +23,7 @@ void kernel plateau_post(global float *array,
   float amax_v = amax[index];
 
   // to [0, 1]
-  val = (val - amin_v) / (amax_v - amin_v + 1e-30);
+  val = (val - amin_v) / (amax_v - amin_v + 1e-6);
   val = max(0.f, val);
 
   // gain
