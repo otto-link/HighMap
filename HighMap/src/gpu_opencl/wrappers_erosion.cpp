@@ -248,6 +248,22 @@ void thermal_auto_bedrock(Array &z,
   gpu::thermal_auto_bedrock(z, talus_map, iterations, p_deposition_map);
 }
 
+void thermal_auto_bedrock(Array       &z,
+                          Array       *p_mask,
+                          const Array &talus,
+                          int          iterations,
+                          Array       *p_deposition_map)
+{
+  if (!p_mask)
+    gpu::thermal_auto_bedrock(z, talus, iterations, p_deposition_map);
+  else
+  {
+    Array z_f = z;
+    gpu::thermal_auto_bedrock(z, talus, iterations, p_deposition_map);
+    z = lerp(z, z_f, *(p_mask));
+  }
+}
+
 void thermal_rib(Array &z, int iterations, Array *p_bedrock)
 {
   auto run = clwrapper::Run("thermal_rib");
