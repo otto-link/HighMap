@@ -88,6 +88,7 @@ std::function<float(float)> helper_get_profile_function(
   //
   case ErosionProfile::TRIANGLE_GRENIER:
   {
+    // https://onlinelibrary.wiley.com/doi/epdf/10.1111/cgf.14992
     lambda_p = [delta](float phi)
     {
       float t = phi / M_PI;
