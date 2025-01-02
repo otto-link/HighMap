@@ -31,6 +31,8 @@ bool init_opencl();
 
 // --- function wrappers
 
+Array border(const Array &array, int ir);
+
 Array closing(const Array &array, int ir);
 
 Array dilation(const Array &array, int ir);

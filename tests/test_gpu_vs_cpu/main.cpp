@@ -87,6 +87,11 @@ int main(void)
 
   int ir = 64;
 
+  compare([ir](hmap::Array &z) { z = hmap::border(z, ir); },
+          [ir](hmap::Array &z) { z = hmap::gpu::border(z, ir); },
+          1e-3f,
+          "border.png");
+
   compare([ir](hmap::Array &z) { z = hmap::closing(z, ir); },
           [ir](hmap::Array &z) { z = hmap::gpu::closing(z, ir); },
           1e-3f,

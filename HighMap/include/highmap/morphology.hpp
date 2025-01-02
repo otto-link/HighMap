@@ -27,6 +27,21 @@ namespace hmap
 {
 
 /**
+ * @brief Apply a border algorithm to the input array using a square
+ * structure.
+ * @param array Input array.
+ * @param ir Square kernel radius.
+ * @return Output array.
+ *
+ * **Example**
+ * @include ex_morphology_base.cpp
+ *
+ * **Result**
+ * @image html ex_morphology_base.png
+ */
+Array border(const Array &array, int ir);
+
+/**
  * @brief Apply a closing algorithm to the input array using a square
  * structure.
  * @param array Input array.

@@ -18,9 +18,4 @@ int main(void)
   hmap::recast_cracks(z2, cut_min, cut_max);
 
   hmap::export_banner_png("ex_cracks.png", {z1, z2}, hmap::Cmap::TERRAIN, true);
-
-  z1.infos("z1");
-  z2.infos("z2");
-
-  z1.to_png_grayscale("out.png", CV_16U);
 }

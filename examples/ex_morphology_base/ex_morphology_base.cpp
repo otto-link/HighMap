@@ -13,15 +13,18 @@ int main(void)
   // radius = 1 ==> 3x3 square kernel
   int ir = 3;
 
-  hmap::Array zd = dilation(z, ir);
-  hmap::Array ze = erosion(z, ir);
-  hmap::Array zc = closing(z, ir);
-  hmap::Array zo = opening(z, ir);
-  hmap::Array zg = morphological_gradient(z, ir);
-  hmap::Array zt = morphological_top_hat(z, ir);
-  hmap::Array zb = morphological_black_hat(z, ir);
+  hmap::Array zd = hmap::dilation(z, ir);
+  hmap::Array ze = hmap::erosion(z, ir);
+  hmap::Array zc = hmap::closing(z, ir);
+  hmap::Array zo = hmap::opening(z, ir);
+  hmap::Array zg = hmap::morphological_gradient(z, ir);
+  hmap::Array zt = hmap::morphological_top_hat(z, ir);
+  hmap::Array zb = hmap::morphological_black_hat(z, ir);
+
+  hmap::make_binary(z);
+  hmap::Array zr = hmap::border(z, ir);
 
   hmap::export_banner_png("ex_morphology_base.png",
-                          {z, zd, ze, zc, zo, zg, zt, zb},
+                          {z, zd, ze, zc, zo, zg, zt, zb, zr},
                           hmap::Cmap::GRAY);
 }

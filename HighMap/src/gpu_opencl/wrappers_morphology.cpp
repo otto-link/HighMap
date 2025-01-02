@@ -9,6 +9,11 @@
 namespace hmap::gpu
 {
 
+Array border(const Array &array, int ir)
+{
+  return array - gpu::erosion(array, ir);
+}
+
 Array closing(const Array &array, int ir)
 {
   return gpu::erosion(gpu::dilation(array, ir), ir);
