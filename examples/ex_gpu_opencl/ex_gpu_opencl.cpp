@@ -1,6 +1,7 @@
 #include "highmap.hpp"
 
 #include "highmap/dbg/assert.hpp"
+#include "highmap/dbg/timer.hpp"
 
 #include <iostream>
 

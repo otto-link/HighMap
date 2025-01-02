@@ -1,2 +1,0 @@
-add_executable(ex_gpu_maximum_local_weighted ex_gpu_maximum_local_weighted.cpp)
-target_link_libraries(ex_gpu_maximum_local_weighted highmap)

@@ -7,6 +7,7 @@
 
 #include "highmap.hpp"
 #include "highmap/dbg/assert.hpp"
+#include "highmap/dbg/timer.hpp"
 
 const int block_size = 32;
 // const hmap::Vec2<int>   shape = {2048, 2048};

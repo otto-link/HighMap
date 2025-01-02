@@ -1,2 +1,0 @@
-add_executable(ex_gpu_voronoise ex_gpu_voronoise.cpp)
-target_link_libraries(ex_gpu_voronoise highmap)

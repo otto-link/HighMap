@@ -32,7 +32,6 @@
 #include "highmap/geometry/grids.hpp"
 #include "highmap/geometry/path.hpp"
 #include "highmap/geometry/point.hpp"
-#include "highmap/gpu.hpp"
 #include "highmap/gradient.hpp"
 #include "highmap/heightmap.hpp"
 #include "highmap/hydrology.hpp"
