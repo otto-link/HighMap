@@ -188,6 +188,11 @@ void thermal_auto_bedrock(Array       &z,
                           const Array &talus,
                           int          iterations = 10,
                           Array       *p_deposition_map = nullptr);
+void thermal_auto_bedrock(Array       &z,
+                          Array       *p_mask,
+                          const Array &talus,
+                          int          iterations = 10,
+                          Array       *p_deposition_map = nullptr);
 void thermal_auto_bedrock(Array &z,
                           float,
                           int    iterations = 10,
