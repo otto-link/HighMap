@@ -483,80 +483,6 @@ void hydraulic_ridge(Array &z,
                      uint   seed = 1); ///< @overload
 
 /**
- * @brief Simulates hydraulic erosion and deposition on a terrain heightmap.
- *
- * The `hydraulic_schott` function applies hydraulic erosion and deposition
- * processes on a 2D heightmap to simulate natural terrain changes over time. It
- * optionally incorporates softness and flow maps to influence the simulation,
- * and can handle an additional mask for selective terrain modification.
- *
- * @param z The input/output heightmap represented as a 2D array.
- * @param iterations The number of erosion iterations to perform.
- * @param deposition_iterations_ratio The ratio of deposition iterations to
- * erosion iterations.
- * @param c_erosion Coefficient controlling the intensity of erosion.
- * @param c_deposition Coefficient controlling the intensity of deposition.
- * @param p_softness Pointer to a 2D array representing terrain softness. If
- * nullptr, a default uniform softness is used.
- * @param p_flow Pointer to a 2D array representing water flow. If nullptr, a
- * default uniform flow is used.
- *
- * @note The implementation is based on the ShaderToy example available at
- * https://www.shadertoy.com/view/XX2XWD.
- *
- * **Example**
- * @include ex_hydraulic_schott.cpp
- *
- * **Result**
- * @image html ex_hydraulic_schott.png
- */
-void hydraulic_schott(Array &z,
-                      int    iterations = 10,
-                      float  deposition_iterations_ratio = 2,
-                      float  c_erosion = 0.3f,
-                      float  c_deposition = 0.5f,
-                      Array *p_softness = nullptr,
-                      Array *p_flow = nullptr);
-
-/**
- * @brief Simulates hydraulic erosion and deposition with an optional mask.
- *
- * The `hydraulic_schott` function extends the basic erosion and deposition
- * simulation by allowing the use of a mask to selectively apply modifications
- * to the terrain.
- *
- * @param z The input/output heightmap represented as a 2D array.
- * @param p_mask Pointer to a 2D array representing a mask for selective terrain
- * modification. If nullptr, the entire terrain is processed.
- * @param iterations The number of erosion iterations to perform.
- * @param deposition_iterations_ratio The ratio of deposition iterations to
- * erosion iterations.
- * @param c_erosion Coefficient controlling the intensity of erosion.
- * @param c_deposition Coefficient controlling the intensity of deposition.
- * @param p_softness Pointer to a 2D array representing terrain softness. If
- * nullptr, a default uniform softness is used.
- * @param p_flow Pointer to a 2D array representing water flow. If nullptr, a
- * default uniform flow is used.
- *
- * @note If the mask is not provided, this function delegates to the simpler
- * version of `hydraulic_schott`.
- *
- *  * **Example**
- * @include ex_hydraulic_schott.cpp
- *
- * **Result**
- * @image html ex_hydraulic_schott.png
- */
-void hydraulic_schott(Array &z,
-                      Array *p_mask,
-                      int    iterations = 10,
-                      float  deposition_iterations_ratio = 2,
-                      float  c_erosion = 0.3f,
-                      float  c_deposition = 0.5f,
-                      Array *p_softness = nullptr,
-                      Array *p_flow = nullptr);
-
-/**
  * @brief Apply hydraulic erosion based on the Stream Power Law formulation.
  *
  * @param z Input array.
@@ -1313,3 +1239,79 @@ void thermal_scree_fast(Array    &z,
                         float     noise_ratio); ///< @overload
 
 } // namespace hmap
+
+#ifdef ENABLE_OPENCL
+#include "highmap/opencl/gpu_opencl.hpp"
+
+namespace hmap::gpu
+{
+
+/**
+ * @brief Simulates hydraulic erosion and deposition on a heightmap using the
+ * Schott method.
+ *
+ * This function performs hydraulic erosion on the given heightmap `z` over a
+ * specified number of iterations. It includes parameters for controlling
+ * erosion, deposition, and flow routing. Optional flow accumulation can also be
+ * computed and stored in the `p_flow` array.
+ *
+ * @param[in,out] z  The heightmap array to be modified. Heights are updated
+ * in-place.
+ * @param[in]     iterations The number of iterations for the hydraulic erosion
+ * process.
+ * @param[in]     talus An array defining the slope threshold for erosion.
+ * @param[in]     c_erosion Erosion coefficient (default: 1.0f).
+ * @param[in]     c_thermal Thermal erosion coefficient (default: 0.1f).
+ * @param[in]     c_deposition Deposition coefficient (default: 0.2f).
+ * @param[in]     flow_acc_exponent Exponent controlling the influence of flow
+ * accumulation on erosion (default: 0.8f).
+ * @param[in]     flow_acc_exponent_depo Exponent controlling the influence of
+ * flow accumulation on deposition (default: 0.8f).
+ * @param[in]     flow_routing_exponent Exponent controlling flow routing
+ * behavior (default: 1.3f).
+ * @param[in]     thermal_weight Weight of thermal erosion effects
+ * (default: 1.5f).
+ * @param[in]     deposition_weight Weight of deposition effects
+ * (default: 2.5f).
+ * @param[out]    p_flow Optional pointer to an array for storing flow
+ * accumulation data. If null, flow data is not returned (default: nullptr).
+ *
+ * @note Taken from https://hal.science/hal-04565030v1/document
+ *
+ * @note Only available if OpenCL is enabled.
+ *
+ * **Example**
+ * @include ex_hydraulic_schott.cpp
+ *
+ * **Result**
+ * @image html ex_hydraulic_schott.png
+ */
+void hydraulic_schott(Array       &z,
+                      int          iterations,
+                      const Array &talus,
+                      float        c_erosion = 1.f,
+                      float        c_thermal = 0.1f,
+                      float        c_deposition = 0.2f,
+                      float        flow_acc_exponent = 0.8f,
+                      float        flow_acc_exponent_depo = 0.8f,
+                      float        flow_routing_exponent = 1.3f,
+                      float        thermal_weight = 1.5f,
+                      float        deposition_weight = 2.5f,
+                      Array       *p_flow = nullptr);
+
+void hydraulic_schott(Array       &z,
+                      int          iterations,
+                      const Array &talus,
+                      Array       *p_mask,
+                      float        c_erosion = 1.f,
+                      float        c_thermal = 0.1f,
+                      float        c_deposition = 0.2f,
+                      float        flow_acc_exponent = 0.8f,
+                      float        flow_acc_exponent_depo = 0.8f,
+                      float        flow_routing_exponent = 1.3f,
+                      float        thermal_weight = 1.5f,
+                      float        deposition_weight = 2.5f,
+                      Array       *p_flow = nullptr);
+
+} // namespace hmap::gpu
+#endif

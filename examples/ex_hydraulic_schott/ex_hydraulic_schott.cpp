@@ -2,7 +2,11 @@
 
 int main(void)
 {
-  hmap::Vec2<int>   shape = {256, 256};
+#ifdef ENABLE_OPENCL
+  hmap::gpu::init_opencl();
+
+  hmap::Vec2<int> shape = {256, 256};
+  shape = {512, 512};
   hmap::Vec2<float> kw = {2.f, 2.f};
   int               seed = 2;
 
@@ -10,32 +14,17 @@ int main(void)
   hmap::remap(z);
   auto z0 = z;
 
-  int   iterations = 1;
-  int   sub_iterations_erosion = 60;
-  int   sub_iterations_thermal = 20;
-  float talus = 4.f / (float)shape.x; // for thermal
+  int         iterations = 400;
+  hmap::Array talus(shape, 2.f / (float)shape.x); // for thermal
 
-  hmap::Array flow_map_output(shape, 1.f);
-
-  for (int it = 0; it < iterations; it++)
-  {
-    hmap::hydraulic_schott(z,
-                           sub_iterations_erosion,
-                           0.5f, // 0.5 times deposition iterations
-                           0.3f, // erosion
-                           0.5f, // deposition
-                           nullptr,
-                           &flow_map_output);
-
-    hmap::thermal_schott(z, talus, sub_iterations_thermal);
-  }
-
-  // rescale output and generate png
-  hmap::remap(z, z0.min(), z0.max());
-  hmap::remap(flow_map_output);
+  hmap::gpu::hydraulic_schott(z, iterations, talus);
 
   hmap::export_banner_png("ex_hydraulic_schott.png",
-                          {z0, z, flow_map_output},
+                          {z0, z},
                           hmap::Cmap::TERRAIN,
                           true);
+
+#else
+  std::cout << "OpenCL not activated\n";
+#endif
 }

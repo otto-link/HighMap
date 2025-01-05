@@ -3,6 +3,7 @@
  * this software. */
 #ifdef ENABLE_OPENCL
 
+#include "highmap/boundary.hpp"
 #include "highmap/math.hpp"
 #include "highmap/opencl/gpu_opencl.hpp"
 #include "highmap/range.hpp"
