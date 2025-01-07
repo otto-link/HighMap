@@ -1539,7 +1539,7 @@ Array gavoronoise(const Array &base,
  * @param p_noise_y        Optional pointer to a precomputed noise array for the
  * Y-axis.
  * @param p_angle          Optional pointer to an array to output the angle.
-  * @param bbox             The bounding box of the output heightmap in
+ * @param bbox             The bounding box of the output heightmap in
  * normalized coordinates [xmin, xmax, ymin, ymax]. Default is {0.0f, 1.0f,
  * 0.0f, 1.0f}.
  *
@@ -1567,7 +1567,7 @@ Array mountain_range_radial(Vec2<int>   shape,
                             Array      *p_ctrl_param = nullptr,
                             Array      *p_noise_x = nullptr,
                             Array      *p_noise_y = nullptr,
-			    Array      *p_angle = nullptr,
+                            Array      *p_angle = nullptr,
                             Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
