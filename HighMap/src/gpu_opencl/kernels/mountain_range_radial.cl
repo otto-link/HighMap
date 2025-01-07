@@ -7,6 +7,7 @@ void kernel mountain_range_radial(global float *output,
                                   global float *ctrl_param,
                                   global float *noise_x,
                                   global float *noise_y,
+				  global float *angle,
                                   const int     nx,
                                   const int     ny,
                                   const float   kx,
@@ -23,6 +24,7 @@ void kernel mountain_range_radial(global float *output,
                                   const int     has_ctrl_param,
                                   const int     has_noise_x,
                                   const int     has_noise_y,
+				  const int     has_angle,
                                   const float4  bbox)
 {
   int2 g = {get_global_id(0), get_global_id(1)};
@@ -48,7 +50,7 @@ void kernel mountain_range_radial(global float *output,
   // noise angle perpendicular to radius
   float  theta = atan2(xy.y, xy.x) + 1.57080f;
   float2 dir = {cos(theta), sin(theta)};
-
+  
   // align roughness with amplitude
   ct *= amp;
   float noise = gabor_wave_scalar_fbm(pos,
@@ -67,5 +69,8 @@ void kernel mountain_range_radial(global float *output,
   t = smoothstep3_upper(t);
 
   output[index] = amp * lerp(1.f, 0.5f * noise + 0.5f, t);
+
+  if (has_angle)
+    angle[index] = theta;
 }
 )""

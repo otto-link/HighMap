@@ -358,6 +358,7 @@ Array mountain_range_radial(Vec2<int>   shape,
                             Array      *p_ctrl_param,
                             Array      *p_noise_x,
                             Array      *p_noise_y,
+			    Array      *p_angle,
                             Vec4<float> bbox)
 {
   Array array(shape);
@@ -369,6 +370,7 @@ Array mountain_range_radial(Vec2<int>   shape,
   helper_bind_optional_buffer(run, "ctrl_param", p_ctrl_param);
   helper_bind_optional_buffer(run, "noise_x", p_noise_x);
   helper_bind_optional_buffer(run, "noise_y", p_noise_y);
+  helper_bind_optional_buffer(run, "angle", p_angle);
 
   run.bind_arguments(array.shape.x,
                      array.shape.y,
@@ -386,10 +388,14 @@ Array mountain_range_radial(Vec2<int>   shape,
                      p_ctrl_param ? 1 : 0,
                      p_noise_x ? 1 : 0,
                      p_noise_y ? 1 : 0,
+		     p_angle ? 1 : 0,
                      bbox);
 
   run.execute({array.shape.x, array.shape.y});
   run.read_buffer("array");
+
+  if (p_angle)
+    run.read_buffer("angle");
 
   return array;
 }
