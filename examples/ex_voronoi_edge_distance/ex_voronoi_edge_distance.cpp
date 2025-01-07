@@ -9,8 +9,6 @@ int main(void)
   hmap::Vec2<float> kw = {4.f, 4.f};
   int               seed = 1;
 
-  clwrapper::KernelManager::get_instance().set_block_size(32);
-
   hmap::Array z1 = hmap::gpu::voronoi_edge_distance(shape, kw, seed);
 
   hmap::Array noise = 0.1f * hmap::noise_fbm(hmap::NoiseType::PERLIN,

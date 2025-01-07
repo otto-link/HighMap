@@ -9,8 +9,6 @@ int main(void)
   hmap::Vec2<float> kw = {4.f, 4.f};
   int               seed = 1;
 
-  clwrapper::KernelManager::get_instance().set_block_size(32);
-
   hmap::Array z00 = hmap::gpu::voronoise(shape, kw, 0.f, 0.f, seed);
   hmap::Array z10 = hmap::gpu::voronoise(shape, kw, 1.f, 0.f, seed);
   hmap::Array z01 = hmap::gpu::voronoise(shape, kw, 0.f, 1.f, seed);

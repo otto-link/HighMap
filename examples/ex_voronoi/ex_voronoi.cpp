@@ -10,8 +10,6 @@ int main(void)
   hmap::Vec2<float> kw = {8.f, 8.f};
   int               seed = 1;
 
-  clwrapper::KernelManager::get_instance().set_block_size(32);
-
   hmap::Vec2<float> jitter = {1.f, 1.f};
 
   std::vector<hmap::VoronoiReturnType> types = {

@@ -9,8 +9,6 @@ int main(void)
   hmap::Vec2<float> kw = {2.f, 2.f};
   int               seed = 1;
 
-  clwrapper::KernelManager::get_instance().set_block_size(32);
-
   // --- base
 
   hmap::Array z = hmap::gpu::gabor_wave(shape, kw, seed);

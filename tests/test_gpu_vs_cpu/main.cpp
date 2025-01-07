@@ -9,7 +9,6 @@
 #include "highmap/dbg/assert.hpp"
 #include "highmap/dbg/timer.hpp"
 
-const int block_size = 32;
 // const hmap::Vec2<int>   shape = {2048, 2048};
 // const hmap::Vec2<int>   shape = {1024, 1024};
 const hmap::Vec2<int>   shape = {256, 512};
@@ -70,8 +69,6 @@ int main(void)
 
 #ifdef ENABLE_OPENCL
   hmap::gpu::init_opencl();
-
-  clwrapper::KernelManager::get_instance().set_block_size(block_size);
 
   f.open("test_gpu_vs_cpu.csv", std::ios::out);
 
