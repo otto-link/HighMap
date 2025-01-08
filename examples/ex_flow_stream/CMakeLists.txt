@@ -1,0 +1,2 @@
+add_executable(ex_flow_stream ex_flow_stream.cpp)
+target_link_libraries(ex_flow_stream highmap)

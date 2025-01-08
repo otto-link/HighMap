@@ -367,7 +367,16 @@ public:
                           float             elevation_ratio = 0.1f,
                           float             distance_exponent = 2.f,
                           Vec2<int>         step = {1, 1},
-                          Array            *p_mask_nogo = nullptr);
+                          Array            *p_mask_nogo = nullptr) const;
+
+  void find_path_dijkstra(Vec2<int>                      ij_start,
+                          std::vector<Vec2<int>>         ij_end_list,
+                          std::vector<std::vector<int>> &i_path_list,
+                          std::vector<std::vector<int>> &j_path_list,
+                          float                          elevation_ratio = 0.1f,
+                          float  distance_exponent = 2.f,
+                          float  upward_penalization = 1.f,
+                          Array *p_mask_nogo = nullptr) const;
 
   /**
    * @brief Import array data from a raw binary file.

@@ -412,6 +412,21 @@ public:
   std::vector<float> get_y() const;
 
   /**
+   * @brief Enforces monotonicity on the values of the points in the path.
+   *
+   * This method adjusts the `v` values of the points in the path to ensure
+   * that they are either monotonically decreasing or increasing, based on
+   * the input parameter.
+   *
+   * @param decreasing If true, enforces a monotonically decreasing order for
+   * the values. If false, enforces a monotonically increasing order for the
+   * values.
+   *
+   * @note This method modifies the path in place.
+   */
+  void enforce_monotonic_values(bool decreasing = true);
+
+  /**
    * @brief Add "meanders" to the path.
    *
    * This method introduces meandering effects to the path by adding random
@@ -686,7 +701,7 @@ public:
    * @param filled Boolean flag indicating whether to perform flood filling of
    * the path's contour.
    */
-  void to_array(Array &array, Vec4<float> bbox, bool filled = false);
+  void to_array(Array &array, Vec4<float> bbox, bool filled = false) const;
 
   /**
    * @brief Return an array filled with the signed distance function to the
@@ -778,5 +793,42 @@ void dig_path(Array      &z,
               bool        force_downhill = false,
               Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f},
               float       depth = 0.f);
+
+/**
+ * @brief Modifies the elevation array to carve a river along a specified path.
+ *
+ * This function adjusts the elevation values in the input array `z` to simulate
+ * a river along the provided `path`. It incorporates parameters for riverbed
+ * and riverbank slopes, noise effects, and merging behavior to create a
+ * realistic river profile.
+ *
+ * @param z The input 2D array representing the elevation map. This array will
+ * be modified in place.
+ * @param path The path along which the river is to be carved, represented as a
+ * sequence of points.
+ * @param riverbank_talus The slope of the riverbank, controlling how steep the
+ * river's edges are.
+ * @param merging_ir The merging radius, specifying how far the effects of
+ * multiple rivers combine.
+ * @param riverbed_talus The slope of the riverbed, controlling how steep the
+ * riverbed is (default: 0.0).
+ * @param noise_ratio The proportion of random noise applied to the river's
+ * shape for realism (default: 0.9).
+ * @param seed The seed for the random noise generator, ensuring reproducibility
+ * (default: 0).
+ *
+ * **Example**
+ * @include ex_flow_stream.cpp
+ *
+ * **Result**
+ * @image html ex_flow_stream.png
+ */
+void dig_river(Array      &z,
+               const Path &path,
+               float       riverbank_talus,
+               int         merging_ir,
+               float       riverbed_talus = 0.f,
+               float       noise_ratio = 0.9f,
+               uint        seed = 0);
 
 } // namespace hmap

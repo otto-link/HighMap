@@ -371,6 +371,26 @@ std::vector<float> Path::get_y() const
   return y;
 }
 
+void Path::enforce_monotonic_values(bool decreasing)
+{
+  if (decreasing)
+  {
+    for (size_t k = 0; k < this->get_npoints() - 1; k++)
+    {
+      if (this->points[k + 1].v > this->points[k].v)
+        this->points[k + 1].v = this->points[k].v;
+    }
+  }
+  else
+  {
+    for (size_t k = 0; k < this->get_npoints() - 1; k++)
+    {
+      if (this->points[k + 1].v < this->points[k].v)
+        this->points[k + 1].v = this->points[k].v;
+    }
+  }
+}
+
 void Path::meanderize(float ratio,
                       float noise_ratio,
                       uint  seed,
@@ -734,7 +754,7 @@ void Path::subsample(int step)
   }
 }
 
-void Path::to_array(Array &array, Vec4<float> bbox, bool filled)
+void Path::to_array(Array &array, Vec4<float> bbox, bool filled) const
 {
   // number of pixels per unit length
   float lx = bbox.b - bbox.a;
@@ -878,6 +898,51 @@ void dig_path(Array      &z,
 
   zf += depth;
   z = lerp(z, zf, mask);
+}
+
+void dig_river(Array      &z,
+               const Path &path,
+               float       riverbank_talus,
+               int         merging_ir,
+               float       riverbed_talus,
+               float       noise_ratio,
+               uint        seed)
+{
+  // where the river path lies
+  Array mask(z.shape);
+
+  Path path_copy = path;
+  path_copy.set_values(1.f);
+  hmap::Vec4<float> bbox(0.f, 1.f, 0.f, 1.f);
+  path_copy.to_array(mask, bbox);
+
+  // expand the path
+  path_copy = path;
+  path_copy.enforce_monotonic_values();
+
+  // add downstream slope
+  if (riverbed_talus > 0.f)
+  {
+    for (size_t k = 0; k < path_copy.get_npoints() - 1; k++)
+      path_copy.points[k + 1].v = std::min(path_copy.points[k].v,
+                                           path_copy.points[k].v -
+                                               riverbed_talus);
+  }
+
+  hmap::Array z_carved = z;
+  path_copy.to_array(z_carved, bbox);
+
+  expand_talus(z_carved, mask, riverbank_talus, seed, noise_ratio);
+  laplace(z_carved);
+
+  // use a distance transform to define a merging mask between the
+  // input heightmap "z" and the "z_carved"
+  Array dist = distance_transform_approx(mask);
+  dist = exp(-0.5f * dist * dist / (merging_ir * merging_ir));
+  laplace(dist);
+
+  // lerp based on distance
+  z = lerp(z, z_carved, dist);
 }
 
 } // namespace hmap

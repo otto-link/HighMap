@@ -154,6 +154,70 @@ void expand_directional(Array &array,
   expand(array, kernel, p_mask);
 }
 
+void expand_talus(Array       &z,
+                  const Array &mask,
+                  float        talus,
+                  uint         seed,
+                  float        noise_ratio)
+{
+  std::mt19937                          gen(seed);
+  std::uniform_real_distribution<float> dis(1.f - noise_ratio,
+                                            1.f + noise_ratio);
+
+  std::vector<int>   di = DI;
+  std::vector<int>   dj = DJ;
+  std::vector<float> c = CD;
+  const uint         nb = di.size();
+
+  Array mask_copy = mask;
+
+  // initialize heap queue: algo starts from the cells defined by the mask
+  std::vector<std::pair<float, std::pair<int, int>>> queue;
+
+  for (int i = 2; i < z.shape.x - 2; i++)
+    for (int j = 2; j < z.shape.y - 2; j++)
+      if (mask_copy(i, j)) queue.push_back(std::pair(z(i, j), std::pair(i, j)));
+
+  std::make_heap(queue.begin(), queue.end());
+
+  // fill
+  while (queue.size() > 0)
+  {
+    std::pair<int, std::pair<int, int>> current = queue.back();
+    queue.pop_back();
+
+    int i = current.second.first;
+    int j = current.second.second;
+
+    for (uint k = 0; k < nb; k++)
+    {
+      int p = i + di[k];
+      int q = j + dj[k];
+
+      if (p >= 0 && p < z.shape.x && q >= 0 && q < z.shape.y)
+      {
+        float h = z(i, j) + c[k] * talus;
+
+        if (z(p, q) > h)
+        {
+          float rd = dis(gen);
+          z(p, q) = z(i, j) + c[k] * talus * rd;
+        }
+
+        if (mask_copy(p, q) == 0.f)
+        {
+          queue.push_back(std::pair(z(p, q), std::pair(p, q)));
+          std::push_heap(queue.begin(), queue.end());
+          mask_copy(p, q) = 1.f;
+        }
+      }
+    }
+  }
+
+  // clean-up boundaries
+  extrapolate_borders(z, 2);
+}
+
 void fill_talus(Array &z, float talus, uint seed, float noise_ratio)
 {
   std::mt19937                          gen(seed);

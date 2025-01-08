@@ -247,6 +247,12 @@ void expand_directional(Array &array,
                         float  anisotropy = 1.f,
                         Array *p_mask = nullptr);
 
+void expand_talus(Array       &z,
+                  const Array &mask,
+                  float        talus,
+                  uint         seed,
+                  float        noise_ratio = 0.2f);
+
 /**
  * @brief Generate a faceted heightmap that retains the main features of the
  * input heightmap.

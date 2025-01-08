@@ -26,6 +26,7 @@
 #pragma once
 
 #include "highmap/array.hpp"
+#include "highmap/geometry/path.hpp"
 
 namespace hmap
 {
@@ -161,5 +162,43 @@ Array flow_direction_d8(const Array &z);
  * for flow directions at every cell.
  */
 std::vector<Array> flow_direction_dinf(const Array &z, float talus_ref);
+
+/**
+ * @brief Computes the optimal flow path from a starting point to the boundary
+ * of a given elevation array.
+ *
+ * This function finds the flow path on a grid represented by the input array
+ * `z`, starting from the given point `ij_start`. It identifies the best path to
+ * the boundary, minimizing upward elevation penalties while accounting for
+ * distance and elevation factors.
+ *
+ * @param z The input 2D array representing elevation values.
+ * @param ij_start The starting point as a 2D vector of indices (i, j) within
+ * the array.
+ * @param elevation_ratio Weight for elevation difference in the cost function
+ * (default: 0.5).
+ * @param distance_exponent Exponent for the distance term in the cost function
+ * (default: 2.0).
+ * @param upward_penalization Penalty factor for upward elevation changes
+ * (default: 100.0).
+ * @return A Path object representing the optimal flow path with normalized x
+ * and y coordinates and corresponding elevations.
+ *
+ * The output path consists of:
+ * - Normalized x-coordinates along the path.
+ * - Normalized y-coordinates along the path.
+ * - Elevation values corresponding to each point on the path.
+ *
+ * **Example**
+ * @include ex_flow_stream.cpp
+ *
+ * **Result**
+ * @image html ex_flow_stream.png
+ */
+Path flow_stream(const Array    &z,
+                 const Vec2<int> ij_start,
+                 const float     elevation_ratio = 0.5f,
+                 const float     distance_exponent = 2.f,
+                 const float     upward_penalization = 100.f);
 
 } // namespace hmap
