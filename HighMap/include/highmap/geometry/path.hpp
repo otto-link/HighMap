@@ -316,9 +316,9 @@ public:
    */
   void dijkstra(Array      &array,
                 Vec4<float> bbox,
-                int         edge_divisions = 0,
                 float       elevation_ratio = 0.f,
                 float       distance_exponent = 0.5f,
+                float  upward_penalization = 1.f,
                 Array      *p_mask_nogo = nullptr);
 
   /**

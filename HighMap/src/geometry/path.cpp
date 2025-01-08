@@ -213,9 +213,9 @@ void Path::decimate_vw(int n_points_target)
 
 void Path::dijkstra(Array      &array,
                     Vec4<float> bbox,
-                    int         edge_divisions,
                     float       elevation_ratio,
                     float       distance_exponent,
+		    float  upward_penalization,
                     Array      *p_mask_nogo)
 {
   size_t ks = this->closed ? 0 : 1; // trick to handle closed contours
@@ -235,18 +235,6 @@ void Path::dijkstra(Array      &array,
         (int)((this->points[knext].y - bbox.c) / (bbox.d - bbox.c) *
               (array.shape.y - 1)));
 
-    float dist_idx = std::hypot((float)(ij_start.x - ij_end.x),
-                                (float)(ij_start.y - ij_end.y));
-
-    Vec2<int> step;
-    if (edge_divisions > 0)
-    {
-      int div = std::max(1, (int)(dist_idx / edge_divisions));
-      step = Vec2<int>(div, div);
-    }
-    else
-      step = Vec2<int>(1, 1);
-
     std::vector<int> ip, jp;
     array.find_path_dijkstra(ij_start,
                              ij_end,
@@ -254,7 +242,7 @@ void Path::dijkstra(Array      &array,
                              jp,
                              elevation_ratio,
                              distance_exponent,
-                             step,
+			     upward_penalization,
                              p_mask_nogo);
 
     // backup cuurrent edge informations before adding points to this edge

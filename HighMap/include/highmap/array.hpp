@@ -347,8 +347,7 @@ public:
    * points. A higher exponent increases the cost of elevation gaps, encouraging
    * the path to minimize elevation changes and reduce overall cumulative
    * elevation gain.
-   * @param step Step size for i and j indices to accelerate computation by
-   * using only every "step" data point.
+   * @param upward_penalization Penalize upstream slopes.
    * @param p_mask_nogo Optional pointer to an array mask that defines areas to
    * avoid during pathfinding.
    *
@@ -366,7 +365,7 @@ public:
                           std::vector<int> &j_path,
                           float             elevation_ratio = 0.1f,
                           float             distance_exponent = 2.f,
-                          Vec2<int>         step = {1, 1},
+                          float             upward_penalization = 1.f,
                           Array            *p_mask_nogo = nullptr) const;
 
   void find_path_dijkstra(Vec2<int>                      ij_start,
