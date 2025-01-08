@@ -16,6 +16,7 @@
 #include "highmap/morphology.hpp"
 #include "highmap/operator.hpp"
 #include "highmap/range.hpp"
+#include "highmap/shortest_path.hpp"
 
 namespace hmap
 {
@@ -236,14 +237,15 @@ void Path::dijkstra(Array      &array,
               (array.shape.y - 1)));
 
     std::vector<int> ip, jp;
-    array.find_path_dijkstra(ij_start,
-                             ij_end,
-                             ip,
-                             jp,
-                             elevation_ratio,
-                             distance_exponent,
-                             upward_penalization,
-                             p_mask_nogo);
+    find_path_dijkstra(array,
+                       ij_start,
+                       ij_end,
+                       ip,
+                       jp,
+                       elevation_ratio,
+                       distance_exponent,
+                       upward_penalization,
+                       p_mask_nogo);
 
     // backup cuurrent edge informations before adding points to this edge
     Point p1 = this->points[k];

@@ -1,11 +1,12 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
+#include "macrologger.h"
+
 #include "highmap/array.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/geometry/path.hpp"
-
-#include "macrologger.h"
+#include "highmap/shortest_path.hpp"
 
 namespace hmap
 {
@@ -69,13 +70,14 @@ Path flow_stream(const Array    &z,
   std::vector<std::vector<int>> i_path_list;
   std::vector<std::vector<int>> j_path_list;
 
-  z.find_path_dijkstra(ij_start,
-                       ij_exits,
-                       i_path_list,
-                       j_path_list,
-                       elevation_ratio,
-                       distance_exponent,
-                       upward_penalization);
+  find_path_dijkstra(z,
+                     ij_start,
+                     ij_exits,
+                     i_path_list,
+                     j_path_list,
+                     elevation_ratio,
+                     distance_exponent,
+                     upward_penalization);
 
   // keep the path with the minimum upward cumulated elevation
   size_t kmin = 0;

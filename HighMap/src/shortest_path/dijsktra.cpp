@@ -7,19 +7,21 @@
 #include "highmap/math.hpp"
 
 namespace hmap
-
 {
 
-void Array::find_path_dijkstra(Vec2<int>                      ij_start,
-                               std::vector<Vec2<int>>         ij_end_list,
-                               std::vector<std::vector<int>> &i_path_list,
-                               std::vector<std::vector<int>> &j_path_list,
-                               float                          elevation_ratio,
-                               float                          distance_exponent,
-                               float  upward_penalization,
-                               Array *p_mask_nogo) const
+void find_path_dijkstra(const Array                   &z,
+                        Vec2<int>                      ij_start,
+                        std::vector<Vec2<int>>         ij_end_list,
+                        std::vector<std::vector<int>> &i_path_list,
+                        std::vector<std::vector<int>> &j_path_list,
+                        float                          elevation_ratio,
+                        float                          distance_exponent,
+                        float                          upward_penalization,
+                        Array                         *p_mask_nogo)
 {
   // https://math.stackexchange.com/questions/3088292
+
+  Vec2<int> shape = z.shape;
 
   // neighbors pattern
   const std::vector<int>   di = {-1, 0, 0, 1, -1, -1, 1, 1};
@@ -75,7 +77,7 @@ void Array::find_path_dijkstra(Vec2<int>                      ij_start,
 
         // elevation difference contribution (weighted for diagonal
         // directions to avoid artifacts)
-        float dz = ((*this)(i, j) - (*this)(p, q)) * cd[k];
+        float dz = (z(i, j) - z(p, q)) * cd[k];
         if (dz < 0.f) dz *= upward_penalization;
         dz = std::abs(dz);
 
@@ -83,8 +85,7 @@ void Array::find_path_dijkstra(Vec2<int>                      ij_start,
 
         // absolute elevation contribution (puts the emphasize on
         // going downslope rather than upslope)
-        dist += elevation_ratio *
-                std::max(0.f, cd[k] * ((*this)(p, q) - (*this)(i, j)));
+        dist += elevation_ratio * std::max(0.f, cd[k] * (z(p, q) - z(i, j)));
 
         if (p_mask_nogo) dist += 1e5f * (*p_mask_nogo)(p, q);
 
@@ -137,26 +138,28 @@ void Array::find_path_dijkstra(Vec2<int>                      ij_start,
   }
 }
 
-void Array::find_path_dijkstra(Vec2<int>         ij_start,
-                               Vec2<int>         ij_end,
-                               std::vector<int> &i_path,
-                               std::vector<int> &j_path,
-                               float             elevation_ratio,
-                               float             distance_exponent,
-                               float             upward_penalization,
-                               Array            *p_mask_nogo) const
+void find_path_dijkstra(const Array      &z,
+                        Vec2<int>         ij_start,
+                        Vec2<int>         ij_end,
+                        std::vector<int> &i_path,
+                        std::vector<int> &j_path,
+                        float             elevation_ratio,
+                        float             distance_exponent,
+                        float             upward_penalization,
+                        Array            *p_mask_nogo)
 {
   std::vector<std::vector<int>> i_path_list = {i_path};
   std::vector<std::vector<int>> j_path_list = {j_path};
 
-  this->find_path_dijkstra(ij_start,
-                           {ij_end},
-                           i_path_list,
-                           j_path_list,
-                           elevation_ratio,
-                           distance_exponent,
-                           upward_penalization,
-                           p_mask_nogo);
+  find_path_dijkstra(z,
+                     ij_start,
+                     {ij_end},
+                     i_path_list,
+                     j_path_list,
+                     elevation_ratio,
+                     distance_exponent,
+                     upward_penalization,
+                     p_mask_nogo);
 
   i_path = i_path_list[0];
   j_path = j_path_list[0];
