@@ -318,7 +318,7 @@ public:
                 Vec4<float> bbox,
                 float       elevation_ratio = 0.f,
                 float       distance_exponent = 0.5f,
-                float  upward_penalization = 1.f,
+                float       upward_penalization = 1.f,
                 Array      *p_mask_nogo = nullptr);
 
   /**
@@ -872,6 +872,7 @@ void dig_river(Array      &z,
                int         merging_ir,
                float       riverbed_talus = 0.f,
                float       noise_ratio = 0.9f,
-               uint        seed = 0);
+               uint        seed = 0,
+               Array      *p_mask = nullptr);
 
 } // namespace hmap

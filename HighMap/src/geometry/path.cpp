@@ -215,7 +215,7 @@ void Path::dijkstra(Array      &array,
                     Vec4<float> bbox,
                     float       elevation_ratio,
                     float       distance_exponent,
-		    float  upward_penalization,
+                    float       upward_penalization,
                     Array      *p_mask_nogo)
 {
   size_t ks = this->closed ? 0 : 1; // trick to handle closed contours
@@ -242,7 +242,7 @@ void Path::dijkstra(Array      &array,
                              jp,
                              elevation_ratio,
                              distance_exponent,
-			     upward_penalization,
+                             upward_penalization,
                              p_mask_nogo);
 
     // backup cuurrent edge informations before adding points to this edge
@@ -956,7 +956,8 @@ void dig_river(Array      &z,
                int         merging_ir,
                float       riverbed_talus,
                float       noise_ratio,
-               uint        seed)
+               uint        seed,
+               Array      *p_mask)
 {
   // where the river path lies
   Array mask(z.shape);
@@ -993,6 +994,9 @@ void dig_river(Array      &z,
 
   // lerp based on distance
   z = lerp(z, z_carved, dist);
+
+  // return mask if requested
+  if (p_mask) *p_mask = dist;
 }
 
 } // namespace hmap
