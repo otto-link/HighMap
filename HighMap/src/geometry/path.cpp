@@ -11,6 +11,7 @@
 #include "highmap/array.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/geometry/path.hpp"
+#include "highmap/internal/vector_utils.hpp"
 #include "highmap/interpolate_curve.hpp"
 #include "highmap/morphology.hpp"
 #include "highmap/operator.hpp"
@@ -147,6 +148,67 @@ void Path::decasteljau(int edge_divisions)
   Path new_path = Path(fitp(t));
 
   *this = std::move(new_path);
+}
+
+void Path::decimate_cfit(int n_points_target)
+{
+  // compute local curvature
+  std::vector<float> kappas = {};
+
+  for (size_t k = 1; k < this->get_npoints() - 1; k++)
+  {
+    float kp = curvature(this->points[k - 1],
+                         this->points[k],
+                         this->points[k + 1]);
+    kappas.push_back(kp);
+  }
+
+  // sort by size (ascending)
+  std::vector<size_t> ksort = argsort(kappas);
+
+  // rebuild simplified path
+  std::vector<Point> new_points = {this->points.front()};
+  size_t             klim = this->get_npoints() - (size_t)n_points_target;
+
+  for (size_t k = 0; k < kappas.size(); k++)
+  {
+    if (ksort[k] >= klim) new_points.push_back(this->points[k + 1]);
+  }
+  new_points.push_back(this->points.back());
+
+  *this = Path(new_points);
+}
+
+void Path::decimate_vw(int n_points_target)
+{
+  if (this->get_npoints() < 3 || this->get_npoints() <= (size_t)n_points_target)
+    return;
+
+  // compute triangle surfaces
+  std::vector<float> surfaces = {};
+
+  for (size_t k = 1; k < this->get_npoints() - 1; k++)
+  {
+    float s = triangle_area(this->points[k - 1],
+                            this->points[k],
+                            this->points[k + 1]);
+    surfaces.push_back(s);
+  }
+
+  // sort by size (ascending)
+  std::vector<size_t> ksort = argsort(surfaces);
+
+  // rebuild simplified path
+  std::vector<Point> new_points = {this->points.front()};
+  size_t             klim = this->get_npoints() - (size_t)n_points_target;
+
+  for (size_t k = 0; k < surfaces.size(); k++)
+  {
+    if (ksort[k] >= klim) new_points.push_back(this->points[k + 1]);
+  }
+  new_points.push_back(this->points.back());
+
+  *this = Path(new_points);
 }
 
 void Path::dijkstra(Array      &array,
