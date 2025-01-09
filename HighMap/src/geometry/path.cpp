@@ -952,38 +952,41 @@ void dig_path(Array      &z,
   z = lerp(z, zf, mask);
 }
 
-void dig_river(Array      &z,
-               const Path &path,
-               float       riverbank_talus,
-               int         merging_ir,
-               float       riverbed_talus,
-               float       noise_ratio,
-               uint        seed,
-               Array      *p_mask)
+void dig_river(Array                   &z,
+               const std::vector<Path> &path_list,
+               float                    riverbank_talus,
+               int                      merging_ir,
+               float                    riverbed_talus,
+               float                    noise_ratio,
+               uint                     seed,
+               Array                   *p_mask)
 {
-  // where the river path lies
-  Array mask(z.shape);
-
-  Path path_copy = path;
-  path_copy.set_values(1.f);
-  hmap::Vec4<float> bbox(0.f, 1.f, 0.f, 1.f);
-  path_copy.to_array(mask, bbox);
-
-  // expand the path
-  path_copy = path;
-  path_copy.enforce_monotonic_values();
-
-  // add downstream slope
-  if (riverbed_talus > 0.f)
-  {
-    for (size_t k = 0; k < path_copy.get_npoints() - 1; k++)
-      path_copy.points[k + 1].v = std::min(path_copy.points[k].v,
-                                           path_copy.points[k].v -
-                                               riverbed_talus);
-  }
-
+  // generate mask where the river path lies and dig rivers
+  Array       mask(z.shape);
   hmap::Array z_carved = z;
-  path_copy.to_array(z_carved, bbox);
+
+  for (auto path : path_list)
+  {
+    Path path_copy = path;
+    path_copy.set_values(1.f);
+    hmap::Vec4<float> bbox(0.f, 1.f, 0.f, 1.f);
+    path_copy.to_array(mask, bbox);
+
+    // expand the path
+    path_copy = path;
+    path_copy.enforce_monotonic_values();
+
+    // add downstream slope
+    if (riverbed_talus > 0.f)
+    {
+      for (size_t k = 0; k < path_copy.get_npoints() - 1; k++)
+        path_copy.points[k + 1].v = std::min(path_copy.points[k + 1].v,
+                                             path_copy.points[k].v -
+                                                 riverbed_talus);
+    }
+
+    path_copy.to_array(z_carved, bbox);
+  }
 
   expand_talus(z_carved, mask, riverbank_talus, seed, noise_ratio);
   laplace(z_carved);
@@ -999,6 +1002,27 @@ void dig_river(Array      &z,
 
   // return mask if requested
   if (p_mask) *p_mask = dist;
+}
+
+void dig_river(Array      &z,
+               const Path &path,
+               float       riverbank_talus,
+               int         merging_ir,
+               float       riverbed_talus,
+               float       noise_ratio,
+               uint        seed,
+               Array      *p_mask)
+{
+  const std::vector<Path> path_list = {path};
+
+  dig_river(z,
+            path_list,
+            riverbank_talus,
+            merging_ir,
+            riverbed_talus,
+            noise_ratio,
+            seed,
+            p_mask);
 }
 
 } // namespace hmap

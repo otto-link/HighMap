@@ -866,6 +866,15 @@ void dig_path(Array      &z,
  * **Result**
  * @image html ex_flow_stream.png
  */
+void dig_river(Array                   &z,
+               const std::vector<Path> &path_list,
+               float                    riverbank_talus,
+               int                      merging_ir,
+               float                    riverbed_talus = 0.f,
+               float                    noise_ratio = 0.9f,
+               uint                     seed = 0,
+               Array                   *p_mask = nullptr);
+
 void dig_river(Array      &z,
                const Path &path,
                float       riverbank_talus,

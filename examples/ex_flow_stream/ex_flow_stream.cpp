@@ -17,7 +17,7 @@ int main(void)
   hmap::Array zv(shape);
   path.to_array(zv, bbox);
 
-  hmap::Array zd = z;
+  hmap::Array zd1 = z;
 
   float       riverbank_talus = 1.f / shape.x;
   int         merging_ir = 4;
@@ -25,8 +25,22 @@ int main(void)
   float       noise_ratio = 0.9f;
   hmap::Array mask;
 
-  hmap::dig_river(zd,
-                  path,
+  hmap::dig_river(zd1,
+                  {path},
+                  riverbank_talus,
+                  merging_ir,
+                  riverbed_talus,
+                  noise_ratio,
+                  seed,
+                  &mask);
+
+  // multiple streams
+  hmap::Vec2<int> ij_start2(128, 180);
+  hmap::Path      path2 = hmap::flow_stream(z, ij_start2);
+
+  hmap::Array zd2 = z;
+  hmap::dig_river(zd2,
+                  {path, path2},
                   riverbank_talus,
                   merging_ir,
                   riverbed_talus,
@@ -35,7 +49,7 @@ int main(void)
                   &mask);
 
   hmap::export_banner_png("ex_flow_stream.png",
-                          {z, zv, zd, mask},
+                          {z, zv, zd1, zd2, mask},
                           hmap::Cmap::JET,
                           true);
 }
