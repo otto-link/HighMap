@@ -20,7 +20,9 @@ int main(void)
   hmap::Array zd1 = z;
 
   float       riverbank_talus = 1.f / shape.x;
-  int         merging_ir = 4;
+  int         river_width = 1;
+  int         merging_width = 4;
+  float       depth = 0.01f;
   float       riverbed_talus = 0.2 / shape.x;
   float       noise_ratio = 0.9f;
   hmap::Array mask;
@@ -28,7 +30,9 @@ int main(void)
   hmap::dig_river(zd1,
                   {path},
                   riverbank_talus,
-                  merging_ir,
+                  river_width,
+                  merging_width,
+                  depth,
                   riverbed_talus,
                   noise_ratio,
                   seed,
@@ -42,11 +46,15 @@ int main(void)
   hmap::dig_river(zd2,
                   {path, path2},
                   riverbank_talus,
-                  merging_ir,
+                  river_width,
+                  merging_width,
+                  depth,
                   riverbed_talus,
                   noise_ratio,
                   seed,
                   &mask);
+
+  zd2.to_png_grayscale("out.png", CV_16U);
 
   hmap::export_banner_png("ex_flow_stream.png",
                           {z, zv, zd1, zd2, mask},

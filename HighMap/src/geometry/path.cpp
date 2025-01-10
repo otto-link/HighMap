@@ -955,7 +955,9 @@ void dig_path(Array      &z,
 void dig_river(Array                   &z,
                const std::vector<Path> &path_list,
                float                    riverbank_talus,
-               int                      merging_ir,
+               int                      river_width,
+               int                      merging_width,
+               float                    depth,
                float                    riverbed_talus,
                float                    noise_ratio,
                uint                     seed,
@@ -963,7 +965,7 @@ void dig_river(Array                   &z,
 {
   // generate mask where the river path lies and dig rivers
   Array       mask(z.shape);
-  hmap::Array z_carved = z;
+  hmap::Array z_carved(z.shape);
 
   for (auto path : path_list)
   {
@@ -975,6 +977,9 @@ void dig_river(Array                   &z,
     // expand the path
     path_copy = path;
     path_copy.enforce_monotonic_values();
+
+    for (auto &p : path_copy.points)
+      p.v -= depth;
 
     // add downstream slope
     if (riverbed_talus > 0.f)
@@ -988,13 +993,21 @@ void dig_river(Array                   &z,
     path_copy.to_array(z_carved, bbox);
   }
 
+  z_carved = dilation(z_carved, river_width);
+  mask = dilation(mask, river_width);
+
+  for (int j = 0; j < z.shape.y; ++j)
+    for (int i = 0; i < z.shape.x; ++i)
+      z_carved(i, j) = mask(i, j) ? z_carved(i, j) : z(i, j);
+
   expand_talus(z_carved, mask, riverbank_talus, seed, noise_ratio);
   laplace(z_carved);
 
   // use a distance transform to define a merging mask between the
   // input heightmap "z" and the "z_carved"
   Array dist = distance_transform_approx(mask);
-  dist = exp(-0.5f * dist * dist / (merging_ir * merging_ir));
+  float sigma2 = std::pow((float)(merging_width + river_width), 2.f);
+  dist = exp(-0.5f * dist * dist / sigma2);
   laplace(dist);
 
   // lerp based on distance
@@ -1007,7 +1020,9 @@ void dig_river(Array                   &z,
 void dig_river(Array      &z,
                const Path &path,
                float       riverbank_talus,
-               int         merging_ir,
+               int         river_width,
+               int         merging_width,
+               float       depth,
                float       riverbed_talus,
                float       noise_ratio,
                uint        seed,
@@ -1018,7 +1033,9 @@ void dig_river(Array      &z,
   dig_river(z,
             path_list,
             riverbank_talus,
-            merging_ir,
+            river_width,
+            merging_width,
+            depth,
             riverbed_talus,
             noise_ratio,
             seed,
