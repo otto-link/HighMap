@@ -115,7 +115,7 @@ void kernel hydraulic_particle(global float *z_in,
     else
       amount = c_deposition * delta_sc; // deposition
 
-    s += amount * (1.f + 0.5f * (2.f * rand(&rng_state) - 1.f));
+    s += amount;
 
     if (amount) // erosion
     {
