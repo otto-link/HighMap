@@ -80,14 +80,6 @@ void kernel hydraulic_particle(global float *z_in,
 
     float vnorm = length(vel);
 
-    float vlim = 1.f / dt;
-
-    if (vnorm > vlim)
-    {
-      vel /= vnorm;
-      vel *= vlim;
-    }
-
     if (vnorm < VELOCITY_MIN) break;
 
     float z_p = helper_bilinear_interp(f_0_0, f_p1_0, f_0_p1, f_p1_p1, u, v);
@@ -123,33 +115,44 @@ void kernel hydraulic_particle(global float *z_in,
     else
       amount = c_deposition * delta_sc; // deposition
 
-    s += amount;
+    s += amount * (1.f + 0.5f * (2.f * rand(&rng_state) - 1.f));
 
-    if (has_bedrock == 0)
+    if (amount) // erosion
     {
-      z_in[linear_index(i_p, j_p, nx)] -= amount * (1.f - u_p) * (1.f - v_p);
-      z_in[linear_index(i_p + 1, j_p, nx)] -= amount * u_p * (1.f - v_p);
-      z_in[linear_index(i_p, j_p + 1, nx)] -= amount * (1.f - u_p) * v_p;
-      z_in[linear_index(i_p + 1, j_p + 1, nx)] -= amount * u_p * v_p;
+      if (has_bedrock == 0)
+      {
+        z_in[linear_index(i_p, j_p, nx)] -= amount * (1.f - u_p) * (1.f - v_p);
+        z_in[linear_index(i_p + 1, j_p, nx)] -= amount * u_p * (1.f - v_p);
+        z_in[linear_index(i_p, j_p + 1, nx)] -= amount * (1.f - u_p) * v_p;
+        z_in[linear_index(i_p + 1, j_p + 1, nx)] -= amount * u_p * v_p;
+      }
+      else
+      {
+        z_in[linear_index(i_p, j_p, nx)] = max(
+            bedrock[linear_index(i_p, j_p, nx)],
+            z_in[linear_index(i_p, j_p, nx)] -
+                amount * (1.f - u_p) * (1.f - v_p));
+
+        z_in[linear_index(i_p + 1, j_p, nx)] = max(
+            bedrock[linear_index(i_p + 1, j_p, nx)],
+            z_in[linear_index(i_p + 1, j_p, nx)] - amount * u_p * (1.f - v_p));
+
+        z_in[linear_index(i_p, j_p + 1, nx)] = max(
+            bedrock[linear_index(i_p, j_p + 1, nx)],
+            z_in[linear_index(i_p, j_p + 1, nx)] - amount * (1.f - u_p) * v_p);
+
+        z_in[linear_index(i_p + 1, j_p + 1, nx)] = max(
+            bedrock[linear_index(i_p + 1, j_p + 1, nx)],
+            z_in[linear_index(i_p + 1, j_p + 1, nx)] - amount * u_p * v_p);
+      }
     }
-    else
+    else // deposition
     {
-      z_in[linear_index(i_p, j_p, nx)] = max(
-          bedrock[linear_index(i_p, j_p, nx)],
-          z_in[linear_index(i_p, j_p, nx)] -
-              amount * (1.f - u_p) * (1.f - v_p));
-
-      z_in[linear_index(i_p + 1, j_p, nx)] = max(
-          bedrock[linear_index(i_p + 1, j_p, nx)],
-          z_in[linear_index(i_p + 1, j_p, nx)] - amount * u_p * (1.f - v_p));
-
-      z_in[linear_index(i_p, j_p + 1, nx)] = max(
-          bedrock[linear_index(i_p, j_p + 1, nx)],
-          z_in[linear_index(i_p, j_p + 1, nx)] - amount * (1.f - u_p) * v_p);
-
-      z_in[linear_index(i_p + 1, j_p + 1, nx)] = max(
-          bedrock[linear_index(i_p + 1, j_p + 1, nx)],
-          z_in[linear_index(i_p + 1, j_p + 1, nx)] - amount * u_p * v_p);
+      float uv = u_p * v_p;
+      z_in[linear_index(i_p, j_p, nx)] -= amount * (u_p + v_p - uv);
+      z_in[linear_index(i_p + 1, j_p, nx)] -= amount * (1.f - u_p + uv);
+      z_in[linear_index(i_p, j_p + 1, nx)] -= amount * (1.f - v_p + uv);
+      z_in[linear_index(i_p + 1, j_p + 1, nx)] -= amount * (1.f - u_p * v_p);
     }
 
     volume *= evap_factor;
