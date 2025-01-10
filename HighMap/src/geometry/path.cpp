@@ -993,8 +993,11 @@ void dig_river(Array                   &z,
     path_copy.to_array(z_carved, bbox);
   }
 
-  z_carved = dilation(z_carved, river_width);
-  mask = dilation(mask, river_width);
+  if (river_width)
+  {
+    z_carved = dilation(z_carved, river_width);
+    mask = dilation(mask, river_width);
+  }
 
   for (int j = 0; j < z.shape.y; ++j)
     for (int i = 0; i < z.shape.x; ++i)
