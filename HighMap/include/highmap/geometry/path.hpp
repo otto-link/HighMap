@@ -813,8 +813,9 @@ public:
  * @image html ex_dig_path.png
  *
  * @param z Input array representing the heightmap to be modified.
- * @param path The path to be dug into the heightmap. The path will be processed
- * to create the dig effect.
+ * @param path The path to be dug into the heightmap, with coordinates with
+ * respect to a unit-square. The path will be processed to create the dig
+ * effect.
  * @param width Radius of the path width in pixels. This determines how wide the
  * dug path will be.
  * @param decay Radius of the path border decay in pixels. This controls how
@@ -848,7 +849,7 @@ void dig_path(Array      &z,
  * @param z The input 2D array representing the elevation map. This array will
  * be modified in place.
  * @param path The path along which the river is to be carved, represented as a
- * sequence of points.
+ * sequence of points, with coordinates with respect to a unit-square.
  * @param riverbank_talus The slope of the riverbank, controlling how steep the
  * river's edges are.
  * @param merging_ir The merging radius, specifying how far the effects of
