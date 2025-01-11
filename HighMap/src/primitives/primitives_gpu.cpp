@@ -100,7 +100,7 @@ Array gabor_wave_fbm(Vec2<int>    shape,
   run.bind_buffer<float>("array", array.vector);
   run.bind_buffer<float>("angle",
                          const_cast<std::vector<float> &>(angle.vector));
-  
+
   helper_bind_optional_buffer(run, "ctrl_param", p_ctrl_param);
   helper_bind_optional_buffer(run, "noise_x", p_noise_x);
   helper_bind_optional_buffer(run, "noise_y", p_noise_y);
@@ -188,7 +188,7 @@ Array gavoronoise(Vec2<int>    shape,
   run.bind_buffer<float>("array", array.vector);
   run.bind_buffer<float>("angle",
                          const_cast<std::vector<float> &>(angle.vector));
-  
+
   helper_bind_optional_buffer(run, "ctrl_param", p_ctrl_param);
   helper_bind_optional_buffer(run, "noise_x", p_noise_x);
   helper_bind_optional_buffer(run, "noise_y", p_noise_y);
@@ -291,7 +291,7 @@ Array gavoronoise(const Array &base,
                   base.shape.x,
                   base.shape.y);
   run.bind_buffer<float>("array", array.vector);
-  
+
   helper_bind_optional_buffer(run, "ctrl_param", p_ctrl_param);
   helper_bind_optional_buffer(run, "noise_x", p_noise_x);
   helper_bind_optional_buffer(run, "noise_y", p_noise_y);
@@ -433,7 +433,7 @@ Array voronoi_fbm(Vec2<int>         shape,
   auto run = clwrapper::Run("voronoi_fbm");
 
   run.bind_buffer<float>("array", array.vector);
-  
+
   helper_bind_optional_buffer(run, "ctrl_param", p_ctrl_param);
   helper_bind_optional_buffer(run, "noise_x", p_noise_x);
   helper_bind_optional_buffer(run, "noise_y", p_noise_y);

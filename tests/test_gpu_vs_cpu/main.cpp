@@ -63,7 +63,6 @@ void compare(F1 fct1, F2 fct2, float tolerance, const std::string &name)
 int main(void)
 {
 
-
   hmap::gpu::init_opencl();
 
   f.open("test_gpu_vs_cpu.csv", std::ios::out);

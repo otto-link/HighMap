@@ -5,7 +5,6 @@
 
 #include <iostream>
 
-
 template <typename F1, typename F2>
 void compare(F1 fct1, F2 fct2, float tolerance, const std::string &fname)
 {

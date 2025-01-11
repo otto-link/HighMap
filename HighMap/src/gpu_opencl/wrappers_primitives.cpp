@@ -97,4 +97,3 @@ Array noise_fbm(NoiseType   noise_type,
 }
 
 } // namespace hmap::gpu
-

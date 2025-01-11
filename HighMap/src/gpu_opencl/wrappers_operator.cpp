@@ -54,4 +54,3 @@ void warp(Array &array, Array *p_dx, Array *p_dy)
 }
 
 } // namespace hmap::gpu
-
