@@ -1,0 +1,2 @@
+add_executable(ex_sdf_polyline ex_sdf_polyline.cpp)
+target_link_libraries(ex_sdf_polyline highmap)

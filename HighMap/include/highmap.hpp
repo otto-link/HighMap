@@ -49,6 +49,7 @@
 #include "highmap/primitives.hpp"
 #include "highmap/range.hpp"
 #include "highmap/roads.hpp"
+#include "highmap/sdf.hpp"
 #include "highmap/selector.hpp"
 #include "highmap/shadows.hpp"
 #include "highmap/shortest_path.hpp"

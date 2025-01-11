@@ -304,15 +304,35 @@ void remove_grid_points_outside_bbox(std::vector<float> &x,
   }
 }
 
+void rescale_grid_from_unit_square_to_bbox(std::vector<float> &x,
+                                           std::vector<float> &y,
+                                           Vec4<float>         bbox)
+{
+  size_t nx = x.size();
+  size_t ny = y.size();
+
+  for (size_t i = 0; i < nx; ++i)
+  {
+    float t = (float)i / ((float)nx - 1.f);
+    x[i] = bbox.a + (bbox.b - bbox.a) * t;
+  }
+
+  for (size_t j = 0; j < ny; ++j)
+  {
+    float t = (float)j / ((float)ny - 1.f);
+    y[j] = bbox.c + (bbox.d - bbox.c) * t;
+  }
+}
+
 void rescale_grid_to_unit_square(std::vector<float> &x,
                                  std::vector<float> &y,
                                  Vec4<float>         bbox)
 {
   for (size_t k = 0; k < x.size(); k++)
-  {
     x[k] = (x[k] - bbox.a) / (bbox.b - bbox.a);
+
+  for (size_t k = 0; k < y.size(); k++)
     y[k] = (y[k] - bbox.c) / (bbox.d - bbox.c);
-  }
 }
 
 } // namespace hmap

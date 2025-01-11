@@ -199,4 +199,15 @@ void rescale_grid_to_unit_square(std::vector<float> &x,
                                  std::vector<float> &y,
                                  Vec4<float>         bbox);
 
+/**
+ * @brief Rescale coordinate (x, y) so that they fit in a box based
+ * assuming the coordinate are initially in a unit-square.
+ * @param x[in, out] `x` coordinates (output).
+ * @param y[in, out] `y` coordinates (output).
+ * @param bbox Target bounding box.
+ */
+void rescale_grid_from_unit_square_to_bbox(std::vector<float> &x,
+                                           std::vector<float> &y,
+                                           Vec4<float>         bbox);
+
 } // namespace hmap
