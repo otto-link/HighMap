@@ -31,19 +31,13 @@ find_package(assimp REQUIRED)
 find_package(glm REQUIRED) # by hmm
 find_package(OpenMP REQUIRED)
 find_package(OpenCV REQUIRED)
+find_package(OpenCL REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
 
-if(HIGHMAP_ENABLE_OPENCL)
-  find_package(OpenCL REQUIRED)
-  message(STATUS "OpenCL enabled")
-  add_definitions("-DENABLE_OPENCL")
-  add_compile_definitions(CL_HPP_MINIMUM_OPENCL_VERSION=120
-                          CL_HPP_TARGET_OPENCL_VERSION=120 ENABLE_OPENCL=1)
-else()
-  message(STATUS "OpenCL disabled")
-endif()
+add_compile_definitions(CL_HPP_MINIMUM_OPENCL_VERSION=120
+                        CL_HPP_TARGET_OPENCL_VERSION=120)
 
 add_subdirectory(external)
 

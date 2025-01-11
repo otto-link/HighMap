@@ -16,8 +16,6 @@ const hmap::Vec2<float> kw = {2.f, 4.f};
 const int               seed = 1;
 std::fstream            f;
 
-#ifdef ENABLE_OPENCL
-
 template <typename F1, typename F2>
 void compare(F1 fct1, F2 fct2, float tolerance, const std::string &name)
 {
@@ -60,14 +58,12 @@ void compare(F1 fct1, F2 fct2, float tolerance, const std::string &name)
   f << "\n";
 }
 
-#endif
-
 // ---
 
 int main(void)
 {
 
-#ifdef ENABLE_OPENCL
+
   hmap::gpu::init_opencl();
 
   f.open("test_gpu_vs_cpu.csv", std::ios::out);
@@ -449,8 +445,4 @@ int main(void)
   }
 
   f.close();
-
-#else
-  std::cout << "OpenCL not activated\n";
-#endif
 }

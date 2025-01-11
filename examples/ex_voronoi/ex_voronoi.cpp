@@ -2,7 +2,6 @@
 
 int main(void)
 {
-#ifdef ENABLE_OPENCL
   hmap::gpu::init_opencl();
 
   hmap::Vec2<int> shape = {256, 256};
@@ -35,8 +34,4 @@ int main(void)
   }
 
   hmap::export_banner_png("ex_voronoi.png", zs, hmap::Cmap::INFERNO);
-
-#else
-  std::cout << "OpenCL not activated\n";
-#endif
 }

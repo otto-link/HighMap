@@ -1240,9 +1240,6 @@ void thermal_scree_fast(Array    &z,
 
 } // namespace hmap
 
-#ifdef ENABLE_OPENCL
-#include "highmap/opencl/gpu_opencl.hpp"
-
 namespace hmap::gpu
 {
 
@@ -1314,4 +1311,3 @@ void hydraulic_schott(Array       &z,
                       Array       *p_flow = nullptr);
 
 } // namespace hmap::gpu
-#endif

@@ -1303,9 +1303,6 @@ Array worley_double(Vec2<int>   shape,
 
 } // namespace hmap
 
-#ifdef ENABLE_OPENCL
-#include "highmap/opencl/gpu_opencl.hpp"
-
 namespace hmap::gpu
 {
 
@@ -1782,4 +1779,3 @@ Array voronoise_fbm(Vec2<int>   shape,
                     Array      *p_noise_y = nullptr,
                     Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 } // namespace hmap::gpu
-#endif

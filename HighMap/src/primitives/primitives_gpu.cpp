@@ -1,8 +1,6 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
-#ifdef ENABLE_OPENCL
-
 #include "highmap/array.hpp"
 #include "highmap/opencl/gpu_opencl.hpp"
 #include "highmap/primitives.hpp"
@@ -11,38 +9,6 @@ namespace hmap::gpu
 {
 
 // --- helpers
-
-void helper_bind_optional_buffers(clwrapper::Run &run,
-                                  Array          *p_ctrl_param,
-                                  Array          *p_noise_x,
-                                  Array          *p_noise_y)
-{
-  std::vector<float> dummy_vector(1);
-
-  if (p_ctrl_param)
-  {
-    run.bind_buffer<float>("ctrl_param", p_ctrl_param->vector);
-    run.write_buffer("ctrl_param");
-  }
-  else
-    run.bind_buffer<float>("ctrl_param", dummy_vector);
-
-  if (p_noise_x)
-  {
-    run.bind_buffer<float>("noise_x", p_noise_x->vector);
-    run.write_buffer("noise_x");
-  }
-  else
-    run.bind_buffer<float>("noise_x", dummy_vector);
-
-  if (p_noise_y)
-  {
-    run.bind_buffer<float>("noise_y", p_noise_y->vector);
-    run.write_buffer("noise_y");
-  }
-  else
-    run.bind_buffer<float>("noise_y", dummy_vector);
-}
 
 void helper_bind_optional_buffers(clwrapper::Run &run,
                                   Array          *p_noise_x,
@@ -134,8 +100,10 @@ Array gabor_wave_fbm(Vec2<int>    shape,
   run.bind_buffer<float>("array", array.vector);
   run.bind_buffer<float>("angle",
                          const_cast<std::vector<float> &>(angle.vector));
-  run.write_buffer("angle");
-  helper_bind_optional_buffers(run, p_ctrl_param, p_noise_x, p_noise_y);
+  
+  helper_bind_optional_buffer(run, "ctrl_param", p_ctrl_param);
+  helper_bind_optional_buffer(run, "noise_x", p_noise_x);
+  helper_bind_optional_buffer(run, "noise_y", p_noise_y);
 
   run.bind_arguments(array.shape.x,
                      array.shape.y,
@@ -151,6 +119,8 @@ Array gabor_wave_fbm(Vec2<int>    shape,
                      p_noise_x ? 1 : 0,
                      p_noise_y ? 1 : 0,
                      bbox);
+
+  run.write_buffer("angle");
 
   run.execute({array.shape.x, array.shape.y});
   run.read_buffer("array");
@@ -218,8 +188,10 @@ Array gavoronoise(Vec2<int>    shape,
   run.bind_buffer<float>("array", array.vector);
   run.bind_buffer<float>("angle",
                          const_cast<std::vector<float> &>(angle.vector));
-  run.write_buffer("angle");
-  helper_bind_optional_buffers(run, p_ctrl_param, p_noise_x, p_noise_y);
+  
+  helper_bind_optional_buffer(run, "ctrl_param", p_ctrl_param);
+  helper_bind_optional_buffer(run, "noise_x", p_noise_x);
+  helper_bind_optional_buffer(run, "noise_y", p_noise_y);
 
   run.bind_arguments(array.shape.x,
                      array.shape.y,
@@ -240,6 +212,8 @@ Array gavoronoise(Vec2<int>    shape,
                      p_noise_x ? 1 : 0,
                      p_noise_y ? 1 : 0,
                      bbox);
+
+  run.write_buffer("angle");
 
   run.execute({array.shape.x, array.shape.y});
   run.read_buffer("array");
@@ -317,7 +291,10 @@ Array gavoronoise(const Array &base,
                   base.shape.x,
                   base.shape.y);
   run.bind_buffer<float>("array", array.vector);
-  helper_bind_optional_buffers(run, p_ctrl_param, p_noise_x, p_noise_y);
+  
+  helper_bind_optional_buffer(run, "ctrl_param", p_ctrl_param);
+  helper_bind_optional_buffer(run, "noise_x", p_noise_x);
+  helper_bind_optional_buffer(run, "noise_y", p_noise_y);
 
   run.bind_arguments(array.shape.x,
                      array.shape.y,
@@ -414,7 +391,11 @@ Array voronoi(Vec2<int>         shape,
   auto run = clwrapper::Run("voronoi");
 
   run.bind_buffer<float>("array", array.vector);
-  helper_bind_optional_buffers(run, p_ctrl_param, p_noise_x, p_noise_y);
+
+  helper_bind_optional_buffer(run, "ctrl_param", p_ctrl_param);
+  helper_bind_optional_buffer(run, "noise_x", p_noise_x);
+  helper_bind_optional_buffer(run, "noise_y", p_noise_y);
+
   run.bind_arguments(array.shape.x,
                      array.shape.y,
                      kw.x,
@@ -452,6 +433,7 @@ Array voronoi_fbm(Vec2<int>         shape,
   auto run = clwrapper::Run("voronoi_fbm");
 
   run.bind_buffer<float>("array", array.vector);
+  
   helper_bind_optional_buffer(run, "ctrl_param", p_ctrl_param);
   helper_bind_optional_buffer(run, "noise_x", p_noise_x);
   helper_bind_optional_buffer(run, "noise_y", p_noise_y);
@@ -492,7 +474,9 @@ Array voronoise(Vec2<int>   shape,
   auto run = clwrapper::Run("voronoise");
 
   run.bind_buffer<float>("array", array.vector);
-  helper_bind_optional_buffers(run, p_noise_x, p_noise_y);
+
+  helper_bind_optional_buffer(run, "noise_x", p_noise_x);
+  helper_bind_optional_buffer(run, "noise_y", p_noise_y);
 
   run.bind_arguments(array.shape.x,
                      array.shape.y,
@@ -530,7 +514,10 @@ Array voronoise_fbm(Vec2<int>   shape,
   auto run = clwrapper::Run("voronoise_fbm");
 
   run.bind_buffer<float>("array", array.vector);
-  helper_bind_optional_buffers(run, p_ctrl_param, p_noise_x, p_noise_y);
+
+  helper_bind_optional_buffer(run, "ctrl_param", p_ctrl_param);
+  helper_bind_optional_buffer(run, "noise_x", p_noise_x);
+  helper_bind_optional_buffer(run, "noise_y", p_noise_y);
 
   run.bind_arguments(array.shape.x,
                      array.shape.y,
@@ -568,7 +555,11 @@ Array voronoi_edge_distance(Vec2<int>   shape,
   auto run = clwrapper::Run("voronoi_edge_distance");
 
   run.bind_buffer<float>("array", array.vector);
-  helper_bind_optional_buffers(run, p_ctrl_param, p_noise_x, p_noise_y);
+
+  helper_bind_optional_buffer(run, "ctrl_param", p_ctrl_param);
+  helper_bind_optional_buffer(run, "noise_x", p_noise_x);
+  helper_bind_optional_buffer(run, "noise_y", p_noise_y);
+
   run.bind_arguments(array.shape.x,
                      array.shape.y,
                      kw.x,
@@ -587,4 +578,3 @@ Array voronoi_edge_distance(Vec2<int>   shape,
 }
 
 } // namespace hmap::gpu
-#endif

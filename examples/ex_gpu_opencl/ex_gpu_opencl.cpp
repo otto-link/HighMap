@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-#ifdef ENABLE_OPENCL
+
 template <typename F1, typename F2>
 void compare(F1 fct1, F2 fct2, float tolerance, const std::string &fname)
 {
@@ -43,14 +43,11 @@ void compare(F1 fct1, F2 fct2, float tolerance, const std::string &fname)
   res.msg += "[" + fname + "]";
   res.print();
 }
-#endif
 
 // ---
 
 int main(void)
 {
-
-#ifdef ENABLE_OPENCL
   hmap::gpu::init_opencl();
 
   // clwrapper::KernelManager::get_instance().set_block_size(32);
@@ -122,8 +119,4 @@ int main(void)
   //         "noise_fbm" + std::to_string(type) + ".png");
   //   }
   // }
-
-#else
-  std::cout << "OpenCL not activated\n";
-#endif
 }

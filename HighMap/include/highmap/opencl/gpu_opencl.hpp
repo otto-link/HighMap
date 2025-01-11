@@ -13,8 +13,6 @@
  *
  */
 #pragma once
-#ifdef ENABLE_OPENCL
-
 #include "cl_wrapper.hpp"
 
 #include "highmap/array.hpp"
@@ -203,5 +201,3 @@ void thermal_rib(Array &z, int iterations, Array *p_bedrock = nullptr);
 void warp(Array &array, Array *p_dx, Array *p_dy);
 
 } // namespace hmap::gpu
-
-#endif

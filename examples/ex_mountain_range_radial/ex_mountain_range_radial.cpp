@@ -2,7 +2,6 @@
 
 int main(void)
 {
-#ifdef ENABLE_OPENCL
   hmap::gpu::init_opencl();
 
   hmap::Vec2<int> shape = {256, 256};
@@ -16,8 +15,4 @@ int main(void)
                           {z1},
                           hmap::Cmap::JET,
                           true);
-
-#else
-  std::cout << "OpenCL not activated\n";
-#endif
 }
