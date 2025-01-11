@@ -2,8 +2,8 @@
 
 int main(void)
 {
-  hmap::Vec2<int>   shape = {1024, 1024};
-  hmap::Vec2<float> kw = {32.f, 32.f};
+  hmap::Vec2<int>   shape = {256, 256};
+  hmap::Vec2<float> kw = {4.f, 4.f};
   int               seed = 1;
 
   hmap::Array noise = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, kw, seed);
@@ -19,7 +19,6 @@ int main(void)
   path.to_array(zp, bbox);
 
   hmap::Array sdf_2d = hmap::sdf_2d_polyline(path, shape, bbox);
-  hmap::smooth_cpulse(sdf_2d, 8);
   hmap::remap(sdf_2d);
 
   hmap::export_banner_png("ex_sdf_polyline.png",

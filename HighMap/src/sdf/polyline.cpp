@@ -49,8 +49,8 @@ Array sdf_2d_polyline(const Path &path,
         size_t      p = k + 1;
         Vec2<float> e = {xp[p] - xp[k], yp[p] - yp[k]};
         Vec2<float> w = {x - xp[k], y - yp[k]};
-        float       coeff = std::clamp(dot(w, e) / dot(e, e), 0.f, 1.f);
-        Vec2<float> b = {w.x - e.x * coeff, w.y - e.y * coeff};
+        float       t = std::clamp(dot(w, e) / dot(e, e), 0.f, 1.f);
+        Vec2<float> b = {w.x - e.x * t, w.y - e.y * t};
         d = std::min(d, dot(b, b));
       }
       sdf2(i, j) = std::sqrt(d);

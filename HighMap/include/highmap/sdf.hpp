@@ -53,3 +53,16 @@ Array sdf_2d_polyline(const Path &path,
                       Vec4<float> bbox_array = {0.f, 1.f, 0.f, 1.f});
 
 } // namespace hmap
+
+namespace hmap::gpu
+{
+
+/*! @brief See hmap::sdf_2d_polyline */
+Array sdf_2d_polyline(const Path &path,
+                      Vec2<int>   shape,
+                      Vec4<float> bbox_path,
+                      Array      *p_noise_x = nullptr,
+                      Array      *p_noise_y = nullptr,
+                      Vec4<float> bbox_array = {0.f, 1.f, 0.f, 1.f});
+
+} // namespace hmap::gpu

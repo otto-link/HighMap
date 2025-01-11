@@ -324,6 +324,19 @@ int main(void)
           1e-3f,
           "shrink");
 
+  {
+    hmap::Vec4<float> bbox = {1.f, 2.f, -0.5f, 0.5f};
+    hmap::Path path = hmap::Path(200, 0, bbox.adjust(0.2f, -0.2f, 0.2f, -0.2f));
+    path.reorder_nns();
+
+    compare([bbox, path](hmap::Array &z)
+            { z = hmap::sdf_2d_polyline(path, z.shape, bbox); },
+            [bbox, path](hmap::Array &z)
+            { z = hmap::gpu::sdf_2d_polyline(path, z.shape, bbox); },
+            1e-3f,
+            "sdf_2d_polyline");
+  }
+
   compare(
       [&ir](hmap::Array &z)
       {
