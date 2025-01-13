@@ -1,0 +1,2 @@
+add_executable(ex_generate_riverbed ex_generate_riverbed.cpp)
+target_link_libraries(ex_generate_riverbed highmap)

@@ -33,6 +33,7 @@ bool init_opencl()
 #include "kernels/_common_sort.cl"
   //
 #include "kernels/expand.cl"
+#include "kernels/generate_riverbed.cl"
 #include "kernels/gradient_norm.cl"
 #include "kernels/hydraulic_particle.cl"
 #include "kernels/hydraulic_schott.cl"

@@ -201,4 +201,82 @@ Path flow_stream(const Array    &z,
                  const float     distance_exponent = 2.f,
                  const float     upward_penalization = 100.f);
 
+/**
+ * @brief Generates a 2D array representing a riverbed based on a specified
+ * path.
+ *
+ * This function calculates a scalar depth field (`dz`) for a riverbed shape
+ * using a path, which can optionally be smoothed with Bezier curves. It
+ * supports noise perturbation and post-filtering to adjust the riverbed's
+ * features.
+ *
+ * @param path The input path defining the riverbed's trajectory.
+ * @param shape The dimensions of the output array (width, height).
+ * @param bbox The bounding box for the output grid in world coordinates.
+ * @param bezier_smoothing Flag to enable or disable Bezier smoothing of the
+ * path.
+ * @param depth_start The depth at the start of the riverbed.
+ * @param depth_end The depth at the end of the riverbed.
+ * @param slope_start The slope multiplier at the start of the riverbed.
+ * @param slope_end The slope multiplier at the end of the riverbed.
+ * @param shape_exponent_start The shape exponent at the start of the riverbed.
+ * @param shape_exponent_end The shape exponent at the end of the riverbed.
+ * @param k_smoothing The smoothing factor for the riverbed shape adjustments.
+ * @param post_filter_ir The radius of the post-filtering operation for
+ * smoothing the output.
+ * @param p_noise_x Optional pointer to a noise array for perturbing the
+ * x-coordinates.
+ * @param p_noise_y Optional pointer to a noise array for perturbing the
+ * y-coordinates.
+ * @param p_noise_r Optional pointer to a noise array for perturbing the radial
+ * function.
+ * @return A 2D array representing the calculated riverbed depth field.
+ *
+ * @note The function requires the path to have at least two points. If the path
+ * has fewer points, an empty array is returned with the given shape.
+ *
+ * **Example**
+ * @include ex_generate_riverbed.cpp
+ *
+ * **Result**
+ * @image html ex_generate_riverbed.png
+ */
+Array generate_riverbed(const Path &path,
+                        Vec2<int>   shape,
+                        Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f},
+                        bool        bezier_smoothing = false,
+                        float       depth_start = 0.01f,
+                        float       depth_end = 1.f,
+                        float       slope_start = 64.f,
+                        float       slope_end = 32.f,
+                        float       shape_exponent_start = 1.f,
+                        float       shape_exponent_end = 10.f,
+                        float       k_smoothing = 0.5f,
+                        int         post_filter_ir = 0,
+                        Array      *p_noise_x = nullptr,
+                        Array      *p_noise_y = nullptr,
+                        Array      *p_noise_r = nullptr);
+
 } // namespace hmap
+
+namespace hmap::gpu
+{
+
+/*! @brief See hmap::generate_riverbed */
+Array generate_riverbed(const Path &path,
+                        Vec2<int>   shape,
+                        Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f},
+                        bool        bezier_smoothing = false,
+                        float       depth_start = 0.01f,
+                        float       depth_end = 1.f,
+                        float       slope_start = 64.f,
+                        float       slope_end = 32.f,
+                        float       shape_exponent_start = 1.f,
+                        float       shape_exponent_end = 10.f,
+                        float       k_smoothing = 0.5f,
+                        int         post_filter_ir = 0,
+                        Array      *p_noise_x = nullptr,
+                        Array      *p_noise_y = nullptr,
+                        Array      *p_noise_r = nullptr);
+
+} // namespace hmap::gpu

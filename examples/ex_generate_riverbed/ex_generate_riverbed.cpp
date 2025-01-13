@@ -12,25 +12,25 @@ int main(void)
                                       seed,
                                       8,
                                       0.f);
-  hmap::remap(noise, 0.f, 1.f);
+  hmap::remap(noise);
 
   // base path
   hmap::Vec4<float> bbox = {1.f, 2.f, -0.5f, 0.5f};
-  hmap::Path path = hmap::Path(9, seed, bbox.adjust(0.2f, -0.2f, 0.2f, -0.2f));
+  hmap::Path path = hmap::Path(4, seed, bbox.adjust(0.2f, -0.2f, 0.2f, -0.2f));
   path.reorder_nns();
-  // path.fractalize(2, seed);
+  path.fractalize(8, seed);
   path.set_values_from_array(noise, bbox);
 
   auto zp = hmap::Array(shape);
   path.to_array(zp, bbox);
 
-  hmap::Array sdf_2d = hmap::sdf_2d_polyline(path, shape, bbox);
-  hmap::remap(sdf_2d);
+  hmap::Array dz = hmap::generate_riverbed(path, shape, bbox);
+  hmap::remap(dz);
 
-  hmap::Array sdf_2d_bezier = hmap::sdf_2d_polyline_bezier(path, shape, bbox);
-  hmap::remap(sdf_2d_bezier);
+  dz.to_png_grayscale("out.png", CV_16U);
+  dz.to_png("out1.png", hmap::Cmap::JET);
 
-  hmap::export_banner_png("ex_sdf_polyline.png",
-                          {zp, sdf_2d, sdf_2d_bezier},
+  hmap::export_banner_png("ex_generate_riverbed.png",
+                          {zp, dz},
                           hmap::Cmap::INFERNO);
 }
