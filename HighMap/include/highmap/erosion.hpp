@@ -1034,7 +1034,10 @@ void thermal_auto_bedrock(Array &z,
  * **Result**
  * @image html ex_thermal_flatten.png
  */
-void thermal_flatten(Array &z, const Array &talus, int iterations = 10);
+void thermal_flatten(Array       &z,
+                     const Array &talus,
+                     const Array &bedrock,
+                     int          iterations = 10);
 
 void thermal_flatten(Array &z, float talus, int iterations = 10); ///< @overload
 
