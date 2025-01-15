@@ -102,6 +102,7 @@ void hydraulic_stream_log(Array &z,
                           float  c_erosion,
                           float  talus_ref,
                           float  gamma,
+                          float  saturation_ratio,
                           Array *p_bedrock,
                           Array *p_moisture_map,
                           Array *p_erosion_map,
@@ -116,6 +117,7 @@ void hydraulic_stream_log(Array &z,
   Array facc = flow_accumulation_dinf(z, talus_ref);
   facc = log10(facc);
   remap(facc);
+  saturate(facc, 0.f, saturation_ratio, 0.1f * saturation_ratio);
   gamma_correction(facc, gamma);
 
   if (ir > 1)
@@ -141,10 +143,11 @@ void hydraulic_stream_log(Array &z,
 }
 
 void hydraulic_stream_log(Array &z,
-                          Array *p_mask,
                           float  c_erosion,
                           float  talus_ref,
+                          Array *p_mask,
                           float  gamma,
+                          float  saturation_ratio,
                           Array *p_moisture_map,
                           Array *p_bedrock,
                           Array *p_erosion_map,
@@ -155,6 +158,7 @@ void hydraulic_stream_log(Array &z,
                          c_erosion,
                          talus_ref,
                          gamma,
+                         saturation_ratio,
                          p_bedrock,
                          p_moisture_map,
                          p_erosion_map,
@@ -166,6 +170,7 @@ void hydraulic_stream_log(Array &z,
                          c_erosion,
                          talus_ref,
                          gamma,
+                         saturation_ratio,
                          p_bedrock,
                          p_moisture_map,
                          p_erosion_map,

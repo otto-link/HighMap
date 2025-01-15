@@ -682,17 +682,19 @@ void hydraulic_stream_upscale_amplification(
 void hydraulic_stream_log(Array &z,
                           float  c_erosion,
                           float  talus_ref,
-                          float  gamma,
+                          float  gamma = 1.f,
+                          float  saturation_ratio = 1.f,
                           Array *p_bedrock = nullptr,
                           Array *p_moisture_map = nullptr,
                           Array *p_erosion_map = nullptr, // -> out
                           int    ir = 1);
 
 void hydraulic_stream_log(Array &z,
-                          Array *p_mask,
                           float  c_erosion,
                           float  talus_ref,
-                          float  gamma,
+                          Array *p_mask,
+                          float  gamma = 1.f,
+                          float  saturation_ratio = 1.f,
                           Array *p_bedrock = nullptr,
                           Array *p_moisture_map = nullptr,
                           Array *p_erosion_map = nullptr, // -> out
