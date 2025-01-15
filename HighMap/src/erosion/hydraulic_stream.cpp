@@ -115,7 +115,6 @@ void hydraulic_stream_log(Array &z,
   // use flow accumulation to determine erosion intensity
   Array facc = flow_accumulation_dinf(z, talus_ref);
   facc = log10(facc);
-  facc.infos();
   remap(facc);
   gamma_correction(facc, gamma);
 

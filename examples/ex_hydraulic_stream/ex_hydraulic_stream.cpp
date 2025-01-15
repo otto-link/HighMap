@@ -34,7 +34,7 @@ int main(void)
 
   // log scale
   auto  z3 = z;
-  float gamma = 0.5f;
+  float gamma = 1.5f;
 
   hmap::hydraulic_stream_log(z3,
                              c_erosion,
