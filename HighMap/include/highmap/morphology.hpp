@@ -26,6 +26,13 @@
 namespace hmap
 {
 
+enum DistanceTransformType : int
+{
+  DT_EXACT,
+  DT_APPROX,
+  DT_MANHATTAN,
+};
+
 /**
  * @brief Apply a border algorithm to the input array using a square
  * structure.
