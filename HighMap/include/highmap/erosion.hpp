@@ -687,6 +687,7 @@ void hydraulic_stream_log(Array &z,
                           Array *p_bedrock = nullptr,
                           Array *p_moisture_map = nullptr,
                           Array *p_erosion_map = nullptr, // -> out
+                          Array *p_flow_map = nullptr,    // -> out
                           int    ir = 1);
 
 void hydraulic_stream_log(Array &z,
@@ -698,6 +699,7 @@ void hydraulic_stream_log(Array &z,
                           Array *p_bedrock = nullptr,
                           Array *p_moisture_map = nullptr,
                           Array *p_erosion_map = nullptr, // -> out
+                          Array *p_flow_map = nullptr,    // -> out
                           int    ir = 1);                    ///< @overload
 
 /**
