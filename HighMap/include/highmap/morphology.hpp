@@ -297,3 +297,32 @@ Array relative_distance_from_skeleton(const Array &array,
 Array skeleton(const Array &array, bool zero_at_borders = true);
 
 } // namespace hmap
+
+namespace hmap::gpu
+{
+
+/*! @brief See hmap::border */
+Array border(const Array &array, int ir);
+
+/*! @brief See hmap::closing */
+Array closing(const Array &array, int ir);
+
+/*! @brief See hmap::dilation */
+Array dilation(const Array &array, int ir);
+
+/*! @brief See hmap::erosion */
+Array erosion(const Array &array, int ir);
+
+/*! @brief See hmap::morphological_gradient */
+Array morphological_gradient(const Array &array, int ir);
+
+/*! @brief See hmap::opening */
+Array opening(const Array &array, int ir);
+
+/*! @brief See hmap::relative_distance_from_skeleton */
+Array relative_distance_from_skeleton(const Array &array,
+                                      int          ir_search,
+                                      bool         zero_at_borders = true,
+                                      int          ir_erosion = 1);
+
+} // namespace hmap::gpu
