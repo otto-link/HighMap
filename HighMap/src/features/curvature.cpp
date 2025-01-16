@@ -159,3 +159,37 @@ Array valley_width(const Array &z, int ir)
 }
 
 } // namespace hmap
+
+namespace hmap::gpu
+{
+
+Array accumulation_curvature(const Array &z, int ir)
+{
+  Array ac = z;
+  if (ir > 0) gpu::smooth_cpulse(ac, ir);
+
+  Array zx = gradient_x(ac);
+  Array zy = gradient_y(ac);
+  Array zxx = gradient_x(zx);
+  Array zxy = gradient_y(zx);
+  Array zyy = gradient_y(zy);
+
+  Array zx2 = zx * zx;
+  Array zy2 = zy * zy;
+  Array p = zx2 + zy2;
+  Array n = zy2 * zxx - 2.f * zxy * zx * zy + zx2 * zyy;
+
+  Array horizontal_curvature = p * pow(p + 1.f, 0.5f);
+  Array vertical_curvature = p * pow(p + 1.f, 1.5f);
+
+  ac = n * n / (horizontal_curvature * vertical_curvature + 1e-30);
+
+  if (ir > 0)
+    extrapolate_borders(ac, ir + 1, 0.1f);
+  else
+    extrapolate_borders(ac);
+
+  return ac;
+}
+
+} // namespace hmap::gpu

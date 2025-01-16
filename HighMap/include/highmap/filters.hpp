@@ -2162,3 +2162,14 @@ void wrinkle(Array      &array,
              Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f}); ///< @overload
 
 } // namespace hmap
+
+namespace hmap::gpu
+{
+
+/*! @brief See hmap::smooth_cpulse */
+void smooth_cpulse(Array &array, int ir);
+
+/*! @brief See hmap::smooth_cpulse */
+void smooth_cpulse(Array &array, int ir, Array *p_mask);
+
+} // namespace hmap::gpu

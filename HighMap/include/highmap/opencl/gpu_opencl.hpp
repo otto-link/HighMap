@@ -152,9 +152,6 @@ void shrink(Array &array, Array &kernel, Array *p_mask);
 
 Array skeleton(const Array &array, bool zero_at_borders = true);
 
-void smooth_cpulse(Array &array, int ir);
-void smooth_cpulse(Array &array, int ir, Array *p_mask);
-
 void smooth_fill(Array &array,
                  int    ir,
                  float  k = 0.1f,

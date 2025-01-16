@@ -80,25 +80,30 @@ int main(void)
 
   int ir = 64;
 
+  compare([&ir](hmap::Array &z) { hmap::accumulation_curvature(z, ir); },
+          [&ir](hmap::Array &z) { hmap::gpu::accumulation_curvature(z, ir); },
+          1e-3f,
+          "accumulation_curvature");
+
   compare([ir](hmap::Array &z) { z = hmap::border(z, ir); },
           [ir](hmap::Array &z) { z = hmap::gpu::border(z, ir); },
           1e-3f,
-          "border.png");
+          "border");
 
   compare([ir](hmap::Array &z) { z = hmap::closing(z, ir); },
           [ir](hmap::Array &z) { z = hmap::gpu::closing(z, ir); },
           1e-3f,
-          "closing.png");
+          "closing");
 
   compare([ir](hmap::Array &z) { z = hmap::dilation(z, ir); },
           [ir](hmap::Array &z) { z = hmap::gpu::dilation(z, ir); },
           1e-3f,
-          "dilation.png");
+          "dilation");
 
   compare([ir](hmap::Array &z) { z = hmap::erosion(z, ir); },
           [ir](hmap::Array &z) { z = hmap::gpu::erosion(z, ir); },
           1e-3f,
-          "erosion.png");
+          "erosion");
 
   compare([&ir](hmap::Array &z) { hmap::expand(z, ir); },
           [&ir](hmap::Array &z) { hmap::gpu::expand(z, ir); },
@@ -193,7 +198,7 @@ int main(void)
           [ir](hmap::Array &z)
           { z = hmap::gpu::morphological_gradient(z, ir); },
           1e-3f,
-          "morphological_gradient.png");
+          "morphological_gradient");
 
   {
 
@@ -269,7 +274,7 @@ int main(void)
   compare([ir](hmap::Array &z) { z = hmap::opening(z, ir); },
           [ir](hmap::Array &z) { z = hmap::gpu::opening(z, ir); },
           1e-3f,
-          "opening.png");
+          "opening");
 
   compare([&ir](hmap::Array &z) { hmap::plateau(z, ir, 4.f); },
           [&ir](hmap::Array &z) { hmap::gpu::plateau(z, ir, 4.f); },

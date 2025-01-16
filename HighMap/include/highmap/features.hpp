@@ -493,3 +493,11 @@ Array unsphericity(const Array &z, int ir);
 Array valley_width(const Array &z, int ir = 0);
 
 } // namespace hmap
+
+namespace hmap::gpu
+{
+
+/*! @brief See hmap::accumulation_curvature */
+Array accumulation_curvature(const Array &z, int ir);
+
+} // namespace hmap::gpu
