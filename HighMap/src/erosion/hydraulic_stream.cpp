@@ -117,7 +117,10 @@ void hydraulic_stream_log(Array &z,
   Array facc = flow_accumulation_dinf(z, talus_ref);
   facc = log10(facc);
   remap(facc);
-  saturate(facc, 0.f, saturation_ratio, 0.1f * saturation_ratio);
+
+  if (saturation_ratio < 1.f)
+    saturate(facc, 0.f, saturation_ratio, 0.1f * saturation_ratio);
+
   gamma_correction(facc, gamma);
 
   if (ir > 1)
