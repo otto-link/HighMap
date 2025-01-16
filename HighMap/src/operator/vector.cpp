@@ -69,9 +69,8 @@ std::vector<float> linspace_jitted(float start,
 {
   std::mt19937                          gen(seed);
   std::uniform_real_distribution<float> dis(-0.5f, 0.5f);
-
-  std::vector<float> v(num);
-  float              dv;
+  std::vector<float>                    v(num);
+  float                                 dv;
 
   if (endpoint)
     dv = (stop - start) / (float)(num - 1);
@@ -79,12 +78,11 @@ std::vector<float> linspace_jitted(float start,
     dv = (stop - start) / (float)num;
 
   for (int i = 0; i < num; i++)
+  {
     v[i] = start + (float)i * dv;
 
-  // add noise
-  for (int i = 1; i < num - 1; i++)
-    v[i] += ratio * dis(gen) * dv;
-
+    if (i > 0) v[i] += ratio * dis(gen) * dv;
+  }
   return v;
 }
 

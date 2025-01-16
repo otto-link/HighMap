@@ -181,6 +181,8 @@ Array cos(const Array &array);
  */
 Array exp(const Array &array);
 
+float gain(float x, float factor);
+
 /**
  * @brief Return the Gaussian of the array elements.
  *

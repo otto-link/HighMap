@@ -878,6 +878,19 @@ void stratify(Array             &z,
               float              gamma = 0.5f,
               Array             *p_noise = nullptr); ///< @overload
 
+void stratify(Array &z,
+              Array &partition,
+              int    nstrata,
+              float  strata_noise,
+              float  gamma,
+              float  gamma_noise,
+              int    npartitions,
+              uint   seed,
+              float  mixing_gain_factor = 1.f,
+              Array *p_noise = nullptr,
+              float  vmin = 1.f,
+              float  vmax = 0.f); ///< @overload
+
 /**
  * @brief Stratify the heightmap by creating a multiscale series of layers with
  * elevations corrected by a gamma factor.

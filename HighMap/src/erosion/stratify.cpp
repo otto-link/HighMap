@@ -7,26 +7,27 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/blending.hpp"
 #include "highmap/math.hpp"
 #include "highmap/operator.hpp"
 
 namespace hmap
 {
 
-//----------------------------------------------------------------------
-// Main operator
-//----------------------------------------------------------------------
-
 void stratify(Array             &z,
               std::vector<float> hs,
               std::vector<float> gamma,
               Array             *p_noise)
 {
-
   if (p_noise)
     for (uint k = 0; k < hs.size() - 1; k++)
     {
       float dh = hs[k + 1] - hs[k];
+
+      // smooth correction factor
+      float cx = std::exp(2.5f / gamma[k]);
+      float cy = std::log(1.f + std::exp(2.5f / gamma[k]));
+
       for (int j = 0; j < z.shape.y; j++)
         for (int i = 0; i < z.shape.x; i++)
         {
@@ -35,7 +36,7 @@ void stratify(Array             &z,
           {
             // scale to [0, 1], apply gamma correction and scale back
             float v = (zt - hs[k]) / dh;
-            v = std::pow(v, gamma[k]);
+            v = std::log(1.f + cx * v * v) / cy; // v = std::pow(v, gamma[k]);
             z(i, j) = hs[k] + v * dh + (*p_noise)(i, j);
           }
         }
@@ -44,12 +45,18 @@ void stratify(Array             &z,
     for (uint k = 0; k < hs.size() - 1; k++)
     {
       float dh = hs[k + 1] - hs[k];
+
+      // smooth correction factor
+      float cx = std::exp(2.5f / gamma[k]);
+      float cy = std::log(1.f + std::exp(2.5f / gamma[k]));
+
       for (int j = 0; j < z.shape.y; j++)
         for (int i = 0; i < z.shape.x; i++)
           if ((z(i, j) >= hs[k]) and (z(i, j) < hs[k + 1]))
           {
             float v = (z(i, j) - hs[k]) / dh;
-            v = std::pow(v, gamma[k]);
+            // v = std::pow(v, gamma[k]);
+            v = std::log(1.f + cx * v * v) / cy;
             z(i, j) = hs[k] + v * dh;
           }
     }
@@ -140,6 +147,65 @@ void stratify_multiscale(Array             &z,
   }
 }
 
+void stratify(Array &z, std::vector<float> hs, float gamma, Array *p_noise)
+{
+  // float to vector
+  std::vector<float> gs(hs.size() - 1);
+  for (auto &v : gs)
+    v = gamma;
+
+  stratify(z, hs, gs, p_noise);
+}
+
+void stratify(Array &z,
+              Array &partition,
+              int    nstrata,
+              float  strata_noise,
+              float  gamma,
+              float  gamma_noise,
+              int    npartitions,
+              uint   seed,
+              float  mixing_gain_factor,
+              Array *p_noise,
+              float  vmin,
+              float  vmax)
+{
+  // redefine min/max if sentinels values are detected
+  if (vmax < vmin)
+  {
+    vmin = z.min();
+    vmax = z.max();
+  }
+
+  // generate the stratifications
+  std::vector<Array> zs = {};
+
+  for (int k = 0; k < npartitions; k++)
+  {
+    std::vector<float> hs = linspace_jitted(vmin,
+                                            vmax,
+                                            nstrata + 1,
+                                            strata_noise,
+                                            seed++);
+
+    float gmin = std::max(0.01f, gamma * (1.f - gamma_noise));
+    float gmax = gamma * (1.f + gamma_noise);
+
+    std::vector<float> gs = random_vector(gmin, gmax, nstrata, seed++);
+
+    Array ztmp = z;
+    stratify(ztmp, hs, gs, p_noise);
+    zs.push_back(ztmp);
+  }
+
+  // mix everything
+  std::vector<Array *> zs_ptr = {};
+  for (auto &a : zs)
+    zs_ptr.push_back(&a);
+
+  z = mixer(partition, zs_ptr, mixing_gain_factor);
+}
+
 void stratify_oblique(Array             &z,
                       std::vector<float> hs,
                       std::vector<float> gamma,
@@ -207,20 +273,6 @@ void stratify_oblique(Array             &z,
     stratify_oblique(z_f, hs, gamma, talus, angle, p_noise);
     z = lerp(z, z_f, *(p_mask));
   }
-}
-
-//----------------------------------------------------------------------
-// Overloading
-//----------------------------------------------------------------------
-
-void stratify(Array &z, std::vector<float> hs, float gamma, Array *p_noise)
-{
-  // float to vector
-  std::vector<float> gs(hs.size() - 1);
-  for (auto &v : gs)
-    v = gamma;
-
-  stratify(z, hs, gs, p_noise);
 }
 
 } // namespace hmap
