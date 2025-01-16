@@ -355,3 +355,11 @@ Array zoom(const Array &array,
            Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 } // namespace hmap
+
+namespace hmap::gpu
+{
+
+/*! @brief See hmap::warp */
+void warp(Array &array, Array *p_dx, Array *p_dy);
+
+} // namespace hmap::gpu
