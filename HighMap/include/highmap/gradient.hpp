@@ -319,3 +319,11 @@ Array phase_field(const Array &array,
 Array unwrap_phase(const Array &alpha);
 
 } // namespace hmap
+
+namespace hmap::gpu
+{
+
+/*! @brief See hmap::gradient_norm */
+Array gradient_norm(const Array &array);
+
+} // namespace hmap::gpu

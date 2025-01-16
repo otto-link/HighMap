@@ -33,6 +33,8 @@ bool init_opencl()
 #include "kernels/_common_sort.cl"
   //
 #include "kernels/expand.cl"
+#include "kernels/gabor_wave.cl"
+#include "kernels/gavoronoise.cl"
 #include "kernels/generate_riverbed.cl"
 #include "kernels/gradient_norm.cl"
 #include "kernels/hydraulic_particle.cl"
@@ -43,6 +45,7 @@ bool init_opencl()
 #include "kernels/mean_local.cl"
 #include "kernels/median_3x3.cl"
 #include "kernels/minimum_smooth.cl"
+#include "kernels/mountain_range_radial.cl"
 #include "kernels/noise.cl"
 #include "kernels/normal_displacement.cl"
 #include "kernels/plateau.cl"
@@ -52,15 +55,10 @@ bool init_opencl()
 #include "kernels/skeleton.cl"
 #include "kernels/smooth_cpulse.cl"
 #include "kernels/thermal.cl"
-#include "kernels/warp.cl"
-  //
-  // kernels only available on GPU
-#include "kernels/gabor_wave.cl"
-#include "kernels/gavoronoise.cl"
-#include "kernels/mountain_range_radial.cl"
 #include "kernels/voronoi.cl"
 #include "kernels/voronoi_edge_distance.cl"
 #include "kernels/voronoise.cl"
+#include "kernels/warp.cl"
       ;
 
   clwrapper::KernelManager::get_instance().add_kernel(code);

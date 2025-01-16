@@ -1263,6 +1263,37 @@ void thermal_scree_fast(Array    &z,
 namespace hmap::gpu
 {
 
+/*! @brief See hmap::hydraulic_particle */
+void hydraulic_particle(Array &z,
+                        int    nparticles,
+                        int    seed,
+                        Array *p_bedrock = nullptr,
+                        Array *p_moisture_map = nullptr,
+                        Array *p_erosion_map = nullptr,
+                        Array *p_deposition_map = nullptr,
+                        float  c_capacity = 10.f,
+                        float  c_erosion = 0.05f,
+                        float  c_deposition = 0.05f,
+                        float  drag_rate = 0.001f,
+                        float  evap_rate = 0.001f,
+                        bool   post_filtering = false);
+
+/*! @brief See hmap::hydraulic_particle */
+void hydraulic_particle(Array &z,
+                        Array *p_mask,
+                        int    nparticles,
+                        int    seed,
+                        Array *p_bedrock = nullptr,
+                        Array *p_moisture_map = nullptr,
+                        Array *p_erosion_map = nullptr,
+                        Array *p_deposition_map = nullptr,
+                        float  c_capacity = 10.f,
+                        float  c_erosion = 0.05f,
+                        float  c_deposition = 0.05f,
+                        float  drag_rate = 0.001f,
+                        float  evap_rate = 0.001f,
+                        bool   post_filtering = false);
+
 /**
  * @brief Simulates hydraulic erosion and deposition on a heightmap using the
  * Schott method.
@@ -1329,5 +1360,49 @@ void hydraulic_schott(Array       &z,
                       float        thermal_weight = 1.5f,
                       float        deposition_weight = 2.5f,
                       Array       *p_flow = nullptr);
+
+/*! @brief See hmap::thermal */
+void thermal(Array       &z,
+             const Array &talus,
+             int          iterations = 10,
+             Array       *p_bedrock = nullptr,
+             Array       *p_deposition_map = nullptr);
+
+/*! @brief See hmap::thermal */
+void thermal(Array       &z,
+             Array       *p_mask,
+             const Array &talus,
+             int          iterations = 10,
+             Array       *p_bedrock = nullptr,
+             Array       *p_deposition_map = nullptr);
+
+/*! @brief See hmap::thermal */
+void thermal(Array &z,
+             float  talus,
+             int    iterations = 10,
+             Array *p_bedrock = nullptr,
+             Array *p_deposition_map = nullptr);
+
+/*! @brief See hmap::thermal_auto_bedrock */
+void thermal_auto_bedrock(Array       &z,
+                          const Array &talus,
+                          int          iterations = 10,
+                          Array       *p_deposition_map = nullptr);
+
+/*! @brief See hmap::thermal_auto_bedrock */
+void thermal_auto_bedrock(Array       &z,
+                          Array       *p_mask,
+                          const Array &talus,
+                          int          iterations = 10,
+                          Array       *p_deposition_map = nullptr);
+
+/*! @brief See hmap::thermal_auto_bedrock */
+void thermal_auto_bedrock(Array &z,
+                          float,
+                          int    iterations = 10,
+                          Array *p_deposition_map = nullptr);
+
+/*! @brief See hmap::thermal_rib */
+void thermal_rib(Array &z, int iterations, Array *p_bedrock = nullptr);
 
 } // namespace hmap::gpu

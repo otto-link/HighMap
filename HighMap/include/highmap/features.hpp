@@ -500,4 +500,13 @@ namespace hmap::gpu
 /*! @brief See hmap::accumulation_curvature */
 Array accumulation_curvature(const Array &z, int ir);
 
+/*! @brief See hmap::relative_elevation */
+Array relative_elevation(const Array &array, int ir);
+
+/*! @brief See hmap::ruggedness */
+Array ruggedness(const Array &array, int ir);
+
+/*! @brief See hmap::rugosity */
+Array rugosity(const Array &z, int ir, bool convex = true);
+
 } // namespace hmap::gpu

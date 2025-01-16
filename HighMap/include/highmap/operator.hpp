@@ -362,3 +362,11 @@ Array get_random_patch(Array                &array,
 Array vstack(const Array &array1, const Array &array2);
 
 } // namespace hmap
+
+namespace hmap::gpu
+{
+
+/*! @brief See hmap::warp */
+void warp(Array &array, Array *p_dx, Array *p_dy);
+
+} // namespace hmap::gpu

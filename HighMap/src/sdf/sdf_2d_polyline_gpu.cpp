@@ -6,6 +6,7 @@
 #include "highmap/array.hpp"
 #include "highmap/geometry/grids.hpp"
 #include "highmap/geometry/path.hpp"
+#include "highmap/math.hpp"
 #include "highmap/opencl/gpu_opencl.hpp"
 
 namespace hmap::gpu

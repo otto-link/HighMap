@@ -1567,6 +1567,31 @@ Array mountain_range_radial(Vec2<int>   shape,
                             Array      *p_angle = nullptr,
                             Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
+/*! @brief See hmap::noise */
+Array noise(NoiseType   noise_type,
+            Vec2<int>   shape,
+            Vec2<float> kw,
+            uint        seed,
+            Array      *p_noise_x = nullptr,
+            Array      *p_noise_y = nullptr,
+            Array      *p_stretching = nullptr,
+            Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+/*! @brief See hmap::noise_fbm */
+Array noise_fbm(NoiseType   noise_type,
+                Vec2<int>   shape,
+                Vec2<float> kw,
+                uint        seed,
+                int         octaves = 8,
+                float       weight = 0.7f,
+                float       persistence = 0.5f,
+                float       lacunarity = 2.f,
+                Array      *p_ctrl_param = nullptr,
+                Array      *p_noise_x = nullptr,
+                Array      *p_noise_y = nullptr,
+                Array      *p_stretching = nullptr,
+                Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
 /**
  * @brief Generates a Voronoi diagram in a 2D array with configurable
  * properties.
