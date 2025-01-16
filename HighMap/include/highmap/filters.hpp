@@ -2166,10 +2166,73 @@ void wrinkle(Array      &array,
 namespace hmap::gpu
 {
 
+/*! @brief See hmap::expand */
+void expand(Array &array, int ir);
+void expand(Array &array, int ir, Array *p_mask);
+void expand(Array &array, Array &kernel);
+void expand(Array &array, Array &kernel, Array *p_mask);
+
+/*! @brief See hmap::laplace */
+void laplace(Array &array, float sigma = 0.2f, int iterations = 3);
+void laplace(Array &array,
+             Array *p_mask,
+             float  sigma = 0.2f,
+             int    iterations = 3);
+
+/*! @brief See hmap::maximum_local */
+Array maximum_local(const Array &array, int ir);
+
+/*! @brief See hmap::maximum_local_disk */
+Array maximum_local_disk(const Array &array, int ir);
+
+/*! @brief See hmap::mean_local */
+Array mean_local(const Array &array, int ir);
+
+/*! @brief See hmap::median_3x3 */
+void median_3x3(Array &array);
+
+/*! @brief See hmap::minimum_local */
+Array minimum_local(const Array &array, int ir);
+
+/*! @brief See hmap::minimum_local_disk */
+Array minimum_local_disk(const Array &array, int ir);
+
+/*! @brief See hmap::normal_displacement */
+void normal_displacement(Array &array,
+                         float  amount = 0.1f,
+                         int    ir = 0,
+                         bool   reverse = false);
+void normal_displacement(Array &array,
+                         Array *p_mask,
+                         float  amount = 0.1f,
+                         int    ir = 0,
+                         bool   reverse = false);
+
+/*! @brief See hmap::plateau */
+void plateau(Array &array, Array *p_mask, int ir, float factor);
+void plateau(Array &array, int ir, float factor);
+
+/*! @brief See hmap::shrink */
+void shrink(Array &array, int ir);
+void shrink(Array &array, int ir, Array *p_mask);
+void shrink(Array &array, Array &kernel);
+void shrink(Array &array, Array &kernel, Array *p_mask);
+
 /*! @brief See hmap::smooth_cpulse */
 void smooth_cpulse(Array &array, int ir);
 
 /*! @brief See hmap::smooth_cpulse */
 void smooth_cpulse(Array &array, int ir, Array *p_mask);
+
+/*! @brief See hmap::smooth_fill */
+void smooth_fill(Array &array,
+                 int    ir,
+                 float  k = 0.1f,
+                 Array *p_deposition_map = nullptr);
+void smooth_fill(Array &array,
+                 int    ir,
+                 Array *p_mask,
+                 float  k = 0.1f,
+                 Array *p_deposition_map = nullptr);
 
 } // namespace hmap::gpu

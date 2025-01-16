@@ -325,4 +325,7 @@ Array relative_distance_from_skeleton(const Array &array,
                                       bool         zero_at_borders = true,
                                       int          ir_erosion = 1);
 
+/*! @brief See hmap::skeleton */
+Array skeleton(const Array &array, bool zero_at_borders = true);
+
 } // namespace hmap::gpu

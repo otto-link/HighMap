@@ -29,11 +29,6 @@ bool init_opencl();
 
 // --- function wrappers
 
-void expand(Array &array, int ir);
-void expand(Array &array, int ir, Array *p_mask);
-void expand(Array &array, Array &kernel);
-void expand(Array &array, Array &kernel, Array *p_mask);
-
 Array gradient_norm(const Array &array);
 
 void hydraulic_particle(Array &z,
@@ -64,25 +59,7 @@ void hydraulic_particle(Array &z,
                         float  evap_rate = 0.001f,
                         bool   post_filtering = false);
 
-void laplace(Array &array, float sigma = 0.2f, int iterations = 3);
-void laplace(Array &array,
-             Array *p_mask,
-             float  sigma = 0.2f,
-             int    iterations = 3);
-
-Array maximum_local(const Array &array, int ir);
-
-Array maximum_local_disk(const Array &array, int ir);
-
 Array maximum_smooth(const Array &array1, const Array &array2, float k = 0.2f);
-
-Array mean_local(const Array &array, int ir);
-
-void median_3x3(Array &array);
-
-Array minimum_local(const Array &array, int ir);
-
-Array minimum_local_disk(const Array &array, int ir);
 
 Array minimum_smooth(const Array &array1, const Array &array2, float k = 0.2f);
 
@@ -109,41 +86,11 @@ Array noise_fbm(NoiseType   noise_type,
                 Array      *p_stretching = nullptr,
                 Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
-void normal_displacement(Array &array,
-                         float  amount = 0.1f,
-                         int    ir = 0,
-                         bool   reverse = false);
-void normal_displacement(Array &array,
-                         Array *p_mask,
-                         float  amount = 0.1f,
-                         int    ir = 0,
-                         bool   reverse = false);
-
-void plateau(Array &array, Array *p_mask, int ir, float factor);
-void plateau(Array &array, int ir, float factor);
-
 Array relative_elevation(const Array &array, int ir);
 
 Array ruggedness(const Array &array, int ir);
 
 Array rugosity(const Array &z, int ir, bool convex = true);
-
-void shrink(Array &array, int ir);
-void shrink(Array &array, int ir, Array *p_mask);
-void shrink(Array &array, Array &kernel);
-void shrink(Array &array, Array &kernel, Array *p_mask);
-
-Array skeleton(const Array &array, bool zero_at_borders = true);
-
-void smooth_fill(Array &array,
-                 int    ir,
-                 float  k = 0.1f,
-                 Array *p_deposition_map = nullptr);
-void smooth_fill(Array &array,
-                 int    ir,
-                 Array *p_mask,
-                 float  k = 0.1f,
-                 Array *p_deposition_map = nullptr);
 
 void thermal(Array       &z,
              const Array &talus,
