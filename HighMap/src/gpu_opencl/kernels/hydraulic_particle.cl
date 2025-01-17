@@ -34,7 +34,7 @@ void kernel hydraulic_particle(global float *z_in,
                                const int     has_bedrock,
                                const int     has_moisture_map)
 {
-  float dt = 3.f;
+  float dt = 2.f;
 
   int id = get_global_id(0); // particle id
   if (id > nparticles) return;
