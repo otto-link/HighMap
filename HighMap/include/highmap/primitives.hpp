@@ -1303,9 +1303,6 @@ Array worley_double(Vec2<int>   shape,
 
 } // namespace hmap
 
-#ifdef ENABLE_OPENCL
-#include "highmap/opencl/gpu_opencl.hpp"
-
 namespace hmap::gpu
 {
 
@@ -1538,6 +1535,7 @@ Array gavoronoise(const Array &base,
  * X-axis.
  * @param p_noise_y        Optional pointer to a precomputed noise array for the
  * Y-axis.
+ * @param p_angle          Optional pointer to an array to output the angle.
  * @param bbox             The bounding box of the output heightmap in
  * normalized coordinates [xmin, xmax, ymin, ymax]. Default is {0.0f, 1.0f,
  * 0.0f, 1.0f}.
@@ -1557,6 +1555,7 @@ Array mountain_range_radial(Vec2<int>   shape,
                             uint        seed,
                             float       half_width = 0.2f,
                             float       angle_spread_ratio = 0.5f,
+                            float       core_size_ratio = 1.f,
                             Vec2<float> center = {0.5f, 0.5f},
                             int         octaves = 8,
                             float       weight = 0.7f,
@@ -1565,7 +1564,33 @@ Array mountain_range_radial(Vec2<int>   shape,
                             Array      *p_ctrl_param = nullptr,
                             Array      *p_noise_x = nullptr,
                             Array      *p_noise_y = nullptr,
+                            Array      *p_angle = nullptr,
                             Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+/*! @brief See hmap::noise */
+Array noise(NoiseType   noise_type,
+            Vec2<int>   shape,
+            Vec2<float> kw,
+            uint        seed,
+            Array      *p_noise_x = nullptr,
+            Array      *p_noise_y = nullptr,
+            Array      *p_stretching = nullptr,
+            Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+/*! @brief See hmap::noise_fbm */
+Array noise_fbm(NoiseType   noise_type,
+                Vec2<int>   shape,
+                Vec2<float> kw,
+                uint        seed,
+                int         octaves = 8,
+                float       weight = 0.7f,
+                float       persistence = 0.5f,
+                float       lacunarity = 2.f,
+                Array      *p_ctrl_param = nullptr,
+                Array      *p_noise_x = nullptr,
+                Array      *p_noise_y = nullptr,
+                Array      *p_stretching = nullptr,
+                Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Generates a Voronoi diagram in a 2D array with configurable
@@ -1779,4 +1804,3 @@ Array voronoise_fbm(Vec2<int>   shape,
                     Array      *p_noise_y = nullptr,
                     Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 } // namespace hmap::gpu
-#endif

@@ -13,11 +13,6 @@
 namespace hmap
 {
 
-float helper_bezier_interp(float a, float b, float c, float t)
-{
-  return (1.f - t) * (1.f - t) * a + 2.f * (1.f - t) * t * b + t * t * c;
-}
-
 Array ridgelines(Vec2<int>          shape,
                  std::vector<float> xr,
                  std::vector<float> yr,

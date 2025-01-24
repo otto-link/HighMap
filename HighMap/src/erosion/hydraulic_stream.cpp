@@ -102,9 +102,11 @@ void hydraulic_stream_log(Array &z,
                           float  c_erosion,
                           float  talus_ref,
                           float  gamma,
+                          float  saturation_ratio,
                           Array *p_bedrock,
                           Array *p_moisture_map,
                           Array *p_erosion_map,
+                          Array *p_flow_map,
                           int    ir)
 {
   // keep a backup of the input if the erosion / deposition maps need
@@ -115,8 +117,11 @@ void hydraulic_stream_log(Array &z,
   // use flow accumulation to determine erosion intensity
   Array facc = flow_accumulation_dinf(z, talus_ref);
   facc = log10(facc);
-  facc.infos();
   remap(facc);
+
+  if (saturation_ratio < 1.f)
+    saturate(facc, 0.f, saturation_ratio, 0.1f * saturation_ratio);
+
   gamma_correction(facc, gamma);
 
   if (ir > 1)
@@ -139,16 +144,20 @@ void hydraulic_stream_log(Array &z,
     *p_erosion_map = z_bckp - z;
     clamp_min(*p_erosion_map, 0.f);
   }
+
+  if (p_flow_map) *p_flow_map = facc;
 }
 
 void hydraulic_stream_log(Array &z,
-                          Array *p_mask,
                           float  c_erosion,
                           float  talus_ref,
+                          Array *p_mask,
                           float  gamma,
+                          float  saturation_ratio,
                           Array *p_moisture_map,
                           Array *p_bedrock,
                           Array *p_erosion_map,
+                          Array *p_flow_map,
                           int    ir)
 {
   if (!p_mask)
@@ -156,9 +165,11 @@ void hydraulic_stream_log(Array &z,
                          c_erosion,
                          talus_ref,
                          gamma,
+                         saturation_ratio,
                          p_bedrock,
                          p_moisture_map,
                          p_erosion_map,
+                         p_flow_map,
                          ir);
   else
   {
@@ -167,9 +178,11 @@ void hydraulic_stream_log(Array &z,
                          c_erosion,
                          talus_ref,
                          gamma,
+                         saturation_ratio,
                          p_bedrock,
                          p_moisture_map,
                          p_erosion_map,
+                         p_flow_map,
                          ir);
     z = lerp(z, z_f, *(p_mask));
   }

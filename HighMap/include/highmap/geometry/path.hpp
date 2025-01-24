@@ -240,6 +240,49 @@ public:
   void decasteljau(int edge_divisions = 10);
 
   /**
+   * @brief Simplifies the current path using a curvature preserving algorithm.
+   *
+   * @param n_points_target The desired number of points to retain in the path.
+   * If the current number of points is less than `n_points_target` or the path
+   * contains fewer than 3 points, the method returns without modifying the
+   * path.
+   *
+   * @note Does not well behave when n_points_target is significantly lower than
+   * the initial number of points.
+   *
+   * **Example**
+   * @include ex_path_decimate.cpp
+   *
+   * **Result**
+   * @image html ex_path_decimate.png
+   */
+  void decimate_cfit(int n_points_target = 3);
+
+  /**
+   * @brief Simplifies the current path using the Visvalingam-Whyatt algorithm.
+   *
+   * This method reduces the number of points in the path to the specified
+   * target, `n_points_target`, while preserving the overall shape. It
+   * calculates the area of triangles formed by consecutive points and removes
+   * points corresponding to the smallest areas iteratively.
+   *
+   * @param n_points_target The desired number of points to retain in the path.
+   * If the current number of points is less than `n_points_target` or the path
+   * contains fewer than 3 points, the method returns without modifying the
+   * path.
+   *
+   * @note Does not well behave when n_points_target is significantly lower than
+   * the initial number of points.
+   *
+   * **Example**
+   * @include ex_path_decimate.cpp
+   *
+   * **Result**
+   * @image html ex_path_decimate.png
+   */
+  void decimate_vw(int n_points_target = 3);
+
+  /**
    * @brief Divide the path by adding points based on the lowest elevation
    * difference between each pair of edge endpoints.
    *
@@ -273,9 +316,9 @@ public:
    */
   void dijkstra(Array      &array,
                 Vec4<float> bbox,
-                int         edge_divisions = 0,
                 float       elevation_ratio = 0.f,
                 float       distance_exponent = 0.5f,
+                float       upward_penalization = 1.f,
                 Array      *p_mask_nogo = nullptr);
 
   /**
@@ -410,6 +453,21 @@ public:
    * @return std::vector<float> Vector of `y` values of the points on the path.
    */
   std::vector<float> get_y() const;
+
+  /**
+   * @brief Enforces monotonicity on the values of the points in the path.
+   *
+   * This method adjusts the `v` values of the points in the path to ensure
+   * that they are either monotonically decreasing or increasing, based on
+   * the input parameter.
+   *
+   * @param decreasing If true, enforces a monotonically decreasing order for
+   * the values. If false, enforces a monotonically increasing order for the
+   * values.
+   *
+   * @note This method modifies the path in place.
+   */
+  void enforce_monotonic_values(bool decreasing = true);
 
   /**
    * @brief Add "meanders" to the path.
@@ -686,7 +744,7 @@ public:
    * @param filled Boolean flag indicating whether to perform flood filling of
    * the path's contour.
    */
-  void to_array(Array &array, Vec4<float> bbox, bool filled = false);
+  void to_array(Array &array, Vec4<float> bbox, bool filled = false) const;
 
   /**
    * @brief Return an array filled with the signed distance function to the
@@ -755,8 +813,9 @@ public:
  * @image html ex_dig_path.png
  *
  * @param z Input array representing the heightmap to be modified.
- * @param path The path to be dug into the heightmap. The path will be processed
- * to create the dig effect.
+ * @param path The path to be dug into the heightmap, with coordinates with
+ * respect to a unit-square. The path will be processed to create the dig
+ * effect.
  * @param width Radius of the path width in pixels. This determines how wide the
  * dug path will be.
  * @param decay Radius of the path border decay in pixels. This controls how
@@ -778,5 +837,56 @@ void dig_path(Array      &z,
               bool        force_downhill = false,
               Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f},
               float       depth = 0.f);
+
+/**
+ * @brief Modifies the elevation array to carve a river along a specified path.
+ *
+ * This function adjusts the elevation values in the input array `z` to simulate
+ * a river along the provided `path`. It incorporates parameters for riverbed
+ * and riverbank slopes, noise effects, and merging behavior to create a
+ * realistic river profile.
+ *
+ * @param z The input 2D array representing the elevation map. This array will
+ * be modified in place.
+ * @param path The path along which the river is to be carved, represented as a
+ * sequence of points, with coordinates with respect to a unit-square.
+ * @param riverbank_talus The slope of the riverbank, controlling how steep the
+ * river's edges are.
+ * @param merging_ir The merging radius, specifying how far the effects of
+ * multiple rivers combine.
+ * @param riverbed_talus The slope of the riverbed, controlling how steep the
+ * riverbed is (default: 0.0).
+ * @param noise_ratio The proportion of random noise applied to the river's
+ * shape for realism (default: 0.9).
+ * @param seed The seed for the random noise generator, ensuring reproducibility
+ * (default: 0).
+ *
+ * **Example**
+ * @include ex_flow_stream.cpp
+ *
+ * **Result**
+ * @image html ex_flow_stream.png
+ */
+void dig_river(Array                   &z,
+               const std::vector<Path> &path_list,
+               float                    riverbank_talus,
+               int                      river_width = 0,
+               int                      merging_width = 0,
+               float                    depth = 0.f,
+               float                    riverbed_talus = 0.f,
+               float                    noise_ratio = 0.9f,
+               uint                     seed = 0,
+               Array                   *p_mask = nullptr);
+
+void dig_river(Array      &z,
+               const Path &path,
+               float       riverbank_talus,
+               int         river_width = 0,
+               int         merging_width = 0,
+               float       depth = 0.f,
+               float       riverbed_talus = 0.f,
+               float       noise_ratio = 0.9f,
+               uint        seed = 0,
+               Array      *p_mask = nullptr);
 
 } // namespace hmap

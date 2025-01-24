@@ -7,16 +7,14 @@
 
 #include "highmap.hpp"
 #include "highmap/dbg/assert.hpp"
+#include "highmap/dbg/timer.hpp"
 
-const int block_size = 32;
 // const hmap::Vec2<int>   shape = {2048, 2048};
 // const hmap::Vec2<int>   shape = {1024, 1024};
 const hmap::Vec2<int>   shape = {256, 512};
 const hmap::Vec2<float> kw = {2.f, 4.f};
 const int               seed = 1;
 std::fstream            f;
-
-#ifdef ENABLE_OPENCL
 
 template <typename F1, typename F2>
 void compare(F1 fct1, F2 fct2, float tolerance, const std::string &name)
@@ -60,17 +58,12 @@ void compare(F1 fct1, F2 fct2, float tolerance, const std::string &name)
   f << "\n";
 }
 
-#endif
-
 // ---
 
 int main(void)
 {
 
-#ifdef ENABLE_OPENCL
   hmap::gpu::init_opencl();
-
-  clwrapper::KernelManager::get_instance().set_block_size(block_size);
 
   f.open("test_gpu_vs_cpu.csv", std::ios::out);
 
@@ -87,20 +80,30 @@ int main(void)
 
   int ir = 64;
 
+  compare([&ir](hmap::Array &z) { hmap::accumulation_curvature(z, ir); },
+          [&ir](hmap::Array &z) { hmap::gpu::accumulation_curvature(z, ir); },
+          1e-3f,
+          "accumulation_curvature");
+
+  compare([ir](hmap::Array &z) { z = hmap::border(z, ir); },
+          [ir](hmap::Array &z) { z = hmap::gpu::border(z, ir); },
+          1e-3f,
+          "border");
+
   compare([ir](hmap::Array &z) { z = hmap::closing(z, ir); },
           [ir](hmap::Array &z) { z = hmap::gpu::closing(z, ir); },
           1e-3f,
-          "closing.png");
+          "closing");
 
   compare([ir](hmap::Array &z) { z = hmap::dilation(z, ir); },
           [ir](hmap::Array &z) { z = hmap::gpu::dilation(z, ir); },
           1e-3f,
-          "dilation.png");
+          "dilation");
 
   compare([ir](hmap::Array &z) { z = hmap::erosion(z, ir); },
           [ir](hmap::Array &z) { z = hmap::gpu::erosion(z, ir); },
           1e-3f,
-          "erosion.png");
+          "erosion");
 
   compare([&ir](hmap::Array &z) { hmap::expand(z, ir); },
           [&ir](hmap::Array &z) { hmap::gpu::expand(z, ir); },
@@ -195,7 +198,7 @@ int main(void)
           [ir](hmap::Array &z)
           { z = hmap::gpu::morphological_gradient(z, ir); },
           1e-3f,
-          "morphological_gradient.png");
+          "morphological_gradient");
 
   {
 
@@ -271,7 +274,7 @@ int main(void)
   compare([ir](hmap::Array &z) { z = hmap::opening(z, ir); },
           [ir](hmap::Array &z) { z = hmap::gpu::opening(z, ir); },
           1e-3f,
-          "opening.png");
+          "opening");
 
   compare([&ir](hmap::Array &z) { hmap::plateau(z, ir, 4.f); },
           [&ir](hmap::Array &z) { hmap::gpu::plateau(z, ir, 4.f); },
@@ -320,6 +323,32 @@ int main(void)
           [&ir](hmap::Array &z) { hmap::gpu::shrink(z, ir); },
           1e-3f,
           "shrink");
+
+  {
+    hmap::Vec4<float> bbox = {1.f, 2.f, -0.5f, 0.5f};
+    hmap::Path path = hmap::Path(200, 0, bbox.adjust(0.2f, -0.2f, 0.2f, -0.2f));
+    path.reorder_nns();
+
+    compare([bbox, path](hmap::Array &z)
+            { z = hmap::sdf_2d_polyline(path, z.shape, bbox); },
+            [bbox, path](hmap::Array &z)
+            { z = hmap::gpu::sdf_2d_polyline(path, z.shape, bbox); },
+            1e-3f,
+            "sdf_2d_polyline");
+  }
+
+  {
+    hmap::Vec4<float> bbox = {1.f, 2.f, -0.5f, 0.5f};
+    hmap::Path path = hmap::Path(200, 0, bbox.adjust(0.2f, -0.2f, 0.2f, -0.2f));
+    path.reorder_nns();
+
+    compare([bbox, path](hmap::Array &z)
+            { z = hmap::sdf_2d_polyline_bezier(path, z.shape, bbox); },
+            [bbox, path](hmap::Array &z)
+            { z = hmap::gpu::sdf_2d_polyline_bezier(path, z.shape, bbox); },
+            1e-3f,
+            "sdf_2d_polyline_bezier");
+  }
 
   compare(
       [&ir](hmap::Array &z)
@@ -433,8 +462,4 @@ int main(void)
   }
 
   f.close();
-
-#else
-  std::cout << "OpenCL not activated\n";
-#endif
 }

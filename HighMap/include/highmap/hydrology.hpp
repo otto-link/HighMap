@@ -26,6 +26,7 @@
 #pragma once
 
 #include "highmap/array.hpp"
+#include "highmap/geometry/path.hpp"
 
 namespace hmap
 {
@@ -162,4 +163,120 @@ Array flow_direction_d8(const Array &z);
  */
 std::vector<Array> flow_direction_dinf(const Array &z, float talus_ref);
 
+/**
+ * @brief Computes the optimal flow path from a starting point to the boundary
+ * of a given elevation array.
+ *
+ * This function finds the flow path on a grid represented by the input array
+ * `z`, starting from the given point `ij_start`. It identifies the best path to
+ * the boundary, minimizing upward elevation penalties while accounting for
+ * distance and elevation factors.
+ *
+ * @param z The input 2D array representing elevation values.
+ * @param ij_start The starting point as a 2D vector of indices (i, j) within
+ * the array.
+ * @param elevation_ratio Weight for elevation difference in the cost function
+ * (default: 0.5).
+ * @param distance_exponent Exponent for the distance term in the cost function
+ * (default: 2.0).
+ * @param upward_penalization Penalty factor for upward elevation changes
+ * (default: 100.0).
+ * @return A Path object representing the optimal flow path with normalized x
+ * and y coordinates and corresponding elevations.
+ *
+ * The output path consists of:
+ * - Normalized x-coordinates along the path.
+ * - Normalized y-coordinates along the path.
+ * - Elevation values corresponding to each point on the path.
+ *
+ * **Example**
+ * @include ex_flow_stream.cpp
+ *
+ * **Result**
+ * @image html ex_flow_stream.png
+ */
+Path flow_stream(const Array    &z,
+                 const Vec2<int> ij_start,
+                 const float     elevation_ratio = 0.5f,
+                 const float     distance_exponent = 2.f,
+                 const float     upward_penalization = 100.f);
+
+/**
+ * @brief Generates a 2D array representing a riverbed based on a specified
+ * path.
+ *
+ * This function calculates a scalar depth field (`dz`) for a riverbed shape
+ * using a path, which can optionally be smoothed with Bezier curves. It
+ * supports noise perturbation and post-filtering to adjust the riverbed's
+ * features.
+ *
+ * @param path The input path defining the riverbed's trajectory.
+ * @param shape The dimensions of the output array (width, height).
+ * @param bbox The bounding box for the output grid in world coordinates.
+ * @param bezier_smoothing Flag to enable or disable Bezier smoothing of the
+ * path.
+ * @param depth_start The depth at the start of the riverbed.
+ * @param depth_end The depth at the end of the riverbed.
+ * @param slope_start The slope multiplier at the start of the riverbed.
+ * @param slope_end The slope multiplier at the end of the riverbed.
+ * @param shape_exponent_start The shape exponent at the start of the riverbed.
+ * @param shape_exponent_end The shape exponent at the end of the riverbed.
+ * @param k_smoothing The smoothing factor for the riverbed shape adjustments.
+ * @param post_filter_ir The radius of the post-filtering operation for
+ * smoothing the output.
+ * @param p_noise_x Optional pointer to a noise array for perturbing the
+ * x-coordinates.
+ * @param p_noise_y Optional pointer to a noise array for perturbing the
+ * y-coordinates.
+ * @param p_noise_r Optional pointer to a noise array for perturbing the radial
+ * function.
+ * @return A 2D array representing the calculated riverbed depth field.
+ *
+ * @note The function requires the path to have at least two points. If the path
+ * has fewer points, an empty array is returned with the given shape.
+ *
+ * **Example**
+ * @include ex_generate_riverbed.cpp
+ *
+ * **Result**
+ * @image html ex_generate_riverbed.png
+ */
+Array generate_riverbed(const Path &path,
+                        Vec2<int>   shape,
+                        Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f},
+                        bool        bezier_smoothing = false,
+                        float       depth_start = 0.01f,
+                        float       depth_end = 1.f,
+                        float       slope_start = 64.f,
+                        float       slope_end = 32.f,
+                        float       shape_exponent_start = 1.f,
+                        float       shape_exponent_end = 10.f,
+                        float       k_smoothing = 0.5f,
+                        int         post_filter_ir = 0,
+                        Array      *p_noise_x = nullptr,
+                        Array      *p_noise_y = nullptr,
+                        Array      *p_noise_r = nullptr);
+
 } // namespace hmap
+
+namespace hmap::gpu
+{
+
+/*! @brief See hmap::generate_riverbed */
+Array generate_riverbed(const Path &path,
+                        Vec2<int>   shape,
+                        Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f},
+                        bool        bezier_smoothing = false,
+                        float       depth_start = 0.01f,
+                        float       depth_end = 1.f,
+                        float       slope_start = 64.f,
+                        float       slope_end = 32.f,
+                        float       shape_exponent_start = 1.f,
+                        float       shape_exponent_end = 10.f,
+                        float       k_smoothing = 0.5f,
+                        int         post_filter_ir = 0,
+                        Array      *p_noise_x = nullptr,
+                        Array      *p_noise_y = nullptr,
+                        Array      *p_noise_r = nullptr);
+
+} // namespace hmap::gpu

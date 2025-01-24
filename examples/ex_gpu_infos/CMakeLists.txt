@@ -1,2 +1,0 @@
-add_executable(ex_gpu_infos ex_gpu_infos.cpp)
-target_link_libraries(ex_gpu_infos highmap)

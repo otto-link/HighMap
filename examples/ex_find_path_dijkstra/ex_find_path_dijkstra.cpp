@@ -16,7 +16,7 @@ int main(void)
 
   std::vector<int> i, j;
 
-  z.find_path_dijkstra(ij_start, ij_end, i, j);
+  hmap::find_path_dijkstra(z, ij_start, ij_end, i, j);
 
   // export path to a png file
   hmap::Array w = hmap::Array(shape);
@@ -27,7 +27,7 @@ int main(void)
 
   // set "elevation_ratio" to 1.f to find the path with the lowest
   // cumulative elevation
-  z.find_path_dijkstra(ij_start, ij_end, i, j, 1.f);
+  hmap::find_path_dijkstra(z, ij_start, ij_end, i, j, 1.f);
 
   // export path to a png file
   w = hmap::Array(shape);

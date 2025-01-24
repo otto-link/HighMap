@@ -3,7 +3,7 @@
 int main(void)
 {
   hmap::Vec2<int>   shape = {256, 256};
-  hmap::Vec2<float> res = {4.f, 4.f};
+  hmap::Vec2<float> res = {2.f, 2.f};
   int               seed = 1;
 
   hmap::Array z = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, res, seed);
@@ -27,10 +27,28 @@ int main(void)
 
   hmap::stratify_oblique(z2, &mask, hs, gs, talus, angle);
 
-  z2.to_file("out.bin");
+  // domain partitioning with different strata systems
+  auto  z3 = z;
+  int   nstrata = 4;
+  float strata_noise = 0.5f;
+  float gamma = 0.5f;
+  float gamma_noise = 0.1f;
+  int   npartitions = 3;
+
+  hmap::Array partition = hmap::noise(hmap::NoiseType::PERLIN, shape, res, 1);
+  hmap::remap(partition);
+
+  hmap::stratify(z3,
+                 partition,
+                 nstrata,
+                 strata_noise,
+                 gamma,
+                 gamma_noise,
+                 npartitions,
+                 seed);
 
   hmap::export_banner_png("ex_stratify.png",
-                          {z, z1, z2},
+                          {z, z1, z2, z3},
                           hmap::Cmap::TERRAIN,
                           true);
 }

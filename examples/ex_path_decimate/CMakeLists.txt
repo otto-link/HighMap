@@ -1,0 +1,2 @@
+add_executable(ex_path_decimate ex_path_decimate.cpp)
+target_link_libraries(ex_path_decimate highmap)

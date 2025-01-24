@@ -229,6 +229,35 @@ Array laplacian(const Array &array);
 Tensor normal_map(const Array &array);
 
 /**
+ * @brief Converts a normal map to a heightmap using direct summation of
+ * gradients.
+ *
+ * This function computes a heightmap from a given normal map (`nmap`) by
+ * integrating gradients derived from the normal map in two passes. The result
+ * is the average of two independent integrations to reduce artifacts from
+ * directional bias.
+ *
+ * @param nmap A 3D tensor representing the normal map. It should have three
+ * channels (X, Y, Z) and a shape of (width, height, 3). The values are assumed
+ *             to be in the range [0, 1].
+ *
+ * @return An `Array` object representing the computed heightmap with the same
+ * spatial dimensions as the input normal map (width, height).
+ *
+ * @note
+ * - The algorithm assumes the normal map values are normalized between 0 and 1.
+ * - Two heightmaps (`z1` and `z2`) are computed using different traversal
+ * orders, and the final result is their average to reduce directional bias.
+ *
+ * * **Example**
+ * @include ex_normal_map_to_heightmap.cpp
+ *
+ * **Result**
+ * @image html ex_normal_map_to_heightmap.png
+ */
+Array normal_map_to_heightmap(const Tensor &nmap);
+
+/**
  * @brief Computes a phase field using spatially varying Gabor noise based on
  * the input heightmap.
  *
@@ -290,3 +319,11 @@ Array phase_field(const Array &array,
 Array unwrap_phase(const Array &alpha);
 
 } // namespace hmap
+
+namespace hmap::gpu
+{
+
+/*! @brief See hmap::gradient_norm */
+Array gradient_norm(const Array &array);
+
+} // namespace hmap::gpu

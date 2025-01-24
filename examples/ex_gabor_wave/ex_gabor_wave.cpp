@@ -2,14 +2,11 @@
 
 int main(void)
 {
-#ifdef ENABLE_OPENCL
   hmap::gpu::init_opencl();
 
   hmap::Vec2<int>   shape = {256, 256};
   hmap::Vec2<float> kw = {2.f, 2.f};
   int               seed = 1;
-
-  clwrapper::KernelManager::get_instance().set_block_size(32);
 
   // --- base
 
@@ -55,8 +52,4 @@ int main(void)
                           {z, z_fbm, za0, za1, za2, zr1, zr2},
                           hmap::Cmap::JET,
                           true);
-
-#else
-  std::cout << "OpenCL not activated\n";
-#endif
 }

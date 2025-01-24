@@ -1,2 +1,0 @@
-add_executable(ex_gpu_median_3x3 ex_gpu_median_3x3.cpp)
-target_link_libraries(ex_gpu_median_3x3 highmap)

@@ -753,6 +753,24 @@ template <typename T> struct Vec4
   }
 
   /**
+   * @brief Adjusts the components of the vector by the given offsets.
+   *
+   * This method creates a new vector by adding the specified offsets to the
+   * respective components of the current vector.
+   *
+   * @tparam T The type of the vector components.
+   * @param da The offset to add to the first component (`a`).
+   * @param db The offset to add to the second component (`b`).
+   * @param dc The offset to add to the third component (`c`).
+   * @param dd The offset to add to the fourth component (`d`).
+   * @return Vec4<T> A new vector with adjusted components.
+   */
+  Vec4<T> adjust(float da, float db, float dc, float dd)
+  {
+    return Vec4<T>(this->a + da, this->b + db, this->c + dc, this->d + dd);
+  }
+
+  /**
    * @brief Friend function to calculate the dot product of two vectors.
    *
    * The dot product is the sum of the products of the corresponding components

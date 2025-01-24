@@ -237,6 +237,16 @@ float angle(const Point &p0, const Point &p1, const Point &p2);
 float cross_product(const Point &p0, const Point &p1, const Point &p2);
 
 /**
+ * @brief Calculates the curvature formed by three points in 2D space.
+ *
+ * @param p1 The first point of the triangle.
+ * @param p2 The second point of the triangle.
+ * @param p3 The third point of the triangle.
+ * @return The curvature. Returns 0 if the points are collinear.
+ */
+float curvature(const Point &p1, const Point &p2, const Point &p3);
+
+/**
  * @brief Calculates the distance between two points.
  *
  * This function computes the Euclidean distance between two points
@@ -463,5 +473,20 @@ Point midpoint(const Point &p1,
  * modified directly with the points arranged in ascending order.
  */
 void sort_points(std::vector<Point> &points);
+
+/**
+ * @brief Calculates the area of a triangle formed by three points in 2D space.
+ *
+ * This function uses the determinant method to compute the absolute area of a
+ * triangle given three points (p1, p2, p3). It assumes the points are specified
+ * as 2D coordinates.
+ *
+ * @param p1 The first point of the triangle.
+ * @param p2 The second point of the triangle.
+ * @param p3 The third point of the triangle.
+ * @return The area of the triangle as a floating-point value. Returns 0 if the
+ * points are collinear.
+ */
+float triangle_area(const Point &p1, const Point &p2, const Point &p3);
 
 } // namespace hmap

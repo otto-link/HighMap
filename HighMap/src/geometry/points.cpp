@@ -80,6 +80,16 @@ float cross_product(const Point &p0, const Point &p1, const Point &p2)
   return v1x * v2y - v1y * v2x;
 }
 
+float curvature(const Point &p1, const Point &p2, const Point &p3)
+{
+  float d = distance(p1, p2) * distance(p1, p3) * distance(p1, p3);
+
+  if (d > 0.f)
+    return 2.f * triangle_area(p1, p2, p3) / d;
+  else
+    return 0.f;
+}
+
 float distance(const Point &p1, const Point &p2)
 {
   float dx = p1.x - p2.x;
@@ -216,6 +226,12 @@ bool cmp_inf(Point &a, Point &b)
 void sort_points(std::vector<Point> &points)
 {
   std::sort(points.begin(), points.end(), cmp_inf);
+}
+
+float triangle_area(const Point &p1, const Point &p2, const Point &p3)
+{
+  return 0.5f * std::abs(p1.x * (p2.y - p3.y) + p2.x * (p3.y - p1.y) +
+                         p3.x * (p1.y - p2.y));
 }
 
 } // namespace hmap

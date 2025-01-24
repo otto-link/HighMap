@@ -11,10 +11,12 @@
 #include "highmap/array.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/geometry/path.hpp"
+#include "highmap/internal/vector_utils.hpp"
 #include "highmap/interpolate_curve.hpp"
 #include "highmap/morphology.hpp"
 #include "highmap/operator.hpp"
 #include "highmap/range.hpp"
+#include "highmap/shortest_path.hpp"
 
 namespace hmap
 {
@@ -149,11 +151,72 @@ void Path::decasteljau(int edge_divisions)
   *this = std::move(new_path);
 }
 
+void Path::decimate_cfit(int n_points_target)
+{
+  // compute local curvature
+  std::vector<float> kappas = {};
+
+  for (size_t k = 1; k < this->get_npoints() - 1; k++)
+  {
+    float kp = curvature(this->points[k - 1],
+                         this->points[k],
+                         this->points[k + 1]);
+    kappas.push_back(kp);
+  }
+
+  // sort by size (ascending)
+  std::vector<size_t> ksort = argsort(kappas);
+
+  // rebuild simplified path
+  std::vector<Point> new_points = {this->points.front()};
+  size_t             klim = this->get_npoints() - (size_t)n_points_target;
+
+  for (size_t k = 0; k < kappas.size(); k++)
+  {
+    if (ksort[k] >= klim) new_points.push_back(this->points[k + 1]);
+  }
+  new_points.push_back(this->points.back());
+
+  *this = Path(new_points);
+}
+
+void Path::decimate_vw(int n_points_target)
+{
+  if (this->get_npoints() < 3 || this->get_npoints() <= (size_t)n_points_target)
+    return;
+
+  // compute triangle surfaces
+  std::vector<float> surfaces = {};
+
+  for (size_t k = 1; k < this->get_npoints() - 1; k++)
+  {
+    float s = triangle_area(this->points[k - 1],
+                            this->points[k],
+                            this->points[k + 1]);
+    surfaces.push_back(s);
+  }
+
+  // sort by size (ascending)
+  std::vector<size_t> ksort = argsort(surfaces);
+
+  // rebuild simplified path
+  std::vector<Point> new_points = {this->points.front()};
+  size_t             klim = this->get_npoints() - (size_t)n_points_target;
+
+  for (size_t k = 0; k < surfaces.size(); k++)
+  {
+    if (ksort[k] >= klim) new_points.push_back(this->points[k + 1]);
+  }
+  new_points.push_back(this->points.back());
+
+  *this = Path(new_points);
+}
+
 void Path::dijkstra(Array      &array,
                     Vec4<float> bbox,
-                    int         edge_divisions,
                     float       elevation_ratio,
                     float       distance_exponent,
+                    float       upward_penalization,
                     Array      *p_mask_nogo)
 {
   size_t ks = this->closed ? 0 : 1; // trick to handle closed contours
@@ -173,27 +236,16 @@ void Path::dijkstra(Array      &array,
         (int)((this->points[knext].y - bbox.c) / (bbox.d - bbox.c) *
               (array.shape.y - 1)));
 
-    float dist_idx = std::hypot((float)(ij_start.x - ij_end.x),
-                                (float)(ij_start.y - ij_end.y));
-
-    Vec2<int> step;
-    if (edge_divisions > 0)
-    {
-      int div = std::max(1, (int)(dist_idx / edge_divisions));
-      step = Vec2<int>(div, div);
-    }
-    else
-      step = Vec2<int>(1, 1);
-
     std::vector<int> ip, jp;
-    array.find_path_dijkstra(ij_start,
-                             ij_end,
-                             ip,
-                             jp,
-                             elevation_ratio,
-                             distance_exponent,
-                             step,
-                             p_mask_nogo);
+    find_path_dijkstra(array,
+                       ij_start,
+                       ij_end,
+                       ip,
+                       jp,
+                       elevation_ratio,
+                       distance_exponent,
+                       upward_penalization,
+                       p_mask_nogo);
 
     // backup cuurrent edge informations before adding points to this edge
     Point p1 = this->points[k];
@@ -369,6 +421,26 @@ std::vector<float> Path::get_y() const
 
   if (this->closed && this->get_npoints() > 0) y.push_back(this->points[0].y);
   return y;
+}
+
+void Path::enforce_monotonic_values(bool decreasing)
+{
+  if (decreasing)
+  {
+    for (size_t k = 0; k < this->get_npoints() - 1; k++)
+    {
+      if (this->points[k + 1].v > this->points[k].v)
+        this->points[k + 1].v = this->points[k].v;
+    }
+  }
+  else
+  {
+    for (size_t k = 0; k < this->get_npoints() - 1; k++)
+    {
+      if (this->points[k + 1].v < this->points[k].v)
+        this->points[k + 1].v = this->points[k].v;
+    }
+  }
 }
 
 void Path::meanderize(float ratio,
@@ -734,7 +806,7 @@ void Path::subsample(int step)
   }
 }
 
-void Path::to_array(Array &array, Vec4<float> bbox, bool filled)
+void Path::to_array(Array &array, Vec4<float> bbox, bool filled) const
 {
   // number of pixels per unit length
   float lx = bbox.b - bbox.a;
@@ -878,6 +950,99 @@ void dig_path(Array      &z,
 
   zf += depth;
   z = lerp(z, zf, mask);
+}
+
+void dig_river(Array                   &z,
+               const std::vector<Path> &path_list,
+               float                    riverbank_talus,
+               int                      river_width,
+               int                      merging_width,
+               float                    depth,
+               float                    riverbed_talus,
+               float                    noise_ratio,
+               uint                     seed,
+               Array                   *p_mask)
+{
+  // generate mask where the river path lies and dig rivers
+  Array       mask(z.shape);
+  hmap::Array z_carved(z.shape);
+
+  for (auto path : path_list)
+  {
+    Path path_copy = path;
+    path_copy.set_values(1.f);
+    hmap::Vec4<float> bbox(0.f, 1.f, 0.f, 1.f);
+    path_copy.to_array(mask, bbox);
+
+    // expand the path
+    path_copy = path;
+    path_copy.enforce_monotonic_values();
+
+    for (auto &p : path_copy.points)
+      p.v -= depth;
+
+    // add downstream slope
+    if (riverbed_talus > 0.f)
+    {
+      for (size_t k = 0; k < path_copy.get_npoints() - 1; k++)
+        path_copy.points[k + 1].v = std::min(path_copy.points[k + 1].v,
+                                             path_copy.points[k].v -
+                                                 riverbed_talus);
+    }
+
+    path_copy.to_array(z_carved, bbox);
+  }
+
+  if (river_width)
+  {
+    z_carved = dilation(z_carved, river_width);
+    mask = dilation(mask, river_width);
+  }
+
+  for (int j = 0; j < z.shape.y; ++j)
+    for (int i = 0; i < z.shape.x; ++i)
+      z_carved(i, j) = mask(i, j) ? z_carved(i, j) : z(i, j);
+
+  expand_talus(z_carved, mask, riverbank_talus, seed, noise_ratio);
+  laplace(z_carved);
+
+  // use a distance transform to define a merging mask between the
+  // input heightmap "z" and the "z_carved"
+  Array dist = distance_transform_approx(mask);
+  float sigma2 = std::pow((float)(merging_width + river_width), 2.f);
+  dist = exp(-0.5f * dist * dist / sigma2);
+  laplace(dist);
+
+  // lerp based on distance
+  z = lerp(z, z_carved, dist);
+
+  // return mask if requested
+  if (p_mask) *p_mask = dist;
+}
+
+void dig_river(Array      &z,
+               const Path &path,
+               float       riverbank_talus,
+               int         river_width,
+               int         merging_width,
+               float       depth,
+               float       riverbed_talus,
+               float       noise_ratio,
+               uint        seed,
+               Array      *p_mask)
+{
+  const std::vector<Path> path_list = {path};
+
+  dig_river(z,
+            path_list,
+            riverbank_talus,
+            river_width,
+            merging_width,
+            depth,
+            riverbed_talus,
+            noise_ratio,
+            seed,
+            p_mask);
 }
 
 } // namespace hmap

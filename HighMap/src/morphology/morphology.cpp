@@ -11,6 +11,11 @@
 namespace hmap
 {
 
+Array border(const Array &array, int ir)
+{
+  return array - erosion(array, ir);
+}
+
 Array closing(const Array &array, int ir)
 {
   return erosion(dilation(array, ir), ir);
