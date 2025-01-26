@@ -39,7 +39,7 @@ float noise_voronoise(const float2 p,
                       const float  v_param,
                       const float  fseed)
 {
-  float k = 1.f + 63.f * pow(1.f - v_param, 6.f);
+  float k = 1.f + 63.f * pow_float(1.f - v_param, 6.f);
 
   float2 i = floor(p);
   float2 pi;
@@ -53,7 +53,7 @@ float noise_voronoise(const float2 p,
       float3 o = helper_voronoise_hash3(i + g + fseed) *
                  (float3)(u_param, u_param, 1.f);
       float2 d = g - f + o.xy;
-      float  w = pow(1.f - smoothstep(0.f, 1.414f, length(d)), k);
+      float  w = pow_float(1.f - smoothstep(0.f, 1.414f, length(d)), k);
       a += (float2)(o.z * w, w);
     }
 

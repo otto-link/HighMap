@@ -96,8 +96,10 @@ void kernel sdf_2d_polyline_bezier(global float   *sdf2,
     {
       h = sqrt(h);
       float2 xx = (float2)(0.5f * (h - q), 0.5f * (-h - q));
-      float2 uv = (float2)(copysign(1.f, xx.x) * pow(fabs(xx.x), 1.f / 3.f),
-                           copysign(1.f, xx.y) * pow(fabs(xx.y), 1.f / 3.f));
+      float2 uv = (float2)(copysign(1.f, xx.x) *
+                               pow_float(fabs(xx.x), 1.f / 3.f),
+                           copysign(1.f, xx.y) *
+                               pow_float(fabs(xx.y), 1.f / 3.f));
       float  t = clamp(uv.x + uv.y - kx, 0.f, 1.f);
 
       float2 dd = (float2)(d.x + (c.x + b.x * t) * t,

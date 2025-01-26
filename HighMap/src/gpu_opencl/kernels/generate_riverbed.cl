@@ -53,7 +53,7 @@ void kernel generate_riverbed(global float   *sdf,
   float r = sdf[index] + dr;
   r *= t * slope_start + (1.f - t) * slope_end;
 
-  float dp = pow((pow(r, alpha) + 1.f), 1.f / alpha) - 1.f;
+  float dp = pow_float((pow_float(r, alpha) + 1.f), 1.f / alpha) - 1.f;
   dp = min_smooth(1.f, dp, k_smoothing);
 
   // adjust depth with distance
