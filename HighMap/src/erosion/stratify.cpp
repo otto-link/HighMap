@@ -20,46 +20,55 @@ void stratify(Array             &z,
               Array             *p_noise)
 {
   if (p_noise)
-    for (uint k = 0; k < hs.size() - 1; k++)
-    {
-      float dh = hs[k + 1] - hs[k];
-
-      // smooth correction factor
-      float cx = std::exp(2.5f / gamma[k]);
-      float cy = std::log(1.f + std::exp(2.5f / gamma[k]));
-
-      for (int j = 0; j < z.shape.y; j++)
-        for (int i = 0; i < z.shape.x; i++)
+  {
+    for (int j = 0; j < z.shape.y; j++)
+      for (int i = 0; i < z.shape.x; i++)
+        for (uint k = 0; k < hs.size() - 1; k++)
         {
-          float zt = z(i, j) - (*p_noise)(i, j);
+          float dh = hs[k + 1] - hs[k];
+
+          // smooth correction factor
+          float cx = std::exp(2.5f / gamma[k]);
+          float cy = std::log(1.f + std::exp(2.5f / gamma[k]));
+
+          float dn = (*p_noise)(i, j) * dh;
+          float zt = z(i, j) - dn;
+
           if ((zt >= hs[k]) and (zt < hs[k + 1]))
           {
             // scale to [0, 1], apply gamma correction and scale back
             float v = (zt - hs[k]) / dh;
-            v = std::log(1.f + cx * v * v) / cy; // v = std::pow(v, gamma[k]);
-            z(i, j) = hs[k] + v * dh + (*p_noise)(i, j);
+
+            v = std::log(1.f + cx * v * v) / cy;
+            // v = std::pow(v, gamma[k]);
+
+            z(i, j) = dn + hs[k] + v * dh;
+            break;
           }
         }
-    }
+  }
   else
-    for (uint k = 0; k < hs.size() - 1; k++)
-    {
-      float dh = hs[k + 1] - hs[k];
+  {
+    for (int j = 0; j < z.shape.y; j++)
+      for (int i = 0; i < z.shape.x; i++)
+        for (uint k = 0; k < hs.size() - 1; k++)
+        {
+          float dh = hs[k + 1] - hs[k];
 
-      // smooth correction factor
-      float cx = std::exp(2.5f / gamma[k]);
-      float cy = std::log(1.f + std::exp(2.5f / gamma[k]));
+          // smooth correction factor
+          float cx = std::exp(2.5f / gamma[k]);
+          float cy = std::log(1.f + std::exp(2.5f / gamma[k]));
 
-      for (int j = 0; j < z.shape.y; j++)
-        for (int i = 0; i < z.shape.x; i++)
           if ((z(i, j) >= hs[k]) and (z(i, j) < hs[k + 1]))
           {
             float v = (z(i, j) - hs[k]) / dh;
             // v = std::pow(v, gamma[k]);
             v = std::log(1.f + cx * v * v) / cy;
             z(i, j) = hs[k] + v * dh;
+            break;
           }
-    }
+        }
+  }
 }
 
 void stratify(Array             &z,
