@@ -20,6 +20,8 @@ void compare(F1 fct1, F2 fct2, float tolerance, const std::string &fname)
   hmap::remap(z);
   // hmap::zeroed_edges(z);
 
+  z.to_png_grayscale("out0.png", CV_16U);
+
   hmap::Array z1 = z;
   hmap::Array z2 = z;
 
@@ -55,6 +57,11 @@ int main(void)
   //         [](hmap::Array &z) { hmap::gpu::median_3x3(z); },
   //         1e-3f,
   //         "diff_median_3x3.png");
+
+  compare([](hmap::Array &z) { z = hmap::flow_accumulation_d8(z); },
+          [](hmap::Array &z) { z = hmap::gpu::flow_accumulation_d8(z); },
+          1e-3f,
+          "flow_accumulation_d8.png");
 
   // {
   //   hmap::Vec4<float> bbox = {1.f, 2.f, -0.5f, 0.5f};

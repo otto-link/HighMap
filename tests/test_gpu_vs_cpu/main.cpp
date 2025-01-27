@@ -115,6 +115,11 @@ int main(void)
           1e-3f,
           "expand_mask");
 
+  compare([](hmap::Array &z) { z = hmap::flow_direction_d8(z); },
+          [](hmap::Array &z) { z = hmap::gpu::flow_direction_d8(z); },
+          1e-3f,
+          "flow_direction_d8");
+
   compare([](hmap::Array &z) { z = hmap::gradient_norm(z); },
           [](hmap::Array &z) { z = hmap::gpu::gradient_norm(z); },
           1e-3f,
