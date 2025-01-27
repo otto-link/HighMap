@@ -262,9 +262,6 @@ Array generate_riverbed(const Path &path,
 namespace hmap::gpu
 {
 
-/*! @brief See hmap::flow_accumulation_d8 */
-Array flow_accumulation_d8(const Array &z);
-
 /*! @brief See hmap::flow_direction_d8 */
 Array flow_direction_d8(const Array &z);
 

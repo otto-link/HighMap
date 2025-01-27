@@ -58,10 +58,10 @@ int main(void)
   //         1e-3f,
   //         "diff_median_3x3.png");
 
-  compare([](hmap::Array &z) { z = hmap::flow_accumulation_d8(z); },
-          [](hmap::Array &z) { z = hmap::gpu::flow_accumulation_d8(z); },
+  compare([](hmap::Array &z) { z = hmap::flow_direction_d8(z); },
+          [](hmap::Array &z) { z = hmap::gpu::flow_direction_d8(z); },
           1e-3f,
-          "flow_accumulation_d8.png");
+          "flow_direction_d8.png");
 
   // {
   //   hmap::Vec4<float> bbox = {1.f, 2.f, -0.5f, 0.5f};
