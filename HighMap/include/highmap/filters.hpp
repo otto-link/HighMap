@@ -846,6 +846,36 @@ void match_histogram(Array &array, const Array &array_reference);
 Array mean_local(const Array &array, int ir);
 
 /**
+ * @brief Applies the mean shift algorithm to the input array.
+ *
+ * The mean shift algorithm iteratively adjusts each value in the input array
+ * by averaging nearby values within a specified radius (`ir`), using either
+ * simple or weighted mean computation. The process stops after the specified
+ * number of iterations or if convergence criteria are met.
+ *
+ * @param array The input array to process.
+ * @param ir The radius of the neighborhood to consider for mean computation.
+ * @param threshold The value threshold for considering neighboring elements.
+ *                  Only elements with differences below this threshold are
+ * included.
+ * @param iterations The number of iterations to perform the mean shift process.
+ * @param talus_weighted If true, uses weighted mean based on differences
+ * between values and their neighbors. If false, uses unweighted mean.
+ * @return A new array containing the result of the mean shift process.
+ *
+ * **Example**
+ * @include ex_mean_shift.cpp
+ *
+ * **Result**
+ * @image html ex_mean_shift.png
+ */
+Array mean_shift(const Array &array,
+                 int          ir,
+                 float        talus,
+                 int          iterations = 1,
+                 bool         talus_weighted = true);
+
+/**
  * @brief Apply a 3x3 median filter to the input array.
  *
  * This function applies a 3x3 median filter to the input array to reduce noise
@@ -2187,6 +2217,13 @@ Array maximum_local_disk(const Array &array, int ir);
 
 /*! @brief See hmap::mean_local */
 Array mean_local(const Array &array, int ir);
+
+/*! @brief See hmap::mean_shift */
+Array mean_shift(const Array &array,
+                 int          ir,
+                 float        talus,
+                 int          iterations = 1,
+                 bool         talus_weighted = true);
 
 /*! @brief See hmap::median_3x3 */
 void median_3x3(Array &array);

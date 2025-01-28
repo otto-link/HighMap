@@ -49,6 +49,8 @@ void compare(F1 fct1, F2 fct2, float tolerance, const std::string &fname)
 
 int main(void)
 {
+  int ir = 32;
+
   hmap::gpu::init_opencl();
 
   // clwrapper::KernelManager::get_instance().set_block_size(32);
@@ -58,10 +60,12 @@ int main(void)
   //         1e-3f,
   //         "diff_median_3x3.png");
 
-  compare([](hmap::Array &z) { z = hmap::flow_direction_d8(z); },
-          [](hmap::Array &z) { z = hmap::gpu::flow_direction_d8(z); },
+  compare([ir](hmap::Array &z)
+          { z = hmap::mean_shift(z, ir, 16.f / z.shape.x, 4); },
+          [ir](hmap::Array &z)
+          { z = hmap::gpu::mean_shift(z, ir, 16.f / z.shape.x, 4); },
           1e-3f,
-          "flow_direction_d8.png");
+          "mean_shift.png");
 
   // {
   //   hmap::Vec4<float> bbox = {1.f, 2.f, -0.5f, 0.5f};
@@ -75,8 +79,6 @@ int main(void)
   //           1e-3f,
   //           "sdf_2d_polyline.png");
   // }
-
-  int ir = 32;
 
   // {
   //   std::vector<hmap::NoiseType> types = {

@@ -1,0 +1,2 @@
+add_executable(ex_mean_shift ex_mean_shift.cpp)
+target_link_libraries(ex_mean_shift highmap)

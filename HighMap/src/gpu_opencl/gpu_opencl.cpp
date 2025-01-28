@@ -44,6 +44,7 @@ bool init_opencl()
 #include "kernels/maximum_local.cl"
 #include "kernels/maximum_smooth.cl"
 #include "kernels/mean_local.cl"
+#include "kernels/mean_shift.cl"
 #include "kernels/median_3x3.cl"
 #include "kernels/minimum_smooth.cl"
 #include "kernels/mountain_range_radial.cl"

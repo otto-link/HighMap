@@ -171,6 +171,39 @@ Array mean_local(const Array &array, int ir)
   return array_out;
 }
 
+Array mean_shift(const Array &array,
+                 int          ir,
+                 float        talus,
+                 int          iterations,
+                 bool         talus_weighted)
+{
+  const Vec2<int> shape = array.shape;
+  Array           array_next = Array(shape);
+  Array           array_prev = array;
+
+  auto run = clwrapper::Run("mean_shift");
+
+  run.bind_imagef("in", array_prev.vector, shape.x, shape.y);
+  run.bind_imagef("out", array_next.vector, shape.x, shape.y, true);
+  run.bind_arguments(shape.x, shape.y, ir, talus, talus_weighted ? 1 : 0);
+
+  for (int it = 0; it < iterations; it++)
+  {
+    run.execute({shape.x, shape.y});
+    run.read_imagef("out");
+
+    if (iterations > 1)
+    {
+      array_prev = array_next;
+      run.write_imagef("in");
+    }
+  }
+
+  run.read_imagef("out");
+
+  return array_next;
+}
+
 void median_3x3(Array &array)
 {
   auto run = clwrapper::Run("median_3x3");

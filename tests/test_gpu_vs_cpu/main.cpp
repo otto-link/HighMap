@@ -172,6 +172,13 @@ int main(void)
           1e-3f,
           "mean_local");
 
+  compare([ir](hmap::Array &z)
+          { z = hmap::mean_shift(z, ir, 16.f / z.shape.x, 4); },
+          [ir](hmap::Array &z)
+          { z = hmap::gpu::mean_shift(z, ir, 16.f / z.shape.x, 4); },
+          1e-3f,
+          "mean_shift");
+
   compare([](hmap::Array &z) { hmap::median_3x3(z); },
           [](hmap::Array &z) { hmap::gpu::median_3x3(z); },
           1e-3f,
