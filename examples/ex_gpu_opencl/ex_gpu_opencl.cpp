@@ -60,12 +60,10 @@ int main(void)
   //         1e-3f,
   //         "diff_median_3x3.png");
 
-  compare([ir](hmap::Array &z)
-          { z = hmap::mean_shift(z, ir, 16.f / z.shape.x, 4); },
-          [ir](hmap::Array &z)
-          { z = hmap::gpu::mean_shift(z, ir, 16.f / z.shape.x, 4); },
+  compare([ir](hmap::Array &z) { z = hmap::select_valley(z, ir); },
+          [ir](hmap::Array &z) { z = hmap::gpu::select_valley(z, ir); },
           1e-3f,
-          "mean_shift.png");
+          "select_valley.png");
 
   // {
   //   hmap::Vec4<float> bbox = {1.f, 2.f, -0.5f, 0.5f};

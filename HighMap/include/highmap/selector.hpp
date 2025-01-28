@@ -417,3 +417,11 @@ Array select_transitions(const Array &array1,
 Array select_valley(const Array &z, int ir, bool zero_at_borders = true);
 
 } // namespace hmap
+
+namespace hmap::gpu
+{
+
+/*! @brief See hmap::select_valley */
+Array select_valley(const Array &z, int ir, bool zero_at_borders = true);
+
+} // namespace hmap::gpu
