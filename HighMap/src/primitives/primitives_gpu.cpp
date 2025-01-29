@@ -388,7 +388,7 @@ Array noise(NoiseType   noise_type,
   Array array(shape);
 
   int noise_id = static_cast<int>(noise_type);
-  LOG_DEBUG("noise_id: %d", noise_id);
+  // LOG_DEBUG("noise_id: %d", noise_id);
 
   auto run = clwrapper::Run("noise");
 
@@ -432,7 +432,7 @@ Array noise_fbm(NoiseType   noise_type,
   Array array(shape);
 
   int noise_id = static_cast<int>(noise_type);
-  LOG_DEBUG("noise_id: %d", noise_id);
+  // LOG_DEBUG("noise_id: %d", noise_id);
 
   auto run = clwrapper::Run("noise_fbm");
 
