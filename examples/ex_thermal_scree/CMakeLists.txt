@@ -1,2 +1,0 @@
-add_executable(ex_thermal_scree ex_thermal_scree.cpp)
-target_link_libraries(ex_thermal_scree highmap)

@@ -3,6 +3,12 @@ R""(
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
 
+float hash11f(float x, float fseed)
+{
+  float pi;
+  return fract(sin(x * 127.1f + fseed) * 43758.5453123f, &pi);
+}
+
 float hash12f(float2 p, float fseed)
 {
   float pi;

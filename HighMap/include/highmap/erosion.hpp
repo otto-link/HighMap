@@ -443,46 +443,6 @@ void hydraulic_procedural(
     float          vmax = -1.f);
 
 /**
- * @brief Apply large-scale hydraulic erosion to produce "deep" ridges.
- *
- * @param z Input array.
- * @param talus Ridge talus.
- * @param intensity Erosion intensity in [0, 1].
- * @param p_mask Intensity mask, expected in [0, 1] (applied as a
- * post-processing).
- * @param erosion_factor Erosion factor, generally in ]0, 10]. Smaller values
- * tend to flatten the map.
- * @param smoothing_factor Smooothing factor in ]0, 1] (1 for no smoothing).
- * @param noise_ratio Ridge talus noise ratio in [0, 1].
- * @param ir Prefilter radius (in pixels).
- * @param seed Random seed number (only useful when `noise_ratio != 0`).
- *
- * **Example**
- * @include ex_hydraulic_ridge.cpp
- *
- * **Result**
- * @image html ex_hydraulic_ridge.png
- */
-void hydraulic_ridge(Array &z,
-                     float  talus,
-                     float  intensity = 0.5f,
-                     float  erosion_factor = 1.5f,
-                     float  smoothing_factor = 0.f,
-                     float  noise_ratio = 0.f,
-                     int    ir = 0,
-                     uint   seed = 1);
-
-void hydraulic_ridge(Array &z,
-                     float  talus,
-                     Array *p_mask,
-                     float  intensity = 0.5f,
-                     float  erosion_factor = 1.5f,
-                     float  smoothing_factor = 0.f,
-                     float  noise_ratio = 0.f,
-                     int    ir = 0,
-                     uint   seed = 1); ///< @overload
-
-/**
  * @brief Apply hydraulic erosion based on the Stream Power Law formulation.
  *
  * @param z Input array.
@@ -1163,101 +1123,6 @@ void thermal_schott(Array      &z,
                     int         iterations = 10,
                     float       intensity = 0.001f); ///< @overload
 
-/**
- * @brief Apply thermal weathering erosion simulating scree deposition.
- *
- * @param z Input array.
- * @param p_mask Filter mask, expected in [0, 1].
- * @param talus Talus limit.
- * @param seed Random seed number.
- * @param zmax Elevation upper limit.
- * @param zmin Elevation lower limit.
- * @param noise_ratio Noise amplitude ratio (for talus and elevation limit).
- * @param landing_talus_ratio Talus value (as a ratio) at the scree landing (set
- * to 1 for no effect).
- * @param landing_width_ratio Landing relative extent, in [0, 1] (small values
- * lead to large landing).
- * @param talus_constraint Use talus constraint when populating the initial
- * queue.
- *
- * **Example**
- * @include ex_thermal_scree.cpp
- *
- * **Result**
- * @image html ex_thermal_scree.png
- */
-void thermal_scree(Array &z,
-                   Array *p_mask,
-                   float  talus,
-                   uint   seed,
-                   float  zmax,
-                   float  zmin,
-                   float  noise_ratio,
-                   Array *p_deposition_map = nullptr,
-                   float  landing_talus_ratio = 1.f,
-                   float  landing_width_ratio = 0.25f,
-                   bool   talus_constraint = true);
-
-void thermal_scree(Array &z,
-                   float  talus,
-                   uint   seed,
-                   float  zmax,
-                   float  zmin,
-                   float  noise_ratio,
-                   Array *p_deposition_map = nullptr,
-                   float  landing_talus_ratio = 1.f,
-                   float  landing_width_ratio = 0.25f,
-                   bool   talus_constraint = true); ///< @overload
-
-void thermal_scree(Array &z,
-                   float  talus,
-                   uint   seed,
-                   float  zmax,
-                   float  noise_ratio,
-                   Array *p_deposition_map = nullptr); ///< @overload
-
-/**
- * @brief Apply thermal weathering erosion simulating scree deposition,
- * performed on a coarse mesh to optimize restitution time.
- *
- * @param z Input array.
- * @param shape_coarse Array coarser shape used for the solver.
- * @param talus Talus limit.
- * @param seed Random seed number.
- * @param zmax Elevation upper limit.
- * @param zmin Elevation lower limit.
- * @param noise_ratio Noise amplitude ratio (for talus and elevation limit).
- * @param landing_talus_ratio Talus value (as a ratio) at the scree landing (set
- * to 1 for no effect).
- * @param landing_width_ratio Landing relative extent, in [0, 1] (small values
- * lead to large landing).
- * @param talus_constraint Use talus constraint when populating the initial
- * queue.
- *
- * **Example**
- * @include ex_thermal_scree.cpp
- *
- * **Result**
- * @image html ex_thermal_scree.png
- */
-void thermal_scree_fast(Array    &z,
-                        Vec2<int> shape_coarse,
-                        float     talus,
-                        uint      seed,
-                        float     zmax,
-                        float     zmin,
-                        float     noise_ratio,
-                        float     landing_talus_ratio,
-                        float     landing_width_ratio,
-                        bool      talus_constraint);
-
-void thermal_scree_fast(Array    &z,
-                        Vec2<int> shape_coarse,
-                        float     talus,
-                        uint      seed,
-                        float     zmax,
-                        float     noise_ratio); ///< @overload
-
 } // namespace hmap
 
 namespace hmap::gpu
@@ -1453,5 +1318,12 @@ void thermal_ridge(Array       &z,
                    const Array &talus,
                    int          iterations = 10,
                    Array       *p_deposition_map = nullptr); ///< @overload
+
+void thermal_scree(Array       &z,
+                   const Array &talus,
+                   const Array &zmax,
+                   int          iterations = 10,
+                   bool         talus_constraint = true,
+                   Array       *p_deposition_map = nullptr);
 
 } // namespace hmap::gpu

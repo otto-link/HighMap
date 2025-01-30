@@ -17,6 +17,11 @@ float pow_int(float base, int exp)
   return exp < 0 ? 1.f / result : result;
 }
 
+float almost_unit_identity(const float x)
+{
+  return (2.f - x) * x * x;
+}
+
 float2 angle_to_dir(float angle)
 {
   return (float2)(cos(angle / 180.f * 3.14159f), sin(angle / 180.f * 3.14159f));
