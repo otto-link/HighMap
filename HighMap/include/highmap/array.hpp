@@ -310,6 +310,12 @@ public:
   void depose_amount_kernel_at(int i, int j, Array &kernel, float amount);
 
   /**
+   * @brief Debug tool, dump some infos and generate an output file (16bits
+   * grayscale)
+   */
+  void dump(const std::string &fname = "out.png");
+
+  /**
    * @brief Extracts a subarray defined by the slice indices {i1, i2, j1, j2}
    *        from the original array, creating a new array. Note that i2 and j2
    *        are excluded from the slice.

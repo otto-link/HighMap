@@ -1,0 +1,2 @@
+add_executable(ex_thermal_brown ex_thermal_brown.cpp)
+target_link_libraries(ex_thermal_brown highmap)
