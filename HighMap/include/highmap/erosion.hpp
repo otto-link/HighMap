@@ -1402,6 +1402,9 @@ void thermal_auto_bedrock(Array &z,
                           int    iterations = 10,
                           Array *p_deposition_map = nullptr);
 
+/*! @brief See hmap::thermal_rib */
+void thermal_rib(Array &z, int iterations, Array *p_bedrock = nullptr);
+
 /**
  * @brief Apply thermal weathering erosion.
  *
@@ -1416,23 +1419,20 @@ void thermal_auto_bedrock(Array &z,
  * @param iterations Number of iterations.
  *
  * **Example**
- * @include thermal_brown.cpp
+ * @include thermal_ridge.cpp
  *
  * **Result**
- * @image html thermal_brown.png
+ * @image html thermal_ridge.png
  */
-void thermal_brown(Array       &z,
+void thermal_ridge(Array       &z,
                    const Array &talus,
                    int          iterations = 10,
                    Array       *p_deposition_map = nullptr);
 
-void thermal_brown(Array       &z,
+void thermal_ridge(Array       &z,
                    const Array *p_mask,
                    const Array &talus,
                    int          iterations = 10,
                    Array       *p_deposition_map = nullptr); ///< @overload
-
-/*! @brief See hmap::thermal_rib */
-void thermal_rib(Array &z, int iterations, Array *p_bedrock = nullptr);
 
 } // namespace hmap::gpu

@@ -264,7 +264,25 @@ void thermal_auto_bedrock(Array       &z,
   }
 }
 
-void thermal_brown(Array       &z,
+void thermal_rib(Array &z, int iterations, Array *p_bedrock)
+{
+  auto run = clwrapper::Run("thermal_rib");
+
+  run.bind_buffer<float>("z", z.vector);
+  run.bind_arguments(z.shape.x, z.shape.y, 0);
+
+  run.write_buffer("z");
+
+  for (int it = 0; it < iterations; it++)
+  {
+    run.set_argument(3, it);
+    run.execute({z.shape.x, z.shape.y});
+  }
+
+  run.read_buffer("z");
+}
+
+void thermal_ridge(Array       &z,
                    const Array &talus,
                    int          iterations,
                    Array       *p_deposition_map)
@@ -272,7 +290,7 @@ void thermal_brown(Array       &z,
   Array z_bckp = Array();
   if (p_deposition_map != nullptr) z_bckp = z;
 
-  auto run = clwrapper::Run("thermal_brown");
+  auto run = clwrapper::Run("thermal_ridge");
 
   run.bind_buffer<float>("z", z.vector);
   run.bind_buffer<float>("talus",
@@ -293,38 +311,20 @@ void thermal_brown(Array       &z,
   if (p_deposition_map) *p_deposition_map = maximum(z - z_bckp, 0.f);
 }
 
-void thermal_brown(Array       &z,
+void thermal_ridge(Array       &z,
                    const Array *p_mask,
                    const Array &talus,
                    int          iterations,
                    Array       *p_deposition_map)
 {
   if (!p_mask)
-    gpu::thermal_brown(z, talus, iterations, p_deposition_map);
+    gpu::thermal_ridge(z, talus, iterations, p_deposition_map);
   else
   {
     Array z_f = z;
-    gpu::thermal_brown(z_f, talus, iterations, p_deposition_map);
+    gpu::thermal_ridge(z_f, talus, iterations, p_deposition_map);
     z = lerp(z, z_f, *(p_mask));
   }
-}
-
-void thermal_rib(Array &z, int iterations, Array *p_bedrock)
-{
-  auto run = clwrapper::Run("thermal_rib");
-
-  run.bind_buffer<float>("z", z.vector);
-  run.bind_arguments(z.shape.x, z.shape.y, 0);
-
-  run.write_buffer("z");
-
-  for (int it = 0; it < iterations; it++)
-  {
-    run.set_argument(3, it);
-    run.execute({z.shape.x, z.shape.y});
-  }
-
-  run.read_buffer("z");
 }
 
 } // namespace hmap::gpu

@@ -14,9 +14,9 @@ int main(void)
 
   hmap::Array talus_map = hmap::Array(shape, 2.f / shape.x);
 
-  hmap::gpu::thermal_brown(z, talus_map, 500);
+  hmap::gpu::thermal_ridge(z, talus_map, 500);
 
-  hmap::export_banner_png("ex_thermal_brown.png",
+  hmap::export_banner_png("ex_thermal_ridge.png",
                           {z0, z},
                           hmap::Cmap::TERRAIN,
                           true);

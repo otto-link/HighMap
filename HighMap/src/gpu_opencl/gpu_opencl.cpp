@@ -57,7 +57,7 @@ bool init_opencl()
 #include "kernels/skeleton.cl"
 #include "kernels/smooth_cpulse.cl"
 #include "kernels/thermal.cl"
-#include "kernels/thermal_brown.cl"
+#include "kernels/thermal_ridge.cl"
 #include "kernels/voronoi.cl"
 #include "kernels/voronoi_edge_distance.cl"
 #include "kernels/voronoise.cl"

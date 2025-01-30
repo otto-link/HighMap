@@ -2,7 +2,7 @@ R""(
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
-void kernel thermal_brown(global float       *z,
+void kernel thermal_ridge(global float       *z,
                           const global float *talus,
                           const int           nx,
                           const int           ny,
