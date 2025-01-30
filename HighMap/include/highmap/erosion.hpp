@@ -1402,11 +1402,30 @@ void thermal_auto_bedrock(Array &z,
                           int    iterations = 10,
                           Array *p_deposition_map = nullptr);
 
+/**
+ * @brief Apply thermal weathering erosion to give a scree like effect.
+ *
+ * @note Only available if OpenCL is enabled.
+ *
+ * @param z Input array.
+ * @param talus Talus limit.
+ * @param p_deposition_map [out] Reference to the deposition map, provided as an
+ * output field.
+ * @param iterations Number of iterations.
+ *
+ * **Example**
+ * @include thermal_ridge.cpp
+ *
+ * **Result**
+ * @image html thermal_ridge.png
+ */
+void thermal_inflate(Array &z, const Array &talus, int iterations = 10);
+
 /*! @brief See hmap::thermal_rib */
 void thermal_rib(Array &z, int iterations, Array *p_bedrock = nullptr);
 
 /**
- * @brief Apply thermal weathering erosion.
+ * @brief Apply thermal weathering erosion to give a ridge like effect.
  *
  * @note Based on https://www.fractal-landscapes.co.uk/maths.html
  *

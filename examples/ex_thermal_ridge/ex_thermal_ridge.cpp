@@ -9,15 +9,19 @@ int main(void)
   int               seed = 1;
 
   hmap::Array z = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, kw, seed);
-  auto        z0 = z;
   hmap::remap(z);
+  auto z1 = z;
+  auto z2 = z;
 
   hmap::Array talus_map = hmap::Array(shape, 2.f / shape.x);
 
-  hmap::gpu::thermal_ridge(z, talus_map, 500);
+  hmap::gpu::thermal_ridge(z1, talus_map, 500);
+  hmap::gpu::thermal_inflate(z2, talus_map, 500);
+
+  z2.dump();
 
   hmap::export_banner_png("ex_thermal_ridge.png",
-                          {z0, z},
+                          {z, z1, z2},
                           hmap::Cmap::TERRAIN,
                           true);
 }

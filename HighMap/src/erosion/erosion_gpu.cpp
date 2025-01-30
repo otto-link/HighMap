@@ -176,6 +176,8 @@ void thermal(Array       &z,
     run.read_buffer("z");
   }
 
+  extrapolate_borders(z);
+
   if (p_deposition_map) *p_deposition_map = maximum(z - z_bckp, 0.f);
 }
 
@@ -235,6 +237,7 @@ void thermal_auto_bedrock(Array       &z,
   }
 
   run.read_buffer("z");
+  extrapolate_borders(z);
 
   if (p_deposition_map) *p_deposition_map = maximum(z - z_bckp, 0.f);
 }
@@ -262,6 +265,25 @@ void thermal_auto_bedrock(Array       &z,
     gpu::thermal_auto_bedrock(z_f, talus, iterations, p_deposition_map);
     z = lerp(z, z_f, *(p_mask));
   }
+}
+
+void thermal_inflate(Array &z, const Array &talus, int iterations)
+{
+  auto run = clwrapper::Run("thermal_inflate");
+
+  run.bind_buffer<float>("z", z.vector);
+  run.bind_buffer<float>("talus",
+                         const_cast<std::vector<float> &>(talus.vector));
+  run.bind_arguments(z.shape.x, z.shape.y);
+
+  run.write_buffer("z");
+  run.write_buffer("talus");
+
+  for (int it = 0; it < iterations; it++)
+    run.execute({z.shape.x, z.shape.y});
+
+  run.read_buffer("z");
+  extrapolate_borders(z);
 }
 
 void thermal_rib(Array &z, int iterations, Array *p_bedrock)
@@ -295,18 +317,16 @@ void thermal_ridge(Array       &z,
   run.bind_buffer<float>("z", z.vector);
   run.bind_buffer<float>("talus",
                          const_cast<std::vector<float> &>(talus.vector));
-  run.bind_arguments(z.shape.x, z.shape.y, 0);
+  run.bind_arguments(z.shape.x, z.shape.y);
 
   run.write_buffer("z");
   run.write_buffer("talus");
 
   for (int it = 0; it < iterations; it++)
-  {
-    run.set_argument(4, it);
     run.execute({z.shape.x, z.shape.y});
-  }
 
   run.read_buffer("z");
+  extrapolate_borders(z);
 
   if (p_deposition_map) *p_deposition_map = maximum(z - z_bckp, 0.f);
 }
