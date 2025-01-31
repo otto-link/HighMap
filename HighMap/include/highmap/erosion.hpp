@@ -1319,11 +1319,37 @@ void thermal_ridge(Array       &z,
                    int          iterations = 10,
                    Array       *p_deposition_map = nullptr); ///< @overload
 
+/**
+ * @brief Performs thermal scree erosion on a heightmap.
+ *
+ * This function applies a thermal erosion process that redistributes material
+ * from steeper slopes to flatter areas, simulating talus formation. The process
+ * iterates a given number of times to achieve a more stable terrain profile.
+ *
+ * @param[out] z The heightmap to be modified in-place by the erosion process.
+ * @param[in] talus The threshold slope angles that determine where material is
+ * moved.
+ * @param[in] zmax The maximum allowed elevation for erosion effects.
+ * @param[in] iterations The number of erosion iterations to apply (default:
+ * 10).
+ * @param[in] talus_constraint Whether to enforce a constraint on the talus
+ * slope (default: true).
+ * @param[out] p_deposition_map Optional pointer to an array that stores the
+ * deposited material per cell.
+ */
 void thermal_scree(Array       &z,
                    const Array &talus,
                    const Array &zmax,
                    int          iterations = 10,
                    bool         talus_constraint = true,
                    Array       *p_deposition_map = nullptr);
+
+void thermal_scree(Array       &z,
+                   const Array *p_mask,
+                   const Array &talus,
+                   const Array &zmax,
+                   int          iterations = 10,
+                   bool         talus_constraint = true,
+                   Array       *p_deposition_map = nullptr); ///< @overload
 
 } // namespace hmap::gpu

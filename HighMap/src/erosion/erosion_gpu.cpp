@@ -379,4 +379,32 @@ void thermal_scree(Array       &z,
   if (p_deposition_map) *p_deposition_map = maximum(z - z_bckp, 0.f);
 }
 
+void thermal_scree(Array       &z,
+                   const Array *p_mask,
+                   const Array &talus,
+                   const Array &zmax,
+                   int          iterations,
+                   bool         talus_constraint,
+                   Array       *p_deposition_map)
+{
+  if (!p_mask)
+    gpu::thermal_scree(z,
+                       talus,
+                       zmax,
+                       iterations,
+                       talus_constraint,
+                       p_deposition_map);
+  else
+  {
+    Array z_f = z;
+    gpu::thermal_scree(z_f,
+                       talus,
+                       zmax,
+                       iterations,
+                       talus_constraint,
+                       p_deposition_map);
+    z = lerp(z, z_f, *(p_mask));
+  }
+}
+
 } // namespace hmap::gpu
