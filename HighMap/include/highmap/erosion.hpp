@@ -1286,6 +1286,11 @@ void thermal_auto_bedrock(Array &z,
  */
 void thermal_inflate(Array &z, const Array &talus, int iterations = 10);
 
+void thermal_inflate(Array       &z,
+                     const Array *p_mask,
+                     const Array &talus,
+                     int          iterations = 10); ///< @overload
+
 /*! @brief See hmap::thermal_rib */
 void thermal_rib(Array &z, int iterations, Array *p_bedrock = nullptr);
 

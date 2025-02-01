@@ -286,6 +286,21 @@ void thermal_inflate(Array &z, const Array &talus, int iterations)
   extrapolate_borders(z);
 }
 
+void thermal_inflate(Array       &z,
+                     const Array *p_mask,
+                     const Array &talus,
+                     int          iterations)
+{
+  if (!p_mask)
+    gpu::thermal_inflate(z, talus, iterations);
+  else
+  {
+    Array z_f = z;
+    gpu::thermal_inflate(z_f, talus, iterations);
+    z = lerp(z, z_f, *(p_mask));
+  }
+}
+
 void thermal_rib(Array &z, int iterations, Array *p_bedrock)
 {
   auto run = clwrapper::Run("thermal_rib");
