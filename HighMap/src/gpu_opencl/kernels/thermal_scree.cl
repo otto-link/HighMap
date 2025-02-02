@@ -2,10 +2,13 @@ R""(
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
-void kernel thermal_ridge(global float       *z,
+void kernel thermal_scree(global float       *z,
                           const global float *talus,
+                          const global float *zmax,
+                          const global float *gradient_init,
                           const int           nx,
-                          const int           ny)
+                          const int           ny,
+                          const int           talus_constraint)
 {
   int2 g = {get_global_id(0), get_global_id(1)};
 
@@ -50,7 +53,7 @@ void kernel thermal_ridge(global float       *z,
   {
     float dz = (val - z[linear_index(g.x + di[k], g.y + dj[k], nx)]) / c[k];
 
-    if (dz > 0.f) sum += dz;
+    if (dz < 0.f) sum += dz;
 
     slope_max = max(slope_max, fabs(dz));
   }
@@ -58,6 +61,10 @@ void kernel thermal_ridge(global float       *z,
   float t = talus[index];
   float amp = clamp(1.f - t / slope_max, 0.f, 1.f);
   amp = smoothstep3(amp);
+
+  amp *= almost_unit_identity(clamp(1.f - val / zmax[index], 0.f, 1.f));
+
+  if (talus_constraint == 1 && gradient_init[index] >= talus[index]) amp = 0.f;
 
   z[index] += 0.25f * (t - 0.5f * sum) * amp;
 }

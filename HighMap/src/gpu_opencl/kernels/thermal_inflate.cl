@@ -2,10 +2,10 @@ R""(
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
-void kernel thermal_ridge(global float       *z,
-                          const global float *talus,
-                          const int           nx,
-                          const int           ny)
+void kernel thermal_inflate(global float       *z,
+                            const global float *talus,
+                            const int           nx,
+                            const int           ny)
 {
   int2 g = {get_global_id(0), get_global_id(1)};
 
@@ -50,7 +50,7 @@ void kernel thermal_ridge(global float       *z,
   {
     float dz = (val - z[linear_index(g.x + di[k], g.y + dj[k], nx)]) / c[k];
 
-    if (dz > 0.f) sum += dz;
+    if (dz < 0.f) sum += dz;
 
     slope_max = max(slope_max, fabs(dz));
   }
