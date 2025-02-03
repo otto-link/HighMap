@@ -10,7 +10,7 @@
 #include "highmap/dbg/timer.hpp"
 
 // const hmap::Vec2<int>   shape = {2048, 2048};
-// const hmap::Vec2<int>   shape = {1024, 1024};
+// const hmap::Vec2<int> shape = {1024, 1024};
 const hmap::Vec2<int>   shape = {256, 512};
 const hmap::Vec2<float> kw = {2.f, 4.f};
 const int               seed = 1;
@@ -409,6 +409,16 @@ int main(void)
           [&ir](hmap::Array &z) { hmap::gpu::smooth_fill(z, ir, &z, 0.01f); },
           1e-3f,
           "smooth_fill_mask");
+
+  compare([ir](hmap::Array &z) { hmap::smooth_fill_smear_peaks(z, ir); },
+          [ir](hmap::Array &z) { hmap::gpu::smooth_fill_smear_peaks(z, ir); },
+          1e-3f,
+          "smooth_fill_smear_peaks");
+
+  compare([ir](hmap::Array &z) { hmap::smooth_fill_holes(z, ir); },
+          [ir](hmap::Array &z) { hmap::gpu::smooth_fill_holes(z, ir); },
+          1e-3f,
+          "smooth_fill_holes");
 
   {
     hmap::Array talus(shape, 0.5f / shape.x);

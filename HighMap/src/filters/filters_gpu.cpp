@@ -1,8 +1,10 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
+#include "highmap/features.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/kernels.hpp"
+#include "highmap/math.hpp"
 #include "highmap/opencl/gpu_opencl.hpp"
 #include "highmap/range.hpp"
 
@@ -491,6 +493,62 @@ void smooth_fill(Array &array,
   array = gpu::maximum_smooth(array, array_bckp, k);
 
   if (p_deposition_map) *p_deposition_map = maximum(array - array_bckp, 0.f);
+}
+
+void smooth_fill_holes(Array &array, int ir)
+{
+  Array array_smooth = array;
+  gpu::smooth_cpulse(array_smooth, ir);
+
+  // mask based on concave regions
+  Array mask = curvature_mean(array_smooth);
+  clamp_min(mask, 0.f);
+  make_binary(mask);
+
+  int ic = (int)((float)ir / 2.f);
+  if (ic > 1) gpu::smooth_cpulse(mask, ic);
+
+  array = lerp(array, array_smooth, mask);
+}
+
+void smooth_fill_holes(Array &array, int ir, Array *p_mask)
+{
+  if (!p_mask)
+    gpu::smooth_fill_holes(array, ir);
+  else
+  {
+    Array array_f = array;
+    gpu::smooth_fill_holes(array_f, ir);
+    array = lerp(array, array_f, *(p_mask));
+  }
+}
+
+void smooth_fill_smear_peaks(Array &array, int ir)
+{
+  Array array_smooth = array;
+  gpu::smooth_cpulse(array_smooth, ir);
+
+  // mask based on concave regions
+  Array mask = -curvature_mean(array_smooth);
+  clamp_min(mask, 0.f);
+  make_binary(mask);
+
+  int ic = (int)((float)ir / 2.f);
+  if (ic > 0) gpu::smooth_cpulse(mask, ic);
+
+  array = lerp(array, array_smooth, mask);
+}
+
+void smooth_fill_smear_peaks(Array &array, int ir, Array *p_mask)
+{
+  if (!p_mask)
+    gpu::smooth_fill_smear_peaks(array, ir);
+  else
+  {
+    Array array_f = array;
+    gpu::smooth_fill_smear_peaks(array_f, ir);
+    array = lerp(array, array_f, *(p_mask));
+  }
 }
 
 } // namespace hmap::gpu
