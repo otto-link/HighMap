@@ -33,6 +33,8 @@ int main(void)
                          &erosion_map,
                          ir);
 
+  hmap::gpu::init_opencl();
+
   // log scale
   auto z3 = z;
   int  deposition_ir = 32;

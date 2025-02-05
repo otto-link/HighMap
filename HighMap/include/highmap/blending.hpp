@@ -144,3 +144,11 @@ Array mixer(const Array               &t,
             float                      gain_factor = 1.f);
 
 } // namespace hmap
+
+namespace hmap::gpu
+{
+
+/*! @brief See hmap::blend_gradients */
+Array blend_gradients(const Array &array1, const Array &array2, int ir = 4);
+
+} // namespace hmap::gpu

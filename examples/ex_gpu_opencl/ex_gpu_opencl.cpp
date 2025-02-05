@@ -60,10 +60,12 @@ int main(void)
   //         1e-3f,
   //         "diff_median_3x3.png");
 
-  compare([ir](hmap::Array &z) { hmap::smooth_fill_holes(z, ir); },
-          [ir](hmap::Array &z) { hmap::gpu::smooth_fill_holes(z, ir); },
+  compare([ir](hmap::Array &z)
+          { hmap::hydraulic_stream_log(z, 0.1f, 5.f / 512.f, 64); },
+          [ir](hmap::Array &z)
+          { hmap::gpu::hydraulic_stream_log(z, 0.1f, 5.f / 512.f, 64); },
           1e-3f,
-          "smooth_fill_holes.png");
+          "hydraulic_stream_log.png");
 
   // {
   //   hmap::Vec4<float> bbox = {1.f, 2.f, -0.5f, 0.5f};

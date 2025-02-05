@@ -135,6 +135,13 @@ int main(void)
             "hydraulic_particle");
   }
 
+  compare([ir](hmap::Array &z)
+          { hmap::hydraulic_stream_log(z, 0.1f, 5.f / 512.f, 64); },
+          [ir](hmap::Array &z)
+          { hmap::gpu::hydraulic_stream_log(z, 0.1f, 5.f / 512.f, 64); },
+          1e-3f,
+          "hydraulic_stream_log");
+
   compare([](hmap::Array &z) { hmap::laplace(z, 0.2f, 10); },
           [](hmap::Array &z) { hmap::gpu::laplace(z, 0.2f, 10); },
           1e-3f,

@@ -659,9 +659,8 @@ void hydraulic_stream_log(Array &z,
                           float  saturation_ratio = 1.f,
                           Array *p_bedrock = nullptr,
                           Array *p_moisture_map = nullptr,
-                          Array *p_erosion_map = nullptr, // -> out
-                          Array *p_flow_map = nullptr,    // -> out
-                          int    ir = 1);
+                          Array *p_erosion_map = nullptr,
+                          Array *p_flow_map = nullptr);
 
 void hydraulic_stream_log(Array &z,
                           float  c_erosion,
@@ -675,9 +674,8 @@ void hydraulic_stream_log(Array &z,
                           float  saturation_ratio = 1.f,
                           Array *p_bedrock = nullptr,
                           Array *p_moisture_map = nullptr,
-                          Array *p_erosion_map = nullptr, // -> out
-                          Array *p_flow_map = nullptr,    // -> out
-                          int    ir = 1);                    ///< @overload
+                          Array *p_erosion_map = nullptr,
+                          Array *p_flow_map = nullptr); ///< @overload
 
 /**
  * @brief Apply hydraulic erosion using the 'virtual pipes' algorithm.
@@ -1241,7 +1239,37 @@ void hydraulic_schott(Array       &z,
                       float        flow_routing_exponent = 1.3f,
                       float        thermal_weight = 1.5f,
                       float        deposition_weight = 2.5f,
-                      Array       *p_flow = nullptr);
+                      Array       *p_flow = nullptr); ///< @overload
+
+/*! @brief See hmap::hydraulic_stream_log */
+void hydraulic_stream_log(Array &z,
+                          float  c_erosion,
+                          float  talus_ref,
+                          int    deposition_ir = 32,
+                          float  deposition_scale_ratio = 1.f,
+                          float  gradient_power = 0.8f,
+                          float  gradient_scaling_ratio = 1.f,
+                          int    gradient_prefilter_ir = 16,
+                          float  saturation_ratio = 1.f,
+                          Array *p_bedrock = nullptr,
+                          Array *p_moisture_map = nullptr,
+                          Array *p_erosion_map = nullptr,
+                          Array *p_flow_map = nullptr);
+
+void hydraulic_stream_log(Array &z,
+                          float  c_erosion,
+                          float  talus_ref,
+                          Array *p_mask,
+                          int    deposition_ir = 32,
+                          float  deposition_scale_ratio = 1.f,
+                          float  gradient_power = 0.8f,
+                          float  gradient_scaling_ratio = 1.f,
+                          int    gradient_prefilter_ir = 16,
+                          float  saturation_ratio = 1.f,
+                          Array *p_bedrock = nullptr,
+                          Array *p_moisture_map = nullptr,
+                          Array *p_erosion_map = nullptr,
+                          Array *p_flow_map = nullptr); ///< @overload
 
 /*! @brief See hmap::thermal */
 void thermal(Array       &z,
