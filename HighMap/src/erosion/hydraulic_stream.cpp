@@ -15,6 +15,10 @@
 #include "highmap/primitives.hpp"
 #include "highmap/range.hpp"
 
+// #include "highmap/boundary.hpp"
+#include "highmap/blending.hpp"
+#include "highmap/gradient.hpp"
+
 namespace hmap
 {
 
@@ -101,7 +105,11 @@ void hydraulic_stream(Array &z,
 void hydraulic_stream_log(Array &z,
                           float  c_erosion,
                           float  talus_ref,
-                          float  gamma,
+                          int    deposition_ir,
+                          float  deposition_scale_ratio,
+                          float  gradient_power,
+                          float  gradient_scaling_ratio,
+                          int    gradient_prefilter_ir,
                           float  saturation_ratio,
                           Array *p_bedrock,
                           Array *p_moisture_map,
@@ -122,8 +130,6 @@ void hydraulic_stream_log(Array &z,
   if (saturation_ratio < 1.f)
     saturate(facc, 0.f, saturation_ratio, 0.1f * saturation_ratio);
 
-  gamma_correction(facc, gamma);
-
   if (ir > 1)
   {
     Array kernel = cone({ir, ir});
@@ -131,11 +137,30 @@ void hydraulic_stream_log(Array &z,
     facc = convolve2d_svd(facc, kernel);
   }
 
+  // scale erosion with local gradient
+  Array gn = gradient_norm(z);
+
+  // TODO next operations in one local pass
+  {
+    smooth_cpulse(gn, gradient_prefilter_ir);
+    remap(gn);
+    gn = pow(gn, gradient_power);
+    gn = smoothstep5_lower(gn);
+    facc *= (1.f - gradient_scaling_ratio) + gradient_scaling_ratio * gn;
+  }
+
   if (p_moisture_map)
     z -= (*p_moisture_map) * c_erosion * facc;
   else
     z -= c_erosion * facc;
 
+  // mimic deposition
+  Array zd = z;
+  smooth_fill_holes(zd, deposition_ir);
+  zd = blend_gradients(zd, z, deposition_ir);
+  z = lerp(z, zd, deposition_scale_ratio);
+
+  // enforce bedrock
   if (p_bedrock) z = maximum(*p_bedrock, z);
 
   // splatmaps
@@ -152,7 +177,11 @@ void hydraulic_stream_log(Array &z,
                           float  c_erosion,
                           float  talus_ref,
                           Array *p_mask,
-                          float  gamma,
+                          int    deposition_ir,
+                          float  deposition_scale_ratio,
+                          float  gradient_power,
+                          float  gradient_scaling_ratio,
+                          int    gradient_prefilter_ir,
                           float  saturation_ratio,
                           Array *p_moisture_map,
                           Array *p_bedrock,
@@ -164,7 +193,11 @@ void hydraulic_stream_log(Array &z,
     hydraulic_stream_log(z,
                          c_erosion,
                          talus_ref,
-                         gamma,
+                         deposition_ir,
+                         deposition_scale_ratio,
+                         gradient_power,
+                         gradient_scaling_ratio,
+                         gradient_prefilter_ir,
                          saturation_ratio,
                          p_bedrock,
                          p_moisture_map,
@@ -177,7 +210,11 @@ void hydraulic_stream_log(Array &z,
     hydraulic_stream_log(z_f,
                          c_erosion,
                          talus_ref,
-                         gamma,
+                         deposition_ir,
+                         deposition_scale_ratio,
+                         gradient_power,
+                         gradient_scaling_ratio,
+                         gradient_prefilter_ir,
                          saturation_ratio,
                          p_bedrock,
                          p_moisture_map,

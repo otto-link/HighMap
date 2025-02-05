@@ -616,20 +616,29 @@ void hydraulic_stream_upscale_amplification(
  * @brief Apply hydraulic erosion based on a flow accumulation map, alternative
  * formulation.
  *
- * @param z Input array.
- * @param p_mask Intensity mask, expected in [0, 1] (applied as a
- * post-processing).
- * @param c_erosion Erosion coefficient.
- * @param talus_ref Reference talus used to localy define the flow-partition
- * exponent (small values of `talus_ref` will lead to thinner flow streams, see
+ * @param z Input array representing the terrain elevation.
+ * @param c_erosion Erosion coefficient controlling the intensity of erosion.
+ * @param talus_ref Reference talus used to locally define the flow-partition
+ * exponent. Small values lead to thinner flow streams (see
  * {@link flow_accumulation_dinf}).
- * @param gamma Gamma correction applied to the erosion.
- * @param p_bedrock Lower elevation limit.
- * @param p_moisture_map Reference to the moisture map (quantity of rain),
+ * @param deposition_ir Kernel radius for sediment deposition. If greater than
+ * 1, a smoothing effect is applied.
+ * @param deposition_scale_ratio Scaling factor for sediment deposition.
+ * @param gradient_power Exponent applied to the terrain gradient to control
+ * erosion intensity.
+ * @param gradient_scaling_ratio Scaling factor for gradient-based erosion.
+ * @param gradient_prefilter_ir Kernel radius for pre-filtering the terrain
+ * gradient.
+ * @param saturation_ratio Ratio controlling the water saturation threshold for
+ * erosion processes.
+ * @param p_bedrock Pointer to an optional lower elevation limit.
+ * @param p_moisture_map Pointer to the moisture map (rainfall quantity),
  * expected to be in [0, 1].
- * @param p_erosion_map[out] Reference to the erosion map, provided as an output
+ * @param p_erosion_map[out] Pointer to the erosion map, provided as an output
  * field.
- * @param ir Kernel radius. If `ir > 1`, a cone kernel is used to carv channel
+ * @param p_flow_map[out] Pointer to the flow accumulation map, provided as an
+ * output field.
+ * @param ir Kernel radius. If `ir > 1`, a cone kernel is used to carve channel
  * flow erosion.
  *
  * **Example**
@@ -642,7 +651,11 @@ void hydraulic_stream_upscale_amplification(
 void hydraulic_stream_log(Array &z,
                           float  c_erosion,
                           float  talus_ref,
-                          float  gamma = 1.f,
+                          int    deposition_ir = 32,
+                          float  deposition_scale_ratio = 1.f,
+                          float  gradient_power = 0.8f,
+                          float  gradient_scaling_ratio = 1.f,
+                          int    gradient_prefilter_ir = 16,
                           float  saturation_ratio = 1.f,
                           Array *p_bedrock = nullptr,
                           Array *p_moisture_map = nullptr,
@@ -654,7 +667,11 @@ void hydraulic_stream_log(Array &z,
                           float  c_erosion,
                           float  talus_ref,
                           Array *p_mask,
-                          float  gamma = 1.f,
+                          int    deposition_ir = 32,
+                          float  deposition_scale_ratio = 1.f,
+                          float  gradient_power = 0.8f,
+                          float  gradient_scaling_ratio = 1.f,
+                          int    gradient_prefilter_ir = 16,
                           float  saturation_ratio = 1.f,
                           Array *p_bedrock = nullptr,
                           Array *p_moisture_map = nullptr,

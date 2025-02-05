@@ -261,9 +261,29 @@ float smoothstep3_lower(const float x)
   return x * (2.f * x - x * x);
 }
 
+Array smoothstep3_lower(const Array &x)
+{
+  Array array_out = Array(x.shape);
+  std::transform(x.vector.begin(),
+                 x.vector.end(),
+                 array_out.vector.begin(),
+                 [](float v) { return smoothstep3_lower(v); });
+  return array_out;
+}
+
 float smoothstep3_upper(const float x)
 {
   return x * (1.f + x - x * x);
+}
+
+Array smoothstep3_upper(const Array &x)
+{
+  Array array_out = Array(x.shape);
+  std::transform(x.vector.begin(),
+                 x.vector.end(),
+                 array_out.vector.begin(),
+                 [](float v) { return smoothstep3_upper(v); });
+  return array_out;
 }
 
 Array smoothstep5(const Array &array, float vmin, float vmax)
@@ -320,9 +340,29 @@ float smoothstep5_lower(const float x)
   return x * x * x * (6.f - 8.f * x + 3.f * x * x);
 }
 
+Array smoothstep5_lower(const Array &x)
+{
+  Array array_out = Array(x.shape);
+  std::transform(x.vector.begin(),
+                 x.vector.end(),
+                 array_out.vector.begin(),
+                 [](float v) { return smoothstep5_lower(v); });
+  return array_out;
+}
+
 float smoothstep5_upper(const float x)
 {
   return x * (1.f + x * x * (4.f - 7.f * x + 3.f * x * x));
+}
+
+Array smoothstep5_upper(const Array &x)
+{
+  Array array_out = Array(x.shape);
+  std::transform(x.vector.begin(),
+                 x.vector.end(),
+                 array_out.vector.begin(),
+                 [](float v) { return smoothstep5_upper(v); });
+  return array_out;
 }
 
 float smoothstep7(const float x)
@@ -334,6 +374,16 @@ float smoothstep7(const float x)
   float x6 = x5 * x;
   float x7 = x6 * x;
   return -20.f * x7 + 70.f * x6 - 84.f * x5 + 35.f * x4;
+}
+
+Array smoothstep7(const Array &x)
+{
+  Array array_out = Array(x.shape);
+  std::transform(x.vector.begin(),
+                 x.vector.end(),
+                 array_out.vector.begin(),
+                 [](float v) { return smoothstep7(v); });
+  return array_out;
 }
 
 Array sqrt(const Array &array)
