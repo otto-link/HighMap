@@ -660,6 +660,7 @@ void hydraulic_stream_log(Array &z,
                           Array *p_bedrock = nullptr,
                           Array *p_moisture_map = nullptr,
                           Array *p_erosion_map = nullptr,
+                          Array *p_deposition_map = nullptr,
                           Array *p_flow_map = nullptr);
 
 void hydraulic_stream_log(Array &z,
@@ -675,6 +676,7 @@ void hydraulic_stream_log(Array &z,
                           Array *p_bedrock = nullptr,
                           Array *p_moisture_map = nullptr,
                           Array *p_erosion_map = nullptr,
+                          Array *p_deposition_map = nullptr,
                           Array *p_flow_map = nullptr); ///< @overload
 
 /**
@@ -1254,6 +1256,7 @@ void hydraulic_stream_log(Array &z,
                           Array *p_bedrock = nullptr,
                           Array *p_moisture_map = nullptr,
                           Array *p_erosion_map = nullptr,
+                          Array *p_deposition_map = nullptr,
                           Array *p_flow_map = nullptr);
 
 void hydraulic_stream_log(Array &z,
@@ -1269,6 +1272,7 @@ void hydraulic_stream_log(Array &z,
                           Array *p_bedrock = nullptr,
                           Array *p_moisture_map = nullptr,
                           Array *p_erosion_map = nullptr,
+                          Array *p_deposition_map = nullptr,
                           Array *p_flow_map = nullptr); ///< @overload
 
 /*! @brief See hmap::thermal */
