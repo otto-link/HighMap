@@ -86,7 +86,7 @@ void Array::depose_amount_kernel_at(int i, int j, Array &kernel, float amount)
   }
 }
 
-void Array::dump(const std::string &fname)
+void Array::dump(const std::string &fname) const
 {
   LOG_DEBUG("DUMPING...");
   this->infos(fname);

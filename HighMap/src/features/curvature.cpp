@@ -66,7 +66,6 @@ Array accumulation_curvature(const Array &z, int ir)
 
 Array curvature_gaussian(const Array &z)
 {
-  Array k = Array(z.shape); // output
   Array zx = gradient_x(z);
   Array zy = gradient_y(z);
   Array zxx = gradient_x(zx);
@@ -78,7 +77,6 @@ Array curvature_gaussian(const Array &z)
 
 Array curvature_mean(const Array &z)
 {
-  Array h = Array(z.shape); // output
   Array zx = gradient_x(z);
   Array zy = gradient_y(z);
   Array zxx = gradient_x(zx);
