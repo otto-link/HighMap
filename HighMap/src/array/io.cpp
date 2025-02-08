@@ -141,6 +141,7 @@ void Array::to_png_grayscale(const std::string &fname, int depth) const
   cv::Mat mat = array_copy.to_cv_mat();
   int     scale_factor = (depth == CV_8U) ? 255 : 65535;
   mat.convertTo(mat, depth, scale_factor);
+  cv::flip(mat, mat, 0); // flipud
   cv::imwrite(fname, mat);
 }
 
