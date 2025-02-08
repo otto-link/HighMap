@@ -369,6 +369,11 @@ int main(void)
             "sdf_2d_polyline_bezier");
   }
 
+  compare([ir](hmap::Array &z) { z = hmap::shape_index(z, ir); },
+          [ir](hmap::Array &z) { z = hmap::gpu::shape_index(z, ir); },
+          1e-3f,
+          "shape_index");
+
   compare(
       [&ir](hmap::Array &z)
       {
@@ -473,6 +478,11 @@ int main(void)
           [](hmap::Array &z) { hmap::gpu::thermal_rib(z, 10); },
           1e-3f,
           "thermal_rib");
+
+  compare([ir](hmap::Array &z) { z = hmap::unsphericity(z, ir); },
+          [ir](hmap::Array &z) { z = hmap::gpu::unsphericity(z, ir); },
+          1e-3f,
+          "unsphericity");
 
   {
     hmap::Array dx = hmap::noise_fbm(hmap::NoiseType::PERLIN,
