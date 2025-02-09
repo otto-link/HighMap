@@ -81,6 +81,55 @@ void expand(Array &array, Array &kernel, Array *p_mask)
   }
 }
 
+void gamma_correction_local(Array &array, float gamma, int ir, float k)
+{
+  Array amin = gpu::minimum_local(array, ir);
+  Array amax = gpu::maximum_local(array, ir);
+
+  gpu::smooth_cpulse(amin, ir);
+  gpu::smooth_cpulse(amax, ir);
+
+  if (k != 0) // with smoothing
+  {
+    for (int j = 0; j < array.shape.y; j++)
+      for (int i = 0; i < array.shape.x; i++)
+      {
+        float v = std::abs(array(i, j) - amin(i, j)) /
+                  (amax(i, j) - amin(i, j) + 1e-30);
+        v = std::sqrt(v * v + k);
+        array(i, j) = std::pow(v, gamma) * (amax(i, j) - amin(i, j)) +
+                      amin(i, j);
+      }
+  }
+  else // without smoothing
+  {
+    for (int j = 0; j < array.shape.y; j++)
+      for (int i = 0; i < array.shape.x; i++)
+      {
+        float v = std::abs(array(i, j) - amin(i, j)) /
+                  (amax(i, j) - amin(i, j) + 1e-30);
+        array(i, j) = std::pow(v, gamma) * (amax(i, j) - amin(i, j)) +
+                      amin(i, j);
+      }
+  }
+}
+
+void gamma_correction_local(Array &array,
+                            float  gamma,
+                            int    ir,
+                            Array *p_mask,
+                            float  k)
+{
+  if (!p_mask)
+    gpu::gamma_correction_local(array, gamma, ir, k);
+  else
+  {
+    Array array_f = array;
+    gpu::gamma_correction_local(array_f, gamma, ir, k);
+    array = lerp(array, array_f, *(p_mask));
+  }
+}
+
 void laplace(Array &array, float sigma, int iterations)
 {
   auto run = clwrapper::Run("laplace");

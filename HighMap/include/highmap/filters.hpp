@@ -2202,6 +2202,14 @@ void expand(Array &array, int ir, Array *p_mask);        ///< @overload
 void expand(Array &array, Array &kernel);                ///< @overload
 void expand(Array &array, Array &kernel, Array *p_mask); ///< @overload
 
+/*! @brief See hmap::gamma_correction_local */
+void gamma_correction_local(Array &array, float gamma, int ir, float k = 0.1f);
+void gamma_correction_local(Array &array,
+                            float  gamma,
+                            int    ir,
+                            Array *p_mask,
+                            float  k = 0.1f); ///< @overload
+
 /*! @brief See hmap::laplace */
 void laplace(Array &array, float sigma = 0.2f, int iterations = 3);
 void laplace(Array &array,

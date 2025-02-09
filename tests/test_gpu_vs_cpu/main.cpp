@@ -120,6 +120,12 @@ int main(void)
           1e-3f,
           "flow_direction_d8");
 
+  compare([&ir](hmap::Array &z) { hmap::gamma_correction_local(z, 0.5f, ir); },
+          [&ir](hmap::Array &z)
+          { hmap::gpu::gamma_correction_local(z, 0.5f, ir); },
+          1e-3f,
+          "gamma_correction_local");
+
   compare([](hmap::Array &z) { z = hmap::gradient_norm(z); },
           [](hmap::Array &z) { z = hmap::gpu::gradient_norm(z); },
           1e-3f,
