@@ -342,7 +342,7 @@ void thermal_ridge(Array       &z,
   run.read_buffer("z");
   extrapolate_borders(z);
 
-  if (p_deposition_map) *p_deposition_map = maximum(z - z_bckp, 0.f);
+  if (p_deposition_map) *p_deposition_map = abs(z - z_bckp);
 }
 
 void thermal_ridge(Array       &z,
