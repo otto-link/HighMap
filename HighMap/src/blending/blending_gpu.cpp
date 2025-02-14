@@ -48,6 +48,8 @@ Array blend_poisson_bf(const Array &array1,
   for (int it = 0; it < iterations; it++)
     run.execute({array1.shape.x, array1.shape.y});
 
+  run.read_buffer("array1_out");
+
   return array1_out;
 }
 
