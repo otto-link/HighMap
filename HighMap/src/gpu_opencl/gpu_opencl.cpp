@@ -32,6 +32,7 @@ bool init_opencl()
 #include "kernels/_common_rand.cl"
 #include "kernels/_common_sort.cl"
   //
+#include "kernels/blend_poisson_bf.cl"
 #include "kernels/expand.cl"
 #include "kernels/flow_direction_d8.cl"
 #include "kernels/gabor_wave.cl"

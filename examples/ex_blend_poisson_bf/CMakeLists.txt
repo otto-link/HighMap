@@ -1,0 +1,2 @@
+add_executable(ex_blend_poisson_bf ex_blend_poisson_bf.cpp)
+target_link_libraries(ex_blend_poisson_bf highmap)

@@ -151,4 +151,30 @@ namespace hmap::gpu
 /*! @brief See hmap::blend_gradients */
 Array blend_gradients(const Array &array1, const Array &array2, int ir = 4);
 
+/**
+ * @brief Blends two arrays using Poisson blending with a brute-force solver.
+ *
+ * This function performs Poisson blending between @p array1 and @p array2 over
+ * a specified number of iterations. Optionally, a mask can be provided to
+ * control the blending regions.
+ *
+ * @param array1 The first input array.
+ * @param array2 The second input array.
+ * @param iterations The number of iterations for the blending process (default:
+ * 500).
+ * @param p_mask Optional pointer to an array defining the blending mask. If
+ * null, blending is applied globally.
+ * @return The blended array resulting from the Poisson blending operation.
+ *
+ * **Example**
+ * @include ex_blend_poisson_bf.cpp
+ *
+ * **Result**
+ * @image html ex_blend_poisson_bf.png
+ */
+Array blend_poisson_bf(const Array &array1,
+                       const Array &array2,
+                       const int    iterations = 500,
+                       Array       *p_mask = nullptr);
+
 } // namespace hmap::gpu
