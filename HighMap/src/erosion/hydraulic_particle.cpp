@@ -19,7 +19,7 @@
 
 #include "highmap/internal/particles.hpp"
 
-#define HMAP_EROSION_DT 3.f
+#define HMAP_EROSION_DT 1.f
 #define HMAP_EROSION_VOLUME_MIN 0.01f
 
 namespace hmap
@@ -39,6 +39,7 @@ void hydraulic_particle(Array &z,
                         float  c_capacity,
                         float  c_erosion,
                         float  c_deposition,
+                        float  c_inertia,
                         float  drag_rate,
                         float  evap_rate,
                         bool   post_filtering)
@@ -72,7 +73,7 @@ void hydraulic_particle(Array &z,
 
   for (int ip = 0; ip < nparticles; ip++)
   {
-    Particle p(c_capacity, c_erosion, c_deposition, drag_rate);
+    Particle p(c_capacity, c_erosion, c_deposition, c_inertia, drag_rate);
     p.set_xy(x0[ip], y0[ip]);
     p.volume = density(p.pos.i, p.pos.j);
 
@@ -189,6 +190,7 @@ void hydraulic_particle(Array &z,
                         float  c_capacity,
                         float  c_erosion,
                         float  c_deposition,
+                        float  c_inertia,
                         float  drag_rate,
                         float  evap_rate,
                         bool   post_filtering)
@@ -204,6 +206,7 @@ void hydraulic_particle(Array &z,
                        c_capacity,
                        c_erosion,
                        c_deposition,
+                       c_inertia,
                        drag_rate,
                        evap_rate,
                        post_filtering);
@@ -220,6 +223,7 @@ void hydraulic_particle(Array &z,
                        c_capacity,
                        c_erosion,
                        c_deposition,
+                       c_inertia,
                        drag_rate,
                        evap_rate,
                        post_filtering);

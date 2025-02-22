@@ -39,6 +39,7 @@ struct Particle
   float c_capacity;
   float c_erosion;
   float c_deposition;
+  float c_inertia;
   float drag_rate;
 
   // features
@@ -56,6 +57,7 @@ struct Particle
   Particle(float c_capacity,
            float c_erosion,
            float c_deposition,
+           float c_inertia,
            float drag_rate);
 
   // methods

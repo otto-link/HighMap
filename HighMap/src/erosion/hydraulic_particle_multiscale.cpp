@@ -24,6 +24,7 @@ void hydraulic_particle_multiscale(Array &z,
                                    float  c_capacity,
                                    float  c_erosion,
                                    float  c_deposition,
+                                   float  c_inertia,
                                    float  drag_rate,
                                    float  evap_rate,
                                    int    pyramid_finest_level)
@@ -38,6 +39,7 @@ void hydraulic_particle_multiscale(Array &z,
        &c_capacity,
        &c_erosion,
        &c_deposition,
+       &c_inertia,
        &drag_rate,
        &evap_rate](const hmap::Array &input, const int /* current_level */)
   {
@@ -58,6 +60,7 @@ void hydraulic_particle_multiscale(Array &z,
                        c_capacity,
                        c_erosion,
                        c_deposition,
+                       c_inertia,
                        drag_rate,
                        evap_rate);
     return output;
