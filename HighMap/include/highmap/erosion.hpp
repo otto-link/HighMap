@@ -446,50 +446,6 @@ void hydraulic_procedural(
     float          vmax = -1.f);
 
 /**
- * @brief Apply hydraulic erosion based on the Stream Power Law formulation.
- *
- * @param z Input array.
- * @param p_mask Intensity mask, expected in [0, 1] (applied as a
- * post-processing).
- * @param c_erosion Erosion coefficient.
- * @param talus_ref Reference talus used to localy define the flow-partition
- * exponent (small values of `talus_ref` will lead to thinner flow streams, see
- * {@link flow_accumulation_dinf}).
- * @param iterations Number of iterations.
- * @param p_bedrock Lower elevation limit.
- * @param p_moisture_map Reference to the moisture map (quantity of rain),
- * expected to be in [0, 1].
- * @param p_erosion_map[out] Reference to the erosion map, provided as an output
- * field.
- * @param ir Gradient prefiltering radius.
- *
- * **Example**
- * @include ex_hydraulic_spl.cpp
- *
- * **Result**
- * @image html ex_hydraulic_spl0.png
- * @image html ex_hydraulic_spl1.png
- */
-void hydraulic_spl(Array &z,
-                   float  c_erosion,
-                   float  talus_ref,
-                   int    iterations,
-                   Array *p_bedrock = nullptr,
-                   Array *p_moisture_map = nullptr,
-                   Array *p_erosion_map = nullptr, // -> out
-                   int    ir = 8);
-
-void hydraulic_spl(Array &z,
-                   Array *p_mask,
-                   float  c_erosion,
-                   float  talus_ref,
-                   int    iterations,
-                   Array *p_bedrock = nullptr,
-                   Array *p_moisture_map = nullptr,
-                   Array *p_erosion_map = nullptr, // -> out
-                   int    ir = 8);                    ///< @overload
-
-/**
  * @brief Apply hydraulic erosion based on a flow accumulation map.
  *
  * @param z Input array.
