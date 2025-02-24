@@ -990,9 +990,13 @@ void thermal_auto_bedrock(Array &z,
 void thermal_flatten(Array       &z,
                      const Array &talus,
                      const Array &bedrock,
-                     int          iterations = 10);
+                     int          iterations = 10,
+                     int          post_filter_ir = 1);
 
-void thermal_flatten(Array &z, float talus, int iterations = 10); ///< @overload
+void thermal_flatten(Array &z,
+                     float  talus,
+                     int    iterations = 10,
+                     int    post_filter_ir = 1); ///< @overload
 
 /**
  * @brief Apply thermal weathering erosion.
