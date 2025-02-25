@@ -15,7 +15,7 @@ void kernel mean_shift(read_only image2d_t  img_in,
   if (g.x >= nx || g.y >= ny) return;
 
   const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE |
-                            CLK_ADDRESS_CLAMP_TO_EDGE | CLK_FILTER_NEAREST;
+                            CLK_ADDRESS_MIRRORED_REPEAT | CLK_FILTER_NEAREST;
 
   float val = 0.f;
   float sum = 0.f;
