@@ -13,11 +13,7 @@
  * to enhance or extract features based on the shape and structure of objects
  * within an image.
  *
- * @version 0.1
- * @date 2023-04-30
- *
  * @copyright Copyright (c) 2023
- *
  */
 #pragma once
 
@@ -26,19 +22,22 @@
 namespace hmap
 {
 
+/**
+ * @brief Enumeration for different types of distance transforms.
+ */
 enum DistanceTransformType : int
 {
-  DT_EXACT,
-  DT_APPROX,
-  DT_MANHATTAN,
+  DT_EXACT,     ///< Exact distance transform.
+  DT_APPROX,    ///< Approximate distance transform.
+  DT_MANHATTAN, ///< Manhattan distance transform.
 };
 
 /**
- * @brief Apply a border algorithm to the input array using a square
- * structure.
- * @param array Input array.
- * @param ir Square kernel radius.
- * @return Output array.
+ * @brief Apply a border algorithm to the input array using a square structure.
+ *
+ * @param array Input array to which the border algorithm is applied.
+ * @param ir Radius of the square kernel used for the border algorithm.
+ * @return Array Output array with the border applied.
  *
  * **Example**
  * @include ex_morphology_base.cpp
@@ -49,11 +48,11 @@ enum DistanceTransformType : int
 Array border(const Array &array, int ir);
 
 /**
- * @brief Apply a closing algorithm to the input array using a square
- * structure.
- * @param array Input array.
- * @param ir Square kernel radius.
- * @return Output array.
+ * @brief Apply a closing algorithm to the input array using a square structure.
+ *
+ * @param array Input array to which the closing algorithm is applied.
+ * @param ir Radius of the square kernel used for the closing algorithm.
+ * @return Array Output array with the closing applied.
  *
  * **Example**
  * @include ex_morphology_base.cpp
@@ -66,9 +65,10 @@ Array closing(const Array &array, int ir);
 /**
  * @brief Apply a dilation algorithm to the input array using a square
  * structure.
- * @param array Input array.
- * @param ir Square kernel radius.
- * @return Output array.
+ *
+ * @param array Input array to which the dilation algorithm is applied.
+ * @param ir Radius of the square kernel used for the dilation algorithm.
+ * @return Array Output array with the dilation applied.
  *
  * **Example**
  * @include ex_morphology_base.cpp
@@ -85,7 +85,7 @@ Array dilation(const Array &array, int ir);
  *
  * @param array Input array to be transformed, will be converted into binary: 1
  * wherever input is greater than 0, 0 elsewhere.
- * @param return_squared_distance Wheter the distance returned is squared or
+ * @param return_squared_distance Whether the distance returned is squared or
  * not.
  * @return Array Reference to the output array.
  *
@@ -106,7 +106,6 @@ Array distance_transform(const Array &array,
  * @param array Input array to calculate the distance transform for.
  * @param return_squared_distance Optional parameter to return squared
  * distances. Defaults to false.
- *
  * @return Array containing the approximate distance transform of the input
  * array.
  *
@@ -117,7 +116,6 @@ Array distance_transform(const Array &array,
  * @image html ex_distance_transform0.png
  * @image html ex_distance_transform1.png
  * @image html ex_distance_transform2.png
-
  */
 Array distance_transform_approx(const Array &array,
                                 bool         return_squared_distance = false);
@@ -144,11 +142,12 @@ Array distance_transform_manhattan(const Array &array,
 /**
  * @brief Apply an erosion algorithm to the input array using a square
  * structure.
- * @param array Input array.
- * @param ir Square kernel radius.
- * @return Output array.
  *
- *  **Example**
+ * @param array Input array to which the erosion algorithm is applied.
+ * @param ir Radius of the square kernel used for the erosion algorithm.
+ * @return Array Output array with the erosion applied.
+ *
+ * **Example**
  * @include ex_morphology_base.cpp
  *
  * **Result**
@@ -159,9 +158,9 @@ Array erosion(const Array &array, int ir);
 /**
  * @brief Apply a flood fill algorithm to the input array.
  *
- * @param array Input array.
- * @param i Seed point index.
- * @param j Seed point index.
+ * @param array Input array to be filled.
+ * @param i Seed point row index.
+ * @param j Seed point column index.
  * @param fill_value Filling value.
  * @param background_value Background value.
  *
@@ -178,11 +177,12 @@ void flood_fill(Array &array,
                 float  background_value = 0.f);
 
 /**
- * @brief Apply a morphological_black_hat algorithm to the input array using a
+ * @brief Apply a morphological black hat algorithm to the input array using a
  * square structure.
- * @param array Input array.
- * @param ir Square kernel radius.
- * @return Output array.
+ *
+ * @param array Input array to which the black hat algorithm is applied.
+ * @param ir Radius of the square kernel used for the black hat algorithm.
+ * @return Array Output array with the black hat applied.
  *
  * **Example**
  * @include ex_morphology_base.cpp
@@ -193,11 +193,12 @@ void flood_fill(Array &array,
 Array morphological_black_hat(const Array &array, int ir);
 
 /**
- * @brief Apply a morphological_gradient algorithm to the input array using a
+ * @brief Apply a morphological gradient algorithm to the input array using a
  * square structure.
- * @param array Input array.
- * @param ir Square kernel radius.
- * @return Output array.
+ *
+ * @param array Input array to which the gradient algorithm is applied.
+ * @param ir Radius of the square kernel used for the gradient algorithm.
+ * @return Array Output array with the gradient applied.
  *
  * **Example**
  * @include ex_morphology_base.cpp
@@ -208,11 +209,12 @@ Array morphological_black_hat(const Array &array, int ir);
 Array morphological_gradient(const Array &array, int ir);
 
 /**
- * @brief Apply a morphological_top_hat algorithm to the input array using a
+ * @brief Apply a morphological top hat algorithm to the input array using a
  * square structure.
- * @param array Input array.
- * @param ir Square kernel radius.
- * @return Output array.
+ *
+ * @param array Input array to which the top hat algorithm is applied.
+ * @param ir Radius of the square kernel used for the top hat algorithm.
+ * @return Array Output array with the top hat applied.
  *
  * **Example**
  * @include ex_morphology_base.cpp
@@ -225,9 +227,10 @@ Array morphological_top_hat(const Array &array, int ir);
 /**
  * @brief Apply an opening algorithm to the input array using a square
  * structure.
- * @param array Input array.
- * @param ir Square kernel radius.
- * @return Output array.
+ *
+ * @param array Input array to which the opening algorithm is applied.
+ * @param ir Radius of the square kernel used for the opening algorithm.
+ * @return Array Output array with the opening applied.
  *
  * **Example**
  * @include ex_morphology_base.cpp
@@ -253,6 +256,7 @@ Array opening(const Array &array, int ir);
  * border cells.
  * @param zero_at_borders If true, the borders of the skeletonized image will be
  * set to zero.
+ * @param ir_erosion The erosion radius applied to the skeleton.
  * @return An array representing the relative distance map, where each cell has
  * a value between 0 and 1. A value closer to 1 indicates proximity to the
  * skeleton, while a value closer to 0 indicates proximity to the border.
