@@ -54,7 +54,7 @@ float schott_get_weight(read_only image2d_t z,
         float slope = schott_get_slope(z, sampler, p, pn);
         if (slope > 0.f)
         {
-          float sp = pow(slope, flow_routing_exponent);
+          float sp = pow_float(slope, flow_routing_exponent);
           total_weight += sp;
 
           if (pn.x == q.x && pn.y == q.y) weight = sp;
@@ -131,10 +131,10 @@ void kernel hydraulic_schott(read_only image2d_t  z,
   {
     // --- hydraulic erosion
 
-    float spe = c_erosion *
-                min(3.f,
-                    pow(read_imagef(flow, sampler, g).x, flow_acc_exponent) *
-                        speed);
+    float spe = c_erosion * min(3.f,
+                                pow_float(read_imagef(flow, sampler, g).x,
+                                          flow_acc_exponent) *
+                                    speed);
 
     float z_steepest = read_imagef(z, sampler, nbrs).x;
 
@@ -168,7 +168,8 @@ void kernel hydraulic_schott(read_only image2d_t  z,
   {
     // --- deposition
 
-    float spe = pow(read_imagef(flow, sampler, g).x, flow_acc_exponent_depo) *
+    float spe = pow_float(read_imagef(flow, sampler, g).x,
+                          flow_acc_exponent_depo) *
                 speed;
 
     float sed = read_imagef(sediment, sampler, g).x;

@@ -6,13 +6,11 @@
 #include "highmap/boundary.hpp"
 #include "highmap/erosion.hpp"
 #include "highmap/filters.hpp"
+#include "highmap/morphology.hpp"
 #include "highmap/primitives.hpp"
 #include "highmap/range.hpp"
 
 #include "macrologger.h"
-
-#define LAPLACE_SIGMA 0.2f
-#define LAPLACE_ITERATIONS 1
 
 namespace hmap
 {
@@ -24,12 +22,15 @@ namespace hmap
 void thermal_flatten(Array       &z,
                      const Array &talus,
                      const Array &bedrock,
-                     int          iterations)
+                     int          iterations,
+                     int          post_filter_ir)
 {
   std::vector<int>   di = DI;
   std::vector<int>   dj = DJ;
   std::vector<float> c = CD;
   const uint         nb = di.size();
+
+  Array z_bckp = z;
 
   // main loop
   for (int it = 0; it < iterations; it++)
@@ -50,7 +51,7 @@ void thermal_flatten(Array       &z,
 
           for (uint k = 0; k < nb; k++)
           {
-            float dz = z(i, j) - z(i + di[k], j + dj[k]);
+            float dz = (z(i, j) - z(i + di[k], j + dj[k])) / c[k];
             if (dz > dmax)
             {
               dmax = dz;
@@ -60,7 +61,7 @@ void thermal_flatten(Array       &z,
 
           if (dmax > 0.f and dmax < talus(i, j))
           {
-            float amount = 0.5f * dmax * c[ka];
+            float amount = 0.5f * dmax;
             z(i, j) -= amount;
             z(i + di[ka], j + dj[ka]) += amount;
           }
@@ -68,10 +69,14 @@ void thermal_flatten(Array       &z,
       }
   }
 
-  // clean-up: fix boundaries, remove spurious oscillations and make
-  // sure final elevation is not lower than the bedrock
+  // clean-up: fix boundaries
   extrapolate_borders(z);
-  laplace(z, LAPLACE_SIGMA, LAPLACE_ITERATIONS);
+
+  // remove spurious oscillations
+  smooth_cpulse(z, post_filter_ir);
+  z = maximum_smooth(z, z_bckp, 0.01f);
+
+  // make sure final elevation is not lower than the bedrock
   clamp_min(z, bedrock);
 }
 
@@ -79,11 +84,11 @@ void thermal_flatten(Array       &z,
 // Overloading
 //----------------------------------------------------------------------
 
-void thermal_flatten(Array &z, float talus, int iterations)
+void thermal_flatten(Array &z, float talus, int iterations, int post_filter_ir)
 {
   Array talus_map = constant(z.shape, talus);
   Array bedrock = constant(z.shape, z.min() - z.ptp());
-  thermal_flatten(z, talus_map, bedrock, iterations);
+  thermal_flatten(z, talus_map, bedrock, iterations, post_filter_ir);
 }
 
 } // namespace hmap

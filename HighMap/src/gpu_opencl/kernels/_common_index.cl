@@ -21,6 +21,11 @@ float2 g_to_xy(const int2   g,
   return (float2)(x, y);
 }
 
+bool is_inside(i, j, nx, ny)
+{
+  return i >= 0 && i < nx && j >= 0 && j < ny;
+}
+
 int linear_index(const int i, const int j, const int nx)
 {
   return j * nx + i;

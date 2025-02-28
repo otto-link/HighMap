@@ -26,6 +26,26 @@ namespace hmap
 {
 
 /**
+ * @brief Converts a length value to a pixel index in a discretized space.
+ *
+ * This function maps a floating-point length `x` to an integer pixel index,
+ * considering the total number of pixels `nx` and a scaling factor `scale`.
+ * Optionally, it can enforce lower and upper limits on the output index.
+ *
+ * @param x The length value to be converted.
+ * @param nx The number of pixels in the discretized space.
+ * @param lim_inf If nonzero, enforces a minimum index of 1.
+ * @param lim_sup If nonzero, enforces a maximum index of `nx - 1`.
+ * @param scale The scaling factor relating the length to the pixel space.
+ * @return The computed pixel index.
+ */
+int convert_length_to_pixel(const float x,
+                            const int   nx,
+                            const bool  lim_inf = true,
+                            const bool  lim_sup = false,
+                            const float scale = 1.f);
+
+/**
  * @brief Expand grid by translating and copying the values of the current
  * bounding box to the 8 first neighboring bounding boxes.
  * @param x `x` coordinates.

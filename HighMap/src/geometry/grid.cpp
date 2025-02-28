@@ -12,6 +12,18 @@
 namespace hmap
 {
 
+int convert_length_to_pixel(const float x,
+                            const int   nx,
+                            const bool  lim_inf,
+                            const bool  lim_sup,
+                            const float scale)
+{
+  int ir = x / scale * static_cast<float>(nx);
+  if (lim_inf) ir = std::max(ir, 1);
+  if (lim_sup) ir = std::min(ir, nx - 1);
+  return ir;
+}
+
 void expand_grid(std::vector<float> &x,
                  std::vector<float> &y,
                  std::vector<float> &value,

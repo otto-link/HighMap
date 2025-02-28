@@ -20,6 +20,8 @@ void compare(F1 fct1, F2 fct2, float tolerance, const std::string &fname)
   hmap::remap(z);
   // hmap::zeroed_edges(z);
 
+  z.to_png_grayscale("out0.png", CV_16U);
+
   hmap::Array z1 = z;
   hmap::Array z2 = z;
 
@@ -47,6 +49,8 @@ void compare(F1 fct1, F2 fct2, float tolerance, const std::string &fname)
 
 int main(void)
 {
+  int ir = 32;
+
   hmap::gpu::init_opencl();
 
   // clwrapper::KernelManager::get_instance().set_block_size(32);
@@ -55,6 +59,18 @@ int main(void)
   //         [](hmap::Array &z) { hmap::gpu::median_3x3(z); },
   //         1e-3f,
   //         "diff_median_3x3.png");
+
+  compare([ir](hmap::Array &z) { z = hmap::unsphericity(z, ir); },
+          [ir](hmap::Array &z) { z = hmap::gpu::unsphericity(z, ir); },
+          1e-3f,
+          "unsphericity.png");
+
+  // compare([ir](hmap::Array &z)
+  //         { hmap::hydraulic_stream_log(z, 0.1f, 5.f / 512.f, 64); },
+  //         [ir](hmap::Array &z)
+  //         { hmap::gpu::hydraulic_stream_log(z, 0.1f, 5.f / 512.f, 64); },
+  //         1e-3f,
+  //         "hydraulic_stream_log.png");
 
   // {
   //   hmap::Vec4<float> bbox = {1.f, 2.f, -0.5f, 0.5f};
@@ -68,8 +84,6 @@ int main(void)
   //           1e-3f,
   //           "sdf_2d_polyline.png");
   // }
-
-  int ir = 32;
 
   // {
   //   std::vector<hmap::NoiseType> types = {

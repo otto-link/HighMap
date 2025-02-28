@@ -1,2 +1,0 @@
-add_executable(ex_hydraulic_spl ex_hydraulic_spl.cpp)
-target_link_libraries(ex_hydraulic_spl highmap)

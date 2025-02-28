@@ -2,6 +2,26 @@ R""(
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
+float pow_float(float base, float x)
+{
+  return exp(x * log(base));
+}
+
+float pow_int(float base, int exp)
+{
+  float result = 1.f;
+  for (int i = 0; i < abs(exp); ++i)
+  {
+    result *= base;
+  }
+  return exp < 0 ? 1.f / result : result;
+}
+
+float almost_unit_identity(const float x)
+{
+  return (2.f - x) * x * x;
+}
+
 float2 angle_to_dir(float angle)
 {
   return (float2)(cos(angle / 180.f * 3.14159f), sin(angle / 180.f * 3.14159f));
@@ -24,13 +44,13 @@ float lerp(float a, float b, float t)
 float max_smooth(float a, float b, float k)
 {
   float h = max(k - fabs(a - b), 0.f) / k;
-  return max(a, b) + pow(h, 3) * k / 6.f;
+  return max(a, b) + pow_int(h, 3) * k / 6.f;
 }
 
 float min_smooth(float a, float b, float k)
 {
   float h = max(k - fabs(a - b), 0.f) / k;
-  return min(a, b) - pow(h, 3) * k / 6.f;
+  return min(a, b) - pow_int(h, 3) * k / 6.f;
 }
 
 float2 normed2(float2 vec)
@@ -96,6 +116,6 @@ float smoothstep3_upper(const float x)
 float smoothstep_rational(float x, float n)
 {
   // https://iquilezles.org/articles/smoothsteps/
-  return pow(x, n) / (pow(x, n) + pow(1.f - x, n));
+  return pow_float(x, n) / (pow_float(x, n) + pow_float(1.f - x, n));
 }
 )""

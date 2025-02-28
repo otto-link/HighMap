@@ -1,8 +1,10 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
+#include "highmap/features.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/kernels.hpp"
+#include "highmap/math.hpp"
 #include "highmap/opencl/gpu_opencl.hpp"
 #include "highmap/range.hpp"
 
@@ -76,6 +78,55 @@ void expand(Array &array, Array &kernel, Array *p_mask)
     run.execute({array.shape.x, array.shape.y});
 
     run.read_imagef("out");
+  }
+}
+
+void gamma_correction_local(Array &array, float gamma, int ir, float k)
+{
+  Array amin = gpu::minimum_local(array, ir);
+  Array amax = gpu::maximum_local(array, ir);
+
+  gpu::smooth_cpulse(amin, ir);
+  gpu::smooth_cpulse(amax, ir);
+
+  if (k != 0) // with smoothing
+  {
+    for (int j = 0; j < array.shape.y; j++)
+      for (int i = 0; i < array.shape.x; i++)
+      {
+        float v = std::abs(array(i, j) - amin(i, j)) /
+                  (amax(i, j) - amin(i, j) + 1e-30);
+        v = std::sqrt(v * v + k);
+        array(i, j) = std::pow(v, gamma) * (amax(i, j) - amin(i, j)) +
+                      amin(i, j);
+      }
+  }
+  else // without smoothing
+  {
+    for (int j = 0; j < array.shape.y; j++)
+      for (int i = 0; i < array.shape.x; i++)
+      {
+        float v = std::abs(array(i, j) - amin(i, j)) /
+                  (amax(i, j) - amin(i, j) + 1e-30);
+        array(i, j) = std::pow(v, gamma) * (amax(i, j) - amin(i, j)) +
+                      amin(i, j);
+      }
+  }
+}
+
+void gamma_correction_local(Array &array,
+                            float  gamma,
+                            int    ir,
+                            Array *p_mask,
+                            float  k)
+{
+  if (!p_mask)
+    gpu::gamma_correction_local(array, gamma, ir, k);
+  else
+  {
+    Array array_f = array;
+    gpu::gamma_correction_local(array_f, gamma, ir, k);
+    array = lerp(array, array_f, *(p_mask));
   }
 }
 
@@ -171,6 +222,39 @@ Array mean_local(const Array &array, int ir)
   return array_out;
 }
 
+Array mean_shift(const Array &array,
+                 int          ir,
+                 float        talus,
+                 int          iterations,
+                 bool         talus_weighted)
+{
+  const Vec2<int> shape = array.shape;
+  Array           array_next = Array(shape);
+  Array           array_prev = array;
+
+  auto run = clwrapper::Run("mean_shift");
+
+  run.bind_imagef("in", array_prev.vector, shape.x, shape.y);
+  run.bind_imagef("out", array_next.vector, shape.x, shape.y, true);
+  run.bind_arguments(shape.x, shape.y, ir, talus, talus_weighted ? 1 : 0);
+
+  for (int it = 0; it < iterations; it++)
+  {
+    run.execute({shape.x, shape.y});
+    run.read_imagef("out");
+
+    if (iterations > 1)
+    {
+      array_prev = array_next;
+      run.write_imagef("in");
+    }
+  }
+
+  run.read_imagef("out");
+
+  return array_next;
+}
+
 void median_3x3(Array &array)
 {
   auto run = clwrapper::Run("median_3x3");
@@ -182,6 +266,18 @@ void median_3x3(Array &array)
   run.execute({array.shape.x, array.shape.y});
 
   run.read_imagef("out");
+}
+
+void median_3x3(Array &array, Array *p_mask)
+{
+  if (!p_mask)
+    gpu::median_3x3(array);
+  else
+  {
+    Array array_f = array;
+    gpu::median_3x3(array_f);
+    array = lerp(array, array_f, *(p_mask));
+  }
 }
 
 Array minimum_local(const Array &array, int ir)
@@ -458,6 +554,62 @@ void smooth_fill(Array &array,
   array = gpu::maximum_smooth(array, array_bckp, k);
 
   if (p_deposition_map) *p_deposition_map = maximum(array - array_bckp, 0.f);
+}
+
+void smooth_fill_holes(Array &array, int ir)
+{
+  Array array_smooth = array;
+  gpu::smooth_cpulse(array_smooth, ir);
+
+  // mask based on concave regions
+  Array mask = curvature_mean(array_smooth);
+  clamp_min(mask, 0.f);
+  make_binary(mask);
+
+  int ic = (int)((float)ir / 2.f);
+  if (ic > 1) gpu::smooth_cpulse(mask, ic);
+
+  array = lerp(array, array_smooth, mask);
+}
+
+void smooth_fill_holes(Array &array, int ir, Array *p_mask)
+{
+  if (!p_mask)
+    gpu::smooth_fill_holes(array, ir);
+  else
+  {
+    Array array_f = array;
+    gpu::smooth_fill_holes(array_f, ir);
+    array = lerp(array, array_f, *(p_mask));
+  }
+}
+
+void smooth_fill_smear_peaks(Array &array, int ir)
+{
+  Array array_smooth = array;
+  gpu::smooth_cpulse(array_smooth, ir);
+
+  // mask based on concave regions
+  Array mask = -curvature_mean(array_smooth);
+  clamp_min(mask, 0.f);
+  make_binary(mask);
+
+  int ic = (int)((float)ir / 2.f);
+  if (ic > 0) gpu::smooth_cpulse(mask, ic);
+
+  array = lerp(array, array_smooth, mask);
+}
+
+void smooth_fill_smear_peaks(Array &array, int ir, Array *p_mask)
+{
+  if (!p_mask)
+    gpu::smooth_fill_smear_peaks(array, ir);
+  else
+  {
+    Array array_f = array;
+    gpu::smooth_fill_smear_peaks(array_f, ir);
+    array = lerp(array, array_f, *(p_mask));
+  }
 }
 
 } // namespace hmap::gpu

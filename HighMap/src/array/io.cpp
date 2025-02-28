@@ -69,7 +69,7 @@ void Array::infos(std::string msg) const
   std::cout << " - ptp: " << vmax - vmin << "\n";
 }
 
-void Array::print()
+void Array::print() const
 {
   std::cout << std::fixed << std::setprecision(6) << std::setfill('0');
   for (int j = shape.y - 1; j > -1; j--)
@@ -82,7 +82,7 @@ void Array::print()
   }
 }
 
-void Array::to_exr(const std::string &fname)
+void Array::to_exr(const std::string &fname) const
 {
   Array array_copy = *this;
   remap(array_copy);
@@ -97,7 +97,7 @@ void Array::to_exr(const std::string &fname)
   cv::imwrite(fname, mat, codec_params);
 }
 
-void Array::to_file(const std::string &fname)
+void Array::to_file(const std::string &fname) const
 {
   LOG_DEBUG("writing binary file");
   std::ofstream f;
@@ -109,7 +109,7 @@ void Array::to_file(const std::string &fname)
   f.close();
 }
 
-void Array::to_numpy(const std::string &fname)
+void Array::to_numpy(const std::string &fname) const
 {
   npy::npy_data_ptr<float> d;
   d.data_ptr = this->vector.data();
@@ -122,17 +122,18 @@ void Array::to_numpy(const std::string &fname)
 void Array::to_png(const std::string &fname,
                    int                cmap,
                    bool               hillshading,
-                   int                depth)
+                   int                depth) const
 {
+  Array       array_copy = *this;
   const float vmin = this->min();
   const float vmax = this->max();
 
   Tensor color3 =
-      colorize(*this, vmin, vmax, cmap, hillshading, false, nullptr);
+      colorize(array_copy, vmin, vmax, cmap, hillshading, false, nullptr);
   color3.to_png(fname, depth);
 }
 
-void Array::to_png_grayscale(const std::string &fname, int depth)
+void Array::to_png_grayscale(const std::string &fname, int depth) const
 {
   Array array_copy = *this;
   remap(array_copy);
@@ -140,15 +141,16 @@ void Array::to_png_grayscale(const std::string &fname, int depth)
   cv::Mat mat = array_copy.to_cv_mat();
   int     scale_factor = (depth == CV_8U) ? 255 : 65535;
   mat.convertTo(mat, depth, scale_factor);
+  cv::flip(mat, mat, 0); // flipud
   cv::imwrite(fname, mat);
 }
 
-void Array::to_raw_16bit(const std::string &fname)
+void Array::to_raw_16bit(const std::string &fname) const
 {
   write_raw_16bit(fname, *this);
 }
 
-void Array::to_tiff(const std::string &fname)
+void Array::to_tiff(const std::string &fname) const
 {
   Array array_copy = *this;
   remap(array_copy);

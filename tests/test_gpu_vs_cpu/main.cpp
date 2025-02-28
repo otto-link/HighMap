@@ -10,7 +10,7 @@
 #include "highmap/dbg/timer.hpp"
 
 // const hmap::Vec2<int>   shape = {2048, 2048};
-// const hmap::Vec2<int>   shape = {1024, 1024};
+// const hmap::Vec2<int> shape = {1024, 1024};
 const hmap::Vec2<int>   shape = {256, 512};
 const hmap::Vec2<float> kw = {2.f, 4.f};
 const int               seed = 1;
@@ -115,6 +115,17 @@ int main(void)
           1e-3f,
           "expand_mask");
 
+  compare([](hmap::Array &z) { z = hmap::flow_direction_d8(z); },
+          [](hmap::Array &z) { z = hmap::gpu::flow_direction_d8(z); },
+          1e-3f,
+          "flow_direction_d8");
+
+  compare([&ir](hmap::Array &z) { hmap::gamma_correction_local(z, 0.5f, ir); },
+          [&ir](hmap::Array &z)
+          { hmap::gpu::gamma_correction_local(z, 0.5f, ir); },
+          1e-3f,
+          "gamma_correction_local");
+
   compare([](hmap::Array &z) { z = hmap::gradient_norm(z); },
           [](hmap::Array &z) { z = hmap::gpu::gradient_norm(z); },
           1e-3f,
@@ -129,6 +140,13 @@ int main(void)
             1e-3f,
             "hydraulic_particle");
   }
+
+  compare([ir](hmap::Array &z)
+          { hmap::hydraulic_stream_log(z, 0.1f, 5.f / 512.f, 64); },
+          [ir](hmap::Array &z)
+          { hmap::gpu::hydraulic_stream_log(z, 0.1f, 5.f / 512.f, 64); },
+          1e-3f,
+          "hydraulic_stream_log");
 
   compare([](hmap::Array &z) { hmap::laplace(z, 0.2f, 10); },
           [](hmap::Array &z) { hmap::gpu::laplace(z, 0.2f, 10); },
@@ -166,6 +184,13 @@ int main(void)
           [ir](hmap::Array &z) { z = hmap::gpu::mean_local(z, ir); },
           1e-3f,
           "mean_local");
+
+  compare([ir](hmap::Array &z)
+          { z = hmap::mean_shift(z, ir, 16.f / z.shape.x, 4); },
+          [ir](hmap::Array &z)
+          { z = hmap::gpu::mean_shift(z, ir, 16.f / z.shape.x, 4); },
+          1e-3f,
+          "mean_shift");
 
   compare([](hmap::Array &z) { hmap::median_3x3(z); },
           [](hmap::Array &z) { hmap::gpu::median_3x3(z); },
@@ -350,6 +375,11 @@ int main(void)
             "sdf_2d_polyline_bezier");
   }
 
+  compare([ir](hmap::Array &z) { z = hmap::shape_index(z, ir); },
+          [ir](hmap::Array &z) { z = hmap::gpu::shape_index(z, ir); },
+          1e-3f,
+          "shape_index");
+
   compare(
       [&ir](hmap::Array &z)
       {
@@ -398,6 +428,16 @@ int main(void)
           1e-3f,
           "smooth_fill_mask");
 
+  compare([ir](hmap::Array &z) { hmap::smooth_fill_smear_peaks(z, ir); },
+          [ir](hmap::Array &z) { hmap::gpu::smooth_fill_smear_peaks(z, ir); },
+          1e-3f,
+          "smooth_fill_smear_peaks");
+
+  compare([ir](hmap::Array &z) { hmap::smooth_fill_holes(z, ir); },
+          [ir](hmap::Array &z) { hmap::gpu::smooth_fill_holes(z, ir); },
+          1e-3f,
+          "smooth_fill_holes");
+
   {
     hmap::Array talus(shape, 0.5f / shape.x);
     int         iterations = 100;
@@ -444,6 +484,11 @@ int main(void)
           [](hmap::Array &z) { hmap::gpu::thermal_rib(z, 10); },
           1e-3f,
           "thermal_rib");
+
+  compare([ir](hmap::Array &z) { z = hmap::unsphericity(z, ir); },
+          [ir](hmap::Array &z) { z = hmap::gpu::unsphericity(z, ir); },
+          1e-3f,
+          "unsphericity");
 
   {
     hmap::Array dx = hmap::noise_fbm(hmap::NoiseType::PERLIN,

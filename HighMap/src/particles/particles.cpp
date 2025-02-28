@@ -12,10 +12,12 @@ namespace hmap
 Particle::Particle(float c_capacity,
                    float c_erosion,
                    float c_deposition,
+                   float c_inertia,
                    float drag_rate)
     : c_capacity(c_capacity),
       c_erosion(c_erosion),
       c_deposition(c_deposition),
+      c_inertia(c_inertia),
       drag_rate(drag_rate)
 {
 }
@@ -40,8 +42,8 @@ void Particle::move(const Array &h, float dt)
   }
 
   // classical mechanics (with gravity = 1)
-  this->vel.x += dt * nx;
-  this->vel.y += dt * ny;
+  this->vel.x += dt * nx / c_inertia;
+  this->vel.y += dt * ny / c_inertia;
 
   // drag rate
   float coeff = (1.f - dt * drag_rate);

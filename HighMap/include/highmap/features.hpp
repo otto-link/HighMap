@@ -492,6 +492,19 @@ Array unsphericity(const Array &z, int ir);
  */
 Array valley_width(const Array &z, int ir = 0);
 
+// helpers
+Array compute_curvature_h(Array &zx,
+                          Array &zy,
+                          Array &zxx,
+                          Array &zxy,
+                          Array &zyy);
+
+Array compute_curvature_k(Array &zx,
+                          Array &zy,
+                          Array &zxx,
+                          Array &zxy,
+                          Array &zyy);
+
 } // namespace hmap
 
 namespace hmap::gpu
@@ -508,5 +521,11 @@ Array ruggedness(const Array &array, int ir);
 
 /*! @brief See hmap::rugosity */
 Array rugosity(const Array &z, int ir, bool convex = true);
+
+/*! @brief See hmap::shape_index */
+Array shape_index(const Array &z, int ir);
+
+/*! @brief See hmap::unsphericity */
+Array unsphericity(const Array &z, int ir);
 
 } // namespace hmap::gpu

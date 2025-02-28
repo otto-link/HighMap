@@ -17,7 +17,7 @@ void kernel rugosity_post(global float *z_skw,
   float skw = z_skw[index];
   float std = z_std[index];
 
-  if (std > tol) skw /= pow(std, 1.5f);
+  if (std > tol) skw /= pow_float(std, 1.5f);
 
   if (convex > 0)
     skw = max(0.f, skw);

@@ -607,6 +607,73 @@ Array mean_local(const Array &array, int ir)
   return array_out;
 }
 
+Array mean_shift(const Array &array,
+                 int          ir,
+                 float        talus,
+                 int          iterations,
+                 bool         talus_weighted)
+{
+  const Vec2<int> shape = array.shape;
+  Array           array_next = Array(shape);
+  Array           array_prev = array;
+
+  for (int it = 0; it < iterations; it++)
+  {
+
+    if (talus_weighted)
+    {
+      for (int j = 0; j < shape.y; j++)
+        for (int i = 0; i < shape.x; i++)
+        {
+          float sum = 0.f;
+          float norm = 0.f;
+
+          for (int q = j - ir; q < j + ir + 1; ++q)
+            for (int p = i - ir; p < i + ir + 1; ++p)
+              if (p > 0 && p < shape.x && q > 0 && q < shape.y)
+              {
+                float dv = std::abs(array_prev(i, j) - array_prev(p, q));
+                if (dv < talus)
+                {
+                  float weight = 1.f - dv / talus;
+                  sum += array(p, q) * weight;
+                  norm += weight;
+                }
+              }
+
+          array_next(i, j) = sum / norm;
+        }
+    }
+    else
+    {
+      for (int j = 0; j < shape.y; j++)
+        for (int i = 0; i < shape.x; i++)
+        {
+          int   count = 0.f;
+          float sum = 0.f;
+
+          for (int q = j - ir; q < j + ir + 1; ++q)
+            for (int p = i - ir; p < i + ir + 1; ++p)
+              if (p > 0 && p < shape.x && q > 0 && q < shape.y)
+              {
+                float dv = std::abs(array_prev(i, j) - array_prev(p, q));
+                if (dv < talus)
+                {
+                  sum += array(p, q);
+                  count++;
+                }
+              }
+
+          array_next(i, j) = sum / static_cast<float>(count);
+        }
+    }
+
+    if (iterations > 1) array_prev = array_next;
+  }
+
+  return array_next;
+}
+
 void median_3x3(Array &array)
 {
   Array array_out = Array(array.shape);

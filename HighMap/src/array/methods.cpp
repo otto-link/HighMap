@@ -86,6 +86,13 @@ void Array::depose_amount_kernel_at(int i, int j, Array &kernel, float amount)
   }
 }
 
+void Array::dump(const std::string &fname) const
+{
+  LOG_DEBUG("DUMPING...");
+  this->infos(fname);
+  this->to_png_grayscale(fname, CV_16U);
+}
+
 Array Array::extract_slice(Vec4<int> idx)
 {
   Array array_out = Array(Vec2<int>(idx.b - idx.a, idx.d - idx.c));

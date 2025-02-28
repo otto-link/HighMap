@@ -2,7 +2,8 @@
 
 int main(void)
 {
-  hmap::Vec2<int>   shape = {256, 256};
+  hmap::Vec2<int> shape = {256, 256};
+  // shape = {1024, 1024};
   hmap::Vec2<float> res = {2.f, 2.f};
   int               seed = 1;
 
@@ -32,10 +33,15 @@ int main(void)
                          &erosion_map,
                          ir);
 
+  hmap::gpu::init_opencl();
+
   // log scale
   auto z3 = z;
+  int  deposition_ir = 32;
+  c_erosion = 0.2f;
+  hmap::hydraulic_stream_log(z3, c_erosion, talus_ref, deposition_ir);
 
-  hmap::hydraulic_stream_log(z3, c_erosion, talus_ref);
+  z3.dump();
 
   hmap::export_banner_png("ex_hydraulic_stream0.png",
                           {z0, z1, z2, z3},

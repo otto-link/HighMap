@@ -312,6 +312,7 @@ void hydraulic_particle(Array &z,
                         float  c_capacity = 10.f,
                         float  c_erosion = 0.05f,
                         float  c_deposition = 0.05f,
+                        float  c_inertia = 0.3f,
                         float  drag_rate = 0.001f,
                         float  evap_rate = 0.001f,
                         bool   post_filtering = false);
@@ -326,6 +327,7 @@ void hydraulic_particle(Array &z,
                         float  c_capacity = 10.f,
                         float  c_erosion = 0.05f,
                         float  c_deposition = 0.05f,
+                        float  c_inertia = 0.3f,
                         float  drag_rate = 0.001f,
                         float  evap_rate = 0.001f,
                         bool   post_filtering = false); ///< @overload
@@ -371,6 +373,7 @@ void hydraulic_particle_multiscale(Array &z,
                                    float  c_capacity = 10.f,
                                    float  c_erosion = 0.05f,
                                    float  c_deposition = 0.01f,
+                                   float  c_inertia = 0.3f,
                                    float  drag_rate = 0.01f,
                                    float  evap_rate = 0.001f,
                                    int    pyramid_finest_level = 0);
@@ -441,90 +444,6 @@ void hydraulic_procedural(
     Array         *p_ridge_mask = nullptr,
     float          vmin = 0.f,
     float          vmax = -1.f);
-
-/**
- * @brief Apply large-scale hydraulic erosion to produce "deep" ridges.
- *
- * @param z Input array.
- * @param talus Ridge talus.
- * @param intensity Erosion intensity in [0, 1].
- * @param p_mask Intensity mask, expected in [0, 1] (applied as a
- * post-processing).
- * @param erosion_factor Erosion factor, generally in ]0, 10]. Smaller values
- * tend to flatten the map.
- * @param smoothing_factor Smooothing factor in ]0, 1] (1 for no smoothing).
- * @param noise_ratio Ridge talus noise ratio in [0, 1].
- * @param ir Prefilter radius (in pixels).
- * @param seed Random seed number (only useful when `noise_ratio != 0`).
- *
- * **Example**
- * @include ex_hydraulic_ridge.cpp
- *
- * **Result**
- * @image html ex_hydraulic_ridge.png
- */
-void hydraulic_ridge(Array &z,
-                     float  talus,
-                     float  intensity = 0.5f,
-                     float  erosion_factor = 1.5f,
-                     float  smoothing_factor = 0.f,
-                     float  noise_ratio = 0.f,
-                     int    ir = 0,
-                     uint   seed = 1);
-
-void hydraulic_ridge(Array &z,
-                     float  talus,
-                     Array *p_mask,
-                     float  intensity = 0.5f,
-                     float  erosion_factor = 1.5f,
-                     float  smoothing_factor = 0.f,
-                     float  noise_ratio = 0.f,
-                     int    ir = 0,
-                     uint   seed = 1); ///< @overload
-
-/**
- * @brief Apply hydraulic erosion based on the Stream Power Law formulation.
- *
- * @param z Input array.
- * @param p_mask Intensity mask, expected in [0, 1] (applied as a
- * post-processing).
- * @param c_erosion Erosion coefficient.
- * @param talus_ref Reference talus used to localy define the flow-partition
- * exponent (small values of `talus_ref` will lead to thinner flow streams, see
- * {@link flow_accumulation_dinf}).
- * @param iterations Number of iterations.
- * @param p_bedrock Lower elevation limit.
- * @param p_moisture_map Reference to the moisture map (quantity of rain),
- * expected to be in [0, 1].
- * @param p_erosion_map[out] Reference to the erosion map, provided as an output
- * field.
- * @param ir Gradient prefiltering radius.
- *
- * **Example**
- * @include ex_hydraulic_spl.cpp
- *
- * **Result**
- * @image html ex_hydraulic_spl0.png
- * @image html ex_hydraulic_spl1.png
- */
-void hydraulic_spl(Array &z,
-                   float  c_erosion,
-                   float  talus_ref,
-                   int    iterations,
-                   Array *p_bedrock = nullptr,
-                   Array *p_moisture_map = nullptr,
-                   Array *p_erosion_map = nullptr, // -> out
-                   int    ir = 8);
-
-void hydraulic_spl(Array &z,
-                   Array *p_mask,
-                   float  c_erosion,
-                   float  talus_ref,
-                   int    iterations,
-                   Array *p_bedrock = nullptr,
-                   Array *p_moisture_map = nullptr,
-                   Array *p_erosion_map = nullptr, // -> out
-                   int    ir = 8);                    ///< @overload
 
 /**
  * @brief Apply hydraulic erosion based on a flow accumulation map.
@@ -656,20 +575,29 @@ void hydraulic_stream_upscale_amplification(
  * @brief Apply hydraulic erosion based on a flow accumulation map, alternative
  * formulation.
  *
- * @param z Input array.
- * @param p_mask Intensity mask, expected in [0, 1] (applied as a
- * post-processing).
- * @param c_erosion Erosion coefficient.
- * @param talus_ref Reference talus used to localy define the flow-partition
- * exponent (small values of `talus_ref` will lead to thinner flow streams, see
+ * @param z Input array representing the terrain elevation.
+ * @param c_erosion Erosion coefficient controlling the intensity of erosion.
+ * @param talus_ref Reference talus used to locally define the flow-partition
+ * exponent. Small values lead to thinner flow streams (see
  * {@link flow_accumulation_dinf}).
- * @param gamma Gamma correction applied to the erosion.
- * @param p_bedrock Lower elevation limit.
- * @param p_moisture_map Reference to the moisture map (quantity of rain),
+ * @param deposition_ir Kernel radius for sediment deposition. If greater than
+ * 1, a smoothing effect is applied.
+ * @param deposition_scale_ratio Scaling factor for sediment deposition.
+ * @param gradient_power Exponent applied to the terrain gradient to control
+ * erosion intensity.
+ * @param gradient_scaling_ratio Scaling factor for gradient-based erosion.
+ * @param gradient_prefilter_ir Kernel radius for pre-filtering the terrain
+ * gradient.
+ * @param saturation_ratio Ratio controlling the water saturation threshold for
+ * erosion processes.
+ * @param p_bedrock Pointer to an optional lower elevation limit.
+ * @param p_moisture_map Pointer to the moisture map (rainfall quantity),
  * expected to be in [0, 1].
- * @param p_erosion_map[out] Reference to the erosion map, provided as an output
+ * @param p_erosion_map[out] Pointer to the erosion map, provided as an output
  * field.
- * @param ir Kernel radius. If `ir > 1`, a cone kernel is used to carv channel
+ * @param p_flow_map[out] Pointer to the flow accumulation map, provided as an
+ * output field.
+ * @param ir Kernel radius. If `ir > 1`, a cone kernel is used to carve channel
  * flow erosion.
  *
  * **Example**
@@ -682,25 +610,33 @@ void hydraulic_stream_upscale_amplification(
 void hydraulic_stream_log(Array &z,
                           float  c_erosion,
                           float  talus_ref,
-                          float  gamma = 1.f,
+                          int    deposition_ir = 32,
+                          float  deposition_scale_ratio = 1.f,
+                          float  gradient_power = 0.8f,
+                          float  gradient_scaling_ratio = 1.f,
+                          int    gradient_prefilter_ir = 16,
                           float  saturation_ratio = 1.f,
                           Array *p_bedrock = nullptr,
                           Array *p_moisture_map = nullptr,
-                          Array *p_erosion_map = nullptr, // -> out
-                          Array *p_flow_map = nullptr,    // -> out
-                          int    ir = 1);
+                          Array *p_erosion_map = nullptr,
+                          Array *p_deposition_map = nullptr,
+                          Array *p_flow_map = nullptr);
 
 void hydraulic_stream_log(Array &z,
                           float  c_erosion,
                           float  talus_ref,
                           Array *p_mask,
-                          float  gamma = 1.f,
+                          int    deposition_ir = 32,
+                          float  deposition_scale_ratio = 1.f,
+                          float  gradient_power = 0.8f,
+                          float  gradient_scaling_ratio = 1.f,
+                          int    gradient_prefilter_ir = 16,
                           float  saturation_ratio = 1.f,
                           Array *p_bedrock = nullptr,
                           Array *p_moisture_map = nullptr,
-                          Array *p_erosion_map = nullptr, // -> out
-                          Array *p_flow_map = nullptr,    // -> out
-                          int    ir = 1);                    ///< @overload
+                          Array *p_erosion_map = nullptr,
+                          Array *p_deposition_map = nullptr,
+                          Array *p_flow_map = nullptr); ///< @overload
 
 /**
  * @brief Apply hydraulic erosion using the 'virtual pipes' algorithm.
@@ -1054,9 +990,13 @@ void thermal_auto_bedrock(Array &z,
 void thermal_flatten(Array       &z,
                      const Array &talus,
                      const Array &bedrock,
-                     int          iterations = 10);
+                     int          iterations = 10,
+                     int          post_filter_ir = 1);
 
-void thermal_flatten(Array &z, float talus, int iterations = 10); ///< @overload
+void thermal_flatten(Array &z,
+                     float  talus,
+                     int    iterations = 10,
+                     int    post_filter_ir = 1); ///< @overload
 
 /**
  * @brief Apply thermal weathering erosion.
@@ -1163,101 +1103,6 @@ void thermal_schott(Array      &z,
                     int         iterations = 10,
                     float       intensity = 0.001f); ///< @overload
 
-/**
- * @brief Apply thermal weathering erosion simulating scree deposition.
- *
- * @param z Input array.
- * @param p_mask Filter mask, expected in [0, 1].
- * @param talus Talus limit.
- * @param seed Random seed number.
- * @param zmax Elevation upper limit.
- * @param zmin Elevation lower limit.
- * @param noise_ratio Noise amplitude ratio (for talus and elevation limit).
- * @param landing_talus_ratio Talus value (as a ratio) at the scree landing (set
- * to 1 for no effect).
- * @param landing_width_ratio Landing relative extent, in [0, 1] (small values
- * lead to large landing).
- * @param talus_constraint Use talus constraint when populating the initial
- * queue.
- *
- * **Example**
- * @include ex_thermal_scree.cpp
- *
- * **Result**
- * @image html ex_thermal_scree.png
- */
-void thermal_scree(Array &z,
-                   Array *p_mask,
-                   float  talus,
-                   uint   seed,
-                   float  zmax,
-                   float  zmin,
-                   float  noise_ratio,
-                   Array *p_deposition_map = nullptr,
-                   float  landing_talus_ratio = 1.f,
-                   float  landing_width_ratio = 0.25f,
-                   bool   talus_constraint = true);
-
-void thermal_scree(Array &z,
-                   float  talus,
-                   uint   seed,
-                   float  zmax,
-                   float  zmin,
-                   float  noise_ratio,
-                   Array *p_deposition_map = nullptr,
-                   float  landing_talus_ratio = 1.f,
-                   float  landing_width_ratio = 0.25f,
-                   bool   talus_constraint = true); ///< @overload
-
-void thermal_scree(Array &z,
-                   float  talus,
-                   uint   seed,
-                   float  zmax,
-                   float  noise_ratio,
-                   Array *p_deposition_map = nullptr); ///< @overload
-
-/**
- * @brief Apply thermal weathering erosion simulating scree deposition,
- * performed on a coarse mesh to optimize restitution time.
- *
- * @param z Input array.
- * @param shape_coarse Array coarser shape used for the solver.
- * @param talus Talus limit.
- * @param seed Random seed number.
- * @param zmax Elevation upper limit.
- * @param zmin Elevation lower limit.
- * @param noise_ratio Noise amplitude ratio (for talus and elevation limit).
- * @param landing_talus_ratio Talus value (as a ratio) at the scree landing (set
- * to 1 for no effect).
- * @param landing_width_ratio Landing relative extent, in [0, 1] (small values
- * lead to large landing).
- * @param talus_constraint Use talus constraint when populating the initial
- * queue.
- *
- * **Example**
- * @include ex_thermal_scree.cpp
- *
- * **Result**
- * @image html ex_thermal_scree.png
- */
-void thermal_scree_fast(Array    &z,
-                        Vec2<int> shape_coarse,
-                        float     talus,
-                        uint      seed,
-                        float     zmax,
-                        float     zmin,
-                        float     noise_ratio,
-                        float     landing_talus_ratio,
-                        float     landing_width_ratio,
-                        bool      talus_constraint);
-
-void thermal_scree_fast(Array    &z,
-                        Vec2<int> shape_coarse,
-                        float     talus,
-                        uint      seed,
-                        float     zmax,
-                        float     noise_ratio); ///< @overload
-
 } // namespace hmap
 
 namespace hmap::gpu
@@ -1274,6 +1119,7 @@ void hydraulic_particle(Array &z,
                         float  c_capacity = 10.f,
                         float  c_erosion = 0.05f,
                         float  c_deposition = 0.05f,
+                        float  c_inertia = 0.3f,
                         float  drag_rate = 0.001f,
                         float  evap_rate = 0.001f,
                         bool   post_filtering = false);
@@ -1290,6 +1136,7 @@ void hydraulic_particle(Array &z,
                         float  c_capacity = 10.f,
                         float  c_erosion = 0.05f,
                         float  c_deposition = 0.05f,
+                        float  c_inertia = 0.3f,
                         float  drag_rate = 0.001f,
                         float  evap_rate = 0.001f,
                         bool   post_filtering = false);
@@ -1359,7 +1206,39 @@ void hydraulic_schott(Array       &z,
                       float        flow_routing_exponent = 1.3f,
                       float        thermal_weight = 1.5f,
                       float        deposition_weight = 2.5f,
-                      Array       *p_flow = nullptr);
+                      Array       *p_flow = nullptr); ///< @overload
+
+/*! @brief See hmap::hydraulic_stream_log */
+void hydraulic_stream_log(Array &z,
+                          float  c_erosion,
+                          float  talus_ref,
+                          int    deposition_ir = 32,
+                          float  deposition_scale_ratio = 1.f,
+                          float  gradient_power = 0.8f,
+                          float  gradient_scaling_ratio = 1.f,
+                          int    gradient_prefilter_ir = 16,
+                          float  saturation_ratio = 1.f,
+                          Array *p_bedrock = nullptr,
+                          Array *p_moisture_map = nullptr,
+                          Array *p_erosion_map = nullptr,
+                          Array *p_deposition_map = nullptr,
+                          Array *p_flow_map = nullptr);
+
+void hydraulic_stream_log(Array &z,
+                          float  c_erosion,
+                          float  talus_ref,
+                          Array *p_mask,
+                          int    deposition_ir = 32,
+                          float  deposition_scale_ratio = 1.f,
+                          float  gradient_power = 0.8f,
+                          float  gradient_scaling_ratio = 1.f,
+                          int    gradient_prefilter_ir = 16,
+                          float  saturation_ratio = 1.f,
+                          Array *p_bedrock = nullptr,
+                          Array *p_moisture_map = nullptr,
+                          Array *p_erosion_map = nullptr,
+                          Array *p_deposition_map = nullptr,
+                          Array *p_flow_map = nullptr); ///< @overload
 
 /*! @brief See hmap::thermal */
 void thermal(Array       &z,
@@ -1402,7 +1281,94 @@ void thermal_auto_bedrock(Array &z,
                           int    iterations = 10,
                           Array *p_deposition_map = nullptr);
 
+/**
+ * @brief Apply thermal weathering erosion to give a scree like effect.
+ *
+ * @note Only available if OpenCL is enabled.
+ *
+ * @param z Input array.
+ * @param talus Talus limit.
+ * @param p_deposition_map [out] Reference to the deposition map, provided as an
+ * output field.
+ * @param iterations Number of iterations.
+ *
+ * **Example**
+ * @include thermal_ridge.cpp
+ *
+ * **Result**
+ * @image html thermal_ridge.png
+ */
+void thermal_inflate(Array &z, const Array &talus, int iterations = 10);
+
+void thermal_inflate(Array       &z,
+                     const Array *p_mask,
+                     const Array &talus,
+                     int          iterations = 10); ///< @overload
+
 /*! @brief See hmap::thermal_rib */
 void thermal_rib(Array &z, int iterations, Array *p_bedrock = nullptr);
+
+/**
+ * @brief Apply thermal weathering erosion to give a ridge like effect.
+ *
+ * @note Based on https://www.fractal-landscapes.co.uk/maths.html
+ *
+ * @note Only available if OpenCL is enabled.
+ *
+ * @param z Input array.
+ * @param talus Talus limit.
+ * @param p_deposition_map [out] Reference to the deposition map, provided as an
+ * output field.
+ * @param iterations Number of iterations.
+ *
+ * **Example**
+ * @include thermal_ridge.cpp
+ *
+ * **Result**
+ * @image html thermal_ridge.png
+ */
+void thermal_ridge(Array       &z,
+                   const Array &talus,
+                   int          iterations = 10,
+                   Array       *p_deposition_map = nullptr);
+
+void thermal_ridge(Array       &z,
+                   const Array *p_mask,
+                   const Array &talus,
+                   int          iterations = 10,
+                   Array       *p_deposition_map = nullptr); ///< @overload
+
+/**
+ * @brief Performs thermal scree erosion on a heightmap.
+ *
+ * This function applies a thermal erosion process that redistributes material
+ * from steeper slopes to flatter areas, simulating talus formation. The process
+ * iterates a given number of times to achieve a more stable terrain profile.
+ *
+ * @param[out] z The heightmap to be modified in-place by the erosion process.
+ * @param[in] talus The threshold slope angles that determine where material is
+ * moved.
+ * @param[in] zmax The maximum allowed elevation for erosion effects.
+ * @param[in] iterations The number of erosion iterations to apply (default:
+ * 10).
+ * @param[in] talus_constraint Whether to enforce a constraint on the talus
+ * slope (default: true).
+ * @param[out] p_deposition_map Optional pointer to an array that stores the
+ * deposited material per cell.
+ */
+void thermal_scree(Array       &z,
+                   const Array &talus,
+                   const Array &zmax,
+                   int          iterations = 10,
+                   bool         talus_constraint = true,
+                   Array       *p_deposition_map = nullptr);
+
+void thermal_scree(Array       &z,
+                   const Array *p_mask,
+                   const Array &talus,
+                   const Array &zmax,
+                   int          iterations = 10,
+                   bool         talus_constraint = true,
+                   Array       *p_deposition_map = nullptr); ///< @overload
 
 } // namespace hmap::gpu

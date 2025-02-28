@@ -846,6 +846,36 @@ void match_histogram(Array &array, const Array &array_reference);
 Array mean_local(const Array &array, int ir);
 
 /**
+ * @brief Applies the mean shift algorithm to the input array.
+ *
+ * The mean shift algorithm iteratively adjusts each value in the input array
+ * by averaging nearby values within a specified radius (`ir`), using either
+ * simple or weighted mean computation. The process stops after the specified
+ * number of iterations or if convergence criteria are met.
+ *
+ * @param array The input array to process.
+ * @param ir The radius of the neighborhood to consider for mean computation.
+ * @param threshold The value threshold for considering neighboring elements.
+ *                  Only elements with differences below this threshold are
+ * included.
+ * @param iterations The number of iterations to perform the mean shift process.
+ * @param talus_weighted If true, uses weighted mean based on differences
+ * between values and their neighbors. If false, uses unweighted mean.
+ * @return A new array containing the result of the mean shift process.
+ *
+ * **Example**
+ * @include ex_mean_shift.cpp
+ *
+ * **Result**
+ * @image html ex_mean_shift.png
+ */
+Array mean_shift(const Array &array,
+                 int          ir,
+                 float        talus,
+                 int          iterations = 1,
+                 bool         talus_weighted = true);
+
+/**
  * @brief Apply a 3x3 median filter to the input array.
  *
  * This function applies a 3x3 median filter to the input array to reduce noise
@@ -2168,16 +2198,24 @@ namespace hmap::gpu
 
 /*! @brief See hmap::expand */
 void expand(Array &array, int ir);
-void expand(Array &array, int ir, Array *p_mask);
-void expand(Array &array, Array &kernel);
-void expand(Array &array, Array &kernel, Array *p_mask);
+void expand(Array &array, int ir, Array *p_mask);        ///< @overload
+void expand(Array &array, Array &kernel);                ///< @overload
+void expand(Array &array, Array &kernel, Array *p_mask); ///< @overload
+
+/*! @brief See hmap::gamma_correction_local */
+void gamma_correction_local(Array &array, float gamma, int ir, float k = 0.1f);
+void gamma_correction_local(Array &array,
+                            float  gamma,
+                            int    ir,
+                            Array *p_mask,
+                            float  k = 0.1f); ///< @overload
 
 /*! @brief See hmap::laplace */
 void laplace(Array &array, float sigma = 0.2f, int iterations = 3);
 void laplace(Array &array,
              Array *p_mask,
              float  sigma = 0.2f,
-             int    iterations = 3);
+             int    iterations = 3); ///< @overload
 
 /*! @brief See hmap::maximum_local */
 Array maximum_local(const Array &array, int ir);
@@ -2188,8 +2226,16 @@ Array maximum_local_disk(const Array &array, int ir);
 /*! @brief See hmap::mean_local */
 Array mean_local(const Array &array, int ir);
 
+/*! @brief See hmap::mean_shift */
+Array mean_shift(const Array &array,
+                 int          ir,
+                 float        talus,
+                 int          iterations = 1,
+                 bool         talus_weighted = true);
+
 /*! @brief See hmap::median_3x3 */
 void median_3x3(Array &array);
+void median_3x3(Array &array, Array *p_mask); ///< @overload
 
 /*! @brief See hmap::minimum_local */
 Array minimum_local(const Array &array, int ir);
@@ -2206,17 +2252,17 @@ void normal_displacement(Array &array,
                          Array *p_mask,
                          float  amount = 0.1f,
                          int    ir = 0,
-                         bool   reverse = false);
+                         bool   reverse = false); ///< @overload
 
 /*! @brief See hmap::plateau */
 void plateau(Array &array, Array *p_mask, int ir, float factor);
-void plateau(Array &array, int ir, float factor);
+void plateau(Array &array, int ir, float factor); ///< @overload
 
 /*! @brief See hmap::shrink */
 void shrink(Array &array, int ir);
-void shrink(Array &array, int ir, Array *p_mask);
-void shrink(Array &array, Array &kernel);
-void shrink(Array &array, Array &kernel, Array *p_mask);
+void shrink(Array &array, int ir, Array *p_mask);        ///< @overload
+void shrink(Array &array, Array &kernel);                ///< @overload
+void shrink(Array &array, Array &kernel, Array *p_mask); ///< @overload
 
 /*! @brief See hmap::smooth_cpulse */
 void smooth_cpulse(Array &array, int ir);
@@ -2233,6 +2279,16 @@ void smooth_fill(Array &array,
                  int    ir,
                  Array *p_mask,
                  float  k = 0.1f,
-                 Array *p_deposition_map = nullptr);
+                 Array *p_deposition_map = nullptr); ///< @overload
+
+/*! @brief See hmap::smooth_fill_holes */
+void smooth_fill_holes(Array &array, int ir);
+void smooth_fill_holes(Array &array, int ir, Array *p_mask); ///< @overload
+
+/*! @brief See hmap::smooth_fill_smear_peaks */
+void smooth_fill_smear_peaks(Array &array, int ir);
+void smooth_fill_smear_peaks(Array &array,
+                             int    ir,
+                             Array *p_mask); ///< @overload
 
 } // namespace hmap::gpu

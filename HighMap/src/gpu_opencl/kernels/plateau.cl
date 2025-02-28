@@ -27,8 +27,8 @@ void kernel plateau_post(global float *array,
   val = max(0.f, val);
 
   // gain
-  val = val < 0.5f ? 0.5f * pow(2.f * val, factor)
-                   : 1.f - 0.5f * pow(2.f * (1.f - val), factor);
+  val = val < 0.5f ? 0.5f * pow_float(2.f * val, factor)
+                   : 1.f - 0.5f * pow_float(2.f * (1.f - val), factor);
 
   // revert to orginal amplitude
   val = amin_v + (amax_v - amin_v) * val;

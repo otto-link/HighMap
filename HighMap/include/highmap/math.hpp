@@ -346,6 +346,7 @@ float smoothstep3(const float x);
  * @return float Output.
  */
 float smoothstep3_lower(const float x);
+Array smoothstep3_lower(const Array &x); ///< @overload
 
 /**
  * @brief Return the 3rd order smoothstep function, with zero derivative only
@@ -355,6 +356,7 @@ float smoothstep3_lower(const float x);
  * @return float Output.
  */
 float smoothstep3_upper(const float x);
+Array smoothstep3_upper(const Array &x); ///< @overload
 
 /**
  * @brief Return the 5rd order smoothstep function of the array elements.
@@ -391,6 +393,7 @@ float smoothstep5(const float x);
  * @return float Output.
  */
 float smoothstep5_lower(const float x);
+Array smoothstep5_lower(const Array &x); ///< @overload
 
 /**
  * @brief Return the 5rd order smoothstep function, with zero derivative only
@@ -400,6 +403,7 @@ float smoothstep5_lower(const float x);
  * @return float Output.
  */
 float smoothstep5_upper(const float x);
+Array smoothstep5_upper(const Array &x); ///< @overload
 
 /**
  * @brief Return the 7th order smoothstep function.
@@ -408,6 +412,7 @@ float smoothstep5_upper(const float x);
  * @return float Output.
  */
 float smoothstep7(const float x);
+Array smoothstep7(const Array &x); ///< @overload
 
 /**
  * @brief Return the square root of the array elements.

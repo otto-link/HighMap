@@ -310,6 +310,12 @@ public:
   void depose_amount_kernel_at(int i, int j, Array &kernel, float amount);
 
   /**
+   * @brief Debug tool, dump some infos and generate an output file (16bits
+   * grayscale)
+   */
+  void dump(const std::string &fname = "out.png") const;
+
+  /**
    * @brief Extracts a subarray defined by the slice indices {i1, i2, j1, j2}
    *        from the original array, creating a new array. Note that i2 and j2
    *        are excluded from the slice.
@@ -637,7 +643,7 @@ public:
    * format to the standard output. This can be useful for debugging or
    * inspecting the values of the array.
    */
-  void print();
+  void print() const;
 
   /**
    * @brief Return the peak-to-peak amplitude (i.e., the difference between the
@@ -801,7 +807,7 @@ public:
    * **Example**
    * @include ex_to_exr.cpp
    */
-  void to_exr(const std::string &fname);
+  void to_exr(const std::string &fname) const;
 
   /**
    * @brief Export the array to a raw binary file.
@@ -813,7 +819,7 @@ public:
    *
    * @param fname The name of the file to which the array data will be written.
    */
-  void to_file(const std::string &fname);
+  void to_file(const std::string &fname) const;
 
   /**
    * @brief Export the array to a numpy binary file.
@@ -823,7 +829,7 @@ public:
    * **Example**
    * @include ex_to_numpy.cpp
    */
-  void to_numpy(const std::string &fname);
+  void to_numpy(const std::string &fname) const;
 
   /**
    * @brief Export the array as a PNG image file with a specified colormap and
@@ -847,7 +853,7 @@ public:
   void to_png(const std::string &fname,
               int                cmap,
               bool               hillshading = false,
-              int                depth = CV_8U);
+              int                depth = CV_8U) const;
 
   /**
    * @brief Export the array as a grayscale PNG image file with specified bit
@@ -865,7 +871,7 @@ public:
    * **Example**
    * @include ex_to_png.cpp
    */
-  void to_png_grayscale(const std::string &fname, int depth = CV_8U);
+  void to_png_grayscale(const std::string &fname, int depth = CV_8U) const;
 
   /**
    * @brief Export the array as a TIFF image file.
@@ -879,7 +885,7 @@ public:
    * **Example**
    * @include ex_to_tiff.cpp
    */
-  void to_tiff(const std::string &fname);
+  void to_tiff(const std::string &fname) const;
 
   /**
    * @brief Export the array as a 16-bit raw file for Unity terrain import.
@@ -894,7 +900,7 @@ public:
    * **Example**
    * @include ex_to_raw_16bit.cpp
    */
-  void to_raw_16bit(const std::string &fname);
+  void to_raw_16bit(const std::string &fname) const;
 
   /**
    * @brief Return the unique elements of the array.

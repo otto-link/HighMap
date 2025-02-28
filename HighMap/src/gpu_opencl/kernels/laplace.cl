@@ -48,10 +48,6 @@ void kernel laplace_masked(global float *array,
                 array[linear_index(g.x, jm1, nx)] +
                 array[linear_index(g.x, jp1, nx)];
 
-  /* val = lerp(read_imagef(z, sampler, (int2)(g.x, g.y)).x, */
-  /*            val, */
-  /*            read_imagef(mask, sampler, (int2)(g.x, g.y)).x); */
-
   int index = linear_index(g.x, g.y, nx);
 
   array[index] += sigma * delta * mask[index];
