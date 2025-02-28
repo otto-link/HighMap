@@ -2235,6 +2235,7 @@ Array mean_shift(const Array &array,
 
 /*! @brief See hmap::median_3x3 */
 void median_3x3(Array &array);
+void median_3x3(Array &array, Array *p_mask); ///< @overload
 
 /*! @brief See hmap::minimum_local */
 Array minimum_local(const Array &array, int ir);

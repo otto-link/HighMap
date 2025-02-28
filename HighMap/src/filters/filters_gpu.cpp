@@ -268,6 +268,18 @@ void median_3x3(Array &array)
   run.read_imagef("out");
 }
 
+void median_3x3(Array &array, Array *p_mask)
+{
+  if (!p_mask)
+    gpu::median_3x3(array);
+  else
+  {
+    Array array_f = array;
+    gpu::median_3x3(array_f);
+    array = lerp(array, array_f, *(p_mask));
+  }
+}
+
 Array minimum_local(const Array &array, int ir)
 {
   return -gpu::maximum_local(-array, ir);
