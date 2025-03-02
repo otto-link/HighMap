@@ -14,7 +14,7 @@ Array select_valley(const Array &z, int ir, bool zero_at_borders)
   Array w = z;
   gpu::smooth_cpulse(w, std::max(1, ir));
 
-  w = curvature_mean(w);
+  w = curvature_mean(-w);
   make_binary(w);
   w = gpu::relative_distance_from_skeleton(w, ir, zero_at_borders);
 
