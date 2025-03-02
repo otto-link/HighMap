@@ -46,18 +46,9 @@ namespace hmap
 {
 
 /**
- * @brief Computes the accumulation curvature of a heightmap, highlighting areas
- * where water is likely to converge or diverge.
- *
- * Accumulation curvature is a useful metric in hydrological modeling and
- * terrain analysis. Positive values indicate regions where water flow converges
- * (e.g., valleys), leading to potential water accumulation, while negative
- * values indicate regions where flow diverges (e.g., ridges).
- *
- * **Usage**
- * - Apply this function when analyzing terrain for potential water paths or
- * erosion patterns.
- * - Useful in predicting areas prone to waterlogging or channel formation.
+ * @brief Computes the accumulation curvature of a heightmap. Acumulation
+ * curvature is a measure of the extent of local accumulation of flows at a
+ * given point.
  *
  * @param z The input array representing the heightmap data (elevation values).
  * @param ir The radius used for pre-filtering, which controls the scale of the

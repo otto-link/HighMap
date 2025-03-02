@@ -15,24 +15,23 @@ namespace hmap
 
 Array accumulation_curvature(const Array &z, int ir)
 {
+  // taken from Florinsky, I. (2016). Digital terrain analysis in soil
+  // science and geology. Academic Press.
+
   Array ac = z;
   if (ir > 0) smooth_cpulse(ac, ir);
 
+  // compute curvature criteria
   Array zx = gradient_x(ac);
   Array zy = gradient_y(ac);
   Array zxx = gradient_x(zx);
   Array zxy = gradient_y(zx);
   Array zyy = gradient_y(zy);
 
-  Array zx2 = zx * zx;
-  Array zy2 = zy * zy;
-  Array p = zx2 + zy2;
-  Array n = zy2 * zxx - 2.f * zxy * zx * zy + zx2 * zyy;
+  Array k = compute_curvature_k(zx, zy, zxx, zxy, zyy);
+  Array h = compute_curvature_h(zx, zy, zxx, zxy, zyy);
 
-  Array horizontal_curvature = p * pow(p + 1.f, 0.5f);
-  Array vertical_curvature = p * pow(p + 1.f, 1.5f);
-
-  ac = n * n / (horizontal_curvature * vertical_curvature + 1e-30);
+  ac = h * h - k * k;
 
   set_borders(ac, 0.f, ir);
 
