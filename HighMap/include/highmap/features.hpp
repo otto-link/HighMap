@@ -484,17 +484,24 @@ Array unsphericity(const Array &z, int ir);
 Array valley_width(const Array &z, int ir = 0);
 
 // helpers
-Array compute_curvature_h(Array &zx,
-                          Array &zy,
-                          Array &zxx,
-                          Array &zxy,
-                          Array &zyy);
 
-Array compute_curvature_k(Array &zx,
-                          Array &zy,
-                          Array &zxx,
-                          Array &zxy,
-                          Array &zyy);
+// Notation taken from Florinsky, I. (2016). Digital terrain analysis in soil
+// science and geology. Academic Press. p = dz/dx, q = dz/dy, r = d2z/dx2, s =
+// d2z/dxdy, t = d2z/dy2.
+void compute_curvature_gradients(const Array &z,
+                                 Array       &p,
+                                 Array       &q,
+                                 Array       &r,
+                                 Array       &s,
+                                 Array       &t);
+
+Array compute_curvature_h(const Array &r, const Array &t);
+
+Array compute_curvature_k(const Array &p,
+                          const Array &q,
+                          const Array &r,
+                          const Array &s,
+                          const Array &t);
 
 } // namespace hmap
 

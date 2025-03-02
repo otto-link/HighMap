@@ -15,21 +15,15 @@ namespace hmap::gpu
 
 Array accumulation_curvature(const Array &z, int ir)
 {
-  // taken from Florinsky, I. (2016). Digital terrain analysis in soil
-  // science and geology. Academic Press.
-
   Array ac = z;
   if (ir > 0) gpu::smooth_cpulse(ac, ir);
 
   // compute curvature criteria
-  Array zx = gradient_x(ac);
-  Array zy = gradient_y(ac);
-  Array zxx = gradient_x(zx);
-  Array zxy = gradient_y(zx);
-  Array zyy = gradient_y(zy);
+  Array p, q, r, s, t;
+  compute_curvature_gradients(ac, p, q, r, s, t);
 
-  Array k = compute_curvature_k(zx, zy, zxx, zxy, zyy);
-  Array h = compute_curvature_h(zx, zy, zxx, zxy, zyy);
+  Array k = compute_curvature_k(p, q, r, s, t);
+  Array h = compute_curvature_h(r, t);
 
   ac = h * h - k * k;
 
@@ -44,20 +38,17 @@ Array shape_index(const Array &z, int ir)
   if (ir > 0) gpu::smooth_cpulse(si, ir);
 
   // compute curvature criteria
-  Array zx = gradient_x(si);
-  Array zy = gradient_y(si);
-  Array zxx = gradient_x(zx);
-  Array zxy = gradient_y(zx);
-  Array zyy = gradient_y(zy);
+  Array p, q, r, s, t;
+  compute_curvature_gradients(si, p, q, r, s, t);
 
-  Array k = compute_curvature_k(zx, zy, zxx, zxy, zyy);
-  Array h = compute_curvature_h(zx, zy, zxx, zxy, zyy);
+  Array k = compute_curvature_k(p, q, r, s, t);
+  Array h = compute_curvature_h(r, t);
 
   Array d = h * h - k;
   clamp_min(d, 0.f);
   d = pow(d, 0.5f);
 
-  si = -2.f / M_PI * atan(h / (d + 1e-30));
+  si = 2.f / M_PI * atan(h / (d + 1e-30));
   si *= 0.5f;
   si += 0.5f;
 
@@ -72,14 +63,11 @@ Array unsphericity(const Array &z, int ir)
   if (ir > 0) gpu::smooth_cpulse(si, ir);
 
   // compute curvature criteria
-  Array zx = gradient_x(si);
-  Array zy = gradient_y(si);
-  Array zxx = gradient_x(zx);
-  Array zxy = gradient_y(zx);
-  Array zyy = gradient_y(zy);
+  Array p, q, r, s, t;
+  compute_curvature_gradients(si, p, q, r, s, t);
 
-  Array k = compute_curvature_k(zx, zy, zxx, zxy, zyy);
-  Array h = compute_curvature_h(zx, zy, zxx, zxy, zyy);
+  Array k = compute_curvature_k(p, q, r, s, t);
+  Array h = compute_curvature_h(r, t);
 
   Array d = h * h - k;
 
@@ -88,7 +76,7 @@ Array unsphericity(const Array &z, int ir)
 
   set_borders(d, 0.f, ir);
 
-  return d;
+  return si;
 }
 
 } // namespace hmap::gpu
