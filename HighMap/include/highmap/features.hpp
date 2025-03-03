@@ -46,30 +46,6 @@ namespace hmap
 {
 
 /**
- * @brief Computes the accumulation curvature of a heightmap. Acumulation
- * curvature is a measure of the extent of local accumulation of flows at a
- * given point.
- *
- * @param z The input array representing the heightmap data (elevation values).
- * @param ir The radius used for pre-filtering, which controls the scale of the
- * analysis (in pixels).
- * @return Array An output array containing the calculated accumulation
- * curvature values for each point in the input heightmap.
- *
- * **Example**
- * @include ex_curvature_gaussian.cpp
- *
- * **Result**
- * @image html ex_curvature_gaussian0.png
- * @image html ex_curvature_gaussian1.png
- * @image html ex_curvature_gaussian2.png
- * @image html ex_curvature_gaussian3.png
- * @image html ex_curvature_gaussian4.png
- * @image html ex_curvature_gaussian5.png
- */
-Array accumulation_curvature(const Array &z, int ir);
-
-/**
  * @brief Identifies and labels connected components within a binary or labeled
  * array, with optional filtering by size.
  *
@@ -104,71 +80,6 @@ Array accumulation_curvature(const Array &z, int ir);
 Array connected_components(const Array &array,
                            float        surface_threshold = 0.f,
                            float        background_value = 0.f);
-
-/**
- * @brief Calculates the Gaussian curvature of a heightmap, providing insights
- * into the surface's intrinsic curvature at each point.
- *
- * Gaussian curvature is a fundamental measure of surface curvature, indicating
- * how the surface bends in multiple directions at each point. This metric is
- * often used in geomorphology to understand landform shapes.
- *
- * **Usage**
- * - Use this function to analyze the overall shape of terrain features,
- * identifying whether regions are saddle-like, dome-like, or basin-like.
- * - Useful in studies related to tectonics, erosion patterns, and landform
- * development.
- *
- * @param z The input array representing the heightmap data (elevation values).
- * @return Array An output array containing the Gaussian curvature values, with
- * positive values indicating dome-like shapes and negative values indicating
- * saddle shapes.
- *
- * **Example**
- * @include ex_curvature_gaussian.cpp
- *
- * **Result**
- * @image html ex_curvature_gaussian0.png
- * @image html ex_curvature_gaussian1.png
- * @image html ex_curvature_gaussian2.png
- * @image html ex_curvature_gaussian3.png
- * @image html ex_curvature_gaussian4.png
- * @image html ex_curvature_gaussian5.png
- */
-Array curvature_gaussian(const Array &z);
-
-/**
- * @brief Computes the mean curvature of a heightmap, indicating the average
- * curvature at each point on the surface.
- *
- * Mean curvature is another critical metric in geomorphology, representing the
- * average bending of the surface. This measure is useful in understanding
- * terrain smoothness and can help identify areas of potential erosion or
- * deposition.
- *
- * **Usage**
- * - Apply this function to detect areas prone to erosion or sediment
- * deposition.
- * - Useful in landscape evolution models and in analyzing the stability of
- * slopes.
- *
- * @param z The input array representing the heightmap data (elevation values).
- * @return Array An output array containing the mean curvature values, where
- * positive values indicate convex regions and negative values indicate concave
- * regions.
- *
- * **Example**
- * @include ex_curvature_gaussian.cpp
- *
- * **Result**
- * @image html ex_curvature_gaussian0.png
- * @image html ex_curvature_gaussian1.png
- * @image html ex_curvature_gaussian2.png
- * @image html ex_curvature_gaussian3.png
- * @image html ex_curvature_gaussian4.png
- * @image html ex_curvature_gaussian5.png
- */
-Array curvature_mean(const Array &z);
 
 /**
  * @brief Classifies terrain into geomorphological features based on the
@@ -382,76 +293,6 @@ Array ruggedness(const Array &array, int ir);
 Array rugosity(const Array &z, int ir, bool convex = true);
 
 /**
- * @brief Computes the Shape Index (SI) of the terrain, quantifying landform
- * complexity based on curvature.
- *
- * The Shape Index is a metric used to describe the shape of landforms,
- * particularly in digital elevation models (DEMs). It differentiates between
- * convex (e.g., hilltops), concave (e.g., valleys), and flat surfaces.
- *
- * **Usage**:
- * - Use this function to classify terrain into different morphological types,
- * which can be important in land use planning and environmental studies.
- * - Useful in landscape ecology and in understanding geomorphological
- * processes.
- *
- * @param z The input array representing the heightmap data (elevation values).
- * @param ir The radius used for pre-filtering, which controls the scale of the
- * analysis (in pixels).
- * @return Array An output array containing Shape Index values, where values
- * above 0.5 indicate convex shapes, and values below 0.5 indicate concave
- * shapes.
- *
- * **Example**
- * @include ex_curvature_gaussian.cpp
- *
- * **Result**
- * @image html ex_curvature_gaussian0.png
- * @image html ex_curvature_gaussian1.png
- * @image html ex_curvature_gaussian2.png
- * @image html ex_curvature_gaussian3.png
- * @image html ex_curvature_gaussian4.png
- * @image html ex_curvature_gaussian5.png
- */
-Array shape_index(const Array &z, int ir);
-
-/**
- * @brief Calculates the unsphericity of a surface, indicating how much the
- * terrain deviates from a perfect spherical shape.
- *
- * Unsphericity is a measure used to understand the degree of asymmetry in
- * terrain surfaces. It quantifies how much a surface deviates from being
- * perfectly spherical or symmetrical, which can be critical in various
- * geomorphological analyses.
- *
- * **Usage**
- * - Use this function to identify areas of terrain that significantly deviate
- * from a spherical shape, which may indicate unique geological formations or
- * erosion patterns.
- * - Helpful in identifying and analyzing landforms that are not perfectly round
- * or symmetrical, such as irregular hills or basins.
- *
- * @param z The input array representing the heightmap data (elevation values).
- * @param ir The radius used for pre-filtering, controlling the scale of
- * analysis (in pixels).
- * @return Array An output array containing unsphericity values, where values
- * greater than 0.5 indicate convex regions (e.g., peaks) and values less than
- * 0.5 indicate concave regions (e.g., valleys).
- *
- * **Example**
- * @include ex_curvature_gaussian.cpp
- *
- * **Result**
- * @image html ex_curvature_gaussian0.png
- * @image html ex_curvature_gaussian1.png
- * @image html ex_curvature_gaussian2.png
- * @image html ex_curvature_gaussian3.png
- * @image html ex_curvature_gaussian4.png
- * @image html ex_curvature_gaussian5.png
- */
-Array unsphericity(const Array &z, int ir);
-
-/**
  * @brief Measures the valley width by calculating the distance from each point
  * in a concave region to the frontier of that region.
  *
@@ -485,33 +326,10 @@ Array unsphericity(const Array &z, int ir);
  */
 Array valley_width(const Array &z, int ir = 0, bool ridge_select = false);
 
-// helpers
-
-// Notation taken from Florinsky, I. (2016). Digital terrain analysis in soil
-// science and geology. Academic Press. p = dz/dx, q = dz/dy, r = d2z/dx2, s =
-// d2z/dxdy, t = d2z/dy2.
-void compute_curvature_gradients(const Array &z,
-                                 Array       &p,
-                                 Array       &q,
-                                 Array       &r,
-                                 Array       &s,
-                                 Array       &t);
-
-Array compute_curvature_h(const Array &r, const Array &t);
-
-Array compute_curvature_k(const Array &p,
-                          const Array &q,
-                          const Array &r,
-                          const Array &s,
-                          const Array &t);
-
 } // namespace hmap
 
 namespace hmap::gpu
 {
-
-/*! @brief See hmap::accumulation_curvature */
-Array accumulation_curvature(const Array &z, int ir);
 
 /*! @brief See hmap::relative_elevation */
 Array relative_elevation(const Array &array, int ir);
@@ -521,11 +339,5 @@ Array ruggedness(const Array &array, int ir);
 
 /*! @brief See hmap::rugosity */
 Array rugosity(const Array &z, int ir, bool convex = true);
-
-/*! @brief See hmap::shape_index */
-Array shape_index(const Array &z, int ir);
-
-/*! @brief See hmap::unsphericity */
-Array unsphericity(const Array &z, int ir);
 
 } // namespace hmap::gpu

@@ -7,7 +7,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/boundary.hpp"
-#include "highmap/features.hpp"
+#include "highmap/curvature.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/gradient.hpp"
 #include "highmap/hydrology.hpp"

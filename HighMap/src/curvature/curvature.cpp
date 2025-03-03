@@ -1,8 +1,8 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
+#include "highmap/curvature.hpp"
 #include "highmap/boundary.hpp"
-#include "highmap/features.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/range.hpp"
 
@@ -29,45 +29,6 @@ Array accumulation_curvature(const Array &z, int ir)
   set_borders(ac, 0.f, ir);
 
   return ac;
-}
-
-void compute_curvature_gradients(const Array &z,
-                                 Array       &p,
-                                 Array       &q,
-                                 Array       &r,
-                                 Array       &s,
-                                 Array       &t)
-{
-  p = Array(z.shape);
-  q = Array(z.shape);
-  r = Array(z.shape);
-  s = Array(z.shape);
-  t = Array(z.shape);
-
-  for (int j = 1; j < z.shape.y - 1; ++j)
-    for (int i = 1; i < z.shape.x - 1; ++i)
-    {
-      p(i, j) = 0.5f * (z(i + 1, j) - z(i - 1, j));        // dz/dx
-      q(i, j) = 0.5f * (z(i, j + 1) - z(i, j - 1));        // dz/dy
-      r(i, j) = z(i + 1, j) - 2.f * z(i, j) + z(i - 1, j); // d2z/dx2
-      s(i, j) = 0.25f * (z(i - 1, j - 1) - z(i - 1, j + 1) - z(i + 1, j - 1) +
-                         z(i + 1, j + 1));                 // d2z/dxdy
-      t(i, j) = z(i, j + 1) - 2.f * z(i, j) + z(i, j - 1); // d2z/dy2
-    }
-}
-
-Array compute_curvature_h(const Array &r, const Array &t)
-{
-  return -0.5f * (r + t);
-}
-
-Array compute_curvature_k(const Array &p,
-                          const Array &q,
-                          const Array &r,
-                          const Array &s,
-                          const Array &t)
-{
-  return (r * t - s * s) / pow(1.f + p * p + q * q, 2.f);
 }
 
 Array curvature_gaussian(const Array &z)
@@ -129,6 +90,47 @@ Array unsphericity(const Array &z, int ir)
   set_borders(d, 0.f, ir);
 
   return d;
+}
+
+// --- helpers
+
+void compute_curvature_gradients(const Array &z,
+                                 Array       &p,
+                                 Array       &q,
+                                 Array       &r,
+                                 Array       &s,
+                                 Array       &t)
+{
+  p = Array(z.shape);
+  q = Array(z.shape);
+  r = Array(z.shape);
+  s = Array(z.shape);
+  t = Array(z.shape);
+
+  for (int j = 1; j < z.shape.y - 1; ++j)
+    for (int i = 1; i < z.shape.x - 1; ++i)
+    {
+      p(i, j) = 0.5f * (z(i + 1, j) - z(i - 1, j));        // dz/dx
+      q(i, j) = 0.5f * (z(i, j + 1) - z(i, j - 1));        // dz/dy
+      r(i, j) = z(i + 1, j) - 2.f * z(i, j) + z(i - 1, j); // d2z/dx2
+      s(i, j) = 0.25f * (z(i - 1, j - 1) - z(i - 1, j + 1) - z(i + 1, j - 1) +
+                         z(i + 1, j + 1));                 // d2z/dxdy
+      t(i, j) = z(i, j + 1) - 2.f * z(i, j) + z(i, j - 1); // d2z/dy2
+    }
+}
+
+Array compute_curvature_h(const Array &r, const Array &t)
+{
+  return -0.5f * (r + t);
+}
+
+Array compute_curvature_k(const Array &p,
+                          const Array &q,
+                          const Array &r,
+                          const Array &s,
+                          const Array &t)
+{
+  return (r * t - s * s) / pow(1.f + p * p + q * q, 2.f);
 }
 
 } // namespace hmap

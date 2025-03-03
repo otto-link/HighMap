@@ -1,2 +1,0 @@
-add_executable(ex_curvature_gaussian ex_curvature_gaussian.cpp)
-target_link_libraries(ex_curvature_gaussian highmap)

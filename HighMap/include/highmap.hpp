@@ -22,6 +22,7 @@
 #include "highmap/colorize.hpp"
 #include "highmap/colormaps.hpp"
 #include "highmap/convolve.hpp"
+#include "highmap/curvature.hpp"
 #include "highmap/erosion.hpp"
 #include "highmap/export.hpp"
 #include "highmap/features.hpp"
