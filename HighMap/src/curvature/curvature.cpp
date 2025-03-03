@@ -38,11 +38,124 @@ Array curvature_gaussian(const Array &z)
   return compute_curvature_k(p, q, r, s, t);
 }
 
+Array curvature_horizontal_cross_sectional(const Array &z, int ir)
+{
+  Array c = z;
+  if (ir > 0) smooth_cpulse(c, ir);
+
+  Array p, q, r, s, t;
+  compute_curvature_gradients(c, p, q, r, s, t);
+
+  c = -2.f * (t * p * p + r * q * q + s * p * q) / (p * p + q * q + 1e-30f);
+
+  set_borders(c, 0.f, ir);
+
+  return c;
+}
+
+Array curvature_horizontal_plan(const Array &z, int ir)
+{
+  Array c = z;
+  if (ir > 0) smooth_cpulse(c, ir);
+
+  Array p, q, r, s, t;
+  compute_curvature_gradients(c, p, q, r, s, t);
+
+  c = -(t * p * p + r * q * q - 2.f * s * p * q) /
+      (pow(1.f + p * p + q * q, 1.5f));
+
+  set_borders(c, 0.f, ir);
+
+  return c;
+}
+
+Array curvature_horizontal_tangential(const Array &z, int ir)
+{
+  Array c = z;
+  if (ir > 0) smooth_cpulse(c, ir);
+
+  Array p, q, r, s, t;
+  compute_curvature_gradients(c, p, q, r, s, t);
+
+  c = -(t * p * p + r * q * q - 2.f * s * p * q) /
+      ((p * p + q * q + 1e-30f) * pow(1.f + p * p + q * q, 0.5f));
+
+  set_borders(c, 0.f, ir);
+
+  return c;
+}
+
 Array curvature_mean(const Array &z)
 {
   Array p, q, r, s, t;
   compute_curvature_gradients(z, p, q, r, s, t);
   return compute_curvature_h(r, t);
+}
+
+Array curvature_ring(const Array &z, int ir)
+{
+  Array c = z;
+  if (ir > 0) smooth_cpulse(c, ir);
+
+  Array p, q, r, s, t;
+  compute_curvature_gradients(c, p, q, r, s, t);
+
+  c = ((p * p - q * q) * s - p * q * (r - t)) /
+      ((p * p + q * q + 1e-30f) * (1.f + p * p + q * q));
+  c *= c;
+
+  set_borders(c, 0.f, ir);
+
+  return c;
+}
+
+Array curvature_rotor(const Array &z, int ir)
+{
+  Array c = z;
+  if (ir > 0) smooth_cpulse(c, ir);
+
+  Array p, q, r, s, t;
+  compute_curvature_gradients(c, p, q, r, s, t);
+
+  c = ((p * p - q * q) * s - p * q * (r - t)) /
+      pow(p * p + q * q + 1e-6f, 1.5f);
+
+  set_borders(c, 0.f, ir);
+
+  c.infos();
+
+  return c;
+}
+
+Array curvature_vertical_longitudinal(const Array &z, int ir)
+{
+  Array c = z;
+  if (ir > 0) smooth_cpulse(c, ir);
+
+  Array p, q, r, s, t;
+  compute_curvature_gradients(c, p, q, r, s, t);
+
+  c = -2.f * (r * p * p + t * q * q + s * p * q) / (p * p + q * q + 1e-30f);
+
+  set_borders(c, 0.f, ir);
+
+  return c;
+}
+
+Array curvature_vertical_profile(const Array &z, int ir)
+{
+  Array c = z;
+  if (ir > 0) smooth_cpulse(c, ir);
+
+  Array p, q, r, s, t;
+  compute_curvature_gradients(c, p, q, r, s, t);
+
+  c = -(r * p * p + t * q * q + 2.f * s * p * q) /
+      ((p * p + q * q + 1e-30f) * pow(1. + p * p + q * q, 1.5f));
+
+  set_borders(c, 0.f, ir);
+
+  return c;
 }
 
 Array shape_index(const Array &z, int ir)
