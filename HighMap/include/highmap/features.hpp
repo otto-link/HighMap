@@ -471,6 +471,7 @@ Array unsphericity(const Array &z, int ir);
  * @param ir The radius used for pre-filtering, controlling the scale of
  * analysis (in pixels). The default value is 0, meaning no pre-filtering is
  * applied.
+ * @param ridge_select If enabled, selects ridges instead of valleys.
  * @return Array An output array containing valley width values, representing
  * the distance to the edge of the concave region for each point.
  *
@@ -480,8 +481,9 @@ Array unsphericity(const Array &z, int ir);
  * **Result**
  * @image html ex_valley_width0.png
  * @image html ex_valley_width1.png
+ * @image html ex_valley_width2.png
  */
-Array valley_width(const Array &z, int ir = 0);
+Array valley_width(const Array &z, int ir = 0, bool ridge_select = false);
 
 // helpers
 
