@@ -11,35 +11,112 @@ namespace hmap::gpu
 
 Array accumulation_curvature(const Array &z, int ir)
 {
-  Array ac = z;
-  if (ir > 0) gpu::smooth_cpulse(ac, ir);
+  Array c = z;
+  if (ir > 0) gpu::smooth_cpulse(c, ir);
 
-  ac = hmap::accumulation_curvature(ac, 0);
+  c = hmap::accumulation_curvature(c, 0);
 
-  set_borders(ac, 0.f, ir);
-  return ac;
+  set_borders(c, 0.f, ir);
+  return c;
+}
+
+Array curvature_horizontal_cross_sectional(const Array &z, int ir)
+{
+  Array c = z;
+  if (ir > 0) gpu::smooth_cpulse(c, ir);
+
+  c = hmap::curvature_horizontal_cross_sectional(c, 0);
+
+  set_borders(c, 0.f, ir);
+  return c;
+}
+
+Array curvature_horizontal_plan(const Array &z, int ir)
+{
+  Array c = z;
+  if (ir > 0) gpu::smooth_cpulse(c, ir);
+
+  c = hmap::curvature_horizontal_plan(c, 0);
+
+  set_borders(c, 0.f, ir);
+  return c;
+}
+
+Array curvature_horizontal_tangential(const Array &z, int ir)
+{
+  Array c = z;
+  if (ir > 0) gpu::smooth_cpulse(c, ir);
+
+  c = hmap::curvature_horizontal_tangential(c, 0);
+
+  set_borders(c, 0.f, ir);
+  return c;
+}
+
+Array curvature_ring(const Array &z, int ir)
+{
+  Array c = z;
+  if (ir > 0) gpu::smooth_cpulse(c, ir);
+
+  c = hmap::curvature_ring(c, 0);
+
+  set_borders(c, 0.f, ir);
+  return c;
+}
+
+Array curvature_rotor(const Array &z, int ir)
+{
+  Array c = z;
+  if (ir > 0) gpu::smooth_cpulse(c, ir);
+
+  c = hmap::curvature_rotor(c, 0);
+
+  set_borders(c, 0.f, ir);
+  return c;
+}
+
+Array curvature_vertical_longitudinal(const Array &z, int ir)
+{
+  Array c = z;
+  if (ir > 0) gpu::smooth_cpulse(c, ir);
+
+  c = hmap::curvature_vertical_longitudinal(c, 0);
+
+  set_borders(c, 0.f, ir);
+  return c;
+}
+
+Array curvature_vertical_profile(const Array &z, int ir)
+{
+  Array c = z;
+  if (ir > 0) gpu::smooth_cpulse(c, ir);
+
+  c = hmap::curvature_vertical_profile(c, 0);
+
+  set_borders(c, 0.f, ir);
+  return c;
 }
 
 Array shape_index(const Array &z, int ir)
 {
-  Array si = z;
-  if (ir > 0) gpu::smooth_cpulse(si, ir);
+  Array c = z;
+  if (ir > 0) gpu::smooth_cpulse(c, ir);
 
-  si = hmap::shape_index(si, 0);
+  c = hmap::shape_index(c, 0);
 
-  set_borders(si, 0.f, ir);
-  return si;
+  set_borders(c, 0.f, ir);
+  return c;
 }
 
 Array unsphericity(const Array &z, int ir)
 {
-  Array si = z;
-  if (ir > 0) gpu::smooth_cpulse(si, ir);
+  Array c = z;
+  if (ir > 0) gpu::smooth_cpulse(c, ir);
 
-  si = hmap::unsphericity(si, 0);
+  c = hmap::unsphericity(c, 0);
 
-  set_borders(si, 0.f, ir);
-  return si;
+  set_borders(c, 0.f, ir);
+  return c;
 }
 
 } // namespace hmap::gpu

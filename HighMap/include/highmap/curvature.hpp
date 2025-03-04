@@ -266,6 +266,27 @@ namespace hmap::gpu
 /*! @brief See hmap::accumulation_curvature */
 Array accumulation_curvature(const Array &z, int ir);
 
+/*! @brief See hmap::curvature_horizontal_cross_sectional */
+Array curvature_horizontal_cross_sectional(const Array &z, int ir);
+
+/*! @brief See hmap::curvature_horizontal_plan */
+Array curvature_horizontal_plan(const Array &z, int ir);
+
+/*! @brief See hmap::curvature_horizontal_tangential */
+Array curvature_horizontal_tangential(const Array &z, int ir);
+
+/*! @brief See hmap::curvature_ring */
+Array curvature_ring(const Array &z, int ir);
+
+/*! @brief See hmap::curvature_rotor */
+Array curvature_rotor(const Array &z, int ir);
+
+/*! @brief See hmap::curvature_vertical_longitudinal */
+Array curvature_vertical_longitudinal(const Array &z, int ir);
+
+/*! @brief See hmap::curvature_vertical_profile */
+Array curvature_vertical_profile(const Array &z, int ir);
+
 /*! @brief See hmap::shape_index */
 Array shape_index(const Array &z, int ir);
 
