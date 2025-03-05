@@ -425,6 +425,9 @@ namespace hmap::gpu
 {
 
 /*! @brief See hmap::select_valley */
-Array select_valley(const Array &z, int ir, bool zero_at_borders = true);
+Array select_valley(const Array &z,
+                    int          ir,
+                    bool         zero_at_borders = true,
+                    bool         ridge_select = false);
 
 } // namespace hmap::gpu
