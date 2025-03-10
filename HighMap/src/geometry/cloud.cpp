@@ -46,6 +46,63 @@ void Cloud::clear()
   this->points.clear();
 }
 
+bool Cloud::from_csv(const std::string &fname)
+{
+  std::ifstream file(fname);
+
+  // early failure
+  if (!file.is_open())
+  {
+    LOG_ERROR("Could not open file: %s", fname.c_str());
+    return false;
+  }
+
+  // load data
+  std::vector<Point> new_points = {};
+
+  std::string line;
+
+  while (std::getline(file, line))
+  {
+    std::istringstream  ss(line);
+    std::string         token;
+    std::vector<double> values;
+
+    while (std::getline(ss, token, ','))
+    {
+      try
+      {
+        values.push_back(std::stod(token));
+      }
+      catch (const std::invalid_argument &e)
+      {
+        LOG_ERROR("Invalid number format in CSV file.");
+        return false;
+      }
+    }
+
+    if (values.size() == 2)
+    {
+      new_points.push_back(Point(values[0], values[1]));
+    }
+    else if (values.size() == 3)
+    {
+      new_points.push_back(Point(values[0], values[1], values[2]));
+    }
+    else
+    {
+      LOG_ERROR("Error: Unexpected number of values in CSV file.");
+      return false;
+    }
+  }
+
+  file.close();
+
+  this->points = new_points;
+
+  return true;
+}
+
 Vec4<float> Cloud::get_bbox()
 {
   std::vector<float> x = this->get_x();

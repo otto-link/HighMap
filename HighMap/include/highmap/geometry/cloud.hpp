@@ -132,6 +132,27 @@ public:
   void clear();
 
   /**
+   * @brief Loads point data from a CSV file into the Cloud object.
+   *
+   * This function reads a CSV file where each line contains either 2D (X, Y) or
+   * 3D (X, Y, Z) point data. The function automatically detects the
+   * dimensionality of the points based on the number of values per line. The
+   * loaded points are stored in the `points` member of the Cloud object.
+   *
+   * @param fname The path to the CSV file to be read.
+   * @return true if the file was successfully read and the points were loaded,
+   * false otherwise.
+   *
+   * @note The CSV file must be well-formed, with each line containing either 2
+   * or 3 comma-separated values. Lines with an unexpected number of values will
+   * cause the function to return false.
+   *
+   * @warning If the file cannot be opened or contains invalid data (e.g.,
+   * non-numeric values), the function will log an error and return false.
+   */
+  bool from_csv(const std::string &fname);
+
+  /**
    * @brief Get the bounding box of the cloud.
    *
    * This method calculates and returns the axis-aligned bounding box of the
