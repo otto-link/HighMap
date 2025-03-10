@@ -4,6 +4,8 @@
 #include <cmath>
 #include <fstream>
 #include <iomanip>
+#include <iostream>
+#include <locale>
 #include <string>
 
 #include "delaunator-cpp.hpp"
@@ -62,17 +64,22 @@ bool Cloud::from_csv(const std::string &fname)
 
   std::string line;
 
+  // tweak locales to ensure decimals are defined using a 'dot',
+  // https://stackoverflow.com/questions/12316972/
+  const std::string old_locale = std::setlocale(LC_NUMERIC, nullptr);
+  std::setlocale(LC_NUMERIC, "C");
+
   while (std::getline(file, line))
   {
-    std::istringstream  ss(line);
-    std::string         token;
-    std::vector<double> values;
+    std::istringstream ss(line);
+    std::string        token;
+    std::vector<float> values;
 
     while (std::getline(ss, token, ','))
     {
       try
       {
-        values.push_back(std::stod(token));
+        values.push_back(std::stof(token));
       }
       catch (const std::invalid_argument &e)
       {
@@ -95,6 +102,9 @@ bool Cloud::from_csv(const std::string &fname)
       return false;
     }
   }
+
+  // restore locale setting
+  std::setlocale(LC_NUMERIC, old_locale.c_str());
 
   file.close();
 
