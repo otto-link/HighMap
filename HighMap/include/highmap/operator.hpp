@@ -296,7 +296,7 @@ void fill_array_using_xy_function(
  * @param error Input array containing error or cost values.
  * @param path_i Output vector of indices representing the cut path.
  */
-void find_vertical_cut_path(Array &error, std::vector<int> &path_i);
+void find_vertical_cut_path(const Array &error, std::vector<int> &path_i);
 
 /**
  * @brief Generate a smooth mask based on a cut path.
@@ -339,7 +339,7 @@ Array generate_mask(hmap::Vec2<int> shape, std::vector<int> cut_path_i, int ir);
  *
  * @return The extracted and transformed patch from the main input array.
  */
-Array get_random_patch(Array                &array,
+Array get_random_patch(const Array          &array,
                        hmap::Vec2<int>       patch_shape,
                        std::mt19937         &gen,
                        bool                  patch_flip = false,

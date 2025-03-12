@@ -324,7 +324,7 @@ public:
    * j2}.
    * @return Array The extracted subarray.
    */
-  Array extract_slice(Vec4<int> idx);
+  Array extract_slice(Vec4<int> idx) const;
 
   /**
    * @brief Import array data from a raw binary file.

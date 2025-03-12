@@ -96,7 +96,7 @@ void Array::dump(const std::string &fname) const
   this->to_png_grayscale(fname, CV_16U);
 }
 
-Array Array::extract_slice(Vec4<int> idx)
+Array Array::extract_slice(Vec4<int> idx) const
 {
   Array array_out = Array(Vec2<int>(idx.b - idx.a, idx.d - idx.c));
 

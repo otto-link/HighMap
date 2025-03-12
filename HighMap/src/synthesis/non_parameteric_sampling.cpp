@@ -36,7 +36,7 @@ bool cmp_queue(std::pair<int, std::pair<int, int>> &a,
 
 // --- sampling
 
-Array non_parametric_sampling(Array          &array,
+Array non_parametric_sampling(const Array    &array,
                               hmap::Vec2<int> patch_shape,
                               uint            seed,
                               float           error_threshold)
