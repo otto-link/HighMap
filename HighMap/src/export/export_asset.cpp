@@ -24,14 +24,14 @@ std::string extract_raw_filename(std::string fname)
   return fname.substr(0, lastindex);
 }
 
-bool export_asset(std::string       fname,
-                  const Array      &array,
-                  MeshType          mesh_type,
-                  AssetExportFormat export_format,
-                  float             elevation_scaling,
-                  std::string       texture_fname,
-                  std::string       normal_map_fname,
-                  float             max_error)
+bool export_asset(const std::string &fname,
+                  const Array       &array,
+                  MeshType           mesh_type,
+                  AssetExportFormat  export_format,
+                  float              elevation_scaling,
+                  const std::string &texture_fname,
+                  const std::string &normal_map_fname,
+                  float              max_error)
 {
 
   LOG_DEBUG("exporting asset, format [%s] aka [%s]",

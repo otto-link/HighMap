@@ -171,14 +171,14 @@ void helper_smooth_triple_corner(Array &zfull,
 // Main operator
 //----------------------------------------------------------------------
 
-void export_as_cubemap(std::string  fname,
-                       const Array &z,
-                       int          cubemap_resolution,
-                       float        overlap,
-                       int          ir,
-                       Cmap         cmap,
-                       bool         splitted,
-                       Array       *p_cubemap)
+void export_as_cubemap(const std::string &fname,
+                       const Array       &z,
+                       int                cubemap_resolution,
+                       float              overlap,
+                       int                ir,
+                       Cmap               cmap,
+                       bool               splitted,
+                       Array             *p_cubemap)
 {
 
   // shape of individual texture of the cubemap (work with square

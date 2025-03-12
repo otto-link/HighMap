@@ -154,14 +154,14 @@ static std::map<AssetExportFormat, std::vector<std::string>>
  * triangulation. Default is 5e-4f.
  * @return `true` if the export is successful, `false` otherwise.
  */
-bool export_asset(std::string       fname,
-                  const Array      &array,
-                  MeshType          mesh_type = MeshType::TRI,
-                  AssetExportFormat export_format = AssetExportFormat::GLB2,
-                  float             elevation_scaling = 0.2f,
-                  std::string       texture_fname = "",
-                  std::string       normal_map_fname = "",
-                  float             max_error = 5e-4f);
+bool export_asset(const std::string &fname,
+                  const Array       &array,
+                  MeshType           mesh_type = MeshType::TRI,
+                  AssetExportFormat  export_format = AssetExportFormat::GLB2,
+                  float              elevation_scaling = 0.2f,
+                  const std::string &texture_fname = "",
+                  const std::string &normal_map_fname = "",
+                  float              max_error = 5e-4f);
 
 /**
  * @brief Exports a 2D array as a cubemap texture with continuity enforcement
@@ -198,14 +198,14 @@ bool export_asset(std::string       fname,
  * **Result**
  * @image html ex_export_as_cubemap.png
  */
-void export_as_cubemap(std::string  fname,
-                       const Array &z,
-                       int          cubemap_resolution = 128,
-                       float        overlap = 0.25f,
-                       int          ir = 16,
-                       Cmap         cmap = Cmap::GRAY,
-                       bool         splitted = false,
-                       Array       *p_cubemap = nullptr);
+void export_as_cubemap(const std::string &fname,
+                       const Array       &z,
+                       int                cubemap_resolution = 128,
+                       float              overlap = 0.25f,
+                       int                ir = 16,
+                       Cmap               cmap = Cmap::GRAY,
+                       bool               splitted = false,
+                       Array             *p_cubemap = nullptr);
 
 /**
  * @brief Exports a set of arrays as a banner PNG image file.
@@ -221,10 +221,10 @@ void export_as_cubemap(std::string  fname,
  * @param hillshading A boolean flag to activate hillshading for enhanced
  * visual depth. Default is `false`.
  */
-void export_banner_png(std::string        fname,
-                       std::vector<Array> arrays,
-                       int                cmap,
-                       bool               hillshading = false);
+void export_banner_png(const std::string        &fname,
+                       const std::vector<Array> &arrays,
+                       int                       cmap,
+                       bool                      hillshading = false);
 
 /**
  * @brief Exports the heightmap normal map as an 8-bit PNG file.
@@ -241,9 +241,9 @@ void export_banner_png(std::string        fname,
  * **Example**
  * @include ex_export_normal_map.cpp
  */
-void export_normal_map_png(std::string  fname,
-                           const Array &array,
-                           int          depth = CV_8U);
+void export_normal_map_png(const std::string &fname,
+                           const Array       &array,
+                           int                depth = CV_8U);
 
 /**
  * @brief Exports four arrays as an RGBA PNG splatmap.
@@ -273,12 +273,12 @@ void export_normal_map_png(std::string  fname,
  * @image html ex_export_splatmap_png_16bit0.png
  * @image html ex_export_splatmap_png_16bit1.png
  */
-void export_splatmap_png(std::string fname,
-                         Array      *p_r,
-                         Array      *p_g = nullptr,
-                         Array      *p_b = nullptr,
-                         Array      *p_a = nullptr,
-                         int         depth = CV_8U);
+void export_splatmap_png(const std::string &fname,
+                         const Array       *p_r,
+                         const Array       *p_g = nullptr,
+                         const Array       *p_b = nullptr,
+                         const Array       *p_a = nullptr,
+                         int                depth = CV_8U);
 
 /**
  * @brief Reads an image file and converts it to a 2D array.
@@ -293,7 +293,7 @@ void export_splatmap_png(std::string fname,
  * @param fname The name of the image file to be read.
  * @return Array A 2D array containing the pixel values of the grayscale image.
  */
-Array read_to_array(std::string fname);
+Array read_to_array(const std::string &fname);
 
 /**
  * @brief Exports an array to a 16-bit 'raw' file format, commonly used for
@@ -307,13 +307,33 @@ Array read_to_array(std::string fname);
  * @param fname The name of the file to which the array will be exported.
  * @param array The input array containing the data to be exported.
  */
-void write_raw_16bit(std::string fname, const Array &array);
+void write_raw_16bit(const std::string &fname, const Array &array);
 
-// helper
+// --- helpers
+
+/**
+ * @brief Adds a suffix to the filename of a given file path.
+ *
+ * This function appends a given suffix to the stem (base name without
+ * extension) of a file while preserving the original directory and file
+ * extension.
+ *
+ * @param file_path The original file path.
+ * @param suffix The suffix to append to the filename.
+ * @return A new std::filesystem::path with the modified filename.
+ *
+ * @note If the input file has no extension, the suffix is added directly to the
+ * filename.
+ *
+ * @example
+ * @code
+ * std::filesystem::path path = "example.txt";
+ * std::filesystem::path new_path = add_filename_suffix(path, "_backup");
+ * std::cout << new_path; // Outputs "example_backup.txt"
+ * @endcode
+ */
 std::filesystem::path add_filename_suffix(
     const std::filesystem::path &file_path,
     const std::string           &suffix);
-
-Tensor compute_nmap(const Array &array);
 
 } // namespace hmap
