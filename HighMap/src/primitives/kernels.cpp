@@ -2,9 +2,8 @@
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
 #include <cmath>
+#include <stdexcept>
 #include <vector>
-
-#include "macrologger.h"
 
 #include "highmap/array.hpp"
 #include "highmap/kernels.hpp"
@@ -431,6 +430,7 @@ Array get_kernel(Vec2<int> shape, KernelType kernel_type)
   case KernelType::SMOOTH_COSINE: return smooth_cosine(shape);
   case KernelType::SQUARE: return square(shape);
   case KernelType::TRICUBE: return tricube(shape);
+  default: throw std::invalid_argument("Unknown kernel type");
   }
 }
 

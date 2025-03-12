@@ -256,9 +256,9 @@ Array dendry(Vec2<int>      shape,
              float          noise_amplitude_proportion = 0.01,
              bool           add_control_function = true,
              float          control_function_overlap = 0.5f,
-             const Array         *p_noise_x = nullptr,
-             const Array         *p_noise_y = nullptr,
-             const Array         *p_stretching = nullptr,
+             const Array   *p_noise_x = nullptr,
+             const Array   *p_noise_y = nullptr,
+             const Array   *p_stretching = nullptr,
              Vec4<float>    bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
