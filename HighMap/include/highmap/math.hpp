@@ -84,7 +84,7 @@ Array abs(const Array &array);
 Array abs_smooth(const Array &array, float mu, const Array &vshift);
 Array abs_smooth(const Array &array, float mu, float vshift); ///< @overload
 Array abs_smooth(const Array &array, float mu);               ///< @overload
-float abs_smooth(const float a, float mu);                    ///< @overload
+float abs_smooth(float a, float mu);                          ///< @overload
 
 /**
  * @brief Return the almost unit identity function.
@@ -97,7 +97,7 @@ float abs_smooth(const float a, float mu);                    ///< @overload
  * @return Array Output array.
  */
 Array almost_unit_identity(const Array &array);
-float almost_unit_identity(const float x); ///< @overload
+float almost_unit_identity(float x); ///< @overload
 
 /**
  * @brief Return the almost unit identity function (with a second-order
@@ -106,7 +106,7 @@ float almost_unit_identity(const float x); ///< @overload
  * @param x Input.
  * @return float Output.
  */
-float almost_unit_identity_c2(const float x);
+float almost_unit_identity_c2(float x);
 
 /**
  * @brief Return the approximate hypothenuse of two numbers.
@@ -265,7 +265,7 @@ Array hypot(const Array &array1, const Array &array2);
  */
 Array lerp(const Array &array1, const Array &array2, const Array &t);
 Array lerp(const Array &array1, const Array &array2, float t); ///< @overload
-float lerp(const float a, const float b, float t);             ///< @overload
+float lerp(float a, float b, float t);                         ///< @overload
 
 /**
  * @brief Return the log10 of the array elements.
@@ -336,7 +336,7 @@ Array smoothstep3(const Array &array, float vmin = 0.f, float vmax = 1.f);
  * @param x Input.
  * @return float Output.
  */
-float smoothstep3(const float x);
+float smoothstep3(float x);
 
 /**
  * @brief Return the 3rd order smoothstep function, with zero derivative only
@@ -345,7 +345,7 @@ float smoothstep3(const float x);
  * @param x Input.
  * @return float Output.
  */
-float smoothstep3_lower(const float x);
+float smoothstep3_lower(float x);
 Array smoothstep3_lower(const Array &x); ///< @overload
 
 /**
@@ -355,7 +355,7 @@ Array smoothstep3_lower(const Array &x); ///< @overload
  * @param x Input.
  * @return float Output.
  */
-float smoothstep3_upper(const float x);
+float smoothstep3_upper(float x);
 Array smoothstep3_upper(const Array &x); ///< @overload
 
 /**
@@ -383,7 +383,7 @@ Array smoothstep5(const Array &array,
  * @param x Input.
  * @return float Output.
  */
-float smoothstep5(const float x);
+float smoothstep5(float x);
 
 /**
  * @brief Return the 5rd order smoothstep function, with zero derivative only
@@ -392,7 +392,7 @@ float smoothstep5(const float x);
  * @param x Input.
  * @return float Output.
  */
-float smoothstep5_lower(const float x);
+float smoothstep5_lower(float x);
 Array smoothstep5_lower(const Array &x); ///< @overload
 
 /**
@@ -402,7 +402,7 @@ Array smoothstep5_lower(const Array &x); ///< @overload
  * @param x Input.
  * @return float Output.
  */
-float smoothstep5_upper(const float x);
+float smoothstep5_upper(float x);
 Array smoothstep5_upper(const Array &x); ///< @overload
 
 /**
@@ -411,7 +411,7 @@ Array smoothstep5_upper(const Array &x); ///< @overload
  * @param x Input.
  * @return float Output.
  */
-float smoothstep7(const float x);
+float smoothstep7(float x);
 Array smoothstep7(const Array &x); ///< @overload
 
 /**
