@@ -13,19 +13,19 @@
 namespace hmap
 {
 
-Array ridgelines(Vec2<int>          shape,
-                 std::vector<float> xr,
-                 std::vector<float> yr,
-                 std::vector<float> zr,
-                 float              slope,
-                 float              k_smoothing,
-                 float              width,
-                 float              vmin,
-                 Vec4<float>        bbox,
-                 Array             *p_noise_x,
-                 Array             *p_noise_y,
-                 Array             *p_stretching,
-                 Vec4<float>        bbox_array)
+Array ridgelines(Vec2<int>                 shape,
+                 const std::vector<float> &xr,
+                 const std::vector<float> &yr,
+                 const std::vector<float> &zr,
+                 float                     slope,
+                 float                     k_smoothing,
+                 float                     width,
+                 float                     vmin,
+                 Vec4<float>               bbox,
+                 const Array              *p_noise_x,
+                 const Array              *p_noise_y,
+                 const Array              *p_stretching,
+                 Vec4<float>               bbox_array)
 {
   // normalized node coordinates
   std::vector<float> xrs = xr;
@@ -97,19 +97,19 @@ Array ridgelines(Vec2<int>          shape,
   return array;
 }
 
-Array ridgelines_bezier(Vec2<int>          shape,
-                        std::vector<float> xr,
-                        std::vector<float> yr,
-                        std::vector<float> zr,
-                        float              slope,
-                        float              k_smoothing,
-                        float              width,
-                        float              vmin,
-                        Vec4<float>        bbox,
-                        Array             *p_noise_x,
-                        Array             *p_noise_y,
-                        Array             *p_stretching,
-                        Vec4<float>        bbox_array)
+Array ridgelines_bezier(Vec2<int>                 shape,
+                        const std::vector<float> &xr,
+                        const std::vector<float> &yr,
+                        const std::vector<float> &zr,
+                        float                     slope,
+                        float                     k_smoothing,
+                        float                     width,
+                        float                     vmin,
+                        Vec4<float>               bbox,
+                        const Array              *p_noise_x,
+                        const Array              *p_noise_y,
+                        const Array              *p_stretching,
+                        Vec4<float>               bbox_array)
 {
   // normalized node coordinates
   std::vector<float> xrs = xr;

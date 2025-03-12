@@ -79,12 +79,12 @@ enum StampingBlendMethod : int
  * **Result**
  * @image html ex_alter_elevation.png
  */
-void alter_elevation(Array      &array,
-                     Cloud      &cloud,
-                     int         ir,
-                     float       footprint_ratio = 1.f,
-                     Vec2<float> shift = {0.f, 0.f},
-                     Vec2<float> scale = {1.f, 1.f});
+void alter_elevation(Array       &array,
+                     const Cloud &cloud,
+                     int          ir,
+                     float        footprint_ratio = 1.f,
+                     Vec2<float>  shift = {0.f, 0.f},
+                     Vec2<float>  scale = {1.f, 1.f});
 
 /**
  * @brief Generate a heightmap from a coarse grid of control points with defined
@@ -126,13 +126,13 @@ void alter_elevation(Array      &array,
  * **Result**
  * @image html ex_base_elevation.png
  */
-Array base_elevation(Vec2<int>                       shape,
-                     std::vector<std::vector<float>> values,
-                     float                           width_factor = 1.f,
-                     Array                          *p_noise_x = nullptr,
-                     Array                          *p_noise_y = nullptr,
-                     Array                          *p_stretching = nullptr,
-                     Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array base_elevation(Vec2<int>                              shape,
+                     const std::vector<std::vector<float>> &values,
+                     float                                  width_factor = 1.f,
+                     const Array                           *p_noise_x = nullptr,
+                     const Array                           *p_noise_y = nullptr,
+                     const Array *p_stretching = nullptr,
+                     Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Apply the reverse midpoint displacement algorithm to the input array.
@@ -164,10 +164,10 @@ Array base_elevation(Vec2<int>                       shape,
  * **Result**
  * @image html ex_reverse_midpoint.png
  */
-Array reverse_midpoint(Array &array,
-                       uint   seed,
-                       float  noise_scale = 1.f,
-                       float  threshold = 0.f);
+Array reverse_midpoint(const Array &array,
+                       uint         seed,
+                       float        noise_scale = 1.f,
+                       float        threshold = 0.f);
 
 /**
  * @brief Generate a heightmap based on a set of ridgelines and a specified
@@ -210,19 +210,19 @@ Array reverse_midpoint(Array &array,
  * **Result**
  * @image html ex_ridgelines.png
  */
-Array ridgelines(Vec2<int>          shape,
-                 std::vector<float> xr,
-                 std::vector<float> yr,
-                 std::vector<float> zr,
-                 float              slope,
-                 float              k_smoothing = 1.f,
-                 float              width = 0.1f,
-                 float              vmin = 0.f,
-                 Vec4<float>        bbox = {0.f, 1.f, 0.f, 1.f},
-                 Array             *p_noise_x = nullptr,
-                 Array             *p_noise_y = nullptr,
-                 Array             *p_stretching = nullptr,
-                 Vec4<float>        bbox_array = {0.f, 1.f, 0.f, 1.f});
+Array ridgelines(Vec2<int>                 shape,
+                 const std::vector<float> &xr,
+                 const std::vector<float> &yr,
+                 const std::vector<float> &zr,
+                 float                     slope,
+                 float                     k_smoothing = 1.f,
+                 float                     width = 0.1f,
+                 float                     vmin = 0.f,
+                 Vec4<float>               bbox = {0.f, 1.f, 0.f, 1.f},
+                 const Array              *p_noise_x = nullptr,
+                 const Array              *p_noise_y = nullptr,
+                 const Array              *p_stretching = nullptr,
+                 Vec4<float>               bbox_array = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Generate a heightmap based on a set of ridgelines with quadratic
@@ -270,19 +270,19 @@ Array ridgelines(Vec2<int>          shape,
  * **Result**
  * @image html ex_ridgelines_bezier.png
  */
-Array ridgelines_bezier(Vec2<int>          shape,
-                        std::vector<float> xr,
-                        std::vector<float> yr,
-                        std::vector<float> zr,
-                        float              slope,
-                        float              k_smoothing = 1.f,
-                        float              width = 0.1f,
-                        float              vmin = 0.f,
-                        Vec4<float>        bbox = {0.f, 1.f, 0.f, 1.f},
-                        Array             *p_noise_x = nullptr,
-                        Array             *p_noise_y = nullptr,
-                        Array             *p_stretching = nullptr,
-                        Vec4<float>        bbox_array = {0.f, 1.f, 0.f, 1.f});
+Array ridgelines_bezier(Vec2<int>                 shape,
+                        const std::vector<float> &xr,
+                        const std::vector<float> &yr,
+                        const std::vector<float> &zr,
+                        float                     slope,
+                        float                     k_smoothing = 1.f,
+                        float                     width = 0.1f,
+                        float                     vmin = 0.f,
+                        Vec4<float>               bbox = {0.f, 1.f, 0.f, 1.f},
+                        const Array              *p_noise_x = nullptr,
+                        const Array              *p_noise_y = nullptr,
+                        const Array              *p_stretching = nullptr,
+                        Vec4<float> bbox_array = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Generate a heightmap by stamping a kernel at predefined locations.
@@ -330,19 +330,19 @@ Array ridgelines_bezier(Vec2<int>          shape,
  *
  * @see {@link other_related_functions}
  */
-Array stamping(Vec2<int>           shape,
-               std::vector<float>  xr,
-               std::vector<float>  yr,
-               std::vector<float>  zr,
-               Array               kernel,
-               int                 kernel_ir,
-               bool                kernel_scale_radius,
-               bool                kernel_scale_amplitude,
-               StampingBlendMethod blend_method,
-               uint                seed,
-               float               k_smoothing = 0.1f,
-               bool                kernel_flip = true,
-               bool                kernel_rotate = false,
-               Vec4<float>         bbox_array = {0.f, 1.f, 0.f, 1.f});
+Array stamping(Vec2<int>                 shape,
+               const std::vector<float> &xr,
+               const std::vector<float> &yr,
+               const std::vector<float> &zr,
+               Array                     kernel,
+               int                       kernel_ir,
+               bool                      kernel_scale_radius,
+               bool                      kernel_scale_amplitude,
+               StampingBlendMethod       blend_method,
+               uint                      seed,
+               float                     k_smoothing = 0.1f,
+               bool                      kernel_flip = true,
+               bool                      kernel_rotate = false,
+               Vec4<float>               bbox_array = {0.f, 1.f, 0.f, 1.f});
 
 } // namespace hmap
