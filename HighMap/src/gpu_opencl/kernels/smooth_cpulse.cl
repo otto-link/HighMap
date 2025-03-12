@@ -15,7 +15,7 @@ void kernel smooth_cpulse(read_only image2d_t  in,
   if (g.x >= nx || g.y >= ny) return;
 
   const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE |
-                            CLK_ADDRESS_MIRRORED_REPEAT | CLK_FILTER_NEAREST;
+                            CLK_ADDRESS_CLAMP_TO_EDGE | CLK_FILTER_NEAREST;
 
   float val = 0.f;
 
@@ -55,7 +55,7 @@ void kernel smooth_cpulse_masked(read_only image2d_t  in,
   if (g.x >= nx || g.y >= ny) return;
 
   const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE |
-                            CLK_ADDRESS_MIRRORED_REPEAT | CLK_FILTER_NEAREST;
+                            CLK_ADDRESS_CLAMP_TO_EDGE | CLK_FILTER_NEAREST;
 
   float val = 0.f;
 
