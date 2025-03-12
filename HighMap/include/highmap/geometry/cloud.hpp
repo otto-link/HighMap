@@ -85,7 +85,7 @@ public:
    *
    * @param points A vector of `Point` objects representing the cloud's points.
    */
-  Cloud(std::vector<Point> points) : points(points){};
+  Cloud(const std::vector<Point> &points) : points(points){};
 
   /**
    * @brief Constructs a new Cloud object from lists of `x` and `y` coordinates.
@@ -99,7 +99,9 @@ public:
    * @param default_value The default value assigned to each point.
    *                      Defaults to 0 if not specified.
    */
-  Cloud(std::vector<float> x, std::vector<float> y, float default_value = 0.f);
+  Cloud(const std::vector<float> &x,
+        const std::vector<float> &y,
+        float                     default_value = 0.f);
 
   /**
    * @brief Constructs a new Cloud object from lists of `x` and `y` coordinates
@@ -113,7 +115,9 @@ public:
    * @param y A vector of `y` coordinates for the points.
    * @param v A vector of values associated with each point.
    */
-  Cloud(std::vector<float> x, std::vector<float> y, std::vector<float> v);
+  Cloud(const std::vector<float> &x,
+        const std::vector<float> &y,
+        const std::vector<float> &v);
 
   /**
    * @brief Add a new point to the cloud.
@@ -162,7 +166,7 @@ public:
    * @return Vec4<float> The bounding box of the cloud in the format `[xmin,
    * xmax, ymin, ymax]`.
    */
-  Vec4<float> get_bbox();
+  Vec4<float> get_bbox() const;
 
   /**
    * @brief Calculates the centroid of a set of points.
@@ -175,7 +179,7 @@ public:
    * @return Point The computed center, represented as a `Point` object, which
    * contains the average (x, y) coordinates of the points.
    */
-  Point get_center();
+  Point get_center() const;
 
   /**
    * @brief Computes the indices of the points that form the convex hull of a
@@ -195,7 +199,7 @@ public:
    * **Result**
    * @image html ex_cloud_get_convex_hull.png
    */
-  std::vector<int> get_convex_hull_point_indices();
+  std::vector<int> get_convex_hull_point_indices() const;
 
   /**
    * @brief Get the number of points in the cloud.
@@ -226,7 +230,7 @@ public:
    *
    * @return float The maximum value among the points.
    */
-  float get_values_max();
+  float get_values_max() const;
 
   /**
    * @brief Get the minimum value among the points in the cloud.
@@ -236,7 +240,7 @@ public:
    *
    * @return float The minimum value among the points.
    */
-  float get_values_min();
+  float get_values_min() const;
 
   /**
    * @brief Get the `x` coordinates of the points in the cloud.
@@ -336,7 +340,7 @@ public:
    *
    * @param new_values A vector of new values to assign to the points.
    */
-  void set_values(std::vector<float> new_values);
+  void set_values(const std::vector<float> &new_values);
 
   /**
    * @brief Set a single value for all cloud points.
@@ -385,7 +389,7 @@ public:
    * @param bbox The bounding box that defines the mapping from the cloud
    * points' coordinates to the array's coordinates.
    */
-  void to_array(Array &array, Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+  void to_array(Array &array, Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f}) const;
 
   /**
    * @brief Generate an array filled with the signed distance function (SDF) to
@@ -415,7 +419,7 @@ public:
                      Vec4<float> bbox,
                      Array      *p_noise_x = nullptr,
                      Array      *p_noise_y = nullptr,
-                     Vec4<float> bbox_array = {0.f, 1.f, 0.f, 1.f});
+                     Vec4<float> bbox_array = {0.f, 1.f, 0.f, 1.f}) const;
 
   /**
    * @brief Interpolate the values of an array using the cloud points.
@@ -447,7 +451,7 @@ public:
                            InterpolationMethod2D::DELAUNAY,
                        Array      *p_noise_x = nullptr,
                        Array      *p_noise_y = nullptr,
-                       Vec4<float> bbox_array = {0.f, 1.f, 0.f, 1.f});
+                       Vec4<float> bbox_array = {0.f, 1.f, 0.f, 1.f}) const;
 
   /**
    * @brief Export the cloud data to a CSV file.
@@ -457,7 +461,7 @@ public:
    *
    * @param fname The name of the output CSV file.
    */
-  void to_csv(std::string fname);
+  void to_csv(const std::string &fname) const;
 
   /**
    * @brief Convert the cloud to a graph using Delaunay triangulation.
