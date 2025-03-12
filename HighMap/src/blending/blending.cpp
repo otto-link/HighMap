@@ -73,9 +73,7 @@ Array blend_soft(const Array &array1, const Array &array2)
   return array_out;
 }
 
-Array mixer(const Array               &t,
-            const std::vector<Array *> arrays,
-            float                      gain_factor)
+Array mixer(const Array &t, const std::vector<Array> &arrays, float gain_factor)
 {
   Array      array_out = Array(t.shape);
   const uint n = arrays.size();
@@ -93,7 +91,7 @@ Array mixer(const Array               &t,
           if (ta >= 0.f)
           {
             float ts = ta * ta * (3.f - 2.f * ta);
-            array_out(i, j) += ts * (*arrays[k])(i, j);
+            array_out(i, j) += ts * arrays[k](i, j);
           }
         }
     }
@@ -107,7 +105,7 @@ Array mixer(const Array               &t,
           {
             float ts = ta * ta * (3.f - 2.f * ta);
             ts = gain(ts, gain_factor);
-            array_out(i, j) += ts * (*arrays[k])(i, j);
+            array_out(i, j) += ts * arrays[k](i, j);
           }
         }
     }

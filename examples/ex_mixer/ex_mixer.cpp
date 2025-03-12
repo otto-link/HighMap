@@ -22,7 +22,7 @@ int main(void)
 
   hmap::remap(t);
 
-  auto zm = hmap::mixer(t, {&z1, &z2, &z3});
+  auto zm = hmap::mixer(t, {z1, z2, z3});
 
   hmap::export_banner_png("ex_mixer.png",
                           {t, z1, z2, z3, zm},
