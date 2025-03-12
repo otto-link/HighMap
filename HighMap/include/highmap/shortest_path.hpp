@@ -64,7 +64,7 @@ void find_path_dijkstra(const Array      &z,
                         float             elevation_ratio = 0.1f,
                         float             distance_exponent = 2.f,
                         float             upward_penalization = 1.f,
-                        Array            *p_mask_nogo = nullptr);
+                        const Array      *p_mask_nogo = nullptr);
 
 void find_path_dijkstra(const Array                   &z,
                         Vec2<int>                      ij_start,
@@ -73,7 +73,7 @@ void find_path_dijkstra(const Array                   &z,
                         std::vector<std::vector<int>> &j_path_list,
                         float                          elevation_ratio = 0.1f,
                         float                          distance_exponent = 2.f,
-                        float  upward_penalization = 1.f,
-                        Array *p_mask_nogo = nullptr);
+                        float        upward_penalization = 1.f,
+                        const Array *p_mask_nogo = nullptr);
 
 } // namespace hmap

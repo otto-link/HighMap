@@ -17,7 +17,7 @@ void find_path_dijkstra(const Array                   &z,
                         float                          elevation_ratio,
                         float                          distance_exponent,
                         float                          upward_penalization,
-                        Array                         *p_mask_nogo)
+                        const Array                   *p_mask_nogo)
 {
   // https://math.stackexchange.com/questions/3088292
 
@@ -146,7 +146,7 @@ void find_path_dijkstra(const Array      &z,
                         float             elevation_ratio,
                         float             distance_exponent,
                         float             upward_penalization,
-                        Array            *p_mask_nogo)
+                        const Array      *p_mask_nogo)
 {
   std::vector<std::vector<int>> i_path_list = {i_path};
   std::vector<std::vector<int>> j_path_list = {j_path};
