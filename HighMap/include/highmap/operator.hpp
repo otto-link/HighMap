@@ -238,10 +238,10 @@ std::vector<float> random_vector(float min, float max, int num, int seed);
 void fill_array_using_xy_function(
     Array                                    &array,
     Vec4<float>                               bbox,
-    Array                                    *p_ctrl_param,
-    Array                                    *p_noise_x,
-    Array                                    *p_noise_y,
-    Array                                    *p_stretching,
+    const Array                              *p_ctrl_param,
+    const Array                              *p_noise_x,
+    const Array                              *p_noise_y,
+    const Array                              *p_stretching,
     std::function<float(float, float, float)> fct_xy);
 
 /**
@@ -278,10 +278,10 @@ void fill_array_using_xy_function(
 void fill_array_using_xy_function(
     Array                                    &array,
     Vec4<float>                               bbox,
-    Array                                    *p_ctrl_param,
-    Array                                    *p_noise_x,
-    Array                                    *p_noise_y,
-    Array                                    *p_stretching,
+    const Array                              *p_ctrl_param,
+    const Array                              *p_noise_x,
+    const Array                              *p_noise_y,
+    const Array                              *p_stretching,
     std::function<float(float, float, float)> fct_xy,
     int                                       subsampling); ///< @overload
 
