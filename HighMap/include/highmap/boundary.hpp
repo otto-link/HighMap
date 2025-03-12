@@ -73,7 +73,7 @@ void extrapolate_borders(Array &array, int nbuffer = 1, float sigma = 0.f);
 void falloff(Array           &array,
              float            strength = 1.f,
              DistanceFunction dist_fct = DistanceFunction::EUCLIDIAN,
-             Array           *p_noise = nullptr,
+             const Array     *p_noise = nullptr,
              Vec4<float>      bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
@@ -160,7 +160,7 @@ void make_periodic(Array &array, int nbuffer);
  * @image html ex_make_periodic_stitching0.png
  * @image html ex_make_periodic_stitching1.png
  */
-Array make_periodic_stitching(Array &array, float overlap);
+Array make_periodic_stitching(const Array &array, float overlap);
 
 /**
  * @brief Creates a tiled, periodic array by applying a transition with overlap
@@ -186,7 +186,7 @@ Array make_periodic_stitching(Array &array, float overlap);
  * **Result**
  * @image html make_periodic_tiling.png
  */
-Array make_periodic_tiling(Array &array, float overlap, Vec2<int> tiling);
+Array make_periodic_tiling(const Array &array, float overlap, Vec2<int> tiling);
 
 /**
  * @brief Enforces specific values at the boundaries of the array.
@@ -284,7 +284,7 @@ void zeroed_borders(Array &array);
 void zeroed_edges(Array           &array,
                   float            sigma = 1.f,
                   DistanceFunction dist_fct = DistanceFunction::EUCLIDIAN,
-                  Array           *p_noise = nullptr,
+                  const Array     *p_noise = nullptr,
                   Vec4<float>      bbox = {0.f, 1.f, 0.f, 1.f});
 
 } // namespace hmap

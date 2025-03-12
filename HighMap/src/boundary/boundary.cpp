@@ -77,7 +77,7 @@ void extrapolate_borders(Array &array, int nbuffer, float sigma)
 void falloff(Array           &array,
              float            strength,
              DistanceFunction dist_fct,
-             Array           *p_noise,
+             const Array     *p_noise,
              Vec4<float>      bbox)
 {
   hmap::Vec2<float> shift = {bbox.a, bbox.c};
@@ -222,7 +222,7 @@ void make_periodic(Array &array, int nbuffer)
   array = a2;
 }
 
-Array make_periodic_stitching(Array &array, float overlap)
+Array make_periodic_stitching(const Array &array, float overlap)
 {
   Array     array_p = array;
   Vec2<int> shape = array.shape;
@@ -290,7 +290,7 @@ Array make_periodic_stitching(Array &array, float overlap)
   return array_p;
 }
 
-Array make_periodic_tiling(Array &array, float overlap, Vec2<int> tiling)
+Array make_periodic_tiling(const Array &array, float overlap, Vec2<int> tiling)
 {
   //
 
@@ -418,7 +418,7 @@ void zeroed_borders(Array &array)
 void zeroed_edges(Array           &array,
                   float            sigma,
                   DistanceFunction dist_fct,
-                  Array           *p_noise,
+                  const Array     *p_noise,
                   Vec4<float>      bbox)
 {
   hmap::Vec2<float> shift = {bbox.a, bbox.c};
