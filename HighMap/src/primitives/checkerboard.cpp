@@ -9,12 +9,12 @@
 namespace hmap
 {
 
-Array checkerboard(Vec2<int>   shape,
-                   Vec2<float> kw,
-                   Array      *p_noise_x,
-                   Array      *p_noise_y,
-                   Array      *p_stretching,
-                   Vec4<float> bbox)
+Array checkerboard(Vec2<int>    shape,
+                   Vec2<float>  kw,
+                   const Array *p_noise_x,
+                   const Array *p_noise_y,
+                   const Array *p_stretching,
+                   Vec4<float>  bbox)
 {
   Array array = Array(shape);
 

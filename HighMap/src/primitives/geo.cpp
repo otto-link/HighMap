@@ -13,16 +13,16 @@
 namespace hmap
 {
 
-Array caldera(Vec2<int>   shape,
-              float       radius,
-              float       sigma_inner,
-              float       sigma_outer,
-              float       z_bottom,
-              Array      *p_noise,
-              float       noise_r_amp,
-              float       noise_z_ratio,
-              Vec2<float> center,
-              Vec4<float> bbox)
+Array caldera(Vec2<int>    shape,
+              float        radius,
+              float        sigma_inner,
+              float        sigma_outer,
+              float        z_bottom,
+              const Array *p_noise,
+              float        noise_r_amp,
+              float        noise_z_ratio,
+              Vec2<float>  center,
+              Vec4<float>  bbox)
 {
   Array z = Array(shape);
 
@@ -91,16 +91,16 @@ Array caldera(Vec2<int>   shape,
   return z;
 }
 
-Array crater(Vec2<int>   shape,
-             float       radius,
-             float       depth,
-             float       lip_decay,
-             float       lip_height_ratio,
-             Array      *p_ctrl_param,
-             Array      *p_noise_x,
-             Array      *p_noise_y,
-             Vec2<float> center,
-             Vec4<float> bbox)
+Array crater(Vec2<int>    shape,
+             float        radius,
+             float        depth,
+             float        lip_decay,
+             float        lip_height_ratio,
+             const Array *p_ctrl_param,
+             const Array *p_noise_x,
+             const Array *p_noise_y,
+             Vec2<float>  center,
+             Vec4<float>  bbox)
 {
   Array          array = Array(shape);
   CraterFunction f = CraterFunction(radius,
@@ -119,12 +119,12 @@ Array crater(Vec2<int>   shape,
   return array;
 }
 
-Array peak(Vec2<int>   shape,
-           float       radius,
-           Array      *p_noise,
-           float       noise_r_amp,
-           float       noise_z_ratio,
-           Vec4<float> bbox)
+Array peak(Vec2<int>    shape,
+           float        radius,
+           const Array *p_noise,
+           float        noise_r_amp,
+           float        noise_z_ratio,
+           Vec4<float>  bbox)
 {
   Vec2<float> shift = {bbox.a, bbox.c};
   Vec2<float> scale = {bbox.b - bbox.a, bbox.d - bbox.c};

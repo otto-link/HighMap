@@ -52,14 +52,14 @@ enum VoronoiReturnType : int
  * **Result**
  * @image html ex_biquad_pulse.png
  */
-Array biquad_pulse(Vec2<int>   shape,
-                   float       gain = 1.f,
-                   Array      *p_ctrl_param = nullptr,
-                   Array      *p_noise_x = nullptr,
-                   Array      *p_noise_y = nullptr,
-                   Array      *p_stretching = nullptr,
-                   Vec2<float> center = {0.5f, 0.5f},
-                   Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array biquad_pulse(Vec2<int>    shape,
+                   float        gain = 1.f,
+                   const Array *p_ctrl_param = nullptr,
+                   const Array *p_noise_x = nullptr,
+                   const Array *p_noise_y = nullptr,
+                   const Array *p_stretching = nullptr,
+                   Vec2<float>  center = {0.5f, 0.5f},
+                   Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return a bump.
@@ -80,14 +80,14 @@ Array biquad_pulse(Vec2<int>   shape,
  * **Result**
  * @image html ex_bump.png
  */
-Array bump(Vec2<int>   shape,
-           float       gain = 1.f,
-           Array      *p_ctrl_param = nullptr,
-           Array      *p_noise_x = nullptr,
-           Array      *p_noise_y = nullptr,
-           Array      *p_stretching = nullptr,
-           Vec2<float> center = {0.5f, 0.5f},
-           Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array bump(Vec2<int>    shape,
+           float        gain = 1.f,
+           const Array *p_ctrl_param = nullptr,
+           const Array *p_noise_x = nullptr,
+           const Array *p_noise_y = nullptr,
+           const Array *p_stretching = nullptr,
+           Vec2<float>  center = {0.5f, 0.5f},
+           Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return a caldera-shaped heightmap.
@@ -110,16 +110,16 @@ Array bump(Vec2<int>   shape,
  * **Result**
  * @image html ex_caldera.png
  */
-Array caldera(Vec2<int>   shape,
-              float       radius,
-              float       sigma_inner,
-              float       sigma_outer,
-              float       z_bottom,
-              Array      *p_noise,
-              float       noise_amp_r,
-              float       noise_ratio_z,
-              Vec2<float> center = {0.5f, 0.5f},
-              Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array caldera(Vec2<int>    shape,
+              float        radius,
+              float        sigma_inner,
+              float        sigma_outer,
+              float        z_bottom,
+              const Array *p_noise,
+              float        noise_amp_r,
+              float        noise_ratio_z,
+              Vec2<float>  center = {0.5f, 0.5f},
+              Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 Array caldera(Vec2<int>   shape,
               float       radius,
@@ -145,12 +145,12 @@ Array caldera(Vec2<int>   shape,
  * **Result**
  * @image html ex_checkerboard.png
  */
-Array checkerboard(Vec2<int>   shape,
-                   Vec2<float> kw,
-                   Array      *p_noise_x = nullptr,
-                   Array      *p_noise_y = nullptr,
-                   Array      *p_stretching = nullptr,
-                   Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array checkerboard(Vec2<int>    shape,
+                   Vec2<float>  kw,
+                   const Array *p_noise_x = nullptr,
+                   const Array *p_noise_y = nullptr,
+                   const Array *p_stretching = nullptr,
+                   Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return a constant value array.
@@ -181,16 +181,16 @@ Array constant(Vec2<int> shape, float value = 0.f);
  * **Result**
  * @image html ex_crater.png
  */
-Array crater(Vec2<int>   shape,
-             float       radius,
-             float       depth,
-             float       lip_decay,
-             float       lip_height_ratio = 0.5f,
-             Array      *p_ctrl_param = nullptr,
-             Array      *p_noise_x = nullptr,
-             Array      *p_noise_y = nullptr,
-             Vec2<float> center = {0.5f, 0.5f},
-             Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array crater(Vec2<int>    shape,
+             float        radius,
+             float        depth,
+             float        lip_decay,
+             float        lip_height_ratio = 0.5f,
+             const Array *p_ctrl_param = nullptr,
+             const Array *p_noise_x = nullptr,
+             const Array *p_noise_y = nullptr,
+             Vec2<float>  center = {0.5f, 0.5f},
+             Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Dendry is a locally computable procedural function that generates
@@ -224,23 +224,23 @@ Array crater(Vec2<int>   shape,
  * **Result**
  * @image html ex_dendry.png
  */
-Array dendry(Vec2<int>   shape,
-             Vec2<float> kw,
-             uint        seed,
-             Array      &control_function,
-             float       eps = 0.05,
-             int         resolution = 1,
-             float       displacement = 0.075,
-             int         primitives_resolution_steps = 3,
-             float       slope_power = 2.f,
-             float       noise_amplitude_proportion = 0.01,
-             bool        add_control_function = true,
-             float       control_function_overlap = 0.5f,
-             Array      *p_noise_x = nullptr,
-             Array      *p_noise_y = nullptr,
-             Array      *p_stretching = nullptr,
-             Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f},
-             int         subsampling = 1);
+Array dendry(Vec2<int>    shape,
+             Vec2<float>  kw,
+             uint         seed,
+             Array       &control_function,
+             float        eps = 0.05,
+             int          resolution = 1,
+             float        displacement = 0.075,
+             int          primitives_resolution_steps = 3,
+             float        slope_power = 2.f,
+             float        noise_amplitude_proportion = 0.01,
+             bool         add_control_function = true,
+             float        control_function_overlap = 0.5f,
+             const Array *p_noise_x = nullptr,
+             const Array *p_noise_y = nullptr,
+             const Array *p_stretching = nullptr,
+             Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f},
+             int          subsampling = 1);
 
 Array dendry(Vec2<int>      shape,
              Vec2<float>    kw,
@@ -256,9 +256,9 @@ Array dendry(Vec2<int>      shape,
              float          noise_amplitude_proportion = 0.01,
              bool           add_control_function = true,
              float          control_function_overlap = 0.5f,
-             Array         *p_noise_x = nullptr,
-             Array         *p_noise_y = nullptr,
-             Array         *p_stretching = nullptr,
+             const Array         *p_noise_x = nullptr,
+             const Array         *p_noise_y = nullptr,
+             const Array         *p_stretching = nullptr,
              Vec4<float>    bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
@@ -334,15 +334,15 @@ Array diffusion_limited_aggregation(Vec2<int> shape,
  * **Result**
  * @image html ex_disk.png
  */
-Array disk(Vec2<int>   shape,
-           float       radius,
-           float       slope = 1.f,
-           Array      *p_ctrl_param = nullptr,
-           Array      *p_noise_x = nullptr,
-           Array      *p_noise_y = nullptr,
-           Array      *p_stretching = nullptr,
-           Vec2<float> center = {0.5f, 0.5f},
-           Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array disk(Vec2<int>    shape,
+           float        radius,
+           float        slope = 1.f,
+           const Array *p_ctrl_param = nullptr,
+           const Array *p_noise_x = nullptr,
+           const Array *p_noise_y = nullptr,
+           const Array *p_stretching = nullptr,
+           Vec2<float>  center = {0.5f, 0.5f},
+           Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return a sparse Gabor noise.
@@ -388,14 +388,14 @@ Array gabor_noise(Vec2<int> shape,
  * **Result**
  * @image html ex_gaussian_pulse.png
  */
-Array gaussian_pulse(Vec2<int>   shape,
-                     float       sigma,
-                     Array      *p_ctrl_param = nullptr,
-                     Array      *p_noise_x = nullptr,
-                     Array      *p_noise_y = nullptr,
-                     Array      *p_stretching = nullptr,
-                     Vec2<float> center = {0.5f, 0.5f},
-                     Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array gaussian_pulse(Vec2<int>    shape,
+                     float        sigma,
+                     const Array *p_ctrl_param = nullptr,
+                     const Array *p_noise_x = nullptr,
+                     const Array *p_noise_y = nullptr,
+                     const Array *p_stretching = nullptr,
+                     Vec2<float>  center = {0.5f, 0.5f},
+                     Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return an array filled with coherence noise.
@@ -415,14 +415,14 @@ Array gaussian_pulse(Vec2<int>   shape,
  * **Result**
  * @image html ex_noise.png
  */
-Array noise(NoiseType   noise_type,
-            Vec2<int>   shape,
-            Vec2<float> kw,
-            uint        seed,
-            Array      *p_noise_x = nullptr,
-            Array      *p_noise_y = nullptr,
-            Array      *p_stretching = nullptr,
-            Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array noise(NoiseType    noise_type,
+            Vec2<int>    shape,
+            Vec2<float>  kw,
+            uint         seed,
+            const Array *p_noise_x = nullptr,
+            const Array *p_noise_y = nullptr,
+            const Array *p_stretching = nullptr,
+            Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return an array filled with coherence fbm noise.
@@ -454,19 +454,19 @@ Array noise(NoiseType   noise_type,
  * @image html ex_noise_fbm5.png
  * @image html ex_noise_fbm6.png
  */
-Array noise_fbm(NoiseType   noise_type,
-                Vec2<int>   shape,
-                Vec2<float> kw,
-                uint        seed,
-                int         octaves = 8,
-                float       weight = 0.7f,
-                float       persistence = 0.5f,
-                float       lacunarity = 2.f,
-                Array      *p_ctrl_param = nullptr,
-                Array      *p_noise_x = nullptr,
-                Array      *p_noise_y = nullptr,
-                Array      *p_stretching = nullptr,
-                Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array noise_fbm(NoiseType    noise_type,
+                Vec2<int>    shape,
+                Vec2<float>  kw,
+                uint         seed,
+                int          octaves = 8,
+                float        weight = 0.7f,
+                float        persistence = 0.5f,
+                float        lacunarity = 2.f,
+                const Array *p_ctrl_param = nullptr,
+                const Array *p_noise_x = nullptr,
+                const Array *p_noise_y = nullptr,
+                const Array *p_stretching = nullptr,
+                Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return an array filled with coherence fbm noise.
@@ -499,20 +499,20 @@ Array noise_fbm(NoiseType   noise_type,
  * @image html ex_noise_fbm5.png
  * @image html ex_noise_fbm6.png
  */
-Array noise_iq(NoiseType   noise_type,
-               Vec2<int>   shape,
-               Vec2<float> kw,
-               uint        seed,
-               int         octaves = 8,
-               float       weight = 0.7f,
-               float       persistence = 0.5f,
-               float       lacunarity = 2.f,
-               float       gradient_scale = 0.05f,
-               Array      *p_ctrl_param = nullptr,
-               Array      *p_noise_x = nullptr,
-               Array      *p_noise_y = nullptr,
-               Array      *p_stretching = nullptr,
-               Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array noise_iq(NoiseType    noise_type,
+               Vec2<int>    shape,
+               Vec2<float>  kw,
+               uint         seed,
+               int          octaves = 8,
+               float        weight = 0.7f,
+               float        persistence = 0.5f,
+               float        lacunarity = 2.f,
+               float        gradient_scale = 0.05f,
+               const Array *p_ctrl_param = nullptr,
+               const Array *p_noise_x = nullptr,
+               const Array *p_noise_y = nullptr,
+               const Array *p_stretching = nullptr,
+               Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return an array filled with coherence fbm noise.
@@ -548,23 +548,23 @@ Array noise_iq(NoiseType   noise_type,
  * @image html ex_noise_fbm5.png
  * @image html ex_noise_fbm6.png
  */
-Array noise_jordan(NoiseType   noise_type,
-                   Vec2<int>   shape,
-                   Vec2<float> kw,
-                   uint        seed,
-                   int         octaves = 8,
-                   float       weight = 0.7f,
-                   float       persistence = 0.5f,
-                   float       lacunarity = 2.f,
-                   float       warp0 = 0.4f,
-                   float       damp0 = 1.f,
-                   float       warp_scale = 0.4f,
-                   float       damp_scale = 1.f,
-                   Array      *p_ctrl_param = nullptr,
-                   Array      *p_noise_x = nullptr,
-                   Array      *p_noise_y = nullptr,
-                   Array      *p_stretching = nullptr,
-                   Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array noise_jordan(NoiseType    noise_type,
+                   Vec2<int>    shape,
+                   Vec2<float>  kw,
+                   uint         seed,
+                   int          octaves = 8,
+                   float        weight = 0.7f,
+                   float        persistence = 0.5f,
+                   float        lacunarity = 2.f,
+                   float        warp0 = 0.4f,
+                   float        damp0 = 1.f,
+                   float        warp_scale = 0.4f,
+                   float        damp_scale = 1.f,
+                   const Array *p_ctrl_param = nullptr,
+                   const Array *p_noise_x = nullptr,
+                   const Array *p_noise_y = nullptr,
+                   const Array *p_stretching = nullptr,
+                   Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return an array filled with coherent fbm Parberry variant of Perlin
@@ -597,19 +597,19 @@ Array noise_jordan(NoiseType   noise_type,
  * @image html ex_noise_fbm5.png
  * @image html ex_noise_fbm6.png
  */
-Array noise_parberry(Vec2<int>   shape,
-                     Vec2<float> kw,
-                     uint        seed,
-                     int         octaves = 8,
-                     float       weight = 0.7f,
-                     float       persistence = 0.5f,
-                     float       lacunarity = 2.f,
-                     float       mu = 1.02f,
-                     Array      *p_ctrl_param = nullptr,
-                     Array      *p_noise_x = nullptr,
-                     Array      *p_noise_y = nullptr,
-                     Array      *p_stretching = nullptr,
-                     Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array noise_parberry(Vec2<int>    shape,
+                     Vec2<float>  kw,
+                     uint         seed,
+                     int          octaves = 8,
+                     float        weight = 0.7f,
+                     float        persistence = 0.5f,
+                     float        lacunarity = 2.f,
+                     float        mu = 1.02f,
+                     const Array *p_ctrl_param = nullptr,
+                     const Array *p_noise_x = nullptr,
+                     const Array *p_noise_y = nullptr,
+                     const Array *p_stretching = nullptr,
+                     Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return an array filled with coherence fbm pingpong noise.
@@ -641,19 +641,19 @@ Array noise_parberry(Vec2<int>   shape,
  * @image html ex_noise_fbm5.png
  * @image html ex_noise_fbm6.png
  */
-Array noise_pingpong(NoiseType   noise_type,
-                     Vec2<int>   shape,
-                     Vec2<float> kw,
-                     uint        seed,
-                     int         octaves = 8,
-                     float       weight = 0.7f,
-                     float       persistence = 0.5f,
-                     float       lacunarity = 2.f,
-                     Array      *p_ctrl_param = nullptr,
-                     Array      *p_noise_x = nullptr,
-                     Array      *p_noise_y = nullptr,
-                     Array      *p_stretching = nullptr,
-                     Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array noise_pingpong(NoiseType    noise_type,
+                     Vec2<int>    shape,
+                     Vec2<float>  kw,
+                     uint         seed,
+                     int          octaves = 8,
+                     float        weight = 0.7f,
+                     float        persistence = 0.5f,
+                     float        lacunarity = 2.f,
+                     const Array *p_ctrl_param = nullptr,
+                     const Array *p_noise_x = nullptr,
+                     const Array *p_noise_y = nullptr,
+                     const Array *p_stretching = nullptr,
+                     Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return an array filled with coherence fbm ridged noise.
@@ -686,20 +686,20 @@ Array noise_pingpong(NoiseType   noise_type,
  * @image html ex_noise_fbm5.png
  * @image html ex_noise_fbm6.png
  */
-Array noise_ridged(NoiseType   noise_type,
-                   Vec2<int>   shape,
-                   Vec2<float> kw,
-                   uint        seed,
-                   int         octaves = 8,
-                   float       weight = 0.7f,
-                   float       persistence = 0.5f,
-                   float       lacunarity = 2.f,
-                   float       k_smoothing = 0.1f,
-                   Array      *p_ctrl_param = nullptr,
-                   Array      *p_noise_x = nullptr,
-                   Array      *p_noise_y = nullptr,
-                   Array      *p_stretching = nullptr,
-                   Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array noise_ridged(NoiseType    noise_type,
+                   Vec2<int>    shape,
+                   Vec2<float>  kw,
+                   uint         seed,
+                   int          octaves = 8,
+                   float        weight = 0.7f,
+                   float        persistence = 0.5f,
+                   float        lacunarity = 2.f,
+                   float        k_smoothing = 0.1f,
+                   const Array *p_ctrl_param = nullptr,
+                   const Array *p_noise_x = nullptr,
+                   const Array *p_noise_y = nullptr,
+                   const Array *p_stretching = nullptr,
+                   Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return an array filled with coherence fbm swiss noise.
@@ -732,20 +732,20 @@ Array noise_ridged(NoiseType   noise_type,
  * @image html ex_noise_fbm5.png
  * @image html ex_noise_fbm6.png
  */
-Array noise_swiss(NoiseType   noise_type,
-                  Vec2<int>   shape,
-                  Vec2<float> kw,
-                  uint        seed,
-                  int         octaves = 8,
-                  float       weight = 0.7f,
-                  float       persistence = 0.5f,
-                  float       lacunarity = 2.f,
-                  float       warp_scale = 0.1f,
-                  Array      *p_ctrl_param = nullptr,
-                  Array      *p_noise_x = nullptr,
-                  Array      *p_noise_y = nullptr,
-                  Array      *p_stretching = nullptr,
-                  Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array noise_swiss(NoiseType    noise_type,
+                  Vec2<int>    shape,
+                  Vec2<float>  kw,
+                  uint         seed,
+                  int          octaves = 8,
+                  float        weight = 0.7f,
+                  float        persistence = 0.5f,
+                  float        lacunarity = 2.f,
+                  float        warp_scale = 0.1f,
+                  const Array *p_ctrl_param = nullptr,
+                  const Array *p_noise_x = nullptr,
+                  const Array *p_noise_y = nullptr,
+                  const Array *p_stretching = nullptr,
+                  Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return a paraboloid.
@@ -770,18 +770,18 @@ Array noise_swiss(NoiseType   noise_type,
  * **Result**
  * @image html ex_paraboloid.png
  */
-Array paraboloid(Vec2<int>   shape,
-                 float       angle,
-                 float       a,
-                 float       b,
-                 float       v0 = 0.f,
-                 bool        reverse_x = false,
-                 bool        reverse_y = false,
-                 Array      *p_noise_x = nullptr,
-                 Array      *p_noise_y = nullptr,
-                 Array      *p_stretching = nullptr,
-                 Vec2<float> center = {0.5f, 0.5f},
-                 Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array paraboloid(Vec2<int>    shape,
+                 float        angle,
+                 float        a,
+                 float        b,
+                 float        v0 = 0.f,
+                 bool         reverse_x = false,
+                 bool         reverse_y = false,
+                 const Array *p_noise_x = nullptr,
+                 const Array *p_noise_y = nullptr,
+                 const Array *p_stretching = nullptr,
+                 Vec2<float>  center = {0.5f, 0.5f},
+                 Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return a peak-shaped heightmap.
@@ -801,12 +801,12 @@ Array paraboloid(Vec2<int>   shape,
  * **Result**
  * @image html ex_peak.png
  */
-Array peak(Vec2<int>   shape,
-           float       radius,
-           Array      *p_noise,
-           float       noise_r_amp,
-           float       noise_z_ratio,
-           Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array peak(Vec2<int>    shape,
+           float        radius,
+           const Array *p_noise,
+           float        noise_r_amp,
+           float        noise_z_ratio,
+           Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Generates a phasor noise field based on a Gabor noise model and phase
@@ -957,17 +957,17 @@ Array phasor_fbm(PhasorProfile phasor_profile,
  * **Result**
  * @image html ex_rectangle.png
  */
-Array rectangle(Vec2<int>   shape,
-                float       rx,
-                float       ry,
-                float       angle,
-                float       slope = 1.f,
-                Array      *p_ctrl_param = nullptr,
-                Array      *p_noise_x = nullptr,
-                Array      *p_noise_y = nullptr,
-                Array      *p_stretching = nullptr,
-                Vec2<float> center = {0.5f, 0.5f},
-                Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array rectangle(Vec2<int>    shape,
+                float        rx,
+                float        ry,
+                float        angle,
+                float        slope = 1.f,
+                const Array *p_ctrl_param = nullptr,
+                const Array *p_noise_x = nullptr,
+                const Array *p_noise_y = nullptr,
+                const Array *p_stretching = nullptr,
+                Vec2<float>  center = {0.5f, 0.5f},
+                Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return a rift function (Heaviside with an optional talus slope at
@@ -992,17 +992,17 @@ Array rectangle(Vec2<int>   shape,
  * **Result**
  * @image html ex_rift.png
  */
-Array rift(Vec2<int>   shape,
-           float       angle,
-           float       slope,
-           float       width,
-           bool        sharp_bottom = false,
-           Array      *p_ctrl_param = nullptr,
-           Array      *p_noise_x = nullptr,
-           Array      *p_noise_y = nullptr,
-           Array      *p_stretching = nullptr,
-           Vec2<float> center = {0.5f, 0.5f},
-           Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array rift(Vec2<int>    shape,
+           float        angle,
+           float        slope,
+           float        width,
+           bool         sharp_bottom = false,
+           const Array *p_ctrl_param = nullptr,
+           const Array *p_noise_x = nullptr,
+           const Array *p_noise_y = nullptr,
+           const Array *p_stretching = nullptr,
+           Vec2<float>  center = {0.5f, 0.5f},
+           Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return an array corresponding to a slope with a given overall.
@@ -1024,15 +1024,15 @@ Array rift(Vec2<int>   shape,
  * **Result**
  * @image html ex_slope.png
  */
-Array slope(Vec2<int>   shape,
-            float       angle,
-            float       slope,
-            Array      *p_ctrl_param = nullptr,
-            Array      *p_noise_x = nullptr,
-            Array      *p_noise_y = nullptr,
-            Array      *p_stretching = nullptr,
-            Vec2<float> center = {0.5f, 0.5f},
-            Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array slope(Vec2<int>    shape,
+            float        angle,
+            float        slope,
+            const Array *p_ctrl_param = nullptr,
+            const Array *p_noise_x = nullptr,
+            const Array *p_noise_y = nullptr,
+            const Array *p_stretching = nullptr,
+            Vec2<float>  center = {0.5f, 0.5f},
+            Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return a step function (Heaviside with an optional talus slope at
@@ -1055,15 +1055,15 @@ Array slope(Vec2<int>   shape,
  * **Result**
  * @image html ex_step.png
  */
-Array step(Vec2<int>   shape,
-           float       angle,
-           float       slope,
-           Array      *p_ctrl_param = nullptr,
-           Array      *p_noise_x = nullptr,
-           Array      *p_noise_y = nullptr,
-           Array      *p_stretching = nullptr,
-           Vec2<float> center = {0.5f, 0.5f},
-           Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array step(Vec2<int>    shape,
+           float        angle,
+           float        slope,
+           const Array *p_ctrl_param = nullptr,
+           const Array *p_noise_x = nullptr,
+           const Array *p_noise_y = nullptr,
+           const Array *p_stretching = nullptr,
+           Vec2<float>  center = {0.5f, 0.5f},
+           Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Generate displacements `dx` and `dy` to apply a swirl effect to
@@ -1082,12 +1082,12 @@ Array step(Vec2<int>   shape,
  * **Result**
  * @image html ex_swirl.png
  */
-void swirl(Array      &dx,
-           Array      &dy,
-           float       amplitude = 1.f,
-           float       exponent = 1.f,
-           Array      *p_noise = nullptr,
-           Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+void swirl(Array       &dx,
+           Array       &dy,
+           float        amplitude = 1.f,
+           float        exponent = 1.f,
+           const Array *p_noise = nullptr,
+           Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return a dune shape wave.
@@ -1103,16 +1103,16 @@ void swirl(Array      &dx,
  * @param bbox Domain bounding box.
  * @return Array New array.
  */
-Array wave_dune(Vec2<int>   shape,
-                float       kw,
-                float       angle,
-                float       xtop,
-                float       xbottom,
-                float       phase_shift = 0.f,
-                Array      *p_noise_x = nullptr,
-                Array      *p_noise_y = nullptr,
-                Array      *p_stretching = nullptr,
-                Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array wave_dune(Vec2<int>    shape,
+                float        kw,
+                float        angle,
+                float        xtop,
+                float        xbottom,
+                float        phase_shift = 0.f,
+                const Array *p_noise_x = nullptr,
+                const Array *p_noise_y = nullptr,
+                const Array *p_stretching = nullptr,
+                Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return a sine wave.
@@ -1133,14 +1133,14 @@ Array wave_dune(Vec2<int>   shape,
  * @image html ex_wave0.png
  * @image html ex_wave1.png
  */
-Array wave_sine(Vec2<int>   shape,
-                float       kw,
-                float       angle,
-                float       phase_shift = 0.f,
-                Array      *p_noise_x = nullptr,
-                Array      *p_noise_y = nullptr,
-                Array      *p_stretching = nullptr,
-                Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array wave_sine(Vec2<int>    shape,
+                float        kw,
+                float        angle,
+                float        phase_shift = 0.f,
+                const Array *p_noise_x = nullptr,
+                const Array *p_noise_y = nullptr,
+                const Array *p_stretching = nullptr,
+                Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return a square wave.
@@ -1161,14 +1161,14 @@ Array wave_sine(Vec2<int>   shape,
  * @image html ex_wave0.png
  * @image html ex_wave1.png
  */
-Array wave_square(Vec2<int>   shape,
-                  float       kw,
-                  float       angle,
-                  float       phase_shift = 0.f,
-                  Array      *p_noise_x = nullptr,
-                  Array      *p_noise_y = nullptr,
-                  Array      *p_stretching = nullptr,
-                  Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array wave_square(Vec2<int>    shape,
+                  float        kw,
+                  float        angle,
+                  float        phase_shift = 0.f,
+                  const Array *p_noise_x = nullptr,
+                  const Array *p_noise_y = nullptr,
+                  const Array *p_stretching = nullptr,
+                  Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return a triangular wave.
@@ -1190,15 +1190,15 @@ Array wave_square(Vec2<int>   shape,
  * @image html ex_wave0.png
  * @image html ex_wave1.png
  */
-Array wave_triangular(Vec2<int>   shape,
-                      float       kw,
-                      float       angle,
-                      float       slant_ratio,
-                      float       phase_shift = 0.f,
-                      Array      *p_noise_x = nullptr,
-                      Array      *p_noise_y = nullptr,
-                      Array      *p_stretching = nullptr,
-                      Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array wave_triangular(Vec2<int>    shape,
+                      float        kw,
+                      float        angle,
+                      float        slant_ratio,
+                      float        phase_shift = 0.f,
+                      const Array *p_noise_x = nullptr,
+                      const Array *p_noise_y = nullptr,
+                      const Array *p_stretching = nullptr,
+                      Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return an array filled with white noise.
@@ -1290,16 +1290,16 @@ Array white_sparse_binary(Vec2<int> shape, float density, uint seed);
  * **Result**
  * @image html ex_worley_double.png
  */
-Array worley_double(Vec2<int>   shape,
-                    Vec2<float> kw,
-                    uint        seed,
-                    float       ratio = 0.5f,
-                    float       k = 0.f,
-                    Array      *p_ctrl_param = nullptr,
-                    Array      *p_noise_x = nullptr,
-                    Array      *p_noise_y = nullptr,
-                    Array      *p_stretching = nullptr,
-                    Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array worley_double(Vec2<int>    shape,
+                    Vec2<float>  kw,
+                    uint         seed,
+                    float        ratio = 0.5f,
+                    float        k = 0.f,
+                    const Array *p_ctrl_param = nullptr,
+                    const Array *p_noise_x = nullptr,
+                    const Array *p_noise_y = nullptr,
+                    const Array *p_stretching = nullptr,
+                    Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 } // namespace hmap
 
@@ -1382,24 +1382,24 @@ Array gabor_wave_fbm(Vec2<int>    shape,
                      float        weight = 0.7f,
                      float        persistence = 0.5f,
                      float        lacunarity = 2.f,
-                     Array       *p_ctrl_param = nullptr,
-                     Array       *p_noise_x = nullptr,
-                     Array       *p_noise_y = nullptr,
+                     const Array *p_ctrl_param = nullptr,
+                     const Array *p_noise_x = nullptr,
+                     const Array *p_noise_y = nullptr,
                      Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
-Array gabor_wave_fbm(Vec2<int>   shape,
-                     Vec2<float> kw,
-                     uint        seed,
-                     float       angle = 0.f,
-                     float       angle_spread_ratio = 1.f,
-                     int         octaves = 8,
-                     float       weight = 0.7f,
-                     float       persistence = 0.5f,
-                     float       lacunarity = 2.f,
-                     Array      *p_ctrl_param = nullptr,
-                     Array      *p_noise_x = nullptr,
-                     Array      *p_noise_y = nullptr,
-                     Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array gabor_wave_fbm(Vec2<int>    shape,
+                     Vec2<float>  kw,
+                     uint         seed,
+                     float        angle = 0.f,
+                     float        angle_spread_ratio = 1.f,
+                     int          octaves = 8,
+                     float        weight = 0.7f,
+                     float        persistence = 0.5f,
+                     float        lacunarity = 2.f,
+                     const Array *p_ctrl_param = nullptr,
+                     const Array *p_noise_x = nullptr,
+                     const Array *p_noise_y = nullptr,
+                     Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Generates a 2D array using the GavoroNoise algorithm,
@@ -1462,29 +1462,29 @@ Array gavoronoise(Vec2<int>    shape,
                   int          octaves = 8,
                   float        persistence = 0.4f,
                   float        lacunarity = 2.f,
-                  Array       *p_ctrl_param = nullptr,
-                  Array       *p_noise_x = nullptr,
-                  Array       *p_noise_y = nullptr,
+                  const Array *p_ctrl_param = nullptr,
+                  const Array *p_noise_x = nullptr,
+                  const Array *p_noise_y = nullptr,
                   Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
-Array gavoronoise(Vec2<int>   shape,
-                  Vec2<float> kw,
-                  uint        seed,
-                  float       angle = 0.f,
-                  float       amplitude = 0.05f,
-                  float       angle_spread_ratio = 1.f,
-                  Vec2<float> kw_multiplier = {4.f, 4.f},
-                  float       slope_strength = 1.f,
-                  float       branch_strength = 2.f,
-                  float       z_cut_min = 0.2f,
-                  float       z_cut_max = 1.f,
-                  int         octaves = 8,
-                  float       persistence = 0.4f,
-                  float       lacunarity = 2.f,
-                  Array      *p_ctrl_param = nullptr,
-                  Array      *p_noise_x = nullptr,
-                  Array      *p_noise_y = nullptr,
-                  Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array gavoronoise(Vec2<int>    shape,
+                  Vec2<float>  kw,
+                  uint         seed,
+                  float        angle = 0.f,
+                  float        amplitude = 0.05f,
+                  float        angle_spread_ratio = 1.f,
+                  Vec2<float>  kw_multiplier = {4.f, 4.f},
+                  float        slope_strength = 1.f,
+                  float        branch_strength = 2.f,
+                  float        z_cut_min = 0.2f,
+                  float        z_cut_max = 1.f,
+                  int          octaves = 8,
+                  float        persistence = 0.4f,
+                  float        lacunarity = 2.f,
+                  const Array *p_ctrl_param = nullptr,
+                  const Array *p_noise_x = nullptr,
+                  const Array *p_noise_y = nullptr,
+                  Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 Array gavoronoise(const Array &base,
                   Vec2<float>  kw,
@@ -1498,9 +1498,9 @@ Array gavoronoise(const Array &base,
                   int          octaves = 8,
                   float        persistence = 0.4f,
                   float        lacunarity = 2.f,
-                  Array       *p_ctrl_param = nullptr,
-                  Array       *p_noise_x = nullptr,
-                  Array       *p_noise_y = nullptr,
+                  const Array *p_ctrl_param = nullptr,
+                  const Array *p_noise_x = nullptr,
+                  const Array *p_noise_y = nullptr,
                   Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
@@ -1550,47 +1550,47 @@ Array gavoronoise(const Array &base,
  * **Result**
  * @image html ex_mountain_range_radial.png
  */
-Array mountain_range_radial(Vec2<int>   shape,
-                            Vec2<float> kw,
-                            uint        seed,
-                            float       half_width = 0.2f,
-                            float       angle_spread_ratio = 0.5f,
-                            float       core_size_ratio = 1.f,
-                            Vec2<float> center = {0.5f, 0.5f},
-                            int         octaves = 8,
-                            float       weight = 0.7f,
-                            float       persistence = 0.5f,
-                            float       lacunarity = 2.f,
-                            Array      *p_ctrl_param = nullptr,
-                            Array      *p_noise_x = nullptr,
-                            Array      *p_noise_y = nullptr,
-                            Array      *p_angle = nullptr,
-                            Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array mountain_range_radial(Vec2<int>    shape,
+                            Vec2<float>  kw,
+                            uint         seed,
+                            float        half_width = 0.2f,
+                            float        angle_spread_ratio = 0.5f,
+                            float        core_size_ratio = 1.f,
+                            Vec2<float>  center = {0.5f, 0.5f},
+                            int          octaves = 8,
+                            float        weight = 0.7f,
+                            float        persistence = 0.5f,
+                            float        lacunarity = 2.f,
+                            const Array *p_ctrl_param = nullptr,
+                            const Array *p_noise_x = nullptr,
+                            const Array *p_noise_y = nullptr,
+                            const Array *p_angle = nullptr,
+                            Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /*! @brief See hmap::noise */
-Array noise(NoiseType   noise_type,
-            Vec2<int>   shape,
-            Vec2<float> kw,
-            uint        seed,
-            Array      *p_noise_x = nullptr,
-            Array      *p_noise_y = nullptr,
-            Array      *p_stretching = nullptr,
-            Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array noise(NoiseType    noise_type,
+            Vec2<int>    shape,
+            Vec2<float>  kw,
+            uint         seed,
+            const Array *p_noise_x = nullptr,
+            const Array *p_noise_y = nullptr,
+            const Array *p_stretching = nullptr,
+            Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /*! @brief See hmap::noise_fbm */
-Array noise_fbm(NoiseType   noise_type,
-                Vec2<int>   shape,
-                Vec2<float> kw,
-                uint        seed,
-                int         octaves = 8,
-                float       weight = 0.7f,
-                float       persistence = 0.5f,
-                float       lacunarity = 2.f,
-                Array      *p_ctrl_param = nullptr,
-                Array      *p_noise_x = nullptr,
-                Array      *p_noise_y = nullptr,
-                Array      *p_stretching = nullptr,
-                Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array noise_fbm(NoiseType    noise_type,
+                Vec2<int>    shape,
+                Vec2<float>  kw,
+                uint         seed,
+                int          octaves = 8,
+                float        weight = 0.7f,
+                float        persistence = 0.5f,
+                float        lacunarity = 2.f,
+                const Array *p_ctrl_param = nullptr,
+                const Array *p_noise_x = nullptr,
+                const Array *p_noise_y = nullptr,
+                const Array *p_stretching = nullptr,
+                Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Generates a Voronoi diagram in a 2D array with configurable
@@ -1632,9 +1632,9 @@ Array voronoi(Vec2<int>         shape,
               uint              seed,
               Vec2<float>       jitter = {0.5f, 0.5f},
               VoronoiReturnType return_type = VoronoiReturnType::F1_SQUARED,
-              Array            *p_ctrl_param = nullptr,
-              Array            *p_noise_x = nullptr,
-              Array            *p_noise_y = nullptr,
+              const Array      *p_ctrl_param = nullptr,
+              const Array      *p_noise_x = nullptr,
+              const Array      *p_noise_y = nullptr,
               Vec4<float>       bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
@@ -1689,9 +1689,9 @@ Array voronoi_fbm(Vec2<int>         shape,
                   float             weight = 0.7f,
                   float             persistence = 0.5f,
                   float             lacunarity = 2.f,
-                  Array            *p_ctrl_param = nullptr,
-                  Array            *p_noise_x = nullptr,
-                  Array            *p_noise_y = nullptr,
+                  const Array      *p_ctrl_param = nullptr,
+                  const Array      *p_noise_x = nullptr,
+                  const Array      *p_noise_y = nullptr,
                   Vec4<float>       bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
@@ -1714,14 +1714,14 @@ Array voronoi_fbm(Vec2<int>         shape,
  *
  * @note The resulting Array has the same dimensions as the input shape.
  */
-Array voronoi_edge_distance(Vec2<int>   shape,
-                            Vec2<float> kw,
-                            uint        seed,
-                            Vec2<float> jitter = {0.5f, 0.5f},
-                            Array      *p_ctrl_param = nullptr,
-                            Array      *p_noise_x = nullptr,
-                            Array      *p_noise_y = nullptr,
-                            Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array voronoi_edge_distance(Vec2<int>    shape,
+                            Vec2<float>  kw,
+                            uint         seed,
+                            Vec2<float>  jitter = {0.5f, 0.5f},
+                            const Array *p_ctrl_param = nullptr,
+                            const Array *p_noise_x = nullptr,
+                            const Array *p_noise_y = nullptr,
+                            Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Generates a 2D Voronoi noise array.
@@ -1755,14 +1755,14 @@ Array voronoi_edge_distance(Vec2<int>   shape,
  * **Result**
  * @image html ex_voronoise.png
  */
-Array voronoise(Vec2<int>   shape,
-                Vec2<float> kw,
-                float       u_param,
-                float       v_param,
-                uint        seed,
-                Array      *p_noise_x = nullptr,
-                Array      *p_noise_y = nullptr,
-                Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array voronoise(Vec2<int>    shape,
+                Vec2<float>  kw,
+                float        u_param,
+                float        v_param,
+                uint         seed,
+                const Array *p_noise_x = nullptr,
+                const Array *p_noise_y = nullptr,
+                Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief Return an array filled with coherence Voronoise.
@@ -1790,17 +1790,17 @@ Array voronoise(Vec2<int>   shape,
  * **Result**
  * @image html ex_voronoise.png
  */
-Array voronoise_fbm(Vec2<int>   shape,
-                    Vec2<float> kw,
-                    float       u_param,
-                    float       v_param,
-                    uint        seed,
-                    int         octaves = 8,
-                    float       weight = 0.7f,
-                    float       persistence = 0.5f,
-                    float       lacunarity = 2.f,
-                    Array      *p_ctrl_param = nullptr,
-                    Array      *p_noise_x = nullptr,
-                    Array      *p_noise_y = nullptr,
-                    Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+Array voronoise_fbm(Vec2<int>    shape,
+                    Vec2<float>  kw,
+                    float        u_param,
+                    float        v_param,
+                    uint         seed,
+                    int          octaves = 8,
+                    float        weight = 0.7f,
+                    float        persistence = 0.5f,
+                    float        lacunarity = 2.f,
+                    const Array *p_ctrl_param = nullptr,
+                    const Array *p_noise_x = nullptr,
+                    const Array *p_noise_y = nullptr,
+                    Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 } // namespace hmap::gpu

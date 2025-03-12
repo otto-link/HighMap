@@ -8,7 +8,7 @@ namespace hmap::gpu
 
 void helper_bind_optional_buffer(clwrapper::Run    &run,
                                  const std::string &id,
-                                 Array             *p_array)
+                                 const Array       *p_array)
 {
   std::vector<float> dummy_vector(1);
 
