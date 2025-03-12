@@ -72,7 +72,10 @@ void Array::depose_amount_kernel_bilinear_at(int   i,
   this->depose_amount_kernel_at(i, j, kernel, amount);
 }
 
-void Array::depose_amount_kernel_at(int i, int j, Array &kernel, float amount)
+void Array::depose_amount_kernel_at(int          i,
+                                    int          j,
+                                    const Array &kernel,
+                                    float        amount)
 {
   const int ir = (kernel.shape.x - 1) / 2;
   const int jr = (kernel.shape.y - 1) / 2;
@@ -379,7 +382,7 @@ void Array::set_slice(Vec4<int> idx, float value)
       (*this)(i, j) = value;
 }
 
-void Array::set_slice(Vec4<int> idx, const Array array)
+void Array::set_slice(Vec4<int> idx, const Array &array)
 {
   for (int i = idx.a; i < idx.b; i++)
     for (int j = idx.c; j < idx.d; j++)

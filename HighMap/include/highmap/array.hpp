@@ -307,7 +307,7 @@ public:
    *               must contain an odd number of elements.
    * @param amount The amount of value to be distributed around the cell.
    */
-  void depose_amount_kernel_at(int i, int j, Array &kernel, float amount);
+  void depose_amount_kernel_at(int i, int j, const Array &kernel, float amount);
 
   /**
    * @brief Debug tool, dump some infos and generate an output file (16bits
@@ -743,7 +743,7 @@ public:
    */
   void set_slice(Vec4<int> idx, float value);
 
-  void set_slice(Vec4<int> idx, const Array array); ///< @overload
+  void set_slice(Vec4<int> idx, const Array &array); ///< @overload
 
   /**
    * @brief Return the total number of elements in the array.
