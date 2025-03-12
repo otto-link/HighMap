@@ -634,7 +634,7 @@ public:
    * @return Vec2<float> Normalization coefficients (a, b) where `a` scales the
    * values and `b` shifts them.
    */
-  Vec2<float> normalization_coeff(float vmin = 0.f, float vmax = 1.f);
+  Vec2<float> normalization_coeff(float vmin = 0.f, float vmax = 1.f) const;
 
   /**
    * @brief Print the array values to the standard output (stdout).

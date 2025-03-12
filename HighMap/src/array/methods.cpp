@@ -164,7 +164,7 @@ size_t Array::get_sizeof() const
   return sizeof(float) * this->vector.size();
 }
 
-Vec2<float> Array::normalization_coeff(float vmin, float vmax)
+Vec2<float> Array::normalization_coeff(float vmin, float vmax) const
 {
   float a = 0.f;
   float b = 0.f;
