@@ -73,15 +73,15 @@ static std::map<InterpolationMethod2D, std::string>
  * @param bbox Domain bounding box (default: {0.f, 1.f, 0.f, 1.f}).
  * @return Array Output array with interpolated values.
  */
-Array interpolate2d(Vec2<int>             shape,
-                    std::vector<float>    x,
-                    std::vector<float>    y,
-                    std::vector<float>    values,
-                    InterpolationMethod2D interpolation_method,
-                    Array                *p_noise_x = nullptr,
-                    Array                *p_noise_y = nullptr,
-                    Array                *p_stretching = nullptr,
-                    Vec4<float>           bbox = {0.f, 1.f, 0.f, 1.f});
+Array interpolate2d(Vec2<int>                 shape,
+                    const std::vector<float> &x,
+                    const std::vector<float> &y,
+                    const std::vector<float> &values,
+                    InterpolationMethod2D     interpolation_method,
+                    const Array              *p_noise_x = nullptr,
+                    const Array              *p_noise_y = nullptr,
+                    const Array              *p_stretching = nullptr,
+                    Vec4<float>               bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief 2D interpolation using the nearest neighbor method.
@@ -102,14 +102,14 @@ Array interpolate2d(Vec2<int>             shape,
  * @param bbox Domain bounding box (default: {0.f, 1.f, 0.f, 1.f}).
  * @return Array Output array with interpolated values.
  */
-Array interpolate2d_nearest(Vec2<int>          shape,
-                            std::vector<float> x,
-                            std::vector<float> y,
-                            std::vector<float> values,
-                            Array             *p_noise_x = nullptr,
-                            Array             *p_noise_y = nullptr,
-                            Array             *p_stretching = nullptr,
-                            Vec4<float>        bbox = {0.f, 1.f, 0.f, 1.f});
+Array interpolate2d_nearest(Vec2<int>                 shape,
+                            const std::vector<float> &x,
+                            const std::vector<float> &y,
+                            const std::vector<float> &values,
+                            const Array              *p_noise_x = nullptr,
+                            const Array              *p_noise_y = nullptr,
+                            const Array              *p_stretching = nullptr,
+                            Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
  * @brief 2D interpolation using the Delaunay triangulation method.
@@ -131,13 +131,13 @@ Array interpolate2d_nearest(Vec2<int>          shape,
  * @param bbox Domain bounding box (default: {0.f, 1.f, 0.f, 1.f}).
  * @return Array Output array with interpolated values.
  */
-Array interpolate2d_delaunay(Vec2<int>          shape,
-                             std::vector<float> x,
-                             std::vector<float> y,
-                             std::vector<float> values,
-                             Array             *p_noise_x = nullptr,
-                             Array             *p_noise_y = nullptr,
-                             Array             *p_stretching = nullptr,
-                             Vec4<float>        bbox = {0.f, 1.f, 0.f, 1.f});
+Array interpolate2d_delaunay(Vec2<int>                 shape,
+                             const std::vector<float> &x,
+                             const std::vector<float> &y,
+                             const std::vector<float> &values,
+                             const Array              *p_noise_x = nullptr,
+                             const Array              *p_noise_y = nullptr,
+                             const Array              *p_stretching = nullptr,
+                             Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
 } // namespace hmap
