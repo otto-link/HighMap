@@ -16,7 +16,7 @@
 namespace hmap
 {
 
-void warp(Array &array, Array *p_dx, Array *p_dy)
+void warp(Array &array, const Array *p_dx, const Array *p_dy)
 {
   hmap::ArrayFunction f = hmap::ArrayFunction(array,
                                               Vec2<float>(1.f, 1.f),
@@ -59,12 +59,12 @@ void warp_directional(Array &array,
   warp(array, &ca, &sa);
 }
 
-void warp_directional(Array &array,
-                      float  angle,
-                      Array *p_mask,
-                      float  amount,
-                      int    ir,
-                      bool   reverse)
+void warp_directional(Array       &array,
+                      float        angle,
+                      const Array *p_mask,
+                      float        amount,
+                      int          ir,
+                      bool         reverse)
 {
   if (!p_mask)
     warp_directional(array, angle, amount, ir, reverse);
@@ -96,11 +96,11 @@ void warp_downslope(Array &array, float amount, int ir, bool reverse)
   warp(array, &ca, &sa);
 }
 
-void warp_downslope(Array &array,
-                    Array *p_mask,
-                    float  amount,
-                    int    ir,
-                    bool   reverse)
+void warp_downslope(Array       &array,
+                    const Array *p_mask,
+                    float        amount,
+                    int          ir,
+                    bool         reverse)
 {
   if (!p_mask)
     warp_downslope(array, amount, ir, reverse);

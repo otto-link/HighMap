@@ -170,8 +170,8 @@ Array translate(const Array &array,
                 float        dx,
                 float        dy,
                 bool         periodic = false,
-                Array       *p_noise_x = nullptr,
-                Array       *p_noise_y = nullptr,
+                const Array *p_noise_x = nullptr,
+                const Array *p_noise_y = nullptr,
                 Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
@@ -192,7 +192,7 @@ Array translate(const Array &array,
  * **Result**
  * @image html ex_warp.png
  */
-void warp(Array &array, Array *p_dx, Array *p_dy);
+void warp(Array &array, const Array *p_dx, const Array *p_dy);
 
 /**
  * @brief Apply a warping effect following the downward local gradient direction
@@ -246,12 +246,12 @@ void warp_directional(Array &array,
  * **Result**
  * @image html ex_warp_directional.png
  */
-void warp_directional(Array &array,
-                      float  angle,
-                      Array *p_mask,
-                      float  amount = 0.02f,
-                      int    ir = 4,
-                      bool   reverse = false); ///< @overload
+void warp_directional(Array       &array,
+                      float        angle,
+                      const Array *p_mask,
+                      float        amount = 0.02f,
+                      int          ir = 4,
+                      bool         reverse = false); ///< @overload
 
 /**
  * @brief Apply a warping effect following the downward local gradient direction
@@ -302,11 +302,11 @@ void warp_downslope(Array &array,
  * **Result**
  * @image html ex_warp_downslope.png
  */
-void warp_downslope(Array &array,
-                    Array *p_mask,
-                    float  amount = 0.02f,
-                    int    ir = 4,
-                    bool   reverse = false); ///< @overload
+void warp_downslope(Array       &array,
+                    const Array *p_mask,
+                    float        amount = 0.02f,
+                    int          ir = 4,
+                    bool         reverse = false); ///< @overload
 
 /**
  * @brief Applies a zoom effect to a 2D array with an adjustable center.
@@ -350,8 +350,8 @@ Array zoom(const Array &array,
            float        zoom_factor,
            bool         periodic = false,
            Vec2<float>  center = {0.5f, 0.5f},
-           Array       *p_noise_x = nullptr,
-           Array       *p_noise_y = nullptr,
+           const Array *p_noise_x = nullptr,
+           const Array *p_noise_y = nullptr,
            Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 } // namespace hmap
@@ -360,6 +360,6 @@ namespace hmap::gpu
 {
 
 /*! @brief See hmap::warp */
-void warp(Array &array, Array *p_dx, Array *p_dy);
+void warp(Array &array, const Array *p_dx, const Array *p_dy);
 
 } // namespace hmap::gpu
