@@ -43,19 +43,19 @@ namespace hmap
  * **Result**
  * @image html ex_sdf_polyline.png
  */
-Array sdf_2d_polyline(const Path &path,
-                      Vec2<int>   shape,
-                      Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f},
-                      Array      *p_noise_x = nullptr,
-                      Array      *p_noise_y = nullptr);
+Array sdf_2d_polyline(const Path  &path,
+                      Vec2<int>    shape,
+                      Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f},
+                      const Array *p_noise_x = nullptr,
+                      const Array *p_noise_y = nullptr);
 
 /*! @brief See hmap::sdf_2d_polyline, with a Bezier approximation of the path.
  */
-Array sdf_2d_polyline_bezier(const Path &path,
-                             Vec2<int>   shape,
-                             Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f},
-                             Array      *p_noise_x = nullptr,
-                             Array      *p_noise_y = nullptr);
+Array sdf_2d_polyline_bezier(const Path  &path,
+                             Vec2<int>    shape,
+                             Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f},
+                             const Array *p_noise_x = nullptr,
+                             const Array *p_noise_y = nullptr);
 
 } // namespace hmap
 
@@ -63,17 +63,17 @@ namespace hmap::gpu
 {
 
 /*! @brief See hmap::sdf_2d_polyline */
-Array sdf_2d_polyline(const Path &path,
-                      Vec2<int>   shape,
-                      Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f},
-                      Array      *p_noise_x = nullptr,
-                      Array      *p_noise_y = nullptr);
+Array sdf_2d_polyline(const Path  &path,
+                      Vec2<int>    shape,
+                      Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f},
+                      const Array *p_noise_x = nullptr,
+                      const Array *p_noise_y = nullptr);
 
 /*! @brief See hmap::sdf_2d_polyline_bezier */
-Array sdf_2d_polyline_bezier(const Path &path,
-                             Vec2<int>   shape,
-                             Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f},
-                             Array      *p_noise_x = nullptr,
-                             Array      *p_noise_y = nullptr);
+Array sdf_2d_polyline_bezier(const Path  &path,
+                             Vec2<int>    shape,
+                             Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f},
+                             const Array *p_noise_x = nullptr,
+                             const Array *p_noise_y = nullptr);
 
 } // namespace hmap::gpu

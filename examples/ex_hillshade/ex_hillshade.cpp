@@ -14,6 +14,10 @@ int main(void)
   hmap::Array ts = hmap::topographic_shading(z, azimuth, zenith);
   hmap::Array hs = hmap::hillshade(z, azimuth, zenith);
 
+  float       shadow_talus = 2.f / shape.x;
+  hmap::Array sg = hmap::shadow_grid(z, shadow_talus);
+
   ts.to_png("ex_hillshade0.png", hmap::Cmap::BONE);
   hs.to_png("ex_hillshade1.png", hmap::Cmap::BONE);
+  sg.to_png("ex_hillshade2.png", hmap::Cmap::BONE);
 }
