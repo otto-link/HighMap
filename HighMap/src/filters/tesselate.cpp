@@ -14,7 +14,10 @@
 namespace hmap
 {
 
-Array tessellate(Array &array, uint seed, float node_density, Array *p_weight)
+Array tessellate(Array       &array,
+                 uint         seed,
+                 float        node_density,
+                 const Array *p_weight)
 {
   Array density = Array();
 

@@ -16,8 +16,8 @@ namespace hmap
 
 Array faceted(const Array &array,
               int          neighborhood,
-              Array       *p_noise_x,
-              Array       *p_noise_y)
+              const Array *p_noise_x,
+              const Array *p_noise_y)
 {
   // find sinks and preaks to use their positions and elevations as
   // reference points for the Delaunay interpolation

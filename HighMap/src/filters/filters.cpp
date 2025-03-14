@@ -45,7 +45,7 @@ void equalize(Array &array)
   match_histogram(array, flat_ref);
 }
 
-void equalize(Array &array, Array *p_mask)
+void equalize(Array &array, const Array *p_mask)
 {
   if (!p_mask)
     equalize(array);
@@ -85,7 +85,7 @@ void expand(Array &array, int ir)
   array = array_new;
 }
 
-void expand(Array &array, int ir, Array *p_mask)
+void expand(Array &array, int ir, const Array *p_mask)
 {
   if (!p_mask)
     expand(array, ir);
@@ -128,7 +128,7 @@ void expand(Array &array, Array &kernel)
   array = array_new;
 }
 
-void expand(Array &array, Array &kernel, Array *p_mask)
+void expand(Array &array, Array &kernel, const Array *p_mask)
 {
   if (!p_mask)
     expand(array, kernel);
@@ -140,12 +140,12 @@ void expand(Array &array, Array &kernel, Array *p_mask)
   }
 }
 
-void expand_directional(Array &array,
-                        int    ir,
-                        float  angle,
-                        float  aspect_ratio,
-                        float  anisotropy,
-                        Array *p_mask)
+void expand_directional(Array       &array,
+                        int          ir,
+                        float        angle,
+                        float        aspect_ratio,
+                        float        anisotropy,
+                        const Array *p_mask)
 {
   Array kernel = cubic_pulse_directional(Vec2<int>(2 * ir + 1, 2 * ir + 1),
                                          angle,
@@ -334,7 +334,7 @@ void gain(Array &array, float factor)
                  lambda);
 }
 
-void gain(Array &array, float factor, Array *p_mask)
+void gain(Array &array, float factor, const Array *p_mask)
 {
   if (!p_mask)
     gain(array, factor);
@@ -356,7 +356,7 @@ void gamma_correction(Array &array, float gamma)
                  lambda);
 }
 
-void gamma_correction(Array &array, float gamma, Array *p_mask)
+void gamma_correction(Array &array, float gamma, const Array *p_mask)
 {
   if (!p_mask)
     gamma_correction(array, gamma);
@@ -401,11 +401,11 @@ void gamma_correction_local(Array &array, float gamma, int ir, float k)
   }
 }
 
-void gamma_correction_local(Array &array,
-                            float  gamma,
-                            int    ir,
-                            Array *p_mask,
-                            float  k)
+void gamma_correction_local(Array       &array,
+                            float        gamma,
+                            int          ir,
+                            const Array *p_mask,
+                            float        k)
 {
   if (!p_mask)
     gamma_correction_local(array, gamma, ir, k);
@@ -463,7 +463,7 @@ void kuwahara(Array &array, int ir, float mix_ratio)
   }
 }
 
-void kuwahara(Array &array, int ir, Array *p_mask, float mix_ratio)
+void kuwahara(Array &array, int ir, const Array *p_mask, float mix_ratio)
 {
   if (!p_mask)
     kuwahara(array, ir, mix_ratio);
@@ -485,7 +485,7 @@ void laplace(Array &array, float sigma, int iterations)
   }
 }
 
-void laplace(Array &array, Array *p_mask, float sigma, int iterations)
+void laplace(Array &array, const Array *p_mask, float sigma, int iterations)
 {
   if (!p_mask)
     laplace(array, sigma, iterations);
@@ -517,11 +517,11 @@ void laplace_edge_preserving(Array &array,
   }
 }
 
-void laplace_edge_preserving(Array &array,
-                             float  talus,
-                             Array *p_mask,
-                             float  sigma,
-                             int    iterations)
+void laplace_edge_preserving(Array       &array,
+                             float        talus,
+                             const Array *p_mask,
+                             float        sigma,
+                             int          iterations)
 {
   if (!p_mask)
     laplace_edge_preserving(array, talus, sigma, iterations);
@@ -702,7 +702,7 @@ void median_3x3(Array &array)
       array(i, j) = array_out(i, j);
 }
 
-void median_3x3(Array &array, Array *p_mask)
+void median_3x3(Array &array, const Array *p_mask)
 {
   if (!p_mask)
     median_3x3(array);
@@ -748,11 +748,11 @@ void normal_displacement(Array &array, float amount, int ir, bool reverse)
   array = array_new;
 }
 
-void normal_displacement(Array &array,
-                         Array *p_mask,
-                         float  amount,
-                         int    ir,
-                         bool   reverse)
+void normal_displacement(Array       &array,
+                         const Array *p_mask,
+                         float        amount,
+                         int          ir,
+                         bool         reverse)
 {
   if (!p_mask)
     normal_displacement(array, amount, ir, reverse);
@@ -778,7 +778,7 @@ void plateau(Array &array, int ir, float factor)
   array = amin + (amax - amin) * array;
 }
 
-void plateau(Array &array, Array *p_mask, int ir, float factor)
+void plateau(Array &array, const Array *p_mask, int ir, float factor)
 {
   if (!p_mask)
     plateau(array, ir, factor);
@@ -804,7 +804,7 @@ void sharpen(Array &array, float ratio)
   array = (1.f - ratio) * array + ratio * lp;
 }
 
-void sharpen(Array &array, Array *p_mask, float ratio)
+void sharpen(Array &array, const Array *p_mask, float ratio)
 {
   if (!p_mask)
     sharpen(array, ratio);
@@ -823,7 +823,7 @@ void sharpen_cone(Array &array, int ir, float scale)
   array += scale * (array - array_low_pass);
 }
 
-void sharpen_cone(Array &array, Array *p_mask, int ir, float scale)
+void sharpen_cone(Array &array, const Array *p_mask, int ir, float scale)
 {
   if (!p_mask)
     sharpen_cone(array, ir, scale);
@@ -843,7 +843,7 @@ void shrink(Array &array, int ir)
   array = amax - array;
 }
 
-void shrink(Array &array, int ir, Array *p_mask)
+void shrink(Array &array, int ir, const Array *p_mask)
 {
   if (!p_mask)
     shrink(array, ir);
@@ -863,7 +863,7 @@ void shrink(Array &array, Array &kernel)
   array = amax - array;
 }
 
-void shrink(Array &array, Array &kernel, Array *p_mask)
+void shrink(Array &array, Array &kernel, const Array *p_mask)
 {
   if (!p_mask)
     shrink(array, kernel);
@@ -875,12 +875,12 @@ void shrink(Array &array, Array &kernel, Array *p_mask)
   }
 }
 
-void shrink_directional(Array &array,
-                        int    ir,
-                        float  angle,
-                        float  aspect_ratio,
-                        float  anisotropy,
-                        Array *p_mask)
+void shrink_directional(Array       &array,
+                        int          ir,
+                        float        angle,
+                        float        aspect_ratio,
+                        float        anisotropy,
+                        const Array *p_mask)
 {
   Array kernel = cubic_pulse_directional(Vec2<int>(2 * ir + 1, 2 * ir + 1),
                                          angle,
@@ -915,7 +915,7 @@ void smooth_cone(Array &array, int ir)
   array = convolve1d_j(array, k);
 }
 
-void smooth_cone(Array &array, int ir, Array *p_mask)
+void smooth_cone(Array &array, int ir, const Array *p_mask)
 {
   if (!p_mask)
     smooth_cone(array, ir);
@@ -953,7 +953,7 @@ void smooth_cpulse(Array &array, int ir)
   array = convolve1d_j(array, k);
 }
 
-void smooth_cpulse(Array &array, int ir, Array *p_mask)
+void smooth_cpulse(Array &array, int ir, const Array *p_mask)
 {
   if (!p_mask)
     smooth_cpulse(array, ir);
@@ -1006,7 +1006,7 @@ void smooth_gaussian(Array &array, int ir)
   array = convolve1d_j(array, k);
 }
 
-void smooth_gaussian(Array &array, int ir, Array *p_mask)
+void smooth_gaussian(Array &array, int ir, const Array *p_mask)
 {
   if (!p_mask)
     smooth_gaussian(array, ir);
@@ -1037,11 +1037,11 @@ void smooth_fill(Array &array, int ir, float k, Array *p_deposition_map)
   }
 }
 
-void smooth_fill(Array &array,
-                 int    ir,
-                 Array *p_mask,
-                 float  k,
-                 Array *p_deposition_map)
+void smooth_fill(Array       &array,
+                 int          ir,
+                 const Array *p_mask,
+                 float        k,
+                 Array       *p_deposition_map)
 {
   if (!p_mask)
     smooth_fill(array, ir, k, p_deposition_map);
@@ -1069,7 +1069,7 @@ void smooth_fill_holes(Array &array, int ir)
   array = lerp(array, array_smooth, mask);
 }
 
-void smooth_fill_holes(Array &array, int ir, Array *p_mask)
+void smooth_fill_holes(Array &array, int ir, const Array *p_mask)
 {
   if (!p_mask)
     smooth_fill_holes(array, ir);
@@ -1097,7 +1097,7 @@ void smooth_fill_smear_peaks(Array &array, int ir)
   array = lerp(array, array_smooth, mask);
 }
 
-void smooth_fill_smear_peaks(Array &array, int ir, Array *p_mask)
+void smooth_fill_smear_peaks(Array &array, int ir, const Array *p_mask)
 {
   if (!p_mask)
     smooth_fill_smear_peaks(array, ir);
@@ -1125,7 +1125,7 @@ void smoothstep_local(Array &array, int ir)
     }
 }
 
-void smoothstep_local(Array &array, int ir, Array *p_mask)
+void smoothstep_local(Array &array, int ir, const Array *p_mask)
 {
   if (!p_mask)
     smoothstep_local(array, ir);
@@ -1148,7 +1148,7 @@ void steepen(Array &array, float scale, int ir)
   warp(array, &dx, &dy);
 }
 
-void steepen(Array &array, float scale, Array *p_mask, int ir)
+void steepen(Array &array, float scale, const Array *p_mask, int ir)
 {
   if (!p_mask)
     steepen(array, scale, ir);
@@ -1193,12 +1193,12 @@ void steepen_convective(Array &array,
   }
 }
 
-void steepen_convective(Array &array,
-                        float  angle,
-                        Array *p_mask,
-                        int    iterations,
-                        int    ir,
-                        float  dt)
+void steepen_convective(Array       &array,
+                        float        angle,
+                        const Array *p_mask,
+                        int          iterations,
+                        int          ir,
+                        float        dt)
 {
   if (!p_mask)
     steepen_convective(array, angle, iterations, ir, dt);
@@ -1210,14 +1210,14 @@ void steepen_convective(Array &array,
   }
 }
 
-void terrace(Array &array,
-             uint   seed,
-             int    nlevels,
-             float  gain,
-             float  noise_ratio,
-             Array *p_noise,
-             float  vmin,
-             float  vmax)
+void terrace(Array       &array,
+             uint         seed,
+             int          nlevels,
+             float        gain,
+             float        noise_ratio,
+             const Array *p_noise,
+             float        vmin,
+             float        vmax)
 {
   std::mt19937                          gen(seed);
   std::uniform_real_distribution<float> dis(-noise_ratio, noise_ratio);
@@ -1273,15 +1273,15 @@ void terrace(Array &array,
                    lambda);
 }
 
-void terrace(Array &array,
-             uint   seed,
-             int    nlevels,
-             Array *p_mask,
-             float  gain,
-             float  noise_ratio,
-             Array *p_noise,
-             float  vmin,
-             float  vmax)
+void terrace(Array       &array,
+             uint         seed,
+             int          nlevels,
+             const Array *p_mask,
+             float        gain,
+             float        noise_ratio,
+             const Array *p_noise,
+             float        vmin,
+             float        vmax)
 {
   if (!p_mask)
     terrace(array, seed, nlevels, gain, noise_ratio, p_noise, vmin, vmax);
@@ -1328,17 +1328,17 @@ void wrinkle(Array      &array,
   array += wrinkle_amplitude * gradient_norm(w) * array.shape.x;
 }
 
-void wrinkle(Array      &array,
-             float       wrinkle_amplitude,
-             Array      *p_mask,
-             float       wrinkle_angle,
-             float       displacement_amplitude,
-             int         ir,
-             float       kw,
-             uint        seed,
-             int         octaves,
-             float       weight,
-             Vec4<float> bbox)
+void wrinkle(Array       &array,
+             float        wrinkle_amplitude,
+             const Array *p_mask,
+             float        wrinkle_angle,
+             float        displacement_amplitude,
+             int          ir,
+             float        kw,
+             uint         seed,
+             int          octaves,
+             float        weight,
+             Vec4<float>  bbox)
 {
   if (!p_mask)
     wrinkle(array,

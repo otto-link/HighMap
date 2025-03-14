@@ -12,11 +12,11 @@
 namespace hmap
 {
 
-int convert_length_to_pixel(const float x,
-                            const int   nx,
-                            const bool  lim_inf,
-                            const bool  lim_sup,
-                            const float scale)
+int convert_length_to_pixel(float x,
+                            int   nx,
+                            bool  lim_inf,
+                            bool  lim_sup,
+                            float scale)
 {
   int ir = x / scale * static_cast<float>(nx);
   if (lim_inf) ir = std::max(ir, 1);
@@ -62,8 +62,8 @@ void expand_grid_boundaries(std::vector<float> &x,
 
   int npoints = std::max(0, (int)std::sqrt((float)x.size()));
 
-  std::vector<float> xb = linspace(bbox.a, bbox.b, npoints, false);
-  std::vector<float> yb = linspace(bbox.c, bbox.d, npoints, false);
+  const std::vector<float> xb = linspace(bbox.a, bbox.b, npoints, false);
+  const std::vector<float> yb = linspace(bbox.c, bbox.d, npoints, false);
 
   for (int i = 0; i < npoints; i++)
   {
@@ -200,8 +200,12 @@ void random_grid(std::vector<float> &x,
   y.reserve(nx * ny);
   value.reserve(nx * ny);
 
-  std::vector<float> xlist = linspace(bbox.a - delta.x, bbox.b + delta.x, nx);
-  std::vector<float> ylist = linspace(bbox.c - delta.y, bbox.d + delta.y, ny);
+  const std::vector<float> xlist = linspace(bbox.a - delta.x,
+                                            bbox.b + delta.x,
+                                            nx);
+  const std::vector<float> ylist = linspace(bbox.c - delta.y,
+                                            bbox.d + delta.y,
+                                            ny);
 
   Vec2<float> offset = {0.f, 0.f};
 
@@ -237,7 +241,7 @@ void random_grid(std::vector<float> &x,
 
 void random_grid_density(std::vector<float> &x,
                          std::vector<float> &y,
-                         Array              &density,
+                         const Array        &density,
                          uint                seed,
                          Vec4<float>         bbox)
 {

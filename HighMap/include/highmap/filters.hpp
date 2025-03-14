@@ -66,7 +66,9 @@ enum neighborhood : int
  * **Result**
  * @image html ex_diffusion_retargeting.png
  */
-Array diffusion_retargeting(Array &array_before, Array &array_after, int ir);
+Array diffusion_retargeting(const Array &array_before,
+                            const Array &array_after,
+                            int          ir);
 
 /**
  * @brief Applies a directional blur to the provided 2D array based on a
@@ -146,7 +148,7 @@ void equalize(Array &array);
  *
  * @overload
  */
-void equalize(Array &array, Array *p_mask);
+void equalize(Array &array, const Array *p_mask);
 
 /**
  * @brief Apply expansion, or "inflation", to emphasize the bulk of the terrain.
@@ -169,7 +171,7 @@ void equalize(Array &array, Array *p_mask);
  *
  * @see ex_shrink
  */
-void expand(Array &array, int ir, Array *p_mask);
+void expand(Array &array, int ir, const Array *p_mask);
 
 /**
  * @brief Apply expansion to emphasize the bulk of the terrain using a filter
@@ -196,7 +198,7 @@ void expand(Array &array, int ir);
  *
  * @overload
  */
-void expand(Array &array, Array &kernel);
+void expand(Array &array, const Array &kernel);
 
 /**
  * @brief Apply expansion using a custom kernel with an optional mask.
@@ -212,7 +214,7 @@ void expand(Array &array, Array &kernel);
  *
  * @overload
  */
-void expand(Array &array, Array &kernel, Array *p_mask);
+void expand(Array &array, const Array &kernel, const Array *p_mask);
 
 /**
  * @brief Apply expansion, or "inflation", to emphasize the bulk of the terrain,
@@ -240,12 +242,12 @@ void expand(Array &array, Array &kernel, Array *p_mask);
  * **Result**
  * @image html ex_expand_directional.png
  */
-void expand_directional(Array &array,
-                        int    ir,
-                        float  angle,
-                        float  aspect_ratio,
-                        float  anisotropy = 1.f,
-                        Array *p_mask = nullptr);
+void expand_directional(Array       &array,
+                        int          ir,
+                        float        angle,
+                        float        aspect_ratio,
+                        float        anisotropy = 1.f,
+                        const Array *p_mask = nullptr);
 
 void expand_talus(Array       &z,
                   const Array &mask,
@@ -279,8 +281,8 @@ void expand_talus(Array       &z,
  */
 Array faceted(const Array &array,
               int          neighborhood = 0,
-              Array       *p_noise_x = nullptr,
-              Array       *p_noise_y = nullptr);
+              const Array *p_noise_x = nullptr,
+              const Array *p_noise_y = nullptr);
 
 /**
  * @brief Modifies a terrain array by filling it with talus slopes.
@@ -425,7 +427,7 @@ void fold(Array &array, int iterations = 3, float k = 0.05f);
  * **Result**
  * @image html ex_gain.png
  */
-void gain(Array &array, float factor, Array *p_mask);
+void gain(Array &array, float factor, const Array *p_mask);
 
 /**
  * @brief Apply a gain correction to the array elements without a mask.
@@ -467,7 +469,7 @@ void gain(Array &array, float factor);
  * **Result**
  * @image html ex_gamma_correction.png
  */
-void gamma_correction(Array &array, float gamma, Array *p_mask);
+void gamma_correction(Array &array, float gamma, const Array *p_mask);
 
 /**
  * @brief Apply gamma correction to the input array without a mask.
@@ -537,11 +539,11 @@ void gamma_correction_local(Array &array, float gamma, int ir, float k = 0.1f);
  *
  * @overload
  */
-void gamma_correction_local(Array &array,
-                            float  gamma,
-                            int    ir,
-                            Array *p_mask,
-                            float  k = 0.1f);
+void gamma_correction_local(Array       &array,
+                            float        gamma,
+                            int          ir,
+                            const Array *p_mask,
+                            float        k = 0.1f);
 
 /**
  * @brief Applies the Kuwahara filter to an array with optional per-pixel
@@ -593,7 +595,7 @@ void kuwahara(Array &array, int ir, float mix_ratio = 1.f);
  * **Result**
  * @image html ex_kuwahara.png
  */
-void kuwahara(Array &array, int ir, Array *p_mask, float mix_ratio = 1.f);
+void kuwahara(Array &array, int ir, const Array *p_mask, float mix_ratio = 1.f);
 
 /**
  * @brief Apply a low-pass Laplace filter to the input array.
@@ -636,10 +638,10 @@ void laplace(Array &array, float sigma = 0.2f, int iterations = 3);
  *
  * @overload
  */
-void laplace(Array &array,
-             Array *p_mask,
-             float  sigma = 0.2f,
-             int    iterations = 3);
+void laplace(Array       &array,
+             const Array *p_mask,
+             float        sigma = 0.2f,
+             int          iterations = 3);
 
 /**
  * @brief Apply a low-pass Laplace filter to a vector.
@@ -706,11 +708,11 @@ void laplace_edge_preserving(Array &array,
  *
  * @overload
  */
-void laplace_edge_preserving(Array &array,
-                             float  talus,
-                             Array *p_mask,
-                             float  sigma = 0.2f,
-                             int    iterations = 3);
+void laplace_edge_preserving(Array       &array,
+                             float        talus,
+                             const Array *p_mask,
+                             float        sigma = 0.2f,
+                             int          iterations = 3);
 
 /**
  * @brief Apply a low-pass high-order filter to the input array.
@@ -894,7 +896,7 @@ Array mean_shift(const Array &array,
  * **Result**
  * @image html ex_median_3x3.png
  */
-void median_3x3(Array &array, Array *p_mask);
+void median_3x3(Array &array, const Array *p_mask);
 
 /**
  * @brief Apply a 3x3 median filter to the input array without a mask.
@@ -984,11 +986,11 @@ void normal_displacement(Array &array,
                          int    ir = 0,
                          bool   reverse = false);
 
-void normal_displacement(Array &array,
-                         Array *p_mask,
-                         float  amount = 0.1f,
-                         int    ir = 0,
-                         bool   reverse = false); ///< @overload
+void normal_displacement(Array       &array,
+                         const Array *p_mask,
+                         float        amount = 0.1f,
+                         int          ir = 0,
+                         bool         reverse = false); ///< @overload
 
 /**
  * @brief Apply a plateau-shape filter to the input array.
@@ -1013,7 +1015,7 @@ void normal_displacement(Array &array,
  * **Result**
  * @image html ex_plateau.png
  */
-void plateau(Array &array, Array *p_mask, int ir, float factor);
+void plateau(Array &array, const Array *p_mask, int ir, float factor);
 
 void plateau(Array &array, int ir, float factor); ///< @overload
 /**
@@ -1068,19 +1070,19 @@ void recast_canyon(Array &array, const Array &vcut, float gamma = 4.f);
 
 void recast_canyon(Array       &array,
                    const Array &vcut,
-                   Array       *p_mask,
+                   const Array *p_mask,
                    float        gamma = 4.f); ///< @overload
 
-void recast_canyon(Array &array,
-                   float  vcut,
-                   Array *p_mask,
-                   float  gamma = 4.f,
-                   Array *p_noise = nullptr); ///< @overload
+void recast_canyon(Array       &array,
+                   float        vcut,
+                   const Array *p_mask,
+                   float        gamma = 4.f,
+                   const Array *p_noise = nullptr); ///< @overload
 
-void recast_canyon(Array &array,
-                   float  vcut,
-                   float  gamma = 4.f,
-                   Array *p_noise = nullptr); ///< @overload
+void recast_canyon(Array       &array,
+                   float        vcut,
+                   float        gamma = 4.f,
+                   const Array *p_noise = nullptr); ///< @overload
 
 /**
  * @brief Transform heightmap to add cliffs where gradients are steep enough.
@@ -1116,12 +1118,12 @@ void recast_cliff(Array &array,
                   float  amplitude,
                   float  gain = 2.f);
 
-void recast_cliff(Array &array,
-                  float  talus,
-                  int    ir,
-                  float  amplitude,
-                  Array *p_mask,
-                  float  gain = 2.f); ///< @overload
+void recast_cliff(Array       &array,
+                  float        talus,
+                  int          ir,
+                  float        amplitude,
+                  const Array *p_mask,
+                  float        gain = 2.f); ///< @overload
 
 /**
  * @brief Transform heightmap to add directional cliffs where gradients are
@@ -1161,13 +1163,13 @@ void recast_cliff_directional(Array &array,
                               float  angle,
                               float  gain = 2.f); ///< @overload
 
-void recast_cliff_directional(Array &array,
-                              float  talus,
-                              int    ir,
-                              float  amplitude,
-                              float  angle,
-                              Array *p_mask,
-                              float  gain = 2.f); ///< @overload
+void recast_cliff_directional(Array       &array,
+                              float        talus,
+                              int          ir,
+                              float        amplitude,
+                              float        angle,
+                              const Array *p_mask,
+                              float        gain = 2.f); ///< @overload
 
 void recast_cracks(Array &array,
                    float  cut_min = 0.05f,
@@ -1252,14 +1254,14 @@ void recast_escarpment(Array &array,
  * **Result**
  * @image html ex_recast.png
  */
-void recast_escarpment(Array &array,
-                       Array *p_mask,
-                       int    ir = 16,
-                       float  ratio = 0.1f,
-                       float  scale = 1.f,
-                       bool   reverse = false,
-                       bool   transpose_effect = false,
-                       float  global_scaling = 0.f);
+void recast_escarpment(Array       &array,
+                       const Array *p_mask,
+                       int          ir = 16,
+                       float        ratio = 0.1f,
+                       float        scale = 1.f,
+                       bool         reverse = false,
+                       bool         transpose_effect = false,
+                       float        global_scaling = 0.f);
 
 /**
  * @brief Transform heightmap to give a "peak" like appearance.
@@ -1293,11 +1295,11 @@ void recast_escarpment(Array &array,
  */
 void recast_peak(Array &array, int ir, float gamma = 2.f, float k = 0.1f);
 
-void recast_peak(Array &array,
-                 int    ir,
-                 Array *p_mask,
-                 float  gamma = 2.f,
-                 float  k = 0.1f); ///< @overload
+void recast_peak(Array       &array,
+                 int          ir,
+                 const Array *p_mask,
+                 float        gamma = 2.f,
+                 float        k = 0.1f); ///< @overload
 
 /**
  * @brief Transform heightmap by adding "rock-like" features at higher slopes.
@@ -1341,27 +1343,27 @@ void recast_peak(Array &array,
  * **Result**
  * @image html ex_recast.png
  */
-void recast_rocky_slopes(Array      &array,
-                         float       talus,
-                         int         ir,
-                         float       amplitude,
-                         uint        seed,
-                         float       kw,
-                         float       gamma = 0.5f,
-                         Array      *p_noise = nullptr,
-                         Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+void recast_rocky_slopes(Array       &array,
+                         float        talus,
+                         int          ir,
+                         float        amplitude,
+                         uint         seed,
+                         float        kw,
+                         float        gamma = 0.5f,
+                         const Array *p_noise = nullptr,
+                         Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 void recast_rocky_slopes(
-    Array      &array,
-    float       talus,
-    int         ir,
-    float       amplitude,
-    uint        seed,
-    float       kw,
-    Array      *p_mask,
-    float       gamma = 0.5f,
-    Array      *p_noise = nullptr,
-    Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f}); ///< @overload
+    Array       &array,
+    float        talus,
+    int          ir,
+    float        amplitude,
+    uint         seed,
+    float        kw,
+    const Array *p_mask,
+    float        gamma = 0.5f,
+    const Array *p_noise = nullptr,
+    Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f}); ///< @overload
 
 /**
  * @brief Transform heightmap to give a "cliff" like appearance.
@@ -1392,10 +1394,10 @@ void recast_rocky_slopes(
  */
 void recast_sag(Array &array, float vref, float k);
 
-void recast_sag(Array &array,
-                float  vref,
-                float  k,
-                Array *p_mask); ///< @overload
+void recast_sag(Array       &array,
+                float        vref,
+                float        k,
+                const Array *p_mask); ///< @overload
 
 /**
  * @brief Apply a curve adjustment filter to the array.
@@ -1429,7 +1431,7 @@ void recurve(Array                    &array,
 void recurve(Array                    &array,
              const std::vector<float> &t,
              const std::vector<float> &v,
-             Array                    *p_mask); ///< @overload
+             const Array              *p_mask); ///< @overload
 
 /**
  * @brief Apply a curve adjustment filter using a "bumpy exponential-shape"
@@ -1459,7 +1461,9 @@ void recurve(Array                    &array,
  */
 void recurve_bexp(Array &array, float tau = 0.5f);
 
-void recurve_bexp(Array &array, Array *p_mask, float tau = 0.5f); ///< @overload
+void recurve_bexp(Array       &array,
+                  const Array *p_mask,
+                  float        tau = 0.5f); ///< @overload
 
 /**
  * @brief Apply a curve adjustment filter using a "sharp exponential-shape"
@@ -1489,7 +1493,9 @@ void recurve_bexp(Array &array, Array *p_mask, float tau = 0.5f); ///< @overload
  */
 void recurve_exp(Array &array, float tau = 0.5f);
 
-void recurve_exp(Array &array, Array *p_mask, float tau = 0.5f); ///< @overload
+void recurve_exp(Array       &array,
+                 const Array *p_mask,
+                 float        tau = 0.5f); ///< @overload
 
 /**
  * @brief Apply a curve adjustment filter using Kumaraswamy's cumulative
@@ -1518,7 +1524,10 @@ void recurve_exp(Array &array, Array *p_mask, float tau = 0.5f); ///< @overload
  */
 void recurve_kura(Array &array, float a, float b);
 
-void recurve_kura(Array &array, float a, float b, Array *p_mask); ///< @overload
+void recurve_kura(Array       &array,
+                  float        a,
+                  float        b,
+                  const Array *p_mask); ///< @overload
 
 /**
  * @brief Apply a curve adjustment filter using a smooth "S-shape" curve.
@@ -1543,7 +1552,7 @@ void recurve_kura(Array &array, float a, float b, Array *p_mask); ///< @overload
  */
 void recurve_s(Array &array);
 
-void recurve_s(Array &array, Array *p_mask); ///< @overload
+void recurve_s(Array &array, const Array *p_mask); ///< @overload
 
 /**
  * @brief Apply a curve adjustment filter using an nth-order smoothstep curve.
@@ -1571,9 +1580,9 @@ void recurve_s(Array &array, Array *p_mask); ///< @overload
  */
 void recurve_smoothstep_rational(Array &array, float n);
 
-void recurve_smoothstep_rational(Array &array,
-                                 float  n,
-                                 Array *p_mask); ///< @overload
+void recurve_smoothstep_rational(Array       &array,
+                                 float        n,
+                                 const Array *p_mask); ///< @overload
 
 /**
  * @brief Saturate the array values based on the input interval [vmin, vmax]
@@ -1628,7 +1637,9 @@ void saturate(Array &array, float vmin, float vmax, float k = 0.f);
  */
 void sharpen(Array &array, float ratio = 1.f);
 
-void sharpen(Array &array, Array *p_mask, float ratio = 1.f); ///< @overload
+void sharpen(Array       &array,
+             const Array *p_mask,
+             float        ratio = 1.f); ///< @overload
 
 /**
  * @brief Apply a sharpening filter based on a smooth cone filter.
@@ -1656,10 +1667,10 @@ void sharpen(Array &array, Array *p_mask, float ratio = 1.f); ///< @overload
  */
 void sharpen_cone(Array &array, int ir, float intensity = 0.5f);
 
-void sharpen_cone(Array &array,
-                  Array *p_mask,
-                  int    ir,
-                  float  scale = 0.5f); ///< @overload
+void sharpen_cone(Array       &array,
+                  const Array *p_mask,
+                  int          ir,
+                  float        scale = 0.5f); ///< @overload
 
 /**
  * @brief Apply shrinking, or "deflating", to emphasize the ridges in the
@@ -1689,9 +1700,9 @@ void sharpen_cone(Array &array,
  * @see {@link ex_expand}
  */
 void shrink(Array &array, int ir);
-void shrink(Array &array, int ir, Array *p_mask);        ///< @overload
-void shrink(Array &array, Array &kernel);                ///< @overload
-void shrink(Array &array, Array &kernel, Array *p_mask); ///< @overload
+void shrink(Array &array, int ir, const Array *p_mask);        ///< @overload
+void shrink(Array &array, Array &kernel);                      ///< @overload
+void shrink(Array &array, Array &kernel, const Array *p_mask); ///< @overload
 
 /**
  * @brief Apply directional shrinking, or "deflating", to emphasize the ridges
@@ -1721,12 +1732,12 @@ void shrink(Array &array, Array &kernel, Array *p_mask); ///< @overload
  * **Result**
  * @image html ex_expand_directional.png
  */
-void shrink_directional(Array &array,
-                        int    ir,
-                        float  angle,
-                        float  aspect_ratio,
-                        float  anisotropy = 1.f,
-                        Array *p_mask = nullptr);
+void shrink_directional(Array       &array,
+                        int          ir,
+                        float        angle,
+                        float        aspect_ratio,
+                        float        anisotropy = 1.f,
+                        const Array *p_mask = nullptr);
 
 /**
  * @brief Apply a convolution filter with a cone kernel to smooth the array.
@@ -1749,7 +1760,7 @@ void shrink_directional(Array &array,
  * @image html ex_smooth_cone.png
  */
 void smooth_cone(Array &array, int ir);
-void smooth_cone(Array &array, int ir, Array *p_mask); ///< @overload
+void smooth_cone(Array &array, int ir, const Array *p_mask); ///< @overload
 
 /**
  * @brief Apply filtering to the array using convolution with a cubic pulse
@@ -1777,7 +1788,7 @@ void smooth_cone(Array &array, int ir, Array *p_mask); ///< @overload
  * @see {@link smooth_gaussian}
  */
 void smooth_cpulse(Array &array, int ir);
-void smooth_cpulse(Array &array, int ir, Array *p_mask); ///< @overload
+void smooth_cpulse(Array &array, int ir, const Array *p_mask); ///< @overload
 
 /**
  * @brief Applies a smoothing average filter to the given 2D array in both
@@ -1816,7 +1827,7 @@ void smooth_flat(Array &array, int ir);
  * @image html ex_smooth_gaussian.png
  */
 void smooth_gaussian(Array &array, int ir);
-void smooth_gaussian(Array &array, int ir, Array *p_mask); ///< @overload
+void smooth_gaussian(Array &array, int ir, const Array *p_mask); ///< @overload
 /**
  * @brief Apply cubic pulse smoothing to fill lower flat regions while
  * preserving some sharpness.
@@ -1850,11 +1861,11 @@ void smooth_fill(Array &array,
                  float  k = 0.1f,
                  Array *p_deposition_map = nullptr);
 
-void smooth_fill(Array &array,
-                 int    ir,
-                 Array *p_mask,
-                 float  k = 0.1f,
-                 Array *p_deposition_map = nullptr); ///< @overload
+void smooth_fill(Array       &array,
+                 int          ir,
+                 const Array *p_mask,
+                 float        k = 0.1f,
+                 Array       *p_deposition_map = nullptr); ///< @overload
 
 /**
  * @brief Apply smoothing to fill holes (elliptic concave surfaces).
@@ -1878,7 +1889,9 @@ void smooth_fill(Array &array,
  * @see {@link smooth_fill_smear_peaks}
  */
 void smooth_fill_holes(Array &array, int ir);
-void smooth_fill_holes(Array &array, int ir, Array *p_mask); ///< @overload
+void smooth_fill_holes(Array       &array,
+                       int          ir,
+                       const Array *p_mask); ///< @overload
 
 /**
  * @brief Apply smoothing to smear peaks (elliptic convex surfaces).
@@ -1902,9 +1915,9 @@ void smooth_fill_holes(Array &array, int ir, Array *p_mask); ///< @overload
  * @see {@link smooth_fill_holes}
  */
 void smooth_fill_smear_peaks(Array &array, int ir);
-void smooth_fill_smear_peaks(Array &array,
-                             int    ir,
-                             Array *p_mask); ///< @overload
+void smooth_fill_smear_peaks(Array       &array,
+                             int          ir,
+                             const Array *p_mask); ///< @overload
 
 /**
  * @brief Applies a localized smoothstep operation to the provided array.
@@ -1943,7 +1956,7 @@ void smoothstep_local(Array &array, int ir);
  * **Result**
  * @image html ex_smoothstep_local.png
  */
-void smoothstep_local(Array &array, int ir, Array *p_mask);
+void smoothstep_local(Array &array, int ir, const Array *p_mask);
 
 /**
  * @brief Steepen (or flatten) the array map.
@@ -1970,10 +1983,10 @@ void smoothstep_local(Array &array, int ir, Array *p_mask);
  * @image html ex_steepen.png
  */
 void steepen(Array &array, float scale, int ir = 8);
-void steepen(Array &array,
-             float  scale,
-             Array *p_mask,
-             int    ir = 8); ///< @overload
+void steepen(Array       &array,
+             float        scale,
+             const Array *p_mask,
+             int          ir = 8); ///< @overload
 
 /**
  * @brief Steepen array values by applying a nonlinear convection operator in a
@@ -2008,12 +2021,12 @@ void steepen_convective(Array &array,
                         int    ir = 0,
                         float  dt = 0.1f);
 
-void steepen_convective(Array &array,
-                        float  angle,
-                        Array *p_mask,
-                        int    iterations = 1,
-                        int    ir = 0,
-                        float  dt = 0.1f); ///< @overload
+void steepen_convective(Array       &array,
+                        float        angle,
+                        const Array *p_mask,
+                        int          iterations = 1,
+                        int          ir = 0,
+                        float        dt = 0.1f); ///< @overload
 
 /**
  * @brief Applies a terrace effect to the values in an array.
@@ -2048,14 +2061,14 @@ void steepen_convective(Array &array,
  * **Result**
  * @image html ex_terrace.png
  */
-void terrace(Array &array,
-             uint   seed,
-             int    nlevels,
-             float  gain = 4.f,
-             float  noise_ratio = 0.f,
-             Array *p_noise = nullptr,
-             float  vmin = 0.f,
-             float  vmax = -1.f);
+void terrace(Array       &array,
+             uint         seed,
+             int          nlevels,
+             float        gain = 4.f,
+             float        noise_ratio = 0.f,
+             const Array *p_noise = nullptr,
+             float        vmin = 0.f,
+             float        vmax = -1.f);
 
 /**
  * @brief Applies a terrace effect to an array with optional masking.
@@ -2097,15 +2110,15 @@ void terrace(Array &array,
  * **Result**
  * @image html ex_terrace.png
  */
-void terrace(Array &array,
-             uint   seed,
-             int    nlevels,
-             Array *p_mask,
-             float  gain = 4.f,
-             float  noise_ratio = 0.f,
-             Array *p_noise = nullptr,
-             float  vmin = 0.f,
-             float  vmax = -1.f);
+void terrace(Array       &array,
+             uint         seed,
+             int          nlevels,
+             const Array *p_mask,
+             float        gain = 4.f,
+             float        noise_ratio = 0.f,
+             const Array *p_noise = nullptr,
+             float        vmin = 0.f,
+             float        vmax = -1.f);
 
 /**
  * @brief Apply tessellation to the array with random node placement.
@@ -2131,10 +2144,10 @@ void terrace(Array &array,
  * **Result**
  * @image html ex_tessellate.png
  */
-Array tessellate(Array &array,
-                 uint   seed,
-                 float  node_density = 0.001f,
-                 Array *p_weight = nullptr);
+Array tessellate(Array       &array,
+                 uint         seed,
+                 float        node_density = 0.001f,
+                 const Array *p_weight = nullptr);
 
 /**
  * @brief Apply wrinkle effect to the array, creating wrinkled or bumpy
@@ -2168,17 +2181,17 @@ Array tessellate(Array &array,
  * **Result**
  * @image html ex_wrinkle.png
  */
-void wrinkle(Array      &array,
-             float       wrinkle_amplitude,
-             Array      *p_mask,
-             float       wrinkle_angle = 0.f,
-             float       displacement_amplitude = 1.f,
-             int         ir = 0,
-             float       kw = 2.f,
-             uint        seed = 1,
-             int         octaves = 8,
-             float       weight = 0.7f,
-             Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+void wrinkle(Array       &array,
+             float        wrinkle_amplitude,
+             const Array *p_mask,
+             float        wrinkle_angle = 0.f,
+             float        displacement_amplitude = 1.f,
+             int          ir = 0,
+             float        kw = 2.f,
+             uint         seed = 1,
+             int          octaves = 8,
+             float        weight = 0.7f,
+             Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 void wrinkle(Array      &array,
              float       wrinkle_amplitude,
@@ -2198,24 +2211,26 @@ namespace hmap::gpu
 
 /*! @brief See hmap::expand */
 void expand(Array &array, int ir);
-void expand(Array &array, int ir, Array *p_mask);        ///< @overload
-void expand(Array &array, Array &kernel);                ///< @overload
-void expand(Array &array, Array &kernel, Array *p_mask); ///< @overload
+void expand(Array &array, int ir, const Array *p_mask); ///< @overload
+void expand(Array &array, const Array &kernel);         ///< @overload
+void expand(Array       &array,
+            const Array &kernel,
+            const Array *p_mask); ///< @overload
 
 /*! @brief See hmap::gamma_correction_local */
 void gamma_correction_local(Array &array, float gamma, int ir, float k = 0.1f);
-void gamma_correction_local(Array &array,
-                            float  gamma,
-                            int    ir,
-                            Array *p_mask,
-                            float  k = 0.1f); ///< @overload
+void gamma_correction_local(Array       &array,
+                            float        gamma,
+                            int          ir,
+                            const Array *p_mask,
+                            float        k = 0.1f); ///< @overload
 
 /*! @brief See hmap::laplace */
 void laplace(Array &array, float sigma = 0.2f, int iterations = 3);
-void laplace(Array &array,
-             Array *p_mask,
-             float  sigma = 0.2f,
-             int    iterations = 3); ///< @overload
+void laplace(Array       &array,
+             const Array *p_mask,
+             float        sigma = 0.2f,
+             int          iterations = 3); ///< @overload
 
 /*! @brief See hmap::maximum_local */
 Array maximum_local(const Array &array, int ir);
@@ -2235,7 +2250,7 @@ Array mean_shift(const Array &array,
 
 /*! @brief See hmap::median_3x3 */
 void median_3x3(Array &array);
-void median_3x3(Array &array, Array *p_mask); ///< @overload
+void median_3x3(Array &array, const Array *p_mask); ///< @overload
 
 /*! @brief See hmap::minimum_local */
 Array minimum_local(const Array &array, int ir);
@@ -2248,47 +2263,51 @@ void normal_displacement(Array &array,
                          float  amount = 0.1f,
                          int    ir = 0,
                          bool   reverse = false);
-void normal_displacement(Array &array,
-                         Array *p_mask,
-                         float  amount = 0.1f,
-                         int    ir = 0,
-                         bool   reverse = false); ///< @overload
+void normal_displacement(Array       &array,
+                         const Array *p_mask,
+                         float        amount = 0.1f,
+                         int          ir = 0,
+                         bool         reverse = false); ///< @overload
 
 /*! @brief See hmap::plateau */
-void plateau(Array &array, Array *p_mask, int ir, float factor);
+void plateau(Array &array, const Array *p_mask, int ir, float factor);
 void plateau(Array &array, int ir, float factor); ///< @overload
 
 /*! @brief See hmap::shrink */
 void shrink(Array &array, int ir);
-void shrink(Array &array, int ir, Array *p_mask);        ///< @overload
-void shrink(Array &array, Array &kernel);                ///< @overload
-void shrink(Array &array, Array &kernel, Array *p_mask); ///< @overload
+void shrink(Array &array, int ir, const Array *p_mask); ///< @overload
+void shrink(Array &array, const Array &kernel);         ///< @overload
+void shrink(Array       &array,
+            const Array &kernel,
+            const Array *p_mask); ///< @overload
 
 /*! @brief See hmap::smooth_cpulse */
 void smooth_cpulse(Array &array, int ir);
 
 /*! @brief See hmap::smooth_cpulse */
-void smooth_cpulse(Array &array, int ir, Array *p_mask);
+void smooth_cpulse(Array &array, int ir, const Array *p_mask);
 
 /*! @brief See hmap::smooth_fill */
 void smooth_fill(Array &array,
                  int    ir,
                  float  k = 0.1f,
                  Array *p_deposition_map = nullptr);
-void smooth_fill(Array &array,
-                 int    ir,
-                 Array *p_mask,
-                 float  k = 0.1f,
-                 Array *p_deposition_map = nullptr); ///< @overload
+void smooth_fill(Array       &array,
+                 int          ir,
+                 const Array *p_mask,
+                 float        k = 0.1f,
+                 Array       *p_deposition_map = nullptr); ///< @overload
 
 /*! @brief See hmap::smooth_fill_holes */
 void smooth_fill_holes(Array &array, int ir);
-void smooth_fill_holes(Array &array, int ir, Array *p_mask); ///< @overload
+void smooth_fill_holes(Array       &array,
+                       int          ir,
+                       const Array *p_mask); ///< @overload
 
 /*! @brief See hmap::smooth_fill_smear_peaks */
 void smooth_fill_smear_peaks(Array &array, int ir);
-void smooth_fill_smear_peaks(Array &array,
-                             int    ir,
-                             Array *p_mask); ///< @overload
+void smooth_fill_smear_peaks(Array       &array,
+                             int          ir,
+                             const Array *p_mask); ///< @overload
 
 } // namespace hmap::gpu
