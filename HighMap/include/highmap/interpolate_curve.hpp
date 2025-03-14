@@ -80,12 +80,12 @@ public:
   std::vector<Point> operator()(std::vector<float> t) const;
 
 private:
-  std::vector<Point>       points_data; ///< The set of points to interpolate.
-  InterpolationMethodCurve method; ///< The interpolation method being used.
-  std::vector<float>
-      arc_length; ///< Normalized cumulative distance between points.
-  std::function<Point(float)>
-      interp; ///< Function to perform interpolation based on `method`.
+  // clang-format off
+  std::vector<Point>          points_data; ///< The set of points to interpolate.
+  InterpolationMethodCurve    method;      ///< The interpolation method being used.
+  std::vector<float>          arc_length;  ///< Normalized cumulative distance between points.
+  std::function<Point(float)> interp;      ///< Function to perform interpolation based on `method`.
+  // clang-format on
 
   /**
    * @brief Computes segment interpolation parameters for a given parameter
