@@ -34,7 +34,7 @@ void recurve(Array                    &array,
 void recurve(Array                    &array,
              const std::vector<float> &t,
              const std::vector<float> &v,
-             Array                    *p_mask)
+             const Array              *p_mask)
 {
   {
     if (!p_mask)

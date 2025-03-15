@@ -1700,9 +1700,11 @@ void sharpen_cone(Array       &array,
  * @see {@link ex_expand}
  */
 void shrink(Array &array, int ir);
-void shrink(Array &array, int ir, const Array *p_mask);        ///< @overload
-void shrink(Array &array, Array &kernel);                      ///< @overload
-void shrink(Array &array, Array &kernel, const Array *p_mask); ///< @overload
+void shrink(Array &array, int ir, const Array *p_mask); ///< @overload
+void shrink(Array &array, const Array &kernel);         ///< @overload
+void shrink(Array       &array,
+            const Array &kernel,
+            const Array *p_mask); ///< @overload
 
 /**
  * @brief Apply directional shrinking, or "deflating", to emphasize the ridges

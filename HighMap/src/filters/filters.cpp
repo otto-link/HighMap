@@ -97,7 +97,7 @@ void expand(Array &array, int ir, const Array *p_mask)
   }
 }
 
-void expand(Array &array, Array &kernel)
+void expand(Array &array, const Array &kernel)
 {
   Array array_new = array;
   int   ni = array.shape.x;
@@ -128,7 +128,7 @@ void expand(Array &array, Array &kernel)
   array = array_new;
 }
 
-void expand(Array &array, Array &kernel, const Array *p_mask)
+void expand(Array &array, const Array &kernel, const Array *p_mask)
 {
   if (!p_mask)
     expand(array, kernel);
@@ -855,7 +855,7 @@ void shrink(Array &array, int ir, const Array *p_mask)
   }
 }
 
-void shrink(Array &array, Array &kernel)
+void shrink(Array &array, const Array &kernel)
 {
   float amax = array.max();
   array = amax - array;
@@ -863,7 +863,7 @@ void shrink(Array &array, Array &kernel)
   array = amax - array;
 }
 
-void shrink(Array &array, Array &kernel, const Array *p_mask)
+void shrink(Array &array, const Array &kernel, const Array *p_mask)
 {
   if (!p_mask)
     shrink(array, kernel);
