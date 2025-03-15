@@ -139,9 +139,9 @@ Array blend_soft(const Array &array1, const Array &array2);
  * **Result**
  * @image html ex_mixer.png
  */
-Array mixer(const Array              &t,
-            const std::vector<Array> &arrays,
-            float                     gain_factor = 1.f);
+Array mixer(const Array                      &t,
+            const std::vector<const Array *> &arrays,
+            float                             gain_factor = 1.f);
 
 } // namespace hmap
 

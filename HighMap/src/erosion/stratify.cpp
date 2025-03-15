@@ -183,7 +183,12 @@ void stratify(Array &z,
     zs.push_back(ztmp);
   }
 
-  z = mixer(partition, zs, mixing_gain_factor);
+  // mix everything
+  std::vector<const Array *> zs_ptr = {};
+  for (auto &a : zs)
+    zs_ptr.push_back(&a);
+
+  z = mixer(partition, zs_ptr, mixing_gain_factor);
 }
 
 void stratify_oblique(Array             &z,
