@@ -723,71 +723,78 @@ HeightmapRGBA mix_normal_map_rgba(HeightmapRGBA          &nmap_base,
  * @image html ex_heightmap_fill0.png
  * @image html ex_heightmap_fill1.png
  */
-void fill(Heightmap &h,
-          Heightmap *p_noise_x,
-          Heightmap *p_noise_y,
-          std::function<
-              Array(Vec2<int>, Vec4<float>, Array *p_noise_x, Array *p_noise_y)>
-              nullary_op);
+[[deprecated]] void fill(
+    Heightmap &h,
+    Heightmap *p_noise_x,
+    Heightmap *p_noise_y,
+    std::function<
+        Array(Vec2<int>, Vec4<float>, Array *p_noise_x, Array *p_noise_y)>
+        nullary_op);
 
-void fill(Heightmap                          &h,
-          Heightmap                          &hin,
-          Heightmap                          *p_noise_x,
-          Heightmap                          *p_noise_y,
-          std::function<Array(hmap::Array &,
-                              Vec2<int>,
-                              Vec4<float>,
-                              hmap::Array *,
-                              hmap::Array *)> nullary_op);
+[[deprecated]] void fill(Heightmap                          &h,
+                         Heightmap                          &hin,
+                         Heightmap                          *p_noise_x,
+                         Heightmap                          *p_noise_y,
+                         std::function<Array(hmap::Array &,
+                                             Vec2<int>,
+                                             Vec4<float>,
+                                             hmap::Array *,
+                                             hmap::Array *)> nullary_op);
 
-void fill(Heightmap                          &h,
-          Heightmap                          *p_noise_x,
-          Heightmap                          *p_noise_y,
-          Heightmap                          *p_stretching,
-          std::function<Array(Vec2<int>,
-                              Vec4<float>,
-                              hmap::Array *,
-                              hmap::Array *,
-                              hmap::Array *)> nullary_op);
+[[deprecated]] void fill(Heightmap                          &h,
+                         Heightmap                          *p_noise_x,
+                         Heightmap                          *p_noise_y,
+                         Heightmap                          *p_stretching,
+                         std::function<Array(Vec2<int>,
+                                             Vec4<float>,
+                                             hmap::Array *,
+                                             hmap::Array *,
+                                             hmap::Array *)> nullary_op);
 
 // shape, shift, scale and noise
-void fill(
+[[deprecated]] void fill(
     Heightmap                                                   &h,
     Heightmap                                                   *p_noise,
     std::function<Array(Vec2<int>, Vec4<float>, Array *p_noise)> nullary_op);
 
 // shape, shift and scale
-void fill(Heightmap                                   &h,
-          std::function<Array(Vec2<int>, Vec4<float>)> nullary_op);
+[[deprecated]] void fill(
+    Heightmap                                   &h,
+    std::function<Array(Vec2<int>, Vec4<float>)> nullary_op);
 
 // shape only
-void fill(Heightmap &h, std::function<Array(Vec2<int>)> nullary_op);
+[[deprecated]] void fill(Heightmap                      &h,
+                         std::function<Array(Vec2<int>)> nullary_op);
 
-void transform(Heightmap &h, std::function<void(Array &)> unary_op);
+[[deprecated]] void transform(Heightmap                   &h,
+                              std::function<void(Array &)> unary_op);
 
-void transform(Heightmap                                &h,
-               std::function<void(Array &, Vec4<float>)> unary_op);
+[[deprecated]] void transform(
+    Heightmap                                &h,
+    std::function<void(Array &, Vec4<float>)> unary_op);
 
-void transform(Heightmap                                         &h,
-               Heightmap                                         *p_noise_x,
-               std::function<void(Array &, Vec4<float>, Array *)> unary_op);
+[[deprecated]] void transform(
+    Heightmap                                         &h,
+    Heightmap                                         *p_noise_x,
+    std::function<void(Array &, Vec4<float>, Array *)> unary_op);
 
-void transform(
+[[deprecated]] void transform(
     Heightmap                                                  &h,
     Heightmap                                                  *p_noise_x,
     Heightmap                                                  *p_noise_y,
     std::function<void(Array &, Vec4<float>, Array *, Array *)> unary_op);
 
-void transform(Heightmap                                             &h,
-               std::function<void(Array &, Vec2<float>, Vec2<float>)> unary_op);
+[[deprecated]] void transform(
+    Heightmap                                             &h,
+    std::function<void(Array &, Vec2<float>, Vec2<float>)> unary_op);
 
 // input array and mask
-void transform(Heightmap                            &h,
-               Heightmap                            *p_mask,
-               std::function<void(Array &, Array *)> unary_op);
+[[deprecated]] void transform(Heightmap                            &h,
+                              Heightmap                            *p_mask,
+                              std::function<void(Array &, Array *)> unary_op);
 
 // for erosion
-void transform(
+[[deprecated]] void transform(
     Heightmap       &h,
     hmap::Heightmap *p_1,
     hmap::Heightmap *p_2,
@@ -797,55 +804,58 @@ void transform(
     std::function<void(Array &, Array *, Array *, Array *, Array *, Array *)>
         unary_op);
 
-void transform(
+[[deprecated]] void transform(
     Heightmap                                              &h,
     hmap::Heightmap                                        *p_1,
     hmap::Heightmap                                        *p_2,
     hmap::Heightmap                                        *p_3,
     std::function<void(Array &, Array *, Array *, Array *)> unary_op);
 
-void transform(Heightmap                                     &h,
-               hmap::Heightmap                               *p_1,
-               hmap::Heightmap                               *p_2,
-               std::function<void(Array &, Array *, Array *)> unary_op);
+[[deprecated]] void transform(
+    Heightmap                                     &h,
+    hmap::Heightmap                               *p_1,
+    hmap::Heightmap                               *p_2,
+    std::function<void(Array &, Array *, Array *)> unary_op);
 
-void transform(Heightmap                            &h1,
-               Heightmap                            &h2,
-               std::function<void(Array &, Array &)> binary_op);
+[[deprecated]] void transform(Heightmap                            &h1,
+                              Heightmap                            &h2,
+                              std::function<void(Array &, Array &)> binary_op);
 
-void transform(Heightmap                                         &h1,
-               Heightmap                                         &h2,
-               std::function<void(Array &, Array &, Vec4<float>)> binary_op);
+[[deprecated]] void transform(
+    Heightmap                                         &h1,
+    Heightmap                                         &h2,
+    std::function<void(Array &, Array &, Vec4<float>)> binary_op);
 
-void transform(Heightmap                                     &h1,
-               Heightmap                                     &h2,
-               Heightmap                                     &h3,
-               std::function<void(Array &, Array &, Array &)> ternary_op);
+[[deprecated]] void transform(
+    Heightmap                                     &h1,
+    Heightmap                                     &h2,
+    Heightmap                                     &h3,
+    std::function<void(Array &, Array &, Array &)> ternary_op);
 
-void transform(
+[[deprecated]] void transform(
     Heightmap                                                  &h1,
     Heightmap                                                  &h2,
     Heightmap                                                  &h3,
     std::function<void(Array &, Array &, Array &, Vec4<float>)> ternary_op);
 
 // with returned array
-void transform(Heightmap                    &h_out, // output
-               Heightmap                    &h1,    // in 1
-               std::function<Array(Array &)> unary_op);
+[[deprecated]] void transform(Heightmap                    &h_out, // output
+                              Heightmap                    &h1,    // in 1
+                              std::function<Array(Array &)> unary_op);
 
-void transform(Heightmap                             &h_out, // output
-               Heightmap                             &h1,    // in 1
-               Heightmap                             &h2,    // in 2
-               std::function<Array(Array &, Array &)> binary_op);
+[[deprecated]] void transform(Heightmap &h_out, // output
+                              Heightmap &h1,    // in 1
+                              Heightmap &h2,    // in 2
+                              std::function<Array(Array &, Array &)> binary_op);
 
-void transform(
+[[deprecated]] void transform(
     Heightmap                                              &h1,
     Heightmap                                              &h2,
     Heightmap                                              &h3,
     Heightmap                                              &h4,
     std::function<void(Array &, Array &, Array &, Array &)> ternary_op);
 
-void transform(
+[[deprecated]] void transform(
     Heightmap &h1,
     Heightmap &h2,
     Heightmap &h3,
@@ -865,10 +875,11 @@ void transform(
  * @param transform_mode The mode of transformation to be applied. Default is
  *                       TransformMode::DISTRIBUTED.
  */
-void transform(std::vector<Heightmap *>                     p_hmaps,
-               std::function<void(const std::vector<Array *>,
-                                  const hmap::Vec2<int>,
-                                  const hmap::Vec4<float>)> op,
-               TransformMode transform_mode = TransformMode::DISTRIBUTED);
+[[deprecated]] void transform(
+    std::vector<Heightmap *>                     p_hmaps,
+    std::function<void(const std::vector<Array *>,
+                       const hmap::Vec2<int>,
+                       const hmap::Vec4<float>)> op,
+    TransformMode transform_mode = TransformMode::DISTRIBUTED);
 
 } // namespace hmap

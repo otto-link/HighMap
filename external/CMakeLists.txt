@@ -6,4 +6,4 @@ include(libnpy.cmake)
 include(macro-logger.cmake)
 
 add_subdirectory(CLWrapper)
-add_subdirectory(Noise/NoiseLib)
+add_subdirectory(Noise/NoiseLib) # dendry
