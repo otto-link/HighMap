@@ -55,12 +55,20 @@ Heightmap HeightmapRGBA::luminance()
                             this->rgba[0].tiling,
                             this->rgba[0].overlap);
 
-  transform(out,
-            this->rgba[0],
-            this->rgba[1],
-            this->rgba[2],
-            [](Array &y, Array &r, Array &g, Array &b)
-            { y = 0.299f * r + 0.587f * g + 0.114f * b; });
+  transform(
+      {&out, &this->rgba[0], &this->rgba[1], &this->rgba[2]},
+      [](std::vector<hmap::Array *> p_arrays,
+         hmap::Vec2<int>,
+         hmap::Vec4<float>)
+      {
+        hmap::Array *pa_l = p_arrays[0];
+        hmap::Array *pa_r = p_arrays[1];
+        hmap::Array *pa_g = p_arrays[2];
+        hmap::Array *pa_b = p_arrays[3];
+
+        *pa_l = 0.299f * (*pa_r) + 0.587f * (*pa_g) + 0.114f * (*pa_b);
+      },
+      TransformMode::DISTRIBUTED);
 
   return out;
 }
@@ -170,7 +178,16 @@ void HeightmapRGBA::colorize(Heightmap                      &color_level,
   if (p_alpha)
     this->rgba[3] = *p_alpha;
   else
-    transform(this->rgba[3], [](Array &x) { x = 1.f; });
+    transform(
+        {&this->rgba[3]},
+        [](std::vector<hmap::Array *> p_arrays,
+           hmap::Vec2<int>,
+           hmap::Vec4<float>)
+        {
+          hmap::Array *pa_a = p_arrays[0];
+          *pa_a = 1.f;
+        },
+        TransformMode::DISTRIBUTED);
 }
 
 void HeightmapRGBA::colorize(Heightmap &color_level,
@@ -211,11 +228,19 @@ HeightmapRGBA mix_heightmap_rgba(HeightmapRGBA &rgba1,
   Heightmap t;
   t.set_sto(rgba1.rgba[0].shape, rgba1.rgba[0].tiling, rgba1.rgba[0].overlap);
 
-  transform(t,
-            rgba1.rgba[3],
-            rgba2.rgba[3],
-            [](Array &out, Array &a1, Array &a2)
-            { out = a2 / (a2 + a1 * (1.f - a2)); });
+  transform(
+      {&t, &rgba1.rgba[3], &rgba2.rgba[3]},
+      [](std::vector<hmap::Array *> p_arrays,
+         hmap::Vec2<int>,
+         hmap::Vec4<float>)
+      {
+        hmap::Array *pa_t = p_arrays[0];
+        hmap::Array *pa_a1 = p_arrays[1];
+        hmap::Array *pa_a2 = p_arrays[2];
+
+        *pa_t = (*pa_a2) / ((*pa_a2) + (*pa_a1) * (1.f - (*pa_a2)));
+      },
+      TransformMode::DISTRIBUTED);
 
   // apply mixing
   for (size_t kc = 0; kc < 3; kc++)
@@ -235,11 +260,19 @@ HeightmapRGBA mix_heightmap_rgba(HeightmapRGBA &rgba1,
   }
 
   // alpha channel
-  transform(t,
-            rgba1.rgba[3],
-            rgba2.rgba[3],
-            [](Array &out, Array &a1, Array &a2)
-            { out = a1 + a2 * (1.f - a1); });
+  transform(
+      {&t, &rgba1.rgba[3], &rgba2.rgba[3]},
+      [](std::vector<hmap::Array *> p_arrays,
+         hmap::Vec2<int>,
+         hmap::Vec4<float>)
+      {
+        hmap::Array *pa_t = p_arrays[0];
+        hmap::Array *pa_a1 = p_arrays[1];
+        hmap::Array *pa_a2 = p_arrays[2];
+
+        *pa_t = *pa_a1 + *pa_a2 * (1.f - *pa_a1);
+      },
+      TransformMode::DISTRIBUTED);
 
   rgba_out.rgba[3] = t;
 
@@ -282,13 +315,18 @@ HeightmapRGBA mix_normal_map_rgba(HeightmapRGBA          &nmap_base,
 
   // mix and then re-normalize values assuming a RGB channels
   // represent a normal vector
-  auto lambda = [&detail_scaling, &blending_method](Array &r1,
-                                                    Array &g1,
-                                                    Array &b1,
-                                                    Array &r2,
-                                                    Array &g2,
-                                                    Array &b2)
+  auto lambda =
+      [&detail_scaling, &blending_method](std::vector<hmap::Array *> p_arrays,
+                                          hmap::Vec2<int>,
+                                          hmap::Vec4<float>)
   {
+    hmap::Array *pa_r1 = p_arrays[0];
+    hmap::Array *pa_g1 = p_arrays[1];
+    hmap::Array *pa_b1 = p_arrays[2];
+    hmap::Array *pa_r2 = p_arrays[3];
+    hmap::Array *pa_g2 = p_arrays[4];
+    hmap::Array *pa_b2 = p_arrays[5];
+
     std::function<Vec3<float>(Vec3<float> &, Vec3<float> &)> blending_fct;
 
     switch (blending_method)
@@ -348,15 +386,21 @@ HeightmapRGBA mix_normal_map_rgba(HeightmapRGBA          &nmap_base,
     }
     }
 
-    for (int j = 0; j < r1.shape.y; j++)
-      for (int i = 0; i < r1.shape.x; i++)
+    for (int j = 0; j < (*pa_r1).shape.y; j++)
+      for (int i = 0; i < (*pa_r1).shape.x; i++)
       {
         // do some rescaling because RGBA texture expected in [0, 1]
         // but normal vector expected in [-1, 1]
 
         Vec3<float> v111 = Vec3<float>(1.f, 1.f, 1.f);
-        Vec3<float> n1 = 2.f * Vec3<float>(r1(i, j), g1(i, j), b1(i, j)) - v111;
-        Vec3<float> n2 = 2.f * Vec3<float>(r2(i, j), g2(i, j), b2(i, j)) - v111;
+        Vec3<float> n1 = 2.f * Vec3<float>((*pa_r1)(i, j),
+                                           (*pa_g1)(i, j),
+                                           (*pa_b1)(i, j)) -
+                         v111;
+        Vec3<float> n2 = 2.f * Vec3<float>((*pa_r2)(i, j),
+                                           (*pa_g2)(i, j),
+                                           (*pa_b2)(i, j)) -
+                         v111;
 
         n2.x *= detail_scaling;
         n2.y *= detail_scaling;
@@ -365,20 +409,21 @@ HeightmapRGBA mix_normal_map_rgba(HeightmapRGBA          &nmap_base,
         Vec3<float> vn = blending_fct(n1, n2);
         vn.normalize();
 
-        r1(i, j) = 0.5f * vn.x + 0.5f;
-        g1(i, j) = 0.5f * vn.y + 0.5f;
-        b1(i, j) = 0.5f * vn.z + 0.5f;
+        (*pa_r1)(i, j) = 0.5f * vn.x + 0.5f;
+        (*pa_g1)(i, j) = 0.5f * vn.y + 0.5f;
+        (*pa_b1)(i, j) = 0.5f * vn.z + 0.5f;
       }
   };
 
   // apply...
-  transform(nmap_out.rgba[0],
-            nmap_out.rgba[1],
-            nmap_out.rgba[2],
-            nmap_detail.rgba[0],
-            nmap_detail.rgba[1],
-            nmap_detail.rgba[2],
-            lambda);
+  transform({&nmap_out.rgba[0],
+             &nmap_out.rgba[1],
+             &nmap_out.rgba[2],
+             &nmap_detail.rgba[0],
+             &nmap_detail.rgba[1],
+             &nmap_detail.rgba[2]},
+            lambda,
+            TransformMode::DISTRIBUTED);
 
   return nmap_out;
 }

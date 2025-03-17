@@ -39,7 +39,16 @@ Heightmap::Heightmap(Vec2<int> shape,
 {
   this->update_tile_parameters();
 
-  transform(*this, [&fill_value](Array &x) { x = fill_value; });
+  transform(
+      {this},
+      [fill_value](std::vector<hmap::Array *> p_arrays,
+                   hmap::Vec2<int>,
+                   hmap::Vec4<float>)
+      {
+        hmap::Array *pa_out = p_arrays[0];
+        *pa_out = fill_value;
+      },
+      TransformMode::DISTRIBUTED);
 }
 
 Heightmap::Heightmap(Vec2<int> shape, Vec4<float> bbox, Vec2<int> tiling)
@@ -233,12 +242,18 @@ void Heightmap::infos()
 void Heightmap::inverse()
 {
   float hmax = this->max();
-  transform(*this,
-            [hmax](Array &x)
-            {
-              x *= -1.f;
-              x += hmax;
-            });
+
+  transform(
+      {this},
+      [hmax](std::vector<hmap::Array *> p_arrays,
+             hmap::Vec2<int>,
+             hmap::Vec4<float>)
+      {
+        hmap::Array *pa_out = p_arrays[0];
+        *pa_out *= -1.f;
+        *pa_out += hmax;
+      },
+      TransformMode::DISTRIBUTED);
 }
 
 float Heightmap::max()
@@ -321,16 +336,31 @@ void Heightmap::remap(float vmin, float vmax)
 {
   float hmin = this->min();
   float hmax = this->max();
-  transform(*this,
-            [vmin, vmax, hmin, hmax](Array &x)
-            { hmap::remap(x, vmin, vmax, hmin, hmax); });
+
+  transform(
+      {this},
+      [vmin, vmax, hmin, hmax](std::vector<hmap::Array *> p_arrays,
+                               hmap::Vec2<int>,
+                               hmap::Vec4<float>)
+      {
+        hmap::Array *pa_out = p_arrays[0];
+        hmap::remap(*pa_out, vmin, vmax, hmin, hmax);
+      },
+      TransformMode::DISTRIBUTED);
 }
 
 void Heightmap::remap(float vmin, float vmax, float from_min, float from_max)
 {
-  transform(*this,
-            [vmin, vmax, from_min, from_max](Array &x)
-            { hmap::remap(x, vmin, vmax, from_min, from_max); });
+  transform(
+      {this},
+      [vmin, vmax, from_min, from_max](std::vector<hmap::Array *> p_arrays,
+                                       hmap::Vec2<int>,
+                                       hmap::Vec4<float>)
+      {
+        hmap::Array *pa_out = p_arrays[0];
+        hmap::remap(*pa_out, vmin, vmax, from_min, from_max);
+      },
+      TransformMode::DISTRIBUTED);
 }
 
 void Heightmap::set_bbox(Vec4<float> new_bbox)

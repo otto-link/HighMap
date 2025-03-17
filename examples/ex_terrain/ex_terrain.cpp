@@ -11,18 +11,24 @@ int main(void)
   int               seed = 1;
   hmap::Heightmap   h = hmap::Heightmap(shape, tiling, overlap);
 
-  hmap::fill(h,
-             [&kw, &seed](hmap::Vec2<int> shape, hmap::Vec4<float> bbox)
-             {
-               return hmap::noise(hmap::NoiseType::PERLIN,
-                                  shape,
-                                  kw,
-                                  seed,
-                                  nullptr,
-                                  nullptr,
-                                  nullptr,
-                                  bbox);
-             });
+  hmap::transform(
+      {&h},
+      [kw, seed](std::vector<hmap::Array *> p_arrays,
+                 hmap::Vec2<int>            shape,
+                 hmap::Vec4<float>          bbox)
+      {
+        hmap::Array *pa_out = p_arrays[0];
+
+        *pa_out = hmap::noise(hmap::NoiseType::PERLIN,
+                              shape,
+                              kw,
+                              seed,
+                              nullptr,
+                              nullptr,
+                              nullptr,
+                              bbox);
+      },
+      hmap::TransformMode::DISTRIBUTED);
 
   h.remap();
 

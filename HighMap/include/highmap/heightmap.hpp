@@ -875,11 +875,10 @@ HeightmapRGBA mix_normal_map_rgba(HeightmapRGBA          &nmap_base,
  * @param transform_mode The mode of transformation to be applied. Default is
  *                       TransformMode::DISTRIBUTED.
  */
-[[deprecated]] void transform(
-    std::vector<Heightmap *>                     p_hmaps,
-    std::function<void(const std::vector<Array *>,
-                       const hmap::Vec2<int>,
-                       const hmap::Vec4<float>)> op,
-    TransformMode transform_mode = TransformMode::DISTRIBUTED);
+void transform(std::vector<Heightmap *>                     p_hmaps,
+               std::function<void(const std::vector<Array *>,
+                                  const hmap::Vec2<int>,
+                                  const hmap::Vec4<float>)> op,
+               TransformMode transform_mode = TransformMode::DISTRIBUTED);
 
 } // namespace hmap
