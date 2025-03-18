@@ -881,4 +881,8 @@ void transform(std::vector<Heightmap *>                     p_hmaps,
                                   const hmap::Vec4<float>)> op,
                TransformMode transform_mode = TransformMode::DISTRIBUTED);
 
+void transform(std::vector<Heightmap *>                        p_hmaps,
+               std::function<void(const std::vector<Array *>)> op,
+               TransformMode transform_mode = TransformMode::DISTRIBUTED);
+
 } // namespace hmap

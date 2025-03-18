@@ -96,4 +96,16 @@ void transform(std::vector<Heightmap *>                     p_hmaps,
   }
 }
 
+void transform(std::vector<Heightmap *>                        p_hmaps,
+               std::function<void(const std::vector<Array *>)> op,
+               TransformMode                                   transform_mode)
+{
+  // use a pass-through wrapper
+  auto op_wrap = [op](const std::vector<Array *> p_arrays,
+                      const hmap::Vec2<int>,
+                      const hmap::Vec4<float>) { op(p_arrays); };
+
+  transform(p_hmaps, op_wrap, transform_mode);
+}
+
 } // namespace hmap
