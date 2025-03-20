@@ -5,7 +5,7 @@ int main(void)
   hmap::Vec2<int>   shape = {256, 256};
   hmap::Vec2<float> kw = {4.f, 4.f};
   int               seed = 1;
-  hmap::Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f};
+  hmap::Vec4<float> bbox = hmap::unit_square_bbox();
 
   hmap::PerlinFunction p = hmap::PerlinFunction(kw, seed);
 

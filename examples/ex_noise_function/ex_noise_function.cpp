@@ -8,7 +8,7 @@ int main(void)
   uint              seed = 1;
 
   hmap::Array       z = hmap::Array(shape);
-  hmap::Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f};
+  hmap::Vec4<float> bbox = hmap::unit_square_bbox();
 
   float mu = 1.02f;
 

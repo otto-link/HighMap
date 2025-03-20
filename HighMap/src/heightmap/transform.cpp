@@ -83,7 +83,7 @@ void transform(std::vector<Heightmap *>                     p_hmaps,
       else
         p_arrays.push_back(nullptr);
 
-    Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f};
+    Vec4<float> bbox = unit_square_bbox();
     op(p_arrays, p_hmaps[0]->shape, bbox);
 
     // convert back to heightmaps from arrays

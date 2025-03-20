@@ -5,9 +5,7 @@ int main(void)
   hmap::Vec2<int> shape = {256, 256};
   shape = {1024, 1024};
   uint              seed = 0;
-  hmap::Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f};
-
-  float             gain = 1.f;
+  hmap::Vec4<float> bbox = hmap::unit_square_bbox();
   hmap::Vec2<float> center = {0.f, 0.f};
 
   // std::unique_ptr<hmap::Function> p = std::unique_ptr<hmap::Function>(
