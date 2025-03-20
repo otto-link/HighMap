@@ -267,11 +267,22 @@ int main(void)
             "minimum_smooth");
   }
 
+  compare([ir](hmap::Array &z) { z = hmap::morphological_black_hat(z, ir); },
+          [ir](hmap::Array &z)
+          { z = hmap::gpu::morphological_black_hat(z, ir); },
+          1e-3f,
+          "morphological_black_hat");
+
   compare([ir](hmap::Array &z) { z = hmap::morphological_gradient(z, ir); },
           [ir](hmap::Array &z)
           { z = hmap::gpu::morphological_gradient(z, ir); },
           1e-3f,
           "morphological_gradient");
+
+  compare([ir](hmap::Array &z) { z = hmap::morphological_top_hat(z, ir); },
+          [ir](hmap::Array &z) { z = hmap::gpu::morphological_top_hat(z, ir); },
+          1e-3f,
+          "morphological_top_hat");
 
   {
 

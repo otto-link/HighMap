@@ -317,8 +317,14 @@ Array dilation(const Array &array, int ir);
 /*! @brief See hmap::erosion */
 Array erosion(const Array &array, int ir);
 
+/*! @brief See hmap::morphological_black_hat */
+Array morphological_black_hat(const Array &array, int ir);
+
 /*! @brief See hmap::morphological_gradient */
 Array morphological_gradient(const Array &array, int ir);
+
+/*! @brief See hmap::morphological_top_hat */
+Array morphological_top_hat(const Array &array, int ir);
 
 /*! @brief See hmap::opening */
 Array opening(const Array &array, int ir);
