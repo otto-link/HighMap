@@ -312,7 +312,9 @@ WaveDuneFunction::WaveDuneFunction(Vec2<float> kw,
       [this](float x, float y, float)
       {
         float r = ca * this->kw.x * x + sa * this->kw.y * y;
-        float xp = std::fmod(r + this->phase_shift + 10.f, 1.f);
+        float xp = std::fmod(r + this->phase_shift +
+                                 10.f * (this->kw.x + this->kw.y),
+                             1.f);
         float yp = 0.f;
 
         if (xp < this->xtop)
@@ -355,7 +357,7 @@ WaveSquareFunction::WaveSquareFunction(Vec2<float> kw,
       [this](float x, float y, float)
       {
         float r = ca * this->kw.x * x + sa * this->kw.y * y + this->phase_shift;
-        return r = 2.f * (int)r - (int)(2.f * r) + 1.f;
+        return r = 2.f * std::floor(r) - std::floor(2.f * r) + 1.f;
       });
 }
 
@@ -372,7 +374,7 @@ WaveTriangularFunction::WaveTriangularFunction(Vec2<float> kw,
       {
         float r = ca * this->kw.x * x + sa * this->kw.y * y + this->phase_shift;
 
-        r = r - (int)r;
+        r = r - std::floor(r);
         if (r < this->slant_ratio)
           r /= this->slant_ratio;
         else
