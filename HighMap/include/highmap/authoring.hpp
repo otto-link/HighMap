@@ -1,10 +1,10 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file authoring.hpp
- * @author Otto Link (otto.link.bv@gmail.com)
+ * @author  Otto Link (otto.link.bv@gmail.com)
  * @brief Header file containing functions for generating and manipulating
  * heightmaps through various techniques.
  *
@@ -44,7 +44,7 @@ enum StampingBlendMethod : int
 
 /**
  * @brief Point-wise alteration: locally enforce a new elevation value while
- *        maintaining the 'shape' of the heightmap.
+ * maintaining the 'shape' of the heightmap.
  *
  * This function modifies the elevation values in the input array based on a
  * cloud of points that specify the coordinates and variations for the
@@ -57,21 +57,25 @@ enum StampingBlendMethod : int
  * alteration process, and the `scale` parameter is used to adjust the domain of
  * the alteration.
  *
- * @param array Input array representing the heightmap to be altered. The
- * elevation values in this array will be adjusted according to the cloud data.
- * @param cloud Cloud object that defines the coordinates and elevation
- * variations for the alterations. This object provides the necessary data for
- * applying the local changes.
- * @param ir Alteration kernel minimal radius. This parameter defines the
- * minimum size of the kernel used for local alterations.
- * @param footprint_ratio Defines how the radius of the alteration scales with
- * the variation intensity. A higher ratio results in a larger footprint of the
+ * @param array           Input array representing the heightmap to be altered.
+ *                        The elevation values in this array will be adjusted
+ *                        according to the cloud data.
+ * @param cloud           Cloud object that defines the coordinates and
+ *                        elevation variations for the alterations. This object
+ *                        provides the necessary data for applying the local
+ *                        changes.
+ * @param ir              Alteration kernel minimal radius. This parameter
+ *                        defines the minimum size of the kernel used for local
  *                        alterations.
- * @param shift Noise shift specified as a vector {xs, ys} for each direction,
- * relative to a unit domain. This allows for adding random offsets to the
- * alteration process.
- * @param scale Domain scaling in the range [0, 1]. This parameter adjusts the
- * domain size over which the alteration is applied.
+ * @param footprint_ratio Defines how the radius of the alteration scales with
+ *                        the variation intensity. A higher ratio results in a
+ *                        larger footprint of the alterations.
+ * @param shift           Noise shift specified as a vector {xs, ys} for each
+ *                        direction, relative to a unit domain. This allows for
+ *                        adding random offsets to the alteration process.
+ * @param scale           Domain scaling in the range [0, 1]. This parameter
+ *                        adjusts the domain size over which the alteration is
+ *                        applied.
  *
  * **Example**
  * @include ex_alter_elevation.cpp
@@ -102,23 +106,27 @@ void alter_elevation(Array       &array,
  * adjusted by a local wavenumber multiplier specified by `p_stretching`. The
  * `bbox` parameter defines the domain bounding box for the heightmap.
  *
- * @param shape Dimensions of the output array (heightmap).
- * @param values Elevation values at the control points specified on a coarse
- * grid. This 2D vector holds the elevation data at each control point.
- * @param width_factor Factor applied to the half-width of the Gaussian function
- * used for smoothing the elevations. A value of 1.0 represents the default
- *                     smoothing width.
- * @param p_noise_x Optional pointer to an input noise array affecting the
- * x-direction. If provided, it is used to add noise to the elevation values.
- * @param p_noise_y Optional pointer to an input noise array affecting the
- * y-direction. If provided, it is used to add noise to the elevation values.
- * @param p_stretching Optional pointer to an input array that acts as a local
- * wavenumber multiplier. If provided, it adjusts the elevation values according
- * to the local wavenumber.
- * @param bbox Domain bounding box specified as a vector {xmin, xmax, ymin,
- * ymax}. This defines the extent of the heightmap in the coordinate space.
- * @return Array A new array representing the generated heightmap with
- * interpolated elevation values.
+ * @param  shape        Dimensions of the output array (heightmap).
+ * @param  values       Elevation values at the control points specified on a
+ *                      coarse grid. This 2D vector holds the elevation data at
+ *                      each control point.
+ * @param  width_factor Factor applied to the half-width of the Gaussian
+ *                      function used for smoothing the elevations. A value of
+ *                      1.0 represents the default smoothing width.
+ * @param  p_noise_x    Optional pointer to an input noise array affecting the
+ *                      x-direction. If provided, it is used to add noise to the
+ *                      elevation values.
+ * @param  p_noise_y    Optional pointer to an input noise array affecting the
+ *                      y-direction. If provided, it is used to add noise to the
+ *                      elevation values.
+ * @param  p_stretching Optional pointer to an input array that acts as a local
+ *                      wavenumber multiplier. If provided, it adjusts the
+ *                      elevation values according to the local wavenumber.
+ * @param  bbox         Domain bounding box specified as a vector {xmin, xmax,
+ *                      ymin, ymax}. This defines the extent of the heightmap in
+ *                      the coordinate space.
+ * @return              Array A new array representing the generated heightmap
+ *                      with interpolated elevation values.
  *
  * **Example**
  * @include ex_base_elevation.cpp
@@ -144,19 +152,21 @@ Array base_elevation(Vec2<int>                              shape,
  * number generation, `noise_scale` for controlling the amplitude of the noise,
  * and `threshold` for setting a background value.
  *
- * @param array Input array to which the reverse midpoint displacement algorithm
- * will be applied. The array's values are modified to produce the output
- * terrain.
- * @param seed Random seed number used to initialize the random number generator
- * for reproducibility.
- * @param noise_scale Amplitude of the noise applied during the displacement
- * process. A higher value results in more pronounced terrain features.
- * @param threshold Threshold 'background' value used to influence the
- * displacement algorithm. Values below this threshold may be treated
- * differently depending on the algorithm's design.
- * @return Array The output array after applying the reverse midpoint
- * displacement algorithm. This array contains the modified values representing
- * the generated terrain.
+ * @param  array       Input array to which the reverse midpoint displacement
+ *                     algorithm will be applied. The array's values are
+ *                     modified to produce the output terrain.
+ * @param  seed        Random seed number used to initialize the random number
+ *                     generator for reproducibility.
+ * @param  noise_scale Amplitude of the noise applied during the displacement
+ *                     process. A higher value results in more pronounced
+ *                     terrain features.
+ * @param  threshold   Threshold 'background' value used to influence the
+ *                     displacement algorithm. Values below this threshold may
+ *                     be treated differently depending on the algorithm's
+ *                     design.
+ * @return             Array The output array after applying the reverse
+ *                     midpoint displacement algorithm. This array contains the
+ *                     modified values representing the generated terrain.
  *
  * **Example**
  * @include ex_reverse_midpoint.cpp
@@ -179,30 +189,31 @@ Array reverse_midpoint(const Array &array,
  * clamp values below a minimum threshold. Additional noise and stretching
  * parameters can be applied to modify the resulting heightmap.
  *
- * @param shape The dimensions of the output array (heightmap).
- * @param xr A vector of x-coordinates defining ridge segments.
- * @param yr A vector of y-coordinates defining ridge segments.
- * @param zr A vector of z-coordinates defining ridge segments.
- * @param slope The slope applied to the ridgelines. Can be negative to invert
- * the slope.
- * @param k_smoothing Smoothing parameter to control the smoothness of the
- * ridgelines.
- * @param width Width of the ridge edges. Determines how broad the ridges
- * appear.
- * @param vmin Minimum value for the heightmap. Values below this threshold will
- * be clamped to `vmin`.
- * @param bbox Bounding box for the entire domain, defining the area covered by
- * the heightmap.
- * @param p_noise_x Pointer to an optional array for x-direction noise to apply
- * to the heightmap.
- * @param p_noise_y Pointer to an optional array for y-direction noise to apply
- * to the heightmap.
- * @param p_stretching Pointer to an optional array for local wavenumber
- * multipliers to stretch the ridges.
- * @param bbox_array Bounding box for the array domain, defining the spatial
- * extent of the heightmap.
+ * @param  shape        The dimensions of the output array (heightmap).
+ * @param  xr           A vector of x-coordinates defining ridge segments.
+ * @param  yr           A vector of y-coordinates defining ridge segments.
+ * @param  zr           A vector of z-coordinates defining ridge segments.
+ * @param  slope        The slope applied to the ridgelines. Can be negative to
+ *                      invert the slope.
+ * @param  k_smoothing  Smoothing parameter to control the smoothness of the
+ *                      ridgelines.
+ * @param  width        Width of the ridge edges. Determines how broad the
+ *                      ridges appear.
+ * @param  vmin         Minimum value for the heightmap. Values below this
+ *                      threshold will be clamped to `vmin`.
+ * @param  bbox         Bounding box for the entire domain, defining the area
+ *                      covered by the heightmap.
+ * @param  p_noise_x    Pointer to an optional array for x-direction noise to
+ *                      apply to the heightmap.
+ * @param  p_noise_y    Pointer to an optional array for y-direction noise to
+ *                      apply to the heightmap.
+ * @param  p_stretching Pointer to an optional array for local wavenumber
+ *                      multipliers to stretch the ridges.
+ * @param  bbox_array   Bounding box for the array domain, defining the spatial
+ *                      extent of the heightmap.
  *
- * @return Array The generated heightmap with ridgelines and applied slope.
+ * @return              Array The generated heightmap with ridgelines and
+ *                      applied slope.
  *
  * **Example**
  * @include ex_ridgelines.cpp
@@ -235,34 +246,38 @@ Array ridgelines(Vec2<int>                 shape,
  * clamp values below a minimum threshold. Additional noise and stretching
  * parameters can be used to modify the resulting heightmap.
  *
- * @param shape The dimensions of the output array (heightmap).
- * @param xr A vector of x-coordinates defining ridge segments, organized in
- * groups of three (control points of the Bezier curves).
- * @param yr A vector of y-coordinates defining ridge segments, organized in
- * groups of three (control points of the Bezier curves).
- * @param zr A vector of z-coordinates defining ridge segments, organized in
- * groups of three (control points of the Bezier curves).
- * @param slope The slope applied to the ridgelines. Can be negative to invert
- * the slope.
- * @param k_smoothing Smoothing parameter to control the smoothness of the
- * ridgelines.
- * @param width Width of the ridge edges. Determines how broad the ridges
- * appear.
- * @param vmin Minimum value for the heightmap. Values below this threshold will
- * be clamped to `vmin`.
- * @param bbox Bounding box for the entire domain, defining the area covered by
- * the heightmap.
- * @param p_noise_x Pointer to an optional array for x-direction noise to apply
- * to the heightmap.
- * @param p_noise_y Pointer to an optional array for y-direction noise to apply
- * to the heightmap.
- * @param p_stretching Pointer to an optional array for local wavenumber
- * multipliers to stretch the ridges.
- * @param bbox_array Bounding box for the array domain, defining the spatial
- * extent of the heightmap.
+ * @param  shape        The dimensions of the output array (heightmap).
+ * @param  xr           A vector of x-coordinates defining ridge segments,
+ *                      organized in groups of three (control points of the
+ *                      Bezier curves).
+ * @param  yr           A vector of y-coordinates defining ridge segments,
+ *                      organized in groups of three (control points of the
+ *                      Bezier curves).
+ * @param  zr           A vector of z-coordinates defining ridge segments,
+ *                      organized in groups of three (control points of the
+ *                      Bezier curves).
+ * @param  slope        The slope applied to the ridgelines. Can be negative to
+ *                      invert the slope.
+ * @param  k_smoothing  Smoothing parameter to control the smoothness of the
+ *                      ridgelines.
+ * @param  width        Width of the ridge edges. Determines how broad the
+ *                      ridges appear.
+ * @param  vmin         Minimum value for the heightmap. Values below this
+ *                      threshold will be clamped to `vmin`.
+ * @param  bbox         Bounding box for the entire domain, defining the area
+ *                      covered by the heightmap.
+ * @param  p_noise_x    Pointer to an optional array for x-direction noise to
+ *                      apply to the heightmap.
+ * @param  p_noise_y    Pointer to an optional array for y-direction noise to
+ *                      apply to the heightmap.
+ * @param  p_stretching Pointer to an optional array for local wavenumber
+ *                      multipliers to stretch the ridges.
+ * @param  bbox_array   Bounding box for the array domain, defining the spatial
+ *                      extent of the heightmap.
  *
- * @return Array The generated heightmap with ridgelines interpolated using
- * quadratic Bezier curves and applied slope.
+ * @return              Array The generated heightmap with ridgelines
+ *                      interpolated using quadratic Bezier curves and applied
+ *                      slope.
  *
  * **Example**
  * @include ex_ridgelines_bezier.cpp
@@ -294,31 +309,38 @@ Array ridgelines_bezier(Vec2<int>                 shape,
  * specified blending method. Randomization options are available for kernel
  * manipulation.
  *
- * @param shape The dimensions of the output array (heightmap).
- * @param xr A vector of x-coordinates where the kernel is stamped.
- * @param yr A vector of y-coordinates where the kernel is stamped.
- * @param zr A vector of z-coordinates where the kernel is stamped. This affects
- * the kernel radius and amplitude scaling.
- * @param kernel The kernel to be stamped onto the heightmap.
- * @param kernel_ir The radius of the kernel in pixels.
- * @param kernel_scale_radius Boolean flag to scale the kernel radius based on
- * the z-coordinates.
- * @param kernel_scale_amplitude Boolean flag to scale the kernel amplitude
- * based on the z-coordinates.
- * @param blend_method The method used for blending multiple kernel stamps.
- * Options may include additive, maximum, minimum, etc.
- * @param seed Random seed number for kernel randomization.
- * @param k_smoothing Smoothing parameter for the heightmap (e.g., for smooth
- * minimum or maximum blending).
- * @param kernel_flip Boolean flag to randomly flip the kernel before stamping.
- * Flipping includes transposing.
- * @param kernel_rotate Boolean flag to randomly rotate the kernel before
- * stamping. Rotation can be resource-intensive.
- * @param bbox_array Bounding box for the array domain, defining the spatial
- * extent of the heightmap.
+ * @param  shape                  The dimensions of the output array
+ *                                (heightmap).
+ * @param  xr                     A vector of x-coordinates where the kernel is
+ *                                stamped.
+ * @param  yr                     A vector of y-coordinates where the kernel is
+ *                                stamped.
+ * @param  zr                     A vector of z-coordinates where the kernel is
+ *                                stamped. This affects the kernel radius and
+ *                                amplitude scaling.
+ * @param  kernel                 The kernel to be stamped onto the heightmap.
+ * @param  kernel_ir              The radius of the kernel in pixels.
+ * @param  kernel_scale_radius    Boolean flag to scale the kernel radius based
+ *                                on the z-coordinates.
+ * @param  kernel_scale_amplitude Boolean flag to scale the kernel amplitude
+ *                                based on the z-coordinates.
+ * @param  blend_method           The method used for blending multiple kernel
+ *                                stamps. Options may include additive, maximum,
+ *                                minimum, etc.
+ * @param  seed                   Random seed number for kernel randomization.
+ * @param  k_smoothing            Smoothing parameter for the heightmap (e.g.,
+ *                                for smooth minimum or maximum blending).
+ * @param  kernel_flip            Boolean flag to randomly flip the kernel
+ *                                before stamping. Flipping includes
+ *                                transposing.
+ * @param  kernel_rotate          Boolean flag to randomly rotate the kernel
+ *                                before stamping. Rotation can be
+ *                                resource-intensive.
+ * @param  bbox_array             Bounding box for the array domain, defining
+ *                                the spatial extent of the heightmap.
  *
- * @return Array The generated heightmap with kernel stamps applied at the
- * specified locations.
+ * @return                        Array The generated heightmap with kernel
+ *                                stamps applied at the specified locations.
  *
  * **Example**
  * @include ex_stamping.cpp
@@ -328,7 +350,7 @@ Array ridgelines_bezier(Vec2<int>                 shape,
  * @image html ex_stamping1.png
  * @image html ex_stamping2.png
  *
- * @see {@link other_related_functions}
+ * @see                           {@link other_related_functions}
  */
 Array stamping(Vec2<int>                 shape,
                const std::vector<float> &xr,

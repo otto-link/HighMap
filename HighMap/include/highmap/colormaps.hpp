@@ -1,10 +1,10 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file colormaps.hpp
- * @author Otto Link (otto.link.bv@gmail.com)
+ * @author  Otto Link (otto.link.bv@gmail.com)
  * @brief
  * @version 0.1
  * @date 2023-04-29
@@ -24,53 +24,43 @@ namespace hmap
  * @enum Cmap
  * @brief Enumeration of colormap types for image processing.
  *
- * This enumeration defines various colormap options that can be used
- * for visualizing data in image processing. Each colormap provides a
- * different color mapping scheme, which can be applied to grayscale
- * images or data to enhance visual interpretation.
+ * This enumeration defines various colormap options that can be used for
+ * visualizing data in image processing. Each colormap provides a different
+ * color mapping scheme, which can be applied to grayscale images or data to
+ * enhance visual interpretation.
  *
- * @var Cmap::BONE
- *     A colormap that resembles human bone, providing a grayscale-to-blue
- * gradient.
+ * @var Cmap::BONE A colormap that resembles human bone, providing a
+ * grayscale-to-blue gradient.
  *
- * @var Cmap::GRAY
- *     A simple grayscale colormap, mapping data values directly to shades of
- * gray.
+ * @var Cmap::GRAY A simple grayscale colormap, mapping data values directly to
+ * shades of gray.
  *
- * @var Cmap::HOT
- *     A colormap that transitions from black through red and yellow to white,
- *     often used to represent heatmaps.
+ * @var Cmap::HOT A colormap that transitions from black through red and yellow
+ * to white, often used to represent heatmaps.
  *
- * @var Cmap::INFERNO
- *     A perceptually uniform colormap that transitions from dark blue to
- * yellow.
+ * @var Cmap::INFERNO A perceptually uniform colormap that transitions from dark
+ * blue to yellow.
  *
- * @var Cmap::JET
- *     A widely used colormap that transitions from blue to red via cyan and
- * yellow, often criticized for creating misleading visual interpretations.
+ * @var Cmap::JET A widely used colormap that transitions from blue to red via
+ * cyan and yellow, often criticized for creating misleading visual
+ * interpretations.
  *
- * @var Cmap::MAGMA
- *     A perceptually uniform colormap that transitions from dark purple to
- * yellow.
+ * @var Cmap::MAGMA A perceptually uniform colormap that transitions from dark
+ * purple to yellow.
  *
- * @var Cmap::NIPY_SPECTRAL
- *     A colormap that spans a wide range of colors, useful for scientific
- * visualization.
+ * @var Cmap::NIPY_SPECTRAL A colormap that spans a wide range of colors, useful
+ * for scientific visualization.
  *
- * @var Cmap::SEISMIC
- *     A diverging colormap that transitions from blue to red, typically used
- * for visualizing differences from a central value.
+ * @var Cmap::SEISMIC A diverging colormap that transitions from blue to red,
+ * typically used for visualizing differences from a central value.
  *
- * @var Cmap::TERRAIN
- *     A colormap resembling natural terrain, with shades of green, brown, and
- * white, often used in topographical data.
+ * @var Cmap::TERRAIN A colormap resembling natural terrain, with shades of
+ * green, brown, and white, often used in topographical data.
  *
- * @var Cmap::VIRIDIS
- *     A perceptually uniform colormap that transitions from dark blue to
- * yellow-green.
+ * @var Cmap::VIRIDIS A perceptually uniform colormap that transitions from dark
+ * blue to yellow-green.
  *
- * @var Cmap::WHITE_UNIFORM
- *     A uniform white colormap.
+ * @var Cmap::WHITE_UNIFORM A uniform white colormap.
  *
  * **Example**
  * @include ex_colormaps.cpp
@@ -113,8 +103,7 @@ enum Cmap : int
  * colormap names in a user interface.
  *
  * Example usage:
- * @code
- * Cmap selected_cmap = Cmap::JET;
+ * @code Cmap selected_cmap = Cmap::JET;
  * std::cout << "Selected colormap: " << cmap_as_string[selected_cmap] <<
  * std::endl;
  * @endcode

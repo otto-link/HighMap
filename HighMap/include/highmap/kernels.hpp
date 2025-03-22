@@ -1,10 +1,10 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file kernels.hpp
- * @author Otto Link (otto.link.bv@gmail.com)
+ * @author  Otto Link (otto.link.bv@gmail.com)
  * @brief Header file for kernel functions and utilities.
  *
  * This header file declares functions for generating various types of kernel
@@ -57,22 +57,22 @@ enum KernelType : int
  * For more details on the biweight kernel, refer to the Wikipedia page:
  * https://en.wikipedia.org/wiki/Kernel_%28statistics%29.
  *
- * @param shape Array shape specifying the dimensions of the kernel.
- * @return Array A new array containing the biweight kernel.
+ * @param  shape Array shape specifying the dimensions of the kernel.
+ * @return       Array A new array containing the biweight kernel.
  */
 Array biweight(Vec2<int> shape);
 
 /**
  * @brief Generates a Blackman window array with the specified shape.
  *
- * The Blackman window is commonly used in signal processing for smoothing
- * or tapering. This function creates a 2D array of values representing
- * the Blackman window, calculated based on the given shape dimensions.
+ * The Blackman window is commonly used in signal processing for smoothing or
+ * tapering. This function creates a 2D array of values representing the
+ * Blackman window, calculated based on the given shape dimensions.
  *
- * @param shape A 2D vector representing the dimensions of the array.
+ * @param  shape A 2D vector representing the dimensions of the array.
  *
- * @return An `Array` object containing the Blackman window values of the
- * specified shape.
+ * @return       An `Array` object containing the Blackman window values of the
+ *               specified shape.
  */
 Array blackman(Vec2<int> shape);
 
@@ -83,8 +83,8 @@ Array blackman(Vec2<int> shape);
  * is 1, and the shape of the kernel is determined by the provided array
  * dimensions.
  *
- * @param shape Array shape specifying the dimensions of the kernel.
- * @return Array A new array containing the cone-shaped kernel.
+ * @param  shape Array shape specifying the dimensions of the kernel.
+ * @return       Array A new array containing the cone-shaped kernel.
  */
 Array cone(Vec2<int> shape);
 
@@ -95,12 +95,12 @@ Array cone(Vec2<int> shape);
  * output array's shape is adjusted accordingly based on the specified height
  * and talus.
  *
- * @param height Height of the cone. This determines the peak value of the
- * kernel.
- * @param talus The slope of the cone, which affects the rate at which the
- * kernel value decreases.
- * @return Array A new array containing the cone-shaped kernel with the
- * specified height and talus.
+ * @param  height Height of the cone. This determines the peak value of the
+ *                kernel.
+ * @param  talus  The slope of the cone, which affects the rate at which the
+ *                kernel value decreases.
+ * @return        Array A new array containing the cone-shaped kernel with the
+ *                specified height and talus.
  */
 Array cone_talus(float height, float talus);
 
@@ -111,8 +111,8 @@ Array cone_talus(float height, float talus);
  * transitions to zero at the bottom, resulting in a smooth derivative at the
  * cone base.
  *
- * @param shape Array shape specifying the dimensions of the kernel.
- * @return Array A new array containing the smooth cone-shaped kernel.
+ * @param  shape Array shape specifying the dimensions of the kernel.
+ * @return       Array A new array containing the smooth cone-shaped kernel.
  */
 Array cone_smooth(Vec2<int> shape);
 
@@ -122,16 +122,17 @@ Array cone_smooth(Vec2<int> shape);
  * This function creates a cubic pulse kernel, which is a type of kernel
  * function characterized by its cubic shape.
  *
- * @param shape Array shape specifying the dimensions of the kernel.
- * @return Array A new array containing the cubic pulse kernel.
+ * @param  shape Array shape specifying the dimensions of the kernel.
+ * @return       Array A new array containing the cubic pulse kernel.
  */
 Array cubic_pulse(Vec2<int> shape);
 
 /**
  * @brief Generates a 1D cubic pulse kernel.
  *
- * @param nk The number of samples in the 1D kernel.
- * @return std::vector<float> A vector containing the cubic pulse kernel values.
+ * @param  nk The number of samples in the 1D kernel.
+ * @return    std::vector<float> A vector containing the cubic pulse kernel
+ *            values.
  */
 std::vector<float> cubic_pulse_1d(int nk);
 
@@ -144,14 +145,15 @@ std::vector<float> cubic_pulse_1d(int nk);
  * in specific directions, making them suitable for applications requiring
  * directional smoothing or filtering.
  *
- * @param shape Array shape specifying the dimensions of the kernel.
- * @param angle Angle (in degrees) defining the direction of the pulse
- * elongation.
- * @param aspect_ratio Pulse aspect ratio, which controls the kernel's
- * elongation or compression.
- * @param anisotropy Pulse width ratio between upstream and downstream sides of
- * the pulse.
- * @return Array A new array containing the directional cubic pulse kernel.
+ * @param  shape        Array shape specifying the dimensions of the kernel.
+ * @param  angle        Angle (in degrees) defining the direction of the pulse
+ *                      elongation.
+ * @param  aspect_ratio Pulse aspect ratio, which controls the kernel's
+ *                      elongation or compression.
+ * @param  anisotropy   Pulse width ratio between upstream and downstream sides
+ *                      of the pulse.
+ * @return              Array A new array containing the directional cubic pulse
+ *                      kernel.
  */
 Array cubic_pulse_directional(Vec2<int> shape,
                               float     angle,
@@ -166,12 +168,13 @@ Array cubic_pulse_directional(Vec2<int> shape,
  * kernel's values decrease as they approach the edge of the kernel, creating a
  * "cut-off" effect.
  *
- * @param shape Array shape specifying the dimensions of the kernel.
- * @param slant_ratio Truncation slope that affects the kernel's cut-off
- * behavior.
- * @param angle Angle (in degrees) that defines the orientation of the
- * truncation.
- * @return Array A new array containing the truncated cubic pulse kernel.
+ * @param  shape       Array shape specifying the dimensions of the kernel.
+ * @param  slant_ratio Truncation slope that affects the kernel's cut-off
+ *                     behavior.
+ * @param  angle       Angle (in degrees) that defines the orientation of the
+ *                     truncation.
+ * @return             Array A new array containing the truncated cubic pulse
+ *                     kernel.
  *
  * **Example**
  * @include ex_cubic_pulse_truncated.cpp
@@ -187,8 +190,8 @@ Array cubic_pulse_truncated(Vec2<int> shape, float slant_ratio, float angle);
  * This function creates a disk-shaped kernel, which is a circular kernel where
  * the values are radially symmetric around the center.
  *
- * @param shape Array shape specifying the dimensions of the kernel.
- * @return Array A new array containing the disk-shaped kernel.
+ * @param  shape Array shape specifying the dimensions of the kernel.
+ * @return       Array A new array containing the disk-shaped kernel.
  */
 Array disk(Vec2<int> shape);
 
@@ -200,12 +203,12 @@ Array disk(Vec2<int> shape);
  * analysis and feature extraction. The kernel's frequency and orientation are
  * defined by the wavenumber and angle parameters, respectively.
  *
- * @param shape Array shape specifying the dimensions of the kernel.
- * @param kw Kernel wavenumber, which determines the frequency of the sinusoidal
- * component.
- * @param angle Kernel angle (in degrees) that defines the orientation of the
- * sinusoidal component.
- * @return Array A new array containing the Gabor kernel.
+ * @param  shape Array shape specifying the dimensions of the kernel.
+ * @param  kw    Kernel wavenumber, which determines the frequency of the
+ *               sinusoidal component.
+ * @param  angle Kernel angle (in degrees) that defines the orientation of the
+ *               sinusoidal component.
+ * @return       Array A new array containing the Gabor kernel.
  *
  * **Example**
  * @include ex_gabor.cpp
@@ -227,14 +230,16 @@ Array gabor(Vec2<int> shape,
  * control the relative locations of the top and foot of the dune profile,
  * respectively.
  *
- * @param shape Array shape specifying the dimensions of the kernel.
- * @param kw Kernel wavenumber, which determines the frequency of the sinusoidal
- * component.
- * @param angle Kernel angle (in degrees) that defines the orientation of the
- * sinusoidal component.
- * @param xtop Relative location of the top of the dune profile (in [0, 1]).
- * @param xbottom Relative location of the foot of the dune profile (in [0, 1]).
- * @return Array A new array containing the modified dune-like Gabor kernel.
+ * @param  shape   Array shape specifying the dimensions of the kernel.
+ * @param  kw      Kernel wavenumber, which determines the frequency of the
+ *                 sinusoidal component.
+ * @param  angle   Kernel angle (in degrees) that defines the orientation of the
+ *                 sinusoidal component.
+ * @param  xtop    Relative location of the top of the dune profile (in [0, 1]).
+ * @param  xbottom Relative location of the foot of the dune profile (in [0,
+ *                 1]).
+ * @return         Array A new array containing the modified dune-like Gabor
+ *                 kernel.
  *
  * **Example**
  * @include ex_gabor_dune.cpp
@@ -255,24 +260,24 @@ Array gabor_dune(Vec2<int> shape,
  * supports various types of kernels including biweight, cubic pulse, cone, and
  * more. The resulting kernel is returned as an array.
  *
- * @param shape The dimensions of the kernel to be generated.
- * @param kernel_type The type of kernel to generate (e.g., BIWEIGHT,
- * CUBIC_PULSE, etc.).
- * @return Array The generated kernel array.
+ * @param  shape       The dimensions of the kernel to be generated.
+ * @param  kernel_type The type of kernel to generate (e.g., BIWEIGHT,
+ *                     CUBIC_PULSE, etc.).
+ * @return             Array The generated kernel array.
  */
 Array get_kernel(Vec2<int> shape, KernelType kernel_type);
 
 /**
  * @brief Generates a Hann window array with the specified shape.
  *
- * The Hann window is commonly used in signal processing for smoothing
- * or tapering. This function creates a 2D array of values representing
- * the Hann window, calculated based on the given shape dimensions.
+ * The Hann window is commonly used in signal processing for smoothing or
+ * tapering. This function creates a 2D array of values representing the Hann
+ * window, calculated based on the given shape dimensions.
  *
- * @param shape A 2D vector representing the dimensions of the array.
+ * @param  shape A 2D vector representing the dimensions of the array.
  *
- * @return An `Array` object containing the Hann window values of the
- * specified shape.
+ * @return       An `Array` object containing the Hann window values of the
+ *               specified shape.
  */
 Array hann(Vec2<int> shape);
 
@@ -283,10 +288,10 @@ Array hann(Vec2<int> shape);
  * the distance from the center. The width of the kernel is determined using the
  * provided footprint threshold.
  *
- * @param shape The dimensions of the kernel.
- * @param footprint_threshold Determines the width of the Lorentzian kernel.
- * Default is 0.1.
- * @return Array The Lorentzian kernel array.
+ * @param  shape               The dimensions of the kernel.
+ * @param  footprint_threshold Determines the width of the Lorentzian kernel.
+ *                             Default is 0.1.
+ * @return                     Array The Lorentzian kernel array.
  */
 Array lorentzian(Vec2<int> shape, float footprint_threshold = 0.1f);
 
@@ -297,8 +302,8 @@ Array lorentzian(Vec2<int> shape, float footprint_threshold = 0.1f);
  * meaning it is non-zero only within a certain range. This modification is
  * useful for specific applications requiring compact kernels.
  *
- * @param shape The dimensions of the kernel.
- * @return Array The modified Lorentzian kernel with compact support.
+ * @param  shape The dimensions of the kernel.
+ * @return       Array The modified Lorentzian kernel with compact support.
  */
 Array lorentzian_compact(Vec2<int> shape);
 
@@ -311,11 +316,11 @@ Array lorentzian_compact(Vec2<int> shape);
  * function is defined as `sin(x) / x` and is useful in signal processing and
  * analysis.
  *
- * @param shape A 2D vector representing the dimensions of the array.
- * @param kw The wave number used to scale the radial sinc function.
+ * @param  shape A 2D vector representing the dimensions of the array.
+ * @param  kw    The wave number used to scale the radial sinc function.
  *
- * @return An `Array` object containing the radial sinc function values of the
- * specified shape.
+ * @return       An `Array` object containing the radial sinc function values of
+ *               the specified shape.
  */
 Array sinc_radial(Vec2<int> shape, float kw);
 
@@ -328,11 +333,11 @@ Array sinc_radial(Vec2<int> shape, float kw);
  * of the array. The sinc function is defined as `sin(x) / x` and is useful in
  * signal processing and analysis.
  *
- * @param shape A 2D vector representing the dimensions of the array.
- * @param kw The wave number used to scale the separable sinc function.
+ * @param  shape A 2D vector representing the dimensions of the array.
+ * @param  kw    The wave number used to scale the separable sinc function.
  *
- * @return An `Array` object containing the separable sinc function values of
- * the specified shape.
+ * @return       An `Array` object containing the separable sinc function values
+ *               of the specified shape.
  */
 Array sinc_separable(Vec2<int> shape, float kw);
 
@@ -342,8 +347,8 @@ Array sinc_separable(Vec2<int> shape, float kw);
  * The smooth cosine kernel is a type of kernel function that smoothly
  * transitions between values, based on a cosine function.
  *
- * @param shape The dimensions of the kernel.
- * @return Array The smooth cosine kernel array.
+ * @param  shape The dimensions of the kernel.
+ * @return       Array The smooth cosine kernel array.
  */
 Array smooth_cosine(Vec2<int> shape);
 
@@ -353,8 +358,8 @@ Array smooth_cosine(Vec2<int> shape);
  * The square kernel is a simple, isotropic kernel where the values are constant
  * within the square region. The maximum value within the kernel is 1.
  *
- * @param shape The dimensions of the kernel.
- * @return Array The square-shaped kernel array.
+ * @param  shape The dimensions of the kernel.
+ * @return       Array The square-shaped kernel array.
  */
 Array square(Vec2<int> shape);
 
@@ -365,8 +370,8 @@ Array square(Vec2<int> shape);
  * statistical applications. It has a specific shape defined by the tricube
  * polynomial.
  *
- * @param shape The dimensions of the kernel.
- * @return Array The tricube kernel array.
+ * @param  shape The dimensions of the kernel.
+ * @return       Array The tricube kernel array.
  *
  * **Reference**
  * See https://en.wikipedia.org/wiki/Kernel_%28statistics%29 for details on the

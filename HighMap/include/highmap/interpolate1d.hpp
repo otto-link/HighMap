@@ -1,11 +1,10 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file interpolate1d.hpp
- * @author
- * Otto Link (otto.link.bv@gmail.com)
+ * @author  * Otto Link (otto.link.bv@gmail.com)
  * @brief Defines a 1D interpolation class using the GSL (GNU Scientific
  * Library).
  *
@@ -17,9 +16,9 @@
  * @version 0.1
  * @date 2023-04-30
  *
- * @copyright Copyright (c) 2023 Otto Link
- * Distributed under the terms of the GNU General Public License.
- * The full license is in the file LICENSE, distributed with this software.
+ * @copyright Copyright (c) 2023 Otto Link Distributed under the terms of the
+ * GNU General Public License. The full license is in the file LICENSE,
+ * distributed with this software.
  */
 #pragma once
 #include <map>
@@ -74,16 +73,17 @@ public:
    * @brief Constructs an `Interpolator1D` object with the given data and
    * method.
    *
-   * This constructor initializes the interpolation object with the provided
-   * x and y data points and the specified interpolation method.
+   * This constructor initializes the interpolation object with the provided x
+   * and y data points and the specified interpolation method.
    *
-   * @param x A vector of x coordinates (independent variable).
-   * @param y A vector of y coordinates (dependent variable).
-   * @param method The interpolation method to use (default is linear).
+   * @param  x      A vector of x coordinates (independent variable).
+   * @param  y      A vector of y coordinates (dependent variable).
+   * @param  method The interpolation method to use (default is linear).
    *
-   * @throws std::invalid_argument if x and y have different sizes or if there
-   * are fewer than two points. An exception is also thrown if the method
-   *         requires monotonic data and the provided data is not monotonic.
+   * @throws std::invalid_argumentifxandyhavedifferentsizesor if there are fewer
+   *                than two points. An exception is also thrown if the method
+   *                requires monotonic data and the provided data is not
+   *                monotonic.
    */
   Interpolator1D(const std::vector<float> &x,
                  const std::vector<float> &y,
@@ -103,8 +103,8 @@ public:
    * function, directly returning the interpolated value at the specified x
    * coordinate. It serves as a shorthand for the `interpolate()` method.
    *
-   * @param x The x coordinate at which to interpolate.
-   * @return The interpolated y value corresponding to the given x.
+   * @param  x The x coordinate at which to interpolate.
+   * @return   The interpolated y value corresponding to the given x.
    */
   float operator()(float x) const;
 
@@ -114,8 +114,8 @@ public:
    * This function computes the interpolated y value corresponding to the given
    * x coordinate using the previously specified interpolation method.
    *
-   * @param x The x coordinate at which to interpolate.
-   * @return The interpolated y value.
+   * @param  x The x coordinate at which to interpolate.
+   * @return   The interpolated y value.
    */
   float interpolate(float x) const;
 

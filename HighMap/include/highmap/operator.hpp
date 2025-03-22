@@ -1,19 +1,19 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file op.hpp
- * @author Otto Link (otto.link.bv@gmail.com)
- * @brief Provides various operations for manipulating arrays, including
- * kernel addition, interpolation, detrending, and more.
+ * @author  Otto Link (otto.link.bv@gmail.com)
+ * @brief Provides various operations for manipulating arrays, including kernel
+ * addition, interpolation, detrending, and more.
  * @version 0.1
  * @date 2023-04-30
  *
- * This header file defines functions for performing operations on arrays,
- * such as adding kernels, interpolation, detrending, stacking arrays, and
- * inpainting. It also includes functions for generating random vectors,
- * filling arrays using functions, and manipulating patches.
+ * This header file defines functions for performing operations on arrays, such
+ * as adding kernels, interpolation, detrending, stacking arrays, and
+ * inpainting. It also includes functions for generating random vectors, filling
+ * arrays using functions, and manipulating patches.
  *
  * @copyright Copyright (c) 2023 Otto Link
  */
@@ -31,10 +31,11 @@ namespace hmap
  * This function adds the values of a smaller kernel array to the input array,
  * centered at the specified indices (i, j). The kernel is added element-wise.
  *
- * @param array The input array to which the kernel is added.
+ * @param array  The input array to which the kernel is added.
  * @param kernel The kernel array to be added.
- * @param i The row index in the input array where the kernel is centered.
- * @param j The column index in the input array where the kernel is centered.
+ * @param i      The row index in the input array where the kernel is centered.
+ * @param j      The column index in the input array where the kernel is
+ *               centered.
  */
 void add_kernel(Array &array, const Array &kernel, int i, int j);
 
@@ -48,14 +49,15 @@ void add_kernel(Array &array, const Array &kernel, int i, int j);
  * value is computed using a smoothing factor, and the result is stored back in
  * the array.
  *
- * @param array Reference to the 2D array (heightmap) where the kernel is
- * applied.
- * @param kernel The kernel array containing values to be applied to the array.
+ * @param array    Reference to the 2D array (heightmap) where the kernel is
+ *                 applied.
+ * @param kernel   The kernel array containing values to be applied to the
+ *                 array.
  * @param k_smooth The smoothing factor used in the maximum_smooth function.
- * @param ic The x-coordinate of the center in the array where the kernel is
- * applied.
- * @param jc The y-coordinate of the center in the array where the kernel is
- * applied.
+ * @param ic       The x-coordinate of the center in the array where the kernel
+ *                 is applied.
+ * @param jc       The y-coordinate of the center in the array where the kernel
+ *                 is applied.
  *
  * The kernel is truncated to ensure it fits within the bounds of the array.
  * After applying the kernel, the values in the array are updated with the
@@ -73,13 +75,15 @@ void add_kernel_maximum_smooth(Array       &array,
  * This function calculates the interpolated value at a point within a grid
  * using bilinear interpolation based on four surrounding values.
  *
- * @param f00 Value at (u, v) = (0, 0).
- * @param f10 Value at (u, v) = (1, 0).
- * @param f01 Value at (u, v) = (0, 1).
- * @param f11 Value at (u, v) = (1, 1).
- * @param u The interpolation parameter in the x-direction, expected in [0, 1).
- * @param v The interpolation parameter in the y-direction, expected in [0, 1).
- * @return float The bilinear interpolated value.
+ * @param  f00 Value at (u, v) = (0, 0).
+ * @param  f10 Value at (u, v) = (1, 0).
+ * @param  f01 Value at (u, v) = (0, 1).
+ * @param  f11 Value at (u, v) = (1, 1).
+ * @param  u   The interpolation parameter in the x-direction, expected in [0,
+ *             1).
+ * @param  v   The interpolation parameter in the y-direction, expected in [0,
+ *             1).
+ * @return     float The bilinear interpolated value.
  */
 inline float bilinear_interp(float f00,
                              float f10,
@@ -100,8 +104,8 @@ inline float bilinear_interp(float f00,
  * This function performs detrending on the input array by applying linear
  * regression separately to each row and column, removing trends from the data.
  *
- * @param array Input 2D array to be detrended.
- * @return Array The detrended output array.
+ * @param  array Input 2D array to be detrended.
+ * @return       Array The detrended output array.
  *
  * **Example**
  * @include ex_detrend.cpp
@@ -118,9 +122,9 @@ Array detrend_reg(const Array &array);
  * array with the columns of the first array followed by the columns of the
  * second array.
  *
- * @param array1 The first array to stack.
- * @param array2 The second array to stack.
- * @return Array The resulting array obtained by horizontally stacking
+ * @param  array1 The first array to stack.
+ * @param  array2 The second array to stack.
+ * @return        Array The resulting array obtained by horizontally stacking
  * `array1` and `array2`.
  */
 Array hstack(const Array &array1, const Array &array2);
@@ -132,10 +136,10 @@ Array hstack(const Array &array1, const Array &array2);
  * This function fills the region defined by a mask in the input array using
  * diffusion-based inpainting, which propagates known values to missing regions.
  *
- * @param array Input array with missing regions.
- * @param mask Mask specifying the region to be inpainted.
- * @param iterations Number of diffusion iterations to perform.
- * @return Array The array with the inpainted region.
+ * @param  array      Input array with missing regions.
+ * @param  mask       Mask specifying the region to be inpainted.
+ * @param  iterations Number of diffusion iterations to perform.
+ * @return            Array The array with the inpainted region.
  *
  * **Example**
  * @include ex_inpainting_diffusion.cpp
@@ -154,13 +158,13 @@ Array inpainting_diffusion(const Array &array,
  * to `stop`. The number of values is specified by `num`, and `endpoint`
  * determines whether to include the end value in the output.
  *
- * @see linspace_jitted
+ * @see             linspace_jitted
  *
- * @param start Starting value of the interval.
- * @param stop End value of the interval.
- * @param num Number of values to generate.
- * @param endpoint If true, include the end value in the output vector.
- * @return std::vector<float> Vector of evenly spaced values.
+ * @param  start    Starting value of the interval.
+ * @param  stop     End value of the interval.
+ * @param  num      Number of values to generate.
+ * @param  endpoint If true, include the end value in the output vector.
+ * @return          std::vector<float> Vector of evenly spaced values.
  */
 std::vector<float> linspace(float start,
                             float stop,
@@ -171,20 +175,19 @@ std::vector<float> linspace(float start,
  * @brief Generate a vector of jittered (noised) numbers over a specified
  * interval.
  *
- * This function creates a vector with values spaced over an interval but
- * with added noise, controlled by the `ratio` parameter. The noise is
- * applied to an evenly spaced grid. The `seed` parameter controls the
- * randomness.
+ * This function creates a vector with values spaced over an interval but with
+ * added noise, controlled by the `ratio` parameter. The noise is applied to an
+ * evenly spaced grid. The `seed` parameter controls the randomness.
  *
- * @see linspace
+ * @see             linspace
  *
- * @param start Starting value of the interval.
- * @param stop End value of the interval.
- * @param num Number of values to generate.
- * @param ratio Jittering ratio applied to the evenly spaced grid.
- * @param seed Random seed for generating jittered values.
- * @param endpoint If true, include the end value in the output vector.
- * @return std::vector<float> Vector of jittered values.
+ * @param  start    Starting value of the interval.
+ * @param  stop     End value of the interval.
+ * @param  num      Number of values to generate.
+ * @param  ratio    Jittering ratio applied to the evenly spaced grid.
+ * @param  seed     Random seed for generating jittered values.
+ * @param  endpoint If true, include the end value in the output vector.
+ * @return          std::vector<float> Vector of jittered values.
  */
 std::vector<float> linspace_jitted(float start,
                                    float stop,
@@ -200,11 +203,11 @@ std::vector<float> linspace_jitted(float start,
  * between `min` and `max`. The number of values and the randomness is
  * controlled by the `seed` parameter.
  *
- * @param min Lower bound of the random values.
- * @param max Upper bound of the random values.
- * @param num Number of random values to generate.
- * @param seed Random seed for generating values.
- * @return std::vector<float> Vector of random values.
+ * @param  min  Lower bound of the random values.
+ * @param  max  Upper bound of the random values.
+ * @param  num  Number of random values to generate.
+ * @param  seed Random seed for generating values.
+ * @return      std::vector<float> Vector of random values.
  */
 std::vector<float> random_vector(float min, float max, int num, int seed);
 
@@ -215,19 +218,19 @@ std::vector<float> random_vector(float min, float max, int num, int seed);
  * that depends on (x, y) coordinates. Additional input arrays can affect the
  * function's computation, such as control parameters, noise, and stretching.
  *
- * @param array The array to be filled with computed values.
- * @param bbox The bounding box of the domain specified as {xmin, xmax, ymin,
- * ymax}.
+ * @param array        The array to be filled with computed values.
+ * @param bbox         The bounding box of the domain specified as {xmin, xmax,
+ *                     ymin, ymax}.
  * @param p_ctrl_param Pointer to an array of control parameters affecting the
- * scalar function.
- * @param p_noise_x Pointer to an array of noise values along the x-direction
- * for domain warping.
- * @param p_noise_y Pointer to an array of noise values along the y-direction
- * for domain warping.
+ *                     scalar function.
+ * @param p_noise_x    Pointer to an array of noise values along the x-direction
+ *                     for domain warping.
+ * @param p_noise_y    Pointer to an array of noise values along the y-direction
+ *                     for domain warping.
  * @param p_stretching Pointer to an array of local wavenumber multipliers for
- * adjusting the function.
- * @param fct_xy The scalar function to compute values at (x, y) with an initial
- * value.
+ *                     adjusting the function.
+ * @param fct_xy       The scalar function to compute values at (x, y) with an
+ *                     initial value.
  *
  * **Example**
  * @include ex_fill_array_using_xy_function.cpp
@@ -253,21 +256,21 @@ void fill_array_using_xy_function(
  * based on the `subsampling` factor, which determines how frequently the scalar
  * function is applied.
  *
- * @param array The array to be filled with computed values.
- * @param bbox The bounding box of the domain specified as {xmin, xmax, ymin,
- * ymax}.
+ * @param array        The array to be filled with computed values.
+ * @param bbox         The bounding box of the domain specified as {xmin, xmax,
+ *                     ymin, ymax}.
  * @param p_ctrl_param Pointer to an array of control parameters affecting the
- * scalar function.
- * @param p_noise_x Pointer to an array of noise values along the x-direction
- * for domain warping.
- * @param p_noise_y Pointer to an array of noise values along the y-direction
- * for domain warping.
+ *                     scalar function.
+ * @param p_noise_x    Pointer to an array of noise values along the x-direction
+ *                     for domain warping.
+ * @param p_noise_y    Pointer to an array of noise values along the y-direction
+ *                     for domain warping.
  * @param p_stretching Pointer to an array of local wavenumber multipliers for
- * adjusting the function.
- * @param fct_xy The scalar function to compute values at (x, y) with an initial
- * value.
- * @param subsampling The factor by which the array is subsampled during
- * computation.
+ *                     adjusting the function.
+ * @param fct_xy       The scalar function to compute values at (x, y) with an
+ *                     initial value.
+ * @param subsampling  The factor by which the array is subsampled during
+ *                     computation.
  *
  * **Example**
  * @include ex_fill_array_using_xy_function.cpp
@@ -293,7 +296,7 @@ void fill_array_using_xy_function(
  * the top that has the minimum cumulative cost. The path is determined using
  * Dijkstra's algorithm.
  *
- * @param error Input array containing error or cost values.
+ * @param error  Input array containing error or cost values.
  * @param path_i Output vector of indices representing the cut path.
  */
 void find_vertical_cut_path(const Array &error, std::vector<int> &path_i);
@@ -305,10 +308,10 @@ void find_vertical_cut_path(const Array &error, std::vector<int> &path_i);
  * from the `find_vertical_cut_path` function. The mask is smoothed using a
  * specified filtering radius.
  *
- * @param shape Shape of the mask to be generated.
- * @param cut_path_i Vector of vertical cut path indices.
- * @param ir Filtering radius for smoothing the mask.
- * @return Array The generated smooth mask.
+ * @param  shape      Shape of the mask to be generated.
+ * @param  cut_path_i Vector of vertical cut path indices.
+ * @param  ir         Filtering radius for smoothing the mask.
+ * @return            Array The generated smooth mask.
  */
 Array generate_mask(hmap::Vec2<int> shape, std::vector<int> cut_path_i, int ir);
 
@@ -321,23 +324,26 @@ Array generate_mask(hmap::Vec2<int> shape, std::vector<int> cut_path_i, int ir);
  * transposition. Additionally, if a list of secondary arrays is provided,
  * corresponding patches are extracted and transformed in the same way.
  *
- * @param array             The main input array from which the patch is
- * extracted.
- * @param patch_shape       The shape (dimensions) of the patch to be extracted.
- * @param gen               Random number generator for selecting patch
- * location.
- * @param patch_flip        If true, allows the patch to be flipped vertically
- * or horizontally.
- * @param patch_rotate      If true, allows the patch to be rotated by 90
- * degrees.
- * @param patch_transpose   If true, allows the patch to be transposed.
- * @param p_secondary_arrays  Optional pointer to a list of secondary arrays. If
- * provided, patches will be extracted and transformed from each array in the
- * list, with the same transformations as the primary patch.
- * @param p_secondary_patches Optional pointer to a list for storing the
- * transformed patches from each secondary array.
+ * @param  array               The main input array from which the patch is
+ *                             extracted.
+ * @param  patch_shape         The shape (dimensions) of the patch to be
+ *                             extracted.
+ * @param  gen                 Random number generator for selecting patch
+ *                             location.
+ * @param  patch_flip          If true, allows the patch to be flipped
+ *                             vertically or horizontally.
+ * @param  patch_rotate        If true, allows the patch to be rotated by 90
+ *                             degrees.
+ * @param  patch_transpose     If true, allows the patch to be transposed.
+ * @param  p_secondary_arrays  Optional pointer to a list of secondary arrays.
+ *                             If provided, patches will be extracted and
+ *                             transformed from each array in the list, with the
+ *                             same transformations as the primary patch.
+ * @param  p_secondary_patches Optional pointer to a list for storing the
+ *                             transformed patches from each secondary array.
  *
- * @return The extracted and transformed patch from the main input array.
+ * @return                     The extracted and transformed patch from the main
+ *                             input array.
  */
 Array get_random_patch(const Array          &array,
                        hmap::Vec2<int>       patch_shape,
@@ -355,9 +361,10 @@ Array get_random_patch(const Array          &array,
  * array where the rows of the second array are stacked below the rows of the
  * first array.
  *
- * @param array1 The first array to be stacked.
- * @param array2 The second array to be stacked.
- * @return Array The resulting array with `array1` stacked on top of `array2`.
+ * @param  array1 The first array to be stacked.
+ * @param  array2 The second array to be stacked.
+ * @return        Array The resulting array with `array1` stacked on top of
+ *                `array2`.
  */
 Array vstack(const Array &array1, const Array &array2);
 

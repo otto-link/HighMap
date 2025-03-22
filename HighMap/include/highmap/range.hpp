@@ -1,10 +1,10 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file range.hpp
- * @author Otto Link (otto.link.bv@gmail.com)
+ * @author  Otto Link (otto.link.bv@gmail.com)
  * @brief Header file for range control functions and utilities.
  *
  * This header file contains function declarations and utilities for controlling
@@ -33,9 +33,9 @@ namespace hmap
  * out unwanted low values in data processing tasks.
  *
  * @param array Input array to be processed. Values lower than `vmin` will be
- * set to zero.
- * @param vmin Lower bound threshold. Values below this threshold will be set to
- * zero.
+ *              set to zero.
+ * @param vmin  Lower bound threshold. Values below this threshold will be set
+ *              to zero.
  *
  * **Example**
  * @include ex_chop.cpp
@@ -56,9 +56,10 @@ void chop(Array &array, float vmin);
  * providing a more nuanced adjustment compared to a sharp cutoff.
  *
  * @param array Input array to be processed. Values below `vmax` will be
- * adjusted, with a linear decrease applied between `vmax / 2` and `vmax`.
- * @param vmax Upper bound threshold. Values below this threshold will be
- * zeroed, with linear decrease applied in the specified range.
+ *              adjusted, with a linear decrease applied between `vmax / 2` and
+ *              `vmax`.
+ * @param vmax  Upper bound threshold. Values below this threshold will be
+ *              zeroed, with linear decrease applied in the specified range.
  *
  * **Example**
  * @include ex_chop_max_smooth.cpp
@@ -77,8 +78,8 @@ void chop_max_smooth(Array &array, float vmax);
  * array remain within the defined bounds.
  *
  * @param array Input array to be clamped.
- * @param vmin Lower bound of the clamping range (default is 0).
- * @param vmax Upper bound of the clamping range (default is 1).
+ * @param vmin  Lower bound of the clamping range (default is 0).
+ * @param vmax  Upper bound of the clamping range (default is 1).
  *
  * **Example**
  * @include ex_clamp.cpp
@@ -86,7 +87,7 @@ void chop_max_smooth(Array &array, float vmax);
  * **Result**
  * @image html ex_clamp.png
  *
- * @see {@link remap}, {@link clamp_min}, {@link clamp_max}
+ * @see         {@link remap}, {@link clamp_min}, {@link clamp_max}
  */
 void clamp(Array &array, float vmin = 0, float vmax = 1);
 
@@ -97,9 +98,9 @@ void clamp(Array &array, float vmin = 0, float vmax = 1);
  * specified lower bound `vmin` to the value of `vmin`.
  *
  * @param array Input array to be clamped.
- * @param vmin Lower bound for clamping.
+ * @param vmin  Lower bound for clamping.
  *
- * @see {@link clamp}, {@link clamp_max}
+ * @see         {@link clamp}, {@link clamp_max}
  */
 void clamp_min(Array &array, float vmin);
 void clamp_min(Array &array, const Array &vmin); ///< @overload
@@ -112,8 +113,8 @@ void clamp_min(Array &array, const Array &vmin); ///< @overload
  * of smoothness applied during the clamping process.
  *
  * @param array Input array to be clamped.
- * @param vmin Lower bound for clamping.
- * @param k Smoothing parameter in the range [0, 1] (default is 0.2f).
+ * @param vmin  Lower bound for clamping.
+ * @param k     Smoothing parameter in the range [0, 1] (default is 0.2f).
  */
 void clamp_min_smooth(Array &array, float vmin, float k = 0.2f);
 
@@ -129,10 +130,10 @@ void clamp_min_smooth(Array       &array,
  * lower bound `vmin`. The smoothing parameter `k` controls the degree of
  * smoothness applied during the clamping process.
  *
- * @param x Input value to be clamped.
- * @param vmin Lower bound for clamping.
- * @param k Smoothing parameter in the range [0, 1] (default is 0.2f).
- * @return float The smoothly clamped value.
+ * @param  x    Input value to be clamped.
+ * @param  vmin Lower bound for clamping.
+ * @param  k    Smoothing parameter in the range [0, 1] (default is 0.2f).
+ * @return      float The smoothly clamped value.
  */
 float clamp_min_smooth(float x, float vmin, float k = 0.2f);
 
@@ -143,9 +144,9 @@ float clamp_min_smooth(float x, float vmin, float k = 0.2f);
  * specified upper bound `vmax` to the value of `vmax`.
  *
  * @param array Input array to be clamped.
- * @param vmax Upper bound for clamping.
+ * @param vmax  Upper bound for clamping.
  *
- * @see {@link clamp}, {@link clamp_min}
+ * @see         {@link clamp}, {@link clamp_min}
  */
 void clamp_max(Array &array, float vmax);
 void clamp_max(Array &array, const Array &vmax); ///< @overload
@@ -158,8 +159,8 @@ void clamp_max(Array &array, const Array &vmax); ///< @overload
  * of smoothness applied during the clamping process.
  *
  * @param array Input array to be clamped.
- * @param vmax Upper bound for clamping.
- * @param k Smoothing parameter in the range [0, 1] (default is 0.2f).
+ * @param vmax  Upper bound for clamping.
+ * @param k     Smoothing parameter in the range [0, 1] (default is 0.2f).
  */
 void clamp_max_smooth(Array &array, float vmax, float k = 0.2f);
 
@@ -177,9 +178,9 @@ void clamp_max_smooth(Array       &array,
  * process.
  *
  * @param array Input array to be clamped.
- * @param vmin Lower bound of the clamping range.
- * @param vmax Upper bound of the clamping range.
- * @param k Smoothing parameter in the range [0, 1] (default is 0.2f).
+ * @param vmin  Lower bound of the clamping range.
+ * @param vmax  Upper bound of the clamping range.
+ * @param k     Smoothing parameter in the range [0, 1] (default is 0.2f).
  */
 void clamp_smooth(Array &array, float vmin, float vmax, float k = 0.2f);
 
@@ -190,9 +191,9 @@ void clamp_smooth(Array &array, float vmin, float vmax, float k = 0.2f);
  * Each element in the resulting array is the maximum of the corresponding
  * elements from `array1` and `array2`.
  *
- * @param array1 First input array.
- * @param array2 Second input array.
- * @return Array The element-wise maximum between `array1` and `array2`.
+ * @param  array1 First input array.
+ * @param  array2 Second input array.
+ * @return        Array The element-wise maximum between `array1` and `array2`.
  */
 Array maximum(const Array &array1, const Array &array2);
 
@@ -203,9 +204,9 @@ Array maximum(const Array &array1, const Array &array2);
  * array and a scalar value. Each element in the resulting array is the maximum
  * of the corresponding element from the input array and the scalar value.
  *
- * @param array1 Input array.
- * @param value Scalar value to compare with each element of the array.
- * @return Array The element-wise maximum between `array1` and `value`.
+ * @param  array1 Input array.
+ * @param  value  Scalar value to compare with each element of the array.
+ * @return        Array The element-wise maximum between `array1` and `value`.
  */
 Array maximum(const Array &array1, const float value); ///< @overload
 
@@ -222,11 +223,12 @@ Array maximum(const Array &array1, const float value); ///< @overload
  * avoiding abrupt changes and can be useful in applications requiring smooth
  * transitions.
  *
- * @param array1 First array to be compared.
- * @param array2 Second array to be compared.
- * @param k Smoothing parameter in the range [0, 1]. Higher values result in
- * smoother transitions between the arrays (default is 0.2).
- * @return Array Element-wise smooth maximum between the two input arrays.
+ * @param  array1 First array to be compared.
+ * @param  array2 Second array to be compared.
+ * @param  k      Smoothing parameter in the range [0, 1]. Higher values result
+ *                in smoother transitions between the arrays (default is 0.2).
+ * @return        Array Element-wise smooth maximum between the two input
+ *                arrays.
  *
  * **Example**
  * @include ex_maximum_smooth.cpp
@@ -234,7 +236,7 @@ Array maximum(const Array &array1, const float value); ///< @overload
  * **Result**
  * @image html ex_maximum_smooth.png
  *
- * @see {@link minimum_smooth}, {@link minimum}, {@link maximum}
+ * @see           {@link minimum_smooth}, {@link minimum}, {@link maximum}
  */
 Array maximum_smooth(const Array &array1, const Array &array2, float k = 0.2);
 
@@ -249,11 +251,11 @@ Array maximum_smooth(const Array &array1, const Array &array2, float k = 0.2);
  * The smooth transition helps in avoiding abrupt changes, making this function
  * suitable for applications that require smooth variations.
  *
- * @param a First scalar value.
- * @param b Second scalar value.
- * @param k Smoothing parameter in the range [0, 1]. Higher values result in
- * smoother transitions between the values (default is 0.2).
- * @return float Smooth maximum value between the two input values.
+ * @param  a First scalar value.
+ * @param  b Second scalar value.
+ * @param  k Smoothing parameter in the range [0, 1]. Higher values result in
+ *           smoother transitions between the values (default is 0.2).
+ * @return   float Smooth maximum value between the two input values.
  *
  * **Example**
  * @include ex_maximum_smooth_scalar.cpp
@@ -261,7 +263,7 @@ Array maximum_smooth(const Array &array1, const Array &array2, float k = 0.2);
  * **Result**
  * @image html ex_maximum_smooth_scalar.png
  *
- * @see {@link minimum_smooth}, {@link minimum}, {@link maximum}
+ * @see      {@link minimum_smooth}, {@link minimum}, {@link maximum}
  */
 float maximum_smooth(const float a,
                      const float b,
@@ -274,9 +276,9 @@ float maximum_smooth(const float a,
  * Each element in the resulting array is the minimum of the corresponding
  * elements from `array1` and `array2`.
  *
- * @param array1 First input array.
- * @param array2 Second input array.
- * @return Array The element-wise minimum between `array1` and `array2`.
+ * @param  array1 First input array.
+ * @param  array2 Second input array.
+ * @return        Array The element-wise minimum between `array1` and `array2`.
  */
 Array minimum(const Array &array1, const Array &array2);
 
@@ -287,9 +289,9 @@ Array minimum(const Array &array1, const Array &array2);
  * array and a scalar value. Each element in the resulting array is the minimum
  * of the corresponding element from the input array and the scalar value.
  *
- * @param array1 Input array.
- * @param value Scalar value to compare with each element of the array.
- * @return Array The element-wise minimum between `array1` and `value`.
+ * @param  array1 Input array.
+ * @param  value  Scalar value to compare with each element of the array.
+ * @return        Array The element-wise minimum between `array1` and `value`.
  */
 Array minimum(const Array &array1, const float value); ///< @overload
 
@@ -302,13 +304,14 @@ Array minimum(const Array &array1, const float value); ///< @overload
  * a standard minimum operation. For details on the smoothing technique, refer
  * to [Inigo Quilez's articles](https://iquilezles.org/articles/smin/).
  *
- * @param array1 First input array.
- * @param array2 Second input array.
- * @param k Smoothing parameter in the range [0, 1] that determines the degree
- * of blending between the two arrays (default is 0.2).
- * @return Array The element-wise smooth minimum between `array1` and `array2`.
+ * @param  array1 First input array.
+ * @param  array2 Second input array.
+ * @param  k      Smoothing parameter in the range [0, 1] that determines the
+ *                degree of blending between the two arrays (default is 0.2).
+ * @return        Array The element-wise smooth minimum between `array1` and
+ *                `array2`.
  *
- * @see {@link maximum_smooth}, {@link minimum}, {@link maximum}
+ * @see           {@link maximum_smooth}, {@link minimum}, {@link maximum}
  */
 Array minimum_smooth(const Array &array1, const Array &array2, float k = 0.2);
 
@@ -320,32 +323,32 @@ Array minimum_smooth(const Array &array1, const Array &array2, float k = 0.2);
  * controls the blending between the values, reducing discontinuity compared to
  * a standard minimum operation.
  *
- * @param a First scalar value.
- * @param b Second scalar value.
- * @param k Smoothing parameter in the range [0, 1] that determines the degree
- * of blending between the two values (default is 0.2).
- * @return float The smooth minimum between `a` and `b`.
+ * @param  a First scalar value.
+ * @param  b Second scalar value.
+ * @param  k Smoothing parameter in the range [0, 1] that determines the degree
+ *           of blending between the two values (default is 0.2).
+ * @return   float The smooth minimum between `a` and `b`.
  */
 float minimum_smooth(const float a, const float b, float k); ///< @overload
 
 /**
  * @brief Remap array elements from a starting range to a target range.
  *
- * This function maps the values in the input array from one specified range
- * to another. By default, the function uses the minimum and maximum values
- * of the input array as the starting range. The target range is specified
- * by `vmin` and `vmax`.
+ * This function maps the values in the input array from one specified range to
+ * another. By default, the function uses the minimum and maximum values of the
+ * input array as the starting range. The target range is specified by `vmin`
+ * and `vmax`.
  *
- * @param array Input array to be remapped.
- * @param vmin The lower bound of the target range to remap to.
- * @param vmax The upper bound of the target range to remap to.
+ * @param array    Input array to be remapped.
+ * @param vmin     The lower bound of the target range to remap to.
+ * @param vmax     The upper bound of the target range to remap to.
  * @param from_min The lower bound of the starting range to remap from.
  * @param from_max The upper bound of the starting range to remap from.
  *
  * **Example**
  * @include ex_remap.cpp
  *
- * @see {@link clamp}
+ * @see            {@link clamp}
  */
 void remap(Array &array,
            float  vmin,
@@ -358,12 +361,12 @@ void remap(Array &array,
  * range).
  *
  * This overloaded function remaps the values in the input array from the
- * default starting range (the minimum and maximum values of the array)
- * to a target range specified by `vmin` and `vmax`.
+ * default starting range (the minimum and maximum values of the array) to a
+ * target range specified by `vmin` and `vmax`.
  *
  * @param array Input array to be remapped.
- * @param vmin The lower bound of the target range to remap to (default is 0).
- * @param vmax The upper bound of the target range to remap to (default is 1).
+ * @param vmin  The lower bound of the target range to remap to (default is 0).
+ * @param vmax  The upper bound of the target range to remap to (default is 1).
  */
 void remap(Array &array, float vmin = 0, float vmax = 1); ///< @overload
 
@@ -375,10 +378,11 @@ void remap(Array &array, float vmin = 0, float vmax = 1); ///< @overload
  * much the values are stretched or compressed, and the reference value shifts
  * the values to align with the target range.
  *
- * @param array Input array to be rescaled.
+ * @param array   Input array to be rescaled.
  * @param scaling Amplitude scaling factor to adjust the range of array
- * elements.
- * @param vref Reference 'zero' value used to shift the values (default is 0.f).
+ *                elements.
+ * @param vref    Reference 'zero' value used to shift the values (default is
+ *                0.f).
  */
 void rescale(Array &array, float scaling, float vref = 0.f);
 

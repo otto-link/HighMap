@@ -1,6 +1,6 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file curvature.hpp
@@ -20,11 +20,12 @@ namespace hmap
  * curvature is a measure of the extent of local accumulation of flows at a
  * given point.
  *
- * @param z The input array representing the heightmap data (elevation values).
- * @param ir The radius used for pre-filtering, which controls the scale of the
- * analysis (in pixels).
- * @return Array An output array containing the calculated accumulation
- * curvature values for each point in the input heightmap.
+ * @param  z  The input array representing the heightmap data (elevation
+ *            values).
+ * @param  ir The radius used for pre-filtering, which controls the scale of the
+ *            analysis (in pixels).
+ * @return    Array An output array containing the calculated accumulation
+ *            curvature values for each point in the input heightmap.
  *
  * **Example**
  * @include ex_curvature.cpp
@@ -44,10 +45,10 @@ Array accumulation_curvature(const Array &z, int ir);
  * saddle-like, dome-like, or basin-like. Useful in studies related to
  * tectonics, erosion patterns, and landform development.
  *
- * @param z The input array representing the heightmap data (elevation values).
- * @return Array An output array containing the Gaussian curvature values, with
- * positive values indicating dome-like shapes and negative values indicating
- * saddle shapes.
+ * @param  z The input array representing the heightmap data (elevation values).
+ * @return   Array An output array containing the Gaussian curvature values,
+ *           with positive values indicating dome-like shapes and negative
+ *           values indicating saddle shapes.
  *
  * **Example**
  * @include ex_curvature.cpp
@@ -60,8 +61,8 @@ Array curvature_gaussian(const Array &z);
 /**
  * @brief TODO
  *
- * @param z The input array representing the heightmap data (elevation values).
- * @return Array An output array containing the curvature values.
+ * @param  z The input array representing the heightmap data (elevation values).
+ * @return   Array An output array containing the curvature values.
  *
  * **Example**
  * @include ex_curvature.cpp
@@ -74,8 +75,8 @@ Array curvature_horizontal_cross_sectional(const Array &z, int ir);
 /**
  * @brief TODO
  *
- * @param z The input array representing the heightmap data (elevation values).
- * @return Array An output array containing the curvature values.
+ * @param  z The input array representing the heightmap data (elevation values).
+ * @return   Array An output array containing the curvature values.
  *
  * **Example**
  * @include ex_curvature.cpp
@@ -88,8 +89,8 @@ Array curvature_horizontal_plan(const Array &z, int ir);
 /**
  * @brief TODO
  *
- * @param z The input array representing the heightmap data (elevation values).
- * @return Array An output array containing the curvature values.
+ * @param  z The input array representing the heightmap data (elevation values).
+ * @return   Array An output array containing the curvature values.
  *
  * **Example**
  * @include ex_curvature.cpp
@@ -108,10 +109,10 @@ Array curvature_horizontal_tangential(const Array &z, int ir);
  * to detect areas prone to erosion or sediment deposition. Useful in landscape
  * evolution models and in analyzing the stability of slopes.
  *
- * @param z The input array representing the heightmap data (elevation values).
- * @return Array An output array containing the mean curvature values, where
- * positive values indicate convex regions and negative values indicate concave
- * regions.
+ * @param  z The input array representing the heightmap data (elevation values).
+ * @return   Array An output array containing the mean curvature values, where
+ *           positive values indicate convex regions and negative values
+ *           indicate concave regions.
  *
  * **Example**
  * @include ex_curvature.cpp
@@ -128,8 +129,8 @@ Array curvature_mean(const Array &z);
  * where flow disperses (ridges, hilltops). Negative Values: Indicate concave
  * surfaces where flow converges (valleys, depressions).
  *
- * @param z The input array representing the heightmap data (elevation values).
- * @return Array An output array containing the curvature values.
+ * @param  z The input array representing the heightmap data (elevation values).
+ * @return   Array An output array containing the curvature values.
  *
  * **Example**
  * @include ex_curvature.cpp
@@ -148,8 +149,8 @@ Array curvature_ring(const Array &z, int ir);
  * valleys or channels). Zero values: Flow moves in a linear, constant-slope
  * manner.
  *
- * @param z The input array representing the heightmap data (elevation values).
- * @return Array An output array containing the curvature values.
+ * @param  z The input array representing the heightmap data (elevation values).
+ * @return   Array An output array containing the curvature values.
  *
  * **Example**
  * @include ex_curvature.cpp
@@ -162,8 +163,8 @@ Array curvature_rotor(const Array &z, int ir);
 /**
  * @brief TODO
  *
- * @param z The input array representing the heightmap data (elevation values).
- * @return Array An output array containing the curvature values.
+ * @param  z The input array representing the heightmap data (elevation values).
+ * @return   Array An output array containing the curvature values.
  *
  * **Example**
  * @include ex_curvature.cpp
@@ -176,8 +177,8 @@ Array curvature_vertical_longitudinal(const Array &z, int ir);
 /**
  * @brief TODO
  *
- * @param z The input array representing the heightmap data (elevation values).
- * @return Array An output array containing the curvature values.
+ * @param  z The input array representing the heightmap data (elevation values).
+ * @return   Array An output array containing the curvature values.
  *
  * **Example**
  * @include ex_curvature.cpp
@@ -197,12 +198,13 @@ Array curvature_vertical_profile(const Array &z, int ir);
  * environmental studies. Useful in landscape ecology and in understanding
  * geomorphological processes.
  *
- * @param z The input array representing the heightmap data (elevation values).
- * @param ir The radius used for pre-filtering, which controls the scale of the
- * analysis (in pixels).
- * @return Array An output array containing Shape Index values, where values
- * above 0.5 indicate convex shapes, and values below 0.5 indicate concave
- * shapes.
+ * @param  z  The input array representing the heightmap data (elevation
+ *            values).
+ * @param  ir The radius used for pre-filtering, which controls the scale of the
+ *            analysis (in pixels).
+ * @return    Array An output array containing Shape Index values, where values
+ *            above 0.5 indicate convex shapes, and values below 0.5 indicate
+ *            concave shapes.
  *
  * **Example**
  * @include ex_curvature.cpp
@@ -223,12 +225,13 @@ Array shape_index(const Array &z, int ir);
  * patterns. Helpful in identifying and analyzing landforms that are not
  * perfectly round or symmetrical, such as irregular hills or basins.
  *
- * @param z The input array representing the heightmap data (elevation values).
- * @param ir The radius used for pre-filtering, controlling the scale of
- * analysis (in pixels).
- * @return Array An output array containing unsphericity values, where values
- * greater than 0.5 indicate convex regions (e.g., peaks) and values less than
- * 0.5 indicate concave regions (e.g., valleys).
+ * @param  z  The input array representing the heightmap data (elevation
+ *            values).
+ * @param  ir The radius used for pre-filtering, controlling the scale of
+ *            analysis (in pixels).
+ * @return    Array An output array containing unsphericity values, where values
+ *            greater than 0.5 indicate convex regions (e.g., peaks) and values
+ *            less than 0.5 indicate concave regions (e.g., valleys).
  *
  * **Example**
  * @include ex_curvature.cpp

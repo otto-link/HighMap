@@ -1,10 +1,10 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file roads.hpp
- * @author Otto Link (otto.link.bv@gmail.com)
+ * @author  Otto Link (otto.link.bv@gmail.com)
  * @brief
  * @version 0.1
  * @date 2023-06-26
@@ -62,9 +62,10 @@ public:
   /**
    * @brief Construct a new Pyramid Decomposition object.
    *
-   * @param array Reference to the input array.
+   * @param array   Reference to the input array.
    * @param nlevels Number of levels (if set to a null or negative value, the
-   * maximum number of levels is taken minus the number provided).
+   *                maximum number of levels is taken minus the number
+   * provided).
    *
    * **Example**
    * @include ex_pyramid_decomposition.cpp
@@ -89,8 +90,8 @@ public:
   /**
    * @brief Export pyramid as png image file.
    *
-   * @param fname File name.
-   * @param cmap Colormap (@see cmap).
+   * @param fname       File name.
+   * @param cmap        Colormap (@see cmap).
    * @param hillshading Activate hillshading.
    */
   void to_png(std::string fname, int cmap, bool hillshading = false);
@@ -99,14 +100,14 @@ public:
    * @brief Apply a transformation to each component of the pyramid and return
    * the field constructed based on the modified pyramid.
    *
-   * @param function Reference to the function applied to the pyramid
-   * components.
-   * @param support Function support, should it be applied to the lowpass
-   * components only, the highpass only the full field.
-   * @param level_weights Weight in [0, 1] for each level (the resulting
-   * component is lerp between no transform and transform according to this
-   * weight).
-   * @return Array Resulting array.
+   * @param  function      Reference to the function applied to the pyramid
+   *                       components.
+   * @param  support       Function support, should it be applied to the lowpass
+   *                       components only, the highpass only the full field.
+   * @param  level_weights Weight in [0, 1] for each level (the resulting
+   *                       component is lerp between no transform and transform
+   *                       according to this weight).
+   * @return               Array Resulting array.
    *
    * **Example**
    * @include ex_pyramid_transform.cpp

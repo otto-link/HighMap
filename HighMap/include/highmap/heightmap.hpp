@@ -1,10 +1,10 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file heightmap.hpp
- * @author Otto Link (otto.link.bv@gmail.com)
+ * @author  Otto Link (otto.link.bv@gmail.com)
  * @brief
  * @version 0.1
  * @date 2023-07-23
@@ -78,8 +78,8 @@ public:
   Vec2<float> shift;
 
   /**
-   * @brief Scale of the tile in each direction, assuming the global domain is
-   * a unit square.
+   * @brief Scale of the tile in each direction, assuming the global domain is a
+   * unit square.
    *
    * For example, if the tiling is {4, 2} without overlap, the scale is {0.25,
    * 0.5}.
@@ -109,24 +109,24 @@ public:
   void operator=(const Array &array);
 
   /**
-   * @brief Fill tile values by interpolating (bilinear) values from
-   * another array.
+   * @brief Fill tile values by interpolating (bilinear) values from another
+   * array.
    *
    * @param array Input array.
    */
   void from_array_interp(Array &array);
 
   /**
-   * @brief Fill tile values by interpolating (bicubic) values from
-   * another array.
+   * @brief Fill tile values by interpolating (bicubic) values from another
+   * array.
    *
    * @param array Input array.
    */
   void from_array_interp_bicubic(Array &array);
 
   /**
-   * @brief Fill tile values by interpolating (nearest) values from
-   * another array.
+   * @brief Fill tile values by interpolating (nearest) values from another
+   * array.
    *
    * @param array Input array.
    */
@@ -173,9 +173,9 @@ public:
   /**
    * @brief Construct a new HeightMap object.
    *
-   * @param shape Shape.
-   * @param bbox Bounding box.
-   * @param tiling Tiling setup.
+   * @param shape   Shape.
+   * @param bbox    Bounding box.
+   * @param tiling  Tiling setup.
    * @param overlap Tile overlapping.
    */
   Heightmap(Vec2<int> shape, Vec4<float> bbox, Vec2<int> tiling, float overlap);
@@ -217,9 +217,9 @@ public:
   /**
    * @brief Get the tile linear index.
    *
-   * @param i Tile i index.
-   * @param j Tile j index
-   * @return int Linear index.
+   * @param  i Tile i index.
+   * @param  j Tile j index
+   * @return   int Linear index.
    */
   int get_tile_index(int i, int j);
 
@@ -246,8 +246,8 @@ public:
   /**
    * @brief Set the shape / tiling / overlap in one pass.
    *
-   * @param new_shape New shape.
-   * @param new_tiling New tiling.
+   * @param new_shape   New shape.
+   * @param new_tiling  New tiling.
    * @param new_overlap New overlap.
    */
   void set_sto(Vec2<int> new_shape, Vec2<int> new_tiling, float new_overlap);
@@ -260,8 +260,8 @@ public:
   void set_tiling(Vec2<int> new_tiling);
 
   /**
-   * @brief Fill tile values by interpolating (bilinear) values from
-   * another array.
+   * @brief Fill tile values by interpolating (bilinear) values from another
+   * array.
    *
    * @param array Input array.
    *
@@ -275,8 +275,8 @@ public:
   void from_array_interp(Array &array);
 
   /**
-   * @brief Fill tile values by interpolating (bicubic) values from
-   * another array.
+   * @brief Fill tile values by interpolating (bicubic) values from another
+   * array.
    *
    * @param array Input array.
    */
@@ -327,9 +327,9 @@ public:
    * By default the starting range is taken to be [min(), max()] of the input
    * array.
    *
-   * @param array Input array.
-   * @param vmin The lower bound of the range to remap to.
-   * @param vmax The lower bound of the range to remap to.
+   * @param array    Input array.
+   * @param vmin     The lower bound of the range to remap to.
+   * @param vmax     The lower bound of the range to remap to.
    * @param from_min The lower bound of the range to remap from.
    * @param from_max The upper bound of the range to remap from.
    */
@@ -352,8 +352,8 @@ public:
   /**
    * @brief Return the heightmap as an array.
    *
-   * @param shape_export Array shape.
-   * @return Array Resulting array.
+   * @param  shape_export Array shape.
+   * @return              Array Resulting array.
    */
   Array to_array(Vec2<int> shape_export);
 
@@ -422,8 +422,8 @@ struct HeightmapRGB
   /**
    * @brief Set the shape / tiling / overlap in one pass.
    *
-   * @param new_shape New shape.
-   * @param new_tiling New tiling.
+   * @param new_shape   New shape.
+   * @param new_tiling  New tiling.
    * @param new_overlap New overlap.
    */
   void set_sto(Vec2<int> new_shape, Vec2<int> new_tiling, float new_overlap);
@@ -431,10 +431,10 @@ struct HeightmapRGB
   /**
    * @brief Fill RGB heightmap components based on a colormap and an input
    * reference heightmap.
-   * @param h Input heightmap.
-   * @param vmin Lower bound for scaling to array [0, 1].
-   * @param vmax Upper bound for scaling to array [0, 1]
-   * @param cmap Colormap (see {@link cmap}).
+   * @param h       Input heightmap.
+   * @param vmin    Lower bound for scaling to array [0, 1].
+   * @param vmax    Upper bound for scaling to array [0, 1]
+   * @param cmap    Colormap (see {@link cmap}).
    * @param reverse Reverse colormap.
    */
   void colorize(Heightmap &h,
@@ -446,11 +446,11 @@ struct HeightmapRGB
   /**
    * @brief Fill RGB heightmap components based on a colormap and an input
    * reference heightmap.
-   * @param h Input heightmap.
-   * @param vmin Lower bound for scaling to array [0, 1].
-   * @param vmax Upper bound for scaling to array [0, 1]
+   * @param h               Input heightmap.
+   * @param vmin            Lower bound for scaling to array [0, 1].
+   * @param vmax            Upper bound for scaling to array [0, 1]
    * @param colormap_colors Colormap RGB colors as a vector of RGB colors.
-   * @param reverse Reverse colormap.
+   * @param reverse         Reverse colormap.
    */
   void colorize(Heightmap                      &h,
                 float                           vmin,
@@ -465,8 +465,8 @@ struct HeightmapRGB
 
   /**
    * @brief Convert the RGB heightmap to a 8bit RGB image.
-   * @param shape_img Resulting image shape.
-   * @return Image data.
+   * @param  shape_img Resulting image shape.
+   * @return           Image data.
    */
   std::vector<uint8_t> to_img_8bit(Vec2<int> shape_img = {0, 0});
 
@@ -478,10 +478,10 @@ struct HeightmapRGB
 
   /**
    * @brief Mix two RGB heightmap using linear interpolation.
-   * @param rgb1 1st RGB heightmap.
-   * @param rgb2 2st RGB heightmap.
-   * @param t Mixing parameter, in [0, 1].
-   * @return RGB heightmap.
+   * @param  rgb1 1st RGB heightmap.
+   * @param  rgb2 2st RGB heightmap.
+   * @param  t    Mixing parameter, in [0, 1].
+   * @return      RGB heightmap.
    */
   friend HeightmapRGB mix_heightmap_rgb(HeightmapRGB &rgb1,
                                         HeightmapRGB &rgb2,
@@ -493,10 +493,10 @@ struct HeightmapRGB
 
   /**
    * @brief Mix two RGB heightmap using weighted quadratic averaging.
-   * @param rgb1 1st RGB heightmap.
-   * @param rgb2 2st RGB heightmap.
-   * @param t Mixing parameter, in [0, 1].
-   * @return RGB heightmap.
+   * @param  rgb1 1st RGB heightmap.
+   * @param  rgb2 2st RGB heightmap.
+   * @param  t    Mixing parameter, in [0, 1].
+   * @return      RGB heightmap.
    */
   friend HeightmapRGB mix_heightmap_rgb_sqrt(HeightmapRGB &rgb1,
                                              HeightmapRGB &rgb2,
@@ -565,8 +565,8 @@ struct HeightmapRGBA
   /**
    * @brief Set the shape / tiling / overlap in one pass.
    *
-   * @param new_shape New shape.
-   * @param new_tiling New tiling.
+   * @param new_shape   New shape.
+   * @param new_tiling  New tiling.
    * @param new_overlap New overlap.
    */
   void set_sto(Vec2<int> new_shape, Vec2<int> new_tiling, float new_overlap);
@@ -578,16 +578,15 @@ struct HeightmapRGBA
   void to_png(const std::string &fname, int depth = CV_8U);
 
   /**
-   * @brief Fill RGB heightmap components based on a colormap and an
-   input
+   * @brief Fill RGB heightmap components based on a colormap and an input
    * reference heightmap.
    * @param color_level Input heightmap for color level.
-   * @param vmin Lower bound for scaling to array [0, 1].
-   * @param vmax Upper bound for scaling to array [0, 1]
-   * @param cmap Colormap (see {@link cmap}).
-   * @param p_alpha Reference to input heightmap for alpha channel, expected
-   in [0, 1].
-   * @param reverse Reverse colormap.
+   * @param vmin        Lower bound for scaling to array [0, 1].
+   * @param vmax        Upper bound for scaling to array [0, 1]
+   * @param cmap        Colormap (see {@link cmap}).
+   * @param p_alpha     Reference to input heightmap for alpha channel,
+   *                    expected in [0, 1].
+   * @param reverse     Reverse colormap.
    */
   void colorize(Heightmap &color_level,
                 float      vmin,
@@ -598,16 +597,15 @@ struct HeightmapRGBA
                 Heightmap *p_noise = nullptr);
 
   /**
-   * @brief Fill RGBA heightmap components based on a colormap and
-   input reference heightmaps for the color level and the transparency.
-   * @param color_level Input heightmap for color level.
-   * @param vmin Lower bound for scaling to array [0, 1].
-   * @param vmax Upper bound for scaling to array [0, 1]
-   * @param colormap_colors Colormap RGB colors as a vector of RGB
-   colors.
-   * @param p_alpha Reference to input heightmap for alpha channel, expected
-   in [0, 1].
-   * @param reverse Reverse colormap.
+   * @brief Fill RGBA heightmap components based on a colormap and input
+   * reference heightmaps for the color level and the transparency.
+   * @param color_level     Input heightmap for color level.
+   * @param vmin            Lower bound for scaling to array [0, 1].
+   * @param vmax            Upper bound for scaling to array [0, 1]
+   * @param colormap_colors Colormap RGB colors as a vector of RGB colors.
+   * @param p_alpha         Reference to input heightmap for alpha
+   *                        channel, expected in [0, 1].
+   * @param reverse         Reverse colormap.
    */
   void colorize(Heightmap                      &color_level,
                 float                           vmin,
@@ -622,23 +620,24 @@ struct HeightmapRGBA
    *
    * This method creates a grayscale `HeightMap` based on the luminance
    * values calculated from the red, green, and blue channels of the RGBA
-   * height map. The luminance is computed using the standard formula: \f$ L =
+   * height map. The luminance is computed using the standard formula: \f$
+   * L =
    * 0.299 \times R + 0.587 \times G + 0.114 \times B \f$.
    *
-   * @return A `HeightMap` representing the grayscale luminance of the current
-   * RGBA height map.
+   * @return A `HeightMap` representing the grayscale luminance of the
+   *         current RGBA height map.
    *
-   * @see https://stackoverflow.com/questions/596216 for details on the
-   * luminance calculation.
+   * @see    https://stackoverflow.com/questions/596216 for details on the
+   *         luminance calculation.
    */
   Heightmap luminance();
 
   /**
    * @brief Mix two RGBA heightmap using alpha compositing ("over").
-   * @param rgba1 1st RGBA heightmap.
-   * @param rgba2 2st RGBA heightmap.
-   * @param use_sqrt_avg Whether to use or not square averaging.
-   * @return RGBA heightmap.
+   * @param  rgba1        1st RGBA heightmap.
+   * @param  rgba2        2st RGBA heightmap.
+   * @param  use_sqrt_avg Whether to use or not square averaging.
+   * @return              RGBA heightmap.
    */
   friend HeightmapRGBA mix_heightmap_rgba(HeightmapRGBA &rgba1,
                                           HeightmapRGBA &rgba2,
@@ -646,9 +645,9 @@ struct HeightmapRGBA
 
   /**
    * @brief Mix two RGBA heightmap using alpha compositing ("over").
-   * @param rgba_plist Heightmap reference list.
-   * @param use_sqrt_avg Whether to use or not square averaging.
-   * @return RGBA heightmap.
+   * @param  rgba_plist   Heightmap reference list.
+   * @param  use_sqrt_avg Whether to use or not square averaging.
+   * @return              RGBA heightmap.
    */
   friend HeightmapRGBA mix_heightmap_rgba(
       std::vector<HeightmapRGBA *> rgba_plist,
@@ -661,8 +660,8 @@ struct HeightmapRGBA
 
   /**
    * @brief Convert the RGB heightmap to a 8bit RGB image.
-   * @param shape_img Resulting image shape.
-   * @return Image data.
+   * @param  shape_img Resulting image shape.
+   * @return           Image data.
    */
   std::vector<uint8_t> to_img_8bit(Vec2<int> shape_img = {0, 0});
 };
@@ -674,16 +673,16 @@ struct HeightmapRGBA
  * specified blending method. The detail map can be scaled to control the
  * intensity of its effect.
  *
- * @param nmap_base       Reference to the base normal map in RGBA format.
- * @param nmap_detail     Reference to the detail normal map in RGBA format.
- * @param detail_scaling  Scaling factor for the detail normal map intensity
- * in
- * [-1.f, 1.f]. Default is 1.0f.
- * @param blending_method Method to blend the two normal maps. Options are
- * specified by the NormalMapBlendingMethod enum (e.g., NMAP_DERIVATIVE).
+ * @param  nmap_base       Reference to the base normal map in RGBA format.
+ * @param  nmap_detail     Reference to the detail normal map in RGBA format.
+ * @param  detail_scaling  Scaling factor for the detail normal map intensity in
+ *                         [-1.f, 1.f]. Default is 1.0f.
+ * @param  blending_method Method to blend the two normal maps. Options are
+ *                         specified by the NormalMapBlendingMethod enum (e.g.,
+ *                         NMAP_DERIVATIVE).
  *
- * @return A HeightMapRGBA object that contains the result of blending the
- * base and detail normal maps.
+ * @return                 A HeightMapRGBA object that contains the result of
+ *                         blending the base and detail normal maps.
  *
  * **Example**
  * @include ex_mix_normal_map_rgba.cpp
@@ -711,9 +710,9 @@ HeightmapRGBA mix_normal_map_rgba(HeightmapRGBA          &nmap_base,
  * is expected to take a `Vec2<int>` and `Vec4<float>` as input and return an
  * `Array` using the noise maps.
  *
- * @param h The heightmap to be filled.
- * @param p_noise_x Pointer to the noise map for the x-axis.
- * @param p_noise_y Pointer to the noise map for the y-axis.
+ * @param h          The heightmap to be filled.
+ * @param p_noise_x  Pointer to the noise map for the x-axis.
+ * @param p_noise_y  Pointer to the noise map for the y-axis.
  * @param nullary_op The operation to be applied for filling the heightmap.
  *
  * **Example**
@@ -868,10 +867,12 @@ HeightmapRGBA mix_normal_map_rgba(HeightmapRGBA          &nmap_base,
 /**
  * @brief Applies a transformation operation to a collection of heightmaps.
  *
- * @param p_hmaps A vector of pointers to Heightmap objects to be transformed.
- * @param op A function that defines the transformation operation. It takes a
- *           vector of Array pointers, a Vec2<int> representing dimensions,
- * and a Vec4<float> representing transformation parameters.
+ * @param p_hmaps        A vector of pointers to Heightmap objects to be
+ *                       transformed.
+ * @param op             A function that defines the transformation operation.
+ *                       It takes a vector of Array pointers, a Vec2<int>
+ *                       representing dimensions, and a Vec4<float> representing
+ * transformation parameters.
  * @param transform_mode The mode of transformation to be applied. Default is
  *                       TransformMode::DISTRIBUTED.
  */

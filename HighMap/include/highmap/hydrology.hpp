@@ -1,10 +1,10 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file hydrology.hpp
- * @author Otto Link (otto.link.bv@gmail.com)
+ * @author  Otto Link (otto.link.bv@gmail.com)
  * @brief Header file for hydrological modeling functions and utilities.
  *
  * This header file declares functions and utilities for hydrological modeling,
@@ -40,11 +40,11 @@ namespace hmap
  * is an array where each cell contains the count of its incoming flow
  * directions.
  *
- * @param d8 Input array representing the flow directions according to the D8
- * model. Each cell value indicates the direction of flow according to the D8
- * convention.
- * @return Array An array where each cell contains the number of incoming flow
- * directions pointing to it.
+ * @param  d8 Input array representing the flow directions according to the D8
+ *            model. Each cell value indicates the direction of flow according
+ *            to the D8 convention.
+ * @return    Array An array where each cell contains the number of incoming
+ *            flow directions pointing to it.
  */
 Array d8_compute_ndip(const Array &d8);
 
@@ -55,7 +55,7 @@ Array d8_compute_ndip(const Array &d8);
  * with no outflow) and returns their indices. Flow sinks are cells that do not
  * direct flow to any other cell.
  *
- * @param z Input array representing the heightmap values.
+ * @param z  Input array representing the heightmap values.
  * @param is Output vector containing the row indices `i` of the flow sinks.
  * @param js Output vector containing the column indices `j` of the flow sinks.
  *
@@ -81,9 +81,9 @@ Array flooding_from_point(const Array            &z,
  * represents the total amount of flow that accumulates at each cell from
  * upstream cells.
  *
- * @param z Input array representing the heightmap values.
- * @return Array An array where each cell contains the computed flow
- * accumulation.
+ * @param  z Input array representing the heightmap values.
+ * @return   Array An array where each cell contains the computed flow
+ *           accumulation.
  *
  * **Example**
  * @include ex_flow_accumulation_d8.cpp
@@ -92,7 +92,7 @@ Array flooding_from_point(const Array            &z,
  * @image html ex_flow_accumulation_d80.png
  * @image html ex_flow_accumulation_d81.png
  *
- * @see flow_direction_d8
+ * @see      flow_direction_d8
  */
 Array flow_accumulation_d8(const Array &z);
 
@@ -107,11 +107,11 @@ Array flow_accumulation_d8(const Array &z);
  * values of `talus_ref` will lead to narrower flow streams. The maximum talus
  * value of the heightmap can be used as a reference.
  *
- * @param z Input array representing the heightmap values.
- * @param talus_ref Reference talus used to locally define the flow-partition
- * exponent. Small values will result in thinner flow streams.
- * @return Array An array where each cell contains the computed flow
- * accumulation.
+ * @param  z         Input array representing the heightmap values.
+ * @param  talus_ref Reference talus used to locally define the flow-partition
+ *                   exponent. Small values will result in thinner flow streams.
+ * @return           Array An array where each cell contains the computed flow
+ *                   accumulation.
  *
  * **Example**
  * @include ex_flow_accumulation_dinf.cpp
@@ -120,7 +120,7 @@ Array flow_accumulation_d8(const Array &z);
  * @image html ex_flow_accumulation_dinf0.png
  * @image html ex_flow_accumulation_dinf1.png
  *
- * @see flow_direction_dinf, flow_accumulation_d8
+ * @see              flow_direction_dinf, flow_accumulation_d8
  */
 Array flow_accumulation_dinf(const Array &z, float talus_ref);
 
@@ -131,17 +131,14 @@ Array flow_accumulation_dinf(const Array &z, float talus_ref);
  * This function calculates the direction of flow for each cell in the heightmap
  * using the D8 flow direction model @cite Greenlee1987. The D8 model defines
  * eight possible flow directions as follows:
- * @verbatim
- *   5 6 7
- *   4 . 0
- *   3 2 1
+ * @verbatim 5 6 7 4 . 0 3 2 1
  * @endverbatim
  *
- * @param z Input array representing the heightmap values.
- * @return Array An array where each cell contains the flow direction according
- * to the D8 nomenclature.
+ * @param  z Input array representing the heightmap values.
+ * @return   Array An array where each cell contains the flow direction
+ *           according to the D8 nomenclature.
  *
- * @see flow_accumulation_d8
+ * @see      flow_accumulation_d8
  */
 Array flow_direction_d8(const Array &z);
 
@@ -155,11 +152,12 @@ Array flow_direction_d8(const Array &z);
  * Smaller values of `talus_ref` will lead to thinner flow streams. The maximum
  * talus value of the heightmap can be used as a reference.
  *
- * @param z Input array representing the heightmap values.
- * @param talus_ref Reference talus used to locally define the flow-partition
- * exponent. Smaller values will result in thinner flow streams.
- * @return std::vector<Array> A vector of arrays, each containing the weights
- * for flow directions at every cell.
+ * @param  z         Input array representing the heightmap values.
+ * @param  talus_ref Reference talus used to locally define the flow-partition
+ *                   exponent. Smaller values will result in thinner flow
+ *                   streams.
+ * @return           std::vector<Array> A vector of arrays, each containing the
+ *                   weights for flow directions at every cell.
  */
 std::vector<Array> flow_direction_dinf(const Array &z, float talus_ref);
 
@@ -172,17 +170,18 @@ std::vector<Array> flow_direction_dinf(const Array &z, float talus_ref);
  * the boundary, minimizing upward elevation penalties while accounting for
  * distance and elevation factors.
  *
- * @param z The input 2D array representing elevation values.
- * @param ij_start The starting point as a 2D vector of indices (i, j) within
- * the array.
- * @param elevation_ratio Weight for elevation difference in the cost function
- * (default: 0.5).
- * @param distance_exponent Exponent for the distance term in the cost function
- * (default: 2.0).
- * @param upward_penalization Penalty factor for upward elevation changes
- * (default: 100.0).
- * @return A Path object representing the optimal flow path with normalized x
- * and y coordinates and corresponding elevations.
+ * @param  z                   The input 2D array representing elevation values.
+ * @param  ij_start            The starting point as a 2D vector of indices (i,
+ *                             j) within the array.
+ * @param  elevation_ratio     Weight for elevation difference in the cost
+ *                             function (default: 0.5).
+ * @param  distance_exponent   Exponent for the distance term in the cost
+ *                             function (default: 2.0).
+ * @param  upward_penalization Penalty factor for upward elevation changes
+ *                             (default: 100.0).
+ * @return                     A Path object representing the optimal flow path
+ *                             with normalized x and y coordinates and
+ *                             corresponding elevations.
  *
  * The output path consists of:
  * - Normalized x-coordinates along the path.
@@ -210,27 +209,33 @@ Path flow_stream(const Array    &z,
  * supports noise perturbation and post-filtering to adjust the riverbed's
  * features.
  *
- * @param path The input path defining the riverbed's trajectory.
- * @param shape The dimensions of the output array (width, height).
- * @param bbox The bounding box for the output grid in world coordinates.
- * @param bezier_smoothing Flag to enable or disable Bezier smoothing of the
- * path.
- * @param depth_start The depth at the start of the riverbed.
- * @param depth_end The depth at the end of the riverbed.
- * @param slope_start The slope multiplier at the start of the riverbed.
- * @param slope_end The slope multiplier at the end of the riverbed.
- * @param shape_exponent_start The shape exponent at the start of the riverbed.
- * @param shape_exponent_end The shape exponent at the end of the riverbed.
- * @param k_smoothing The smoothing factor for the riverbed shape adjustments.
- * @param post_filter_ir The radius of the post-filtering operation for
- * smoothing the output.
- * @param p_noise_x Optional pointer to a noise array for perturbing the
- * x-coordinates.
- * @param p_noise_y Optional pointer to a noise array for perturbing the
- * y-coordinates.
- * @param p_noise_r Optional pointer to a noise array for perturbing the radial
- * function.
- * @return A 2D array representing the calculated riverbed depth field.
+ * @param  path                 The input path defining the riverbed's
+ *                              trajectory.
+ * @param  shape                The dimensions of the output array (width,
+ *                              height).
+ * @param  bbox                 The bounding box for the output grid in world
+ *                              coordinates.
+ * @param  bezier_smoothing     Flag to enable or disable Bezier smoothing of
+ *                              the path.
+ * @param  depth_start          The depth at the start of the riverbed.
+ * @param  depth_end            The depth at the end of the riverbed.
+ * @param  slope_start          The slope multiplier at the start of the
+ *                              riverbed.
+ * @param  slope_end            The slope multiplier at the end of the riverbed.
+ * @param  shape_exponent_start The shape exponent at the start of the riverbed.
+ * @param  shape_exponent_end   The shape exponent at the end of the riverbed.
+ * @param  k_smoothing          The smoothing factor for the riverbed shape
+ *                              adjustments.
+ * @param  post_filter_ir       The radius of the post-filtering operation for
+ *                              smoothing the output.
+ * @param  p_noise_x            Optional pointer to a noise array for perturbing
+ *                              the x-coordinates.
+ * @param  p_noise_y            Optional pointer to a noise array for perturbing
+ *                              the y-coordinates.
+ * @param  p_noise_r            Optional pointer to a noise array for perturbing
+ *                              the radial function.
+ * @return                      A 2D array representing the calculated riverbed
+ *                              depth field.
  *
  * @note The function requires the path to have at least two points. If the path
  * has fewer points, an empty array is returned with the given shape.

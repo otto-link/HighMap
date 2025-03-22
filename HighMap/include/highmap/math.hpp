@@ -1,10 +1,10 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file math.hpp
- * @author Otto Link (otto.link.bv@gmail.com)
+ * @author  Otto Link (otto.link.bv@gmail.com)
  * @brief
  * @version 0.1
  * @date 2023-04-30
@@ -61,19 +61,19 @@ enum PhasorProfile : int
 /**
  * @brief Return the absolute value of the array elements.
  *
- * @param array Input array.
- * @return Array Output array.
+ * @param  array Input array.
+ * @return       Array Output array.
  */
 Array abs(const Array &array);
 
 /**
  * @brief Return the smooth absolute value of the array elements.
  *
- * @param array Input array.
- * @param k Smoothing coefficient.
- * @param vshift Reference value for the "zero" value of the absolute value
- * (default is zero).
- * @return Array Output array.
+ * @param  array  Input array.
+ * @param  k      Smoothing coefficient.
+ * @param  vshift Reference value for the "zero" value of the absolute value
+ *                (default is zero).
+ * @return        Array Output array.
  *
  * **Example**
  * @include ex_abs_smooth.cpp
@@ -93,8 +93,8 @@ float abs_smooth(float a, float mu);                          ///< @overload
  * "one" derivative at 1 (see <a
  * href=https://iquilezles.org/articles/functions/>Inigo Quilez's articles</a>).
  *
- * @param array Input array.
- * @return Array Output array.
+ * @param  array Input array.
+ * @return       Array Output array.
  */
 Array almost_unit_identity(const Array &array);
 float almost_unit_identity(float x); ///< @overload
@@ -103,17 +103,17 @@ float almost_unit_identity(float x); ///< @overload
  * @brief Return the almost unit identity function (with a second-order
  * derivative equals 0 at x = 1 also to avoid discontinuities in some cases)
  *
- * @param x Input.
- * @return float Output.
+ * @param  x Input.
+ * @return   float Output.
  */
 float almost_unit_identity_c2(float x);
 
 /**
  * @brief Return the approximate hypothenuse of two numbers.
  *
- * @param a a
- * @param b a
- * @return float ~sqrt(a**2 + b**2)
+ * @param  a a
+ * @param  b a
+ * @return   float ~sqrt(a**2 + b**2)
  */
 inline float approx_hypot(float a, float b)
 {
@@ -126,8 +126,8 @@ inline float approx_hypot(float a, float b)
 /**
  * @brief Return the approximate inverse square root of a number.
  *
- * @param a a
- * @return float ~1/sqrt(a)
+ * @param  a a
+ * @return   float ~1/sqrt(a)
  */
 inline float approx_rsqrt(float a)
 {
@@ -144,8 +144,8 @@ inline float approx_rsqrt(float a)
 /**
  * @brief Return the arctan of the array elements.
  *
- * @param array Input array.
- * @return Array Reference to the current object.
+ * @param  array Input array.
+ * @return       Array Reference to the current object.
  */
 Array atan(const Array &array);
 
@@ -158,26 +158,26 @@ Array atan(const Array &array);
  * quadrant of the angle. The output values are in radians and range from `-π`
  * to `π`.
  *
- * @param y A 2D array representing the numerator values.
- * @param x A 2D array representing the denominator values.
- * @return A 2D array where each element is the result of `atan2(y(i, j), x(i,
- * j))`.
+ * @param  y A 2D array representing the numerator values.
+ * @param  x A 2D array representing the denominator values.
+ * @return   A 2D array where each element is the result of `atan2(y(i, j), x(i,
+ *           j))`.
  */
 Array atan2(const Array &y, const Array &x);
 
 /**
  * @brief Return the cosine of the array elements.
  *
- * @param array Input array.
- * @return Array Reference to the current object.
+ * @param  array Input array.
+ * @return       Array Reference to the current object.
  */
 Array cos(const Array &array);
 
 /**
  * @brief Return the exponantial of the array elements.
  *
- * @param array Input array.
- * @return Array Reference to the current object.
+ * @param  array Input array.
+ * @return       Array Reference to the current object.
  */
 Array exp(const Array &array);
 
@@ -186,9 +186,9 @@ float gain(float x, float factor);
 /**
  * @brief Return the Gaussian of the array elements.
  *
- * @param array Input array.
- * @param sigma Gaussian half-width.
- * @return Array Reference to the current object.
+ * @param  array Input array.
+ * @param  sigma Gaussian half-width.
+ * @return       Array Reference to the current object.
  *
  * **Example**
  * @include ex_gaussian_decay.cpp
@@ -200,8 +200,8 @@ Array gaussian_decay(const Array &array, float sigma);
 
 /**
  * @brief Return the requested distance function.
- * @param dist_fct Distance function type.
- * @return Distance function.
+ * @param  dist_fct Distance function type.
+ * @return          Distance function.
  */
 std::function<float(float, float)> get_distance_function(
     DistanceFunction dist_fct);
@@ -215,15 +215,16 @@ std::function<float(float, float)> get_distance_function(
  * Optionally, it can compute the average value of the profile over the range
  * [-π, π].
  *
- * @param phasor_profile The type of phasor profile to generate.
- * @param delta A parameter that can influence the profile (depending on the
- * profile choice).
- * @param p_profile_avg Optional pointer to a float. If not `nullptr`, it will
- * store the average value of the profile over the range [-π, π].
- * @return A `std::function<float(float)>` that computes the phasor profile for
- * a given phase angle.
+ * @param  phasor_profile The type of phasor profile to generate.
+ * @param  delta          A parameter that can influence the profile (depending
+ *                        on the profile choice).
+ * @param  p_profile_avg  Optional pointer to a float. If not `nullptr`, it will
+ *                        store the average value of the profile over the range
+ *                        [-π, π].
+ * @return                A `std::function<float(float)>` that computes the
+ *                        phasor profile for a given phase angle.
  *
- * @throws std::invalid_argument If the provided `phasor_profile` is invalid.
+ * @throws std::invalid_argumentIftheprovided`phasor_profile`isinvalid.
  *
  * @note The average value is computed using numerical integration over 50
  * sample points within [-π, π].
@@ -237,9 +238,9 @@ std::function<float(float)> get_phasor_profile_function(
  * @brief Computes the highest power of 2 less than or equal to the given
  * number.
  *
- * @param n The input integer for which the highest power of 2 is to be
- * determined.
- * @return The highest power of 2 less than or equal to `n`.
+ * @param  n The input integer for which the highest power of 2 is to be
+ *           determined.
+ * @return   The highest power of 2 less than or equal to `n`.
  */
 int highest_power_of_2(int n);
 
@@ -249,19 +250,19 @@ int highest_power_of_2(int n);
  *
  * @relates Map
  *
- * @param array1 First array.
- * @param array2 Second array.
- * @return Array Hypothenuse.
+ * @param  array1 First array.
+ * @param  array2 Second array.
+ * @return        Array Hypothenuse.
  */
 Array hypot(const Array &array1, const Array &array2);
 
 /**
  * @brief Return the linear interpolation between two arrays by a parameter t.
  *
- * @param array1 First array.
- * @param array2 Second array.
- * @param t Interpolation parameter (in [0, 1]).
- * @return Array Interpolated array.
+ * @param  array1 First array.
+ * @param  array2 Second array.
+ * @param  t      Interpolation parameter (in [0, 1]).
+ * @return        Array Interpolated array.
  */
 Array lerp(const Array &array1, const Array &array2, const Array &t);
 Array lerp(const Array &array1, const Array &array2, float t); ///< @overload
@@ -270,28 +271,28 @@ float lerp(float a, float b, float t);                         ///< @overload
 /**
  * @brief Return the log10 of the array elements.
  *
- * @param array Input array.
- * @return Array Reference to the current object.
+ * @param  array Input array.
+ * @return       Array Reference to the current object.
  */
 Array log10(const Array &array);
 
 /**
  * @brief Return the array elements raised to the power 'exp'.
  *
- * @param exp Exponent.
- * @return Array Reference to the current object.
+ * @param  exp Exponent.
+ * @return     Array Reference to the current object.
  */
 Array pow(const Array &array, float exp);
 
 /**
  * @brief Interpret the input array `dr` as a radial displacement and convert it
  * to a pair of displacements `dx` and `dy` in cartesian coordinates.
- * @param dr Radial displacement.
- * @param dx Displacent in x direction (output).
- * @param dy Displacent in y direction (output).
+ * @param dr        Radial displacement.
+ * @param dx        Displacent in x direction (output).
+ * @param dy        Displacent in y direction (output).
  * @param smoothing Smoothing parameter to avoid discontinuity at the origin.
- * @param center Origin center.
- * @param bbox Domain bounding box.
+ * @param center    Origin center.
+ * @param bbox      Domain bounding box.
  *
  * **Example**
  * @include ex_radial_displacement_to_xy.cpp
@@ -309,18 +310,18 @@ void radial_displacement_to_xy(const Array &dr,
 /**
  * @brief Return the sine of the array elements.
  *
- * @param array Input array.
- * @return Array Reference to the current object.
+ * @param  array Input array.
+ * @return       Array Reference to the current object.
  */
 Array sin(const Array &array);
 
 /**
  * @brief Return the 3rd order smoothstep function of the array elements.
  *
- * @param array Input array.
- * @param vmin Lower bound.
- * @param vmax Upper bound.
- * @return Array Output array.
+ * @param  array Input array.
+ * @param  vmin  Lower bound.
+ * @param  vmax  Upper bound.
+ * @return       Array Output array.
  *
  * **Example**
  * @include ex_smoothstep.cpp
@@ -333,27 +334,27 @@ Array smoothstep3(const Array &array, float vmin = 0.f, float vmax = 1.f);
 /**
  * @brief Return the 3rd order smoothstep function.
  *
- * @param x Input.
- * @return float Output.
+ * @param  x Input.
+ * @return   float Output.
  */
 float smoothstep3(float x);
 
 /**
- * @brief Return the 3rd order smoothstep function, with zero derivative only
- * at 0.
+ * @brief Return the 3rd order smoothstep function, with zero derivative only at
+ * 0.
  *
- * @param x Input.
- * @return float Output.
+ * @param  x Input.
+ * @return   float Output.
  */
 float smoothstep3_lower(float x);
 Array smoothstep3_lower(const Array &x); ///< @overload
 
 /**
- * @brief Return the 3rd order smoothstep function, with zero derivative only
- * at 1.
+ * @brief Return the 3rd order smoothstep function, with zero derivative only at
+ * 1.
  *
- * @param x Input.
- * @return float Output.
+ * @param  x Input.
+ * @return   float Output.
  */
 float smoothstep3_upper(float x);
 Array smoothstep3_upper(const Array &x); ///< @overload
@@ -361,10 +362,10 @@ Array smoothstep3_upper(const Array &x); ///< @overload
 /**
  * @brief Return the 5rd order smoothstep function of the array elements.
  *
- * @param array Input array.
- * @param vmin Lower bound.
- * @param vmax Upper bound.
- * @return Array Output array.
+ * @param  array Input array.
+ * @param  vmin  Lower bound.
+ * @param  vmax  Upper bound.
+ * @return       Array Output array.
  *
  * **Example**
  * @include ex_smoothstep.cpp
@@ -380,27 +381,27 @@ Array smoothstep5(const Array &array,
 /**
  * @brief Return the 5rd order smoothstep function.
  *
- * @param x Input.
- * @return float Output.
+ * @param  x Input.
+ * @return   float Output.
  */
 float smoothstep5(float x);
 
 /**
- * @brief Return the 5rd order smoothstep function, with zero derivative only
- * at 0.
+ * @brief Return the 5rd order smoothstep function, with zero derivative only at
+ * 0.
  *
- * @param x Input.
- * @return float Output.
+ * @param  x Input.
+ * @return   float Output.
  */
 float smoothstep5_lower(float x);
 Array smoothstep5_lower(const Array &x); ///< @overload
 
 /**
- * @brief Return the 5rd order smoothstep function, with zero derivative only
- * at 1.
+ * @brief Return the 5rd order smoothstep function, with zero derivative only at
+ * 1.
  *
- * @param x Input.
- * @return float Output.
+ * @param  x Input.
+ * @return   float Output.
  */
 float smoothstep5_upper(float x);
 Array smoothstep5_upper(const Array &x); ///< @overload
@@ -408,8 +409,8 @@ Array smoothstep5_upper(const Array &x); ///< @overload
 /**
  * @brief Return the 7th order smoothstep function.
  *
- * @param x Input.
- * @return float Output.
+ * @param  x Input.
+ * @return   float Output.
  */
 float smoothstep7(float x);
 Array smoothstep7(const Array &x); ///< @overload
@@ -417,8 +418,8 @@ Array smoothstep7(const Array &x); ///< @overload
 /**
  * @brief Return the square root of the array elements.
  *
- * @param array Input array.
- * @return Array Reference to the current object.
+ * @param  array Input array.
+ * @return       Array Reference to the current object.
  */
 Array sqrt(const Array &array);
 

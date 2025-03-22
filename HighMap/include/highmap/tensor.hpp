@@ -1,16 +1,16 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file tensor.hpp
- * @author Otto Link (otto.link.bv@gmail.com)
+ * @author  Otto Link (otto.link.bv@gmail.com)
  * @brief Header file for the Tensor class.
  *
  * This file contains the definition of the `Tensor` class, which is used for
  * representing and manipulating multi-dimensional arrays of floating-point
- * values. The class provides methods for accessing elements, performing
- * basic mathematical operations, and exporting data to image formats.
+ * values. The class provides methods for accessing elements, performing basic
+ * mathematical operations, and exporting data to image formats.
  *
  * @version 0.1
  * @date 2023-05-07
@@ -61,7 +61,7 @@ public:
    * @brief Construct a new Tensor object.
    *
    * @param shape_xy 2D shape (x, y) of the tensor.
-   * @param shape_z Size along the z-axis.
+   * @param shape_z  Size along the z-axis.
    */
   Tensor(Vec2<int> shape_xy, int shape_z);
 
@@ -75,29 +75,29 @@ public:
   /**
    * @brief Access an element of the tensor.
    *
-   * @param i Index along the x-axis.
-   * @param j Index along the y-axis.
-   * @param k Index along the z-axis.
-   * @return float& Reference to the element at position (i, j, k).
+   * @param  i Index along the x-axis.
+   * @param  j Index along the y-axis.
+   * @param  k Index along the z-axis.
+   * @return   float& Reference to the element at position (i, j, k).
    */
   float &operator()(int i, int j, int k);
 
   /**
    * @brief Access an element of the tensor (const version).
    *
-   * @param i Index along the x-axis.
-   * @param j Index along the y-axis.
-   * @param k Index along the z-axis.
-   * @return const float& Reference to the element at position (i, j, k).
+   * @param  i Index along the x-axis.
+   * @param  j Index along the y-axis.
+   * @param  k Index along the z-axis.
+   * @return   const float& Reference to the element at position (i, j, k).
    */
   const float &operator()(int i, int j, int k) const;
 
   /**
    * @brief Get a 2D slice of the tensor along the z-axis.
    *
-   * @param k Index along the z-axis.
-   * @return An Array representing the 2D slice of the tensor at the specified
-   * z-axis index.
+   * @param  k Index along the z-axis.
+   * @return   An Array representing the 2D slice of the tensor at the specified
+   *           z-axis index.
    */
   Array get_slice(int k) const;
 
@@ -127,16 +127,16 @@ public:
    * @brief Resamples the tensor to a new 2D shape (x, y), shape along z is not
    * changed.
    *
-   * @param new_shape_xy A 2D vector representing the new shape (x, y) of the
-   * tensor.
-   * @return A new Tensor object with the resampled shape.
+   * @param  new_shape_xy A 2D vector representing the new shape (x, y) of the
+   *                      tensor.
+   * @return              A new Tensor object with the resampled shape.
    */
   Tensor resample_to_shape_xy(Vec2<int> new_shape_xy);
 
   /**
    * @brief Set a 2D slice of the tensor along the z-axis.
    *
-   * @param k Index along the z-axis.
+   * @param k     Index along the z-axis.
    * @param slice The 2D array (slice) to set.
    */
   void set_slice(int k, const Array &slice);
@@ -165,7 +165,7 @@ public:
    *
    * @param fname The filename for the output PNG image, including the path.
    * @param depth The bit depth of the output image. The default is 8-bit
-   * (`CV_8U`). Set to `CV_16U` for 16-bit output.
+   *              (`CV_8U`). Set to `CV_16U` for 16-bit output.
    */
   void to_png(const std::string &fname, int depth = CV_8U);
 };

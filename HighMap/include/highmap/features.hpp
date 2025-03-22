@@ -1,10 +1,10 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file features.hpp
- * @author Otto Link (otto.link.bv@gmail.com)
+ * @author  Otto Link (otto.link.bv@gmail.com)
  * @brief Header file defining a collection of functions for terrain analysis
  * and feature extraction from heightmaps.
  * @version 0.1
@@ -18,25 +18,25 @@
 /**
  * @brief Packs eight 2-bit values into a 16-bit integer.
  *
- * This macro takes eight 2-bit values (`a` through `h`) and packs them into
- * a single 16-bit integer. The bits are shifted into position according to
- * their specified offsets to form the final packed value.
+ * This macro takes eight 2-bit values (`a` through `h`) and packs them into a
+ * single 16-bit integer. The bits are shifted into position according to their
+ * specified offsets to form the final packed value.
  *
- * @param a The first 2-bit value (will be shifted left by 15 bits).
- * @param b The second 2-bit value (will be shifted left by 13 bits).
- * @param c The third 2-bit value (will be shifted left by 11 bits).
- * @param d The fourth 2-bit value (will be shifted left by 9 bits).
- * @param e The fifth 2-bit value (will be shifted left by 7 bits).
- * @param f The sixth 2-bit value (will be shifted left by 5 bits).
- * @param g The seventh 2-bit value (will be shifted left by 3 bits).
- * @param h The eighth 2-bit value (will be shifted left by 1 bit).
+ * @param  a The first 2-bit value (will be shifted left by 15 bits).
+ * @param  b The second 2-bit value (will be shifted left by 13 bits).
+ * @param  c The third 2-bit value (will be shifted left by 11 bits).
+ * @param  d The fourth 2-bit value (will be shifted left by 9 bits).
+ * @param  e The fifth 2-bit value (will be shifted left by 7 bits).
+ * @param  f The sixth 2-bit value (will be shifted left by 5 bits).
+ * @param  g The seventh 2-bit value (will be shifted left by 3 bits).
+ * @param  h The eighth 2-bit value (will be shifted left by 1 bit).
  *
- * @return A 16-bit integer where the input values have been packed together
- *         according to their respective shifts.
+ * @return   A 16-bit integer where the input values have been packed together
+ *           according to their respective shifts.
  *
  * @note Each parameter (`a` through `h`) should only occupy 2 bits (values
- *       between 0 and 3). If the values exceed this range, the result may be
- *       incorrect.
+ * between 0 and 3). If the values exceed this range, the result may be
+ * incorrect.
  */
 #define HMAP_PACK8(a, b, c, d, e, f, g, h)                                     \
   ((a << 15) + (b << 13) + (c << 11) + (d << 9) + (e << 7) + (f << 5) +        \
@@ -60,14 +60,17 @@ namespace hmap
  * - Apply the surface threshold to filter out small, insignificant components
  * that might be noise or irrelevant.
  *
- * @param array The input array where connected components are to be identified.
- * @param surface_threshold The minimum number of pixels a component must have
- * to be retained. Components smaller than this threshold will be removed. The
- * default value is 0 (no filtering).
- * @param background_value The value used to represent background pixels, which
- * are not part of any component. Default is 0.
- * @return Array An array with labeled connected components, where each
- * component is assigned a unique identifier.
+ * @param  array             The input array where connected components are to
+ *                           be identified.
+ * @param  surface_threshold The minimum number of pixels a component must have
+ *                           to be retained. Components smaller than this
+ *                           threshold will be removed. The default value is 0
+ *                           (no filtering).
+ * @param  background_value  The value used to represent background pixels,
+ *                           which are not part of any component. Default is 0.
+ * @return                   Array An array with labeled connected components,
+ *                           where each component is assigned a unique
+ *                           identifier.
  *
  *
  * **Example**
@@ -95,15 +98,15 @@ Array connected_components(const Array &array,
  * geomorphological units.
  * - Useful in large-scale landform mapping and environmental modeling.
  *
- * @param array The input array representing the terrain elevation data.
- * @param irmin The minimum radius (in pixels) for considering the surrounding
- * area during classification.
- * @param irmax The maximum radius (in pixels) for considering the surrounding
- * area during classification.
- * @param epsilon The slope tolerance that defines 'flat' regions, affecting the
- * classification.
- * @return Array An output array with each pixel classified into a
- * geomorphological feature.
+ * @param  array   The input array representing the terrain elevation data.
+ * @param  irmin   The minimum radius (in pixels) for considering the
+ *                 surrounding area during classification.
+ * @param  irmax   The maximum radius (in pixels) for considering the
+ *                 surrounding area during classification.
+ * @param  epsilon The slope tolerance that defines 'flat' regions, affecting
+ *                 the classification.
+ * @return         Array An output array with each pixel classified into a
+ *                 geomorphological feature.
  *
  * **Example**
  * @include ex_geomorphons.cpp
@@ -129,25 +132,29 @@ Array geomorphons(const Array &array, int irmin, int irmax, float epsilon);
  * - Useful in ecological modeling, land cover classification, and resource
  * management.
  *
- * @param[in] array1 The first input array for clustering, typically
- * representing one attribute of the terrain.
- * @param[in] array2 The second input array for clustering, representing another
- * attribute.
- * @param[in] nclusters The number of clusters (k) to be formed.
- * @param[out] p_scoring (optional) A pointer to a vector of arrays where the
- * clustering scores will be stored. Pass nullptr if scoring is not required.
+ * @param[in]  array1              The first input array for clustering,
+ *                                 typically representing one attribute of the
+ *                                 terrain.
+ * @param[in]  array2              The second input array for clustering,
+ *                                 representing another attribute.
+ * @param[in]  nclusters           The number of clusters (k) to be formed.
+ * @param[out] p_scoring           (optional) A pointer to a vector of arrays
+ *                                 where the clustering scores will be stored.
+ *                                 Pass nullptr if scoring is not required.
  * @param[out] p_aggregate_scoring (optional) A pointer to an array where the
- * aggregate score across all clusters will be stored. Pass nullptr if not
- * required.
- * @param[in] weights A vector of two floats representing the weight given to
+ *                                 aggregate score across all clusters will be
+ *                                 stored. Pass nullptr if not required.
+ * @param[in]  weights             A vector of two floats representing the
+ *                                 weight given to
  * `array1` and `array2`. The default weights are {1.f, 1.f}.
- * @param[in] seed A seed value for random number generation, ensuring
- * reproducibility of the clustering results. The default value is 1.
- * @return Array An array representing the clustered data, with each pixel
- * assigned to a cluster.
+ * @param[in]  seed                A seed value for random number generation,
+ *                                 ensuring reproducibility of the clustering
+ *                                 results. The default value is 1.
+ * @return                         Array An array representing the clustered
+ *                                 data, with each pixel assigned to a cluster.
  *
- * @return An Array containing the clustered data resulting from the k-means
- * algorithm.
+ * @return                         An Array containing the clustered data
+ *                                 resulting from the k-means algorithm.
  *
  * **Example**
  * @include ex_kmeans_clustering.cpp
@@ -181,21 +188,24 @@ Array kmeans_clustering2(const Array        &array1,
  * terrain attributes, revealing complex patterns.
  * - Useful in multi-dimensional environmental modeling and resource management.
  *
- * @param[in] array1 The first input array for clustering.
- * @param[in] array2 The second input array for clustering.
- * @param[in] array3 The third input array for clustering.
- * @param[in] nclusters The number of clusters (k) to be formed.
- * @param[out] p_scoring (optional) A pointer to a vector of arrays where the
- * clustering scores will be stored. Pass nullptr if scoring is not required.
+ * @param[in]  array1              The first input array for clustering.
+ * @param[in]  array2              The second input array for clustering.
+ * @param[in]  array3              The third input array for clustering.
+ * @param[in]  nclusters           The number of clusters (k) to be formed.
+ * @param[out] p_scoring           (optional) A pointer to a vector of arrays
+ *                                 where the clustering scores will be stored.
+ *                                 Pass nullptr if scoring is not required.
  * @param[out] p_aggregate_scoring (optional) A pointer to an array where the
- * aggregate score across all clusters will be stored. Pass nullptr if not
- * required.
- * @param[in] weights A vector of three floats representing the weight given to
+ *                                 aggregate score across all clusters will be
+ *                                 stored. Pass nullptr if not required.
+ * @param[in]  weights             A vector of three floats representing the
+ *                                 weight given to
  * `array1`, `array2`, and `array3`. The default weights are {1.f, 1.f, 1.f}.
- * @param[in] seed A seed value for random number generation, ensuring
- * reproducibility of the clustering results. The default value is 1.
- * @return Array An array representing the clustered data, with each pixel
- * assigned to a cluster.
+ * @param[in]  seed                A seed value for random number generation,
+ *                                 ensuring reproducibility of the clustering
+ *                                 results. The default value is 1.
+ * @return                         Array An array representing the clustered
+ *                                 data, with each pixel assigned to a cluster.
  *
  * **Example**
  * @include ex_kmeans_clustering.cpp
@@ -230,11 +240,11 @@ Array kmeans_clustering3(const Array        &array1,
  * which could indicate potential water collection points or hilltops.
  * - Useful in flood risk assessment and landscape classification.
  *
- * @param array The input array representing the terrain elevation data.
- * @param ir The radius (in pixels) within which to calculate the relative
- * elevation for each point.
- * @return Array An output array containing the relative elevation values,
- * normalized between 0 and 1.
+ * @param  array The input array representing the terrain elevation data.
+ * @param  ir    The radius (in pixels) within which to calculate the relative
+ *               elevation for each point.
+ * @return       Array An output array containing the relative elevation values,
+ *               normalized between 0 and 1.
  *
  * **Example**
  * @include relative_elevation.cpp
@@ -250,11 +260,11 @@ Array relative_elevation(const Array &array, int ir);
  * The ruggedness is calculated as the square root of the sum of squared
  * differences between each element and its neighbors within a specified radius.
  *
- * @param array The input array for which ruggedness is to be computed.
- * @param ir The radius within which neighbors are considered for ruggedness
- * calculation.
- * @return An array containing the ruggedness values for each element in the
- * input array.
+ * @param  array The input array for which ruggedness is to be computed.
+ * @param  ir    The radius within which neighbors are considered for ruggedness
+ *               calculation.
+ * @return       An array containing the ruggedness values for each element in
+ *               the input array.
  *
  * @note https://xdem.readthedocs.io/en/latest/terrain.html
  *
@@ -275,13 +285,14 @@ Array ruggedness(const Array &array, int ir);
  * and habitat mapping. Higher rugosity values indicate more rugged terrain,
  * which can affect species distribution and water flow.
  *
- * @param z The input array representing the heightmap data (elevation values).
- * @param ir The radius of the square kernel used for calculations, determining
- * the scale of the analysis.
- * @param convex Return the convex rugosity if true, and the concave ones if
- * not.
- * @return Array An output array containing the rugosity estimates, where higher
- * values indicate rougher terrain.
+ * @param  z      The input array representing the heightmap data (elevation
+ *                values).
+ * @param  ir     The radius of the square kernel used for calculations,
+ *                determining the scale of the analysis.
+ * @param  convex Return the convex rugosity if true, and the concave ones if
+ *                not.
+ * @return        Array An output array containing the rugosity estimates, where
+ *                higher values indicate rougher terrain.
  *
  * **Example**
  * @include ex_rugosity.cpp
@@ -308,13 +319,15 @@ Array rugosity(const Array &z, int ir, bool convex = true);
  * - Applicable in studies focusing on river valleys, canyon analysis, and
  * erosion patterns.
  *
- * @param z The input array representing the heightmap data (elevation values).
- * @param ir The radius used for pre-filtering, controlling the scale of
- * analysis (in pixels). The default value is 0, meaning no pre-filtering is
- * applied.
- * @param ridge_select If enabled, selects ridges instead of valleys.
- * @return Array An output array containing valley width values, representing
- * the distance to the edge of the concave region for each point.
+ * @param  z            The input array representing the heightmap data
+ *                      (elevation values).
+ * @param  ir           The radius used for pre-filtering, controlling the scale
+ *                      of analysis (in pixels). The default value is 0, meaning
+ *                      no pre-filtering is applied.
+ * @param  ridge_select If enabled, selects ridges instead of valleys.
+ * @return              Array An output array containing valley width values,
+ *                      representing the distance to the edge of the concave
+ *                      region for each point.
  *
  * **Example**
  * @include ex_valley_width.cpp

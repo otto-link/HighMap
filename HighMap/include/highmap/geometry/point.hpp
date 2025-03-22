@@ -1,10 +1,10 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file point.hpp
- * @author Otto Link (otto.link.bv@gmail.com)
+ * @author  Otto Link (otto.link.bv@gmail.com)
  * @brief Defines a class for representing and manipulating 3D points.
  *
  * This file contains the definition of the `Point3` class, which represents a
@@ -61,8 +61,8 @@ public:
   /**
    * @brief Equality operator to check if two points are the same.
    *
-   * @param other The point to compare with.
-   * @return true if the points are equal, false otherwise.
+   * @param  other The point to compare with.
+   * @return       true if the points are equal, false otherwise.
    */
   bool operator==(const Point &other) const
   {
@@ -72,8 +72,8 @@ public:
   /**
    * @brief Inequality operator to check if two points are different.
    *
-   * @param other The point to compare with.
-   * @return true if the points are not equal, false otherwise.
+   * @param  other The point to compare with.
+   * @return       true if the points are not equal, false otherwise.
    */
   bool operator!=(const Point &other) const
   {
@@ -82,8 +82,8 @@ public:
 
   /**
    * @brief Adds two points.
-   * @param other The point to add.
-   * @return The result of adding the two points.
+   * @param  other The point to add.
+   * @return       The result of adding the two points.
    */
   Point operator+(const Point &other) const
   {
@@ -92,8 +92,8 @@ public:
 
   /**
    * @brief Subtracts two points.
-   * @param other The point to subtract.
-   * @return The result of subtracting the other point from this point.
+   * @param  other The point to subtract.
+   * @return       The result of subtracting the other point from this point.
    */
   Point operator-(const Point &other) const
   {
@@ -102,8 +102,8 @@ public:
 
   /**
    * @brief Multiplies the point by a scalar.
-   * @param scalar The scalar to multiply by.
-   * @return The result of the multiplication.
+   * @param  scalar The scalar to multiply by.
+   * @return        The result of the multiplication.
    */
   Point operator*(float scalar) const
   {
@@ -112,8 +112,8 @@ public:
 
   /**
    * @brief Divides the point by a scalar.
-   * @param scalar The scalar to divide by.
-   * @return The result of the division.
+   * @param  scalar The scalar to divide by.
+   * @return        The result of the division.
    */
   Point operator/(float scalar) const
   {
@@ -127,9 +127,10 @@ public:
    * allows expressions where the scalar is on the left side of the
    * multiplication operator.
    *
-   * @param scalar The scalar value to multiply with.
-   * @param point The vector to multiply.
-   * @return Point A new vector with each component multiplied by the scalar.
+   * @param  scalar The scalar value to multiply with.
+   * @param  point  The vector to multiply.
+   * @return        Point A new vector with each component multiplied by the
+   *                scalar.
    */
   friend Point operator*(float scalar, const Point &point)
   {
@@ -149,8 +150,8 @@ public:
    * @brief Set the point value by interpolating values of an array at the point
    * position.
    * @param array Input array.
-   * @param bbox Array bounding box of the area, used to draw a correspondance
-   * between point position and array cells positions.
+   * @param bbox  Array bounding box of the area, used to draw a correspondance
+   *              between point position and array cells positions.
    */
   void set_value_from_array(const Array &array, Vec4<float> bbox);
 
@@ -170,10 +171,10 @@ public:
    *
    * @param array The input `Array` from which the value is interpolated. The
    * `Array` should support bilinear interpolation.
-   * @param bbox Bounding box used for normalizing the `Point`'s coordinates.
-   * This box is defined by a `Vec4<float>` containing minimum and maximum
-   * values for both x and y dimensions in the format `{xmin, xmax, ymin,
-   * ymax}`.
+   * @param bbox  Bounding box used for normalizing the `Point`'s coordinates.
+   *              This box is defined by a `Vec4<float>` containing minimum and
+   *              maximum values for both x and y dimensions in the format
+   * `{xmin, xmax, ymin, ymax}`.
    *
    * @note If the coordinates are outside the bounds of the array after scaling,
    * the point's value is set to zero.
@@ -185,13 +186,13 @@ public:
  * @brief Computes the angle between two points relative to the x-axis.
  *
  * This function calculates the angle formed by the vector from `p1` to `p2`
- * with respect to the x-axis. The angle is measured in radians and is
- * oriented in the counter-clockwise direction.
+ * with respect to the x-axis. The angle is measured in radians and is oriented
+ * in the counter-clockwise direction.
  *
- * @param p1 The starting point of the vector.
- * @param p2 The ending point of the vector.
- * @return The angle in radians between the vector formed by `p1` to `p2` and
- *         the x-axis. The angle is in the range [-π, π].
+ * @param  p1 The starting point of the vector.
+ * @param  p2 The ending point of the vector.
+ * @return    The angle in radians between the vector formed by `p1` to `p2` and
+ *            the x-axis. The angle is in the range [-π, π].
  */
 float angle(const Point &p1, const Point &p2);
 
@@ -204,10 +205,10 @@ float angle(const Point &p1, const Point &p2);
  * \rightarrow p1 \). The angle is oriented in the 2D plane and measured in
  * radians.
  *
- * @param p0 The reference point (origin of the angle measurement).
- * @param p1 The first point defining the angle.
- * @param p2 The second point defining the angle.
- * @return The angle between the vectors \( p0 \rightarrow p2 \) and \( p0
+ * @param  p0 The reference point (origin of the angle measurement).
+ * @param  p1 The first point defining the angle.
+ * @param  p2 The second point defining the angle.
+ * @return    The angle between the vectors \( p0 \rightarrow p2 \) and \( p0
  * \rightarrow p1 \) in radians.
  *
  * @note The angle is calculated using the 2D vectors defined by \( p0
@@ -220,16 +221,15 @@ float angle(const Point &p0, const Point &p1, const Point &p2);
  * @brief Computes the 2D cross product of vectors formed by three points.
  *
  * Given three points p0, p1, and p2 in 2D space, this function computes the
- * scalar cross product of the vectors (p1 - p0) and (p2 - p0). In 2D, the
- * cross product is a scalar value and is often used to determine the
- * orientation of the three points or the signed area of the parallelogram they
- * form.
+ * scalar cross product of the vectors (p1 - p0) and (p2 - p0). In 2D, the cross
+ * product is a scalar value and is often used to determine the orientation of
+ * the three points or the signed area of the parallelogram they form.
  *
- * @param p0 The first point, which serves as the common origin of the two
- * vectors.
- * @param p1 The second point, forming the first vector p1 - p0.
- * @param p2 The third point, forming the second vector p2 - p0.
- * @return The scalar value of the 2D cross product.
+ * @param  p0 The first point, which serves as the common origin of the two
+ *            vectors.
+ * @param  p1 The second point, forming the first vector p1 - p0.
+ * @param  p2 The third point, forming the second vector p2 - p0.
+ * @return    The scalar value of the 2D cross product.
  *         - Positive if the points p0, p1, p2 are oriented counterclockwise.
  *         - Negative if they are oriented clockwise.
  *         - Zero if the points are collinear.
@@ -239,22 +239,21 @@ float cross_product(const Point &p0, const Point &p1, const Point &p2);
 /**
  * @brief Calculates the curvature formed by three points in 2D space.
  *
- * @param p1 The first point of the triangle.
- * @param p2 The second point of the triangle.
- * @param p3 The third point of the triangle.
- * @return The curvature. Returns 0 if the points are collinear.
+ * @param  p1 The first point of the triangle.
+ * @param  p2 The second point of the triangle.
+ * @param  p3 The third point of the triangle.
+ * @return    The curvature. Returns 0 if the points are collinear.
  */
 float curvature(const Point &p1, const Point &p2, const Point &p3);
 
 /**
  * @brief Calculates the distance between two points.
  *
- * This function computes the Euclidean distance between two points
- * in 2D space.
+ * This function computes the Euclidean distance between two points in 2D space.
  *
- * @param p1 The first point.
- * @param p2 The second point.
- * @return The distance between the two points.
+ * @param  p1 The first point.
+ * @param  p2 The second point.
+ * @return    The distance between the two points.
  */
 float distance(const Point &p1, const Point &p2);
 
@@ -267,12 +266,12 @@ float distance(const Point &p1, const Point &p2);
  * corresponds to the start point `p_start` and `t = 1` corresponds to the end
  * point `p_end`.
  *
- * @param p_start The first control point (start point).
- * @param p_ctrl_start The second control point.
- * @param p_ctrl_end The third control point.
- * @param p_end The fourth control point (end point).
- * @param t The interpolation parameter, ranging from 0 to 1.
- * @return The interpolated point on the Bezier curve.
+ * @param  p_start      The first control point (start point).
+ * @param  p_ctrl_start The second control point.
+ * @param  p_ctrl_end   The third control point.
+ * @param  p_end        The fourth control point (end point).
+ * @param  t            The interpolation parameter, ranging from 0 to 1.
+ * @return              The interpolated point on the Bezier curve.
  *
  * **Example**
  * @include ex_point_interp.cpp
@@ -296,12 +295,12 @@ Point interp_bezier(const Point &p_start,
  * `t = 0` corresponds to the start point `p1` and `t = 1` corresponds to the
  * end point `p2`.
  *
- * @param p0 The first control point (influence for the start point).
- * @param p1 The second control point (start point of the segment).
- * @param p2 The third control point (end point of the segment).
- * @param p3 The fourth control point (influence for the end point).
- * @param t The interpolation parameter, ranging from 0 to 1.
- * @return The interpolated point on the B-spline curve.
+ * @param  p0 The first control point (influence for the start point).
+ * @param  p1 The second control point (start point of the segment).
+ * @param  p2 The third control point (end point of the segment).
+ * @param  p3 The fourth control point (influence for the end point).
+ * @param  t  The interpolation parameter, ranging from 0 to 1.
+ * @return    The interpolated point on the B-spline curve.
  *
  * **Example**
  * @include ex_point_interp.cpp
@@ -325,12 +324,12 @@ Point interp_bspline(const Point &p0,
  * corresponds to the start point `p1` and `t = 1` corresponds to the end point
  * `p2`.
  *
- * @param p0 The first control point (influence for the start point).
- * @param p1 The second control point (start point of the segment).
- * @param p2 The third control point (end point of the segment).
- * @param p3 The fourth control point (influence for the end point).
- * @param t The interpolation parameter, ranging from 0 to 1.
- * @return The interpolated point on the Catmull-Rom spline.
+ * @param  p0 The first control point (influence for the start point).
+ * @param  p1 The second control point (start point of the segment).
+ * @param  p2 The third control point (end point of the segment).
+ * @param  p3 The fourth control point (influence for the end point).
+ * @param  t  The interpolation parameter, ranging from 0 to 1.
+ * @return    The interpolated point on the Catmull-Rom spline.
  *
  * **Example**
  * @include ex_point_interp.cpp
@@ -349,17 +348,17 @@ Point interp_catmullrom(const Point &p0,
  * curves.
  *
  * Interpolates a point on a Bézier curve defined by a set of control points
- * using De Casteljau's algorithm. The algorithm is recursive and provides
- * a stable and numerically robust method to evaluate Bézier curves at a
- * given parameter `t`.
+ * using De Casteljau's algorithm. The algorithm is recursive and provides a
+ * stable and numerically robust method to evaluate Bézier curves at a given
+ * parameter `t`.
  *
  * The parameter `t` should be within the range [0, 1], where `t = 0`
  * corresponds to the first control point and `t = 1` corresponds to the last
  * control point.
  *
- * @param points A vector of control points defining the Bézier curve.
- * @param t The interpolation parameter, ranging from 0 to 1.
- * @return The interpolated point on the Bézier curve.
+ * @param  points A vector of control points defining the Bézier curve.
+ * @param  t      The interpolation parameter, ranging from 0 to 1.
+ * @return        The interpolated point on the Bézier curve.
  *
  * **Example**
  * @include ex_point_interp.cpp
@@ -376,10 +375,11 @@ Point interp_decasteljau(const std::vector<Point> &points, float t);
  * `bbox2`. If they intersect, it returns the intersecting bounding box. If they
  * are disjoint, it returns `std::nullopt`.
  *
- * @param bbox1 The first bounding box defined as `Vec4<float>`.
- * @param bbox2 The second bounding box defined as `Vec4<float>`.
- * @return An `std::optional<Vec4<float>>` containing the intersecting bounding
- * box if an intersection exists; `std::nullopt` otherwise.
+ * @param  bbox1 The first bounding box defined as `Vec4<float>`.
+ * @param  bbox2 The second bounding box defined as `Vec4<float>`.
+ * @return       An `std::optional<Vec4<float>>` containing the intersecting
+ *               bounding box if an intersection exists; `std::nullopt`
+ *               otherwise.
  */
 Vec4<float> intersect_bounding_boxes(const Vec4<float> &bbox1,
                                      const Vec4<float> &bbox2);
@@ -390,12 +390,13 @@ Vec4<float> intersect_bounding_boxes(const Vec4<float> &bbox1,
  * This function determines if a given point `p` lies within the rectangular
  * bounding box defined by `bbox`.
  *
- * @param p The point to check, represented as a `Point` with `x` and `y`
+ * @param  p    The point to check, represented as a `Point` with `x` and `y`
  * coordinates.
- * @param bbox The bounding box defined as a `Vec4<float>`, where `a` and `b`
+ * @param  bbox The bounding box defined as a `Vec4<float>`, where `a` and `b`
  * are the horizontal boundaries (min and max x), and `c` and `d` are the
  * vertical boundaries (min and max y).
- * @return `true` if the point is within the bounding box; `false` otherwise.
+ * @return      `true` if the point is within the bounding box; `false`
+ *              otherwise.
  */
 bool is_point_within_bounding_box(Point p, Vec4<float> bbox);
 
@@ -405,12 +406,13 @@ bool is_point_within_bounding_box(Point p, Vec4<float> bbox);
  * This function determines if a point with coordinates `(x, y)` lies within the
  * rectangular bounding box defined by `bbox`.
  *
- * @param x The x-coordinate of the point to check.
- * @param y The y-coordinate of the point to check.
- * @param bbox The bounding box defined as a `Vec4<float>`, where `a` and `b`
+ * @param  x    The x-coordinate of the point to check.
+ * @param  y    The y-coordinate of the point to check.
+ * @param  bbox The bounding box defined as a `Vec4<float>`, where `a` and `b`
  * are the horizontal boundaries (min and max x), and `c` and `d` are the
  * vertical boundaries (min and max y).
- * @return `true` if the point is within the bounding box; `false` otherwise.
+ * @return      `true` if the point is within the bounding box; `false`
+ *              otherwise.
  */
 bool is_point_within_bounding_box(float x, float y, Vec4<float> bbox);
 
@@ -421,10 +423,10 @@ bool is_point_within_bounding_box(float x, float y, Vec4<float> bbox);
  * given factor. The interpolation factor `t` should be in the range [0, 1],
  * where 0 corresponds to the first point and 1 corresponds to the second point.
  *
- * @param p1 The starting point.
- * @param p2 The ending point.
- * @param t The interpolation factor (0 <= t <= 1).
- * @return The interpolated point between `p1` and `p2`.
+ * @param  p1 The starting point.
+ * @param  p2 The ending point.
+ * @param  t  The interpolation factor (0 <= t <= 1).
+ * @return    The interpolated point between `p1` and `p2`.
  *
  * @note If `t` is outside the range [0, 1], the function will still return a
  * point outside the segment defined by `p1` and `p2`.
@@ -441,19 +443,20 @@ Point lerp(const Point &p1, const Point &p2, float t);
  * displacement distance is determined by the `distance_ratio` parameter and the
  * `orientation` (which can be -1 or 1).
  *
- * @param p1 The first point.
- * @param p2 The second point.
- * @param orientation Determines the direction of the perpendicular
- * displacement.
+ * @param  p1             The first point.
+ * @param  p2             The second point.
+ * @param  orientation    Determines the direction of the perpendicular
+ *                        displacement.
  *                    - A value of `1` displaces the midpoint in the positive
  * perpendicular direction.
  *                    - A value of `-1` displaces the midpoint in the negative
  * perpendicular direction.
- * @param distance_ratio The ratio of the displacement distance relative to the
- * length of the line segment `p1p2`.
- * @param t The interpolation factor (default is 0.5) for computing the midpoint
- * between `p1` and `p2`, before the displacement.
- * @return A `Point` representing the displaced midpoint.
+ * @param  distance_ratio The ratio of the displacement distance relative to the
+ *                        length of the line segment `p1p2`.
+ * @param  t              The interpolation factor (default is 0.5) for
+ *                        computing the midpoint between `p1` and `p2`, before
+ *                        the displacement.
+ * @return                A `Point` representing the displaced midpoint.
  */
 Point midpoint(const Point &p1,
                const Point &p2,
@@ -470,7 +473,7 @@ Point midpoint(const Point &p1,
  * done in-place.
  *
  * @param points A vector of `Point` objects to be sorted. The vector is
- * modified directly with the points arranged in ascending order.
+ *               modified directly with the points arranged in ascending order.
  */
 void sort_points(std::vector<Point> &points);
 
@@ -481,11 +484,11 @@ void sort_points(std::vector<Point> &points);
  * triangle given three points (p1, p2, p3). It assumes the points are specified
  * as 2D coordinates.
  *
- * @param p1 The first point of the triangle.
- * @param p2 The second point of the triangle.
- * @param p3 The third point of the triangle.
- * @return The area of the triangle as a floating-point value. Returns 0 if the
- * points are collinear.
+ * @param  p1 The first point of the triangle.
+ * @param  p2 The second point of the triangle.
+ * @param  p3 The third point of the triangle.
+ * @return    The area of the triangle as a floating-point value. Returns 0 if
+ *            the points are collinear.
  */
 float triangle_area(const Point &p1, const Point &p2, const Point &p3);
 

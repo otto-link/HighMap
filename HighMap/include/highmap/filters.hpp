@@ -1,10 +1,10 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file filters.hpp
- * @author Otto Link (otto.link.bv@gmail.com)
+ * @author  Otto Link (otto.link.bv@gmail.com)
  * @brief Header file for filter-related functions and classes.
  *
  * This header file contains declarations for various filter functions and
@@ -34,9 +34,11 @@ namespace hmap
 enum neighborhood : int
 {
   MOORE,       ///< Moore neighborhood: includes all eight surrounding cells.
-  VON_NEUMANN, ///< Von Neumann neighborhood: includes only the four orthogonal
-               ///< neighbors (N, S, E, W).
-  CROSS ///< Cross-shaped neighborhood: includes only the diagonal neighbors.
+  VON_NEUMANN, ///< Von Neumann neighborhood: includes only the four
+  // orthogonal
+  ///< neighbors (N, S, E, W).
+  CROSS ///< Cross-shaped neighborhood: includes only the diagonal
+        // neighbors.
 };
 
 /**
@@ -50,15 +52,16 @@ enum neighborhood : int
  * remaps them within the original min-max range, and returns the corrected
  * array by adding the adjusted delta to `array_after`.
  *
- * @param array_before   The original 2D array used to detect local maxima for
- * retargeting.
- * @param array_after    The 2D array representing the state after the diffusion
- * process.
- * @param ir             The smoothing radius used in the smoothing step
- * (`smooth_cpulse`).
+ * @param  array_before The original 2D array used to detect local maxima for
+ *                      retargeting.
+ * @param  array_after  The 2D array representing the state after the diffusion
+ *                      process.
+ * @param  ir           The smoothing radius used in the smoothing step
+ *                      (`smooth_cpulse`).
  *
- * @return A new 2D array where the delta between the two input arrays has been
- * smoothed and applied as a correction to `array_after`.
+ * @return              A new 2D array where the delta between the two input
+ *                      arrays has been smoothed and applied as a correction to
+ *                      `array_after`.
  *
  * **Example**
  * @include ex_diffusion_retargeting.cpp
@@ -79,12 +82,12 @@ Array diffusion_retargeting(const Array &array_before,
  * distance up to the given radius (`ir`), and smoothing weights are computed
  * using a smoothstep function.
  *
- * @param array The 2D array to be blurred.
- * @param ir The radius of the blur operation (number of steps).
- * @param angle A 2D array specifying the directional angle (in degrees) for
- * each pixel.
+ * @param array     The 2D array to be blurred.
+ * @param ir        The radius of the blur operation (number of steps).
+ * @param angle     A 2D array specifying the directional angle (in degrees) for
+ *                  each pixel.
  * @param intensity The maximum intensity of the blur at the starting point of
- * the radius.
+ *                  the radius.
  *
  * @note The `angle` values should be in degrees, where 0° points to the right
  * (positive x-direction).
@@ -105,11 +108,11 @@ void directional_blur(Array &array, int ir, float angle, float intensity);
  * a constant angle for all pixels. Internally, it creates a uniform angle array
  * and calls the primary `directional_blur` function.
  *
- * @param array The 2D array to be blurred.
- * @param ir The radius of the blur operation (number of steps).
- * @param angle The constant directional angle (in degrees) for the blur.
+ * @param array     The 2D array to be blurred.
+ * @param ir        The radius of the blur operation (number of steps).
+ * @param angle     The constant directional angle (in degrees) for the blur.
  * @param intensity The maximum intensity of the blur at the starting point of
- * the radius.
+ *                  the radius.
  *
  * @note The `angle` value should be in degrees, where 0° points to the right
  * (positive x-direction).
@@ -142,9 +145,9 @@ void equalize(Array &array);
  * considering the specified mask. Only the elements of the array corresponding
  * to non-zero values in the mask are equalized.
  *
- * @param array Input array to be equalized.
+ * @param array  Input array to be equalized.
  * @param p_mask Optional mask array. Only the elements where the mask is
- * non-zero are equalized.
+ *               non-zero are equalized.
  *
  * @overload
  */
@@ -157,11 +160,11 @@ void equalize(Array &array, const Array *p_mask);
  * array. The expansion operation, often referred to as "inflation", increases
  * the prominence of elevated regions, effectively making them more pronounced.
  *
- * @param array Input array representing the terrain or data to be expanded.
- * @param ir Filter radius, which determines the extent of the expansion.
+ * @param array  Input array representing the terrain or data to be expanded.
+ * @param ir     Filter radius, which determines the extent of the expansion.
  * @param p_mask Optional filter mask, with values expected in the range [0, 1].
- *              The mask controls which parts of the array are affected by the
- * expansion.
+ *               The mask controls which parts of the array are affected by the
+ *               expansion.
  *
  * **Example**
  * @include ex_expand.cpp
@@ -169,7 +172,7 @@ void equalize(Array &array, const Array *p_mask);
  * **Result**
  * @image html ex_expand.png
  *
- * @see ex_shrink
+ * @see          ex_shrink
  */
 void expand(Array &array, int ir, const Array *p_mask);
 
@@ -181,7 +184,7 @@ void expand(Array &array, int ir, const Array *p_mask);
  * filter radius.
  *
  * @param array Input array representing the terrain or data to be expanded.
- * @param ir Filter radius, which determines the extent of the expansion.
+ * @param ir    Filter radius, which determines the extent of the expansion.
  *
  * @overload
  */
@@ -193,7 +196,7 @@ void expand(Array &array, int ir);
  * This overload allows the use of a custom kernel for expansion, offering more
  * control over the operation compared to the filter radius method.
  *
- * @param array Input array representing the terrain or data to be expanded.
+ * @param array  Input array representing the terrain or data to be expanded.
  * @param kernel Custom kernel array used to perform the expansion.
  *
  * @overload
@@ -206,11 +209,11 @@ void expand(Array &array, const Array &kernel);
  * This overload allows the use of a custom kernel for expansion, along with an
  * optional mask to control which parts of the array are affected.
  *
- * @param array Input array representing the terrain or data to be expanded.
+ * @param array  Input array representing the terrain or data to be expanded.
  * @param kernel Custom kernel array used to perform the expansion.
  * @param p_mask Optional filter mask, with values expected in the range [0, 1].
- *              The mask controls which parts of the array are affected by the
- * expansion.
+ *               The mask controls which parts of the array are affected by the
+ *               expansion.
  *
  * @overload
  */
@@ -225,16 +228,18 @@ void expand(Array &array, const Array &kernel, const Array *p_mask);
  * directional kernel allows for anisotropic expansion, making the expansion
  * more pronounced in a specified direction.
  *
- * @param array Input array representing the terrain or data to be expanded.
- * @param ir Filter radius, determining the extent of the expansion.
- * @param angle Angle (in degrees) that sets the direction of the expansion.
+ * @param array        Input array representing the terrain or data to be
+ *                     expanded.
+ * @param ir           Filter radius, determining the extent of the expansion.
+ * @param angle        Angle (in degrees) that sets the direction of the
+ *                     expansion.
  * @param aspect_ratio Pulse aspect ratio, determining the shape of the
- * expansion.
- * @param anisotropy Pulse width ratio between upstream and downstream sides,
- *                   default is 1.0 (isotropic expansion).
- * @param p_mask Optional filter mask with values expected in the range [0, 1].
- *              The mask controls which parts of the array are affected by the
- * expansion.
+ *                     expansion.
+ * @param anisotropy   Pulse width ratio between upstream and downstream sides,
+ *                     default is 1.0 (isotropic expansion).
+ * @param p_mask       Optional filter mask with values expected in the range
+ *                     [0, 1]. The mask controls which parts of the array are
+ *                     affected by the expansion.
  *
  * **Example**
  * @include ex_expand_directional.cpp
@@ -264,14 +269,16 @@ void expand_talus(Array       &z,
  * more angular and planar aspect. This effect can be controlled by specifying a
  * neighborhood type and optional noise arrays for domain warping.
  *
- * @param array Input array representing the original heightmap.
- * @param neighborhood Neighborhood type that defines how the faceting effect is
- * applied (see @ref neighborhood).
- * @param p_noise_x Optional reference to the input noise array used for domain
- * warping in the x-direction (NOT in pixels, with respect to a unit domain).
- * @param p_noise_y Optional reference to the input noise array used for domain
- * warping in the y-direction (NOT in pixels, with respect to a unit domain).
- * @return Array Output array containing the faceted heightmap.
+ * @param  array        Input array representing the original heightmap.
+ * @param  neighborhood Neighborhood type that defines how the faceting effect
+ *                      is applied (see @ref neighborhood).
+ * @param  p_noise_x    Optional reference to the input noise array used for
+ *                      domain warping in the x-direction (NOT in pixels, with
+ *                      respect to a unit domain).
+ * @param  p_noise_y    Optional reference to the input noise array used for
+ *                      domain warping in the y-direction (NOT in pixels, with
+ *                      respect to a unit domain).
+ * @return              Array Output array containing the faceted heightmap.
  *
  * **Example**
  * @include ex_faceted.cpp
@@ -292,16 +299,20 @@ Array faceted(const Array &array,
  * involves random perturbations influenced by noise to simulate erosion or
  * sediment transport.
  *
- * @param z A reference to the 2D array representing the terrain heights. The
- * function modifies this array in place to introduce talus slopes.
- * @param talus The critical slope angle that determines where material will
- * move from higher elevations to lower ones. Slopes steeper than this value
- *              will be flattened by material transport.
- * @param seed The seed for the random number generator, ensuring
- * reproducibility of the noise effects in the talus formation process. The same
- * seed will produce the same terrain modifications.
+ * @param z           A reference to the 2D array representing the terrain
+ *                    heights. The function modifies this array in place to
+ *                    introduce talus slopes.
+ * @param talus       The critical slope angle that determines where material
+ *                    will move from higher elevations to lower ones. Slopes
+ *                    steeper than this value will be flattened by material
+ *                    transport.
+ * @param seed        The seed for the random number generator, ensuring
+ *                    reproducibility of the noise effects in the talus
+ *                    formation process. The same seed will produce the same
+ *                    terrain modifications.
  * @param noise_ratio A parameter that controls the amount of randomness or
- * noise introduced in the talus formation process. The default value is 0.2.
+ *                    noise introduced in the talus formation process. The
+ *                    default value is 0.2.
  *
  * **Example**
  * @include ex_fill_talus.cpp
@@ -309,7 +320,7 @@ Array faceted(const Array &array,
  * **Result**
  * @image html ex_fill_talus.png
  *
- * @see {@link thermal_scree}, {@link thermal_scree_fast}
+ * @see               {@link thermal_scree}, {@link thermal_scree_fast}
  */
 void fill_talus(Array &z, float talus, uint seed, float noise_ratio = 0.2f);
 
@@ -324,20 +335,23 @@ void fill_talus(Array &z, float talus, uint seed, float noise_ratio = 0.2f);
  * from the cells with the highest elevations and introduces random
  * perturbations to avoid grid orientation artifacts.
  *
- * @param z Input array representing the terrain heights. The function modifies
- * this array in place to introduce talus slopes, starting from the highest
- * values.
+ * @param z            Input array representing the terrain heights. The
+ *                     function modifies this array in place to introduce talus
+ *                     slopes, starting from the highest values.
  * @param shape_coarse Array representing the coarser shape used for the solver,
- * which determines the resolution of the coarse mesh.
- * @param talus The critical slope angle that determines where material will
- * move from higher elevations to lower ones. Slopes steeper than this value
- * will be flattened by material transport.
- * @param seed The seed for the random number generator, ensuring
- * reproducibility of the noise effects in the talus formation process. The same
- * seed will produce the same terrain modifications.
- * @param noise_ratio A parameter that controls the amount of randomness or
- * noise introduced in the talus formation process. The noise helps to avoid
- * grid orientation artifacts. The default value is 0.2.
+ *                     which determines the resolution of the coarse mesh.
+ * @param talus        The critical slope angle that determines where material
+ *                     will move from higher elevations to lower ones. Slopes
+ *                     steeper than this value will be flattened by material
+ *                     transport.
+ * @param seed         The seed for the random number generator, ensuring
+ *                     reproducibility of the noise effects in the talus
+ *                     formation process. The same seed will produce the same
+ *                     terrain modifications.
+ * @param noise_ratio  A parameter that controls the amount of randomness or
+ *                     noise introduced in the talus formation process. The
+ *                     noise helps to avoid grid orientation artifacts. The
+ *                     default value is 0.2.
  *
  * **Example**
  * @include ex_fill_talus.cpp
@@ -345,7 +359,7 @@ void fill_talus(Array &z, float talus, uint seed, float noise_ratio = 0.2f);
  * **Result**
  * @image html ex_fill_talus.png
  *
- * @see {@link thermal_scree}, {@link thermal_scree_fast}
+ * @see                {@link thermal_scree}, {@link thermal_scree_fast}
  */
 void fill_talus_fast(Array    &z,
                      Vec2<int> shape_coarse,
@@ -363,16 +377,17 @@ void fill_talus_fast(Array    &z,
  * iterations, with an optional smoothing parameter `k` to control the intensity
  * of the folding effect.
  *
- * @param array Input array to which the folding filter is applied.
- * @param vmin Minimum reference value used as a lower bound for the folding
- * operation.
- * @param vmax Maximum reference value used as an upper bound for the folding
- * operation.
+ * @param array      Input array to which the folding filter is applied.
+ * @param vmin       Minimum reference value used as a lower bound for the
+ *                   folding operation.
+ * @param vmax       Maximum reference value used as an upper bound for the
+ *                   folding operation.
  * @param iterations Number of iterations for applying the folding filter. The
- * default is 3.
- * @param k Smoothing parameter for the absolute value operation, expected to be
- * greater than 0. It controls the degree of smoothing applied during folding.
- * The default value is 0.05.
+ *                   default is 3.
+ * @param k          Smoothing parameter for the absolute value operation,
+ *                   expected to be greater than 0. It controls the degree of
+ *                   smoothing applied during folding. The default value is
+ *                   0.05.
  *
  * **Example**
  * @include ex_fold.cpp
@@ -393,12 +408,13 @@ void fold(Array &array,
  * number of iterations and smoothing parameter `k`. The folding is done without
  * explicit minimum and maximum reference values.
  *
- * @param array Input array to which the folding filter is applied.
+ * @param array      Input array to which the folding filter is applied.
  * @param iterations Number of iterations for applying the folding filter. The
- * default is 3.
- * @param k Smoothing parameter for the absolute value operation, expected to be
- * greater than 0. It controls the degree of smoothing applied during folding.
- * The default value is 0.05.
+ *                   default is 3.
+ * @param k          Smoothing parameter for the absolute value operation,
+ *                   expected to be greater than 0. It controls the degree of
+ *                   smoothing applied during folding. The default value is
+ *                   0.05.
  *
  * @overload
  */
@@ -411,12 +427,12 @@ void fold(Array &array, int iterations = 3, float k = 0.05f);
  * The correction enhances or reduces the intensity of the values based on the
  * specified gain factor.
  *
- * @param array Input array to which the gain correction is applied.
+ * @param array  Input array to which the gain correction is applied.
  * @param factor Gain factor, expected to be greater than 0. It determines the
  *               strength of the gain correction.
  * @param p_mask Optional filter mask, with values expected in the range [0, 1].
  *               The mask controls which parts of the array are affected by the
- * gain correction.
+ *               gain correction.
  *
  * @warning Array values are expected to be in the range [0, 1]. Applying the
  * gain correction outside of this range may lead to unexpected results.
@@ -435,7 +451,7 @@ void gain(Array &array, float factor, const Array *p_mask);
  * This overload applies the gain correction to the entire array without using a
  * mask. The gain correction is performed using the specified gain factor.
  *
- * @param array Input array to which the gain correction is applied.
+ * @param array  Input array to which the gain correction is applied.
  * @param factor Gain factor, expected to be greater than 0. It determines the
  *               strength of the gain correction.
  *
@@ -451,13 +467,13 @@ void gain(Array &array, float factor);
  * is used to correct or adjust the tonal range of an image or data to achieve a
  * desired visual effect.
  *
- * @param array Input array to which the gamma correction is applied.
- * @param gamma Gamma factor, expected to be greater than 0. It determines the
- * level of correction applied. A gamma value less than 1 will lighten the
- * image, while a value greater than 1 will darken it.
+ * @param array  Input array to which the gamma correction is applied.
+ * @param gamma  Gamma factor, expected to be greater than 0. It determines the
+ *               level of correction applied. A gamma value less than 1 will
+ *               lighten the image, while a value greater than 1 will darken it.
  * @param p_mask Optional filter mask, with values expected in the range [0, 1].
- * The mask controls which parts of the array are affected by the gamma
- * correction.
+ *               The mask controls which parts of the array are affected by the
+ *               gamma correction.
  *
  * @warning Array values are expected to be in the range [0, 1]. Applying gamma
  * correction outside of this range may result in incorrect or unintended
@@ -479,8 +495,8 @@ void gamma_correction(Array &array, float gamma, const Array *p_mask);
  *
  * @param array Input array to which the gamma correction is applied.
  * @param gamma Gamma factor, expected to be greater than 0. It determines the
- * level of correction applied. A gamma value less than 1 will lighten the
- * image, while a value greater than 1 will darken it.
+ *              level of correction applied. A gamma value less than 1 will
+ *              lighten the image, while a value greater than 1 will darken it.
  *
  * @overload
  */
@@ -495,18 +511,18 @@ void gamma_correction(Array &array, float gamma);
  * correction based on the specified gamma factor. This method allows for
  * localized adjustments of contrast and brightness in the input array.
  *
- * @param array Input array to which the local gamma correction is applied.
- * @param gamma Gamma factor, expected to be greater than 0. It determines the
- * level of correction applied after local normalization. A gamma value less
- * than 1 will lighten the local regions, while a value greater than 1 will
- * darken them.
- * @param ir Filter radius that defines the size of the local neighborhood used
- * for normalization.
- * @param k Smoothing factor used to control the degree of smoothing applied
- * during normalization. The default value is 0.1.
+ * @param array  Input array to which the local gamma correction is applied.
+ * @param gamma  Gamma factor, expected to be greater than 0. It determines the
+ *               level of correction applied after local normalization. A gamma
+ *               value less than 1 will lighten the local regions, while a value
+ *               greater than 1 will darken them.
+ * @param ir     Filter radius that defines the size of the local neighborhood
+ *               used for normalization.
+ * @param k      Smoothing factor used to control the degree of smoothing
+ *               applied during normalization. The default value is 0.1.
  * @param p_mask Optional filter mask, with values expected in the range [0, 1].
- * The mask controls which parts of the array are affected by the local gamma
- * correction.
+ *               The mask controls which parts of the array are affected by the
+ *               local gamma correction.
  *
  * **Example**
  * @include ex_gamma_correction_local.cpp
@@ -524,18 +540,18 @@ void gamma_correction_local(Array &array, float gamma, int ir, float k = 0.1f);
  * specified neighborhood defined by the filter radius. The optional mask allows
  * for selective application of the correction.
  *
- * @param array Input array to which the local gamma correction is applied.
- * @param gamma Gamma factor, expected to be greater than 0. It determines the
- * level of correction applied after local normalization. A gamma value less
- * than 1 will lighten the local regions, while a value greater than 1 will
- * darken them.
- * @param ir Filter radius that defines the size of the local neighborhood used
- * for normalization.
+ * @param array  Input array to which the local gamma correction is applied.
+ * @param gamma  Gamma factor, expected to be greater than 0. It determines the
+ *               level of correction applied after local normalization. A gamma
+ *               value less than 1 will lighten the local regions, while a value
+ *               greater than 1 will darken them.
+ * @param ir     Filter radius that defines the size of the local neighborhood
+ *               used for normalization.
  * @param p_mask Filter mask, with values expected in the range [0, 1]. The mask
  *               controls which parts of the array are affected by the local
- * gamma correction.
- * @param k Smoothing factor used to control the degree of smoothing applied
- * during normalization. The default value is 0.1.
+ *               gamma correction.
+ * @param k      Smoothing factor used to control the degree of smoothing
+ *               applied during normalization. The default value is 0.1.
  *
  * @overload
  */
@@ -553,12 +569,12 @@ void gamma_correction_local(Array       &array,
  * with a per-pixel mask. The mask determines the blending ratio for each pixel,
  * allowing selective smoothing.
  *
- * @param array The input/output array to apply the filter on. The array is
- * modified in place.
- * @param ir The radius of the region to analyze for each pixel. Larger values
- * result in stronger smoothing.
+ * @param array     The input/output array to apply the filter on. The array is
+ *                  modified in place.
+ * @param ir        The radius of the region to analyze for each pixel. Larger
+ *                  values result in stronger smoothing.
  * @param mix_ratio A blending factor between the original and filtered arrays
- * when `p_mask` is `nullptr`. Ignored if `p_mask` is provided.
+ *                  when `p_mask` is `nullptr`. Ignored if `p_mask` is provided.
  *
  * **Example**
  * @include ex_kuwahara.cpp
@@ -576,15 +592,16 @@ void kuwahara(Array &array, int ir, float mix_ratio = 1.f);
  * with a per-pixel mask. The mask determines the blending ratio for each pixel,
  * allowing selective smoothing.
  *
- * @param array The input/output array to apply the filter on. The array is
- * modified in place.
- * @param ir The radius of the region to analyze for each pixel. Larger values
- * result in stronger smoothing.
- * @param p_mask A pointer to an array representing the mask. The values in the
- * mask range from 0.0 to 1.0, specifying the blending ratio for each pixel. If
+ * @param array     The input/output array to apply the filter on. The array is
+ *                  modified in place.
+ * @param ir        The radius of the region to analyze for each pixel. Larger
+ *                  values result in stronger smoothing.
+ * @param p_mask    A pointer to an array representing the mask. The values in
+ *                  the mask range from 0.0 to 1.0, specifying the blending
+ *                  ratio for each pixel. If
  * `nullptr`, the filter is applied without masking.
  * @param mix_ratio A blending factor between the original and filtered arrays
- * when `p_mask` is `nullptr`. Ignored if `p_mask` is provided.
+ *                  when `p_mask` is `nullptr`. Ignored if `p_mask` is provided.
  *
  * If no mask is provided:
  * - The function behaves like the single-argument version of `kuwahara`.
@@ -604,12 +621,12 @@ void kuwahara(Array &array, int ir, const Array *p_mask, float mix_ratio = 1.f);
  * out high-frequency noise and detail. The filtering intensity and the number
  * of iterations determine the extent of the smoothing effect.
  *
- * @param array Input array to which the Laplace filter is applied.
- * @param sigma Filtering intensity, expected to be in the range [0, 1]. It
- * controls the strength of the filtering effect. A value closer to 1 results in
- * more smoothing.
+ * @param array      Input array to which the Laplace filter is applied.
+ * @param sigma      Filtering intensity, expected to be in the range [0, 1]. It
+ *                   controls the strength of the filtering effect. A value
+ *                   closer to 1 results in more smoothing.
  * @param iterations Number of iterations to apply the filter. More iterations
- * will increase the smoothing effect. The default value is 3.
+ *                   will increase the smoothing effect. The default value is 3.
  *
  * **Example**
  * @include ex_laplace.cpp
@@ -627,14 +644,16 @@ void laplace(Array &array, float sigma = 0.2f, int iterations = 3);
  * filter. The filtering intensity and the number of iterations control the
  * extent of the smoothing effect.
  *
- * @param array Input array to which the Laplace filter is applied.
- * @param p_mask Optional filter mask, with values expected in the range [0, 1].
- * The mask specifies which parts of the array are affected by the filter.
- * @param sigma Filtering intensity, expected to be in the range [0, 1]. It
- * controls the strength of the filtering effect. A value closer to 1 results in
- * more smoothing. The default value is 0.2.
+ * @param array      Input array to which the Laplace filter is applied.
+ * @param p_mask     Optional filter mask, with values expected in the range [0,
+ *                   1]. The mask specifies which parts of the array are
+ *                   affected by the filter.
+ * @param sigma      Filtering intensity, expected to be in the range [0, 1]. It
+ *                   controls the strength of the filtering effect. A value
+ *                   closer to 1 results in more smoothing. The default value is
+ *                   0.2.
  * @param iterations Number of iterations to apply the filter. More iterations
- * will increase the smoothing effect. The default value is 3.
+ *                   will increase the smoothing effect. The default value is 3.
  *
  * @overload
  */
@@ -650,12 +669,12 @@ void laplace(Array       &array,
  * high-frequency noise and detail. The filtering intensity and the number of
  * iterations control the extent of the smoothing effect.
  *
- * @param v Input vector to which the Laplace filter is applied.
- * @param sigma Filtering intensity, expected to be in the range [0, 1]. It
- * determines the strength of the filtering effect. A value closer to 1 results
- * in more smoothing.
+ * @param v          Input vector to which the Laplace filter is applied.
+ * @param sigma      Filtering intensity, expected to be in the range [0, 1]. It
+ *                   determines the strength of the filtering effect. A value
+ *                   closer to 1 results in more smoothing.
  * @param iterations Number of iterations to apply the filter. More iterations
- * will increase the smoothing effect. The default value is 1.
+ *                   will increase the smoothing effect. The default value is 1.
  */
 void laplace1d(std::vector<float> &v, float sigma = 0.5f, int iterations = 1);
 
@@ -667,14 +686,17 @@ void laplace1d(std::vector<float> &v, float sigma = 0.5f, int iterations = 1);
  * reduce noise while preserving edges. The effect of the filter is controlled
  * by the talus limit, filtering intensity, and the number of iterations.
  *
- * @param array Input array to which the anisotropic Laplace filter is applied.
- * @param talus Talus limit for edge sensitivity. Gradients above this value are
- * less affected by the filtering, preserving important edges in the data.
- * @param sigma Filtering intensity, expected to be in the range [0, 1]. It
- * controls the strength of the filtering effect. A value closer to 1 results in
- * more smoothing. The default value is 0.2.
+ * @param array      Input array to which the anisotropic Laplace filter is
+ *                   applied.
+ * @param talus      Talus limit for edge sensitivity. Gradients above this
+ *                   value are less affected by the filtering, preserving
+ *                   important edges in the data.
+ * @param sigma      Filtering intensity, expected to be in the range [0, 1]. It
+ *                   controls the strength of the filtering effect. A value
+ *                   closer to 1 results in more smoothing. The default value is
+ *                   0.2.
  * @param iterations Number of iterations to apply the filter. More iterations
- * will increase the smoothing effect. The default value is 3.
+ *                   will increase the smoothing effect. The default value is 3.
  *
  * **Example**
  * @include ex_laplace.cpp
@@ -695,16 +717,20 @@ void laplace_edge_preserving(Array &array,
  * by the filter. The effect of the filtering is controlled by the talus limit,
  * filtering intensity, and the number of iterations.
  *
- * @param array Input array to which the anisotropic Laplace filter is applied.
- * @param talus Talus limit for edge sensitivity. Gradients above this value are
- * less affected by the filtering, preserving important edges in the data.
- * @param p_mask Optional filter mask, with values expected in the range [0, 1].
- * The mask specifies which parts of the array are affected by the filter.
- * @param sigma Filtering intensity, expected to be in the range [0, 1]. It
- * controls the strength of the filtering effect. A value closer to 1 results in
- * more smoothing. The default value is 0.2.
+ * @param array      Input array to which the anisotropic Laplace filter is
+ *                   applied.
+ * @param talus      Talus limit for edge sensitivity. Gradients above this
+ *                   value are less affected by the filtering, preserving
+ *                   important edges in the data.
+ * @param p_mask     Optional filter mask, with values expected in the range [0,
+ *                   1]. The mask specifies which parts of the array are
+ *                   affected by the filter.
+ * @param sigma      Filtering intensity, expected to be in the range [0, 1]. It
+ *                   controls the strength of the filtering effect. A value
+ *                   closer to 1 results in more smoothing. The default value is
+ *                   0.2.
  * @param iterations Number of iterations to apply the filter. More iterations
- * will increase the smoothing effect. The default value is 3.
+ *                   will increase the smoothing effect. The default value is 3.
  *
  * @overload
  */
@@ -724,10 +750,10 @@ void laplace_edge_preserving(Array       &array,
  *
  * @param array Input array to which the high-order low-pass filter is applied.
  * @param order Filter order, which can be 5, 7, or 9. Higher orders provide
- * more refined filtering.
+ *              more refined filtering.
  * @param sigma Filtering intensity, expected to be in the range [0, 1]. It
- * controls the strength of the filtering effect. A value closer to 1 results in
- * more smoothing. The default value is 1.0.
+ *              controls the strength of the filtering effect. A value closer to
+ *              1 results in more smoothing. The default value is 1.0.
  *
  * **Example**
  * @include ex_low_pass_high_order.cpp
@@ -735,7 +761,7 @@ void laplace_edge_preserving(Array       &array,
  * **Result**
  * @image html ex_low_pass_high_order.png
  *
- * @see {@link laplace}
+ * @see         {@link laplace}
  */
 void low_pass_high_order(Array &array, int order = 9, float sigma = 1.f);
 
@@ -747,10 +773,10 @@ void low_pass_high_order(Array &array, int order = 9, float sigma = 1.f);
  * threshold are set to 1, while values equal to or below the threshold are set
  * to 0.
  *
- * @param array Input array to be converted to binary.
+ * @param array     Input array to be converted to binary.
  * @param threshold Threshold value. Any array value greater than this threshold
- * is set to 1, while values less than or equal to the threshold are set to 0.
- *                  The default threshold is 0.0.
+ *                  is set to 1, while values less than or equal to the
+ *                  threshold are set to 0. The default threshold is 0.0.
  */
 void make_binary(Array &array, float threshold = 0.f);
 
@@ -763,10 +789,10 @@ void make_binary(Array &array, float threshold = 0.f);
  * footprint radius specified by `ir`. The result is an array where each value
  * represents the local maximum within the defined kernel size.
  *
- * @param array Input array from which local maxima are to be extracted.
- * @param ir Square kernel footprint radius. The size of the kernel used to
- * determine the local maxima.
- * @return Array Resulting array containing the local maxima.
+ * @param  array Input array from which local maxima are to be extracted.
+ * @param  ir    Square kernel footprint radius. The size of the kernel used to
+ *               determine the local maxima.
+ * @return       Array Resulting array containing the local maxima.
  *
  * **Example**
  * @include ex_maximum_local.cpp
@@ -774,7 +800,7 @@ void make_binary(Array &array, float threshold = 0.f);
  * **Result**
  * @image html ex_maximum_local.png
  *
- * @see {@link maximum_local_disk}, {@link minimum_local}
+ * @see          {@link maximum_local_disk}, {@link minimum_local}
  */
 Array maximum_local(const Array &array, int ir);
 
@@ -786,10 +812,10 @@ Array maximum_local(const Array &array, int ir);
  * the footprint radius specified by `ir`. The result is an array where each
  * value represents the local maximum within the disk-shaped kernel.
  *
- * @param array Input array from which local maxima are to be extracted.
- * @param ir Disk kernel footprint radius. The size of the disk-shaped kernel
- * used to determine the local maxima.
- * @return Array Resulting array containing the local maxima.
+ * @param  array Input array from which local maxima are to be extracted.
+ * @param  ir    Disk kernel footprint radius. The size of the disk-shaped
+ *               kernel used to determine the local maxima.
+ * @return       Array Resulting array containing the local maxima.
  *
  * **Example**
  * @include ex_maximum_local.cpp
@@ -797,7 +823,8 @@ Array maximum_local(const Array &array, int ir);
  * **Result**
  * @image html ex_maximum_local.png
  *
- * @see {@link maximum_local}, {@link minimum_local_disk}, {@link minimum_local}
+ * @see          {@link maximum_local}, {@link minimum_local_disk}, {@link
+ *               minimum_local}
  */
 Array maximum_local_disk(const Array &array, int ir);
 
@@ -810,9 +837,10 @@ Array maximum_local_disk(const Array &array, int ir);
  * histogram of a reference array. This process is useful for aligning the
  * statistical properties of the input data with those of the reference data.
  *
- * @param array Input array whose elevation values are to be transformed.
+ * @param array           Input array whose elevation values are to be
+ *                        transformed.
  * @param array_reference Reference array whose histogram is used as the target
- * for matching.
+ *                        for matching.
  *
  * **Example**
  * @include ex_match_histogram.cpp
@@ -831,10 +859,10 @@ void match_histogram(Array &array, const Array &array_reference);
  * is an array where each value represents the mean of the surrounding values
  * within the kernel size.
  *
- * @param array Input array from which the local mean is to be calculated.
- * @param ir Square kernel footprint radius. The size of the kernel used to
- * compute the local mean.
- * @return Array Resulting array containing the local means.
+ * @param  array Input array from which the local mean is to be calculated.
+ * @param  ir    Square kernel footprint radius. The size of the kernel used to
+ *               compute the local mean.
+ * @return       Array Resulting array containing the local means.
  *
  * **Example**
  * @include ex_mean_local.cpp
@@ -843,27 +871,31 @@ void match_histogram(Array &array, const Array &array_reference);
  * @image html ex_mean_local0.png
  * @image html ex_mean_local1.png
  *
- * @see {@link maximum_local}, {@link minimum_local}
+ * @see          {@link maximum_local}, {@link minimum_local}
  */
 Array mean_local(const Array &array, int ir);
 
 /**
  * @brief Applies the mean shift algorithm to the input array.
  *
- * The mean shift algorithm iteratively adjusts each value in the input array
- * by averaging nearby values within a specified radius (`ir`), using either
- * simple or weighted mean computation. The process stops after the specified
- * number of iterations or if convergence criteria are met.
+ * The mean shift algorithm iteratively adjusts each value in the input array by
+ * averaging nearby values within a specified radius (`ir`), using either simple
+ * or weighted mean computation. The process stops after the specified number of
+ * iterations or if convergence criteria are met.
  *
- * @param array The input array to process.
- * @param ir The radius of the neighborhood to consider for mean computation.
- * @param threshold The value threshold for considering neighboring elements.
- *                  Only elements with differences below this threshold are
- * included.
- * @param iterations The number of iterations to perform the mean shift process.
- * @param talus_weighted If true, uses weighted mean based on differences
- * between values and their neighbors. If false, uses unweighted mean.
- * @return A new array containing the result of the mean shift process.
+ * @param  array          The input array to process.
+ * @param  ir             The radius of the neighborhood to consider for mean
+ *                        computation.
+ * @param  threshold      The value threshold for considering neighboring
+ *                        elements. Only elements with differences below this
+ *                        threshold are included.
+ * @param  iterations     The number of iterations to perform the mean shift
+ *                        process.
+ * @param  talus_weighted If true, uses weighted mean based on differences
+ *                        between values and their neighbors. If false, uses
+ *                        unweighted mean.
+ * @return                A new array containing the result of the mean shift
+ *                        process.
  *
  * **Example**
  * @include ex_mean_shift.cpp
@@ -885,10 +917,10 @@ Array mean_shift(const Array &array,
  * value of the 3x3 neighborhood surrounding it. An optional mask can be used to
  * control which parts of the array are filtered.
  *
- * @param array Input array to which the median filter is applied.
+ * @param array  Input array to which the median filter is applied.
  * @param p_mask Optional filter mask, with values expected in the range [0, 1].
- * The mask determines which parts of the array are affected by the median
- * filter.
+ *               The mask determines which parts of the array are affected by
+ *               the median filter.
  *
  * **Example**
  * @include ex_median_3x3.cpp
@@ -920,10 +952,10 @@ void median_3x3(Array &array);
  * footprint radius specified by `ir`. The result is an array where each value
  * represents the local minimum within the defined kernel size.
  *
- * @param array Input array from which local minima are to be extracted.
- * @param ir Square kernel footprint radius. The size of the kernel used to
- * determine the local minima.
- * @return Array Resulting array containing the local minima.
+ * @param  array Input array from which local minima are to be extracted.
+ * @param  ir    Square kernel footprint radius. The size of the kernel used to
+ *               determine the local minima.
+ * @return       Array Resulting array containing the local minima.
  *
  * **Example**
  * @include ex_maximum_local.cpp
@@ -931,7 +963,7 @@ void median_3x3(Array &array);
  * **Result**
  * @image html ex_maximum_local.png
  *
- * @see {@link minimum_local}
+ * @see          {@link minimum_local}
  */
 Array minimum_local(const Array &array, int ir);
 
@@ -943,10 +975,10 @@ Array minimum_local(const Array &array, int ir);
  * the footprint radius specified by `ir`. The result is an array where each
  * value represents the local minimum within the disk-shaped kernel.
  *
- * @param array Input array from which local minima are to be extracted.
- * @param ir Disk kernel footprint radius. The size of the disk-shaped kernel
- * used to determine the local minima.
- * @return Array Resulting array containing the local minima.
+ * @param  array Input array from which local minima are to be extracted.
+ * @param  ir    Disk kernel footprint radius. The size of the disk-shaped
+ *               kernel used to determine the local minima.
+ * @return       Array Resulting array containing the local minima.
  *
  * **Example**
  * @include ex_maximum_local.cpp
@@ -954,7 +986,8 @@ Array minimum_local(const Array &array, int ir);
  * **Result**
  * @image html ex_maximum_local.png
  *
- * @see {@link maximum_local}, {@link maximum_local_disk}, {@link minimum_local}
+ * @see          {@link maximum_local}, {@link maximum_local_disk}, {@link
+ *               minimum_local}
  */
 Array minimum_local_disk(const Array &array, int ir);
 
@@ -966,14 +999,15 @@ Array minimum_local_disk(const Array &array, int ir);
  * direction (normal or reversed) can be specified. Optionally, a mask can be
  * used to control which parts of the terrain are affected.
  *
- * @param array Input array representing the terrain.
- * @param p_mask Optional filter mask, with values expected in the range [0, 1].
- * The mask specifies which parts of the array are affected by the displacement.
- * @param amount Amount of displacement to apply. The default value is 0.1.
- * @param ir Pre-filtering radius. The radius used to smooth the terrain before
- * applying displacement. The default value is 0.
+ * @param array   Input array representing the terrain.
+ * @param p_mask  Optional filter mask, with values expected in the range [0,
+ *                1]. The mask specifies which parts of the array are affected
+ *                by the displacement.
+ * @param amount  Amount of displacement to apply. The default value is 0.1.
+ * @param ir      Pre-filtering radius. The radius used to smooth the terrain
+ *                before applying displacement. The default value is 0.
  * @param reverse If true, the displacement direction is reversed. The default
- * value is false.
+ *                value is false.
  *
  * **Example**
  * @include ex_normal_displacement.cpp
@@ -1000,14 +1034,15 @@ void normal_displacement(Array       &array,
  * flatness can be adjusted to control the extent and shape of the plateaus. An
  * optional mask can be used to control which parts of the array are affected.
  *
- * @param array Input array to which the plateau-shape filter is applied.
+ * @param array  Input array to which the plateau-shape filter is applied.
  * @param p_mask Optional filter mask, with values expected in the range [0, 1].
- * The mask specifies which parts of the array are affected by the filter.
- * @param ir Plateau radius. The size of the area over which the plateau effect
- * is applied.
+ *               The mask specifies which parts of the array are affected by the
+ *               filter.
+ * @param ir     Plateau radius. The size of the area over which the plateau
+ *               effect is applied.
  * @param factor Gain factor that controls the flatness of the plateau. The
- * higher the factor, the flatter the resulting plateau. The default value
- * is 1.0.
+ *               higher the factor, the flatter the resulting plateau. The
+ *               default value is 1.0.
  *
  * **Example**
  * @include ex_plateau.cpp
@@ -1027,10 +1062,12 @@ void plateau(Array &array, int ir, float factor); ///< @overload
  * smoothing applied during the transformation.
  *
  * @param array Input array representing the heightmap to be transformed.
- * @param vref Reference elevation where the heightmap values are folded. This
- * value determines the baseline around which the billow effect is centered.
- * @param k Smoothing coefficient that influences the degree of smoothness in
- * the billow transformation. Higher values result in more smoothing.
+ * @param vref  Reference elevation where the heightmap values are folded. This
+ *              value determines the baseline around which the billow effect is
+ *              centered.
+ * @param k     Smoothing coefficient that influences the degree of smoothness
+ *              in the billow transformation. Higher values result in more
+ *              smoothing.
  *
  * **Example**
  * @include ex_recast.cpp
@@ -1049,16 +1086,17 @@ void recast_billow(Array &array, float vref, float k);
  * Optional parameters include a filter mask for selective application and a
  * noise array for additional variation.
  *
- * @param array Input array representing the heightmap to be transformed.
- * @param vcut Canyon top elevation. This value defines the threshold for canyon
- * formation.
- * @param gamma Gamma factor (> 0) that adjusts the intensity of the canyon
- * effect. A higher value increases the effect. The default value is 4.0.
- * @param p_mask Optional filter mask, with values expected in the range [0, 1].
- * The mask specifies which parts of the heightmap are affected by the
- * transformation.
+ * @param array   Input array representing the heightmap to be transformed.
+ * @param vcut    Canyon top elevation. This value defines the threshold for
+ *                canyon formation.
+ * @param gamma   Gamma factor (> 0) that adjusts the intensity of the canyon
+ *                effect. A higher value increases the effect. The default value
+ *                is 4.0.
+ * @param p_mask  Optional filter mask, with values expected in the range [0,
+ *                1]. The mask specifies which parts of the heightmap are
+ *                affected by the transformation.
  * @param p_noise Optional noise array used to introduce variation in the canyon
- * effect. If not provided, no additional noise is applied.
+ *                effect. If not provided, no additional noise is applied.
  *
  * **Example**
  * @include ex_recast.cpp
@@ -1093,18 +1131,19 @@ void recast_canyon(Array       &array,
  * adjustable. Additionally, a filter mask can be applied to control which parts
  * of the heightmap are affected.
  *
- * @param array Input array representing the heightmap to be modified.
- * @param talus Reference talus angle. This angle determines the threshold above
- * which cliffs are formed.
- * @param ir Filter radius used to smooth the heightmap before applying the
- * cliff effect.
+ * @param array     Input array representing the heightmap to be modified.
+ * @param talus     Reference talus angle. This angle determines the threshold
+ *                  above which cliffs are formed.
+ * @param ir        Filter radius used to smooth the heightmap before applying
+ *                  the cliff effect.
  * @param amplitude Amplitude of the cliffs. This value controls the height of
- * the cliffs.
- * @param gain Gain factor for the gain filter, influencing the steepness of the
- * cliffs. Higher values result in steeper cliffs. The default value is 2.0.
- * @param p_mask Optional filter mask, with values expected in the range [0, 1].
- * The mask specifies which parts of the heightmap are affected by the cliff
- * transformation.
+ *                  the cliffs.
+ * @param gain      Gain factor for the gain filter, influencing the steepness
+ *                  of the cliffs. Higher values result in steeper cliffs. The
+ *                  default value is 2.0.
+ * @param p_mask    Optional filter mask, with values expected in the range [0,
+ *                  1]. The mask specifies which parts of the heightmap are
+ *                  affected by the cliff transformation.
  *
  * **Example**
  * @include ex_recast.cpp
@@ -1136,19 +1175,20 @@ void recast_cliff(Array       &array,
  * factor for steepness are also adjustable. A filter mask can be used to
  * specify which parts of the heightmap are affected.
  *
- * @param array Input array representing the heightmap to be modified.
- * @param talus Reference talus angle. This angle determines the threshold above
- * which cliffs are formed.
- * @param ir Filter radius used to smooth the heightmap before applying the
- * cliff effect.
+ * @param array     Input array representing the heightmap to be modified.
+ * @param talus     Reference talus angle. This angle determines the threshold
+ *                  above which cliffs are formed.
+ * @param ir        Filter radius used to smooth the heightmap before applying
+ *                  the cliff effect.
  * @param amplitude Amplitude of the cliffs. This value controls the height of
- * the cliffs.
- * @param angle Angle (in degrees) determining the direction of the cliffs.
- * @param gain Gain factor for the gain filter, influencing the steepness of the
- * cliffs. Higher values result in steeper cliffs. The default value is 2.0.
- * @param p_mask Optional filter mask, with values expected in the range [0, 1].
- * The mask specifies which parts of the heightmap are affected by the cliff
- * transformation.
+ *                  the cliffs.
+ * @param angle     Angle (in degrees) determining the direction of the cliffs.
+ * @param gain      Gain factor for the gain filter, influencing the steepness
+ *                  of the cliffs. Higher values result in steeper cliffs. The
+ *                  default value is 2.0.
+ * @param p_mask    Optional filter mask, with values expected in the range [0,
+ *                  1]. The mask specifies which parts of the heightmap are
+ *                  affected by the cliff transformation.
  *
  * **Example**
  * @include ex_recast.cpp
@@ -1189,21 +1229,24 @@ void recast_cracks(Array &array,
  * array, simulating an escarpment feature. An optional global scaling factor
  * can further adjust the displacement effect intensity.
  *
- * @param array Reference to the 2D array where the escarpment effect will be
- * applied.
- * @param ir Radius for the smoothing kernel used on the displacement,
- * controlling the smoothness of the effect. Larger values result in smoother
- * transitions.
- * @param ratio The ratio influencing displacement; values > 1.0 increase
- * displacement sensitivity to height differences.
- * @param scale The scaling factor for the cumulative displacement, affecting
- * the intensity of the effect.
- * @param reverse If true, reverses the direction of the displacement effect.
+ * @param array            Reference to the 2D array where the escarpment effect
+ *                         will be applied.
+ * @param ir               Radius for the smoothing kernel used on the
+ *                         displacement, controlling the smoothness of the
+ *                         effect. Larger values result in smoother transitions.
+ * @param ratio            The ratio influencing displacement; values > 1.0
+ *                         increase displacement sensitivity to height
+ *                         differences.
+ * @param scale            The scaling factor for the cumulative displacement,
+ *                         affecting the intensity of the effect.
+ * @param reverse          If true, reverses the direction of the displacement
+ *                         effect.
  * @param transpose_effect If true, transposes the array before and after
- * applying the effect.
- * @param global_scaling An additional scaling factor for the displacement; if
- * set to 0, a default value is computed based on the array's range and size.
- * Higher values increase the overall effect.
+ *                         applying the effect.
+ * @param global_scaling   An additional scaling factor for the displacement; if
+ *                         set to 0, a default value is computed based on the
+ *                         array's range and size. Higher values increase the
+ *                         overall effect.
  *
  * **Example**
  * @include ex_recast.cpp
@@ -1229,24 +1272,27 @@ void recast_escarpment(Array &array,
  * 0 reduce it. An optional global scaling factor can further adjust the
  * displacement effect intensity.
  *
- * @param array Reference to the 2D array where the escarpment effect will be
- * applied.
- * @param p_mask Pointer to an optional mask array for blending the effect,
- * where values range from 0 to 1. A nullptr applies the effect fully without
- * blending.
- * @param ir Radius for the smoothing kernel used on the displacement,
- * controlling the smoothness of the effect. Larger values result in smoother
- * transitions.
- * @param ratio The ratio influencing displacement; values > 1.0 increase
- * displacement sensitivity to height differences.
- * @param scale The scaling factor for the cumulative displacement, affecting
- * the intensity of the effect.
- * @param reverse If true, reverses the direction of the displacement effect.
+ * @param array            Reference to the 2D array where the escarpment effect
+ *                         will be applied.
+ * @param p_mask           Pointer to an optional mask array for blending the
+ *                         effect, where values range from 0 to 1. A nullptr
+ *                         applies the effect fully without blending.
+ * @param ir               Radius for the smoothing kernel used on the
+ *                         displacement, controlling the smoothness of the
+ *                         effect. Larger values result in smoother transitions.
+ * @param ratio            The ratio influencing displacement; values > 1.0
+ *                         increase displacement sensitivity to height
+ *                         differences.
+ * @param scale            The scaling factor for the cumulative displacement,
+ *                         affecting the intensity of the effect.
+ * @param reverse          If true, reverses the direction of the displacement
+ *                         effect.
  * @param transpose_effect If true, transposes the array before and after
- * applying the effect.
- * @param global_scaling An additional scaling factor for the displacement; if
- * set to 0, a default value is computed based on the array's range and size.
- * Higher values increase the overall effect.
+ *                         applying the effect.
+ * @param global_scaling   An additional scaling factor for the displacement; if
+ *                         set to 0, a default value is computed based on the
+ *                         array's range and size. Higher values increase the
+ *                         overall effect.
  *
  * **Example**
  * @include ex_recast.cpp
@@ -1274,18 +1320,19 @@ void recast_escarpment(Array       &array,
  *
  * @warning Array values are expected to be in the range [0, 1].
  *
- * @param array Input array representing the heightmap to be transformed.
- * @param ir Filter radius used to smooth the heightmap before applying the peak
- * effect.
- * @param gamma Gamma factor (> 0) that adjusts the intensity of the peak
- * effect. A higher value increases the effect. The default value is 2.0. For
- * details on gamma correction, see {@link gamma_correction}.
- * @param k Smoothing parameter (> 0) that controls the degree of smoothing
- * applied during the transformation. Higher values result in more smoothing.
- * The default value is 0.1.
+ * @param array  Input array representing the heightmap to be transformed.
+ * @param ir     Filter radius used to smooth the heightmap before applying the
+ *               peak effect.
+ * @param gamma  Gamma factor (> 0) that adjusts the intensity of the peak
+ *               effect. A higher value increases the effect. The default value
+ *               is 2.0. For details on gamma correction, see {@link
+ *               gamma_correction}.
+ * @param k      Smoothing parameter (> 0) that controls the degree of smoothing
+ *               applied during the transformation. Higher values result in more
+ *               smoothing. The default value is 0.1.
  * @param p_mask Optional filter mask, with values expected in the range [0, 1].
- * The mask specifies which parts of the heightmap are affected by the peak
- * transformation.
+ *               The mask specifies which parts of the heightmap are affected by
+ *               the peak transformation.
  *
  * **Example**
  * @include ex_recast.cpp
@@ -1312,30 +1359,32 @@ void recast_peak(Array       &array,
  * filter mask can be applied to control which parts of the heightmap are
  * affected.
  *
- * @param array Input array representing the heightmap to be transformed.
- * @param talus Talus limit that determines the threshold above which rock-like
- * features are introduced based on slope steepness.
- * @param ir Filter radius used to smooth the heightmap and define the area of
- * influence for adding rock features.
+ * @param array     Input array representing the heightmap to be transformed.
+ * @param talus     Talus limit that determines the threshold above which
+ *                  rock-like features are introduced based on slope steepness.
+ * @param ir        Filter radius used to smooth the heightmap and define the
+ *                  area of influence for adding rock features.
  * @param amplitude Amplitude of the rock features. This value controls the
- * intensity of the rock-like appearance.
- * @param seed Random number seed used to generate noise patterns for the rock
- * features. Different seeds produce different rock patterns.
- * @param kw Noise wavenumber with respect to a unit domain, influencing the
- * frequency of rock features. Higher values result in more detailed rock
- * textures.
- * @param gamma Gamma correction coefficient applied to the rock features. This
- * parameter adjusts the contrast of the rock features. The default value is
- * 0.5.
- * @param p_noise Optional reference to an input noise array used for generating
- * rock features. If provided, it overrides the default noise generator.
- * @param p_mask Optional filter mask, with values expected in the range [0, 1].
- * The mask specifies which parts of the heightmap are affected by the rock
- * feature transformation.
- * @param bbox Bounding box defining the region of interest within the
- * heightmap. This parameter specifies the coordinates of the bounding box in
- * the format {xmin, xmax, ymin, ymax}. The default bounding box covers the
- * entire domain.
+ *                  intensity of the rock-like appearance.
+ * @param seed      Random number seed used to generate noise patterns for the
+ *                  rock features. Different seeds produce different rock
+ *                  patterns.
+ * @param kw        Noise wavenumber with respect to a unit domain, influencing
+ *                  the frequency of rock features. Higher values result in more
+ *                  detailed rock textures.
+ * @param gamma     Gamma correction coefficient applied to the rock features.
+ *                  This parameter adjusts the contrast of the rock features.
+ *                  The default value is 0.5.
+ * @param p_noise   Optional reference to an input noise array used for
+ *                  generating rock features. If provided, it overrides the
+ *                  default noise generator.
+ * @param p_mask    Optional filter mask, with values expected in the range [0,
+ *                  1]. The mask specifies which parts of the heightmap are
+ *                  affected by the rock feature transformation.
+ * @param bbox      Bounding box defining the region of interest within the
+ *                  heightmap. This parameter specifies the coordinates of the
+ *                  bounding box in the format {xmin, xmax, ymin, ymax}. The
+ *                  default bounding box covers the entire domain.
  *
  * **Example**
  * @include ex_recast.cpp
@@ -1373,18 +1422,18 @@ void recast_rocky_slopes(
  * influenced by a smoothing coefficient (`k`) and can be selectively applied
  * using a filter mask.
  *
- * @param array Input array representing the heightmap to be transformed.
- * @param vref Reference elevation where the heightmap is folded to create the
- * cliff-like appearance. Elevations near this value will be prominently
- * altered.
- * @param k Smoothing coefficient that controls the degree of smoothing applied
- * during the transformation. A higher value results in smoother cliffs. The
- * default value is not specified in this function; it must be provided by the
- * user.
+ * @param array  Input array representing the heightmap to be transformed.
+ * @param vref   Reference elevation where the heightmap is folded to create the
+ *               cliff-like appearance. Elevations near this value will be
+ *               prominently altered.
+ * @param k      Smoothing coefficient that controls the degree of smoothing
+ *               applied during the transformation. A higher value results in
+ *               smoother cliffs. The default value is not specified in this
+ *               function; it must be provided by the user.
  * @param p_mask Optional filter mask, with values expected in the range [0, 1].
- * The mask specifies which parts of the heightmap are affected by the cliff
- *               transformation. If not provided, the transformation is applied
- * to the entire heightmap.
+ *               The mask specifies which parts of the heightmap are affected by
+ *               the cliff transformation. If not provided, the transformation
+ *               is applied to the entire heightmap.
  *
  * **Example**
  * @include ex_recast.cpp
@@ -1407,16 +1456,16 @@ void recast_sag(Array       &array,
  * monotonically interpolated, and any values outside the defined input range
  * are clipped. The filter can be selectively applied using a mask.
  *
- * @param array Input array representing the heightmap to be adjusted.
- * @param t Vector of input values for the correction curve. These values define
- * the x-coordinates (input values) of the curve.
- * @param v Vector of output values for the correction curve. These values
- * define the y-coordinates (output values) of the curve corresponding to the
- * input values in `t`.
+ * @param array  Input array representing the heightmap to be adjusted.
+ * @param t      Vector of input values for the correction curve. These values
+ *               define the x-coordinates (input values) of the curve.
+ * @param v      Vector of output values for the correction curve. These values
+ *               define the y-coordinates (output values) of the curve
+ *               corresponding to the input values in `t`.
  * @param p_mask Optional filter mask, with values expected in the range [0, 1].
- * The mask specifies which parts of the heightmap are affected by the curve
- * adjustment. If not provided, the curve adjustment is applied to the entire
- * heightmap.
+ *               The mask specifies which parts of the heightmap are affected by
+ *               the curve adjustment. If not provided, the curve adjustment is
+ *               applied to the entire heightmap.
  *
  * **Example**
  * @include ex_recurve.cpp
@@ -1444,12 +1493,13 @@ void recurve(Array                    &array,
  *
  * @warning Array values are expected to be in the range [0, 1].
  *
- * @param array Input array representing the heightmap to be adjusted.
+ * @param array  Input array representing the heightmap to be adjusted.
  * @param p_mask Optional filter mask, with values expected in the range [0, 1].
- * The mask specifies which parts of the heightmap are affected by the curve
- *               adjustment. If not provided, the adjustment is applied to the
- * entire heightmap.
- * @param tau Exponential decay parameter that defines the shape of the "bumpy"
+ *               The mask specifies which parts of the heightmap are affected by
+ *               the curve adjustment. If not provided, the adjustment is
+ *               applied to the entire heightmap.
+ * @param tau    Exponential decay parameter that defines the shape of the
+ *               "bumpy"
  * curve. Higher values of `tau` result in a sharper curve. The default value is
  * 0.5.
  *
@@ -1476,12 +1526,13 @@ void recurve_bexp(Array       &array,
  *
  * @warning Array values are expected to be in the range [0, 1].
  *
- * @param array Input array representing the heightmap to be adjusted.
+ * @param array  Input array representing the heightmap to be adjusted.
  * @param p_mask Optional filter mask, with values expected in the range [0, 1].
- * The mask specifies which parts of the heightmap are affected by the curve
- *               adjustment. If not provided, the adjustment is applied to the
- * entire heightmap.
- * @param tau Exponential decay parameter that defines the shape of the "sharp"
+ *               The mask specifies which parts of the heightmap are affected by
+ *               the curve adjustment. If not provided, the adjustment is
+ *               applied to the entire heightmap.
+ * @param tau    Exponential decay parameter that defines the shape of the
+ *               "sharp"
  * curve. Higher values of `tau` result in a steeper curve. The default value is
  * 0.5.
  *
@@ -1507,14 +1558,14 @@ void recurve_exp(Array       &array,
  * values of `a` and `b`. The adjustment can be applied to the entire heightmap
  * or selectively using a filter mask.
  *
- * @param array Input array representing the heightmap to be adjusted.
- * @param a Parameter 'a' of Kumaraswamy's CDF, which drives the curve shape
- * towards 0.
- * @param b Parameter 'b' of Kumaraswamy's CDF, which drives the curve shape
- * towards 1.
+ * @param array  Input array representing the heightmap to be adjusted.
+ * @param a      Parameter 'a' of Kumaraswamy's CDF, which drives the curve
+ *               shape towards 0.
+ * @param b      Parameter 'b' of Kumaraswamy's CDF, which drives the curve
+ *               shape towards 1.
  * @param p_mask Optional filter mask, with values expected in the range [0, 1].
- * If provided, the adjustment is applied according to this mask. If not
- *               provided, the entire heightmap is adjusted.
+ *               If provided, the adjustment is applied according to this mask.
+ *               If not provided, the entire heightmap is adjusted.
  *
  * **Example**
  * @include ex_recurve_xxx.cpp
@@ -1539,10 +1590,10 @@ void recurve_kura(Array       &array,
  *
  * @warning Array values are expected to be in the range [0, 1].
  *
- * @param array Input array representing the heightmap to be adjusted.
+ * @param array  Input array representing the heightmap to be adjusted.
  * @param p_mask Optional filter mask, with values expected in the range [0, 1].
- * If provided, the adjustment is applied according to this mask. If not
- *               provided, the entire heightmap is adjusted.
+ *               If provided, the adjustment is applied according to this mask.
+ *               If not provided, the entire heightmap is adjusted.
  *
  * **Example**
  * @include ex_recurve_xxx.cpp
@@ -1565,12 +1616,12 @@ void recurve_s(Array &array, const Array *p_mask); ///< @overload
  *
  * @warning Array values are expected to be in the range [0, 1].
  *
- * @param array Input array representing the heightmap to be adjusted.
- * @param n Smoothstep order, which determines the degree of smoothness for the
- *          transition. `n` should be a non-negative value (in [0, ∞[).
+ * @param array  Input array representing the heightmap to be adjusted.
+ * @param n      Smoothstep order, which determines the degree of smoothness for
+ *               the transition. `n` should be a non-negative value (in [0, ∞[).
  * @param p_mask Optional filter mask, with values expected in the range [0, 1].
- * If provided, the adjustment is applied according to this mask. If not
- *               provided, the entire heightmap is adjusted.
+ *               If provided, the adjustment is applied according to this mask.
+ *               If not provided, the entire heightmap is adjusted.
  *
  * **Example**
  * @include ex_recurve_xxx.cpp
@@ -1592,9 +1643,9 @@ void recurve_smoothstep_rational(Array       &array,
  * [vmin, vmax]. Values outside the range [from_min, from_max] are clamped to
  * [vmin, vmax]. The output amplitude of the heightmap remains unchanged.
  *
- * @param array Input array representing the heightmap to be saturated.
- * @param vmin The lower bound of the range to remap to.
- * @param vmax The upper bound of the range to remap to.
+ * @param array    Input array representing the heightmap to be saturated.
+ * @param vmin     The lower bound of the range to remap to.
+ * @param vmax     The upper bound of the range to remap to.
  * @param from_min The lower bound of the range to remap from.
  * @param from_max The upper bound of the range to remap from.
  *
@@ -1622,12 +1673,14 @@ void saturate(Array &array, float vmin, float vmax, float k = 0.f);
  * non-sharpened output. A `ratio` of 1 applies full sharpening, while a `ratio`
  * of 0 applies no sharpening.
  *
- * @param array Input array representing the heightmap or image to be sharpened.
+ * @param array  Input array representing the heightmap or image to be
+ *               sharpened.
  * @param p_mask Optional filter mask, expected in the range [0, 1]. If
- * provided, sharpening is applied according to this mask. If not provided, the
- * entire array is sharpened.
- * @param ratio Ratio of the sharpening effect. A value of 1 applies full
- * sharpening, while a value of 0 applies no sharpening. Default is 1.
+ *               provided, sharpening is applied according to this mask. If not
+ *               provided, the entire array is sharpened.
+ * @param ratio  Ratio of the sharpening effect. A value of 1 applies full
+ *               sharpening, while a value of 0 applies no sharpening. Default
+ *               is 1.
  *
  * **Example**
  * @include ex_sharpen.cpp
@@ -1650,14 +1703,15 @@ void sharpen(Array       &array,
  * parameter. The optional filter mask allows selective application of the
  * sharpening effect.
  *
- * @param array Input array representing the heightmap or image to be sharpened.
+ * @param array  Input array representing the heightmap or image to be
+ *               sharpened.
  * @param p_mask Optional filter mask, expected in the range [0, 1]. If
- * provided, sharpening is applied according to this mask. If not provided, the
- * entire array is sharpened.
- * @param ir Filter radius, which determines the size of the smoothing
- * operation.
- * @param scale Sharpening scale. Adjusts the intensity of the sharpening
- * effect. Default is 0.5.
+ *               provided, sharpening is applied according to this mask. If not
+ *               provided, the entire array is sharpened.
+ * @param ir     Filter radius, which determines the size of the smoothing
+ *               operation.
+ * @param scale  Sharpening scale. Adjusts the intensity of the sharpening
+ *               effect. Default is 0.5.
  *
  * **Example**
  * @include ex_sharpen_cone.cpp
@@ -1682,14 +1736,15 @@ void sharpen_cone(Array       &array,
  * the shrinking effect selectively using an optional filter mask. Additionally,
  * an alternative method using a custom kernel is available.
  *
- * @param array Input array representing the heightmap to be processed.
- * @param ir Filter radius, which controls the extent of the shrinking effect.
+ * @param array  Input array representing the heightmap to be processed.
+ * @param ir     Filter radius, which controls the extent of the shrinking
+ *               effect.
  * @param p_mask Optional filter mask, expected in the range [0, 1]. If
- * provided, shrinking is applied according to this mask. If not provided, the
- *               entire array is processed.
+ *               provided, shrinking is applied according to this mask. If not
+ *               provided, the entire array is processed.
  * @param kernel Optional custom kernel to be used for the shrinking operation.
  *               If provided, this kernel will override the default filter
- * radius.
+ *               radius.
  *
  * **Example**
  * @include ex_expand.cpp
@@ -1697,7 +1752,7 @@ void sharpen_cone(Array       &array,
  * **Result**
  * @image html ex_expand.png
  *
- * @see {@link ex_expand}
+ * @see          {@link ex_expand}
  */
 void shrink(Array &array, int ir);
 void shrink(Array &array, int ir, const Array *p_mask); ///< @overload
@@ -1717,16 +1772,17 @@ void shrink(Array       &array,
  * orientation of the filter. An optional filter mask can be used for selective
  * application.
  *
- * @param array Input array representing the heightmap to be processed.
- * @param ir Filter radius, which controls the extent of the shrinking effect.
- * @param angle Angle (in degrees) of the directional filter.
+ * @param array        Input array representing the heightmap to be processed.
+ * @param ir           Filter radius, which controls the extent of the shrinking
+ *                     effect.
+ * @param angle        Angle (in degrees) of the directional filter.
  * @param aspect_ratio Pulse aspect ratio, which influences the shape of the
- * filter.
- * @param anisotropy Pulse width ratio between upstream and downstream sides.
- * Default is 1.
- * @param p_mask Optional filter mask, expected in the range [0, 1]. If
- * provided, shrinking is applied according to this mask. If not provided, the
- *               entire array is processed.
+ *                     filter.
+ * @param anisotropy   Pulse width ratio between upstream and downstream sides.
+ *                     Default is 1.
+ * @param p_mask       Optional filter mask, expected in the range [0, 1]. If
+ *                     provided, shrinking is applied according to this mask. If
+ *                     not provided, the entire array is processed.
  *
  * **Example**
  * @include ex_expand_directional.cpp
@@ -1748,12 +1804,12 @@ void shrink_directional(Array       &array,
  * kernel. The cone radius `ir` determines the extent of the smoothing effect.
  * An optional filter mask can be used for selective smoothing.
  *
- * @param array Input array representing the heightmap or image to be smoothed.
- * @param ir Cone radius, which controls the extent of the smoothing effect. The
- *           cone's half-width is half this radius.
+ * @param array  Input array representing the heightmap or image to be smoothed.
+ * @param ir     Cone radius, which controls the extent of the smoothing effect.
+ *               The cone's half-width is half this radius.
  * @param p_mask Optional filter mask, expected in the range [0, 1]. If
- * provided, smoothing is applied according to this mask. If not provided, the
- *               entire array is processed.
+ *               provided, smoothing is applied according to this mask. If not
+ *               provided, the entire array is processed.
  *
  * **Example**
  * @include ex_smooth_cone.cpp
@@ -1774,12 +1830,12 @@ void smooth_cone(Array &array, int ir, const Array *p_mask); ///< @overload
  * with Gaussian smoothing, the pulse radius `ir` should be set to twice the
  * desired Gaussian half-width.
  *
- * @param array Input array representing the heightmap or image to be smoothed.
- * @param ir Pulse radius, where the half-width of the cubic pulse kernel is
- * half of this value.
+ * @param array  Input array representing the heightmap or image to be smoothed.
+ * @param ir     Pulse radius, where the half-width of the cubic pulse kernel is
+ *               half of this value.
  * @param p_mask Optional filter mask, expected in the range [0, 1]. If
- * provided, filtering is applied according to this mask. If not provided, the
- *               entire array is processed.
+ *               provided, filtering is applied according to this mask. If not
+ *               provided, the entire array is processed.
  *
  * **Example**
  * @include ex_smooth_cpulse.cpp
@@ -1787,7 +1843,7 @@ void smooth_cone(Array &array, int ir, const Array *p_mask); ///< @overload
  * **Result**
  * @image html ex_smooth_cpulse.png
  *
- * @see {@link smooth_gaussian}
+ * @see          {@link smooth_gaussian}
  */
 void smooth_cpulse(Array &array, int ir);
 void smooth_cpulse(Array &array, int ir, const Array *p_mask); ///< @overload
@@ -1801,7 +1857,8 @@ void smooth_cpulse(Array &array, int ir, const Array *p_mask); ///< @overload
  * and j (columns) dimensions of the array to achieve a 2D smoothing effect.
  *
  * @param array Reference to the 2D array to be smoothed.
- * @param ir Radius of the smoothing kernel, determining its size as \(2 \times
+ * @param ir    Radius of the smoothing kernel, determining its size as \(2
+ *              \times
  * \text{ir} + 1\). Larger values produce more smoothing.
  */
 void smooth_flat(Array &array, int ir);
@@ -1815,12 +1872,12 @@ void smooth_flat(Array &array, int ir);
  * half-width, which influences the extent of the smoothing effect. An optional
  * filter mask can be provided for selective filtering.
  *
- * @param array Input array representing the heightmap or image to be smoothed.
- * @param ir Gaussian half-width, which determines the extent of the smoothing
- * effect.
+ * @param array  Input array representing the heightmap or image to be smoothed.
+ * @param ir     Gaussian half-width, which determines the extent of the
+ *               smoothing effect.
  * @param p_mask Optional filter mask, expected in the range [0, 1]. If
- * provided, filtering is applied according to this mask. If not provided, the
- *               entire array is processed.
+ *               provided, filtering is applied according to this mask. If not
+ *               provided, the entire array is processed.
  *
  * **Example**
  * @include ex_smooth_gaussian.cpp
@@ -1840,15 +1897,19 @@ void smooth_gaussian(Array &array, int ir, const Array *p_mask); ///< @overload
  * alternative to the `thermal_auto_bedrock` method. The `p_deposition_map`
  * output field captures the amount of smoothing applied.
  *
- * @param array Input array representing the heightmap or image to be processed.
- * @param ir Pulse radius, which determines the extent of the smoothing effect.
- * @param k Transition smoothing parameter in the range [0, 1]. It controls the
- * balance between smoothing and preserving sharpness.
- * @param p_mask Optional filter mask, expected in the range [0, 1]. If
- * provided, smoothing is applied according to this mask. If not provided, the
- * entire array is processed.
+ * @param array            Input array representing the heightmap or image to be
+ *                         processed.
+ * @param ir               Pulse radius, which determines the extent of the
+ *                         smoothing effect.
+ * @param k                Transition smoothing parameter in the range [0, 1].
+ *                         It controls the balance between smoothing and
+ *                         preserving sharpness.
+ * @param p_mask           Optional filter mask, expected in the range [0, 1].
+ *                         If provided, smoothing is applied according to this
+ *                         mask. If not provided, the entire array is processed.
  * @param p_deposition_map [out] Optional reference to the deposition map. This
- * output field records the amount of deposition or smoothing applied.
+ *                         output field records the amount of deposition or
+ *                         smoothing applied.
  *
  * **Example**
  * @include ex_smooth_fill.cpp
@@ -1856,7 +1917,7 @@ void smooth_gaussian(Array &array, int ir, const Array *p_mask); ///< @overload
  * **Result**
  * @image html ex_smooth_fill.png
  *
- * @see {@link smooth_cpulse}, {@link thermal_auto_bedrock}
+ * @see                    {@link smooth_cpulse}, {@link thermal_auto_bedrock}
  */
 void smooth_fill(Array &array,
                  int    ir,
@@ -1876,11 +1937,13 @@ void smooth_fill(Array       &array,
  * or concave surfaces. The goal is to smooth out regions that are concave,
  * providing a more uniform appearance.
  *
- * @param array Input array representing the heightmap or image to be processed.
- * @param ir Filter radius, which controls the extent of the smoothing effect.
+ * @param array  Input array representing the heightmap or image to be
+ *               processed.
+ * @param ir     Filter radius, which controls the extent of the smoothing
+ *               effect.
  * @param p_mask Optional filter mask, expected in the range [0, 1]. If
- * provided, smoothing is applied according to this mask. If not provided, the
- * entire array is processed.
+ *               provided, smoothing is applied according to this mask. If not
+ *               provided, the entire array is processed.
  *
  * **Example**
  * @include ex_smooth_fill_holes.cpp
@@ -1888,7 +1951,7 @@ void smooth_fill(Array       &array,
  * **Result**
  * @image html ex_smooth_fill_holes.png
  *
- * @see {@link smooth_fill_smear_peaks}
+ * @see          {@link smooth_fill_smear_peaks}
  */
 void smooth_fill_holes(Array &array, int ir);
 void smooth_fill_holes(Array       &array,
@@ -1902,11 +1965,13 @@ void smooth_fill_holes(Array       &array,
  * peaks or convex surfaces in the input array. It smooths out convex regions,
  * creating a more level surface.
  *
- * @param array Input array representing the heightmap or image to be processed.
- * @param ir Filter radius, which controls the extent of the smoothing effect.
+ * @param array  Input array representing the heightmap or image to be
+ *               processed.
+ * @param ir     Filter radius, which controls the extent of the smoothing
+ *               effect.
  * @param p_mask Optional filter mask, expected in the range [0, 1]. If
- * provided, smoothing is applied according to this mask. If not provided, the
- * entire array is processed.
+ *               provided, smoothing is applied according to this mask. If not
+ *               provided, the entire array is processed.
  *
  * **Example**
  * @include ex_smooth_fill_holes.cpp
@@ -1914,7 +1979,7 @@ void smooth_fill_holes(Array       &array,
  * **Result**
  * @image html ex_smooth_fill_holes.png
  *
- * @see {@link smooth_fill_holes}
+ * @see          {@link smooth_fill_holes}
  */
 void smooth_fill_smear_peaks(Array &array, int ir);
 void smooth_fill_smear_peaks(Array       &array,
@@ -1929,7 +1994,7 @@ void smooth_fill_smear_peaks(Array       &array,
  * (`ir`) and smooths the values in the array based on these bounds.
  *
  * @param array The 2D array to be smoothed.
- * @param ir The radius used to compute the local minimum and maximum values.
+ * @param ir    The radius used to compute the local minimum and maximum values.
  *
  * **Example**
  * @include ex_smoothstep_local.cpp
@@ -1947,10 +2012,11 @@ void smoothstep_local(Array &array, int ir);
  * original array using the mask. Otherwise, it directly applies the localized
  * smoothstep operation.
  *
- * @param array The 2D array to be smoothed.
- * @param ir The radius used to compute the local minimum and maximum values.
+ * @param array  The 2D array to be smoothed.
+ * @param ir     The radius used to compute the local minimum and maximum
+ *               values.
  * @param p_mask A pointer to an optional mask array. If provided, the smoothed
- * array is blended with the original using this mask.
+ *               array is blended with the original using this mask.
  *
  * **Example**
  * @include ex_smoothstep_local.cpp
@@ -1969,14 +2035,15 @@ void smoothstep_local(Array &array, int ir, const Array *p_mask);
  * `ir` parameter defines the filtering radius for computing the array
  * gradients.
  *
- * @param array Input array representing the heightmap or image to be processed.
- * @param scale Filter amplitude that determines the extent of steepening or
- * flattening.
+ * @param array  Input array representing the heightmap or image to be
+ *               processed.
+ * @param scale  Filter amplitude that determines the extent of steepening or
+ *               flattening.
  * @param p_mask Optional filter mask, expected in the range [0, 1]. If
- * provided, steepening is applied according to this mask. If not provided, the
- * entire array is processed.
- * @param ir Filtering radius of the array gradients, which influences the
- * extent of the effect.
+ *               provided, steepening is applied according to this mask. If not
+ *               provided, the entire array is processed.
+ * @param ir     Filtering radius of the array gradients, which influences the
+ *               extent of the effect.
  *
  * **Example**
  * @include ex_steepen.cpp
@@ -2000,16 +2067,17 @@ void steepen(Array       &array,
  * parameters including the number of iterations, smoothing radius, and time
  * step. The input array values are expected to be in the range [-1, 1].
  *
- * @param array Input array with elements expected to be in the range [-1, 1].
- * @param angle Steepening direction in degrees.
+ * @param array      Input array with elements expected to be in the range [-1,
+ *                   1].
+ * @param angle      Steepening direction in degrees.
  * @param iterations Number of iterations to perform the convection process.
- * @param ir Smoothing radius applied to the array values before
- * differentiation.
- * @param dt Time step for the convection process, can be chosen smaller than 1
- *           for finer tuning of the steepening effect.
- * @param p_mask Optional filter mask, expected in the range [0, 1]. If
- * provided, steepening is applied according to this mask. If not provided, the
- *               entire array is processed.
+ * @param ir         Smoothing radius applied to the array values before
+ *                   differentiation.
+ * @param dt         Time step for the convection process, can be chosen smaller
+ *                   than 1 for finer tuning of the steepening effect.
+ * @param p_mask     Optional filter mask, expected in the range [0, 1]. If
+ *                   provided, steepening is applied according to this mask. If
+ *                   not provided, the entire array is processed.
  *
  * **Example**
  * @include ex_steepen_convective.cpp
@@ -2040,19 +2108,19 @@ void steepen_convective(Array       &array,
  * The noise is applied to levels for added randomness, and a gain function is
  * applied to smooth the transitions.
  *
- * @param array        The array of values to modify with the terrace effect.
- * @param seed         Seed value for random number generation.
- * @param nlevels      Number of terrace levels to apply.
- * @param gain         Gain factor for controlling the sharpness of the terrace
- * levels.
- * @param noise_ratio  Ratio of noise applied to each terrace level, except the
- * first and last.
- * @param p_noise      Optional noise array to introduce additional variation
- * per element.
- * @param vmin         Minimum value for terracing; if less than `vmax`, will be
- * auto-determined.
- * @param vmax         Maximum value for terracing; if less than `vmin`, will be
- * auto-determined.
+ * @param array       The array of values to modify with the terrace effect.
+ * @param seed        Seed value for random number generation.
+ * @param nlevels     Number of terrace levels to apply.
+ * @param gain        Gain factor for controlling the sharpness of the terrace
+ *                    levels.
+ * @param noise_ratio Ratio of noise applied to each terrace level, except the
+ *                    first and last.
+ * @param p_noise     Optional noise array to introduce additional variation per
+ *                    element.
+ * @param vmin        Minimum value for terracing; if less than `vmax`, will be
+ *                    auto-determined.
+ * @param vmax        Maximum value for terracing; if less than `vmin`, will be
+ *                    auto-determined.
  *
  * @note If `p_noise` is provided, each value in `array` is transformed using
  * both the original value and the corresponding noise value from `p_noise`.
@@ -2080,21 +2148,21 @@ void terrace(Array       &array,
  * provided, the terrace effect is applied conditionally based on the mask
  * values.
  *
- * @param array        The array of values to modify with the terrace effect.
- * @param seed         Seed value for random number generation.
- * @param nlevels      Number of terrace levels to apply.
- * @param p_mask       Optional mask array. If provided, blends the terrace
- * effect with original values based on the mask.
- * @param gain         Gain factor for controlling the sharpness of the terrace
- * levels.
- * @param noise_ratio  Ratio of noise applied to each terrace level, except the
- * first and last.
- * @param p_noise      Optional noise array to introduce additional variation
- * per element.
- * @param vmin         Minimum value for terracing; if less than `vmax`, will be
- * auto-determined.
- * @param vmax         Maximum value for terracing; if less than `vmin`, will be
- * auto-determined.
+ * @param array       The array of values to modify with the terrace effect.
+ * @param seed        Seed value for random number generation.
+ * @param nlevels     Number of terrace levels to apply.
+ * @param p_mask      Optional mask array. If provided, blends the terrace
+ *                    effect with original values based on the mask.
+ * @param gain        Gain factor for controlling the sharpness of the terrace
+ *                    levels.
+ * @param noise_ratio Ratio of noise applied to each terrace level, except the
+ *                    first and last.
+ * @param p_noise     Optional noise array to introduce additional variation per
+ *                    element.
+ * @param vmin        Minimum value for terracing; if less than `vmax`, will be
+ *                    auto-determined.
+ * @param vmax        Maximum value for terracing; if less than `vmin`, will be
+ *                    auto-determined.
  *
  * This function:
  * - If no mask is provided, directly applies the terrace effect using the first
@@ -2130,15 +2198,15 @@ void terrace(Array       &array,
  * `seed` parameter allows for controlling the randomness of the node placement,
  * and the `p_weight` reference is used to adjust the density distribution.
  *
- * @param array Input array to which tessellation will be applied.
- * @param seed Random seed number to initialize the node placement.
- * @param node_density Node density as a ratio relative to the number of cells
- *                     in the input array. Determines the number of nodes to be
- *                     added.
- * @param p_weight Optional reference to the density distribution array,
- * expected in the range [0, 1]. If provided, tessellation is influenced by this
- * distribution.
- * @return Array Output array after tessellation is applied.
+ * @param  array        Input array to which tessellation will be applied.
+ * @param  seed         Random seed number to initialize the node placement.
+ * @param  node_density Node density as a ratio relative to the number of cells
+ *                      in the input array. Determines the number of nodes to be
+ *                      added.
+ * @param  p_weight     Optional reference to the density distribution array,
+ *                      expected in the range [0, 1]. If provided, tessellation
+ *                      is influenced by this distribution.
+ * @return              Array Output array after tessellation is applied.
  *
  * **Example**
  * @include ex_tessellate.cpp
@@ -2161,21 +2229,25 @@ Array tessellate(Array       &array,
  * `octaves`, and `weight` control various aspects of the underlying noise and
  * wrinkle generation.
  *
- * @param array Input array to which wrinkles will be applied.
- * @param wrinkle_amplitude Amplitude of the wrinkle effect.
- * @param p_mask Optional filter mask, expected in the range [0, 1]. If
- * provided, the wrinkle effect is applied according to this mask. If not
- * provided, the entire array is processed.
- * @param wrinkle_angle Overall rotation angle (in degree).
+ * @param array                  Input array to which wrinkles will be applied.
+ * @param wrinkle_amplitude      Amplitude of the wrinkle effect.
+ * @param p_mask                 Optional filter mask, expected in the range [0,
+ *                               1]. If provided, the wrinkle effect is applied
+ *                               according to this mask. If not provided, the
+ *                               entire array is processed.
+ * @param wrinkle_angle          Overall rotation angle (in degree).
  * @param displacement_amplitude Drives the displacement of the wrinkles.
- * @param ir Smooth filter radius applied during wrinkle generation.
- * @param kw Underlying primitive wavenumber, affecting the frequency of
- * wrinkles.
- * @param seed Random seed number for generating underlying primitive noise.
- * @param octaves Number of octaves used in the underlying primitive noise.
- * @param weight Weight of the underlying primitive noise.
- * @param bbox Bounding box for the generated wrinkles, default is {0.f, 1.f,
- * 0.f, 1.f}.
+ * @param ir                     Smooth filter radius applied during wrinkle
+ *                               generation.
+ * @param kw                     Underlying primitive wavenumber, affecting the
+ *                               frequency of wrinkles.
+ * @param seed                   Random seed number for generating underlying
+ *                               primitive noise.
+ * @param octaves                Number of octaves used in the underlying
+ *                               primitive noise.
+ * @param weight                 Weight of the underlying primitive noise.
+ * @param bbox                   Bounding box for the generated wrinkles,
+ *                               default is {0.f, 1.f, 0.f, 1.f}.
  *
  * **Example**
  * @include ex_wrinkle.png

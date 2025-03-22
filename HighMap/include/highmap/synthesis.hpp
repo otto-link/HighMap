@@ -1,17 +1,17 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file synthesis.hpp
- * @author Otto Link (otto.link.bv@gmail.com)
+ * @author  Otto Link (otto.link.bv@gmail.com)
  * @brief Provides functions for synthesizing new heightmaps from input arrays.
  *
- * This header file defines functions for synthesizing new heightmaps by
- * using various techniques such as non-parametric sampling, patch quilting,
- * and blending. These functions allow for the generation of larger or
- * modified heightmaps based on input data, using methods like patch stitching
- * and random sampling.
+ * This header file defines functions for synthesizing new heightmaps by using
+ * various techniques such as non-parametric sampling, patch quilting, and
+ * blending. These functions allow for the generation of larger or modified
+ * heightmaps based on input data, using methods like patch stitching and random
+ * sampling.
  *
  * Functions provided:
  * - `non_parametric_sampling`: Generates a new heightmap using non-parametric
@@ -46,11 +46,11 @@ namespace hmap
  * array non-parametrically. It is a slow process and is based on the technique
  * described in @cite Efros1999.
  *
- * @param array Input array from which patches are sampled.
- * @param patch_shape Shape of the patches used for sampling.
- * @param seed Random seed number for patch selection.
- * @param error_threshold Threshold for patch selection based on error.
- * @return Array Resulting synthesized heightmap.
+ * @param  array           Input array from which patches are sampled.
+ * @param  patch_shape     Shape of the patches used for sampling.
+ * @param  seed            Random seed number for patch selection.
+ * @param  error_threshold Threshold for patch selection based on error.
+ * @return                 Array Resulting synthesized heightmap.
  *
  * **Example**
  * @include non_parametric_sampling.cpp
@@ -72,17 +72,19 @@ Array non_parametric_sampling(const Array    &array,
  * transposing patches, and includes options for smoothing based on the overlap
  * between patches. This technique is based on @cite Efros2001.
  *
- * @param p_arrays Vector of pointers to input heightmaps.
- * @param patch_base_shape Shape of the patches to be used.
- * @param tiling Number of patches in each direction (x, y).
- * @param overlap Overlap between patches, in the range ]0, 1[.
- * @param seed Random seed number for patch placement.
- * @param patch_flip Allow flipping of patches (up-down, left-right).
- * @param patch_rotate Allow 90-degree rotation of patches (for square patches).
- * @param patch_transpose Allow transposition of patches (for square patches).
- * @param filter_width_ratio Ratio of filter width to overlap length for
- * smoothing.
- * @return Array Resulting synthesized heightmap.
+ * @param  p_arrays           Vector of pointers to input heightmaps.
+ * @param  patch_base_shape   Shape of the patches to be used.
+ * @param  tiling             Number of patches in each direction (x, y).
+ * @param  overlap            Overlap between patches, in the range ]0, 1[.
+ * @param  seed               Random seed number for patch placement.
+ * @param  patch_flip         Allow flipping of patches (up-down, left-right).
+ * @param  patch_rotate       Allow 90-degree rotation of patches (for square
+ *                            patches).
+ * @param  patch_transpose    Allow transposition of patches (for square
+ *                            patches).
+ * @param  filter_width_ratio Ratio of filter width to overlap length for
+ *                            smoothing.
+ * @return                    Array Resulting synthesized heightmap.
  *
  * **Example**
  * @include ex_quilting.cpp
@@ -114,16 +116,18 @@ Array quilting(const std::vector<const Array *> &p_arrays,
  * together. The blending options include flipping, rotating, and transposing
  * patches, with smoothing based on the overlap between patches.
  *
- * @param p_arrays Vector of pointers to input heightmaps.
- * @param patch_base_shape Shape of the patches to be used.
- * @param overlap Overlap between patches, in the range ]0, 1[.
- * @param seed Random seed number for patch placement.
- * @param patch_flip Allow flipping of patches (up-down, left-right).
- * @param patch_rotate Allow 90-degree rotation of patches (for square patches).
- * @param patch_transpose Allow transposition of patches (for square patches).
- * @param filter_width_ratio Ratio of filter width to overlap length for
- * smoothing.
- * @return Array Resulting synthesized heightmap.
+ * @param  p_arrays           Vector of pointers to input heightmaps.
+ * @param  patch_base_shape   Shape of the patches to be used.
+ * @param  overlap            Overlap between patches, in the range ]0, 1[.
+ * @param  seed               Random seed number for patch placement.
+ * @param  patch_flip         Allow flipping of patches (up-down, left-right).
+ * @param  patch_rotate       Allow 90-degree rotation of patches (for square
+ *                            patches).
+ * @param  patch_transpose    Allow transposition of patches (for square
+ *                            patches).
+ * @param  filter_width_ratio Ratio of filter width to overlap length for
+ *                            smoothing.
+ * @return                    Array Resulting synthesized heightmap.
  *
  * **Example**
  * @include ex_quilting.cpp
@@ -154,20 +158,22 @@ Array quilting_blend(const std::vector<const Array *> &p_arrays,
  * for flipping, rotating, and transposing patches. The output can be either the
  * same shape as the input or expanded based on the given ratio.
  *
- * @param array Input heightmap to be expanded.
- * @param expansion_ratio Ratio by which to expand the heightmap (e.g., 2 for
- * doubling the size).
- * @param patch_base_shape Shape of the patches to be used.
- * @param overlap Overlap between patches, in the range ]0, 1[.
- * @param seed Random seed number for patch placement.
- * @param keep_input_shape If true, the output heightmap retains the input
- * shape.
- * @param patch_flip Allow flipping of patches (up-down, left-right).
- * @param patch_rotate Allow 90-degree rotation of patches (for square patches).
- * @param patch_transpose Allow transposition of patches (for square patches).
- * @param filter_width_ratio Ratio of filter width to overlap length for
- * smoothing.
- * @return Array Resulting synthesized heightmap.
+ * @param  array              Input heightmap to be expanded.
+ * @param  expansion_ratio    Ratio by which to expand the heightmap (e.g., 2
+ *                            for doubling the size).
+ * @param  patch_base_shape   Shape of the patches to be used.
+ * @param  overlap            Overlap between patches, in the range ]0, 1[.
+ * @param  seed               Random seed number for patch placement.
+ * @param  keep_input_shape   If true, the output heightmap retains the input
+ *                            shape.
+ * @param  patch_flip         Allow flipping of patches (up-down, left-right).
+ * @param  patch_rotate       Allow 90-degree rotation of patches (for square
+ *                            patches).
+ * @param  patch_transpose    Allow transposition of patches (for square
+ *                            patches).
+ * @param  filter_width_ratio Ratio of filter width to overlap length for
+ *                            smoothing.
+ * @return                    Array Resulting synthesized heightmap.
  *
  * **Example**
  * @include ex_quilting.cpp
@@ -200,16 +206,19 @@ Array quilting_expand(const Array         &array,
  * the input heightmap. The function includes options for patch flipping,
  * rotating, and transposing.
  *
- * @param array Input heightmap to be reshuffled.
- * @param patch_base_shape Shape of the patches to be used.
- * @param overlap Overlap between patches, in the range ]0, 1[.
- * @param seed Random seed number for patch placement.
- * @param patch_flip Allow flipping of patches (up-down, left-right).
- * @param patch_rotate Allow 90-degree rotation of patches (for square patches).
- * @param patch_transpose Allow transposition of patches (for square patches).
- * @param filter_width_ratio Ratio of filter width to overlap length for
- * smoothing.
- * @return Array Resulting synthesized heightmap with reshuffled patches.
+ * @param  array              Input heightmap to be reshuffled.
+ * @param  patch_base_shape   Shape of the patches to be used.
+ * @param  overlap            Overlap between patches, in the range ]0, 1[.
+ * @param  seed               Random seed number for patch placement.
+ * @param  patch_flip         Allow flipping of patches (up-down, left-right).
+ * @param  patch_rotate       Allow 90-degree rotation of patches (for square
+ *                            patches).
+ * @param  patch_transpose    Allow transposition of patches (for square
+ *                            patches).
+ * @param  filter_width_ratio Ratio of filter width to overlap length for
+ *                            smoothing.
+ * @return                    Array Resulting synthesized heightmap with
+ *                            reshuffled patches.
  *
  * **Example**
  * @include ex_quilting.cpp

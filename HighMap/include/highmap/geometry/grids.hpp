@@ -1,10 +1,10 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file grid.hpp
- * @author Otto Link (otto.link.bv@gmail.com)
+ * @author  Otto Link (otto.link.bv@gmail.com)
  * @brief
  * @version 0.1 Initial version.
  * @date 2023-06-18
@@ -32,12 +32,12 @@ namespace hmap
  * considering the total number of pixels `nx` and a scaling factor `scale`.
  * Optionally, it can enforce lower and upper limits on the output index.
  *
- * @param x The length value to be converted.
- * @param nx The number of pixels in the discretized space.
- * @param lim_inf If nonzero, enforces a minimum index of 1.
- * @param lim_sup If nonzero, enforces a maximum index of `nx - 1`.
- * @param scale The scaling factor relating the length to the pixel space.
- * @return The computed pixel index.
+ * @param  x       The length value to be converted.
+ * @param  nx      The number of pixels in the discretized space.
+ * @param  lim_inf If nonzero, enforces a minimum index of 1.
+ * @param  lim_sup If nonzero, enforces a maximum index of `nx - 1`.
+ * @param  scale   The scaling factor relating the length to the pixel space.
+ * @return         The computed pixel index.
  */
 int convert_length_to_pixel(float x,
                             int   nx,
@@ -48,10 +48,10 @@ int convert_length_to_pixel(float x,
 /**
  * @brief Expand grid by translating and copying the values of the current
  * bounding box to the 8 first neighboring bounding boxes.
- * @param x `x` coordinates.
- * @param y `y` coordinates.
+ * @param x     `x` coordinates.
+ * @param y     `y` coordinates.
  * @param value values.
- * @param bbox Bounding box.
+ * @param bbox  Bounding box.
  */
 void expand_grid(std::vector<float> &x,
                  std::vector<float> &y,
@@ -61,10 +61,10 @@ void expand_grid(std::vector<float> &x,
 /**
  * @brief Expand the grid by adding points on the boundaries of the bounding
  * box.
- * @param x `x` coordinates.
- * @param y `y` coordinates.
- * @param value values.
- * @param bbox Bounding box.
+ * @param x            `x` coordinates.
+ * @param y            `y` coordinates.
+ * @param value        values.
+ * @param bbox         Bounding box.
  * @param corner_value Value at the boundary points.
  */
 void expand_grid_boundaries(std::vector<float> &x,
@@ -76,10 +76,10 @@ void expand_grid_boundaries(std::vector<float> &x,
 /**
  * @brief Expand the grid by adding four points at the corner of the bounding
  * box.
- * @param x `x` coordinates.
- * @param y `y` coordinates.
- * @param value values.
- * @param bbox Bounding box.
+ * @param x            `x` coordinates.
+ * @param y            `y` coordinates.
+ * @param value        values.
+ * @param bbox         Bounding box.
  * @param corner_value Value at the four corner points.
  */
 void expand_grid_corners(std::vector<float> &x,
@@ -90,12 +90,11 @@ void expand_grid_corners(std::vector<float> &x,
 
 /**
  * @brief
- * @param array Input array.
- * @param x `x` coordinates (output).
- * @param y `y` coordinates (output).
- * @param bbox Bounding box.
- * @param threshold Theshold 'background' value.
- * **Example**
+ * @param array     Input array.
+ * @param x         `x` coordinates (output).
+ * @param y         `y` coordinates (output).
+ * @param bbox      Bounding box.
+ * @param threshold Theshold 'background' value. Example**
  * @include ex_grid_from_array.cpp
  *
  * **Result**
@@ -110,10 +109,10 @@ void grid_from_array(Array              &array,
 
 /**
  * @brief Return x and y coordinates of a regular grid, as two 1D vectors.
- * @param x[out] Vector x.
- * @param y[out] Vector y.
- * @param shape Shape.
- * @param bbox Bounding box.
+ * @param x[out]   Vector x.
+ * @param y[out]   Vector y.
+ * @param shape    Shape.
+ * @param bbox     Bounding box.
  * @param endpoint Include or not the endpoint.
  */
 void grid_xy_vector(std::vector<float> &x,
@@ -124,11 +123,11 @@ void grid_xy_vector(std::vector<float> &x,
 
 /**
  * @brief Generate a random grid.
- * @param x[out] `x` coordinates (output).
- * @param y[out] `y` coordinates (output).
+ * @param x[out]     `x` coordinates (output).
+ * @param y[out]     `y` coordinates (output).
  * @param value[out] Random value, in [0, 1], at (x, y).
- * @param seed Random seed number.
- * @param bbox Bounding box.
+ * @param seed       Random seed number.
+ * @param bbox       Bounding box.
  */
 void random_grid(std::vector<float> &x,
                  std::vector<float> &y,
@@ -143,15 +142,16 @@ void random_grid(std::vector<float> &x,
 
 /**
  * @brief Generate a random grid.
- * @param x[out] `x` coordinates (output).
- * @param y[out] `y` coordinates (output).
- * @param value[out] Random value, in [0, 1], at (x, y).
- * @param seed Random seed number.
- * @param delta Point spacing in x and y directions.
+ * @param x[out]        `x` coordinates (output).
+ * @param y[out]        `y` coordinates (output).
+ * @param value[out]    Random value, in [0, 1], at (x, y).
+ * @param seed          Random seed number.
+ * @param delta         Point spacing in x and y directions.
  * @param stagger_ratio Point offset in x and y directions for every two lines
- * (to do a staggered grid), in [0, 1].
- * @param jitter Point jittering (noise) in x and y directions, in [0, 1].
- * @param bbox Bounding box.
+ *                      (to do a staggered grid), in [0, 1].
+ * @param jitter        Point jittering (noise) in x and y directions, in [0,
+ *                      1].
+ * @param bbox          Bounding box.
  *
  * **Example**
  * @include ex_random_grid.cpp
@@ -186,9 +186,9 @@ void random_grid_density(std::vector<float> &x,
  * @brief Generate a jittered random grid.
  * @param x[out] `x` coordinates (output).
  * @param y[out] `y` coordinates (output).
- * @param scale Jittering scale, in [0, 1].
- * @param seed Random seed number.
- * @param bbox Bounding box.
+ * @param scale  Jittering scale, in [0, 1].
+ * @param seed   Random seed number.
+ * @param bbox   Bounding box.
  */
 void random_grid_jittered(std::vector<float> &x,
                           std::vector<float> &y,
@@ -198,10 +198,10 @@ void random_grid_jittered(std::vector<float> &x,
 
 /**
  * @brief Remove grid points that are outside a given bounding box.
- * @param x `x` coordinates.
- * @param y `y` coordinates.
+ * @param x     `x` coordinates.
+ * @param y     `y` coordinates.
  * @param value Values at points.
- * @param bbox Bounding box.
+ * @param bbox  Bounding box.
  */
 void remove_grid_points_outside_bbox(std::vector<float> &x,
                                      std::vector<float> &y,
@@ -213,7 +213,7 @@ void remove_grid_points_outside_bbox(std::vector<float> &x,
  * on a given initial bounding box.
  * @param x[in, out] `x` coordinates (output).
  * @param y[in, out] `y` coordinates (output).
- * @param bbox Initial bounding box.
+ * @param bbox       Initial bounding box.
  */
 void rescale_grid_to_unit_square(std::vector<float> &x,
                                  std::vector<float> &y,

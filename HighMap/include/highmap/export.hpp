@@ -1,10 +1,10 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file export.hpp
- * @author Otto Link (otto.link.bv@gmail.com)
+ * @author  Otto Link (otto.link.bv@gmail.com)
  * @brief Header file for asset export functionalities.
  *
  * This header file declares functions and types related to exporting assets in
@@ -102,31 +102,31 @@ enum AssetExportFormat : int
  * - Format ID as recognized by the Assimp library.
  * - File extension commonly used for that format.
  *
- * **Note**: For more details on the Assimp library formats, refer to
- * [Assimp Issue #2481](https://github.com/assimp/assimp/issues/2481).
+ * **Note**: For more details on the Assimp library formats, refer to [Assimp
+ * Issue #2481](https://github.com/assimp/assimp/issues/2481).
  */
 // clang-format off
-static std::map<AssetExportFormat, std::vector<std::string>>
-    asset_export_format_as_string = {
-        {_3DS, {"Autodesk 3DS (legacy) - *.3ds", "3ds", "3ds"}},
-        {_3MF, {"The 3MF-File-Format - *.3mf", "3mf", "3mf"}},
-        {ASSBIN, {"Assimp Binary - *.assbin", "assbin", "assbin"}},
-        {ASSXML, {"Assxml Document - *.assxml", "assxml", "assxml"}},
-        {FXBA, {"Autodesk FBX (ascii) - *.fbx", "fbxa", "fbx"}},
-        {FBX, {"Autodesk FBX (binary) - *.fbx", "fbx", "fbx"}},
-        {COLLADA, {"COLLADA - Digital Asset Exchange Schema - *.dae", "collada", "dae"}},
-        {X3D, {"Extensible 3D - *.x3d", "x3d", "x3d"}},
-        {GLTF, {"GL Transmission Format - *.gltf", "gltf", "gltf"}},
-        {GLB, {"GL Transmission Format (binary) - *.glb", "glb", "glb"}},
-        {GTLF2, {"GL Transmission Format v. 2 - *.gltf", "gltf2", "gltf"}},
-        {GLB2, {"GL Transmission Format v. 2 (binary) - *.glb", "glb2", "glb"}},
-        {PLY, {"Stanford Polygon Library - *.ply", "ply", "ply"}},
-        {PLYB, {"Stanford Polygon Library (binary) - *.ply", "plyb", "ply"}},
-        {STP, {"Step Files - *.stp", "stp", "stp"}},
-        {STL, {"Stereolithography - *.stl", "stl", "stl"}},
-        {STLB, {"Stereolithography (binary) - *.stl", "stlb", "stl"}},
-        {OBJ, {"Wavefront OBJ format - *.obj", "obj", "obj"}},
-        {OBJNOMTL, {"Wavefront OBJ format without material file - *.obj", "objnomtl", "obj"}},
+static std::map<AssetExportFormat, std::vector<std::string> >
+asset_export_format_as_string = {
+	{_3DS, {"Autodesk 3DS (legacy) - *.3ds", "3ds", "3ds"}},
+	{_3MF, {"The 3MF-File-Format - *.3mf", "3mf", "3mf"}},
+	{ASSBIN, {"Assimp Binary - *.assbin", "assbin", "assbin"}},
+	{ASSXML, {"Assxml Document - *.assxml", "assxml", "assxml"}},
+	{FXBA, {"Autodesk FBX (ascii) - *.fbx", "fbxa", "fbx"}},
+	{FBX, {"Autodesk FBX (binary) - *.fbx", "fbx", "fbx"}},
+	{COLLADA, {"COLLADA - Digital Asset Exchange Schema - *.dae", "collada", "dae"}},
+	{X3D, {"Extensible 3D - *.x3d", "x3d", "x3d"}},
+	{GLTF, {"GL Transmission Format - *.gltf", "gltf", "gltf"}},
+	{GLB, {"GL Transmission Format (binary) - *.glb", "glb", "glb"}},
+	{GTLF2, {"GL Transmission Format v. 2 - *.gltf", "gltf2", "gltf"}},
+	{GLB2, {"GL Transmission Format v. 2 (binary) - *.glb", "glb2", "glb"}},
+	{PLY, {"Stanford Polygon Library - *.ply", "ply", "ply"}},
+	{PLYB, {"Stanford Polygon Library (binary) - *.ply", "plyb", "ply"}},
+	{STP, {"Step Files - *.stp", "stp", "stp"}},
+	{STL, {"Stereolithography - *.stl", "stl", "stl"}},
+	{STLB, {"Stereolithography (binary) - *.stl", "stlb", "stl"}},
+	{OBJ, {"Wavefront OBJ format - *.obj", "obj", "obj"}},
+	{OBJNOMTL, {"Wavefront OBJ format without material file - *.obj", "objnomtl", "obj"}},
 };
 // clang-format on
 
@@ -139,20 +139,24 @@ static std::map<AssetExportFormat, std::vector<std::string>>
  * optimized Delaunay triangulation for mesh generation, with a configurable
  * maximum error.
  *
- * @param fname The name of the file to which the 3D asset will be exported.
- * @param array The input heightmap array to be converted into a 3D asset.
- * @param mesh_type The type of mesh to generate (see {@link MeshType}).
- * @param export_format The format in which to export the asset (see {@link
- * AssetExportFormat}).
- * @param elevation_scaling A scaling factor applied to the elevation values of
- * the heightmap. Default is 0.2f.
- * @param texture_fname The name of the texture file to be applied to the asset
- * (optional).
- * @param normal_map_fname The name of the normal map file to be applied to the
- * asset (optional).
- * @param max_error The maximum allowable error for optimized Delaunay
- * triangulation. Default is 5e-4f.
- * @return `true` if the export is successful, `false` otherwise.
+ * @param  fname             The name of the file to which the 3D asset will be
+ *                           exported.
+ * @param  array             The input heightmap array to be converted into a 3D
+ *                           asset.
+ * @param  mesh_type         The type of mesh to generate (see {@link
+ *                           MeshType}).
+ * @param  export_format     The format in which to export the asset (see {@link
+ *                           AssetExportFormat}).
+ * @param  elevation_scaling A scaling factor applied to the elevation values of
+ *                           the heightmap. Default is 0.2f.
+ * @param  texture_fname     The name of the texture file to be applied to the
+ *                           asset (optional).
+ * @param  normal_map_fname  The name of the normal map file to be applied to
+ *                           the asset (optional).
+ * @param  max_error         The maximum allowable error for optimized Delaunay
+ *                           triangulation. Default is 5e-4f.
+ * @return                   `true` if the export is successful, `false`
+ *                           otherwise.
  */
 bool export_asset(const std::string &fname,
                   const Array       &array,
@@ -173,18 +177,21 @@ bool export_asset(const std::string &fname,
  * cubemap can either be saved as a single texture or split into individual face
  * textures.
  *
- * @param fname Output file name or base name for the cubemap files.
- * @param z Input 2D array representing the data to be converted into a cubemap.
+ * @param fname              Output file name or base name for the cubemap
+ *                           files.
+ * @param z                  Input 2D array representing the data to be
+ *                           converted into a cubemap.
  * @param cubemap_resolution Resolution (width and height) of each individual
- * face of the cubemap.
- * @param overlap Fraction (0 to 1) of overlap between adjacent faces to ensure
- * smooth transitions.
- * @param ir Radius parameter for smoothing at triple corners.
- * @param cmap Colormap to be applied when exporting the textures.
- * @param splitted If true, exports each face of the cubemap as a separate
- * image; otherwise, exports the entire cubemap as a single texture.
- * @param p_cubemap Pointer to an optional output array where the final cubemap
- * data will be stored.
+ *                           face of the cubemap.
+ * @param overlap            Fraction (0 to 1) of overlap between adjacent faces
+ *                           to ensure smooth transitions.
+ * @param ir                 Radius parameter for smoothing at triple corners.
+ * @param cmap               Colormap to be applied when exporting the textures.
+ * @param splitted           If true, exports each face of the cubemap as a
+ *                           separate image; otherwise, exports the entire
+ *                           cubemap as a single texture.
+ * @param p_cubemap          Pointer to an optional output array where the final
+ *                           cubemap data will be stored.
  *
  * The generated cubemap maintains continuity between faces, adjusting values at
  * overlapping regions and corners using smooth transitions. If the `splitted`
@@ -212,14 +219,16 @@ void export_as_cubemap(const std::string &fname,
  *
  * This function takes a vector of arrays and exports them as a single banner
  * PNG image. The arrays are displayed side by side in the image, using the
- * specified colormap `cmap`. Optionally, hillshading can be applied to
- * enhance the visual representation of the data.
+ * specified colormap `cmap`. Optionally, hillshading can be applied to enhance
+ * the visual representation of the data.
  *
- * @param fname The name of the file to which the banner image will be exported.
- * @param arrays A vector of arrays to be included in the banner image.
- * @param cmap An integer representing the colormap to be applied to the arrays.
- * @param hillshading A boolean flag to activate hillshading for enhanced
- * visual depth. Default is `false`.
+ * @param fname       The name of the file to which the banner image will be
+ *                    exported.
+ * @param arrays      A vector of arrays to be included in the banner image.
+ * @param cmap        An integer representing the colormap to be applied to the
+ *                    arrays.
+ * @param hillshading A boolean flag to activate hillshading for enhanced visual
+ *                    depth. Default is `false`.
  */
 void export_banner_png(const std::string        &fname,
                        const std::vector<Array> &arrays,
@@ -230,8 +239,8 @@ void export_banner_png(const std::string        &fname,
  * @brief Exports the heightmap normal map as an 8-bit PNG file.
  *
  * This function generates a normal map from the input heightmap array and
- * exports it as an 8-bit PNG image. The normal map can be used in 3D
- * rendering engines to create realistic lighting and shading effects.
+ * exports it as an 8-bit PNG image. The normal map can be used in 3D rendering
+ * engines to create realistic lighting and shading effects.
  *
  * @param fname The name of the file to which the normal map will be exported.
  * @param array The input heightmap array from which the normal map is derived.
@@ -255,14 +264,15 @@ void export_normal_map_png(const std::string &fname,
  * are optional; if not provided, they will default to zero.
  *
  * @param fname The name of the file to which the RGBA splatmap will be
- * exported.
- * @param p_r Pointer to the array representing the red (R) channel.
- * @param p_g Pointer to the array representing the green (G) channel. Default
- * is `nullptr`.
- * @param p_b Pointer to the array representing the blue (B) channel. Default is
+ *              exported.
+ * @param p_r   Pointer to the array representing the red (R) channel.
+ * @param p_g   Pointer to the array representing the green (G) channel. Default
+ *              is `nullptr`.
+ * @param p_b   Pointer to the array representing the blue (B) channel. Default
+ *              is
  * `nullptr`.
- * @param p_a Pointer to the array representing the alpha (A) channel. Default
- * is `nullptr`.
+ * @param p_a   Pointer to the array representing the alpha (A) channel. Default
+ *              is `nullptr`.
  * @param depth The depth of the PNG image, e.g., `CV_8U` for 8-bit or `CV_16U`
  * for 16-bit. Default is `CV_8U`.
  *
@@ -290,8 +300,9 @@ void export_splatmap_png(const std::string &fname,
  * codec converter. This conversion process may introduce artifacts depending on
  * the image's original format and content.
  *
- * @param fname The name of the image file to be read.
- * @return Array A 2D array containing the pixel values of the grayscale image.
+ * @param  fname The name of the image file to be read.
+ * @return       Array A 2D array containing the pixel values of the grayscale
+ *               image.
  */
 Array read_to_array(const std::string &fname);
 
@@ -299,10 +310,10 @@ Array read_to_array(const std::string &fname);
  * @brief Exports an array to a 16-bit 'raw' file format, commonly used for
  * Unity terrain imports.
  *
- * This function saves the input array to a file in a 16-bit 'raw' format,
- * which is suitable for importing heightmaps into Unity or other applications
- * that support this format. The array values are converted and written to the
- * file specified by `fname`.
+ * This function saves the input array to a file in a 16-bit 'raw' format, which
+ * is suitable for importing heightmaps into Unity or other applications that
+ * support this format. The array values are converted and written to the file
+ * specified by `fname`.
  *
  * @param fname The name of the file to which the array will be exported.
  * @param array The input array containing the data to be exported.
@@ -318,16 +329,15 @@ void write_raw_16bit(const std::string &fname, const Array &array);
  * extension) of a file while preserving the original directory and file
  * extension.
  *
- * @param file_path The original file path.
- * @param suffix The suffix to append to the filename.
- * @return A new std::filesystem::path with the modified filename.
+ * @param  file_path The original file path.
+ * @param  suffix    The suffix to append to the filename.
+ * @return           A new std::filesystem::path with the modified filename.
  *
  * @note If the input file has no extension, the suffix is added directly to the
  * filename.
  *
  * @example
- * @code
- * std::filesystem::path path = "example.txt";
+ * @code std::filesystem::path path = "example.txt";
  * std::filesystem::path new_path = add_filename_suffix(path, "_backup");
  * std::cout << new_path; // Outputs "example_backup.txt"
  * @endcode

@@ -1,12 +1,12 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file array.hpp
- * @author Otto Link (otto.link.bv@gmail.com)
+ * @author  Otto Link (otto.link.bv@gmail.com)
  * @brief Declaration of the Array class for 2D floating-point arrays with
- *        various mathematical operations and utilities.
+ * various mathematical operations and utilities.
  * @version 0.1
  * @date 2023-05-07
  *
@@ -74,8 +74,8 @@ public:
   /**
    * @brief Overloads the assignment operator for scalar assignment.
    *
-   * @param value The scalar value to assign.
-   * @return Array& Reference to the current Array object.
+   * @param  value The scalar value to assign.
+   * @return       Array& Reference to the current Array object.
    */
   Array &operator=(const float value);
 
@@ -83,8 +83,8 @@ public:
    * @brief Overloads the multiplication-assignment operator for scalar
    * multiplication.
    *
-   * @param value The scalar value to multiply.
-   * @return Array& Reference to the current Array object.
+   * @param  value The scalar value to multiply.
+   * @return       Array& Reference to the current Array object.
    */
   Array &operator*=(const float value);
 
@@ -93,8 +93,8 @@ public:
   /**
    * @brief Overloads the division-assignment operator for scalar division.
    *
-   * @param value The scalar value to divide by.
-   * @return Array& Reference to the current Array object.
+   * @param  value The scalar value to divide by.
+   * @return       Array& Reference to the current Array object.
    */
   Array &operator/=(const float value);
 
@@ -103,8 +103,8 @@ public:
   /**
    * @brief Overloads the addition-assignment operator for scalar addition.
    *
-   * @param value The scalar value to add.
-   * @return Array& Reference to the current Array object.
+   * @param  value The scalar value to add.
+   * @return       Array& Reference to the current Array object.
    */
   Array &operator+=(const float value);
 
@@ -114,8 +114,8 @@ public:
    * @brief Overloads the subtraction-assignment operator for scalar
    * subtraction.
    *
-   * @param value The scalar value to subtract.
-   * @return Array& Reference to the current Array object.
+   * @param  value The scalar value to subtract.
+   * @return       Array& Reference to the current Array object.
    */
   Array &operator-=(const float value);
 
@@ -124,8 +124,8 @@ public:
   /**
    * @brief Overloads the multiplication operator for scalar multiplication.
    *
-   * @param value The scalar value to multiply.
-   * @return Array The resulting Array after multiplication.
+   * @param  value The scalar value to multiply.
+   * @return       Array The resulting Array after multiplication.
    */
   Array operator*(const float value) const;
 
@@ -133,25 +133,25 @@ public:
    * @brief Overloads the multiplication operator for element-wise
    * multiplication with another array.
    *
-   * @param array The Array to multiply with.
-   * @return Array The resulting Array after element-wise multiplication.
+   * @param  array The Array to multiply with.
+   * @return       Array The resulting Array after element-wise multiplication.
    */
   Array operator*(const Array &array) const;
 
   /**
    * @brief Overloads the multiplication operator for scalar multiplication.
    *
-   * @param value The scalar value to multiply.
-   * @param array The Array to multiply with.
-   * @return Array The resulting Array after multiplication.
+   * @param  value The scalar value to multiply.
+   * @param  array The Array to multiply with.
+   * @return       Array The resulting Array after multiplication.
    */
   friend Array operator*(const float value, const Array &array);
 
   /**
    * @brief Overloads the division operator for scalar division.
    *
-   * @param value The scalar value to divide by.
-   * @return Array The resulting Array after division.
+   * @param  value The scalar value to divide by.
+   * @return       Array The resulting Array after division.
    */
   Array operator/(const float value) const;
 
@@ -159,25 +159,25 @@ public:
    * @brief Overloads the division operator for element-wise division by another
    * array.
    *
-   * @param array The Array to divide by.
-   * @return Array The resulting Array after element-wise division.
+   * @param  array The Array to divide by.
+   * @return       Array The resulting Array after element-wise division.
    */
   Array operator/(const Array &array) const;
 
   /**
    * @brief Overloads the division operator for scalar division.
    *
-   * @param value The scalar value to divide by.
-   * @param array The Array to divide by.
-   * @return Array The resulting Array after division.
+   * @param  value The scalar value to divide by.
+   * @param  array The Array to divide by.
+   * @return       Array The resulting Array after division.
    */
   friend Array operator/(const float value, const Array &array);
 
   /**
    * @brief Overloads the addition operator for scalar addition.
    *
-   * @param value The scalar value to add.
-   * @return Array The resulting Array after addition.
+   * @param  value The scalar value to add.
+   * @return       Array The resulting Array after addition.
    */
   Array operator+(const float value) const;
 
@@ -185,17 +185,17 @@ public:
    * @brief Overloads the addition operator for element-wise addition with
    * another array.
    *
-   * @param array The Array to add.
-   * @return Array The resulting Array after element-wise addition.
+   * @param  array The Array to add.
+   * @return       Array The resulting Array after element-wise addition.
    */
   Array operator+(const Array &array) const;
 
   /**
    * @brief Overloads the addition operator for scalar addition.
    *
-   * @param value The scalar value to add.
-   * @param array The Array to add.
-   * @return Array The resulting Array after addition.
+   * @param  value The scalar value to add.
+   * @param  array The Array to add.
+   * @return       Array The resulting Array after addition.
    */
   friend Array operator+(const float value, const Array &array);
 
@@ -209,8 +209,8 @@ public:
   /**
    * @brief Overloads the subtraction operator for scalar subtraction.
    *
-   * @param value The scalar value to subtract.
-   * @return Array The resulting Array after subtraction.
+   * @param  value The scalar value to subtract.
+   * @return       Array The resulting Array after subtraction.
    */
   Array operator-(const float value) const;
 
@@ -218,17 +218,17 @@ public:
    * @brief Overloads the subtraction operator for element-wise subtraction with
    * another array.
    *
-   * @param array The Array to subtract.
-   * @return Array The resulting Array after element-wise subtraction.
+   * @param  array The Array to subtract.
+   * @return       Array The resulting Array after element-wise subtraction.
    */
   Array operator-(const Array &array) const;
 
   /**
    * @brief Overloads the subtraction operator for scalar subtraction.
    *
-   * @param value The scalar value to subtract.
-   * @param array The Array to subtract from.
-   * @return Array The resulting Array after subtraction.
+   * @param  value The scalar value to subtract.
+   * @param  array The Array to subtract from.
+   * @return       Array The resulting Array after subtraction.
    */
   friend const Array operator-(const float value, const Array &array);
 
@@ -236,9 +236,9 @@ public:
    * @brief Overloads the function call operator to access the array value at
    * index (i, j).
    *
-   * @param i The row index.
-   * @param j The column index.
-   * @return float& Reference to the array value at index (i, j).
+   * @param  i The row index.
+   * @param  j The column index.
+   * @return   float& Reference to the array value at index (i, j).
    */
   float &operator()(int i, int j)
   {
@@ -249,9 +249,9 @@ public:
    * @brief Overloads the function call operator to access the array value at
    * index (i, j) (const version).
    *
-   * @param i The row index.
-   * @param j The column index.
-   * @return const float& Reference to the array value at index (i, j).
+   * @param  i The row index.
+   * @param  j The column index.
+   * @return   const float& Reference to the array value at index (i, j).
    */
   const float &operator()(int i, int j) const ///< @overload
   {
@@ -265,8 +265,8 @@ public:
   /**
    * @brief Extracts a column 'j' as a std::vector.
    *
-   * @param j The column index.
-   * @return std::vector<float> The column values as a vector.
+   * @param  j The column index.
+   * @return   std::vector<float> The column values as a vector.
    */
   std::vector<float> col_to_vector(int j);
 
@@ -281,10 +281,10 @@ public:
    * @brief Distribute a value 'amount' around the four cells (i, j), (i + 1,
    * j), (i, j + 1), (i + 1, j + 1) by "reversing" the bilinear interpolation.
    *
-   * @param i Index.
-   * @param j Index.
-   * @param u 'u' interpolation parameter, expected to be in [0, 1[.
-   * @param v 'v' interpolation parameter, expected to be in [0, 1[.
+   * @param i      Index.
+   * @param j      Index.
+   * @param u      'u' interpolation parameter, expected to be in [0, 1[.
+   * @param v      'v' interpolation parameter, expected to be in [0, 1[.
    * @param amount Amount to be deposited.
    */
   void depose_amount_bilinear_at(int i, int j, float u, float v, float amount);
@@ -298,11 +298,11 @@ public:
 
   /**
    * @brief Distributes a specified amount of value around the cell located at
-   *        (i, j) using a 1D deposition kernel applied in both horizontal and
-   *        vertical directions.
+   * (i, j) using a 1D deposition kernel applied in both horizontal and vertical
+   * directions.
    *
-   * @param i Index of the cell in the array where the deposition starts.
-   * @param j Index of the cell in the array where the deposition starts.
+   * @param i      Index of the cell in the array where the deposition starts.
+   * @param j      Index of the cell in the array where the deposition starts.
    * @param kernel 1D deposition kernel to be used for distribution. The kernel
    *               must contain an odd number of elements.
    * @param amount The amount of value to be distributed around the cell.
@@ -318,11 +318,11 @@ public:
   /**
    * @brief Extracts a subarray defined by the slice indices {i1, i2, j1, j2}
    *        from the original array, creating a new array. Note that i2 and j2
-   *        are excluded from the slice.
+   * are excluded from the slice.
    *
-   * @param idx A Vec4<int> containing the slice extent indices {i1, i2, j1,
+   * @param  idx A Vec4<int> containing the slice extent indices {i1, i2, j1,
    * j2}.
-   * @return Array The extracted subarray.
+   * @return     Array The extracted subarray.
    */
   Array extract_slice(Vec4<int> idx) const;
 
@@ -350,7 +350,7 @@ public:
 
   /**
    * @brief Calculates the gradient in the 'x' (or 'i') direction at a specified
-   *        index (i, j) using a 2nd order central difference scheme.
+   * index (i, j) using a 2nd order central difference scheme.
    *
    *        This function computes the gradient in the x-direction, which
    * measures the rate of change along the x-axis. Note that this function
@@ -358,21 +358,21 @@ public:
    * requires values from both sides of the point of interest.
    *
    * @warning The gradient cannot be computed at the borders of the data array.
-   *          Specifically, the function is not defined for i = 0, j = 0, i =
+   * Specifically, the function is not defined for i = 0, j = 0, i =
    * shape.x - 1, or j = shape.y - 1.
    *
-   * @param i Index along the x-direction, expected to be in the range [1,
-   * shape.x - 2].
-   * @param j Index along the y-direction, expected to be in the range [1,
-   * shape.y - 2].
-   * @return float The computed gradient value in the x-direction at the
-   * specified index.
+   * @param  i Index along the x-direction, expected to be in the range [1,
+   *           shape.x - 2].
+   * @param  j Index along the y-direction, expected to be in the range [1,
+   *           shape.y - 2].
+   * @return   float The computed gradient value in the x-direction at the
+   *           specified index.
    */
   float get_gradient_x_at(int i, int j) const;
 
   /**
    * @brief Calculates the gradient in the 'y' (or 'j') direction at a specified
-   *        index (i, j) using a 2nd order central difference scheme.
+   * index (i, j) using a 2nd order central difference scheme.
    *
    *        This function computes the gradient in the y-direction, which
    * measures the rate of change along the y-axis. Note that this function
@@ -380,21 +380,21 @@ public:
    * requires values from both sides of the point of interest.
    *
    * @warning The gradient cannot be computed at the borders of the data array.
-   *          Specifically, the function is not defined for i = 0, j = 0, i =
+   * Specifically, the function is not defined for i = 0, j = 0, i =
    * shape.x - 1, or j = shape.y - 1.
    *
-   * @param i Index along the x-direction, expected to be in the range [1,
-   * shape.x - 2].
-   * @param j Index along the y-direction, expected to be in the range [1,
-   * shape.y - 2].
-   * @return float The computed gradient value in the y-direction at the
-   * specified index.
+   * @param  i Index along the x-direction, expected to be in the range [1,
+   *           shape.x - 2].
+   * @param  j Index along the y-direction, expected to be in the range [1,
+   *           shape.y - 2].
+   * @return   float The computed gradient value in the y-direction at the
+   *           specified index.
    */
   float get_gradient_y_at(int i, int j) const;
 
   /**
    * @brief Calculates the gradient in the 'x' (or 'i') direction at a location
-   *        (x, y) near the index (i, j) using bilinear interpolation.
+   * (x, y) near the index (i, j) using bilinear interpolation.
    *
    *        This function uses bilinear interpolation to estimate the gradient
    * in the x-direction at a point within the cell defined by (i, j). The
@@ -402,23 +402,23 @@ public:
    * to a finer resolution.
    *
    * @warning The gradient cannot be computed at the borders of the data array.
-   *          Specifically, the function is not defined for i = 0, j = 0, i =
+   * Specifically, the function is not defined for i = 0, j = 0, i =
    * shape.x - 1, or j = shape.y - 1.
    *
-   * @param i Index along the x-direction, expected to be in the range [1,
-   * shape.x - 2].
-   * @param j Index along the y-direction, expected to be in the range [1,
-   * shape.y - 2].
-   * @param u 'u' interpolation parameter, expected to be in the range [0, 1[.
-   * @param v 'v' interpolation parameter, expected to be in the range [0, 1[.
-   * @return float The interpolated gradient value in the x-direction at the
-   * specified location.
+   * @param  i Index along the x-direction, expected to be in the range [1,
+   *           shape.x - 2].
+   * @param  j Index along the y-direction, expected to be in the range [1,
+   *           shape.y - 2].
+   * @param  u 'u' interpolation parameter, expected to be in the range [0, 1[.
+   * @param  v 'v' interpolation parameter, expected to be in the range [0, 1[.
+   * @return   float The interpolated gradient value in the x-direction at the
+   *           specified location.
    */
   float get_gradient_x_bilinear_at(int i, int j, float u, float v) const;
 
   /**
    * @brief Calculates the gradient in the 'y' (or 'j') direction at a location
-   *        (x, y) near the index (i, j) using bilinear interpolation.
+   * (x, y) near the index (i, j) using bilinear interpolation.
    *
    *        This function uses bilinear interpolation to estimate the gradient
    * in the y-direction at a point within the cell defined by (i, j). The
@@ -426,17 +426,17 @@ public:
    * to a finer resolution.
    *
    * @warning The gradient cannot be computed at the borders of the data array.
-   *          Specifically, the function is not defined for i = 0, j = 0, i =
+   * Specifically, the function is not defined for i = 0, j = 0, i =
    * shape.x - 1, or j = shape.y - 1.
    *
-   * @param i Index along the x-direction, expected to be in the range [1,
-   * shape.x - 2].
-   * @param j Index along the y-direction, expected to be in the range [1,
-   * shape.y - 2].
-   * @param u 'u' interpolation parameter, expected to be in the range [0, 1[.
-   * @param v 'v' interpolation parameter, expected to be in the range [0, 1[.
-   * @return float The interpolated gradient value in the y-direction at the
-   * specified location.
+   * @param  i Index along the x-direction, expected to be in the range [1,
+   *           shape.x - 2].
+   * @param  j Index along the y-direction, expected to be in the range [1,
+   *           shape.y - 2].
+   * @param  u 'u' interpolation parameter, expected to be in the range [0, 1[.
+   * @param  v 'v' interpolation parameter, expected to be in the range [0, 1[.
+   * @return   float The interpolated gradient value in the y-direction at the
+   *           specified location.
    */
   float get_gradient_y_bilinear_at(int i, int j, float u, float v) const;
 
@@ -447,9 +447,9 @@ public:
    * j) in the data array. The normal vector is a three-dimensional vector (x,
    * y, z) that is perpendicular to the surface at that point.
    *
-   * @param i Index along the x-direction.
-   * @param j Index along the y-direction.
-   * @return Vec3<float> The normal vector at the specified index (i, j).
+   * @param  i Index along the x-direction.
+   * @param  j Index along the y-direction.
+   * @return   Vec3<float> The normal vector at the specified index (i, j).
    */
   Vec3<float> get_normal_at(int i, int j) const;
 
@@ -485,13 +485,13 @@ public:
    * specifically for i = shape.x - 2 or j = shape.y - 2, as bicubic
    * interpolation requires surrounding data points from a 4x4 neighborhood.
    *
-   * @param i Index along the x-direction, expected to be in the range [1,
-   * shape.x - 3].
-   * @param j Index along the y-direction, expected to be in the range [1,
-   * shape.y - 3].
-   * @param u 'u' interpolation parameter, expected to be in the range [0, 1[.
-   * @param v 'v' interpolation parameter, expected to be in the range [0, 1[.
-   * @return float The interpolated value at the specified location (x, y).
+   * @param  i Index along the x-direction, expected to be in the range [1,
+   *           shape.x - 3].
+   * @param  j Index along the y-direction, expected to be in the range [1,
+   *           shape.y - 3].
+   * @param  u 'u' interpolation parameter, expected to be in the range [0, 1[.
+   * @param  v 'v' interpolation parameter, expected to be in the range [0, 1[.
+   * @return   float The interpolated value at the specified location (x, y).
    */
   float get_value_bicubic_at(int i, int j, float u, float v) const;
 
@@ -508,13 +508,13 @@ public:
    * specifically for i = shape.x - 1 or j = shape.y - 1, as bilinear
    * interpolation requires surrounding data points.
    *
-   * @param i Index along the x-direction, expected to be in the range [0,
-   * shape.x - 2].
-   * @param j Index along the y-direction, expected to be in the range [0,
-   * shape.y - 2].
-   * @param u 'u' interpolation parameter, expected to be in the range [0, 1[.
-   * @param v 'v' interpolation parameter, expected to be in the range [0, 1[.
-   * @return float The interpolated value at the specified location (x, y).
+   * @param  i Index along the x-direction, expected to be in the range [0,
+   *           shape.x - 2].
+   * @param  j Index along the y-direction, expected to be in the range [0,
+   *           shape.y - 2].
+   * @param  u 'u' interpolation parameter, expected to be in the range [0, 1[.
+   * @param  v 'v' interpolation parameter, expected to be in the range [0, 1[.
+   * @return   float The interpolated value at the specified location (x, y).
    */
   float get_value_bilinear_at(int i, int j, float u, float v) const;
 
@@ -527,11 +527,11 @@ public:
    * the bounding box `bbox`. If the coordinates (x, y) are outside the domain,
    * they are clamped to the nearest valid position within the bounding box.
    *
-   * @param x Coordinate along the x-axis.
-   * @param y Coordinate along the y-axis.
-   * @param bbox Bounding box defining the domain of the array. It is expected
+   * @param  x    Coordinate along the x-axis.
+   * @param  y    Coordinate along the y-axis.
+   * @param  bbox Bounding box defining the domain of the array. It is expected
    * to be in the form of {xmin, xmax, ymin, ymax}.
-   * @return float The nearest value at the clamped location (x, y).
+   * @return      float The nearest value at the clamped location (x, y).
    */
   float get_value_nearest(float x, float y, Vec4<float> bbox);
 
@@ -561,9 +561,9 @@ public:
    * the (i, j) coordinates in a 2D array. The linear index is useful for
    * accessing elements in a flattened or 1D representation of the array.
    *
-   * @param i The 'i' index (row index).
-   * @param j The 'j' index (column index).
-   * @return int The linear index corresponding to the (i, j) cell.
+   * @param  i The 'i' index (row index).
+   * @param  j The 'j' index (column index).
+   * @return   int The linear index corresponding to the (i, j) cell.
    */
   int linear_index(int i, int j) const;
 
@@ -574,9 +574,9 @@ public:
    * from a given linear index `k`. This is useful for mapping between the 1D
    * and 2D representations of the array.
    *
-   * @param k The linear index.
-   * @return Vec2<int> The (i, j) coordinates corresponding to the linear index
-   * `k`.
+   * @param  k The linear index.
+   * @return   Vec2<int> The (i, j) coordinates corresponding to the linear
+   * index `k`.
    */
   Vec2<int> linear_index_reverse(int k) const;
 
@@ -622,17 +622,17 @@ public:
 
   /**
    * @brief Computes normalization coefficients (a, b) such that a * array + b
-   *        maps the values to the range [vmin, vmax].
+   * maps the values to the range [vmin, vmax].
    *
    *        This function calculates the coefficients used to normalize the
    * array values so that they fit within the specified range [vmin, vmax]. The
    * normalization is performed using the linear transformation: `a * array +
    * b`.
    *
-   * @param vmin Lower bound of the desired range.
-   * @param vmax Upper bound of the desired range.
-   * @return Vec2<float> Normalization coefficients (a, b) where `a` scales the
-   * values and `b` shifts them.
+   * @param  vmin Lower bound of the desired range.
+   * @param  vmax Upper bound of the desired range.
+   * @return      Vec2<float> Normalization coefficients (a, b) where `a` scales
+   *              the values and `b` shifts them.
    */
   Vec2<float> normalization_coeff(float vmin = 0.f, float vmax = 1.f) const;
 
@@ -665,8 +665,8 @@ public:
    * bilinear interpolation. The resampling changes the dimensions of the array
    * while preserving the data's spatial relationships.
    *
-   * @param new_shape The target shape for the resampled array.
-   * @return Array The resampled array with the specified `new_shape`.
+   * @param  new_shape The target shape for the resampled array.
+   * @return           Array The resampled array with the specified `new_shape`.
    *
    * **Example**
    * @include ex_resample_to_shape.cpp
@@ -685,8 +685,8 @@ public:
    * while preserving the data's spatial relationships with a higher degree of
    * smoothness compared to bilinear interpolation.
    *
-   * @param new_shape The target shape for the resampled array.
-   * @return Array The resampled array with the specified `new_shape`.
+   * @param  new_shape The target shape for the resampled array.
+   * @return           Array The resampled array with the specified `new_shape`.
    *
    * **Example**
    * @include ex_array_interp.cpp
@@ -705,8 +705,8 @@ public:
    * nearest neighbor in the original array, which can be faster but may produce
    * blocky artifacts compared to other interpolation methods.
    *
-   * @param new_shape The target shape for the resampled array.
-   * @return Array The resampled array with the specified `new_shape`.
+   * @param  new_shape The target shape for the resampled array.
+   * @return           Array The resampled array with the specified `new_shape`.
    */
   Array resample_to_shape_nearest(Vec2<int> new_shape) const;
 
@@ -717,8 +717,8 @@ public:
    * returns it as a `std::vector<float>`. This is useful for operations where
    * you need to work with individual rows outside of the array structure.
    *
-   * @param i Row index to extract.
-   * @return std::vector<float> The values of the specified row as a vector.
+   * @param  i Row index to extract.
+   * @return   std::vector<float> The values of the specified row as a vector.
    */
   std::vector<float> row_to_vector(int i);
 
@@ -738,7 +738,7 @@ public:
    * j1, j2}, where `i1` and `i2` specify the range for the rows, and `j1` and
    * `j2` specify the range for the columns.
    *
-   * @param idx Slice extent indices: {i1, i2, j1, j2}.
+   * @param idx   Slice extent indices: {i1, i2, j1, j2}.
    * @param value The new value to set for the specified slice.
    */
   void set_slice(Vec4<int> idx, float value);
@@ -776,8 +776,8 @@ public:
   /**
    * @brief Converts a 2D `Array` to an OpenCV `cv::Mat`.
    *
-   * This function converts a 2D `Array` object into an OpenCV `cv::Mat`.
-   * The conversion process does not involve copying the data; instead, it uses
+   * This function converts a 2D `Array` object into an OpenCV `cv::Mat`. The
+   * conversion process does not involve copying the data; instead, it uses
    * pointers to the original data in the `Array`. As a result, any
    * modifications to the `Array` will directly affect the corresponding
    * `cv::Mat` and vice versa.
@@ -799,8 +799,8 @@ public:
    * @brief Export the array as an OpenEXR image file.
    *
    *        This function saves the array data as an OpenEXR image file. OpenEXR
-   * is a high dynamic range (HDR) image file format.
-   * The file will be created or overwritten with the name specified by `fname`.
+   * is a high dynamic range (HDR) image file format. The file will be created
+   * or overwritten with the name specified by `fname`.
    *
    * @param fname The name of the OpenEXR file to be created or overwritten.
    *
@@ -841,11 +841,11 @@ public:
    * the data. The file will be created or overwritten with the name specified
    * by `fname`.
    *
-   * @param fname The name of the PNG file to be created or overwritten.
-   * @param cmap The colormap to be used for visualizing the data. Refer to
-   * `cmap` for available options.
+   * @param fname       The name of the PNG file to be created or overwritten.
+   * @param cmap        The colormap to be used for visualizing the data. Refer
+   * to `cmap` for available options.
    * @param hillshading Boolean flag to enable or disable hillshading. If true,
-   * hillshading will be applied.
+   *                    hillshading will be applied.
    *
    * **Example**
    * @include ex_to_png.cpp
@@ -865,8 +865,8 @@ public:
    * image will be created or overwritten with the name specified by `fname`.
    *
    * @param fname The name of the PNG file to be created or overwritten.
-   * @param depth The bit depth of the PNG image. Default is 8-bit (CV_8U).
-   *              Use CV_16U for 16-bit depth if higher precision is needed.
+   * @param depth The bit depth of the PNG image. Default is 8-bit (CV_8U). Use
+   *              CV_16U for 16-bit depth if higher precision is needed.
    *
    * **Example**
    * @include ex_to_png.cpp
@@ -917,19 +917,21 @@ public:
  * @brief Converts an OpenCV `cv::Mat` to a 2D `Array` with optional value
  * scaling to \[0, 1\].
  *
- * This function converts an OpenCV `cv::Mat` object into a 2D `Array`.
- * The conversion process creates a new `Array` object and copies the data
- * from the `cv::Mat` into this `Array`. If the `remap_values` parameter is set
- * to `true` (the default), the values in the resulting `Array` will be scaled
- * to the interval \[0, 1\]. If set to `false`, the values will be copied
- * directly without scaling. Modifications to the `Array` will not affect the
- * original `cv::Mat` and vice versa.
+ * This function converts an OpenCV `cv::Mat` object into a 2D `Array`. The
+ * conversion process creates a new `Array` object and copies the data from the
+ * `cv::Mat` into this `Array`. If the `remap_values` parameter is set to `true`
+ * (the default), the values in the resulting `Array` will be scaled to the
+ * interval \[0, 1\]. If set to `false`, the values will be copied directly
+ * without scaling. Modifications to the `Array` will not affect the original
+ * `cv::Mat` and vice versa.
  *
- * @param mat Reference to the OpenCV `cv::Mat` object that will be converted.
- * @param remap_values A boolean flag indicating whether to scale the values to
+ * @param  mat          Reference to the OpenCV `cv::Mat` object that will be
+ *                      converted.
+ * @param  remap_values A boolean flag indicating whether to scale the values to
  * \[0, 1\]. If `true`, the values will be scaled; if `false`, they will be
  * copied directly. Default is `true`.
- * @return A 2D `Array` object containing a copy of the data from the input
+ * @return              A 2D `Array` object containing a copy of the data from
+ *                      the input
  * `cv::Mat`, with optional scaling to the interval \[0, 1\].
  *
  * **Example**

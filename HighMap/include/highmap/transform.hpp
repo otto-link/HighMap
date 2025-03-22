@@ -1,19 +1,19 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file transform.hpp
- * @author Otto Link (otto.link.bv@gmail.com)
+ * @author  Otto Link (otto.link.bv@gmail.com)
  * @brief Header file for array transformation functions including rotation,
- *        flipping, warping, and transposition.
+ * flipping, warping, and transposition.
  *
  * This header file provides declarations for various functions used to
- * transform arrays in different ways. It includes functionalities for
- * rotating arrays, flipping them horizontally or vertically, applying
- * warping effects, and transposing arrays. These transformations are useful
- * in image processing, data manipulation, and other applications requiring
- * geometric modifications of arrays.
+ * transform arrays in different ways. It includes functionalities for rotating
+ * arrays, flipping them horizontally or vertically, applying warping effects,
+ * and transposing arrays. These transformations are useful in image processing,
+ * data manipulation, and other applications requiring geometric modifications
+ * of arrays.
  *
  * @version 0.1
  * @date 2023-04-30
@@ -33,8 +33,8 @@ namespace hmap
 /**
  * @brief Flip the array horizontally (left/right).
  *
- * This function flips the input array along the vertical axis, resulting in
- * a left-to-right mirror image of the original array.
+ * This function flips the input array along the vertical axis, resulting in a
+ * left-to-right mirror image of the original array.
  *
  * @param array Input array to be flipped horizontally.
  *
@@ -106,10 +106,10 @@ void rot90(Array &array);
  * borders with zeros instead of using symmetric padding. This is particularly
  * useful when the array contains zero values at its borders.
  *
- * @param array Input array to be rotated.
- * @param angle Rotation angle in degrees.
+ * @param array        Input array to be rotated.
+ * @param angle        Rotation angle in degrees.
  * @param zero_padding If true, use zero-padding to fill the borders; otherwise,
- * use symmetry (default is false).
+ *                     use symmetry (default is false).
  *
  * **Example**
  * @include ex_rotate.cpp
@@ -126,8 +126,8 @@ void rotate(Array &array, float angle, bool zero_padding = false);
  * The transpose operation swaps the rows and columns of the array, effectively
  * flipping the array over its diagonal.
  *
- * @param array Input array to be transposed.
- * @return Array The transposed array.
+ * @param  array Input array to be transposed.
+ * @return       Array The transposed array.
  */
 Array transpose(const Array &array);
 
@@ -139,26 +139,26 @@ Array transpose(const Array &array);
  * conditions, where the array wraps around, and non-periodic conditions, where
  * the shifted areas are filled with zeros.
  *
- * @param array The input 2D array to be translated. This array remains
- * unmodified.
- * @param dx The translation distance along the x-axis. Positive values shift
- * the array to the right.
- * @param dy The translation distance along the y-axis. Positive values shift
- * the array downward.
- * @param periodic If set to `true`, the translation is periodic, meaning that
- * elements that move out of one side of the array reappear on the opposite
- * side. If `false`, the areas exposed by the translation are filled with zeros.
- * The default is `false`.
- * @param p_noise_x Optional pointer to a 2D array that contains x-direction
- * noise to be added to the translation. If provided, the noise values are added
- * to `dx` on a per-element basis.
- * @param p_noise_y Optional pointer to a 2D array that contains y-direction
- * noise to be added to the translation. If provided, the noise values are added
- * to `dy` on a per-element basis.
- * @param bbox Domain bounding box.
+ * @param  array     The input 2D array to be translated. This array remains
+ *                   unmodified.
+ * @param  dx        The translation distance along the x-axis. Positive values
+ *                   shift the array to the right.
+ * @param  dy        The translation distance along the y-axis. Positive values
+ *                   shift the array downward.
+ * @param  periodic  If set to `true`, the translation is periodic, meaning that
+ *                   elements that move out of one side of the array reappear on
+ *                   the opposite side. If `false`, the areas exposed by the
+ *                   translation are filled with zeros. The default is `false`.
+ * @param  p_noise_x Optional pointer to a 2D array that contains x-direction
+ *                   noise to be added to the translation. If provided, the
+ *                   noise values are added to `dx` on a per-element basis.
+ * @param  p_noise_y Optional pointer to a 2D array that contains y-direction
+ *                   noise to be added to the translation. If provided, the
+ *                   noise values are added to `dy` on a per-element basis.
+ * @param  bbox      Domain bounding box.
  *
- * @return A new 2D array that is the result of translating the input `array` by
- * the specified `dx` and `dy` values.
+ * @return           A new 2D array that is the result of translating the input
+ *                   `array` by the specified `dx` and `dy` values.
  *
  * **Example**
  * @include ex_translate.cpp
@@ -183,8 +183,8 @@ Array translate(const Array &array,
  * and `p_dy`.
  *
  * @param array Input array to be warped.
- * @param p_dx Pointer to the array containing x-axis translation values.
- * @param p_dy Pointer to the array containing y-axis translation values.
+ * @param p_dx  Pointer to the array containing x-axis translation values.
+ * @param p_dy  Pointer to the array containing y-axis translation values.
  *
  * **Example**
  * @include ex_warp.cpp
@@ -203,12 +203,12 @@ void warp(Array &array, const Array *p_dx, const Array *p_dy);
  * warp amount, pre-filtering radius, and displacement direction can be
  * customized.
  *
- * @param array Input array to be warped.
- * @param angle The angle to determine the gradient direction.
- * @param amount Amount of displacement (default is 0.02f).
- * @param ir Pre-filtering radius to smooth the input data (default is 4).
+ * @param array   Input array to be warped.
+ * @param angle   The angle to determine the gradient direction.
+ * @param amount  Amount of displacement (default is 0.02f).
+ * @param ir      Pre-filtering radius to smooth the input data (default is 4).
  * @param reverse Reverse the displacement direction if set to true (default is
- * false).
+ *                false).
  *
  * **Example**
  * @include ex_warp_directional.cpp
@@ -226,19 +226,19 @@ void warp_directional(Array &array,
  * @brief Apply a warping effect following the downward local gradient direction
  * (deflate/inflate effect) with a mask.
  *
- * This overloaded function applies a warping effect to the input array using
- * a specified mask. The mask controls the regions where the warp effect is
+ * This overloaded function applies a warping effect to the input array using a
+ * specified mask. The mask controls the regions where the warp effect is
  * applied, with values expected in the range [0, 1]. The warp is based on the
  * downward local gradient direction.
  *
- * @param array Input array to be warped.
- * @param angle The angle to determine the gradient direction.
- * @param p_mask Pointer to the mask array that filters the effect, expected in
- * [0, 1].
- * @param amount Amount of displacement (default is 0.02f).
- * @param ir Pre-filtering radius to smooth the input data (default is 4).
+ * @param array   Input array to be warped.
+ * @param angle   The angle to determine the gradient direction.
+ * @param p_mask  Pointer to the mask array that filters the effect, expected in
+ *                [0, 1].
+ * @param amount  Amount of displacement (default is 0.02f).
+ * @param ir      Pre-filtering radius to smooth the input data (default is 4).
  * @param reverse Reverse the displacement direction if set to true (default is
- * false).
+ *                false).
  *
  * **Example**
  * @include ex_warp_directional.cpp
@@ -262,11 +262,11 @@ void warp_directional(Array       &array,
  * The effect can be customized by adjusting the displacement amount,
  * pre-filtering radius, and whether the displacement direction is reversed.
  *
- * @param array Input array to be warped.
- * @param amount Amount of displacement (default is 0.02f).
- * @param ir Pre-filtering radius to smooth the input data (default is 4).
+ * @param array   Input array to be warped.
+ * @param amount  Amount of displacement (default is 0.02f).
+ * @param ir      Pre-filtering radius to smooth the input data (default is 4).
  * @param reverse Reverse the displacement direction if set to true (default is
- * false).
+ *                false).
  *
  * **Example**
  * @include ex_warp_downslope.cpp
@@ -283,18 +283,18 @@ void warp_downslope(Array &array,
  * @brief Apply a warping effect following the downward local gradient direction
  * (deflate/inflate effect) with a mask.
  *
- * This overloaded function applies a warping effect to the input array based
- * on the downward local gradient direction using a specified mask. The mask
+ * This overloaded function applies a warping effect to the input array based on
+ * the downward local gradient direction using a specified mask. The mask
  * controls where the warp effect is applied, with values expected in the range
  * [0, 1]. This function allows for additional customization of the warp effect.
  *
- * @param array Input array to be warped.
- * @param p_mask Pointer to the mask array that filters the effect, expected in
- * [0, 1].
- * @param amount Amount of displacement (default is 0.02f).
- * @param ir Pre-filtering radius to smooth the input data (default is 4).
+ * @param array   Input array to be warped.
+ * @param p_mask  Pointer to the mask array that filters the effect, expected in
+ *                [0, 1].
+ * @param amount  Amount of displacement (default is 0.02f).
+ * @param ir      Pre-filtering radius to smooth the input data (default is 4).
  * @param reverse Reverse the displacement direction if set to true (default is
- * false).
+ *                false).
  *
  * **Example**
  * @include ex_warp_downslope.cpp
@@ -318,26 +318,33 @@ void warp_downslope(Array       &array,
  * array wraps around, and non-periodic conditions, where areas outside the
  * original array bounds are filled with zeros.
  *
- * @param array The input 2D array to be zoomed. This array remains unmodified.
- * @param zoom_factor The factor by which to zoom the array. A value greater
- * than 1 enlarges the contents, while a value between 0 and 1 reduces them.
- * @param periodic If set to `true`, the zoom is periodic, meaning that elements
- * moving out of the array bounds due to the zoom reappear on the opposite side.
- * If `false`, areas outside the original array bounds are filled with zeros.
- * The default is `false`.
- * @param center The center of the zoom operation, specified as a `Vec2<float>`
+ * @param  array       The input 2D array to be zoomed. This array remains
+ *                     unmodified.
+ * @param  zoom_factor The factor by which to zoom the array. A value greater
+ *                     than 1 enlarges the contents, while a value between 0 and
+ *                     1 reduces them.
+ * @param  periodic    If set to `true`, the zoom is periodic, meaning that
+ *                     elements moving out of the array bounds due to the zoom
+ *                     reappear on the opposite side. If `false`, areas outside
+ *                     the original array bounds are filled with zeros. The
+ *                     default is `false`.
+ * @param  center      The center of the zoom operation, specified as a
+ *                     `Vec2<float>`
  * with coordinates in the range [0, 1], where {0.5f, 0.5f} represents the
  * center of the array. The default center is {0.5f, 0.5f}.
- * @param p_noise_x Optional pointer to a 2D array that contains x-direction
- * noise to be added during the zoom operation. If provided, the noise values
- * are applied to the x-coordinates of the zoomed array on a per-element basis.
- * @param p_noise_y Optional pointer to a 2D array that contains y-direction
- * noise to be added during the zoom operation. If provided, the noise values
- * are applied to the y-coordinates of the zoomed array on a per-element basis.
- * @param bbox Domain bounding box.
+ * @param  p_noise_x   Optional pointer to a 2D array that contains x-direction
+ *                     noise to be added during the zoom operation. If provided,
+ *                     the noise values are applied to the x-coordinates of the
+ *                     zoomed array on a per-element basis.
+ * @param  p_noise_y   Optional pointer to a 2D array that contains y-direction
+ *                     noise to be added during the zoom operation. If provided,
+ *                     the noise values are applied to the y-coordinates of the
+ *                     zoomed array on a per-element basis.
+ * @param  bbox        Domain bounding box.
  *
- * @return A new 2D array that is the result of applying the zoom effect to the
- * input `array` by the specified `zoom_factor` and centered at the specified
+ * @return             A new 2D array that is the result of applying the zoom
+ *                     effect to the input `array` by the specified
+ *                     `zoom_factor` and centered at the specified
  * `center`.
  *
  * **Example**

@@ -1,10 +1,10 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file path.hpp
- * @author Otto Link (otto.link.bv@gmail.com)
+ * @author  Otto Link (otto.link.bv@gmail.com)
  * @brief Path class for manipulating and analyzing paths in 2D space.
  *
  * This file defines the `Path` class, which extends the `Cloud` class to
@@ -49,27 +49,26 @@ class Path : public Cloud
 {
 public:
   /**
-   * @brief Defines whether the path is closed or open.
-   * If `true`, the path is closed, forming a loop. If `false`, the path is
-   * open.
+   * @brief Defines whether the path is closed or open. If `true`, the path is
+   * closed, forming a loop. If `false`, the path is open.
    */
   bool closed;
 
   /**
-   * @brief Construct a new Path object with default properties.
-   * Initializes an empty path with the `closed` property set to `false`.
+   * @brief Construct a new Path object with default properties. Initializes an
+   * empty path with the `closed` property set to `false`.
    * @param closed Open/close path flag.
    */
   Path(bool closed = false) : Cloud(), closed(closed){};
 
   /**
    * @brief Construct a new Path object with random positions and values.
-   * Initializes a path with a specified number of points, random values,
-   * and the option to be open or closed.
+   * Initializes a path with a specified number of points, random values, and
+   * the option to be open or closed.
    * @param npoints Number of points to generate.
-   * @param seed Random seed number for generating random values.
-   * @param bbox Bounding box for random point generation.
-   * @param closed Open/close path flag.
+   * @param seed    Random seed number for generating random values.
+   * @param bbox    Bounding box for random point generation.
+   * @param closed  Open/close path flag.
    */
   Path(int         npoints,
        uint        seed,
@@ -78,9 +77,8 @@ public:
       : Cloud(npoints, seed, bbox), closed(closed){};
 
   /**
-   * @brief Construct a new Path object based on a list of points.
-   * Initializes a path with the specified points and an option to be open or
-   * closed.
+   * @brief Construct a new Path object based on a list of points. Initializes a
+   * path with the specified points and an option to be open or closed.
    * @param points List of points defining the path.
    * @param closed Open/close path flag.
    */
@@ -91,8 +89,8 @@ public:
    * @brief Construct a new Path object based on `x` and `y` coordinates.
    * Initializes a path with the specified `x` and `y` coordinates and an option
    * to be open or closed.
-   * @param x List of `x` coordinates for the points.
-   * @param y List of `y` coordinates for the points.
+   * @param x      List of `x` coordinates for the points.
+   * @param y      List of `y` coordinates for the points.
    * @param closed Open/close path flag.
    */
   Path(std::vector<float> x, std::vector<float> y, bool closed = false)
@@ -102,9 +100,9 @@ public:
    * @brief Construct a new Path object based on `x`, `y` coordinates, and
    * values. Initializes a path with the specified `x` and `y` coordinates,
    * associated values, and an option to be open or closed.
-   * @param x List of `x` coordinates for the points.
-   * @param y List of `y` coordinates for the points.
-   * @param v List of values associated with the points.
+   * @param x      List of `x` coordinates for the points.
+   * @param y      List of `y` coordinates for the points.
+   * @param v      List of values associated with the points.
    * @param closed Open/close path flag.
    */
   Path(std::vector<float> x,
@@ -129,9 +127,9 @@ public:
    * @image html ex_path_bezier.png
    *
    * @param curvature_ratio Amount of curvature, usually in the range [-1, 1],
-   * with positive values resulting in more curvature.
-   * @param edge_divisions Number of subdivisions per edge to achieve smooth
-   * curves.
+   *                        with positive values resulting in more curvature.
+   * @param edge_divisions  Number of subdivisions per edge to achieve smooth
+   *                        curves.
    */
   void bezier(float curvature_ratio = 0.3f, int edge_divisions = 10);
 
@@ -150,8 +148,8 @@ public:
    * @image html ex_path_bezier_round.png
    *
    * @param curvature_ratio Amount of curvature, typically within [-1, 1], with
-   * positive values for increased curvature.
-   * @param edge_divisions Number of edge subdivisions for smoothness.
+   *                        positive values for increased curvature.
+   * @param edge_divisions  Number of edge subdivisions for smoothness.
    */
   void bezier_round(float curvature_ratio = 0.3f, int edge_divisions = 10);
 
@@ -174,7 +172,7 @@ public:
    * @image html ex_path_bspline.png
    *
    * @param edge_divisions Number of subdivisions per edge to achieve a smooth
-   * B-Spline curve.
+   *                       B-Spline curve.
    *
    * @warning This function does not correctly handle closed polylines.
    */
@@ -199,7 +197,7 @@ public:
    * @image html ex_path_catmullrom.png
    *
    * @param edge_divisions Number of edge subdivisions to create a smooth
-   * Catmull-Rom curve.
+   *                       Catmull-Rom curve.
    *
    * @warning This function does not correctly handle closed polylines.
    */
@@ -229,7 +227,7 @@ public:
    *
    * @param edge_divisions The number of divisions for each edge of the path.
    *                       Default is 10, which provides a balanced level of
-   * smoothing.
+   *                       smoothing.
    *
    * **Example**
    * @include ex_path_decasteljau.cpp
@@ -299,20 +297,20 @@ public:
    * **Result**
    * @image html ex_path_dijkstra.png
    *
-   * @param array Elevation map used to determine elevation differences along
-   * the path.
-   * @param bbox Bounding box of the domain, defining the area where elevation
-   * data is valid.
-   * @param edge_divisions Number of subdivisions per edge; set to 0 for
-   * automatic division based on array shape.
-   * @param elevation_ratio Ratio used to balance absolute elevation and
-   * elevation difference in the cost function.
+   * @param array             Elevation map used to determine elevation
+   *                          differences along the path.
+   * @param bbox              Bounding box of the domain, defining the area
+   * where elevation data is valid.
+   * @param edge_divisions    Number of subdivisions per edge; set to 0 for
+   *                          automatic division based on array shape.
+   * @param elevation_ratio   Ratio used to balance absolute elevation and
+   *                          elevation difference in the cost function.
    * @param distance_exponent Exponent used in the Dijkstra weight function to
-   * adjust the influence of distance.
-   * @param p_mask_nogo Optional mask array defining areas to avoid; points in
-   * these areas will not be considered.
+   *                          adjust the influence of distance.
+   * @param p_mask_nogo       Optional mask array defining areas to avoid;
+   * points in these areas will not be considered.
    *
-   * @see Array::find_path_dijkstra
+   * @see                     Array::find_path_dijkstra
    */
   void dijkstra(Array      &array,
                 Vec4<float> bbox,
@@ -359,19 +357,20 @@ public:
    * **Result**
    * @image html ex_path_fractalize.png
    *
-   * @param iterations Number of iterations to apply the fractalization process.
-   * @param seed Seed value for random number generation, ensuring
-   * reproducibility.
-   * @param sigma Standard deviation of the Gaussian displacement, relative to
-   * the distance between points.
-   * @param orientation Determines the displacement direction: `0` for random,
+   * @param iterations    Number of iterations to apply the fractalization
+   *                      process.
+   * @param seed          Seed value for random number generation, ensuring
+   *                      reproducibility.
+   * @param sigma         Standard deviation of the Gaussian displacement,
+   *                      relative to the distance between points.
+   * @param orientation   Determines the displacement direction: `0` for random,
    * `1` for inflation, `-1` for deflation.
-   * @param persistence Factor that adjusts the noise intensity across
-   * iterations.
+   * @param persistence   Factor that adjusts the noise intensity across
+   *                      iterations.
    * @param control_field Optional pointer to an array that locally modifies the
-   * displacement amplitude.
-   * @param bbox Bounding box that defines the valid area for the control
-   * field's influence.
+   *                      displacement amplitude.
+   * @param bbox          Bounding box that defines the valid area for the
+   * control field's influence.
    */
   void fractalize(int         iterations,
                   uint        seed,
@@ -389,8 +388,8 @@ public:
    * point along the path as a fraction of the total path length.
    *
    * @return std::vector<float> Vector of arc length values, where each entry
-   * corresponds to a point on the path and represents the normalized distance
-   * from the start of the path to that point.
+   *         corresponds to a point on the path and represents the normalized
+   *         distance from the start of the path to that point.
    */
   std::vector<float> get_arc_length();
 
@@ -402,8 +401,8 @@ public:
    * distances from the start of the path to each point.
    *
    * @return std::vector<float> Vector of cumulative distance values, where each
-   * entry represents the distance from the start of the path to the respective
-   * point.
+   *         entry represents the distance from the start of the path to the
+   *         respective point.
    */
   std::vector<float> get_cumulative_distance();
 
@@ -415,7 +414,7 @@ public:
    * color, intensity, or other metrics.
    *
    * @return std::vector<float> Vector of values assigned to the points on the
-   * path.
+   *         path.
    */
   std::vector<float> get_values() const;
 
@@ -439,7 +438,7 @@ public:
    * the coordinates.
    *
    * @return std::vector<float> Vector of interleaved `x` and `y` coordinates of
-   * the points on the path.
+   *         the points on the path.
    */
   std::vector<float> get_xy() const;
 
@@ -457,9 +456,9 @@ public:
   /**
    * @brief Enforces monotonicity on the values of the points in the path.
    *
-   * This method adjusts the `v` values of the points in the path to ensure
-   * that they are either monotonically decreasing or increasing, based on
-   * the input parameter.
+   * This method adjusts the `v` values of the points in the path to ensure that
+   * they are either monotonically decreasing or increasing, based on the input
+   * parameter.
    *
    * @param decreasing If true, enforces a monotonically decreasing order for
    * the values. If false, enforces a monotonically increasing order for the
@@ -486,11 +485,13 @@ public:
    * **Result**
    * @image html ex_path_meanderize.png
    *
-   * @param ratio Amplitude ratio of the meanders. Typically a positive value.
-   * @param noise_ratio Ratio of randomness introduced during meandering.
-   * Default is 0.1.
-   * @param seed Seed for random number generation. Default is 1.
-   * @param iterations Number of iterations to apply meandering. Default is 1.
+   * @param ratio          Amplitude ratio of the meanders. Typically a positive
+   *                       value.
+   * @param noise_ratio    Ratio of randomness introduced during meandering.
+   *                       Default is 0.1.
+   * @param seed           Seed for random number generation. Default is 1.
+   * @param iterations     Number of iterations to apply meandering. Default
+   * is 1.
    * @param edge_divisions Number of sub-divisions of each edge. Default is 10.
    */
   void meanderize(float ratio,
@@ -508,7 +509,7 @@ public:
    * its order.
    *
    * @param start_index Index of the starting point for the nearest neighbor
-   * search. Default is 0.
+   *                    search. Default is 0.
    */
   void reorder_nns(int start_index = 0);
 
@@ -560,9 +561,9 @@ public:
    * @image html ex_path_sdf1.png
    * @image html ex_path_sdf2.png
    *
-   * @param x x coordinate of the point.
-   * @param y y coordinate of the point.
-   * @return float Angle of the closest edge in radians.
+   * @param  x x coordinate of the point.
+   * @param  y y coordinate of the point.
+   * @return   float Angle of the closest edge in radians.
    */
   float sdf_angle_closed(float x, float y);
 
@@ -583,9 +584,9 @@ public:
    * @image html ex_path_sdf1.png
    * @image html ex_path_sdf2.png
    *
-   * @param x x coordinate of the point.
-   * @param y y coordinate of the point.
-   * @return float Angle of the closest edge in radians.
+   * @param  x x coordinate of the point.
+   * @param  y y coordinate of the point.
+   * @return   float Angle of the closest edge in radians.
    */
   float sdf_angle_open(float x, float y);
 
@@ -606,9 +607,9 @@ public:
    * @image html ex_path_sdf1.png
    * @image html ex_path_sdf2.png
    *
-   * @param x x coordinate of the point.
-   * @param y y coordinate of the point.
-   * @return float Signed distance to the nearest edge.
+   * @param  x x coordinate of the point.
+   * @param  y y coordinate of the point.
+   * @return   float Signed distance to the nearest edge.
    */
   float sdf_closed(float x, float y);
 
@@ -629,10 +630,10 @@ public:
    * @image html ex_path_sdf1.png
    * @image html ex_path_sdf2.png
    *
-   * @param x x coordinate of the point.
-   * @param y y coordinate of the point.
-   * @param slope Downslope factor influencing the elevation decrease.
-   * @return float Adjusted elevation value based on the downslope.
+   * @param  x     x coordinate of the point.
+   * @param  y     y coordinate of the point.
+   * @param  slope Downslope factor influencing the elevation decrease.
+   * @return       float Adjusted elevation value based on the downslope.
    */
   float sdf_elevation_closed(float x, float y, float slope);
 
@@ -653,10 +654,10 @@ public:
    * @image html ex_path_sdf1.png
    * @image html ex_path_sdf2.png
    *
-   * @param x x coordinate of the point.
-   * @param y y coordinate of the point.
-   * @param slope Downslope factor affecting the elevation decrease.
-   * @return float Adjusted elevation value based on the downslope.
+   * @param  x     x coordinate of the point.
+   * @param  y     y coordinate of the point.
+   * @param  slope Downslope factor affecting the elevation decrease.
+   * @return       float Adjusted elevation value based on the downslope.
    */
   float sdf_elevation_open(float x, float y, float slope);
 
@@ -677,9 +678,9 @@ public:
    * @image html ex_path_sdf1.png
    * @image html ex_path_sdf2.png
    *
-   * @param x x coordinate of the point.
-   * @param y y coordinate of the point.
-   * @return float Signed distance to the nearest edge of the open path.
+   * @param  x x coordinate of the point.
+   * @param  y y coordinate of the point.
+   * @return   float Signed distance to the nearest edge of the open path.
    */
   float sdf_open(float x, float y);
 
@@ -695,16 +696,19 @@ public:
    * effect can be applied to gradually adjust point positions based on previous
    * points.
    *
-   * @param navg Number of neighboring points to consider on each side of the
-   * current point during the smoothing process. Higher values result in broader
-   * smoothing.
+   * @param navg                Number of neighboring points to consider on each
+   *                            side of the current point during the smoothing
+   *                            process. Higher values result in broader
+   *                            smoothing.
    * @param averaging_intensity The weight given to the averaged points. A value
-   * of 1.0 applies full intensity, resulting in a complete averaging of the
-   * neighboring points. Lower values retain more of the original point's
-   * position.
-   * @param inertia The factor by which each point is influenced by its previous
-   * point after the initial smoothing pass. A value of 0 has no inertia effect,
-   * while a higher value blends the current point's position with that of the
+   *                            of 1.0 applies full intensity, resulting in a
+   *                            complete averaging of the neighboring points.
+   *                            Lower values retain more of the original point's
+   *                            position.
+   * @param inertia             The factor by which each point is influenced by
+   *                            its previous point after the initial smoothing
+   *                            pass. A value of 0 has no inertia effect, while
+   * a higher value blends the current point's position with that of the
    * preceding point, creating a trailing effect.
    *
    * **Example**
@@ -725,7 +729,7 @@ public:
    * for simplifying the path or reducing data size.
    *
    * @param step The interval of points to keep. For example, a step of 2 will
-   * keep every second point.
+   *             keep every second point.
    */
   void subsample(int step);
 
@@ -739,8 +743,8 @@ public:
    * **Example**
    * @include ex_path_to_array.cpp
    *
-   * @param array The array to which the path points will be projected.
-   * @param bbox Bounding box defining the domain of the array.
+   * @param array  The array to which the path points will be projected.
+   * @param bbox   Bounding box defining the domain of the array.
    * @param filled Boolean flag indicating whether to perform flood filling of
    * the path's contour.
    */
@@ -762,17 +766,19 @@ public:
    * **Result**
    * @image html ex_path_sdf.png
    *
-   * @param shape Shape of the output array, defining its dimensions.
-   * @param bbox Bounding box specifying the region to consider for the SDF
-   * calculation.
-   * @param p_noise_x Optional reference to an array of noise values in the
-   * x-direction used for domain warping. If not provided, no noise is applied.
-   * @param p_noise_y Optional reference to an array of noise values in the
-   * y-direction used for domain warping. If not provided, no noise is applied.
-   * @param bbox_array Bounding box of the destination array, used to map the
-   * output array coordinates to the path coordinates.
-   * @return Array The resulting array filled with the signed distance function
-   * values.
+   * @param  shape      Shape of the output array, defining its dimensions.
+   * @param  bbox       Bounding box specifying the region to consider for the
+   * SDF calculation.
+   * @param  p_noise_x  Optional reference to an array of noise values in the
+   *                    x-direction used for domain warping. If not provided, no
+   *                    noise is applied.
+   * @param  p_noise_y  Optional reference to an array of noise values in the
+   *                    y-direction used for domain warping. If not provided, no
+   *                    noise is applied.
+   * @param  bbox_array Bounding box of the destination array, used to map the
+   *                    output array coordinates to the path coordinates.
+   * @return            Array The resulting array filled with the signed
+   * distance function values.
    */
   Array to_array_sdf(Vec2<int>   shape,
                      Vec4<float> bbox,
@@ -812,22 +818,27 @@ public:
  * **Result**
  * @image html ex_dig_path.png
  *
- * @param z Input array representing the heightmap to be modified.
- * @param path The path to be dug into the heightmap, with coordinates with
- * respect to a unit-square. The path will be processed to create the dig
- * effect.
- * @param width Radius of the path width in pixels. This determines how wide the
- * dug path will be.
- * @param decay Radius of the path border decay in pixels. This controls how
- * quickly the effect of the path fades out towards the edges.
+ * @param z                 Input array representing the heightmap to be
+ *                          modified.
+ * @param path              The path to be dug into the heightmap, with
+ *                          coordinates with respect to a unit-square. The path
+ *                          will be processed to create the dig effect.
+ * @param width             Radius of the path width in pixels. This determines
+ *                          how wide the dug path will be.
+ * @param decay             Radius of the path border decay in pixels. This
+ *                          controls how quickly the effect of the path fades
+ *                          out towards the edges.
  * @param flattening_radius Radius used to flatten the elevation of the path,
- * creating a smooth transition. This is measured in pixels.
- * @param force_downhill If `true`, the path's elevation will be forced to
- * decrease monotonically, creating a downhill effect.
- * @param bbox Bounding box specifying the region of the heightmap to consider
- * for the digging operation. It defines the area where the path is applied.
- * @param depth Optional depth parameter to specify the maximum depth of the
- * dig. If not provided, the default depth of 0.f is used.
+ *                          creating a smooth transition. This is measured in
+ *                          pixels.
+ * @param force_downhill    If `true`, the path's elevation will be forced to
+ *                          decrease monotonically, creating a downhill effect.
+ * @param bbox              Bounding box specifying the region of the heightmap
+ *                          to consider for the digging operation. It defines
+ *                          the area where the path is applied.
+ * @param depth             Optional depth parameter to specify the maximum
+ *                          depth of the dig. If not provided, the default depth
+ *                          of 0.f is used.
  */
 void dig_path(Array      &z,
               Path       &path,
@@ -846,20 +857,21 @@ void dig_path(Array      &z,
  * and riverbank slopes, noise effects, and merging behavior to create a
  * realistic river profile.
  *
- * @param z The input 2D array representing the elevation map. This array will
- * be modified in place.
- * @param path The path along which the river is to be carved, represented as a
- * sequence of points, with coordinates with respect to a unit-square.
+ * @param z               The input 2D array representing the elevation map.
+ *                        This array will be modified in place.
+ * @param path            The path along which the river is to be carved,
+ *                        represented as a sequence of points, with coordinates
+ *                        with respect to a unit-square.
  * @param riverbank_talus The slope of the riverbank, controlling how steep the
- * river's edges are.
- * @param merging_ir The merging radius, specifying how far the effects of
- * multiple rivers combine.
- * @param riverbed_talus The slope of the riverbed, controlling how steep the
- * riverbed is (default: 0.0).
- * @param noise_ratio The proportion of random noise applied to the river's
- * shape for realism (default: 0.9).
- * @param seed The seed for the random noise generator, ensuring reproducibility
- * (default: 0).
+ *                        river's edges are.
+ * @param merging_ir      The merging radius, specifying how far the effects of
+ *                        multiple rivers combine.
+ * @param riverbed_talus  The slope of the riverbed, controlling how steep the
+ *                        riverbed is (default: 0.0).
+ * @param noise_ratio     The proportion of random noise applied to the river's
+ *                        shape for realism (default: 0.9).
+ * @param seed            The seed for the random noise generator, ensuring
+ *                        reproducibility (default: 0).
  *
  * **Example**
  * @include ex_flow_stream.cpp
