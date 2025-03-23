@@ -6,6 +6,7 @@
  * @file curvature.hpp
  * @author Otto Link (otto.link.bv@gmail.com)
  * @brief Header file defining a collection of functions for curvature analysis.
+ *
  * @copyright Copyright (c) 2023 Otto Link
  */
 #pragma once

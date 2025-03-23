@@ -4,7 +4,7 @@
 
 /**
  * @file tensor.hpp
- * @author  Otto Link (otto.link.bv@gmail.com)
+ * @author Otto Link (otto.link.bv@gmail.com)
  * @brief Header file for the Tensor class.
  *
  * This file contains the definition of the `Tensor` class, which is used for
@@ -12,11 +12,7 @@
  * values. The class provides methods for accessing elements, performing basic
  * mathematical operations, and exporting data to image formats.
  *
- * @version 0.1
- * @date 2023-05-07
- *
  * @copyright Copyright (c) 2023 Otto Link
- *
  */
 
 #pragma once

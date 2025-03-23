@@ -5,10 +5,10 @@
 /**
  * @file shortest_path.hpp
  * @author Otto Link (otto.link.bv@gmail.com)
- * @brief
+ * @brief Implements shortest path algorithms including Dijkstra's method for 2D
+ * array data representation.
  *
  * @copyright Copyright (c) 2023
- *
  */
 #pragma once
 
@@ -21,10 +21,10 @@ namespace hmap
  * @brief Finds the path with the lowest elevation and elevation difference
  * between two points in a 2D array using Dijkstra's algorithm.
  *
- *        This function calculates the shortest path considering both elevation
- * and elevation differences. It uses a cost function that balances between
- * absolute elevation and elevation change. The path is determined by minimizing
- * the combined cost function.
+ * This function calculates the shortest path considering both elevation and
+ * elevation differences. It uses a cost function that balances between absolute
+ * elevation and elevation change. The path is determined by minimizing the
+ * combined cost function.
  *
  * @see                       @cite Dijkstra1971 and
  *                            https://math.stackexchange.com/questions/3088292

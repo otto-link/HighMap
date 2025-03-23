@@ -4,13 +4,14 @@
 
 /**
  * @file functions.hpp
- * @author  Otto Link (otto.link.bv@gmail.com)
- * @brief
- * @version 0.1
- * @date 2023-04-30
+ * @author Otto Link (otto.link.bv@gmail.com)
+ * @brief Defines modular function objects for procedural generation, including
+ * noise algorithms (Perlin, Simplex, Worley), geometric primitives (disks,
+ * waves, slopes), and fractal compositions (FBM, IQ, Swiss). Provides parameter
+ * control for frequency, seeding, and layer blending to construct complex
+ * procedural patterns.
  *
  * @copyright Copyright (c) 2023
- *
  */
 #pragma once
 #include <functional>

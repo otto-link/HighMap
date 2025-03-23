@@ -4,7 +4,7 @@
 
 /**
  * @file hydrology.hpp
- * @author  Otto Link (otto.link.bv@gmail.com)
+ * @author Otto Link (otto.link.bv@gmail.com)
  * @brief Header file for hydrological modeling functions and utilities.
  *
  * This header file declares functions and utilities for hydrological modeling,
@@ -17,9 +17,6 @@
  * - Identification of flow sinks in heightmaps.
  * - Support for multiple flow direction models with customizable flow-partition
  * exponents.
- *
- * @version 0.1
- * @date 2023-05-06
  *
  * @copyright Copyright (c) 2023 Otto Link
  */

@@ -4,13 +4,13 @@
 
 /**
  * @file colormaps.hpp
- * @author  Otto Link (otto.link.bv@gmail.com)
- * @brief
- * @version 0.1
- * @date 2023-04-29
+ * @author Otto Link (otto.link.bv@gmail.com)
+ * @brief Predefined color mapping schemes for data visualization, including
+ * perceptual uniform (Viridis, Inferno), scientific (Seismic, Terrain), and
+ * gradient-based (Jet, Hot) colormaps. Provides enum mappings and RGB data for
+ * seamless integration with visualization pipelines.
  *
  * @copyright Copyright (c) 2023
- *
  */
 #pragma once
 #include <map>

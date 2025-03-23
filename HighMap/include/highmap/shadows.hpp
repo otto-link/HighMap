@@ -4,7 +4,7 @@
 
 /**
  * @file shadows.hpp
- * @author  Otto Link (otto.link.bv@gmail.com)
+ * @author Otto Link (otto.link.bv@gmail.com)
  * @brief Provides functions for generating shaded relief maps, shadow
  * intensity, and topographic shading.
  *
@@ -12,9 +12,6 @@
  * shading effects from heightmap data. These functions include shaded relief
  * (hillshading), shadow intensity based on grid and heightmap techniques, and
  * topographic shading.
- *
- * @version 0.1
- * @date 2023-04-30
  *
  * @copyright Copyright (c) 2023 Otto Link
  */

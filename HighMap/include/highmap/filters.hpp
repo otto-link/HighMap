@@ -4,15 +4,12 @@
 
 /**
  * @file filters.hpp
- * @author  Otto Link (otto.link.bv@gmail.com)
+ * @author Otto Link (otto.link.bv@gmail.com)
  * @brief Header file for filter-related functions and classes.
  *
  * This header file contains declarations for various filter functions and
  * classes used within the project. These filters are typically used for
  * processing data streams or collections according to specific criteria.
- *
- * @version 0.1
- * @date 2023-04-30
  *
  * @copyright Copyright (c) 2023 Otto Link
  */

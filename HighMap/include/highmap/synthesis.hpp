@@ -4,7 +4,7 @@
 
 /**
  * @file synthesis.hpp
- * @author  Otto Link (otto.link.bv@gmail.com)
+ * @author Otto Link (otto.link.bv@gmail.com)
  * @brief Provides functions for synthesizing new heightmaps from input arrays.
  *
  * This header file defines functions for synthesizing new heightmaps by using
@@ -23,9 +23,6 @@
  * stitching patches from an input heightmap.
  * - `quilting_shuffle`: Similar to `quilting_expand`, but reshuffles patches to
  * generate a new heightmap with the same shape.
- *
- * @version 0.1
- * @date 2023-04-30
  *
  * @copyright Copyright (c) 2023 Otto Link
  */

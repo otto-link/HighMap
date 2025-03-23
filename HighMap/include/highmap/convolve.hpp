@@ -4,7 +4,7 @@
 
 /**
  * @file convolve.hpp
- * @author  Otto Link (otto.link.bv@gmail.com)
+ * @author Otto Link (otto.link.bv@gmail.com)
  * @brief Provides functions for convolution operations on arrays.
  *
  * This header file defines functions for performing convolution operations on
@@ -12,9 +12,6 @@
  * convolutions along different directions, 2D convolutions with symmetry
  * boundary conditions, truncated 2D convolutions, and approximate convolutions
  * using Singular Value Decomposition (SVD).
- *
- * @version 0.1
- * @date 2023-04-30
  *
  * @copyright Copyright (c) 2023 Otto Link
  */

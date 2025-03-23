@@ -4,16 +4,13 @@
 
 /**
  * @file export.hpp
- * @author  Otto Link (otto.link.bv@gmail.com)
+ * @author Otto Link (otto.link.bv@gmail.com)
  * @brief Header file for asset export functionalities.
  *
  * This header file declares functions and types related to exporting assets in
  * various formats. It includes functionality for exporting heightmaps,
  * generating 3D assets in different file formats, and handling export options
  * such as mesh types, file formats, and scaling factors.
- *
- * @version 0.1
- * @date 2023-05-08
  *
  * @copyright Copyright (c) 2023 Otto Link
  */

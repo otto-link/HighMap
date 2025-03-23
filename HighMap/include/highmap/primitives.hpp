@@ -4,13 +4,14 @@
 
 /**
  * @file primitives.hpp
- * @author  Otto Link (otto.link.bv@gmail.com)
- * @brief
- * @version 0.1
- * @date 2023-04-30
+ * @author Otto Link (otto.link.bv@gmail.com)
+ * @brief Core procedural primitives for heightmap generation, including noise
+ * functions (Perlin, Gabor, Voronoi, Phasor), terrain features (hills, craters,
+ * calderas, dunes), geometric shapes (disk, rectangle), and advanced patterns
+ * (DLA, Dendry). Supports both CPU and GPU-accelerated generation for complex
+ * terrain synthesis.
  *
  * @copyright Copyright (c) 2023
- *
  */
 #pragma once
 

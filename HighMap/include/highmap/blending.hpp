@@ -4,7 +4,7 @@
 
 /**
  * @file blending.hpp
- * @author  Otto Link (otto.link.bv@gmail.com)
+ * @author Otto Link (otto.link.bv@gmail.com)
  * @brief Provides functions for various array blending modes.
  *
  * This header file contains functions for blending two arrays using different
@@ -12,9 +12,6 @@
  * overlay, soft light, and gradient-based blending. These functions are useful
  * for image processing and heightmap manipulations where blending effects are
  * required.
- *
- * @version 0.1
- * @date 2023-05-08
  *
  * @copyright Copyright (c) 2023 Otto Link
  */

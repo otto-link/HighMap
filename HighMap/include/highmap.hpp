@@ -4,13 +4,10 @@
 
 /**
  * @file highmap.hpp
- * @author  Otto Link (otto.link.bv@gmail.com)
+ * @author Otto Link (otto.link.bv@gmail.com)
  * @brief
- * @version 0.1
- * @date 2023-07-20
  *
  * @copyright Copyright (c) 2023
- *
  */
 #pragma once
 

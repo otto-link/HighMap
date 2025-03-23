@@ -4,11 +4,10 @@
 
 /**
  * @file features.hpp
- * @author  Otto Link (otto.link.bv@gmail.com)
+ * @author Otto Link (otto.link.bv@gmail.com)
  * @brief Header file defining a collection of functions for terrain analysis
  * and feature extraction from heightmaps.
- * @version 0.1
- * @date 2023-04-30
+ *
  * @copyright Copyright (c) 2023 Otto Link
  */
 #pragma once

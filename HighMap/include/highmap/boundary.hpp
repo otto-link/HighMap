@@ -4,16 +4,13 @@
 
 /**
  * @file boundary.hpp
- * @author  Otto Link (otto.link.bv@gmail.com)
+ * @author Otto Link (otto.link.bv@gmail.com)
  * @brief Header file for boundary condition functions and utilities.
  *
  * This header file contains declarations for functions and utilities that
  * manage and enforce boundary conditions in heightmap arrays. The functions
  * include methods for filling, extrapolating, and smoothing values at the
  * boundaries, as well as making arrays periodic and handling symmetry.
- *
- * @version 0.1
- * @date 2023-04-30
  *
  * @copyright Copyright (c) 2023 Otto Link
  */

@@ -4,13 +4,10 @@
 
 /**
  * @file roads.hpp
- * @author  Otto Link (otto.link.bv@gmail.com)
- * @brief
- * @version 0.1
- * @date 2023-06-26
+ * @author Otto Link (otto.link.bv@gmail.com)
+ * @brief Header file for road network generation functions.
  *
  * @copyright Copyright (c) 2023
- *
  */
 #pragma once
 

@@ -4,16 +4,13 @@
 
 /**
  * @file range.hpp
- * @author  Otto Link (otto.link.bv@gmail.com)
+ * @author Otto Link (otto.link.bv@gmail.com)
  * @brief Header file for range control functions and utilities.
  *
  * This header file contains function declarations and utilities for controlling
  * and manipulating the range of data. The provided functions are typically used
  * to constrain, normalize, or adjust data values to fall within specified
  * ranges.
- *
- * @version 0.1
- * @date 2023-04-30
  *
  * @copyright Copyright (c) 2023 Otto Link
  */

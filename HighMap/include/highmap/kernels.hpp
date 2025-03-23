@@ -4,16 +4,13 @@
 
 /**
  * @file kernels.hpp
- * @author  Otto Link (otto.link.bv@gmail.com)
+ * @author Otto Link (otto.link.bv@gmail.com)
  * @brief Header file for kernel functions and utilities.
  *
  * This header file declares functions for generating various types of kernel
  * functions used in statistical and computational applications. These kernels
  * include common types such as biweight, cubic pulse, Lorentzian, and smooth
  * cosine, among others.
- *
- * @version 0.1
- * @date 2023-04-30
  *
  * @copyright Copyright (c) 2023 Otto Link
  */

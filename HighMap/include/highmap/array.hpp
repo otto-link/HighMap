@@ -4,14 +4,11 @@
 
 /**
  * @file array.hpp
- * @author  Otto Link (otto.link.bv@gmail.com)
+ * @author Otto Link (otto.link.bv@gmail.com)
  * @brief Declaration of the Array class for 2D floating-point arrays with
  * various mathematical operations and utilities.
- * @version 0.1
- * @date 2023-05-07
  *
  * @copyright Copyright (c) 2023
- *
  */
 #pragma once
 typedef unsigned int uint;

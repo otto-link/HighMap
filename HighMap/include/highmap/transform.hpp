@@ -4,7 +4,7 @@
 
 /**
  * @file transform.hpp
- * @author  Otto Link (otto.link.bv@gmail.com)
+ * @author Otto Link (otto.link.bv@gmail.com)
  * @brief Header file for array transformation functions including rotation,
  * flipping, warping, and transposition.
  *
@@ -15,11 +15,7 @@
  * data manipulation, and other applications requiring geometric modifications
  * of arrays.
  *
- * @version 0.1
- * @date 2023-04-30
- *
  * @copyright Copyright (c) 2023 Otto Link
- *
  */
 #pragma once
 

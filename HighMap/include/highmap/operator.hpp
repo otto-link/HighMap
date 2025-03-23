@@ -4,11 +4,9 @@
 
 /**
  * @file op.hpp
- * @author  Otto Link (otto.link.bv@gmail.com)
+ * @author Otto Link (otto.link.bv@gmail.com)
  * @brief Provides various operations for manipulating arrays, including kernel
  * addition, interpolation, detrending, and more.
- * @version 0.1
- * @date 2023-04-30
  *
  * This header file defines functions for performing operations on arrays, such
  * as adding kernels, interpolation, detrending, stacking arrays, and

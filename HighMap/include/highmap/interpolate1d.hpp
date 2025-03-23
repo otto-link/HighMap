@@ -4,7 +4,7 @@
 
 /**
  * @file interpolate1d.hpp
- * @author  * Otto Link (otto.link.bv@gmail.com)
+ * @author * Otto Link (otto.link.bv@gmail.com)
  * @brief Defines a 1D interpolation class using the GSL (GNU Scientific
  * Library).
  *
@@ -13,12 +13,7 @@
  * various methods available in the GSL. The interpolation methods include
  * Akima, cubic, linear, polynomial, and Steffen interpolation.
  *
- * @version 0.1
- * @date 2023-04-30
- *
- * @copyright Copyright (c) 2023 Otto Link Distributed under the terms of the
- * GNU General Public License. The full license is in the file LICENSE,
- * distributed with this software.
+ * @copyright Copyright (c) 2023 Otto Link
  */
 #pragma once
 #include <map>
@@ -80,10 +75,9 @@ public:
    * @param  y      A vector of y coordinates (dependent variable).
    * @param  method The interpolation method to use (default is linear).
    *
-   * @throws std::invalid_argumentifxandyhavedifferentsizesor if there are fewer
-   *                than two points. An exception is also thrown if the method
-   *                requires monotonic data and the provided data is not
-   *                monotonic.
+   * @throws std::invalid_argumentifxandyhavedifferentsizes or if there are
+   * fewer than two points. An exception is also thrown if the method requires
+   * monotonic data and the provided data is not monotonic.
    */
   Interpolator1D(const std::vector<float> &x,
                  const std::vector<float> &y,

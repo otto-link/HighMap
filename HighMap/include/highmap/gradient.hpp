@@ -4,15 +4,12 @@
 
 /**
  * @file gradient.hpp
- * @author  Otto Link (otto.link.bv@gmail.com)
+ * @author Otto Link (otto.link.bv@gmail.com)
  * @brief Provides functions for calculating gradients and related operations on
- * arrays.
- * @version 0.1
- * @date 2023-04-30
- *
- * This header file defines functions to compute various gradient operations
- * including gradient norms, gradient angles, and Laplacians for 2D arrays. It
- * supports different gradient filters such as Prewitt, Sobel, and Scharr.
+ * arrays. This header file defines functions to compute various gradient
+ * operations including gradient norms, gradient angles, and Laplacians for 2D
+ * arrays. It supports different gradient filters such as Prewitt, Sobel, and
+ * Scharr.
  *
  * @copyright Copyright (c) 2023 Otto Link
  */

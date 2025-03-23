@@ -4,7 +4,7 @@
 
 /**
  * @file authoring.hpp
- * @author  Otto Link (otto.link.bv@gmail.com)
+ * @author Otto Link (otto.link.bv@gmail.com)
  * @brief Header file containing functions for generating and manipulating
  * heightmaps through various techniques.
  *
@@ -13,9 +13,6 @@
  * reverse midpoint displacement algorithm, and more. These functions offer a
  * range of capabilities for terrain generation, elevation modifications, and
  * heightmap processing.
- *
- * @version 0.1 Initial version
- * @date 2023-05-06
  *
  * @copyright Copyright (c) 2023 Otto Link
  */

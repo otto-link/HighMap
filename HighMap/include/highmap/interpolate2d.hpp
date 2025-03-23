@@ -4,7 +4,7 @@
 
 /**
  * @file interpolate2d.hpp
- * @author  Otto Link (otto.link.bv@gmail.com)
+ * @author Otto Link (otto.link.bv@gmail.com)
  * @brief Header file for 2D interpolation methods.
  *
  * This file provides declarations for functions and enumerations related to 2D
@@ -12,11 +12,7 @@
  * Delaunay triangulation and nearest point interpolation. These functions allow
  * for the interpolation of values on a 2D grid using various techniques.
  *
- * @version 0.1
- * @date 2023-04-30
- *
  * @copyright Copyright (c) 2023 Otto Link
- *
  */
 
 #pragma once

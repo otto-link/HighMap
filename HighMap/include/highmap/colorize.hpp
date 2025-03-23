@@ -4,7 +4,7 @@
 
 /**
  * @file colorize.hpp
- * @author  Otto Link (otto.link.bv@gmail.com)
+ * @author Otto Link (otto.link.bv@gmail.com)
  * @brief Header file for functions related to applying colorization and
  * hillshading.
  *
@@ -13,11 +13,7 @@
  * allow for creating grayscale, histogram-based, and colored images from
  * elevation data and other input arrays.
  *
- * @version 0.1
- * @date 2023-05-08
- *
  * @copyright Copyright (c) 2023 Otto Link
- *
  */
 #pragma once
 #include "highmap/array.hpp"

@@ -4,13 +4,14 @@
 
 /**
  * @file math.hpp
- * @author  Otto Link (otto.link.bv@gmail.com)
- * @brief
- * @version 0.1
- * @date 2023-04-30
+ * @author Otto Link (otto.link.bv@gmail.com)
+ * @brief Provides core mathematical utilities for procedural generation,
+ * including trigonometry, exponential/logarithmic functions, smooth transitions
+ * (smoothstep), distance metrics (Chebyshev, Euclidian), and phasor profiles.
+ * Offers optimized approximations (hypotenuse, inverse sqrt) and array-based
+ * operations for terrain modeling and noise synthesis.
  *
  * @copyright Copyright (c) 2023
- *
  */
 #pragma once
 

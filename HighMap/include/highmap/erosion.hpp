@@ -4,13 +4,14 @@
 
 /**
  * @file erosion.hpp
- * @author  Otto Link (otto.link.bv@gmail.com)
- * @brief
- * @version 0.1
- * @date 2023-04-29
+ * @author Otto Link (otto.link.bv@gmail.com)
+ * @brief Implements hydraulic and thermal erosion algorithms for terrain
+ * modeling, including particle-based flow, sediment transport (Musgrave, Benes,
+ * Olsen), slope-driven diffusion, and procedural ridge formation. Supports
+ * GPU-accelerated methods and generates erosion/deposition maps for geomorphic
+ * analysis.
  *
  * @copyright Copyright (c) 2023 Otto Link.
- *
  */
 #pragma once
 #include <cmath>
