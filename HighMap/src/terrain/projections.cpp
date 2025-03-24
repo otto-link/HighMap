@@ -45,6 +45,7 @@ void interpolate_terrain_heightmap(Terrain           &t_source,
         Vec2<float> g = t_target.map_to_global_coords(xrel, yrel);
 
         // get value from source heightmap
+
         // p_t->tiles[k](i,
         //               j) = t_source.get_heightmap_value_nearest(*p_s, g.x,
         //               g.y);

@@ -492,4 +492,15 @@ void sort_points(std::vector<Point> &points);
  */
 float triangle_area(const Point &p1, const Point &p2, const Point &p3);
 
+/**
+ * @brief Constructs a 4D bounding box for a unit square.
+ *
+ * This function returns a Vec4<float> object representing the bounding box of a
+ * unit square, with components (min_x, max_x, min_y, max_y) set to (0.f, 1.f,
+ * 0.f, 1.f).
+ *
+ * @return Vec4<float> A 4D vector representing the unit square's bounding box.
+ */
+Vec4<float> unit_square_bbox();
+
 } // namespace hmap
