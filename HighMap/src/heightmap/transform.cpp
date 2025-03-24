@@ -8,8 +8,8 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
-#include "highmap/heightmap.hpp"
 #include "highmap/geometry/point.hpp"
+#include "highmap/heightmap.hpp"
 
 namespace hmap
 {

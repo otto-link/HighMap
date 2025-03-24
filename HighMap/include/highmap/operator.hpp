@@ -68,35 +68,6 @@ void add_kernel_maximum_smooth(Array       &array,
                                int          j);
 
 /**
- * @brief Compute the bilinear interpolated value from four input values.
- *
- * This function calculates the interpolated value at a point within a grid
- * using bilinear interpolation based on four surrounding values.
- *
- * @param  f00 Value at (u, v) = (0, 0).
- * @param  f10 Value at (u, v) = (1, 0).
- * @param  f01 Value at (u, v) = (0, 1).
- * @param  f11 Value at (u, v) = (1, 1).
- * @param  u   The interpolation parameter in the x-direction, expected in [0,
- *             1).
- * @param  v   The interpolation parameter in the y-direction, expected in [0,
- *             1).
- * @return     float The bilinear interpolated value.
- */
-inline float bilinear_interp(float f00,
-                             float f10,
-                             float f01,
-                             float f11,
-                             float u,
-                             float v)
-{
-  float a10 = f10 - f00;
-  float a01 = f01 - f00;
-  float a11 = f11 - f10 - f01 + f00;
-  return f00 + a10 * u + a01 * v + a11 * u * v;
-}
-
-/**
  * @brief Apply linear regression for detrending of a 2D array.
  *
  * This function performs detrending on the input array by applying linear

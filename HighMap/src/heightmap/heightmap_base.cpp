@@ -8,7 +8,7 @@
 #include "macrologger.h"
 
 #include "highmap/heightmap.hpp"
-#include "highmap/operator.hpp"
+#include "highmap/interpolate2d.hpp"
 #include "highmap/range.hpp"
 
 #include "highmap/internal/vector_utils.hpp"
