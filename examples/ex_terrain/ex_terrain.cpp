@@ -37,16 +37,12 @@ int main(void)
 
   hmap::Terrain terrain1 = hmap::Terrain(hmap::Vec2<float>(10.f, 20.f),
                                          hmap::Vec2<float>(50.f, 100.f),
-                                         -1.f,
-                                         2.f,
                                          30.f);
 
   std::string id1 = terrain1.add_heightmap(h);
 
   hmap::Terrain terrain2 = hmap::Terrain(hmap::Vec2<float>(-20.f, 50.f),
                                          hmap::Vec2<float>(100.f, 70.f),
-                                         -1.f,
-                                         2.f,
                                          -30.f);
 
   hmap::Heightmap h2 = hmap::Heightmap({512, 256}, {2, 4}, 0.5f);

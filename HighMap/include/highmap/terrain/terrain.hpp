@@ -23,11 +23,7 @@ namespace hmap
 class Terrain
 {
 public:
-  Terrain(Vec2<float> origin,
-          Vec2<float> size,
-          float       min_elevation,
-          float       max_elevation,
-          float       rotation_angle);
+  Terrain(Vec2<float> origin, Vec2<float> size, float rotation_angle);
 
   // Getters
   Vec2<float> get_origin() const
@@ -38,16 +34,6 @@ public:
   Vec2<float> get_size() const
   {
     return this->size;
-  }
-
-  float get_min_elevation() const
-  {
-    return this->min_elevation;
-  }
-
-  float get_max_elevation() const
-  {
-    return this->max_elevation;
   }
 
   float get_rotation_angle() const;
@@ -61,16 +47,6 @@ public:
   void set_size(Vec2<float> new_size)
   {
     this->size = new_size;
-  }
-
-  void set_min_elevation(float new_min_elevation)
-  {
-    this->min_elevation = new_min_elevation;
-  }
-
-  void set_max_elevation(float new_max_elevation)
-  {
-    this->max_elevation = new_max_elevation;
   }
 
   void set_rotation_angle(float new_angle);
@@ -102,8 +78,6 @@ public:
 private:
   Vec2<float> origin;
   Vec2<float> size;
-  float       min_elevation;
-  float       max_elevation;
   float       rotation_angle;
 
   float cos_angle;

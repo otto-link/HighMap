@@ -10,15 +10,8 @@
 namespace hmap
 {
 
-Terrain::Terrain(Vec2<float> origin,
-                 Vec2<float> size,
-                 float       min_elevation,
-                 float       max_elevation,
-                 float       rotation_angle)
-    : origin(origin),
-      size(size),
-      min_elevation(min_elevation),
-      max_elevation(max_elevation)
+Terrain::Terrain(Vec2<float> origin, Vec2<float> size, float rotation_angle)
+    : origin(origin), size(size)
 {
   this->set_rotation_angle(rotation_angle);
 }
