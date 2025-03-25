@@ -14,13 +14,11 @@ Terrain::Terrain(Vec2<float> origin,
                  Vec2<float> size,
                  float       min_elevation,
                  float       max_elevation,
-                 float       rotation_angle,
-                 int         z_order)
+                 float       rotation_angle)
     : origin(origin),
       size(size),
       min_elevation(min_elevation),
-      max_elevation(max_elevation),
-      z_order(z_order)
+      max_elevation(max_elevation)
 {
   this->set_rotation_angle(rotation_angle);
 }

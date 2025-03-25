@@ -4,9 +4,10 @@
 
 int main(void)
 {
-  hmap::Vec2<int>   shape = {64, 32};
+  hmap::Vec2<int> shape = {64, 32};
+  shape = {512, 256};
   hmap::Vec2<int>   tiling = {4, 2};
-  float             overlap = 0.25;
+  float             overlap = 0.25f;
   hmap::Vec2<float> kw = {4.f, 4.f};
   int               seed = 1;
   hmap::Heightmap   h = hmap::Heightmap(shape, tiling, overlap);
@@ -38,8 +39,7 @@ int main(void)
                                          hmap::Vec2<float>(50.f, 100.f),
                                          -1.f,
                                          2.f,
-                                         30.f,
-                                         0);
+                                         30.f);
 
   std::string id1 = terrain1.add_heightmap(h);
 
@@ -47,8 +47,7 @@ int main(void)
                                          hmap::Vec2<float>(100.f, 70.f),
                                          -1.f,
                                          2.f,
-                                         -30.f,
-                                         1);
+                                         -30.f);
 
   hmap::Heightmap h2 = hmap::Heightmap({512, 256}, {2, 4}, 0.5f);
   std::string     id2 = terrain2.add_heightmap(h2);
@@ -102,6 +101,9 @@ int main(void)
 
   hmap::Array      array_itp2(shape2);
   hmap::Heightmap *p_h2 = terrain2.get_heightmap_ref(id2);
+
+  // p_h2->to_array().dump();
+  // h.to_array().dump();
 
   for (int i = 0; i < shape2.x; i++)
     for (int j = 0; j < shape2.y; j++)

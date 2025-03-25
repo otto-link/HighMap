@@ -34,6 +34,10 @@ void interpolate_terrain_heightmap(Terrain           &t_source,
     float       lx = bbox.b - bbox.a;
     float       ly = bbox.d - bbox.c;
 
+    // end point of the bounding box is not included in the grid
+    lx -= lx / p_t->tiles[k].shape.x;
+    ly -= ly / p_t->tiles[k].shape.y;
+
     for (int j = 0; j < p_t->tiles[k].shape.y; j++)
       for (int i = 0; i < p_t->tiles[k].shape.x; i++)
       {

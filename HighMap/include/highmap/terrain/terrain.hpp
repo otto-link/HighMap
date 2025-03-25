@@ -27,8 +27,7 @@ public:
           Vec2<float> size,
           float       min_elevation,
           float       max_elevation,
-          float       rotation_angle,
-          int         z_order);
+          float       rotation_angle);
 
   // Getters
   Vec2<float> get_origin() const
@@ -53,11 +52,6 @@ public:
 
   float get_rotation_angle() const;
 
-  int get_z_order() const
-  {
-    return this->z_order;
-  }
-
   // Setters
   void set_origin(Vec2<float> new_origin)
   {
@@ -80,11 +74,6 @@ public:
   }
 
   void set_rotation_angle(float new_angle);
-
-  void set_z_order(int new_z_order)
-  {
-    this->z_order = new_z_order;
-  }
 
   // Methods
 
@@ -116,7 +105,6 @@ private:
   float       min_elevation;
   float       max_elevation;
   float       rotation_angle;
-  int         z_order;
 
   float cos_angle;
   float sin_angle;
