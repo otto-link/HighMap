@@ -23,6 +23,8 @@ namespace hmap
 class Terrain
 {
 public:
+  Terrain();
+
   Terrain(Vec2<float> origin, Vec2<float> size, float rotation_angle);
 
   // Getters
