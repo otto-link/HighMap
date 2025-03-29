@@ -79,12 +79,12 @@ Heightmap::Heightmap() : shape(0, 0)
   this->update_tile_parameters();
 }
 
-size_t Heightmap::get_ntiles()
+size_t Heightmap::get_ntiles() const
 {
   return this->tiles.size();
 }
 
-int Heightmap::get_tile_index(int i, int j)
+int Heightmap::get_tile_index(int i, int j) const
 {
   return i + j * this->tiling.x;
 }
@@ -160,7 +160,7 @@ void Heightmap::from_array_interp_nearest(Array &array)
     futures[i].get();
 }
 
-float Heightmap::get_value_bilinear(float x, float y)
+float Heightmap::get_value_bilinear(float x, float y) const
 {
   // find corresponding tile
   float lx = this->bbox.b - this->bbox.a;
@@ -200,7 +200,7 @@ float Heightmap::get_value_bilinear(float x, float y)
   return value;
 }
 
-float Heightmap::get_value_nearest(float x, float y)
+float Heightmap::get_value_nearest(float x, float y) const
 {
   // find corresponding tile
   float lx = this->bbox.b - this->bbox.a;

@@ -49,10 +49,10 @@ Vec4<float> Terrain::compute_bounding_box() const
   return Vec4<float>(min_x, max_x, min_y, max_y);
 }
 
-float Terrain::get_heightmap_value_bilinear(Heightmap &h,
-                                            float      gx,
-                                            float      gy,
-                                            float      fill_value)
+float Terrain::get_heightmap_value_bilinear(const Heightmap &h,
+                                            float            gx,
+                                            float            gy,
+                                            float            fill_value) const
 {
   Vec2<float> rel = this->map_to_relative_coords(gx, gy);
 
@@ -65,10 +65,10 @@ float Terrain::get_heightmap_value_bilinear(Heightmap &h,
     return fill_value;
 }
 
-float Terrain::get_heightmap_value_nearest(Heightmap &h,
-                                           float      gx,
-                                           float      gy,
-                                           float      fill_value)
+float Terrain::get_heightmap_value_nearest(const Heightmap &h,
+                                           float            gx,
+                                           float            gy,
+                                           float            fill_value) const
 {
   Vec2<float> rel = this->map_to_relative_coords(gx, gy);
 

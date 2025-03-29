@@ -212,7 +212,7 @@ public:
    *
    * @return size_t Number of tiles.
    */
-  size_t get_ntiles();
+  size_t get_ntiles() const;
 
   /**
    * @brief Get the tile linear index.
@@ -221,11 +221,11 @@ public:
    * @param  j Tile j index
    * @return   int Linear index.
    */
-  int get_tile_index(int i, int j);
+  int get_tile_index(int i, int j) const;
 
-  float get_value_bilinear(float x, float y);
+  float get_value_bilinear(float x, float y) const;
 
-  float get_value_nearest(float x, float y);
+  float get_value_nearest(float x, float y) const;
 
   void set_bbox(Vec4<float> new_bbox);
 

@@ -10,10 +10,10 @@
 namespace hmap
 {
 
-void interpolate_terrain_heightmap(Terrain         &t_source,
-                                   hmap::Heightmap &h_source,
-                                   Terrain         &t_target,
-                                   hmap::Heightmap &h_target)
+void interpolate_terrain_heightmap(const Terrain         &t_source,
+                                   const hmap::Heightmap &h_source,
+                                   const Terrain         &t_target,
+                                   hmap::Heightmap       &h_target)
 {
   for (size_t k = 0; k < h_target.tiles.size(); k++)
   {

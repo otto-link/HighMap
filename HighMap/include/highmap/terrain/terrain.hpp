@@ -57,15 +57,15 @@ public:
 
   Vec4<float> compute_bounding_box() const;
 
-  float get_heightmap_value_bilinear(Heightmap &h,
-                                     float      gx,
-                                     float      gy,
-                                     float      fill_value = 0.f);
+  float get_heightmap_value_bilinear(const Heightmap &h,
+                                     float            gx,
+                                     float            gy,
+                                     float            fill_value = 0.f) const;
 
-  float get_heightmap_value_nearest(Heightmap &h,
-                                    float      gx,
-                                    float      gy,
-                                    float      fill_value = 0.f);
+  float get_heightmap_value_nearest(const Heightmap &h,
+                                    float            gx,
+                                    float            gy,
+                                    float            fill_value = 0.f) const;
 
   bool is_point_within(float gx, float gy) const;
 
@@ -82,9 +82,9 @@ private:
   float sin_angle;
 };
 
-void interpolate_terrain_heightmap(Terrain         &t_source,
-                                   hmap::Heightmap &h_source,
-                                   Terrain         &t_target,
-                                   hmap::Heightmap &h_target);
+void interpolate_terrain_heightmap(const Terrain         &t_source,
+                                   const hmap::Heightmap &h_source,
+                                   const Terrain         &t_target,
+                                   hmap::Heightmap       &h_target);
 
 } // namespace hmap
