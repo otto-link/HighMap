@@ -10,10 +10,17 @@ int main(void)
   float             overlap = 0.25f;
   hmap::Vec2<float> kw = {4.f, 4.f};
   int               seed = 1;
-  hmap::Heightmap   h = hmap::Heightmap(shape, tiling, overlap);
+
+  // --- 1st frame
+
+  hmap::Terrain terrain1 = hmap::Terrain(hmap::Vec2<float>(10.f, 20.f),
+                                         hmap::Vec2<float>(50.f, 100.f),
+                                         30.f);
+
+  hmap::Heightmap h1 = hmap::Heightmap(shape, tiling, overlap);
 
   hmap::transform(
-      {&h},
+      {&h1},
       [kw, seed](std::vector<hmap::Array *> p_arrays,
                  hmap::Vec2<int>            shape,
                  hmap::Vec4<float>          bbox)
@@ -31,22 +38,25 @@ int main(void)
       },
       hmap::TransformMode::DISTRIBUTED);
 
-  h.remap();
+  h1.remap();
+  h1.set_bbox(hmap::Vec4<float>(0.f,
+                                terrain1.get_size().x,
+                                0.f,
+                                terrain1.get_size().y));
 
-  // ---
-
-  hmap::Terrain terrain1 = hmap::Terrain(hmap::Vec2<float>(10.f, 20.f),
-                                         hmap::Vec2<float>(50.f, 100.f),
-                                         30.f);
-
-  std::string id1 = terrain1.add_heightmap(h);
+  // --- second frame
 
   hmap::Terrain terrain2 = hmap::Terrain(hmap::Vec2<float>(-20.f, 50.f),
                                          hmap::Vec2<float>(100.f, 70.f),
                                          -30.f);
 
   hmap::Heightmap h2 = hmap::Heightmap({512, 256}, {2, 4}, 0.5f);
-  std::string     id2 = terrain2.add_heightmap(h2);
+  h2.set_bbox(hmap::Vec4<float>(0.f,
+                                terrain2.get_size().x,
+                                0.f,
+                                terrain2.get_size().y));
+
+  // --- tests
 
   hmap::Vec4<float> bbox1 = terrain1.compute_bounding_box();
   hmap::Vec4<float> bbox2 = terrain2.compute_bounding_box();
@@ -82,21 +92,20 @@ int main(void)
   //
   hmap::Array array_itp(shape2);
 
-  hmap::Heightmap *p_h = terrain1.get_heightmap_ref(id1);
-
   for (int i = 0; i < shape2.x; i++)
     for (int j = 0; j < shape2.y; j++)
     {
-      array_itp(i, j) = terrain1.get_heightmap_value_nearest(*p_h, x[i], y[j]);
+      array_itp(i, j) = terrain1.get_heightmap_value_nearest(h1, x[i], y[j]);
     }
+
+  LOG_DEBUG("ok");
 
   array_itp.to_png("out1.png", hmap::Cmap::INFERNO);
 
   //
-  hmap::interpolate_terrain_heightmap(terrain1, id1, terrain2, id2);
+  hmap::interpolate_terrain_heightmap(terrain1, h1, terrain2, h2);
 
-  hmap::Array      array_itp2(shape2);
-  hmap::Heightmap *p_h2 = terrain2.get_heightmap_ref(id2);
+  hmap::Array array_itp2(shape2);
 
   // p_h2->to_array().dump();
   // h.to_array().dump();
@@ -104,8 +113,7 @@ int main(void)
   for (int i = 0; i < shape2.x; i++)
     for (int j = 0; j < shape2.y; j++)
     {
-      array_itp2(i,
-                 j) = terrain2.get_heightmap_value_nearest(*p_h2, x[i], y[j]);
+      array_itp2(i, j) = terrain2.get_heightmap_value_nearest(h2, x[i], y[j]);
     }
 
   array_itp2.to_png("out2.png", hmap::Cmap::INFERNO);

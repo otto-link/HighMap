@@ -55,8 +55,6 @@ public:
 
   // Methods
 
-  std::string add_heightmap(const Heightmap &h, const std::string &id = "");
-
   Vec4<float> compute_bounding_box() const;
 
   float get_heightmap_value_bilinear(Heightmap &h,
@@ -68,8 +66,6 @@ public:
                                     float      gx,
                                     float      gy,
                                     float      fill_value = 0.f);
-
-  Heightmap *get_heightmap_ref(const std::string &id);
 
   bool is_point_within(float gx, float gy) const;
 
@@ -84,15 +80,11 @@ private:
 
   float cos_angle;
   float sin_angle;
-
-  int id_count = 0;
-
-  std::map<std::string, Heightmap> heightmaps = {};
 };
 
-void interpolate_terrain_heightmap(Terrain           &t_source,
-                                   const std::string &heightmap_id_source,
-                                   Terrain           &t_target,
-                                   const std::string &heightmap_id_target);
+void interpolate_terrain_heightmap(Terrain         &t_source,
+                                   hmap::Heightmap &h_source,
+                                   Terrain         &t_target,
+                                   hmap::Heightmap &h_target);
 
 } // namespace hmap

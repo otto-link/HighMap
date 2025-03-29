@@ -10,53 +10,43 @@
 namespace hmap
 {
 
-void interpolate_terrain_heightmap(Terrain           &t_source,
-                                   const std::string &heightmap_id_source,
-                                   Terrain           &t_target,
-                                   const std::string &heightmap_id_target)
+void interpolate_terrain_heightmap(Terrain         &t_source,
+                                   hmap::Heightmap &h_source,
+                                   Terrain         &t_target,
+                                   hmap::Heightmap &h_target)
 {
-  hmap::Heightmap *p_s = t_source.get_heightmap_ref(heightmap_id_source);
-  hmap::Heightmap *p_t = t_target.get_heightmap_ref(heightmap_id_target);
-
-  if (!(p_s && p_t))
-  {
-    LOG_DEBUG("interpolate_terrain_heightmap, at least one heightmap not "
-              "found: %s %s",
-              heightmap_id_source.c_str(),
-              heightmap_id_target.c_str());
-    return;
-  }
-
-  for (size_t k = 0; k < p_t->tiles.size(); k++)
+  for (size_t k = 0; k < h_target.tiles.size(); k++)
   {
     // for the current tile
-    Vec4<float> bbox = p_t->tiles[k].bbox;
+    Vec4<float> bbox = h_target.tiles[k].bbox;
     float       lx = bbox.b - bbox.a;
     float       ly = bbox.d - bbox.c;
 
     // end point of the bounding box is not included in the grid
-    lx -= lx / p_t->tiles[k].shape.x;
-    ly -= ly / p_t->tiles[k].shape.y;
+    lx -= lx / h_target.tiles[k].shape.x;
+    ly -= ly / h_target.tiles[k].shape.y;
 
-    for (int j = 0; j < p_t->tiles[k].shape.y; j++)
-      for (int i = 0; i < p_t->tiles[k].shape.x; i++)
+    for (int j = 0; j < h_target.tiles[k].shape.y; j++)
+      for (int i = 0; i < h_target.tiles[k].shape.x; i++)
       {
         // relative position within the heightmap
-        float xrel = (float)(i / (p_t->tiles[k].shape.x - 1.f) * lx + bbox.a);
-        float yrel = (float)(j / (p_t->tiles[k].shape.y - 1.f) * ly + bbox.c);
+        float xrel = (float)(i / (h_target.tiles[k].shape.x - 1.f) * lx +
+                             bbox.a);
+        float yrel = (float)(j / (h_target.tiles[k].shape.y - 1.f) * ly +
+                             bbox.c);
 
         // global position
         Vec2<float> g = t_target.map_to_global_coords(xrel, yrel);
 
         // get value from source heightmap
 
-        // p_t->tiles[k](i,
-        //               j) = t_source.get_heightmap_value_nearest(*p_s, g.x,
-        //               g.y);
+        // h_target.tiles[k](i,
+        //               j) = t_source.get_heightmap_value_nearest(*h_source,
+        //               g.x, g.y);
 
-        p_t->tiles[k](i, j) = t_source.get_heightmap_value_bilinear(*p_s,
-                                                                    g.x,
-                                                                    g.y);
+        h_target.tiles[k](
+            i,
+            j) = t_source.get_heightmap_value_bilinear(h_source, g.x, g.y);
       }
   }
 }

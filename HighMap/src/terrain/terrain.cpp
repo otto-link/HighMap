@@ -21,18 +21,6 @@ Terrain::Terrain(Vec2<float> origin, Vec2<float> size, float rotation_angle)
   this->set_rotation_angle(rotation_angle);
 }
 
-std::string Terrain::add_heightmap(const Heightmap &h, const std::string &id)
-{
-  std::string hid = id;
-  if (hid.empty()) hid = std::to_string(id_count++);
-
-  Heightmap h_copy = h;
-  h_copy.set_bbox(Vec4<float>(0.f, this->size.x, 0.f, this->size.y));
-
-  this->heightmaps[hid] = std::move(h_copy);
-  return hid;
-}
-
 Vec4<float> Terrain::compute_bounding_box() const
 {
   // Define the four corners relative to the origin
@@ -91,14 +79,6 @@ float Terrain::get_heightmap_value_nearest(Heightmap &h,
   }
   else
     return fill_value;
-}
-
-Heightmap *Terrain::get_heightmap_ref(const std::string &id)
-{
-  if (!this->heightmaps.contains(id))
-    return nullptr;
-  else
-    return &this->heightmaps[id];
 }
 
 float Terrain::get_rotation_angle() const
