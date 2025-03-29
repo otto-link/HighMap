@@ -8,8 +8,8 @@
  * @brief
  *
  * @copyright Copyright (c) 2023
- *
  */
+#pragma once
 #include <cmath>
 #include <map>
 #include <vector>
