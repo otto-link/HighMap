@@ -231,7 +231,7 @@ static std::map<Cmap, std::string> cmap_as_string = {
         {0.867f, 0.829f, 0.821f}, {1.000f, 1.000f, 1.000f},                    \
   }
 
-#define TURBO                                                                  \
+#define CMAP_TURBO                                                             \
   {                                                                            \
     {0.190f, 0.072f, 0.232f}, {0.267f, 0.328f, 0.764f},                        \
         {0.266f, 0.560f, 0.996f}, {0.127f, 0.780f, 0.876f},                    \
