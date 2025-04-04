@@ -88,6 +88,7 @@ enum Cmap : int
   NIPY_SPECTRAL,
   SEISMIC,
   TERRAIN,
+  TURBO,
   VIRIDIS,
   WHITE_UNIFORM
 };
@@ -118,6 +119,7 @@ static std::map<Cmap, std::string> cmap_as_string = {
     {NIPY_SPECTRAL, "nipy_spectral"},
     {SEISMIC, "seismic"},
     {TERRAIN, "terrain"},
+    {TURBO, "turbo"},
     {VIRIDIS, "viridis"},
     {WHITE_UNIFORM, "white_uniform"}};
 
@@ -227,6 +229,16 @@ static std::map<Cmap, std::string> cmap_as_string = {
         {0.667f, 0.573f, 0.420f}, {0.533f, 0.403f, 0.348f},                    \
         {0.600f, 0.488f, 0.464f}, {0.733f, 0.659f, 0.643f},                    \
         {0.867f, 0.829f, 0.821f}, {1.000f, 1.000f, 1.000f},                    \
+  }
+
+#define TURBO                                                                  \
+  {                                                                            \
+    {0.190f, 0.072f, 0.232f}, {0.267f, 0.328f, 0.764f},                        \
+        {0.266f, 0.560f, 0.996f}, {0.127f, 0.780f, 0.876f},                    \
+        {0.163f, 0.936f, 0.631f}, {0.489f, 0.998f, 0.338f},                    \
+        {0.756f, 0.951f, 0.203f}, {0.945f, 0.796f, 0.228f},                    \
+        {0.994f, 0.564f, 0.159f}, {0.916f, 0.305f, 0.051f},                    \
+        {0.746f, 0.131f, 0.009f}, {0.480f, 0.016f, 0.011f},                    \
   }
 
 #define CMAP_VIRIDIS                                                           \
