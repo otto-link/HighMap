@@ -1,0 +1,2 @@
+add_executable(ex_export_tiled ex_export_tiled.cpp)
+target_link_libraries(ex_export_tiled highmap)

@@ -288,6 +288,44 @@ void export_splatmap_png(const std::string &fname,
                          int                depth = CV_8U);
 
 /**
+ * @brief Exports a 2D array as a set of grayscale PNG image tiles.
+ *
+ * This function divides a given 2D array into smaller rectangular tiles and
+ * saves each tile as a grayscale PNG image file. Tiles are named using a
+ * combination of the provided file name radical, tile indices, and file
+ * extension.
+ *
+ * @param fname_radical Base name (radical) for output image files.
+ * @param fname_extension File extension to use for exported images (e.g.,
+ * "png").
+ * @param array The input 2D array to be tiled and exported.
+ * @param tiling A 2D vector specifying the number of tiles in the x and y
+ * directions.
+ * @param leading_zeros Number of digits used to pad the tile indices in the
+ * filename.
+ * @param depth Bit depth of the output PNG images (commonly 8 or 16).
+ * @param overlapping_edges If true, each tile includes an extra row/column from
+ * neighboring tiles (for overlap).
+ * @param reverse_tile_y_indexing If true, Y tile indices are reversed (tile 0
+ * is at the top).
+ *
+ * Each tile is extracted using slicing, adjusted for overlap if specified, and
+ * then exported as an individual image file named with its tile indices. For
+ * example, an output file might be named `radical_01_03.png`.
+ *
+ * **Example**
+ * @include ex_export_tiled.cpp
+ */
+void export_tiled(const std::string &fname_radical,
+                  const std::string &fname_extension,
+                  const Array       &array,
+                  const Vec2<int>   &tiling,
+                  int                leading_zeros = 0,
+                  int                depth = CV_8U,
+                  bool               overlapping_edges = false,
+                  bool               reverse_tile_y_indexing = false);
+
+/**
  * @brief Reads an image file and converts it to a 2D array.
  *
  * This function uses the OpenCV `imread` function to load an image from the

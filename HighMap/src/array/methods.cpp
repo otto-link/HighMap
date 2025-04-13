@@ -15,7 +15,6 @@
 #include "highmap/internal/vector_utils.hpp"
 
 namespace hmap
-
 {
 
 std::vector<float> Array::col_to_vector(int j)
@@ -105,6 +104,12 @@ Array Array::extract_slice(Vec4<int> idx) const
       array_out(i - idx.a, j - idx.c) = (*this)(i, j);
 
   return array_out;
+}
+
+Array Array::extract_slice(int i1, int i2, int j1, int j2) const
+{
+  Vec4<int> idx(i1, i2, j1, j2);
+  return this->extract_slice(idx);
 }
 
 float Array::get_gradient_x_at(int i, int j) const
