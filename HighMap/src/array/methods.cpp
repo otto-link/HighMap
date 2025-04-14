@@ -9,6 +9,7 @@
 
 #include "highmap/algebra.hpp"
 #include "highmap/array.hpp"
+#include "highmap/interpolate2d.hpp"
 #include "highmap/operator.hpp"
 #include "highmap/transform.hpp"
 
@@ -179,14 +180,6 @@ Vec2<float> Array::normalization_coeff(float vmin, float vmax) const
     b = -vmin / (vmax - vmin);
   }
   return Vec2<float>(a, b);
-}
-
-float cubic_interpolate(float p[4], float x) // helper
-{
-  return p[1] + 0.5 * x *
-                    (p[2] - p[0] +
-                     x * (2.0 * p[0] - 5.0 * p[1] + 4.0 * p[2] - p[3] +
-                          x * (3.0 * (p[1] - p[2]) + p[3] - p[0])));
 }
 
 float Array::get_value_bicubic_at(int i, int j, float u, float v) const

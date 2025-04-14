@@ -36,6 +36,14 @@ float cubic_interp(float p0, float p1, float p2, float p3, float t)
   return a * t * t * t + b * t * t + c * t + d;
 }
 
+float cubic_interp_vec(float p[4], float x)
+{
+  return p[1] + 0.5 * x *
+                    (p[2] - p[0] +
+                     x * (2.0 * p[0] - 5.0 * p[1] + 4.0 * p[2] - p[3] +
+                          x * (3.0 * (p[1] - p[2]) + p[3] - p[0])));
+}
+
 float lerp(float a, float b, float t)
 {
   return (1.f - t) * a + t * b;
