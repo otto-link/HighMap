@@ -22,26 +22,24 @@ void interpolate_terrain_heightmap(const Terrain         &t_source,
     float       lx = bbox.b - bbox.a;
     float       ly = bbox.d - bbox.c;
 
-    // end point of the bounding box is not included in the grid
-    lx -= lx / h_target.tiles[k].shape.x;
-    ly -= ly / h_target.tiles[k].shape.y;
+    // // end point of the bounding box is not included in the grid
+    // lx -= lx / h_target.tiles[k].shape.x;
+    // ly -= ly / h_target.tiles[k].shape.y;
 
     for (int j = 0; j < h_target.tiles[k].shape.y; j++)
       for (int i = 0; i < h_target.tiles[k].shape.x; i++)
       {
-        // relative position within the heightmap
-        float xrel = (float)(i / (h_target.tiles[k].shape.x - 1.f) * lx +
-                             bbox.a);
-        float yrel = (float)(j / (h_target.tiles[k].shape.y - 1.f) * ly +
-                             bbox.c);
+        // relative position within the heightmap (NB - end points of
+        // the bounding box are not included in the grid)
+        float xrel = (float)i / (float)h_target.tiles[k].shape.x * lx + bbox.a;
+        float yrel = (float)j / (float)h_target.tiles[k].shape.y * ly + bbox.c;
 
         // global position
         Vec2<float> g = t_target.map_to_global_coords(xrel, yrel);
 
         // get value from source heightmap
-
         // h_target.tiles[k](i,
-        //               j) = t_source.get_heightmap_value_nearest(*h_source,
+        //               j) = t_source.get_heightmap_value_nearest(h_source,
         //               g.x, g.y);
 
         h_target.tiles[k](

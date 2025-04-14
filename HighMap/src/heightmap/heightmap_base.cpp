@@ -178,8 +178,9 @@ float Heightmap::get_value_bilinear(float x, float y) const
   float lxt = this->tiles[k].bbox.b - this->tiles[k].bbox.a;
   float lyt = this->tiles[k].bbox.d - this->tiles[k].bbox.c;
 
-  float xgrid = xt / lxt * (this->tiles[k].shape.x - 1);
-  float ygrid = yt / lyt * (this->tiles[k].shape.y - 1);
+  // NB - end points of the bounding box are not included in the grid
+  float xgrid = xt / lxt * this->tiles[k].shape.x;
+  float ygrid = yt / lyt * this->tiles[k].shape.y;
 
   int i = static_cast<int>(xgrid);
   int j = static_cast<int>(ygrid);
@@ -218,8 +219,9 @@ float Heightmap::get_value_nearest(float x, float y) const
   float lxt = this->tiles[k].bbox.b - this->tiles[k].bbox.a;
   float lyt = this->tiles[k].bbox.d - this->tiles[k].bbox.c;
 
-  int i = static_cast<int>(xt / lxt * (this->tiles[k].shape.x - 1));
-  int j = static_cast<int>(yt / lyt * (this->tiles[k].shape.y - 1));
+  // NB - end points of the bounding box are not included in the grid
+  int i = static_cast<int>(xt / lxt * this->tiles[k].shape.x);
+  int j = static_cast<int>(yt / lyt * this->tiles[k].shape.y);
 
   return this->tiles[k](i, j);
 }

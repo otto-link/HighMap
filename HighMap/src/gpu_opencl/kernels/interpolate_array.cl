@@ -90,7 +90,7 @@ void kernel interpolate_array_bicubic_bbox(read_only image2d_t  source,
   // scale and shift according to the bounding box
   x = x * (bbox_t.y - bbox_t.x) + bbox_t.x;
   y = y * (bbox_t.w - bbox_t.z) + bbox_t.z;
-  
+
   // corresponding index for source array
   x = (x - 0.5f * dx_s) / dx_s;
   y = (y - 0.5f * dy_s) / dy_s;
