@@ -16,10 +16,64 @@ void kernel interpolate_array_bicubic(read_only image2d_t  source,
 
   if (g.x >= nx_t || g.y >= ny_t) return;
 
-  /* const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE | */
-  /*                           CLK_ADDRESS_CLAMP_TO_EDGE | CLK_FILTER_LINEAR; */
+  // --- find nearest point in source from interpolation position
 
-  float2 pos_target = g_to_xy_pixel_centered(g, nx_t, ny_t);
+  float dx_s = 1.f / (float)nx_s;
+  float dy_s = 1.f / (float)ny_s;
+
+  float dx_t = 1.f / (float)nx_t;
+  float dy_t = 1.f / (float)ny_t;
+
+  // pixel-centered coordinates
+  float x = (0.5f + (float)g.x) * dx_t;
+  float y = (0.5f + (float)g.y) * dy_t;
+
+  // corresponding index for source array
+  x = (x - 0.5f * dx_s) / dx_s;
+  y = (y - 0.5f * dy_s) / dy_s;
+
+  int2 g_s = (int2)((int)x, (int)y);
+
+  float u = x - g_s.x;
+  float v = y - g_s.y;
+
+  // --- interpolate
+
+  float arr[4][4];
+
+  // get the 4x4 surrounding grid points
+  for (int n = -1; n <= 2; ++n)
+    for (int m = -1; m <= 2; ++m)
+    {
+      int ip = clamp(g_s.x + m, 0, nx_s - 1);
+      int jp = clamp(g_s.y + n, 0, ny_s - 1);
+
+      arr[m + 1][n + 1] = read_imagef(source, (int2)(ip, jp)).x;
+    }
+
+  // interpolate in the x direction
+  float col_results[4];
+  for (int k = 0; k < 4; ++k)
+    col_results[k] = cubic_interp_vec(arr[k], v);
+
+  // interpolate in the y direction
+  float val = cubic_interp_vec(col_results, u);
+
+  write_imagef(target, g, val);
+}
+
+void kernel interpolate_array_bicubic_bbox(read_only image2d_t  source,
+                                           write_only image2d_t target,
+                                           int                  nx_s,
+                                           int                  ny_s,
+                                           int                  nx_t,
+                                           int                  ny_t,
+                                           float4               bbox_t)
+{
+  // kernel distributed over the target pixels (ie. nx_t * ny_t calculations)
+  const int2 g = {get_global_id(0), get_global_id(1)};
+
+  if (g.x >= nx_t || g.y >= ny_t) return;
 
   // --- find nearest point in source from interpolation position
 
@@ -33,6 +87,10 @@ void kernel interpolate_array_bicubic(read_only image2d_t  source,
   float x = (0.5f + (float)g.x) * dx_t;
   float y = (0.5f + (float)g.y) * dy_t;
 
+  // scale and shift according to the bounding box
+  x = x * (bbox_t.y - bbox_t.x) + bbox_t.x;
+  y = y * (bbox_t.w - bbox_t.z) + bbox_t.z;
+  
   // corresponding index for source array
   x = (x - 0.5f * dx_s) / dx_s;
   y = (y - 0.5f * dy_s) / dy_s;
@@ -87,6 +145,28 @@ void kernel interpolate_array_bilinear(read_only image2d_t  source,
   write_imagef(target, g, val);
 }
 
+void kernel interpolate_array_bilinear_bbox(read_only image2d_t  source,
+                                            write_only image2d_t target,
+                                            int                  nx_t,
+                                            int                  ny_t,
+                                            float4               bbox_t)
+{
+  // kernel distributed over the target pixels (ie. nx_t * ny_t calculations)
+  const int2 g = {get_global_id(0), get_global_id(1)};
+
+  if (g.x >= nx_t || g.y >= ny_t) return;
+
+  const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE |
+                            CLK_ADDRESS_CLAMP_TO_EDGE | CLK_FILTER_LINEAR;
+
+  // bounding box of the source array is assumed to be a unit square
+  float2 pos_target = g_to_xy_pixel_centered_bbox(g, nx_t, ny_t, bbox_t);
+
+  float val = read_imagef(source, sampler, pos_target).x;
+
+  write_imagef(target, g, val);
+}
+
 void kernel interpolate_array_nearest(read_only image2d_t  source,
                                       write_only image2d_t target,
                                       int                  nx_t,
@@ -101,6 +181,28 @@ void kernel interpolate_array_nearest(read_only image2d_t  source,
                             CLK_ADDRESS_CLAMP_TO_EDGE | CLK_FILTER_NEAREST;
 
   float2 pos_target = g_to_xy_pixel_centered(g, nx_t, ny_t);
+
+  float val = read_imagef(source, sampler, pos_target).x;
+
+  write_imagef(target, g, val);
+}
+
+void kernel interpolate_array_nearest_bbox(read_only image2d_t  source,
+                                           write_only image2d_t target,
+                                           int                  nx_t,
+                                           int                  ny_t,
+                                           float4               bbox_t)
+{
+  // kernel distributed over the target pixels (ie. nx_t * ny_t calculations)
+  const int2 g = {get_global_id(0), get_global_id(1)};
+
+  if (g.x >= nx_t || g.y >= ny_t) return;
+
+  const sampler_t sampler = CLK_NORMALIZED_COORDS_TRUE |
+                            CLK_ADDRESS_CLAMP_TO_EDGE | CLK_FILTER_NEAREST;
+
+  // bounding box of the source array is assumed to be a unit square
+  float2 pos_target = g_to_xy_pixel_centered_bbox(g, nx_t, ny_t, bbox_t);
 
   float val = read_imagef(source, sampler, pos_target).x;
 
@@ -142,7 +244,7 @@ void kernel interpolate_array_lagrange(read_only image2d_t  source,
   x = (x - 0.5f * dx_s) / dx_s;
   y = (y - 0.5f * dy_s) / dy_s;
   float2 pos = (float2)(x, y);
-  
+
   // corresponding index for source array
   int2 g_s = (int2)((int)pos.x, (int)pos.y);
 
@@ -180,37 +282,6 @@ void kernel interpolate_array_lagrange(read_only image2d_t  source,
       }
   }
 
-  /* int    nk = max(1, (order - 1) / 2); */
-  /* float2 pos_ref = pos_target - (float2)(nk * dx_s, nk * dy_s); */
-
-  /* for (int i = 0; i < order; ++i) */
-  /* { */
-  /*   lx[i] = 1.f; */
-  /*   float xrel = pos_target.x - pos_ref.x; */
-  /*   float xi = i * dx_s; */
-
-  /*   for (int k = 0; k < order; ++k) */
-  /*     if (k != i) */
-  /*     { */
-  /*       float xk = k * dx_s; */
-  /*       lx[i] *= (xrel - xi) / (xi - xk); */
-  /*     } */
-  /* } */
-
-  /* for (int j = 0; j < order; ++j) */
-  /* { */
-  /*   ly[j] = 1.f; */
-  /*   float yrel = pos_target.y - pos_ref.y; */
-  /*   float yj = j * dy_s; */
-
-  /*   for (int k = 0; k < order; ++k) */
-  /*     if (k != j) */
-  /*     { */
-  /*       float yk = k * dy_s; */
-  /*       ly[j] *= (yrel - yj) / (yj - yk); */
-  /*     } */
-  /* } */
-
   // --- interpolate
 
   float val = 0.f;
@@ -220,11 +291,9 @@ void kernel interpolate_array_lagrange(read_only image2d_t  source,
     {
       int ip = clamp(g_s.x - nk + i, 0, nx_s - 1);
       int jp = clamp(g_s.y - nk + j, 0, ny_s - 1);
-      
+
       val += lx[i] * ly[j] * read_imagef(source, (int2)(ip, jp)).x;
     }
-
-  // val = read_imagef(source, sampler, pos_target).x;
 
   write_imagef(target, g, val);
 }

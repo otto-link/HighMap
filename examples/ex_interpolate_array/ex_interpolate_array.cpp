@@ -86,4 +86,31 @@ int main(void)
 
   zl0_gpu.to_png("ex_interpolate_array13.png", hmap::Cmap::JET);
   zl1_gpu.to_png("ex_interpolate_array14.png", hmap::Cmap::JET);
+
+  // --- w/ bounding box
+
+  hmap::Vec4<float> bbox_s(1.f, 2.f, -1.f, 0.f);
+  hmap::Vec4<float> bbox_t(1.25f, 1.75f, -0.75f, 0.25f);
+
+  // nearest
+  hmap::Array z_bbox_n(hmap::Vec2<int>(1024, 256));
+  hmap::interpolate_array_nearest(z, z_bbox_n, bbox_s, bbox_t);
+
+  hmap::Array z_bbox_n_gpu(hmap::Vec2<int>(1024, 256));
+  hmap::gpu::interpolate_array_nearest(z, z_bbox_n_gpu, bbox_s, bbox_t);
+
+  z_bbox_n.to_png("ex_interpolate_array15.png", hmap::Cmap::JET);
+  z_bbox_n_gpu.to_png("ex_interpolate_array16.png", hmap::Cmap::JET);
+
+  // linear
+  hmap::Array z_bbox_b_gpu(hmap::Vec2<int>(1024, 256));
+  hmap::gpu::interpolate_array_bilinear(z, z_bbox_b_gpu, bbox_s, bbox_t);
+
+  z_bbox_b_gpu.to_png("ex_interpolate_array17.png", hmap::Cmap::JET);
+
+  // cubic
+  hmap::Array z_bbox_c_gpu(hmap::Vec2<int>(1024, 256));
+  hmap::gpu::interpolate_array_bicubic(z, z_bbox_c_gpu, bbox_s, bbox_t);
+
+  z_bbox_c_gpu.to_png("ex_interpolate_array18.png", hmap::Cmap::JET);
 }

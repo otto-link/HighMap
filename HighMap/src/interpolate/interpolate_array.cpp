@@ -5,6 +5,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/interpolate2d.hpp"
+#include "highmap/operator.hpp"
 
 namespace hmap
 {
@@ -108,6 +109,40 @@ void interpolate_array_nearest(const Array &source, Array &target)
     {
       int is = static_cast<int>(coeff_x * i);
       int js = static_cast<int>(coeff_y * j);
+
+      target(i, j) = source(is, js);
+    }
+}
+
+void interpolate_array_nearest(const Array       &source,
+                               Array             &target,
+                               const Vec4<float> &bbox_source,
+                               const Vec4<float> &bbox_target)
+{
+  bool endpoint = false;
+
+  std::vector<float> x = linspace(bbox_target.a,
+                                  bbox_target.b,
+                                  target.shape.x,
+                                  endpoint);
+
+  std::vector<float> y = linspace(bbox_target.c,
+                                  bbox_target.d,
+                                  target.shape.y,
+                                  endpoint);
+
+  for (int j = 0; j < target.shape.y; ++j)
+    for (int i = 0; i < target.shape.x; ++i)
+    {
+      int is = static_cast<int>((x[i] - bbox_source.a) /
+                                (bbox_source.b - bbox_source.a) *
+                                source.shape.x);
+      int js = static_cast<int>((y[j] - bbox_source.c) /
+                                (bbox_source.d - bbox_source.c) *
+                                source.shape.y);
+
+      is = std::clamp(is, 0, source.shape.x - 1);
+      js = std::clamp(js, 0, source.shape.y - 1);
 
       target(i, j) = source(is, js);
     }
