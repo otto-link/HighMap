@@ -36,6 +36,8 @@ Vec4<float> helper_transform_bbox(const Vec4<float> &bbox_source,
 
 void interpolate_array_bicubic(const Array &source, Array &target)
 {
+  Vec4<float> bbox(0.f, 1.f, 0.f, 1.f);
+
   auto run = clwrapper::Run("interpolate_array_bicubic");
 
   run.bind_imagef("source", source.vector, source.shape.x, source.shape.y);
@@ -48,7 +50,8 @@ void interpolate_array_bicubic(const Array &source, Array &target)
   run.bind_arguments(source.shape.x,
                      source.shape.y,
                      target.shape.x,
-                     target.shape.y);
+                     target.shape.y,
+                     bbox);
 
   run.execute({target.shape.x, target.shape.y});
 
@@ -63,7 +66,7 @@ void interpolate_array_bicubic(const Array       &source,
   Vec4<float> bbox_target_mod = helper_transform_bbox(bbox_source, bbox_target);
 
   // compute
-  auto run = clwrapper::Run("interpolate_array_bicubic_bbox");
+  auto run = clwrapper::Run("interpolate_array_bicubic");
 
   run.bind_imagef("source", source.vector, source.shape.x, source.shape.y);
   run.bind_imagef("target",
@@ -85,6 +88,8 @@ void interpolate_array_bicubic(const Array       &source,
 
 void interpolate_array_bilinear(const Array &source, Array &target)
 {
+  Vec4<float> bbox(0.f, 1.f, 0.f, 1.f);
+
   auto run = clwrapper::Run("interpolate_array_bilinear");
 
   run.bind_imagef("source", source.vector, source.shape.x, source.shape.y);
@@ -94,7 +99,7 @@ void interpolate_array_bilinear(const Array &source, Array &target)
                   target.shape.y,
                   true);
 
-  run.bind_arguments(target.shape.x, target.shape.y);
+  run.bind_arguments(target.shape.x, target.shape.y, bbox);
 
   run.execute({target.shape.x, target.shape.y});
 
@@ -109,7 +114,7 @@ void interpolate_array_bilinear(const Array       &source,
   Vec4<float> bbox_target_mod = helper_transform_bbox(bbox_source, bbox_target);
 
   // compute
-  auto run = clwrapper::Run("interpolate_array_bilinear_bbox");
+  auto run = clwrapper::Run("interpolate_array_bilinear");
 
   run.bind_imagef("source", source.vector, source.shape.x, source.shape.y);
   run.bind_imagef("target",
@@ -149,6 +154,8 @@ void interpolate_array_lagrange(const Array &source, Array &target, int order)
 
 void interpolate_array_nearest(const Array &source, Array &target)
 {
+  Vec4<float> bbox(0.f, 1.f, 0.f, 1.f);
+
   auto run = clwrapper::Run("interpolate_array_nearest");
 
   run.bind_imagef("source", source.vector, source.shape.x, source.shape.y);
@@ -158,7 +165,7 @@ void interpolate_array_nearest(const Array &source, Array &target)
                   target.shape.y,
                   true);
 
-  run.bind_arguments(target.shape.x, target.shape.y);
+  run.bind_arguments(target.shape.x, target.shape.y, bbox);
 
   run.execute({target.shape.x, target.shape.y});
 
@@ -173,7 +180,7 @@ void interpolate_array_nearest(const Array       &source,
   Vec4<float> bbox_target_mod = helper_transform_bbox(bbox_source, bbox_target);
 
   // compute
-  auto run = clwrapper::Run("interpolate_array_nearest_bbox");
+  auto run = clwrapper::Run("interpolate_array_nearest");
 
   run.bind_imagef("source", source.vector, source.shape.x, source.shape.y);
   run.bind_imagef("target",
