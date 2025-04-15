@@ -435,7 +435,7 @@ Array Heightmap::to_array()
 
 Array Heightmap::to_array(Vec2<int> shape_export)
 {
-  Array array = Array(this->shape);
+  Array array = Array(shape_export);
 
   // interpolation grid points
   bool endpoint = false;
