@@ -694,6 +694,8 @@ public:
    */
   Array resample_to_shape_bicubic(Vec2<int> new_shape) const;
 
+  Array resample_to_shape_bilinear(Vec2<int> new_shape) const;
+
   /**
    * @brief Return a resampled array of shape `new_shape` using nearest neighbor
    * interpolation.
