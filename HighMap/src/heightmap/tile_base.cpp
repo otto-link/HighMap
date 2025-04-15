@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "highmap/heightmap.hpp"
+#include "highmap/interpolate_array.hpp"
 #include "highmap/operator.hpp"
 
 namespace hmap
@@ -27,86 +28,40 @@ void Tile::operator=(const Array &array)
 
 void Tile::from_array_interp(Array &array)
 {
-  std::vector<float> x = linspace(this->shift.x,
-                                  this->shift.x + this->scale.x,
-                                  this->shape.x,
-                                  false);
-  std::vector<float> y = linspace(this->shift.y,
-                                  this->shift.y + this->scale.y,
-                                  this->shape.y,
-                                  false);
-
-  for (auto &v : x)
-    v *= array.shape.x - 1;
-
-  for (auto &v : y)
-    v *= array.shape.y - 1;
-
-  for (int j = 0; j < shape.y; j++)
-    for (int i = 0; i < shape.x; i++)
-    {
-      int ip = std::clamp((int)x[i], 0, array.shape.x - 1);
-      int jp = std::clamp((int)y[j], 0, array.shape.y - 1);
-
-      float u = x[i] - ip;
-      float v = y[j] - jp;
-      (*this)(i, j) = array.get_value_bilinear_at(ip, jp, u, v);
-    }
+  this->from_array_interp_bilinear(array);
 }
 
 void Tile::from_array_interp_bicubic(Array &array)
 {
-  std::vector<float> x = linspace(this->shift.x,
-                                  this->shift.x + this->scale.x,
-                                  this->shape.x,
-                                  false);
-  std::vector<float> y = linspace(this->shift.y,
-                                  this->shift.y + this->scale.y,
-                                  this->shape.y,
-                                  false);
+  Vec4<float> bbox_source(0.f, 1.f, 0.f, 1.f);
+  Vec4<float> bbox_target(this->shift.x,
+                          this->shift.x + this->scale.x,
+                          this->shift.y,
+                          this->shift.y + this->scale.y);
 
-  for (auto &v : x)
-    v *= array.shape.x - 1;
+  interpolate_array_bicubic(array, *this, bbox_source, bbox_target);
+}
 
-  for (auto &v : y)
-    v *= array.shape.y - 1;
+void Tile::from_array_interp_bilinear(Array &array)
+{
+  Vec4<float> bbox_source(0.f, 1.f, 0.f, 1.f);
+  Vec4<float> bbox_target(this->shift.x,
+                          this->shift.x + this->scale.x,
+                          this->shift.y,
+                          this->shift.y + this->scale.y);
 
-  for (int j = 0; j < shape.y; j++)
-    for (int i = 0; i < shape.x; i++)
-    {
-      int ip = std::clamp((int)x[i], 0, array.shape.x - 1);
-      int jp = std::clamp((int)y[j], 0, array.shape.y - 1);
-
-      float u = x[i] - ip;
-      float v = y[j] - jp;
-      (*this)(i, j) = array.get_value_bicubic_at(ip, jp, u, v);
-    }
+  interpolate_array_bilinear(array, *this, bbox_source, bbox_target);
 }
 
 void Tile::from_array_interp_nearest(Array &array)
 {
-  std::vector<float> x = linspace(this->shift.x,
-                                  this->shift.x + this->scale.x,
-                                  this->shape.x,
-                                  false);
-  std::vector<float> y = linspace(this->shift.y,
-                                  this->shift.y + this->scale.y,
-                                  this->shape.y,
-                                  false);
+  Vec4<float> bbox_source(0.f, 1.f, 0.f, 1.f);
+  Vec4<float> bbox_target(this->shift.x,
+                          this->shift.x + this->scale.x,
+                          this->shift.y,
+                          this->shift.y + this->scale.y);
 
-  for (auto &v : x)
-    v *= array.shape.x - 1;
-
-  for (auto &v : y)
-    v *= array.shape.y - 1;
-
-  for (int j = 0; j < shape.y; j++)
-    for (int i = 0; i < shape.x; i++)
-    {
-      int ip = (int)x[i];
-      int jp = (int)y[j];
-      (*this)(i, j) = array(ip, jp);
-    }
+  interpolate_array_nearest(array, *this, bbox_source, bbox_target);
 }
 
 void Tile::infos() const

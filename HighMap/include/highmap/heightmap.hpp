@@ -124,6 +124,8 @@ public:
    */
   void from_array_interp_bicubic(Array &array);
 
+  void from_array_interp_bilinear(Array &array);
+
   /**
    * @brief Fill tile values by interpolating (nearest) values from another
    * array.
@@ -281,6 +283,8 @@ public:
    * @param array Input array.
    */
   void from_array_interp_bicubic(Array &array);
+
+  void from_array_interp_bilinear(Array &array);
 
   /**
    * @brief Fill tile values by interpolating (nearest neighbor) values from

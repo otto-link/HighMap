@@ -123,15 +123,7 @@ void Heightmap::set_tiling(Vec2<int> new_tiling)
 
 void Heightmap::from_array_interp(Array &array)
 {
-  std::vector<std::future<void>> futures(this->get_ntiles());
-
-  for (decltype(futures)::size_type i = 0; i < this->get_ntiles(); ++i)
-    futures[i] = std::async(&Tile::from_array_interp,
-                            std::ref(tiles[i]),
-                            std::ref(array));
-
-  for (decltype(futures)::size_type i = 0; i < this->get_ntiles(); ++i)
-    futures[i].get();
+  this->from_array_interp_bilinear(array);
 }
 
 void Heightmap::from_array_interp_bicubic(Array &array)
@@ -140,6 +132,19 @@ void Heightmap::from_array_interp_bicubic(Array &array)
 
   for (decltype(futures)::size_type i = 0; i < this->get_ntiles(); ++i)
     futures[i] = std::async(&Tile::from_array_interp_bicubic,
+                            std::ref(tiles[i]),
+                            std::ref(array));
+
+  for (decltype(futures)::size_type i = 0; i < this->get_ntiles(); ++i)
+    futures[i].get();
+}
+
+void Heightmap::from_array_interp_bilinear(Array &array)
+{
+  std::vector<std::future<void>> futures(this->get_ntiles());
+
+  for (decltype(futures)::size_type i = 0; i < this->get_ntiles(); ++i)
+    futures[i] = std::async(&Tile::from_array_interp,
                             std::ref(tiles[i]),
                             std::ref(array));
 

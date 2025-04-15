@@ -17,7 +17,17 @@ namespace hmap
 
 void interpolate_array_bicubic(const Array &source, Array &target);
 
+void interpolate_array_bicubic(const Array       &source,
+                               Array             &target,
+                               const Vec4<float> &bbox_source,
+                               const Vec4<float> &bbox_target);
+
 void interpolate_array_bilinear(const Array &source, Array &target);
+
+void interpolate_array_bilinear(const Array       &source,
+                                Array             &target,
+                                const Vec4<float> &bbox_source,
+                                const Vec4<float> &bbox_target);
 
 void interpolate_array_nearest(const Array &source, Array &target);
 
