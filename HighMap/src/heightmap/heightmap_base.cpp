@@ -9,6 +9,7 @@
 
 #include "highmap/heightmap.hpp"
 #include "highmap/interpolate2d.hpp"
+#include "highmap/operator.hpp"
 #include "highmap/range.hpp"
 
 #include "highmap/internal/vector_utils.hpp"
@@ -413,16 +414,7 @@ float Heightmap::sum()
 
 Array Heightmap::to_array()
 {
-  return this->to_array(this->shape);
-}
-
-Array Heightmap::to_array(Vec2<int> shape_export)
-{
-  // TODO: stepping not robust with overlapping
-  Vec2<int> step = {this->shape.x / shape_export.x,
-                    this->shape.y / shape_export.y};
-
-  Array array = Array(shape_export);
+  Array array = Array(this->shape);
 
   for (int it = 0; it < tiling.x; it++)
     for (int jt = 0; jt < tiling.y; jt++)
@@ -433,10 +425,36 @@ Array Heightmap::to_array(Vec2<int> shape_export)
       int i1 = (int)(tiles[k].shift.x * this->shape.x);
       int j1 = (int)(tiles[k].shift.y * this->shape.y);
 
-      for (int p = 0; p < tiles[k].shape.x; p += step.x)
-        for (int q = 0; q < tiles[k].shape.y; q += step.y)
-          array((p + i1) / step.x, (q + j1) / step.y) = tiles[k](p, q);
+      for (int q = 0; q < tiles[k].shape.y; ++q)
+        for (int p = 0; p < tiles[k].shape.x; ++p)
+          array(p + i1, q + j1) = tiles[k](p, q);
     }
+
+  return array;
+}
+
+Array Heightmap::to_array(Vec2<int> shape_export)
+{
+  Array array = Array(this->shape);
+
+  // interpolation grid points
+  bool endpoint = false;
+
+  std::vector<float> x = linspace(this->bbox.a,
+                                  this->bbox.b,
+                                  shape_export.x,
+                                  endpoint);
+
+  std::vector<float> y = linspace(this->bbox.c,
+                                  this->bbox.d,
+                                  shape_export.y,
+                                  endpoint);
+
+  // nearest neighbor interpolation since the export is likely to be
+  // smaller than the original one
+  for (int j = 0; j < shape_export.y; ++j)
+    for (int i = 0; i < shape_export.x; ++i)
+      array(i, j) = this->get_value_nearest(x[i], y[j]);
 
   return array;
 }
