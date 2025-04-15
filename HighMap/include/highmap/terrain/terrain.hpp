@@ -71,6 +71,7 @@ public:
 
   Vec2<float> map_to_global_coords(float rx, float ry) const;
 
+  // relative coords always in [0, 1] x [0, 1] (unit square)
   Vec2<float> map_to_relative_coords(float gx, float gy) const;
 
 private:

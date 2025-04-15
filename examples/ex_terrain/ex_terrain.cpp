@@ -39,10 +39,6 @@ int main(void)
       hmap::TransformMode::DISTRIBUTED);
 
   h1.remap();
-  h1.set_bbox(hmap::Vec4<float>(0.f,
-                                terrain1.get_size().x,
-                                0.f,
-                                terrain1.get_size().y));
 
   // --- second frame
 
@@ -51,10 +47,6 @@ int main(void)
                                          -30.f);
 
   hmap::Heightmap h2 = hmap::Heightmap({512, 256}, {2, 4}, 0.5f);
-  h2.set_bbox(hmap::Vec4<float>(0.f,
-                                terrain2.get_size().x,
-                                0.f,
-                                terrain2.get_size().y));
 
   // --- tests
 
@@ -63,6 +55,7 @@ int main(void)
 
   hmap::Vec4<float> bboxi = intersect_bounding_boxes(bbox1, bbox2);
 
+  LOG_DEBUG("%f %f %f %f", bbox1.a, bbox1.b, bbox1.c, bbox1.d);
   LOG_DEBUG("%f %f %f %f", bboxi.a, bboxi.b, bboxi.c, bboxi.d);
 
   hmap::Vec2<int> shape2 = {1000, 1000};

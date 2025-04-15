@@ -25,9 +25,9 @@ Vec4<float> Terrain::compute_bounding_box() const
 {
   // Define the four corners relative to the origin
   std::pair<float, float> corners[4] = {{0.f, 0.f},
-                                        {this->size.x, 0.f},
-                                        {this->size.x, this->size.y},
-                                        {0.f, this->size.y}};
+                                        {1.f, 0.f},
+                                        {1.f, 1.f},
+                                        {0.f, 1.f}};
 
   // Rotate each corner and find min/max x and y
   float min_x = std::numeric_limits<float>::max();
@@ -56,8 +56,7 @@ float Terrain::get_heightmap_value_bilinear(const Heightmap &h,
 {
   Vec2<float> rel = this->map_to_relative_coords(gx, gy);
 
-  if (rel.x >= 0.f && rel.x <= this->size.x && rel.y >= 0.f &&
-      rel.y <= this->size.y)
+  if (rel.x >= 0.f && rel.x <= 1.f && rel.y >= 0.f && rel.y <= 1.f)
   {
     return h.get_value_bilinear(rel.x, rel.y);
   }
@@ -72,8 +71,7 @@ float Terrain::get_heightmap_value_nearest(const Heightmap &h,
 {
   Vec2<float> rel = this->map_to_relative_coords(gx, gy);
 
-  if (rel.x >= 0.f && rel.x <= this->size.x && rel.y >= 0.f &&
-      rel.y <= this->size.y)
+  if (rel.x >= 0.f && rel.x <= 1.f && rel.y >= 0.f && rel.y <= 1.f)
   {
     return h.get_value_nearest(rel.x, rel.y);
   }
@@ -92,23 +90,28 @@ bool Terrain::is_point_within(float gx, float gy) const
   Vec2<float> rel = this->map_to_relative_coords(gx, gy);
 
   // Check if the unrotated point is within the unrotated bounds
-  return (rel.x >= 0.f && rel.x <= this->size.x && rel.y >= 0.f &&
-          rel.y <= this->size.y);
+  return (rel.x >= 0.f && rel.x <= 1.f && rel.y >= 0.f && rel.y <= 1.f);
 }
 
 // Method to set the rotation angle and update cos_angle and sin_angle
 void Terrain::set_rotation_angle(float new_angle)
 {
   this->rotation_angle = new_angle;
+
   float angle_rad = this->rotation_angle * M_PI / 180.0f;
+
   this->cos_angle = std::cos(angle_rad);
   this->sin_angle = std::sin(angle_rad);
 }
 
 Vec2<float> Terrain::map_to_global_coords(float rx, float ry) const
 {
+  rx *= this->size.x;
+  ry *= this->size.y;
+
   float gx = this->origin.x + rx * this->cos_angle - ry * this->sin_angle;
   float gy = this->origin.y + rx * this->sin_angle + ry * this->cos_angle;
+
   return Vec2<float>(gx, gy);
 }
 
@@ -123,6 +126,9 @@ Vec2<float> Terrain::map_to_relative_coords(float gx, float gy) const
                       translated.y * this->sin_angle;
   float unrotated_y = -translated.x * this->sin_angle +
                       translated.y * this->cos_angle;
+
+  unrotated_x /= this->size.x;
+  unrotated_y /= this->size.y;
 
   return Vec2<float>(unrotated_x, unrotated_y);
 }

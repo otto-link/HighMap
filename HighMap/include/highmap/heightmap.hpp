@@ -153,11 +153,6 @@ public:
   Vec2<int> shape;
 
   /**
-   * @brief Heightmap bounding box {xmin, xmax, ymin, ymax}.
-   */
-  Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f};
-
-  /**
    * @brief Tiling setup (number of tiles in each direction).
    */
   Vec2<int> tiling = {1, 1};
@@ -172,16 +167,6 @@ public:
    */
   std::vector<Tile> tiles = {};
 
-  /**
-   * @brief Construct a new HeightMap object.
-   *
-   * @param shape   Shape.
-   * @param bbox    Bounding box.
-   * @param tiling  Tiling setup.
-   * @param overlap Tile overlapping.
-   */
-  Heightmap(Vec2<int> shape, Vec4<float> bbox, Vec2<int> tiling, float overlap);
-
   Heightmap(Vec2<int> shape, Vec2<int> tiling,
             float overlap); ///< @overload
 
@@ -189,11 +174,6 @@ public:
             Vec2<int> tiling,
             float     overlap,
             float     fill_value); ///< @overload
-
-  Heightmap(Vec2<int> shape, Vec4<float> bbox,
-            Vec2<int> tiling); ///< @overload
-
-  Heightmap(Vec2<int> shape, Vec4<float> bbox); ///< @overload
 
   Heightmap(Vec2<int> shape, Vec2<int> tiling); ///< @overload
 
@@ -228,8 +208,6 @@ public:
   float get_value_bilinear(float x, float y) const;
 
   float get_value_nearest(float x, float y) const;
-
-  void set_bbox(Vec4<float> new_bbox);
 
   /**
    * @brief Set the tile overlapping.
