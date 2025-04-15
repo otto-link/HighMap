@@ -11,6 +11,7 @@
  */
 #pragma once
 #include "highmap/array.hpp"
+#include "highmap/coord_frame.hpp"
 
 namespace hmap
 {
@@ -35,6 +36,11 @@ void interpolate_array_nearest(const Array       &source,
                                Array             &target,
                                const Vec4<float> &bbox_source,
                                const Vec4<float> &bbox_target);
+
+void interpolate_heightmap(const hmap::Heightmap &h_source,
+                           hmap::Heightmap       &h_target,
+                           const CoordFrame      &t_source,
+                           const CoordFrame      &t_target);
 
 } // namespace hmap
 

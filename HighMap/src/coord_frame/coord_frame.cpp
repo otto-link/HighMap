@@ -1,27 +1,28 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
-#include <stdexcept>
-
 #include "macrologger.h"
 
-#include "highmap/terrain/terrain.hpp"
+#include "highmap/coord_frame.hpp"
 
 namespace hmap
 {
 
-Terrain::Terrain() : origin(Vec2<float>(0.f, 0.f)), size(Vec2<float>(1.f, 1.f))
+CoordFrame::CoordFrame()
+    : origin(Vec2<float>(0.f, 0.f)), size(Vec2<float>(1.f, 1.f))
 {
   this->set_rotation_angle(0.f);
 }
 
-Terrain::Terrain(Vec2<float> origin, Vec2<float> size, float rotation_angle)
+CoordFrame::CoordFrame(Vec2<float> origin,
+                       Vec2<float> size,
+                       float       rotation_angle)
     : origin(origin), size(size)
 {
   this->set_rotation_angle(rotation_angle);
 }
 
-Vec4<float> Terrain::compute_bounding_box() const
+Vec4<float> CoordFrame::compute_bounding_box() const
 {
   // Define the four corners relative to the origin
   std::pair<float, float> corners[4] = {{0.f, 0.f},
@@ -49,10 +50,10 @@ Vec4<float> Terrain::compute_bounding_box() const
   return Vec4<float>(min_x, max_x, min_y, max_y);
 }
 
-float Terrain::get_heightmap_value_bilinear(const Heightmap &h,
-                                            float            gx,
-                                            float            gy,
-                                            float            fill_value) const
+float CoordFrame::get_heightmap_value_bilinear(const Heightmap &h,
+                                               float            gx,
+                                               float            gy,
+                                               float fill_value) const
 {
   Vec2<float> rel = this->map_to_relative_coords(gx, gy);
 
@@ -64,10 +65,10 @@ float Terrain::get_heightmap_value_bilinear(const Heightmap &h,
     return fill_value;
 }
 
-float Terrain::get_heightmap_value_nearest(const Heightmap &h,
-                                           float            gx,
-                                           float            gy,
-                                           float            fill_value) const
+float CoordFrame::get_heightmap_value_nearest(const Heightmap &h,
+                                              float            gx,
+                                              float            gy,
+                                              float            fill_value) const
 {
   Vec2<float> rel = this->map_to_relative_coords(gx, gy);
 
@@ -79,13 +80,13 @@ float Terrain::get_heightmap_value_nearest(const Heightmap &h,
     return fill_value;
 }
 
-float Terrain::get_rotation_angle() const
+float CoordFrame::get_rotation_angle() const
 {
   return this->rotation_angle;
 }
 
 // Method to determine if a point (x, y) is within the rotated terrain
-bool Terrain::is_point_within(float gx, float gy) const
+bool CoordFrame::is_point_within(float gx, float gy) const
 {
   Vec2<float> rel = this->map_to_relative_coords(gx, gy);
 
@@ -94,7 +95,7 @@ bool Terrain::is_point_within(float gx, float gy) const
 }
 
 // Method to set the rotation angle and update cos_angle and sin_angle
-void Terrain::set_rotation_angle(float new_angle)
+void CoordFrame::set_rotation_angle(float new_angle)
 {
   this->rotation_angle = new_angle;
 
@@ -104,7 +105,7 @@ void Terrain::set_rotation_angle(float new_angle)
   this->sin_angle = std::sin(angle_rad);
 }
 
-Vec2<float> Terrain::map_to_global_coords(float rx, float ry) const
+Vec2<float> CoordFrame::map_to_global_coords(float rx, float ry) const
 {
   rx *= this->size.x;
   ry *= this->size.y;
@@ -116,7 +117,7 @@ Vec2<float> Terrain::map_to_global_coords(float rx, float ry) const
 }
 
 // Method to apply inverse rotation to a point relative to the terrain origin
-Vec2<float> Terrain::map_to_relative_coords(float gx, float gy) const
+Vec2<float> CoordFrame::map_to_relative_coords(float gx, float gy) const
 {
   // Translate the point to be relative to the terrain's origin
   Vec2<float> translated = Vec2<float>(gx, gy) - this->origin;

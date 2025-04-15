@@ -1,0 +1,2 @@
+add_executable(ex_coord_frame ex_coord_frame.cpp)
+target_link_libraries(ex_coord_frame highmap)

@@ -3,7 +3,7 @@
    this software. */
 
 /**
- * @file terrain.hpp
+ * @file coord_frame.hpp
  * @author Otto Link (otto.link.bv@gmail.com)
  * @brief
  *
@@ -20,12 +20,12 @@
 namespace hmap
 {
 
-class Terrain
+class CoordFrame
 {
 public:
-  Terrain();
+  CoordFrame();
 
-  Terrain(Vec2<float> origin, Vec2<float> size, float rotation_angle);
+  CoordFrame(Vec2<float> origin, Vec2<float> size, float rotation_angle);
 
   // Getters
   Vec2<float> get_origin() const
@@ -82,10 +82,5 @@ private:
   float cos_angle;
   float sin_angle;
 };
-
-void interpolate_terrain_heightmap(const Terrain         &t_source,
-                                   const hmap::Heightmap &h_source,
-                                   const Terrain         &t_target,
-                                   hmap::Heightmap       &h_target);
 
 } // namespace hmap

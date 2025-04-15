@@ -1,19 +1,17 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
-#include <stdexcept>
-
 #include "macrologger.h"
 
-#include "highmap/terrain/terrain.hpp"
+#include "highmap/coord_frame.hpp"
 
 namespace hmap
 {
 
-void interpolate_terrain_heightmap(const Terrain         &t_source,
-                                   const hmap::Heightmap &h_source,
-                                   const Terrain         &t_target,
-                                   hmap::Heightmap       &h_target)
+void interpolate_heightmap(const hmap::Heightmap &h_source,
+                           hmap::Heightmap       &h_target,
+                           const CoordFrame      &t_source,
+                           const CoordFrame      &t_target)
 {
   for (size_t k = 0; k < h_target.tiles.size(); k++)
   {
