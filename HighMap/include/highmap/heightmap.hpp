@@ -70,19 +70,15 @@ class Tile : public Array
 public:
   /**
    * @brief Tile shift in each direction, assuming the global domain is a unit
-   * square.
-   *
-   * For example, if the tiling is {4, 2}, the shift of tile {3, 2} is {0.75,
-   * 0.5}.
+   * square. For example, if the tiling is {4, 2}, the shift of tile {3, 2} is
+   * {0.75, 0.5}.
    */
   Vec2<float> shift;
 
   /**
    * @brief Scale of the tile in each direction, assuming the global domain is a
-   * unit square.
-   *
-   * For example, if the tiling is {4, 2} without overlap, the scale is {0.25,
-   * 0.5}.
+   * unit square. For example, if the tiling is {4, 2} without overlap, the
+   * scale is {0.25, 0.5}.
    */
   Vec2<float> scale;
 
@@ -124,6 +120,12 @@ public:
    */
   void from_array_interp_bicubic(Array &array);
 
+  /**
+   * @brief Fill tile values by interpolating (bilinear) values from another
+   * array.
+   *
+   * @param array Input array.
+   */
   void from_array_interp_bilinear(Array &array);
 
   /**
@@ -262,6 +264,12 @@ public:
    */
   void from_array_interp_bicubic(Array &array);
 
+  /**
+   * @brief Fill tile values by interpolating (bilinear) values from another
+   * array.
+   *
+   * @param array Input array.
+   */
   void from_array_interp_bilinear(Array &array);
 
   /**
@@ -317,7 +325,10 @@ public:
    */
   void remap(float vmin = 0.f, float vmax = 1.f);
 
-  void remap(float vmin, float vmax, float from_min, float from_max);
+  void remap(float vmin,
+             float vmax,
+             float from_min,
+             float from_max); ///< @overload
 
   /**
    * @brief Smooth the transitions between each tiles (when overlap > 0).
