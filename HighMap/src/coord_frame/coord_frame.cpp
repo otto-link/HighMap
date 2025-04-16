@@ -50,6 +50,18 @@ Vec4<float> CoordFrame::compute_bounding_box() const
   return Vec4<float>(min_x, max_x, min_y, max_y);
 }
 
+float CoordFrame::normalized_distance_to_edges(float gx, float gy) const
+{
+  // switch to unit-square coordinates
+  Vec2<float> rel = this->map_to_relative_coords(gx, gy);
+
+  // distances to the 4 edges, times 2 to get something in [0, 1]
+  float dmin = 2.f * std::min(1.f - rel.y,
+                              std::min(rel.y, std::min(rel.x, 1.f - rel.x)));
+
+  return dmin;
+}
+
 float CoordFrame::get_heightmap_value_bilinear(const Heightmap &h,
                                                float            gx,
                                                float            gy,

@@ -16,6 +16,13 @@
 namespace hmap
 {
 
+void flatten_heightmap(const hmap::Heightmap &h_source1,
+                       const hmap::Heightmap &h_source2,
+                       hmap::Heightmap       &h_target,
+                       const CoordFrame      &t_source1,
+                       const CoordFrame      &t_source2,
+                       const CoordFrame      &t_target);
+
 void interpolate_array_bicubic(const Array &source, Array &target);
 
 void interpolate_array_bicubic(const Array       &source,

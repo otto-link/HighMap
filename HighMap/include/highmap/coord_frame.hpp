@@ -74,6 +74,8 @@ public:
   // relative coords always in [0, 1] x [0, 1] (unit square)
   Vec2<float> map_to_relative_coords(float gx, float gy) const;
 
+  float normalized_distance_to_edges(float gx, float gy) const;
+
 private:
   Vec2<float> origin;
   Vec2<float> size;

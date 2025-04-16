@@ -1,0 +1,2 @@
+add_executable(ex_flatten_heightmap ex_flatten_heightmap.cpp)
+target_link_libraries(ex_flatten_heightmap highmap)
