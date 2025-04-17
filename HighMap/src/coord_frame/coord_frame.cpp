@@ -50,18 +50,6 @@ Vec4<float> CoordFrame::compute_bounding_box() const
   return Vec4<float>(min_x, max_x, min_y, max_y);
 }
 
-float CoordFrame::normalized_distance_to_edges(float gx, float gy) const
-{
-  // switch to unit-square coordinates
-  Vec2<float> rel = this->map_to_relative_coords(gx, gy);
-
-  // distances to the 4 edges, times 2 to get something in [0, 1]
-  float dmin = 2.f * std::min(1.f - rel.y,
-                              std::min(rel.y, std::min(rel.x, 1.f - rel.x)));
-
-  return dmin;
-}
-
 float CoordFrame::get_heightmap_value_bilinear(const Heightmap &h,
                                                float            gx,
                                                float            gy,
@@ -144,6 +132,27 @@ Vec2<float> CoordFrame::map_to_relative_coords(float gx, float gy) const
   unrotated_y /= this->size.y;
 
   return Vec2<float>(unrotated_x, unrotated_y);
+}
+
+float CoordFrame::normalized_distance_to_edges(float gx, float gy) const
+{
+  // switch to unit-square coordinates
+  Vec2<float> rel = this->map_to_relative_coords(gx, gy);
+
+  // distances to the 4 edges, times 2 to get something in [0, 1]
+  float dmin = 2.f * std::min(1.f - rel.y,
+                              std::min(rel.y, std::min(rel.x, 1.f - rel.x)));
+
+  return dmin;
+}
+
+float CoordFrame::normalized_shape_factor(float gx, float gy) const
+{
+  // switch to unit-square coordinates
+  Vec2<float> rel = this->map_to_relative_coords(gx, gy);
+
+  return 256.f * rel.x * rel.x * (1.f - rel.x) * (1.f - rel.x) * rel.y * rel.y *
+         (1.f - rel.y) * (1.f - rel.y);
 }
 
 } // namespace hmap

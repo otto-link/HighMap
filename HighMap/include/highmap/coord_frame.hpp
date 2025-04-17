@@ -76,6 +76,8 @@ public:
 
   float normalized_distance_to_edges(float gx, float gy) const;
 
+  float normalized_shape_factor(float gx, float gy) const;
+
 private:
   Vec2<float> origin;
   Vec2<float> size;

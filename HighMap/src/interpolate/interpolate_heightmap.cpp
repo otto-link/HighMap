@@ -46,10 +46,9 @@ void flatten_heightmap(Heightmap        &h_source1,
                                                                    g.x,
                                                                    g.y);
 
-          // transition between the tow heightmaps based on the
+          // transition between the two heightmaps based on the
           // distance to the bounding box
-          float r = t_source2.normalized_distance_to_edges(g.x, g.y);
-          r = smoothstep3(r);
+          float r = t_source2.normalized_shape_factor(g.x, g.y);
 
           h_source1_cpy.tiles[k](i, j) = lerp(v_source1, v_source2, r);
         }
