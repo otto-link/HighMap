@@ -57,15 +57,48 @@ int main(void)
       },
       hmap::TransformMode::DISTRIBUTED);
 
+  // --- third frame
+
+  hmap::CoordFrame frame3 = hmap::CoordFrame(hmap::Vec2<float>(10.f, 20.f),
+                                             hmap::Vec2<float>(50.f, 50.f),
+                                             45.f);
+
+  hmap::Heightmap h3 = hmap::Heightmap({512, 256}, {2, 4}, 0.5f);
+
+  hmap::interpolate_heightmap(h1, h3, frame1, frame3);
+
+  hmap::transform(
+      {&h3},
+      [](std::vector<hmap::Array *> p_arrays)
+      {
+        hmap::Array *pa_out = p_arrays[0];
+        hmap::plateau(*pa_out, 32, 4.f);
+      },
+      hmap::TransformMode::DISTRIBUTED);
+
+  h3.smooth_overlap_buffers();
+
   // --- flatten
 
-  hmap::Heightmap h3 = hmap::Heightmap(hmap::Vec2<int>(1024, 512),
+  hmap::Heightmap hf = hmap::Heightmap(hmap::Vec2<int>(1024, 512),
                                        hmap::Vec2<int>(4, 4),
                                        0.5f);
 
-  hmap::flatten_heightmap(h1, h2, h3, frame1, frame2, frame1);
+  hmap::flatten_heightmap(h1, h2, hf, frame1, frame2, frame1);
+
+  hmap::Heightmap hg = hmap::Heightmap(hmap::Vec2<int>(1024, 512),
+                                       hmap::Vec2<int>(4, 4),
+                                       0.5f);
+
+  hmap::flatten_heightmap({&h1, &h2, &h3},
+                          hg,
+                          {&frame1, &frame2, &frame3},
+                          frame1);
 
   h1.to_array().to_png("out_h1.png", hmap::Cmap::JET);
   h2.to_array().to_png("out_h2.png", hmap::Cmap::JET);
   h3.to_array().to_png("out_h3.png", hmap::Cmap::JET);
+
+  hf.to_array().to_png("out_hf.png", hmap::Cmap::JET);
+  hg.to_array().to_png("out_hg.png", hmap::Cmap::JET);
 }
