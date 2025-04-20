@@ -14,5 +14,5 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${HMM_INCLUDE_DIR})
 
 target_link_libraries(${PROJECT_NAME} glm::glm)
 
-target_compile_options(hmm PRIVATE -Wno-sign-compare -Wno-comment
-                                   -Wno-type-limits)
+# target_compile_options(hmm PRIVATE -Wno-sign-compare -Wno-comment
+# -Wno-type-limits)
