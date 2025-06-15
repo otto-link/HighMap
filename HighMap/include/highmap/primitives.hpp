@@ -39,6 +39,7 @@ enum VoronoiReturnType : int
   F1DF2_SQUARED,
   F2MF1_SQRT, // F2 - F1
   F2MF1_SQUARED,
+  EDGE_DISTANCE
 };
 
 /**

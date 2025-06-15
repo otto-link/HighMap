@@ -115,6 +115,58 @@ float base_voronoi_f1tf2(const float2 p,
     return min1 * min2 - 1.f;
 }
 
+// https://iquilezles.org/articles/voronoilines/
+float base_voronoi_edge_distance(const float2 x,
+                                 const float2 jitter,
+                                 const bool   return_sqrt,
+                                 const float  fseed)
+{
+  float2 p = floor(x);
+  float2 pi;
+  float2 f = fract(x, &pi);
+
+  float2 mb;
+  float2 mr;
+  float2 df = (float2)(0.1f, 0.1f);
+
+  float res = 8.f;
+  for (int j = -1; j <= 1; j++)
+    for (int i = -1; i <= 1; i++)
+    {
+      float2 b = (float2)(i, j);
+      float2 r = b - f +
+                 jitter * (float2)(hash12f(p + b, fseed),
+                                   hash12f(p + b + df, fseed));
+      float d = dot(r, r);
+
+      if (d < res)
+      {
+        res = d;
+        mr = r;
+        mb = b;
+      }
+    }
+
+  res = 8.f;
+  for (int j = -2; j <= 2; j++)
+    for (int i = -2; i <= 2; i++)
+    {
+      float2 b = mb + (float2)(i, j);
+      float2 r = b - f +
+                 jitter * (float2)(hash12f(p + b, fseed),
+                                   hash12f(p + b + df, fseed));
+      if (dot(mr - r, mr - r) > FLT_MIN)
+      {
+        float d = dot(0.5f * (mr + r), normalize(r - mr));
+        res = min(res, d);
+      }
+    }
+  if (return_sqrt)
+    return sqrt(res);
+  else
+    return res;
+}
+
 float base_voronoi_f1df2(const float2 p,
                          const float2 jitter,
                          const bool   return_sqrt,
@@ -312,6 +364,29 @@ float base_voronoi_f2mf1_fbm(const float2 p,
   return n;
 }
 
+float base_voronoi_edge_distance_fbm(const float2 p,
+                                     const float2 jitter,
+                                     const bool   return_sqrt,
+                                     const int    octaves,
+                                     const float  weight,
+                                     const float  persistence,
+                                     const float  lacunarity,
+                                     const float  fseed)
+{
+  float n = 0.f;
+  float nf = 1.f;
+  float na = 0.6f;
+  for (int i = 0; i < octaves; i++)
+  {
+    float v = base_voronoi_edge_distance(p * nf, jitter, return_sqrt, fseed);
+    n += v * na;
+    na *= (1.f - weight) + weight * min(v + 1.f, 2.f) * 0.5f;
+    na *= persistence;
+    nf *= lacunarity;
+  }
+  return n;
+}
+
 void kernel voronoi(global float *output,
                     global float *ctrl_param,
                     global float *noise_x,
@@ -357,6 +432,9 @@ void kernel voronoi(global float *output,
   case 7: val = base_voronoi_f1df2(pos, ct * jitter, false, fseed); break;
   case 8: val = base_voronoi_f2mf1(pos, ct * jitter, true, fseed); break;
   case 9: val = base_voronoi_f2mf1(pos, ct * jitter, false, fseed); break;
+  case 10:
+    val = base_voronoi_edge_distance(pos, ct * jitter, false, fseed);
+    break;
   }
 
   output[index] = val;
@@ -500,6 +578,16 @@ void kernel voronoi_fbm(global float *output,
                                  persistence,
                                  lacunarity,
                                  fseed);
+    break;
+  case 10:
+    val = base_voronoi_edge_distance_fbm(pos,
+                                         ct * jitter,
+                                         false,
+                                         octaves,
+                                         weight,
+                                         persistence,
+                                         lacunarity,
+                                         fseed);
     break;
   }
 
