@@ -74,10 +74,10 @@ float base_voronoi_f2(const float2 p,
   return min2 - 1.f;
 }
 
-float base_voronoi_f1f2(const float2 p,
-                        const float2 jitter,
-                        const bool   return_sqrt,
-                        const float  fseed)
+float base_voronoi_f1tf2(const float2 p,
+                         const float2 jitter,
+                         const bool   return_sqrt,
+                         const float  fseed)
 {
   float2 i = floor(p);
   float2 pi;
@@ -113,6 +113,88 @@ float base_voronoi_f1f2(const float2 p,
     return sqrt(min1 * min2) - 1.f;
   else
     return min1 * min2 - 1.f;
+}
+
+float base_voronoi_f1df2(const float2 p,
+                         const float2 jitter,
+                         const bool   return_sqrt,
+                         const float  fseed)
+{
+  float2 i = floor(p);
+  float2 pi;
+  float2 f = fract(p, &pi);
+
+  float min1 = FLT_MAX;
+  float min2 = FLT_MAX;
+
+  for (int dx = -1; dx <= 1; dx++)
+    for (int dy = -1; dy <= 1; dy++)
+    {
+      float2 neighbor = i + (float2)(dx, dy);
+      float2 df = (float2)(0.1f, 0.1f);
+      float2 feature_point = neighbor +
+                             jitter * (float2)(hash12f(neighbor, fseed),
+                                               hash12f(neighbor + df, fseed));
+
+      float2 diff = p - feature_point;
+      float  dist = dot(diff, diff);
+
+      if (dist < min1)
+      {
+        min2 = min1;
+        min1 = dist;
+      }
+      else if (dist < min2)
+      {
+        min2 = dist;
+      }
+    }
+
+  if (return_sqrt)
+    return sqrt(min1 / min2) - 1.f;
+  else
+    return min1 / min2 - 1.f;
+}
+
+float base_voronoi_f2mf1(const float2 p,
+                         const float2 jitter,
+                         const bool   return_sqrt,
+                         const float  fseed)
+{
+  float2 i = floor(p);
+  float2 pi;
+  float2 f = fract(p, &pi);
+
+  float min1 = FLT_MAX;
+  float min2 = FLT_MAX;
+
+  for (int dx = -1; dx <= 1; dx++)
+    for (int dy = -1; dy <= 1; dy++)
+    {
+      float2 neighbor = i + (float2)(dx, dy);
+      float2 df = (float2)(0.1f, 0.1f);
+      float2 feature_point = neighbor +
+                             jitter * (float2)(hash12f(neighbor, fseed),
+                                               hash12f(neighbor + df, fseed));
+
+      float2 diff = p - feature_point;
+      float  dist = dot(diff, diff);
+
+      if (dist < min1)
+      {
+        min2 = min1;
+        min1 = dist;
+      }
+      else if (dist < min2)
+      {
+        min2 = dist;
+      }
+    }
+
+  if (return_sqrt)
+    return sqrt(min2 - min1) - 1.f;
+  else
+    return min2 - min1 - 1.f;
 }
 
 float base_voronoi_f1_fbm(const float2 p,
@@ -161,21 +243,67 @@ float base_voronoi_f2_fbm(const float2 p,
   return n;
 }
 
-float base_voronoi_f1f2_fbm(const float2 p,
-                            const float2 jitter,
-                            const bool   return_sqrt,
-                            const int    octaves,
-                            const float  weight,
-                            const float  persistence,
-                            const float  lacunarity,
-                            const float  fseed)
+float base_voronoi_f1tf2_fbm(const float2 p,
+                             const float2 jitter,
+                             const bool   return_sqrt,
+                             const int    octaves,
+                             const float  weight,
+                             const float  persistence,
+                             const float  lacunarity,
+                             const float  fseed)
 {
   float n = 0.f;
   float nf = 1.f;
   float na = 0.6f;
   for (int i = 0; i < octaves; i++)
   {
-    float v = base_voronoi_f1f2(p * nf, jitter, return_sqrt, fseed);
+    float v = base_voronoi_f1tf2(p * nf, jitter, return_sqrt, fseed);
+    n += v * na;
+    na *= (1.f - weight) + weight * min(v + 1.f, 2.f) * 0.5f;
+    na *= persistence;
+    nf *= lacunarity;
+  }
+  return n;
+}
+
+float base_voronoi_f1df2_fbm(const float2 p,
+                             const float2 jitter,
+                             const bool   return_sqrt,
+                             const int    octaves,
+                             const float  weight,
+                             const float  persistence,
+                             const float  lacunarity,
+                             const float  fseed)
+{
+  float n = 0.f;
+  float nf = 1.f;
+  float na = 0.6f;
+  for (int i = 0; i < octaves; i++)
+  {
+    float v = base_voronoi_f1df2(p * nf, jitter, return_sqrt, fseed);
+    n += v * na;
+    na *= (1.f - weight) + weight * min(v + 1.f, 2.f) * 0.5f;
+    na *= persistence;
+    nf *= lacunarity;
+  }
+  return n;
+}
+
+float base_voronoi_f2mf1_fbm(const float2 p,
+                             const float2 jitter,
+                             const bool   return_sqrt,
+                             const int    octaves,
+                             const float  weight,
+                             const float  persistence,
+                             const float  lacunarity,
+                             const float  fseed)
+{
+  float n = 0.f;
+  float nf = 1.f;
+  float na = 0.6f;
+  for (int i = 0; i < octaves; i++)
+  {
+    float v = base_voronoi_f2mf1(p * nf, jitter, return_sqrt, fseed);
     n += v * na;
     na *= (1.f - weight) + weight * min(v + 1.f, 2.f) * 0.5f;
     na *= persistence;
@@ -223,8 +351,12 @@ void kernel voronoi(global float *output,
   case 1: val = base_voronoi_f1(pos, ct * jitter, false, fseed); break;
   case 2: val = base_voronoi_f2(pos, ct * jitter, true, fseed); break;
   case 3: val = base_voronoi_f2(pos, ct * jitter, false, fseed); break;
-  case 4: val = base_voronoi_f1f2(pos, ct * jitter, true, fseed); break;
-  case 5: val = base_voronoi_f1f2(pos, ct * jitter, false, fseed); break;
+  case 4: val = base_voronoi_f1tf2(pos, ct * jitter, true, fseed); break;
+  case 5: val = base_voronoi_f1tf2(pos, ct * jitter, false, fseed); break;
+  case 6: val = base_voronoi_f1df2(pos, ct * jitter, true, fseed); break;
+  case 7: val = base_voronoi_f1df2(pos, ct * jitter, false, fseed); break;
+  case 8: val = base_voronoi_f2mf1(pos, ct * jitter, true, fseed); break;
+  case 9: val = base_voronoi_f2mf1(pos, ct * jitter, false, fseed); break;
   }
 
   output[index] = val;
@@ -310,24 +442,64 @@ void kernel voronoi_fbm(global float *output,
                               fseed);
     break;
   case 4:
-    val = base_voronoi_f1f2_fbm(pos,
-                                ct * jitter,
-                                true,
-                                octaves,
-                                weight,
-                                persistence,
-                                lacunarity,
-                                fseed);
+    val = base_voronoi_f1tf2_fbm(pos,
+                                 ct * jitter,
+                                 true,
+                                 octaves,
+                                 weight,
+                                 persistence,
+                                 lacunarity,
+                                 fseed);
     break;
   case 5:
-    val = base_voronoi_f1f2_fbm(pos,
-                                ct * jitter,
-                                false,
-                                octaves,
-                                weight,
-                                persistence,
-                                lacunarity,
-                                fseed);
+    val = base_voronoi_f1tf2_fbm(pos,
+                                 ct * jitter,
+                                 false,
+                                 octaves,
+                                 weight,
+                                 persistence,
+                                 lacunarity,
+                                 fseed);
+    break;
+  case 6:
+    val = base_voronoi_f1df2_fbm(pos,
+                                 ct * jitter,
+                                 true,
+                                 octaves,
+                                 weight,
+                                 persistence,
+                                 lacunarity,
+                                 fseed);
+    break;
+  case 7:
+    val = base_voronoi_f1df2_fbm(pos,
+                                 ct * jitter,
+                                 false,
+                                 octaves,
+                                 weight,
+                                 persistence,
+                                 lacunarity,
+                                 fseed);
+    break;
+  case 8:
+    val = base_voronoi_f2mf1_fbm(pos,
+                                 ct * jitter,
+                                 true,
+                                 octaves,
+                                 weight,
+                                 persistence,
+                                 lacunarity,
+                                 fseed);
+    break;
+  case 9:
+    val = base_voronoi_f2mf1_fbm(pos,
+                                 ct * jitter,
+                                 false,
+                                 octaves,
+                                 weight,
+                                 persistence,
+                                 lacunarity,
+                                 fseed);
     break;
   }
 

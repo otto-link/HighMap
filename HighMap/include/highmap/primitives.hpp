@@ -25,14 +25,20 @@
 namespace hmap
 {
 
+// F1: the distance to the closest point in space
+// F2: the distance to the second closest point in space
 enum VoronoiReturnType : int
 {
   F1_SQRT,
   F1_SQUARED,
   F2_SQRT,
   F2_SQUARED,
-  F1F2_SQRT,
-  F1F2_SQUARED,
+  F1TF2_SQRT, // F1 * F2
+  F1TF2_SQUARED,
+  F1DF2_SQRT, // F1 / F2
+  F1DF2_SQUARED,
+  F2MF1_SQRT, // F2 - F1
+  F2MF1_SQUARED,
 };
 
 /**
@@ -1648,7 +1654,8 @@ Array noise_fbm(NoiseType    noise_type,
  * @param  return_type  (Optional) The type of value to compute for the Voronoi
  *                      diagram. Defaults to `VoronoiReturnType::F1_SQUARED`.
  * @param  p_ctrl_param (Optional) A pointer to an `Array` used to control the
- *                      Voronoi computation. If nullptr, no control is applied.
+ *                      Voronoi computation. Used here as a multiplier for the
+ * jitter. If nullptr, no control is applied.
  * @param  p_noise_x    (Optional) A pointer to an `Array` providing additional
  *                      noise in the x-direction for cell positions. If nullptr,
  *                      no x-noise is applied.
@@ -1795,6 +1802,9 @@ Array voronoi_edge_distance(Vec2<int>    shape,
  *                              contribution of random offsets.
  * @param  v_param              A control parameter for the noise, affecting the
  *                              smoothness of the pattern.
+ * @param p_ctrl_param         Optional pointer to an Array specifying control
+ *                             parameters for Voronoi grid jitter (default is
+ *                             nullptr).
  * @param  p_noise_x, p_noise_y Reference to the input noise arrays.
  * @param  seed                 A seed value for random number generation,
  *                              ensuring reproducibility.
