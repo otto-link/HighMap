@@ -433,6 +433,9 @@ void kernel voronoi(global float *output,
   case 8: val = base_voronoi_f2mf1(pos, ct * jitter, true, fseed); break;
   case 9: val = base_voronoi_f2mf1(pos, ct * jitter, false, fseed); break;
   case 10:
+    val = base_voronoi_edge_distance(pos, ct * jitter, true, fseed);
+    break;
+  case 11:
     val = base_voronoi_edge_distance(pos, ct * jitter, false, fseed);
     break;
   }
@@ -580,6 +583,16 @@ void kernel voronoi_fbm(global float *output,
                                  fseed);
     break;
   case 10:
+    val = base_voronoi_edge_distance_fbm(pos,
+                                         ct * jitter,
+                                         true,
+                                         octaves,
+                                         weight,
+                                         persistence,
+                                         lacunarity,
+                                         fseed);
+    break;
+  case 11:
     val = base_voronoi_edge_distance_fbm(pos,
                                          ct * jitter,
                                          false,

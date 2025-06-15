@@ -4,7 +4,7 @@ int main(void)
 {
   hmap::gpu::init_opencl();
 
-  hmap::Vec2<int> shape = {256, 256};
+  hmap::Vec2<int>   shape = {256, 256};
   hmap::Vec2<float> kw = {8.f, 8.f};
   int               seed = 1;
 
@@ -21,8 +21,8 @@ int main(void)
       hmap::VoronoiReturnType::F1DF2_SQUARED,
       hmap::VoronoiReturnType::F2MF1_SQRT,
       hmap::VoronoiReturnType::F2MF1_SQUARED,
-      hmap::VoronoiReturnType::EDGE_DISTANCE,
-  };
+      hmap::VoronoiReturnType::EDGE_DISTANCE_SQRT,
+      hmap::VoronoiReturnType::EDGE_DISTANCE_SQUARED};
 
   std::vector<hmap::Array> zs = {};
 
