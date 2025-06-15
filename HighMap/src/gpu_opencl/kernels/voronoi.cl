@@ -155,12 +155,13 @@ float base_voronoi_edge_distance(const float2 x,
       float2 r = b - f +
                  jitter * (float2)(hash12f(p + b, fseed),
                                    hash12f(p + b + df, fseed));
-      if (dot(mr - r, mr - r) > FLT_MIN)
+      if (dot(mr - r, mr - r) > 1e-5f)
       {
         float d = dot(0.5f * (mr + r), normalize(r - mr));
         res = min(res, d);
       }
     }
+
   if (return_sqrt)
     return sqrt(res);
   else
