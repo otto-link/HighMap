@@ -15,13 +15,15 @@ int main(void)
                                              {4.f, 4.f},
                                              seed + 1);
 
-  hmap::Vec2<float> jitter = {0.5f, 0.5f};
+  hmap::Vec2<float> jitter = {1.f, 1.f};
   hmap::Array       z2 = hmap::gpu::voronoi_edge_distance(shape,
                                                     kw,
                                                     seed,
                                                     jitter,
                                                     nullptr,
                                                     &noise);
+
+  z2.infos();
 
   hmap::export_banner_png("ex_voronoi_edge_distance.png",
                           {z1, z2},
