@@ -12,17 +12,11 @@ int main(void)
   float             k_smoothing = 0.5f;
 
   std::vector<hmap::VoronoiReturnType> types = {
-      hmap::VoronoiReturnType::F1_SQRT,
       hmap::VoronoiReturnType::F1_SQUARED,
-      hmap::VoronoiReturnType::F2_SQRT,
       hmap::VoronoiReturnType::F2_SQUARED,
-      hmap::VoronoiReturnType::F1TF2_SQRT,
       hmap::VoronoiReturnType::F1TF2_SQUARED,
-      hmap::VoronoiReturnType::F1DF2_SQRT,
       hmap::VoronoiReturnType::F1DF2_SQUARED,
-      hmap::VoronoiReturnType::F2MF1_SQRT,
       hmap::VoronoiReturnType::F2MF1_SQUARED,
-      hmap::VoronoiReturnType::EDGE_DISTANCE_SQRT,
       hmap::VoronoiReturnType::EDGE_DISTANCE_SQUARED};
 
   std::vector<hmap::Array> zs = {};
@@ -35,6 +29,7 @@ int main(void)
                                        jitter,
                                        k_smoothing,
                                        type);
+    hmap::remap(z);
     zs.push_back(z);
   }
 
@@ -46,6 +41,7 @@ int main(void)
                                            jitter,
                                            k_smoothing,
                                            type);
+    hmap::remap(z);
     zs.push_back(z);
   }
 

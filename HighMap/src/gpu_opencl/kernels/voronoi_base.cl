@@ -6,7 +6,7 @@ R""(
 float helper_voronoi_smin(const float a, const float b, const float k)
 {
   if (k > 0.f)
-    return max(min_smooth(a, b, k), 0.f);
+    return min_smooth(a, b, k);
   else
     return min(a, b);
 }
@@ -14,7 +14,7 @@ float helper_voronoi_smin(const float a, const float b, const float k)
 float helper_voronoi_smax(const float a, const float b, const float k)
 {
   if (k > 0.f)
-    return max(max_smooth(a, b, k), 0.f);
+    return max_smooth(a, b, k);
   else
     return max(a, b);
 }
@@ -22,7 +22,6 @@ float helper_voronoi_smax(const float a, const float b, const float k)
 float base_voronoi_f1(const float2 p,
                       const float2 jitter,
                       const float  k_smoothing,
-                      const bool   return_sqrt,
                       const float  fseed)
 {
   float2 i = floor(p);
@@ -46,8 +45,6 @@ float base_voronoi_f1(const float2 p,
       min_dist = helper_voronoi_smin(min_dist, dist, k_smoothing);
     }
 
-  if (return_sqrt) min_dist = sqrt(min_dist);
-
   // NB - squared distance
   return 1.66f * min_dist - 1.f;
 }
@@ -55,7 +52,6 @@ float base_voronoi_f1(const float2 p,
 float base_voronoi_f2(const float2 p,
                       const float2 jitter,
                       const float  k_smoothing,
-                      const bool   return_sqrt,
                       const float  fseed)
 {
   float2 i = floor(p);
@@ -86,15 +82,12 @@ float base_voronoi_f2(const float2 p,
       min2 = new_min2;
     }
 
-  if (return_sqrt) min2 = sqrt(min2);
-
   return min2 - 1.f;
 }
 
 float base_voronoi_f1tf2(const float2 p,
                          const float2 jitter,
                          const float  k_smoothing,
-                         const bool   return_sqrt,
                          const float  fseed)
 {
   float2 i = floor(p);
@@ -125,16 +118,12 @@ float base_voronoi_f1tf2(const float2 p,
       min2 = new_min2;
     }
 
-  if (return_sqrt)
-    return sqrt(min1 * min2) - 1.f;
-  else
-    return min1 * min2 - 1.f;
+  return min1 * min2 - 1.f;
 }
 
 float base_voronoi_f1df2(const float2 p,
                          const float2 jitter,
                          const float  k_smoothing,
-                         const bool   return_sqrt,
                          const float  fseed)
 {
   float2 i = floor(p);
@@ -165,16 +154,12 @@ float base_voronoi_f1df2(const float2 p,
       min2 = new_min2;
     }
 
-  if (return_sqrt)
-    return sqrt(min1 / min2) - 1.f;
-  else
-    return min1 / min2 - 1.f;
+  return min1 / min2 - 1.f;
 }
 
 float base_voronoi_f2mf1(const float2 p,
                          const float2 jitter,
                          const float  k_smoothing,
-                         const bool   return_sqrt,
                          const float  fseed)
 {
   float2 i = floor(p);
@@ -205,17 +190,13 @@ float base_voronoi_f2mf1(const float2 p,
       min2 = new_min2;
     }
 
-  if (return_sqrt)
-    return sqrt(min2 - min1) - 1.f;
-  else
-    return min2 - min1 - 1.f;
+  return min2 - min1 - 1.f;
 }
 
 // https://iquilezles.org/articles/voronoilines/
 float base_voronoi_edge_distance(const float2 x,
                                  const float2 jitter,
                                  const float  k_smoothing,
-                                 const bool   return_sqrt,
                                  const float  fseed)
 {
   float2 p = floor(x);
@@ -259,9 +240,6 @@ float base_voronoi_edge_distance(const float2 x,
       }
     }
 
-  if (return_sqrt)
-    return sqrt(res);
-  else
-    return res;
+  return res;
 }
 )""

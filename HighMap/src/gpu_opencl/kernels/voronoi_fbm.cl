@@ -6,7 +6,6 @@ R""(
 float base_voronoi_f1_fbm(const float2 p,
                           const float2 jitter,
                           const float  k_smoothing,
-                          const bool   return_sqrt,
                           const int    octaves,
                           const float  weight,
                           const float  persistence,
@@ -18,7 +17,7 @@ float base_voronoi_f1_fbm(const float2 p,
   float na = 0.6f;
   for (int i = 0; i < octaves; i++)
   {
-    float v = base_voronoi_f1(p * nf, jitter, k_smoothing, return_sqrt, fseed);
+    float v = base_voronoi_f1(p * nf, jitter, k_smoothing, fseed);
     n += v * na;
     na *= (1.f - weight) + weight * min(v + 1.f, 2.f) * 0.5f;
     na *= persistence;
@@ -30,7 +29,6 @@ float base_voronoi_f1_fbm(const float2 p,
 float base_voronoi_f2_fbm(const float2 p,
                           const float2 jitter,
                           const float  k_smoothing,
-                          const bool   return_sqrt,
                           const int    octaves,
                           const float  weight,
                           const float  persistence,
@@ -42,7 +40,7 @@ float base_voronoi_f2_fbm(const float2 p,
   float na = 0.6f;
   for (int i = 0; i < octaves; i++)
   {
-    float v = base_voronoi_f2(p * nf, jitter, k_smoothing, return_sqrt, fseed);
+    float v = base_voronoi_f2(p * nf, jitter, k_smoothing, fseed);
     n += v * na;
     na *= (1.f - weight) + weight * min(v + 1.f, 2.f) * 0.5f;
     na *= persistence;
@@ -54,7 +52,6 @@ float base_voronoi_f2_fbm(const float2 p,
 float base_voronoi_f1tf2_fbm(const float2 p,
                              const float2 jitter,
                              const float  k_smoothing,
-                             const bool   return_sqrt,
                              const int    octaves,
                              const float  weight,
                              const float  persistence,
@@ -66,11 +63,7 @@ float base_voronoi_f1tf2_fbm(const float2 p,
   float na = 0.6f;
   for (int i = 0; i < octaves; i++)
   {
-    float v = base_voronoi_f1tf2(p * nf,
-                                 jitter,
-                                 k_smoothing,
-                                 return_sqrt,
-                                 fseed);
+    float v = base_voronoi_f1tf2(p * nf, jitter, k_smoothing, fseed);
     n += v * na;
     na *= (1.f - weight) + weight * min(v + 1.f, 2.f) * 0.5f;
     na *= persistence;
@@ -82,7 +75,6 @@ float base_voronoi_f1tf2_fbm(const float2 p,
 float base_voronoi_f1df2_fbm(const float2 p,
                              const float2 jitter,
                              const float  k_smoothing,
-                             const bool   return_sqrt,
                              const int    octaves,
                              const float  weight,
                              const float  persistence,
@@ -94,11 +86,7 @@ float base_voronoi_f1df2_fbm(const float2 p,
   float na = 0.6f;
   for (int i = 0; i < octaves; i++)
   {
-    float v = base_voronoi_f1df2(p * nf,
-                                 jitter,
-                                 k_smoothing,
-                                 return_sqrt,
-                                 fseed);
+    float v = base_voronoi_f1df2(p * nf, jitter, k_smoothing, fseed);
     n += v * na;
     na *= (1.f - weight) + weight * min(v + 1.f, 2.f) * 0.5f;
     na *= persistence;
@@ -110,7 +98,6 @@ float base_voronoi_f1df2_fbm(const float2 p,
 float base_voronoi_f2mf1_fbm(const float2 p,
                              const float2 jitter,
                              const float  k_smoothing,
-                             const bool   return_sqrt,
                              const int    octaves,
                              const float  weight,
                              const float  persistence,
@@ -122,11 +109,7 @@ float base_voronoi_f2mf1_fbm(const float2 p,
   float na = 0.6f;
   for (int i = 0; i < octaves; i++)
   {
-    float v = base_voronoi_f2mf1(p * nf,
-                                 jitter,
-                                 k_smoothing,
-                                 return_sqrt,
-                                 fseed);
+    float v = base_voronoi_f2mf1(p * nf, jitter, k_smoothing, fseed);
     n += v * na;
     na *= (1.f - weight) + weight * min(v + 1.f, 2.f) * 0.5f;
     na *= persistence;
@@ -138,7 +121,6 @@ float base_voronoi_f2mf1_fbm(const float2 p,
 float base_voronoi_edge_distance_fbm(const float2 p,
                                      const float2 jitter,
                                      const float  k_smoothing,
-                                     const bool   return_sqrt,
                                      const int    octaves,
                                      const float  weight,
                                      const float  persistence,
@@ -150,11 +132,7 @@ float base_voronoi_edge_distance_fbm(const float2 p,
   float na = 0.6f;
   for (int i = 0; i < octaves; i++)
   {
-    float v = base_voronoi_edge_distance(p * nf,
-                                         jitter,
-                                         k_smoothing,
-                                         return_sqrt,
-                                         fseed);
+    float v = base_voronoi_edge_distance(p * nf, jitter, k_smoothing, fseed);
     n += v * na;
     na *= (1.f - weight) + weight * min(v + 1.f, 2.f) * 0.5f;
     na *= persistence;

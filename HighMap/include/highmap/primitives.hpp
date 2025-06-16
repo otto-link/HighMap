@@ -29,17 +29,11 @@ namespace hmap
 // F2: the distance to the second closest point in space
 enum VoronoiReturnType : int
 {
-  F1_SQRT,
   F1_SQUARED,
-  F2_SQRT,
   F2_SQUARED,
-  F1TF2_SQRT, // F1 * F2
-  F1TF2_SQUARED,
-  F1DF2_SQRT, // F1 / F2
-  F1DF2_SQUARED,
-  F2MF1_SQRT, // F2 - F1
-  F2MF1_SQUARED,
-  EDGE_DISTANCE_SQRT,
+  F1TF2_SQUARED, // F1 * F2
+  F1DF2_SQUARED, // F1 / F2
+  F2MF1_SQUARED, // F2 - F1
   EDGE_DISTANCE_SQUARED
 };
 
