@@ -9,6 +9,7 @@ int main(void)
   int               seed = 1;
 
   hmap::Vec2<float> jitter = {1.f, 1.f};
+  float             k_smoothing = 0.5f;
 
   std::vector<hmap::VoronoiReturnType> types = {
       hmap::VoronoiReturnType::F1_SQRT,
@@ -28,13 +29,23 @@ int main(void)
 
   for (auto type : types)
   {
-    hmap::Array z = hmap::gpu::voronoi(shape, kw, seed, jitter, type);
+    hmap::Array z = hmap::gpu::voronoi(shape,
+                                       kw,
+                                       seed,
+                                       jitter,
+                                       k_smoothing,
+                                       type);
     zs.push_back(z);
   }
 
   for (auto type : types)
   {
-    hmap::Array z = hmap::gpu::voronoi_fbm(shape, kw, seed, jitter, type);
+    hmap::Array z = hmap::gpu::voronoi_fbm(shape,
+                                           kw,
+                                           seed,
+                                           jitter,
+                                           k_smoothing,
+                                           type);
     zs.push_back(z);
   }
 

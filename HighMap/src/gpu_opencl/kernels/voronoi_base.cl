@@ -3,8 +3,25 @@ R""(
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
 
+float helper_voronoi_smin(const float a, const float b, const float k)
+{
+  if (k > 0.f)
+    return max(min_smooth(a, b, k), 0.f);
+  else
+    return min(a, b);
+}
+
+float helper_voronoi_smax(const float a, const float b, const float k)
+{
+  if (k > 0.f)
+    return max(max_smooth(a, b, k), 0.f);
+  else
+    return max(a, b);
+}
+
 float base_voronoi_f1(const float2 p,
                       const float2 jitter,
+                      const float  k_smoothing,
                       const bool   return_sqrt,
                       const float  fseed)
 {
@@ -25,7 +42,8 @@ float base_voronoi_f1(const float2 p,
 
       float2 diff = p - feature_point;
       float  dist = dot(diff, diff);
-      min_dist = min(min_dist, dist);
+
+      min_dist = helper_voronoi_smin(min_dist, dist, k_smoothing);
     }
 
   if (return_sqrt) min_dist = sqrt(min_dist);
@@ -36,6 +54,7 @@ float base_voronoi_f1(const float2 p,
 
 float base_voronoi_f2(const float2 p,
                       const float2 jitter,
+                      const float  k_smoothing,
                       const bool   return_sqrt,
                       const float  fseed)
 {
@@ -58,15 +77,13 @@ float base_voronoi_f2(const float2 p,
       float2 diff = p - feature_point;
       float  dist = dot(diff, diff);
 
-      if (dist < min1)
-      {
-        min2 = min1;
-        min1 = dist;
-      }
-      else if (dist < min2)
-      {
-        min2 = dist;
-      }
+      float new_min1 = helper_voronoi_smin(min1, dist, k_smoothing);
+      float new_min2 = helper_voronoi_smin(
+          min2,
+          helper_voronoi_smax(min1, dist, k_smoothing),
+          k_smoothing);
+      min1 = new_min1;
+      min2 = new_min2;
     }
 
   if (return_sqrt) min2 = sqrt(min2);
@@ -76,6 +93,7 @@ float base_voronoi_f2(const float2 p,
 
 float base_voronoi_f1tf2(const float2 p,
                          const float2 jitter,
+                         const float  k_smoothing,
                          const bool   return_sqrt,
                          const float  fseed)
 {
@@ -98,15 +116,13 @@ float base_voronoi_f1tf2(const float2 p,
       float2 diff = p - feature_point;
       float  dist = dot(diff, diff);
 
-      if (dist < min1)
-      {
-        min2 = min1;
-        min1 = dist;
-      }
-      else if (dist < min2)
-      {
-        min2 = dist;
-      }
+      float new_min1 = helper_voronoi_smin(min1, dist, k_smoothing);
+      float new_min2 = helper_voronoi_smin(
+          min2,
+          helper_voronoi_smax(min1, dist, k_smoothing),
+          k_smoothing);
+      min1 = new_min1;
+      min2 = new_min2;
     }
 
   if (return_sqrt)
@@ -115,9 +131,90 @@ float base_voronoi_f1tf2(const float2 p,
     return min1 * min2 - 1.f;
 }
 
+float base_voronoi_f1df2(const float2 p,
+                         const float2 jitter,
+                         const float  k_smoothing,
+                         const bool   return_sqrt,
+                         const float  fseed)
+{
+  float2 i = floor(p);
+  float2 pi;
+  float2 f = fract(p, &pi);
+
+  float min1 = FLT_MAX;
+  float min2 = FLT_MAX;
+
+  for (int dx = -1; dx <= 1; dx++)
+    for (int dy = -1; dy <= 1; dy++)
+    {
+      float2 neighbor = i + (float2)(dx, dy);
+      float2 df = (float2)(0.1f, 0.1f);
+      float2 feature_point = neighbor +
+                             jitter * (float2)(hash12f(neighbor, fseed),
+                                               hash12f(neighbor + df, fseed));
+
+      float2 diff = p - feature_point;
+      float  dist = dot(diff, diff);
+
+      float new_min1 = helper_voronoi_smin(min1, dist, k_smoothing);
+      float new_min2 = helper_voronoi_smin(
+          min2,
+          helper_voronoi_smax(min1, dist, k_smoothing),
+          k_smoothing);
+      min1 = new_min1;
+      min2 = new_min2;
+    }
+
+  if (return_sqrt)
+    return sqrt(min1 / min2) - 1.f;
+  else
+    return min1 / min2 - 1.f;
+}
+
+float base_voronoi_f2mf1(const float2 p,
+                         const float2 jitter,
+                         const float  k_smoothing,
+                         const bool   return_sqrt,
+                         const float  fseed)
+{
+  float2 i = floor(p);
+  float2 pi;
+  float2 f = fract(p, &pi);
+
+  float min1 = FLT_MAX;
+  float min2 = FLT_MAX;
+
+  for (int dx = -1; dx <= 1; dx++)
+    for (int dy = -1; dy <= 1; dy++)
+    {
+      float2 neighbor = i + (float2)(dx, dy);
+      float2 df = (float2)(0.1f, 0.1f);
+      float2 feature_point = neighbor +
+                             jitter * (float2)(hash12f(neighbor, fseed),
+                                               hash12f(neighbor + df, fseed));
+
+      float2 diff = p - feature_point;
+      float  dist = dot(diff, diff);
+
+      float new_min1 = helper_voronoi_smin(min1, dist, k_smoothing);
+      float new_min2 = helper_voronoi_smin(
+          min2,
+          helper_voronoi_smax(min1, dist, k_smoothing),
+          k_smoothing);
+      min1 = new_min1;
+      min2 = new_min2;
+    }
+
+  if (return_sqrt)
+    return sqrt(min2 - min1) - 1.f;
+  else
+    return min2 - min1 - 1.f;
+}
+
 // https://iquilezles.org/articles/voronoilines/
 float base_voronoi_edge_distance(const float2 x,
                                  const float2 jitter,
+                                 const float  k_smoothing,
                                  const bool   return_sqrt,
                                  const float  fseed)
 {
@@ -158,7 +255,7 @@ float base_voronoi_edge_distance(const float2 x,
       if (dot(mr - r, mr - r) > 1e-5f)
       {
         float d = dot(0.5f * (mr + r), normalize(r - mr));
-        res = min(res, d);
+        res = helper_voronoi_smin(res, d, k_smoothing);
       }
     }
 
@@ -166,87 +263,5 @@ float base_voronoi_edge_distance(const float2 x,
     return sqrt(res);
   else
     return res;
-}
-
-float base_voronoi_f1df2(const float2 p,
-                         const float2 jitter,
-                         const bool   return_sqrt,
-                         const float  fseed)
-{
-  float2 i = floor(p);
-  float2 pi;
-  float2 f = fract(p, &pi);
-
-  float min1 = FLT_MAX;
-  float min2 = FLT_MAX;
-
-  for (int dx = -1; dx <= 1; dx++)
-    for (int dy = -1; dy <= 1; dy++)
-    {
-      float2 neighbor = i + (float2)(dx, dy);
-      float2 df = (float2)(0.1f, 0.1f);
-      float2 feature_point = neighbor +
-                             jitter * (float2)(hash12f(neighbor, fseed),
-                                               hash12f(neighbor + df, fseed));
-
-      float2 diff = p - feature_point;
-      float  dist = dot(diff, diff);
-
-      if (dist < min1)
-      {
-        min2 = min1;
-        min1 = dist;
-      }
-      else if (dist < min2)
-      {
-        min2 = dist;
-      }
-    }
-
-  if (return_sqrt)
-    return sqrt(min1 / min2) - 1.f;
-  else
-    return min1 / min2 - 1.f;
-}
-
-float base_voronoi_f2mf1(const float2 p,
-                         const float2 jitter,
-                         const bool   return_sqrt,
-                         const float  fseed)
-{
-  float2 i = floor(p);
-  float2 pi;
-  float2 f = fract(p, &pi);
-
-  float min1 = FLT_MAX;
-  float min2 = FLT_MAX;
-
-  for (int dx = -1; dx <= 1; dx++)
-    for (int dy = -1; dy <= 1; dy++)
-    {
-      float2 neighbor = i + (float2)(dx, dy);
-      float2 df = (float2)(0.1f, 0.1f);
-      float2 feature_point = neighbor +
-                             jitter * (float2)(hash12f(neighbor, fseed),
-                                               hash12f(neighbor + df, fseed));
-
-      float2 diff = p - feature_point;
-      float  dist = dot(diff, diff);
-
-      if (dist < min1)
-      {
-        min2 = min1;
-        min1 = dist;
-      }
-      else if (dist < min2)
-      {
-        min2 = dist;
-      }
-    }
-
-  if (return_sqrt)
-    return sqrt(min2 - min1) - 1.f;
-  else
-    return min2 - min1 - 1.f;
 }
 )""
