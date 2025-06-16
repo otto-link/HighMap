@@ -62,8 +62,10 @@ bool init_opencl()
 #include "kernels/thermal_inflate.cl"
 #include "kernels/thermal_ridge.cl"
 #include "kernels/thermal_scree.cl"
-#include "kernels/voronoi.cl"
+#include "kernels/voronoi_base.cl"
 #include "kernels/voronoi_edge_distance.cl"
+#include "kernels/voronoi_fbm.cl"
+#include "kernels/voronoi_main.cl"
 #include "kernels/voronoise.cl"
 #include "kernels/warp.cl"
       ;
