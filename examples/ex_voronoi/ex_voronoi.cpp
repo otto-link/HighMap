@@ -17,7 +17,9 @@ int main(void)
       hmap::VoronoiReturnType::F1TF2_SQUARED,
       hmap::VoronoiReturnType::F1DF2_SQUARED,
       hmap::VoronoiReturnType::F2MF1_SQUARED,
-      hmap::VoronoiReturnType::EDGE_DISTANCE_SQUARED};
+      hmap::VoronoiReturnType::EDGE_DISTANCE_SQUARED,
+      hmap::VoronoiReturnType::CONSTANT,
+  };
 
   std::vector<hmap::Array> zs = {};
 
