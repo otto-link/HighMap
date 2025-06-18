@@ -9,7 +9,7 @@ int main(void)
   hmap::Array z = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, res, seed++);
 
   int   nlevels = 5;
-  float gain = 2.f;
+  float gain = 0.9f;
   float noise_ratio = 0.5f;
 
   auto zp = z;

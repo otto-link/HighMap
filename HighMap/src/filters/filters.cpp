@@ -1253,8 +1253,11 @@ void terrace(Array       &array,
     y = (y - levels[n]) / (levels[n + 1] - levels[n]);
 
     // apply gain
-    y = y < 0.5 ? 0.5f * std::pow(2.f * y, gain)
-                : 1.f - 0.5f * std::pow(2.f * (1.f - y), gain);
+    float gain_clamped = std::clamp(gain, 0.f, 1.f);
+
+    y -= std::atan(-gain_clamped * std::sin(2.f * M_PI * y) /
+                   (1.f - gain_clamped * std::cos(2.f * M_PI * y))) /
+         M_PI;
 
     // rescale back to original ammplitude interval
     return y * (levels[n + 1] - levels[n]) + levels[n] - noise;

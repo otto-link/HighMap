@@ -2109,7 +2109,7 @@ void steepen_convective(Array       &array,
  * @param seed        Seed value for random number generation.
  * @param nlevels     Number of terrace levels to apply.
  * @param gain        Gain factor for controlling the sharpness of the terrace
- *                    levels.
+ *                    levels, in [0, 1].
  * @param noise_ratio Ratio of noise applied to each terrace level, except the
  *                    first and last.
  * @param p_noise     Optional noise array to introduce additional variation per
@@ -2131,7 +2131,7 @@ void steepen_convective(Array       &array,
 void terrace(Array       &array,
              uint         seed,
              int          nlevels,
-             float        gain = 4.f,
+             float        gain = 0.9f,
              float        noise_ratio = 0.f,
              const Array *p_noise = nullptr,
              float        vmin = 0.f,
@@ -2151,7 +2151,7 @@ void terrace(Array       &array,
  * @param p_mask      Optional mask array. If provided, blends the terrace
  *                    effect with original values based on the mask.
  * @param gain        Gain factor for controlling the sharpness of the terrace
- *                    levels.
+ *                    levels, in [0, 1].
  * @param noise_ratio Ratio of noise applied to each terrace level, except the
  *                    first and last.
  * @param p_noise     Optional noise array to introduce additional variation per
@@ -2181,7 +2181,7 @@ void terrace(Array       &array,
              uint         seed,
              int          nlevels,
              const Array *p_mask,
-             float        gain = 4.f,
+             float        gain = 0.9f,
              float        noise_ratio = 0.f,
              const Array *p_noise = nullptr,
              float        vmin = 0.f,
