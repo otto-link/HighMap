@@ -60,6 +60,7 @@ bool init_opencl()
 #include "kernels/smooth_cpulse.cl"
 #include "kernels/thermal.cl"
 #include "kernels/thermal_inflate.cl"
+#include "kernels/thermal_rib.cl"
 #include "kernels/thermal_ridge.cl"
 #include "kernels/thermal_scree.cl"
 #include "kernels/voronoi_base.cl"
