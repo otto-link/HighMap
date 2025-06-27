@@ -50,6 +50,9 @@ void kernel voronoi(global float *output,
   case 6:
     val = base_voronoi_constant(pos, ct * jitter, k_smoothing, fseed);
     break;
+  case 7:
+    val = base_voronoi_constant_f2mf1(pos, ct * jitter, k_smoothing, fseed);
+    break;
   }
 
   output[index] = val;
@@ -164,6 +167,16 @@ void kernel voronoi_fbm(global float *output,
                                     persistence,
                                     lacunarity,
                                     fseed);
+    break;
+  case 7:
+    val = base_voronoi_constant_f2mf1_fbm(pos,
+                                          ct * jitter,
+                                          k_smoothing,
+                                          octaves,
+                                          weight,
+                                          persistence,
+                                          lacunarity,
+                                          fseed);
     break;
   }
 

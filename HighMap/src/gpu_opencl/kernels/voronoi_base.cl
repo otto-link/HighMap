@@ -278,4 +278,50 @@ float base_voronoi_constant(const float2 p,
 
   return res;
 }
+
+float base_voronoi_constant_f2mf1(const float2 p,
+                                  const float2 jitter,
+                                  const float  k_smoothing,
+                                  const float  fseed)
+{
+  float2 i = floor(p);
+  float2 pi;
+  float2 f = fract(p, &pi);
+
+  float min1 = FLT_MAX;
+  float min2 = FLT_MAX;
+
+  float min_dist = FLT_MAX;
+  float res = 0.f;
+
+  for (int dx = -1; dx <= 1; dx++)
+    for (int dy = -1; dy <= 1; dy++)
+    {
+      float2 neighbor = i + (float2)(dx, dy);
+      float2 df = (float2)(0.1f, 0.1f);
+      float  rx = hash12f(neighbor, fseed);
+      float2 feature_point = neighbor +
+                             jitter *
+                                 (float2)(rx, hash12f(neighbor + df, fseed));
+
+      float2 diff = p - feature_point;
+      float  dist = dot(diff, diff);
+
+      float new_min1 = helper_voronoi_smin(min1, dist, k_smoothing);
+      float new_min2 = helper_voronoi_smin(
+          min2,
+          helper_voronoi_smax(min1, dist, k_smoothing),
+          k_smoothing);
+      min1 = new_min1;
+      min2 = new_min2;
+
+      // smooth cell value
+      float h = smoothstep(-1.f, 1.f, (min_dist - dist) / k_smoothing);
+      res = lerp(res, rx, h) -
+            h * (1.f - h) * k_smoothing / (1.f + 3.f * k_smoothing);
+      min_dist = min(dist, min_dist);
+    }
+
+  return res * (min2 - min1 - 1.f);
+}
 )""
