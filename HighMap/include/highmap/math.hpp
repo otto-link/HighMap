@@ -424,4 +424,6 @@ Array smoothstep7(const Array &x); ///< @overload
  */
 Array sqrt(const Array &array);
 
+Array sqrt_safe(const Array &array);
+
 } // namespace hmap

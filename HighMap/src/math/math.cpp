@@ -396,4 +396,13 @@ Array sqrt(const Array &array)
   return array_out;
 }
 
+Array sqrt_safe(const Array &array)
+{
+  Array array_out = Array(array.shape);
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array_out.vector.begin(),
+                 [](float v) { return v > 0.f ? std::sqrt(v) : 0.f; });
+  return array_out;
+}
 } // namespace hmap

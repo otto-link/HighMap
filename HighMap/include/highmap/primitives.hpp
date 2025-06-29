@@ -1346,6 +1346,28 @@ Array worley_double(Vec2<int>    shape,
 namespace hmap::gpu
 {
 
+Array basalt_field(Vec2<int>    shape,
+                   Vec2<float>  kw,
+                   uint         seed,
+                   float        warp_kw = 4.f,
+                   float        large_scale_warp_amp = 0.2f,
+                   float        large_scale_gain = 6.f,
+                   float        large_scale_amp = 0.2f,
+                   float        medium_scale_kw_ratio = 3.f,
+                   float        medium_scale_warp_amp = 1.f,
+                   float        medium_scale_gain = 7.f,
+                   float        medium_scale_amp = 0.08f,
+                   float        small_scale_kw_ratio = 10.f,
+                   float        small_scale_overlay_amp = 0.002f,
+                   float        rugosity_kw_ratio = 1.f,
+                   float        rugosity_amp = 1.f,
+                   bool         flatten_activate = true,
+                   float        flatten_kw_ratio = 1.f,
+                   float        flatten_amp = 0.f,
+                   const Array *p_noise_x = nullptr,
+                   const Array *p_noise_y = nullptr,
+                   Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
+
 /**
  * @brief Return an array filled with coherence Gabor noise.
  *
