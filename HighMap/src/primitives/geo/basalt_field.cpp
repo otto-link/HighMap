@@ -85,7 +85,7 @@ Array basalt_field(Vec2<int>    shape,
 
     z_large = sqrt_safe(z_large);
     gain(z_large, large_scale_gain);
-    z_large = maximum(z_large, 0.5f);
+    z_large = maximum(z_large, 0.3f);
 
     // rescale
     remap(z_large, 0.f, large_scale_amp, 0.5f, 1.f);
