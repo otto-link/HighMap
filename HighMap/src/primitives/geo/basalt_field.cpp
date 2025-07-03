@@ -22,6 +22,7 @@ Array basalt_field(Vec2<int>    shape,
                    float        medium_scale_gain,
                    float        medium_scale_amp,
                    float        small_scale_kw_ratio,
+                   float        small_scale_amp,
                    float        small_scale_overlay_amp,
                    float        rugosity_kw_ratio,
                    float        rugosity_amp,
@@ -40,9 +41,9 @@ Array basalt_field(Vec2<int>    shape,
     int   octaves = 8;
     float weight = 0.5f;
     float persistence = 0.5f;
-    float lacunarity = 2.f;
+    float lacunarity = 2.3f;
 
-    Array dx = gpu::noise_fbm(NoiseType::PERLIN,
+    Array dx = gpu::noise_fbm(NoiseType::SIMPLEX2,
                               shape,
                               Vec2<float>(warp_kw, warp_kw),
                               seed++,
@@ -55,14 +56,14 @@ Array basalt_field(Vec2<int>    shape,
                               p_noise_y,
                               nullptr,
                               bbox);
-    dx *= large_scale_warp_amp;
+    remap(dx, 0.f, large_scale_warp_amp, -1.f, 1.f);
 
     // base
     Vec2<float>       jitter(1.f, 1.f);
     float             k_smoothing = 0.9f;
     VoronoiReturnType return_type = VoronoiReturnType::EDGE_DISTANCE_SQUARED;
 
-    lacunarity = 1.7f;
+    lacunarity = 1.66f;
 
     z_large = voronoi_fbm(shape,
                           kw,
@@ -85,10 +86,13 @@ Array basalt_field(Vec2<int>    shape,
 
     z_large = sqrt_safe(z_large);
     gain(z_large, large_scale_gain);
-    z_large = maximum(z_large, 0.3f);
+
+    const float cmax = 0.43f;
+
+    z_large = maximum(0.45f * z_large, cmax);
 
     // rescale
-    remap(z_large, 0.f, large_scale_amp, 0.5f, 1.f);
+    remap(z_large, 0.f, large_scale_amp, cmax, 0.45f);
   }
 
   // --- medium scales
@@ -165,7 +169,7 @@ Array basalt_field(Vec2<int>    shape,
     float             lacunarity = 2.f;
 
     Array dx = gpu::voronoi_fbm(shape,
-                                Vec2<float>(warp_kw, warp_kw),
+                                2.f * Vec2<float>(warp_kw, warp_kw),
                                 seed++,
                                 jitter,
                                 k_smoothing,
@@ -181,7 +185,7 @@ Array basalt_field(Vec2<int>    shape,
     dx *= medium_scale_warp_amp;
 
     // base
-    lacunarity = 1.7f;
+    lacunarity = 1.6f;
     k_smoothing = 0.9f;
 
     z_small = voronoi_fbm(shape,
@@ -200,23 +204,21 @@ Array basalt_field(Vec2<int>    shape,
                           bbox);
 
     // rescale to [0, 1] (roughly)
-    z_small += 0.25f;
-    z_small *= 2.f;
+    remap(z_small, 0.f, 1.f, -0.25f, 0.25f);
 
     z_small = sqrt_safe(z_small);
     gain(z_small, medium_scale_gain);
-    remap(z_small,
-          -1.f + 0.5f * medium_scale_amp,
-          0.5f * medium_scale_amp,
-          0.f,
-          1.f);
+    z_small *= small_scale_amp;
   }
 
   Array z = hmap::maximum_smooth(z_large, z_medium, 0.04f);
+
+  z *= large_scale_amp / medium_scale_amp;
+
   z = hmap::maximum_smooth(z, z_small, 0.08f);
 
   // small scales overlay
-  z += small_scale_overlay_amp * z_small;
+  z += small_scale_overlay_amp / small_scale_amp * z_small;
 
   // --- last steps...
 
@@ -227,7 +229,7 @@ Array basalt_field(Vec2<int>    shape,
     float persistence = 0.5f;
     float lacunarity = 2.f;
 
-    Array rugosity = gpu::noise_fbm(NoiseType::PERLIN,
+    Array rugosity = gpu::noise_fbm(NoiseType::SIMPLEX2,
                                     shape,
                                     rugosity_kw_ratio * kw,
                                     seed++,
@@ -240,7 +242,8 @@ Array basalt_field(Vec2<int>    shape,
                                     p_noise_y,
                                     nullptr,
                                     bbox);
-    rugosity += 0.5f;
+    remap(rugosity, 0.f, 1.f, -1.f, 1.f);
+
     z += rugosity_amp * rugosity * z;
   }
 
@@ -252,7 +255,7 @@ Array basalt_field(Vec2<int>    shape,
     float persistence = 0.5f;
     float lacunarity = 2.f;
 
-    Array z_flatten = gpu::noise_fbm(NoiseType::PERLIN,
+    Array z_flatten = gpu::noise_fbm(NoiseType::SIMPLEX2,
                                      shape,
                                      flatten_kw_ratio * kw,
                                      seed++,
@@ -266,8 +269,7 @@ Array basalt_field(Vec2<int>    shape,
                                      nullptr,
                                      bbox);
 
-    z_flatten += 0.5f;
-    remap(z_flatten, -flatten_amp, 0.5f * large_scale_amp, 0.f, 1.f);
+    remap(z_flatten, -flatten_amp, 1.5f * large_scale_amp, -1.f, 1.f);
     z = hmap::minimum_smooth(z, z_flatten, 0.3f);
   }
 
