@@ -79,20 +79,17 @@ Array basalt_field(Vec2<int>    shape,
                           &dx,
                           &dx,
                           bbox);
-
-    // rescale to [0, 1] (roughly)
-    z_large += 0.25f;
-    z_large *= 2.f;
-
+    remap(z_large, 0.f, 1.f, -0.25, 0.25f);
     z_large = sqrt_safe(z_large);
     gain(z_large, large_scale_gain);
 
-    const float cmax = 0.43f;
+    const float c0 = 0.36f;
+    const float c1 = 0.40f;
 
-    z_large = maximum(0.45f * z_large, cmax);
+    z_large = maximum(c1 * z_large, c0);
 
     // rescale
-    remap(z_large, 0.f, large_scale_amp, cmax, 0.45f);
+    remap(z_large, 0.f, large_scale_amp, c0, c1);
   }
 
   // --- medium scales
