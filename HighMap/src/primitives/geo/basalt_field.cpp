@@ -266,7 +266,7 @@ Array basalt_field(Vec2<int>    shape,
                                      nullptr,
                                      bbox);
 
-    remap(z_flatten, -flatten_amp, 1.5f * large_scale_amp, -1.f, 1.f);
+    remap(z_flatten, 0.f, 2.f * large_scale_amp + flatten_amp, -1.f, 1.f);
     z = hmap::minimum_smooth(z, z_flatten, 0.3f);
   }
 
