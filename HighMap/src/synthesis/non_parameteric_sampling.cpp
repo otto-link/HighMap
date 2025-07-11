@@ -138,7 +138,10 @@ Array non_parametric_sampling(const Array    &array,
       }
 
     // pick-up a source patch
-    float ssd_best = *std::min_element(ssd_list.begin(), ssd_list.end());
+    float ssd_best = 0.f;
+    if (!ssd_list.empty())
+      ssd_best = *std::min_element(ssd_list.begin(), ssd_list.end());
+
     std::vector<size_t> short_list = {};
 
     for (size_t k = 0; k < ssd_list.size(); k++)

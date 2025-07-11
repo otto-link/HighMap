@@ -35,8 +35,8 @@ void directional_blur(Array &array, int ir, const Array &angle, float intensity)
         float ca = std::cos(alpha);
         float sa = std::sin(alpha);
 
-        float x = (float)(i + k * ca) / (array.shape.x - 1.f);
-        float y = (float)(j + k * sa) / (array.shape.y - 1.f);
+        float x = (i + k * ca) / (array.shape.x - 1.f);
+        float y = (j + k * sa) / (array.shape.y - 1.f);
 
         blured(i, j) += t[k] * f.get_delegate()(x, y, 0.f);
       }

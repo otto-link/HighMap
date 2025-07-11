@@ -174,7 +174,9 @@ Tensor colorize_histogram(const Array &array)
     for (int i = 0; i < array.shape.x; i++)
       hist[(int)(a * array(i, j) + b)] += 1;
 
-  int hmax = *std::max_element(hist.begin(), hist.end());
+  int hmax = 1;
+  if (!hist.empty()) hmax = *std::max_element(hist.begin(), hist.end());
+
   for (auto &v : hist)
     v = (int)((float)v / (float)hmax * (float)(array.shape.y - 1));
 

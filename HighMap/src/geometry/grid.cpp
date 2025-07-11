@@ -280,15 +280,15 @@ void random_grid_jittered(std::vector<float> &x,
   std::mt19937                          gen(seed);
   std::uniform_real_distribution<float> dis(-1.f, 1.f);
   size_t                                n = x.size();
-  float                                 nsq = (float)std::pow((float)n, 0.5f);
+  float                                 nsq = (float)std::pow(n, 0.5f);
   float                                 dx = 1.f / (nsq - 1.f);
 
   for (size_t k = 0; k < n; k++)
   {
     int j = (int)((float)k / nsq);
 
-    x[k] = dx * ((float)(k - j * nsq) + scale * dis(gen));
-    y[k] = dx * ((float)j + scale * dis(gen));
+    x[k] = dx * ((k - j * nsq) + scale * dis(gen));
+    y[k] = dx * (j + scale * dis(gen));
 
     x[k] = std::clamp(x[k], 0.f, 1.f);
     y[k] = std::clamp(y[k], 0.f, 1.f);

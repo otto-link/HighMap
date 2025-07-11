@@ -26,10 +26,6 @@ void stratify(Array             &z,
       {
         float dh = hs[k + 1] - hs[k];
 
-        // smooth correction factor
-        float cx = std::exp(2.5f / gamma[k]);
-        float cy = std::log(1.f + cx);
-
         float dn = p_noise ? (*p_noise)(i, j) * dh : 0.f;
         float zt = z(i, j) - dn;
 

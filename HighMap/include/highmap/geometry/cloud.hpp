@@ -62,6 +62,8 @@ public:
    */
   Cloud(){};
 
+  virtual ~Cloud() = default;
+
   /**
    * @brief Constructs a new Cloud object with random positions and values.
    *

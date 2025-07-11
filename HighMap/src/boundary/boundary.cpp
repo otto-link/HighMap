@@ -296,8 +296,7 @@ Array make_periodic_tiling(const Array &array, float overlap, Vec2<int> tiling)
 
   Array array_periodic = make_periodic_stitching(array, overlap);
 
-  Vec2<int> shape_tile = {(int)(array.shape.x / tiling.x),
-                          (int)(array.shape.y / tiling.y)};
+  Vec2<int> shape_tile = {array.shape.x / tiling.x, array.shape.y / tiling.y};
   array_periodic = array_periodic.resample_to_shape(shape_tile);
 
   Array array_out = array_periodic;

@@ -107,8 +107,7 @@ void fill_array_using_xy_function(
     int                                       subsampling)
 {
   Vec2<int> shape = array.shape;
-  Vec2<int> shape_sub = Vec2<int>((int)(shape.x / subsampling),
-                                  (int)(shape.y / subsampling));
+  Vec2<int> shape_sub = Vec2<int>(shape.x / subsampling, shape.y / subsampling);
   Array     array_sub = Array(shape_sub);
 
   std::vector<float> x, y;

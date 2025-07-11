@@ -24,6 +24,7 @@ std::vector<std::vector<float>> get_colormap_data(int cmap)
   case Cmap::TURBO: return CMAP_TURBO;
   case Cmap::VIRIDIS: return CMAP_VIRIDIS;
   case Cmap::WHITE_UNIFORM: return CMAP_WHITE_UNIFORM;
+  default: return CMAP_WHITE_UNIFORM;
   }
 }
 
