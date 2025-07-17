@@ -10,12 +10,12 @@
 namespace hmap
 {
 
-void alter_elevation(Array      &array,
-                     Cloud      &cloud,
-                     int         ir,
-                     float       footprint_ratio,
-                     Vec2<float> shift,
-                     Vec2<float> scale)
+void alter_elevation(Array       &array,
+                     const Cloud &cloud,
+                     int          ir,
+                     float        footprint_ratio,
+                     Vec2<float>  shift,
+                     Vec2<float>  scale)
 {
   Array amp = Array(array.shape);
   for (auto &p : cloud.points)

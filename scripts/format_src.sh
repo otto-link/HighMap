@@ -4,6 +4,8 @@
 DIRS="HighMap/include HighMap/src examples tests"
 FORMAT_CMD="clang-format -style=file:scripts/clang_style -i"
 
+echo "- clang-format"
+
 # format opencl kernels
 for D in ${DIRS}; do
     for F in `find ${D}/. -type f -iname \*.cl`; do
@@ -26,5 +28,7 @@ done
 
 
 # format cmake files
+echo "- cmake-format"
+
 cmake-format -i CMakeLists.txt HighMap/CMakeLists.txt external/CMakeLists.txt external/*.cmake
 

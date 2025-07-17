@@ -17,7 +17,7 @@ void swirl(Array            &dx,
            Array            &dy,
            float             amplitude,
            float             exponent,
-           Array            *p_noise,
+           const Array      *p_noise,
            hmap::Vec4<float> bbox)
 {
   const Vec2<int> shape = dx.shape;

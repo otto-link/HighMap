@@ -14,7 +14,7 @@ int main(void)
                               seed);
   hmap::Heightmap h = hmap::Heightmap(shape, tiling, overlap);
 
-  h.from_array_interp(z);
+  h.from_array_interp_bicubic(z);
 
   z.to_png("ex_heightmap_from_array0.png", hmap::Cmap::INFERNO);
   h.to_array().to_png("ex_heightmap_from_array1.png", hmap::Cmap::INFERNO);

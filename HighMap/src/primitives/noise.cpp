@@ -13,14 +13,14 @@
 namespace hmap
 {
 
-Array noise(NoiseType   noise_type,
-            Vec2<int>   shape,
-            Vec2<float> kw,
-            uint        seed,
-            Array      *p_noise_x,
-            Array      *p_noise_y,
-            Array      *p_stretching,
-            Vec4<float> bbox)
+Array noise(NoiseType    noise_type,
+            Vec2<int>    shape,
+            Vec2<float>  kw,
+            uint         seed,
+            const Array *p_noise_x,
+            const Array *p_noise_y,
+            const Array *p_stretching,
+            Vec4<float>  bbox)
 {
   Array array = Array(shape);
 
@@ -38,19 +38,19 @@ Array noise(NoiseType   noise_type,
   return array;
 }
 
-Array noise_fbm(NoiseType   noise_type,
-                Vec2<int>   shape,
-                Vec2<float> kw,
-                uint        seed,
-                int         octaves,
-                float       weight,
-                float       persistence,
-                float       lacunarity,
-                Array      *p_ctrl_param,
-                Array      *p_noise_x,
-                Array      *p_noise_y,
-                Array      *p_stretching,
-                Vec4<float> bbox)
+Array noise_fbm(NoiseType    noise_type,
+                Vec2<int>    shape,
+                Vec2<float>  kw,
+                uint         seed,
+                int          octaves,
+                float        weight,
+                float        persistence,
+                float        lacunarity,
+                const Array *p_ctrl_param,
+                const Array *p_noise_x,
+                const Array *p_noise_y,
+                const Array *p_stretching,
+                Vec4<float>  bbox)
 {
   Array array = Array(shape);
 
@@ -74,20 +74,20 @@ Array noise_fbm(NoiseType   noise_type,
   return array;
 }
 
-Array noise_iq(NoiseType   noise_type,
-               Vec2<int>   shape,
-               Vec2<float> kw,
-               uint        seed,
-               int         octaves,
-               float       weight,
-               float       persistence,
-               float       lacunarity,
-               float       gradient_scale,
-               Array      *p_ctrl_param,
-               Array      *p_noise_x,
-               Array      *p_noise_y,
-               Array      *p_stretching,
-               Vec4<float> bbox)
+Array noise_iq(NoiseType    noise_type,
+               Vec2<int>    shape,
+               Vec2<float>  kw,
+               uint         seed,
+               int          octaves,
+               float        weight,
+               float        persistence,
+               float        lacunarity,
+               float        gradient_scale,
+               const Array *p_ctrl_param,
+               const Array *p_noise_x,
+               const Array *p_noise_y,
+               const Array *p_stretching,
+               Vec4<float>  bbox)
 {
   Array array = Array(shape);
 
@@ -112,23 +112,23 @@ Array noise_iq(NoiseType   noise_type,
   return array;
 }
 
-Array noise_jordan(NoiseType   noise_type,
-                   Vec2<int>   shape,
-                   Vec2<float> kw,
-                   uint        seed,
-                   int         octaves,
-                   float       weight,
-                   float       persistence,
-                   float       lacunarity,
-                   float       warp0,
-                   float       damp0,
-                   float       warp_scale,
-                   float       damp_scale,
-                   Array      *p_ctrl_param,
-                   Array      *p_noise_x,
-                   Array      *p_noise_y,
-                   Array      *p_stretching,
-                   Vec4<float> bbox)
+Array noise_jordan(NoiseType    noise_type,
+                   Vec2<int>    shape,
+                   Vec2<float>  kw,
+                   uint         seed,
+                   int          octaves,
+                   float        weight,
+                   float        persistence,
+                   float        lacunarity,
+                   float        warp0,
+                   float        damp0,
+                   float        warp_scale,
+                   float        damp_scale,
+                   const Array *p_ctrl_param,
+                   const Array *p_noise_x,
+                   const Array *p_noise_y,
+                   const Array *p_stretching,
+                   Vec4<float>  bbox)
 {
   Array array = Array(shape);
 
@@ -156,19 +156,19 @@ Array noise_jordan(NoiseType   noise_type,
   return array;
 }
 
-Array noise_parberry(Vec2<int>   shape,
-                     Vec2<float> kw,
-                     uint        seed,
-                     int         octaves,
-                     float       weight,
-                     float       persistence,
-                     float       lacunarity,
-                     float       mu,
-                     Array      *p_ctrl_param,
-                     Array      *p_noise_x,
-                     Array      *p_noise_y,
-                     Array      *p_stretching,
-                     Vec4<float> bbox)
+Array noise_parberry(Vec2<int>    shape,
+                     Vec2<float>  kw,
+                     uint         seed,
+                     int          octaves,
+                     float        weight,
+                     float        persistence,
+                     float        lacunarity,
+                     float        mu,
+                     const Array *p_ctrl_param,
+                     const Array *p_noise_x,
+                     const Array *p_noise_y,
+                     const Array *p_stretching,
+                     Vec4<float>  bbox)
 {
   Array array = Array(shape);
 
@@ -191,19 +191,19 @@ Array noise_parberry(Vec2<int>   shape,
   return array;
 }
 
-Array noise_pingpong(NoiseType   noise_type,
-                     Vec2<int>   shape,
-                     Vec2<float> kw,
-                     uint        seed,
-                     int         octaves,
-                     float       weight,
-                     float       persistence,
-                     float       lacunarity,
-                     Array      *p_ctrl_param,
-                     Array      *p_noise_x,
-                     Array      *p_noise_y,
-                     Array      *p_stretching,
-                     Vec4<float> bbox)
+Array noise_pingpong(NoiseType    noise_type,
+                     Vec2<int>    shape,
+                     Vec2<float>  kw,
+                     uint         seed,
+                     int          octaves,
+                     float        weight,
+                     float        persistence,
+                     float        lacunarity,
+                     const Array *p_ctrl_param,
+                     const Array *p_noise_x,
+                     const Array *p_noise_y,
+                     const Array *p_stretching,
+                     Vec4<float>  bbox)
 {
   Array array = Array(shape);
 
@@ -227,20 +227,20 @@ Array noise_pingpong(NoiseType   noise_type,
   return array;
 }
 
-Array noise_ridged(NoiseType   noise_type,
-                   Vec2<int>   shape,
-                   Vec2<float> kw,
-                   uint        seed,
-                   int         octaves,
-                   float       weight,
-                   float       persistence,
-                   float       lacunarity,
-                   float       k_smoothing,
-                   Array      *p_ctrl_param,
-                   Array      *p_noise_x,
-                   Array      *p_noise_y,
-                   Array      *p_stretching,
-                   Vec4<float> bbox)
+Array noise_ridged(NoiseType    noise_type,
+                   Vec2<int>    shape,
+                   Vec2<float>  kw,
+                   uint         seed,
+                   int          octaves,
+                   float        weight,
+                   float        persistence,
+                   float        lacunarity,
+                   float        k_smoothing,
+                   const Array *p_ctrl_param,
+                   const Array *p_noise_x,
+                   const Array *p_noise_y,
+                   const Array *p_stretching,
+                   Vec4<float>  bbox)
 {
   Array array = Array(shape);
 
@@ -265,20 +265,20 @@ Array noise_ridged(NoiseType   noise_type,
   return array;
 }
 
-Array noise_swiss(NoiseType   noise_type,
-                  Vec2<int>   shape,
-                  Vec2<float> kw,
-                  uint        seed,
-                  int         octaves,
-                  float       weight,
-                  float       persistence,
-                  float       lacunarity,
-                  float       warp_scale,
-                  Array      *p_ctrl_param,
-                  Array      *p_noise_x,
-                  Array      *p_noise_y,
-                  Array      *p_stretching,
-                  Vec4<float> bbox)
+Array noise_swiss(NoiseType    noise_type,
+                  Vec2<int>    shape,
+                  Vec2<float>  kw,
+                  uint         seed,
+                  int          octaves,
+                  float        weight,
+                  float        persistence,
+                  float        lacunarity,
+                  float        warp_scale,
+                  const Array *p_ctrl_param,
+                  const Array *p_noise_x,
+                  const Array *p_noise_y,
+                  const Array *p_stretching,
+                  Vec4<float>  bbox)
 {
   Array array = Array(shape);
 

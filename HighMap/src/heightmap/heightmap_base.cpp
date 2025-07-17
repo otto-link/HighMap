@@ -8,6 +8,7 @@
 #include "macrologger.h"
 
 #include "highmap/heightmap.hpp"
+#include "highmap/interpolate2d.hpp"
 #include "highmap/operator.hpp"
 #include "highmap/range.hpp"
 
@@ -15,15 +16,6 @@
 
 namespace hmap
 {
-
-Heightmap::Heightmap(Vec2<int>   shape,
-                     Vec4<float> bbox,
-                     Vec2<int>   tiling,
-                     float       overlap)
-    : shape(shape), bbox(bbox), tiling(tiling), overlap(overlap)
-{
-  this->update_tile_parameters();
-}
 
 Heightmap::Heightmap(Vec2<int> shape, Vec2<int> tiling, float overlap)
     : shape(shape), tiling(tiling), overlap(overlap)
@@ -39,23 +31,20 @@ Heightmap::Heightmap(Vec2<int> shape,
 {
   this->update_tile_parameters();
 
-  transform(*this, [&fill_value](Array &x) { x = fill_value; });
-}
-
-Heightmap::Heightmap(Vec2<int> shape, Vec4<float> bbox, Vec2<int> tiling)
-    : shape(shape), bbox(bbox), tiling(tiling)
-{
-  this->update_tile_parameters();
+  transform(
+      {this},
+      [fill_value](std::vector<hmap::Array *> p_arrays,
+                   hmap::Vec2<int>,
+                   hmap::Vec4<float>)
+      {
+        hmap::Array *pa_out = p_arrays[0];
+        *pa_out = fill_value;
+      },
+      TransformMode::DISTRIBUTED);
 }
 
 Heightmap::Heightmap(Vec2<int> shape, Vec2<int> tiling)
     : shape(shape), tiling(tiling)
-{
-  this->update_tile_parameters();
-}
-
-Heightmap::Heightmap(Vec2<int> shape, Vec4<float> bbox)
-    : shape(shape), bbox(bbox)
 {
   this->update_tile_parameters();
 }
@@ -70,12 +59,12 @@ Heightmap::Heightmap() : shape(0, 0)
   this->update_tile_parameters();
 }
 
-size_t Heightmap::get_ntiles()
+size_t Heightmap::get_ntiles() const
 {
   return this->tiles.size();
 }
 
-int Heightmap::get_tile_index(int i, int j)
+int Heightmap::get_tile_index(int i, int j) const
 {
   return i + j * this->tiling.x;
 }
@@ -114,15 +103,7 @@ void Heightmap::set_tiling(Vec2<int> new_tiling)
 
 void Heightmap::from_array_interp(Array &array)
 {
-  std::vector<std::future<void>> futures(this->get_ntiles());
-
-  for (decltype(futures)::size_type i = 0; i < this->get_ntiles(); ++i)
-    futures[i] = std::async(&Tile::from_array_interp,
-                            std::ref(tiles[i]),
-                            std::ref(array));
-
-  for (decltype(futures)::size_type i = 0; i < this->get_ntiles(); ++i)
-    futures[i].get();
+  this->from_array_interp_bilinear(array);
 }
 
 void Heightmap::from_array_interp_bicubic(Array &array)
@@ -131,6 +112,19 @@ void Heightmap::from_array_interp_bicubic(Array &array)
 
   for (decltype(futures)::size_type i = 0; i < this->get_ntiles(); ++i)
     futures[i] = std::async(&Tile::from_array_interp_bicubic,
+                            std::ref(tiles[i]),
+                            std::ref(array));
+
+  for (decltype(futures)::size_type i = 0; i < this->get_ntiles(); ++i)
+    futures[i].get();
+}
+
+void Heightmap::from_array_interp_bilinear(Array &array)
+{
+  std::vector<std::future<void>> futures(this->get_ntiles());
+
+  for (decltype(futures)::size_type i = 0; i < this->get_ntiles(); ++i)
+    futures[i] = std::async(&Tile::from_array_interp,
                             std::ref(tiles[i]),
                             std::ref(array));
 
@@ -151,14 +145,11 @@ void Heightmap::from_array_interp_nearest(Array &array)
     futures[i].get();
 }
 
-float Heightmap::get_value_bilinear(float x, float y)
+float Heightmap::get_value_bilinear(float x, float y) const
 {
   // find corresponding tile
-  float lx = this->bbox.b - this->bbox.a;
-  float ly = this->bbox.d - this->bbox.c;
-
-  int it = static_cast<int>(x / lx * this->tiling.x);
-  int jt = static_cast<int>(y / ly * this->tiling.y);
+  int it = static_cast<int>(x * this->tiling.x);
+  int jt = static_cast<int>(y * this->tiling.y);
 
   int k = this->get_tile_index(it, jt);
 
@@ -169,8 +160,9 @@ float Heightmap::get_value_bilinear(float x, float y)
   float lxt = this->tiles[k].bbox.b - this->tiles[k].bbox.a;
   float lyt = this->tiles[k].bbox.d - this->tiles[k].bbox.c;
 
-  float xgrid = xt / lxt * (this->tiles[k].shape.x - 1);
-  float ygrid = yt / lyt * (this->tiles[k].shape.y - 1);
+  // NB - end points of the bounding box are not included in the grid
+  float xgrid = xt / lxt * this->tiles[k].shape.x;
+  float ygrid = yt / lyt * this->tiles[k].shape.y;
 
   int i = static_cast<int>(xgrid);
   int j = static_cast<int>(ygrid);
@@ -191,14 +183,11 @@ float Heightmap::get_value_bilinear(float x, float y)
   return value;
 }
 
-float Heightmap::get_value_nearest(float x, float y)
+float Heightmap::get_value_nearest(float x, float y) const
 {
   // find corresponding tile
-  float lx = this->bbox.b - this->bbox.a;
-  float ly = this->bbox.d - this->bbox.c;
-
-  int it = static_cast<int>(x / lx * this->tiling.x);
-  int jt = static_cast<int>(y / ly * this->tiling.y);
+  int it = static_cast<int>(x * this->tiling.x);
+  int jt = static_cast<int>(y * this->tiling.y);
 
   int k = this->get_tile_index(it, jt);
 
@@ -209,8 +198,9 @@ float Heightmap::get_value_nearest(float x, float y)
   float lxt = this->tiles[k].bbox.b - this->tiles[k].bbox.a;
   float lyt = this->tiles[k].bbox.d - this->tiles[k].bbox.c;
 
-  int i = static_cast<int>(xt / lxt * (this->tiles[k].shape.x - 1));
-  int j = static_cast<int>(yt / lyt * (this->tiles[k].shape.y - 1));
+  // NB - end points of the bounding box are not included in the grid
+  int i = static_cast<int>(xt / lxt * this->tiles[k].shape.x);
+  int j = static_cast<int>(yt / lyt * this->tiles[k].shape.y);
 
   return this->tiles[k](i, j);
 }
@@ -233,12 +223,18 @@ void Heightmap::infos()
 void Heightmap::inverse()
 {
   float hmax = this->max();
-  transform(*this,
-            [hmax](Array &x)
-            {
-              x *= -1.f;
-              x += hmax;
-            });
+
+  transform(
+      {this},
+      [hmax](std::vector<hmap::Array *> p_arrays,
+             hmap::Vec2<int>,
+             hmap::Vec4<float>)
+      {
+        hmap::Array *pa_out = p_arrays[0];
+        *pa_out *= -1.f;
+        *pa_out += hmax;
+      },
+      TransformMode::DISTRIBUTED);
 }
 
 float Heightmap::max()
@@ -321,39 +317,31 @@ void Heightmap::remap(float vmin, float vmax)
 {
   float hmin = this->min();
   float hmax = this->max();
-  transform(*this,
-            [vmin, vmax, hmin, hmax](Array &x)
-            { hmap::remap(x, vmin, vmax, hmin, hmax); });
+
+  transform(
+      {this},
+      [vmin, vmax, hmin, hmax](std::vector<hmap::Array *> p_arrays,
+                               hmap::Vec2<int>,
+                               hmap::Vec4<float>)
+      {
+        hmap::Array *pa_out = p_arrays[0];
+        hmap::remap(*pa_out, vmin, vmax, hmin, hmax);
+      },
+      TransformMode::DISTRIBUTED);
 }
 
 void Heightmap::remap(float vmin, float vmax, float from_min, float from_max)
 {
-  transform(*this,
-            [vmin, vmax, from_min, from_max](Array &x)
-            { hmap::remap(x, vmin, vmax, from_min, from_max); });
-}
-
-void Heightmap::set_bbox(Vec4<float> new_bbox)
-{
-  this->bbox = new_bbox;
-
-  float lx = this->bbox.b - this->bbox.a;
-  float ly = this->bbox.d - this->bbox.c;
-
-  for (int it = 0; it < tiling.x; it++)
-    for (int jt = 0; jt < tiling.y; jt++)
-    {
-      int k = this->get_tile_index(it, jt);
-
-      Vec4<float> tile_bbox = Vec4(
-          this->bbox.a + this->tiles[k].shift.x * lx,
-          this->bbox.a + (this->tiles[k].shift.x + this->tiles[k].scale.x) * lx,
-          this->bbox.c + this->tiles[k].shift.y * ly,
-          this->bbox.c +
-              (this->tiles[k].shift.y + this->tiles[k].scale.y) * ly);
-
-      this->tiles[k].bbox = tile_bbox;
-    }
+  transform(
+      {this},
+      [vmin, vmax, from_min, from_max](std::vector<hmap::Array *> p_arrays,
+                                       hmap::Vec2<int>,
+                                       hmap::Vec4<float>)
+      {
+        hmap::Array *pa_out = p_arrays[0];
+        hmap::remap(*pa_out, vmin, vmax, from_min, from_max);
+      },
+      TransformMode::DISTRIBUTED);
 }
 
 float Heightmap::sum()
@@ -376,16 +364,7 @@ float Heightmap::sum()
 
 Array Heightmap::to_array()
 {
-  return this->to_array(this->shape);
-}
-
-Array Heightmap::to_array(Vec2<int> shape_export)
-{
-  // TODO: stepping not robust with overlapping
-  Vec2<int> step = {this->shape.x / shape_export.x,
-                    this->shape.y / shape_export.y};
-
-  Array array = Array(shape_export);
+  Array array = Array(this->shape);
 
   for (int it = 0; it < tiling.x; it++)
     for (int jt = 0; jt < tiling.y; jt++)
@@ -396,10 +375,30 @@ Array Heightmap::to_array(Vec2<int> shape_export)
       int i1 = (int)(tiles[k].shift.x * this->shape.x);
       int j1 = (int)(tiles[k].shift.y * this->shape.y);
 
-      for (int p = 0; p < tiles[k].shape.x; p += step.x)
-        for (int q = 0; q < tiles[k].shape.y; q += step.y)
-          array((p + i1) / step.x, (q + j1) / step.y) = tiles[k](p, q);
+      for (int q = 0; q < tiles[k].shape.y; ++q)
+        for (int p = 0; p < tiles[k].shape.x; ++p)
+          array(p + i1, q + j1) = tiles[k](p, q);
     }
+
+  return array;
+}
+
+Array Heightmap::to_array(Vec2<int> shape_export)
+{
+  Array array = Array(shape_export);
+
+  // interpolation grid points
+  bool endpoint = false;
+
+  std::vector<float> x = linspace(0.f, 1.f, shape_export.x, endpoint);
+
+  std::vector<float> y = linspace(0.f, 1.f, shape_export.y, endpoint);
+
+  // nearest neighbor interpolation since the export is likely to be
+  // smaller than the original one
+  for (int j = 0; j < shape_export.y; ++j)
+    for (int i = 0; i < shape_export.x; ++i)
+      array(i, j) = this->get_value_nearest(x[i], y[j]);
 
   return array;
 }
@@ -529,9 +528,6 @@ void Heightmap::update_tile_parameters()
 {
   tiles.resize(this->tiling.x * this->tiling.y);
 
-  float lx = this->bbox.b - this->bbox.a;
-  float ly = this->bbox.d - this->bbox.c;
-
   // what the buffers extent to the tile domain at both frontiers
   // (added two times for the tile surrounded by other tiles)
   int delta_buffer_i = (int)(this->overlap * this->shape.x / this->tiling.x);
@@ -566,10 +562,10 @@ void Heightmap::update_tile_parameters()
       Vec2<float> scale = Vec2((float)tile_shape.x / (float)this->shape.x,
                                (float)tile_shape.y / (float)this->shape.y);
 
-      Vec4<float> tile_bbox = Vec4(this->bbox.a + shift.x * lx,
-                                   this->bbox.a + (shift.x + scale.x) * lx,
-                                   this->bbox.c + shift.y * ly,
-                                   this->bbox.c + (shift.y + scale.y) * ly);
+      Vec4<float> tile_bbox = Vec4(shift.x,
+                                   shift.x + scale.x,
+                                   shift.y,
+                                   shift.y + scale.y);
 
       tiles[k] = Tile(tile_shape, shift, scale, tile_bbox);
     }

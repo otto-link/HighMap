@@ -29,9 +29,19 @@ Array erosion(const Array &array, int ir)
   return gpu::minimum_local(array, ir);
 }
 
+Array morphological_black_hat(const Array &array, int ir)
+{
+  return gpu::closing(array, ir) - array;
+}
+
 Array morphological_gradient(const Array &array, int ir)
 {
   return gpu::dilation(array, ir) - gpu::erosion(array, ir);
+}
+
+Array morphological_top_hat(const Array &array, int ir)
+{
+  return array - gpu::opening(array, ir);
 }
 
 Array opening(const Array &array, int ir)

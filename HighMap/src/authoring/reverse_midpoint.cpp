@@ -228,10 +228,10 @@ void square_md(Array                                &array,
     square_md(array, is_done, step, noise_scale, gen, dis);
 }
 
-Array reverse_midpoint(Array &array,
-                       uint   seed,
-                       float  noise_scale,
-                       float  threshold)
+Array reverse_midpoint(const Array &array,
+                       uint         seed,
+                       float        noise_scale,
+                       float        threshold)
 {
   std::mt19937                          gen(seed);
   std::uniform_real_distribution<float> dis(-1.f, 1.f);

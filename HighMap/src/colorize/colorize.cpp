@@ -19,18 +19,18 @@
 namespace hmap
 {
 
-void apply_hillshade(Tensor            &color3,
-                     const hmap::Array &array,
-                     float              vmin,
-                     float              vmax,
-                     float              exponent)
+void apply_hillshade(Tensor      &color3,
+                     const Array &array,
+                     float        vmin,
+                     float        vmax,
+                     float        exponent)
 {
   // compute and scale hillshading
   Array hs = Array(array.shape, 1.f);
   hs = hillshade(array, 180.f, 45.f, 10.f * array.ptp() / (float)array.shape.y);
   remap(hs, vmin, vmax);
 
-  if (exponent != 1.f) hs = hmap::pow(hs, exponent);
+  if (exponent != 1.f) hs = pow(hs, exponent);
 
   clamp(hs);
 
@@ -42,7 +42,7 @@ void apply_hillshade(Tensor            &color3,
 }
 
 void apply_hillshade(std::vector<uint8_t> &img,
-                     const hmap::Array    &array,
+                     const Array          &array,
                      float                 vmin,
                      float                 vmax,
                      float                 exponent,
@@ -53,7 +53,7 @@ void apply_hillshade(std::vector<uint8_t> &img,
   hs = hillshade(array, 180.f, 45.f, 10.f * array.ptp() / (float)array.shape.y);
   remap(hs, vmin, vmax);
 
-  if (exponent != 1.f) hs = hmap::pow(hs, exponent);
+  if (exponent != 1.f) hs = pow(hs, exponent);
 
   clamp(hs);
 
@@ -85,13 +85,13 @@ void apply_hillshade(std::vector<uint8_t> &img,
   }
 }
 
-Tensor colorize(Array &array,
-                float  vmin,
-                float  vmax,
-                int    cmap,
-                bool   hillshading,
-                bool   reverse,
-                Array *p_noise)
+Tensor colorize(const Array &array,
+                float        vmin,
+                float        vmax,
+                int          cmap,
+                bool         hillshading,
+                bool         reverse,
+                const Array *p_noise)
 {
   // get the colormap and reverse if needed
   const auto colormap_colors = get_colormap_data(cmap);
@@ -174,7 +174,9 @@ Tensor colorize_histogram(const Array &array)
     for (int i = 0; i < array.shape.x; i++)
       hist[(int)(a * array(i, j) + b)] += 1;
 
-  int hmax = *std::max_element(hist.begin(), hist.end());
+  int hmax = 1;
+  if (!hist.empty()) hmax = *std::max_element(hist.begin(), hist.end());
+
   for (auto &v : hist)
     v = (int)((float)v / (float)hmax * (float)(array.shape.y - 1));
 

@@ -26,10 +26,6 @@ void stratify(Array             &z,
       {
         float dh = hs[k + 1] - hs[k];
 
-        // smooth correction factor
-        float cx = std::exp(2.5f / gamma[k]);
-        float cy = std::log(1.f + cx);
-
         float dn = p_noise ? (*p_noise)(i, j) * dh : 0.f;
         float zt = z(i, j) - dn;
 
@@ -184,7 +180,7 @@ void stratify(Array &z,
   }
 
   // mix everything
-  std::vector<Array *> zs_ptr = {};
+  std::vector<const Array *> zs_ptr = {};
   for (auto &a : zs)
     zs_ptr.push_back(&a);
 

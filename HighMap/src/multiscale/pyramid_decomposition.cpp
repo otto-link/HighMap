@@ -51,8 +51,8 @@ void PyramidDecomposition::decompose()
   this->components.clear();
 
   // working array
-  Vec2<int> level_shape = p_array->shape;
-  Array     array_low = *p_array;
+  Vec2<int> level_shape = this->p_array->shape;
+  Array     array_low = *this->p_array;
 
   for (int n = 0; n < this->nlevels; n++)
   {
@@ -103,7 +103,7 @@ void PyramidDecomposition::to_png(std::string fname, int cmap, bool hillshading)
   // highpass and lowpass storage
   std::vector<Array> banner_arrays = {};
 
-  Vec2<int> shape_ref = p_array->shape;
+  Vec2<int> shape_ref = this->p_array->shape;
 
   Array     array_out = this->residual;
   Vec2<int> shape = array_out.shape;

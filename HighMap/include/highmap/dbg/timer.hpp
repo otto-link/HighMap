@@ -1,10 +1,10 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file dbg.hpp
- * @author Otto Link (otto.link.bv@gmail.com)
+ * @author  Otto Link (otto.link.bv@gmail.com)
  * @brief Header file containing the implementation of the Recorder and Timer
  * classes for high-resolution timing.
  * @version 0.1
@@ -51,8 +51,8 @@ public:
   void start();
 
   /**
-   * @brief Stops the timer for this Recorder instance and updates the total
-   * elapsed time.
+   * @brief Stops the timer for this Recorder instance and updates the
+   * total elapsed time.
    */
   void stop();
 
@@ -87,15 +87,13 @@ public:
  *     // Stop timing the event named "step 1"
  *     Timer::Stop("step 1");
  *
- *     // Start and stop another event
- *     Timer::Start("step 2");
+ *     // Start and stop another event Timer::Start("step 2");
  *
  *     // Perform more work here...
  *
  *     Timer::Stop("step 2");
  *
- *     // Dump the timing results for all recorded events
- *     Timer::Dump();
+ *     // Dump the timing results for all recorded events Timer::Dump();
  *
  *     return 0;
  * }

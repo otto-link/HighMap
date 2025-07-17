@@ -91,8 +91,8 @@ Array translate(const Array &array,
                 float        dx,
                 float        dy,
                 bool         periodic,
-                Array       *p_noise_x,
-                Array       *p_noise_y,
+                const Array *p_noise_x,
+                const Array *p_noise_y,
                 Vec4<float>  bbox)
 {
   hmap::ArrayFunction f = hmap::ArrayFunction(array,
@@ -134,8 +134,8 @@ Array zoom(const Array &array,
            float        zoom_factor,
            bool         periodic,
            Vec2<float>  center,
-           Array       *p_noise_x,
-           Array       *p_noise_y,
+           const Array *p_noise_x,
+           const Array *p_noise_y,
            Vec4<float>  bbox)
 {
 

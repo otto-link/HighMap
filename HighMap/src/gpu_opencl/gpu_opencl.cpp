@@ -8,7 +8,7 @@ namespace hmap::gpu
 
 void helper_bind_optional_buffer(clwrapper::Run    &run,
                                  const std::string &id,
-                                 Array             *p_array)
+                                 const Array       *p_array)
 {
   std::vector<float> dummy_vector(1);
 
@@ -41,6 +41,7 @@ bool init_opencl()
 #include "kernels/gradient_norm.cl"
 #include "kernels/hydraulic_particle.cl"
 #include "kernels/hydraulic_schott.cl"
+#include "kernels/interpolate_array.cl"
 #include "kernels/laplace.cl"
 #include "kernels/maximum_local.cl"
 #include "kernels/maximum_smooth.cl"
@@ -59,10 +60,13 @@ bool init_opencl()
 #include "kernels/smooth_cpulse.cl"
 #include "kernels/thermal.cl"
 #include "kernels/thermal_inflate.cl"
+#include "kernels/thermal_rib.cl"
 #include "kernels/thermal_ridge.cl"
 #include "kernels/thermal_scree.cl"
-#include "kernels/voronoi.cl"
+#include "kernels/voronoi_base.cl"
 #include "kernels/voronoi_edge_distance.cl"
+#include "kernels/voronoi_fbm.cl"
+#include "kernels/voronoi_main.cl"
 #include "kernels/voronoise.cl"
 #include "kernels/warp.cl"
       ;

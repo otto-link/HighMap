@@ -9,13 +9,14 @@
 
 #include "highmap/algebra.hpp"
 #include "highmap/array.hpp"
+#include "highmap/interpolate2d.hpp"
+#include "highmap/interpolate_array.hpp"
 #include "highmap/operator.hpp"
 #include "highmap/transform.hpp"
 
 #include "highmap/internal/vector_utils.hpp"
 
 namespace hmap
-
 {
 
 std::vector<float> Array::col_to_vector(int j)
@@ -72,7 +73,10 @@ void Array::depose_amount_kernel_bilinear_at(int   i,
   this->depose_amount_kernel_at(i, j, kernel, amount);
 }
 
-void Array::depose_amount_kernel_at(int i, int j, Array &kernel, float amount)
+void Array::depose_amount_kernel_at(int          i,
+                                    int          j,
+                                    const Array &kernel,
+                                    float        amount)
 {
   const int ir = (kernel.shape.x - 1) / 2;
   const int jr = (kernel.shape.y - 1) / 2;
@@ -93,7 +97,7 @@ void Array::dump(const std::string &fname) const
   this->to_png_grayscale(fname, CV_16U);
 }
 
-Array Array::extract_slice(Vec4<int> idx)
+Array Array::extract_slice(Vec4<int> idx) const
 {
   Array array_out = Array(Vec2<int>(idx.b - idx.a, idx.d - idx.c));
 
@@ -102,6 +106,12 @@ Array Array::extract_slice(Vec4<int> idx)
       array_out(i - idx.a, j - idx.c) = (*this)(i, j);
 
   return array_out;
+}
+
+Array Array::extract_slice(int i1, int i2, int j1, int j2) const
+{
+  Vec4<int> idx(i1, i2, j1, j2);
+  return this->extract_slice(idx);
 }
 
 float Array::get_gradient_x_at(int i, int j) const
@@ -161,7 +171,7 @@ size_t Array::get_sizeof() const
   return sizeof(float) * this->vector.size();
 }
 
-Vec2<float> Array::normalization_coeff(float vmin, float vmax)
+Vec2<float> Array::normalization_coeff(float vmin, float vmax) const
 {
   float a = 0.f;
   float b = 0.f;
@@ -171,14 +181,6 @@ Vec2<float> Array::normalization_coeff(float vmin, float vmax)
     b = -vmin / (vmax - vmin);
   }
   return Vec2<float>(a, b);
-}
-
-float cubic_interpolate(float p[4], float x) // helper
-{
-  return p[1] + 0.5 * x *
-                    (p[2] - p[0] +
-                     x * (2.0 * p[0] - 5.0 * p[1] + 4.0 * p[2] - p[3] +
-                          x * (3.0 * (p[1] - p[2]) + p[3] - p[0])));
 }
 
 float Array::get_value_bicubic_at(int i, int j, float u, float v) const
@@ -267,77 +269,21 @@ float Array::ptp() const
 
 Array Array::resample_to_shape(Vec2<int> new_shape) const
 {
-  Array array_out = Array(new_shape);
-
-  // interpolation grid scaled to the starting grid to ease seeking of
-  // the reference (i, j) indices during bilinear interpolation
-  std::vector<float> x = linspace(0.f, (float)this->shape.x - 1, new_shape.x);
-  std::vector<float> y = linspace(0.f, (float)this->shape.y - 1, new_shape.y);
-
-  for (int j = 0; j < new_shape.y; j++)
-  {
-    int jref = (int)y[j];
-    for (int i = 0; i < new_shape.x; i++)
-    {
-      int iref = (int)x[i];
-
-      float u = x[i] - (float)iref;
-      float v = y[j] - (float)jref;
-
-      // handle bordline cases
-      if (iref == this->shape.x - 1)
-      {
-        iref = this->shape.x - 2;
-        u = 1.f;
-      }
-
-      if (jref == this->shape.y - 1)
-      {
-        jref = this->shape.y - 2;
-        v = 1.f;
-      }
-
-      array_out(i, j) = this->get_value_bilinear_at(iref, jref, u, v);
-    }
-  }
-
-  return array_out;
+  return this->resample_to_shape_bilinear(new_shape);
 }
 
 Array Array::resample_to_shape_bicubic(Vec2<int> new_shape) const
 {
   Array array_out = Array(new_shape);
+  interpolate_array_bicubic(*this, array_out);
 
-  // interpolation grid scaled to the starting grid to ease seeking of
-  // the reference (i, j) indices during bilinear interpolation
-  std::vector<float> x = linspace(0.f, (float)this->shape.x - 1, new_shape.x);
-  std::vector<float> y = linspace(0.f, (float)this->shape.y - 1, new_shape.y);
+  return array_out;
+}
 
-  for (int j = 0; j < new_shape.y; j++)
-  {
-    int jref = (int)y[j];
-    for (int i = 0; i < new_shape.x; i++)
-    {
-      int   iref = (int)x[i];
-      float u = x[i] - (float)iref;
-      float v = y[j] - (float)jref;
-
-      // handle bordline cases
-      if (iref == this->shape.x - 1)
-      {
-        iref = this->shape.x - 2;
-        u = 1.f;
-      }
-
-      if (jref == this->shape.y - 1)
-      {
-        jref = this->shape.y - 2;
-        v = 1.f;
-      }
-
-      array_out(i, j) = this->get_value_bicubic_at(iref, jref, u, v);
-    }
-  }
+Array Array::resample_to_shape_bilinear(Vec2<int> new_shape) const
+{
+  Array array_out = Array(new_shape);
+  interpolate_array_bilinear(*this, array_out);
 
   return array_out;
 }
@@ -345,21 +291,7 @@ Array Array::resample_to_shape_bicubic(Vec2<int> new_shape) const
 Array Array::resample_to_shape_nearest(Vec2<int> new_shape) const
 {
   Array array_out = Array(new_shape);
-
-  // interpolation grid scaled to the starting grid to ease seeking of
-  // the reference (i, j) indices during bilinear interpolation
-  std::vector<float> x = linspace(0.f, (float)this->shape.x - 1, new_shape.x);
-  std::vector<float> y = linspace(0.f, (float)this->shape.y - 1, new_shape.y);
-
-  for (int i = 0; i < new_shape.x; i++)
-  {
-    int iref = (int)std::floor(x[i]);
-    for (int j = 0; j < new_shape.y; j++)
-    {
-      int jref = (int)std::floor(y[j]);
-      array_out(i, j) = (*this)(iref, jref);
-    }
-  }
+  interpolate_array_nearest(*this, array_out);
 
   return array_out;
 }
@@ -379,7 +311,7 @@ void Array::set_slice(Vec4<int> idx, float value)
       (*this)(i, j) = value;
 }
 
-void Array::set_slice(Vec4<int> idx, const Array array)
+void Array::set_slice(Vec4<int> idx, const Array &array)
 {
   for (int i = idx.a; i < idx.b; i++)
     for (int j = idx.c; j < idx.d; j++)

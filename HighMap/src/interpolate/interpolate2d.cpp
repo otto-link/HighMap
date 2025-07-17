@@ -13,15 +13,15 @@
 namespace hmap
 {
 
-Array interpolate2d(Vec2<int>             shape,
-                    std::vector<float>    x,
-                    std::vector<float>    y,
-                    std::vector<float>    values,
-                    InterpolationMethod2D interpolation_method,
-                    Array                *p_noise_x,
-                    Array                *p_noise_y,
-                    Array                *p_stretching,
-                    Vec4<float>           bbox)
+Array interpolate2d(Vec2<int>                 shape,
+                    const std::vector<float> &x,
+                    const std::vector<float> &y,
+                    const std::vector<float> &values,
+                    InterpolationMethod2D     interpolation_method,
+                    const Array              *p_noise_x,
+                    const Array              *p_noise_y,
+                    const Array              *p_stretching,
+                    Vec4<float>               bbox)
 {
   switch (interpolation_method)
   {
@@ -48,14 +48,14 @@ Array interpolate2d(Vec2<int>             shape,
   }
 }
 
-Array interpolate2d_nearest(Vec2<int>          shape,
-                            std::vector<float> x,
-                            std::vector<float> y,
-                            std::vector<float> values,
-                            Array             *p_noise_x,
-                            Array             *p_noise_y,
-                            Array             *p_stretching,
-                            Vec4<float>        bbox)
+Array interpolate2d_nearest(Vec2<int>                 shape,
+                            const std::vector<float> &x,
+                            const std::vector<float> &y,
+                            const std::vector<float> &values,
+                            const Array              *p_noise_x,
+                            const Array              *p_noise_y,
+                            const Array              *p_stretching,
+                            Vec4<float>               bbox)
 {
   auto itp_fct = [&x, &y, &values](float x_, float y_, float)
   {
@@ -87,14 +87,14 @@ Array interpolate2d_nearest(Vec2<int>          shape,
   return array_out;
 }
 
-Array interpolate2d_delaunay(Vec2<int>          shape,
-                             std::vector<float> x,
-                             std::vector<float> y,
-                             std::vector<float> values,
-                             Array             *p_noise_x,
-                             Array             *p_noise_y,
-                             Array             *p_stretching,
-                             Vec4<float>        bbox)
+Array interpolate2d_delaunay(Vec2<int>                 shape,
+                             const std::vector<float> &x,
+                             const std::vector<float> &y,
+                             const std::vector<float> &values,
+                             const Array              *p_noise_x,
+                             const Array              *p_noise_y,
+                             const Array              *p_stretching,
+                             Vec4<float>               bbox)
 {
   // triangulate
   std::vector<float> coords(2 * x.size());

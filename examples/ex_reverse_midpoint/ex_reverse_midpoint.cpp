@@ -5,7 +5,7 @@ int main(void)
   hmap::Vec2<int> shape = {256, 256};
   int             seed = 3;
 
-  hmap::Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f};
+  hmap::Vec4<float> bbox = hmap::unit_square_bbox();
   hmap::Path        path = hmap::Path(4, seed, bbox);
   path.reorder_nns();
   path.bezier();

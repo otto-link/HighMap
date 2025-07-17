@@ -12,7 +12,7 @@
 namespace hmap
 {
 
-void write_raw_16bit(std::string fname, const Array &array)
+void write_raw_16bit(const std::string &fname, const Array &array)
 {
   const float vmin = array.min();
   const float vmax = array.max();

@@ -1,16 +1,13 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file highmap.hpp
  * @author Otto Link (otto.link.bv@gmail.com)
  * @brief
- * @version 0.1
- * @date 2023-07-20
  *
  * @copyright Copyright (c) 2023
- *
  */
 #pragma once
 
@@ -22,6 +19,8 @@
 #include "highmap/colorize.hpp"
 #include "highmap/colormaps.hpp"
 #include "highmap/convolve.hpp"
+#include "highmap/coord_frame.hpp"
+#include "highmap/curvature.hpp"
 #include "highmap/erosion.hpp"
 #include "highmap/export.hpp"
 #include "highmap/features.hpp"
@@ -37,6 +36,7 @@
 #include "highmap/hydrology.hpp"
 #include "highmap/interpolate1d.hpp"
 #include "highmap/interpolate2d.hpp"
+#include "highmap/interpolate_array.hpp"
 #include "highmap/interpolate_curve.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/math.hpp"

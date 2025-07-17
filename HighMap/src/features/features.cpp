@@ -1,11 +1,10 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
-#include "dkm.hpp"
-#include "macrologger.h"
-
 #include "highmap/array.hpp"
+#include "highmap/curvature.hpp"
 #include "highmap/filters.hpp"
+#include "highmap/morphology.hpp"
 #include "highmap/range.hpp"
 
 namespace hmap
@@ -90,6 +89,19 @@ Array rugosity(const Array &z, int ir, bool convex)
     clamp_max(z_skw, 0.f);
 
   return z_skw;
+}
+
+Array valley_width(const Array &z, int ir, bool ridge_select)
+{
+  Array vw = z;
+  if (ir > 0) smooth_cpulse(vw, ir);
+
+  if (ridge_select) vw *= -1.f;
+
+  vw = curvature_mean(vw);
+  vw = distance_transform_approx(vw);
+
+  return vw;
 }
 
 } // namespace hmap

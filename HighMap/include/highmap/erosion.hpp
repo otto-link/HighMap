@@ -1,16 +1,17 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file erosion.hpp
  * @author Otto Link (otto.link.bv@gmail.com)
- * @brief
- * @version 0.1
- * @date 2023-04-29
+ * @brief Implements hydraulic and thermal erosion algorithms for terrain
+ * modeling, including particle-based flow, sediment transport (Musgrave, Benes,
+ * Olsen), slope-driven diffusion, and procedural ridge formation. Supports
+ * GPU-accelerated methods and generates erosion/deposition maps for geomorphic
+ * analysis.
  *
  * @copyright Copyright (c) 2023 Otto Link.
- *
  */
 #pragma once
 #include <cmath>
@@ -56,7 +57,7 @@ enum ErosionProfile : int
  * Fill heightmap depressions to ensure that every cell can be connected to the
  * boundaries following a downward slope @cite Planchon2002.
  *
- * @param z Input array.
+ * @param z          Input array.
  * @param iterations Number of iterations.
  * @param epsilon
  *
@@ -71,11 +72,11 @@ void depression_filling(Array &z, int iterations = 1000, float epsilon = 1e-4f);
 /**
  * @brief
  *
- * @param z_before Input array (before erosion).
- * @param z_after Input array (after erosion).
- * @param erosion_map Erosion map.
+ * @param z_before       Input array (before erosion).
+ * @param z_after        Input array (after erosion).
+ * @param erosion_map    Erosion map.
  * @param deposition_map Deposition map.
- * @param tolerance Tolerance for erosion / deposition definition.
+ * @param tolerance      Tolerance for erosion / deposition definition.
  *
  * **Example**
  * @include ex_erosions_maps.cpp
@@ -94,19 +95,19 @@ void erosion_maps(Array &z_before,
  * @brief Apply an algerbic formula based on the local gradient to perform
  * erosion/deposition.
  *
- * @param z Input array.
- * @param p_mask Intensity mask, expected in [0, 1] (applied as a
- * post-processing).
- * @param talus_ref Reference talus.
- * @param ir Smoothing prefilter radius.
- * @param p_bedrock Reference to the bedrock heightmap.
+ * @param z                  Input array.
+ * @param p_mask             Intensity mask, expected in [0, 1] (applied as a
+ *                           post-processing).
+ * @param talus_ref          Reference talus.
+ * @param ir                 Smoothing prefilter radius.
+ * @param p_bedrock          Reference to the bedrock heightmap.
  * @param p_erosion_map[out] Reference to the erosion map, provided as an output
- * field.
- * @param p_deposition_map [out] Reference to the deposition map, provided as an
- * output field.
- * @param c_erosion Erosion coefficient.
- * @param c_deposition Deposition coefficient.
- * @param iterations Number of iterations.
+ *                           field.
+ * @param p_deposition_map   [out] Reference to the deposition map, provided as
+ *                           an output field.
+ * @param c_erosion          Erosion coefficient.
+ * @param c_deposition       Deposition coefficient.
+ * @param iterations         Number of iterations.
  *
  * **Example**
  * @include ex_hydraulic_algebric.cpp
@@ -141,23 +142,23 @@ void hydraulic_algebric(Array &z,
  *
  * See @cite Benes2002 and @cite Olsen2004.
  *
- * @param z Input array.
- * @param p_mask Intensity mask, expected in [0, 1] (applied as a
- * post-processing).
- * @param iterations Number of iterations.
- * @param p_bedrock Reference to the bedrock heightmap.
- * @param p_moisture_map Reference to the moisture map (quantity of rain),
- * expected to be in [0, 1].
+ * @param z                  Input array.
+ * @param p_mask             Intensity mask, expected in [0, 1] (applied as a
+ *                           post-processing).
+ * @param iterations         Number of iterations.
+ * @param p_bedrock          Reference to the bedrock heightmap.
+ * @param p_moisture_map     Reference to the moisture map (quantity of rain),
+ *                           expected to be in [0, 1].
  * @param p_erosion_map[out] Reference to the erosion map, provided as an output
- * field.
- * @param p_deposition_map [out] Reference to the deposition map, provided as an
- * output field.
- * @param c_capacity Sediment capacity.
- * @param c_deposition Deposition coefficient.
- * @param c_erosion Erosion coefficient.
- * @param water_level Water level.
- * @param evap_rate Water evaporation rate.
- * @param rain_rate Rain relaxation rate.
+ *                           field.
+ * @param p_deposition_map   [out] Reference to the deposition map, provided as
+ *                           an output field.
+ * @param c_capacity         Sediment capacity.
+ * @param c_deposition       Deposition coefficient.
+ * @param c_erosion          Erosion coefficient.
+ * @param water_level        Water level.
+ * @param evap_rate          Water evaporation rate.
+ * @param rain_rate          Rain relaxation rate.
  *
  * **Example**
  * @include ex_hydraulic_benes.cpp
@@ -194,9 +195,9 @@ void hydraulic_benes(Array &z,
 
 /**
  * @brief Apply cell-based hydraulic erosion using a nonlinear diffusion model.
- * @param z Input array.
- * @param radius Gaussian filter radius (with respect to a unit domain).
- * @param vmax Maximum elevation for the details.
+ * @param z           Input array.
+ * @param radius      Gaussian filter radius (with respect to a unit domain).
+ * @param vmax        Maximum elevation for the details.
  * @param k_smoothing Smoothing factor, if any.
  *
  * **Example**
@@ -215,11 +216,11 @@ void hydraulic_blur(Array &z,
  *
  * See @cite Roering2001.
  *
- * @param z Input array.
+ * @param z           Input array.
  * @param c_diffusion Diffusion coefficient.
- * @param talus Reference talus (must be higher than the maximum talus of the
- * map).
- * @param iterations Number of iterations.
+ * @param talus       Reference talus (must be higher than the maximum talus of
+ *                    the map).
+ * @param iterations  Number of iterations.
  *
  * **Example**
  * @include ex_hydraulic_diffusion.cpp
@@ -235,18 +236,18 @@ void hydraulic_diffusion(Array &z,
  * @brief Apply cell-based hydraulic erosion/deposition of Musgrave et al.
  * (1989).
  *
- * A simple grid-based erosion technique was published by Musgrave, Kolb,
- * and Mace in 1989 @cite Musgrave1989.
+ * A simple grid-based erosion technique was published by Musgrave, Kolb, and
+ * Mace in 1989 @cite Musgrave1989.
  *
- * @param z Input array.
- * @param moisture_map Moisture map (quantity of rain), expected to be in
- * [0, 1].
- * @param iterations Number of iterations.
- * @param c_capacity Sediment capacity.
+ * @param z            Input array.
+ * @param moisture_map Moisture map (quantity of rain), expected to be in [0,
+ *                     1].
+ * @param iterations   Number of iterations.
+ * @param c_capacity   Sediment capacity.
  * @param c_deposition Deposition coefficient.
- * @param c_erosion Erosion coefficient.
- * @param water_level Water level.
- * @param evap_rate Water evaporation rate.
+ * @param c_erosion    Erosion coefficient.
+ * @param water_level  Water level.
+ * @param evap_rate    Water evaporation rate.
  *
  * **Example**
  * @include ex_hydraulic_musgrave.cpp
@@ -276,23 +277,23 @@ void hydraulic_musgrave(Array &z,
  *
  * Adapted from @cite Beyer2015 and @cite Hjulstroem1935.
  *
- * @param z Input array.
- * @param p_mask Intensity mask, expected in [0, 1] (applied as a
- * post-processing).
- * @param nparticles Number of particles.
- * @param seed Random seed number.
- * @param p_bedrock Reference to the bedrock heightmap.
- * @param p_moisture_map Reference to the moisture map (quantity of rain),
- * expected to be in [0, 1].
+ * @param z                  Input array.
+ * @param p_mask             Intensity mask, expected in [0, 1] (applied as a
+ *                           post-processing).
+ * @param nparticles         Number of particles.
+ * @param seed               Random seed number.
+ * @param p_bedrock          Reference to the bedrock heightmap.
+ * @param p_moisture_map     Reference to the moisture map (quantity of rain),
+ *                           expected to be in [0, 1].
  * @param p_erosion_map[out] Reference to the erosion map, provided as an output
- * field.
- * @param p_deposition_map [out] Reference to the deposition map, provided as an
- * output field.
- * @param c_capacity Sediment capacity.
- * @param c_deposition Deposition coefficient.
- * @param c_erosion Erosion coefficient.
- * @param drag_rate Drag rate.
- * @param evap_rate Particle evaporation rate.
+ *                           field.
+ * @param p_deposition_map   [out] Reference to the deposition map, provided as
+ *                           an output field.
+ * @param c_capacity         Sediment capacity.
+ * @param c_deposition       Deposition coefficient.
+ * @param c_erosion          Erosion coefficient.
+ * @param drag_rate          Drag rate.
+ * @param evap_rate          Particle evaporation rate.
  *
  * **Example**
  * @include ex_hydraulic_particle.cpp
@@ -335,26 +336,28 @@ void hydraulic_particle(Array &z,
 /**
  * @brief Apply hydraulic erosion using a particle based procedure, using a
  * pyramid decomposition to allow a multiscale approach.
- * @param z Input array.
- * @param particle_density Particles density (with respect to the number of
- * cells of the input array).
- * @param seed Random seed number.
- * @param p_bedrock Reference to the bedrock heightmap.
- * @param p_moisture_map Reference to the moisture map (quantity of rain),
- * expected to be in [0, 1].
- * @param p_erosion_map[out] Reference to the erosion map, provided as an output
- * field.
- * @param p_deposition_map [out] Reference to the deposition map, provided as an
- * output field.
- * @param c_capacity Sediment capacity.
- * @param c_deposition Deposition coefficient.
- * @param c_erosion Erosion coefficient.
- * @param drag_rate Drag rate.
- * @param evap_rate Particle evaporation rate.
+ * @param z                    Input array.
+ * @param particle_density     Particles density (with respect to the number of
+ *                             cells of the input array).
+ * @param seed                 Random seed number.
+ * @param p_bedrock            Reference to the bedrock heightmap.
+ * @param p_moisture_map       Reference to the moisture map (quantity of rain),
+ *                             expected to be in [0, 1].
+ * @param p_erosion_map[out]   Reference to the erosion map, provided as an
+ *                             output field.
+ * @param p_deposition_map     [out] Reference to the deposition map, provided
+ *                             as an output field.
+ * @param c_capacity           Sediment capacity.
+ * @param c_deposition         Deposition coefficient.
+ * @param c_erosion            Erosion coefficient.
+ * @param drag_rate            Drag rate.
+ * @param evap_rate            Particle evaporation rate.
  * @param pyramid_finest_level First level at which the erosion is applied
- * (default is 0, meaning it is applied to the current resolution, the 0th
- * pyramid level, and then to the coarser pyramid levels, if set to 1 it starts
- * with the first pyramid level and so on).
+ *                             (default is 0, meaning it is applied to the
+ *                             current resolution, the 0th pyramid level, and
+ *                             then to the coarser pyramid levels, if set to 1
+ *                             it starts with the first pyramid level and so
+ *                             on).
  *
  * **Example**
  * @include ex_hydraulic_particle_multiscale.cpp
@@ -387,33 +390,36 @@ void hydraulic_particle_multiscale(Array &z,
  * scaling, and noise characteristics. It also supports custom or default masks
  * to influence the erosion process.
  *
- * @param[out] z The heightmap to be modified, represented as a 2D array.
- * @param[in] seed Random seed for procedural generation.
- * @param[in] ridge_wavelength Wavelength of the ridge structures in the
- * heightmap.
- * @param[in] ridge_scaling Scaling factor for the ridge height.
- * @param[in] erosion_profile The profile that defines the erosion curve
- * behavior.
- * @param[in] delta Parameter controlling the erosion intensity.
- * @param[in] noise_ratio Ratio of noise added to the ridge crest lines.
- * @param[in] prefilter_ir Kernel radius for pre-smoothing the heightmap. If
- * negative, a default value is computed.
- * @param[in] density_factor Factor influencing the density of the ridges.
- * @param[in] kernel_width_ratio Ratio defining the width of the ridge
- * generation kernel.
- * @param[in] phase_smoothing Smoothing factor for the phase field used in ridge
- * generation.
- * @param[in] use_default_mask Whether to use a default mask for erosion if no
- * mask is provided.
- * @param[in] talus_mask Threshold for default mask slope to identify regions
- * prone to erosion.
- * @param[in] p_mask Optional pointer to a custom mask array to influence the
- * erosion process.
- * @param[out] p_ridge_mask Optional pointer to store the ridge mask resulting
- * from the operation.
- * @param[in] vmin Minimum elevation value. If set to a sentinel value (vmax <
+ * @param[out] z                  The heightmap to be modified, represented as a
+ *                                2D array.
+ * @param[in]  seed               Random seed for procedural generation.
+ * @param[in]  ridge_wavelength   Wavelength of the ridge structures in the
+ *                                heightmap.
+ * @param[in]  ridge_scaling      Scaling factor for the ridge height.
+ * @param[in]  erosion_profile    The profile that defines the erosion curve
+ *                                behavior.
+ * @param[in]  delta              Parameter controlling the erosion intensity.
+ * @param[in]  noise_ratio        Ratio of noise added to the ridge crest lines.
+ * @param[in]  prefilter_ir       Kernel radius for pre-smoothing the heightmap.
+ *                                If negative, a default value is computed.
+ * @param[in]  density_factor     Factor influencing the density of the ridges.
+ * @param[in]  kernel_width_ratio Ratio defining the width of the ridge
+ *                                generation kernel.
+ * @param[in]  phase_smoothing    Smoothing factor for the phase field used in
+ *                                ridge generation.
+ * @param[in]  use_default_mask   Whether to use a default mask for erosion if
+ *                                no mask is provided.
+ * @param[in]  talus_mask         Threshold for default mask slope to identify
+ *                                regions prone to erosion.
+ * @param[in]  p_mask             Optional pointer to a custom mask array to
+ *                                influence the erosion process.
+ * @param[out] p_ridge_mask       Optional pointer to store the ridge mask
+ *                                resulting from the operation.
+ * @param[in]  vmin               Minimum elevation value. If set to a sentinel
+ *                                value (vmax <
  * vmin), it is calculated from the heightmap.
- * @param[in] vmax Maximum elevation value. If set to a sentinel value (vmax <
+ * @param[in]  vmax               Maximum elevation value. If set to a sentinel
+ *                                value (vmax <
  * vmin), it is calculated from the heightmap.
  *
  * **Example**
@@ -448,21 +454,22 @@ void hydraulic_procedural(
 /**
  * @brief Apply hydraulic erosion based on a flow accumulation map.
  *
- * @param z Input array.
- * @param p_mask Intensity mask, expected in [0, 1] (applied as a
- * post-processing).
- * @param c_erosion Erosion coefficient.
- * @param talus_ref Reference talus used to localy define the flow-partition
- * exponent (small values of `talus_ref` will lead to thinner flow streams, see
+ * @param z                  Input array.
+ * @param p_mask             Intensity mask, expected in [0, 1] (applied as a
+ *                           post-processing).
+ * @param c_erosion          Erosion coefficient.
+ * @param talus_ref          Reference talus used to localy define the
+ *                           flow-partition exponent (small values of
+ *                           `talus_ref` will lead to thinner flow streams, see
  * {@link flow_accumulation_dinf}).
- * @param p_bedrock Lower elevation limit.
- * @param p_moisture_map Reference to the moisture map (quantity of rain),
- * expected to be in [0, 1].
+ * @param p_bedrock          Lower elevation limit.
+ * @param p_moisture_map     Reference to the moisture map (quantity of rain),
+ *                           expected to be in [0, 1].
  * @param p_erosion_map[out] Reference to the erosion map, provided as an output
- * field.
- * @param ir Kernel radius. If `ir > 1`, a cone kernel is used to carv channel
- * flow erosion.
- * @param clipping_ratio Flow accumulation clipping ratio.
+ *                           field.
+ * @param ir                 Kernel radius. If `ir > 1`, a cone kernel is used
+ *                           to carv channel flow erosion.
+ * @param clipping_ratio     Flow accumulation clipping ratio.
  *
  * **Example**
  * @include ex_hydraulic_stream.cpp
@@ -498,18 +505,19 @@ void hydraulic_stream(Array &z,
  * upscaling. After all upscaling levels are processed, the array is resampled
  * back to its original resolution using bilinear interpolation.
  *
- * @param z Input array representing elevation data.
- * @param c_erosion Erosion coefficient.
- * @param talus_ref Reference talus used to locally define the flow-partition
- * exponent. Smaller values lead to thinner flow streams.
+ * @param z                Input array representing elevation data.
+ * @param c_erosion        Erosion coefficient.
+ * @param talus_ref        Reference talus used to locally define the
+ *                         flow-partition exponent. Smaller values lead to
+ *                         thinner flow streams.
  * @param upscaling_levels Number of upscaling levels to apply. The function
- * will resample the array at each level.
- * @param persistence A scaling factor applied at each level to adjust the
- * impact of the unary operation. Higher persistence values will amplify the
- * effects at each level.
- * @param ir Kernel radius. If `ir > 1`, a cone kernel is used to carve channel
- * flow erosion.
- * @param clipping_ratio Flow accumulation clipping ratio.
+ *                         will resample the array at each level.
+ * @param persistence      A scaling factor applied at each level to adjust the
+ *                         impact of the unary operation. Higher persistence
+ *                         values will amplify the effects at each level.
+ * @param ir               Kernel radius. If `ir > 1`, a cone kernel is used to
+ *                         carve channel flow erosion.
+ * @param clipping_ratio   Flow accumulation clipping ratio.
  *
  * @note The function first applies upscaling using bicubic resampling, performs
  * hydraulic erosion at each level, and finally resamples the array back to its
@@ -537,20 +545,21 @@ void hydraulic_stream_upscale_amplification(Array &z,
  * input array `z` and applies hydraulic erosion. Additionally, an intensity
  * mask `p_mask` is applied as a post-processing step.
  *
- * @param z Input array representing elevation data.
- * @param p_mask Intensity mask, expected in [0, 1], which is applied as a
- * post-processing step.
- * @param c_erosion Erosion coefficient.
- * @param talus_ref Reference talus used to locally define the flow-partition
- * exponent. Smaller values lead to thinner flow streams.
+ * @param z                Input array representing elevation data.
+ * @param p_mask           Intensity mask, expected in [0, 1], which is applied
+ *                         as a post-processing step.
+ * @param c_erosion        Erosion coefficient.
+ * @param talus_ref        Reference talus used to locally define the
+ *                         flow-partition exponent. Smaller values lead to
+ *                         thinner flow streams.
  * @param upscaling_levels Number of upscaling levels to apply. The function
- * will resample the array at each level.
- * @param persistence A scaling factor applied at each level to adjust the
- * impact of the unary operation. Higher persistence values will amplify the
- * effects at each level.
- * @param ir Kernel radius. If `ir > 1`, a cone kernel is used to carve channel
- * flow erosion.
- * @param clipping_ratio Flow accumulation clipping ratio.
+ *                         will resample the array at each level.
+ * @param persistence      A scaling factor applied at each level to adjust the
+ *                         impact of the unary operation. Higher persistence
+ *                         values will amplify the effects at each level.
+ * @param ir               Kernel radius. If `ir > 1`, a cone kernel is used to
+ *                         carve channel flow erosion.
+ * @param clipping_ratio   Flow accumulation clipping ratio.
  *
  * @note This version of the function applies an additional intensity mask as
  * part of the upscaling amplification process.
@@ -575,30 +584,32 @@ void hydraulic_stream_upscale_amplification(
  * @brief Apply hydraulic erosion based on a flow accumulation map, alternative
  * formulation.
  *
- * @param z Input array representing the terrain elevation.
- * @param c_erosion Erosion coefficient controlling the intensity of erosion.
- * @param talus_ref Reference talus used to locally define the flow-partition
- * exponent. Small values lead to thinner flow streams (see
+ * @param z                      Input array representing the terrain elevation.
+ * @param c_erosion              Erosion coefficient controlling the intensity
+ *                               of erosion.
+ * @param talus_ref              Reference talus used to locally define the
+ *                               flow-partition exponent. Small values lead to
+ *                               thinner flow streams (see
  * {@link flow_accumulation_dinf}).
- * @param deposition_ir Kernel radius for sediment deposition. If greater than
- * 1, a smoothing effect is applied.
+ * @param deposition_ir          Kernel radius for sediment deposition. If
+ *                               greater than 1, a smoothing effect is applied.
  * @param deposition_scale_ratio Scaling factor for sediment deposition.
- * @param gradient_power Exponent applied to the terrain gradient to control
- * erosion intensity.
+ * @param gradient_power         Exponent applied to the terrain gradient to
+ *                               control erosion intensity.
  * @param gradient_scaling_ratio Scaling factor for gradient-based erosion.
- * @param gradient_prefilter_ir Kernel radius for pre-filtering the terrain
- * gradient.
- * @param saturation_ratio Ratio controlling the water saturation threshold for
- * erosion processes.
- * @param p_bedrock Pointer to an optional lower elevation limit.
- * @param p_moisture_map Pointer to the moisture map (rainfall quantity),
- * expected to be in [0, 1].
- * @param p_erosion_map[out] Pointer to the erosion map, provided as an output
- * field.
- * @param p_flow_map[out] Pointer to the flow accumulation map, provided as an
- * output field.
- * @param ir Kernel radius. If `ir > 1`, a cone kernel is used to carve channel
- * flow erosion.
+ * @param gradient_prefilter_ir  Kernel radius for pre-filtering the terrain
+ *                               gradient.
+ * @param saturation_ratio       Ratio controlling the water saturation
+ *                               threshold for erosion processes.
+ * @param p_bedrock              Pointer to an optional lower elevation limit.
+ * @param p_moisture_map         Pointer to the moisture map (rainfall
+ *                               quantity), expected to be in [0, 1].
+ * @param p_erosion_map[out]     Pointer to the erosion map, provided as an
+ *                               output field.
+ * @param p_flow_map[out]        Pointer to the flow accumulation map, provided
+ *                               as an output field.
+ * @param ir                     Kernel radius. If `ir > 1`, a cone kernel is
+ *                               used to carve channel flow erosion.
  *
  * **Example**
  * @include ex_hydraulic_stream.cpp
@@ -643,22 +654,22 @@ void hydraulic_stream_log(Array &z,
  *
  * See @cite Chiba1998, @cite Isheden2022, @cite Mei2007 and @cite Stava2008.
  *
- * @param z Input array.
- * @param p_mask Intensity mask, expected in [0, 1] (applied as a
- * @param iterations Number of iterations.
- * @param p_bedrock Lower elevation limit.
- * @param p_moisture_map Reference to the moisture map (quantity of rain),
- * expected to be in [0, 1].
+ * @param z                  Input array.
+ * @param p_mask             Intensity mask, expected in [0, 1] (applied as a
+ * @param iterations         Number of iterations.
+ * @param p_bedrock          Lower elevation limit.
+ * @param p_moisture_map     Reference to the moisture map (quantity of rain),
+ *                           expected to be in [0, 1].
  * @param p_erosion_map[out] Reference to the erosion map, provided as an output
- * field.
- * @param p_deposition_map [out] Reference to the deposition map, provided as an
- * output field.
- * @param water_height Water height.
- * @param c_capacity Sediment capacity.
- * @param c_deposition Deposition coefficient.
- * @param c_erosion Erosion coefficient.
- * @param rain_rate Rain rate.
- * @param evap_rate Particle evaporation rate.
+ *                           field.
+ * @param p_deposition_map   [out] Reference to the deposition map, provided as
+ *                           an output field.
+ * @param water_height       Water height.
+ * @param c_capacity         Sediment capacity.
+ * @param c_deposition       Deposition coefficient.
+ * @param c_erosion          Erosion coefficient.
+ * @param rain_rate          Rain rate.
+ * @param evap_rate          Particle evaporation rate.
  *
  * **Example**
  * @include ex_hydraulic_vpipes.cpp
@@ -698,16 +709,16 @@ void hydraulic_vpipes(Array &z,
  *
  * @todo deposition map
  *
- * @param z Input array.
- * @param p_mask Intensity mask, expected in [0, 1] (applied as a
- * post-processing).
- * @param talus Talus limit.
- * @param p_deposition_map [out] Reference to the deposition map, provided as an
- * output field.
- * @param max_deposition Maximum height of sediment deposition.
- * @param iterations Number of iterations.
+ * @param z                             Input array.
+ * @param p_mask                        Intensity mask, expected in [0, 1]
+ *                                      (applied as a post-processing).
+ * @param talus                         Talus limit.
+ * @param p_deposition_map              [out] Reference to the deposition map,
+ *                                      provided as an output field.
+ * @param max_deposition                Maximum height of sediment deposition.
+ * @param iterations                    Number of iterations.
  * @param thermal_erosion_subiterations Number of thermal erosion iterations for
- * each pass.
+ *                                      each pass.
  *
  * **Example**
  * @include ex_sediment_deposition.cpp
@@ -733,18 +744,19 @@ void sediment_deposition(Array       &z,
 /**
  * @brief
  *
- * @param z Input array.
- * @param p_mask Intensity mask, expected in [0, 1] (applied as a
- * post-processing).
- * @param nparticles Number of particles.
- * @param ir Particle deposition radius.
- * @param seed Random seed number.
- * @param p_spawning_map Reference to the particle spawning density map.
- * @param p_deposition_map Reference to the deposition map (output).
+ * @param z                         Input array.
+ * @param p_mask                    Intensity mask, expected in [0, 1] (applied
+ *                                  as a post-processing).
+ * @param nparticles                Number of particles.
+ * @param ir                        Particle deposition radius.
+ * @param seed                      Random seed number.
+ * @param p_spawning_map            Reference to the particle spawning density
+ *                                  map.
+ * @param p_deposition_map          Reference to the deposition map (output).
  * @param particle_initial_sediment Initial sediment amount carried out by the
- * particles.
+ *                                  particles.
  * @param deposition_velocity_limit Deposition at which the deposition occurs.
- * @param drag_rate Particle drag rate.
+ * @param drag_rate                 Particle drag rate.
  *
  * **Example**
  * @include ex_sediment_deposition_particle.cpp
@@ -784,13 +796,14 @@ void sediment_layer(Array       &z,
  * @brief Stratify the heightmap by creating a series of layers with elevations
  * corrected by a gamma factor.
  *
- * @param z Input array.
+ * @param z      Input array.
  * @param p_mask Intensity mask, expected in [0, 1] (applied as a
- * post-processing).
- * @param hs Layer elevations. For 'n' layers, 'n + 1' values must be provided.
- * @param gamma Layer gamma correction factors, 'n' values.
+ *               post-processing).
+ * @param hs     Layer elevations. For 'n' layers, 'n + 1' values must be
+ *               provided.
+ * @param gamma  Layer gamma correction factors, 'n' values.
  *
- * @see gamma_correction.
+ * @see          gamma_correction.
  *
  * **Example**
  * @include ex_stratify.cpp
@@ -831,17 +844,17 @@ void stratify(Array &z,
  * @brief Stratify the heightmap by creating a multiscale series of layers with
  * elevations corrected by a gamma factor.
  *
- * @param z Input array.
- * @param zmin Minimum elevation for the strata
- * @param zmax Maximum elevation for the strata
- * @param n_strata Number of strata for each stratification iteration.
+ * @param z            Input array.
+ * @param zmin         Minimum elevation for the strata
+ * @param zmax         Maximum elevation for the strata
+ * @param n_strata     Number of strata for each stratification iteration.
  * @param strata_noise Elevation relative noise.
- * @param gamma_list Gamma value for each stratification iteration.
- * @param gamma_noise Gamma relative noise.
- * @param seed Random seed number.
- * @param p_mask Intensity mask, expected in [0, 1] (applied as a
- * post-processing).
- * @param p_noise Local elevation noise.
+ * @param gamma_list   Gamma value for each stratification iteration.
+ * @param gamma_noise  Gamma relative noise.
+ * @param seed         Random seed number.
+ * @param p_mask       Intensity mask, expected in [0, 1] (applied as a
+ *                     post-processing).
+ * @param p_noise      Local elevation noise.
  *
  *
  * **Example**
@@ -865,13 +878,14 @@ void stratify_multiscale(Array             &z,
  * @brief Stratify the heightmap by creating a series of oblique layers with
  * elevations corrected by a gamma factor.
  *
- * @param z Input array.
- * @param p_mask Intensity mask, expected in [0, 1] (applied as a
- * post-processing).
- * @param hs Layer elevations. For 'n' layers, 'n + 1' values must be provided.
- * @param gamma Layer gamma correction factors, 'n' values.
- * @param talus Layer talus value (slope).
- * @param angle Slope orientation (in degrees).
+ * @param z       Input array.
+ * @param p_mask  Intensity mask, expected in [0, 1] (applied as a
+ *                post-processing).
+ * @param hs      Layer elevations. For 'n' layers, 'n + 1' values must be
+ *                provided.
+ * @param gamma   Layer gamma correction factors, 'n' values.
+ * @param talus   Layer talus value (slope).
+ * @param angle   Slope orientation (in degrees).
  * @param p_noise Local elevation noise.
  *
  * **Example**
@@ -900,13 +914,13 @@ void stratify_oblique(Array             &z,
  *
  * Based on https://www.shadertoy.com/view/XtKSWh
  *
- * @param z Input array.
- * @param p_mask Filter mask, expected in [0, 1].
- * @param talus Talus limit.
- * @param p_bedrock Lower elevation limit.
+ * @param z                Input array.
+ * @param p_mask           Filter mask, expected in [0, 1].
+ * @param talus            Talus limit.
+ * @param p_bedrock        Lower elevation limit.
  * @param p_deposition_map [out] Reference to the deposition map, provided as an
- * output field.
- * @param iterations Number of iterations.
+ *                         output field.
+ * @param iterations       Number of iterations.
  *
  * **Example**
  * @include ex_thermal.cpp
@@ -940,13 +954,13 @@ void thermal(Array &z,
  * @todo more comprehensive documentation on auto-bedrock algo.
  * @todo fix hard-coded parameters.
  *
- * @see {@link thermal}
+ * @see                    {@link thermal}
  *
- * @param z Input array.
- * @param talus Local talus limit.
- * @param iterations Number of iterations.
+ * @param z                Input array.
+ * @param talus            Local talus limit.
+ * @param iterations       Number of iterations.
  * @param p_deposition_map [out] Reference to the deposition map, provided as an
- * output field.
+ *                         output field.
  *
  * **Example**
  * @include ex_thermal_auto_bedrock.cpp
@@ -977,8 +991,8 @@ void thermal_auto_bedrock(Array &z,
  * than the talus threshold to remain unaffected while flatter areas are
  * levelled out".
  *
- * @param z Input array.
- * @param talus Local talus limit.
+ * @param z          Input array.
+ * @param talus      Local talus limit.
  * @param iterations Number of iterations.
  *
  * **Example**
@@ -1004,18 +1018,18 @@ void thermal_flatten(Array &z,
  * Based on averaging over first neighbors, see \cite Olsen2004. Refer to \cite
  * Musgrave1989 for the original formulation.
  *
- * Thermal erosion refers to the process in which surface sediment weakens
- * due to temperature and detaches, falling down the slopes of the terrain
- * until a resting place is reached, where smooth plateaus tend to form
+ * Thermal erosion refers to the process in which surface sediment weakens due
+ * to temperature and detaches, falling down the slopes of the terrain until a
+ * resting place is reached, where smooth plateaus tend to form
  * @cite Musgrave1989.
  *
- * @param z Input array.
- * @param p_mask Filter mask, expected in [0, 1].
- * @param talus Talus limit.
- * @param p_bedrock Lower elevation limit.
+ * @param z                Input array.
+ * @param p_mask           Filter mask, expected in [0, 1].
+ * @param talus            Talus limit.
+ * @param p_bedrock        Lower elevation limit.
  * @param p_deposition_map [out] Reference to the deposition map, provided as an
- * output field.
- * @param iterations Number of iterations.
+ *                         output field.
+ * @param iterations       Number of iterations.
  */
 void thermal_olsen(Array       &z,
                    const Array &talus,
@@ -1025,9 +1039,9 @@ void thermal_olsen(Array       &z,
 
 /**
  * @brief Apply thermal erosion using a 'rib' algorithm (taken from Geomorph).
- * @param z Input heightmap.
+ * @param z          Input heightmap.
  * @param iterations Number of iterations.
- * @param p_bedrock Lower elevation limit.
+ * @param p_bedrock  Lower elevation limit.
  *
  * **Example**
  * @include ex_thermal_rib.cpp
@@ -1046,13 +1060,13 @@ void thermal_rib(Array &z, int iterations, Array *p_bedrock = nullptr);
  * is considered to move from higher to lower cells, resulting in a smoother
  * terrain.
  *
- * @param z         Reference to the array of elevation values that will be
- * modified.
- * @param talus     Array of threshold slope values for each cell, representing
- * stability criteria.
+ * @param z          Reference to the array of elevation values that will be
+ *                   modified.
+ * @param talus      Array of threshold slope values for each cell, representing
+ *                   stability criteria.
  * @param iterations Number of erosion iterations to apply.
- * @param intensity Intensity factor controlling the amount of change per
- * iteration.
+ * @param intensity  Intensity factor controlling the amount of change per
+ *                   iteration.
  *
  * **Example**
  * @include ex_thermal_schott.cpp
@@ -1079,12 +1093,12 @@ void thermal_schott(Array       &z,
  * constant `talus` value and applies the erosion process in the same manner as
  * the other overload.
  *
- * @param z         Reference to the array of elevation values that will be
- * modified.
- * @param talus     Constant threshold slope value used for all cells.
+ * @param z          Reference to the array of elevation values that will be
+ *                   modified.
+ * @param talus      Constant threshold slope value used for all cells.
  * @param iterations Number of erosion iterations to apply.
- * @param intensity Intensity factor controlling the amount of change per
- * iteration.
+ * @param intensity  Intensity factor controlling the amount of change per
+ *                   iteration.
  *
  *  **Example**
  * @include ex_thermal_schott.cpp
@@ -1150,26 +1164,32 @@ void hydraulic_particle(Array &z,
  * erosion, deposition, and flow routing. Optional flow accumulation can also be
  * computed and stored in the `p_flow` array.
  *
- * @param[in,out] z  The heightmap array to be modified. Heights are updated
- * in-place.
- * @param[in]     iterations The number of iterations for the hydraulic erosion
- * process.
- * @param[in]     talus An array defining the slope threshold for erosion.
- * @param[in]     c_erosion Erosion coefficient (default: 1.0f).
- * @param[in]     c_thermal Thermal erosion coefficient (default: 0.1f).
- * @param[in]     c_deposition Deposition coefficient (default: 0.2f).
- * @param[in]     flow_acc_exponent Exponent controlling the influence of flow
- * accumulation on erosion (default: 0.8f).
+ * @param[in,out] z                      The heightmap array to be modified.
+ *                                       Heights are updated in-place.
+ * @param[in]     iterations             The number of iterations for the
+ *                                       hydraulic erosion process.
+ * @param[in]     talus                  An array defining the slope threshold
+ *                                       for erosion.
+ * @param[in]     c_erosion              Erosion coefficient (default: 1.0f).
+ * @param[in]     c_thermal              Thermal erosion coefficient (default:
+ *                                       0.1f).
+ * @param[in]     c_deposition           Deposition coefficient (default: 0.2f).
+ * @param[in]     flow_acc_exponent      Exponent controlling the influence of
+ *                                       flow accumulation on erosion (default:
+ *                                       0.8f).
  * @param[in]     flow_acc_exponent_depo Exponent controlling the influence of
- * flow accumulation on deposition (default: 0.8f).
- * @param[in]     flow_routing_exponent Exponent controlling flow routing
- * behavior (default: 1.3f).
- * @param[in]     thermal_weight Weight of thermal erosion effects
- * (default: 1.5f).
- * @param[in]     deposition_weight Weight of deposition effects
- * (default: 2.5f).
- * @param[out]    p_flow Optional pointer to an array for storing flow
- * accumulation data. If null, flow data is not returned (default: nullptr).
+ *                                       flow accumulation on deposition
+ *                                       (default: 0.8f).
+ * @param[in]     flow_routing_exponent  Exponent controlling flow routing
+ *                                       behavior (default: 1.3f).
+ * @param[in]     thermal_weight         Weight of thermal erosion effects
+ *                                       (default: 1.5f).
+ * @param[in]     deposition_weight      Weight of deposition effects (default:
+ *                                       2.5f).
+ * @param[out]    p_flow                 Optional pointer to an array for
+ *                                       storing flow accumulation data. If
+ *                                       null, flow data is not returned
+ *                                       (default: nullptr).
  *
  * @note Taken from https://hal.science/hal-04565030v1/document
  *
@@ -1286,11 +1306,11 @@ void thermal_auto_bedrock(Array &z,
  *
  * @note Only available if OpenCL is enabled.
  *
- * @param z Input array.
- * @param talus Talus limit.
+ * @param z                Input array.
+ * @param talus            Talus limit.
  * @param p_deposition_map [out] Reference to the deposition map, provided as an
- * output field.
- * @param iterations Number of iterations.
+ *                         output field.
+ * @param iterations       Number of iterations.
  *
  * **Example**
  * @include thermal_ridge.cpp
@@ -1315,11 +1335,11 @@ void thermal_rib(Array &z, int iterations, Array *p_bedrock = nullptr);
  *
  * @note Only available if OpenCL is enabled.
  *
- * @param z Input array.
- * @param talus Talus limit.
+ * @param z                Input array.
+ * @param talus            Talus limit.
  * @param p_deposition_map [out] Reference to the deposition map, provided as an
- * output field.
- * @param iterations Number of iterations.
+ *                         output field.
+ * @param iterations       Number of iterations.
  *
  * **Example**
  * @include thermal_ridge.cpp
@@ -1345,16 +1365,19 @@ void thermal_ridge(Array       &z,
  * from steeper slopes to flatter areas, simulating talus formation. The process
  * iterates a given number of times to achieve a more stable terrain profile.
  *
- * @param[out] z The heightmap to be modified in-place by the erosion process.
- * @param[in] talus The threshold slope angles that determine where material is
- * moved.
- * @param[in] zmax The maximum allowed elevation for erosion effects.
- * @param[in] iterations The number of erosion iterations to apply (default:
+ * @param[out] z                The heightmap to be modified in-place by the
+ *                              erosion process.
+ * @param[in]  talus            The threshold slope angles that determine where
+ *                              material is moved.
+ * @param[in]  zmax             The maximum allowed elevation for erosion
+ *                              effects.
+ * @param[in]  iterations       The number of erosion iterations to apply
+ *                              (default:
  * 10).
- * @param[in] talus_constraint Whether to enforce a constraint on the talus
- * slope (default: true).
+ * @param[in]  talus_constraint Whether to enforce a constraint on the talus
+ *                              slope (default: true).
  * @param[out] p_deposition_map Optional pointer to an array that stores the
- * deposited material per cell.
+ *                              deposited material per cell.
  */
 void thermal_scree(Array       &z,
                    const Array &talus,

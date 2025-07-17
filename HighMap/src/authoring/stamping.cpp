@@ -14,20 +14,20 @@
 namespace hmap
 {
 
-Array stamping(Vec2<int>           shape,
-               std::vector<float>  xr,
-               std::vector<float>  yr,
-               std::vector<float>  zr,
-               Array               kernel,
-               int                 kernel_ir,
-               bool                kernel_scale_radius,
-               bool                kernel_scale_amplitude,
-               StampingBlendMethod blend_method,
-               uint                seed,
-               float               k_smoothing,
-               bool                kernel_flip,
-               bool                kernel_rotate,
-               Vec4<float>         bbox_array)
+Array stamping(Vec2<int>                 shape,
+               const std::vector<float> &xr,
+               const std::vector<float> &yr,
+               const std::vector<float> &zr,
+               Array                     kernel,
+               int                       kernel_ir,
+               bool                      kernel_scale_radius,
+               bool                      kernel_scale_amplitude,
+               StampingBlendMethod       blend_method,
+               uint                      seed,
+               float                     k_smoothing,
+               bool                      kernel_flip,
+               bool                      kernel_rotate,
+               Vec4<float>               bbox_array)
 {
   std::mt19937                          gen(seed);
   std::uniform_real_distribution<float> dis(0.f, 1.f);

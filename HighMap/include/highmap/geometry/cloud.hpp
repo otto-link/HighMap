@@ -1,10 +1,10 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file cloud.hpp
- * @author Otto Link (otto.link.bv@gmail.com)
+ * @author  Otto Link (otto.link.bv@gmail.com)
  * @brief Definition of the `Cloud` class for manipulating sets of 2D points.
  *
  * This file contains the definition of the `Cloud` class, which is used to
@@ -62,6 +62,8 @@ public:
    */
   Cloud(){};
 
+  virtual ~Cloud() = default;
+
   /**
    * @brief Constructs a new Cloud object with random positions and values.
    *
@@ -70,10 +72,10 @@ public:
    * given bounding box.
    *
    * @param npoints Number of points to generate.
-   * @param seed Random seed used to generate the points.
-   *             Using the same seed will produce the same set of points.
-   * @param bbox Bounding box within which the points will be generated.
-   *             The bounding box is defined as {xmin, xmax, ymin, ymax}.
+   * @param seed    Random seed used to generate the points. Using the same seed
+   *                will produce the same set of points.
+   * @param bbox    Bounding box within which the points will be generated. The
+   *                bounding box is defined as {xmin, xmax, ymin, ymax}.
    */
   Cloud(int npoints, uint seed, Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
 
@@ -85,21 +87,23 @@ public:
    *
    * @param points A vector of `Point` objects representing the cloud's points.
    */
-  Cloud(std::vector<Point> points) : points(points){};
+  Cloud(const std::vector<Point> &points) : points(points){};
 
   /**
    * @brief Constructs a new Cloud object from lists of `x` and `y` coordinates.
    *
    * This constructor allows the creation of a cloud by providing separate lists
-   * of `x` and `y` coordinates. Each point will have an associated value,
-   * which is set to a default value.
+   * of `x` and `y` coordinates. Each point will have an associated value, which
+   * is set to a default value.
    *
-   * @param x A vector of `x` coordinates for the points.
-   * @param y A vector of `y` coordinates for the points.
-   * @param default_value The default value assigned to each point.
-   *                      Defaults to 0 if not specified.
+   * @param x             A vector of `x` coordinates for the points.
+   * @param y             A vector of `y` coordinates for the points.
+   * @param default_value The default value assigned to each point. Defaults to
+   * 0 if not specified.
    */
-  Cloud(std::vector<float> x, std::vector<float> y, float default_value = 0.f);
+  Cloud(const std::vector<float> &x,
+        const std::vector<float> &y,
+        float                     default_value = 0.f);
 
   /**
    * @brief Constructs a new Cloud object from lists of `x` and `y` coordinates
@@ -113,7 +117,9 @@ public:
    * @param y A vector of `y` coordinates for the points.
    * @param v A vector of values associated with each point.
    */
-  Cloud(std::vector<float> x, std::vector<float> y, std::vector<float> v);
+  Cloud(const std::vector<float> &x,
+        const std::vector<float> &y,
+        const std::vector<float> &v);
 
   /**
    * @brief Add a new point to the cloud.
@@ -132,6 +138,27 @@ public:
   void clear();
 
   /**
+   * @brief Loads point data from a CSV file into the Cloud object.
+   *
+   * This function reads a CSV file where each line contains either 2D (X, Y) or
+   * 3D (X, Y, Z) point data. The function automatically detects the
+   * dimensionality of the points based on the number of values per line. The
+   * loaded points are stored in the `points` member of the Cloud object.
+   *
+   * @param  fname The path to the CSV file to be read.
+   * @return       true if the file was successfully read and the points were
+   *               loaded, false otherwise.
+   *
+   * @note The CSV file must be well-formed, with each line containing either 2
+   * or 3 comma-separated values. Lines with an unexpected number of values will
+   * cause the function to return false.
+   *
+   * @warning If the file cannot be opened or contains invalid data (e.g.,
+   * non-numeric values), the function will log an error and return false.
+   */
+  bool from_csv(const std::string &fname);
+
+  /**
    * @brief Get the bounding box of the cloud.
    *
    * This method calculates and returns the axis-aligned bounding box of the
@@ -141,7 +168,7 @@ public:
    * @return Vec4<float> The bounding box of the cloud in the format `[xmin,
    * xmax, ymin, ymax]`.
    */
-  Vec4<float> get_bbox();
+  Vec4<float> get_bbox() const;
 
   /**
    * @brief Calculates the centroid of a set of points.
@@ -152,9 +179,9 @@ public:
    * position. The centroid represents the geometric center of the point cloud.
    *
    * @return Point The computed center, represented as a `Point` object, which
-   * contains the average (x, y) coordinates of the points.
+   *         contains the average (x, y) coordinates of the points.
    */
-  Point get_center();
+  Point get_center() const;
 
   /**
    * @brief Computes the indices of the points that form the convex hull of a
@@ -166,7 +193,7 @@ public:
    * points.
    *
    * @return std::vector<int> A vector containing the indices of the points that
-   * make up the convex hull, listed in order.
+   *         make up the convex hull, listed in order.
    *
    * **Example**
    * @include ex_cloud_get_convex_hull.cpp
@@ -174,7 +201,7 @@ public:
    * **Result**
    * @image html ex_cloud_get_convex_hull.png
    */
-  std::vector<int> get_convex_hull_point_indices();
+  std::vector<int> get_convex_hull_point_indices() const;
 
   /**
    * @brief Get the number of points in the cloud.
@@ -193,7 +220,7 @@ public:
    * point in the cloud.
    *
    * @return std::vector<float> A vector containing the values of all points in
-   * the cloud.
+   *         the cloud.
    */
   std::vector<float> get_values() const;
 
@@ -205,7 +232,7 @@ public:
    *
    * @return float The maximum value among the points.
    */
-  float get_values_max();
+  float get_values_max() const;
 
   /**
    * @brief Get the minimum value among the points in the cloud.
@@ -215,7 +242,7 @@ public:
    *
    * @return float The minimum value among the points.
    */
-  float get_values_min();
+  float get_values_min() const;
 
   /**
    * @brief Get the `x` coordinates of the points in the cloud.
@@ -224,7 +251,7 @@ public:
    * in the cloud.
    *
    * @return std::vector<float> A vector containing the `x` coordinates of the
-   * points.
+   *         points.
    */
   virtual std::vector<float> get_x() const;
 
@@ -247,7 +274,7 @@ public:
    * in the cloud.
    *
    * @return std::vector<float> A vector containing the `y` coordinates of the
-   * points.
+   *         points.
    */
   virtual std::vector<float> get_y() const;
 
@@ -258,10 +285,10 @@ public:
    * on its `(x, y)` coordinates and an underlying array, using bilinear
    * interpolation within the specified bounding box.
    *
-   * @param array The input array from which to interpolate values.
-   * @param bbox The bounding box of the array.
-   * @return std::vector<float> A vector containing the interpolated values for
-   * each point.
+   * @param  array The input array from which to interpolate values.
+   * @param  bbox  The bounding box of the array.
+   * @return       std::vector<float> A vector containing the interpolated
+   * values for each point.
    */
   std::vector<float> interpolate_values_from_array(const Array &array,
                                                    Vec4<float>  bbox);
@@ -315,7 +342,7 @@ public:
    *
    * @param new_values A vector of new values to assign to the points.
    */
-  void set_values(std::vector<float> new_values);
+  void set_values(const std::vector<float> &new_values);
 
   /**
    * @brief Set a single value for all cloud points.
@@ -335,7 +362,7 @@ public:
    * using the specified bounding box.
    *
    * @param array The input array from which to derive the values.
-   * @param bbox The bounding box that defines the mapping from the cloud
+   * @param bbox  The bounding box that defines the mapping from the cloud
    * points' coordinates to the array's coordinates.
    */
   void set_values_from_array(const Array &array, Vec4<float> bbox);
@@ -360,11 +387,11 @@ public:
    * positions.
    *
    * @param array The input array where the cloud points' values will be
-   * projected.
-   * @param bbox The bounding box that defines the mapping from the cloud
+   *              projected.
+   * @param bbox  The bounding box that defines the mapping from the cloud
    * points' coordinates to the array's coordinates.
    */
-  void to_array(Array &array, Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+  void to_array(Array &array, Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f}) const;
 
   /**
    * @brief Generate an array filled with the signed distance function (SDF) to
@@ -375,14 +402,16 @@ public:
    * cloud and negative inside. The result can be domain-warped by applying
    * optional noise arrays to the x and y coordinates.
    *
-   * @param shape The shape of the output array (width and height).
-   * @param bbox The bounding box that defines the cloud's coordinate system.
-   * @param p_noise_x Optional reference to a noise array applied to the
-   * x-coordinates for domain warping (not in pixels).
-   * @param p_noise_y Optional reference to a noise array applied to the
-   * y-coordinates for domain warping (not in pixels).
-   * @param bbox_array The bounding box of the destination array.
-   * @return Array The resulting array filled with the signed distance function.
+   * @param  shape      The shape of the output array (width and height).
+   * @param  bbox       The bounding box that defines the cloud's coordinate
+   *                    system.
+   * @param  p_noise_x  Optional reference to a noise array applied to the
+   *                    x-coordinates for domain warping (not in pixels).
+   * @param  p_noise_y  Optional reference to a noise array applied to the
+   *                    y-coordinates for domain warping (not in pixels).
+   * @param  bbox_array The bounding box of the destination array.
+   * @return            Array The resulting array filled with the signed
+   * distance function.
    *
    * **Example**
    * @include ex_cloud_sdf.cpp
@@ -394,7 +423,7 @@ public:
                      Vec4<float> bbox,
                      Array      *p_noise_x = nullptr,
                      Array      *p_noise_y = nullptr,
-                     Vec4<float> bbox_array = {0.f, 1.f, 0.f, 1.f});
+                     Vec4<float> bbox_array = {0.f, 1.f, 0.f, 1.f}) const;
 
   /**
    * @brief Interpolate the values of an array using the cloud points.
@@ -403,16 +432,19 @@ public:
    * positions and values of the cloud points. The interpolation method can be
    * specified, and optional noise arrays can be used for domain warping.
    *
-   * @param array The output array that will be populated with interpolated
-   * values.
-   * @param bbox The bounding box that defines the cloud's coordinate system.
+   * @param array                The output array that will be populated with
+   *                             interpolated values.
+   * @param bbox                 The bounding box that defines the cloud's
+   *                             coordinate system.
    * @param interpolation_method The method used for interpolation (e.g.,
    * nearest neighbor, bilinear).
-   * @param p_noise_x Optional reference to a noise array applied to the
-   * x-coordinates for domain warping (not in pixels).
-   * @param p_noise_y Optional reference to a noise array applied to the
-   * y-coordinates for domain warping (not in pixels).
-   * @param bbox_array The bounding box of the destination array.
+   * @param p_noise_x            Optional reference to a noise array applied to
+   *                             the x-coordinates for domain warping (not in
+   *                             pixels).
+   * @param p_noise_y            Optional reference to a noise array applied to
+   *                             the y-coordinates for domain warping (not in
+   *                             pixels).
+   * @param bbox_array           The bounding box of the destination array.
    *
    * **Example**
    * @include ex_cloud_to_array_interp.cpp
@@ -426,7 +458,7 @@ public:
                            InterpolationMethod2D::DELAUNAY,
                        Array      *p_noise_x = nullptr,
                        Array      *p_noise_y = nullptr,
-                       Vec4<float> bbox_array = {0.f, 1.f, 0.f, 1.f});
+                       Vec4<float> bbox_array = {0.f, 1.f, 0.f, 1.f}) const;
 
   /**
    * @brief Export the cloud data to a CSV file.
@@ -436,7 +468,7 @@ public:
    *
    * @param fname The name of the output CSV file.
    */
-  void to_csv(std::string fname);
+  void to_csv(const std::string &fname) const;
 
   /**
    * @brief Convert the cloud to a graph using Delaunay triangulation.
@@ -460,14 +492,14 @@ public:
    *
    * @param fname The file name for the output PNG image. This should include
    * the file extension (e.g., "output.png").
-   * @param cmap An integer specifying the colormap to be used for rendering the
-   * data. This index refers to a predefined colormap.
-   * @param bbox A `Vec4<float>` specifying the bounding box of the data to be
-   * included in the image. It is given as {xmin, xmax, ymin, ymax}. The default
-   * is {0.f, 1.f, 0.f, 1.f}.
+   * @param cmap  An integer specifying the colormap to be used for rendering
+   * the data. This index refers to a predefined colormap.
+   * @param bbox  A `Vec4<float>` specifying the bounding box of the data to be
+   *              included in the image. It is given as {xmin, xmax, ymin,
+   * ymax}. The default is {0.f, 1.f, 0.f, 1.f}.
    * @param depth An integer specifying the bit depth of the image. It should be
    * a value defined by OpenCV (e.g., `CV_8U` for 8-bit unsigned). The default
-   *              is `CV_8U`.
+   * is `CV_8U`.
    * @param shape A `Vec2<int>` specifying the dimensions of the output image.
    * It is given as {width, height}. The default is {512, 512}.
    */
@@ -485,12 +517,14 @@ public:
  * appending the points from the second cloud to the first. The resulting cloud
  * contains all points from both input clouds.
  *
- * @param cloud1 The first point cloud to be merged. This cloud will be the base
- * cloud to which the points from the second cloud are added.
- * @param cloud2 The second point cloud whose points will be appended to the
- * first cloud.
+ * @param  cloud1 The first point cloud to be merged. This cloud will be the
+ *                base cloud to which the points from the second cloud are
+ *                added.
+ * @param  cloud2 The second point cloud whose points will be appended to the
+ *                first cloud.
  *
- * @return Cloud The resulting point cloud that includes all points from both
+ * @return        Cloud The resulting point cloud that includes all points from
+ *                both
  *                `cloud1` and `cloud2`.
  */
 Cloud merge_cloud(const Cloud &cloud1, const Cloud &cloud2);

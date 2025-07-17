@@ -6,7 +6,7 @@
 namespace hmap::gpu
 {
 
-void warp(Array &array, Array *p_dx, Array *p_dy)
+void warp(Array &array, const Array *p_dx, const Array *p_dy)
 {
   if (p_dx && p_dy)
   {

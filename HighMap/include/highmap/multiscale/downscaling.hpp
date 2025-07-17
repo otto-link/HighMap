@@ -1,6 +1,6 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file downscaling.hpp
@@ -28,12 +28,12 @@ namespace hmap
  * user-defined unary operation, and then restores the transformed low-frequency
  * content to the original resolution.
  *
- * @param array A reference to the input 2D array to be transformed. The array
- * may be resized internally.
- * @param kc The cutoff wavenumber for isolating low-frequency components during
- * filtering.
+ * @param array    A reference to the input 2D array to be transformed. The
+ *                 array may be resized internally.
+ * @param kc       The cutoff wavenumber for isolating low-frequency components
+ *                 during filtering.
  * @param unary_op A user-defined function that applies a transformation to the
- * downscaled array.
+ *                 downscaled array.
  *
  * @details
  * - The function ensures that the input array is square for Fourier operations

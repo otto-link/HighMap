@@ -16,14 +16,14 @@
 namespace hmap
 {
 
-Array biquad_pulse(Vec2<int>   shape,
-                   float       gain,
-                   Array      *p_ctrl_param,
-                   Array      *p_noise_x,
-                   Array      *p_noise_y,
-                   Array      *p_stretching,
-                   Vec2<float> center,
-                   Vec4<float> bbox)
+Array biquad_pulse(Vec2<int>    shape,
+                   float        gain,
+                   const Array *p_ctrl_param,
+                   const Array *p_noise_x,
+                   const Array *p_noise_y,
+                   const Array *p_stretching,
+                   Vec2<float>  center,
+                   Vec4<float>  bbox)
 {
   Array          array = Array(shape);
   BiquadFunction f = BiquadFunction(gain, center);
@@ -38,14 +38,14 @@ Array biquad_pulse(Vec2<int>   shape,
   return array;
 }
 
-Array bump(Vec2<int>   shape,
-           float       gain,
-           Array      *p_ctrl_param,
-           Array      *p_noise_x,
-           Array      *p_noise_y,
-           Array      *p_stretching,
-           Vec2<float> center,
-           Vec4<float> bbox)
+Array bump(Vec2<int>    shape,
+           float        gain,
+           const Array *p_ctrl_param,
+           const Array *p_noise_x,
+           const Array *p_noise_y,
+           const Array *p_stretching,
+           Vec2<float>  center,
+           Vec4<float>  bbox)
 {
   Array        array = Array(shape);
   BumpFunction f = BumpFunction(gain, center);
@@ -68,15 +68,15 @@ Array constant(Vec2<int> shape, float value)
   return array;
 }
 
-Array disk(Vec2<int>   shape,
-           float       radius,
-           float       slope,
-           Array      *p_ctrl_param,
-           Array      *p_noise_x,
-           Array      *p_noise_y,
-           Array      *p_stretching,
-           Vec2<float> center,
-           Vec4<float> bbox)
+Array disk(Vec2<int>    shape,
+           float        radius,
+           float        slope,
+           const Array *p_ctrl_param,
+           const Array *p_noise_x,
+           const Array *p_noise_y,
+           const Array *p_stretching,
+           Vec2<float>  center,
+           Vec4<float>  bbox)
 {
   Array        array = Array(shape);
   DiskFunction f = DiskFunction(radius, slope, center);
@@ -91,14 +91,14 @@ Array disk(Vec2<int>   shape,
   return array;
 }
 
-Array gaussian_pulse(Vec2<int>   shape,
-                     float       sigma,
-                     Array      *p_ctrl_param,
-                     Array      *p_noise_x,
-                     Array      *p_noise_y,
-                     Array      *p_stretching,
-                     Vec2<float> center,
-                     Vec4<float> bbox)
+Array gaussian_pulse(Vec2<int>    shape,
+                     float        sigma,
+                     const Array *p_ctrl_param,
+                     const Array *p_noise_x,
+                     const Array *p_noise_y,
+                     const Array *p_stretching,
+                     Vec2<float>  center,
+                     Vec4<float>  bbox)
 {
   Array                 array = Array(shape);
   GaussianPulseFunction f = GaussianPulseFunction(sigma, center);
@@ -113,18 +113,18 @@ Array gaussian_pulse(Vec2<int>   shape,
   return array;
 }
 
-Array paraboloid(Vec2<int>   shape,
-                 float       angle,
-                 float       a,
-                 float       b,
-                 float       v0,
-                 bool        reverse_x,
-                 bool        reverse_y,
-                 Array      *p_noise_x,
-                 Array      *p_noise_y,
-                 Array      *p_stretching,
-                 Vec2<float> center,
-                 Vec4<float> bbox)
+Array paraboloid(Vec2<int>    shape,
+                 float        angle,
+                 float        a,
+                 float        b,
+                 float        v0,
+                 bool         reverse_x,
+                 bool         reverse_y,
+                 const Array *p_noise_x,
+                 const Array *p_noise_y,
+                 const Array *p_stretching,
+                 Vec2<float>  center,
+                 Vec4<float>  bbox)
 {
   Array array = Array(shape);
 
@@ -153,17 +153,17 @@ Array paraboloid(Vec2<int>   shape,
   return array;
 }
 
-Array rectangle(Vec2<int>   shape,
-                float       rx,
-                float       ry,
-                float       angle,
-                float       slope,
-                Array      *p_ctrl_param,
-                Array      *p_noise_x,
-                Array      *p_noise_y,
-                Array      *p_stretching,
-                Vec2<float> center,
-                Vec4<float> bbox)
+Array rectangle(Vec2<int>    shape,
+                float        rx,
+                float        ry,
+                float        angle,
+                float        slope,
+                const Array *p_ctrl_param,
+                const Array *p_noise_x,
+                const Array *p_noise_y,
+                const Array *p_stretching,
+                Vec2<float>  center,
+                Vec4<float>  bbox)
 {
   Array             array = Array(shape);
   RectangleFunction f = RectangleFunction(rx, ry, angle, slope, center);
@@ -183,10 +183,10 @@ Array rift(Vec2<int>         shape,
            float             slope,
            float             width,
            bool              sharp_bottom,
-           Array            *p_ctrl_param,
-           Array            *p_noise_x,
-           Array            *p_noise_y,
-           Array            *p_stretching,
+           const Array      *p_ctrl_param,
+           const Array      *p_noise_x,
+           const Array      *p_noise_y,
+           const Array      *p_stretching,
            Vec2<float>       center,
            hmap::Vec4<float> bbox)
 {
@@ -207,15 +207,15 @@ Array rift(Vec2<int>         shape,
   return array;
 }
 
-Array slope(Vec2<int>   shape,
-            float       angle,
-            float       slope,
-            Array      *p_ctrl_param,
-            Array      *p_noise_x,
-            Array      *p_noise_y,
-            Array      *p_stretching,
-            Vec2<float> center,
-            Vec4<float> bbox)
+Array slope(Vec2<int>    shape,
+            float        angle,
+            float        slope,
+            const Array *p_ctrl_param,
+            const Array *p_noise_x,
+            const Array *p_noise_y,
+            const Array *p_stretching,
+            Vec2<float>  center,
+            Vec4<float>  bbox)
 {
   Array               array = Array(shape);
   hmap::SlopeFunction f = hmap::SlopeFunction(angle, slope, center);
@@ -233,10 +233,10 @@ Array slope(Vec2<int>   shape,
 Array step(Vec2<int>         shape,
            float             angle,
            float             slope,
-           Array            *p_ctrl_param,
-           Array            *p_noise_x,
-           Array            *p_noise_y,
-           Array            *p_stretching,
+           const Array      *p_ctrl_param,
+           const Array      *p_noise_x,
+           const Array      *p_noise_y,
+           const Array      *p_stretching,
            Vec2<float>       center,
            hmap::Vec4<float> bbox)
 {

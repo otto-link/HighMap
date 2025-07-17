@@ -1,10 +1,10 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file edge.hpp
- * @author Otto Link (otto.link.bv@gmail.com)
+ * @author  Otto Link (otto.link.bv@gmail.com)
  * @brief This file defines the `Edge` class for manipulating segments in 2D
  * space.
  *
@@ -50,7 +50,7 @@ public:
    *
    * @param p1 The start point of the edge.
    * @param p2 The end point of the edge.
-   * @param w The weight associated with the edge.
+   * @param w  The weight associated with the edge.
    */
   Edge(Point p1, Point p2, float w) : p1(p1), p2(p2), w(w)
   {

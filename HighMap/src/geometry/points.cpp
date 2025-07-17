@@ -216,6 +216,11 @@ Point midpoint(const Point &p1,
   return displaced_midpoint;
 }
 
+Vec4<float> unit_square_bbox()
+{
+  return Vec4<float>(0.f, 1.f, 0.f, 1.f);
+}
+
 // HELPER
 bool cmp_inf(Point &a, Point &b)
 {

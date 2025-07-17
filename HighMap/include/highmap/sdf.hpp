@@ -1,6 +1,6 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file sdf.hpp
@@ -25,17 +25,18 @@ namespace hmap
  * `Path` object, and optional noise fields can be added to perturb the array
  * coordinates.
  *
- * @param path The polyline path represented as a `Path` object containing the
- * nodes.
- * @param shape The dimensions (width, height) of the output array grid.
- * @param bbox The bounding box of the array grid in the format (xmin, xmax,
- * ymin, ymax).
- * @param p_noise_x Pointer to an optional noise array for perturbing
- * x-coordinates (can be nullptr).
- * @param p_noise_y Pointer to an optional noise array for perturbing
- * y-coordinates (can be nullptr).
+ * @param  path      The polyline path represented as a `Path` object containing
+ *                   the nodes.
+ * @param  shape     The dimensions (width, height) of the output array grid.
+ * @param  bbox      The bounding box of the array grid in the format (xmin,
+ *                   xmax, ymin, ymax).
+ * @param  p_noise_x Pointer to an optional noise array for perturbing
+ *                   x-coordinates (can be nullptr).
+ * @param  p_noise_y Pointer to an optional noise array for perturbing
+ *                   y-coordinates (can be nullptr).
  *
- * @return Array The resulting signed distance field (SDF) as a 2D array.
+ * @return           Array The resulting signed distance field (SDF) as a 2D
+ *                   array.
  *
  * **Example**
  * @include ex_sdf_polyline.cpp
@@ -43,19 +44,19 @@ namespace hmap
  * **Result**
  * @image html ex_sdf_polyline.png
  */
-Array sdf_2d_polyline(const Path &path,
-                      Vec2<int>   shape,
-                      Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f},
-                      Array      *p_noise_x = nullptr,
-                      Array      *p_noise_y = nullptr);
+Array sdf_2d_polyline(const Path  &path,
+                      Vec2<int>    shape,
+                      Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f},
+                      const Array *p_noise_x = nullptr,
+                      const Array *p_noise_y = nullptr);
 
 /*! @brief See hmap::sdf_2d_polyline, with a Bezier approximation of the path.
  */
-Array sdf_2d_polyline_bezier(const Path &path,
-                             Vec2<int>   shape,
-                             Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f},
-                             Array      *p_noise_x = nullptr,
-                             Array      *p_noise_y = nullptr);
+Array sdf_2d_polyline_bezier(const Path  &path,
+                             Vec2<int>    shape,
+                             Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f},
+                             const Array *p_noise_x = nullptr,
+                             const Array *p_noise_y = nullptr);
 
 } // namespace hmap
 
@@ -63,17 +64,17 @@ namespace hmap::gpu
 {
 
 /*! @brief See hmap::sdf_2d_polyline */
-Array sdf_2d_polyline(const Path &path,
-                      Vec2<int>   shape,
-                      Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f},
-                      Array      *p_noise_x = nullptr,
-                      Array      *p_noise_y = nullptr);
+Array sdf_2d_polyline(const Path  &path,
+                      Vec2<int>    shape,
+                      Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f},
+                      const Array *p_noise_x = nullptr,
+                      const Array *p_noise_y = nullptr);
 
 /*! @brief See hmap::sdf_2d_polyline_bezier */
-Array sdf_2d_polyline_bezier(const Path &path,
-                             Vec2<int>   shape,
-                             Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f},
-                             Array      *p_noise_x = nullptr,
-                             Array      *p_noise_y = nullptr);
+Array sdf_2d_polyline_bezier(const Path  &path,
+                             Vec2<int>    shape,
+                             Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f},
+                             const Array *p_noise_x = nullptr,
+                             const Array *p_noise_y = nullptr);
 
 } // namespace hmap::gpu

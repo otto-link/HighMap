@@ -62,7 +62,7 @@ Array abs_smooth(const Array &array, float k, const Array &vshift)
   return array_out;
 }
 
-float abs_smooth(const float a, float k)
+float abs_smooth(float a, float k)
 {
   float k2 = k * k;
   return std::sqrt(a * a + k2);
@@ -73,12 +73,12 @@ Array almost_unit_identity(const Array &array)
   return (2.f - array) * array * array;
 }
 
-float almost_unit_identity(const float x)
+float almost_unit_identity(float x)
 {
   return (2.f - x) * x * x;
 }
 
-float almost_unit_identity_c2(const float x)
+float almost_unit_identity_c2(float x)
 {
   // second-order derivative equals 0 at x = 1 also to avoid
   // discontinuities in some cases
@@ -161,13 +161,13 @@ Array lerp(const Array &array1, const Array &array2, const Array &t)
   return array_out;
 }
 
-Array lerp(const Array &array1, const Array &array2, const float t)
+Array lerp(const Array &array1, const Array &array2, float t)
 {
   Array array_out = array1 * (1.f - t) + array2 * t;
   return array_out;
 }
 
-float lerp(const float a, const float b, const float t)
+float lerp(float a, float b, float t)
 {
   return a * (1.f - t) + b * t;
 }
@@ -251,12 +251,12 @@ Array smoothstep3(const Array &array, float vmin, float vmax)
   return array_out;
 }
 
-float smoothstep3(const float x)
+float smoothstep3(float x)
 {
   return x * x * (3.f - 2.f * x);
 }
 
-float smoothstep3_lower(const float x)
+float smoothstep3_lower(float x)
 {
   return x * (2.f * x - x * x);
 }
@@ -271,7 +271,7 @@ Array smoothstep3_lower(const Array &x)
   return array_out;
 }
 
-float smoothstep3_upper(const float x)
+float smoothstep3_upper(float x)
 {
   return x * (1.f + x - x * x);
 }
@@ -330,12 +330,12 @@ Array smoothstep5(const Array &array, const Array &vmin, const Array &vmax)
   return array_out;
 }
 
-float smoothstep5(const float x)
+float smoothstep5(float x)
 {
   return x * x * x * (x * (x * 6.f - 15.f) + 10.f);
 }
 
-float smoothstep5_lower(const float x)
+float smoothstep5_lower(float x)
 {
   return x * x * x * (6.f - 8.f * x + 3.f * x * x);
 }
@@ -350,7 +350,7 @@ Array smoothstep5_lower(const Array &x)
   return array_out;
 }
 
-float smoothstep5_upper(const float x)
+float smoothstep5_upper(float x)
 {
   return x * (1.f + x * x * (4.f - 7.f * x + 3.f * x * x));
 }
@@ -365,7 +365,7 @@ Array smoothstep5_upper(const Array &x)
   return array_out;
 }
 
-float smoothstep7(const float x)
+float smoothstep7(float x)
 {
   float x2 = x * x;
   float x3 = x2 * x;
@@ -396,4 +396,13 @@ Array sqrt(const Array &array)
   return array_out;
 }
 
+Array sqrt_safe(const Array &array)
+{
+  Array array_out = Array(array.shape);
+  std::transform(array.vector.begin(),
+                 array.vector.end(),
+                 array_out.vector.begin(),
+                 [](float v) { return v > 0.f ? std::sqrt(v) : 0.f; });
+  return array_out;
+}
 } // namespace hmap

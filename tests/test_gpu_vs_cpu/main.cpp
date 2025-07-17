@@ -95,6 +95,54 @@ int main(void)
           1e-3f,
           "closing");
 
+  compare([&ir](hmap::Array &z) { hmap::accumulation_curvature(z, ir); },
+          [&ir](hmap::Array &z) { hmap::gpu::accumulation_curvature(z, ir); },
+          1e-3f,
+          "accumulation_curvature");
+
+  compare([&ir](hmap::Array &z)
+          { hmap::curvature_horizontal_cross_sectional(z, ir); },
+          [&ir](hmap::Array &z)
+          { hmap::gpu::curvature_horizontal_cross_sectional(z, ir); },
+          1e-3f,
+          "curvature_horizontal_cross_sectional");
+
+  compare([&ir](hmap::Array &z) { hmap::curvature_horizontal_plan(z, ir); },
+          [&ir](hmap::Array &z)
+          { hmap::gpu::curvature_horizontal_plan(z, ir); },
+          1e-3f,
+          "curvature_horizontal_plan");
+
+  compare([&ir](hmap::Array &z)
+          { hmap::curvature_horizontal_tangential(z, ir); },
+          [&ir](hmap::Array &z)
+          { hmap::gpu::curvature_horizontal_tangential(z, ir); },
+          1e-3f,
+          "curvature_horizontal_tangential");
+
+  compare([&ir](hmap::Array &z) { hmap::curvature_ring(z, ir); },
+          [&ir](hmap::Array &z) { hmap::gpu::curvature_ring(z, ir); },
+          1e-3f,
+          "curvature_ring");
+
+  compare([&ir](hmap::Array &z) { hmap::curvature_rotor(z, ir); },
+          [&ir](hmap::Array &z) { hmap::gpu::curvature_rotor(z, ir); },
+          1e-3f,
+          "curvature_rotor");
+
+  compare([&ir](hmap::Array &z)
+          { hmap::curvature_vertical_longitudinal(z, ir); },
+          [&ir](hmap::Array &z)
+          { hmap::gpu::curvature_vertical_longitudinal(z, ir); },
+          1e-3f,
+          "curvature_vertical_longitudinal");
+
+  compare([&ir](hmap::Array &z) { hmap::curvature_vertical_profile(z, ir); },
+          [&ir](hmap::Array &z)
+          { hmap::gpu::curvature_vertical_profile(z, ir); },
+          1e-3f,
+          "curvature_vertical_profile");
+
   compare([ir](hmap::Array &z) { z = hmap::dilation(z, ir); },
           [ir](hmap::Array &z) { z = hmap::gpu::dilation(z, ir); },
           1e-3f,
@@ -219,11 +267,22 @@ int main(void)
             "minimum_smooth");
   }
 
+  compare([ir](hmap::Array &z) { z = hmap::morphological_black_hat(z, ir); },
+          [ir](hmap::Array &z)
+          { z = hmap::gpu::morphological_black_hat(z, ir); },
+          1e-3f,
+          "morphological_black_hat");
+
   compare([ir](hmap::Array &z) { z = hmap::morphological_gradient(z, ir); },
           [ir](hmap::Array &z)
           { z = hmap::gpu::morphological_gradient(z, ir); },
           1e-3f,
           "morphological_gradient");
+
+  compare([ir](hmap::Array &z) { z = hmap::morphological_top_hat(z, ir); },
+          [ir](hmap::Array &z) { z = hmap::gpu::morphological_top_hat(z, ir); },
+          1e-3f,
+          "morphological_top_hat");
 
   {
 

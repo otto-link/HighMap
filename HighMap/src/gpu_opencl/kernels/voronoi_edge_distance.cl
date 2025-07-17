@@ -3,49 +3,53 @@ R""(
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
 
-// taken from https://www.shadertoy.com/view/llG3zy
-float3 voronoi_edge_distance_fct(const float2 x,
-                                 const float2 jitter,
-                                 const float  fseed)
+// https://iquilezles.org/articles/voronoilines/
+float voronoi_edge_distance_fct(const float2 x,
+                                const float2 jitter,
+                                const float  fseed)
 {
-  float2 n = floor(x);
-  float2 fi;
-  float2 f = fract(x, &fi);
+  float2 p = floor(x);
+  float2 pi;
+  float2 f = fract(x, &pi);
 
-  // first pass: regular voronoi
-  float2 mg, mr;
+  float2 mb;
+  float2 mr;
+  float2 df = (float2)(0.1f, 0.1f);
 
-  float md = 8.f;
+  float res = 8.f;
   for (int j = -1; j <= 1; j++)
     for (int i = -1; i <= 1; i++)
     {
-      float2 g = (float2)(i, j);
-      float2 o = jitter * hash22f(n + g, fseed);
-      float2 r = g + o - f;
-      float  d = dot(r, r);
+      float2 b = (float2)(i, j);
+      float2 r = b - f +
+                 jitter * (float2)(hash12f(p + b, fseed),
+                                   hash12f(p + b + df, fseed));
+      float d = dot(r, r);
 
-      if (d < md)
+      if (d < res)
       {
-        md = d;
+        res = d;
         mr = r;
-        mg = g;
+        mb = b;
       }
     }
 
-  // second pass: distance to borders
-  md = 8.f;
+  res = 8.f;
   for (int j = -2; j <= 2; j++)
     for (int i = -2; i <= 2; i++)
     {
-      float2 g = mg + (float2)(i, j);
-      float2 o = jitter * hash22f(n + g, fseed);
-      float2 r = g + o - f;
-
-      if (dot(mr - r, mr - r) > 0.00001f)
-        md = min(md, dot(0.5f * (mr + r), normalize(r - mr)));
+      float2 b = mb + (float2)(i, j);
+      float2 r = b - f +
+                 jitter * (float2)(hash12f(p + b, fseed),
+                                   hash12f(p + b + df, fseed));
+      if (dot(mr - r, mr - r) > FLT_MIN)
+      {
+        float d = dot(0.5f * (mr + r), normalize(r - mr));
+        res = min(res, d);
+      }
     }
 
-  return (float3)(md, mr);
+  return res;
 }
 
 void kernel voronoi_edge_distance(global float *output,
@@ -80,7 +84,7 @@ void kernel voronoi_edge_distance(global float *output,
 
   float2 pos = g_to_xy(g, nx, ny, kx, ky, dx, dy, bbox);
 
-  float d = voronoi_edge_distance_fct(pos, ct * jitter, fseed).x;
+  float d = voronoi_edge_distance_fct(pos, ct * jitter, fseed);
 
   output[index] = d;
 }

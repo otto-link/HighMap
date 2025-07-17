@@ -18,10 +18,13 @@ std::vector<float> gradient1d(const std::vector<float> &v)
   size_t             n = v.size();
   std::vector<float> dv(n);
 
-  for (size_t i = 1; i < n; i++)
-    dv[i] = 0.5f * (v[i + 1] - v[i - 1]);
-  dv[0] = v[1] - v[0];
-  dv[n - 1] = v[n - 1] - v[n - 2];
+  if (n > 1)
+  {
+    for (size_t i = 1; i < n; i++)
+      dv[i] = 0.5f * (v[i + 1] - v[i - 1]);
+    dv[0] = v[1] - v[0];
+    dv[n - 1] = v[n - 1] - v[n - 2];
+  }
   return dv;
 }
 

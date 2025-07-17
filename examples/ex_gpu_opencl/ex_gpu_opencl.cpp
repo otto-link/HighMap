@@ -60,10 +60,10 @@ int main(void)
   //         1e-3f,
   //         "diff_median_3x3.png");
 
-  compare([ir](hmap::Array &z) { z = hmap::unsphericity(z, ir); },
-          [ir](hmap::Array &z) { z = hmap::gpu::unsphericity(z, ir); },
-          1e-3f,
-          "unsphericity.png");
+  // compare([ir](hmap::Array &z) { z = hmap::unsphericity(z, ir); },
+  //         [ir](hmap::Array &z) { z = hmap::gpu::unsphericity(z, ir); },
+  //         1e-3f,
+  //         "unsphericity.png");
 
   // compare([ir](hmap::Array &z)
   //         { hmap::hydraulic_stream_log(z, 0.1f, 5.f / 512.f, 64); },

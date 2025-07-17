@@ -1,16 +1,17 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file functions.hpp
  * @author Otto Link (otto.link.bv@gmail.com)
- * @brief
- * @version 0.1
- * @date 2023-04-30
+ * @brief Defines modular function objects for procedural generation, including
+ * noise algorithms (Perlin, Simplex, Worley), geometric primitives (disks,
+ * waves, slopes), and fractal compositions (FBM, IQ, Swiss). Provides parameter
+ * control for frequency, seeding, and layer blending to construct complex
+ * procedural patterns.
  *
  * @copyright Copyright (c) 2023
- *
  */
 #pragma once
 #include <functional>
@@ -98,10 +99,10 @@ public:
 
   /**
    * @brief Call the delegate function with given arguments.
-   * @param x The first float parameter.
-   * @param y The second float parameter.
-   * @param ctrl_param The third float parameter.
-   * @return The result of the delegate function call.
+   * @param  x          The first float parameter.
+   * @param  y          The second float parameter.
+   * @param  ctrl_param The third float parameter.
+   * @return            The result of the delegate function call.
    */
   float get_value(float x, float y, float ctrl_param) const;
 
@@ -130,9 +131,9 @@ public:
   /**
    * @brief Construct a new ArrayFunction object.
    *
-   * @param array Data array.
-   * @param kw Noise wavenumbers {kx, ky} for each direction, with respect to
-   *           a unit domain.
+   * @param array    Data array.
+   * @param kw       Noise wavenumbers {kx, ky} for each direction, with respect
+   *                 to a unit domain.
    * @param periodic Whether the domain is periodic or not.
    */
   ArrayFunction(Array array, Vec2<float> kw, bool periodic = true);
@@ -168,7 +169,7 @@ public:
   /**
    * @brief Construct a new Biquad Function object.
    *
-   * @param gain Gain that controls the steepness of the bump.
+   * @param gain   Gain that controls the steepness of the bump.
    * @param center Primitive reference center.
    */
   BiquadFunction(float gain, Vec2<float> center);
@@ -191,7 +192,7 @@ public:
   /**
    * @brief Construct a new Bump Function object.
    *
-   * @param gain Gain that controls the steepness of the bump.
+   * @param gain   Gain that controls the steepness of the bump.
    * @param center Primitive reference center.
    */
   BumpFunction(float gain, Vec2<float> center);
@@ -214,12 +215,14 @@ public:
   /**
    * @brief Construct a new Crater Function object.
    *
-   * @param radius Radius of the crater (with respect to a unit domain).
-   * @param depth Depth of the crater (with respect to a unit domain).
-   * @param lip_decay Decay rate of the crater's lip (with respect to a unit
+   * @param radius           Radius of the crater (with respect to a unit
    * domain).
+   * @param depth            Depth of the crater (with respect to a unit
+   * domain).
+   * @param lip_decay        Decay rate of the crater's lip (with respect to a
+   *                         unit domain).
    * @param lip_height_ratio Height ratio of the crater's lip.
-   * @param center Primitive reference center.
+   * @param center           Primitive reference center.
    */
   CraterFunction(float       radius,
                  float       depth,
@@ -246,7 +249,7 @@ public:
    * @brief Construct a new Disk Function object.
    *
    * @param radius Radius of the disk (with respect to a unit domain).
-   * @param slope Side slope (with respect to a unit domain).
+   * @param slope  Side slope (with respect to a unit domain).
    * @param center Primitive reference center.
    */
   DiskFunction(float radius, float slope, Vec2<float> center);
@@ -261,8 +264,8 @@ protected:
  * @class GaussianPulseFunction
  * @brief GaussianPulse (x, y) function class.
  *
- * This class models a gaussian pulse function.
- * It extends the base Function class.
+ * This class models a gaussian pulse function. It extends the base Function
+ * class.
  */
 class GaussianPulseFunction : public Function
 {
@@ -270,7 +273,7 @@ public:
   /**
    * @brief Construct a new GaussianPulse Function object.
    *
-   * @param sigma Pulse half-width (with respect to a unit domain).
+   * @param sigma  Pulse half-width (with respect to a unit domain).
    * @param center Primitive reference center.
    */
   GaussianPulseFunction(float sigma, Vec2<float> center);
@@ -304,10 +307,10 @@ public:
   /**
    * @brief Construct a new Rectangle Function object.
    *
-   * @param rx Radius of the rectangle (with respect to a unit domain).
-   * @param ry Radius of the rectangle (with respect to a unit domain).
-   * @param angle Overall rotation angle (in degrees).
-   * @param slope Side slope (with respect to a unit domain).
+   * @param rx     Radius of the rectangle (with respect to a unit domain).
+   * @param ry     Radius of the rectangle (with respect to a unit domain).
+   * @param angle  Overall rotation angle (in degrees).
+   * @param slope  Side slope (with respect to a unit domain).
    * @param center Primitive reference center.
    */
   RectangleFunction(float       rx,
@@ -352,11 +355,11 @@ public:
   /**
    * @brief Construct a new Rift Function object.
    *
-   * @param angle Overall rotation angle (in degrees).
-   * @param slope Rift slope.
-   * @param width Rift width.
+   * @param angle        Overall rotation angle (in degrees).
+   * @param slope        Rift slope.
+   * @param width        Rift width.
    * @param sharp_bottom Decide whether the rift bottom is sharp or not.
-   * @param center Primitive reference center.
+   * @param center       Primitive reference center.
    */
   RiftFunction(float       angle,
                float       slope,
@@ -401,8 +404,8 @@ public:
   /**
    * @brief Construct a new Slope Function object.
    *
-   * @param angle Overall rotation angle (in degrees).
-   * @param slope Step slope.
+   * @param angle  Overall rotation angle (in degrees).
+   * @param slope  Step slope.
    * @param center Primitive reference center.
    */
   SlopeFunction(float angle, float slope, Vec2<float> center);
@@ -442,8 +445,8 @@ public:
   /**
    * @brief Construct a new Step Function object.
    *
-   * @param angle Overall rotation angle (in degrees).
-   * @param slope Step slope.
+   * @param angle  Overall rotation angle (in degrees).
+   * @param slope  Step slope.
    * @param center Primitive reference center.
    */
   StepFunction(float angle, float slope, Vec2<float> center);
@@ -484,12 +487,13 @@ public:
   /**
    * @brief Construct a new Wave Dune Function object.
    *
-   * @param kw Noise wavenumbers {kx, ky} for each direction, with respect to
-   *           a unit domain.
-   * @param angle Overall rotation angle (in degrees).
-   * @param xtop Relative location of the top of the dune profile (in [0, 1]).
-   * @param xbottom Relative location of the foot of the dune profile (in [0,
-   * 1]).
+   * @param kw          Noise wavenumbers {kx, ky} for each direction, with
+   *                    respect to a unit domain.
+   * @param angle       Overall rotation angle (in degrees).
+   * @param xtop        Relative location of the top of the dune profile (in [0,
+   *                    1]).
+   * @param xbottom     Relative location of the foot of the dune profile (in
+   * [0, 1]).
    * @param phase_shift Phase shift (in radians).
    */
   WaveDuneFunction(Vec2<float> kw,
@@ -536,9 +540,9 @@ public:
   /**
    * @brief Construct a new Wave Sine Function object.
    *
-   * @param kw Noise wavenumbers {kx, ky} for each direction, with respect to
-   *           a unit domain.
-   * @param angle Overall rotation angle (in degrees).
+   * @param kw          Noise wavenumbers {kx, ky} for each direction, with
+   *                    respect to a unit domain.
+   * @param angle       Overall rotation angle (in degrees).
    * @param phase_shift Phase shift (in radians).
    */
   WaveSineFunction(Vec2<float> kw, float angle, float phase_shift);
@@ -578,9 +582,9 @@ public:
   /**
    * @brief Construct a new Wave Square Function object.
    *
-   * @param kw Noise wavenumbers {kx, ky} for each direction, with respect to
-   *           a unit domain.
-   * @param angle Overall rotation angle (in degrees).
+   * @param kw          Noise wavenumbers {kx, ky} for each direction, with
+   *                    respect to a unit domain.
+   * @param angle       Overall rotation angle (in degrees).
    * @param phase_shift Phase shift (in radians).
    */
   WaveSquareFunction(Vec2<float> kw, float angle, float phase_shift);
@@ -621,9 +625,9 @@ public:
   /**
    * @brief Construct a new Wave Triangular Function object.
    *
-   * @param kw Noise wavenumbers {kx, ky} for each direction, with respect to
-   *           a unit domain.
-   * @param angle Overall rotation angle (in degrees).
+   * @param kw          Noise wavenumbers {kx, ky} for each direction, with
+   *                    respect to a unit domain.
+   * @param angle       Overall rotation angle (in degrees).
    * @param slant_ratio Relative location of the triangle apex, in [0, 1].
    * @param phase_shift Phase shift (in radians).
    */
@@ -689,7 +693,7 @@ public:
 
   /**
    * @brief Constructor to initialize with specific frequency scaling and seed.
-   * @param kw Frequency scaling vector.
+   * @param kw   Frequency scaling vector.
    * @param seed Random seed for noise generation.
    */
   NoiseFunction(Vec2<float> kw, uint seed) : Function(), kw(kw), seed(seed)
@@ -755,10 +759,10 @@ public:
   /**
    * @brief Construct a new Perlin Function object.
    *
-   * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
+   * @param kw   Noise wavenumbers {kx, ky} for each directions, with respect to
    * a unit domain.
    * @param seed Random seed number.
-   * @param mu Gradient magnitude exponent.
+   * @param mu   Gradient magnitude exponent.
    */
   ParberryFunction(Vec2<float> kw, uint seed, float mu);
 
@@ -818,7 +822,7 @@ public:
   /**
    * @brief Construct a new Perlin Function object.
    *
-   * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
+   * @param kw   Noise wavenumbers {kx, ky} for each directions, with respect to
    * a unit domain.
    * @param seed Random seed number.
    */
@@ -851,7 +855,7 @@ public:
   /**
    * @brief Construct a new Perlin Function object.
    *
-   * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
+   * @param kw   Noise wavenumbers {kx, ky} for each directions, with respect to
    * a unit domain.
    * @param seed Random seed number.
    */
@@ -886,10 +890,10 @@ public:
   /**
    * @brief Construct a new Perlin Function object.
    *
-   * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
+   * @param kw   Noise wavenumbers {kx, ky} for each directions, with respect to
    * a unit domain.
    * @param seed Random seed number.
-   * @param k Smoothing factor.
+   * @param k    Smoothing factor.
    */
   PerlinHalfFunction(Vec2<float> kw, uint seed, float k);
 
@@ -920,7 +924,7 @@ public:
   /**
    * @brief Construct a new Perlin Function object.
    *
-   * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
+   * @param kw   Noise wavenumbers {kx, ky} for each directions, with respect to
    * a unit domain.
    * @param seed Random seed number.
    */
@@ -953,7 +957,7 @@ public:
   /**
    * @brief Construct a new Perlin Function object.
    *
-   * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
+   * @param kw   Noise wavenumbers {kx, ky} for each directions, with respect to
    * a unit domain.
    * @param seed Random seed number.
    */
@@ -986,7 +990,7 @@ public:
   /**
    * @brief Construct a new Perlin Function object.
    *
-   * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
+   * @param kw   Noise wavenumbers {kx, ky} for each directions, with respect to
    * a unit domain.
    * @param seed Random seed number.
    */
@@ -1019,7 +1023,7 @@ public:
   /**
    * @brief Construct a new ValueNoiseFunction object.
    *
-   * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
+   * @param kw   Noise wavenumbers {kx, ky} for each directions, with respect to
    * a unit domain.
    * @param seed Random seed number.
    */
@@ -1052,7 +1056,7 @@ public:
   /**
    * @brief Construct a new ValueCubicNoiseFunction object.
    *
-   * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
+   * @param kw   Noise wavenumbers {kx, ky} for each directions, with respect to
    * a unit domain.
    * @param seed Random seed number.
    */
@@ -1085,8 +1089,7 @@ public:
   /**
    * @brief Construct a new ValueNoiseFunction object.
    *
-   * @param kw Noise wavenumber, with respect to
-   * a unit domain.
+   * @param kw   Noise wavenumber, with respect to a unit domain.
    * @param seed Random seed number.
    */
   ValueDelaunayNoiseFunction(Vec2<float> kw, uint seed);
@@ -1128,8 +1131,7 @@ public:
   /**
    * @brief Construct a new ValueLinearNoiseFunction object.
    *
-   * @param kw Noise wavenumber, with respect to
-   * a unit domain.
+   * @param kw   Noise wavenumber, with respect to a unit domain.
    * @param seed Random seed number.
    */
   ValueLinearNoiseFunction(Vec2<float> kw, uint seed);
@@ -1171,7 +1173,7 @@ public:
   /**
    * @brief Construct a new Worley Function object.
    *
-   * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
+   * @param kw   Noise wavenumbers {kx, ky} for each directions, with respect to
    * a unit domain.
    * @param seed Random seed number.
    */
@@ -1214,11 +1216,11 @@ public:
   /**
    * @brief Construct a new Worley Double Function object.
    *
-   * @param kw Noise wavenumbers {kx, ky} for each directions, with respect to
-   * a unit domain.
-   * @param seed Random seed number.
+   * @param kw    Noise wavenumbers {kx, ky} for each directions, with respect
+   * to a unit domain.
+   * @param seed  Random seed number.
    * @param ratio Amplitude ratio between each Worley noise.
-   * @param k Transition smoothing parameter.
+   * @param k     Transition smoothing parameter.
    */
   WorleyDoubleFunction(Vec2<float> kw, uint seed, float ratio, float k);
 
@@ -1260,11 +1262,11 @@ public:
   /**
    * @brief Construct a new GenericFractalFunction object.
    *
-   * @param p_base Unique pointer to the base noise function.
-   * @param octaves Number of octaves in the fractal noise.
-   * @param weight Weight of the base noise function.
+   * @param p_base      Unique pointer to the base noise function.
+   * @param octaves     Number of octaves in the fractal noise.
+   * @param weight      Weight of the base noise function.
    * @param persistence Persistence of the fractal noise.
-   * @param lacunarity Lacunarity of the fractal noise.
+   * @param lacunarity  Lacunarity of the fractal noise.
    */
   explicit GenericFractalFunction(std::unique_ptr<NoiseFunction> p_base,
                                   int                            octaves,
@@ -1403,11 +1405,11 @@ public:
   /**
    * @brief Construct a new Fbm Function object.
    *
-   * @param p_base Unique pointer to the base noise function.
-   * @param octaves Number of octaves.
-   * @param weight Octave weighting.
+   * @param p_base      Unique pointer to the base noise function.
+   * @param octaves     Number of octaves.
+   * @param weight      Octave weighting.
    * @param persistence Octave persistence.
-   * @param lacunarity Defines the wavenumber ratio between each octave.
+   * @param lacunarity  Defines the wavenumber ratio between each octave.
    */
   FbmFunction(std::unique_ptr<NoiseFunction> p_base,
               int                            octaves,
@@ -1425,11 +1427,11 @@ public:
   /**
    * @brief Construct a new Fbm Iq Function object.
    *
-   * @param p_base Unique pointer to the base noise function.
-   * @param octaves Number of octaves.
-   * @param weight Octave weighting.
-   * @param persistence Octave persistence.
-   * @param lacunarity Defines the wavenumber ratio between each octave.
+   * @param p_base         Unique pointer to the base noise function.
+   * @param octaves        Number of octaves.
+   * @param weight         Octave weighting.
+   * @param persistence    Octave persistence.
+   * @param lacunarity     Defines the wavenumber ratio between each octave.
    * @param gradient_scale Gradient scale influence.
    */
   FbmIqFunction(std::unique_ptr<NoiseFunction> p_base,
@@ -1463,15 +1465,15 @@ public:
   /**
    * @brief Construct a new Fbm Jordan Function object.
    *
-   * @param p_base Unique pointer to the base noise function.
-   * @param octaves Number of octaves.
-   * @param weight Octave weighting.
+   * @param p_base      Unique pointer to the base noise function.
+   * @param octaves     Number of octaves.
+   * @param weight      Octave weighting.
    * @param persistence Octave persistence.
-   * @param lacunarity Defines the wavenumber ratio between each octave.
-   * @param warp0 Initial warp.
-   * @param damp0 Initial damp.
-   * @param warp_scale Warp scale.
-   * @param damp_scale Damp scale.
+   * @param lacunarity  Defines the wavenumber ratio between each octave.
+   * @param warp0       Initial warp.
+   * @param damp0       Initial damp.
+   * @param warp_scale  Warp scale.
+   * @param damp_scale  Damp scale.
    */
   FbmJordanFunction(std::unique_ptr<NoiseFunction> p_base,
                     int                            octaves,
@@ -1540,11 +1542,11 @@ public:
   /**
    * @brief Construct a new Fbm Pingpong Function object.
    *
-   * @param p_base Unique pointer to the base noise function.
-   * @param octaves Number of octaves.
-   * @param weight Octave weighting.
+   * @param p_base      Unique pointer to the base noise function.
+   * @param octaves     Number of octaves.
+   * @param weight      Octave weighting.
    * @param persistence Octave persistence.
-   * @param lacunarity Defines the wavenumber ratio between each octave.
+   * @param lacunarity  Defines the wavenumber ratio between each octave.
    */
   FbmPingpongFunction(std::unique_ptr<NoiseFunction> p_base,
                       int                            octaves,
@@ -1576,11 +1578,11 @@ public:
   /**
    * @brief Construct a new Fbm Ridged Function object.
    *
-   * @param p_base Unique pointer to the base noise function.
-   * @param octaves Number of octaves.
-   * @param weight Octave weighting.
+   * @param p_base      Unique pointer to the base noise function.
+   * @param octaves     Number of octaves.
+   * @param weight      Octave weighting.
    * @param persistence Octave persistence.
-   * @param lacunarity Defines the wavenumber ratio between each octave.
+   * @param lacunarity  Defines the wavenumber ratio between each octave.
    * @param k_smoothing Smoothing parameter.
    */
   FbmRidgedFunction(std::unique_ptr<NoiseFunction> p_base,
@@ -1614,12 +1616,12 @@ public:
   /**
    * @brief Construct a new Fbm Swiss Function object.
    *
-   * @param p_base Unique pointer to the base noise function.
-   * @param octaves Number of octaves.
-   * @param weight Octave weighting.
+   * @param p_base      Unique pointer to the base noise function.
+   * @param octaves     Number of octaves.
+   * @param weight      Octave weighting.
    * @param persistence Octave persistence.
-   * @param lacunarity Defines the wavenumber ratio between each octave.
-   * @param warp_scale Warping scale.
+   * @param lacunarity  Defines the wavenumber ratio between each octave.
+   * @param warp_scale  Warping scale.
    */
   FbmSwissFunction(std::unique_ptr<NoiseFunction> p_base,
                    int                            octaves,
@@ -1666,12 +1668,12 @@ public:
    * @brief Construct a new FieldFunction object with given vectors.
    *
    * @param p_base Unique pointer to the base function.
-   * @param xr Vector of x coordinates representing the centers of the
-   * primitive.
-   * @param yr Vector of y coordinates representing the centers of the
-   * primitive.
-   * @param zr Vector of z coordinates used to scale the primitive in x and y
-   * directions, and also to scale the primitive amplitude if requested.
+   * @param xr     Vector of x coordinates representing the centers of the
+   *               primitive.
+   * @param yr     Vector of y coordinates representing the centers of the
+   *               primitive.
+   * @param zr     Vector of z coordinates used to scale the primitive in x and
+   * y directions, and also to scale the primitive amplitude if requested.
    */
   FieldFunction(std::unique_ptr<Function> p_base,
                 std::vector<float>        xr,
@@ -1738,11 +1740,12 @@ private:
  * specified `noise_type`. It initializes the noise function with the given
  * frequency scaling vector (`kw`) and random seed (`seed`).
  *
- * @param noise_type The type of noise function to create (e.g., PERLIN,
- * SIMPLEX2, etc.).
- * @param kw The frequency scaling vector to be used for the noise function.
- * @param seed The random seed for noise generation.
- * @return A `std::unique_ptr` to the created noise function.
+ * @param  noise_type The type of noise function to create (e.g., PERLIN,
+ *                    SIMPLEX2, etc.).
+ * @param  kw         The frequency scaling vector to be used for the noise
+ *                    function.
+ * @param  seed       The random seed for noise generation.
+ * @return            A `std::unique_ptr` to the created noise function.
  */
 std::unique_ptr<hmap::NoiseFunction> create_noise_function_from_type(
     NoiseType   noise_type,

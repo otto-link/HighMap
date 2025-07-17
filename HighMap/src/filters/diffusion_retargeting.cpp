@@ -13,7 +13,9 @@
 namespace hmap
 {
 
-Array diffusion_retargeting(Array &array_before, Array &array_after, int ir)
+Array diffusion_retargeting(const Array &array_before,
+                            const Array &array_after,
+                            int          ir)
 {
   Vec2<int> shape = array_before.shape;
 

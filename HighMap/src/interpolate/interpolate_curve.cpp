@@ -118,7 +118,7 @@ InterpolatorCurve::InterpolatorCurve(std::vector<Point>       points,
                                 this->points_data[i1 + 1],
                                 this->points_data[i1 + 2],
                                 u);
-        else if (i1 == this->points_data.size() - 2)
+        else // if (i1 == this->points_data.size() - 2)
           return interp_bspline(this->points_data[i1 - 1],
                                 this->points_data[i1],
                                 this->points_data[i1 + 1],
@@ -153,7 +153,7 @@ InterpolatorCurve::InterpolatorCurve(std::vector<Point>       points,
                                    this->points_data[i1 + 1],
                                    this->points_data[i1 + 2],
                                    u);
-        else if (i1 == this->points_data.size() - 2)
+        else // if (i1 == this->points_data.size() - 2)
           return interp_catmullrom(this->points_data[i1 - 1],
                                    this->points_data[i1],
                                    this->points_data[i1 + 1],
@@ -174,6 +174,8 @@ InterpolatorCurve::InterpolatorCurve(std::vector<Point>       points,
         return interp_decasteljau(this->points_data, t);
     };
     break;
+
+  default: this->interp = [](float t) { return Point(0.f, 0.f); };
   }
 }
 

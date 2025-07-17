@@ -12,7 +12,9 @@
 namespace hmap
 {
 
-void export_normal_map_png(std::string fname, const Array &array, int depth)
+void export_normal_map_png(const std::string &fname,
+                           const Array       &array,
+                           int                depth)
 {
   Tensor nmap = normal_map(array);
   nmap.to_png(fname, depth);

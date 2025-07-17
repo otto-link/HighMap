@@ -12,10 +12,10 @@ namespace hmap
 void fill_array_using_xy_function(
     Array                                    &array,
     Vec4<float>                               bbox,
-    Array                                    *p_ctrl_param,
-    Array                                    *p_noise_x,
-    Array                                    *p_noise_y,
-    Array                                    *p_stretching,
+    const Array                              *p_ctrl_param,
+    const Array                              *p_noise_x,
+    const Array                              *p_noise_y,
+    const Array                              *p_stretching,
     std::function<float(float, float, float)> fct_xy)
 {
   Vec2<int>          shape = array.shape;
@@ -99,16 +99,15 @@ void fill_array_using_xy_function(
 void fill_array_using_xy_function(
     Array                                    &array,
     Vec4<float>                               bbox,
-    Array                                    *p_ctrl_param,
-    Array                                    *p_noise_x,
-    Array                                    *p_noise_y,
-    Array                                    *p_stretching,
+    const Array                              *p_ctrl_param,
+    const Array                              *p_noise_x,
+    const Array                              *p_noise_y,
+    const Array                              *p_stretching,
     std::function<float(float, float, float)> fct_xy,
     int                                       subsampling)
 {
   Vec2<int> shape = array.shape;
-  Vec2<int> shape_sub = Vec2<int>((int)(shape.x / subsampling),
-                                  (int)(shape.y / subsampling));
+  Vec2<int> shape_sub = Vec2<int>(shape.x / subsampling, shape.y / subsampling);
   Array     array_sub = Array(shape_sub);
 
   std::vector<float> x, y;

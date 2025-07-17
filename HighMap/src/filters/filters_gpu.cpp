@@ -1,7 +1,7 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
-#include "highmap/features.hpp"
+#include "highmap/curvature.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/math.hpp"
@@ -17,7 +17,7 @@ void expand(Array &array, int ir)
   gpu::expand(array, kernel);
 }
 
-void expand(Array &array, int ir, Array *p_mask)
+void expand(Array &array, int ir, const Array *p_mask)
 {
   Array kernel = cubic_pulse({2 * ir + 1, 2 * ir + 1});
 
@@ -31,7 +31,7 @@ void expand(Array &array, int ir, Array *p_mask)
   }
 }
 
-void expand(Array &array, Array &kernel)
+void expand(Array &array, const Array &kernel)
 {
   auto run = clwrapper::Run("expand");
 
@@ -52,7 +52,7 @@ void expand(Array &array, Array &kernel)
   run.read_imagef("out");
 }
 
-void expand(Array &array, Array &kernel, Array *p_mask)
+void expand(Array &array, const Array &kernel, const Array *p_mask)
 {
   if (!p_mask)
   {
@@ -114,11 +114,11 @@ void gamma_correction_local(Array &array, float gamma, int ir, float k)
   }
 }
 
-void gamma_correction_local(Array &array,
-                            float  gamma,
-                            int    ir,
-                            Array *p_mask,
-                            float  k)
+void gamma_correction_local(Array       &array,
+                            float        gamma,
+                            int          ir,
+                            const Array *p_mask,
+                            float        k)
 {
   if (!p_mask)
     gpu::gamma_correction_local(array, gamma, ir, k);
@@ -145,7 +145,7 @@ void laplace(Array &array, float sigma, int iterations)
   run.read_buffer("array");
 }
 
-void laplace(Array &array, Array *p_mask, float sigma, int iterations)
+void laplace(Array &array, const Array *p_mask, float sigma, int iterations)
 {
   if (!p_mask)
   {
@@ -268,7 +268,7 @@ void median_3x3(Array &array)
   run.read_imagef("out");
 }
 
-void median_3x3(Array &array, Array *p_mask)
+void median_3x3(Array &array, const Array *p_mask)
 {
   if (!p_mask)
     gpu::median_3x3(array);
@@ -312,11 +312,11 @@ void normal_displacement(Array &array, float amount, int ir, bool reverse)
   run.read_imagef("out");
 }
 
-void normal_displacement(Array &array,
-                         Array *p_mask,
-                         float  amount,
-                         int    ir,
-                         bool   reverse)
+void normal_displacement(Array       &array,
+                         const Array *p_mask,
+                         float        amount,
+                         int          ir,
+                         bool         reverse)
 {
   if (!p_mask)
   {
@@ -343,7 +343,7 @@ void normal_displacement(Array &array,
   }
 }
 
-void plateau(Array &array, Array *p_mask, int ir, float factor)
+void plateau(Array &array, const Array *p_mask, int ir, float factor)
 {
   Array amin = gpu::minimum_local(array, ir);
   Array amax = gpu::maximum_local(array, ir);
@@ -382,7 +382,7 @@ void shrink(Array &array, int ir)
   gpu::shrink(array, kernel);
 }
 
-void shrink(Array &array, int ir, Array *p_mask)
+void shrink(Array &array, int ir, const Array *p_mask)
 {
   Array kernel = cubic_pulse({2 * ir + 1, 2 * ir + 1});
 
@@ -396,7 +396,7 @@ void shrink(Array &array, int ir, Array *p_mask)
   }
 }
 
-void shrink(Array &array, Array &kernel)
+void shrink(Array &array, const Array &kernel)
 {
   float amax = array.max();
   array *= -1.f; // array <- amax - array;
@@ -424,7 +424,7 @@ void shrink(Array &array, Array &kernel)
   array += amax;
 }
 
-void shrink(Array &array, Array &kernel, Array *p_mask)
+void shrink(Array &array, const Array &kernel, const Array *p_mask)
 {
   if (!p_mask)
   {
@@ -492,7 +492,7 @@ void smooth_cpulse(Array &array, int ir)
   run.read_imagef("out");
 }
 
-void smooth_cpulse(Array &array, int ir, Array *p_mask)
+void smooth_cpulse(Array &array, int ir, const Array *p_mask)
 {
   if (!p_mask)
   {
@@ -542,11 +542,11 @@ void smooth_fill(Array &array, int ir, float k, Array *p_deposition_map)
   if (p_deposition_map) *p_deposition_map = maximum(array - array_bckp, 0.f);
 }
 
-void smooth_fill(Array &array,
-                 int    ir,
-                 Array *p_mask,
-                 float  k,
-                 Array *p_deposition_map)
+void smooth_fill(Array       &array,
+                 int          ir,
+                 const Array *p_mask,
+                 float        k,
+                 Array       *p_deposition_map)
 {
   Array array_bckp = array;
 
@@ -562,7 +562,7 @@ void smooth_fill_holes(Array &array, int ir)
   gpu::smooth_cpulse(array_smooth, ir);
 
   // mask based on concave regions
-  Array mask = curvature_mean(array_smooth);
+  Array mask = -curvature_mean(array_smooth);
   clamp_min(mask, 0.f);
   make_binary(mask);
 
@@ -572,7 +572,7 @@ void smooth_fill_holes(Array &array, int ir)
   array = lerp(array, array_smooth, mask);
 }
 
-void smooth_fill_holes(Array &array, int ir, Array *p_mask)
+void smooth_fill_holes(Array &array, int ir, const Array *p_mask)
 {
   if (!p_mask)
     gpu::smooth_fill_holes(array, ir);
@@ -590,7 +590,7 @@ void smooth_fill_smear_peaks(Array &array, int ir)
   gpu::smooth_cpulse(array_smooth, ir);
 
   // mask based on concave regions
-  Array mask = -curvature_mean(array_smooth);
+  Array mask = curvature_mean(array_smooth);
   clamp_min(mask, 0.f);
   make_binary(mask);
 
@@ -600,7 +600,7 @@ void smooth_fill_smear_peaks(Array &array, int ir)
   array = lerp(array, array_smooth, mask);
 }
 
-void smooth_fill_smear_peaks(Array &array, int ir, Array *p_mask)
+void smooth_fill_smear_peaks(Array &array, int ir, const Array *p_mask)
 {
   if (!p_mask)
     gpu::smooth_fill_smear_peaks(array, ir);

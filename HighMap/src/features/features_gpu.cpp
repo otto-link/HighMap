@@ -60,7 +60,7 @@ Array rugosity(const Array &z, int ir, bool convex)
 
   run.bind_buffer("z_skw", z_skw.vector);
   run.bind_buffer("z_std", z_std.vector);
-  run.bind_arguments(z.shape.x, z.shape.y, tol, (int)(convex ? 1 : 0));
+  run.bind_arguments(z.shape.x, z.shape.y, tol, convex ? 1 : 0);
 
   run.write_buffer("z_skw");
   run.write_buffer("z_std");

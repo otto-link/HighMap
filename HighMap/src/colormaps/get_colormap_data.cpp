@@ -21,8 +21,10 @@ std::vector<std::vector<float>> get_colormap_data(int cmap)
   case Cmap::NIPY_SPECTRAL: return CMAP_NIPY_SPECTRAL;
   case Cmap::SEISMIC: return CMAP_SEISMIC;
   case Cmap::TERRAIN: return CMAP_TERRAIN;
+  case Cmap::TURBO: return CMAP_TURBO;
   case Cmap::VIRIDIS: return CMAP_VIRIDIS;
   case Cmap::WHITE_UNIFORM: return CMAP_WHITE_UNIFORM;
+  default: return CMAP_WHITE_UNIFORM;
   }
 }
 

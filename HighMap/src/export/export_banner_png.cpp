@@ -8,10 +8,10 @@
 namespace hmap
 {
 
-void export_banner_png(std::string        fname,
-                       std::vector<Array> arrays,
-                       int                cmap,
-                       bool               hillshading)
+void export_banner_png(const std::string        &fname,
+                       const std::vector<Array> &arrays,
+                       int                       cmap,
+                       bool                      hillshading)
 {
   // build up big array by stacking input arrays
   if (arrays.size() > 1)

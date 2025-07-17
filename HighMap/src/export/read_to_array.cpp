@@ -11,7 +11,7 @@
 namespace hmap
 {
 
-Array read_to_array(std::string fname)
+Array read_to_array(const std::string &fname)
 {
   cv::Mat mat = cv::imread(fname, cv::IMREAD_GRAYSCALE | cv::IMREAD_ANYDEPTH);
 

@@ -12,11 +12,11 @@
 namespace hmap
 {
 
-int convert_length_to_pixel(const float x,
-                            const int   nx,
-                            const bool  lim_inf,
-                            const bool  lim_sup,
-                            const float scale)
+int convert_length_to_pixel(float x,
+                            int   nx,
+                            bool  lim_inf,
+                            bool  lim_sup,
+                            float scale)
 {
   int ir = x / scale * static_cast<float>(nx);
   if (lim_inf) ir = std::max(ir, 1);
@@ -62,8 +62,8 @@ void expand_grid_boundaries(std::vector<float> &x,
 
   int npoints = std::max(0, (int)std::sqrt((float)x.size()));
 
-  std::vector<float> xb = linspace(bbox.a, bbox.b, npoints, false);
-  std::vector<float> yb = linspace(bbox.c, bbox.d, npoints, false);
+  const std::vector<float> xb = linspace(bbox.a, bbox.b, npoints, false);
+  const std::vector<float> yb = linspace(bbox.c, bbox.d, npoints, false);
 
   for (int i = 0; i < npoints; i++)
   {
@@ -200,8 +200,12 @@ void random_grid(std::vector<float> &x,
   y.reserve(nx * ny);
   value.reserve(nx * ny);
 
-  std::vector<float> xlist = linspace(bbox.a - delta.x, bbox.b + delta.x, nx);
-  std::vector<float> ylist = linspace(bbox.c - delta.y, bbox.d + delta.y, ny);
+  const std::vector<float> xlist = linspace(bbox.a - delta.x,
+                                            bbox.b + delta.x,
+                                            nx);
+  const std::vector<float> ylist = linspace(bbox.c - delta.y,
+                                            bbox.d + delta.y,
+                                            ny);
 
   Vec2<float> offset = {0.f, 0.f};
 
@@ -237,7 +241,7 @@ void random_grid(std::vector<float> &x,
 
 void random_grid_density(std::vector<float> &x,
                          std::vector<float> &y,
-                         Array              &density,
+                         const Array        &density,
                          uint                seed,
                          Vec4<float>         bbox)
 {
@@ -276,15 +280,15 @@ void random_grid_jittered(std::vector<float> &x,
   std::mt19937                          gen(seed);
   std::uniform_real_distribution<float> dis(-1.f, 1.f);
   size_t                                n = x.size();
-  float                                 nsq = (float)std::pow((float)n, 0.5f);
+  float                                 nsq = (float)std::pow(n, 0.5f);
   float                                 dx = 1.f / (nsq - 1.f);
 
   for (size_t k = 0; k < n; k++)
   {
     int j = (int)((float)k / nsq);
 
-    x[k] = dx * ((float)(k - j * nsq) + scale * dis(gen));
-    y[k] = dx * ((float)j + scale * dis(gen));
+    x[k] = dx * ((k - j * nsq) + scale * dis(gen));
+    y[k] = dx * (j + scale * dis(gen));
 
     x[k] = std::clamp(x[k], 0.f, 1.f);
     y[k] = std::clamp(y[k], 0.f, 1.f);

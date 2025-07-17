@@ -1,10 +1,10 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file graph.hpp
- * @author Otto Link (otto.link.bv@gmail.com)
+ * @author  Otto Link (otto.link.bv@gmail.com)
  * @brief Definition of the `Graph` class for manipulating 2D graphs.
  *
  * This file contains the definition of the `Graph` class, which extends from
@@ -153,8 +153,8 @@ public:
    * the edge can be provided explicitly; if not provided, the Euclidean
    * distance between the connected points is used as the default weight.
    *
-   * @param edge A vector of two integers representing the indices of the points
-   * connected by the edge.
+   * @param edge   A vector of two integers representing the indices of the
+   * points connected by the edge.
    * @param weight The weight of the edge. If not provided, the default weight
    * is calculated as the Euclidean distance between the points.
    */
@@ -169,7 +169,7 @@ public:
    * points.
    *
    * @param edge A vector of two integers representing the indices of the points
-   * connected by the edge.
+   *             connected by the edge.
    */
   void add_edge(std::vector<int> edge);
 
@@ -182,10 +182,11 @@ public:
    * of point indices representing the route from the source to the target
    * point.
    *
-   * @param source_point_index The index of the starting point in the graph.
-   * @param target_point_index The index of the ending point in the graph.
-   * @return std::vector<int> A vector of point indices representing the
-   * shortest path from the source to the target.
+   * @param  source_point_index The index of the starting point in the graph.
+   * @param  target_point_index The index of the ending point in the graph.
+   * @return                    std::vector<int> A vector of point indices
+   *                            representing the shortest path from the source
+   * to the target.
    *
    * **Example**
    * @include ex_graph_dijkstra.cpp
@@ -199,8 +200,8 @@ public:
    * graph. The edge is identified by the index `k`, and its length is
    * determined by the distance between the two vertices connected by the edge.
    *
-   * @param k Index of the edge for which the length is to be computed.
-   * @return float The Euclidean length of the edge.
+   * @param  k Index of the edge for which the length is to be computed.
+   * @return   float The Euclidean length of the edge.
    */
   float get_edge_length(int k);
 
@@ -259,8 +260,7 @@ public:
    * @return Graph The Minimum Spanning Tree (MST) of the original graph.
    *
    * **Example**
-   * @include ex_graph_minimum_spanning_tree_prim.cpp
-   * **Result**
+   * @include ex_graph_minimum_spanning_tree_prim.cpp Result**
    * @image html ex_graph_minimum_spanning_tree_prim0.png
    * @image html ex_graph_minimum_spanning_tree_prim1.png
    */
@@ -293,10 +293,10 @@ public:
    * represent edge weights. This allows visual representation of the graph in
    * array form.
    *
-   * @param array The input array to project the graph onto.
-   * @param bbox The bounding box for the array.
+   * @param array                The input array to project the graph onto.
+   * @param bbox                 The bounding box for the array.
    * @param color_by_edge_weight If `true`, colors the array based on edge
-   * weights; otherwise, colors by node values.
+   *                             weights; otherwise, colors by node values.
    */
   void to_array(Array      &array,
                 Vec4<float> bbox,
@@ -311,14 +311,14 @@ public:
    * displacement to generate a fractal effect. The parameters control the
    * number of iterations, randomness, and how the graph path is altered.
    *
-   * @param array The input array to project the fractalized graph onto.
-   * @param bbox The bounding box for the array.
-   * @param iterations Number of fractalization iterations to perform.
-   * @param seed Random seed number for stochastic processes.
-   * @param sigma Half-width of the Gaussian displacement normalized by the
-   * distance between points.
+   * @param array       The input array to project the fractalized graph onto.
+   * @param bbox        The bounding box for the array.
+   * @param iterations  Number of fractalization iterations to perform.
+   * @param seed        Random seed number for stochastic processes.
+   * @param sigma       Half-width of the Gaussian displacement normalized by
+   * the distance between points.
    * @param orientation Displacement orientation: 0 for random inward/outward, 1
-   * to inflate, -1 to deflate.
+   *                    to inflate, -1 to deflate.
    * @param persistence Noise persistence factor with respect to iteration
    * number.
    */
@@ -339,19 +339,19 @@ public:
    * graph. The result is projected onto an output array. The optional noise
    * arrays can be used for domain warping.
    *
-   * @param shape The shape of the output array.
-   * @param bbox The bounding box defining the area over which the SDF is
-   * computed.
-   * @param p_noise_x Reference to the input noise array for domain warping in
-   * the x-direction (optional).
-   * @param p_noise_y Reference to the input noise array for domain warping in
-   * the y-direction (optional).
-   * @param bbox_array The bounding box of the destination array.
-   * @return Array The resulting array with the signed distance function values.
+   * @param  shape      The shape of the output array.
+   * @param  bbox       The bounding box defining the area over which the SDF is
+   *                    computed.
+   * @param  p_noise_x  Reference to the input noise array for domain warping in
+   *                    the x-direction (optional).
+   * @param  p_noise_y  Reference to the input noise array for domain warping in
+   *                    the y-direction (optional).
+   * @param  bbox_array The bounding box of the destination array.
+   * @return            Array The resulting array with the signed distance
+   *                    function values.
    *
    * **Example**
-   * @include ex_cloud_sdf.cpp
-   * **Result**
+   * @include ex_cloud_sdf.cpp Result**
    * @image html ex_cloud_sdf.png
    */
   Array to_array_sdf(Vec2<int>   shape,
@@ -368,10 +368,10 @@ public:
    * contains the `(x, y)` coordinates of the graph's nodes, and the adjacency
    * matrix file contains the graph's connectivity information.
    *
-   * @param fname_xy Filename for the CSV file containing node `(x, y)`
+   * @param fname_xy        Filename for the CSV file containing node `(x, y)`
    * coordinates.
    * @param fname_adjacency Filename for the CSV file containing the adjacency
-   * matrix.
+   *                        matrix.
    */
   void to_csv(std::string fname_xy, std::string fname_adjacency);
 

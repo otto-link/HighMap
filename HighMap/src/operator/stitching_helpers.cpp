@@ -18,7 +18,7 @@ bool cmp_path(std::pair<float, std::vector<int>> &a,
 
 // among all the possible cut path from top to bottom and find the one
 // with the minimum cost using Dijkstra's algorithm
-void find_vertical_cut_path(Array &error, std::vector<int> &path_i)
+void find_vertical_cut_path(const Array &error, std::vector<int> &path_i)
 {
   Vec2<int> shape = error.shape;
 
@@ -129,7 +129,7 @@ void helper_flip_rot_transpose(Array &array,
   }
 }
 
-Array get_random_patch(Array                &array,
+Array get_random_patch(const Array          &array,
                        hmap::Vec2<int>       patch_shape,
                        std::mt19937         &gen,
                        bool                  patch_flip,

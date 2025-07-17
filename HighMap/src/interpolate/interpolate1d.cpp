@@ -39,16 +39,10 @@ Interpolator1D::Interpolator1D(const std::vector<float> &x,
         "Steffen interpolation requires monotonic y data.");
   }
 
-  size_t size = x.size();
-  this->x_data.resize(size);
-  this->y_data.resize(size);
+  this->x_data = std::vector<double>(x.begin(), x.end());
+  this->y_data = std::vector<double>(y.begin(), y.end());
 
-  for (size_t i = 0; i < size; ++i)
-  {
-    // double conversion required by GSL
-    this->x_data[i] = static_cast<double>(x[i]);
-    this->y_data[i] = static_cast<double>(y[i]);
-  }
+  const size_t size = this->x_data.size();
 
   // store min and max values after double conversion to clamp input
   // interpolation values and avoid rounding issues

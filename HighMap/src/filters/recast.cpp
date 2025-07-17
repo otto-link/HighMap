@@ -36,7 +36,10 @@ void recast_canyon(Array &array, const Array &vcut, float gamma)
                  lambda);
 }
 
-void recast_canyon(Array &array, const Array &vcut, Array *p_mask, float gamma)
+void recast_canyon(Array       &array,
+                   const Array &vcut,
+                   const Array *p_mask,
+                   float        gamma)
 {
   if (!p_mask)
     recast_canyon(array, vcut, gamma);
@@ -48,7 +51,7 @@ void recast_canyon(Array &array, const Array &vcut, Array *p_mask, float gamma)
   }
 }
 
-void recast_canyon(Array &array, float vcut, float gamma, Array *p_noise)
+void recast_canyon(Array &array, float vcut, float gamma, const Array *p_noise)
 {
   if (!p_noise)
   {
@@ -74,11 +77,11 @@ void recast_canyon(Array &array, float vcut, float gamma, Array *p_noise)
   }
 }
 
-void recast_canyon(Array &array,
-                   float  vcut,
-                   Array *p_mask,
-                   float  gamma,
-                   Array *p_noise)
+void recast_canyon(Array       &array,
+                   float        vcut,
+                   const Array *p_mask,
+                   float        gamma,
+                   const Array *p_noise)
 {
   if (!p_mask)
     recast_canyon(array, vcut, gamma, p_noise);
@@ -123,12 +126,12 @@ void recast_cliff(Array &array,
     }
 }
 
-void recast_cliff(Array &array,
-                  float  talus,
-                  int    ir,
-                  float  amplitude,
-                  Array *p_mask,
-                  float  gain)
+void recast_cliff(Array       &array,
+                  float        talus,
+                  int          ir,
+                  float        amplitude,
+                  const Array *p_mask,
+                  float        gain)
 {
   if (!p_mask)
     recast_cliff(array, talus, ir, amplitude, gain);
@@ -183,13 +186,13 @@ void recast_cliff_directional(Array &array,
     }
 }
 
-void recast_cliff_directional(Array &array,
-                              float  talus,
-                              int    ir,
-                              float  amplitude,
-                              float  angle,
-                              Array *p_mask,
-                              float  gain)
+void recast_cliff_directional(Array       &array,
+                              float        talus,
+                              int          ir,
+                              float        amplitude,
+                              float        angle,
+                              const Array *p_mask,
+                              float        gain)
 {
   if (!p_mask)
     recast_cliff_directional(array, talus, ir, amplitude, angle, gain);
@@ -271,14 +274,14 @@ void recast_escarpment(Array &array,
   if (transpose_effect) array = transpose(array);
 }
 
-void recast_escarpment(Array &array,
-                       Array *p_mask,
-                       int    ir,
-                       float  ratio,
-                       float  scale,
-                       bool   reverse,
-                       bool   transpose_effect,
-                       float  global_scaling)
+void recast_escarpment(Array       &array,
+                       const Array *p_mask,
+                       int          ir,
+                       float        ratio,
+                       float        scale,
+                       bool         reverse,
+                       bool         transpose_effect,
+                       float        global_scaling)
 {
   if (!p_mask)
     recast_escarpment(array,
@@ -311,7 +314,11 @@ void recast_peak(Array &array, int ir, float gamma, float k)
   array = ac * pow(array, gamma);
 }
 
-void recast_peak(Array &array, int ir, Array *p_mask, float gamma, float k)
+void recast_peak(Array       &array,
+                 int          ir,
+                 const Array *p_mask,
+                 float        gamma,
+                 float        k)
 {
   if (!p_mask)
     recast_peak(array, ir, gamma, k);
@@ -323,15 +330,15 @@ void recast_peak(Array &array, int ir, Array *p_mask, float gamma, float k)
   }
 }
 
-void recast_rocky_slopes(Array      &array,
-                         float       talus,
-                         int         ir,
-                         float       amplitude,
-                         uint        seed,
-                         float       kw,
-                         float       gamma,
-                         Array      *p_noise,
-                         Vec4<float> bbox)
+void recast_rocky_slopes(Array       &array,
+                         float        talus,
+                         int          ir,
+                         float        amplitude,
+                         uint         seed,
+                         float        kw,
+                         float        gamma,
+                         const Array *p_noise,
+                         Vec4<float>  bbox)
 {
   // slope-based criteria
   Array c = select_gradient_binary(array, talus);
@@ -363,16 +370,16 @@ void recast_rocky_slopes(Array      &array,
     array += amplitude * (*p_noise) * c;
 }
 
-void recast_rocky_slopes(Array      &array,
-                         float       talus,
-                         int         ir,
-                         float       amplitude,
-                         uint        seed,
-                         float       kw,
-                         Array      *p_mask,
-                         float       gamma,
-                         Array      *p_noise,
-                         Vec4<float> bbox)
+void recast_rocky_slopes(Array       &array,
+                         float        talus,
+                         int          ir,
+                         float        amplitude,
+                         uint         seed,
+                         float        kw,
+                         const Array *p_mask,
+                         float        gamma,
+                         const Array *p_noise,
+                         Vec4<float>  bbox)
 {
   {
     if (!p_mask)
@@ -407,7 +414,7 @@ void recast_sag(Array &array, float vref, float k)
   array = 0.5f * array + vref - abs_smooth(array - vref, k);
 }
 
-void recast_sag(Array &array, float vref, float k, Array *p_mask)
+void recast_sag(Array &array, float vref, float k, const Array *p_mask)
 {
   if (!p_mask)
     recast_sag(array, vref, k);

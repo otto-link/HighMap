@@ -1,6 +1,6 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
- * Public License. The full license is in the file LICENSE, distributed with
- * this software. */
+   Public License. The full license is in the file LICENSE, distributed with
+   this software. */
 
 /**
  * @file blending.hpp
@@ -8,13 +8,10 @@
  * @brief Provides functions for various array blending modes.
  *
  * This header file contains functions for blending two arrays using different
- * techniques and modes. The available blending modes include exclusion,
- * negate, overlay, soft light, and gradient-based blending. These functions
- * are useful for image processing and heightmap manipulations where blending
- * effects are required.
- *
- * @version 0.1
- * @date 2023-05-08
+ * techniques and modes. The available blending modes include exclusion, negate,
+ * overlay, soft light, and gradient-based blending. These functions are useful
+ * for image processing and heightmap manipulations where blending effects are
+ * required.
  *
  * @copyright Copyright (c) 2023 Otto Link
  */
@@ -29,15 +26,15 @@ namespace hmap
  * @brief Return the 'exclusion' blending of two arrays.
  *
  * The exclusion blend mode creates a blend that is similar to the difference
- * blend mode but with lower contrast. It produces an effect that is often
- * used in image editing for special effects. For more details, see
+ * blend mode but with lower contrast. It produces an effect that is often used
+ * in image editing for special effects. For more details, see
  * https://en.wikipedia.org/wiki/Blend_modes.
  *
  * @warning Array values are expected to be in the range [0, 1].
  *
- * @param array1 First input array.
- * @param array2 Second input array.
- * @return Array Resulting array after applying the exclusion blend mode.
+ * @param  array1 First input array.
+ * @param  array2 Second input array.
+ * @return        Array Resulting array after applying the exclusion blend mode.
  *
  * **Example**
  * @include ex_blend.cpp
@@ -49,7 +46,8 @@ namespace hmap
  * @image html ex_blend3.png
  * @image html ex_blend4.png
  *
- * @see {@link blend_exclusion}, {@link blend_negate}, {@link blend_overlay},
+ * @see           {@link blend_exclusion}, {@link blend_negate}, {@link
+ *                blend_overlay},
  *      {@link blend_soft}
  */
 Array blend_exclusion(const Array &array1, const Array &array2);
@@ -57,29 +55,30 @@ Array blend_exclusion(const Array &array1, const Array &array2);
 /**
  * @brief Return the blending of two arrays based on their gradients.
  *
- * This function blends two arrays by considering their gradients, which can
- * be useful for producing smooth transitions between the arrays based on
- * their directional changes.
+ * This function blends two arrays by considering their gradients, which can be
+ * useful for producing smooth transitions between the arrays based on their
+ * directional changes.
  *
- * @param array1 First input array.
- * @param array2 Second input array.
- * @param ir Filtering radius in pixels.
- * @return Array Resulting array after blending based on gradients.
+ * @param  array1 First input array.
+ * @param  array2 Second input array.
+ * @param  ir     Filtering radius in pixels.
+ * @return        Array Resulting array after blending based on gradients.
  */
 Array blend_gradients(const Array &array1, const Array &array2, int ir = 4);
 
 /**
  * @brief Return the 'negate' blending of two arrays.
  *
- * The negate blend mode inverts the colors of one of the arrays relative to
- * the other. It creates a high-contrast effect that can be useful for
- * emphasizing differences between two arrays.
+ * The negate blend mode inverts the colors of one of the arrays relative to the
+ * other. It creates a high-contrast effect that can be useful for emphasizing
+ * differences between two arrays.
  *
- * @param array1 First input array.
- * @param array2 Second input array.
- * @return Array Resulting array after applying the negate blend mode.
+ * @param  array1 First input array.
+ * @param  array2 Second input array.
+ * @return        Array Resulting array after applying the negate blend mode.
  *
- * @see {@link blend_exclusion}, {@link blend_negate}, {@link blend_overlay},
+ * @see           {@link blend_exclusion}, {@link blend_negate}, {@link
+ *                blend_overlay},
  *      {@link blend_soft}
  */
 Array blend_negate(const Array &array1, const Array &array2);
@@ -92,11 +91,12 @@ Array blend_negate(const Array &array1, const Array &array2);
  *
  * @warning Array values are expected to be in the range [0, 1].
  *
- * @param array1 First input array.
- * @param array2 Second input array.
- * @return Array Resulting array after applying the overlay blend mode.
+ * @param  array1 First input array.
+ * @param  array2 Second input array.
+ * @return        Array Resulting array after applying the overlay blend mode.
  *
- * @see {@link blend_exclusion}, {@link blend_negate}, {@link blend_overlay},
+ * @see           {@link blend_exclusion}, {@link blend_negate}, {@link
+ *                blend_overlay},
  *      {@link blend_soft}
  */
 Array blend_overlay(const Array &array1, const Array &array2);
@@ -111,11 +111,13 @@ Array blend_overlay(const Array &array1, const Array &array2);
  *
  * @warning Array values are expected to be in the range [0, 1].
  *
- * @param array1 First input array.
- * @param array2 Second input array.
- * @return Array Resulting array after applying the soft light blend mode.
+ * @param  array1 First input array.
+ * @param  array2 Second input array.
+ * @return        Array Resulting array after applying the soft light blend
+ *                mode.
  *
- * @see {@link blend_exclusion}, {@link blend_negate}, {@link blend_overlay},
+ * @see           {@link blend_exclusion}, {@link blend_negate}, {@link
+ *                blend_overlay},
  *      {@link blend_soft}
  */
 Array blend_soft(const Array &array1, const Array &array2);
@@ -124,14 +126,14 @@ Array blend_soft(const Array &array1, const Array &array2);
  * @brief Return the mixing of a set of arrays based on a parameter `t`.
  *
  * This function mixes a set of arrays based on a mixing coefficient `t`
- * that determines the contribution of each array. The parameter `t` should
- * be in the range [0, 1], where `t` represents the blending ratio.
+ * that determines the contribution of each array. The parameter `t` should be
+ * in the range [0, 1], where `t` represents the blending ratio.
  *
  * @warning Values of array `t` are expected to be in the range [0, 1].
  *
- * @param t Mixing coefficient, in the range [0, 1].
- * @param arrays References to the input arrays to be mixed.
- * @return Array Resulting array after mixing.
+ * @param  t      Mixing coefficient, in the range [0, 1].
+ * @param  arrays References to the input arrays to be mixed.
+ * @return        Array Resulting array after mixing.
  *
  * **Example**
  * @include ex_mixer.cpp
@@ -139,9 +141,9 @@ Array blend_soft(const Array &array1, const Array &array2);
  * **Result**
  * @image html ex_mixer.png
  */
-Array mixer(const Array               &t,
-            const std::vector<Array *> arrays,
-            float                      gain_factor = 1.f);
+Array mixer(const Array                      &t,
+            const std::vector<const Array *> &arrays,
+            float                             gain_factor = 1.f);
 
 } // namespace hmap
 
@@ -158,13 +160,15 @@ Array blend_gradients(const Array &array1, const Array &array2, int ir = 4);
  * a specified number of iterations. Optionally, a mask can be provided to
  * control the blending regions.
  *
- * @param array1 The first input array.
- * @param array2 The second input array.
- * @param iterations The number of iterations for the blending process (default:
+ * @param  array1     The first input array.
+ * @param  array2     The second input array.
+ * @param  iterations The number of iterations for the blending process
+ *                    (default:
  * 500).
- * @param p_mask Optional pointer to an array defining the blending mask. If
- * null, blending is applied globally.
- * @return The blended array resulting from the Poisson blending operation.
+ * @param  p_mask     Optional pointer to an array defining the blending mask.
+ *                    If null, blending is applied globally.
+ * @return            The blended array resulting from the Poisson blending
+ *                    operation.
  *
  * **Example**
  * @include ex_blend_poisson_bf.cpp
@@ -175,6 +179,6 @@ Array blend_gradients(const Array &array1, const Array &array2, int ir = 4);
 Array blend_poisson_bf(const Array &array1,
                        const Array &array2,
                        const int    iterations = 500,
-                       Array       *p_mask = nullptr);
+                       const Array *p_mask = nullptr);
 
 } // namespace hmap::gpu

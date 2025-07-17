@@ -11,7 +11,10 @@
 namespace hmap
 {
 
-Tensor compute_splatmap(Array *p_r, Array *p_g, Array *p_b, Array *p_a)
+Tensor compute_splatmap(const Array *p_r,
+                        const Array *p_g,
+                        const Array *p_b,
+                        const Array *p_a)
 {
   Tensor smap = Tensor(p_r->shape, 4);
 
@@ -23,12 +26,12 @@ Tensor compute_splatmap(Array *p_r, Array *p_g, Array *p_b, Array *p_a)
   return smap;
 }
 
-void export_splatmap_png(std::string fname,
-                         Array      *p_r,
-                         Array      *p_g,
-                         Array      *p_b,
-                         Array      *p_a,
-                         int         depth)
+void export_splatmap_png(const std::string &fname,
+                         const Array       *p_r,
+                         const Array       *p_g,
+                         const Array       *p_b,
+                         const Array       *p_a,
+                         int                depth)
 {
   Tensor smap = compute_splatmap(p_r, p_g, p_b, p_a);
   smap.to_png(fname, depth);

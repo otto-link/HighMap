@@ -11,8 +11,8 @@ namespace hmap::gpu
 // --- helpers
 
 void helper_bind_optional_buffers(clwrapper::Run &run,
-                                  Array          *p_noise_x,
-                                  Array          *p_noise_y)
+                                  const Array    *p_noise_x,
+                                  const Array    *p_noise_y)
 {
   std::vector<float> dummy_vector(1);
 
@@ -88,9 +88,9 @@ Array gabor_wave_fbm(Vec2<int>    shape,
                      float        weight,
                      float        persistence,
                      float        lacunarity,
-                     Array       *p_ctrl_param,
-                     Array       *p_noise_x,
-                     Array       *p_noise_y,
+                     const Array *p_ctrl_param,
+                     const Array *p_noise_x,
+                     const Array *p_noise_y,
                      Vec4<float>  bbox)
 {
   Array array(shape);
@@ -128,19 +128,19 @@ Array gabor_wave_fbm(Vec2<int>    shape,
   return array;
 }
 
-Array gabor_wave_fbm(Vec2<int>   shape,
-                     Vec2<float> kw,
-                     uint        seed,
-                     float       angle,
-                     float       angle_spread_ratio,
-                     int         octaves,
-                     float       weight,
-                     float       persistence,
-                     float       lacunarity,
-                     Array      *p_ctrl_param,
-                     Array      *p_noise_x,
-                     Array      *p_noise_y,
-                     Vec4<float> bbox)
+Array gabor_wave_fbm(Vec2<int>    shape,
+                     Vec2<float>  kw,
+                     uint         seed,
+                     float        angle,
+                     float        angle_spread_ratio,
+                     int          octaves,
+                     float        weight,
+                     float        persistence,
+                     float        lacunarity,
+                     const Array *p_ctrl_param,
+                     const Array *p_noise_x,
+                     const Array *p_noise_y,
+                     Vec4<float>  bbox)
 {
   Array array(shape);
   Array array_angle(shape, angle);
@@ -176,9 +176,9 @@ Array gavoronoise(Vec2<int>    shape,
                   int          octaves,
                   float        persistence,
                   float        lacunarity,
-                  Array       *p_ctrl_param,
-                  Array       *p_noise_x,
-                  Array       *p_noise_y,
+                  const Array *p_ctrl_param,
+                  const Array *p_noise_x,
+                  const Array *p_noise_y,
                   Vec4<float>  bbox)
 {
   Array array(shape);
@@ -221,24 +221,24 @@ Array gavoronoise(Vec2<int>    shape,
   return array;
 }
 
-Array gavoronoise(Vec2<int>   shape,
-                  Vec2<float> kw,
-                  uint        seed,
-                  float       angle,
-                  float       amplitude,
-                  float       angle_spread_ratio,
-                  Vec2<float> kw_multiplier,
-                  float       slope_strength,
-                  float       branch_strength,
-                  float       z_cut_min,
-                  float       z_cut_max,
-                  int         octaves,
-                  float       persistence,
-                  float       lacunarity,
-                  Array      *p_ctrl_param,
-                  Array      *p_noise_x,
-                  Array      *p_noise_y,
-                  Vec4<float> bbox)
+Array gavoronoise(Vec2<int>    shape,
+                  Vec2<float>  kw,
+                  uint         seed,
+                  float        angle,
+                  float        amplitude,
+                  float        angle_spread_ratio,
+                  Vec2<float>  kw_multiplier,
+                  float        slope_strength,
+                  float        branch_strength,
+                  float        z_cut_min,
+                  float        z_cut_max,
+                  int          octaves,
+                  float        persistence,
+                  float        lacunarity,
+                  const Array *p_ctrl_param,
+                  const Array *p_noise_x,
+                  const Array *p_noise_y,
+                  Vec4<float>  bbox)
 {
   Array array(shape);
   Array array_angle(shape, angle);
@@ -277,9 +277,9 @@ Array gavoronoise(const Array &base,
                   int          octaves,
                   float        persistence,
                   float        lacunarity,
-                  Array       *p_ctrl_param,
-                  Array       *p_noise_x,
-                  Array       *p_noise_y,
+                  const Array *p_ctrl_param,
+                  const Array *p_noise_x,
+                  const Array *p_noise_y,
                   Vec4<float>  bbox)
 {
   Array array(base.shape);
@@ -321,22 +321,22 @@ Array gavoronoise(const Array &base,
   return array;
 }
 
-Array mountain_range_radial(Vec2<int>   shape,
-                            Vec2<float> kw,
-                            uint        seed,
-                            float       half_width,
-                            float       angle_spread_ratio,
-                            float       core_size_ratio,
-                            Vec2<float> center,
-                            int         octaves,
-                            float       weight,
-                            float       persistence,
-                            float       lacunarity,
-                            Array      *p_ctrl_param,
-                            Array      *p_noise_x,
-                            Array      *p_noise_y,
-                            Array      *p_angle,
-                            Vec4<float> bbox)
+Array mountain_range_radial(Vec2<int>    shape,
+                            Vec2<float>  kw,
+                            uint         seed,
+                            float        half_width,
+                            float        angle_spread_ratio,
+                            float        core_size_ratio,
+                            Vec2<float>  center,
+                            int          octaves,
+                            float        weight,
+                            float        persistence,
+                            float        lacunarity,
+                            const Array *p_ctrl_param,
+                            const Array *p_noise_x,
+                            const Array *p_noise_y,
+                            const Array *p_angle,
+                            Vec4<float>  bbox)
 {
   Array array(shape);
 
@@ -376,14 +376,14 @@ Array mountain_range_radial(Vec2<int>   shape,
   return array;
 }
 
-Array noise(NoiseType   noise_type,
-            Vec2<int>   shape,
-            Vec2<float> kw,
-            uint        seed,
-            Array      *p_noise_x,
-            Array      *p_noise_y,
-            Array      *p_stretching,
-            Vec4<float> bbox)
+Array noise(NoiseType    noise_type,
+            Vec2<int>    shape,
+            Vec2<float>  kw,
+            uint         seed,
+            const Array *p_noise_x,
+            const Array *p_noise_y,
+            const Array *p_stretching,
+            Vec4<float>  bbox)
 {
   Array array(shape);
 
@@ -415,19 +415,19 @@ Array noise(NoiseType   noise_type,
   return array;
 }
 
-Array noise_fbm(NoiseType   noise_type,
-                Vec2<int>   shape,
-                Vec2<float> kw,
-                uint        seed,
-                int         octaves,
-                float       weight,
-                float       persistence,
-                float       lacunarity,
-                Array      *p_ctrl_param,
-                Array      *p_noise_x,
-                Array      *p_noise_y,
-                Array      *p_stretching,
-                Vec4<float> bbox)
+Array noise_fbm(NoiseType    noise_type,
+                Vec2<int>    shape,
+                Vec2<float>  kw,
+                uint         seed,
+                int          octaves,
+                float        weight,
+                float        persistence,
+                float        lacunarity,
+                const Array *p_ctrl_param,
+                const Array *p_noise_x,
+                const Array *p_noise_y,
+                const Array *p_stretching,
+                Vec4<float>  bbox)
 {
   Array array(shape);
 
@@ -469,10 +469,11 @@ Array voronoi(Vec2<int>         shape,
               Vec2<float>       kw,
               uint              seed,
               Vec2<float>       jitter,
+              float             k_smoothing,
               VoronoiReturnType return_type,
-              Array            *p_ctrl_param,
-              Array            *p_noise_x,
-              Array            *p_noise_y,
+              const Array      *p_ctrl_param,
+              const Array      *p_noise_x,
+              const Array      *p_noise_y,
               Vec4<float>       bbox)
 {
   Array array(shape);
@@ -491,6 +492,7 @@ Array voronoi(Vec2<int>         shape,
                      kw.y,
                      seed,
                      jitter,
+                     k_smoothing,
                      (int)return_type,
                      p_ctrl_param ? 1 : 0,
                      p_noise_x ? 1 : 0,
@@ -507,14 +509,15 @@ Array voronoi_fbm(Vec2<int>         shape,
                   Vec2<float>       kw,
                   uint              seed,
                   Vec2<float>       jitter,
+                  float             k_smoothing,
                   VoronoiReturnType return_type,
                   int               octaves,
                   float             weight,
                   float             persistence,
                   float             lacunarity,
-                  Array            *p_ctrl_param,
-                  Array            *p_noise_x,
-                  Array            *p_noise_y,
+                  const Array      *p_ctrl_param,
+                  const Array      *p_noise_x,
+                  const Array      *p_noise_y,
                   Vec4<float>       bbox)
 {
   Array array(shape);
@@ -533,6 +536,7 @@ Array voronoi_fbm(Vec2<int>         shape,
                      kw.y,
                      seed,
                      jitter,
+                     k_smoothing,
                      (int)return_type,
                      octaves,
                      weight,
@@ -549,14 +553,14 @@ Array voronoi_fbm(Vec2<int>         shape,
   return array;
 }
 
-Array voronoise(Vec2<int>   shape,
-                Vec2<float> kw,
-                float       u_param,
-                float       v_param,
-                uint        seed,
-                Array      *p_noise_x,
-                Array      *p_noise_y,
-                Vec4<float> bbox)
+Array voronoise(Vec2<int>    shape,
+                Vec2<float>  kw,
+                float        u_param,
+                float        v_param,
+                uint         seed,
+                const Array *p_noise_x,
+                const Array *p_noise_y,
+                Vec4<float>  bbox)
 {
   Array array(shape);
 
@@ -584,19 +588,19 @@ Array voronoise(Vec2<int>   shape,
   return array;
 }
 
-Array voronoise_fbm(Vec2<int>   shape,
-                    Vec2<float> kw,
-                    float       u_param,
-                    float       v_param,
-                    uint        seed,
-                    int         octaves,
-                    float       weight,
-                    float       persistence,
-                    float       lacunarity,
-                    Array      *p_ctrl_param,
-                    Array      *p_noise_x,
-                    Array      *p_noise_y,
-                    Vec4<float> bbox)
+Array voronoise_fbm(Vec2<int>    shape,
+                    Vec2<float>  kw,
+                    float        u_param,
+                    float        v_param,
+                    uint         seed,
+                    int          octaves,
+                    float        weight,
+                    float        persistence,
+                    float        lacunarity,
+                    const Array *p_ctrl_param,
+                    const Array *p_noise_x,
+                    const Array *p_noise_y,
+                    Vec4<float>  bbox)
 {
   Array array(shape);
 
@@ -630,14 +634,14 @@ Array voronoise_fbm(Vec2<int>   shape,
   return array;
 }
 
-Array voronoi_edge_distance(Vec2<int>   shape,
-                            Vec2<float> kw,
-                            uint        seed,
-                            Vec2<float> jitter,
-                            Array      *p_ctrl_param,
-                            Array      *p_noise_x,
-                            Array      *p_noise_y,
-                            Vec4<float> bbox)
+Array voronoi_edge_distance(Vec2<int>    shape,
+                            Vec2<float>  kw,
+                            uint         seed,
+                            Vec2<float>  jitter,
+                            const Array *p_ctrl_param,
+                            const Array *p_noise_x,
+                            const Array *p_noise_y,
+                            Vec4<float>  bbox)
 {
   Array array(shape);
 

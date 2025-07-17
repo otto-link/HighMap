@@ -30,7 +30,7 @@ Array blend_gradients(const Array &array1, const Array &array2, int ir)
 Array blend_poisson_bf(const Array &array1,
                        const Array &array2,
                        const int    iterations,
-                       Array       *p_mask)
+                       const Array *p_mask)
 {
   Array array1_out = array1;
 

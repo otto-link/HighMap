@@ -11,11 +11,11 @@
 namespace hmap
 {
 
-Array sdf_2d_polyline(const Path &path,
-                      Vec2<int>   shape,
-                      Vec4<float> bbox,
-                      Array      *p_noise_x,
-                      Array      *p_noise_y)
+Array sdf_2d_polyline(const Path  &path,
+                      Vec2<int>    shape,
+                      Vec4<float>  bbox,
+                      const Array *p_noise_x,
+                      const Array *p_noise_y)
 {
   if (path.get_npoints() < 2)
   {
@@ -62,11 +62,11 @@ Array sdf_2d_polyline(const Path &path,
   return sdf2;
 }
 
-Array sdf_2d_polyline_bezier(const Path &path,
-                             Vec2<int>   shape,
-                             Vec4<float> bbox,
-                             Array      *p_noise_x,
-                             Array      *p_noise_y)
+Array sdf_2d_polyline_bezier(const Path  &path,
+                             Vec2<int>    shape,
+                             Vec4<float>  bbox,
+                             const Array *p_noise_x,
+                             const Array *p_noise_y)
 {
   if (path.get_npoints() < 3)
   {

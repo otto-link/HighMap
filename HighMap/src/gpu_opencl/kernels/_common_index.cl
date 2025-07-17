@@ -21,6 +21,33 @@ float2 g_to_xy(const int2   g,
   return (float2)(x, y);
 }
 
+float2 g_to_xy_pixel_centered(const int2 g, const int nx, const int ny)
+{
+  float dx = 1.f / (float)nx;
+  float dy = 1.f / (float)ny;
+
+  float x = 0.5f * dx + (float)g.x * dx;
+  float y = 0.5f * dy + (float)g.y * dy;
+  return (float2)(x, y);
+}
+
+float2 g_to_xy_pixel_centered_bbox(const int2   g,
+                                   const int    nx,
+                                   const int    ny,
+                                   const float4 bbox)
+{
+  float dx = 1.f / (float)nx;
+  float dy = 1.f / (float)ny;
+
+  float x = 0.5f * dx + (float)g.x * dx;
+  float y = 0.5f * dy + (float)g.y * dy;
+
+  x = x * (bbox.y - bbox.x) + bbox.x;
+  y = y * (bbox.w - bbox.z) + bbox.z;
+
+  return (float2)(x, y);
+}
+
 bool is_inside(i, j, nx, ny)
 {
   return i >= 0 && i < nx && j >= 0 && j < ny;

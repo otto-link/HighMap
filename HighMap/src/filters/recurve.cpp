@@ -34,7 +34,7 @@ void recurve(Array                    &array,
 void recurve(Array                    &array,
              const std::vector<float> &t,
              const std::vector<float> &v,
-             Array                    *p_mask)
+             const Array              *p_mask)
 {
   {
     if (!p_mask)
@@ -59,7 +59,7 @@ void recurve_bexp(Array &array, float tau)
                  lambda);
 }
 
-void recurve_bexp(Array &array, float tau, Array *p_mask)
+void recurve_bexp(Array &array, float tau, const Array *p_mask)
 {
   {
     if (!p_mask)
@@ -84,7 +84,7 @@ void recurve_exp(Array &array, float tau)
                  lambda);
 }
 
-void recurve_exp(Array &array, float tau, Array *p_mask)
+void recurve_exp(Array &array, float tau, const Array *p_mask)
 {
   {
     if (!p_mask)
@@ -109,7 +109,7 @@ void recurve_kura(Array &array, float a, float b)
                  lambda);
 }
 
-void recurve_kura(Array &array, float a, float b, Array *p_mask)
+void recurve_kura(Array &array, float a, float b, const Array *p_mask)
 {
   {
     if (!p_mask)
@@ -133,7 +133,7 @@ void recurve_s(Array &array)
                  lambda);
 }
 
-void recurve_s(Array &array, Array *p_mask)
+void recurve_s(Array &array, const Array *p_mask)
 {
   {
     if (!p_mask)
@@ -161,7 +161,7 @@ void recurve_smoothstep_rational(Array &array, float n)
                  lambda);
 }
 
-void recurve_smoothstep_rational(Array &array, float n, Array *p_mask)
+void recurve_smoothstep_rational(Array &array, float n, const Array *p_mask)
 {
   {
     if (!p_mask)

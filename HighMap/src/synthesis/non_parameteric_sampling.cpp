@@ -36,7 +36,7 @@ bool cmp_queue(std::pair<int, std::pair<int, int>> &a,
 
 // --- sampling
 
-Array non_parametric_sampling(Array          &array,
+Array non_parametric_sampling(const Array    &array,
                               hmap::Vec2<int> patch_shape,
                               uint            seed,
                               float           error_threshold)
@@ -138,7 +138,10 @@ Array non_parametric_sampling(Array          &array,
       }
 
     // pick-up a source patch
-    float ssd_best = *std::min_element(ssd_list.begin(), ssd_list.end());
+    float ssd_best = 0.f;
+    if (!ssd_list.empty())
+      ssd_best = *std::min_element(ssd_list.begin(), ssd_list.end());
+
     std::vector<size_t> short_list = {};
 
     for (size_t k = 0; k < ssd_list.size(); k++)

@@ -16,23 +16,23 @@
 namespace hmap
 {
 
-Array dendry(Vec2<int>   shape,
-             Vec2<float> kw,
-             uint        seed,
-             Array      &control_array,
-             float       eps,
-             int         resolution,
-             float       displacement,
-             int         primitives_resolution_steps,
-             float       slope_power,
-             float       noise_amplitude_proportion,
-             bool        add_control_function,
-             float       control_function_overlap,
-             Array      *p_noise_x,
-             Array      *p_noise_y,
-             Array      *p_stretching,
-             Vec4<float> bbox,
-             int         subsampling)
+Array dendry(Vec2<int>    shape,
+             Vec2<float>  kw,
+             uint         seed,
+             Array       &control_array,
+             float        eps,
+             int          resolution,
+             float        displacement,
+             int          primitives_resolution_steps,
+             float        slope_power,
+             float        noise_amplitude_proportion,
+             bool         add_control_function,
+             float        control_function_overlap,
+             const Array *p_noise_x,
+             const Array *p_noise_y,
+             const Array *p_stretching,
+             Vec4<float>  bbox,
+             int          subsampling)
 {
   Array array = Array(shape);
 
@@ -100,9 +100,9 @@ Array dendry(Vec2<int>      shape,
              float          noise_amplitude_proportion,
              bool           add_control_function,
              float          control_function_overlap,
-             Array         *p_noise_x,
-             Array         *p_noise_y,
-             Array         *p_stretching,
+             const Array   *p_noise_x,
+             const Array   *p_noise_y,
+             const Array   *p_stretching,
              Vec4<float>    bbox)
 {
   Array array = Array(shape);

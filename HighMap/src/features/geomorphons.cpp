@@ -39,8 +39,8 @@ Array geomorphons(const Array &array, int irmin, int irmax, float epsilon)
 
         for (int dr = 1; dr < dr_max; dr++)
         {
-          int ip = i + (int)(di[k] * dr);
-          int jp = j + (int)(dj[k] * dr);
+          int ip = i + di[k] * dr;
+          int jp = j + dj[k] * dr;
 
           if ((ip > -1) && (ip < array.shape.x) && (jp > -1) &&
               (jp < array.shape.y))

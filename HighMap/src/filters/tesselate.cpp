@@ -14,7 +14,10 @@
 namespace hmap
 {
 
-Array tessellate(Array &array, uint seed, float node_density, Array *p_weight)
+Array tessellate(Array       &array,
+                 uint         seed,
+                 float        node_density,
+                 const Array *p_weight)
 {
   Array density = Array();
 
@@ -29,7 +32,7 @@ Array tessellate(Array &array, uint seed, float node_density, Array *p_weight)
 
   std::vector<float> x(nnodes);
   std::vector<float> y(nnodes);
-  Vec4<float>        bbox = Vec4<float>(0.f, 1.f, 0.f, 1.f);
+  Vec4<float>        bbox = unit_square_bbox();
 
   random_grid_density(x, y, *p_weight, seed, bbox);
 
