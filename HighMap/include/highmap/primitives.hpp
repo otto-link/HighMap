@@ -34,6 +34,7 @@ enum VoronoiReturnType : int
   F1TF2_SQUARED, // F1 * F2
   F1DF2_SQUARED, // F1 / F2
   F2MF1_SQUARED, // F2 - F1
+  EDGE_DISTANCE_EXP,
   EDGE_DISTANCE_SQUARED,
   CONSTANT,
   CONSTANT_F2MF1_SQUARED
@@ -1703,6 +1704,7 @@ Array voronoi(Vec2<int>         shape,
               uint              seed,
               Vec2<float>       jitter = {0.5f, 0.5f},
               float             k_smoothing = 0.f,
+              float             exp_sigma = 0.f,
               VoronoiReturnType return_type = VoronoiReturnType::F1_SQUARED,
               const Array      *p_ctrl_param = nullptr,
               const Array      *p_noise_x = nullptr,
@@ -1760,6 +1762,7 @@ Array voronoi_fbm(Vec2<int>         shape,
                   uint              seed,
                   Vec2<float>       jitter = {0.5f, 0.5f},
                   float             k_smoothing = 0.f,
+                  float             exp_sigma = 0.f,
                   VoronoiReturnType return_type = VoronoiReturnType::F1_SQUARED,
                   int               octaves = 8,
                   float             weight = 0.7f,

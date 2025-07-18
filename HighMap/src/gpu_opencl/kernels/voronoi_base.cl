@@ -243,6 +243,16 @@ float base_voronoi_edge_distance(const float2 x,
   return res;
 }
 
+float base_voronoi_edge_distance_exp(const float2 x,
+                                     const float2 jitter,
+                                     const float  k_smoothing,
+                                     const float  exp_sigma,
+                                     const float  fseed)
+{
+  float res = base_voronoi_edge_distance(x, jitter, k_smoothing, fseed);
+  return exp(-0.5f * res * res / (exp_sigma * exp_sigma));
+}
+
 float base_voronoi_constant(const float2 p,
                             const float2 jitter,
                             const float  k_smoothing,

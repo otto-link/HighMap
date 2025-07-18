@@ -141,6 +141,34 @@ float base_voronoi_edge_distance_fbm(const float2 p,
   return n;
 }
 
+float base_voronoi_edge_distance_exp_fbm(const float2 p,
+                                         const float2 jitter,
+                                         const float  k_smoothing,
+                                         const float  exp_sigma,
+                                         const int    octaves,
+                                         const float  weight,
+                                         const float  persistence,
+                                         const float  lacunarity,
+                                         const float  fseed)
+{
+  float n = 0.f;
+  float nf = 1.f;
+  float na = 0.6f;
+  for (int i = 0; i < octaves; i++)
+  {
+    float v = base_voronoi_edge_distance_exp(p * nf,
+                                             jitter,
+                                             k_smoothing,
+                                             exp_sigma,
+                                             fseed);
+    n = max(n, v * na);
+    na *= (1.f - weight) + weight * min(v + 1.f, 2.f) * 0.5f;
+    na *= persistence;
+    nf *= lacunarity;
+  }
+  return n;
+}
+
 float base_voronoi_constant_fbm(const float2 p,
                                 const float2 jitter,
                                 const float  k_smoothing,
