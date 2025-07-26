@@ -68,6 +68,7 @@ bool init_opencl()
 #include "kernels/voronoi_fbm.cl"
 #include "kernels/voronoi_main.cl"
 #include "kernels/voronoise.cl"
+#include "kernels/vororand_main.cl"
 #include "kernels/warp.cl"
       ;
 

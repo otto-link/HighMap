@@ -1677,7 +1677,7 @@ Array noise_fbm(NoiseType    noise_type,
  *                      diagram. Defaults to `VoronoiReturnType::F1_SQUARED`.
  * @param  p_ctrl_param (Optional) A pointer to an `Array` used to control the
  *                      Voronoi computation. Used here as a multiplier for the
- * jitter. If nullptr, no control is applied.
+ *                      jitter. If nullptr, no control is applied.
  * @param  p_noise_x    (Optional) A pointer to an `Array` providing additional
  *                      noise in the x-direction for cell positions. If nullptr,
  *                      no x-noise is applied.
@@ -1828,9 +1828,9 @@ Array voronoi_edge_distance(Vec2<int>    shape,
  *                              contribution of random offsets.
  * @param  v_param              A control parameter for the noise, affecting the
  *                              smoothness of the pattern.
- * @param p_ctrl_param         Optional pointer to an Array specifying control
- *                             parameters for Voronoi grid jitter (default is
- *                             nullptr).
+ * @param  p_ctrl_param         Optional pointer to an Array specifying control
+ *                              parameters for Voronoi grid jitter (default is
+ *                              nullptr).
  * @param  p_noise_x, p_noise_y Reference to the input noise arrays.
  * @param  seed                 A seed value for random number generation,
  *                              ensuring reproducibility.
@@ -1893,4 +1893,66 @@ Array voronoise_fbm(Vec2<int>    shape,
                     const Array *p_noise_x = nullptr,
                     const Array *p_noise_y = nullptr,
                     Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
+ * @brief Generates a 2D Voronoi-based scalar field using OpenCL.
+ *
+ * This function computes a Voronoi diagram or derived metric (such as F1, F2,
+ * or edge distances) on a grid of given shape. A set of random points is
+ * generated within an extended bounding box, based on the desired density and
+ * variability, to reduce edge artifacts. Optionally, per-pixel displacement can
+ * be applied through noise fields.
+ *
+ * The result is stored in an `Array` object representing a 2D scalar field.
+ *
+ * @param  shape       Dimensions of the output array (width x height).
+ * @param  density     Number of random points per unit area for Voronoi
+ *                     diagram.
+ * @param  variability Amount of randomness added to the point generation
+ *                     bounding box.
+ * @param  seed        Seed for random number generation used in point sampling.
+ * @param  k_smoothing Smoothing factor used in soft minimum/maximum Voronoi
+ *                     distance computations.
+ * @param  exp_sigma   Standard deviation used in exponential falloff for edge
+ *                     distance computation.
+ * @param  return_type Type of Voronoi computation to perform (e.g., F1, F2,
+ *                     F2-F1, edge distance).
+ * @param  p_noise_x   Optional pointer to a noise field applied to X
+ *                     coordinates of grid points.
+ * @param  p_noise_y   Optional pointer to a noise field applied to Y
+ *                     coordinates of grid points.
+ * @param  bbox        Bounding box of the domain in which the field is
+ *                     computed: {xmin, xmax, ymin, ymax}.
+ * @param  bbox_points Bounding box for point generation, usually larger than
+ * `bbox` to avoid edge effects.
+ *
+ * @return             An `Array` object containing the computed scalar field.
+ *
+ * @note
+ * - The kernel `"vororand"` must be compiled and available in the OpenCL
+ * context.
+ * - If `p_noise_x` or `p_noise_y` are provided, they must match the shape of
+ * the output array.
+ * - The generated point cloud will be larger than `bbox` to reduce border
+ * artifacts.
+ *
+ * **Example**
+ * @include ex_vororand.cpp
+ *
+ * **Result**
+ * @image html ex_vororand.png
+ */
+
+Array vororand(Vec2<int>         shape,
+               float             density,
+               float             variability,
+               uint              seed,
+               float             k_smoothing = 0.f,
+               float             exp_sigma = 0.f,
+               VoronoiReturnType return_type = VoronoiReturnType::F1_SQUARED,
+               const Array      *p_noise_x = nullptr,
+               const Array      *p_noise_y = nullptr,
+               Vec4<float>       bbox = {0.f, 1.f, 0.f, 1.f},
+               Vec4<float>       bbox_points = {0.f, 1.f, 0.f, 1.f});
+
 } // namespace hmap::gpu

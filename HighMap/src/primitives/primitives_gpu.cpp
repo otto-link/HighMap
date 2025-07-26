@@ -2,6 +2,7 @@
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
 #include "highmap/array.hpp"
+#include "highmap/geometry/cloud.hpp"
 #include "highmap/opencl/gpu_opencl.hpp"
 #include "highmap/primitives.hpp"
 
@@ -670,6 +671,72 @@ Array voronoi_edge_distance(Vec2<int>    shape,
 
   run.execute({array.shape.x, array.shape.y});
   run.read_buffer("array");
+
+  return array;
+}
+
+Array vororand(Vec2<int>         shape,
+               float             density,
+               float             variability,
+               uint              seed,
+               float             k_smoothing,
+               float             exp_sigma,
+               VoronoiReturnType return_type,
+               const Array      *p_noise_x,
+               const Array      *p_noise_y,
+               Vec4<float>       bbox,
+               Vec4<float>       bbox_points)
+{
+  // --- generate random set of points
+
+  // TODO adjust extension with respect to the density?
+
+  // take a bounding box a bit larger to reduce border effects
+  float       lx = variability * (bbox_points.b - bbox_points.a);
+  float       ly = variability * (bbox_points.d - bbox_points.c);
+  Vec4<float> bbox_points_mod = bbox_points.adjust(-lx, lx, -ly, ly);
+
+  // density is the number of pts per unit surface
+  int npoints = static_cast<int>(density *
+                                 (bbox_points_mod.b - bbox_points_mod.a) *
+                                 (bbox_points_mod.d - bbox_points_mod.c));
+  npoints = std::max(1, npoints);
+  Cloud cloud = Cloud(npoints, seed, bbox_points_mod);
+
+  std::vector<float> xp = cloud.get_x();
+  std::vector<float> yp = cloud.get_y();
+
+  // --- generate noise
+
+  Array array(shape);
+
+  auto run = clwrapper::Run("vororand");
+
+  run.bind_buffer<float>("array", array.vector);
+
+  helper_bind_optional_buffer(run, "noise_x", p_noise_x);
+  helper_bind_optional_buffer(run, "noise_y", p_noise_y);
+
+  run.bind_buffer<float>("xp", xp);
+  run.bind_buffer<float>("yp", yp);
+
+  run.write_buffer("xp");
+  run.write_buffer("yp");
+
+  run.bind_arguments(array.shape.x,
+                     array.shape.y,
+                     npoints,
+                     k_smoothing,
+                     exp_sigma,
+                     (int)return_type,
+                     p_noise_x ? 1 : 0,
+                     p_noise_y ? 1 : 0,
+                     bbox);
+
+  run.execute({array.shape.x, array.shape.y});
+  run.read_buffer("array");
+
+  array.infos();
 
   return array;
 }

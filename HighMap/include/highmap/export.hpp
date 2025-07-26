@@ -295,19 +295,22 @@ void export_splatmap_png(const std::string &fname,
  * combination of the provided file name radical, tile indices, and file
  * extension.
  *
- * @param fname_radical Base name (radical) for output image files.
- * @param fname_extension File extension to use for exported images (e.g.,
+ * @param fname_radical           Base name (radical) for output image files.
+ * @param fname_extension         File extension to use for exported images
+ *                                (e.g.,
  * "png").
- * @param array The input 2D array to be tiled and exported.
- * @param tiling A 2D vector specifying the number of tiles in the x and y
- * directions.
- * @param leading_zeros Number of digits used to pad the tile indices in the
- * filename.
- * @param depth Bit depth of the output PNG images (commonly 8 or 16).
- * @param overlapping_edges If true, each tile includes an extra row/column from
- * neighboring tiles (for overlap).
+ * @param array                   The input 2D array to be tiled and exported.
+ * @param tiling                  A 2D vector specifying the number of tiles in
+ *                                the x and y directions.
+ * @param leading_zeros           Number of digits used to pad the tile indices
+ *                                in the filename.
+ * @param depth                   Bit depth of the output PNG images (commonly 8
+ *                                or 16).
+ * @param overlapping_edges       If true, each tile includes an extra
+ *                                row/column from neighboring tiles (for
+ *                                overlap).
  * @param reverse_tile_y_indexing If true, Y tile indices are reversed (tile 0
- * is at the top).
+ *                                is at the top).
  *
  * Each tile is extracted using slicing, adjusted for overlap if specified, and
  * then exported as an individual image file named with its tile indices. For
