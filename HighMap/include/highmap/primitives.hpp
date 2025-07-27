@@ -1736,6 +1736,51 @@ Array noise_fbm(NoiseType    noise_type,
                 const Array *p_stretching = nullptr,
                 Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
+/**
+ * @brief Generates a Voronoi-based pattern where cells are defined by proximity
+ * to random lines.
+ *
+ * This function generates an OpenCL-accelerated Voronoi-like pattern based on
+ * the distance from each pixel to a set of randomly oriented lines. Each line
+ * is defined by a random point and a direction sampled from a uniform
+ * distribution around a given angle.
+ *
+ * @param  shape       The resolution of the resulting 2D array (width, height).
+ * @param  density     Number of base points per unit area used to define lines.
+ * @param  seed        Seed for the random number generator used to generate
+ *                     base points and directions.
+ * @param  k_smoothing Kernel smoothing factor; controls how sharp or soft the
+ *                     distance fields are.
+ * @param  exp_sigma   Exponential smoothing parameter applied to the computed
+ *                     distance field.
+ * @param  alpha       Base angle (in radians) used to orient the generated
+ *                     lines.
+ * @param  alpha_span  Maximum angular deviation from `alpha`; controls line
+ *                     orientation variability.
+ * @param  return_type Type of Voronoi output to return (e.g., F1, F2, edge
+ *                     distance, smoothed field, etc.).
+ * @param  p_noise_x   Optional pointer to an input noise field applied to the X
+ *                     coordinates (can be nullptr).
+ * @param  p_noise_y   Optional pointer to an input noise field applied to the Y
+ *                     coordinates (can be nullptr).
+ * @param  bbox        Bounding box in normalized coordinates (min_x, max_x,
+ *                     min_y, max_y) of the final array.
+ * @param  bbox_points Bounding box within which random base points are sampled.
+ *
+ * @return             A 2D array (of type Array) containing the computed
+ *                     distance field based on line proximity.
+ *
+ * @note Each line is defined from a point (x, y) to a direction offset using
+ * angle `theta = alpha + rand * alpha_span`.
+ * @note The OpenCL kernel "vorolines" must be defined and compiled beforehand.
+ *
+ * **Example**
+ * @include ex_vorolines.cpp
+ *
+ * **Result**
+ * @image html ex_vorolines.png
+ * @image html ex_vorolines_fbm.png
+ */
 Array vorolines(Vec2<int>         shape,
                 float             density,
                 uint              seed,
@@ -1749,6 +1794,61 @@ Array vorolines(Vec2<int>         shape,
                 Vec4<float>       bbox = {0.f, 1.f, 0.f, 1.f},
                 Vec4<float>       bbox_points = {0.f, 1.f, 0.f, 1.f});
 
+/**
+ * @brief Generates a Voronoi-based pattern using distances to lines defined by
+ * random points and angles, with additional fractal Brownian motion (fBm) noise
+ * modulation.
+ *
+ * This function extends the standard `vorolines` generation by introducing
+ * fBm-based warping of the coordinate space, resulting in more organic and
+ * fractal-like structures. It creates a Voronoi distance field based on
+ * proximity to oriented line segments and distorts the result using
+ * multi-octave procedural noise.
+ *
+ * @param  shape       Output resolution of the 2D array (width, height).
+ * @param  density     Number of base points per unit area used to define lines.
+ * @param  seed        Seed value for the random number generator.
+ * @param  k_smoothing Kernel smoothing coefficient to soften distance values
+ *                     (e.g., for blending).
+ * @param  exp_sigma   Sigma value for optional exponential smoothing on the
+ *                     final field.
+ * @param  alpha       Base orientation angle (in radians) of lines generated
+ *                     from random points.
+ * @param  alpha_span  Maximum angle deviation from `alpha`, determining
+ *                     directional randomness of lines.
+ * @param  return_type Type of output to return (e.g., F1, F2, distance to edge,
+ *                     smoothed version).
+ * @param  octaves     Number of noise octaves used in the fBm modulation.
+ * @param  weight      Weight of each octave's contribution to the total noise.
+ * @param  persistence Amplitude decay factor for each successive octave
+ *                     (commonly 0.5–0.8).
+ * @param  lacunarity  Frequency multiplier for each successive octave (commonly
+ *                     2.0).
+ * @param  p_noise_x   Optional pointer to an external noise field applied to X
+ *                     coordinates (can be nullptr).
+ * @param  p_noise_y   Optional pointer to an external noise field applied to Y
+ *                     coordinates (can be nullptr).
+ * @param  bbox        Bounding box for the final image domain (min_x, max_x,
+ *                     min_y, max_y).
+ * @param  bbox_points Bounding box from which the initial set of points are
+ *                     sampled.
+ *
+ * @return             A 2D `Array` representing the Voronoi-fBm field,
+ *                     distorted by noise and influenced by distance to random
+ *                     lines.
+ *
+ * @note This version uses internally computed fBm noise unless external fields
+ * (`p_noise_x`, `p_noise_y`) are provided.
+ * @note This function requires an OpenCL kernel named "vorolines_fbm" to be
+ * compiled and accessible.
+ *
+ * **Example**
+ * @include ex_vorolines.cpp
+ *
+ * **Result**
+ * @image html ex_vorolines.png
+ * @image html ex_vorolines_fbm.png
+ */
 Array vorolines_fbm(
     Vec2<int>         shape,
     float             density,
