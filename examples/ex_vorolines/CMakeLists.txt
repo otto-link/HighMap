@@ -1,0 +1,2 @@
+add_executable(ex_vorolines ex_vorolines.cpp)
+target_link_libraries(ex_vorolines highmap)

@@ -5,11 +5,12 @@ int main(void)
   hmap::gpu::init_opencl();
 
   hmap::Vec2<int> shape = {256, 256};
-  float           density = 8.f;
-  float           variability = 4.f;
   int             seed = 1;
-  float           k_smoothing = 0.05f;
+  float           density = 8.f;
+  float           k_smoothing = 0.005f;
   float           exp_sigma = 0.01f;
+  float           alpha = 0.f;
+  float           alpha_span = 0.5f * M_PI;
 
   std::vector<hmap::VoronoiReturnType> types = {
       hmap::VoronoiReturnType::F1_SQUARED,
@@ -26,16 +27,18 @@ int main(void)
 
   for (auto type : types)
   {
-    hmap::Array z = hmap::gpu::vororand(shape,
-                                        density,
-                                        variability,
-                                        seed,
-                                        k_smoothing,
-                                        exp_sigma,
-                                        type);
+    hmap::Array z = hmap::gpu::vorolines(shape,
+                                         density,
+                                         seed,
+                                         k_smoothing,
+                                         exp_sigma,
+                                         alpha,
+                                         alpha_span,
+                                         type);
     hmap::remap(z);
+    z = sqrt(z);
     zs.push_back(z);
   }
 
-  hmap::export_banner_png("ex_vororand.png", zs, hmap::Cmap::INFERNO);
+  hmap::export_banner_png("ex_vorolines.png", zs, hmap::Cmap::INFERNO);
 }

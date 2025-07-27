@@ -3,22 +3,6 @@ R""(
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
 
-float helper_voronoi_smin(const float a, const float b, const float k)
-{
-  if (k > 0.f)
-    return min_smooth(a, b, k);
-  else
-    return min(a, b);
-}
-
-float helper_voronoi_smax(const float a, const float b, const float k)
-{
-  if (k > 0.f)
-    return max_smooth(a, b, k);
-  else
-    return max(a, b);
-}
-
 float base_voronoi_f1(const float2 p,
                       const float2 jitter,
                       const float  k_smoothing,
@@ -42,7 +26,7 @@ float base_voronoi_f1(const float2 p,
       float2 diff = p - feature_point;
       float  dist = dot(diff, diff);
 
-      min_dist = helper_voronoi_smin(min_dist, dist, k_smoothing);
+      min_dist = smin(min_dist, dist, k_smoothing);
     }
 
   // NB - squared distance
@@ -73,11 +57,8 @@ float base_voronoi_f2(const float2 p,
       float2 diff = p - feature_point;
       float  dist = dot(diff, diff);
 
-      float new_min1 = helper_voronoi_smin(min1, dist, k_smoothing);
-      float new_min2 = helper_voronoi_smin(
-          min2,
-          helper_voronoi_smax(min1, dist, k_smoothing),
-          k_smoothing);
+      float new_min1 = smin(min1, dist, k_smoothing);
+      float new_min2 = smin(min2, smax(min1, dist, k_smoothing), k_smoothing);
       min1 = new_min1;
       min2 = new_min2;
     }
@@ -109,11 +90,8 @@ float base_voronoi_f1tf2(const float2 p,
       float2 diff = p - feature_point;
       float  dist = dot(diff, diff);
 
-      float new_min1 = helper_voronoi_smin(min1, dist, k_smoothing);
-      float new_min2 = helper_voronoi_smin(
-          min2,
-          helper_voronoi_smax(min1, dist, k_smoothing),
-          k_smoothing);
+      float new_min1 = smin(min1, dist, k_smoothing);
+      float new_min2 = smin(min2, smax(min1, dist, k_smoothing), k_smoothing);
       min1 = new_min1;
       min2 = new_min2;
     }
@@ -145,11 +123,8 @@ float base_voronoi_f1df2(const float2 p,
       float2 diff = p - feature_point;
       float  dist = dot(diff, diff);
 
-      float new_min1 = helper_voronoi_smin(min1, dist, k_smoothing);
-      float new_min2 = helper_voronoi_smin(
-          min2,
-          helper_voronoi_smax(min1, dist, k_smoothing),
-          k_smoothing);
+      float new_min1 = smin(min1, dist, k_smoothing);
+      float new_min2 = smin(min2, smax(min1, dist, k_smoothing), k_smoothing);
       min1 = new_min1;
       min2 = new_min2;
     }
@@ -181,11 +156,8 @@ float base_voronoi_f2mf1(const float2 p,
       float2 diff = p - feature_point;
       float  dist = dot(diff, diff);
 
-      float new_min1 = helper_voronoi_smin(min1, dist, k_smoothing);
-      float new_min2 = helper_voronoi_smin(
-          min2,
-          helper_voronoi_smax(min1, dist, k_smoothing),
-          k_smoothing);
+      float new_min1 = smin(min1, dist, k_smoothing);
+      float new_min2 = smin(min2, smax(min1, dist, k_smoothing), k_smoothing);
       min1 = new_min1;
       min2 = new_min2;
     }
@@ -236,7 +208,7 @@ float base_voronoi_edge_distance(const float2 x,
       if (dot(mr - r, mr - r) > 1e-5f)
       {
         float d = dot(0.5f * (mr + r), normalize(r - mr));
-        res = helper_voronoi_smin(res, d, k_smoothing);
+        res = smin(res, d, k_smoothing);
       }
     }
 
@@ -317,11 +289,8 @@ float base_voronoi_constant_f2mf1(const float2 p,
       float2 diff = p - feature_point;
       float  dist = dot(diff, diff);
 
-      float new_min1 = helper_voronoi_smin(min1, dist, k_smoothing);
-      float new_min2 = helper_voronoi_smin(
-          min2,
-          helper_voronoi_smax(min1, dist, k_smoothing),
-          k_smoothing);
+      float new_min1 = smin(min1, dist, k_smoothing);
+      float new_min2 = smin(min2, smax(min1, dist, k_smoothing), k_smoothing);
       min1 = new_min1;
       min2 = new_min2;
 

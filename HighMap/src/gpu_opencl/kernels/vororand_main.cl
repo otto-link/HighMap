@@ -40,7 +40,7 @@ void kernel vororand(global float   *output,
       float2 p = (float2)(xp[i], yp[i]);
       float2 diff = p - pos;
       float  dist = dot(diff, diff);
-      min1 = helper_voronoi_smin(min1, dist, k_smoothing);
+      min1 = smin(min1, dist, k_smoothing);
     }
     val = min(10.f, min1);
   }
@@ -57,11 +57,8 @@ void kernel vororand(global float   *output,
       float2 diff = p - pos;
       float  dist = dot(diff, diff);
 
-      float new_min1 = helper_voronoi_smin(min1, dist, k_smoothing);
-      float new_min2 = helper_voronoi_smin(
-          min2,
-          helper_voronoi_smax(min1, dist, k_smoothing),
-          k_smoothing);
+      float new_min1 = smin(min1, dist, k_smoothing);
+      float new_min2 = smin(min2, smax(min1, dist, k_smoothing), k_smoothing);
       min1 = new_min1;
       min2 = new_min2;
     }
@@ -80,11 +77,8 @@ void kernel vororand(global float   *output,
       float2 diff = p - pos;
       float  dist = dot(diff, diff);
 
-      float new_min1 = helper_voronoi_smin(min1, dist, k_smoothing);
-      float new_min2 = helper_voronoi_smin(
-          min2,
-          helper_voronoi_smax(min1, dist, k_smoothing),
-          k_smoothing);
+      float new_min1 = smin(min1, dist, k_smoothing);
+      float new_min2 = smin(min2, smax(min1, dist, k_smoothing), k_smoothing);
       min1 = new_min1;
       min2 = new_min2;
     }
@@ -103,11 +97,8 @@ void kernel vororand(global float   *output,
       float2 diff = p - pos;
       float  dist = dot(diff, diff);
 
-      float new_min1 = helper_voronoi_smin(min1, dist, k_smoothing);
-      float new_min2 = helper_voronoi_smin(
-          min2,
-          helper_voronoi_smax(min1, dist, k_smoothing),
-          k_smoothing);
+      float new_min1 = smin(min1, dist, k_smoothing);
+      float new_min2 = smin(min2, smax(min1, dist, k_smoothing), k_smoothing);
       min1 = new_min1;
       min2 = new_min2;
     }
@@ -126,11 +117,8 @@ void kernel vororand(global float   *output,
       float2 diff = p - pos;
       float  dist = dot(diff, diff);
 
-      float new_min1 = helper_voronoi_smin(min1, dist, k_smoothing);
-      float new_min2 = helper_voronoi_smin(
-          min2,
-          helper_voronoi_smax(min1, dist, k_smoothing),
-          k_smoothing);
+      float new_min1 = smin(min1, dist, k_smoothing);
+      float new_min2 = smin(min2, smax(min1, dist, k_smoothing), k_smoothing);
       min1 = new_min1;
       min2 = new_min2;
     }
@@ -166,7 +154,7 @@ void kernel vororand(global float   *output,
       if (dot(diff - diff_min, diff - diff_min) > 1e-5f)
       {
         float dist = dot(0.5f * (diff_min + diff), normalize(diff - diff_min));
-        val = helper_voronoi_smin(val, dist, k_smoothing);
+        val = smin(val, dist, k_smoothing);
       }
     }
 
@@ -202,7 +190,7 @@ void kernel vororand(global float   *output,
       if (dot(diff - diff_min, diff - diff_min) > 1e-5f)
       {
         float dist = dot(0.5f * (diff_min + diff), normalize(diff - diff_min));
-        val = helper_voronoi_smin(val, dist, k_smoothing);
+        val = smin(val, dist, k_smoothing);
       }
     }
   }
@@ -256,11 +244,8 @@ void kernel vororand(global float   *output,
         if (dist < min1) val = (float)i;
       }
 
-      float new_min1 = helper_voronoi_smin(min1, dist, k_smoothing);
-      float new_min2 = helper_voronoi_smin(
-          min2,
-          helper_voronoi_smax(min1, dist, k_smoothing),
-          k_smoothing);
+      float new_min1 = smin(min1, dist, k_smoothing);
+      float new_min2 = smin(min2, smax(min1, dist, k_smoothing), k_smoothing);
       min1 = new_min1;
       min2 = new_min2;
     }
