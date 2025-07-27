@@ -1,6 +1,8 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
+#include <stdexcept>
+
 #include "highmap/array.hpp"
 #include "highmap/geometry/cloud.hpp"
 #include "highmap/opencl/gpu_opencl.hpp"
@@ -708,6 +710,36 @@ Array vororand(Vec2<int>         shape,
 
   // --- generate noise
 
+  Array array = vororand(shape,
+                         xp,
+                         yp,
+                         k_smoothing,
+                         exp_sigma,
+                         return_type,
+                         p_noise_x,
+                         p_noise_y,
+                         bbox,
+                         bbox_points);
+
+  return array;
+}
+
+Array vororand(Vec2<int>                 shape,
+               const std::vector<float> &xp,
+               const std::vector<float> &yp,
+               float                     k_smoothing,
+               float                     exp_sigma,
+               VoronoiReturnType         return_type,
+               const Array              *p_noise_x,
+               const Array              *p_noise_y,
+               Vec4<float>               bbox,
+               Vec4<float>               bbox_points)
+{
+  // do some checking first
+  if (xp.empty() || yp.empty() || xp.size() != yp.size())
+    throw std::runtime_error(
+        "Invalid point cloud: empty or mismatched coordinate arrays.");
+
   Array array(shape);
 
   auto run = clwrapper::Run("vororand");
@@ -725,7 +757,7 @@ Array vororand(Vec2<int>         shape,
 
   run.bind_arguments(array.shape.x,
                      array.shape.y,
-                     npoints,
+                     static_cast<int>(xp.size()),
                      k_smoothing,
                      exp_sigma,
                      (int)return_type,
@@ -735,8 +767,6 @@ Array vororand(Vec2<int>         shape,
 
   run.execute({array.shape.x, array.shape.y});
   run.read_buffer("array");
-
-  array.infos();
 
   return array;
 }

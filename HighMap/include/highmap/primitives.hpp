@@ -1942,13 +1942,23 @@ Array voronoise_fbm(Vec2<int>    shape,
  * **Result**
  * @image html ex_vororand.png
  */
-
 Array vororand(Vec2<int>         shape,
                float             density,
                float             variability,
                uint              seed,
                float             k_smoothing = 0.f,
                float             exp_sigma = 0.f,
+               VoronoiReturnType return_type = VoronoiReturnType::F1_SQUARED,
+               const Array      *p_noise_x = nullptr,
+               const Array      *p_noise_y = nullptr,
+               Vec4<float>       bbox = {0.f, 1.f, 0.f, 1.f},
+               Vec4<float>       bbox_points = {0.f, 1.f, 0.f, 1.f});
+
+Array vororand(Vec2<int>                 shape,
+               const std::vector<float> &xp,
+               const std::vector<float> &yp,
+               float                     k_smoothing = 0.f,
+               float                     exp_sigma = 0.f,
                VoronoiReturnType return_type = VoronoiReturnType::F1_SQUARED,
                const Array      *p_noise_x = nullptr,
                const Array      *p_noise_y = nullptr,
