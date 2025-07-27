@@ -41,4 +41,24 @@ int main(void)
   }
 
   hmap::export_banner_png("ex_vorolines.png", zs, hmap::Cmap::INFERNO);
+
+  // FBM
+  zs = {};
+
+  for (auto type : types)
+  {
+    hmap::Array z = hmap::gpu::vorolines_fbm(shape,
+                                             density,
+                                             seed,
+                                             k_smoothing,
+                                             exp_sigma,
+                                             alpha,
+                                             alpha_span,
+                                             type);
+    hmap::remap(z);
+    z = sqrt(z);
+    zs.push_back(z);
+  }
+
+  hmap::export_banner_png("ex_vorolines_fbm.png", zs, hmap::Cmap::INFERNO);
 }

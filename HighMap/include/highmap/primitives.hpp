@@ -1749,6 +1749,24 @@ Array vorolines(Vec2<int>         shape,
                 Vec4<float>       bbox = {0.f, 1.f, 0.f, 1.f},
                 Vec4<float>       bbox_points = {0.f, 1.f, 0.f, 1.f});
 
+Array vorolines_fbm(
+    Vec2<int>         shape,
+    float             density,
+    uint              seed,
+    float             k_smoothing = 0.f,
+    float             exp_sigma = 0.f,
+    float             alpha = 0.f,
+    float             alpha_span = M_PI,
+    VoronoiReturnType return_type = VoronoiReturnType::F1_SQUARED,
+    int               octaves = 8,
+    float             weight = 0.7f,
+    float             persistence = 0.5f,
+    float             lacunarity = 2.f,
+    const Array      *p_noise_x = nullptr,
+    const Array      *p_noise_y = nullptr,
+    Vec4<float>       bbox = {0.f, 1.f, 0.f, 1.f},
+    Vec4<float>       bbox_points = {0.f, 1.f, 0.f, 1.f});
+
 /**
  * @brief Generates a Voronoi diagram in a 2D array with configurable
  * properties.

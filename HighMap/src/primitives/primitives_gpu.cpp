@@ -7,6 +7,7 @@
 #include "highmap/geometry/cloud.hpp"
 #include "highmap/opencl/gpu_opencl.hpp"
 #include "highmap/primitives.hpp"
+#include "highmap/range.hpp"
 
 namespace hmap::gpu
 {
@@ -545,6 +546,51 @@ Array vorolines(Vec2<int>         shape,
   run.read_buffer("array");
 
   return array;
+}
+
+Array vorolines_fbm(Vec2<int>         shape,
+                    float             density,
+                    uint              seed,
+                    float             k_smoothing,
+                    float             exp_sigma,
+                    float             alpha,
+                    float             alpha_span,
+                    VoronoiReturnType return_type,
+                    int               octaves,
+                    float             weight,
+                    float             persistence,
+                    float             lacunarity,
+                    const Array      *p_noise_x,
+                    const Array      *p_noise_y,
+                    Vec4<float>       bbox,
+                    Vec4<float>       bbox_points)
+{
+  Array n = Array(shape);
+  Array na = Array(shape, 0.6f);
+  float nf = 1.f;
+
+  for (int i = 0; i < octaves; i++)
+  {
+    Array v = vorolines(shape,
+                        density,
+                        seed++,
+                        k_smoothing,
+                        exp_sigma,
+                        alpha,
+                        alpha_span,
+                        return_type,
+                        p_noise_x,
+                        p_noise_y,
+                        bbox,
+                        bbox_points);
+
+    n += v * na;
+    na *= (1.f - weight) + weight * minimum(v + 1.f, 2.f) * 0.5f;
+    na *= persistence;
+    nf *= lacunarity;
+  }
+
+  return n;
 }
 
 Array voronoi(Vec2<int>         shape,
