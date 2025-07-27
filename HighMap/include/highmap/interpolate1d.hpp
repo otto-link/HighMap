@@ -75,7 +75,7 @@ public:
    * @param  y      A vector of y coordinates (dependent variable).
    * @param  method The interpolation method to use (default is linear).
    *
-   * @throws std::invalid_argumentifxandyhavedifferentsizesor if there are fewer
+   * @throws std::invalid_argumentifxandyhavedifferentsizesorifthere are fewer
    *                than two points. An exception is also thrown if the method
    *                requires monotonic data and the provided data is not
    *                monotonic.

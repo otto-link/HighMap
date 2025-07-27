@@ -1347,6 +1347,82 @@ Array worley_double(Vec2<int>    shape,
 namespace hmap::gpu
 {
 
+/**
+ * @brief Generates a synthetic procedural terrain resembling basaltic
+ * landforms.
+ *
+ * This function creates a multi-scale procedural field combining large, medium,
+ * and small-scale Voronoi-based patterns, noise warping, and optional
+ * flattening, simulating the morphology of fractured basalt or volcanic
+ * terrains. The terrain is constructed using a combination of Voronoi diagrams
+ * (via `voronoi_fbm`) and fractal noise (`noise_fbm`), layered with
+ * frequency-domain manipulations and amplitude/gain controls at each scale.
+ *
+ * The final output is a heightmap represented as an `Array`, normalized and
+ * composed of:
+ * - Large-scale cellular patterns with smoothed Voronoi edge distances.
+ * - Medium and small-scale structures introducing finer surface variation.
+ * - Optional rugosity (fine detail) and flattening to simulate erosion or flow
+ * effects.
+ *
+ * @param  shape                   Output resolution (width x height) of the
+ *                                 field.
+ * @param  kw                      Base wave numbers (frequency) for the terrain
+ *                                 features.
+ * @param  seed                    Initial seed used for deterministic random
+ *                                 generation.
+ * @param  warp_kw                 Frequency of the warping noise that displaces
+ *                                 Voronoi positions.
+ * @param  large_scale_warp_amp    Amplitude of displacement for large-scale
+ *                                 Voronoi warping.
+ * @param  large_scale_gain        Gain adjustment applied to the large-scale
+ *                                 features.
+ * @param  large_scale_amp         Final amplitude of the large-scale height
+ *                                 contribution.
+ * @param  medium_scale_kw_ratio   Scaling factor for the frequency of the
+ *                                 medium-scale patterns.
+ * @param  medium_scale_warp_amp   Amplitude of warping for the medium-scale
+ *                                 displacement.
+ * @param  medium_scale_gain       Gain control for medium-scale modulation.
+ * @param  medium_scale_amp        Amplitude of the medium-scale heightmap.
+ * @param  small_scale_kw_ratio    Frequency ratio for small-scale details.
+ * @param  small_scale_amp         Amplitude of small-scale pattern
+ *                                 contribution.
+ * @param  small_scale_overlay_amp Additional overlay strength for repeating the
+ *                                 small-scale pattern.
+ * @param  rugosity_kw_ratio       Frequency ratio for high-frequency noise
+ *                                 applied as fine roughness.
+ * @param  rugosity_amp            Strength of the rugosity (high-frequency
+ *                                 modulation).
+ * @param  flatten_activate        Enables or disables the final flattening
+ *                                 operation.
+ * @param  flatten_kw_ratio        Frequency scaling of the flattening noise
+ *                                 field.
+ * @param  flatten_amp             Amplitude control of the flattening
+ *                                 operation.
+ * @param  p_noise_x               Optional pointer to a noise field used to
+ *                                 displace grid coordinates in X.
+ * @param  p_noise_y               Optional pointer to a noise field used to
+ *                                 displace grid coordinates in Y.
+ * @param  bbox                    The 2D bounding box ({xmin, xmax, ymin,
+ *                                 ymax}) over which the terrain is generated.
+ *
+ * @return                         A procedurally generated `Array` representing
+ *                                 the synthetic basalt-like terrain field.
+ *
+ * @note
+ * - This function relies on OpenCL-based kernels via the `gpu::` namespace.
+ * - The returned field is normalized in amplitude but may require rescaling to
+ * match specific physical units.
+ * - Adjusting `seed`, `warp_kw`, and the gain/amplitude values can produce a
+ * wide variety of terrain features.
+ *
+ * **Example**
+ * @include ex_basalt_field.cpp
+ *
+ * **Result**
+ * @image html ex_basalt_field.png
+ */
 Array basalt_field(Vec2<int>    shape,
                    Vec2<float>  kw,
                    uint         seed,
