@@ -94,7 +94,9 @@ void expand_grid_corners(std::vector<float> &x,
  * @param x         `x` coordinates (output).
  * @param y         `y` coordinates (output).
  * @param bbox      Bounding box.
- * @param threshold Theshold 'background' value. Example**
+ * @param threshold Theshold 'background' value.
+ *
+ * **Example**
  * @include ex_grid_from_array.cpp
  *
  * **Result**
