@@ -572,7 +572,7 @@ Array vorolines_fbm(Vec2<int>         shape,
   for (int i = 0; i < octaves; i++)
   {
     Array v = vorolines(shape,
-                        density,
+                        nf * density,
                         seed++,
                         k_smoothing,
                         exp_sigma,
