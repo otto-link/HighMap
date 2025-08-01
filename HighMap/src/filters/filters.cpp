@@ -714,6 +714,13 @@ void median_3x3(Array &array, const Array *p_mask)
   }
 }
 
+Array median_pseudo(const Array &array, int ir)
+{
+  return (minimum_local(array, ir) + maximum_local(array, ir) +
+          mean_local(array, ir)) /
+         3.f;
+}
+
 void normal_displacement(Array &array, float amount, int ir, bool reverse)
 {
   Array array_f = array;

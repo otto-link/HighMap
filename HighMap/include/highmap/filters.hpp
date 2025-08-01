@@ -941,6 +941,38 @@ void median_3x3(Array &array, const Array *p_mask);
 void median_3x3(Array &array);
 
 /**
+ * @brief Computes a fast pseudo-median approximation of a local neighborhood in an array.
+ *
+ * This function approximates the effect of a median filter by computing the local
+ * minimum, maximum, and mean values within a square neighborhood of radius `ir`,
+ * and averaging the results:
+ *
+ * \f[
+ * \text{pseudo\_median}(x, y) = \frac{\text{min} + \text{max} + \text{mean}}{3}
+ * \f]
+ *
+ * This method is computationally cheaper than a true median filter and can
+ * approximate its noise-reduction and edge-preserving properties to some extent.
+ *
+ * @param array Input array (e.g., image or 2D signal).
+ * @param ir Radius of the square neighborhood (kernel size will be \f$2 \cdot ir + 1\f$).
+ * @return An Array containing the pseudo-median filtered output.
+ *
+ * @note This method works best on images with impulsive noise (e.g., salt-and-pepper),
+ *       but is only an approximation and may behave differently from a true median filter
+ *       on complex structures or edges.
+ *
+ * **Example**
+ * @include ex_median_pseudo.cpp
+ *
+ * **Result**
+ * @image html ex_median_pseudo.png
+ * 
+ * @see minimum_local, maximum_local, mean_local
+ */
+Array median_pseudo(const Array &array, int ir);
+
+/**
  * @brief Return the local minima based on a maximum filter with a square
  * kernel.
  *
@@ -2322,6 +2354,9 @@ Array mean_shift(const Array &array,
 /*! @brief See hmap::median_3x3 */
 void median_3x3(Array &array);
 void median_3x3(Array &array, const Array *p_mask); ///< @overload
+
+/*! @brief See hmap::median_pseudo */
+Array median_pseudo(const Array &array, int ir);
 
 /*! @brief See hmap::minimum_local */
 Array minimum_local(const Array &array, int ir);

@@ -1,0 +1,2 @@
+add_executable(ex_median_pseudo ex_median_pseudo.cpp)
+target_link_libraries(ex_median_pseudo highmap)

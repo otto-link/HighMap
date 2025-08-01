@@ -280,6 +280,13 @@ void median_3x3(Array &array, const Array *p_mask)
   }
 }
 
+Array median_pseudo(const Array &array, int ir)
+{
+  return (gpu::minimum_local(array, ir) + gpu::maximum_local(array, ir) +
+          gpu::mean_local(array, ir)) /
+         3.f;
+}
+
 Array minimum_local(const Array &array, int ir)
 {
   return -gpu::maximum_local(-array, ir);
