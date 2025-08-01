@@ -101,13 +101,15 @@ Array rugosity(const Array &z, int ir, bool convex)
 
 Array std_local(const Array &array, int ir)
 {
-  Array mean = mean_local(array, ir);
+  // NB - use Gaussian windowing instead of a real arithmetic averaging
+  Array mean = array;
+  smooth_cpulse(mean, ir);
 
   // use mean to store (array - mean)^2
   mean -= array;
   mean *= mean;
-
-  Array std = sqrt(mean_local(mean, ir));
+  smooth_cpulse(mean, ir);
+  Array std = sqrt(mean);
 
   return std;
 }
@@ -128,7 +130,6 @@ Array valley_width(const Array &z, int ir, bool ridge_select)
 Array z_score(const Array &array, int ir)
 {
   // NB - use Gaussian windowing instead of a real arithmetic averaging
-
   Array mean = array;
   smooth_cpulse(mean, ir);
 
