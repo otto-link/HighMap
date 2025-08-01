@@ -99,6 +99,19 @@ Array rugosity(const Array &z, int ir, bool convex)
   return z_skw;
 }
 
+Array std_local(const Array &array, int ir)
+{
+  Array mean = mean_local(array, ir);
+
+  // use mean to store (array - mean)^2
+  mean -= array;
+  mean *= mean;
+
+  Array std = sqrt(mean_local(mean, ir));
+
+  return std;
+}
+
 Array valley_width(const Array &z, int ir, bool ridge_select)
 {
   Array vw = z;

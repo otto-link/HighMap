@@ -1,0 +1,2 @@
+add_executable(ex_std_local ex_std_local.cpp)
+target_link_libraries(ex_std_local highmap)

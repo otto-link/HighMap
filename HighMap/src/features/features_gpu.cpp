@@ -80,4 +80,17 @@ Array rugosity(const Array &z, int ir, bool convex)
   return z_skw;
 }
 
+Array std_local(const Array &array, int ir)
+{
+  Array mean = gpu::mean_local(array, ir);
+
+  // use mean to store (array - mean)^2
+  mean -= array;
+  mean *= mean;
+
+  Array std = sqrt(gpu::mean_local(mean, ir));
+
+  return std;
+}
+
 } // namespace hmap::gpu
