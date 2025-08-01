@@ -93,4 +93,20 @@ Array std_local(const Array &array, int ir)
   return std;
 }
 
+Array z_score(const Array &array, int ir)
+{
+  // NB - use Gaussian windowing instead of a real arithmetic averaging
+
+  Array mean = array;
+  gpu::smooth_cpulse(mean, ir);
+
+  // use mean to store (array - mean)^2
+  mean -= array;
+  mean *= mean;
+  gpu::smooth_cpulse(mean, ir);
+  Array std = sqrt(mean);
+
+  return (array - mean) / std;
+}
+
 } // namespace hmap::gpu

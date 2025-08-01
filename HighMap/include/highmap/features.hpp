@@ -392,6 +392,8 @@ Array std_local(const Array &array, int ir);
  */
 Array valley_width(const Array &z, int ir = 0, bool ridge_select = false);
 
+Array z_score(const Array &array, int ir);
+
 } // namespace hmap
 
 namespace hmap::gpu
@@ -411,5 +413,8 @@ Array rugosity(const Array &z, int ir, bool convex = true);
 
 /*! @brief See hmap::std_local */
 Array std_local(const Array &array, int ir);
+
+/*! @brief See hmap::z_score */
+Array z_score(const Array &array, int ir);
 
 } // namespace hmap::gpu
