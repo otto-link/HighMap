@@ -7,17 +7,19 @@ int main(void)
   int               seed = 1;
 
   hmap::Array z = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, res, seed);
-  z += 0.1f * hmap::white(shape, 0.f, 1.f, seed);
+  hmap::remap(z);
 
   int ir = 16;
 
-  hmap::Array z1 = hmap::median_pseudo(z, ir);
+  hmap::Array z1 = hmap::local_median_deviation(z, ir);
+  hmap::remap(z1);
 
   // gpu version
   hmap::gpu::init_opencl();
-  hmap::Array z2 = hmap::gpu::median_pseudo(z, ir);
+  hmap::Array z2 = hmap::gpu::local_median_deviation(z, ir);
+  hmap::remap(z2);
 
-  hmap::export_banner_png("ex_median_pseudo.png",
+  hmap::export_banner_png("ex_local_median_deviation.png",
                           {z, z1, z2},
-                          hmap::Cmap::INFERNO);
+                          hmap::Cmap::JET);
 }

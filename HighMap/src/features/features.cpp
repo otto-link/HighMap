@@ -4,11 +4,19 @@
 #include "highmap/array.hpp"
 #include "highmap/curvature.hpp"
 #include "highmap/filters.hpp"
+#include "highmap/math.hpp"
 #include "highmap/morphology.hpp"
 #include "highmap/range.hpp"
 
 namespace hmap
 {
+
+Array local_median_deviation(const Array &array, int ir)
+{
+  Array mean = mean_local(array, ir);
+  Array med = median_pseudo(array, ir); // TODO exact
+  return abs(mean - med);
+}
 
 Array relative_elevation(const Array &array, int ir)
 {

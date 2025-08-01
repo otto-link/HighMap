@@ -2,10 +2,18 @@
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
 #include "highmap/filters.hpp"
+#include "highmap/math.hpp"
 #include "highmap/opencl/gpu_opencl.hpp"
 
 namespace hmap::gpu
 {
+
+Array local_median_deviation(const Array &array, int ir)
+{
+  Array mean = gpu::mean_local(array, ir);
+  Array med = gpu::median_pseudo(array, ir); // TODO exact
+  return abs(mean - med);
+}
 
 Array relative_elevation(const Array &array, int ir)
 {

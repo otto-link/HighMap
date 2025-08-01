@@ -226,6 +226,8 @@ Array kmeans_clustering3(const Array        &array1,
                          Vec3<float>         weights = {1.f, 1.f, 1.f},
                          uint                seed = 1);
 
+Array local_median_deviation(const Array &array, int ir);
+
 /**
  * @brief Calculates the relative elevation within a specified radius, helping
  * to identify local highs and lows.
@@ -342,6 +344,9 @@ Array valley_width(const Array &z, int ir = 0, bool ridge_select = false);
 
 namespace hmap::gpu
 {
+
+/*! @brief See hmap::local_median_deviation */
+Array local_median_deviation(const Array &array, int ir);
 
 /*! @brief See hmap::relative_elevation */
 Array relative_elevation(const Array &array, int ir);
