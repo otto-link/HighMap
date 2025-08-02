@@ -207,6 +207,18 @@ float Array::get_value_bicubic_at(int i, int j, float u, float v) const
 
 float Array::get_value_bilinear_at(int i, int j, float u, float v) const
 {
+  if (i == this->shape.x - 1)
+  {
+    i = this->shape.x - 2;
+    u = 1.f;
+  }
+
+  if (j == this->shape.y - 1)
+  {
+    j = this->shape.y - 2;
+    v = 1.f;
+  }
+
   float a10 = (*this)(i + 1, j) - (*this)(i, j);
   float a01 = (*this)(i, j + 1) - (*this)(i, j);
   float a11 = (*this)(i + 1, j + 1) - (*this)(i + 1, j) - (*this)(i, j + 1) +
