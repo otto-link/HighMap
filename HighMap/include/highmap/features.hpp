@@ -256,6 +256,31 @@ Array kmeans_clustering3(const Array        &array1,
 Array local_median_deviation(const Array &array, int ir);
 
 /**
+ * @brief Return the local mean based on a mean filter with a square kernel.
+ *
+ * This function calculates the local mean of the input array using a mean
+ * filter with a square kernel. The local mean is determined by averaging values
+ * within a square neighborhood defined by the footprint radius `ir`. The result
+ * is an array where each value represents the mean of the surrounding values
+ * within the kernel size.
+ *
+ * @param  array Input array from which the local mean is to be calculated.
+ * @param  ir    Square kernel footprint radius. The size of the kernel used to
+ *               compute the local mean.
+ * @return       Array Resulting array containing the local means.
+ *
+ * **Example**
+ * @include ex_mean_local.cpp
+ *
+ * **Result**
+ * @image html ex_mean_local0.png
+ * @image html ex_mean_local1.png
+ *
+ * @see          {@link maximum_local}, {@link minimum_local}
+ */
+Array mean_local(const Array &array, int ir);
+
+/**
  * @brief Calculates the relative elevation within a specified radius, helping
  * to identify local highs and lows.
  *
@@ -401,6 +426,9 @@ namespace hmap::gpu
 
 /*! @brief See hmap::local_median_deviation */
 Array local_median_deviation(const Array &array, int ir);
+
+/*! @brief See hmap::mean_local */
+Array mean_local(const Array &array, int ir);
 
 /*! @brief See hmap::relative_elevation */
 Array relative_elevation(const Array &array, int ir);

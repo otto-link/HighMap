@@ -848,31 +848,6 @@ Array maximum_local_disk(const Array &array, int ir);
 void match_histogram(Array &array, const Array &array_reference);
 
 /**
- * @brief Return the local mean based on a mean filter with a square kernel.
- *
- * This function calculates the local mean of the input array using a mean
- * filter with a square kernel. The local mean is determined by averaging values
- * within a square neighborhood defined by the footprint radius `ir`. The result
- * is an array where each value represents the mean of the surrounding values
- * within the kernel size.
- *
- * @param  array Input array from which the local mean is to be calculated.
- * @param  ir    Square kernel footprint radius. The size of the kernel used to
- *               compute the local mean.
- * @return       Array Resulting array containing the local means.
- *
- * **Example**
- * @include ex_mean_local.cpp
- *
- * **Result**
- * @image html ex_mean_local0.png
- * @image html ex_mean_local1.png
- *
- * @see          {@link maximum_local}, {@link minimum_local}
- */
-Array mean_local(const Array &array, int ir);
-
-/**
  * @brief Applies the mean shift algorithm to the input array.
  *
  * The mean shift algorithm iteratively adjusts each value in the input array by
@@ -2343,9 +2318,6 @@ Array maximum_local(const Array &array, int ir);
 
 /*! @brief See hmap::maximum_local_disk */
 Array maximum_local_disk(const Array &array, int ir);
-
-/*! @brief See hmap::mean_local */
-Array mean_local(const Array &array, int ir);
 
 /*! @brief See hmap::mean_shift */
 Array mean_shift(const Array &array,

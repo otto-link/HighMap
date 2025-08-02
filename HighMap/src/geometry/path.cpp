@@ -10,6 +10,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/filters.hpp"
+#include "highmap/features.hpp"
 #include "highmap/geometry/path.hpp"
 #include "highmap/internal/vector_utils.hpp"
 #include "highmap/interpolate_curve.hpp"

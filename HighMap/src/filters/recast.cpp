@@ -4,11 +4,11 @@
 
 #include <cmath>
 #include <random>
-
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
 #include "highmap/filters.hpp"
+#include "highmap/features.hpp"
 #include "highmap/gradient.hpp"
 #include "highmap/math.hpp"
 #include "highmap/primitives.hpp"
