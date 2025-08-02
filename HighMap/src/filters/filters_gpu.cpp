@@ -255,6 +255,23 @@ Array mean_shift(const Array &array,
   return array_next;
 }
 
+Array mean_shift(const Array &array,
+                 int          ir,
+                 float        talus,
+                 const Array *p_mask,
+                 int          iterations,
+                 bool         talus_weighted)
+{
+  if (!p_mask)
+    return gpu::mean_shift(array, ir, talus, iterations, talus_weighted);
+  else
+  {
+    Array array_f = array;
+    gpu::mean_shift(array_f, ir, talus, iterations, talus_weighted);
+    return lerp(array, array_f, *p_mask);
+  }
+}
+
 void median_3x3(Array &array)
 {
   auto run = clwrapper::Run("median_3x3");

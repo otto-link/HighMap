@@ -881,6 +881,13 @@ Array mean_shift(const Array &array,
                  int          iterations = 1,
                  bool         talus_weighted = true);
 
+Array mean_shift(const Array &array,
+                 int          ir,
+                 float        talus,
+                 const Array *p_mask,
+                 int          iterations = 1,
+                 bool         talus_weighted = true);
+
 /**
  * @brief Apply a 3x3 median filter to the input array.
  *
