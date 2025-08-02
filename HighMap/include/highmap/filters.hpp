@@ -2333,6 +2333,13 @@ Array mean_shift(const Array &array,
                  int          iterations = 1,
                  bool         talus_weighted = true);
 
+Array mean_shift(const Array &array,
+                 int          ir,
+                 float        talus,
+                 const Array *p_mask,
+                 int          iterations = 1,
+                 bool         talus_weighted = true);
+
 /*! @brief See hmap::median_3x3 */
 void median_3x3(Array &array);
 void median_3x3(Array &array, const Array *p_mask); ///< @overload
