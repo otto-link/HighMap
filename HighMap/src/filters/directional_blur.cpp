@@ -14,7 +14,8 @@ namespace hmap
 void directional_blur(Array &array, int ir, const Array &angle, float intensity)
 {
   // create interpolation function
-  ArrayFunction f = hmap::ArrayFunction(array, Vec2<float>(1.f, 1.f), true);
+  bool          periodic = false;
+  ArrayFunction f = hmap::ArrayFunction(array, Vec2<float>(1.f, 1.f), periodic);
 
   std::vector<float> t = linspace(intensity, 0.f, ir);
 
@@ -29,7 +30,7 @@ void directional_blur(Array &array, int ir, const Array &angle, float intensity)
 
   for (int j = 0; j < array.shape.y; j++)
     for (int i = 0; i < array.shape.x; i++)
-      for (int k = 0; k < ir; k++)
+      for (int k = -ir; k < ir; k++)
       {
         float alpha = angle(i, j) / 180.f * M_PI;
         float ca = std::cos(alpha);
@@ -38,7 +39,7 @@ void directional_blur(Array &array, int ir, const Array &angle, float intensity)
         float x = (i + k * ca) / (array.shape.x - 1.f);
         float y = (j + k * sa) / (array.shape.y - 1.f);
 
-        blured(i, j) += t[k] * f.get_delegate()(x, y, 0.f);
+        blured(i, j) += t[std::abs(k)] * f.get_delegate()(x, y, 0.f);
       }
 
   // try to rescale output
