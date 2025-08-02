@@ -22,6 +22,9 @@ int main(void)
   kernels.push_back(hmap::sinc_radial(shape, kw));
   kernels.push_back(hmap::sinc_separable(shape, kw));
 
+  float r_cutoff = 0.9f;
+  kernels.push_back(hmap::disk_smooth(shape, r_cutoff));
+
   // generic call function
   kernels.push_back(hmap::get_kernel(shape, hmap::KernelType::TRICUBE));
 

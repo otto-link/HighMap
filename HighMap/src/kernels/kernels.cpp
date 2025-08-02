@@ -213,6 +213,35 @@ Array disk(Vec2<int> shape)
   return array;
 }
 
+Array disk_smooth(Vec2<int> shape, float r_cutoff)
+{
+  Array array = Array(shape);
+
+  Vec2<float> rs = Vec2<float>(0.5f * ((float)shape.x - 1.f),
+                               0.5f * ((float)shape.y - 1.f));
+
+  for (int j = 0; j < array.shape.y; j++)
+    for (int i = 0; i < array.shape.x; i++)
+    {
+      float x = ((float)i / rs.x - 1.f);
+      float y = ((float)j / rs.y - 1.f);
+      float r = std::hypot(x, y);
+
+      if (r <= r_cutoff)
+      {
+        array(i, j) = 1.f;
+      }
+      else if (r <= 1.f)
+      {
+        float t = (r - r_cutoff) / (1.f - r_cutoff);
+        array(i, j) = t < 0.5 ? 1.f - 0.5f * (4.f * t * t)
+                              : 0.5f * (4.f * (1.f - t) * (1.f - t));
+      }
+    }
+
+  return array;
+}
+
 Array gabor(Vec2<int> shape, float kw, float angle, bool quad_phase_shift)
 {
   Array array = Array(shape);
