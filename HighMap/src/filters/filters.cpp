@@ -11,6 +11,7 @@
 #include "highmap/boundary.hpp"
 #include "highmap/convolve.hpp"
 #include "highmap/curvature.hpp"
+#include "highmap/features.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/gradient.hpp"
 #include "highmap/kernels.hpp"
@@ -591,20 +592,6 @@ void match_histogram(Array &array, const Array &array_reference)
 
   for (size_t i = 0; i < ki.size(); i++)
     array.vector[ki[i]] = array_reference.vector[kr[i]];
-}
-
-Array mean_local(const Array &array, int ir)
-{
-  Array array_out = Array(array.shape);
-
-  std::vector<float> k1d(2 * ir + 1);
-  for (auto &v : k1d)
-    v = 1.f / (float)(2 * ir + 1);
-
-  array_out = convolve1d_i(array, k1d);
-  array_out = convolve1d_j(array_out, k1d);
-
-  return array_out;
 }
 
 Array mean_shift(const Array &array,

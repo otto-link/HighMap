@@ -2,6 +2,7 @@
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
 #include "highmap/curvature.hpp"
+#include "highmap/features.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/math.hpp"
@@ -197,28 +198,6 @@ Array maximum_local_disk(const Array &array, int ir)
   Array kernel = disk({2 * ir + 1, 2 * ir + 1});
   Array array_out = array;
   gpu::expand(array_out, kernel);
-  return array_out;
-}
-
-Array mean_local(const Array &array, int ir)
-{
-  Array array_out = array;
-
-  auto run = clwrapper::Run("mean_local");
-
-  run.bind_imagef("in", array_out.vector, array.shape.x, array.shape.y);
-  run.bind_imagef("out", array_out.vector, array.shape.x, array.shape.y, true);
-  run.bind_arguments(array.shape.x, array.shape.y, ir, 0);
-
-  run.set_argument(5, 0); // row pass
-  run.execute({array.shape.x, array.shape.y});
-  run.read_imagef("out");
-
-  run.set_argument(5, 1); // col pass
-  run.write_imagef("in");
-  run.execute({array.shape.x, array.shape.y});
-  run.read_imagef("out");
-
   return array_out;
 }
 

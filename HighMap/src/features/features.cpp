@@ -3,6 +3,7 @@
  * this software. */
 #include "highmap/features.hpp"
 #include "highmap/array.hpp"
+#include "highmap/convolve.hpp"
 #include "highmap/curvature.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/math.hpp"
@@ -17,6 +18,20 @@ Array local_median_deviation(const Array &array, int ir)
   Array mean = mean_local(array, ir);
   Array med = median_pseudo(array, ir); // TODO exact
   return abs(mean - med);
+}
+
+Array mean_local(const Array &array, int ir)
+{
+  Array array_out = Array(array.shape);
+
+  std::vector<float> k1d(2 * ir + 1);
+  for (auto &v : k1d)
+    v = 1.f / (float)(2 * ir + 1);
+
+  array_out = convolve1d_i(array, k1d);
+  array_out = convolve1d_j(array_out, k1d);
+
+  return array_out;
 }
 
 Array relative_elevation(const Array &array, int ir)
