@@ -58,47 +58,50 @@ void equalize(Array &array, const Array *p_mask)
   }
 }
 
-void expand(Array &array, int ir)
+void expand(Array &array, int ir, int iterations)
 {
   Array array_new = array;
   int   ni = array.shape.x;
   int   nj = array.shape.y;
   Array k = cubic_pulse({2 * ir + 1, 2 * ir + 1});
 
-  for (int j = 0; j < nj; j++)
+  for (int it = 0; it < iterations; ++it)
   {
-    int q1 = std::max(0, j - ir) - j;
-    int q2 = std::min(nj, j + ir + 1) - j;
-    for (int i = 0; i < ni; i++)
+    for (int j = 0; j < nj; j++)
     {
-      int p1 = std::max(0, i - ir) - i;
-      int p2 = std::min(ni, i + ir + 1) - i;
+      int q1 = std::max(0, j - ir) - j;
+      int q2 = std::min(nj, j + ir + 1) - j;
+      for (int i = 0; i < ni; i++)
+      {
+        int p1 = std::max(0, i - ir) - i;
+        int p2 = std::min(ni, i + ir + 1) - i;
 
-      for (int q = q1; q < q2; q++)
-        for (int p = p1; p < p2; p++)
-        {
-          float v = array(i + p, j + q) * k(p + ir, q + ir);
-          array_new(i, j) = std::max(array_new(i, j), v);
-        }
+        for (int q = q1; q < q2; q++)
+          for (int p = p1; p < p2; p++)
+          {
+            float v = array(i + p, j + q) * k(p + ir, q + ir);
+            array_new(i, j) = std::max(array_new(i, j), v);
+          }
+      }
     }
-  }
 
-  array = array_new;
+    array = array_new;
+  }
 }
 
-void expand(Array &array, int ir, const Array *p_mask)
+void expand(Array &array, int ir, const Array *p_mask, int iterations)
 {
   if (!p_mask)
-    expand(array, ir);
+    expand(array, ir, iterations);
   else
   {
     Array array_f = array;
-    expand(array_f, ir);
+    expand(array_f, ir, iterations);
     array = lerp(array, array_f, *(p_mask));
   }
 }
 
-void expand(Array &array, const Array &kernel)
+void expand(Array &array, const Array &kernel, int iterations)
 {
   Array array_new = array;
   int   ni = array.shape.x;
@@ -109,34 +112,40 @@ void expand(Array &array, const Array &kernel)
   int rj1 = (int)(0.5f * kernel.shape.y);
   int rj2 = kernel.shape.y - rj1 - 1;
 
-  for (int j = 0; j < nj; j++)
+  for (int it = 0; it < iterations; ++it)
   {
-    int q1 = std::max(0, j - rj1) - j;
-    int q2 = std::min(nj, j + rj2 + 1) - j;
-    for (int i = 0; i < ni; i++)
+    for (int j = 0; j < nj; j++)
     {
-      int p1 = std::max(0, i - ri1) - i;
-      int p2 = std::min(ni, i + ri2 + 1) - i;
+      int q1 = std::max(0, j - rj1) - j;
+      int q2 = std::min(nj, j + rj2 + 1) - j;
+      for (int i = 0; i < ni; i++)
+      {
+        int p1 = std::max(0, i - ri1) - i;
+        int p2 = std::min(ni, i + ri2 + 1) - i;
 
-      for (int q = q1; q < q2; q++)
-        for (int p = p1; p < p2; p++)
-        {
-          float v = array(i + p, j + q) * kernel(p + ri1, q + rj1);
-          array_new(i, j) = std::max(array_new(i, j), v);
-        }
+        for (int q = q1; q < q2; q++)
+          for (int p = p1; p < p2; p++)
+          {
+            float v = array(i + p, j + q) * kernel(p + ri1, q + rj1);
+            array_new(i, j) = std::max(array_new(i, j), v);
+          }
+      }
     }
+    array = array_new;
   }
-  array = array_new;
 }
 
-void expand(Array &array, const Array &kernel, const Array *p_mask)
+void expand(Array       &array,
+            const Array &kernel,
+            const Array *p_mask,
+            int          iterations)
 {
   if (!p_mask)
-    expand(array, kernel);
+    expand(array, kernel, iterations);
   else
   {
     Array array_f = array;
-    expand(array_f, kernel);
+    expand(array_f, kernel, iterations);
     array = lerp(array, array_f, *(p_mask));
   }
 }
@@ -846,42 +855,45 @@ void sharpen_cone(Array &array, const Array *p_mask, int ir, float scale)
   }
 }
 
-void shrink(Array &array, int ir)
+void shrink(Array &array, int ir, int iterations)
 {
   float amax = array.max();
   array = amax - array;
-  expand(array, ir);
+  expand(array, ir, iterations);
   array = amax - array;
 }
 
-void shrink(Array &array, int ir, const Array *p_mask)
+void shrink(Array &array, int ir, const Array *p_mask, int iterations)
 {
   if (!p_mask)
-    shrink(array, ir);
+    shrink(array, ir, iterations);
   else
   {
     Array array_f = array;
-    shrink(array_f, ir);
+    shrink(array_f, ir, iterations);
     array = lerp(array, array_f, *(p_mask));
   }
 }
 
-void shrink(Array &array, const Array &kernel)
+void shrink(Array &array, const Array &kernel, int iterations)
 {
   float amax = array.max();
   array = amax - array;
-  expand(array, kernel);
+  expand(array, kernel, iterations);
   array = amax - array;
 }
 
-void shrink(Array &array, const Array &kernel, const Array *p_mask)
+void shrink(Array       &array,
+            const Array &kernel,
+            const Array *p_mask,
+            int          iterations)
 {
   if (!p_mask)
-    shrink(array, kernel);
+    shrink(array, kernel, iterations);
   else
   {
     Array array_f = array;
-    shrink(array_f, kernel);
+    shrink(array_f, kernel, iterations);
     array = lerp(array, array_f, *(p_mask));
   }
 }

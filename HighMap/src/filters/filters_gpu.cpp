@@ -12,60 +12,34 @@
 namespace hmap::gpu
 {
 
-void expand(Array &array, int ir)
+void expand(Array &array, int ir, int iterations)
 {
   Array kernel = cubic_pulse({2 * ir + 1, 2 * ir + 1});
-  gpu::expand(array, kernel);
+  gpu::expand(array, kernel, iterations);
 }
 
-void expand(Array &array, int ir, const Array *p_mask)
+void expand(Array &array, int ir, const Array *p_mask, int iterations)
 {
   Array kernel = cubic_pulse({2 * ir + 1, 2 * ir + 1});
 
   if (!p_mask)
   {
-    gpu::expand(array, kernel);
+    gpu::expand(array, kernel, iterations);
   }
   else
   {
-    gpu::expand(array, kernel, p_mask);
+    gpu::expand(array, kernel, p_mask, iterations);
   }
 }
 
-void expand(Array &array, const Array &kernel)
+void expand(Array &array, const Array &kernel, int iterations)
 {
   auto run = clwrapper::Run("expand");
 
-  run.bind_imagef("z", array.vector, array.shape.x, array.shape.y);
-  run.bind_imagef("weights", kernel.vector, kernel.shape.x, kernel.shape.y);
-  run.bind_imagef("out",
-                  array.vector,
-                  array.shape.x,
-                  array.shape.y,
-                  true); // out
-  run.bind_arguments(array.shape.x,
-                     array.shape.y,
-                     kernel.shape.x,
-                     kernel.shape.y);
-
-  run.execute({array.shape.x, array.shape.y});
-
-  run.read_imagef("out");
-}
-
-void expand(Array &array, const Array &kernel, const Array *p_mask)
-{
-  if (!p_mask)
+  for (int it = 0; it < iterations; ++it)
   {
-    gpu::expand(array, kernel);
-  }
-  else
-  {
-    auto run = clwrapper::Run("expand_masked");
-
     run.bind_imagef("z", array.vector, array.shape.x, array.shape.y);
     run.bind_imagef("weights", kernel.vector, kernel.shape.x, kernel.shape.y);
-    run.bind_imagef("mask", p_mask->vector, p_mask->shape.x, p_mask->shape.y);
     run.bind_imagef("out",
                     array.vector,
                     array.shape.x,
@@ -79,6 +53,41 @@ void expand(Array &array, const Array &kernel, const Array *p_mask)
     run.execute({array.shape.x, array.shape.y});
 
     run.read_imagef("out");
+  }
+}
+
+void expand(Array       &array,
+            const Array &kernel,
+            const Array *p_mask,
+            int          iterations)
+{
+  if (!p_mask)
+  {
+    gpu::expand(array, kernel, iterations);
+  }
+  else
+  {
+    auto run = clwrapper::Run("expand_masked");
+
+    for (int it = 0; it < iterations; ++it)
+    {
+      run.bind_imagef("z", array.vector, array.shape.x, array.shape.y);
+      run.bind_imagef("weights", kernel.vector, kernel.shape.x, kernel.shape.y);
+      run.bind_imagef("mask", p_mask->vector, p_mask->shape.x, p_mask->shape.y);
+      run.bind_imagef("out",
+                      array.vector,
+                      array.shape.x,
+                      array.shape.y,
+                      true); // out
+      run.bind_arguments(array.shape.x,
+                         array.shape.y,
+                         kernel.shape.x,
+                         kernel.shape.y);
+
+      run.execute({array.shape.x, array.shape.y});
+
+      run.read_imagef("out");
+    }
   }
 }
 
@@ -379,71 +388,39 @@ void plateau(Array &array, int ir, float factor)
   gpu::plateau(array, nullptr, ir, factor);
 }
 
-void shrink(Array &array, int ir)
+void shrink(Array &array, int ir, int iterations)
 {
   Array kernel = cubic_pulse({2 * ir + 1, 2 * ir + 1});
-  gpu::shrink(array, kernel);
+  gpu::shrink(array, kernel, iterations);
 }
 
-void shrink(Array &array, int ir, const Array *p_mask)
+void shrink(Array &array, int ir, const Array *p_mask, int iterations)
 {
   Array kernel = cubic_pulse({2 * ir + 1, 2 * ir + 1});
 
   if (!p_mask)
   {
-    gpu::shrink(array, kernel);
+    gpu::shrink(array, kernel, iterations);
   }
   else
   {
-    gpu::shrink(array, kernel, p_mask);
+    gpu::shrink(array, kernel, p_mask, iterations);
   }
 }
 
-void shrink(Array &array, const Array &kernel)
+void shrink(Array &array, const Array &kernel, int iterations)
 {
-  float amax = array.max();
-  array *= -1.f; // array <- amax - array;
-  array += amax;
 
   auto run = clwrapper::Run("expand");
 
-  run.bind_imagef("z", array.vector, array.shape.x, array.shape.y);
-  run.bind_imagef("weights", kernel.vector, kernel.shape.x, kernel.shape.y);
-  run.bind_imagef("out",
-                  array.vector,
-                  array.shape.x,
-                  array.shape.y,
-                  true); // out
-  run.bind_arguments(array.shape.x,
-                     array.shape.y,
-                     kernel.shape.x,
-                     kernel.shape.y);
-
-  run.execute({array.shape.x, array.shape.y});
-
-  run.read_imagef("out");
-
-  array *= -1.f; // array <- amax - array;
-  array += amax;
-}
-
-void shrink(Array &array, const Array &kernel, const Array *p_mask)
-{
-  if (!p_mask)
-  {
-    gpu::shrink(array, kernel);
-  }
-  else
+  for (int it = 0; it < iterations; ++it)
   {
     float amax = array.max();
     array *= -1.f; // array <- amax - array;
     array += amax;
 
-    auto run = clwrapper::Run("expand_masked");
-
     run.bind_imagef("z", array.vector, array.shape.x, array.shape.y);
     run.bind_imagef("weights", kernel.vector, kernel.shape.x, kernel.shape.y);
-    run.bind_imagef("mask", p_mask->vector, p_mask->shape.x, p_mask->shape.y);
     run.bind_imagef("out",
                     array.vector,
                     array.shape.x,
@@ -460,6 +437,48 @@ void shrink(Array &array, const Array &kernel, const Array *p_mask)
 
     array *= -1.f; // array <- amax - array;
     array += amax;
+  }
+}
+
+void shrink(Array       &array,
+            const Array &kernel,
+            const Array *p_mask,
+            int          iterations)
+{
+  if (!p_mask)
+  {
+    gpu::shrink(array, kernel, iterations);
+  }
+  else
+  {
+    auto run = clwrapper::Run("expand_masked");
+
+    for (int it = 0; it < iterations; ++it)
+    {
+      float amax = array.max();
+      array *= -1.f; // array <- amax - array;
+      array += amax;
+
+      run.bind_imagef("z", array.vector, array.shape.x, array.shape.y);
+      run.bind_imagef("weights", kernel.vector, kernel.shape.x, kernel.shape.y);
+      run.bind_imagef("mask", p_mask->vector, p_mask->shape.x, p_mask->shape.y);
+      run.bind_imagef("out",
+                      array.vector,
+                      array.shape.x,
+                      array.shape.y,
+                      true); // out
+      run.bind_arguments(array.shape.x,
+                         array.shape.y,
+                         kernel.shape.x,
+                         kernel.shape.y);
+
+      run.execute({array.shape.x, array.shape.y});
+
+      run.read_imagef("out");
+
+      array *= -1.f; // array <- amax - array;
+      array += amax;
+    }
   }
 }
 

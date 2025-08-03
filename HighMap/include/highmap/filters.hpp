@@ -194,7 +194,7 @@ void equalize(Array &array, const Array *p_mask);
  *
  * @see          ex_shrink
  */
-void expand(Array &array, int ir, const Array *p_mask);
+void expand(Array &array, int ir, const Array *p_mask, int iterations = 1);
 
 /**
  * @brief Apply expansion to emphasize the bulk of the terrain using a filter
@@ -208,7 +208,7 @@ void expand(Array &array, int ir, const Array *p_mask);
  *
  * @overload
  */
-void expand(Array &array, int ir);
+void expand(Array &array, int ir, int iterations = 1);
 
 /**
  * @brief Apply expansion using a custom kernel.
@@ -221,7 +221,7 @@ void expand(Array &array, int ir);
  *
  * @overload
  */
-void expand(Array &array, const Array &kernel);
+void expand(Array &array, const Array &kernel, int iterations = 1);
 
 /**
  * @brief Apply expansion using a custom kernel with an optional mask.
@@ -237,7 +237,10 @@ void expand(Array &array, const Array &kernel);
  *
  * @overload
  */
-void expand(Array &array, const Array &kernel, const Array *p_mask);
+void expand(Array       &array,
+            const Array &kernel,
+            const Array *p_mask,
+            int          iterations = 1);
 
 /**
  * @brief Apply expansion, or "inflation", to emphasize the bulk of the terrain,
@@ -1791,12 +1794,18 @@ void sharpen_cone(Array       &array,
  *
  * @see          {@link ex_expand}
  */
-void shrink(Array &array, int ir);
-void shrink(Array &array, int ir, const Array *p_mask); ///< @overload
-void shrink(Array &array, const Array &kernel);         ///< @overload
+void shrink(Array &array, int ir, int iterations = 1);
+void shrink(Array       &array,
+            int          ir,
+            const Array *p_mask,
+            int          iterations = 1); ///< @overload
 void shrink(Array       &array,
             const Array &kernel,
-            const Array *p_mask); ///< @overload
+            int          iterations = 1); ///< @overload
+void shrink(Array       &array,
+            const Array &kernel,
+            const Array *p_mask,
+            int          iterations = 1); ///< @overload
 
 /**
  * @brief Apply directional shrinking, or "deflating", to emphasize the ridges
@@ -2321,12 +2330,18 @@ namespace hmap::gpu
 {
 
 /*! @brief See hmap::expand */
-void expand(Array &array, int ir);
-void expand(Array &array, int ir, const Array *p_mask); ///< @overload
-void expand(Array &array, const Array &kernel);         ///< @overload
+void expand(Array &array, int ir, int iterations = 1);
+void expand(Array       &array,
+            int          ir,
+            const Array *p_mask,
+            int          iterations = 1); ///< @overload
 void expand(Array       &array,
             const Array &kernel,
-            const Array *p_mask); ///< @overload
+            int          iterations = 1); ///< @overload
+void expand(Array       &array,
+            const Array &kernel,
+            const Array *p_mask,
+            int          iterations = 1); ///< @overload
 
 /*! @brief See hmap::gamma_correction_local */
 void gamma_correction_local(Array &array, float gamma, int ir, float k = 0.1f);
@@ -2392,12 +2407,18 @@ void plateau(Array &array, const Array *p_mask, int ir, float factor);
 void plateau(Array &array, int ir, float factor); ///< @overload
 
 /*! @brief See hmap::shrink */
-void shrink(Array &array, int ir);
-void shrink(Array &array, int ir, const Array *p_mask); ///< @overload
-void shrink(Array &array, const Array &kernel);         ///< @overload
+void shrink(Array &array, int ir, int iterations = 1);
+void shrink(Array       &array,
+            int          ir,
+            const Array *p_mask,
+            int          iterations = 1); ///< @overload
 void shrink(Array       &array,
             const Array &kernel,
-            const Array *p_mask); ///< @overload
+            int          iterations = 1); ///< @overload
+void shrink(Array       &array,
+            const Array &kernel,
+            const Array *p_mask,
+            int          iterations = 1); ///< @overload
 
 /*! @brief See hmap::smooth_cpulse */
 void smooth_cpulse(Array &array, int ir);
