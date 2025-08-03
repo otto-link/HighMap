@@ -229,21 +229,21 @@ Array kmeans_clustering3(const Array        &array1,
 /**
  * @brief Computes the local median deviation of a 2D array.
  *
- * This function calculates the absolute difference between the local mean
- * and a pseudo-local median of each element in the input array. The local
+ * This function calculates the absolute difference between the local mean and a
+ * pseudo-local median of each element in the input array. The local
  * neighborhood is defined by a square window with radius `ir`.
  *
- * @param array The input 2D array of values (e.g., a heightmap).
- * @param ir The radius of the square neighborhood window used for computing
- *           local statistics. The window size is (2*ir + 1) x (2*ir + 1).
+ * @param  array The input 2D array of values (e.g., a heightmap).
+ * @param  ir    The radius of the square neighborhood window used for computing
+ *               local statistics. The window size is (2*ir + 1) x (2*ir + 1).
  *
- * @return A new array of the same size as `array`, where each element
- *         represents the absolute deviation between the local mean and
- *         pseudo-local median in its neighborhood.
+ * @return       A new array of the same size as `array`, where each element
+ *               represents the absolute deviation between the local mean and
+ *               pseudo-local median in its neighborhood.
  *
  * @note The function uses a pseudo-median approximation. For exact median
- *       computation, replace the `median_pseudo()` call with a proper median
- *       filter implementation.
+ * computation, replace the `median_pseudo()` call with a proper median filter
+ * implementation.
  *
  * **Example**
  * @include ex_local_median_deviation.cpp
@@ -251,7 +251,7 @@ Array kmeans_clustering3(const Array        &array1,
  * **Result**
  * @image html ex_local_median_deviation.png
  *
- * @see mean_local(), median_pseudo()
+ * @see          mean_local(), median_pseudo()
  */
 Array local_median_deviation(const Array &array, int ir);
 
@@ -359,17 +359,17 @@ Array rugosity(const Array &z, int ir, bool convex = true);
 /**
  * @brief Computes the local standard deviation of a 2D array.
  *
- * This function calculates the standard deviation within a square
- * neighborhood around each element in the input array.
+ * This function calculates the standard deviation within a square neighborhood
+ * around each element in the input array.
  *
- * @param array The input 2D array of values (e.g., a heightmap or intensity
- * map).
- * @param ir The radius of the square neighborhood window used for computing
- *           local statistics. The window size is (2*ir + 1) x (2*ir + 1).
+ * @param  array The input 2D array of values (e.g., a heightmap or intensity
+ *               map).
+ * @param  ir    The radius of the square neighborhood window used for computing
+ *               local statistics. The window size is (2*ir + 1) x (2*ir + 1).
  *
- * @return A new array of the same size as `array`, where each element
- *         contains the standard deviation of values within its local
- * neighborhood.
+ * @return       A new array of the same size as `array`, where each element
+ *               contains the standard deviation of values within its local
+ *               neighborhood.
  *
  * **Example**
  * @include ex_std_local.cpp
@@ -377,7 +377,7 @@ Array rugosity(const Array &z, int ir, bool convex = true);
  * **Result**
  * @image html ex_std_local.png
  *
- * @see mean_local()
+ * @see          mean_local()
  */
 Array std_local(const Array &array, int ir);
 

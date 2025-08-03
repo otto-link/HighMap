@@ -71,23 +71,39 @@ Array diffusion_retargeting(const Array &array_before,
                             int          ir);
 
 /**
- * @brief Applies a directional blur to the provided 2D array based on a
- * spatially varying angle.
+ * @brief Applies a directional blur to a 2D array based on a spatially varying
+ * angle field.
  *
- * This function blurs the input array by interpolating values along the
- * direction specified by the `angle` array. The blur intensity decreases with
- * distance up to the given radius (`ir`), and smoothing weights are computed
- * using a smoothstep function.
+ * This function performs an anisotropic blur on the input `array`, using the
+ * `angle` array to determine the direction of blur at each pixel. The blur is
+ * computed by sampling values along a line in the specified direction
+ * (per-pixel), using linear interpolation through an `ArrayFunction`. The
+ * amount of blur is controlled by parameters for intensity, stretching, and
+ * spread.
  *
- * @param array     The 2D array to be blurred.
- * @param ir        The radius of the blur operation (number of steps).
- * @param angle     A 2D array specifying the directional angle (in degrees) for
- *                  each pixel.
- * @param intensity The maximum intensity of the blur at the starting point of
- *                  the radius.
+ * For each pixel, the function samples values along the blur direction
+ * determined by `angle(i, j)` (in degrees), applies a smooth weight profile
+ * (`smoothstep3`) over a range of `2 * ir - 1` steps, and accumulates the
+ * weighted values. The output is then normalized by the total weight sum.
  *
- * @note The `angle` values should be in degrees, where 0° points to the right
- * (positive x-direction).
+ * @param array     The input/output 2D array to be blurred (modified in-place).
+ * @param ir        Blur radius: the number of samples on each side of the
+ *                  center (total samples = 2 * ir - 1).
+ * @param angle     A 2D array of the same shape as `array` giving blur
+ *                  direction (in degrees) at each pixel. 0° points to the right
+ *                  (positive X), 90° points upward (positive Y).
+ * @param intensity The overall weight of the blur effect (scales the weight
+ *                  profile).
+ * @param stretch   A scaling factor applied to the sampling step along the blur
+ *                  direction. Higher values stretch the blur further along the
+ *                  direction vector.
+ * @param spread    Maximum normalized distance at which blur weights are
+ *                  applied (used in smoothstep weight profile).
+ *
+ * @note Uses linear interpolation through an `ArrayFunction`, and wraps
+ * coordinates using clamping (not periodic).
+ *
+ * @see             smoothstep3(), ArrayFunction
  *
  * **Example**
  * @include ex_directional_blur.cpp
@@ -95,7 +111,12 @@ Array diffusion_retargeting(const Array &array_before,
  * **Result**
  * @image html ex_directional_blur.png
  */
-void directional_blur(Array &array, int ir, float angle, float intensity);
+void directional_blur(Array &array,
+                      int    ir,
+                      float  angle,
+                      float  intensity,
+                      float  stretch = 1.f,
+                      float  spread = 1.f);
 
 /**
  * @brief Applies a directional blur to the provided 2D array with a constant
@@ -123,7 +144,9 @@ void directional_blur(Array &array, int ir, float angle, float intensity);
 void directional_blur(Array       &array,
                       int          ir,
                       const Array &angle,
-                      float        intensity);
+                      float        intensity,
+                      float        stretch = 1.f,
+                      float        spread = 1.f);
 
 /**
  * @brief Apply histogram equalization to the array values.
@@ -938,10 +961,10 @@ void median_3x3(Array &array);
  * approximate its noise-reduction and edge-preserving properties to some
  * extent.
  *
- * @param array Input array (e.g., image or 2D signal).
- * @param ir Radius of the square neighborhood (kernel size will be \f$2 \cdot
- * ir + 1\f$).
- * @return An Array containing the pseudo-median filtered output.
+ * @param  array Input array (e.g., image or 2D signal).
+ * @param  ir    Radius of the square neighborhood (kernel size will be \f$2
+ *               \cdot ir + 1\f$).
+ * @return       An Array containing the pseudo-median filtered output.
  *
  * @note This method works best on images with impulsive noise (e.g.,
  * salt-and-pepper), but is only an approximation and may behave differently
@@ -953,7 +976,7 @@ void median_3x3(Array &array);
  * **Result**
  * @image html ex_median_pseudo.png
  *
- * @see minimum_local, maximum_local, mean_local
+ * @see          minimum_local, maximum_local, mean_local
  */
 Array median_pseudo(const Array &array, int ir);
 
