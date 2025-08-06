@@ -11,5 +11,13 @@ int main(void)
   auto z1 = z;
   hmap::rotate(z1, 30.f);
 
-  hmap::export_banner_png("ex_rotate.png", {z, z1}, hmap::Cmap::VIRIDIS);
+  // gpu version
+  hmap::gpu::init_opencl();
+  auto z2 = z;
+  hmap::gpu::rotate(z2, 30.f);
+
+  auto z3 = z;
+  hmap::gpu::rotate(z3, 30.f, false); // no zoom
+
+  hmap::export_banner_png("ex_rotate.png", {z, z1, z2, z3}, hmap::Cmap::JET);
 }

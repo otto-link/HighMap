@@ -113,7 +113,10 @@ void rot90(Array &array);
  * **Result**
  * @image html ex_rotate.png
  */
-void rotate(Array &array, float angle, bool zero_padding = false);
+void rotate(Array &array,
+            float  angle,
+            bool   zoom_in = true,
+            bool   zero_padding = false);
 
 /**
  * @brief Return the transposed array.
@@ -361,6 +364,9 @@ Array zoom(const Array &array,
 
 namespace hmap::gpu
 {
+
+/*! @brief See hmap::rotate */
+void rotate(Array &array, float angle, bool zoom_in = true);
 
 /*! @brief See hmap::warp */
 void warp(Array &array, const Array *p_dx, const Array *p_dy);

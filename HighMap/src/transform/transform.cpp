@@ -47,10 +47,10 @@ void rot90(Array &array)
   flip_ud(array);
 }
 
-void rotate(Array &array, float angle, bool zero_padding)
+void rotate(Array &array, float angle, bool zoom_in, bool zero_padding)
 {
-  float ca = std::cos(angle / 180.f * M_PI);
-  float sa = std::sin(angle / 180.f * M_PI);
+  float ca = std::cos(-angle / 180.f * M_PI);
+  float sa = std::sin(-angle / 180.f * M_PI);
 
   // create a larger array filled using symmetry to have a domain
   // large enough to avoid 'holes' while interpolating
@@ -66,11 +66,13 @@ void rotate(Array &array, float angle, bool zero_padding)
   float xc = 0.5f * array.shape.x;
   float yc = 0.5f * array.shape.y;
 
+  float zoom = zoom_in ? 1.0f / (fabs(ca) + fabs(sa)) : 1.f;
+
   for (int j = 0; j < array.shape.y; j++)
     for (int i = 0; i < array.shape.x; i++)
     {
-      float x = xc + ca * (i - xc) - sa * (j - yc);
-      float y = yc + sa * (i - xc) + ca * (j - yc);
+      float x = xc + zoom * (ca * (i - xc) - sa * (j - yc));
+      float y = yc + zoom * (sa * (i - xc) + ca * (j - yc));
 
       // corresponding nearest cells in buffered array (and bilinear
       // interpolation parameters)
