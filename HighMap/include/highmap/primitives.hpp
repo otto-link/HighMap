@@ -34,6 +34,7 @@ enum VoronoiReturnType : int
   F1TF2_SQUARED, // F1 * F2
   F1DF2_SQUARED, // F1 / F2
   F2MF1_SQUARED, // F2 - F1
+  EDGE_DISTANCE_EXP,
   EDGE_DISTANCE_SQUARED,
   CONSTANT,
   CONSTANT_F2MF1_SQUARED
@@ -1346,6 +1347,82 @@ Array worley_double(Vec2<int>    shape,
 namespace hmap::gpu
 {
 
+/**
+ * @brief Generates a synthetic procedural terrain resembling basaltic
+ * landforms.
+ *
+ * This function creates a multi-scale procedural field combining large, medium,
+ * and small-scale Voronoi-based patterns, noise warping, and optional
+ * flattening, simulating the morphology of fractured basalt or volcanic
+ * terrains. The terrain is constructed using a combination of Voronoi diagrams
+ * (via `voronoi_fbm`) and fractal noise (`noise_fbm`), layered with
+ * frequency-domain manipulations and amplitude/gain controls at each scale.
+ *
+ * The final output is a heightmap represented as an `Array`, normalized and
+ * composed of:
+ * - Large-scale cellular patterns with smoothed Voronoi edge distances.
+ * - Medium and small-scale structures introducing finer surface variation.
+ * - Optional rugosity (fine detail) and flattening to simulate erosion or flow
+ * effects.
+ *
+ * @param  shape                   Output resolution (width x height) of the
+ *                                 field.
+ * @param  kw                      Base wave numbers (frequency) for the terrain
+ *                                 features.
+ * @param  seed                    Initial seed used for deterministic random
+ *                                 generation.
+ * @param  warp_kw                 Frequency of the warping noise that displaces
+ *                                 Voronoi positions.
+ * @param  large_scale_warp_amp    Amplitude of displacement for large-scale
+ *                                 Voronoi warping.
+ * @param  large_scale_gain        Gain adjustment applied to the large-scale
+ *                                 features.
+ * @param  large_scale_amp         Final amplitude of the large-scale height
+ *                                 contribution.
+ * @param  medium_scale_kw_ratio   Scaling factor for the frequency of the
+ *                                 medium-scale patterns.
+ * @param  medium_scale_warp_amp   Amplitude of warping for the medium-scale
+ *                                 displacement.
+ * @param  medium_scale_gain       Gain control for medium-scale modulation.
+ * @param  medium_scale_amp        Amplitude of the medium-scale heightmap.
+ * @param  small_scale_kw_ratio    Frequency ratio for small-scale details.
+ * @param  small_scale_amp         Amplitude of small-scale pattern
+ *                                 contribution.
+ * @param  small_scale_overlay_amp Additional overlay strength for repeating the
+ *                                 small-scale pattern.
+ * @param  rugosity_kw_ratio       Frequency ratio for high-frequency noise
+ *                                 applied as fine roughness.
+ * @param  rugosity_amp            Strength of the rugosity (high-frequency
+ *                                 modulation).
+ * @param  flatten_activate        Enables or disables the final flattening
+ *                                 operation.
+ * @param  flatten_kw_ratio        Frequency scaling of the flattening noise
+ *                                 field.
+ * @param  flatten_amp             Amplitude control of the flattening
+ *                                 operation.
+ * @param  p_noise_x               Optional pointer to a noise field used to
+ *                                 displace grid coordinates in X.
+ * @param  p_noise_y               Optional pointer to a noise field used to
+ *                                 displace grid coordinates in Y.
+ * @param  bbox                    The 2D bounding box ({xmin, xmax, ymin,
+ *                                 ymax}) over which the terrain is generated.
+ *
+ * @return                         A procedurally generated `Array` representing
+ *                                 the synthetic basalt-like terrain field.
+ *
+ * @note
+ * - This function relies on OpenCL-based kernels via the `gpu::` namespace.
+ * - The returned field is normalized in amplitude but may require rescaling to
+ * match specific physical units.
+ * - Adjusting `seed`, `warp_kw`, and the gain/amplitude values can produce a
+ * wide variety of terrain features.
+ *
+ * **Example**
+ * @include ex_basalt_field.cpp
+ *
+ * **Result**
+ * @image html ex_basalt_field.png
+ */
 Array basalt_field(Vec2<int>    shape,
                    Vec2<float>  kw,
                    uint         seed,
@@ -1660,6 +1737,137 @@ Array noise_fbm(NoiseType    noise_type,
                 Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
+ * @brief Generates a Voronoi-based pattern where cells are defined by proximity
+ * to random lines.
+ *
+ * This function generates an OpenCL-accelerated Voronoi-like pattern based on
+ * the distance from each pixel to a set of randomly oriented lines. Each line
+ * is defined by a random point and a direction sampled from a uniform
+ * distribution around a given angle.
+ *
+ * @param  shape       The resolution of the resulting 2D array (width, height).
+ * @param  density     Number of base points per unit area used to define lines.
+ * @param  seed        Seed for the random number generator used to generate
+ *                     base points and directions.
+ * @param  k_smoothing Kernel smoothing factor; controls how sharp or soft the
+ *                     distance fields are.
+ * @param  exp_sigma   Exponential smoothing parameter applied to the computed
+ *                     distance field.
+ * @param  alpha       Base angle (in radians) used to orient the generated
+ *                     lines.
+ * @param  alpha_span  Maximum angular deviation from `alpha`; controls line
+ *                     orientation variability.
+ * @param  return_type Type of Voronoi output to return (e.g., F1, F2, edge
+ *                     distance, smoothed field, etc.).
+ * @param  p_noise_x   Optional pointer to an input noise field applied to the X
+ *                     coordinates (can be nullptr).
+ * @param  p_noise_y   Optional pointer to an input noise field applied to the Y
+ *                     coordinates (can be nullptr).
+ * @param  bbox        Bounding box in normalized coordinates (min_x, max_x,
+ *                     min_y, max_y) of the final array.
+ * @param  bbox_points Bounding box within which random base points are sampled.
+ *
+ * @return             A 2D array (of type Array) containing the computed
+ *                     distance field based on line proximity.
+ *
+ * @note Each line is defined from a point (x, y) to a direction offset using
+ * angle `theta = alpha + rand * alpha_span`.
+ * @note The OpenCL kernel "vorolines" must be defined and compiled beforehand.
+ *
+ * **Example**
+ * @include ex_vorolines.cpp
+ *
+ * **Result**
+ * @image html ex_vorolines.png
+ * @image html ex_vorolines_fbm.png
+ */
+Array vorolines(Vec2<int>         shape,
+                float             density,
+                uint              seed,
+                float             k_smoothing = 0.f,
+                float             exp_sigma = 0.f,
+                float             alpha = 0.f,
+                float             alpha_span = M_PI,
+                VoronoiReturnType return_type = VoronoiReturnType::F1_SQUARED,
+                const Array      *p_noise_x = nullptr,
+                const Array      *p_noise_y = nullptr,
+                Vec4<float>       bbox = {0.f, 1.f, 0.f, 1.f},
+                Vec4<float>       bbox_points = {0.f, 1.f, 0.f, 1.f});
+
+/**
+ * @brief Generates a Voronoi-based pattern using distances to lines defined by
+ * random points and angles, with additional fractal Brownian motion (fBm) noise
+ * modulation.
+ *
+ * This function extends the standard `vorolines` generation by introducing
+ * fBm-based warping of the coordinate space, resulting in more organic and
+ * fractal-like structures. It creates a Voronoi distance field based on
+ * proximity to oriented line segments and distorts the result using
+ * multi-octave procedural noise.
+ *
+ * @param  shape       Output resolution of the 2D array (width, height).
+ * @param  density     Number of base points per unit area used to define lines.
+ * @param  seed        Seed value for the random number generator.
+ * @param  k_smoothing Kernel smoothing coefficient to soften distance values
+ *                     (e.g., for blending).
+ * @param  exp_sigma   Sigma value for optional exponential smoothing on the
+ *                     final field.
+ * @param  alpha       Base orientation angle (in radians) of lines generated
+ *                     from random points.
+ * @param  alpha_span  Maximum angle deviation from `alpha`, determining
+ *                     directional randomness of lines.
+ * @param  return_type Type of output to return (e.g., F1, F2, distance to edge,
+ *                     smoothed version).
+ * @param  octaves     Number of noise octaves used in the fBm modulation.
+ * @param  weight      Weight of each octave's contribution to the total noise.
+ * @param  persistence Amplitude decay factor for each successive octave
+ *                     (commonly 0.5–0.8).
+ * @param  lacunarity  Frequency multiplier for each successive octave (commonly
+ *                     2.0).
+ * @param  p_noise_x   Optional pointer to an external noise field applied to X
+ *                     coordinates (can be nullptr).
+ * @param  p_noise_y   Optional pointer to an external noise field applied to Y
+ *                     coordinates (can be nullptr).
+ * @param  bbox        Bounding box for the final image domain (min_x, max_x,
+ *                     min_y, max_y).
+ * @param  bbox_points Bounding box from which the initial set of points are
+ *                     sampled.
+ *
+ * @return             A 2D `Array` representing the Voronoi-fBm field,
+ *                     distorted by noise and influenced by distance to random
+ *                     lines.
+ *
+ * @note This version uses internally computed fBm noise unless external fields
+ * (`p_noise_x`, `p_noise_y`) are provided.
+ * @note This function requires an OpenCL kernel named "vorolines_fbm" to be
+ * compiled and accessible.
+ *
+ * **Example**
+ * @include ex_vorolines.cpp
+ *
+ * **Result**
+ * @image html ex_vorolines.png
+ * @image html ex_vorolines_fbm.png
+ */
+Array vorolines_fbm(
+    Vec2<int>         shape,
+    float             density,
+    uint              seed,
+    float             k_smoothing = 0.f,
+    float             exp_sigma = 0.f,
+    float             alpha = 0.f,
+    float             alpha_span = M_PI,
+    VoronoiReturnType return_type = VoronoiReturnType::F1_SQUARED,
+    int               octaves = 8,
+    float             weight = 0.7f,
+    float             persistence = 0.5f,
+    float             lacunarity = 2.f,
+    const Array      *p_noise_x = nullptr,
+    const Array      *p_noise_y = nullptr,
+    Vec4<float>       bbox = {0.f, 1.f, 0.f, 1.f},
+    Vec4<float>       bbox_points = {0.f, 1.f, 0.f, 1.f});
+
+/**
  * @brief Generates a Voronoi diagram in a 2D array with configurable
  * properties.
  *
@@ -1676,7 +1884,7 @@ Array noise_fbm(NoiseType    noise_type,
  *                      diagram. Defaults to `VoronoiReturnType::F1_SQUARED`.
  * @param  p_ctrl_param (Optional) A pointer to an `Array` used to control the
  *                      Voronoi computation. Used here as a multiplier for the
- * jitter. If nullptr, no control is applied.
+ *                      jitter. If nullptr, no control is applied.
  * @param  p_noise_x    (Optional) A pointer to an `Array` providing additional
  *                      noise in the x-direction for cell positions. If nullptr,
  *                      no x-noise is applied.
@@ -1703,6 +1911,7 @@ Array voronoi(Vec2<int>         shape,
               uint              seed,
               Vec2<float>       jitter = {0.5f, 0.5f},
               float             k_smoothing = 0.f,
+              float             exp_sigma = 0.f,
               VoronoiReturnType return_type = VoronoiReturnType::F1_SQUARED,
               const Array      *p_ctrl_param = nullptr,
               const Array      *p_noise_x = nullptr,
@@ -1760,6 +1969,7 @@ Array voronoi_fbm(Vec2<int>         shape,
                   uint              seed,
                   Vec2<float>       jitter = {0.5f, 0.5f},
                   float             k_smoothing = 0.f,
+                  float             exp_sigma = 0.f,
                   VoronoiReturnType return_type = VoronoiReturnType::F1_SQUARED,
                   int               octaves = 8,
                   float             weight = 0.7f,
@@ -1825,9 +2035,9 @@ Array voronoi_edge_distance(Vec2<int>    shape,
  *                              contribution of random offsets.
  * @param  v_param              A control parameter for the noise, affecting the
  *                              smoothness of the pattern.
- * @param p_ctrl_param         Optional pointer to an Array specifying control
- *                             parameters for Voronoi grid jitter (default is
- *                             nullptr).
+ * @param  p_ctrl_param         Optional pointer to an Array specifying control
+ *                              parameters for Voronoi grid jitter (default is
+ *                              nullptr).
  * @param  p_noise_x, p_noise_y Reference to the input noise arrays.
  * @param  seed                 A seed value for random number generation,
  *                              ensuring reproducibility.
@@ -1890,4 +2100,75 @@ Array voronoise_fbm(Vec2<int>    shape,
                     const Array *p_noise_x = nullptr,
                     const Array *p_noise_y = nullptr,
                     Vec4<float>  bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
+ * @brief Generates a 2D Voronoi-based scalar field using OpenCL.
+ *
+ * This function computes a Voronoi diagram or derived metric (such as F1, F2,
+ * or edge distances) on a grid of given shape. A set of random points is
+ * generated within an extended bounding box, based on the desired density and
+ * variability, to reduce edge artifacts. Optionally, per-pixel displacement can
+ * be applied through noise fields.
+ *
+ * The result is stored in an `Array` object representing a 2D scalar field.
+ *
+ * @param  shape       Dimensions of the output array (width x height).
+ * @param  density     Number of random points per unit area for Voronoi
+ *                     diagram.
+ * @param  variability Amount of randomness added to the point generation
+ *                     bounding box.
+ * @param  seed        Seed for random number generation used in point sampling.
+ * @param  k_smoothing Smoothing factor used in soft minimum/maximum Voronoi
+ *                     distance computations.
+ * @param  exp_sigma   Standard deviation used in exponential falloff for edge
+ *                     distance computation.
+ * @param  return_type Type of Voronoi computation to perform (e.g., F1, F2,
+ *                     F2-F1, edge distance).
+ * @param  p_noise_x   Optional pointer to a noise field applied to X
+ *                     coordinates of grid points.
+ * @param  p_noise_y   Optional pointer to a noise field applied to Y
+ *                     coordinates of grid points.
+ * @param  bbox        Bounding box of the domain in which the field is
+ *                     computed: {xmin, xmax, ymin, ymax}.
+ * @param  bbox_points Bounding box for point generation, usually larger than
+ * `bbox` to avoid edge effects.
+ *
+ * @return             An `Array` object containing the computed scalar field.
+ *
+ * @note
+ * - The kernel `"vororand"` must be compiled and available in the OpenCL
+ * context.
+ * - If `p_noise_x` or `p_noise_y` are provided, they must match the shape of
+ * the output array.
+ * - The generated point cloud will be larger than `bbox` to reduce border
+ * artifacts.
+ *
+ * **Example**
+ * @include ex_vororand.cpp
+ *
+ * **Result**
+ * @image html ex_vororand.png
+ */
+Array vororand(Vec2<int>         shape,
+               float             density,
+               float             variability,
+               uint              seed,
+               float             k_smoothing = 0.f,
+               float             exp_sigma = 0.f,
+               VoronoiReturnType return_type = VoronoiReturnType::F1_SQUARED,
+               const Array      *p_noise_x = nullptr,
+               const Array      *p_noise_y = nullptr,
+               Vec4<float>       bbox = {0.f, 1.f, 0.f, 1.f},
+               Vec4<float>       bbox_points = {0.f, 1.f, 0.f, 1.f});
+
+Array vororand(Vec2<int>                 shape,
+               const std::vector<float> &xp,
+               const std::vector<float> &yp,
+               float                     k_smoothing = 0.f,
+               float                     exp_sigma = 0.f,
+               VoronoiReturnType return_type = VoronoiReturnType::F1_SQUARED,
+               const Array      *p_noise_x = nullptr,
+               const Array      *p_noise_y = nullptr,
+               Vec4<float>       bbox = {0.f, 1.f, 0.f, 1.f});
+
 } // namespace hmap::gpu

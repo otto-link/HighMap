@@ -1,14 +1,38 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
+#include "highmap/features.hpp"
 #include "highmap/array.hpp"
+#include "highmap/convolve.hpp"
 #include "highmap/curvature.hpp"
 #include "highmap/filters.hpp"
+#include "highmap/math.hpp"
 #include "highmap/morphology.hpp"
 #include "highmap/range.hpp"
 
 namespace hmap
 {
+
+Array local_median_deviation(const Array &array, int ir)
+{
+  Array mean = mean_local(array, ir);
+  Array med = median_pseudo(array, ir); // TODO exact
+  return abs(mean - med);
+}
+
+Array mean_local(const Array &array, int ir)
+{
+  Array array_out = Array(array.shape);
+
+  std::vector<float> k1d(2 * ir + 1);
+  for (auto &v : k1d)
+    v = 1.f / (float)(2 * ir + 1);
+
+  array_out = convolve1d_i(array, k1d);
+  array_out = convolve1d_j(array_out, k1d);
+
+  return array_out;
+}
 
 Array relative_elevation(const Array &array, int ir)
 {
@@ -91,6 +115,21 @@ Array rugosity(const Array &z, int ir, bool convex)
   return z_skw;
 }
 
+Array std_local(const Array &array, int ir)
+{
+  // NB - use Gaussian windowing instead of a real arithmetic averaging
+  Array mean = array;
+  smooth_cpulse(mean, ir);
+
+  // use mean to store (array - mean)^2
+  mean -= array;
+  mean *= mean;
+  smooth_cpulse(mean, ir);
+  Array std = sqrt(mean);
+
+  return std;
+}
+
 Array valley_width(const Array &z, int ir, bool ridge_select)
 {
   Array vw = z;
@@ -102,6 +141,21 @@ Array valley_width(const Array &z, int ir, bool ridge_select)
   vw = distance_transform_approx(vw);
 
   return vw;
+}
+
+Array z_score(const Array &array, int ir)
+{
+  // NB - use Gaussian windowing instead of a real arithmetic averaging
+  Array mean = array;
+  smooth_cpulse(mean, ir);
+
+  // use mean to store (array - mean)^2
+  mean -= array;
+  mean *= mean;
+  smooth_cpulse(mean, ir);
+  Array std = sqrt(mean);
+
+  return (array - mean) / std;
 }
 
 } // namespace hmap

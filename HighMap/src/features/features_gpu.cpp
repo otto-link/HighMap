@@ -1,11 +1,42 @@
 /* Copyright (c) 2023 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
+#include "highmap/features.hpp"
 #include "highmap/filters.hpp"
+#include "highmap/math.hpp"
 #include "highmap/opencl/gpu_opencl.hpp"
 
 namespace hmap::gpu
 {
+
+Array local_median_deviation(const Array &array, int ir)
+{
+  Array mean = gpu::mean_local(array, ir);
+  Array med = gpu::median_pseudo(array, ir); // TODO exact
+  return abs(mean - med);
+}
+
+Array mean_local(const Array &array, int ir)
+{
+  Array array_out = array;
+
+  auto run = clwrapper::Run("mean_local");
+
+  run.bind_imagef("in", array_out.vector, array.shape.x, array.shape.y);
+  run.bind_imagef("out", array_out.vector, array.shape.x, array.shape.y, true);
+  run.bind_arguments(array.shape.x, array.shape.y, ir, 0);
+
+  run.set_argument(5, 0); // row pass
+  run.execute({array.shape.x, array.shape.y});
+  run.read_imagef("out");
+
+  run.set_argument(5, 1); // col pass
+  run.write_imagef("in");
+  run.execute({array.shape.x, array.shape.y});
+  run.read_imagef("out");
+
+  return array_out;
+}
 
 Array relative_elevation(const Array &array, int ir)
 {
@@ -70,6 +101,36 @@ Array rugosity(const Array &z, int ir, bool convex)
   run.read_buffer("z_skw");
 
   return z_skw;
+}
+
+Array std_local(const Array &array, int ir)
+{
+  // NB - use Gaussian windowing instead of a real arithmetic averaging
+  Array mean = array;
+  gpu::smooth_cpulse(mean, ir);
+
+  // use mean to store (array - mean)^2
+  mean -= array;
+  mean *= mean;
+  gpu::smooth_cpulse(mean, ir);
+  Array std = sqrt(mean);
+
+  return std;
+}
+
+Array z_score(const Array &array, int ir)
+{
+  // NB - use Gaussian windowing instead of a real arithmetic averaging
+  Array mean = array;
+  gpu::smooth_cpulse(mean, ir);
+
+  // use mean to store (array - mean)^2
+  mean -= array;
+  mean *= mean;
+  gpu::smooth_cpulse(mean, ir);
+  Array std = sqrt(mean);
+
+  return (array - mean) / std;
 }
 
 } // namespace hmap::gpu

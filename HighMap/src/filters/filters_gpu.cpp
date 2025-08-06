@@ -2,6 +2,7 @@
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
 #include "highmap/curvature.hpp"
+#include "highmap/features.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/math.hpp"
@@ -11,27 +12,27 @@
 namespace hmap::gpu
 {
 
-void expand(Array &array, int ir)
+void expand(Array &array, int ir, int iterations)
 {
   Array kernel = cubic_pulse({2 * ir + 1, 2 * ir + 1});
-  gpu::expand(array, kernel);
+  gpu::expand(array, kernel, iterations);
 }
 
-void expand(Array &array, int ir, const Array *p_mask)
+void expand(Array &array, int ir, const Array *p_mask, int iterations)
 {
   Array kernel = cubic_pulse({2 * ir + 1, 2 * ir + 1});
 
   if (!p_mask)
   {
-    gpu::expand(array, kernel);
+    gpu::expand(array, kernel, iterations);
   }
   else
   {
-    gpu::expand(array, kernel, p_mask);
+    gpu::expand(array, kernel, p_mask, iterations);
   }
 }
 
-void expand(Array &array, const Array &kernel)
+void expand(Array &array, const Array &kernel, int iterations)
 {
   auto run = clwrapper::Run("expand");
 
@@ -47,16 +48,22 @@ void expand(Array &array, const Array &kernel)
                      kernel.shape.x,
                      kernel.shape.y);
 
-  run.execute({array.shape.x, array.shape.y});
-
-  run.read_imagef("out");
+  for (int it = 0; it < iterations; ++it)
+  {
+    run.write_imagef("z");
+    run.execute({array.shape.x, array.shape.y});
+    run.read_imagef("out");
+  }
 }
 
-void expand(Array &array, const Array &kernel, const Array *p_mask)
+void expand(Array       &array,
+            const Array &kernel,
+            const Array *p_mask,
+            int          iterations)
 {
   if (!p_mask)
   {
-    gpu::expand(array, kernel);
+    gpu::expand(array, kernel, iterations);
   }
   else
   {
@@ -75,9 +82,12 @@ void expand(Array &array, const Array &kernel, const Array *p_mask)
                        kernel.shape.x,
                        kernel.shape.y);
 
-    run.execute({array.shape.x, array.shape.y});
-
-    run.read_imagef("out");
+    for (int it = 0; it < iterations; ++it)
+    {
+      run.write_imagef("z");
+      run.execute({array.shape.x, array.shape.y});
+      run.read_imagef("out");
+    }
   }
 }
 
@@ -200,28 +210,6 @@ Array maximum_local_disk(const Array &array, int ir)
   return array_out;
 }
 
-Array mean_local(const Array &array, int ir)
-{
-  Array array_out = array;
-
-  auto run = clwrapper::Run("mean_local");
-
-  run.bind_imagef("in", array_out.vector, array.shape.x, array.shape.y);
-  run.bind_imagef("out", array_out.vector, array.shape.x, array.shape.y, true);
-  run.bind_arguments(array.shape.x, array.shape.y, ir, 0);
-
-  run.set_argument(5, 0); // row pass
-  run.execute({array.shape.x, array.shape.y});
-  run.read_imagef("out");
-
-  run.set_argument(5, 1); // col pass
-  run.write_imagef("in");
-  run.execute({array.shape.x, array.shape.y});
-  run.read_imagef("out");
-
-  return array_out;
-}
-
 Array mean_shift(const Array &array,
                  int          ir,
                  float        talus,
@@ -255,6 +243,23 @@ Array mean_shift(const Array &array,
   return array_next;
 }
 
+Array mean_shift(const Array &array,
+                 int          ir,
+                 float        talus,
+                 const Array *p_mask,
+                 int          iterations,
+                 bool         talus_weighted)
+{
+  if (!p_mask)
+    return gpu::mean_shift(array, ir, talus, iterations, talus_weighted);
+  else
+  {
+    Array array_f = array;
+    gpu::mean_shift(array_f, ir, talus, iterations, talus_weighted);
+    return lerp(array, array_f, *p_mask);
+  }
+}
+
 void median_3x3(Array &array)
 {
   auto run = clwrapper::Run("median_3x3");
@@ -278,6 +283,13 @@ void median_3x3(Array &array, const Array *p_mask)
     gpu::median_3x3(array_f);
     array = lerp(array, array_f, *(p_mask));
   }
+}
+
+Array median_pseudo(const Array &array, int ir)
+{
+  return (gpu::minimum_local(array, ir) + gpu::maximum_local(array, ir) +
+          gpu::mean_local(array, ir)) /
+         3.f;
 }
 
 Array minimum_local(const Array &array, int ir)
@@ -376,31 +388,28 @@ void plateau(Array &array, int ir, float factor)
   gpu::plateau(array, nullptr, ir, factor);
 }
 
-void shrink(Array &array, int ir)
+void shrink(Array &array, int ir, int iterations)
 {
   Array kernel = cubic_pulse({2 * ir + 1, 2 * ir + 1});
-  gpu::shrink(array, kernel);
+  gpu::shrink(array, kernel, iterations);
 }
 
-void shrink(Array &array, int ir, const Array *p_mask)
+void shrink(Array &array, int ir, const Array *p_mask, int iterations)
 {
   Array kernel = cubic_pulse({2 * ir + 1, 2 * ir + 1});
 
   if (!p_mask)
   {
-    gpu::shrink(array, kernel);
+    gpu::shrink(array, kernel, iterations);
   }
   else
   {
-    gpu::shrink(array, kernel, p_mask);
+    gpu::shrink(array, kernel, p_mask, iterations);
   }
 }
 
-void shrink(Array &array, const Array &kernel)
+void shrink(Array &array, const Array &kernel, int iterations)
 {
-  float amax = array.max();
-  array *= -1.f; // array <- amax - array;
-  array += amax;
 
   auto run = clwrapper::Run("expand");
 
@@ -416,26 +425,32 @@ void shrink(Array &array, const Array &kernel)
                      kernel.shape.x,
                      kernel.shape.y);
 
-  run.execute({array.shape.x, array.shape.y});
-
-  run.read_imagef("out");
-
-  array *= -1.f; // array <- amax - array;
-  array += amax;
-}
-
-void shrink(Array &array, const Array &kernel, const Array *p_mask)
-{
-  if (!p_mask)
-  {
-    gpu::shrink(array, kernel);
-  }
-  else
+  for (int it = 0; it < iterations; ++it)
   {
     float amax = array.max();
     array *= -1.f; // array <- amax - array;
     array += amax;
 
+    run.write_imagef("z");
+    run.execute({array.shape.x, array.shape.y});
+    run.read_imagef("out");
+
+    array *= -1.f; // array <- amax - array;
+    array += amax;
+  }
+}
+
+void shrink(Array       &array,
+            const Array &kernel,
+            const Array *p_mask,
+            int          iterations)
+{
+  if (!p_mask)
+  {
+    gpu::shrink(array, kernel, iterations);
+  }
+  else
+  {
     auto run = clwrapper::Run("expand_masked");
 
     run.bind_imagef("z", array.vector, array.shape.x, array.shape.y);
@@ -451,12 +466,19 @@ void shrink(Array &array, const Array &kernel, const Array *p_mask)
                        kernel.shape.x,
                        kernel.shape.y);
 
-    run.execute({array.shape.x, array.shape.y});
+    for (int it = 0; it < iterations; ++it)
+    {
+      float amax = array.max();
+      array *= -1.f; // array <- amax - array;
+      array += amax;
 
-    run.read_imagef("out");
+      run.write_imagef("z");
+      run.execute({array.shape.x, array.shape.y});
+      run.read_imagef("out");
 
-    array *= -1.f; // array <- amax - array;
-    array += amax;
+      array *= -1.f; // array <- amax - array;
+      array += amax;
+    }
   }
 }
 

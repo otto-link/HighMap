@@ -1,0 +1,2 @@
+add_executable(ex_local_median_deviation ex_local_median_deviation.cpp)
+target_link_libraries(ex_local_median_deviation highmap)

@@ -85,6 +85,22 @@ float remap_from(float x,
   return (x - from_min) / (from_max - from_min) * (vmax - vmin) + vmin;
 }
 
+float smax(const float a, const float b, const float k)
+{
+  if (k > 0.f)
+    return max_smooth(a, b, k);
+  else
+    return max(a, b);
+}
+
+float smin(const float a, const float b, const float k)
+{
+  if (k > 0.f)
+    return min_smooth(a, b, k);
+  else
+    return min(a, b);
+}
+
 float smoothstep3(float x)
 {
   return x * x * (3.f - 2.f * x);

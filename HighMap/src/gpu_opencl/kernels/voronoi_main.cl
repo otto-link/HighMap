@@ -14,6 +14,7 @@ void kernel voronoi(global float *output,
                     const uint    seed,
                     const float2  jitter,
                     const float   k_smoothing,
+                    const float   exp_sigma,
                     const int     return_type,
                     const int     has_ctrl_param,
                     const int     has_noise_x,
@@ -45,12 +46,19 @@ void kernel voronoi(global float *output,
   case 3: val = base_voronoi_f1df2(pos, ct * jitter, k_smoothing, fseed); break;
   case 4: val = base_voronoi_f2mf1(pos, ct * jitter, k_smoothing, fseed); break;
   case 5:
-    val = base_voronoi_edge_distance(pos, ct * jitter, k_smoothing, fseed);
+    val = base_voronoi_edge_distance_exp(pos,
+                                         ct * jitter,
+                                         k_smoothing,
+                                         exp_sigma,
+                                         fseed);
     break;
   case 6:
-    val = base_voronoi_constant(pos, ct * jitter, k_smoothing, fseed);
+    val = base_voronoi_edge_distance(pos, ct * jitter, k_smoothing, fseed);
     break;
   case 7:
+    val = base_voronoi_constant(pos, ct * jitter, k_smoothing, fseed);
+    break;
+  case 8:
     val = base_voronoi_constant_f2mf1(pos, ct * jitter, k_smoothing, fseed);
     break;
   }
@@ -69,6 +77,7 @@ void kernel voronoi_fbm(global float *output,
                         const uint    seed,
                         const float2  jitter,
                         const float   k_smoothing,
+                        const float   exp_sigma,
                         const int     return_type,
                         const int     octaves,
                         const float   weight,
@@ -149,6 +158,17 @@ void kernel voronoi_fbm(global float *output,
                                  fseed);
     break;
   case 5:
+    val = base_voronoi_edge_distance_exp_fbm(pos,
+                                             ct * jitter,
+                                             k_smoothing,
+                                             exp_sigma,
+                                             octaves,
+                                             weight,
+                                             persistence,
+                                             lacunarity,
+                                             fseed);
+    break;
+  case 6:
     val = base_voronoi_edge_distance_fbm(pos,
                                          ct * jitter,
                                          k_smoothing,
@@ -158,7 +178,7 @@ void kernel voronoi_fbm(global float *output,
                                          lacunarity,
                                          fseed);
     break;
-  case 6:
+  case 7:
     val = base_voronoi_constant_fbm(pos,
                                     ct * jitter,
                                     k_smoothing,
@@ -168,7 +188,7 @@ void kernel voronoi_fbm(global float *output,
                                     lacunarity,
                                     fseed);
     break;
-  case 7:
+  case 8:
     val = base_voronoi_constant_f2mf1_fbm(pos,
                                           ct * jitter,
                                           k_smoothing,

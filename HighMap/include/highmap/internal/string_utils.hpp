@@ -4,7 +4,7 @@
 
 /**
  * @file string_utils.hpp
- * @author  Otto Link (otto.link.bv@gmail.com)
+ * @author Otto Link (otto.link.bv@gmail.com)
  * @brief
  *
  * @copyright Copyright (c) 2025

@@ -9,6 +9,7 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
+#include "highmap/features.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/geometry/path.hpp"
 #include "highmap/internal/vector_utils.hpp"

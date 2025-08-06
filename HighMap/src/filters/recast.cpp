@@ -2,12 +2,12 @@
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
 
+#include "macrologger.h"
 #include <cmath>
 #include <random>
 
-#include "macrologger.h"
-
 #include "highmap/array.hpp"
+#include "highmap/features.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/gradient.hpp"
 #include "highmap/math.hpp"

@@ -193,6 +193,33 @@ Array cubic_pulse_truncated(Vec2<int> shape, float slant_ratio, float angle);
 Array disk(Vec2<int> shape);
 
 /**
+ * @brief Generates a smooth, disk-shaped kernel footprint with soft edges.
+ *
+ * This function creates a 2D, disk-shaped kernel with radially symmetric values
+ * centered in the array. Values inside the cutoff radius `r_cutoff` are set to
+ * 1.0. Between `r_cutoff` and the normalized radius 1.0, the values smoothly
+ * fall off to zero using a parabolic profile to ensure soft transitions at the
+ * disk boundary.
+ *
+ * The generated array is useful for constructing smooth low-pass filters or
+ * spatial masks with circular support.
+ *
+ * @param  shape    The dimensions of the output array (width, height).
+ * @param  r_cutoff Normalized cutoff radius in the range [0.0, 1.0]. Inside
+ *                  this radius, the kernel has a flat value of 1.0; outside, it
+ *                  decays smoothly to 0.0.
+ *
+ * @return          A 2D array of size `shape` containing the smooth disk-shaped
+ *                  kernel.
+ *
+ * @note Coordinates are normalized such that the radius 1.0 corresponds to the
+ * maximum possible distance from the center in either dimension.
+ *
+ * @see             disk()
+ */
+Array disk_smooth(Vec2<int> shape, float r_cutoff = 0.9f);
+
+/**
  * @brief Generates a Gabor kernel of the specified shape.
  *
  * This function creates a Gabor kernel, which is a type of sinusoidal kernel

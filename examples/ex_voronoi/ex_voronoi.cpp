@@ -9,7 +9,8 @@ int main(void)
   int               seed = 1;
 
   hmap::Vec2<float> jitter = {1.f, 1.f};
-  float             k_smoothing = 0.5f;
+  float             k_smoothing = 0.f;
+  float             exp_sigma = 0.05f;
 
   std::vector<hmap::VoronoiReturnType> types = {
       hmap::VoronoiReturnType::F1_SQUARED,
@@ -17,6 +18,7 @@ int main(void)
       hmap::VoronoiReturnType::F1TF2_SQUARED,
       hmap::VoronoiReturnType::F1DF2_SQUARED,
       hmap::VoronoiReturnType::F2MF1_SQUARED,
+      hmap::VoronoiReturnType::EDGE_DISTANCE_EXP,
       hmap::VoronoiReturnType::EDGE_DISTANCE_SQUARED,
       hmap::VoronoiReturnType::CONSTANT,
       hmap::VoronoiReturnType::CONSTANT_F2MF1_SQUARED};
@@ -30,6 +32,7 @@ int main(void)
                                        seed,
                                        jitter,
                                        k_smoothing,
+                                       exp_sigma,
                                        type);
     hmap::remap(z);
     zs.push_back(z);
@@ -42,6 +45,7 @@ int main(void)
                                            seed,
                                            jitter,
                                            k_smoothing,
+                                           exp_sigma,
                                            type);
     hmap::remap(z);
     zs.push_back(z);

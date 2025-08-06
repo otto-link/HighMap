@@ -71,23 +71,39 @@ Array diffusion_retargeting(const Array &array_before,
                             int          ir);
 
 /**
- * @brief Applies a directional blur to the provided 2D array based on a
- * spatially varying angle.
+ * @brief Applies a directional blur to a 2D array based on a spatially varying
+ * angle field.
  *
- * This function blurs the input array by interpolating values along the
- * direction specified by the `angle` array. The blur intensity decreases with
- * distance up to the given radius (`ir`), and smoothing weights are computed
- * using a smoothstep function.
+ * This function performs an anisotropic blur on the input `array`, using the
+ * `angle` array to determine the direction of blur at each pixel. The blur is
+ * computed by sampling values along a line in the specified direction
+ * (per-pixel), using linear interpolation through an `ArrayFunction`. The
+ * amount of blur is controlled by parameters for intensity, stretching, and
+ * spread.
  *
- * @param array     The 2D array to be blurred.
- * @param ir        The radius of the blur operation (number of steps).
- * @param angle     A 2D array specifying the directional angle (in degrees) for
- *                  each pixel.
- * @param intensity The maximum intensity of the blur at the starting point of
- *                  the radius.
+ * For each pixel, the function samples values along the blur direction
+ * determined by `angle(i, j)` (in degrees), applies a smooth weight profile
+ * (`smoothstep3`) over a range of `2 * ir - 1` steps, and accumulates the
+ * weighted values. The output is then normalized by the total weight sum.
  *
- * @note The `angle` values should be in degrees, where 0° points to the right
- * (positive x-direction).
+ * @param array     The input/output 2D array to be blurred (modified in-place).
+ * @param ir        Blur radius: the number of samples on each side of the
+ *                  center (total samples = 2 * ir - 1).
+ * @param angle     A 2D array of the same shape as `array` giving blur
+ *                  direction (in degrees) at each pixel. 0° points to the right
+ *                  (positive X), 90° points upward (positive Y).
+ * @param intensity The overall weight of the blur effect (scales the weight
+ *                  profile).
+ * @param stretch   A scaling factor applied to the sampling step along the blur
+ *                  direction. Higher values stretch the blur further along the
+ *                  direction vector.
+ * @param spread    Maximum normalized distance at which blur weights are
+ *                  applied (used in smoothstep weight profile).
+ *
+ * @note Uses linear interpolation through an `ArrayFunction`, and wraps
+ * coordinates using clamping (not periodic).
+ *
+ * @see             smoothstep3(), ArrayFunction
  *
  * **Example**
  * @include ex_directional_blur.cpp
@@ -95,7 +111,12 @@ Array diffusion_retargeting(const Array &array_before,
  * **Result**
  * @image html ex_directional_blur.png
  */
-void directional_blur(Array &array, int ir, float angle, float intensity);
+void directional_blur(Array &array,
+                      int    ir,
+                      float  angle,
+                      float  intensity,
+                      float  stretch = 1.f,
+                      float  spread = 1.f);
 
 /**
  * @brief Applies a directional blur to the provided 2D array with a constant
@@ -123,7 +144,9 @@ void directional_blur(Array &array, int ir, float angle, float intensity);
 void directional_blur(Array       &array,
                       int          ir,
                       const Array &angle,
-                      float        intensity);
+                      float        intensity,
+                      float        stretch = 1.f,
+                      float        spread = 1.f);
 
 /**
  * @brief Apply histogram equalization to the array values.
@@ -171,7 +194,7 @@ void equalize(Array &array, const Array *p_mask);
  *
  * @see          ex_shrink
  */
-void expand(Array &array, int ir, const Array *p_mask);
+void expand(Array &array, int ir, const Array *p_mask, int iterations = 1);
 
 /**
  * @brief Apply expansion to emphasize the bulk of the terrain using a filter
@@ -185,7 +208,7 @@ void expand(Array &array, int ir, const Array *p_mask);
  *
  * @overload
  */
-void expand(Array &array, int ir);
+void expand(Array &array, int ir, int iterations = 1);
 
 /**
  * @brief Apply expansion using a custom kernel.
@@ -198,7 +221,7 @@ void expand(Array &array, int ir);
  *
  * @overload
  */
-void expand(Array &array, const Array &kernel);
+void expand(Array &array, const Array &kernel, int iterations = 1);
 
 /**
  * @brief Apply expansion using a custom kernel with an optional mask.
@@ -214,7 +237,10 @@ void expand(Array &array, const Array &kernel);
  *
  * @overload
  */
-void expand(Array &array, const Array &kernel, const Array *p_mask);
+void expand(Array       &array,
+            const Array &kernel,
+            const Array *p_mask,
+            int          iterations = 1);
 
 /**
  * @brief Apply expansion, or "inflation", to emphasize the bulk of the terrain,
@@ -848,31 +874,6 @@ Array maximum_local_disk(const Array &array, int ir);
 void match_histogram(Array &array, const Array &array_reference);
 
 /**
- * @brief Return the local mean based on a mean filter with a square kernel.
- *
- * This function calculates the local mean of the input array using a mean
- * filter with a square kernel. The local mean is determined by averaging values
- * within a square neighborhood defined by the footprint radius `ir`. The result
- * is an array where each value represents the mean of the surrounding values
- * within the kernel size.
- *
- * @param  array Input array from which the local mean is to be calculated.
- * @param  ir    Square kernel footprint radius. The size of the kernel used to
- *               compute the local mean.
- * @return       Array Resulting array containing the local means.
- *
- * **Example**
- * @include ex_mean_local.cpp
- *
- * **Result**
- * @image html ex_mean_local0.png
- * @image html ex_mean_local1.png
- *
- * @see          {@link maximum_local}, {@link minimum_local}
- */
-Array mean_local(const Array &array, int ir);
-
-/**
  * @brief Applies the mean shift algorithm to the input array.
  *
  * The mean shift algorithm iteratively adjusts each value in the input array by
@@ -903,6 +904,13 @@ Array mean_local(const Array &array, int ir);
 Array mean_shift(const Array &array,
                  int          ir,
                  float        talus,
+                 int          iterations = 1,
+                 bool         talus_weighted = true);
+
+Array mean_shift(const Array &array,
+                 int          ir,
+                 float        talus,
+                 const Array *p_mask,
                  int          iterations = 1,
                  bool         talus_weighted = true);
 
@@ -939,6 +947,41 @@ void median_3x3(Array &array, const Array *p_mask);
  * @overload
  */
 void median_3x3(Array &array);
+
+/**
+ * @brief Computes a fast pseudo-median approximation of a local neighborhood in
+ * an array.
+ *
+ * This function approximates the effect of a median filter by computing the
+ * local minimum, maximum, and mean values within a square neighborhood of
+ * radius `ir`, and averaging the results:
+ *
+ * \f[
+ * \text{pseudo\_median}(x, y) = \frac{\text{min} + \text{max} + \text{mean}}{3}
+ * \f]
+ *
+ * This method is computationally cheaper than a true median filter and can
+ * approximate its noise-reduction and edge-preserving properties to some
+ * extent.
+ *
+ * @param  array Input array (e.g., image or 2D signal).
+ * @param  ir    Radius of the square neighborhood (kernel size will be \f$2
+ *               \cdot ir + 1\f$).
+ * @return       An Array containing the pseudo-median filtered output.
+ *
+ * @note This method works best on images with impulsive noise (e.g.,
+ * salt-and-pepper), but is only an approximation and may behave differently
+ * from a true median filter on complex structures or edges.
+ *
+ * **Example**
+ * @include ex_median_pseudo.cpp
+ *
+ * **Result**
+ * @image html ex_median_pseudo.png
+ *
+ * @see          minimum_local, maximum_local, mean_local
+ */
+Array median_pseudo(const Array &array, int ir);
 
 /**
  * @brief Return the local minima based on a maximum filter with a square
@@ -1751,12 +1794,18 @@ void sharpen_cone(Array       &array,
  *
  * @see          {@link ex_expand}
  */
-void shrink(Array &array, int ir);
-void shrink(Array &array, int ir, const Array *p_mask); ///< @overload
-void shrink(Array &array, const Array &kernel);         ///< @overload
+void shrink(Array &array, int ir, int iterations = 1);
+void shrink(Array       &array,
+            int          ir,
+            const Array *p_mask,
+            int          iterations = 1); ///< @overload
 void shrink(Array       &array,
             const Array &kernel,
-            const Array *p_mask); ///< @overload
+            int          iterations = 1); ///< @overload
+void shrink(Array       &array,
+            const Array &kernel,
+            const Array *p_mask,
+            int          iterations = 1); ///< @overload
 
 /**
  * @brief Apply directional shrinking, or "deflating", to emphasize the ridges
@@ -2281,12 +2330,18 @@ namespace hmap::gpu
 {
 
 /*! @brief See hmap::expand */
-void expand(Array &array, int ir);
-void expand(Array &array, int ir, const Array *p_mask); ///< @overload
-void expand(Array &array, const Array &kernel);         ///< @overload
+void expand(Array &array, int ir, int iterations = 1);
+void expand(Array       &array,
+            int          ir,
+            const Array *p_mask,
+            int          iterations = 1); ///< @overload
 void expand(Array       &array,
             const Array &kernel,
-            const Array *p_mask); ///< @overload
+            int          iterations = 1); ///< @overload
+void expand(Array       &array,
+            const Array &kernel,
+            const Array *p_mask,
+            int          iterations = 1); ///< @overload
 
 /*! @brief See hmap::gamma_correction_local */
 void gamma_correction_local(Array &array, float gamma, int ir, float k = 0.1f);
@@ -2309,9 +2364,6 @@ Array maximum_local(const Array &array, int ir);
 /*! @brief See hmap::maximum_local_disk */
 Array maximum_local_disk(const Array &array, int ir);
 
-/*! @brief See hmap::mean_local */
-Array mean_local(const Array &array, int ir);
-
 /*! @brief See hmap::mean_shift */
 Array mean_shift(const Array &array,
                  int          ir,
@@ -2319,9 +2371,19 @@ Array mean_shift(const Array &array,
                  int          iterations = 1,
                  bool         talus_weighted = true);
 
+Array mean_shift(const Array &array,
+                 int          ir,
+                 float        talus,
+                 const Array *p_mask,
+                 int          iterations = 1,
+                 bool         talus_weighted = true);
+
 /*! @brief See hmap::median_3x3 */
 void median_3x3(Array &array);
 void median_3x3(Array &array, const Array *p_mask); ///< @overload
+
+/*! @brief See hmap::median_pseudo */
+Array median_pseudo(const Array &array, int ir);
 
 /*! @brief See hmap::minimum_local */
 Array minimum_local(const Array &array, int ir);
@@ -2345,12 +2407,18 @@ void plateau(Array &array, const Array *p_mask, int ir, float factor);
 void plateau(Array &array, int ir, float factor); ///< @overload
 
 /*! @brief See hmap::shrink */
-void shrink(Array &array, int ir);
-void shrink(Array &array, int ir, const Array *p_mask); ///< @overload
-void shrink(Array &array, const Array &kernel);         ///< @overload
+void shrink(Array &array, int ir, int iterations = 1);
+void shrink(Array       &array,
+            int          ir,
+            const Array *p_mask,
+            int          iterations = 1); ///< @overload
 void shrink(Array       &array,
             const Array &kernel,
-            const Array *p_mask); ///< @overload
+            int          iterations = 1); ///< @overload
+void shrink(Array       &array,
+            const Array &kernel,
+            const Array *p_mask,
+            int          iterations = 1); ///< @overload
 
 /*! @brief See hmap::smooth_cpulse */
 void smooth_cpulse(Array &array, int ir);
