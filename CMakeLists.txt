@@ -3,7 +3,6 @@ cmake_minimum_required(VERSION 3.22)
 project(highmap-root)
 
 option(HIGHMAP_ENABLE_OPENCL "" ON)
-option(HIGHMAP_ENABLE_DOCS "" ON)
 option(HIGHMAP_ENABLE_EXAMPLES "" ON)
 option(HIGHMAP_ENABLE_TESTS "" ON)
 
@@ -46,11 +45,6 @@ add_subdirectory(external)
 add_subdirectory(HighMap)
 
 # --- everything else...
-
-if(HIGHMAP_ENABLE_DOCS)
-  message(STATUS "HighMap docs enabled")
-  add_subdirectory(${PROJECT_SOURCE_DIR}/doc)
-endif()
 
 if(HIGHMAP_ENABLE_EXAMPLES)
   add_subdirectory(${PROJECT_SOURCE_DIR}/examples)

@@ -1,8 +1,11 @@
-OUTPUT_DIRECTORY       = @CMAKE_CURRENT_BINARY_DIR@/doc_doxygen/
-INPUT                  = @CMAKE_CURRENT_SOURCE_DIR@/../HighMap/include/ @CMAKE_CURRENT_SOURCE_DIR@/../HighMap/src/ @CMAKE_CURRENT_SOURCE_DIR@/.
-CITE_BIB_FILES         = @CMAKE_CURRENT_SOURCE_DIR@/bib/references.bib
-EXAMPLE_PATH           = @CMAKE_CURRENT_SOURCE_DIR@/../examples
-IMAGE_PATH             = @CMAKE_CURRENT_SOURCE_DIR@/images
+GENERATE_HTML         = YES
+OUTPUT_DIRECTORY      = docs
+HTML_OUTPUT           = .
+
+INPUT                  = HighMap/include/ HighMap/src/ docs/.
+CITE_BIB_FILES         = docs/bib/references.bib
+EXAMPLE_PATH           = examples
+IMAGE_PATH             = docs/images
 
 PROJECT_NAME           = "HighMap library (C++)"
 RECURSIVE              = YES
