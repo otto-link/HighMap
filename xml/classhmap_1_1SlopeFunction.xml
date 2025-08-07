@@ -1,0 +1,224 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classhmap_1_1SlopeFunction" kind="class" language="C++" prot="public">
+    <compoundname>hmap::SlopeFunction</compoundname>
+    <basecompoundref refid="classhmap_1_1Function" prot="public" virt="non-virtual">hmap::Function</basecompoundref>
+    <includes refid="functions_8hpp" local="no">functions.hpp</includes>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhmap_1_1SlopeFunction_1aecf4e2415541342003f4ca96b13df556" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::SlopeFunction::angle</definition>
+        <argsstring></argsstring>
+        <name>angle</name>
+        <qualifiedname>hmap::SlopeFunction::angle</qualifiedname>
+        <briefdescription>
+<para>Overall rotation angle (in degrees). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="426" column="15" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="426" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1SlopeFunction_1a0b5ac89d2bc694aa260ae131a90e8acd" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::SlopeFunction::slope</definition>
+        <argsstring></argsstring>
+        <name>slope</name>
+        <qualifiedname>hmap::SlopeFunction::slope</qualifiedname>
+        <briefdescription>
+<para>Step slope. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="427" column="15" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="427" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1SlopeFunction_1a1734b97dfdc9d1055200136a1eb1c09b" prot="protected" static="no" mutable="no">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+        <definition>Vec2&lt;float&gt; hmap::SlopeFunction::center</definition>
+        <argsstring></argsstring>
+        <name>center</name>
+        <qualifiedname>hmap::SlopeFunction::center</qualifiedname>
+        <briefdescription>
+<para>Primitive reference center. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="428" column="8" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="428" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhmap_1_1SlopeFunction_1a6c6ab6bb62b8de7f35de47c8c7d6100f" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::SlopeFunction::ca</definition>
+        <argsstring></argsstring>
+        <name>ca</name>
+        <qualifiedname>hmap::SlopeFunction::ca</qualifiedname>
+        <briefdescription>
+<para>Cached cosine of the angle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="431" column="9" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="431" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1SlopeFunction_1a78d39feb516fd01cc33bcdebb6ddde79" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::SlopeFunction::sa</definition>
+        <argsstring></argsstring>
+        <name>sa</name>
+        <qualifiedname>hmap::SlopeFunction::sa</qualifiedname>
+        <briefdescription>
+<para>Cached sine of the angle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="432" column="9" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="432" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhmap_1_1SlopeFunction_1a2eaae2dc5b70ad4ec3f375f58a2879e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hmap::SlopeFunction::SlopeFunction</definition>
+        <argsstring>(float angle, float slope, Vec2&lt; float &gt; center)</argsstring>
+        <name>SlopeFunction</name>
+        <qualifiedname>hmap::SlopeFunction::SlopeFunction</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>angle</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>slope</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+          <declname>center</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new Slope <ref refid="classhmap_1_1Function" kindref="compound">Function</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>angle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Overall rotation angle (in degrees). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>slope</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Step slope. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>center</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Primitive reference center. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="411" column="3" bodyfile="HighMap/src/primitives/functions/functions.cpp" bodystart="263" bodyend="275"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1SlopeFunction_1a553e1d8c19caa32504282a386564f9d5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::SlopeFunction::set_angle</definition>
+        <argsstring>(float new_angle)</argsstring>
+        <name>set_angle</name>
+        <qualifiedname>hmap::SlopeFunction::set_angle</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>new_angle</declname>
+        </param>
+        <briefdescription>
+<para>Set the angle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>new_angle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New angle in degrees. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="418" column="8" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="418" bodyend="423"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Slope (x, y) function class. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class models a slope function with a specified angle, slope, and reference center. It extends the base <ref refid="classhmap_1_1Function" kindref="compound">Function</ref> class. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hmap::Function</label>
+        <link refid="classhmap_1_1Function"/>
+      </node>
+      <node id="1">
+        <label>hmap::SlopeFunction</label>
+        <link refid="classhmap_1_1SlopeFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>hmap::Vec2&lt; float &gt;</label>
+        <link refid="structhmap_1_1Vec2"/>
+      </node>
+      <node id="2">
+        <label>hmap::Function</label>
+        <link refid="classhmap_1_1Function"/>
+      </node>
+      <node id="1">
+        <label>hmap::SlopeFunction</label>
+        <link refid="classhmap_1_1SlopeFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>center</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="HighMap/include/highmap/functions.hpp" line="401" column="1" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="402" bodyend="433"/>
+    <listofallmembers>
+      <member refid="classhmap_1_1SlopeFunction_1aecf4e2415541342003f4ca96b13df556" prot="protected" virt="non-virtual"><scope>hmap::SlopeFunction</scope><name>angle</name></member>
+      <member refid="classhmap_1_1SlopeFunction_1a6c6ab6bb62b8de7f35de47c8c7d6100f" prot="private" virt="non-virtual"><scope>hmap::SlopeFunction</scope><name>ca</name></member>
+      <member refid="classhmap_1_1SlopeFunction_1a1734b97dfdc9d1055200136a1eb1c09b" prot="protected" virt="non-virtual"><scope>hmap::SlopeFunction</scope><name>center</name></member>
+      <member refid="classhmap_1_1Function_1a1f77a2faa84c84fb147f48af0bfbc96e" prot="public" virt="non-virtual"><scope>hmap::SlopeFunction</scope><name>Function</name></member>
+      <member refid="classhmap_1_1Function_1ae1f9e64626fb671ed37a45d09cf551e8" prot="public" virt="non-virtual"><scope>hmap::SlopeFunction</scope><name>Function</name></member>
+      <member refid="classhmap_1_1Function_1a32214e30c36be7650c47867fd14f6a0c" prot="public" virt="non-virtual"><scope>hmap::SlopeFunction</scope><name>get_delegate</name></member>
+      <member refid="classhmap_1_1Function_1a82fb7788314b339a062cb80115e2e1da" prot="public" virt="non-virtual"><scope>hmap::SlopeFunction</scope><name>get_value</name></member>
+      <member refid="classhmap_1_1SlopeFunction_1a78d39feb516fd01cc33bcdebb6ddde79" prot="private" virt="non-virtual"><scope>hmap::SlopeFunction</scope><name>sa</name></member>
+      <member refid="classhmap_1_1SlopeFunction_1a553e1d8c19caa32504282a386564f9d5" prot="public" virt="non-virtual"><scope>hmap::SlopeFunction</scope><name>set_angle</name></member>
+      <member refid="classhmap_1_1Function_1a6163e6f231dc77a7e7d83e74d2b44abe" prot="public" virt="non-virtual"><scope>hmap::SlopeFunction</scope><name>set_delegate</name></member>
+      <member refid="classhmap_1_1SlopeFunction_1a0b5ac89d2bc694aa260ae131a90e8acd" prot="protected" virt="non-virtual"><scope>hmap::SlopeFunction</scope><name>slope</name></member>
+      <member refid="classhmap_1_1SlopeFunction_1a2eaae2dc5b70ad4ec3f375f58a2879e6" prot="public" virt="non-virtual"><scope>hmap::SlopeFunction</scope><name>SlopeFunction</name></member>
+      <member refid="classhmap_1_1Function_1a8efd89e31947f2508ce45b133e30322f" prot="public" virt="virtual"><scope>hmap::SlopeFunction</scope><name>~Function</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,26 @@
+var selector_8cpp =
+[
+    [ "scan_mask", "selector_8cpp.html#a6c6abf2b8bd3161610e273ef97ee4771", null ],
+    [ "select_angle", "selector_8cpp.html#a17edf2c011829f4eed9f45152b3f8eb9", null ],
+    [ "select_blob_log", "selector_8cpp.html#aeaaf7a8ae8cf8de1dad3a82950879473", null ],
+    [ "select_cavities", "selector_8cpp.html#ac3436096f5ea39274658f503d7c950c1", null ],
+    [ "select_elevation_slope", "selector_8cpp.html#aee36bf04c8ae880814a5341d4ea262f4", null ],
+    [ "select_elevation_slope", "selector_8cpp.html#a13c7f71c6fa727ee090e483c328270a0", null ],
+    [ "select_eq", "selector_8cpp.html#acd41c33e7bb689f6e3b94274f15869b3", null ],
+    [ "select_gt", "selector_8cpp.html#a5c54b11ce530d2b0cfc75de360e25ebf", null ],
+    [ "select_gradient_angle", "selector_8cpp.html#aa387b6418bf9dac2b4f05b41a2a106d5", null ],
+    [ "select_gradient_binary", "selector_8cpp.html#acd0eee71be926266e51f908bdc7e2199", null ],
+    [ "select_gradient_exp", "selector_8cpp.html#a4c42905cbb910cb4017ef3e026a31d59", null ],
+    [ "select_gradient_inv", "selector_8cpp.html#a60843740c9f6153042e0466b696239fd", null ],
+    [ "select_interval", "selector_8cpp.html#a849d37221d492c5d96d945dc64b02754", null ],
+    [ "select_inward_outward_slope", "selector_8cpp.html#a2f1c2f2b2aa922b94ccbee3d40b83b8c", null ],
+    [ "select_lt", "selector_8cpp.html#a01db711d188b71bc0ff2118364f3d60b", null ],
+    [ "select_midrange", "selector_8cpp.html#a7b42d7b9a8dfdf8b67a1a482974ee33f", null ],
+    [ "select_midrange", "selector_8cpp.html#a565788418282bab28d9d3384622abd9d", null ],
+    [ "select_multiband3", "selector_8cpp.html#a6ee46e297f2d253660bfe461b9321fe2", null ],
+    [ "select_multiband3", "selector_8cpp.html#a3ce44e59b5eeb5c47a597f893f53eadb", null ],
+    [ "select_pulse", "selector_8cpp.html#a183508644aea6442e249cfc2973fef97", null ],
+    [ "select_rivers", "selector_8cpp.html#a1f35e2238ee222ab2aa87304f6692ce6", null ],
+    [ "select_transitions", "selector_8cpp.html#ac6dcaa05c7c34302fa2560ddedbb9931", null ],
+    [ "select_valley", "selector_8cpp.html#a701106cd57412e72a5d3ee41b46ab4e8", null ]
+];

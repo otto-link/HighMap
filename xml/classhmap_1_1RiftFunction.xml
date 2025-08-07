@@ -1,0 +1,280 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classhmap_1_1RiftFunction" kind="class" language="C++" prot="public">
+    <compoundname>hmap::RiftFunction</compoundname>
+    <basecompoundref refid="classhmap_1_1Function" prot="public" virt="non-virtual">hmap::Function</basecompoundref>
+    <includes refid="functions_8hpp" local="no">functions.hpp</includes>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhmap_1_1RiftFunction_1a1d454e1f4dc31108ee3d2131ed06f793" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::RiftFunction::angle</definition>
+        <argsstring></argsstring>
+        <name>angle</name>
+        <qualifiedname>hmap::RiftFunction::angle</qualifiedname>
+        <briefdescription>
+<para>Overall rotation angle (in degrees). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="383" column="15" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="383" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1RiftFunction_1acefec2e75c48c8bfb4f1264110b9357d" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::RiftFunction::slope</definition>
+        <argsstring></argsstring>
+        <name>slope</name>
+        <qualifiedname>hmap::RiftFunction::slope</qualifiedname>
+        <briefdescription>
+<para>Rift slope. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="384" column="15" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="384" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1RiftFunction_1aa153a55040ae2c46d68d6b56c2e8500b" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::RiftFunction::width</definition>
+        <argsstring></argsstring>
+        <name>width</name>
+        <qualifiedname>hmap::RiftFunction::width</qualifiedname>
+        <briefdescription>
+<para>Rift width. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="385" column="15" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="385" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1RiftFunction_1a056a341d81791505ea6c270c95bd86ae" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hmap::RiftFunction::sharp_bottom</definition>
+        <argsstring></argsstring>
+        <name>sharp_bottom</name>
+        <qualifiedname>hmap::RiftFunction::sharp_bottom</qualifiedname>
+        <briefdescription>
+<para>Rift bottom sharpness. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="386" column="15" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="386" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1RiftFunction_1ae6b8de2ed08441f782a85f4c49b43a7c" prot="protected" static="no" mutable="no">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+        <definition>Vec2&lt;float&gt; hmap::RiftFunction::center</definition>
+        <argsstring></argsstring>
+        <name>center</name>
+        <qualifiedname>hmap::RiftFunction::center</qualifiedname>
+        <briefdescription>
+<para>Primitive reference center. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="387" column="8" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="387" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhmap_1_1RiftFunction_1a54ef4281b3f86af0ea81f244ed97d49c" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::RiftFunction::ca</definition>
+        <argsstring></argsstring>
+        <name>ca</name>
+        <qualifiedname>hmap::RiftFunction::ca</qualifiedname>
+        <briefdescription>
+<para>Cached cosine of the angle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="390" column="9" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="390" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1RiftFunction_1aeb789f3b6dbe67156dd134557024f18e" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::RiftFunction::sa</definition>
+        <argsstring></argsstring>
+        <name>sa</name>
+        <qualifiedname>hmap::RiftFunction::sa</qualifiedname>
+        <briefdescription>
+<para>Cached sine of the angle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="391" column="9" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="391" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhmap_1_1RiftFunction_1a4557a44bd3f260c6b663b1c4c1b0ad1a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hmap::RiftFunction::RiftFunction</definition>
+        <argsstring>(float angle, float slope, float width, bool sharp_bottom, Vec2&lt; float &gt; center)</argsstring>
+        <name>RiftFunction</name>
+        <qualifiedname>hmap::RiftFunction::RiftFunction</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>angle</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>slope</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>sharp_bottom</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+          <declname>center</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new Rift <ref refid="classhmap_1_1Function" kindref="compound">Function</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>angle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Overall rotation angle (in degrees). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>slope</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Rift slope. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>width</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Rift width. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sharp_bottom</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Decide whether the rift bottom is sharp or not. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>center</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Primitive reference center. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="364" column="3" bodyfile="HighMap/src/primitives/functions/functions.cpp" bodystart="212" bodyend="261"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1RiftFunction_1aadcd96bf4277634a00fb8810ac00f53a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::RiftFunction::set_angle</definition>
+        <argsstring>(float new_angle)</argsstring>
+        <name>set_angle</name>
+        <qualifiedname>hmap::RiftFunction::set_angle</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>new_angle</declname>
+        </param>
+        <briefdescription>
+<para>Set the angle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>new_angle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New angle in degrees. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="375" column="8" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="375" bodyend="380"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Rift (x, y) function class. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class models a step function with a specified angle, slope, and reference center. It extends the base <ref refid="classhmap_1_1Function" kindref="compound">Function</ref> class. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hmap::Function</label>
+        <link refid="classhmap_1_1Function"/>
+      </node>
+      <node id="1">
+        <label>hmap::RiftFunction</label>
+        <link refid="classhmap_1_1RiftFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>hmap::Vec2&lt; float &gt;</label>
+        <link refid="structhmap_1_1Vec2"/>
+      </node>
+      <node id="2">
+        <label>hmap::Function</label>
+        <link refid="classhmap_1_1Function"/>
+      </node>
+      <node id="1">
+        <label>hmap::RiftFunction</label>
+        <link refid="classhmap_1_1RiftFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>center</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="HighMap/include/highmap/functions.hpp" line="352" column="1" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="353" bodyend="392"/>
+    <listofallmembers>
+      <member refid="classhmap_1_1RiftFunction_1a1d454e1f4dc31108ee3d2131ed06f793" prot="protected" virt="non-virtual"><scope>hmap::RiftFunction</scope><name>angle</name></member>
+      <member refid="classhmap_1_1RiftFunction_1a54ef4281b3f86af0ea81f244ed97d49c" prot="private" virt="non-virtual"><scope>hmap::RiftFunction</scope><name>ca</name></member>
+      <member refid="classhmap_1_1RiftFunction_1ae6b8de2ed08441f782a85f4c49b43a7c" prot="protected" virt="non-virtual"><scope>hmap::RiftFunction</scope><name>center</name></member>
+      <member refid="classhmap_1_1Function_1a1f77a2faa84c84fb147f48af0bfbc96e" prot="public" virt="non-virtual"><scope>hmap::RiftFunction</scope><name>Function</name></member>
+      <member refid="classhmap_1_1Function_1ae1f9e64626fb671ed37a45d09cf551e8" prot="public" virt="non-virtual"><scope>hmap::RiftFunction</scope><name>Function</name></member>
+      <member refid="classhmap_1_1Function_1a32214e30c36be7650c47867fd14f6a0c" prot="public" virt="non-virtual"><scope>hmap::RiftFunction</scope><name>get_delegate</name></member>
+      <member refid="classhmap_1_1Function_1a82fb7788314b339a062cb80115e2e1da" prot="public" virt="non-virtual"><scope>hmap::RiftFunction</scope><name>get_value</name></member>
+      <member refid="classhmap_1_1RiftFunction_1a4557a44bd3f260c6b663b1c4c1b0ad1a" prot="public" virt="non-virtual"><scope>hmap::RiftFunction</scope><name>RiftFunction</name></member>
+      <member refid="classhmap_1_1RiftFunction_1aeb789f3b6dbe67156dd134557024f18e" prot="private" virt="non-virtual"><scope>hmap::RiftFunction</scope><name>sa</name></member>
+      <member refid="classhmap_1_1RiftFunction_1aadcd96bf4277634a00fb8810ac00f53a" prot="public" virt="non-virtual"><scope>hmap::RiftFunction</scope><name>set_angle</name></member>
+      <member refid="classhmap_1_1Function_1a6163e6f231dc77a7e7d83e74d2b44abe" prot="public" virt="non-virtual"><scope>hmap::RiftFunction</scope><name>set_delegate</name></member>
+      <member refid="classhmap_1_1RiftFunction_1a056a341d81791505ea6c270c95bd86ae" prot="protected" virt="non-virtual"><scope>hmap::RiftFunction</scope><name>sharp_bottom</name></member>
+      <member refid="classhmap_1_1RiftFunction_1acefec2e75c48c8bfb4f1264110b9357d" prot="protected" virt="non-virtual"><scope>hmap::RiftFunction</scope><name>slope</name></member>
+      <member refid="classhmap_1_1RiftFunction_1aa153a55040ae2c46d68d6b56c2e8500b" prot="protected" virt="non-virtual"><scope>hmap::RiftFunction</scope><name>width</name></member>
+      <member refid="classhmap_1_1Function_1a8efd89e31947f2508ce45b133e30322f" prot="public" virt="virtual"><scope>hmap::RiftFunction</scope><name>~Function</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

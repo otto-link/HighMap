@@ -1,0 +1,54 @@
+\doxysection{High\+Map/include/highmap/authoring.hpp File Reference}
+\hypertarget{authoring_8hpp}{}\label{authoring_8hpp}\index{HighMap/include/highmap/authoring.hpp@{HighMap/include/highmap/authoring.hpp}}
+
+
+Header file containing functions for generating and manipulating heightmaps through various techniques.  
+
+
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacehmap_a5101273ec456f5267dddc3e22dae223b}{hmap\+::\+Stamping\+Blend\+Method}} \+: int \{ \newline
+\mbox{\hyperlink{namespacehmap_a5101273ec456f5267dddc3e22dae223ba8451872c36bde3f6418795fec1ed7228}{hmap\+::\+ADD}}
+, \mbox{\hyperlink{namespacehmap_a5101273ec456f5267dddc3e22dae223babafe4f4d1051eb7afe0eab09badd28ad}{hmap\+::\+MAXIMUM}}
+, \mbox{\hyperlink{namespacehmap_a5101273ec456f5267dddc3e22dae223ba8a23346695816302a39ed3a152c58762}{hmap\+::\+MAXIMUM\+\_\+\+SMOOTH}}
+, \mbox{\hyperlink{namespacehmap_a5101273ec456f5267dddc3e22dae223ba54138bd51fd9f34e739112106c249169}{hmap\+::\+MINIMUM}}
+, \newline
+\mbox{\hyperlink{namespacehmap_a5101273ec456f5267dddc3e22dae223bab783b937b8da3552b0a4a5d6c88157ee}{hmap\+::\+MINIMUM\+\_\+\+SMOOTH}}
+, \mbox{\hyperlink{namespacehmap_a5101273ec456f5267dddc3e22dae223babadb712f0f7627d6892ea66c9743aec1}{hmap\+::\+MULTIPLY}}
+, \mbox{\hyperlink{namespacehmap_a5101273ec456f5267dddc3e22dae223ba2c10f19f935a5c6dd7fb0ac7bbb2c4ed}{hmap\+::\+SUBSTRACT}}
+ \}
+\begin{DoxyCompactList}\small\item\em Blending method for the stamping operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacehmap_aa0b0e92bd8fa6fdc51ccb39f7a382e92}{hmap\+::alter\+\_\+elevation}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, const \mbox{\hyperlink{classhmap_1_1Cloud}{Cloud}} \&cloud, int ir, float footprint\+\_\+ratio=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$ shift=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}, \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$ scale=\{1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\})
+\begin{DoxyCompactList}\small\item\em Point-\/wise alteration\+: locally enforce a new elevation value while maintaining the \textquotesingle{}shape\textquotesingle{} of the heightmap. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_ab54462b486be54fcf316f083f7ea3014}{hmap\+::base\+\_\+elevation}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape, const std\+::vector$<$ std\+::vector$<$ float $>$ $>$ \&values, float width\+\_\+factor=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+x=nullptr, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+y=nullptr, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+stretching=nullptr, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\})
+\begin{DoxyCompactList}\small\item\em Generate a heightmap from a coarse grid of control points with defined elevation values. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a19bb0a5d0609ac671ca054d18959c7f1}{hmap\+::reverse\+\_\+midpoint}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, \mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} seed, float noise\+\_\+scale=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float threshold=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+\begin{DoxyCompactList}\small\item\em Apply the reverse midpoint displacement algorithm to the input array. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_aca4a5b0313f4efe251b20d90652a896b}{hmap\+::ridgelines}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape, const std\+::vector$<$ float $>$ \&xr, const std\+::vector$<$ float $>$ \&yr, const std\+::vector$<$ float $>$ \&zr, float \mbox{\hyperlink{namespacehmap_ad1836a084a8607446ce029d32c02a201}{slope}}, float k\+\_\+smoothing=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float width=0.\+1\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float vmin=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+x=nullptr, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+y=nullptr, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+stretching=nullptr, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ bbox\+\_\+array=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\})
+\begin{DoxyCompactList}\small\item\em Generate a heightmap based on a set of ridgelines and a specified slope. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a49bf95ae7344e531d7c2af0071e64649}{hmap\+::ridgelines\+\_\+bezier}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape, const std\+::vector$<$ float $>$ \&xr, const std\+::vector$<$ float $>$ \&yr, const std\+::vector$<$ float $>$ \&zr, float \mbox{\hyperlink{namespacehmap_ad1836a084a8607446ce029d32c02a201}{slope}}, float k\+\_\+smoothing=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float width=0.\+1\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float vmin=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+x=nullptr, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+y=nullptr, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+stretching=nullptr, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ bbox\+\_\+array=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\})
+\begin{DoxyCompactList}\small\item\em Generate a heightmap based on a set of ridgelines with quadratic Bezier interpolation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a52fe1241da6ece981af7a368ef3ad0c4}{hmap\+::stamping}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape, const std\+::vector$<$ float $>$ \&xr, const std\+::vector$<$ float $>$ \&yr, const std\+::vector$<$ float $>$ \&zr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} kernel, int kernel\+\_\+ir, bool kernel\+\_\+scale\+\_\+radius, bool kernel\+\_\+scale\+\_\+amplitude, \mbox{\hyperlink{namespacehmap_a5101273ec456f5267dddc3e22dae223b}{Stamping\+Blend\+Method}} blend\+\_\+method, \mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} seed, float k\+\_\+smoothing=0.\+1\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, bool kernel\+\_\+flip=true, bool kernel\+\_\+rotate=false, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ bbox\+\_\+array=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\})
+\begin{DoxyCompactList}\small\item\em Generate a heightmap by stamping a kernel at predefined locations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file containing functions for generating and manipulating heightmaps through various techniques. 
+
+\begin{DoxyAuthor}{Author}
+Otto Link (\href{mailto:otto.link.bv@gmail.com}{\texttt{ otto.\+link.\+bv@gmail.\+com}}) 
+\end{DoxyAuthor}
+This header file provides functions for creating and modifying heightmaps using techniques such as stamping kernels, defining ridgelines, applying the reverse midpoint displacement algorithm, and more. These functions offer a range of capabilities for terrain generation, elevation modifications, and heightmap processing.
+
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 Otto Link 
+\end{DoxyCopyright}

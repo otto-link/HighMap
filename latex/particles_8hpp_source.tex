@@ -1,0 +1,65 @@
+\doxysection{particles.\+hpp}
+\hypertarget{particles_8hpp_source}{}\label{particles_8hpp_source}\index{HighMap/include/highmap/internal/particles.hpp@{HighMap/include/highmap/internal/particles.hpp}}
+\mbox{\hyperlink{particles_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ Copyright\ (c)\ 2023\ Otto\ Link.\ Distributed\ under\ the\ terms\ of\ the\ GNU\ General}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ \ \ Public\ License.\ The\ full\ license\ is\ in\ the\ file\ LICENSE,\ distributed\ with}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ \ this\ software.\ */}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{algebra_8hpp}{highmap/algebra.hpp}}"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{array_8hpp}{highmap/array.hpp}}"{}}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ HMAP\_PARTICLES\_GRADIENT\_MIN\ 0.0001f}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ HMAP\_PARTICLES\_VELOCITY\_MIN\ 0.001f}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacehmap}{hmap}}}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structhmap_1_1Pos}{Pos}}}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhmap_1_1Pos_af5905f099364a5e3b2f22e4d0489e870}{x}};}
+\DoxyCodeLine{00029\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhmap_1_1Pos_adeb88ba0e2503cab592cfa94795c9f9a}{y}};}
+\DoxyCodeLine{00030\ \ \ \textcolor{keywordtype}{int}\ \ \ \mbox{\hyperlink{structhmap_1_1Pos_a2ae9877f46f0fde4c22f1820b6d243ab}{i}};}
+\DoxyCodeLine{00031\ \ \ \textcolor{keywordtype}{int}\ \ \ \mbox{\hyperlink{structhmap_1_1Pos_a5350d73ae336fd44609e3a0c72c76c78}{j}};}
+\DoxyCodeLine{00032\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhmap_1_1Pos_a33ddf06bcbb181e1de3a2556ba73d78c}{u}};}
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhmap_1_1Pos_ac25b27d114c9e5e065f11d6ca6468df8}{v}};}
+\DoxyCodeLine{00034\ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structhmap_1_1Particle}{Particle}}}
+\DoxyCodeLine{00037\ \{}
+\DoxyCodeLine{00038\ \ \ \textcolor{comment}{//\ parameters}}
+\DoxyCodeLine{00039\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhmap_1_1Particle_a222658f8cbd80a6694ce8c8bdd48b73a}{c\_capacity}};}
+\DoxyCodeLine{00040\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhmap_1_1Particle_a2acb2e8abff32ae56a4c10bd18320e9b}{c\_erosion}};}
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhmap_1_1Particle_a7bc8b314a9be4b840b0035a661565f50}{c\_deposition}};}
+\DoxyCodeLine{00042\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhmap_1_1Particle_abb13d46c7c952be43c11e9e7d494a063}{c\_inertia}};}
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhmap_1_1Particle_a9fe6d66398ff6cc1d74b308339d23cc8}{drag\_rate}};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \textcolor{comment}{//\ features}}
+\DoxyCodeLine{00046\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhmap_1_1Particle_ab2b144ca00a4749b96dd99947cb4ef39}{sediment}}\ =\ 0.f;}
+\DoxyCodeLine{00047\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhmap_1_1Particle_a5547cd4ba43e9f495b1a40543837b968}{volume}}\ =\ 0.f;\ \textcolor{comment}{//\ water}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \textcolor{comment}{//\ dynamic}}
+\DoxyCodeLine{00050\ \ \ \mbox{\hyperlink{structhmap_1_1Pos}{Pos}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structhmap_1_1Particle_a562e380263d7ec95a836210440438fd6}{pos}};}
+\DoxyCodeLine{00051\ \ \ \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2<float>}}\ \mbox{\hyperlink{structhmap_1_1Particle_a3ef8fe111090f3eb88d5e307ec46617f}{vel}};}
+\DoxyCodeLine{00052\ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \mbox{\hyperlink{structhmap_1_1Particle_a4445403784eef25349ae658bce615281}{vnorm}};}
+\DoxyCodeLine{00053\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structhmap_1_1Particle_aec443049972d7785719450352b13024b}{vlim}}\ =\ 1.f;}
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \mbox{\hyperlink{structhmap_1_1Particle_a309083ce9d3d68a1375dfa428d858b59}{is\_active}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \textcolor{comment}{//\ constructor}}
+\DoxyCodeLine{00057\ \ \ \mbox{\hyperlink{structhmap_1_1Particle}{Particle}}(\textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhmap_1_1Particle_a222658f8cbd80a6694ce8c8bdd48b73a}{c\_capacity}},}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhmap_1_1Particle_a2acb2e8abff32ae56a4c10bd18320e9b}{c\_erosion}},}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhmap_1_1Particle_a7bc8b314a9be4b840b0035a661565f50}{c\_deposition}},}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhmap_1_1Particle_abb13d46c7c952be43c11e9e7d494a063}{c\_inertia}},}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhmap_1_1Particle_a9fe6d66398ff6cc1d74b308339d23cc8}{drag\_rate}});}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \textcolor{comment}{//\ methods}}
+\DoxyCodeLine{00064\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structhmap_1_1Particle_a18d28e7255f4745e296c3d8ecf3c307c}{move}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \&h,\ \textcolor{keywordtype}{float}\ dt);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structhmap_1_1Particle_a03fef1381cdbac9a0424433146aa41b2}{set\_xy}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y);}
+\DoxyCodeLine{00067\ \};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \}\ \textcolor{comment}{//\ namespace\ hmap}}
+
+\end{DoxyCode}

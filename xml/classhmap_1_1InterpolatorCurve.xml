@@ -1,0 +1,218 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classhmap_1_1InterpolatorCurve" kind="class" language="C++" prot="public">
+    <compoundname>hmap::InterpolatorCurve</compoundname>
+    <includes refid="interpolate__curve_8hpp" local="no">interpolate_curve.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhmap_1_1InterpolatorCurve_1afbcc31c9e91f3ea45708cdcb8caa3cd7" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classhmap_1_1Point" kindref="compound">Point</ref> &gt;</type>
+        <definition>std::vector&lt;Point&gt; hmap::InterpolatorCurve::points_data</definition>
+        <argsstring></argsstring>
+        <name>points_data</name>
+        <qualifiedname>hmap::InterpolatorCurve::points_data</qualifiedname>
+        <briefdescription>
+<para>The set of points to. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/interpolate_curve.hpp" line="77" column="22" bodyfile="HighMap/include/highmap/interpolate_curve.hpp" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1InterpolatorCurve_1a0106499fd84710398c56149c7e58d66e" prot="private" static="no" mutable="no">
+        <type><ref refid="namespacehmap_1aa78bf111867e13c63d8bd2ec005ad6c8" kindref="member">InterpolationMethodCurve</ref></type>
+        <definition>InterpolationMethodCurve hmap::InterpolatorCurve::method</definition>
+        <argsstring></argsstring>
+        <name>method</name>
+        <qualifiedname>hmap::InterpolatorCurve::method</qualifiedname>
+        <briefdescription>
+<para>The interpolation method being. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/interpolate_curve.hpp" line="79" column="26" bodyfile="HighMap/include/highmap/interpolate_curve.hpp" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1InterpolatorCurve_1a9bb5bc1b1b22a6efa59affb37321e406" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; hmap::InterpolatorCurve::arc_length</definition>
+        <argsstring></argsstring>
+        <name>arc_length</name>
+        <qualifiedname>hmap::InterpolatorCurve::arc_length</qualifiedname>
+        <briefdescription>
+<para>Normalized cumulative distance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/interpolate_curve.hpp" line="81" column="22" bodyfile="HighMap/include/highmap/interpolate_curve.hpp" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1InterpolatorCurve_1a7c2ec8c637e6fb2cb5588730a4e3e57d" prot="private" static="no" mutable="no">
+        <type>std::function&lt; <ref refid="classhmap_1_1Point" kindref="compound">Point</ref>(float)&gt;</type>
+        <definition>std::function&lt;Point(float)&gt; hmap::InterpolatorCurve::interp</definition>
+        <argsstring></argsstring>
+        <name>interp</name>
+        <qualifiedname>hmap::InterpolatorCurve::interp</qualifiedname>
+        <briefdescription>
+<para><ref refid="classhmap_1_1Function" kindref="compound">Function</ref> to perform. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/interpolate_curve.hpp" line="83" column="15" bodyfile="HighMap/include/highmap/interpolate_curve.hpp" bodystart="83" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhmap_1_1InterpolatorCurve_1a8c8b2ad64ffe45f673420f80d5118b32" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hmap::InterpolatorCurve::InterpolatorCurve</definition>
+        <argsstring>(std::vector&lt; Point &gt; points, InterpolationMethodCurve method=InterpolationMethodCurve::POINTS_LERP)</argsstring>
+        <name>InterpolatorCurve</name>
+        <qualifiedname>hmap::InterpolatorCurve::InterpolatorCurve</qualifiedname>
+        <param>
+          <type>std::vector&lt; <ref refid="classhmap_1_1Point" kindref="compound">Point</ref> &gt;</type>
+          <declname>points</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacehmap_1aa78bf111867e13c63d8bd2ec005ad6c8" kindref="member">InterpolationMethodCurve</ref></type>
+          <declname>method</declname>
+          <defval><ref refid="namespacehmap_1aa78bf111867e13c63d8bd2ec005ad6c8a90555eaf70e5d0c043f8bc5bf16338df" kindref="member">InterpolationMethodCurve::POINTS_LERP</ref></defval>
+        </param>
+        <briefdescription>
+<para>Constructs an <computeroutput><ref refid="classhmap_1_1InterpolatorCurve" kindref="compound">InterpolatorCurve</ref></computeroutput> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes the interpolator with a vector of points and an interpolation method.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>points</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of <computeroutput><ref refid="classhmap_1_1Point" kindref="compound">Point</ref></computeroutput> objects to interpolate. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>method</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The interpolation method to use. Default is <computeroutput>POINTS_LERP</computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/interpolate_curve.hpp" line="60" column="3" bodyfile="HighMap/src/interpolate/interpolate_curve.cpp" bodystart="23" bodyend="180"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1InterpolatorCurve_1ad244270f8660a2d4bbafb1dc3a46208f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="classhmap_1_1Point" kindref="compound">Point</ref> &gt;</type>
+        <definition>std::vector&lt; Point &gt; hmap::InterpolatorCurve::operator()</definition>
+        <argsstring>(std::vector&lt; float &gt; t) const</argsstring>
+        <name>operator()</name>
+        <qualifiedname>hmap::InterpolatorCurve::operator()</qualifiedname>
+        <param>
+          <type>std::vector&lt; float &gt;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+<para>Performs interpolation over the provided parameter values. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Given a vector of parameter values <computeroutput>t</computeroutput>, this function returns a vector of interpolated points corresponding to those parameter values.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of parameter values, typically in the range [0, 1]. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A vector of interpolated <computeroutput><ref refid="classhmap_1_1Point" kindref="compound">Point</ref></computeroutput> objects. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/interpolate_curve.hpp" line="73" column="15" bodyfile="HighMap/src/interpolate/interpolate_curve.cpp" bodystart="182" bodyend="191"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhmap_1_1InterpolatorCurve_1a0693176fa2e00e3abe190b5292507c42" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::InterpolatorCurve::get_segment_interpolation_parameters</definition>
+        <argsstring>(float t, size_t &amp;ileft, float &amp;u)</argsstring>
+        <name>get_segment_interpolation_parameters</name>
+        <qualifiedname>hmap::InterpolatorCurve::get_segment_interpolation_parameters</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>t</declname>
+        </param>
+        <param>
+          <type>size_t &amp;</type>
+          <declname>ileft</declname>
+        </param>
+        <param>
+          <type>float &amp;</type>
+          <declname>u</declname>
+        </param>
+        <briefdescription>
+<para>Computes segment interpolation parameters for a given parameter value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function calculates the appropriate segment index and local parameter value within that segment for a given global parameter <computeroutput>t</computeroutput>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>t</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The global parameter value, typically in the range [0, 1]. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ileft</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to store the index of the left segment point. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>u</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to store the local parameter value within the segment. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/interpolate_curve.hpp" line="99" column="8" bodyfile="HighMap/src/interpolate/interpolate_curve.cpp" bodystart="193" bodyend="203"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Class for performing curve interpolation on a set of points. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The <computeroutput><ref refid="classhmap_1_1InterpolatorCurve" kindref="compound">InterpolatorCurve</ref></computeroutput> class allows interpolation over a set of points using a specified interpolation method (Bezier, B-spline, Catmull-Rom, or linear interpolation). </para>
+    </detaileddescription>
+    <location file="HighMap/include/highmap/interpolate_curve.hpp" line="48" column="1" bodyfile="HighMap/include/highmap/interpolate_curve.hpp" bodystart="49" bodyend="100"/>
+    <listofallmembers>
+      <member refid="classhmap_1_1InterpolatorCurve_1a9bb5bc1b1b22a6efa59affb37321e406" prot="private" virt="non-virtual"><scope>hmap::InterpolatorCurve</scope><name>arc_length</name></member>
+      <member refid="classhmap_1_1InterpolatorCurve_1a0693176fa2e00e3abe190b5292507c42" prot="private" virt="non-virtual"><scope>hmap::InterpolatorCurve</scope><name>get_segment_interpolation_parameters</name></member>
+      <member refid="classhmap_1_1InterpolatorCurve_1a7c2ec8c637e6fb2cb5588730a4e3e57d" prot="private" virt="non-virtual"><scope>hmap::InterpolatorCurve</scope><name>interp</name></member>
+      <member refid="classhmap_1_1InterpolatorCurve_1a8c8b2ad64ffe45f673420f80d5118b32" prot="public" virt="non-virtual"><scope>hmap::InterpolatorCurve</scope><name>InterpolatorCurve</name></member>
+      <member refid="classhmap_1_1InterpolatorCurve_1a0106499fd84710398c56149c7e58d66e" prot="private" virt="non-virtual"><scope>hmap::InterpolatorCurve</scope><name>method</name></member>
+      <member refid="classhmap_1_1InterpolatorCurve_1ad244270f8660a2d4bbafb1dc3a46208f" prot="public" virt="non-virtual"><scope>hmap::InterpolatorCurve</scope><name>operator()</name></member>
+      <member refid="classhmap_1_1InterpolatorCurve_1afbcc31c9e91f3ea45708cdcb8caa3cd7" prot="private" virt="non-virtual"><scope>hmap::InterpolatorCurve</scope><name>points_data</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

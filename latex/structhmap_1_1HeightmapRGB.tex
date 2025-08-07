@@ -1,0 +1,302 @@
+\doxysection{hmap\+::Heightmap\+RGB Struct Reference}
+\hypertarget{structhmap_1_1HeightmapRGB}{}\label{structhmap_1_1HeightmapRGB}\index{hmap::HeightmapRGB@{hmap::HeightmapRGB}}
+
+
+Height\+Map class, to manipulate a set of RGB heightmap for heightmap texturing.  
+
+
+
+
+{\ttfamily \#include $<$heightmap.\+hpp$>$}
+
+
+
+Collaboration diagram for hmap\+::Heightmap\+RGB\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structhmap_1_1HeightmapRGB__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structhmap_1_1HeightmapRGB_a12d5a0cca8f12ea7ecbaf1a7702dbba9}{Heightmap\+RGB}} (\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} r, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} g, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} b)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structhmap_1_1HeightmapRGB_a84f3a181b5000a10acfc305f62d09f30}{Heightmap\+RGB}} ()
+\begin{DoxyCompactList}\small\item\em This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structhmap_1_1HeightmapRGB_aac7276c2cb809518105e9a26a34230e5}{set\+\_\+sto}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ new\+\_\+shape, \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ new\+\_\+tiling, float new\+\_\+overlap)
+\begin{DoxyCompactList}\small\item\em Set the shape / tiling / overlap in one pass. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structhmap_1_1HeightmapRGB_a825f6a2b290260e15db5e32991568808}{colorize}} (\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h, float vmin, float vmax, int cmap, bool reverse=false)
+\begin{DoxyCompactList}\small\item\em Fill RGB heightmap components based on a colormap and an input reference heightmap. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structhmap_1_1HeightmapRGB_af7c1acf60fdfb2cd857d192776c1ea92}{colorize}} (\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h, float vmin, float vmax, std\+::vector$<$ std\+::vector$<$ float $>$ $>$ colormap\+\_\+colors, bool reverse=false)
+\begin{DoxyCompactList}\small\item\em Fill RGB heightmap components based on a colormap and an input reference heightmap. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structhmap_1_1HeightmapRGB_a3929354b705e591a20d974ae2fbf95cd}{normalize}} ()
+\begin{DoxyCompactList}\small\item\em Normalize RGB heightmaps amplitude. \end{DoxyCompactList}\item 
+std\+::vector$<$ uint8\+\_\+t $>$ \mbox{\hyperlink{structhmap_1_1HeightmapRGB_ab77bcf68a5300425debf8720a87a8eb5}{to\+\_\+img\+\_\+8bit}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape\+\_\+img=\{0, 0\})
+\begin{DoxyCompactList}\small\item\em Convert the RGB heightmap to a 8bit RGB image. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structhmap_1_1HeightmapRGB_a75ace637e95e018051924ddada4d2b0f}{to\+\_\+png}} (const std\+::string \&fname, int depth=CV\+\_\+8U)
+\begin{DoxyCompactList}\small\item\em Export the RGB heightmap to a 16bit png file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} $>$ \mbox{\hyperlink{structhmap_1_1HeightmapRGB_a8cc2f556db5595f59b550a8c27db9773}{rgb}}
+\begin{DoxyCompactList}\small\item\em RGB component heightmap storage. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ \mbox{\hyperlink{structhmap_1_1HeightmapRGB_a341d9a75de566a83fc917178009c86e7}{shape}} = \{0, 0\}
+\begin{DoxyCompactList}\small\item\em Shape. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structhmap_1_1HeightmapRGB}{Heightmap\+RGB}} \mbox{\hyperlink{structhmap_1_1HeightmapRGB_aefc1fce6e380bfb733f9a3e19f1b59a9}{mix\+\_\+heightmap\+\_\+rgb}} (\mbox{\hyperlink{structhmap_1_1HeightmapRGB}{Heightmap\+RGB}} \&rgb1, \mbox{\hyperlink{structhmap_1_1HeightmapRGB}{Heightmap\+RGB}} \&rgb2, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&t)
+\begin{DoxyCompactList}\small\item\em Mix two RGB heightmap using linear interpolation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structhmap_1_1HeightmapRGB}{Heightmap\+RGB}} \mbox{\hyperlink{structhmap_1_1HeightmapRGB_ad6831dcc44b9b88a5f863bfd812d7d9e}{mix\+\_\+heightmap\+\_\+rgb}} (\mbox{\hyperlink{structhmap_1_1HeightmapRGB}{Heightmap\+RGB}} \&rgb1, \mbox{\hyperlink{structhmap_1_1HeightmapRGB}{Heightmap\+RGB}} \&rgb2, float t)
+\begin{DoxyCompactList}\small\item\em This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structhmap_1_1HeightmapRGB}{Heightmap\+RGB}} \mbox{\hyperlink{structhmap_1_1HeightmapRGB_ae10e0e5dbad18d504427e190822ccec2}{mix\+\_\+heightmap\+\_\+rgb\+\_\+sqrt}} (\mbox{\hyperlink{structhmap_1_1HeightmapRGB}{Heightmap\+RGB}} \&rgb1, \mbox{\hyperlink{structhmap_1_1HeightmapRGB}{Heightmap\+RGB}} \&rgb2, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&t)
+\begin{DoxyCompactList}\small\item\em Mix two RGB heightmap using weighted quadratic averaging. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structhmap_1_1HeightmapRGB}{Heightmap\+RGB}} \mbox{\hyperlink{structhmap_1_1HeightmapRGB_a91ea974c40f6c9b26f6c26f047920574}{mix\+\_\+heightmap\+\_\+rgb\+\_\+sqrt}} (\mbox{\hyperlink{structhmap_1_1HeightmapRGB}{Heightmap\+RGB}} \&rgb1, \mbox{\hyperlink{structhmap_1_1HeightmapRGB}{Heightmap\+RGB}} \&rgb2, float t)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Height\+Map class, to manipulate a set of RGB heightmap for heightmap texturing. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structhmap_1_1HeightmapRGB_a12d5a0cca8f12ea7ecbaf1a7702dbba9}\label{structhmap_1_1HeightmapRGB_a12d5a0cca8f12ea7ecbaf1a7702dbba9} 
+\index{hmap::HeightmapRGB@{hmap::HeightmapRGB}!HeightmapRGB@{HeightmapRGB}}
+\index{HeightmapRGB@{HeightmapRGB}!hmap::HeightmapRGB@{hmap::HeightmapRGB}}
+\doxysubsubsection{\texorpdfstring{HeightmapRGB()}{HeightmapRGB()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily hmap\+::\+Heightmap\+RGB\+::\+Heightmap\+RGB (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}}}]{r,  }\item[{\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}}}]{g,  }\item[{\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}}}]{b }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & \doxylink{classhmap_1_1Heightmap}{Heightmap} for R (red) component. \\
+\hline
+{\em g} & \doxylink{classhmap_1_1Heightmap}{Heightmap} for G (green) component. \\
+\hline
+{\em b} & \doxylink{classhmap_1_1Heightmap}{Heightmap} for B (blue) component. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structhmap_1_1HeightmapRGB_a84f3a181b5000a10acfc305f62d09f30}\label{structhmap_1_1HeightmapRGB_a84f3a181b5000a10acfc305f62d09f30} 
+\index{hmap::HeightmapRGB@{hmap::HeightmapRGB}!HeightmapRGB@{HeightmapRGB}}
+\index{HeightmapRGB@{HeightmapRGB}!hmap::HeightmapRGB@{hmap::HeightmapRGB}}
+\doxysubsubsection{\texorpdfstring{HeightmapRGB()}{HeightmapRGB()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily hmap\+::\+Heightmap\+RGB\+::\+Heightmap\+RGB (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structhmap_1_1HeightmapRGB_aac7276c2cb809518105e9a26a34230e5}\label{structhmap_1_1HeightmapRGB_aac7276c2cb809518105e9a26a34230e5} 
+\index{hmap::HeightmapRGB@{hmap::HeightmapRGB}!set\_sto@{set\_sto}}
+\index{set\_sto@{set\_sto}!hmap::HeightmapRGB@{hmap::HeightmapRGB}}
+\doxysubsubsection{\texorpdfstring{set\_sto()}{set\_sto()}}
+{\footnotesize\ttfamily void hmap\+::\+Heightmap\+RGB\+::set\+\_\+sto (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$}]{new\+\_\+shape,  }\item[{\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$}]{new\+\_\+tiling,  }\item[{float}]{new\+\_\+overlap }\end{DoxyParamCaption})}
+
+
+
+Set the shape / tiling / overlap in one pass. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+shape} & New shape. \\
+\hline
+{\em new\+\_\+tiling} & New tiling. \\
+\hline
+{\em new\+\_\+overlap} & New overlap. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structhmap_1_1HeightmapRGB_a825f6a2b290260e15db5e32991568808}\label{structhmap_1_1HeightmapRGB_a825f6a2b290260e15db5e32991568808} 
+\index{hmap::HeightmapRGB@{hmap::HeightmapRGB}!colorize@{colorize}}
+\index{colorize@{colorize}!hmap::HeightmapRGB@{hmap::HeightmapRGB}}
+\doxysubsubsection{\texorpdfstring{colorize()}{colorize()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void hmap\+::\+Heightmap\+RGB\+::colorize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&}]{h,  }\item[{float}]{vmin,  }\item[{float}]{vmax,  }\item[{int}]{cmap,  }\item[{bool}]{reverse = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Fill RGB heightmap components based on a colormap and an input reference heightmap. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em h} & Input heightmap. \\
+\hline
+{\em vmin} & Lower bound for scaling to array \mbox{[}0, 1\mbox{]}. \\
+\hline
+{\em vmax} & Upper bound for scaling to array \mbox{[}0, 1\mbox{]} \\
+\hline
+{\em cmap} & Colormap (see {\ttfamily \doxylink{}{cmap}}). \\
+\hline
+{\em reverse} & Reverse colormap. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structhmap_1_1HeightmapRGB_af7c1acf60fdfb2cd857d192776c1ea92}\label{structhmap_1_1HeightmapRGB_af7c1acf60fdfb2cd857d192776c1ea92} 
+\index{hmap::HeightmapRGB@{hmap::HeightmapRGB}!colorize@{colorize}}
+\index{colorize@{colorize}!hmap::HeightmapRGB@{hmap::HeightmapRGB}}
+\doxysubsubsection{\texorpdfstring{colorize()}{colorize()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void hmap\+::\+Heightmap\+RGB\+::colorize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&}]{h,  }\item[{float}]{vmin,  }\item[{float}]{vmax,  }\item[{std\+::vector$<$ std\+::vector$<$ float $>$ $>$}]{colormap\+\_\+colors,  }\item[{bool}]{reverse = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Fill RGB heightmap components based on a colormap and an input reference heightmap. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em h} & Input heightmap. \\
+\hline
+{\em vmin} & Lower bound for scaling to array \mbox{[}0, 1\mbox{]}. \\
+\hline
+{\em vmax} & Upper bound for scaling to array \mbox{[}0, 1\mbox{]} \\
+\hline
+{\em colormap\+\_\+colors} & Colormap RGB colors as a vector of RGB colors. \\
+\hline
+{\em reverse} & Reverse colormap. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structhmap_1_1HeightmapRGB_a3929354b705e591a20d974ae2fbf95cd}\label{structhmap_1_1HeightmapRGB_a3929354b705e591a20d974ae2fbf95cd} 
+\index{hmap::HeightmapRGB@{hmap::HeightmapRGB}!normalize@{normalize}}
+\index{normalize@{normalize}!hmap::HeightmapRGB@{hmap::HeightmapRGB}}
+\doxysubsubsection{\texorpdfstring{normalize()}{normalize()}}
+{\footnotesize\ttfamily void hmap\+::\+Heightmap\+RGB\+::normalize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Normalize RGB heightmaps amplitude. 
+
+\Hypertarget{structhmap_1_1HeightmapRGB_ab77bcf68a5300425debf8720a87a8eb5}\label{structhmap_1_1HeightmapRGB_ab77bcf68a5300425debf8720a87a8eb5} 
+\index{hmap::HeightmapRGB@{hmap::HeightmapRGB}!to\_img\_8bit@{to\_img\_8bit}}
+\index{to\_img\_8bit@{to\_img\_8bit}!hmap::HeightmapRGB@{hmap::HeightmapRGB}}
+\doxysubsubsection{\texorpdfstring{to\_img\_8bit()}{to\_img\_8bit()}}
+{\footnotesize\ttfamily std\+::vector$<$ uint8\+\_\+t $>$ hmap\+::\+Heightmap\+RGB\+::to\+\_\+img\+\_\+8bit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$}]{shape\+\_\+img = {\ttfamily \{0,~0\}} }\end{DoxyParamCaption})}
+
+
+
+Convert the RGB heightmap to a 8bit RGB image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shape\+\_\+img} & Resulting image shape. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Image data. 
+\end{DoxyReturn}
+\Hypertarget{structhmap_1_1HeightmapRGB_a75ace637e95e018051924ddada4d2b0f}\label{structhmap_1_1HeightmapRGB_a75ace637e95e018051924ddada4d2b0f} 
+\index{hmap::HeightmapRGB@{hmap::HeightmapRGB}!to\_png@{to\_png}}
+\index{to\_png@{to\_png}!hmap::HeightmapRGB@{hmap::HeightmapRGB}}
+\doxysubsubsection{\texorpdfstring{to\_png()}{to\_png()}}
+{\footnotesize\ttfamily void hmap\+::\+Heightmap\+RGB\+::to\+\_\+png (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{fname,  }\item[{int}]{depth = {\ttfamily CV\+\_\+8U} }\end{DoxyParamCaption})}
+
+
+
+Export the RGB heightmap to a 16bit png file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fname} & File name. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{structhmap_1_1HeightmapRGB_aefc1fce6e380bfb733f9a3e19f1b59a9}\label{structhmap_1_1HeightmapRGB_aefc1fce6e380bfb733f9a3e19f1b59a9} 
+\index{hmap::HeightmapRGB@{hmap::HeightmapRGB}!mix\_heightmap\_rgb@{mix\_heightmap\_rgb}}
+\index{mix\_heightmap\_rgb@{mix\_heightmap\_rgb}!hmap::HeightmapRGB@{hmap::HeightmapRGB}}
+\doxysubsubsection{\texorpdfstring{mix\_heightmap\_rgb}{mix\_heightmap\_rgb}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structhmap_1_1HeightmapRGB}{Heightmap\+RGB}} mix\+\_\+heightmap\+\_\+rgb (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhmap_1_1HeightmapRGB}{Heightmap\+RGB}} \&}]{rgb1,  }\item[{\mbox{\hyperlink{structhmap_1_1HeightmapRGB}{Heightmap\+RGB}} \&}]{rgb2,  }\item[{\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Mix two RGB heightmap using linear interpolation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rgb1} & 1st RGB heightmap. \\
+\hline
+{\em rgb2} & 2st RGB heightmap. \\
+\hline
+{\em t} & Mixing parameter, in \mbox{[}0, 1\mbox{]}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RGB heightmap. 
+\end{DoxyReturn}
+\Hypertarget{structhmap_1_1HeightmapRGB_ad6831dcc44b9b88a5f863bfd812d7d9e}\label{structhmap_1_1HeightmapRGB_ad6831dcc44b9b88a5f863bfd812d7d9e} 
+\index{hmap::HeightmapRGB@{hmap::HeightmapRGB}!mix\_heightmap\_rgb@{mix\_heightmap\_rgb}}
+\index{mix\_heightmap\_rgb@{mix\_heightmap\_rgb}!hmap::HeightmapRGB@{hmap::HeightmapRGB}}
+\doxysubsubsection{\texorpdfstring{mix\_heightmap\_rgb}{mix\_heightmap\_rgb}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structhmap_1_1HeightmapRGB}{Heightmap\+RGB}} mix\+\_\+heightmap\+\_\+rgb (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhmap_1_1HeightmapRGB}{Heightmap\+RGB}} \&}]{rgb1,  }\item[{\mbox{\hyperlink{structhmap_1_1HeightmapRGB}{Heightmap\+RGB}} \&}]{rgb2,  }\item[{float}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
+
+\Hypertarget{structhmap_1_1HeightmapRGB_ae10e0e5dbad18d504427e190822ccec2}\label{structhmap_1_1HeightmapRGB_ae10e0e5dbad18d504427e190822ccec2} 
+\index{hmap::HeightmapRGB@{hmap::HeightmapRGB}!mix\_heightmap\_rgb\_sqrt@{mix\_heightmap\_rgb\_sqrt}}
+\index{mix\_heightmap\_rgb\_sqrt@{mix\_heightmap\_rgb\_sqrt}!hmap::HeightmapRGB@{hmap::HeightmapRGB}}
+\doxysubsubsection{\texorpdfstring{mix\_heightmap\_rgb\_sqrt}{mix\_heightmap\_rgb\_sqrt}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structhmap_1_1HeightmapRGB}{Heightmap\+RGB}} mix\+\_\+heightmap\+\_\+rgb\+\_\+sqrt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhmap_1_1HeightmapRGB}{Heightmap\+RGB}} \&}]{rgb1,  }\item[{\mbox{\hyperlink{structhmap_1_1HeightmapRGB}{Heightmap\+RGB}} \&}]{rgb2,  }\item[{\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Mix two RGB heightmap using weighted quadratic averaging. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rgb1} & 1st RGB heightmap. \\
+\hline
+{\em rgb2} & 2st RGB heightmap. \\
+\hline
+{\em t} & Mixing parameter, in \mbox{[}0, 1\mbox{]}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+RGB heightmap. 
+\end{DoxyReturn}
+\Hypertarget{structhmap_1_1HeightmapRGB_a91ea974c40f6c9b26f6c26f047920574}\label{structhmap_1_1HeightmapRGB_a91ea974c40f6c9b26f6c26f047920574} 
+\index{hmap::HeightmapRGB@{hmap::HeightmapRGB}!mix\_heightmap\_rgb\_sqrt@{mix\_heightmap\_rgb\_sqrt}}
+\index{mix\_heightmap\_rgb\_sqrt@{mix\_heightmap\_rgb\_sqrt}!hmap::HeightmapRGB@{hmap::HeightmapRGB}}
+\doxysubsubsection{\texorpdfstring{mix\_heightmap\_rgb\_sqrt}{mix\_heightmap\_rgb\_sqrt}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structhmap_1_1HeightmapRGB}{Heightmap\+RGB}} mix\+\_\+heightmap\+\_\+rgb\+\_\+sqrt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhmap_1_1HeightmapRGB}{Heightmap\+RGB}} \&}]{rgb1,  }\item[{\mbox{\hyperlink{structhmap_1_1HeightmapRGB}{Heightmap\+RGB}} \&}]{rgb2,  }\item[{float}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structhmap_1_1HeightmapRGB_a8cc2f556db5595f59b550a8c27db9773}\label{structhmap_1_1HeightmapRGB_a8cc2f556db5595f59b550a8c27db9773} 
+\index{hmap::HeightmapRGB@{hmap::HeightmapRGB}!rgb@{rgb}}
+\index{rgb@{rgb}!hmap::HeightmapRGB@{hmap::HeightmapRGB}}
+\doxysubsubsection{\texorpdfstring{rgb}{rgb}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}}$>$ hmap\+::\+Heightmap\+RGB\+::rgb}
+
+
+
+RGB component heightmap storage. 
+
+{\bfseries{Example}} 
+\begin{DoxyCodeInclude}{0}
+
+\end{DoxyCodeInclude}
+
+
+{\bfseries{Result}}     \Hypertarget{structhmap_1_1HeightmapRGB_a341d9a75de566a83fc917178009c86e7}\label{structhmap_1_1HeightmapRGB_a341d9a75de566a83fc917178009c86e7} 
+\index{hmap::HeightmapRGB@{hmap::HeightmapRGB}!shape@{shape}}
+\index{shape@{shape}!hmap::HeightmapRGB@{hmap::HeightmapRGB}}
+\doxysubsubsection{\texorpdfstring{shape}{shape}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$int$>$ hmap\+::\+Heightmap\+RGB\+::shape = \{0, 0\}}
+
+
+
+Shape. 
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+High\+Map/include/highmap/\mbox{\hyperlink{heightmap_8hpp}{heightmap.\+hpp}}\item 
+High\+Map/src/heightmap/\mbox{\hyperlink{heightmap__rgb_8cpp}{heightmap\+\_\+rgb.\+cpp}}\end{DoxyCompactItemize}

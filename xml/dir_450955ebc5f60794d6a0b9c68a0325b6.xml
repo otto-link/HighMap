@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_450955ebc5f60794d6a0b9c68a0325b6" kind="dir">
+    <compoundname>HighMap/src/primitives</compoundname>
+    <innerdir refid="dir_d973d9aaff4af7d4184a10e5b87a6887">HighMap/src/primitives/functions</innerdir>
+    <innerdir refid="dir_53d4573766d056de5de1beaeca2ff3aa">HighMap/src/primitives/geo</innerdir>
+    <innerfile refid="checkerboard_8cpp">checkerboard.cpp</innerfile>
+    <innerfile refid="dendry_8cpp">dendry.cpp</innerfile>
+    <innerfile refid="diffusion__limited__aggregation_8cpp">diffusion_limited_aggregation.cpp</innerfile>
+    <innerfile refid="gabor_8cpp">gabor.cpp</innerfile>
+    <innerfile refid="noise_8cpp">noise.cpp</innerfile>
+    <innerfile refid="phasor_8cpp">phasor.cpp</innerfile>
+    <innerfile refid="primitives_8cpp">primitives.cpp</innerfile>
+    <innerfile refid="primitives__gpu_8cpp">primitives_gpu.cpp</innerfile>
+    <innerfile refid="swirl_8cpp">swirl.cpp</innerfile>
+    <innerfile refid="wave_8cpp">wave.cpp</innerfile>
+    <innerfile refid="white_8cpp">white.cpp</innerfile>
+    <innerfile refid="worley_8cpp">worley.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="HighMap/src/primitives/"/>
+  </compounddef>
+</doxygen>

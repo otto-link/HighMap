@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structhmap_1_1AssertResults" kind="struct" language="C++" prot="public">
+    <compoundname>hmap::AssertResults</compoundname>
+    <includes refid="assert_8hpp" local="no">assert.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structhmap_1_1AssertResults_1a6cf92a095426d2effa78d2e3113d5cca" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hmap::AssertResults::msg</definition>
+        <argsstring></argsstring>
+        <name>msg</name>
+        <qualifiedname>hmap::AssertResults::msg</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/dbg/assert.hpp" line="23" column="15" bodyfile="HighMap/include/highmap/dbg/assert.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1AssertResults_1a826a44abf2d5591d84715126be8f354b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::AssertResults::diff</definition>
+        <argsstring></argsstring>
+        <name>diff</name>
+        <qualifiedname>hmap::AssertResults::diff</qualifiedname>
+        <initializer>= 0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/dbg/assert.hpp" line="24" column="15" bodyfile="HighMap/include/highmap/dbg/assert.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1AssertResults_1ab0ed69d0f46cf150c4d025776f412ddf" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::AssertResults::tolerance</definition>
+        <argsstring></argsstring>
+        <name>tolerance</name>
+        <qualifiedname>hmap::AssertResults::tolerance</qualifiedname>
+        <initializer>= 0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/dbg/assert.hpp" line="25" column="15" bodyfile="HighMap/include/highmap/dbg/assert.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1AssertResults_1a4c628df3519b0272201adac2607573a9" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::AssertResults::count</definition>
+        <argsstring></argsstring>
+        <name>count</name>
+        <qualifiedname>hmap::AssertResults::count</qualifiedname>
+        <initializer>= 0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/dbg/assert.hpp" line="26" column="15" bodyfile="HighMap/include/highmap/dbg/assert.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1AssertResults_1a8999b609fb640f3c04ee1c54d2195ef5" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hmap::AssertResults::ret</definition>
+        <argsstring></argsstring>
+        <name>ret</name>
+        <qualifiedname>hmap::AssertResults::ret</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/dbg/assert.hpp" line="27" column="15" bodyfile="HighMap/include/highmap/dbg/assert.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structhmap_1_1AssertResults_1a5b26e3964b23c604022ff6705327ac37" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::AssertResults::print</definition>
+        <argsstring>() const</argsstring>
+        <name>print</name>
+        <qualifiedname>hmap::AssertResults::print</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/dbg/assert.hpp" line="29" column="8" bodyfile="HighMap/include/highmap/dbg/assert.hpp" bodystart="29" bodyend="35"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>hmap::AssertResults</label>
+        <link refid="structhmap_1_1AssertResults"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>msg</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="2">
+        <label>std::string</label>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="HighMap/include/highmap/dbg/assert.hpp" line="21" column="1" bodyfile="HighMap/include/highmap/dbg/assert.hpp" bodystart="22" bodyend="36"/>
+    <listofallmembers>
+      <member refid="structhmap_1_1AssertResults_1a4c628df3519b0272201adac2607573a9" prot="public" virt="non-virtual"><scope>hmap::AssertResults</scope><name>count</name></member>
+      <member refid="structhmap_1_1AssertResults_1a826a44abf2d5591d84715126be8f354b" prot="public" virt="non-virtual"><scope>hmap::AssertResults</scope><name>diff</name></member>
+      <member refid="structhmap_1_1AssertResults_1a6cf92a095426d2effa78d2e3113d5cca" prot="public" virt="non-virtual"><scope>hmap::AssertResults</scope><name>msg</name></member>
+      <member refid="structhmap_1_1AssertResults_1a5b26e3964b23c604022ff6705327ac37" prot="public" virt="non-virtual"><scope>hmap::AssertResults</scope><name>print</name></member>
+      <member refid="structhmap_1_1AssertResults_1a8999b609fb640f3c04ee1c54d2195ef5" prot="public" virt="non-virtual"><scope>hmap::AssertResults</scope><name>ret</name></member>
+      <member refid="structhmap_1_1AssertResults_1ab0ed69d0f46cf150c4d025776f412ddf" prot="public" virt="non-virtual"><scope>hmap::AssertResults</scope><name>tolerance</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

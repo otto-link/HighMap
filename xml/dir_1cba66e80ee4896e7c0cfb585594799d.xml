@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_1cba66e80ee4896e7c0cfb585594799d" kind="dir">
+    <compoundname>HighMap/src/selector</compoundname>
+    <innerfile refid="selector_8cpp">selector.cpp</innerfile>
+    <innerfile refid="selector__gpu_8cpp">selector_gpu.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="HighMap/src/selector/"/>
+  </compounddef>
+</doxygen>

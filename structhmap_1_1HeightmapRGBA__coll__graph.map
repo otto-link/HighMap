@@ -1,0 +1,23 @@
+<map id="hmap::HeightmapRGBA" name="hmap::HeightmapRGBA">
+<area shape="rect" id="Node000001" title="HeightMap class, to manipulate a set of RGBA heightmap for heightmap texturing." alt="" coords="5,581,181,607"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="93,479,243,519"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="146,531,105,583,101,579,142,528"/>
+<area shape="rect" id="Node000003" href="$classhmap_1_1Heightmap.html" title="HeightMap class, to manipulate heightmap (with contextual informations)." alt="" coords="99,391,237,416"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="171,430,171,478,165,478,165,430"/>
+<area shape="rect" id="Node000004" href="$structhmap_1_1Vec2.html" title=" " alt="" coords="47,5,193,31"/>
+<area shape="poly" id="edge11_Node000001_Node000004" title=" " alt="" coords="95,41,69,69,61,86,57,105,57,500,60,523,68,545,87,580,83,583,63,547,55,524,52,500,52,104,56,85,65,66,91,38"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="130,43,136,72,139,105,139,309,141,332,148,354,164,389,159,392,143,356,136,333,133,309,133,105,131,73,124,44"/>
+<area shape="rect" id="Node000007" href="$classhmap_1_1Array.html" title="Array class, helper to manipulate 2D float array with &quot;(i, j)&quot; indexing." alt="" coords="174,93,277,119"/>
+<area shape="poly" id="edge7_Node000007_Node000004" title=" " alt="" coords="146,37,213,91,209,95,143,41"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="239,288,390,328"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="275,338,188,393,185,388,272,333"/>
+<area shape="rect" id="Node000006" href="$classhmap_1_1Tile.html" title="Tile class, to manipulate a restricted region of an heightmap (with contextual informations)." alt="" coords="319,198,409,223"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="354,237,327,289,322,287,349,235"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="254,125,350,196,347,200,250,129"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="217,5,367,31"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="277,43,237,94,233,91,272,40"/>
+<area shape="rect" id="Node000009" href="$structhmap_1_1Vec2.html" title=" " alt="" coords="301,93,459,119"/>
+<area shape="poly" id="edge9_Node000006_Node000009" title=" " alt="" coords="379,133,368,198,363,197,373,132"/>
+<area shape="rect" id="Node000010" href="$structhmap_1_1Vec4.html" title=" " alt="" coords="483,93,640,119"/>
+<area shape="poly" id="edge10_Node000006_Node000010" title=" " alt="" coords="528,127,388,200,385,195,526,123"/>
+</map>

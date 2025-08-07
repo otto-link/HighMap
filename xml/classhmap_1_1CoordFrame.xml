@@ -1,0 +1,431 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classhmap_1_1CoordFrame" kind="class" language="C++" prot="public">
+    <compoundname>hmap::CoordFrame</compoundname>
+    <includes refid="coord__frame_8hpp" local="no">coord_frame.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhmap_1_1CoordFrame_1a422dd4c795df3b4475b141661ddadefe" prot="private" static="no" mutable="no">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+        <definition>Vec2&lt;float&gt; hmap::CoordFrame::origin</definition>
+        <argsstring></argsstring>
+        <name>origin</name>
+        <qualifiedname>hmap::CoordFrame::origin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/coord_frame.hpp" line="82" column="8" bodyfile="HighMap/include/highmap/coord_frame.hpp" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1CoordFrame_1a241155ec9e124d54e99aba014ab3d98b" prot="private" static="no" mutable="no">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+        <definition>Vec2&lt;float&gt; hmap::CoordFrame::size</definition>
+        <argsstring></argsstring>
+        <name>size</name>
+        <qualifiedname>hmap::CoordFrame::size</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/coord_frame.hpp" line="83" column="8" bodyfile="HighMap/include/highmap/coord_frame.hpp" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1CoordFrame_1ad2a5cd4149767df8d9431f38dbdb4bcc" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::CoordFrame::rotation_angle</definition>
+        <argsstring></argsstring>
+        <name>rotation_angle</name>
+        <qualifiedname>hmap::CoordFrame::rotation_angle</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/coord_frame.hpp" line="84" column="15" bodyfile="HighMap/include/highmap/coord_frame.hpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1CoordFrame_1a2d9684bfd08390ab1972b658fa6ddf2b" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::CoordFrame::cos_angle</definition>
+        <argsstring></argsstring>
+        <name>cos_angle</name>
+        <qualifiedname>hmap::CoordFrame::cos_angle</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/coord_frame.hpp" line="86" column="9" bodyfile="HighMap/include/highmap/coord_frame.hpp" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1CoordFrame_1a11cfd9a15c7518ee6a6bed82d0324f3d" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::CoordFrame::sin_angle</definition>
+        <argsstring></argsstring>
+        <name>sin_angle</name>
+        <qualifiedname>hmap::CoordFrame::sin_angle</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/coord_frame.hpp" line="87" column="9" bodyfile="HighMap/include/highmap/coord_frame.hpp" bodystart="87" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhmap_1_1CoordFrame_1ab015ceb2231eee4beeee57ee07bb19f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hmap::CoordFrame::CoordFrame</definition>
+        <argsstring>()</argsstring>
+        <name>CoordFrame</name>
+        <qualifiedname>hmap::CoordFrame::CoordFrame</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/coord_frame.hpp" line="26" column="3" bodyfile="HighMap/src/coord_frame/coord_frame.cpp" bodystart="11" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1CoordFrame_1acbfb58058da2e691b903e9fb38fb14fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hmap::CoordFrame::CoordFrame</definition>
+        <argsstring>(Vec2&lt; float &gt; origin, Vec2&lt; float &gt; size, float rotation_angle)</argsstring>
+        <name>CoordFrame</name>
+        <qualifiedname>hmap::CoordFrame::CoordFrame</qualifiedname>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+          <declname>origin</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>rotation_angle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/coord_frame.hpp" line="28" column="3" bodyfile="HighMap/src/coord_frame/coord_frame.cpp" bodystart="17" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1CoordFrame_1a36fcc247066a8f861e54ce601c011a2b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+        <definition>Vec2&lt; float &gt; hmap::CoordFrame::get_origin</definition>
+        <argsstring>() const</argsstring>
+        <name>get_origin</name>
+        <qualifiedname>hmap::CoordFrame::get_origin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/coord_frame.hpp" line="31" column="8" bodyfile="HighMap/include/highmap/coord_frame.hpp" bodystart="31" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1CoordFrame_1ad287a48d7ec9ce91213d67895f471bbd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+        <definition>Vec2&lt; float &gt; hmap::CoordFrame::get_size</definition>
+        <argsstring>() const</argsstring>
+        <name>get_size</name>
+        <qualifiedname>hmap::CoordFrame::get_size</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/coord_frame.hpp" line="36" column="8" bodyfile="HighMap/include/highmap/coord_frame.hpp" bodystart="36" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1CoordFrame_1aebce63606ddca495d41de463cafb33bd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float hmap::CoordFrame::get_rotation_angle</definition>
+        <argsstring>() const</argsstring>
+        <name>get_rotation_angle</name>
+        <qualifiedname>hmap::CoordFrame::get_rotation_angle</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/coord_frame.hpp" line="41" column="9" bodyfile="HighMap/src/coord_frame/coord_frame.cpp" bodystart="83" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1CoordFrame_1a03b6f72775d839e2fbe9b244c7d860e1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::CoordFrame::set_origin</definition>
+        <argsstring>(Vec2&lt; float &gt; new_origin)</argsstring>
+        <name>set_origin</name>
+        <qualifiedname>hmap::CoordFrame::set_origin</qualifiedname>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+          <declname>new_origin</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/coord_frame.hpp" line="44" column="8" bodyfile="HighMap/include/highmap/coord_frame.hpp" bodystart="44" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1CoordFrame_1a38eeb1a63ec5bfd703549d5edd916b89" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::CoordFrame::set_size</definition>
+        <argsstring>(Vec2&lt; float &gt; new_size)</argsstring>
+        <name>set_size</name>
+        <qualifiedname>hmap::CoordFrame::set_size</qualifiedname>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+          <declname>new_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/coord_frame.hpp" line="49" column="8" bodyfile="HighMap/include/highmap/coord_frame.hpp" bodystart="49" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1CoordFrame_1a309642c71a4058665a48427b0c9248fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::CoordFrame::set_rotation_angle</definition>
+        <argsstring>(float new_angle)</argsstring>
+        <name>set_rotation_angle</name>
+        <qualifiedname>hmap::CoordFrame::set_rotation_angle</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>new_angle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/coord_frame.hpp" line="54" column="8" bodyfile="HighMap/src/coord_frame/coord_frame.cpp" bodystart="98" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1CoordFrame_1aec33c4aa81bf7c9da22122ae3e8b8967" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4</ref>&lt; float &gt;</type>
+        <definition>Vec4&lt; float &gt; hmap::CoordFrame::compute_bounding_box</definition>
+        <argsstring>() const</argsstring>
+        <name>compute_bounding_box</name>
+        <qualifiedname>hmap::CoordFrame::compute_bounding_box</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/coord_frame.hpp" line="58" column="8" bodyfile="HighMap/src/coord_frame/coord_frame.cpp" bodystart="25" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1CoordFrame_1a2aa2757fdf9392b46fe8a68471e276de" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float hmap::CoordFrame::get_heightmap_value_bilinear</definition>
+        <argsstring>(const Heightmap &amp;h, float gx, float gy, float fill_value=0.f) const</argsstring>
+        <name>get_heightmap_value_bilinear</name>
+        <qualifiedname>hmap::CoordFrame::get_heightmap_value_bilinear</qualifiedname>
+        <param>
+          <type>const <ref refid="classhmap_1_1Heightmap" kindref="compound">Heightmap</ref> &amp;</type>
+          <declname>h</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>gx</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>gy</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>fill_value</declname>
+          <defval>0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/coord_frame.hpp" line="60" column="9" bodyfile="HighMap/src/coord_frame/coord_frame.cpp" bodystart="53" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1CoordFrame_1a2036bedca813d27d6845a258f673fac2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float hmap::CoordFrame::get_heightmap_value_nearest</definition>
+        <argsstring>(const Heightmap &amp;h, float gx, float gy, float fill_value=0.f) const</argsstring>
+        <name>get_heightmap_value_nearest</name>
+        <qualifiedname>hmap::CoordFrame::get_heightmap_value_nearest</qualifiedname>
+        <param>
+          <type>const <ref refid="classhmap_1_1Heightmap" kindref="compound">Heightmap</ref> &amp;</type>
+          <declname>h</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>gx</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>gy</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>fill_value</declname>
+          <defval>0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/coord_frame.hpp" line="65" column="9" bodyfile="HighMap/src/coord_frame/coord_frame.cpp" bodystart="68" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1CoordFrame_1a712f76df08417fcffc44b704e4ddd1be" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hmap::CoordFrame::is_point_within</definition>
+        <argsstring>(float gx, float gy) const</argsstring>
+        <name>is_point_within</name>
+        <qualifiedname>hmap::CoordFrame::is_point_within</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>gx</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>gy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/coord_frame.hpp" line="70" column="8" bodyfile="HighMap/src/coord_frame/coord_frame.cpp" bodystart="89" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1CoordFrame_1a695f820d6db87e1502cb6562a4e37586" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+        <definition>Vec2&lt; float &gt; hmap::CoordFrame::map_to_global_coords</definition>
+        <argsstring>(float rx, float ry) const</argsstring>
+        <name>map_to_global_coords</name>
+        <qualifiedname>hmap::CoordFrame::map_to_global_coords</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>rx</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>ry</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/coord_frame.hpp" line="72" column="8" bodyfile="HighMap/src/coord_frame/coord_frame.cpp" bodystart="108" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1CoordFrame_1a714e286bb111d3055ea4a4976ebeb43a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+        <definition>Vec2&lt; float &gt; hmap::CoordFrame::map_to_relative_coords</definition>
+        <argsstring>(float gx, float gy) const</argsstring>
+        <name>map_to_relative_coords</name>
+        <qualifiedname>hmap::CoordFrame::map_to_relative_coords</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>gx</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>gy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/coord_frame.hpp" line="75" column="8" bodyfile="HighMap/src/coord_frame/coord_frame.cpp" bodystart="120" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1CoordFrame_1af1f76997d4d33cc1cc1e63ffb1ca3ebd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float hmap::CoordFrame::normalized_distance_to_edges</definition>
+        <argsstring>(float gx, float gy) const</argsstring>
+        <name>normalized_distance_to_edges</name>
+        <qualifiedname>hmap::CoordFrame::normalized_distance_to_edges</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>gx</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>gy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/coord_frame.hpp" line="77" column="9" bodyfile="HighMap/src/coord_frame/coord_frame.cpp" bodystart="137" bodyend="147"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1CoordFrame_1ab1c8fa8ed0244f4a54759253b629255c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float hmap::CoordFrame::normalized_shape_factor</definition>
+        <argsstring>(float gx, float gy) const</argsstring>
+        <name>normalized_shape_factor</name>
+        <qualifiedname>hmap::CoordFrame::normalized_shape_factor</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>gx</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>gy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/coord_frame.hpp" line="79" column="9" bodyfile="HighMap/src/coord_frame/coord_frame.cpp" bodystart="149" bodyend="156"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="HighMap/include/highmap/coord_frame.hpp" line="23" column="1" bodyfile="HighMap/include/highmap/coord_frame.hpp" bodystart="24" bodyend="88"/>
+    <listofallmembers>
+      <member refid="classhmap_1_1CoordFrame_1aec33c4aa81bf7c9da22122ae3e8b8967" prot="public" virt="non-virtual"><scope>hmap::CoordFrame</scope><name>compute_bounding_box</name></member>
+      <member refid="classhmap_1_1CoordFrame_1ab015ceb2231eee4beeee57ee07bb19f3" prot="public" virt="non-virtual"><scope>hmap::CoordFrame</scope><name>CoordFrame</name></member>
+      <member refid="classhmap_1_1CoordFrame_1acbfb58058da2e691b903e9fb38fb14fc" prot="public" virt="non-virtual"><scope>hmap::CoordFrame</scope><name>CoordFrame</name></member>
+      <member refid="classhmap_1_1CoordFrame_1a2d9684bfd08390ab1972b658fa6ddf2b" prot="private" virt="non-virtual"><scope>hmap::CoordFrame</scope><name>cos_angle</name></member>
+      <member refid="classhmap_1_1CoordFrame_1a2aa2757fdf9392b46fe8a68471e276de" prot="public" virt="non-virtual"><scope>hmap::CoordFrame</scope><name>get_heightmap_value_bilinear</name></member>
+      <member refid="classhmap_1_1CoordFrame_1a2036bedca813d27d6845a258f673fac2" prot="public" virt="non-virtual"><scope>hmap::CoordFrame</scope><name>get_heightmap_value_nearest</name></member>
+      <member refid="classhmap_1_1CoordFrame_1a36fcc247066a8f861e54ce601c011a2b" prot="public" virt="non-virtual"><scope>hmap::CoordFrame</scope><name>get_origin</name></member>
+      <member refid="classhmap_1_1CoordFrame_1aebce63606ddca495d41de463cafb33bd" prot="public" virt="non-virtual"><scope>hmap::CoordFrame</scope><name>get_rotation_angle</name></member>
+      <member refid="classhmap_1_1CoordFrame_1ad287a48d7ec9ce91213d67895f471bbd" prot="public" virt="non-virtual"><scope>hmap::CoordFrame</scope><name>get_size</name></member>
+      <member refid="classhmap_1_1CoordFrame_1a712f76df08417fcffc44b704e4ddd1be" prot="public" virt="non-virtual"><scope>hmap::CoordFrame</scope><name>is_point_within</name></member>
+      <member refid="classhmap_1_1CoordFrame_1a695f820d6db87e1502cb6562a4e37586" prot="public" virt="non-virtual"><scope>hmap::CoordFrame</scope><name>map_to_global_coords</name></member>
+      <member refid="classhmap_1_1CoordFrame_1a714e286bb111d3055ea4a4976ebeb43a" prot="public" virt="non-virtual"><scope>hmap::CoordFrame</scope><name>map_to_relative_coords</name></member>
+      <member refid="classhmap_1_1CoordFrame_1af1f76997d4d33cc1cc1e63ffb1ca3ebd" prot="public" virt="non-virtual"><scope>hmap::CoordFrame</scope><name>normalized_distance_to_edges</name></member>
+      <member refid="classhmap_1_1CoordFrame_1ab1c8fa8ed0244f4a54759253b629255c" prot="public" virt="non-virtual"><scope>hmap::CoordFrame</scope><name>normalized_shape_factor</name></member>
+      <member refid="classhmap_1_1CoordFrame_1a422dd4c795df3b4475b141661ddadefe" prot="private" virt="non-virtual"><scope>hmap::CoordFrame</scope><name>origin</name></member>
+      <member refid="classhmap_1_1CoordFrame_1ad2a5cd4149767df8d9431f38dbdb4bcc" prot="private" virt="non-virtual"><scope>hmap::CoordFrame</scope><name>rotation_angle</name></member>
+      <member refid="classhmap_1_1CoordFrame_1a03b6f72775d839e2fbe9b244c7d860e1" prot="public" virt="non-virtual"><scope>hmap::CoordFrame</scope><name>set_origin</name></member>
+      <member refid="classhmap_1_1CoordFrame_1a309642c71a4058665a48427b0c9248fc" prot="public" virt="non-virtual"><scope>hmap::CoordFrame</scope><name>set_rotation_angle</name></member>
+      <member refid="classhmap_1_1CoordFrame_1a38eeb1a63ec5bfd703549d5edd916b89" prot="public" virt="non-virtual"><scope>hmap::CoordFrame</scope><name>set_size</name></member>
+      <member refid="classhmap_1_1CoordFrame_1a11cfd9a15c7518ee6a6bed82d0324f3d" prot="private" virt="non-virtual"><scope>hmap::CoordFrame</scope><name>sin_angle</name></member>
+      <member refid="classhmap_1_1CoordFrame_1a241155ec9e124d54e99aba014ab3d98b" prot="private" virt="non-virtual"><scope>hmap::CoordFrame</scope><name>size</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

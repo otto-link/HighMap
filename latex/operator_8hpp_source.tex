@@ -1,0 +1,83 @@
+\doxysection{operator.\+hpp}
+\hypertarget{operator_8hpp_source}{}\label{operator_8hpp_source}\index{HighMap/include/highmap/operator.hpp@{HighMap/include/highmap/operator.hpp}}
+\mbox{\hyperlink{operator_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ Copyright\ (c)\ 2023\ Otto\ Link.\ Distributed\ under\ the\ terms\ of\ the\ GNU\ General}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ \ \ Public\ License.\ The\ full\ license\ is\ in\ the\ file\ LICENSE,\ distributed\ with}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ \ this\ software.\ */}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{array_8hpp}{highmap/array.hpp}}"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{math_8hpp}{highmap/math.hpp}}"{}}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacehmap}{hmap}}}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00038\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacehmap_ae51dda5e070b01ad1a85b44d986f5003}{add\_kernel}}(Array\ \&array,\ \textcolor{keyword}{const}\ Array\ \&kernel,\ \textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00064\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacehmap_a34aa21678ff4bb869bb29ee0f2f68886}{add\_kernel\_maximum\_smooth}}(Array\ \ \ \ \ \ \ \&array,}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Array\ \&kernel,}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ k\_smooth,}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ i,}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ j);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00085\ Array\ \mbox{\hyperlink{namespacehmap_a000840cf4916102db68d6428c8c8c7e2}{detrend\_reg}}(\textcolor{keyword}{const}\ Array\ \&array);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00099\ Array\ \mbox{\hyperlink{namespacehmap_ad6fc7fb24960fa6a45bc657ae2d89f80}{hstack}}(\textcolor{keyword}{const}\ Array\ \&array1,\ \textcolor{keyword}{const}\ Array\ \&array2);}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00119\ Array\ \mbox{\hyperlink{namespacehmap_ab642074e3e056d07ae13cf346e208c79}{inpainting\_diffusion}}(\textcolor{keyword}{const}\ Array\ \&array,}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Array\ \&mask,}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ iterations);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00138\ std::vector<float>\ \mbox{\hyperlink{namespacehmap_a3957ac4ae673f8ad402b5dd71e99b015}{linspace}}(\textcolor{keywordtype}{float}\ start,}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ stop,}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ num,}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ endpoint\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00161\ std::vector<float>\ \mbox{\hyperlink{namespacehmap_a068e4d5be8c16ab9e708dca9678dc8de}{linspace\_jitted}}(\textcolor{keywordtype}{float}\ start,}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ stop,}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ num,}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ ratio,}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ seed,}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ endpoint\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00181\ std::vector<float>\ \mbox{\hyperlink{namespacehmap_a3e6de5f9e14f11872651af22e5756c32}{random\_vector}}(\textcolor{keywordtype}{float}\ min,\ \textcolor{keywordtype}{float}\ max,\ \textcolor{keywordtype}{int}\ num,\ \textcolor{keywordtype}{int}\ seed);}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00210\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacehmap_ad709c89b243a091346e762f25c6b07c2}{fill\_array\_using\_xy\_function}}(}
+\DoxyCodeLine{00211\ \ \ \ \ Array\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&array,}
+\DoxyCodeLine{00212\ \ \ \ \ Vec4<float>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bbox,}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *p\_ctrl\_param,}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *p\_noise\_x,}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *p\_noise\_y,}
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *p\_stretching,}
+\DoxyCodeLine{00217\ \ \ \ \ std::function<\textcolor{keywordtype}{float}(\textcolor{keywordtype}{float},\ \textcolor{keywordtype}{float},\ \textcolor{keywordtype}{float})>\ fct\_xy);}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00250\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacehmap_ad709c89b243a091346e762f25c6b07c2}{fill\_array\_using\_xy\_function}}(}
+\DoxyCodeLine{00251\ \ \ \ \ Array\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&array,}
+\DoxyCodeLine{00252\ \ \ \ \ Vec4<float>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bbox,}
+\DoxyCodeLine{00253\ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *p\_ctrl\_param,}
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *p\_noise\_x,}
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *p\_noise\_y,}
+\DoxyCodeLine{00256\ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *p\_stretching,}
+\DoxyCodeLine{00257\ \ \ \ \ std::function<\textcolor{keywordtype}{float}(\textcolor{keywordtype}{float},\ \textcolor{keywordtype}{float},\ \textcolor{keywordtype}{float})>\ fct\_xy,}
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ subsampling);\ }
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00271\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacehmap_ae0a3c73cc23a288fe03bf5ed6ac73c3d}{find\_vertical\_cut\_path}}(\textcolor{keyword}{const}\ Array\ \&error,\ std::vector<int>\ \&path\_i);}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00285\ Array\ \mbox{\hyperlink{namespacehmap_aa3277a726a81e3c6b4dcbc0d2a86f4d7}{generate\_mask}}(\mbox{\hyperlink{structhmap_1_1Vec2}{hmap::Vec2<int>}}\ shape,\ std::vector<int>\ cut\_path\_i,\ \textcolor{keywordtype}{int}\ ir);}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00317\ Array\ \mbox{\hyperlink{namespacehmap_a27362ea31c92dd9c15e1bb3c6f5b18e8}{get\_random\_patch}}(\textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \ \ \&array,}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structhmap_1_1Vec2}{hmap::Vec2<int>}}\ \ \ \ \ \ \ patch\_shape,}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::mt19937\ \ \ \ \ \ \ \ \ \&gen,}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ patch\_flip\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ patch\_rotate\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ patch\_transpose\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Array\ *>\ *p\_secondary\_arrays\ =\ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Array>\ \ \ *p\_secondary\_patches\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00338\ Array\ \mbox{\hyperlink{namespacehmap_a462f8b6ebc7b8ab79c619987e0ddfce4}{vstack}}(\textcolor{keyword}{const}\ Array\ \&array1,\ \textcolor{keyword}{const}\ Array\ \&array2);}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \}\ \textcolor{comment}{//\ namespace\ hmap}}
+
+\end{DoxyCode}

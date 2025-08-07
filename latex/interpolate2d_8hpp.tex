@@ -1,0 +1,45 @@
+\doxysection{High\+Map/include/highmap/interpolate2d.hpp File Reference}
+\hypertarget{interpolate2d_8hpp}{}\label{interpolate2d_8hpp}\index{HighMap/include/highmap/interpolate2d.hpp@{HighMap/include/highmap/interpolate2d.hpp}}
+
+
+Header file for 2D interpolation methods.  
+
+
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacehmap_a5bfab5d68e822294ff90fde21b85f581}{hmap\+::\+Interpolation\+Method2D}} \+: int \{ \mbox{\hyperlink{namespacehmap_a5bfab5d68e822294ff90fde21b85f581a69ac444964e6a94c448c395c8f82b135}{hmap\+::\+DELAUNAY}}
+, \mbox{\hyperlink{namespacehmap_a5bfab5d68e822294ff90fde21b85f581a7ab263bff6c11b7d35a8c1f1caac8cc2}{hmap\+::\+NEAREST}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration of 2D interpolation methods. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{namespacehmap_ae91029283452ab6d8276e3745a476b48}{hmap\+::bilinear\+\_\+interp}} (float f00, float f10, float f01, float f11, float u, float v)
+\begin{DoxyCompactList}\small\item\em Compute the bilinear interpolated value from four input values. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{namespacehmap_aee026d8b23196038c2b16c370b743889}{hmap\+::cubic\+\_\+interpolate}} (float p\mbox{[}4\mbox{]}, float x)
+\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a62fb974ae1d78c0c4ebb4267dc9c8204}{hmap\+::interpolate2d}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape, const std\+::vector$<$ float $>$ \&x, const std\+::vector$<$ float $>$ \&y, const std\+::vector$<$ float $>$ \&values, \mbox{\hyperlink{namespacehmap_a5bfab5d68e822294ff90fde21b85f581}{Interpolation\+Method2D}} interpolation\+\_\+method, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+x=nullptr, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+y=nullptr, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+stretching=nullptr, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\})
+\begin{DoxyCompactList}\small\item\em Generic 2D interpolation function. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a608687504dfc1cf55afe6f1db6a90335}{hmap\+::interpolate2d\+\_\+nearest}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape, const std\+::vector$<$ float $>$ \&x, const std\+::vector$<$ float $>$ \&y, const std\+::vector$<$ float $>$ \&values, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+x=nullptr, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+y=nullptr, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+stretching=nullptr, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\})
+\begin{DoxyCompactList}\small\item\em 2D interpolation using the nearest neighbor method. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a87e9a2e5fc78594e8d88522366ff5396}{hmap\+::interpolate2d\+\_\+delaunay}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape, const std\+::vector$<$ float $>$ \&x, const std\+::vector$<$ float $>$ \&y, const std\+::vector$<$ float $>$ \&values, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+x=nullptr, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+y=nullptr, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+stretching=nullptr, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\})
+\begin{DoxyCompactList}\small\item\em 2D interpolation using the Delaunay triangulation method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for 2D interpolation methods. 
+
+\begin{DoxyAuthor}{Author}
+Otto Link (\href{mailto:otto.link.bv@gmail.com}{\texttt{ otto.\+link.\+bv@gmail.\+com}}) 
+\end{DoxyAuthor}
+This file provides declarations for functions and enumerations related to 2D interpolation. It supports different interpolation methods, including Delaunay triangulation and nearest point interpolation. These functions allow for the interpolation of values on a 2D grid using various techniques.
+
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 Otto Link 
+\end{DoxyCopyright}

@@ -1,0 +1,18 @@
+<map id="hmap::Heightmap" name="hmap::Heightmap">
+<area shape="rect" id="Node000001" title="HeightMap class, to manipulate heightmap (with contextual informations)." alt="" coords="30,391,169,416"/>
+<area shape="rect" id="Node000002" href="$structhmap_1_1Vec2.html" title=" " alt="" coords="5,5,151,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,45,81,105,81,309,87,354,97,389,92,391,81,355,75,310,75,105,75,45"/>
+<area shape="rect" id="Node000005" href="$classhmap_1_1Array.html" title="Array class, helper to manipulate 2D float array with &quot;(i, j)&quot; indexing." alt="" coords="116,93,219,119"/>
+<area shape="poly" id="edge5_Node000005_Node000002" title=" " alt="" coords="102,38,157,91,153,95,98,42"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="181,288,332,328"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="214,337,120,393,117,388,212,333"/>
+<area shape="rect" id="Node000004" href="$classhmap_1_1Tile.html" title="Tile class, to manipulate a restricted region of an heightmap (with contextual informations)." alt="" coords="261,198,351,223"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="296,237,269,289,264,287,291,235"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="196,125,292,196,289,200,192,129"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="175,5,325,31"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="231,43,181,95,177,91,227,39"/>
+<area shape="rect" id="Node000007" href="$structhmap_1_1Vec2.html" title=" " alt="" coords="243,93,401,119"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="321,133,310,198,305,197,315,132"/>
+<area shape="rect" id="Node000008" href="$structhmap_1_1Vec4.html" title=" " alt="" coords="425,93,582,119"/>
+<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="470,127,330,200,327,195,468,123"/>
+</map>

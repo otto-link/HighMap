@@ -1,0 +1,429 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classhmap_1_1Tile" kind="class" language="C++" prot="public">
+    <compoundname>hmap::Tile</compoundname>
+    <basecompoundref refid="classhmap_1_1Array" prot="public" virt="non-virtual">hmap::Array</basecompoundref>
+    <includes refid="heightmap_8hpp" local="no">heightmap.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classhmap_1_1Tile_1a48abac45866586d08562290cd1cbf771" prot="public" static="no" mutable="no">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+        <definition>Vec2&lt;float&gt; hmap::Tile::shift</definition>
+        <argsstring></argsstring>
+        <name>shift</name>
+        <qualifiedname>hmap::Tile::shift</qualifiedname>
+        <briefdescription>
+<para><ref refid="classhmap_1_1Tile" kindref="compound">Tile</ref> shift in each direction, assuming the global domain is a unit square. For example, if the tiling is {4, 2}, the shift of tile {3, 2} is {0.75, 0.5}. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="76" column="8" bodyfile="HighMap/include/highmap/heightmap.hpp" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1Tile_1aae914c15147af89217a6af5af8b08af1" prot="public" static="no" mutable="no">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+        <definition>Vec2&lt;float&gt; hmap::Tile::scale</definition>
+        <argsstring></argsstring>
+        <name>scale</name>
+        <qualifiedname>hmap::Tile::scale</qualifiedname>
+        <briefdescription>
+<para>Scale of the tile in each direction, assuming the global domain is a unit square. For example, if the tiling is {4, 2} without overlap, the scale is {0.25, 0.5}. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="83" column="8" bodyfile="HighMap/include/highmap/heightmap.hpp" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1Tile_1a91373c77f2a13d8627ad8040f0a24ed0" prot="public" static="no" mutable="no">
+        <type><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4</ref>&lt; float &gt;</type>
+        <definition>Vec4&lt;float&gt; hmap::Tile::bbox</definition>
+        <argsstring></argsstring>
+        <name>bbox</name>
+        <qualifiedname>hmap::Tile::bbox</qualifiedname>
+        <briefdescription>
+<para><ref refid="classhmap_1_1Tile" kindref="compound">Tile</ref> bounding box {xmin, xmax, ymin, ymax}. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="88" column="8" bodyfile="HighMap/include/highmap/heightmap.hpp" bodystart="88" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhmap_1_1Tile_1ad9f7b9113ac49377aaae9d53d905bd9a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hmap::Tile::Tile</definition>
+        <argsstring>(Vec2&lt; int &gt; shape, Vec2&lt; float &gt; shift, Vec2&lt; float &gt; scale, Vec4&lt; float &gt; bbox)</argsstring>
+        <name>Tile</name>
+        <qualifiedname>hmap::Tile::Tile</qualifiedname>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; int &gt;</type>
+          <declname>shape</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+          <declname>shift</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+          <declname>scale</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4</ref>&lt; float &gt;</type>
+          <declname>bbox</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="classhmap_1_1Tile" kindref="compound">Tile</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>shape</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Shape. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shift</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Shift. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="96" column="3" bodyfile="HighMap/src/heightmap/tile_base.cpp" bodystart="16" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Tile_1a3ef4061316f6315cf5ce2582842f6f32" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hmap::Tile::Tile</definition>
+        <argsstring>()</argsstring>
+        <name>Tile</name>
+        <qualifiedname>hmap::Tile::Tile</qualifiedname>
+        <briefdescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="98" column="3" bodyfile="HighMap/src/heightmap/tile_base.cpp" bodystart="13" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Tile_1ae15f1ce2ed00cc0e3466e2e6e9732778" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Tile::operator=</definition>
+        <argsstring>(const Array &amp;array)</argsstring>
+        <name>operator=</name>
+        <qualifiedname>hmap::Tile::operator=</qualifiedname>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>array</declname>
+        </param>
+        <briefdescription>
+<para>Assignment overloading (array). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="105" column="8" bodyfile="HighMap/src/heightmap/tile_base.cpp" bodystart="24" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Tile_1a71c8b5b077f46a291f2ac37c58bee416" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Tile::from_array_interp</definition>
+        <argsstring>(Array &amp;array)</argsstring>
+        <name>from_array_interp</name>
+        <qualifiedname>hmap::Tile::from_array_interp</qualifiedname>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>array</declname>
+        </param>
+        <briefdescription>
+<para>Fill tile values by interpolating (bilinear) values from another array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input array. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="113" column="8" bodyfile="HighMap/src/heightmap/tile_base.cpp" bodystart="29" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Tile_1a50894d6bd3db58c969d37befe6f453d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Tile::from_array_interp_bicubic</definition>
+        <argsstring>(Array &amp;array)</argsstring>
+        <name>from_array_interp_bicubic</name>
+        <qualifiedname>hmap::Tile::from_array_interp_bicubic</qualifiedname>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>array</declname>
+        </param>
+        <briefdescription>
+<para>Fill tile values by interpolating (bicubic) values from another array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input array. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="121" column="8" bodyfile="HighMap/src/heightmap/tile_base.cpp" bodystart="34" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Tile_1aef02035e9f699d9e7e98d45f1e3875e4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Tile::from_array_interp_bilinear</definition>
+        <argsstring>(Array &amp;array)</argsstring>
+        <name>from_array_interp_bilinear</name>
+        <qualifiedname>hmap::Tile::from_array_interp_bilinear</qualifiedname>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>array</declname>
+        </param>
+        <briefdescription>
+<para>Fill tile values by interpolating (bilinear) values from another array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input array. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="129" column="8" bodyfile="HighMap/src/heightmap/tile_base.cpp" bodystart="45" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Tile_1aaea839a4732611e0abdb5c3b64f509b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Tile::from_array_interp_nearest</definition>
+        <argsstring>(Array &amp;array)</argsstring>
+        <name>from_array_interp_nearest</name>
+        <qualifiedname>hmap::Tile::from_array_interp_nearest</qualifiedname>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>array</declname>
+        </param>
+        <briefdescription>
+<para>Fill tile values by interpolating (nearest) values from another array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input array. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="137" column="8" bodyfile="HighMap/src/heightmap/tile_base.cpp" bodystart="56" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Tile_1a5ac4f9e9129abfbc790393ac47450096" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Tile::infos</definition>
+        <argsstring>() const</argsstring>
+        <name>infos</name>
+        <qualifiedname>hmap::Tile::infos</qualifiedname>
+        <briefdescription>
+<para>Print some informations about the object. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="142" column="8" bodyfile="HighMap/src/heightmap/tile_base.cpp" bodystart="67" bodyend="77"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="classhmap_1_1Tile" kindref="compound">Tile</ref> class, to manipulate a restricted region of an heightmap (with contextual informations). </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hmap::Array</label>
+        <link refid="classhmap_1_1Array"/>
+      </node>
+      <node id="1">
+        <label>hmap::Tile</label>
+        <link refid="classhmap_1_1Tile"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="5">
+        <label>hmap::Vec2&lt; float &gt;</label>
+        <link refid="structhmap_1_1Vec2"/>
+      </node>
+      <node id="3">
+        <label>hmap::Vec2&lt; int &gt;</label>
+        <link refid="structhmap_1_1Vec2"/>
+      </node>
+      <node id="6">
+        <label>hmap::Vec4&lt; float &gt;</label>
+        <link refid="structhmap_1_1Vec4"/>
+      </node>
+      <node id="2">
+        <label>hmap::Array</label>
+        <link refid="classhmap_1_1Array"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>shape</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>vector</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hmap::Tile</label>
+        <link refid="classhmap_1_1Tile"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>scale</edgelabel>
+          <edgelabel>shift</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>bbox</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>std::vector&lt; float &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="HighMap/include/highmap/heightmap.hpp" line="68" column="1" bodyfile="HighMap/include/highmap/heightmap.hpp" bodystart="69" bodyend="143"/>
+    <listofallmembers>
+      <member refid="classhmap_1_1Array_1a96b9bd19d1212e61b4ac4eb21931b298" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>Array</name></member>
+      <member refid="classhmap_1_1Array_1a01be0e18bcfd224e61740d49929e8023" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>Array</name></member>
+      <member refid="classhmap_1_1Array_1a885b4f45f50f0e7d9c32e316ecb9884b" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>Array</name></member>
+      <member refid="classhmap_1_1Array_1aad62b698ef12cfd06b3fb09e8cce7635" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>Array</name></member>
+      <member refid="classhmap_1_1Tile_1a91373c77f2a13d8627ad8040f0a24ed0" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>bbox</name></member>
+      <member refid="classhmap_1_1Array_1a832a302b58fa7b346df04675a14ad59c" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>col_to_vector</name></member>
+      <member refid="classhmap_1_1Array_1a11949e2b41c869b364bc76129b4efeb4" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>count_non_zero</name></member>
+      <member refid="classhmap_1_1Array_1aec532fdab57a1b7571a0e273a567537c" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>depose_amount_bilinear_at</name></member>
+      <member refid="classhmap_1_1Array_1a8c78b70cb181e3e43169b2b4e8d28e55" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>depose_amount_kernel_at</name></member>
+      <member refid="classhmap_1_1Array_1a8bc07abfedb22639797124b951331ddf" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>depose_amount_kernel_bilinear_at</name></member>
+      <member refid="classhmap_1_1Array_1a00b8f7462c1e22b1da8a67ec62d4c8c8" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>dump</name></member>
+      <member refid="classhmap_1_1Array_1a57be73f56189959dd25a0b760d971bf7" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>extract_slice</name></member>
+      <member refid="classhmap_1_1Array_1a7d552a649bcc47445b11d2e42d193492" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>extract_slice</name></member>
+      <member refid="classhmap_1_1Tile_1a71c8b5b077f46a291f2ac37c58bee416" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>from_array_interp</name></member>
+      <member refid="classhmap_1_1Tile_1a50894d6bd3db58c969d37befe6f453d9" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>from_array_interp_bicubic</name></member>
+      <member refid="classhmap_1_1Tile_1aef02035e9f699d9e7e98d45f1e3875e4" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>from_array_interp_bilinear</name></member>
+      <member refid="classhmap_1_1Tile_1aaea839a4732611e0abdb5c3b64f509b2" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>from_array_interp_nearest</name></member>
+      <member refid="classhmap_1_1Array_1a000acd474d036adfa4e5e334139788ce" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>from_file</name></member>
+      <member refid="classhmap_1_1Array_1a61b4eb10e50548b12cfd0cb2f9eddde1" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>from_numpy</name></member>
+      <member refid="classhmap_1_1Array_1a1bc074aa8ae60f52c105702637631e62" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>get_gradient_x_at</name></member>
+      <member refid="classhmap_1_1Array_1a80c3088214a250b00d9e9649266e30d2" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>get_gradient_x_bilinear_at</name></member>
+      <member refid="classhmap_1_1Array_1acbe5c386af495d4648cdfa140f098398" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>get_gradient_y_at</name></member>
+      <member refid="classhmap_1_1Array_1a5f8056879200c2cfa85a757e8c87bb3d" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>get_gradient_y_bilinear_at</name></member>
+      <member refid="classhmap_1_1Array_1a0e69d113a5b86b59e2bbf956262a2331" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>get_normal_at</name></member>
+      <member refid="classhmap_1_1Array_1ad1496c702975e9425113eb4a1dd0e49c" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>get_shape</name></member>
+      <member refid="classhmap_1_1Array_1a7ef7005c4ca95be75c82bded5165634c" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>get_sizeof</name></member>
+      <member refid="classhmap_1_1Array_1ae47cb152f3e887d17160519afd589ee2" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>get_value_bicubic_at</name></member>
+      <member refid="classhmap_1_1Array_1a12eb51c18154e3e452afe9743636085f" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>get_value_bilinear_at</name></member>
+      <member refid="classhmap_1_1Array_1a9dd25996fe72213935f736f9fdb2c4d4" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>get_value_nearest</name></member>
+      <member refid="classhmap_1_1Array_1a65336e3091ee64a91b3ecce8c01c837b" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>get_vector</name></member>
+      <member refid="classhmap_1_1Tile_1a5ac4f9e9129abfbc790393ac47450096" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>infos</name></member>
+      <member refid="classhmap_1_1Array_1a3517b483a468873cefa73f7773a893ec" prot="public" virt="non-virtual" ambiguityscope="hmap::Array::"><scope>hmap::Tile</scope><name>infos</name></member>
+      <member refid="classhmap_1_1Array_1a296cad1c7a3fd75b30a39a628bc7bcbe" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>linear_index</name></member>
+      <member refid="classhmap_1_1Array_1a1d9dda44818ef1fbd4228f42267cc305" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>linear_index_reverse</name></member>
+      <member refid="classhmap_1_1Array_1a68aac609ccba8f581da1cdf5cee671b9" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>max</name></member>
+      <member refid="classhmap_1_1Array_1a1d0c6960def9d61ed748ee6a787421a5" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>mean</name></member>
+      <member refid="classhmap_1_1Array_1a56c77f78e4864f5c6f2cbd6de8100556" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>min</name></member>
+      <member refid="classhmap_1_1Array_1a7bf76abbc7ad183514f41f2b54a0ad2e" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>normalization_coeff</name></member>
+      <member refid="classhmap_1_1Array_1ab55ee6021288a467f7d782b09e888f25" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>normalize</name></member>
+      <member refid="classhmap_1_1Array_1ad8a812fa8efe5590cf0f1c619909eafe" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>operator()</name></member>
+      <member refid="classhmap_1_1Array_1a4befd40052e9d7390eb7499e592769e5" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>operator()</name></member>
+      <member refid="classhmap_1_1Array_1ad4b29fb20bdd0e1f9b76817f75e93347" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>operator*</name></member>
+      <member refid="classhmap_1_1Array_1ae6ede66a645d489770813dd75c62c01e" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>operator*</name></member>
+      <member refid="classhmap_1_1Array_1a412b5d0f678c59a3cde14395bbc83a3c" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>operator*=</name></member>
+      <member refid="classhmap_1_1Array_1ad631aba3c1ded924c1cd3fe6abe4c45f" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>operator*=</name></member>
+      <member refid="classhmap_1_1Array_1a39a5f5334f2ced39ac8bf82085c04400" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>operator+</name></member>
+      <member refid="classhmap_1_1Array_1a818d037ead344885d52de41e03fb6ce2" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>operator+</name></member>
+      <member refid="classhmap_1_1Array_1a4bc8f7bde72fd387cf660124feb33d25" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>operator+=</name></member>
+      <member refid="classhmap_1_1Array_1af351b6eadd085e0821ace4b8f5196a6b" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>operator+=</name></member>
+      <member refid="classhmap_1_1Array_1a641951bf572b4f4122354b4249d24a53" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>operator-</name></member>
+      <member refid="classhmap_1_1Array_1a799dfad6efda5d1ca9183164a54e5e1a" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>operator-</name></member>
+      <member refid="classhmap_1_1Array_1a5f94f3bb00f0d5ac33a7e82d80366cc4" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>operator-</name></member>
+      <member refid="classhmap_1_1Array_1aa6cdd9afcbe503938b7e9138b5064fb5" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>operator-=</name></member>
+      <member refid="classhmap_1_1Array_1a6300da3f7c4b50be908858787b00cc80" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>operator-=</name></member>
+      <member refid="classhmap_1_1Array_1ad1fc9b139538bac40998f9fcb44be678" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>operator/</name></member>
+      <member refid="classhmap_1_1Array_1a2371b22e560a6146b4b3248dde54beef" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>operator/</name></member>
+      <member refid="classhmap_1_1Array_1ac1c2d200c6d5ba12f172615313706e66" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>operator/=</name></member>
+      <member refid="classhmap_1_1Array_1a0360b4113ba5284ab2579984e62a86c8" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>operator/=</name></member>
+      <member refid="classhmap_1_1Tile_1ae15f1ce2ed00cc0e3466e2e6e9732778" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>operator=</name></member>
+      <member refid="classhmap_1_1Array_1a263037d82c46689a6575719b0054f10a" prot="public" virt="non-virtual" ambiguityscope="hmap::Array::"><scope>hmap::Tile</scope><name>operator=</name></member>
+      <member refid="classhmap_1_1Array_1a7ce20e5537ab2729aac320d0b27b7fa5" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>print</name></member>
+      <member refid="classhmap_1_1Array_1ac33557899eb50bcf964b2e5a2ad8ddcb" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>ptp</name></member>
+      <member refid="classhmap_1_1Array_1a1c242d119f67209442a0054601939412" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>resample_to_shape</name></member>
+      <member refid="classhmap_1_1Array_1af36ac8e4689795d2e33b827a7f7b439c" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>resample_to_shape_bicubic</name></member>
+      <member refid="classhmap_1_1Array_1a6f2b1f8bbe8f6e28ebc0cc8616934601" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>resample_to_shape_bilinear</name></member>
+      <member refid="classhmap_1_1Array_1ad438554fd7c3a7d705271e99f91d480c" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>resample_to_shape_nearest</name></member>
+      <member refid="classhmap_1_1Array_1a82d3cc92545cb9ee442d47b4d672750c" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>row_to_vector</name></member>
+      <member refid="classhmap_1_1Tile_1aae914c15147af89217a6af5af8b08af1" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>scale</name></member>
+      <member refid="classhmap_1_1Array_1a8f2e167d01f42e3f953f6ad554c2b49d" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>set_shape</name></member>
+      <member refid="classhmap_1_1Array_1a11f0e0817bbb740e3350adaca187743e" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>set_slice</name></member>
+      <member refid="classhmap_1_1Array_1a362927ee451f7546cfd37f0850982ed3" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>set_slice</name></member>
+      <member refid="classhmap_1_1Array_1a3cf6ada373f8af1affcbbed22db1194f" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>shape</name></member>
+      <member refid="classhmap_1_1Tile_1a48abac45866586d08562290cd1cbf771" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>shift</name></member>
+      <member refid="classhmap_1_1Array_1a16e6671dbf3202dbc86f5eccb0fcb1ad" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>size</name></member>
+      <member refid="classhmap_1_1Array_1aa913be411b57b6a46b45dd3d5ddefcfd" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>std</name></member>
+      <member refid="classhmap_1_1Array_1a7ee63fb7135276ed8d6643d082f06892" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>sum</name></member>
+      <member refid="classhmap_1_1Tile_1ad9f7b9113ac49377aaae9d53d905bd9a" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>Tile</name></member>
+      <member refid="classhmap_1_1Tile_1a3ef4061316f6315cf5ce2582842f6f32" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>Tile</name></member>
+      <member refid="classhmap_1_1Array_1abc4875ad6cfe16bd03004ba52f94587c" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>to_cv_mat</name></member>
+      <member refid="classhmap_1_1Array_1aa681ff740560464d3830d5f7259282fd" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>to_exr</name></member>
+      <member refid="classhmap_1_1Array_1a6cd8060670649c0934ddab573e378d3f" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>to_file</name></member>
+      <member refid="classhmap_1_1Array_1a35ce8d4088ce4ae21003df18c204b7c6" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>to_numpy</name></member>
+      <member refid="classhmap_1_1Array_1a9ff7b2c0be8f2b5dd9fc33085cd647d1" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>to_png</name></member>
+      <member refid="classhmap_1_1Array_1ad7018857827d8e8d263516bbbd77630f" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>to_png_grayscale</name></member>
+      <member refid="classhmap_1_1Array_1abc72128c4c460e993d877cab54e17454" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>to_raw_16bit</name></member>
+      <member refid="classhmap_1_1Array_1a75da0609f64b9410741d198330dde33b" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>to_tiff</name></member>
+      <member refid="classhmap_1_1Array_1acc4ea8fbdc162b16a2b0c8de575ff569" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>unique_values</name></member>
+      <member refid="classhmap_1_1Array_1af586ddce153ac93df48a6d26609d7264" prot="public" virt="non-virtual"><scope>hmap::Tile</scope><name>vector</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

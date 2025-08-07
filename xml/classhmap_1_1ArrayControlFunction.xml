@@ -1,0 +1,244 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classhmap_1_1ArrayControlFunction" kind="class" language="C++" prot="public">
+    <compoundname>hmap::ArrayControlFunction</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ControlFunction&lt; ArrayControlFunction &gt;</basecompoundref>
+    <includes refid="dendry__array__control__function_8hpp" local="no">dendry_array_control_function.hpp</includes>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classhmap_1_1ArrayControlFunction_1a3408081acc95c79603d132522795546a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class ControlFunction&lt; ArrayControlFunction &gt;</definition>
+        <argsstring></argsstring>
+        <name>ControlFunction&lt; ArrayControlFunction &gt;</name>
+        <qualifiedname>hmap::ArrayControlFunction::ControlFunction&lt; ArrayControlFunction &gt;</qualifiedname>
+        <param>
+          <type>ControlFunction&lt; <ref refid="classhmap_1_1ArrayControlFunction" kindref="compound">ArrayControlFunction</ref> &gt;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/dendry_array_control_function.hpp" line="1" column="0" bodyfile="HighMap/include/highmap/internal/dendry_array_control_function.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhmap_1_1ArrayControlFunction_1ae201862b0362b5290c8850581afd8651" prot="private" static="no" mutable="no">
+        <type>const <ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref></type>
+        <definition>const hmap::Array hmap::ArrayControlFunction::m_array</definition>
+        <argsstring></argsstring>
+        <name>m_array</name>
+        <qualifiedname>hmap::ArrayControlFunction::m_array</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/dendry_array_control_function.hpp" line="125" column="21" bodyfile="HighMap/include/highmap/internal/dendry_array_control_function.hpp" bodystart="125" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhmap_1_1ArrayControlFunction_1afb1177fcaf6160bea1d86be3b16cf55d" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hmap::ArrayControlFunction::ArrayControlFunction</definition>
+        <argsstring>(hmap::Array array)</argsstring>
+        <name>ArrayControlFunction</name>
+        <qualifiedname>hmap::ArrayControlFunction::ArrayControlFunction</qualifiedname>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref></type>
+          <declname>array</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/dendry_array_control_function.hpp" line="35" column="12" bodyfile="HighMap/include/highmap/internal/dendry_array_control_function.hpp" bodystart="35" bodyend="37"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classhmap_1_1ArrayControlFunction_1a9932a402b24b0e66df33e8033746016b" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float hmap::ArrayControlFunction::EvaluateImpl</definition>
+        <argsstring>(float x, float y) const</argsstring>
+        <name>EvaluateImpl</name>
+        <qualifiedname>hmap::ArrayControlFunction::EvaluateImpl</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/dendry_array_control_function.hpp" line="40" column="9" bodyfile="HighMap/include/highmap/internal/dendry_array_control_function.hpp" bodystart="40" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1ArrayControlFunction_1aa985fe30c69aec6c5d40f93d0c33a473" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hmap::ArrayControlFunction::InsideDomainImpl</definition>
+        <argsstring>(float x, float y) const</argsstring>
+        <name>InsideDomainImpl</name>
+        <qualifiedname>hmap::ArrayControlFunction::InsideDomainImpl</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/dendry_array_control_function.hpp" line="48" column="8" bodyfile="HighMap/include/highmap/internal/dendry_array_control_function.hpp" bodystart="48" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1ArrayControlFunction_1a3c40696e8f26f0e6fbd66f0f97b83082" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float hmap::ArrayControlFunction::DistToDomainImpl</definition>
+        <argsstring>(float x, float y) const</argsstring>
+        <name>DistToDomainImpl</name>
+        <qualifiedname>hmap::ArrayControlFunction::DistToDomainImpl</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/dendry_array_control_function.hpp" line="53" column="9" bodyfile="HighMap/include/highmap/internal/dendry_array_control_function.hpp" bodystart="53" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1ArrayControlFunction_1a9991d9ff817c40d6700d560d997ef58d" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float hmap::ArrayControlFunction::MinimumImpl</definition>
+        <argsstring>() const</argsstring>
+        <name>MinimumImpl</name>
+        <qualifiedname>hmap::ArrayControlFunction::MinimumImpl</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/dendry_array_control_function.hpp" line="79" column="9" bodyfile="HighMap/include/highmap/internal/dendry_array_control_function.hpp" bodystart="79" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1ArrayControlFunction_1a6c382de167439becf0aeda7208790446" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float hmap::ArrayControlFunction::MaximumImpl</definition>
+        <argsstring>() const</argsstring>
+        <name>MaximumImpl</name>
+        <qualifiedname>hmap::ArrayControlFunction::MaximumImpl</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/dendry_array_control_function.hpp" line="84" column="9" bodyfile="HighMap/include/highmap/internal/dendry_array_control_function.hpp" bodystart="84" bodyend="87"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classhmap_1_1ArrayControlFunction_1a62760f3a9a2b24eb92f0759d83d06935" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float hmap::ArrayControlFunction::get</definition>
+        <argsstring>(int i, int j) const</argsstring>
+        <name>get</name>
+        <qualifiedname>hmap::ArrayControlFunction::get</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/dendry_array_control_function.hpp" line="90" column="9" bodyfile="HighMap/include/highmap/internal/dendry_array_control_function.hpp" bodystart="90" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1ArrayControlFunction_1ad2b5b917a28a9ac94cd441c5bf5f15b7" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float hmap::ArrayControlFunction::sample</definition>
+        <argsstring>(float ri, float rj) const</argsstring>
+        <name>sample</name>
+        <qualifiedname>hmap::ArrayControlFunction::sample</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>ri</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>rj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/dendry_array_control_function.hpp" line="95" column="9" bodyfile="HighMap/include/highmap/internal/dendry_array_control_function.hpp" bodystart="95" bodyend="123"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>ControlFunction&lt; ArrayControlFunction &gt;</label>
+      </node>
+      <node id="1">
+        <label>hmap::ArrayControlFunction</label>
+        <link refid="classhmap_1_1ArrayControlFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>ControlFunction&lt; ArrayControlFunction &gt;</label>
+      </node>
+      <node id="1">
+        <label>hmap::ArrayControlFunction</label>
+        <link refid="classhmap_1_1ArrayControlFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="HighMap/include/highmap/internal/dendry_array_control_function.hpp" line="30" column="1" bodyfile="HighMap/include/highmap/internal/dendry_array_control_function.hpp" bodystart="31" bodyend="126"/>
+    <listofallmembers>
+      <member refid="classhmap_1_1ArrayControlFunction_1afb1177fcaf6160bea1d86be3b16cf55d" prot="public" virt="non-virtual"><scope>hmap::ArrayControlFunction</scope><name>ArrayControlFunction</name></member>
+      <member refid="classhmap_1_1ArrayControlFunction_1a3408081acc95c79603d132522795546a" prot="private" virt="non-virtual"><scope>hmap::ArrayControlFunction</scope><name>ControlFunction&lt; ArrayControlFunction &gt;</name></member>
+      <member refid="classhmap_1_1ArrayControlFunction_1a3c40696e8f26f0e6fbd66f0f97b83082" prot="protected" virt="non-virtual"><scope>hmap::ArrayControlFunction</scope><name>DistToDomainImpl</name></member>
+      <member refid="classhmap_1_1ArrayControlFunction_1a9932a402b24b0e66df33e8033746016b" prot="protected" virt="non-virtual"><scope>hmap::ArrayControlFunction</scope><name>EvaluateImpl</name></member>
+      <member refid="classhmap_1_1ArrayControlFunction_1a62760f3a9a2b24eb92f0759d83d06935" prot="private" virt="non-virtual"><scope>hmap::ArrayControlFunction</scope><name>get</name></member>
+      <member refid="classhmap_1_1ArrayControlFunction_1aa985fe30c69aec6c5d40f93d0c33a473" prot="protected" virt="non-virtual"><scope>hmap::ArrayControlFunction</scope><name>InsideDomainImpl</name></member>
+      <member refid="classhmap_1_1ArrayControlFunction_1ae201862b0362b5290c8850581afd8651" prot="private" virt="non-virtual"><scope>hmap::ArrayControlFunction</scope><name>m_array</name></member>
+      <member refid="classhmap_1_1ArrayControlFunction_1a6c382de167439becf0aeda7208790446" prot="protected" virt="non-virtual"><scope>hmap::ArrayControlFunction</scope><name>MaximumImpl</name></member>
+      <member refid="classhmap_1_1ArrayControlFunction_1a9991d9ff817c40d6700d560d997ef58d" prot="protected" virt="non-virtual"><scope>hmap::ArrayControlFunction</scope><name>MinimumImpl</name></member>
+      <member refid="classhmap_1_1ArrayControlFunction_1ad2b5b917a28a9ac94cd441c5bf5f15b7" prot="private" virt="non-virtual"><scope>hmap::ArrayControlFunction</scope><name>sample</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

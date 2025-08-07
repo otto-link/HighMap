@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_f63c6611b1023abbeb7e0b5a0bccaf92" kind="dir">
+    <compoundname>HighMap/src</compoundname>
+    <innerdir refid="dir_18260ae10bc273e257b5f9967f2734e8">HighMap/src/array</innerdir>
+    <innerdir refid="dir_4e28b1ee7c8e4cbc3d56522a84eb43a0">HighMap/src/authoring</innerdir>
+    <innerdir refid="dir_ab5b0424e212a0effa6f8cb06c155fa6">HighMap/src/blending</innerdir>
+    <innerdir refid="dir_5eb738532fe3deb7c865076500576c96">HighMap/src/boundary</innerdir>
+    <innerdir refid="dir_a61ac4948126335af1d30869953ede0b">HighMap/src/colorize</innerdir>
+    <innerdir refid="dir_716c466597bbd6fb04d72c2db497087e">HighMap/src/colormaps</innerdir>
+    <innerdir refid="dir_a3b6977f82fd9ece9b90f544f9c42189">HighMap/src/convolve</innerdir>
+    <innerdir refid="dir_c47bda7571ba81902ddb6f1ce6dfce1f">HighMap/src/coord_frame</innerdir>
+    <innerdir refid="dir_9ca1e85289c109f918629d6101b289d8">HighMap/src/curvature</innerdir>
+    <innerdir refid="dir_5f43446d41190ada4a3bc5ff90a05cbf">HighMap/src/dbg</innerdir>
+    <innerdir refid="dir_1bed6a359ba9efb1507bbdcef4bacbaa">HighMap/src/erosion</innerdir>
+    <innerdir refid="dir_3bc85fd9086f4b2a437782af9c422553">HighMap/src/export</innerdir>
+    <innerdir refid="dir_7ea3d0e8e962d2de34184481d2ce5fca">HighMap/src/features</innerdir>
+    <innerdir refid="dir_4c063b982921a5b8720ca60b9a5562e1">HighMap/src/filters</innerdir>
+    <innerdir refid="dir_180bcd2bac99fc5b4a48aa19ac3c5b63">HighMap/src/geometry</innerdir>
+    <innerdir refid="dir_3c4172100491f31b556c8f9a4d709dfc">HighMap/src/gpu_opencl</innerdir>
+    <innerdir refid="dir_052e2c45636af7fa2c38860b06d4db60">HighMap/src/gradient</innerdir>
+    <innerdir refid="dir_566db01fb988f9afe1600b0dcd492ac3">HighMap/src/heightmap</innerdir>
+    <innerdir refid="dir_ce6c722236ab9f2244a54aefafe425a2">HighMap/src/hydrology</innerdir>
+    <innerdir refid="dir_935215972bef69986a81fe4c59c9ece4">HighMap/src/interpolate</innerdir>
+    <innerdir refid="dir_d28e56f0bcd00353ff35f2c577e0eb78">HighMap/src/kernels</innerdir>
+    <innerdir refid="dir_3fff8e57683f346a5b9ac4f0c61c9931">HighMap/src/math</innerdir>
+    <innerdir refid="dir_6e375fef8169f9dfb42b397d57678e79">HighMap/src/morphology</innerdir>
+    <innerdir refid="dir_8ec6da466271af6faf10594ea35abcfe">HighMap/src/multiscale</innerdir>
+    <innerdir refid="dir_9a51bbdebcf80687f6531d96614427fc">HighMap/src/operator</innerdir>
+    <innerdir refid="dir_3961423d922fc63bab3aec0bc4c44789">HighMap/src/particles</innerdir>
+    <innerdir refid="dir_450955ebc5f60794d6a0b9c68a0325b6">HighMap/src/primitives</innerdir>
+    <innerdir refid="dir_658a2ba9d13e675eced23227c6986469">HighMap/src/range</innerdir>
+    <innerdir refid="dir_183939c49865b23357e62df62e93fc0c">HighMap/src/roads</innerdir>
+    <innerdir refid="dir_a43054dad5949a8c0046fef77f5dd9ae">HighMap/src/sdf</innerdir>
+    <innerdir refid="dir_1cba66e80ee4896e7c0cfb585594799d">HighMap/src/selector</innerdir>
+    <innerdir refid="dir_a54b96d09e8bf6dd337a4445ce02c047">HighMap/src/shadows</innerdir>
+    <innerdir refid="dir_9d90790234575969b5cab0bca7d85e6c">HighMap/src/shortest_path</innerdir>
+    <innerdir refid="dir_8760b9dc8be054badb91ad7be8102a42">HighMap/src/synthesis</innerdir>
+    <innerdir refid="dir_587de0fe1254c61fb078abd0f5f64ed3">HighMap/src/tensor</innerdir>
+    <innerdir refid="dir_cf7059bcc3c8d9d07f321966fb202cdc">HighMap/src/transform</innerdir>
+    <innerdir refid="dir_05ca16f795cd0e013c5ff4457fc64f86">HighMap/src/utils</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="HighMap/src/"/>
+  </compounddef>
+</doxygen>

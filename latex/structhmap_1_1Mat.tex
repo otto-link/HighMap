@@ -1,0 +1,151 @@
+\doxysection{hmap\+::Mat\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Struct Template Reference}
+\hypertarget{structhmap_1_1Mat}{}\label{structhmap_1_1Mat}\index{hmap::Mat$<$ T $>$@{hmap::Mat$<$ T $>$}}
+
+
+\doxylink{structhmap_1_1Mat}{Mat} class for basic manipulation of 2D matrices.  
+
+
+
+
+{\ttfamily \#include $<$algebra.\+hpp$>$}
+
+
+
+Collaboration diagram for hmap\+::Mat\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=189pt]{structhmap_1_1Mat__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structhmap_1_1Mat_a1a61160398cf1ce3e19b06605ac2c27f}{Mat}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ \mbox{\hyperlink{structhmap_1_1Mat_a38df202b165735b1eb8cad32d90ac613}{shape}})
+\begin{DoxyCompactList}\small\item\em Constructor to initialize a matrix with a given shape. \end{DoxyCompactList}\item 
+T \& \mbox{\hyperlink{structhmap_1_1Mat_a429366c8daa4495b65f288f3527f2022}{operator()}} (int i, int j)
+\begin{DoxyCompactList}\small\item\em Access operator to get a reference to the element at (i, j). \end{DoxyCompactList}\item 
+const T \& \mbox{\hyperlink{structhmap_1_1Mat_a4f148a4aa0f08e0bd0c4959b8fcc9aa5}{operator()}} (int i, int j) const
+\begin{DoxyCompactList}\small\item\em Const access operator to get the value of the element at (i, j). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ T $>$ \mbox{\hyperlink{structhmap_1_1Mat_a4a27962ffe15d147fa23386947c08cbf}{vector}}
+\begin{DoxyCompactList}\small\item\em 1D vector storing matrix elements in row-\/major order. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ \mbox{\hyperlink{structhmap_1_1Mat_a38df202b165735b1eb8cad32d90ac613}{shape}}
+\begin{DoxyCompactList}\small\item\em Dimensions of the matrix (rows x columns). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+struct hmap\+::\+Mat$<$ T $>$}
+\doxylink{structhmap_1_1Mat}{Mat} class for basic manipulation of 2D matrices. 
+
+This class provides basic operations for 2D matrices, such as element access and initialization. It stores the matrix elements in a 1D vector and provides a convenient interface for accessing elements using 2D indices.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Data type for the matrix elements (e.\+g., int, float, double). \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structhmap_1_1Mat_a1a61160398cf1ce3e19b06605ac2c27f}\label{structhmap_1_1Mat_a1a61160398cf1ce3e19b06605ac2c27f} 
+\index{hmap::Mat$<$ T $>$@{hmap::Mat$<$ T $>$}!Mat@{Mat}}
+\index{Mat@{Mat}!hmap::Mat$<$ T $>$@{hmap::Mat$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Mat()}{Mat()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{structhmap_1_1Mat}{hmap\+::\+Mat}}$<$ T $>$\+::\+Mat (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$}]{shape }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor to initialize a matrix with a given shape. 
+
+Allocates memory for the matrix elements based on the specified shape. The matrix is initialized with the default value of the type T.
+
+
+\begin{DoxyParams}{Parameters}
+{\em shape} & A \doxylink{structhmap_1_1Vec2}{Vec2$<$int$>$} representing the number of rows and columns in the matrix. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structhmap_1_1Mat_a429366c8daa4495b65f288f3527f2022}\label{structhmap_1_1Mat_a429366c8daa4495b65f288f3527f2022} 
+\index{hmap::Mat$<$ T $>$@{hmap::Mat$<$ T $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!hmap::Mat$<$ T $>$@{hmap::Mat$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \& \mbox{\hyperlink{structhmap_1_1Mat}{hmap\+::\+Mat}}$<$ T $>$\+::operator() (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Access operator to get a reference to the element at (i, j). 
+
+Provides non-\/const access to the matrix element at the specified row and column.
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Row index (0-\/based). \\
+\hline
+{\em j} & Column index (0-\/based). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the element at the specified position. 
+\end{DoxyReturn}
+\Hypertarget{structhmap_1_1Mat_a4f148a4aa0f08e0bd0c4959b8fcc9aa5}\label{structhmap_1_1Mat_a4f148a4aa0f08e0bd0c4959b8fcc9aa5} 
+\index{hmap::Mat$<$ T $>$@{hmap::Mat$<$ T $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!hmap::Mat$<$ T $>$@{hmap::Mat$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const T \& \mbox{\hyperlink{structhmap_1_1Mat}{hmap\+::\+Mat}}$<$ T $>$\+::operator() (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Const access operator to get the value of the element at (i, j). 
+
+Provides const access to the matrix element at the specified row and column.
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Row index (0-\/based). \\
+\hline
+{\em j} & Column index (0-\/based). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A const reference to the element at the specified position. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structhmap_1_1Mat_a4a27962ffe15d147fa23386947c08cbf}\label{structhmap_1_1Mat_a4a27962ffe15d147fa23386947c08cbf} 
+\index{hmap::Mat$<$ T $>$@{hmap::Mat$<$ T $>$}!vector@{vector}}
+\index{vector@{vector}!hmap::Mat$<$ T $>$@{hmap::Mat$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{vector}{vector}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::vector$<$T$>$ \mbox{\hyperlink{structhmap_1_1Mat}{hmap\+::\+Mat}}$<$ T $>$\+::vector}
+
+
+
+1D vector storing matrix elements in row-\/major order. 
+
+\Hypertarget{structhmap_1_1Mat_a38df202b165735b1eb8cad32d90ac613}\label{structhmap_1_1Mat_a38df202b165735b1eb8cad32d90ac613} 
+\index{hmap::Mat$<$ T $>$@{hmap::Mat$<$ T $>$}!shape@{shape}}
+\index{shape@{shape}!hmap::Mat$<$ T $>$@{hmap::Mat$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{shape}{shape}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$int$>$ \mbox{\hyperlink{structhmap_1_1Mat}{hmap\+::\+Mat}}$<$ T $>$\+::shape}
+
+
+
+Dimensions of the matrix (rows x columns). 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+High\+Map/include/highmap/\mbox{\hyperlink{algebra_8hpp}{algebra.\+hpp}}\end{DoxyCompactItemize}

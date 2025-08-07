@@ -1,0 +1,54 @@
+\doxysection{High\+Map/src/kernels/kernels.cpp File Reference}
+\hypertarget{kernels_8cpp}{}\label{kernels_8cpp}\index{HighMap/src/kernels/kernels.cpp@{HighMap/src/kernels/kernels.cpp}}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_ae0ab7faed3577159bc8051ad0e25b051}{hmap\+::biweight}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape)
+\begin{DoxyCompactList}\small\item\em Generates a biweight kernel array. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_adfc320d14c66c6a40dedd9410efa269d}{hmap\+::blackman}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape)
+\begin{DoxyCompactList}\small\item\em Generates a Blackman window array with the specified shape. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a9880bdc35440162c24103a5df4c137a6}{hmap\+::cone}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape)
+\begin{DoxyCompactList}\small\item\em Generates a cone-\/shaped kernel array. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_ad1133df106eb662c9411a5501a5a3469}{hmap\+::cone\+\_\+smooth}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape)
+\begin{DoxyCompactList}\small\item\em Generates a cone-\/shaped kernel with a smooth landing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a553a4572c845a1286836bc08b67b3e34}{hmap\+::cone\+\_\+talus}} (float height, float talus)
+\begin{DoxyCompactList}\small\item\em Generates a cone-\/shaped kernel with specified height and talus. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_af6af5d27dcec83e466ca6b58244cafe7}{hmap\+::cubic\+\_\+pulse}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape)
+\begin{DoxyCompactList}\small\item\em Generates a cubic pulse kernel array. \end{DoxyCompactList}\item 
+std\+::vector$<$ float $>$ \mbox{\hyperlink{namespacehmap_a0b3237f9cc015299bf3e436be71d3587}{hmap\+::cubic\+\_\+pulse\+\_\+1d}} (int nk)
+\begin{DoxyCompactList}\small\item\em Generates a 1D cubic pulse kernel. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a2938b1bbfe89794423055e6ee9d2f79b}{hmap\+::cubic\+\_\+pulse\+\_\+directional}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape, float \mbox{\hyperlink{namespacehmap_aac71bb6c14edc17967957f7918acdbdd}{angle}}, float aspect\+\_\+ratio, float anisotropy)
+\begin{DoxyCompactList}\small\item\em Generates a "{}directional"{} cubic pulse kernel. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a1004e5d8355c36fc1945d73c3b44eda0}{hmap\+::cubic\+\_\+pulse\+\_\+truncated}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape, float slant\+\_\+ratio, float \mbox{\hyperlink{namespacehmap_aac71bb6c14edc17967957f7918acdbdd}{angle}})
+\begin{DoxyCompactList}\small\item\em Generates a truncated cubic pulse kernel. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_acffafcfa04738c04fdd82eea8aa262dc}{hmap\+::disk}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape)
+\begin{DoxyCompactList}\small\item\em Generates a disk-\/shaped kernel footprint. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a04f44c4dc11d46f5089f5213d4c5d1a5}{hmap\+::disk\+\_\+smooth}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape, float r\+\_\+cutoff=0.\+9\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+\begin{DoxyCompactList}\small\item\em Generates a smooth, disk-\/shaped kernel footprint with soft edges. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_aab655567714a21e6308c09d07056d52f}{hmap\+::gabor}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape, float kw, float \mbox{\hyperlink{namespacehmap_aac71bb6c14edc17967957f7918acdbdd}{angle}}, bool quad\+\_\+phase\+\_\+shift=false)
+\begin{DoxyCompactList}\small\item\em Generates a Gabor kernel of the specified shape. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a3b8ba9062298d434c8c10af3e92309a6}{hmap\+::gabor\+\_\+dune}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape, float kw, float \mbox{\hyperlink{namespacehmap_aac71bb6c14edc17967957f7918acdbdd}{angle}}, float xtop, float xbottom)
+\begin{DoxyCompactList}\small\item\em Generates a modified dune-\/like Gabor kernel. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a1d9165a0056e99a90b7734268f231901}{hmap\+::lorentzian}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape, float footprint\+\_\+threshold=0.\+1\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+\begin{DoxyCompactList}\small\item\em Generate a Lorentzian kernel. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_ab4e60cf8b20170484e3ac2942cc05d59}{hmap\+::hann}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape)
+\begin{DoxyCompactList}\small\item\em Generates a Hann window array with the specified shape. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a8be1ca22c14c4989ec8f18842fda2766}{hmap\+::lorentzian\+\_\+compact}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape)
+\begin{DoxyCompactList}\small\item\em Generate a modified Lorentzian kernel with compact support. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a06769c66065dd19c0fd54f4505d0e06c}{hmap\+::sinc\+\_\+radial}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape, float kw)
+\begin{DoxyCompactList}\small\item\em Generates a radial sinc function array with the specified shape and wave number. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_abf04df687d39ce436fc5cbfae573dbff}{hmap\+::sinc\+\_\+separable}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape, float kw)
+\begin{DoxyCompactList}\small\item\em Generates a separable sinc function array with the specified shape and wave number. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a0d6dfb8771368f84f2256ae38fe669fa}{hmap\+::smooth\+\_\+cosine}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape)
+\begin{DoxyCompactList}\small\item\em Generate a smooth cosine kernel. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a784bc655283255591d04afd181d756f8}{hmap\+::square}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape)
+\begin{DoxyCompactList}\small\item\em Generate a square-\/shaped kernel. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a78d3f33a357986539e654f0d42510659}{hmap\+::tricube}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape)
+\begin{DoxyCompactList}\small\item\em Generate a tricube kernel. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a4ad7940c796973a615558a8dc773281c}{hmap\+::get\+\_\+kernel}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape, \mbox{\hyperlink{namespacehmap_a4b6f135c6e81d313ca54ae1efac5f2c9}{Kernel\+Type}} kernel\+\_\+type)
+\begin{DoxyCompactList}\small\item\em Generate a kernel of the specified type. \end{DoxyCompactList}\end{DoxyCompactItemize}

@@ -1,0 +1,168 @@
+\doxysection{dendry\+\_\+array\+\_\+control\+\_\+function.\+hpp}
+\hypertarget{dendry__array__control__function_8hpp_source}{}\label{dendry__array__control__function_8hpp_source}\index{HighMap/include/highmap/internal/dendry\_array\_control\_function.hpp@{HighMap/include/highmap/internal/dendry\_array\_control\_function.hpp}}
+\mbox{\hyperlink{dendry__array__control__function_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ Copyright\ (c)\ 2023\ Otto\ Link.\ Distributed\ under\ the\ terms\ of\ the\ GNU\ General}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ \ \ Public\ License.\ The\ full\ license\ is\ in\ the\ file\ LICENSE,\ distributed\ with}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ \ this\ software.\ */}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <cassert>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}NoiseLib/include/controlfunction.h"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}NoiseLib/include/math2d.h"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}NoiseLib/include/utils.h"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{array_8hpp}{highmap/array.hpp}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{functions_8hpp}{highmap/functions.hpp}}"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacehmap}{hmap}}}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classhmap_1_1ArrayControlFunction}{ArrayControlFunction}}\ :\ \textcolor{keyword}{public}\ ControlFunction<ArrayControlFunction>}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }ControlFunction<\mbox{\hyperlink{classhmap_1_1ArrayControlFunction}{ArrayControlFunction}}>;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classhmap_1_1ArrayControlFunction_afb1177fcaf6160bea1d86be3b16cf55d}{ArrayControlFunction}}(\mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ array)\ :\ m\_array(std::move(array))}
+\DoxyCodeLine{00036\ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00040\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1ArrayControlFunction_a9932a402b24b0e66df33e8033746016b}{EvaluateImpl}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00041\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00042\ \ \ \ \ x\ =\ std::clamp(x,\ 0.f,\ 1.f);}
+\DoxyCodeLine{00043\ \ \ \ \ y\ =\ std::clamp(y,\ 0.f,\ 1.f);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{return}\ sample(x,\ y);}
+\DoxyCodeLine{00046\ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classhmap_1_1ArrayControlFunction_aa985fe30c69aec6c5d40f93d0c33a473}{InsideDomainImpl}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00049\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{return}\ x\ >=\ 0.f\ \&\&\ x\ <=\ 1.f\ \&\&\ y\ >=\ 0.f\ \&\&\ y\ <=\ 1.f;}
+\DoxyCodeLine{00051\ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1ArrayControlFunction_a3c40696e8f26f0e6fbd66f0f97b83082}{DistToDomainImpl}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00054\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classhmap_1_1ArrayControlFunction_aa985fe30c69aec6c5d40f93d0c33a473}{InsideDomainImpl}}(x,\ y))}
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0.f;}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{const}\ Point2D\ p(x,\ y);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{const}\ Point2D\ topLeft(0.f,\ 0.f);}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{const}\ Point2D\ topRight(1.f,\ 0.f);}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{const}\ Point2D\ bottomLeft(0.f,\ 1.f);}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{const}\ Point2D\ bottomRight(1.f,\ 1.f);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ Point2D\ c;\ \textcolor{comment}{//\ Useless\ point\ for\ distToLineSegment}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{auto}\ dist\ =\ std::numeric\_limits<float>::max();}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ dist\ =\ std::min(dist,\ distToLineSegment(p,\ topLeft,\ topRight,\ c));}
+\DoxyCodeLine{00072\ \ \ \ \ dist\ =\ std::min(dist,\ distToLineSegment(p,\ topRight,\ bottomRight,\ c));}
+\DoxyCodeLine{00073\ \ \ \ \ dist\ =\ std::min(dist,\ distToLineSegment(p,\ bottomRight,\ bottomLeft,\ c));}
+\DoxyCodeLine{00074\ \ \ \ \ dist\ =\ std::min(dist,\ distToLineSegment(p,\ bottomLeft,\ topLeft,\ c));}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{return}\ dist;}
+\DoxyCodeLine{00077\ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1ArrayControlFunction_a9991d9ff817c40d6700d560d997ef58d}{MinimumImpl}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00080\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{return}\ 0.f;}
+\DoxyCodeLine{00082\ \ \ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1ArrayControlFunction_a6c382de167439becf0aeda7208790446}{MaximumImpl}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00085\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{return}\ 1.f;}
+\DoxyCodeLine{00087\ \ \ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00090\ \ \ \textcolor{keywordtype}{float}\ get(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00091\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{float})m\_array(i,\ j);}
+\DoxyCodeLine{00093\ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \textcolor{keywordtype}{float}\ sample(\textcolor{keywordtype}{float}\ ri,\ \textcolor{keywordtype}{float}\ rj)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00096\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{float}\ x\ =\ ri\ *\ (m\_array.\mbox{\hyperlink{classhmap_1_1Array_a3cf6ada373f8af1affcbbed22db1194f}{shape}}.\mbox{\hyperlink{structhmap_1_1Vec2_a2dc51e83492f966eeddbdac3d58ab447}{x}}\ -\/\ 1);}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{float}\ y\ =\ rj\ *\ (m\_array.\mbox{\hyperlink{classhmap_1_1Array_a3cf6ada373f8af1affcbbed22db1194f}{shape}}.\mbox{\hyperlink{structhmap_1_1Vec2_a087ff9ff4159d1e5778c0b65ee2a1648}{y}}\ -\/\ 1);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ (int)x;}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{int}\ j\ =\ (int)y;}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{float}\ u;}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{float}\ v;}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ ==\ m\_array.\mbox{\hyperlink{classhmap_1_1Array_a3cf6ada373f8af1affcbbed22db1194f}{shape}}.\mbox{\hyperlink{structhmap_1_1Vec2_a2dc51e83492f966eeddbdac3d58ab447}{x}}\ -\/\ 1)}
+\DoxyCodeLine{00107\ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ i\ =\ m\_array.\mbox{\hyperlink{classhmap_1_1Array_a3cf6ada373f8af1affcbbed22db1194f}{shape}}.\mbox{\hyperlink{structhmap_1_1Vec2_a2dc51e83492f966eeddbdac3d58ab447}{x}}\ -\/\ 2;}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ u\ =\ 1.f;}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ u\ =\ x\ -\/\ (float)i;}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordflow}{if}\ (j\ ==\ m\_array.\mbox{\hyperlink{classhmap_1_1Array_a3cf6ada373f8af1affcbbed22db1194f}{shape}}.\mbox{\hyperlink{structhmap_1_1Vec2_a087ff9ff4159d1e5778c0b65ee2a1648}{y}}\ -\/\ 1)}
+\DoxyCodeLine{00115\ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ j\ =\ m\_array.\mbox{\hyperlink{classhmap_1_1Array_a3cf6ada373f8af1affcbbed22db1194f}{shape}}.\mbox{\hyperlink{structhmap_1_1Vec2_a087ff9ff4159d1e5778c0b65ee2a1648}{y}}\ -\/\ 2;}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ v\ =\ 1.f;}
+\DoxyCodeLine{00118\ \ \ \ \ \}}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ v\ =\ y\ -\/\ (float)j;}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_array.\mbox{\hyperlink{classhmap_1_1Array_a12eb51c18154e3e452afe9743636085f}{get\_value\_bilinear\_at}}(i,\ j,\ u,\ v);}
+\DoxyCodeLine{00123\ \ \ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ m\_array;}
+\DoxyCodeLine{00126\ \};}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classhmap_1_1XyControlFunction}{XyControlFunction}}\ :\ \textcolor{keyword}{public}\ ControlFunction<XyControlFunction>}
+\DoxyCodeLine{00129\ \{}
+\DoxyCodeLine{00130\ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }ControlFunction<\mbox{\hyperlink{classhmap_1_1XyControlFunction}{XyControlFunction}}>;}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00133\ \ \ \mbox{\hyperlink{classhmap_1_1XyControlFunction_a17fea066925a7016e234f7af232e2cec}{XyControlFunction}}(\mbox{\hyperlink{classhmap_1_1NoiseFunction}{NoiseFunction}}\ noise\_function,}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ offset\ =\ 0.f,}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ scaling\ =\ 1.f)}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ :\ noise\_function(noise\_function),\ offset(offset),\ scaling(scaling)}
+\DoxyCodeLine{00137\ \ \ \{}
+\DoxyCodeLine{00138\ \ \ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00141\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classhmap_1_1XyControlFunction_a142161db636fa6eb92dc64a1dd5c98f9}{EvaluateImpl}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00142\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordflow}{return}\ offset\ +\ scaling\ *\ noise\_function.\mbox{\hyperlink{classhmap_1_1Function_a32214e30c36be7650c47867fd14f6a0c}{get\_delegate}}()(x,\ y,\ 0.f);}
+\DoxyCodeLine{00144\ \ \ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classhmap_1_1XyControlFunction_a8b2a14789de2ac6aa3cddb1f6d6c77cb}{InsideDomainImpl}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00147\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00149\ \ \ \}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classhmap_1_1XyControlFunction_a7812fe0b327e2d30cda5656c10fd1a75}{DistToDomainImpl}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00152\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordflow}{return}\ 0.f;}
+\DoxyCodeLine{00154\ \ \ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classhmap_1_1XyControlFunction_acfe5c441363f35d36a13084fb56c6dca}{MinimumImpl}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00157\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordflow}{return}\ 0.f;}
+\DoxyCodeLine{00159\ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classhmap_1_1XyControlFunction_ab32abc0861325b3ea6f547b938a9225d}{MaximumImpl}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00162\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordflow}{return}\ 1.f;}
+\DoxyCodeLine{00164\ \ \ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00167\ \ \ \mbox{\hyperlink{classhmap_1_1NoiseFunction}{NoiseFunction}}\ noise\_function;}
+\DoxyCodeLine{00168\ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ offset;}
+\DoxyCodeLine{00169\ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ scaling;}
+\DoxyCodeLine{00170\ \};}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \}\ \textcolor{comment}{//\ namespace\ hmap}}
+
+\end{DoxyCode}

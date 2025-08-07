@@ -1,0 +1,102 @@
+\chapter{High\+Map library (C++)}
+\hypertarget{index}{}\label{index}\index{HighMap library (C++)@{HighMap library (C++)}}
+\hypertarget{index_autotoc_md1}{}\doxysection{\texorpdfstring{High\+Map library documentation!}{HighMap library documentation!}}\label{index_autotoc_md1}
+Welcome to the documentation of the High\+Map, a C++ library designed to facilitate the generation of heightmaps for video games, simulations, and other applications that require detailed terrain data.\hypertarget{index_autotoc_md2}{}\doxysubsection{\texorpdfstring{Heightmaps?}{Heightmaps?}}\label{index_autotoc_md2}
+A heightmap is a type of digital image or data grid that represents the elevation or height of terrain in a two-\/dimensional format. Each pixel or point in a heightmap corresponds to a specific location on the terrain, with the value at that point indicating the elevation above anny reference level.
+
+In a grayscale heightmap, darker shades typically represent lower elevations, while lighter shades indicate higher elevations. This visual representation allows developers to easily map out and manipulate terrain features such as hills, valleys, mountains, and plains in a virtual environment.
+
+ 
+\begin{DoxyImage}
+\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{dem_example_rendered.png}
+\doxyfigcaption{Heightmap (left) and 3D rendering of this heightmap (right).}
+\end{DoxyImage}
+   \hypertarget{index_autotoc_md3}{}\doxysubsection{\texorpdfstring{Getting started}{Getting started}}\label{index_autotoc_md3}
+\hypertarget{index_autotoc_md4}{}\doxysubsubsection{\texorpdfstring{Sources and installation}{Sources and installation}}\label{index_autotoc_md4}
+For installation instructions, please refer to the README in the Git\+Hub repository\+: \href{https://github.com/otto-link/HighMap}{\texttt{ https\+://github.\+com/otto-\/link/\+High\+Map}}.\hypertarget{index_autotoc_md5}{}\doxysubsubsection{\texorpdfstring{Basic principle and data structure}{Basic principle and data structure}}\label{index_autotoc_md5}
+The library represents heightmaps using a 2D array of floating-\/point values, where each value corresponds to the elevation at a specific point on the terrain. To work with these heightmaps, the library includes specialized data structures that allow for efficient generation, manipulation, and modification of these arrays, making it easier to create and adjust complex terrain features.
+
+Provided data structures are\+:
+
+
+\begin{DoxyItemize}
+\item 2D array,
+\begin{DoxyItemize}
+\item \doxylink{classhmap_1_1Array}{hmap\+::\+Array} for 2D array of floats,
+\item hmap.\+Height\+Map for a tiled representation and parallel computation of 2D array of floats,
+\end{DoxyItemize}
+\item bivariate (x, y) functions for locally computable noise generators or basic functions,
+\begin{DoxyItemize}
+\item \doxylink{classhmap_1_1Function}{hmap\+::\+Function} and its derivates \doxylink{classhmap_1_1NoiseFunction}{hmap\+::\+Noise\+Function}, \doxylink{classhmap_1_1FbmFunction}{hmap\+::\+Fbm\+Function}, \doxylink{classhmap_1_1FieldFunction}{hmap\+::\+Field\+Function},...
+\end{DoxyItemize}
+\item geometric primitives,
+\begin{DoxyItemize}
+\item \doxylink{classhmap_1_1Point}{hmap\+::\+Point},
+\item \doxylink{classhmap_1_1Edge}{hmap\+::\+Edge},
+\item \doxylink{classhmap_1_1Cloud}{hmap\+::\+Cloud} for set of points ,
+\item \doxylink{classhmap_1_1Path}{hmap\+::\+Path} for set of ordered points (i.\+e. open or closed polylines),
+\item \doxylink{classhmap_1_1Graph}{hmap\+::\+Graph}.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{index_autotoc_md6}{}\doxysubsubsection{\texorpdfstring{"{}\+Array"{} -\/ Elementary Data Structure for Building Heightmaps}{"Array" - Elementary Data Structure for Building Heightmaps}}\label{index_autotoc_md6}
+The {\ttfamily Array} object is the fundamental class upon which the heightmap construction algorithms rely. A heightmap is a two-\/dimensional representation where each cell\textquotesingle{}s value corresponds to a height or elevation at that point. An {\ttfamily Array} is simply a 2D array with dimensions defined by {\ttfamily shape} (length/width).
+
+Indexing is typically based on a pair of indices {\ttfamily (i, j)}. The cell at {\ttfamily (i=0, j=0)} is assumed to be at the bottom-\/left corner of the heightmap. This assumption is usually inconsequential, except when the heightmap needs to be aligned with specific spatial positions {\ttfamily (x, y)}. The conversion between indices {\ttfamily (i, j)} and spatial positions {\ttfamily (x, y)} depends on the heightmap\textquotesingle{}s "{}bounding box,"{} which is the spatial domain covered by the heightmap. By default, this bounding box is assumed to be a unit domain, meaning it spans a square of size 1 in both x and y directions.
+
+The values within the heightmap cells are generally within the range {\ttfamily \mbox{[}0, 1\mbox{]}}. While this range is not strictly enforced, some algorithms assume that the data adheres to this scale. It is always possible to use the \doxylink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{hmap\+::remap} function to adjust the scale of the heightmap values to fit within the desired range.\hypertarget{index_autotoc_md7}{}\doxysubsubsection{\texorpdfstring{Example usage}{Example usage}}\label{index_autotoc_md7}
+\hypertarget{index_autotoc_md8}{}\doxyparagraph{\texorpdfstring{Generate classical coherent noises (\+Perlin, Simplex, fractal layering, etc...)}{Generate classical coherent noises (Perlin, Simplex, fractal layering, etc...)}}\label{index_autotoc_md8}
+\hypertarget{index_autotoc_md9}{}\doxyparagraph{\texorpdfstring{Filters}{Filters}}\label{index_autotoc_md9}
+\hypertarget{index_autotoc_md10}{}\doxyparagraph{\texorpdfstring{Physical processes}{Physical processes}}\label{index_autotoc_md10}
+\hypertarget{index_autotoc_md11}{}\doxyparagraph{\texorpdfstring{Bivariate functions}{Bivariate functions}}\label{index_autotoc_md11}
+\hypertarget{index_autotoc_md12}{}\doxysubsubsection{\texorpdfstring{Exporting}{Exporting}}\label{index_autotoc_md12}
+\hypertarget{index_autotoc_md13}{}\doxyparagraph{\texorpdfstring{Image formats (png, tiff, exr...)}{Image formats (png, tiff, exr...)}}\label{index_autotoc_md13}
+\hypertarget{index_autotoc_md14}{}\doxyparagraph{\texorpdfstring{Numpy binary file}{Numpy binary file}}\label{index_autotoc_md14}
+The library includes a function that enables exporting data to the Num\+Py binary format (.npy), facilitating integration with Python\textquotesingle{}s Num\+Py library.
+
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{highmap_8hpp}{highmap.hpp}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{structhmap_1_1Vec2}{hmap::Vec2<int>}}\ \ \ shape\ =\ \{512,\ 256\};}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{structhmap_1_1Vec2}{hmap::Vec2<float>}}\ kw\ =\ \{4.f,\ 2.f\};}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seed\ =\ 1;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ z\ =\ \mbox{\hyperlink{namespacehmap_a40b948c49a05c14f2d540dc1a6952130}{hmap::noise\_fbm}}(\mbox{\hyperlink{namespacehmap_ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581}{hmap::NoiseType::PERLIN}},\ shape,\ kw,\ seed);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ std::cout\ <<\ z(10,\ 12)\ <<\ std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ z.\mbox{\hyperlink{classhmap_1_1Array_a35ce8d4088ce4ae21003df18c204b7c6}{to\_numpy}}(\textcolor{stringliteral}{"{}out.npy"{}});}
+\DoxyCodeLine{\ \ z.\mbox{\hyperlink{classhmap_1_1Array_a9ff7b2c0be8f2b5dd9fc33085cd647d1}{to\_png}}(\textcolor{stringliteral}{"{}ex\_to\_numpy.png"{}},\ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a65146260717d07e4773aec50520b9ced}{hmap::Cmap::JET}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ python\ script\ to\ check\ this\ provided\ below\ in\ the\ comments}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ import\ matplotlib.pyplot\ as\ plt}}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ import\ numpy\ as\ np}}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ z\ =\ np.load('out.npy')}}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ print(z.shape)}}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ print(z[10,\ 12])}}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ plt.imshow(z,\ cmap='jet')}}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ plt.show()}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+\hypertarget{index_autotoc_md15}{}\doxyparagraph{\texorpdfstring{Raw binary file}{Raw binary file}}\label{index_autotoc_md15}
+\hypertarget{index_autotoc_md16}{}\doxyparagraph{\texorpdfstring{Asset export (3\+D mesh and texture)}{Asset export (3D mesh and texture)}}\label{index_autotoc_md16}
+\doxylink{namespacehmap_ac3d35efc6e5b596f508e2b17a5aa871b}{hmap\+::\+Asset\+Export\+Format}
+
+\doxylink{namespacehmap_ac81a92060b89699c4eb9826495d87250}{hmap\+::\+Mesh\+Type}\hypertarget{index_autotoc_md17}{}\doxysubsection{\texorpdfstring{Library functionalities}{Library functionalities}}\label{index_autotoc_md17}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Header   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Header   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endhead
+\doxylink{array_8hpp}{array.\+hpp}   &Declaration of the Array class for 2D floating-\/point arrays with various mathematical operations and utilities.   \\\cline{1-2}
+\end{longtabu}

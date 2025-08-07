@@ -1,0 +1,278 @@
+\doxysection{hmap\+::Pyramid\+Decomposition Class Reference}
+\hypertarget{classhmap_1_1PyramidDecomposition}{}\label{classhmap_1_1PyramidDecomposition}\index{hmap::PyramidDecomposition@{hmap::PyramidDecomposition}}
+
+
+Pyramid decomposition class, to handle low-\/pass pyramids (like Laplacian pyramid).  
+
+
+
+
+{\ttfamily \#include $<$pyramid.\+hpp$>$}
+
+
+
+Collaboration diagram for hmap\+::Pyramid\+Decomposition\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classhmap_1_1PyramidDecomposition__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1PyramidDecomposition_a802f02d09f6a5073d9ecd523f5a0624c}{Pyramid\+Decomposition}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int \mbox{\hyperlink{classhmap_1_1PyramidDecomposition_ac3688f38d739c9eed21b4d32b49648bc}{nlevels}})
+\begin{DoxyCompactList}\small\item\em Construct a new Pyramid Decomposition object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1PyramidDecomposition_a620e9d62b2613f30c23b3d87b766d0bc}{decompose}} ()
+\begin{DoxyCompactList}\small\item\em Generate the pyramid decomposition. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{classhmap_1_1PyramidDecomposition_ac666baf987922967aec5fc7bb86acedf}{reconstruct}} ()
+\begin{DoxyCompactList}\small\item\em Reconstruct a field (ideally identical to the input field) based on the pyramid decomposition. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1PyramidDecomposition_aefa4ee30147d004b1398e4dca1edb637}{to\+\_\+png}} (std\+::string fname, int cmap, bool hillshading=false)
+\begin{DoxyCompactList}\small\item\em Export pyramid as png image file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{classhmap_1_1PyramidDecomposition_aa23f39a63086657fffda6cb5ca1842a5}{transform}} (std\+::function$<$ \mbox{\hyperlink{classhmap_1_1Array}{Array}}(const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&, const int current\+\_\+level)$>$ function, int support=0, std\+::vector$<$ float $>$ level\+\_\+weights=\{\}, int finest\+\_\+level=0)
+\begin{DoxyCompactList}\small\item\em Apply a transformation to each component of the pyramid and return the field constructed based on the modified pyramid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classhmap_1_1PyramidDecomposition_ac3688f38d739c9eed21b4d32b49648bc}{nlevels}}
+\begin{DoxyCompactList}\small\item\em Number of levels in the pyramid. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{classhmap_1_1PyramidDecomposition_ac711ffdbd5c38eb1f028106ceed16075}{residual}}
+\begin{DoxyCompactList}\small\item\em Residual field (low-\/pass component) a the coarsest level. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Array}{Array}} $>$ \mbox{\hyperlink{classhmap_1_1PyramidDecomposition_ae28c747403f67117823f3bf6ad1b931f}{components}} = \{\}
+\begin{DoxyCompactList}\small\item\em High-\/pass component for each level. \end{DoxyCompactList}\item 
+std\+::function$<$ \mbox{\hyperlink{classhmap_1_1Array}{Array}}(const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&)$>$ \mbox{\hyperlink{classhmap_1_1PyramidDecomposition_ab7684296d0993168de59ca6938d30cd2}{low\+\_\+pass\+\_\+filter\+\_\+function}}
+\begin{DoxyCompactList}\small\item\em Reference to the low-\/pass filter function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Pyramid decomposition class, to handle low-\/pass pyramids (like Laplacian pyramid). 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classhmap_1_1PyramidDecomposition_a802f02d09f6a5073d9ecd523f5a0624c}\label{classhmap_1_1PyramidDecomposition_a802f02d09f6a5073d9ecd523f5a0624c} 
+\index{hmap::PyramidDecomposition@{hmap::PyramidDecomposition}!PyramidDecomposition@{PyramidDecomposition}}
+\index{PyramidDecomposition@{PyramidDecomposition}!hmap::PyramidDecomposition@{hmap::PyramidDecomposition}}
+\doxysubsubsection{\texorpdfstring{PyramidDecomposition()}{PyramidDecomposition()}}
+{\footnotesize\ttfamily hmap\+::\+Pyramid\+Decomposition\+::\+Pyramid\+Decomposition (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{int}]{nlevels }\end{DoxyParamCaption})}
+
+
+
+Construct a new Pyramid Decomposition object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & Reference to the input array. \\
+\hline
+{\em nlevels} & Number of levels (if set to a null or negative value, the maximum number of levels is taken minus the number provided).\\
+\hline
+\end{DoxyParams}
+{\bfseries{Example}} 
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{highmap_8hpp}{highmap.hpp}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{structhmap_1_1Vec2}{hmap::Vec2<int>}}\ \ \ shape\ =\ \{256,\ 256\};}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{structhmap_1_1Vec2}{hmap::Vec2<float>}}\ res\ =\ \{4.f,\ 4.f\};}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seed\ =\ 1;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ z\ =\ \mbox{\hyperlink{namespacehmap_a40b948c49a05c14f2d540dc1a6952130}{hmap::noise\_fbm}}(\mbox{\hyperlink{namespacehmap_ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581}{hmap::NoiseType::PERLIN}},\ shape,\ res,\ seed);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classhmap_1_1PyramidDecomposition_ac3688f38d739c9eed21b4d32b49648bc}{nlevels}}\ =\ 4;}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1PyramidDecomposition}{hmap::PyramidDecomposition}}\ pyr\ =\ \mbox{\hyperlink{classhmap_1_1PyramidDecomposition}{hmap::PyramidDecomposition}}(z,\ \mbox{\hyperlink{classhmap_1_1PyramidDecomposition_ac3688f38d739c9eed21b4d32b49648bc}{nlevels}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ pyr.\mbox{\hyperlink{classhmap_1_1PyramidDecomposition_a620e9d62b2613f30c23b3d87b766d0bc}{decompose}}();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ some\ intermediate\ outputs\ for\ checking}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ n\ =\ 0;\ n\ <\ pyr.\mbox{\hyperlink{classhmap_1_1PyramidDecomposition_ac3688f38d739c9eed21b4d32b49648bc}{nlevels}};\ n++)}
+\DoxyCodeLine{\ \ \ \ \ \ pyr.\mbox{\hyperlink{classhmap_1_1PyramidDecomposition_ae28c747403f67117823f3bf6ad1b931f}{components}}[n].to\_png(\textcolor{stringliteral}{"{}components\_"{}}\ +\ std::to\_string(n)\ +\ \textcolor{stringliteral}{"{}.png"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a65146260717d07e4773aec50520b9ced}{hmap::Cmap::JET}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ pyr.\mbox{\hyperlink{classhmap_1_1PyramidDecomposition_ac711ffdbd5c38eb1f028106ceed16075}{residual}}.\mbox{\hyperlink{classhmap_1_1Array_a9ff7b2c0be8f2b5dd9fc33085cd647d1}{to\_png}}(\textcolor{stringliteral}{"{}components\_res.png"{}},\ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a65146260717d07e4773aec50520b9ced}{hmap::Cmap::JET}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ z.\mbox{\hyperlink{classhmap_1_1Array_a9ff7b2c0be8f2b5dd9fc33085cd647d1}{to\_png}}(\textcolor{stringliteral}{"{}components\_initial.png"{}},\ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a65146260717d07e4773aec50520b9ced}{hmap::Cmap::JET}});}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ zr\ =\ pyr.\mbox{\hyperlink{classhmap_1_1PyramidDecomposition_ac666baf987922967aec5fc7bb86acedf}{reconstruct}}();}
+\DoxyCodeLine{\ \ zr.\mbox{\hyperlink{classhmap_1_1Array_a9ff7b2c0be8f2b5dd9fc33085cd647d1}{to\_png}}(\textcolor{stringliteral}{"{}components\_rebuild.png"{}},\ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a65146260717d07e4773aec50520b9ced}{hmap::Cmap::JET}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ pyr.\mbox{\hyperlink{classhmap_1_1PyramidDecomposition_aefa4ee30147d004b1398e4dca1edb637}{to\_png}}(\textcolor{stringliteral}{"{}ex\_pyramid\_decomposition0.png"{}},\ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a744ead0b170889e33126895264f1af2c}{hmap::Cmap::MAGMA}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a1c490f296571a75e35d05b10c075ae6c}{hmap::export\_banner\_png}}(\textcolor{stringliteral}{"{}ex\_pyramid\_decomposition1.png"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{z,\ zr\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369afd0b9cd53cbae62c25ef686ba527d143}{hmap::Cmap::INFERNO}});}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+
+
+{\bfseries{Result}}  
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classhmap_1_1PyramidDecomposition_a620e9d62b2613f30c23b3d87b766d0bc}\label{classhmap_1_1PyramidDecomposition_a620e9d62b2613f30c23b3d87b766d0bc} 
+\index{hmap::PyramidDecomposition@{hmap::PyramidDecomposition}!decompose@{decompose}}
+\index{decompose@{decompose}!hmap::PyramidDecomposition@{hmap::PyramidDecomposition}}
+\doxysubsubsection{\texorpdfstring{decompose()}{decompose()}}
+{\footnotesize\ttfamily void hmap\+::\+Pyramid\+Decomposition\+::decompose (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Generate the pyramid decomposition. 
+
+\Hypertarget{classhmap_1_1PyramidDecomposition_ac666baf987922967aec5fc7bb86acedf}\label{classhmap_1_1PyramidDecomposition_ac666baf987922967aec5fc7bb86acedf} 
+\index{hmap::PyramidDecomposition@{hmap::PyramidDecomposition}!reconstruct@{reconstruct}}
+\index{reconstruct@{reconstruct}!hmap::PyramidDecomposition@{hmap::PyramidDecomposition}}
+\doxysubsubsection{\texorpdfstring{reconstruct()}{reconstruct()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::\+Pyramid\+Decomposition\+::reconstruct (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reconstruct a field (ideally identical to the input field) based on the pyramid decomposition. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{classhmap_1_1Array}{Array} Reconstructed field. 
+\end{DoxyReturn}
+\Hypertarget{classhmap_1_1PyramidDecomposition_aefa4ee30147d004b1398e4dca1edb637}\label{classhmap_1_1PyramidDecomposition_aefa4ee30147d004b1398e4dca1edb637} 
+\index{hmap::PyramidDecomposition@{hmap::PyramidDecomposition}!to\_png@{to\_png}}
+\index{to\_png@{to\_png}!hmap::PyramidDecomposition@{hmap::PyramidDecomposition}}
+\doxysubsubsection{\texorpdfstring{to\_png()}{to\_png()}}
+{\footnotesize\ttfamily void hmap\+::\+Pyramid\+Decomposition\+::to\+\_\+png (\begin{DoxyParamCaption}\item[{std\+::string}]{fname,  }\item[{int}]{cmap,  }\item[{bool}]{hillshading = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Export pyramid as png image file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fname} & File name. \\
+\hline
+{\em cmap} & Colormap (\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+cmap). 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em hillshading} & Activate hillshading. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classhmap_1_1PyramidDecomposition_aa23f39a63086657fffda6cb5ca1842a5}\label{classhmap_1_1PyramidDecomposition_aa23f39a63086657fffda6cb5ca1842a5} 
+\index{hmap::PyramidDecomposition@{hmap::PyramidDecomposition}!transform@{transform}}
+\index{transform@{transform}!hmap::PyramidDecomposition@{hmap::PyramidDecomposition}}
+\doxysubsubsection{\texorpdfstring{transform()}{transform()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::\+Pyramid\+Decomposition\+::transform (\begin{DoxyParamCaption}\item[{std\+::function$<$ \mbox{\hyperlink{classhmap_1_1Array}{Array}}(const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&, const int current\+\_\+level)$>$}]{function,  }\item[{int}]{support = {\ttfamily 0},  }\item[{std\+::vector$<$ float $>$}]{level\+\_\+weights = {\ttfamily \{\}},  }\item[{int}]{finest\+\_\+level = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Apply a transformation to each component of the pyramid and return the field constructed based on the modified pyramid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em function} & Reference to the function applied to the pyramid components. \\
+\hline
+{\em support} & \doxylink{classhmap_1_1Function}{Function} support, should it be applied to the lowpass components only, the highpass only the full field. \\
+\hline
+{\em level\+\_\+weights} & Weight in \mbox{[}0, 1\mbox{]} for each level (the resulting component is lerp between no transform and transform according to this weight). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{classhmap_1_1Array}{Array} Resulting array.
+\end{DoxyReturn}
+{\bfseries{Example}} 
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{highmap_8hpp}{highmap.hpp}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{structhmap_1_1Vec2}{hmap::Vec2<int>}}\ shape\ =\ \{256,\ 256\};}
+\DoxyCodeLine{\ \ shape\ =\ \{512,\ 512\};}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{structhmap_1_1Vec2}{hmap::Vec2<float>}}\ res\ =\ \{4.f,\ 4.f\};}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seed\ =\ 1;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ z\ =\ \mbox{\hyperlink{namespacehmap_a40b948c49a05c14f2d540dc1a6952130}{hmap::noise\_fbm}}(\mbox{\hyperlink{namespacehmap_ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581}{hmap::NoiseType::PERLIN}},\ shape,\ res,\ seed);}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{hmap::remap}}(z);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classhmap_1_1PyramidDecomposition_ac3688f38d739c9eed21b4d32b49648bc}{nlevels}}\ =\ 4;}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1PyramidDecomposition}{hmap::PyramidDecomposition}}\ pyr\ =\ \mbox{\hyperlink{classhmap_1_1PyramidDecomposition}{hmap::PyramidDecomposition}}(z,\ \mbox{\hyperlink{classhmap_1_1PyramidDecomposition_ac3688f38d739c9eed21b4d32b49648bc}{nlevels}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ pyr.\mbox{\hyperlink{classhmap_1_1PyramidDecomposition_a620e9d62b2613f30c23b3d87b766d0bc}{decompose}}();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ 'transform'\ function}}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ fct\ =\ [\&seed](\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ \&input,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ current\_level)}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}applying\ erosion\ to\ level\ and\ shape:\ "{}}\ <<\ current\_level\ <<\ \textcolor{stringliteral}{"{}\ "{}}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ input.\mbox{\hyperlink{classhmap_1_1Array_a3cf6ada373f8af1affcbbed22db1194f}{shape}}.\mbox{\hyperlink{structhmap_1_1Vec2_a2dc51e83492f966eeddbdac3d58ab447}{x}}\ <<\ \textcolor{stringliteral}{"{}\ "{}}\ <<\ input.\mbox{\hyperlink{classhmap_1_1Array_a3cf6ada373f8af1affcbbed22db1194f}{shape}}.\mbox{\hyperlink{structhmap_1_1Vec2_a087ff9ff4159d1e5778c0b65ee2a1648}{y}}\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ apply\ hydraulic\ erosion\ to\ each\ component}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ output\ =\ input;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ particle\_density\ =\ 0.4f;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ nparticles\ =\ (int)(particle\_density\ *\ input.\mbox{\hyperlink{classhmap_1_1Array_a16e6671dbf3202dbc86f5eccb0fcb1ad}{size}}());}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{namespacehmap_a9571076da7c13d9bd3ab99f137ef8188}{hydraulic\_particle}}(output,\ nparticles,\ ++seed);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ output;}
+\DoxyCodeLine{\ \ \};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ zr\ =\ pyr.\mbox{\hyperlink{classhmap_1_1PyramidDecomposition_aa23f39a63086657fffda6cb5ca1842a5}{transform}}(fct,\ \mbox{\hyperlink{namespacehmap_ae84abe9052dcb9c88f3c50716addfe44a335e6fca97d53bfb6cc3a55c566f1dd7}{hmap::pyramid\_transform\_support::FULL}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a1c490f296571a75e35d05b10c075ae6c}{hmap::export\_banner\_png}}(\textcolor{stringliteral}{"{}ex\_pyramid\_transform.png"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{z,\ zr\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a6d093dbf3088c52a8acee413942545d9}{hmap::Cmap::TERRAIN}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{true});}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+
+
+{\bfseries{Result}}  
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classhmap_1_1PyramidDecomposition_ac3688f38d739c9eed21b4d32b49648bc}\label{classhmap_1_1PyramidDecomposition_ac3688f38d739c9eed21b4d32b49648bc} 
+\index{hmap::PyramidDecomposition@{hmap::PyramidDecomposition}!nlevels@{nlevels}}
+\index{nlevels@{nlevels}!hmap::PyramidDecomposition@{hmap::PyramidDecomposition}}
+\doxysubsubsection{\texorpdfstring{nlevels}{nlevels}}
+{\footnotesize\ttfamily int hmap\+::\+Pyramid\+Decomposition\+::nlevels}
+
+
+
+Number of levels in the pyramid. 
+
+\Hypertarget{classhmap_1_1PyramidDecomposition_ac711ffdbd5c38eb1f028106ceed16075}\label{classhmap_1_1PyramidDecomposition_ac711ffdbd5c38eb1f028106ceed16075} 
+\index{hmap::PyramidDecomposition@{hmap::PyramidDecomposition}!residual@{residual}}
+\index{residual@{residual}!hmap::PyramidDecomposition@{hmap::PyramidDecomposition}}
+\doxysubsubsection{\texorpdfstring{residual}{residual}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::\+Pyramid\+Decomposition\+::residual}
+
+
+
+Residual field (low-\/pass component) a the coarsest level. 
+
+\Hypertarget{classhmap_1_1PyramidDecomposition_ae28c747403f67117823f3bf6ad1b931f}\label{classhmap_1_1PyramidDecomposition_ae28c747403f67117823f3bf6ad1b931f} 
+\index{hmap::PyramidDecomposition@{hmap::PyramidDecomposition}!components@{components}}
+\index{components@{components}!hmap::PyramidDecomposition@{hmap::PyramidDecomposition}}
+\doxysubsubsection{\texorpdfstring{components}{components}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classhmap_1_1Array}{Array}}$>$ hmap\+::\+Pyramid\+Decomposition\+::components = \{\}}
+
+
+
+High-\/pass component for each level. 
+
+\Hypertarget{classhmap_1_1PyramidDecomposition_ab7684296d0993168de59ca6938d30cd2}\label{classhmap_1_1PyramidDecomposition_ab7684296d0993168de59ca6938d30cd2} 
+\index{hmap::PyramidDecomposition@{hmap::PyramidDecomposition}!low\_pass\_filter\_function@{low\_pass\_filter\_function}}
+\index{low\_pass\_filter\_function@{low\_pass\_filter\_function}!hmap::PyramidDecomposition@{hmap::PyramidDecomposition}}
+\doxysubsubsection{\texorpdfstring{low\_pass\_filter\_function}{low\_pass\_filter\_function}}
+{\footnotesize\ttfamily std\+::function$<$\mbox{\hyperlink{classhmap_1_1Array}{Array}}(const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&)$>$ hmap\+::\+Pyramid\+Decomposition\+::low\+\_\+pass\+\_\+filter\+\_\+function}
+
+
+
+Reference to the low-\/pass filter function. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+High\+Map/include/highmap/multiscale/\mbox{\hyperlink{pyramid_8hpp}{pyramid.\+hpp}}\item 
+High\+Map/src/multiscale/\mbox{\hyperlink{pyramid__decomposition_8cpp}{pyramid\+\_\+decomposition.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,61 @@
+\doxysection{High\+Map/include/highmap/hydrology.hpp File Reference}
+\hypertarget{hydrology_8hpp}{}\label{hydrology_8hpp}\index{HighMap/include/highmap/hydrology.hpp@{HighMap/include/highmap/hydrology.hpp}}
+
+
+Header file for hydrological modeling functions and utilities.  
+
+
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\item 
+namespace \mbox{\hyperlink{namespacehmap_1_1gpu}{hmap\+::gpu}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a2e0533063a77bfc047472d1d85f3f63c}{hmap\+::d8\+\_\+compute\+\_\+ndip}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&d8)
+\begin{DoxyCompactList}\small\item\em Computes the number of drainage paths for each cell based on the D8 flow direction model. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_ae42a874864d2d8f1a7b580f428395c01}{hmap\+::find\+\_\+flow\+\_\+sinks}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, std\+::vector$<$ int $>$ \&is, std\+::vector$<$ int $>$ \&js)
+\begin{DoxyCompactList}\small\item\em Identifies the indices of flow sinks within the heightmap. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_ab16a99babd0993758f39dee7027ae6b6}{hmap\+::flooding\+\_\+from\+\_\+point}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, const int i, const int j)
+\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a76afe239eb272a96e4831820a0281807}{hmap\+::flooding\+\_\+from\+\_\+point}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, const std\+::vector$<$ int $>$ \&i, const std\+::vector$<$ int $>$ \&j)
+\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a27b43e17baebd07ebb43808ca0dceb42}{hmap\+::flow\+\_\+accumulation\+\_\+d8}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z)
+\begin{DoxyCompactList}\small\item\em Computes the flow accumulation for each cell using the D8 flow direction model. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a58ba4910af868f70849f343e0c73adf3}{hmap\+::flow\+\_\+accumulation\+\_\+dinf}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, float talus\+\_\+ref)
+\begin{DoxyCompactList}\small\item\em Computes the flow accumulation for each cell using the Multiple Flow Direction (MFD) model. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_af8f580c9d50a07585257569bd1160891}{hmap\+::flow\+\_\+direction\+\_\+d8}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z)
+\begin{DoxyCompactList}\small\item\em Computes the flow direction from each cell to its downslope neighbor using the D8 model. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Array}{Array}} $>$ \mbox{\hyperlink{namespacehmap_a819fc20190d598c4664d442ee824fc96}{hmap\+::flow\+\_\+direction\+\_\+dinf}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, float talus\+\_\+ref)
+\begin{DoxyCompactList}\small\item\em Computes the flow direction and weights for each direction using the Multiple Flow Direction (MFD) model. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Path}{Path}} \mbox{\hyperlink{namespacehmap_a5adb98e67f89036317df083dd2123a1e}{hmap\+::flow\+\_\+stream}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, const \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ ij\+\_\+start, const float elevation\+\_\+ratio=0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, const float distance\+\_\+exponent=2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, const float upward\+\_\+penalization=100.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+\begin{DoxyCompactList}\small\item\em Computes the optimal flow path from a starting point to the boundary of a given elevation array. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a97ba5dfaa6625b654a8010ed7d2f3465}{hmap\+::generate\+\_\+riverbed}} (const \mbox{\hyperlink{classhmap_1_1Path}{Path}} \&path, \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}, bool bezier\+\_\+smoothing=false, float depth\+\_\+start=0.\+01\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float depth\+\_\+end=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float slope\+\_\+start=64.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float slope\+\_\+end=32.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float shape\+\_\+exponent\+\_\+start=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float shape\+\_\+exponent\+\_\+end=10.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float k\+\_\+smoothing=0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, int post\+\_\+filter\+\_\+ir=0, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+x=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+y=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+r=nullptr)
+\begin{DoxyCompactList}\small\item\em Generates a 2D array representing a riverbed based on a specified path. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_af794a4c54c3766ca86b7e4a06346ab91}{hmap\+::gpu\+::flow\+\_\+direction\+\_\+d8}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_af8f580c9d50a07585257569bd1160891}{hmap\+::flow\+\_\+direction\+\_\+d8}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_ab4f1542d2d5dd7edc54d240dab777755}{hmap\+::gpu\+::generate\+\_\+riverbed}} (const \mbox{\hyperlink{classhmap_1_1Path}{Path}} \&path, \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}, bool bezier\+\_\+smoothing=false, float depth\+\_\+start=0.\+01\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float depth\+\_\+end=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float slope\+\_\+start=64.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float slope\+\_\+end=32.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float shape\+\_\+exponent\+\_\+start=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float shape\+\_\+exponent\+\_\+end=10.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float k\+\_\+smoothing=0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, int post\+\_\+filter\+\_\+ir=0, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+x=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+y=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+r=nullptr)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_a97ba5dfaa6625b654a8010ed7d2f3465}{hmap\+::generate\+\_\+riverbed}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for hydrological modeling functions and utilities. 
+
+\begin{DoxyAuthor}{Author}
+Otto Link (\href{mailto:otto.link.bv@gmail.com}{\texttt{ otto.\+link.\+bv@gmail.\+com}}) 
+\end{DoxyAuthor}
+This header file declares functions and utilities for hydrological modeling, including tools for computing flow directions, flow accumulation, and identifying flow sinks within heightmaps. It supports multiple flow direction models and the D8 model for flow direction and accumulation calculations.
+
+Key functionalities include\+:
+\begin{DoxyItemize}
+\item Computation of flow directions and flow accumulations using various models.
+\item Identification of flow sinks in heightmaps.
+\item Support for multiple flow direction models with customizable flow-\/partition exponents.
+\end{DoxyItemize}
+
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 Otto Link 
+\end{DoxyCopyright}

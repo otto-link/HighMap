@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_ce6c722236ab9f2244a54aefafe425a2" kind="dir">
+    <compoundname>HighMap/src/hydrology</compoundname>
+    <innerfile refid="find__flow__sinks_8cpp">find_flow_sinks.cpp</innerfile>
+    <innerfile refid="flooding__from__point_8cpp">flooding_from_point.cpp</innerfile>
+    <innerfile refid="flow__accumulation__d8_8cpp">flow_accumulation_d8.cpp</innerfile>
+    <innerfile refid="flow__accumulation__d8__gpu_8cpp">flow_accumulation_d8_gpu.cpp</innerfile>
+    <innerfile refid="flow__accumulation__dinf_8cpp">flow_accumulation_dinf.cpp</innerfile>
+    <innerfile refid="flow__stream_8cpp">flow_stream.cpp</innerfile>
+    <innerfile refid="generate__riverbed_8cpp">generate_riverbed.cpp</innerfile>
+    <innerfile refid="generate__riverbed__gpu_8cpp">generate_riverbed_gpu.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="HighMap/src/hydrology/"/>
+  </compounddef>
+</doxygen>

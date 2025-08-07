@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structhmap_1_1Mat" kind="struct" language="C++" prot="public">
+    <compoundname>hmap::Mat</compoundname>
+    <includes refid="algebra_8hpp" local="no">algebra.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structhmap_1_1Mat_1a4a27962ffe15d147fa23386947c08cbf" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; T &gt;</type>
+        <definition>std::vector&lt;T&gt; hmap::Mat&lt; T &gt;::vector</definition>
+        <argsstring></argsstring>
+        <name>vector</name>
+        <qualifiedname>hmap::Mat::vector</qualifiedname>
+        <briefdescription>
+<para>1D vector storing matrix elements in row-major order. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/algebra.hpp" line="818" column="15" bodyfile="HighMap/include/highmap/algebra.hpp" bodystart="818" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Mat_1a38df202b165735b1eb8cad32d90ac613" prot="public" static="no" mutable="no">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; int &gt;</type>
+        <definition>Vec2&lt;int&gt; hmap::Mat&lt; T &gt;::shape</definition>
+        <argsstring></argsstring>
+        <name>shape</name>
+        <qualifiedname>hmap::Mat::shape</qualifiedname>
+        <briefdescription>
+<para>Dimensions of the matrix (rows x columns). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/algebra.hpp" line="820" column="8" bodyfile="HighMap/include/highmap/algebra.hpp" bodystart="820" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structhmap_1_1Mat_1a1a61160398cf1ce3e19b06605ac2c27f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hmap::Mat&lt; T &gt;::Mat</definition>
+        <argsstring>(Vec2&lt; int &gt; shape)</argsstring>
+        <name>Mat</name>
+        <qualifiedname>hmap::Mat::Mat</qualifiedname>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; int &gt;</type>
+          <declname>shape</declname>
+        </param>
+        <briefdescription>
+<para>Constructor to initialize a matrix with a given shape. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Allocates memory for the matrix elements based on the specified shape. The matrix is initialized with the default value of the type T.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>shape</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A <ref refid="structhmap_1_1Vec2" kindref="compound">Vec2&lt;int&gt;</ref> representing the number of rows and columns in the matrix. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/algebra.hpp" line="833" column="3" bodyfile="HighMap/include/highmap/algebra.hpp" bodystart="833" bodyend="836"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1Mat_1a429366c8daa4495b65f288f3527f2022" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T &amp;</type>
+        <definition>T &amp; hmap::Mat&lt; T &gt;::operator()</definition>
+        <argsstring>(int i, int j)</argsstring>
+        <name>operator()</name>
+        <qualifiedname>hmap::Mat::operator()</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+<para>Access operator to get a reference to the element at (i, j). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Provides non-const access to the matrix element at the specified row and column.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Row index (0-based). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Column index (0-based). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A reference to the element at the specified position. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/algebra.hpp" line="848" column="5" bodyfile="HighMap/include/highmap/algebra.hpp" bodystart="848" bodyend="851"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1Mat_1a4f148a4aa0f08e0bd0c4959b8fcc9aa5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const T &amp;</type>
+        <definition>const T &amp; hmap::Mat&lt; T &gt;::operator()</definition>
+        <argsstring>(int i, int j) const</argsstring>
+        <name>operator()</name>
+        <qualifiedname>hmap::Mat::operator()</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+<para>Const access operator to get the value of the element at (i, j). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Provides const access to the matrix element at the specified row and column.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Row index (0-based). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Column index (0-based). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A const reference to the element at the specified position. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/algebra.hpp" line="864" column="11" bodyfile="HighMap/include/highmap/algebra.hpp" bodystart="864" bodyend="867"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="structhmap_1_1Mat" kindref="compound">Mat</ref> class for basic manipulation of 2D matrices. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class provides basic operations for 2D matrices, such as element access and initialization. It stores the matrix elements in a 1D vector and provides a convenient interface for accessing elements using 2D indices.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Data type for the matrix elements (e.g., int, float, double). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>hmap::Vec2&lt; int &gt;</label>
+        <link refid="structhmap_1_1Vec2"/>
+      </node>
+      <node id="1">
+        <label>hmap::Mat&lt; T &gt;</label>
+        <link refid="structhmap_1_1Mat"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>shape</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="HighMap/include/highmap/algebra.hpp" line="816" column="12" bodyfile="HighMap/include/highmap/algebra.hpp" bodystart="817" bodyend="868"/>
+    <listofallmembers>
+      <member refid="structhmap_1_1Mat_1a1a61160398cf1ce3e19b06605ac2c27f" prot="public" virt="non-virtual"><scope>hmap::Mat</scope><name>Mat</name></member>
+      <member refid="structhmap_1_1Mat_1a429366c8daa4495b65f288f3527f2022" prot="public" virt="non-virtual"><scope>hmap::Mat</scope><name>operator()</name></member>
+      <member refid="structhmap_1_1Mat_1a4f148a4aa0f08e0bd0c4959b8fcc9aa5" prot="public" virt="non-virtual"><scope>hmap::Mat</scope><name>operator()</name></member>
+      <member refid="structhmap_1_1Mat_1a38df202b165735b1eb8cad32d90ac613" prot="public" virt="non-virtual"><scope>hmap::Mat</scope><name>shape</name></member>
+      <member refid="structhmap_1_1Mat_1a4a27962ffe15d147fa23386947c08cbf" prot="public" virt="non-virtual"><scope>hmap::Mat</scope><name>vector</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="indexpage" kind="page">
+    <compoundname>index</compoundname>
+    <title>HighMap library (C++)</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="index_1autotoc_md1">
+<title>HighMap library documentation!</title>
+<para>Welcome to the documentation of the HighMap, a C++ library designed to facilitate the generation of heightmaps for video games, simulations, and other applications that require detailed terrain data.</para>
+<sect2 id="index_1autotoc_md2">
+<title>Heightmaps?</title>
+<para>A heightmap is a type of digital image or data grid that represents the elevation or height of terrain in a two-dimensional format. Each pixel or point in a heightmap corresponds to a specific location on the terrain, with the value at that point indicating the elevation above anny reference level.</para>
+<para>In a grayscale heightmap, darker shades typically represent lower elevations, while lighter shades indicate higher elevations. This visual representation allows developers to easily map out and manipulate terrain features such as hills, valleys, mountains, and plains in a virtual environment.</para>
+<para><image type="html" name="dem_example_rendered.png">Heightmap (left) and 3D rendering of this heightmap (right).</image>
+ <image type="latex" name="dem_example_rendered.png">Heightmap (left) and 3D rendering of this heightmap (right).</image>
+ <image type="rtf" name="dem_example_rendered.png">Heightmap (left) and 3D rendering of this heightmap (right).</image>
+ <image type="docbook" name="dem_example_rendered.png">Heightmap (left) and 3D rendering of this heightmap (right).</image>
+ <image type="xml" name="dem_example_rendered.png">Heightmap (left) and 3D rendering of this heightmap (right).</image>
+</para>
+</sect2>
+<sect2 id="index_1autotoc_md3">
+<title>Getting started</title>
+<sect3 id="index_1autotoc_md4">
+<title>Sources and installation</title>
+<para>For installation instructions, please refer to the README in the GitHub repository: <ulink url="https://github.com/otto-link/HighMap">https://github.com/otto-link/HighMap</ulink>.</para>
+</sect3>
+<sect3 id="index_1autotoc_md5">
+<title>Basic principle and data structure</title>
+<para>The library represents heightmaps using a 2D array of floating-point values, where each value corresponds to the elevation at a specific point on the terrain. To work with these heightmaps, the library includes specialized data structures that allow for efficient generation, manipulation, and modification of these arrays, making it easier to create and adjust complex terrain features.</para>
+<para>Provided data structures are:</para>
+<para><itemizedlist>
+<listitem><para>2D array,<itemizedlist>
+<listitem><para><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref> for 2D array of floats,</para>
+</listitem><listitem><para>hmap.HeightMap for a tiled representation and parallel computation of 2D array of floats,</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>bivariate <formula id="4">(x, y)</formula> functions for locally computable noise generators or basic functions,<itemizedlist>
+<listitem><para><ref refid="classhmap_1_1Function" kindref="compound">hmap::Function</ref> and its derivates <ref refid="classhmap_1_1NoiseFunction" kindref="compound">hmap::NoiseFunction</ref>, <ref refid="classhmap_1_1FbmFunction" kindref="compound">hmap::FbmFunction</ref>, <ref refid="classhmap_1_1FieldFunction" kindref="compound">hmap::FieldFunction</ref>,...</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>geometric primitives,<itemizedlist>
+<listitem><para><ref refid="classhmap_1_1Point" kindref="compound">hmap::Point</ref>,</para>
+</listitem><listitem><para><ref refid="classhmap_1_1Edge" kindref="compound">hmap::Edge</ref>,</para>
+</listitem><listitem><para><ref refid="classhmap_1_1Cloud" kindref="compound">hmap::Cloud</ref> for set of points ,</para>
+</listitem><listitem><para><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref> for set of ordered points (i.e. open or closed polylines),</para>
+</listitem><listitem><para><ref refid="classhmap_1_1Graph" kindref="compound">hmap::Graph</ref>.</para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+</sect3>
+<sect3 id="index_1autotoc_md6">
+<title>&quot;Array&quot; - Elementary Data Structure for Building Heightmaps</title>
+<para>The <computeroutput>Array</computeroutput> object is the fundamental class upon which the heightmap construction algorithms rely. A heightmap is a two-dimensional representation where each cell&apos;s value corresponds to a height or elevation at that point. An <computeroutput>Array</computeroutput> is simply a 2D array with dimensions defined by <computeroutput>shape</computeroutput> (length/width).</para>
+<para>Indexing is typically based on a pair of indices <computeroutput>(i, j)</computeroutput>. The cell at <computeroutput>(i=0, j=0)</computeroutput> is assumed to be at the bottom-left corner of the heightmap. This assumption is usually inconsequential, except when the heightmap needs to be aligned with specific spatial positions <computeroutput>(x, y)</computeroutput>. The conversion between indices <computeroutput>(i, j)</computeroutput> and spatial positions <computeroutput>(x, y)</computeroutput> depends on the heightmap&apos;s &quot;bounding box,&quot; which is the spatial domain covered by the heightmap. By default, this bounding box is assumed to be a unit domain, meaning it spans a square of size 1 in both x and y directions.</para>
+<para>The values within the heightmap cells are generally within the range <computeroutput>[0, 1]</computeroutput>. While this range is not strictly enforced, some algorithms assume that the data adheres to this scale. It is always possible to use the <ref refid="namespacehmap_1a262e6495cb2d02598f36a2b46114b2b4" kindref="member">hmap::remap</ref> function to adjust the scale of the heightmap values to fit within the desired range.</para>
+</sect3>
+<sect3 id="index_1autotoc_md7">
+<title>Example usage</title>
+<sect4 id="index_1autotoc_md8">
+<title>Generate classical coherent noises (Perlin, Simplex, fractal layering, etc...)</title>
+</sect4>
+<sect4 id="index_1autotoc_md9">
+<title>Filters</title>
+</sect4>
+<sect4 id="index_1autotoc_md10">
+<title>Physical processes</title>
+</sect4>
+<sect4 id="index_1autotoc_md11">
+<title>Bivariate functions</title>
+</sect4>
+</sect3>
+<sect3 id="index_1autotoc_md12">
+<title>Exporting</title>
+<sect4 id="index_1autotoc_md13">
+<title>Image formats (png, tiff, exr...)</title>
+</sect4>
+<sect4 id="index_1autotoc_md14">
+<title>Numpy binary file</title>
+<para>The library includes a function that enables exporting data to the NumPy binary format (.npy), facilitating integration with Python&apos;s NumPy library.</para>
+<para><programlisting filename="ex_to_numpy.cpp"><codeline><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="highmap_8hpp" kindref="compound">highmap.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>main(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="structhmap_1_1Vec2" kindref="compound">hmap::Vec2&lt;int&gt;</ref><sp/><sp/><sp/>shape<sp/>=<sp/>{512,<sp/>256};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="structhmap_1_1Vec2" kindref="compound">hmap::Vec2&lt;float&gt;</ref><sp/>kw<sp/>=<sp/>{4.f,<sp/>2.f};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>z<sp/>=<sp/><ref refid="namespacehmap_1a40b948c49a05c14f2d540dc1a6952130" kindref="member">hmap::noise_fbm</ref>(<ref refid="namespacehmap_1ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581" kindref="member">hmap::NoiseType::PERLIN</ref>,<sp/>shape,<sp/>kw,<sp/>seed);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/>z(10,<sp/>12)<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>z.<ref refid="classhmap_1_1Array_1a35ce8d4088ce4ae21003df18c204b7c6" kindref="member">to_numpy</ref>(</highlight><highlight class="stringliteral">&quot;out.npy&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>z.<ref refid="classhmap_1_1Array_1a9ff7b2c0be8f2b5dd9fc33085cd647d1" kindref="member">to_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_to_numpy.png&quot;</highlight><highlight class="normal">,<sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369a65146260717d07e4773aec50520b9ced" kindref="member">hmap::Cmap::JET</ref>);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>---<sp/>python<sp/>script<sp/>to<sp/>check<sp/>this<sp/>provided<sp/>below<sp/>in<sp/>the<sp/>comments</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>import<sp/>matplotlib.pyplot<sp/>as<sp/>plt</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>import<sp/>numpy<sp/>as<sp/>np</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>z<sp/>=<sp/>np.load(&apos;out.npy&apos;)</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>print(z.shape)</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>print(z[10,<sp/>12])</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>plt.imshow(z,<sp/>cmap=&apos;jet&apos;)</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>plt.show()</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</sect4>
+<sect4 id="index_1autotoc_md15">
+<title>Raw binary file</title>
+</sect4>
+<sect4 id="index_1autotoc_md16">
+<title>Asset export (3D mesh and texture)</title>
+<para><ref refid="namespacehmap_1ac3d35efc6e5b596f508e2b17a5aa871b" kindref="member">hmap::AssetExportFormat</ref></para>
+<para><ref refid="namespacehmap_1ac81a92060b89699c4eb9826495d87250" kindref="member">hmap::MeshType</ref></para>
+</sect4>
+</sect3>
+</sect2>
+<sect2 id="index_1autotoc_md17">
+<title>Library functionalities</title>
+<para><table rows="2" cols="2"><row>
+<entry thead="yes"><para>Header   </para>
+</entry><entry thead="yes"><para>Description    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><ref refid="array_8hpp" kindref="compound">array.hpp</ref>   </para>
+</entry><entry thead="no"><para>Declaration of the Array class for 2D floating-point arrays with various mathematical operations and utilities.   </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+</sect1>
+    </detaileddescription>
+    <location file="docs/index.md"/>
+  </compounddef>
+</doxygen>

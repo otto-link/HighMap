@@ -1,0 +1,12 @@
+\doxysection{High\+Map/src/erosion/hydraulic\+\_\+particle\+\_\+multiscale.cpp File Reference}
+\hypertarget{hydraulic__particle__multiscale_8cpp}{}\label{hydraulic__particle__multiscale_8cpp}\index{HighMap/src/erosion/hydraulic\_particle\_multiscale.cpp@{HighMap/src/erosion/hydraulic\_particle\_multiscale.cpp}}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacehmap_ab2b38a401eebca7bd3c9a96a072f0df7}{hmap\+::hydraulic\+\_\+particle\+\_\+multiscale}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, float particle\+\_\+density, int seed, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+bedrock=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+moisture\+\_\+map=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+erosion\+\_\+map=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+deposition\+\_\+map=nullptr, float c\+\_\+capacity=10.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float c\+\_\+erosion=0.\+05\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float c\+\_\+deposition=0.\+01\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float c\+\_\+inertia=0.\+3\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float drag\+\_\+rate=0.\+01\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float evap\+\_\+rate=0.\+001\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, int pyramid\+\_\+finest\+\_\+level=0)
+\begin{DoxyCompactList}\small\item\em Apply hydraulic erosion using a particle based procedure, using a pyramid decomposition to allow a multiscale approach. \end{DoxyCompactList}\end{DoxyCompactItemize}

@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="particles_8hpp" kind="file" language="C++">
+    <compoundname>particles.hpp</compoundname>
+    <innerclass refid="structhmap_1_1Pos" prot="public">hmap::Pos</innerclass>
+    <innerclass refid="structhmap_1_1Particle" prot="public">hmap::Particle</innerclass>
+    <innernamespace refid="namespacehmap">hmap</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>Copyright<sp/>(c)<sp/>2023<sp/>Otto<sp/>Link.<sp/>Distributed<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>General</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/><sp/><sp/>Public<sp/>License.<sp/>The<sp/>full<sp/>license<sp/>is<sp/>in<sp/>the<sp/>file<sp/>LICENSE,<sp/>distributed<sp/>with</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/><sp/><sp/>this<sp/>software.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="algebra_8hpp" kindref="compound">highmap/algebra.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="array_8hpp" kindref="compound">highmap/array.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>HMAP_PARTICLES_GRADIENT_MIN<sp/>0.0001f</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>HMAP_PARTICLES_VELOCITY_MIN<sp/>0.001f</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehmap" kindref="compound">hmap</ref></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="structhmap_1_1Pos" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhmap_1_1Pos" kindref="compound">Pos</ref></highlight></codeline>
+<codeline lineno="27"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="28" refid="structhmap_1_1Pos_1af5905f099364a5e3b2f22e4d0489e870" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structhmap_1_1Pos_1af5905f099364a5e3b2f22e4d0489e870" kindref="member">x</ref>;</highlight></codeline>
+<codeline lineno="29" refid="structhmap_1_1Pos_1adeb88ba0e2503cab592cfa94795c9f9a" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structhmap_1_1Pos_1adeb88ba0e2503cab592cfa94795c9f9a" kindref="member">y</ref>;</highlight></codeline>
+<codeline lineno="30" refid="structhmap_1_1Pos_1a2ae9877f46f0fde4c22f1820b6d243ab" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structhmap_1_1Pos_1a2ae9877f46f0fde4c22f1820b6d243ab" kindref="member">i</ref>;</highlight></codeline>
+<codeline lineno="31" refid="structhmap_1_1Pos_1a5350d73ae336fd44609e3a0c72c76c78" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structhmap_1_1Pos_1a5350d73ae336fd44609e3a0c72c76c78" kindref="member">j</ref>;</highlight></codeline>
+<codeline lineno="32" refid="structhmap_1_1Pos_1a33ddf06bcbb181e1de3a2556ba73d78c" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structhmap_1_1Pos_1a33ddf06bcbb181e1de3a2556ba73d78c" kindref="member">u</ref>;</highlight></codeline>
+<codeline lineno="33" refid="structhmap_1_1Pos_1ac25b27d114c9e5e065f11d6ca6468df8" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structhmap_1_1Pos_1ac25b27d114c9e5e065f11d6ca6468df8" kindref="member">v</ref>;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="structhmap_1_1Particle" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structhmap_1_1Particle" kindref="compound">Particle</ref></highlight></codeline>
+<codeline lineno="37"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>parameters</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="structhmap_1_1Particle_1a222658f8cbd80a6694ce8c8bdd48b73a" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structhmap_1_1Particle_1a222658f8cbd80a6694ce8c8bdd48b73a" kindref="member">c_capacity</ref>;</highlight></codeline>
+<codeline lineno="40" refid="structhmap_1_1Particle_1a2acb2e8abff32ae56a4c10bd18320e9b" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structhmap_1_1Particle_1a2acb2e8abff32ae56a4c10bd18320e9b" kindref="member">c_erosion</ref>;</highlight></codeline>
+<codeline lineno="41" refid="structhmap_1_1Particle_1a7bc8b314a9be4b840b0035a661565f50" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structhmap_1_1Particle_1a7bc8b314a9be4b840b0035a661565f50" kindref="member">c_deposition</ref>;</highlight></codeline>
+<codeline lineno="42" refid="structhmap_1_1Particle_1abb13d46c7c952be43c11e9e7d494a063" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structhmap_1_1Particle_1abb13d46c7c952be43c11e9e7d494a063" kindref="member">c_inertia</ref>;</highlight></codeline>
+<codeline lineno="43" refid="structhmap_1_1Particle_1a9fe6d66398ff6cc1d74b308339d23cc8" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structhmap_1_1Particle_1a9fe6d66398ff6cc1d74b308339d23cc8" kindref="member">drag_rate</ref>;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>features</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="structhmap_1_1Particle_1ab2b144ca00a4749b96dd99947cb4ef39" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structhmap_1_1Particle_1ab2b144ca00a4749b96dd99947cb4ef39" kindref="member">sediment</ref><sp/>=<sp/>0.f;</highlight></codeline>
+<codeline lineno="47" refid="structhmap_1_1Particle_1a5547cd4ba43e9f495b1a40543837b968" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structhmap_1_1Particle_1a5547cd4ba43e9f495b1a40543837b968" kindref="member">volume</ref><sp/>=<sp/>0.f;<sp/></highlight><highlight class="comment">//<sp/>water</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>dynamic</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="structhmap_1_1Particle_1a562e380263d7ec95a836210440438fd6" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structhmap_1_1Pos" kindref="compound">Pos</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structhmap_1_1Particle_1a562e380263d7ec95a836210440438fd6" kindref="member">pos</ref>;</highlight></codeline>
+<codeline lineno="51" refid="structhmap_1_1Particle_1a3ef8fe111090f3eb88d5e307ec46617f" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2&lt;float&gt;</ref><sp/><ref refid="structhmap_1_1Particle_1a3ef8fe111090f3eb88d5e307ec46617f" kindref="member">vel</ref>;</highlight></codeline>
+<codeline lineno="52" refid="structhmap_1_1Particle_1a4445403784eef25349ae658bce615281" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structhmap_1_1Particle_1a4445403784eef25349ae658bce615281" kindref="member">vnorm</ref>;</highlight></codeline>
+<codeline lineno="53" refid="structhmap_1_1Particle_1aec443049972d7785719450352b13024b" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structhmap_1_1Particle_1aec443049972d7785719450352b13024b" kindref="member">vlim</ref><sp/>=<sp/>1.f;</highlight></codeline>
+<codeline lineno="54" refid="structhmap_1_1Particle_1a309083ce9d3d68a1375dfa428d858b59" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structhmap_1_1Particle_1a309083ce9d3d68a1375dfa428d858b59" kindref="member">is_active</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>constructor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><ref refid="structhmap_1_1Particle" kindref="compound">Particle</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structhmap_1_1Particle_1a222658f8cbd80a6694ce8c8bdd48b73a" kindref="member">c_capacity</ref>,</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structhmap_1_1Particle_1a2acb2e8abff32ae56a4c10bd18320e9b" kindref="member">c_erosion</ref>,</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structhmap_1_1Particle_1a7bc8b314a9be4b840b0035a661565f50" kindref="member">c_deposition</ref>,</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structhmap_1_1Particle_1abb13d46c7c952be43c11e9e7d494a063" kindref="member">c_inertia</ref>,</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structhmap_1_1Particle_1a9fe6d66398ff6cc1d74b308339d23cc8" kindref="member">drag_rate</ref>);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>methods</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structhmap_1_1Particle_1a18d28e7255f4745e296c3d8ecf3c307c" kindref="member">move</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhmap_1_1Array" kindref="compound">Array</ref><sp/>&amp;h,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>dt);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structhmap_1_1Particle_1a03fef1381cdbac9a0424433146aa41b2" kindref="member">set_xy</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>y);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hmap</highlight></codeline>
+    </programlisting>
+    <location file="HighMap/include/highmap/internal/particles.hpp"/>
+  </compounddef>
+</doxygen>

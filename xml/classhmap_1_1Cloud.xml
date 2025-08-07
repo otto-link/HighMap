@@ -1,0 +1,1369 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classhmap_1_1Cloud" kind="class" language="C++" prot="public">
+    <compoundname>hmap::Cloud</compoundname>
+    <derivedcompoundref refid="classhmap_1_1Graph" prot="public" virt="non-virtual">hmap::Graph</derivedcompoundref>
+    <derivedcompoundref refid="classhmap_1_1Path" prot="public" virt="non-virtual">hmap::Path</derivedcompoundref>
+    <includes refid="cloud_8hpp" local="no">cloud.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classhmap_1_1Cloud_1aad75fb7bcfa7a2c3f139d2e3d3d6cc54" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classhmap_1_1Point" kindref="compound">Point</ref> &gt;</type>
+        <definition>std::vector&lt;Point&gt; hmap::Cloud::points</definition>
+        <argsstring></argsstring>
+        <name>points</name>
+        <qualifiedname>hmap::Cloud::points</qualifiedname>
+        <initializer>= {}</initializer>
+        <briefdescription>
+<para>Points of the cloud. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="56" column="15" bodyfile="HighMap/include/highmap/geometry/cloud.hpp" bodystart="56" bodyend="56"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhmap_1_1Cloud_1a710bdb9a8b189d0886682dcc785c0bc5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hmap::Cloud::Cloud</definition>
+        <argsstring>()</argsstring>
+        <name>Cloud</name>
+        <qualifiedname>hmap::Cloud::Cloud</qualifiedname>
+        <briefdescription>
+<para>Default constructor for the <ref refid="classhmap_1_1Cloud" kindref="compound">Cloud</ref> class. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes an empty cloud with no points. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="63" column="3" bodyfile="HighMap/include/highmap/geometry/cloud.hpp" bodystart="63" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1a37e6f8229904ba2b013fbdf25751c6d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual hmap::Cloud::~Cloud</definition>
+        <argsstring>()=default</argsstring>
+        <name>~Cloud</name>
+        <qualifiedname>hmap::Cloud::~Cloud</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="65" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1a658dec15f637182f4451df23f52498af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hmap::Cloud::Cloud</definition>
+        <argsstring>(int npoints, uint seed, Vec4&lt; float &gt; bbox={0.f, 1.f, 0.f, 1.f})</argsstring>
+        <name>Cloud</name>
+        <qualifiedname>hmap::Cloud::Cloud</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>npoints</declname>
+        </param>
+        <param>
+          <type><ref refid="array_8hpp_1a91ad9478d81a7aaf2593e8d9c3d06a14" kindref="member">uint</ref></type>
+          <declname>seed</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4</ref>&lt; float &gt;</type>
+          <declname>bbox</declname>
+          <defval>{0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</defval>
+        </param>
+        <briefdescription>
+<para>Constructs a new <ref refid="classhmap_1_1Cloud" kindref="compound">Cloud</ref> object with random positions and values. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This constructor generates a cloud with a specified number of points, where the positions and values of the points are randomly generated within a given bounding box.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>npoints</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of points to generate. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>seed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Random seed used to generate the points. Using the same seed will produce the same set of points. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bbox</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Bounding box within which the points will be generated. The bounding box is defined as {xmin, xmax, ymin, ymax}. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="80" column="3" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="26" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1a76ba65d3116849aecbc2a6d90cd4d652" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hmap::Cloud::Cloud</definition>
+        <argsstring>(const std::vector&lt; Point &gt; &amp;points)</argsstring>
+        <name>Cloud</name>
+        <qualifiedname>hmap::Cloud::Cloud</qualifiedname>
+        <param>
+          <type>const std::vector&lt; <ref refid="classhmap_1_1Point" kindref="compound">Point</ref> &gt; &amp;</type>
+          <declname>points</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a new <ref refid="classhmap_1_1Cloud" kindref="compound">Cloud</ref> object based on a list of existing points. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This constructor initializes the cloud with a pre-defined set of points, which are passed as a vector of <computeroutput><ref refid="classhmap_1_1Point" kindref="compound">Point</ref></computeroutput> objects.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>points</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of <computeroutput><ref refid="classhmap_1_1Point" kindref="compound">Point</ref></computeroutput> objects representing the cloud&apos;s points. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="90" column="3" bodyfile="HighMap/include/highmap/geometry/cloud.hpp" bodystart="90" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1a34e33bc454459b077a2384ecaea4ba26" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hmap::Cloud::Cloud</definition>
+        <argsstring>(const std::vector&lt; float &gt; &amp;x, const std::vector&lt; float &gt; &amp;y, float default_value=0.f)</argsstring>
+        <name>Cloud</name>
+        <qualifiedname>hmap::Cloud::Cloud</qualifiedname>
+        <param>
+          <type>const std::vector&lt; float &gt; &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; float &gt; &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>default_value</declname>
+          <defval>0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <briefdescription>
+<para>Constructs a new <ref refid="classhmap_1_1Cloud" kindref="compound">Cloud</ref> object from lists of <computeroutput>x</computeroutput> and <computeroutput>y</computeroutput> coordinates. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This constructor allows the creation of a cloud by providing separate lists of <computeroutput>x</computeroutput> and <computeroutput>y</computeroutput> coordinates. Each point will have an associated value, which is set to a default value.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of <computeroutput>x</computeroutput> coordinates for the points. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of <computeroutput>y</computeroutput> coordinates for the points. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>default_value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The default value assigned to each point. Defaults to 0 if not specified. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="104" column="3" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="32" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1a189ddb2d4389ab85c28ad586fbbc4c30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hmap::Cloud::Cloud</definition>
+        <argsstring>(const std::vector&lt; float &gt; &amp;x, const std::vector&lt; float &gt; &amp;y, const std::vector&lt; float &gt; &amp;v)</argsstring>
+        <name>Cloud</name>
+        <qualifiedname>hmap::Cloud::Cloud</qualifiedname>
+        <param>
+          <type>const std::vector&lt; float &gt; &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; float &gt; &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; float &gt; &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a new <ref refid="classhmap_1_1Cloud" kindref="compound">Cloud</ref> object from lists of <computeroutput>x</computeroutput> and <computeroutput>y</computeroutput> coordinates with assigned values. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This constructor allows the creation of a cloud by providing separate lists of <computeroutput>x</computeroutput> and <computeroutput>y</computeroutput> coordinates, along with a list of values associated with each point.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of <computeroutput>x</computeroutput> coordinates for the points. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of <computeroutput>y</computeroutput> coordinates for the points. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>v</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of values associated with each point. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="120" column="3" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="45" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1ab1149531131111567d9f8760162d90ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Cloud::add_point</definition>
+        <argsstring>(const Point &amp;p)</argsstring>
+        <name>add_point</name>
+        <qualifiedname>hmap::Cloud::add_point</qualifiedname>
+        <param>
+          <type>const <ref refid="classhmap_1_1Point" kindref="compound">Point</ref> &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>Add a new point to the cloud. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method appends a new point to the list of points in the cloud.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The point to be added to the cloud. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="131" column="8" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="58" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1a247e64e1c0e5cb85570c0ec3aed3d774" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Cloud::clear</definition>
+        <argsstring>()</argsstring>
+        <name>clear</name>
+        <qualifiedname>hmap::Cloud::clear</qualifiedname>
+        <briefdescription>
+<para>Clear all data from the cloud. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method removes all points from the cloud, leaving it empty. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="138" column="8" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="63" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1a45c0878a8bcc06335e6afeb8c786a3e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hmap::Cloud::from_csv</definition>
+        <argsstring>(const std::string &amp;fname)</argsstring>
+        <name>from_csv</name>
+        <qualifiedname>hmap::Cloud::from_csv</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>fname</declname>
+        </param>
+        <briefdescription>
+<para>Loads point data from a CSV file into the <ref refid="classhmap_1_1Cloud" kindref="compound">Cloud</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function reads a CSV file where each line contains either 2D (X, Y) or 3D (X, Y, Z) point data. The function automatically detects the dimensionality of the points based on the number of values per line. The loaded points are stored in the <computeroutput>points</computeroutput> member of the <ref refid="classhmap_1_1Cloud" kindref="compound">Cloud</ref> object.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fname</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The path to the CSV file to be read. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the file was successfully read and the points were loaded, false otherwise.</para>
+</simplesect>
+<simplesect kind="note"><para>The CSV file must be well-formed, with each line containing either 2 or 3 comma-separated values. Lines with an unexpected number of values will cause the function to return false.</para>
+</simplesect>
+<simplesect kind="warning"><para>If the file cannot be opened or contains invalid data (e.g., non-numeric values), the function will log an error and return false. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="159" column="8" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="68" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1ab0fc0cc8fd56bfe1e553843c192630d9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4</ref>&lt; float &gt;</type>
+        <definition>Vec4&lt; float &gt; hmap::Cloud::get_bbox</definition>
+        <argsstring>() const</argsstring>
+        <name>get_bbox</name>
+        <qualifiedname>hmap::Cloud::get_bbox</qualifiedname>
+        <briefdescription>
+<para>Get the bounding box of the cloud. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method calculates and returns the axis-aligned bounding box of the cloud. The bounding box is represented as a <computeroutput><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4</ref>&lt;float&gt;</computeroutput> containing the minimum and maximum coordinates in both the <computeroutput>x</computeroutput> and <computeroutput>y</computeroutput> dimensions.</para>
+<para><simplesect kind="return"><para><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4&lt;float&gt;</ref> The bounding box of the cloud in the format <computeroutput>[xmin, xmax, ymin, ymax]</computeroutput>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="171" column="8" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="130" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1a2f4679015ee69b12c50f60a607388965" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhmap_1_1Point" kindref="compound">Point</ref></type>
+        <definition>Point hmap::Cloud::get_center</definition>
+        <argsstring>() const</argsstring>
+        <name>get_center</name>
+        <qualifiedname>hmap::Cloud::get_center</qualifiedname>
+        <briefdescription>
+<para>Calculates the centroid of a set of points. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function computes the center (or centroid) of a collection of points by averaging their coordinates. It sums up all the point coordinates and then divides the result by the total number of points to obtain the average position. The centroid represents the geometric center of the point cloud.</para>
+<para><simplesect kind="return"><para><ref refid="classhmap_1_1Point" kindref="compound">Point</ref> The computed center, represented as a <computeroutput><ref refid="classhmap_1_1Point" kindref="compound">Point</ref></computeroutput> object, which contains the average (x, y) coordinates of the points. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="184" column="9" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="145" bodyend="151"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1a10f22c402c1e8e4043c01327bca0f9e8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt; int &gt; hmap::Cloud::get_convex_hull_point_indices</definition>
+        <argsstring>() const</argsstring>
+        <name>get_convex_hull_point_indices</name>
+        <qualifiedname>hmap::Cloud::get_convex_hull_point_indices</qualifiedname>
+        <briefdescription>
+<para>Computes the indices of the points that form the convex hull of a set of points. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function calculates the convex hull of a set of points and returns the indices of these points in the order they appear on the convex hull. The convex hull is the smallest convex polygon that encloses all the given points.</para>
+<para><simplesect kind="return"><para>std::vector&lt;int&gt; A vector containing the indices of the points that make up the convex hull, listed in order.</para>
+</simplesect>
+<bold>Example</bold> <programlisting filename="ex_cloud_get_convex_hull.cpp"><codeline><highlight class="preprocessor">#include<sp/>&quot;<ref refid="highmap_8hpp" kindref="compound">highmap.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>main(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="structhmap_1_1Vec2" kindref="compound">hmap::Vec2&lt;int&gt;</ref><sp/>shape<sp/>=<sp/>{256,<sp/>256};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="structhmap_1_1Vec4" kindref="compound">hmap::Vec4&lt;float&gt;</ref><sp/>bbox<sp/>=<sp/>{-1.f,<sp/>0.f,<sp/>0.5f,<sp/>1.5f};</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Cloud" kindref="compound">hmap::Cloud</ref><sp/>cloud<sp/>=<sp/><ref refid="classhmap_1_1Cloud" kindref="compound">hmap::Cloud</ref>(10,<sp/>seed,<sp/>bbox);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>cloud.<ref refid="classhmap_1_1Cloud_1aefea3d749a554df8a23ec38af5acb415" kindref="member">print</ref>();</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>z0<sp/>=<sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref>(shape);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>cloud.<ref refid="classhmap_1_1Cloud_1ad83d71a8729a0e4fcce993c0141275ee" kindref="member">to_array</ref>(z0,<sp/>bbox);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>std::vector&lt;int&gt;<sp/>idx<sp/>=<sp/>cloud.<ref refid="classhmap_1_1Cloud_1a10f22c402c1e8e4043c01327bca0f9e8" kindref="member">get_convex_hull_point_indices</ref>();</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>create<sp/>a<sp/>polyline<sp/>to<sp/>display<sp/>the<sp/>chull</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>std::vector&lt;float&gt;<sp/>x,<sp/>y,<sp/>v;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>k<sp/>:<sp/>idx)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>x.push_back(cloud.<ref refid="classhmap_1_1Cloud_1aad75fb7bcfa7a2c3f139d2e3d3d6cc54" kindref="member">points</ref>[k].x);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>y.push_back(cloud.<ref refid="classhmap_1_1Cloud_1aad75fb7bcfa7a2c3f139d2e3d3d6cc54" kindref="member">points</ref>[k].y);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>v.push_back(cloud.<ref refid="classhmap_1_1Cloud_1aad75fb7bcfa7a2c3f139d2e3d3d6cc54" kindref="member">points</ref>[k].v);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>path_chull<sp/>=<sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref>(x,<sp/>y,<sp/>v);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>path_chull.<ref refid="classhmap_1_1Path_1a2ea3482a302d8ef30084fd39e57715de" kindref="member">closed</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>z1<sp/>=<sp/>z0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>path_chull.<ref refid="classhmap_1_1Path_1a3b90d30abcdc4da9e381957d76c5d8db" kindref="member">to_array</ref>(z1,<sp/>bbox);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a1c490f296571a75e35d05b10c075ae6c" kindref="member">hmap::export_banner_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_cloud_get_convex_hull.png&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{z0,<sp/>z1},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369afd0b9cd53cbae62c25ef686ba527d143" kindref="member">hmap::Cmap::INFERNO</ref>);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><bold>Result</bold> <image type="html" name="ex_cloud_get_convex_hull.png"></image>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="204" column="15" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="153" bodyend="167"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1a4d6feb0c127bcea6566b600444cf103c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t hmap::Cloud::get_npoints</definition>
+        <argsstring>() const</argsstring>
+        <name>get_npoints</name>
+        <qualifiedname>hmap::Cloud::get_npoints</qualifiedname>
+        <briefdescription>
+<para>Get the number of points in the cloud. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method returns the total number of points currently stored in the cloud.</para>
+<para><simplesect kind="return"><para>size_t The number of points in the cloud. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="214" column="10" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="169" bodyend="172"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1a53cb47401f1e9d027a638f3680c3004d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt; float &gt; hmap::Cloud::get_values</definition>
+        <argsstring>() const</argsstring>
+        <name>get_values</name>
+        <qualifiedname>hmap::Cloud::get_values</qualifiedname>
+        <briefdescription>
+<para>Get the values assigned to the points in the cloud. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method returns a vector containing the values associated with each point in the cloud.</para>
+<para><simplesect kind="return"><para>std::vector&lt;float&gt; A vector containing the values of all points in the cloud. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="225" column="15" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="174" bodyend="181"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1abe70a230c2bfecad67112321b3040286" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float hmap::Cloud::get_values_max</definition>
+        <argsstring>() const</argsstring>
+        <name>get_values_max</name>
+        <qualifiedname>hmap::Cloud::get_values_max</qualifiedname>
+        <briefdescription>
+<para>Get the maximum value among the points in the cloud. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method returns the maximum value associated with any point in the cloud.</para>
+<para><simplesect kind="return"><para>float The maximum value among the points. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="235" column="9" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="183" bodyend="189"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1a9194835457c70bfa13d0dfa66d964f01" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float hmap::Cloud::get_values_min</definition>
+        <argsstring>() const</argsstring>
+        <name>get_values_min</name>
+        <qualifiedname>hmap::Cloud::get_values_min</qualifiedname>
+        <briefdescription>
+<para>Get the minimum value among the points in the cloud. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method returns the minimum value associated with any point in the cloud.</para>
+<para><simplesect kind="return"><para>float The minimum value among the points. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="245" column="9" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="191" bodyend="197"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1aab450c9376e44def1d4e4465f0b1b691" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt; float &gt; hmap::Cloud::get_x</definition>
+        <argsstring>() const</argsstring>
+        <name>get_x</name>
+        <qualifiedname>hmap::Cloud::get_x</qualifiedname>
+        <reimplementedby refid="classhmap_1_1Path_1ac01edb126b845a027883d9abd88e826b">get_x</reimplementedby>
+        <briefdescription>
+<para>Get the <computeroutput>x</computeroutput> coordinates of the points in the cloud. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method returns a vector containing the <computeroutput>x</computeroutput> coordinates of all points in the cloud.</para>
+<para><simplesect kind="return"><para>std::vector&lt;float&gt; A vector containing the <computeroutput>x</computeroutput> coordinates of the points. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="256" column="23" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="199" bodyend="206"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1ab0c1fe00f5465c5b0b04e3e397bae5d5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt; float &gt; hmap::Cloud::get_xy</definition>
+        <argsstring>() const</argsstring>
+        <name>get_xy</name>
+        <qualifiedname>hmap::Cloud::get_xy</qualifiedname>
+        <reimplementedby refid="classhmap_1_1Path_1a18048b5af9a33893fa946ce76eb75781">get_xy</reimplementedby>
+        <briefdescription>
+<para>Get the concatenated <computeroutput>x</computeroutput> and <computeroutput>y</computeroutput> coordinates of the points in the cloud. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method returns a vector containing the <computeroutput>x</computeroutput> and <computeroutput>y</computeroutput> coordinates of all points in the cloud, arranged in the form <computeroutput>[x0, y0, x1, y1, ...]</computeroutput>.</para>
+<para><simplesect kind="return"><para>std::vector&lt;float&gt; A vector containing the concatenated <computeroutput>x</computeroutput> and <computeroutput>y</computeroutput> coordinates of the points. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="268" column="23" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="208" bodyend="218"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1abf5f933e3506395b5369cb090119002e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt; float &gt; hmap::Cloud::get_y</definition>
+        <argsstring>() const</argsstring>
+        <name>get_y</name>
+        <qualifiedname>hmap::Cloud::get_y</qualifiedname>
+        <reimplementedby refid="classhmap_1_1Path_1ab9ff9f7a0ea9c090c34810536458da8d">get_y</reimplementedby>
+        <briefdescription>
+<para>Get the <computeroutput>y</computeroutput> coordinates of the points in the cloud. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method returns a vector containing the <computeroutput>y</computeroutput> coordinates of all points in the cloud.</para>
+<para><simplesect kind="return"><para>std::vector&lt;float&gt; A vector containing the <computeroutput>y</computeroutput> coordinates of the points. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="279" column="23" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="220" bodyend="227"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1abc74893b061b954d7a112551036fdb17" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt; float &gt; hmap::Cloud::interpolate_values_from_array</definition>
+        <argsstring>(const Array &amp;array, Vec4&lt; float &gt; bbox)</argsstring>
+        <name>interpolate_values_from_array</name>
+        <qualifiedname>hmap::Cloud::interpolate_values_from_array</qualifiedname>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>array</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4</ref>&lt; float &gt;</type>
+          <declname>bbox</declname>
+        </param>
+        <briefdescription>
+<para>Interpolate values from an array at the points&apos; <computeroutput>(x, y)</computeroutput> locations. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method computes interpolated values for each point in the cloud based on its <computeroutput>(x, y)</computeroutput> coordinates and an underlying array, using bilinear interpolation within the specified bounding box.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input array from which to interpolate values. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bbox</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The bounding box of the array. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::vector&lt;float&gt; A vector containing the interpolated values for each point. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="293" column="15" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="229" bodyend="267"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1aefea3d749a554df8a23ec38af5acb415" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Cloud::print</definition>
+        <argsstring>()</argsstring>
+        <name>print</name>
+        <qualifiedname>hmap::Cloud::print</qualifiedname>
+        <briefdescription>
+<para>Print information about the cloud&apos;s points. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method prints data related to the cloud&apos;s points, including their coordinates and values. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="302" column="8" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="269" bodyend="291"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1a5b3c241babf8bbf52436013b5e816718" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Cloud::randomize</definition>
+        <argsstring>(uint seed, Vec4&lt; float &gt; bbox={0.f, 1.f, 0.f, 1.f})</argsstring>
+        <name>randomize</name>
+        <qualifiedname>hmap::Cloud::randomize</qualifiedname>
+        <param>
+          <type><ref refid="array_8hpp_1a91ad9478d81a7aaf2593e8d9c3d06a14" kindref="member">uint</ref></type>
+          <declname>seed</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4</ref>&lt; float &gt;</type>
+          <declname>bbox</declname>
+          <defval>{0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</defval>
+        </param>
+        <briefdescription>
+<para>Randomize the positions and values of the cloud points. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method randomizes the positions and values of the points in the cloud using a given random seed. The new positions are generated within the specified bounding box.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>seed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Random seed number for generating positions and values. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bbox</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Bounding box within which the points will be randomized. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="314" column="8" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="293" bodyend="306"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1a35d0d2e48f4063bd7b582bd24a132294" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Cloud::remap_values</definition>
+        <argsstring>(float vmin, float vmax)</argsstring>
+        <name>remap_values</name>
+        <qualifiedname>hmap::Cloud::remap_values</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>vmin</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>vmax</declname>
+        </param>
+        <briefdescription>
+<para>Remap the values of the cloud points to a target range. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method scales the values associated with the cloud points so that they fall within a specified range <computeroutput>[vmin, vmax]</computeroutput>.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vmin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The lower bound of the target range. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vmax</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The upper bound of the target range. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="325" column="8" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="308" bodyend="320"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1afa8d7286a65d513bdc90c4c05bc42e0f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Cloud::remove_point</definition>
+        <argsstring>(int point_idx)</argsstring>
+        <name>remove_point</name>
+        <qualifiedname>hmap::Cloud::remove_point</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>point_idx</declname>
+        </param>
+        <briefdescription>
+<para>Remove a point from the cloud. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method removes a point from the cloud based on its index.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>point_idx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the point to be removed. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="334" column="8" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="322" bodyend="325"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1a604e61fbcbd8cc469ed21501e65f5c7b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Cloud::set_values</definition>
+        <argsstring>(const std::vector&lt; float &gt; &amp;new_values)</argsstring>
+        <name>set_values</name>
+        <qualifiedname>hmap::Cloud::set_values</qualifiedname>
+        <param>
+          <type>const std::vector&lt; float &gt; &amp;</type>
+          <declname>new_values</declname>
+        </param>
+        <briefdescription>
+<para>Set new values for the cloud points. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method assigns new values to the cloud points based on a given vector of values. The size of the input vector must match the number of points in the cloud.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>new_values</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of new values to assign to the points. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="345" column="8" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="327" bodyend="334"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1a540b582307b8457f38c43d12d899f2bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Cloud::set_values</definition>
+        <argsstring>(float new_value)</argsstring>
+        <name>set_values</name>
+        <qualifiedname>hmap::Cloud::set_values</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>new_value</declname>
+        </param>
+        <briefdescription>
+<para>Set a single value for all cloud points. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method assigns the same value to all points in the cloud.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>new_value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value to assign to all points. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="354" column="8" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="336" bodyend="340"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1a9071aba6d7344639eede19e54ec3e7cb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Cloud::set_values_from_array</definition>
+        <argsstring>(const Array &amp;array, Vec4&lt; float &gt; bbox)</argsstring>
+        <name>set_values_from_array</name>
+        <qualifiedname>hmap::Cloud::set_values_from_array</qualifiedname>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>array</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4</ref>&lt; float &gt;</type>
+          <declname>bbox</declname>
+        </param>
+        <briefdescription>
+<para>Set the values of the cloud points using values from an underlying array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method assigns values to the cloud points by interpolating values from an input array. The positions of the cloud points are mapped to the array using the specified bounding box.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input array from which to derive the values. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bbox</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The bounding box that defines the mapping from the cloud points&apos; coordinates to the array&apos;s coordinates. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="368" column="8" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="342" bodyend="346"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1adf0b7a7c0c7d414e5d01e19be624aa3c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Cloud::set_values_from_chull_distance</definition>
+        <argsstring>()</argsstring>
+        <name>set_values_from_chull_distance</name>
+        <qualifiedname>hmap::Cloud::set_values_from_chull_distance</qualifiedname>
+        <briefdescription>
+<para>Set the values of the cloud points based on the distance to the convex hull of the cloud. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method assigns values to the cloud points based on their distance to the convex hull of the cloud. The convex hull must be initialized using <computeroutput><ref refid="classhmap_1_1Cloud_1add728a8b00dadb4a1d043ce50876c569" kindref="member">to_graph_delaunay()</ref></computeroutput> before this method is called to ensure the correct indices of the convex hull points are available. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="379" column="8" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="348" bodyend="365"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1ad83d71a8729a0e4fcce993c0141275ee" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Cloud::to_array</definition>
+        <argsstring>(Array &amp;array, Vec4&lt; float &gt; bbox={0.f, 1.f, 0.f, 1.f}) const</argsstring>
+        <name>to_array</name>
+        <qualifiedname>hmap::Cloud::to_array</qualifiedname>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>array</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4</ref>&lt; float &gt;</type>
+          <declname>bbox</declname>
+          <defval>{0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</defval>
+        </param>
+        <briefdescription>
+<para>Project the cloud points onto an array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method projects the cloud points&apos; values onto a given array, mapping their positions within the specified bounding box. The resulting array will be populated with the values of the points at their corresponding positions.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input array where the cloud points&apos; values will be projected. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bbox</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The bounding box that defines the mapping from the cloud points&apos; coordinates to the array&apos;s coordinates. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="394" column="8" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="367" bodyend="383"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1a04dcb02dd2df076553e410dbcceb2c35" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
+        <definition>Array hmap::Cloud::to_array_sdf</definition>
+        <argsstring>(Vec2&lt; int &gt; shape, Vec4&lt; float &gt; bbox, Array *p_noise_x=nullptr, Array *p_noise_y=nullptr, Vec4&lt; float &gt; bbox_array={0.f, 1.f, 0.f, 1.f}) const</argsstring>
+        <name>to_array_sdf</name>
+        <qualifiedname>hmap::Cloud::to_array_sdf</qualifiedname>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; int &gt;</type>
+          <declname>shape</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4</ref>&lt; float &gt;</type>
+          <declname>bbox</declname>
+        </param>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
+          <declname>p_noise_x</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
+          <declname>p_noise_y</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4</ref>&lt; float &gt;</type>
+          <declname>bbox_array</declname>
+          <defval>{0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</defval>
+        </param>
+        <briefdescription>
+<para>Generate an array filled with the signed distance function (SDF) to the cloud points. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function returns an array where each value represents the signed distance to the nearest cloud point. The distance is positive outside the cloud and negative inside. The result can be domain-warped by applying optional noise arrays to the x and y coordinates.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>shape</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The shape of the output array (width and height). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bbox</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The bounding box that defines the cloud&apos;s coordinate system. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_noise_x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optional reference to a noise array applied to the x-coordinates for domain warping (not in pixels). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_noise_y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optional reference to a noise array applied to the y-coordinates for domain warping (not in pixels). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bbox_array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The bounding box of the destination array. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> The resulting array filled with the signed distance function.</para>
+</simplesect>
+<bold>Example</bold> <programlisting filename="ex_cloud_sdf.cpp"><codeline><highlight class="preprocessor">#include<sp/>&quot;<ref refid="highmap_8hpp" kindref="compound">highmap.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>main(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="structhmap_1_1Vec2" kindref="compound">hmap::Vec2&lt;int&gt;</ref><sp/>shape<sp/>=<sp/>{256,<sp/>256};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="array_8hpp_1a91ad9478d81a7aaf2593e8d9c3d06a14" kindref="member">uint</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="namespacehmap_1a03c0be3a7198eebacefcb208b0cfee99" kindref="member">noise</ref><sp/>=<sp/><ref refid="namespacehmap_1a40b948c49a05c14f2d540dc1a6952130" kindref="member">hmap::noise_fbm</ref>(<ref refid="namespacehmap_1ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581" kindref="member">hmap::NoiseType::PERLIN</ref>,<sp/>shape,<sp/>{2,<sp/>2},<sp/>seed);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a262e6495cb2d02598f36a2b46114b2b4" kindref="member">hmap::remap</ref>(<ref refid="namespacehmap_1a03c0be3a7198eebacefcb208b0cfee99" kindref="member">noise</ref>,<sp/>0.f,<sp/>0.2f);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="structhmap_1_1Vec4" kindref="compound">hmap::Vec4&lt;float&gt;</ref><sp/>bbox<sp/>=<sp/>{0.2f,<sp/>0.8f,<sp/>0.2f,<sp/>0.8f};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Cloud" kindref="compound">hmap::Cloud</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cloud<sp/>=<sp/><ref refid="classhmap_1_1Cloud" kindref="compound">hmap::Cloud</ref>(5,<sp/>seed,<sp/>bbox);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="structhmap_1_1Vec4" kindref="compound">hmap::Vec4&lt;float&gt;</ref><sp/>bbox_array<sp/>=<sp/>{0.f,<sp/>1.f,<sp/>0.f,<sp/>1.f};</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>z_sdf1<sp/>=<sp/>cloud.<ref refid="classhmap_1_1Cloud_1a04dcb02dd2df076553e410dbcceb2c35" kindref="member">to_array_sdf</ref>(shape,<sp/>bbox_array);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>z_sdf2<sp/>=<sp/>cloud.<ref refid="classhmap_1_1Cloud_1a04dcb02dd2df076553e410dbcceb2c35" kindref="member">to_array_sdf</ref>(shape,<sp/>bbox_array,<sp/>&amp;<ref refid="namespacehmap_1a03c0be3a7198eebacefcb208b0cfee99" kindref="member">noise</ref>,<sp/>&amp;<ref refid="namespacehmap_1a03c0be3a7198eebacefcb208b0cfee99" kindref="member">noise</ref>);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a1c490f296571a75e35d05b10c075ae6c" kindref="member">hmap::export_banner_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_cloud_sdf.png&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{z_sdf1,<sp/>z_sdf2},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369a65146260717d07e4773aec50520b9ced" kindref="member">hmap::Cmap::JET</ref>);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><bold>Result</bold> <image type="html" name="ex_cloud_sdf.png"></image>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="422" column="9" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="415" bodyend="449"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1a8d03bbce76e09b07ff9e2901c80a06c7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Cloud::to_array_interp</definition>
+        <argsstring>(Array &amp;array, Vec4&lt; float &gt; bbox={0.f, 1.f, 0.f, 1.f}, InterpolationMethod2D interpolation_method=InterpolationMethod2D::DELAUNAY, Array *p_noise_x=nullptr, Array *p_noise_y=nullptr, Vec4&lt; float &gt; bbox_array={0.f, 1.f, 0.f, 1.f}) const</argsstring>
+        <name>to_array_interp</name>
+        <qualifiedname>hmap::Cloud::to_array_interp</qualifiedname>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>array</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4</ref>&lt; float &gt;</type>
+          <declname>bbox</declname>
+          <defval>{0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</defval>
+        </param>
+        <param>
+          <type><ref refid="namespacehmap_1a5bfab5d68e822294ff90fde21b85f581" kindref="member">InterpolationMethod2D</ref></type>
+          <declname>interpolation_method</declname>
+          <defval><ref refid="namespacehmap_1a5bfab5d68e822294ff90fde21b85f581a69ac444964e6a94c448c395c8f82b135" kindref="member">InterpolationMethod2D::DELAUNAY</ref></defval>
+        </param>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
+          <declname>p_noise_x</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
+          <declname>p_noise_y</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4</ref>&lt; float &gt;</type>
+          <declname>bbox_array</declname>
+          <defval>{0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</defval>
+        </param>
+        <briefdescription>
+<para>Interpolate the values of an array using the cloud points. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method populates an array with interpolated values based on the positions and values of the cloud points. The interpolation method can be specified, and optional noise arrays can be used for domain warping.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The output array that will be populated with interpolated values. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bbox</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The bounding box that defines the cloud&apos;s coordinate system. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>interpolation_method</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The method used for interpolation (e.g., nearest neighbor, bilinear). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_noise_x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optional reference to a noise array applied to the x-coordinates for domain warping (not in pixels). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_noise_y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optional reference to a noise array applied to the y-coordinates for domain warping (not in pixels). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bbox_array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The bounding box of the destination array.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<bold>Example</bold> <programlisting filename="ex_cloud_to_array_interp.cpp"><codeline><highlight class="preprocessor">#include<sp/>&quot;<ref refid="highmap_8hpp" kindref="compound">highmap.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>main(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="structhmap_1_1Vec2" kindref="compound">hmap::Vec2&lt;int&gt;</ref><sp/>shape<sp/>=<sp/>{256,<sp/>256};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="structhmap_1_1Vec4" kindref="compound">hmap::Vec4&lt;float&gt;</ref><sp/>bbox<sp/>=<sp/>{-1.f,<sp/>0.f,<sp/>0.5f,<sp/>1.5f};</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Cloud" kindref="compound">hmap::Cloud</ref><sp/>cloud<sp/>=<sp/><ref refid="classhmap_1_1Cloud" kindref="compound">hmap::Cloud</ref>(10,<sp/>seed,<sp/>bbox);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>z0<sp/>=<sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref>(shape);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>cloud.<ref refid="classhmap_1_1Cloud_1ad83d71a8729a0e4fcce993c0141275ee" kindref="member">to_array</ref>(z0,<sp/>bbox);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>z1<sp/>=<sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref>(shape);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>cloud.<ref refid="classhmap_1_1Cloud_1a8d03bbce76e09b07ff9e2901c80a06c7" kindref="member">to_array_interp</ref>(z1,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bbox,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1a5bfab5d68e822294ff90fde21b85f581a7ab263bff6c11b7d35a8c1f1caac8cc2" kindref="member">hmap::InterpolationMethod2D::NEAREST</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bbox);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>nx<sp/>=<sp/>0.5f<sp/>*<sp/><ref refid="namespacehmap_1a40b948c49a05c14f2d540dc1a6952130" kindref="member">hmap::noise_fbm</ref>(<ref refid="namespacehmap_1ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581" kindref="member">hmap::NoiseType::PERLIN</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>shape,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{2.f,<sp/>2.f},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed++);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>ny<sp/>=<sp/>0.5f<sp/>*<sp/><ref refid="namespacehmap_1a40b948c49a05c14f2d540dc1a6952130" kindref="member">hmap::noise_fbm</ref>(<ref refid="namespacehmap_1ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581" kindref="member">hmap::NoiseType::PERLIN</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>shape,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{2.f,<sp/>2.f},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed++);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>z2<sp/>=<sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref>(shape);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>z3<sp/>=<sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref>(shape);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>cloud.<ref refid="classhmap_1_1Cloud_1a8d03bbce76e09b07ff9e2901c80a06c7" kindref="member">to_array_interp</ref>(z2,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bbox,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1a5bfab5d68e822294ff90fde21b85f581a7ab263bff6c11b7d35a8c1f1caac8cc2" kindref="member">hmap::InterpolationMethod2D::NEAREST</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;nx,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;ny,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bbox);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>cloud.<ref refid="classhmap_1_1Cloud_1a8d03bbce76e09b07ff9e2901c80a06c7" kindref="member">to_array_interp</ref>(z3,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bbox,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1a5bfab5d68e822294ff90fde21b85f581a69ac444964e6a94c448c395c8f82b135" kindref="member">hmap::InterpolationMethod2D::DELAUNAY</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;nx,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;ny,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bbox);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a1c490f296571a75e35d05b10c075ae6c" kindref="member">hmap::export_banner_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_cloud_to_array_interp.png&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{z0,<sp/>z1,<sp/>z2,<sp/>z3},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369afd0b9cd53cbae62c25ef686ba527d143" kindref="member">hmap::Cmap::INFERNO</ref>);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><bold>Result</bold> <image type="html" name="ex_cloud_to_array_interp.png"></image>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="455" column="8" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="385" bodyend="413"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1aea876ffcd05ba762a9a12d2fc4a5d27c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Cloud::to_csv</definition>
+        <argsstring>(const std::string &amp;fname) const</argsstring>
+        <name>to_csv</name>
+        <qualifiedname>hmap::Cloud::to_csv</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>fname</declname>
+        </param>
+        <briefdescription>
+<para>Export the cloud data to a CSV file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function saves the cloud points and their associated values to a CSV file.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fname</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the output CSV file. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="471" column="8" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="451" bodyend="463"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1add728a8b00dadb4a1d043ce50876c569" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref></type>
+        <definition>Graph hmap::Cloud::to_graph_delaunay</definition>
+        <argsstring>()</argsstring>
+        <name>to_graph_delaunay</name>
+        <qualifiedname>hmap::Cloud::to_graph_delaunay</qualifiedname>
+        <briefdescription>
+<para>Convert the cloud to a graph using Delaunay triangulation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function generates a graph representation of the cloud using Delaunay triangulation. The resulting graph can be used for various geometric and topological analyses.</para>
+<para><simplesect kind="return"><para><ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref> The resulting graph from Delaunay triangulation. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="482" column="9" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="465" bodyend="481"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Cloud_1a91285c977568113029ee6864928d6ee2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Cloud::to_png</definition>
+        <argsstring>(const std::string &amp;fname, int cmap, Vec4&lt; float &gt; bbox={0.f, 1.f, 0.f, 1.f}, int depth=CV_8U, Vec2&lt; int &gt; shape={512, 512})</argsstring>
+        <name>to_png</name>
+        <qualifiedname>hmap::Cloud::to_png</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>fname</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>cmap</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4</ref>&lt; float &gt;</type>
+          <declname>bbox</declname>
+          <defval>{0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>depth</declname>
+          <defval>CV_8U</defval>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; int &gt;</type>
+          <declname>shape</declname>
+          <defval>{512, 512}</defval>
+        </param>
+        <briefdescription>
+<para>Saves the current data as a PNG image file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function exports the current data to a PNG file with specified parameters. The image is created using the provided colormap, bounding box, bit depth, and shape. The bounding box determines the area of the data to be included in the image, while the shape defines the dimensions of the output image.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fname</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The file name for the output PNG image. This should include the file extension (e.g., &quot;output.png&quot;). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cmap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An integer specifying the colormap to be used for rendering the data. This index refers to a predefined colormap. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bbox</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A <computeroutput><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4</ref>&lt;float&gt;</computeroutput> specifying the bounding box of the data to be included in the image. It is given as {xmin, xmax, ymin, ymax}. The default is {0.f, 1.f, 0.f, 1.f}. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>depth</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An integer specifying the bit depth of the image. It should be a value defined by OpenCV (e.g., <computeroutput>CV_8U</computeroutput> for 8-bit unsigned). The default is <computeroutput>CV_8U</computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shape</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A <computeroutput><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt;int&gt;</computeroutput> specifying the dimensions of the output image. It is given as {width, height}. The default is {512, 512}. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/cloud.hpp" line="506" column="8" bodyfile="HighMap/src/geometry/cloud.cpp" bodystart="483" bodyend="492"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Represents a collection of unordered points in 2D space. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The <computeroutput><ref refid="classhmap_1_1Cloud" kindref="compound">Cloud</ref></computeroutput> class provides functionality to manage and manipulate an unordered set of points in a 2D space. It supports various operations such as adding points, calculating the centroid, merging with other point clouds, and more. This class is useful for applications involving point cloud processing, geometric computations, and spatial analysis. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>hmap::Cloud</label>
+        <link refid="classhmap_1_1Cloud"/>
+      </node>
+      <node id="2">
+        <label>hmap::Graph</label>
+        <link refid="classhmap_1_1Graph"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hmap::Path</label>
+        <link refid="classhmap_1_1Path"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>hmap::Cloud</label>
+        <link refid="classhmap_1_1Cloud"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>points</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hmap::Point</label>
+        <link refid="classhmap_1_1Point"/>
+      </node>
+      <node id="2">
+        <label>std::vector&lt; hmap::Point &gt;</label>
+        <childnode refid="3" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="HighMap/include/highmap/geometry/cloud.hpp" line="53" column="1" bodyfile="HighMap/include/highmap/geometry/cloud.hpp" bodystart="54" bodyend="511"/>
+    <listofallmembers>
+      <member refid="classhmap_1_1Cloud_1ab1149531131111567d9f8760162d90ff" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>add_point</name></member>
+      <member refid="classhmap_1_1Cloud_1a247e64e1c0e5cb85570c0ec3aed3d774" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>clear</name></member>
+      <member refid="classhmap_1_1Cloud_1a710bdb9a8b189d0886682dcc785c0bc5" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>Cloud</name></member>
+      <member refid="classhmap_1_1Cloud_1a658dec15f637182f4451df23f52498af" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>Cloud</name></member>
+      <member refid="classhmap_1_1Cloud_1a76ba65d3116849aecbc2a6d90cd4d652" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>Cloud</name></member>
+      <member refid="classhmap_1_1Cloud_1a34e33bc454459b077a2384ecaea4ba26" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>Cloud</name></member>
+      <member refid="classhmap_1_1Cloud_1a189ddb2d4389ab85c28ad586fbbc4c30" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>Cloud</name></member>
+      <member refid="classhmap_1_1Cloud_1a45c0878a8bcc06335e6afeb8c786a3e0" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>from_csv</name></member>
+      <member refid="classhmap_1_1Cloud_1ab0fc0cc8fd56bfe1e553843c192630d9" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>get_bbox</name></member>
+      <member refid="classhmap_1_1Cloud_1a2f4679015ee69b12c50f60a607388965" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>get_center</name></member>
+      <member refid="classhmap_1_1Cloud_1a10f22c402c1e8e4043c01327bca0f9e8" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>get_convex_hull_point_indices</name></member>
+      <member refid="classhmap_1_1Cloud_1a4d6feb0c127bcea6566b600444cf103c" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>get_npoints</name></member>
+      <member refid="classhmap_1_1Cloud_1a53cb47401f1e9d027a638f3680c3004d" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>get_values</name></member>
+      <member refid="classhmap_1_1Cloud_1abe70a230c2bfecad67112321b3040286" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>get_values_max</name></member>
+      <member refid="classhmap_1_1Cloud_1a9194835457c70bfa13d0dfa66d964f01" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>get_values_min</name></member>
+      <member refid="classhmap_1_1Cloud_1aab450c9376e44def1d4e4465f0b1b691" prot="public" virt="virtual"><scope>hmap::Cloud</scope><name>get_x</name></member>
+      <member refid="classhmap_1_1Cloud_1ab0c1fe00f5465c5b0b04e3e397bae5d5" prot="public" virt="virtual"><scope>hmap::Cloud</scope><name>get_xy</name></member>
+      <member refid="classhmap_1_1Cloud_1abf5f933e3506395b5369cb090119002e" prot="public" virt="virtual"><scope>hmap::Cloud</scope><name>get_y</name></member>
+      <member refid="classhmap_1_1Cloud_1abc74893b061b954d7a112551036fdb17" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>interpolate_values_from_array</name></member>
+      <member refid="classhmap_1_1Cloud_1aad75fb7bcfa7a2c3f139d2e3d3d6cc54" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>points</name></member>
+      <member refid="classhmap_1_1Cloud_1aefea3d749a554df8a23ec38af5acb415" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>print</name></member>
+      <member refid="classhmap_1_1Cloud_1a5b3c241babf8bbf52436013b5e816718" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>randomize</name></member>
+      <member refid="classhmap_1_1Cloud_1a35d0d2e48f4063bd7b582bd24a132294" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>remap_values</name></member>
+      <member refid="classhmap_1_1Cloud_1afa8d7286a65d513bdc90c4c05bc42e0f" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>remove_point</name></member>
+      <member refid="classhmap_1_1Cloud_1a604e61fbcbd8cc469ed21501e65f5c7b" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>set_values</name></member>
+      <member refid="classhmap_1_1Cloud_1a540b582307b8457f38c43d12d899f2bf" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>set_values</name></member>
+      <member refid="classhmap_1_1Cloud_1a9071aba6d7344639eede19e54ec3e7cb" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>set_values_from_array</name></member>
+      <member refid="classhmap_1_1Cloud_1adf0b7a7c0c7d414e5d01e19be624aa3c" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>set_values_from_chull_distance</name></member>
+      <member refid="classhmap_1_1Cloud_1ad83d71a8729a0e4fcce993c0141275ee" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>to_array</name></member>
+      <member refid="classhmap_1_1Cloud_1a8d03bbce76e09b07ff9e2901c80a06c7" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>to_array_interp</name></member>
+      <member refid="classhmap_1_1Cloud_1a04dcb02dd2df076553e410dbcceb2c35" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>to_array_sdf</name></member>
+      <member refid="classhmap_1_1Cloud_1aea876ffcd05ba762a9a12d2fc4a5d27c" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>to_csv</name></member>
+      <member refid="classhmap_1_1Cloud_1add728a8b00dadb4a1d043ce50876c569" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>to_graph_delaunay</name></member>
+      <member refid="classhmap_1_1Cloud_1a91285c977568113029ee6864928d6ee2" prot="public" virt="non-virtual"><scope>hmap::Cloud</scope><name>to_png</name></member>
+      <member refid="classhmap_1_1Cloud_1a37e6f8229904ba2b013fbdf25751c6d4" prot="public" virt="virtual"><scope>hmap::Cloud</scope><name>~Cloud</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

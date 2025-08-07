@@ -1,0 +1,157 @@
+\doxysection{hmap\+::Particle Struct Reference}
+\hypertarget{structhmap_1_1Particle}{}\label{structhmap_1_1Particle}\index{hmap::Particle@{hmap::Particle}}
+
+
+{\ttfamily \#include $<$particles.\+hpp$>$}
+
+
+
+Collaboration diagram for hmap\+::Particle\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=284pt]{structhmap_1_1Particle__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structhmap_1_1Particle_aac5e0fcce44d71a064500d531ee0dee4}{Particle}} (float \mbox{\hyperlink{structhmap_1_1Particle_a222658f8cbd80a6694ce8c8bdd48b73a}{c\+\_\+capacity}}, float \mbox{\hyperlink{structhmap_1_1Particle_a2acb2e8abff32ae56a4c10bd18320e9b}{c\+\_\+erosion}}, float \mbox{\hyperlink{structhmap_1_1Particle_a7bc8b314a9be4b840b0035a661565f50}{c\+\_\+deposition}}, float \mbox{\hyperlink{structhmap_1_1Particle_abb13d46c7c952be43c11e9e7d494a063}{c\+\_\+inertia}}, float \mbox{\hyperlink{structhmap_1_1Particle_a9fe6d66398ff6cc1d74b308339d23cc8}{drag\+\_\+rate}})
+\item 
+void \mbox{\hyperlink{structhmap_1_1Particle_a18d28e7255f4745e296c3d8ecf3c307c}{move}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&h, float dt)
+\item 
+void \mbox{\hyperlink{structhmap_1_1Particle_a03fef1381cdbac9a0424433146aa41b2}{set\+\_\+xy}} (float x, float y)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{structhmap_1_1Particle_a222658f8cbd80a6694ce8c8bdd48b73a}{c\+\_\+capacity}}
+\item 
+float \mbox{\hyperlink{structhmap_1_1Particle_a2acb2e8abff32ae56a4c10bd18320e9b}{c\+\_\+erosion}}
+\item 
+float \mbox{\hyperlink{structhmap_1_1Particle_a7bc8b314a9be4b840b0035a661565f50}{c\+\_\+deposition}}
+\item 
+float \mbox{\hyperlink{structhmap_1_1Particle_abb13d46c7c952be43c11e9e7d494a063}{c\+\_\+inertia}}
+\item 
+float \mbox{\hyperlink{structhmap_1_1Particle_a9fe6d66398ff6cc1d74b308339d23cc8}{drag\+\_\+rate}}
+\item 
+float \mbox{\hyperlink{structhmap_1_1Particle_ab2b144ca00a4749b96dd99947cb4ef39}{sediment}} = 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}
+\item 
+float \mbox{\hyperlink{structhmap_1_1Particle_a5547cd4ba43e9f495b1a40543837b968}{volume}} = 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}
+\item 
+\mbox{\hyperlink{structhmap_1_1Pos}{Pos}} \mbox{\hyperlink{structhmap_1_1Particle_a562e380263d7ec95a836210440438fd6}{pos}}
+\item 
+\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$ \mbox{\hyperlink{structhmap_1_1Particle_a3ef8fe111090f3eb88d5e307ec46617f}{vel}}
+\item 
+float \mbox{\hyperlink{structhmap_1_1Particle_a4445403784eef25349ae658bce615281}{vnorm}}
+\item 
+bool \mbox{\hyperlink{structhmap_1_1Particle_aec443049972d7785719450352b13024b}{vlim}} = 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}
+\item 
+bool \mbox{\hyperlink{structhmap_1_1Particle_a309083ce9d3d68a1375dfa428d858b59}{is\+\_\+active}} = true
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structhmap_1_1Particle_aac5e0fcce44d71a064500d531ee0dee4}\label{structhmap_1_1Particle_aac5e0fcce44d71a064500d531ee0dee4} 
+\index{hmap::Particle@{hmap::Particle}!Particle@{Particle}}
+\index{Particle@{Particle}!hmap::Particle@{hmap::Particle}}
+\doxysubsubsection{\texorpdfstring{Particle()}{Particle()}}
+{\footnotesize\ttfamily hmap\+::\+Particle\+::\+Particle (\begin{DoxyParamCaption}\item[{float}]{c\+\_\+capacity,  }\item[{float}]{c\+\_\+erosion,  }\item[{float}]{c\+\_\+deposition,  }\item[{float}]{c\+\_\+inertia,  }\item[{float}]{drag\+\_\+rate }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structhmap_1_1Particle_a18d28e7255f4745e296c3d8ecf3c307c}\label{structhmap_1_1Particle_a18d28e7255f4745e296c3d8ecf3c307c} 
+\index{hmap::Particle@{hmap::Particle}!move@{move}}
+\index{move@{move}!hmap::Particle@{hmap::Particle}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily void hmap\+::\+Particle\+::move (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{h,  }\item[{float}]{dt }\end{DoxyParamCaption})}
+
+\Hypertarget{structhmap_1_1Particle_a03fef1381cdbac9a0424433146aa41b2}\label{structhmap_1_1Particle_a03fef1381cdbac9a0424433146aa41b2} 
+\index{hmap::Particle@{hmap::Particle}!set\_xy@{set\_xy}}
+\index{set\_xy@{set\_xy}!hmap::Particle@{hmap::Particle}}
+\doxysubsubsection{\texorpdfstring{set\_xy()}{set\_xy()}}
+{\footnotesize\ttfamily void hmap\+::\+Particle\+::set\+\_\+xy (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structhmap_1_1Particle_a222658f8cbd80a6694ce8c8bdd48b73a}\label{structhmap_1_1Particle_a222658f8cbd80a6694ce8c8bdd48b73a} 
+\index{hmap::Particle@{hmap::Particle}!c\_capacity@{c\_capacity}}
+\index{c\_capacity@{c\_capacity}!hmap::Particle@{hmap::Particle}}
+\doxysubsubsection{\texorpdfstring{c\_capacity}{c\_capacity}}
+{\footnotesize\ttfamily float hmap\+::\+Particle\+::c\+\_\+capacity}
+
+\Hypertarget{structhmap_1_1Particle_a2acb2e8abff32ae56a4c10bd18320e9b}\label{structhmap_1_1Particle_a2acb2e8abff32ae56a4c10bd18320e9b} 
+\index{hmap::Particle@{hmap::Particle}!c\_erosion@{c\_erosion}}
+\index{c\_erosion@{c\_erosion}!hmap::Particle@{hmap::Particle}}
+\doxysubsubsection{\texorpdfstring{c\_erosion}{c\_erosion}}
+{\footnotesize\ttfamily float hmap\+::\+Particle\+::c\+\_\+erosion}
+
+\Hypertarget{structhmap_1_1Particle_a7bc8b314a9be4b840b0035a661565f50}\label{structhmap_1_1Particle_a7bc8b314a9be4b840b0035a661565f50} 
+\index{hmap::Particle@{hmap::Particle}!c\_deposition@{c\_deposition}}
+\index{c\_deposition@{c\_deposition}!hmap::Particle@{hmap::Particle}}
+\doxysubsubsection{\texorpdfstring{c\_deposition}{c\_deposition}}
+{\footnotesize\ttfamily float hmap\+::\+Particle\+::c\+\_\+deposition}
+
+\Hypertarget{structhmap_1_1Particle_abb13d46c7c952be43c11e9e7d494a063}\label{structhmap_1_1Particle_abb13d46c7c952be43c11e9e7d494a063} 
+\index{hmap::Particle@{hmap::Particle}!c\_inertia@{c\_inertia}}
+\index{c\_inertia@{c\_inertia}!hmap::Particle@{hmap::Particle}}
+\doxysubsubsection{\texorpdfstring{c\_inertia}{c\_inertia}}
+{\footnotesize\ttfamily float hmap\+::\+Particle\+::c\+\_\+inertia}
+
+\Hypertarget{structhmap_1_1Particle_a9fe6d66398ff6cc1d74b308339d23cc8}\label{structhmap_1_1Particle_a9fe6d66398ff6cc1d74b308339d23cc8} 
+\index{hmap::Particle@{hmap::Particle}!drag\_rate@{drag\_rate}}
+\index{drag\_rate@{drag\_rate}!hmap::Particle@{hmap::Particle}}
+\doxysubsubsection{\texorpdfstring{drag\_rate}{drag\_rate}}
+{\footnotesize\ttfamily float hmap\+::\+Particle\+::drag\+\_\+rate}
+
+\Hypertarget{structhmap_1_1Particle_ab2b144ca00a4749b96dd99947cb4ef39}\label{structhmap_1_1Particle_ab2b144ca00a4749b96dd99947cb4ef39} 
+\index{hmap::Particle@{hmap::Particle}!sediment@{sediment}}
+\index{sediment@{sediment}!hmap::Particle@{hmap::Particle}}
+\doxysubsubsection{\texorpdfstring{sediment}{sediment}}
+{\footnotesize\ttfamily float hmap\+::\+Particle\+::sediment = 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}}
+
+\Hypertarget{structhmap_1_1Particle_a5547cd4ba43e9f495b1a40543837b968}\label{structhmap_1_1Particle_a5547cd4ba43e9f495b1a40543837b968} 
+\index{hmap::Particle@{hmap::Particle}!volume@{volume}}
+\index{volume@{volume}!hmap::Particle@{hmap::Particle}}
+\doxysubsubsection{\texorpdfstring{volume}{volume}}
+{\footnotesize\ttfamily float hmap\+::\+Particle\+::volume = 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}}
+
+\Hypertarget{structhmap_1_1Particle_a562e380263d7ec95a836210440438fd6}\label{structhmap_1_1Particle_a562e380263d7ec95a836210440438fd6} 
+\index{hmap::Particle@{hmap::Particle}!pos@{pos}}
+\index{pos@{pos}!hmap::Particle@{hmap::Particle}}
+\doxysubsubsection{\texorpdfstring{pos}{pos}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structhmap_1_1Pos}{Pos}} hmap\+::\+Particle\+::pos}
+
+\Hypertarget{structhmap_1_1Particle_a3ef8fe111090f3eb88d5e307ec46617f}\label{structhmap_1_1Particle_a3ef8fe111090f3eb88d5e307ec46617f} 
+\index{hmap::Particle@{hmap::Particle}!vel@{vel}}
+\index{vel@{vel}!hmap::Particle@{hmap::Particle}}
+\doxysubsubsection{\texorpdfstring{vel}{vel}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$float$>$ hmap\+::\+Particle\+::vel}
+
+\Hypertarget{structhmap_1_1Particle_a4445403784eef25349ae658bce615281}\label{structhmap_1_1Particle_a4445403784eef25349ae658bce615281} 
+\index{hmap::Particle@{hmap::Particle}!vnorm@{vnorm}}
+\index{vnorm@{vnorm}!hmap::Particle@{hmap::Particle}}
+\doxysubsubsection{\texorpdfstring{vnorm}{vnorm}}
+{\footnotesize\ttfamily float hmap\+::\+Particle\+::vnorm}
+
+\Hypertarget{structhmap_1_1Particle_aec443049972d7785719450352b13024b}\label{structhmap_1_1Particle_aec443049972d7785719450352b13024b} 
+\index{hmap::Particle@{hmap::Particle}!vlim@{vlim}}
+\index{vlim@{vlim}!hmap::Particle@{hmap::Particle}}
+\doxysubsubsection{\texorpdfstring{vlim}{vlim}}
+{\footnotesize\ttfamily bool hmap\+::\+Particle\+::vlim = 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}}
+
+\Hypertarget{structhmap_1_1Particle_a309083ce9d3d68a1375dfa428d858b59}\label{structhmap_1_1Particle_a309083ce9d3d68a1375dfa428d858b59} 
+\index{hmap::Particle@{hmap::Particle}!is\_active@{is\_active}}
+\index{is\_active@{is\_active}!hmap::Particle@{hmap::Particle}}
+\doxysubsubsection{\texorpdfstring{is\_active}{is\_active}}
+{\footnotesize\ttfamily bool hmap\+::\+Particle\+::is\+\_\+active = true}
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+High\+Map/include/highmap/internal/\mbox{\hyperlink{particles_8hpp}{particles.\+hpp}}\item 
+High\+Map/src/particles/\mbox{\hyperlink{particles_8cpp}{particles.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,20 @@
+\doxysection{High\+Map/src/erosion/deposition.cpp File Reference}
+\hypertarget{deposition_8cpp}{}\label{deposition_8cpp}\index{HighMap/src/erosion/deposition.cpp@{HighMap/src/erosion/deposition.cpp}}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacehmap_a7f31b214bbcc3083c75cbcac905b5a1d}{hmap\+::sediment\+\_\+deposition}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&talus, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+deposition\+\_\+map=nullptr, float max\+\_\+deposition=0.\+01, int iterations=5, int thermal\+\_\+subiterations=10)
+\item 
+void \mbox{\hyperlink{namespacehmap_a2f83e2631c0b0dee67aae188f439f1bb}{hmap\+::sediment\+\_\+deposition}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+mask, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&talus, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+deposition\+\_\+map=nullptr, float max\+\_\+deposition=0.\+01, int iterations=5, int thermal\+\_\+subiterations=10)
+\begin{DoxyCompactList}\small\item\em Perform sediment deposition combined with thermal erosion. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a692c074c2a2f7c4560364f5770411894}{hmap\+::sediment\+\_\+deposition\+\_\+particle}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int nparticles, int ir, int seed=1, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+spawning\+\_\+map=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+deposition\+\_\+map=nullptr, float particle\+\_\+initial\+\_\+sediment=0.\+1\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float deposition\+\_\+velocity\+\_\+limit=0.\+01\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float drag\+\_\+rate=0.\+001\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+\item 
+void \mbox{\hyperlink{namespacehmap_aef448d1fdaa3277652ef0d5616e4fc2f}{hmap\+::sediment\+\_\+deposition\+\_\+particle}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+mask, int nparticles, int ir, int seed=1, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+spawning\+\_\+map=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+deposition\+\_\+map=nullptr, float particle\+\_\+initial\+\_\+sediment=0.\+1\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float deposition\+\_\+velocity\+\_\+limit=0.\+01\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float drag\+\_\+rate=0.\+001\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+\item 
+void \mbox{\hyperlink{namespacehmap_a9d594d0e16132aeef59e1680789b886e}{hmap\+::sediment\+\_\+layer}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&talus\+\_\+layer, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&talus\+\_\+upper\+\_\+limit, int iterations, bool apply\+\_\+post\+\_\+filter=true, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+deposition\+\_\+map=nullptr)
+\end{DoxyCompactItemize}

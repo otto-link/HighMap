@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="interpolate__curve_8hpp" kind="file" language="C++">
+    <compoundname>interpolate_curve.hpp</compoundname>
+    <innerclass refid="classhmap_1_1InterpolatorCurve" prot="public">hmap::InterpolatorCurve</innerclass>
+    <innernamespace refid="namespacehmap">hmap</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>Copyright<sp/>(c)<sp/>2023<sp/>Otto<sp/>Link.<sp/>Distributed<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>General</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/><sp/><sp/>Public<sp/>License.<sp/>The<sp/>full<sp/>license<sp/>is<sp/>in<sp/>the<sp/>file<sp/>LICENSE,<sp/>distributed<sp/>with</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/><sp/><sp/>this<sp/>software.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="point_8hpp" kindref="compound">highmap/geometry/point.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;functional&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehmap" kindref="compound">hmap</ref></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="32" refid="namespacehmap_1aa78bf111867e13c63d8bd2ec005ad6c8" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="namespacehmap_1aa78bf111867e13c63d8bd2ec005ad6c8" kindref="member">InterpolationMethodCurve</ref><sp/>:<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="34" refid="namespacehmap_1aa78bf111867e13c63d8bd2ec005ad6c8ac56fe3b521e08a04c926e75d7fba28f8" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1aa78bf111867e13c63d8bd2ec005ad6c8ac56fe3b521e08a04c926e75d7fba28f8" kindref="member">BEZIER</ref>,<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="35" refid="namespacehmap_1aa78bf111867e13c63d8bd2ec005ad6c8a60f62532461a103e7680bba841871635" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1aa78bf111867e13c63d8bd2ec005ad6c8a60f62532461a103e7680bba841871635" kindref="member">BSPLINE</ref>,<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="36" refid="namespacehmap_1aa78bf111867e13c63d8bd2ec005ad6c8ade9a39922b4750c41f14969a3686fc29" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1aa78bf111867e13c63d8bd2ec005ad6c8ade9a39922b4750c41f14969a3686fc29" kindref="member">CATMULLROM</ref>,<sp/><sp/></highlight></codeline>
+<codeline lineno="37" refid="namespacehmap_1aa78bf111867e13c63d8bd2ec005ad6c8a29d7faf9b49a89c11c9bc3e3f2190e23" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1aa78bf111867e13c63d8bd2ec005ad6c8a29d7faf9b49a89c11c9bc3e3f2190e23" kindref="member">DECASTELJAU</ref>,<sp/></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1aa78bf111867e13c63d8bd2ec005ad6c8a90555eaf70e5d0c043f8bc5bf16338df" kindref="member">POINTS_LERP</ref><sp/><sp/></highlight></codeline>
+<codeline lineno="39" refid="namespacehmap_1aa78bf111867e13c63d8bd2ec005ad6c8a90555eaf70e5d0c043f8bc5bf16338df" refkind="member"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="classhmap_1_1InterpolatorCurve" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhmap_1_1InterpolatorCurve" kindref="compound">InterpolatorCurve</ref></highlight></codeline>
+<codeline lineno="49"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1InterpolatorCurve" kindref="compound">InterpolatorCurve</ref>(</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;Point&gt;<sp/><sp/><sp/><sp/><sp/><sp/><sp/>points,</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1aa78bf111867e13c63d8bd2ec005ad6c8" kindref="member">InterpolationMethodCurve</ref><sp/>method<sp/>=<sp/><ref refid="namespacehmap_1aa78bf111867e13c63d8bd2ec005ad6c8a90555eaf70e5d0c043f8bc5bf16338df" kindref="member">InterpolationMethodCurve::POINTS_LERP</ref>);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/>std::vector&lt;Point&gt;<sp/><ref refid="classhmap_1_1InterpolatorCurve_1ad244270f8660a2d4bbafb1dc3a46208f" kindref="member">operator()</ref>(std::vector&lt;float&gt;<sp/>t)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>clang-format<sp/>off</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal">std::vector&lt;Point&gt;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>points_data;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="comment">//<sp/>interpolate.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><ref refid="namespacehmap_1aa78bf111867e13c63d8bd2ec005ad6c8" kindref="member">InterpolationMethodCurve</ref><sp/>method;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="comment">//<sp/>used.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal">std::vector&lt;float&gt;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>arc_length;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="comment">//<sp/>between<sp/>points.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal">std::function&lt;<ref refid="classhmap_1_1Point" kindref="compound">Point</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">)&gt;<sp/>interp;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="comment">//<sp/>interpolation<sp/>based<sp/>on<sp/>`method`.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>clang-format<sp/>on</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>get_segment_interpolation_parameters(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>t,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>&amp;ileft,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>&amp;u);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hmap</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="HighMap/include/highmap/interpolate_curve.hpp"/>
+  </compounddef>
+</doxygen>

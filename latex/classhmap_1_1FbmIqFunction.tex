@@ -1,0 +1,192 @@
+\doxysection{hmap\+::Fbm\+Iq\+Function Class Reference}
+\hypertarget{classhmap_1_1FbmIqFunction}{}\label{classhmap_1_1FbmIqFunction}\index{hmap::FbmIqFunction@{hmap::FbmIqFunction}}
+
+
+IQ layering function class.  
+
+
+
+
+{\ttfamily \#include $<$functions.\+hpp$>$}
+
+
+
+Inheritance diagram for hmap\+::Fbm\+Iq\+Function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=242pt]{classhmap_1_1FbmIqFunction__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for hmap\+::Fbm\+Iq\+Function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=327pt]{classhmap_1_1FbmIqFunction__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1FbmIqFunction_a23b61f2543cc193de8ec4113922a0b6e}{Fbm\+Iq\+Function}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classhmap_1_1NoiseFunction}{Noise\+Function}} $>$ \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a8fec1973e7b8a6dcca079c8017326ab2}{p\+\_\+base}}, int \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a3ee2dbe91dd0512d380a8b28b11438b9}{octaves}}, float \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a57139030bd456787c06bf3d7d808837a}{weight}}, float \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_ab14745ebb9beee94828d13aa587de69a}{persistence}}, float \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a9a205468c861c5f142b738d514b2d9ce}{lacunarity}}, float \mbox{\hyperlink{classhmap_1_1FbmIqFunction_a4b20482a3e3eb46fea4709d36b496c2b}{gradient\+\_\+scale}})
+\begin{DoxyCompactList}\small\item\em Construct a new Fbm Iq \doxylink{classhmap_1_1Function}{Function} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1FbmIqFunction_a8ebc23a176c38767de8fa4aa712caddb}{set\+\_\+gradient\+\_\+scale}} (float new\+\_\+gradient\+\_\+scale)
+\begin{DoxyCompactList}\small\item\em Set the gradient scale. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classhmap_1_1GenericFractalFunction}{hmap\+::\+Generic\+Fractal\+Function}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1GenericFractalFunction_afe25e31c4669a13d18da6d69458b95c1}{Generic\+Fractal\+Function}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classhmap_1_1NoiseFunction}{Noise\+Function}} $>$ \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a8fec1973e7b8a6dcca079c8017326ab2}{p\+\_\+base}}, int \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a3ee2dbe91dd0512d380a8b28b11438b9}{octaves}}, float \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a57139030bd456787c06bf3d7d808837a}{weight}}, float \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_ab14745ebb9beee94828d13aa587de69a}{persistence}}, float \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a9a205468c861c5f142b738d514b2d9ce}{lacunarity}})
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{classhmap_1_1GenericFractalFunction}{Generic\+Fractal\+Function} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a01f72c359ac852c53ce5830249eb6796}{set\+\_\+kw}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$ new\+\_\+kw) override
+\begin{DoxyCompactList}\small\item\em Set the frequency scaling vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_ae08ab9d6e6235037d485ccd80d5e9b8d}{set\+\_\+lacunarity}} (float new\+\_\+lacunarity)
+\begin{DoxyCompactList}\small\item\em Set the lacunarity of the fractal noise. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a28608337593666bcbbf91822a28062f5}{set\+\_\+octaves}} (int new\+\_\+octaves)
+\begin{DoxyCompactList}\small\item\em Set the number of octaves in the fractal noise. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a310ff66b4c0d7c3d76f6abdbd335bd18}{set\+\_\+persistence}} (float new\+\_\+persistence)
+\begin{DoxyCompactList}\small\item\em Set the persistence of the fractal noise. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a29009b8473d71f0024685703aedb641b}{set\+\_\+seed}} (\mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} new\+\_\+seed) override
+\begin{DoxyCompactList}\small\item\em Set a new random seed for the noise generation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a37b6ec1a0d712dc9fbf6fb292b29001e}{scale\+\_\+amp0}} (float scale)
+\begin{DoxyCompactList}\small\item\em Scale the initial amplitude of the fractal noise. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a4b6d0013c636b85aaee08e40119dfab0}{get\+\_\+lacunarity}} () const
+\begin{DoxyCompactList}\small\item\em Get the lacunarity of the fractal noise. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a57b80d6a0cbdc8e14963d1417b1c0b07}{get\+\_\+octaves}} () const
+\begin{DoxyCompactList}\small\item\em Get the number of octaves in the fractal noise. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_aa2c95085c01b4dd7edbcf3caa8074c91}{get\+\_\+persistence}} () const
+\begin{DoxyCompactList}\small\item\em Get the persistence of the fractal noise. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a260af30d21b8af880d9208376984c002}{get\+\_\+weight}} () const
+\begin{DoxyCompactList}\small\item\em Get the weight of the fractal noise. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classhmap_1_1NoiseFunction}{hmap\+::\+Noise\+Function}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1NoiseFunction_a9823b1c76555631d442f52a3d768c162}{Noise\+Function}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. Initializes with default frequency scaling and seed. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1NoiseFunction_abf8560e5e4036c13ccac01e25b8fe899}{Noise\+Function}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$ \mbox{\hyperlink{classhmap_1_1NoiseFunction_a6d7d9881bedbf82be095183cd36bf0a6}{kw}})
+\begin{DoxyCompactList}\small\item\em Constructor to initialize with specific frequency scaling. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1NoiseFunction_ad075abd6473d4ab8ec811f30192fdb9b}{Noise\+Function}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$ \mbox{\hyperlink{classhmap_1_1NoiseFunction_a6d7d9881bedbf82be095183cd36bf0a6}{kw}}, \mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \mbox{\hyperlink{classhmap_1_1NoiseFunction_a9f125dfcb60e4d9bd2b0fbc44b21d406}{seed}})
+\begin{DoxyCompactList}\small\item\em Constructor to initialize with specific frequency scaling and seed. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$ \mbox{\hyperlink{classhmap_1_1NoiseFunction_ae3ebc5789e25c4147b745427370be629}{get\+\_\+kw}} () const
+\begin{DoxyCompactList}\small\item\em Get the frequency scaling vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \mbox{\hyperlink{classhmap_1_1NoiseFunction_a40c235c115a268592312e00c383ad581}{get\+\_\+seed}} () const
+\begin{DoxyCompactList}\small\item\em Get the random seed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classhmap_1_1Function}{hmap\+::\+Function}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1Function_a1f77a2faa84c84fb147f48af0bfbc96e}{Function}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. Initializes the delegate function to a default that returns 0. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classhmap_1_1Function_a8efd89e31947f2508ce45b133e30322f}{\texorpdfstring{$\sim$}{\string~}\+Function}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure proper cleanup in derived classes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Function_ae1f9e64626fb671ed37a45d09cf551e8}{Function}} (HMAP\+\_\+\+FCT\+\_\+\+XY\+\_\+\+TYPE delegate)
+\begin{DoxyCompactList}\small\item\em Constructor to initialize with a specific delegate function. \end{DoxyCompactList}\item 
+HMAP\+\_\+\+FCT\+\_\+\+XY\+\_\+\+TYPE \mbox{\hyperlink{classhmap_1_1Function_a32214e30c36be7650c47867fd14f6a0c}{get\+\_\+delegate}} () const
+\begin{DoxyCompactList}\small\item\em Get the current delegate function. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1Function_a82fb7788314b339a062cb80115e2e1da}{get\+\_\+value}} (float x, float y, float ctrl\+\_\+param) const
+\begin{DoxyCompactList}\small\item\em Call the delegate function with given arguments. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1Function_a6163e6f231dc77a7e7d83e74d2b44abe}{set\+\_\+delegate}} (HMAP\+\_\+\+FCT\+\_\+\+XY\+\_\+\+TYPE new\+\_\+delegate)
+\begin{DoxyCompactList}\small\item\em Set a new delegate function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{classhmap_1_1FbmIqFunction_a4b20482a3e3eb46fea4709d36b496c2b}{gradient\+\_\+scale}}
+\begin{DoxyCompactList}\small\item\em Gradient scale influence. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classhmap_1_1GenericFractalFunction}{hmap\+::\+Generic\+Fractal\+Function}}}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classhmap_1_1NoiseFunction}{Noise\+Function}} $>$ \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a8fec1973e7b8a6dcca079c8017326ab2}{p\+\_\+base}}
+\begin{DoxyCompactList}\small\item\em Unique pointer to the base noise function. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a3ee2dbe91dd0512d380a8b28b11438b9}{octaves}}
+\begin{DoxyCompactList}\small\item\em Number of octaves in the fractal noise. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a57139030bd456787c06bf3d7d808837a}{weight}}
+\begin{DoxyCompactList}\small\item\em Weight of the base noise function. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_ab14745ebb9beee94828d13aa587de69a}{persistence}}
+\begin{DoxyCompactList}\small\item\em Persistence of the fractal noise. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a9a205468c861c5f142b738d514b2d9ce}{lacunarity}}
+\begin{DoxyCompactList}\small\item\em Lacunarity of the fractal noise. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a60d32ed5ee9b8674fe6323f71ec668cd}{amp0}}
+\begin{DoxyCompactList}\small\item\em Initial amplitude of the fractal noise. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classhmap_1_1NoiseFunction}{hmap\+::\+Noise\+Function}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$ \mbox{\hyperlink{classhmap_1_1NoiseFunction_a6d7d9881bedbf82be095183cd36bf0a6}{kw}}
+\begin{DoxyCompactList}\small\item\em Frequency scaling vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \mbox{\hyperlink{classhmap_1_1NoiseFunction_a9f125dfcb60e4d9bd2b0fbc44b21d406}{seed}}
+\begin{DoxyCompactList}\small\item\em Random seed for noise generation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classhmap_1_1GenericFractalFunction}{hmap\+::\+Generic\+Fractal\+Function}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_ae14db6b39dcdae409ad1561d471e7d5d}{update\+\_\+amp0}} ()
+\begin{DoxyCompactList}\small\item\em Update the initial amplitude (amp0) based on the current octaves and persistence. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+IQ layering function class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classhmap_1_1FbmIqFunction_a23b61f2543cc193de8ec4113922a0b6e}\label{classhmap_1_1FbmIqFunction_a23b61f2543cc193de8ec4113922a0b6e} 
+\index{hmap::FbmIqFunction@{hmap::FbmIqFunction}!FbmIqFunction@{FbmIqFunction}}
+\index{FbmIqFunction@{FbmIqFunction}!hmap::FbmIqFunction@{hmap::FbmIqFunction}}
+\doxysubsubsection{\texorpdfstring{FbmIqFunction()}{FbmIqFunction()}}
+{\footnotesize\ttfamily hmap\+::\+Fbm\+Iq\+Function\+::\+Fbm\+Iq\+Function (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classhmap_1_1NoiseFunction}{Noise\+Function}} $>$}]{p\+\_\+base,  }\item[{int}]{octaves,  }\item[{float}]{weight,  }\item[{float}]{persistence,  }\item[{float}]{lacunarity,  }\item[{float}]{gradient\+\_\+scale }\end{DoxyParamCaption})}
+
+
+
+Construct a new Fbm Iq \doxylink{classhmap_1_1Function}{Function} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+\_\+base} & Unique pointer to the base noise function. \\
+\hline
+{\em octaves} & Number of octaves. \\
+\hline
+{\em weight} & Octave weighting. \\
+\hline
+{\em persistence} & Octave persistence. \\
+\hline
+{\em lacunarity} & Defines the wavenumber ratio between each octave. \\
+\hline
+{\em gradient\+\_\+scale} & Gradient scale influence. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classhmap_1_1FbmIqFunction_a8ebc23a176c38767de8fa4aa712caddb}\label{classhmap_1_1FbmIqFunction_a8ebc23a176c38767de8fa4aa712caddb} 
+\index{hmap::FbmIqFunction@{hmap::FbmIqFunction}!set\_gradient\_scale@{set\_gradient\_scale}}
+\index{set\_gradient\_scale@{set\_gradient\_scale}!hmap::FbmIqFunction@{hmap::FbmIqFunction}}
+\doxysubsubsection{\texorpdfstring{set\_gradient\_scale()}{set\_gradient\_scale()}}
+{\footnotesize\ttfamily void hmap\+::\+Fbm\+Iq\+Function\+::set\+\_\+gradient\+\_\+scale (\begin{DoxyParamCaption}\item[{float}]{new\+\_\+gradient\+\_\+scale }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the gradient scale. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+gradient\+\_\+scale} & New gradient scale. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classhmap_1_1FbmIqFunction_a4b20482a3e3eb46fea4709d36b496c2b}\label{classhmap_1_1FbmIqFunction_a4b20482a3e3eb46fea4709d36b496c2b} 
+\index{hmap::FbmIqFunction@{hmap::FbmIqFunction}!gradient\_scale@{gradient\_scale}}
+\index{gradient\_scale@{gradient\_scale}!hmap::FbmIqFunction@{hmap::FbmIqFunction}}
+\doxysubsubsection{\texorpdfstring{gradient\_scale}{gradient\_scale}}
+{\footnotesize\ttfamily float hmap\+::\+Fbm\+Iq\+Function\+::gradient\+\_\+scale\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Gradient scale influence. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+High\+Map/include/highmap/\mbox{\hyperlink{functions_8hpp}{functions.\+hpp}}\item 
+High\+Map/src/primitives/functions/\mbox{\hyperlink{fbm__functions_8cpp}{fbm\+\_\+functions.\+cpp}}\end{DoxyCompactItemize}

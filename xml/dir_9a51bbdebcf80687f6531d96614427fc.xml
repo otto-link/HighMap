@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_9a51bbdebcf80687f6531d96614427fc" kind="dir">
+    <compoundname>HighMap/src/operator</compoundname>
+    <innerfile refid="detrend_8cpp">detrend.cpp</innerfile>
+    <innerfile refid="fill__array_8cpp">fill_array.cpp</innerfile>
+    <innerfile refid="inpainting__gaussian_8cpp">inpainting_gaussian.cpp</innerfile>
+    <innerfile refid="operator_8cpp">operator.cpp</innerfile>
+    <innerfile refid="stitching__helpers_8cpp">stitching_helpers.cpp</innerfile>
+    <innerfile refid="vector_8cpp">vector.cpp</innerfile>
+    <innerfile refid="vector__utils_8cpp">vector_utils.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="HighMap/src/operator/"/>
+  </compounddef>
+</doxygen>

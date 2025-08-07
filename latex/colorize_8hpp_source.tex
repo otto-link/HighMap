@@ -1,0 +1,49 @@
+\doxysection{colorize.\+hpp}
+\hypertarget{colorize_8hpp_source}{}\label{colorize_8hpp_source}\index{HighMap/include/highmap/colorize.hpp@{HighMap/include/highmap/colorize.hpp}}
+\mbox{\hyperlink{colorize_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ Copyright\ (c)\ 2023\ Otto\ Link.\ Distributed\ under\ the\ terms\ of\ the\ GNU\ General}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ \ \ Public\ License.\ The\ full\ license\ is\ in\ the\ file\ LICENSE,\ distributed\ with}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ \ this\ software.\ */}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{array_8hpp}{highmap/array.hpp}}"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tensor_8hpp}{highmap/tensor.hpp}}"{}}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacehmap}{hmap}}}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369}{Cmap}}\ :\ int;\ \textcolor{comment}{//\ highmap/colormap.hpp}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00050\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacehmap_a4960846742ad118ec9eadaba40ca39ac}{apply\_hillshade}}(Tensor\ \ \ \ \ \ \&img,}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Array\ \&array,}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ vmin\ =\ 0.f,}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ vmax\ =\ 1.f,}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ exponent\ =\ 1.f);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00074\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacehmap_a4960846742ad118ec9eadaba40ca39ac}{apply\_hillshade}}(std::vector<uint8\_t>\ \&img,}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \ \ \&array,}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vmin\ =\ 0.f,}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vmax\ =\ 1.f,}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exponent\ =\ 1.f,}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ is\_img\_rgba\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00097\ Tensor\ \mbox{\hyperlink{namespacehmap_a33a635351aa13228557a585470ba4563}{colorize}}(\textcolor{keyword}{const}\ Array\ \&array,}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ vmin,}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ vmax,}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ cmap,}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ hillshading,}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ reverse\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Array\ *p\_noise\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00113\ Tensor\ \mbox{\hyperlink{namespacehmap_aa76bdaf8b572bcea0778ef8815965307}{colorize\_grayscale}}(\textcolor{keyword}{const}\ Array\ \&array);}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00124\ Tensor\ \mbox{\hyperlink{namespacehmap_afda3d37dc8fba4a56818964784d2178b}{colorize\_histogram}}(\textcolor{keyword}{const}\ Array\ \&array);}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00165\ Tensor\ \mbox{\hyperlink{namespacehmap_aa60f142e186d43472cdda569c03b31b2}{colorize\_slope\_height\_heatmap}}(\textcolor{keyword}{const}\ Array\ \&array,\ \textcolor{keywordtype}{int}\ cmap);}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00184\ Tensor\ \mbox{\hyperlink{namespacehmap_a9f21720d5e7b1c93e0d5b50631f1ca8f}{colorize\_vec2}}(\textcolor{keyword}{const}\ Array\ \&array1,\ \textcolor{keyword}{const}\ Array\ \&array2);}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \}\ \textcolor{comment}{//\ namespace\ hmap}}
+
+\end{DoxyCode}

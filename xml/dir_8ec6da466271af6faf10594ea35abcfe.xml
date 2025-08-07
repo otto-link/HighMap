@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_8ec6da466271af6faf10594ea35abcfe" kind="dir">
+    <compoundname>HighMap/src/multiscale</compoundname>
+    <innerfile refid="downscale__transform_8cpp">downscale_transform.cpp</innerfile>
+    <innerfile refid="pyramid__decomposition_8cpp">pyramid_decomposition.cpp</innerfile>
+    <innerfile refid="upscale__amplification_8cpp">upscale_amplification.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="HighMap/src/multiscale/"/>
+  </compounddef>
+</doxygen>

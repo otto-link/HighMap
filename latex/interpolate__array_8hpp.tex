@@ -1,0 +1,46 @@
+\doxysection{High\+Map/include/highmap/interpolate\+\_\+array.hpp File Reference}
+\hypertarget{interpolate__array_8hpp}{}\label{interpolate__array_8hpp}\index{HighMap/include/highmap/interpolate\_array.hpp@{HighMap/include/highmap/interpolate\_array.hpp}}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\item 
+namespace \mbox{\hyperlink{namespacehmap_1_1gpu}{hmap\+::gpu}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacehmap_a0039057c9e4adf1498fa0a91b94d7fb8}{hmap\+::flatten\+\_\+heightmap}} (\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h\+\_\+source1, const \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h\+\_\+source2, const \mbox{\hyperlink{classhmap_1_1CoordFrame}{Coord\+Frame}} \&t\+\_\+source1, const \mbox{\hyperlink{classhmap_1_1CoordFrame}{Coord\+Frame}} \&t\+\_\+source2)
+\item 
+void \mbox{\hyperlink{namespacehmap_a2ecd308a993a3d85640aea025e02f3b1}{hmap\+::flatten\+\_\+heightmap}} (const \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h\+\_\+source1, const \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h\+\_\+source2, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h\+\_\+target, const \mbox{\hyperlink{classhmap_1_1CoordFrame}{Coord\+Frame}} \&t\+\_\+source1, const \mbox{\hyperlink{classhmap_1_1CoordFrame}{Coord\+Frame}} \&t\+\_\+source2, const \mbox{\hyperlink{classhmap_1_1CoordFrame}{Coord\+Frame}} \&t\+\_\+target)
+\item 
+void \mbox{\hyperlink{namespacehmap_a17f8f7249f91ef9bbcc0b1b5e38e20f3}{hmap\+::flatten\+\_\+heightmap}} (const std\+::vector$<$ const \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \texorpdfstring{$\ast$}{*} $>$ \&h\+\_\+sources, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h\+\_\+target, const std\+::vector$<$ const \mbox{\hyperlink{classhmap_1_1CoordFrame}{Coord\+Frame}} \texorpdfstring{$\ast$}{*} $>$ \&t\+\_\+sources, const \mbox{\hyperlink{classhmap_1_1CoordFrame}{Coord\+Frame}} \&t\+\_\+target)
+\item 
+void \mbox{\hyperlink{namespacehmap_ab01933c8ca8896b3393d076289024158}{hmap\+::interpolate\+\_\+array\+\_\+bicubic}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&source, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&target)
+\item 
+void \mbox{\hyperlink{namespacehmap_a1cdbdd6cb012995c4f4a943fd6754d48}{hmap\+::interpolate\+\_\+array\+\_\+bicubic}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&source, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&target, const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ \&bbox\+\_\+source, const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ \&bbox\+\_\+target)
+\item 
+void \mbox{\hyperlink{namespacehmap_af979eca3e4faf98300e0912513d317ea}{hmap\+::interpolate\+\_\+array\+\_\+bilinear}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&source, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&target)
+\item 
+void \mbox{\hyperlink{namespacehmap_a4b68a07e932c48ab86f3da581858f0e3}{hmap\+::interpolate\+\_\+array\+\_\+bilinear}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&source, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&target, const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ \&bbox\+\_\+source, const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ \&bbox\+\_\+target)
+\item 
+void \mbox{\hyperlink{namespacehmap_a06b154b615118bc78c1f7fffcc03f4ab}{hmap\+::interpolate\+\_\+array\+\_\+nearest}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&source, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&target)
+\item 
+void \mbox{\hyperlink{namespacehmap_adc6c1fac9e7e40eff5079586d6a1594a}{hmap\+::interpolate\+\_\+array\+\_\+nearest}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&source, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&target, const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ \&bbox\+\_\+source, const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ \&bbox\+\_\+target)
+\item 
+void \mbox{\hyperlink{namespacehmap_a14135f92a275f8857aac1bc9480e426f}{hmap\+::interpolate\+\_\+heightmap}} (const \mbox{\hyperlink{classhmap_1_1Heightmap}{hmap\+::\+Heightmap}} \&h\+\_\+source, \mbox{\hyperlink{classhmap_1_1Heightmap}{hmap\+::\+Heightmap}} \&h\+\_\+target, const \mbox{\hyperlink{classhmap_1_1CoordFrame}{Coord\+Frame}} \&t\+\_\+source, const \mbox{\hyperlink{classhmap_1_1CoordFrame}{Coord\+Frame}} \&t\+\_\+target)
+\item 
+void \mbox{\hyperlink{namespacehmap_1_1gpu_a7fca2b47602e86cf0c65908230bdee55}{hmap\+::gpu\+::interpolate\+\_\+array\+\_\+bicubic}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&source, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&target)
+\item 
+void \mbox{\hyperlink{namespacehmap_1_1gpu_a08d2a6e771f70513a5fdbc27783f5f55}{hmap\+::gpu\+::interpolate\+\_\+array\+\_\+bicubic}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&source, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&target, const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ \&bbox\+\_\+source, const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ \&bbox\+\_\+target)
+\item 
+void \mbox{\hyperlink{namespacehmap_1_1gpu_a9c6bf942ee590b7a1b1fa7e5d87d890a}{hmap\+::gpu\+::interpolate\+\_\+array\+\_\+bilinear}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&source, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&target)
+\item 
+void \mbox{\hyperlink{namespacehmap_1_1gpu_a7afd3be09339152030aed3d5ee28614c}{hmap\+::gpu\+::interpolate\+\_\+array\+\_\+bilinear}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&source, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&target, const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ \&bbox\+\_\+source, const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ \&bbox\+\_\+target)
+\item 
+void \mbox{\hyperlink{namespacehmap_1_1gpu_ac2dbdcbbe157f0a820f8eb07d4544471}{hmap\+::gpu\+::interpolate\+\_\+array\+\_\+lagrange}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&source, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&target, int order)
+\item 
+void \mbox{\hyperlink{namespacehmap_1_1gpu_aa345d48e3c7b1f25ae8823a58a17beef}{hmap\+::gpu\+::interpolate\+\_\+array\+\_\+nearest}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&source, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&target)
+\item 
+void \mbox{\hyperlink{namespacehmap_1_1gpu_aec291339e9356e2b2f57c5641d955a24}{hmap\+::gpu\+::interpolate\+\_\+array\+\_\+nearest}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&source, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&target, const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ \&bbox\+\_\+source, const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ \&bbox\+\_\+target)
+\end{DoxyCompactItemize}

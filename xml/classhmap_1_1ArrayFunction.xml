@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classhmap_1_1ArrayFunction" kind="class" language="C++" prot="public">
+    <compoundname>hmap::ArrayFunction</compoundname>
+    <basecompoundref refid="classhmap_1_1Function" prot="public" virt="non-virtual">hmap::Function</basecompoundref>
+    <includes refid="functions_8hpp" local="no">functions.hpp</includes>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhmap_1_1ArrayFunction_1aa17ffef0ca42635990d2b63ac9ae0036" prot="protected" static="no" mutable="no">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+        <definition>Vec2&lt;float&gt; hmap::ArrayFunction::kw</definition>
+        <argsstring></argsstring>
+        <name>kw</name>
+        <qualifiedname>hmap::ArrayFunction::kw</qualifiedname>
+        <briefdescription>
+<para>Frequency scaling vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="152" column="8" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1ArrayFunction_1a5f74e2ba75875e4cc02827be36c933da" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hmap::ArrayFunction::periodic</definition>
+        <argsstring></argsstring>
+        <name>periodic</name>
+        <qualifiedname>hmap::ArrayFunction::periodic</qualifiedname>
+        <briefdescription>
+<para>Flag indicating whether the domain is periodic or not. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="153" column="8" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="153" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhmap_1_1ArrayFunction_1ab28087fec8d98b8b83b4760aa2e2e815" prot="private" static="no" mutable="no">
+        <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
+        <definition>Array hmap::ArrayFunction::array</definition>
+        <argsstring></argsstring>
+        <name>array</name>
+        <qualifiedname>hmap::ArrayFunction::array</qualifiedname>
+        <briefdescription>
+<para>Data array representing the 2D field. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="156" column="9" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="156" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhmap_1_1ArrayFunction_1a0538ac6f2942c89a3bae6e67e6a91703" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hmap::ArrayFunction::ArrayFunction</definition>
+        <argsstring>(Array array, Vec2&lt; float &gt; kw, bool periodic=true)</argsstring>
+        <name>ArrayFunction</name>
+        <qualifiedname>hmap::ArrayFunction::ArrayFunction</qualifiedname>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
+          <declname>array</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+          <declname>kw</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>periodic</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="classhmap_1_1ArrayFunction" kindref="compound">ArrayFunction</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Data array. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>kw</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Noise wavenumbers {kx, ky} for each direction, with respect to a unit domain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>periodic</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Whether the domain is periodic or not. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="139" column="3" bodyfile="HighMap/src/primitives/functions/functions.cpp" bodystart="33" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1ArrayFunction_1aaf17df22412deb22894418924ce0a137" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::ArrayFunction::set_array</definition>
+        <argsstring>(Array new_array)</argsstring>
+        <name>set_array</name>
+        <qualifiedname>hmap::ArrayFunction::set_array</qualifiedname>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
+          <declname>new_array</declname>
+        </param>
+        <briefdescription>
+<para>Set the array object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>new_array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New data array. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="146" column="8" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="146" bodyend="149"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> (x, y) function class. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class functions like an image sampler with normalized coordinates found on a GPU. It is based on a 2D array, allowing interpolation of any value at a given (x, y) coordinate. Specific boundary conditions, such as periodicity, can also be used. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>hmap::ArrayFunction</label>
+        <link refid="classhmap_1_1ArrayFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hmap::Function</label>
+        <link refid="classhmap_1_1Function"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>hmap::Vec2&lt; float &gt;</label>
+        <link refid="structhmap_1_1Vec2"/>
+      </node>
+      <node id="1">
+        <label>hmap::ArrayFunction</label>
+        <link refid="classhmap_1_1ArrayFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>kw</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hmap::Function</label>
+        <link refid="classhmap_1_1Function"/>
+      </node>
+    </collaborationgraph>
+    <location file="HighMap/include/highmap/functions.hpp" line="128" column="1" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="129" bodyend="157"/>
+    <listofallmembers>
+      <member refid="classhmap_1_1ArrayFunction_1ab28087fec8d98b8b83b4760aa2e2e815" prot="private" virt="non-virtual"><scope>hmap::ArrayFunction</scope><name>array</name></member>
+      <member refid="classhmap_1_1ArrayFunction_1a0538ac6f2942c89a3bae6e67e6a91703" prot="public" virt="non-virtual"><scope>hmap::ArrayFunction</scope><name>ArrayFunction</name></member>
+      <member refid="classhmap_1_1Function_1a1f77a2faa84c84fb147f48af0bfbc96e" prot="public" virt="non-virtual"><scope>hmap::ArrayFunction</scope><name>Function</name></member>
+      <member refid="classhmap_1_1Function_1ae1f9e64626fb671ed37a45d09cf551e8" prot="public" virt="non-virtual"><scope>hmap::ArrayFunction</scope><name>Function</name></member>
+      <member refid="classhmap_1_1Function_1a32214e30c36be7650c47867fd14f6a0c" prot="public" virt="non-virtual"><scope>hmap::ArrayFunction</scope><name>get_delegate</name></member>
+      <member refid="classhmap_1_1Function_1a82fb7788314b339a062cb80115e2e1da" prot="public" virt="non-virtual"><scope>hmap::ArrayFunction</scope><name>get_value</name></member>
+      <member refid="classhmap_1_1ArrayFunction_1aa17ffef0ca42635990d2b63ac9ae0036" prot="protected" virt="non-virtual"><scope>hmap::ArrayFunction</scope><name>kw</name></member>
+      <member refid="classhmap_1_1ArrayFunction_1a5f74e2ba75875e4cc02827be36c933da" prot="protected" virt="non-virtual"><scope>hmap::ArrayFunction</scope><name>periodic</name></member>
+      <member refid="classhmap_1_1ArrayFunction_1aaf17df22412deb22894418924ce0a137" prot="public" virt="non-virtual"><scope>hmap::ArrayFunction</scope><name>set_array</name></member>
+      <member refid="classhmap_1_1Function_1a6163e6f231dc77a7e7d83e74d2b44abe" prot="public" virt="non-virtual"><scope>hmap::ArrayFunction</scope><name>set_delegate</name></member>
+      <member refid="classhmap_1_1Function_1a8efd89e31947f2508ce45b133e30322f" prot="public" virt="virtual"><scope>hmap::ArrayFunction</scope><name>~Function</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

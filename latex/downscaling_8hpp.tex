@@ -1,0 +1,23 @@
+\doxysection{High\+Map/include/highmap/multiscale/downscaling.hpp File Reference}
+\hypertarget{downscaling_8hpp}{}\label{downscaling_8hpp}\index{HighMap/include/highmap/multiscale/downscaling.hpp@{HighMap/include/highmap/multiscale/downscaling.hpp}}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacehmap_a1fb8077215c98a741e0de5366c2f7ca3}{hmap\+::downscale\+\_\+transform}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float kc, std\+::function$<$ void(\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&x)$>$ unary\+\_\+op, bool apply\+\_\+prefiltering=false)
+\begin{DoxyCompactList}\small\item\em Applies a downscaling transformation to a 2D array using Fourier-\/based filtering. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a669a4f9586f3df4b018e321048c9bc7d}{hmap\+::downscale\+\_\+transform\+\_\+multi}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, std\+::vector$<$ float $>$ kc\+\_\+list, std\+::function$<$ void(\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&x, const int current\+\_\+index)$>$ unary\+\_\+op, bool apply\+\_\+prefiltering=false)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Otto Link (\href{mailto:otto.link.bv@gmail.com}{\texttt{ otto.\+link.\+bv@gmail.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}

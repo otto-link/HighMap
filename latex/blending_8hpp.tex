@@ -1,0 +1,46 @@
+\doxysection{High\+Map/include/highmap/blending.hpp File Reference}
+\hypertarget{blending_8hpp}{}\label{blending_8hpp}\index{HighMap/include/highmap/blending.hpp@{HighMap/include/highmap/blending.hpp}}
+
+
+Provides functions for various array blending modes.  
+
+
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\item 
+namespace \mbox{\hyperlink{namespacehmap_1_1gpu}{hmap\+::gpu}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_aafb76d7961d1655fdc07422982357588}{hmap\+::blend\+\_\+exclusion}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array1, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array2)
+\begin{DoxyCompactList}\small\item\em Return the \textquotesingle{}exclusion\textquotesingle{} blending of two arrays. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_af91a60a9fcbed7e38f53df57631a5298}{hmap\+::blend\+\_\+gradients}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array1, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array2, int ir=4)
+\begin{DoxyCompactList}\small\item\em Return the blending of two arrays based on their gradients. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a183cf8de980d1886130cac97fd41bcc5}{hmap\+::blend\+\_\+negate}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array1, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array2)
+\begin{DoxyCompactList}\small\item\em Return the \textquotesingle{}negate\textquotesingle{} blending of two arrays. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a3d311d682d431e21c6d7063539a0db8e}{hmap\+::blend\+\_\+overlay}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array1, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array2)
+\begin{DoxyCompactList}\small\item\em Return the \textquotesingle{}overlay\textquotesingle{} blending of two arrays. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a91e52ae1178d54931a1729a2368a31f7}{hmap\+::blend\+\_\+soft}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array1, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array2)
+\begin{DoxyCompactList}\small\item\em Return the \textquotesingle{}soft\textquotesingle{} blending of two arrays. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_ad1e91583a5c176014ed3720f0eb5a321}{hmap\+::mixer}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&t, const std\+::vector$<$ const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*} $>$ \&arrays, float gain\+\_\+factor=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+\begin{DoxyCompactList}\small\item\em Return the mixing of a set of arrays based on a parameter {\ttfamily t}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_a3a43696b1d6b8f0d966f9f05e5085edf}{hmap\+::gpu\+::blend\+\_\+gradients}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array1, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array2, int ir=4)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_af91a60a9fcbed7e38f53df57631a5298}{hmap\+::blend\+\_\+gradients}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_a65a176508b404f80e5f5abd31456712e}{hmap\+::gpu\+::blend\+\_\+poisson\+\_\+bf}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array1, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array2, const int iterations=500, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+mask=nullptr)
+\begin{DoxyCompactList}\small\item\em Blends two arrays using Poisson blending with a brute-\/force solver. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Provides functions for various array blending modes. 
+
+\begin{DoxyAuthor}{Author}
+Otto Link (\href{mailto:otto.link.bv@gmail.com}{\texttt{ otto.\+link.\+bv@gmail.\+com}}) 
+\end{DoxyAuthor}
+This header file contains functions for blending two arrays using different techniques and modes. The available blending modes include exclusion, negate, overlay, soft light, and gradient-\/based blending. These functions are useful for image processing and heightmap manipulations where blending effects are required.
+
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 Otto Link 
+\end{DoxyCopyright}

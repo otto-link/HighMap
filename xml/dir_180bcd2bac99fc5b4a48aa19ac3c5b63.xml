@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_180bcd2bac99fc5b4a48aa19ac3c5b63" kind="dir">
+    <compoundname>HighMap/src/geometry</compoundname>
+    <innerfile refid="cloud_8cpp">cloud.cpp</innerfile>
+    <innerfile refid="graph_8cpp">graph.cpp</innerfile>
+    <innerfile refid="grid_8cpp">grid.cpp</innerfile>
+    <innerfile refid="path_8cpp">path.cpp</innerfile>
+    <innerfile refid="points_8cpp">points.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="HighMap/src/geometry/"/>
+  </compounddef>
+</doxygen>

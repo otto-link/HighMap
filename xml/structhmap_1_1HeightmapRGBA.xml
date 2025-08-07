@@ -1,0 +1,791 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structhmap_1_1HeightmapRGBA" kind="struct" language="C++" prot="public">
+    <compoundname>hmap::HeightmapRGBA</compoundname>
+    <includes refid="heightmap_8hpp" local="no">heightmap.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structhmap_1_1HeightmapRGBA_1a0457a9b7447ec755b833c43e9650d15c" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classhmap_1_1Heightmap" kindref="compound">Heightmap</ref> &gt;</type>
+        <definition>std::vector&lt;Heightmap&gt; hmap::HeightmapRGBA::rgba</definition>
+        <argsstring></argsstring>
+        <name>rgba</name>
+        <qualifiedname>hmap::HeightmapRGBA::rgba</qualifiedname>
+        <briefdescription>
+<para>RGBA component heightmap storage. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="522" column="15" bodyfile="HighMap/include/highmap/heightmap.hpp" bodystart="522" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1HeightmapRGBA_1a41dd53b903b28b4f78f511ea7f48feb9" prot="public" static="no" mutable="no">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; int &gt;</type>
+        <definition>Vec2&lt;int&gt; hmap::HeightmapRGBA::shape</definition>
+        <argsstring></argsstring>
+        <name>shape</name>
+        <qualifiedname>hmap::HeightmapRGBA::shape</qualifiedname>
+        <initializer>= {0, 0}</initializer>
+        <briefdescription>
+<para>Shape. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="527" column="8" bodyfile="HighMap/include/highmap/heightmap.hpp" bodystart="527" bodyend="527"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structhmap_1_1HeightmapRGBA_1ab3df9c336ae8f0b46eee79a481b88be0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hmap::HeightmapRGBA::HeightmapRGBA</definition>
+        <argsstring>(Heightmap r, Heightmap g, Heightmap b, Heightmap a)</argsstring>
+        <name>HeightmapRGBA</name>
+        <qualifiedname>hmap::HeightmapRGBA::HeightmapRGBA</qualifiedname>
+        <param>
+          <type><ref refid="classhmap_1_1Heightmap" kindref="compound">Heightmap</ref></type>
+          <declname>r</declname>
+        </param>
+        <param>
+          <type><ref refid="classhmap_1_1Heightmap" kindref="compound">Heightmap</ref></type>
+          <declname>g</declname>
+        </param>
+        <param>
+          <type><ref refid="classhmap_1_1Heightmap" kindref="compound">Heightmap</ref></type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type><ref refid="classhmap_1_1Heightmap" kindref="compound">Heightmap</ref></type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+<para>Constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>r</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classhmap_1_1Heightmap" kindref="compound">Heightmap</ref> for R (red) component. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>g</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classhmap_1_1Heightmap" kindref="compound">Heightmap</ref> for G (green) component. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classhmap_1_1Heightmap" kindref="compound">Heightmap</ref> for B (blue) component. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classhmap_1_1Heightmap" kindref="compound">Heightmap</ref> for A (alpha) component. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="536" column="3" bodyfile="HighMap/src/heightmap/heightmap_rgba.cpp" bodystart="26" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1HeightmapRGBA_1a632fb2381aaaf0c0a02a533de0fc3061" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hmap::HeightmapRGBA::HeightmapRGBA</definition>
+        <argsstring>(Vec2&lt; int &gt; shape, Vec2&lt; int &gt; tiling, float overlap, Array array_r, Array array_g, Array array_b, Array array_a)</argsstring>
+        <name>HeightmapRGBA</name>
+        <qualifiedname>hmap::HeightmapRGBA::HeightmapRGBA</qualifiedname>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; int &gt;</type>
+          <declname>shape</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; int &gt;</type>
+          <declname>tiling</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>overlap</declname>
+        </param>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
+          <declname>array_r</declname>
+        </param>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
+          <declname>array_g</declname>
+        </param>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
+          <declname>array_b</declname>
+        </param>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
+          <declname>array_a</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="538" column="3" bodyfile="HighMap/src/heightmap/heightmap_rgba.cpp" bodystart="31" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1HeightmapRGBA_1a4e7b38e9de1767bb9bb983291e273cff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hmap::HeightmapRGBA::HeightmapRGBA</definition>
+        <argsstring>(Vec2&lt; int &gt; shape, Vec2&lt; int &gt; tiling, float overlap)</argsstring>
+        <name>HeightmapRGBA</name>
+        <qualifiedname>hmap::HeightmapRGBA::HeightmapRGBA</qualifiedname>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; int &gt;</type>
+          <declname>shape</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; int &gt;</type>
+          <declname>tiling</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>overlap</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="546" column="3" bodyfile="HighMap/src/heightmap/heightmap_rgba.cpp" bodystart="46" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1HeightmapRGBA_1ab85e97e518d07bcb2c56fac612885d8c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hmap::HeightmapRGBA::HeightmapRGBA</definition>
+        <argsstring>()</argsstring>
+        <name>HeightmapRGBA</name>
+        <qualifiedname>hmap::HeightmapRGBA::HeightmapRGBA</qualifiedname>
+        <briefdescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="548" column="3" bodyfile="HighMap/src/heightmap/heightmap_rgba.cpp" bodystart="21" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1HeightmapRGBA_1a9de9ba26672485c5f5e19b2f35bf26eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::HeightmapRGBA::set_alpha</definition>
+        <argsstring>(Heightmap new_alpha)</argsstring>
+        <name>set_alpha</name>
+        <qualifiedname>hmap::HeightmapRGBA::set_alpha</qualifiedname>
+        <param>
+          <type><ref refid="classhmap_1_1Heightmap" kindref="compound">Heightmap</ref></type>
+          <declname>new_alpha</declname>
+        </param>
+        <briefdescription>
+<para>Set the alpha channel. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>new_alpha</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Alpha value(s). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="554" column="8" bodyfile="HighMap/src/heightmap/heightmap_rgba.cpp" bodystart="76" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1HeightmapRGBA_1aed79841db9d57dc03afc2ccdaa899a86" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::HeightmapRGBA::set_alpha</definition>
+        <argsstring>(float new_alpha)</argsstring>
+        <name>set_alpha</name>
+        <qualifiedname>hmap::HeightmapRGBA::set_alpha</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>new_alpha</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="556" column="8" bodyfile="HighMap/src/heightmap/heightmap_rgba.cpp" bodystart="81" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1HeightmapRGBA_1a16bcb5357cbc49ae4bff6f0713c4985c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::HeightmapRGBA::set_sto</definition>
+        <argsstring>(Vec2&lt; int &gt; new_shape, Vec2&lt; int &gt; new_tiling, float new_overlap)</argsstring>
+        <name>set_sto</name>
+        <qualifiedname>hmap::HeightmapRGBA::set_sto</qualifiedname>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; int &gt;</type>
+          <declname>new_shape</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; int &gt;</type>
+          <declname>new_tiling</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>new_overlap</declname>
+        </param>
+        <briefdescription>
+<para>Set the shape / tiling / overlap in one pass. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>new_shape</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New shape. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>new_tiling</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New tiling. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>new_overlap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New overlap. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="565" column="8" bodyfile="HighMap/src/heightmap/heightmap_rgba.cpp" bodystart="89" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1HeightmapRGBA_1a862282b5cffd9391fece507ac6fd3236" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::HeightmapRGBA::to_png</definition>
+        <argsstring>(const std::string &amp;fname, int depth=CV_8U)</argsstring>
+        <name>to_png</name>
+        <qualifiedname>hmap::HeightmapRGBA::to_png</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>fname</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>depth</declname>
+          <defval>CV_8U</defval>
+        </param>
+        <briefdescription>
+<para>Export the RGB heightmap to a 8bit png file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fname</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>File name. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="571" column="8" bodyfile="HighMap/src/heightmap/heightmap_rgba.cpp" bodystart="445" bodyend="451"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1HeightmapRGBA_1a9fb8149f2080b36e191ed97f70af09ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::HeightmapRGBA::colorize</definition>
+        <argsstring>(Heightmap &amp;color_level, float vmin, float vmax, int cmap, Heightmap *p_alpha=nullptr, bool reverse=false, Heightmap *p_noise=nullptr)</argsstring>
+        <name>colorize</name>
+        <qualifiedname>hmap::HeightmapRGBA::colorize</qualifiedname>
+        <param>
+          <type><ref refid="classhmap_1_1Heightmap" kindref="compound">Heightmap</ref> &amp;</type>
+          <declname>color_level</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>vmin</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>vmax</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>cmap</declname>
+        </param>
+        <param>
+          <type><ref refid="classhmap_1_1Heightmap" kindref="compound">Heightmap</ref> *</type>
+          <declname>p_alpha</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>reverse</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type><ref refid="classhmap_1_1Heightmap" kindref="compound">Heightmap</ref> *</type>
+          <declname>p_noise</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Fill RGB heightmap components based on a colormap and an input reference heightmap. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>color_level</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input heightmap for color level. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vmin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Lower bound for scaling to array [0, 1]. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vmax</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Upper bound for scaling to array [0, 1] </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cmap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Colormap (see <computeroutput><ref refid="" kindref="compound">cmap</ref></computeroutput>). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_alpha</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to input heightmap for alpha channel, expected in [0, 1]. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>reverse</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reverse colormap. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="584" column="8" bodyfile="HighMap/src/heightmap/heightmap_rgba.cpp" bodystart="193" bodyend="203"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1HeightmapRGBA_1a679ac4a0febf5e4def5ab6b07d641dbb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::HeightmapRGBA::colorize</definition>
+        <argsstring>(Heightmap &amp;color_level, float vmin, float vmax, std::vector&lt; std::vector&lt; float &gt; &gt; colormap_colors, Heightmap *p_alpha=nullptr, bool reverse=false, Heightmap *p_noise=nullptr)</argsstring>
+        <name>colorize</name>
+        <qualifiedname>hmap::HeightmapRGBA::colorize</qualifiedname>
+        <param>
+          <type><ref refid="classhmap_1_1Heightmap" kindref="compound">Heightmap</ref> &amp;</type>
+          <declname>color_level</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>vmin</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>vmax</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::vector&lt; float &gt; &gt;</type>
+          <declname>colormap_colors</declname>
+        </param>
+        <param>
+          <type><ref refid="classhmap_1_1Heightmap" kindref="compound">Heightmap</ref> *</type>
+          <declname>p_alpha</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>reverse</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type><ref refid="classhmap_1_1Heightmap" kindref="compound">Heightmap</ref> *</type>
+          <declname>p_noise</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Fill RGBA heightmap components based on a colormap and input reference heightmaps for the color level and the transparency. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>color_level</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input heightmap for color level. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vmin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Lower bound for scaling to array [0, 1]. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vmax</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Upper bound for scaling to array [0, 1] </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>colormap_colors</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Colormap RGB colors as a vector of RGB colors. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_alpha</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to input heightmap for alpha channel, expected in [0, 1]. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>reverse</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reverse colormap. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="603" column="8" bodyfile="HighMap/src/heightmap/heightmap_rgba.cpp" bodystart="99" bodyend="191"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1HeightmapRGBA_1af53c9f791817ea400f3b8cdfe152bd3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhmap_1_1Heightmap" kindref="compound">Heightmap</ref></type>
+        <definition>Heightmap hmap::HeightmapRGBA::luminance</definition>
+        <argsstring>()</argsstring>
+        <name>luminance</name>
+        <qualifiedname>hmap::HeightmapRGBA::luminance</qualifiedname>
+        <briefdescription>
+<para>Computes the luminance of an RGBA height map. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method creates a grayscale <computeroutput>HeightMap</computeroutput> based on the luminance values calculated from the red, green, and blue channels of the RGBA height map. The luminance is computed using the standard formula: <formula id="3">$
+L =
+0.299 \times R + 0.587 \times G + 0.114 \times B $</formula>.</para>
+<para><simplesect kind="return"><para>A <computeroutput>HeightMap</computeroutput> representing the grayscale luminance of the current RGBA height map.</para>
+</simplesect>
+<simplesect kind="see"><para><ulink url="https://stackoverflow.com/questions/596216">https://stackoverflow.com/questions/596216</ulink> for details on the <ref refid="structhmap_1_1HeightmapRGBA_1af53c9f791817ea400f3b8cdfe152bd3a" kindref="member">luminance</ref> calculation. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="626" column="13" bodyfile="HighMap/src/heightmap/heightmap_rgba.cpp" bodystart="51" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1HeightmapRGBA_1a144c800a402bba5570820c83c8b8535b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::HeightmapRGBA::normalize</definition>
+        <argsstring>()</argsstring>
+        <name>normalize</name>
+        <qualifiedname>hmap::HeightmapRGBA::normalize</qualifiedname>
+        <briefdescription>
+<para>Normalize RGBA heightmaps amplitude. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="652" column="8" bodyfile="HighMap/src/heightmap/heightmap_rgba.cpp" bodystart="431" bodyend="443"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1HeightmapRGBA_1a5d01de7c8fd4bdda2c335bb4e5f891cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; uint8_t &gt;</type>
+        <definition>std::vector&lt; uint8_t &gt; hmap::HeightmapRGBA::to_img_8bit</definition>
+        <argsstring>(Vec2&lt; int &gt; shape_img={0, 0})</argsstring>
+        <name>to_img_8bit</name>
+        <qualifiedname>hmap::HeightmapRGBA::to_img_8bit</qualifiedname>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; int &gt;</type>
+          <declname>shape_img</declname>
+          <defval>{0, 0}</defval>
+        </param>
+        <briefdescription>
+<para>Convert the RGB heightmap to a 8bit RGB image. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>shape_img</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Resulting image shape. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Image data. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="659" column="15" bodyfile="HighMap/src/heightmap/heightmap_rgba.cpp" bodystart="453" bodyend="474"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="structhmap_1_1HeightmapRGBA_1a1fa412d908912e2f55defbf67cb42edd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structhmap_1_1HeightmapRGBA" kindref="compound">HeightmapRGBA</ref></type>
+        <definition>HeightmapRGBA mix_heightmap_rgba</definition>
+        <argsstring>(HeightmapRGBA &amp;rgba1, HeightmapRGBA &amp;rgba2, bool use_sqrt_avg)</argsstring>
+        <name>mix_heightmap_rgba</name>
+        <qualifiedname>hmap::HeightmapRGBA::mix_heightmap_rgba</qualifiedname>
+        <param>
+          <type><ref refid="structhmap_1_1HeightmapRGBA" kindref="compound">HeightmapRGBA</ref> &amp;</type>
+          <declname>rgba1</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1HeightmapRGBA" kindref="compound">HeightmapRGBA</ref> &amp;</type>
+          <declname>rgba2</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>use_sqrt_avg</declname>
+        </param>
+        <briefdescription>
+<para>Mix two RGBA heightmap using alpha compositing (&quot;over&quot;). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rgba1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>1st RGBA heightmap. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rgba2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>2st RGBA heightmap. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>use_sqrt_avg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Whether to use or not square averaging. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>RGBA heightmap. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="635" column="24" bodyfile="HighMap/src/heightmap/heightmap_rgba.cpp" bodystart="205" bodyend="280"/>
+      </memberdef>
+      <memberdef kind="friend" id="structhmap_1_1HeightmapRGBA_1a3b3ac1df8b7c96027ccb28878b2894cd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structhmap_1_1HeightmapRGBA" kindref="compound">HeightmapRGBA</ref></type>
+        <definition>HeightmapRGBA mix_heightmap_rgba</definition>
+        <argsstring>(std::vector&lt; HeightmapRGBA * &gt; rgba_plist, bool use_sqrt_avg)</argsstring>
+        <name>mix_heightmap_rgba</name>
+        <qualifiedname>hmap::HeightmapRGBA::mix_heightmap_rgba</qualifiedname>
+        <param>
+          <type>std::vector&lt; <ref refid="structhmap_1_1HeightmapRGBA" kindref="compound">HeightmapRGBA</ref> * &gt;</type>
+          <declname>rgba_plist</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>use_sqrt_avg</declname>
+        </param>
+        <briefdescription>
+<para>Mix two RGBA heightmap using alpha compositing (&quot;over&quot;). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rgba_plist</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classhmap_1_1Heightmap" kindref="compound">Heightmap</ref> reference list. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>use_sqrt_avg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Whether to use or not square averaging. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>RGBA heightmap. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/heightmap.hpp" line="645" column="24" bodyfile="HighMap/src/heightmap/heightmap_rgba.cpp" bodystart="282" bodyend="300"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>HeightMap class, to manipulate a set of RGBA heightmap for heightmap texturing. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><bold>Example</bold> <programlisting filename="ex_ex_heightmap_rgba.cpp"></programlisting></para>
+<para><bold>Result</bold> <image type="html" name="ex_ex_heightmap_rgba0.png"></image>
+ <image type="html" name="ex_ex_heightmap_rgba1.png"></image>
+ <image type="html" name="ex_ex_heightmap_rgba2.png"></image>
+ <image type="html" name="ex_ex_heightmap_rgba3.png"></image>
+ <image type="html" name="ex_ex_heightmap_rgba4.png"></image>
+ </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="9">
+        <label>hmap::Vec2&lt; float &gt;</label>
+        <link refid="structhmap_1_1Vec2"/>
+      </node>
+      <node id="4">
+        <label>hmap::Vec2&lt; int &gt;</label>
+        <link refid="structhmap_1_1Vec2"/>
+      </node>
+      <node id="10">
+        <label>hmap::Vec4&lt; float &gt;</label>
+        <link refid="structhmap_1_1Vec4"/>
+      </node>
+      <node id="7">
+        <label>hmap::Array</label>
+        <link refid="classhmap_1_1Array"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>shape</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>vector</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>hmap::Heightmap</label>
+        <link refid="classhmap_1_1Heightmap"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>shape</edgelabel>
+          <edgelabel>tiling</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>tiles</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hmap::HeightmapRGBA</label>
+        <link refid="structhmap_1_1HeightmapRGBA"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>rgba</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>shape</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>hmap::Tile</label>
+        <link refid="classhmap_1_1Tile"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>scale</edgelabel>
+          <edgelabel>shift</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>bbox</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>std::vector&lt; float &gt;</label>
+      </node>
+      <node id="2">
+        <label>std::vector&lt; hmap::Heightmap &gt;</label>
+        <childnode refid="3" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>std::vector&lt; hmap::Tile &gt;</label>
+        <childnode refid="6" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="HighMap/include/highmap/heightmap.hpp" line="517" column="1" bodyfile="HighMap/include/highmap/heightmap.hpp" bodystart="518" bodyend="660"/>
+    <listofallmembers>
+      <member refid="structhmap_1_1HeightmapRGBA_1a9fb8149f2080b36e191ed97f70af09ad" prot="public" virt="non-virtual"><scope>hmap::HeightmapRGBA</scope><name>colorize</name></member>
+      <member refid="structhmap_1_1HeightmapRGBA_1a679ac4a0febf5e4def5ab6b07d641dbb" prot="public" virt="non-virtual"><scope>hmap::HeightmapRGBA</scope><name>colorize</name></member>
+      <member refid="structhmap_1_1HeightmapRGBA_1ab3df9c336ae8f0b46eee79a481b88be0" prot="public" virt="non-virtual"><scope>hmap::HeightmapRGBA</scope><name>HeightmapRGBA</name></member>
+      <member refid="structhmap_1_1HeightmapRGBA_1a632fb2381aaaf0c0a02a533de0fc3061" prot="public" virt="non-virtual"><scope>hmap::HeightmapRGBA</scope><name>HeightmapRGBA</name></member>
+      <member refid="structhmap_1_1HeightmapRGBA_1a4e7b38e9de1767bb9bb983291e273cff" prot="public" virt="non-virtual"><scope>hmap::HeightmapRGBA</scope><name>HeightmapRGBA</name></member>
+      <member refid="structhmap_1_1HeightmapRGBA_1ab85e97e518d07bcb2c56fac612885d8c" prot="public" virt="non-virtual"><scope>hmap::HeightmapRGBA</scope><name>HeightmapRGBA</name></member>
+      <member refid="structhmap_1_1HeightmapRGBA_1af53c9f791817ea400f3b8cdfe152bd3a" prot="public" virt="non-virtual"><scope>hmap::HeightmapRGBA</scope><name>luminance</name></member>
+      <member refid="structhmap_1_1HeightmapRGBA_1a1fa412d908912e2f55defbf67cb42edd" prot="public" virt="non-virtual"><scope>hmap::HeightmapRGBA</scope><name>mix_heightmap_rgba</name></member>
+      <member refid="structhmap_1_1HeightmapRGBA_1a3b3ac1df8b7c96027ccb28878b2894cd" prot="public" virt="non-virtual"><scope>hmap::HeightmapRGBA</scope><name>mix_heightmap_rgba</name></member>
+      <member refid="structhmap_1_1HeightmapRGBA_1a144c800a402bba5570820c83c8b8535b" prot="public" virt="non-virtual"><scope>hmap::HeightmapRGBA</scope><name>normalize</name></member>
+      <member refid="structhmap_1_1HeightmapRGBA_1a0457a9b7447ec755b833c43e9650d15c" prot="public" virt="non-virtual"><scope>hmap::HeightmapRGBA</scope><name>rgba</name></member>
+      <member refid="structhmap_1_1HeightmapRGBA_1a9de9ba26672485c5f5e19b2f35bf26eb" prot="public" virt="non-virtual"><scope>hmap::HeightmapRGBA</scope><name>set_alpha</name></member>
+      <member refid="structhmap_1_1HeightmapRGBA_1aed79841db9d57dc03afc2ccdaa899a86" prot="public" virt="non-virtual"><scope>hmap::HeightmapRGBA</scope><name>set_alpha</name></member>
+      <member refid="structhmap_1_1HeightmapRGBA_1a16bcb5357cbc49ae4bff6f0713c4985c" prot="public" virt="non-virtual"><scope>hmap::HeightmapRGBA</scope><name>set_sto</name></member>
+      <member refid="structhmap_1_1HeightmapRGBA_1a41dd53b903b28b4f78f511ea7f48feb9" prot="public" virt="non-virtual"><scope>hmap::HeightmapRGBA</scope><name>shape</name></member>
+      <member refid="structhmap_1_1HeightmapRGBA_1a5d01de7c8fd4bdda2c335bb4e5f891cf" prot="public" virt="non-virtual"><scope>hmap::HeightmapRGBA</scope><name>to_img_8bit</name></member>
+      <member refid="structhmap_1_1HeightmapRGBA_1a862282b5cffd9391fece507ac6fd3236" prot="public" virt="non-virtual"><scope>hmap::HeightmapRGBA</scope><name>to_png</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

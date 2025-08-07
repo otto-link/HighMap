@@ -1,0 +1,36 @@
+\doxysection{High\+Map/src/boundary/boundary.cpp File Reference}
+\hypertarget{boundary_8cpp}{}\label{boundary_8cpp}\index{HighMap/src/boundary/boundary.cpp@{HighMap/src/boundary/boundary.cpp}}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacehmap_a8802e95ba76a252d2098bdb3fb5cfc28}{hmap\+::extrapolate\+\_\+borders}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int nbuffer=1, float sigma=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+\begin{DoxyCompactList}\small\item\em Performs linear extrapolation of values at the borders of an array (e.\+g., {\ttfamily i = 0}, {\ttfamily j = 0}, etc.) based on the inner values of the array. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a1509f9df26854cd66af1b63f2505e1a1}{hmap\+::falloff}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float strength=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, \mbox{\hyperlink{namespacehmap_a670f50d6c08ecd639d42db9c75a5273a}{Distance\+Function}} dist\+\_\+fct=\mbox{\hyperlink{namespacehmap_a670f50d6c08ecd639d42db9c75a5273aab5937b3ae1efaa098f517fe7c761b781}{Distance\+Function\+::\+EUCLIDIAN}}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise=nullptr, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\})
+\begin{DoxyCompactList}\small\item\em Applies a falloff effect to the input array based on distance. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a072f0c93c6e3e5e0f8f88c760850dce8}{hmap\+::fill\+\_\+borders}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array)
+\begin{DoxyCompactList}\small\item\em Fills the border values of an array (e.\+g., {\ttfamily i = 0}, {\ttfamily j = 0}, etc.) based on the values of the first neighboring cells. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a8b7bdf4f052ba72e3dc8150d324a53b6}{hmap\+::fill\+\_\+borders}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int nbuffer)
+\begin{DoxyCompactList}\small\item\em This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a54bbc87163c158c1753a1f9d0c879995}{hmap\+::generate\+\_\+buffered\+\_\+array}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ int $>$ buffers, bool zero\+\_\+padding=false)
+\begin{DoxyCompactList}\small\item\em Creates and returns a new array with additional buffer zones at the boundaries, where the buffer values are filled either by symmetry or by zero-\/padding. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a44fa6e4a99112fb0c9f7cc397ec5b617}{hmap\+::make\+\_\+periodic}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int nbuffer)
+\begin{DoxyCompactList}\small\item\em Adjusts the input array to be periodic in both directions by transitioning smoothly at the boundaries. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a0cfa879188da80b9e5bf16e8c325c9ba}{hmap\+::make\+\_\+periodic\+\_\+stitching}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float overlap)
+\begin{DoxyCompactList}\small\item\em Creates a periodic array in both directions using a stitching operation that minimizes errors at the boundaries. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_ab3df05c2be51b4860710bd077973d19b}{hmap\+::make\+\_\+periodic\+\_\+tiling}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float overlap, \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ tiling)
+\begin{DoxyCompactList}\small\item\em Creates a tiled, periodic array by applying a transition with overlap in both directions. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a6741f8d2d6c438c8993a42e1efafc987}{hmap\+::set\+\_\+borders}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ border\+\_\+values, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ int $>$ buffer\+\_\+sizes)
+\begin{DoxyCompactList}\small\item\em Enforces specific values at the boundaries of the array. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a403b405887b5cda6a1d6f8bcaeb4c5e8}{hmap\+::set\+\_\+borders}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float border\+\_\+values, int buffer\+\_\+sizes)
+\begin{DoxyCompactList}\small\item\em Enforces a uniform value at all boundaries of the array. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a646e831987d60f4171024faadd6236e3}{hmap\+::sym\+\_\+borders}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ int $>$ buffer\+\_\+sizes)
+\begin{DoxyCompactList}\small\item\em Fills the values at the domain borders using symmetry over a specified buffer depth. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_ae8bdfc965780305d1d26ff8b84e1dced}{hmap\+::zeroed\+\_\+borders}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array)
+\begin{DoxyCompactList}\small\item\em Fills the border values (e.\+g., {\ttfamily i = 0}, {\ttfamily j = 0}, etc.) of the array with zeros. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_aea2ac2d901a1bf47ce8f19d463a7079e}{hmap\+::zeroed\+\_\+edges}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float sigma=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, \mbox{\hyperlink{namespacehmap_a670f50d6c08ecd639d42db9c75a5273a}{Distance\+Function}} dist\+\_\+fct=\mbox{\hyperlink{namespacehmap_a670f50d6c08ecd639d42db9c75a5273aab5937b3ae1efaa098f517fe7c761b781}{Distance\+Function\+::\+EUCLIDIAN}}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise=nullptr, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\})
+\begin{DoxyCompactList}\small\item\em Applies a smooth transition to zero at the array borders. \end{DoxyCompactList}\end{DoxyCompactItemize}

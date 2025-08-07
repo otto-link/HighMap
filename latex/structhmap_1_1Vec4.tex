@@ -1,0 +1,426 @@
+\doxysection{hmap\+::Vec4\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Struct Template Reference}
+\hypertarget{structhmap_1_1Vec4}{}\label{structhmap_1_1Vec4}\index{hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}}
+
+
+\doxylink{structhmap_1_1Vec4}{Vec4} class for basic manipulation of 4D vectors.  
+
+
+
+
+{\ttfamily \#include $<$algebra.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structhmap_1_1Vec4_aec07dc20c1becffea00a00270a92253f}{Vec4}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor initializing the vector to (0, 0, 0, 0). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structhmap_1_1Vec4_ae9a4e44a1c81b1ea06986432a4c1c045}{Vec4}} (T \mbox{\hyperlink{structhmap_1_1Vec4_abacc46ee2584065b59c1de54df0c4c25}{a}}, T \mbox{\hyperlink{structhmap_1_1Vec4_a53ccbd36fe92232c1fcdb4b00d0bfd52}{b}}, T \mbox{\hyperlink{structhmap_1_1Vec4_ace83278a01cac27dd438a0afcf0bb55d}{c}}, T \mbox{\hyperlink{structhmap_1_1Vec4_aa65a4c32ae633eefee047c973fb55982}{d}})
+\begin{DoxyCompactList}\small\item\em Parameterized constructor initializing the vector to given values. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structhmap_1_1Vec4_a0c9fe01131fd18c85148768f4db47733}{Vec4}} (const std\+::vector$<$ T $>$ \&vec)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{structhmap_1_1Vec4}{Vec4} object from a std\+::vector. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structhmap_1_1Vec4_a18f7b68bdda02d98aedabaf8867f226e}{operator==}} (const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}} \&other\+\_\+vec) const
+\begin{DoxyCompactList}\small\item\em Equality operator. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structhmap_1_1Vec4_aa3a7351534f531545194c0a21e1fc401}{operator!=}} (const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}} \&other\+\_\+vec) const
+\begin{DoxyCompactList}\small\item\em Inequality operator. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}} \& \mbox{\hyperlink{structhmap_1_1Vec4_a168a532a13b3fa35d09f0c9ea1a321a9}{operator/=}} (const T value)
+\begin{DoxyCompactList}\small\item\em Division-\/assignment operator. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}} \mbox{\hyperlink{structhmap_1_1Vec4_ae724a00bc2d0d7d7cdf8f0dc614222a9}{operator/}} (const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}} \&other\+\_\+vec) const
+\begin{DoxyCompactList}\small\item\em Division operator. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}} \mbox{\hyperlink{structhmap_1_1Vec4_a3be874dcf9fffa46cdab762d703ef1ab}{operator\texorpdfstring{$\ast$}{*}}} (const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}} \&other\+\_\+vec) const
+\begin{DoxyCompactList}\small\item\em Multiplication operator. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}} \mbox{\hyperlink{structhmap_1_1Vec4_a4cda617d090c216c30c1d0cf954dd2ca}{operator+}} (const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}} \&other\+\_\+vec) const
+\begin{DoxyCompactList}\small\item\em Addition operator. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}} \mbox{\hyperlink{structhmap_1_1Vec4_a67123a8dd8a1a92f99557e099a86af8a}{operator-\/}} (const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}} \&other\+\_\+vec) const
+\begin{DoxyCompactList}\small\item\em Subtraction operator. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}} \mbox{\hyperlink{structhmap_1_1Vec4_ac4383140ebf1c19af7a5e5465638e89d}{operator\texorpdfstring{$\ast$}{*}}} (T scalar) const
+\begin{DoxyCompactList}\small\item\em Scalar multiplication (\doxylink{structhmap_1_1Vec4}{Vec4} \texorpdfstring{$\ast$}{*} scalar). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ T $>$ \mbox{\hyperlink{structhmap_1_1Vec4_a080d1200616967db1349c9b912b1186c}{adjust}} (float da, float db, float dc, float dd)
+\begin{DoxyCompactList}\small\item\em Adjusts the components of the vector by the given offsets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+T \mbox{\hyperlink{structhmap_1_1Vec4_abacc46ee2584065b59c1de54df0c4c25}{a}}
+\item 
+T \mbox{\hyperlink{structhmap_1_1Vec4_a53ccbd36fe92232c1fcdb4b00d0bfd52}{b}}
+\item 
+T \mbox{\hyperlink{structhmap_1_1Vec4_ace83278a01cac27dd438a0afcf0bb55d}{c}}
+\item 
+T \mbox{\hyperlink{structhmap_1_1Vec4_aa65a4c32ae633eefee047c973fb55982}{d}}
+\begin{DoxyCompactList}\small\item\em The a, b, c, and d components of the vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}} \mbox{\hyperlink{structhmap_1_1Vec4_a1c2926686abc112047126b7d06859965}{operator\texorpdfstring{$\ast$}{*}}} (T scalar, const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}} \&vec)
+\begin{DoxyCompactList}\small\item\em Scalar multiplication (scalar \texorpdfstring{$\ast$}{*} \doxylink{structhmap_1_1Vec4}{Vec4}). \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structhmap_1_1Vec4_a2792f6a93dabbfb082fcd8313424747c}{dot}} (const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}} v1, const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}} v2)
+\begin{DoxyCompactList}\small\item\em Friend function to calculate the dot product of two vectors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+struct hmap\+::\+Vec4$<$ T $>$}
+\doxylink{structhmap_1_1Vec4}{Vec4} class for basic manipulation of 4D vectors. 
+
+This class provides basic operations for 4D vectors, such as addition, subtraction, multiplication, division, and dot product calculation. The class supports various data types through templating.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Data type for the vector components (e.\+g., int, float, double). \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{structhmap_1_1Vec4_aec07dc20c1becffea00a00270a92253f}\label{structhmap_1_1Vec4_aec07dc20c1becffea00a00270a92253f} 
+\index{hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}!Vec4@{Vec4}}
+\index{Vec4@{Vec4}!hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Vec4()}{Vec4()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{structhmap_1_1Vec4}{hmap\+::\+Vec4}}$<$ T $>$\+::\+Vec4 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor initializing the vector to (0, 0, 0, 0). 
+
+Initializes the a, b, c, and d components to zero. \Hypertarget{structhmap_1_1Vec4_ae9a4e44a1c81b1ea06986432a4c1c045}\label{structhmap_1_1Vec4_ae9a4e44a1c81b1ea06986432a4c1c045} 
+\index{hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}!Vec4@{Vec4}}
+\index{Vec4@{Vec4}!hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Vec4()}{Vec4()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{structhmap_1_1Vec4}{hmap\+::\+Vec4}}$<$ T $>$\+::\+Vec4 (\begin{DoxyParamCaption}\item[{T}]{a,  }\item[{T}]{b,  }\item[{T}]{c,  }\item[{T}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Parameterized constructor initializing the vector to given values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The a component of the vector. \\
+\hline
+{\em b} & The b component of the vector. \\
+\hline
+{\em c} & The c component of the vector. \\
+\hline
+{\em d} & The d component of the vector. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structhmap_1_1Vec4_a0c9fe01131fd18c85148768f4db47733}\label{structhmap_1_1Vec4_a0c9fe01131fd18c85148768f4db47733} 
+\index{hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}!Vec4@{Vec4}}
+\index{Vec4@{Vec4}!hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Vec4()}{Vec4()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{structhmap_1_1Vec4}{hmap\+::\+Vec4}}$<$ T $>$\+::\+Vec4 (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a \doxylink{structhmap_1_1Vec4}{Vec4} object from a std\+::vector. 
+
+This constructor takes a vector containing exactly four elements and assigns the first element to {\ttfamily a}, the second to {\ttfamily b}, the third to {\ttfamily c}, and the fourth to {\ttfamily d}.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of elements in the vector (e.\+g., float, int, double). \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & A const reference to a vector of size 4, where the first element corresponds to {\ttfamily a}, the second to {\ttfamily b}, the third to {\ttfamily c}, and the fourth to {\ttfamily d}.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::invalid\+\_\+argument} & If the vector does not contain exactly four elements. \\
+\hline
+\end{DoxyExceptions}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structhmap_1_1Vec4_a18f7b68bdda02d98aedabaf8867f226e}\label{structhmap_1_1Vec4_a18f7b68bdda02d98aedabaf8867f226e} 
+\index{hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}!operator==@{operator==}}
+\index{operator==@{operator==}!hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{structhmap_1_1Vec4}{hmap\+::\+Vec4}}$<$ T $>$\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ T $>$ \&}]{other\+\_\+vec }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Equality operator. 
+
+Compares two vectors for equality.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other\+\_\+vec} & The vector to compare with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the vectors are equal, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{structhmap_1_1Vec4_aa3a7351534f531545194c0a21e1fc401}\label{structhmap_1_1Vec4_aa3a7351534f531545194c0a21e1fc401} 
+\index{hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool \mbox{\hyperlink{structhmap_1_1Vec4}{hmap\+::\+Vec4}}$<$ T $>$\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ T $>$ \&}]{other\+\_\+vec }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Inequality operator. 
+
+Compares two vectors for inequality.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other\+\_\+vec} & The vector to compare with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the vectors are not equal, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{structhmap_1_1Vec4_a168a532a13b3fa35d09f0c9ea1a321a9}\label{structhmap_1_1Vec4_a168a532a13b3fa35d09f0c9ea1a321a9} 
+\index{hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator/=()}{operator/=()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}} \& \mbox{\hyperlink{structhmap_1_1Vec4}{hmap\+::\+Vec4}}$<$ T $>$\+::operator/= (\begin{DoxyParamCaption}\item[{const T}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Division-\/assignment operator. 
+
+Divides all components of the vector by a scalar value and assigns the result.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The scalar value to divide by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the current vector after division. 
+\end{DoxyReturn}
+\Hypertarget{structhmap_1_1Vec4_ae724a00bc2d0d7d7cdf8f0dc614222a9}\label{structhmap_1_1Vec4_ae724a00bc2d0d7d7cdf8f0dc614222a9} 
+\index{hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}!operator/@{operator/}}
+\index{operator/@{operator/}!hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator/()}{operator/()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}} \mbox{\hyperlink{structhmap_1_1Vec4}{hmap\+::\+Vec4}}$<$ T $>$\+::operator/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ T $>$ \&}]{other\+\_\+vec }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Division operator. 
+
+Divides each component of the vector by the corresponding component of another vector.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other\+\_\+vec} & The vector to divide by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new vector that is the result of the division. 
+\end{DoxyReturn}
+\Hypertarget{structhmap_1_1Vec4_a3be874dcf9fffa46cdab762d703ef1ab}\label{structhmap_1_1Vec4_a3be874dcf9fffa46cdab762d703ef1ab} 
+\index{hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}} \mbox{\hyperlink{structhmap_1_1Vec4}{hmap\+::\+Vec4}}$<$ T $>$\+::operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ T $>$ \&}]{other\+\_\+vec }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Multiplication operator. 
+
+Multiplies each component of the vector by the corresponding component of another vector.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other\+\_\+vec} & The vector to multiply by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new vector that is the result of the multiplication. 
+\end{DoxyReturn}
+\Hypertarget{structhmap_1_1Vec4_a4cda617d090c216c30c1d0cf954dd2ca}\label{structhmap_1_1Vec4_a4cda617d090c216c30c1d0cf954dd2ca} 
+\index{hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}!operator+@{operator+}}
+\index{operator+@{operator+}!hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}} \mbox{\hyperlink{structhmap_1_1Vec4}{hmap\+::\+Vec4}}$<$ T $>$\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ T $>$ \&}]{other\+\_\+vec }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Addition operator. 
+
+Adds each component of the vector to the corresponding component of another vector.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other\+\_\+vec} & The vector to add. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new vector that is the result of the addition. 
+\end{DoxyReturn}
+\Hypertarget{structhmap_1_1Vec4_a67123a8dd8a1a92f99557e099a86af8a}\label{structhmap_1_1Vec4_a67123a8dd8a1a92f99557e099a86af8a} 
+\index{hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}} \mbox{\hyperlink{structhmap_1_1Vec4}{hmap\+::\+Vec4}}$<$ T $>$\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ T $>$ \&}]{other\+\_\+vec }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Subtraction operator. 
+
+Subtracts each component of another vector from the corresponding component of this vector.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other\+\_\+vec} & The vector to subtract. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new vector that is the result of the subtraction. 
+\end{DoxyReturn}
+\Hypertarget{structhmap_1_1Vec4_ac4383140ebf1c19af7a5e5465638e89d}\label{structhmap_1_1Vec4_ac4383140ebf1c19af7a5e5465638e89d} 
+\index{hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}} \mbox{\hyperlink{structhmap_1_1Vec4}{hmap\+::\+Vec4}}$<$ T $>$\+::operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}\item[{T}]{scalar }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Scalar multiplication (\doxylink{structhmap_1_1Vec4}{Vec4} \texorpdfstring{$\ast$}{*} scalar). 
+
+Multiplies each component of the vector by a scalar value.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar value to multiply with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{structhmap_1_1Vec4}{Vec4} A new vector with each component multiplied by the scalar. 
+\end{DoxyReturn}
+\Hypertarget{structhmap_1_1Vec4_a080d1200616967db1349c9b912b1186c}\label{structhmap_1_1Vec4_a080d1200616967db1349c9b912b1186c} 
+\index{hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}!adjust@{adjust}}
+\index{adjust@{adjust}!hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{adjust()}{adjust()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ T $>$ \mbox{\hyperlink{structhmap_1_1Vec4}{hmap\+::\+Vec4}}$<$ T $>$\+::adjust (\begin{DoxyParamCaption}\item[{float}]{da,  }\item[{float}]{db,  }\item[{float}]{dc,  }\item[{float}]{dd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adjusts the components of the vector by the given offsets. 
+
+This method creates a new vector by adding the specified offsets to the respective components of the current vector.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The type of the vector components. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em da} & The offset to add to the first component ({\ttfamily a}). \\
+\hline
+{\em db} & The offset to add to the second component ({\ttfamily b}). \\
+\hline
+{\em dc} & The offset to add to the third component ({\ttfamily c}). \\
+\hline
+{\em dd} & The offset to add to the fourth component ({\ttfamily d}). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vec4$<$\+T$>$ A new vector with adjusted components. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{structhmap_1_1Vec4_a1c2926686abc112047126b7d06859965}\label{structhmap_1_1Vec4_a1c2926686abc112047126b7d06859965} 
+\index{hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}}{operator*}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}} operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}\item[{T}]{scalar,  }\item[{const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ T $>$ \&}]{vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Scalar multiplication (scalar \texorpdfstring{$\ast$}{*} \doxylink{structhmap_1_1Vec4}{Vec4}). 
+
+Multiplies each component of the vector by a scalar value. This function allows expressions where the scalar is on the left side of the multiplication operator.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar value to multiply with. \\
+\hline
+{\em vec} & The vector to multiply. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{structhmap_1_1Vec4}{Vec4} A new vector with each component multiplied by the scalar. 
+\end{DoxyReturn}
+\Hypertarget{structhmap_1_1Vec4_a2792f6a93dabbfb082fcd8313424747c}\label{structhmap_1_1Vec4_a2792f6a93dabbfb082fcd8313424747c} 
+\index{hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}!dot@{dot}}
+\index{dot@{dot}!hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{dot}{dot}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+float dot (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ T $>$}]{v1,  }\item[{const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ T $>$}]{v2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Friend function to calculate the dot product of two vectors. 
+
+The dot product is the sum of the products of the corresponding components of the vectors.
+
+
+\begin{DoxyParams}{Parameters}
+{\em v1} & The first vector. \\
+\hline
+{\em v2} & The second vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The dot product of the two vectors. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structhmap_1_1Vec4_abacc46ee2584065b59c1de54df0c4c25}\label{structhmap_1_1Vec4_abacc46ee2584065b59c1de54df0c4c25} 
+\index{hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}!a@{a}}
+\index{a@{a}!hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{a}{a}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \mbox{\hyperlink{structhmap_1_1Vec4}{hmap\+::\+Vec4}}$<$ T $>$\+::a}
+
+\Hypertarget{structhmap_1_1Vec4_a53ccbd36fe92232c1fcdb4b00d0bfd52}\label{structhmap_1_1Vec4_a53ccbd36fe92232c1fcdb4b00d0bfd52} 
+\index{hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}!b@{b}}
+\index{b@{b}!hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{b}{b}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \mbox{\hyperlink{structhmap_1_1Vec4}{hmap\+::\+Vec4}}$<$ T $>$\+::b}
+
+\Hypertarget{structhmap_1_1Vec4_ace83278a01cac27dd438a0afcf0bb55d}\label{structhmap_1_1Vec4_ace83278a01cac27dd438a0afcf0bb55d} 
+\index{hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}!c@{c}}
+\index{c@{c}!hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{c}{c}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \mbox{\hyperlink{structhmap_1_1Vec4}{hmap\+::\+Vec4}}$<$ T $>$\+::c}
+
+\Hypertarget{structhmap_1_1Vec4_aa65a4c32ae633eefee047c973fb55982}\label{structhmap_1_1Vec4_aa65a4c32ae633eefee047c973fb55982} 
+\index{hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}!d@{d}}
+\index{d@{d}!hmap::Vec4$<$ T $>$@{hmap::Vec4$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{d}{d}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T \mbox{\hyperlink{structhmap_1_1Vec4}{hmap\+::\+Vec4}}$<$ T $>$\+::d}
+
+
+
+The a, b, c, and d components of the vector. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+High\+Map/include/highmap/\mbox{\hyperlink{algebra_8hpp}{algebra.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,139 @@
+\doxysection{hmap\+::Edge Class Reference}
+\hypertarget{classhmap_1_1Edge}{}\label{classhmap_1_1Edge}\index{hmap::Edge@{hmap::Edge}}
+
+
+Represents a line segment in 2D space.  
+
+
+
+
+{\ttfamily \#include $<$edge.\+hpp$>$}
+
+
+
+Collaboration diagram for hmap\+::Edge\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=155pt]{classhmap_1_1Edge__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1Edge_a1807bf5546717f8355354926a5b49634}{Edge}} (\mbox{\hyperlink{classhmap_1_1Point}{Point}} \mbox{\hyperlink{classhmap_1_1Edge_aaafc727142dadc4d1e5a5e040aade087}{p1}}, \mbox{\hyperlink{classhmap_1_1Point}{Point}} \mbox{\hyperlink{classhmap_1_1Edge_a3ced3b4d72d4829fe8ddef173db5bb5a}{p2}}, float \mbox{\hyperlink{classhmap_1_1Edge_aeeceb458f6abbe1a5faea8123f83ce4f}{w}})
+\begin{DoxyCompactList}\small\item\em Constructs an {\ttfamily \doxylink{classhmap_1_1Edge}{Edge}} object with specified start and end points and a weight. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Edge_a418b34ac512506a53da3b7c105fe9619}{Edge}} (\mbox{\hyperlink{classhmap_1_1Point}{Point}} \mbox{\hyperlink{classhmap_1_1Edge_aaafc727142dadc4d1e5a5e040aade087}{p1}}, \mbox{\hyperlink{classhmap_1_1Point}{Point}} \mbox{\hyperlink{classhmap_1_1Edge_a3ced3b4d72d4829fe8ddef173db5bb5a}{p2}})
+\begin{DoxyCompactList}\small\item\em Constructs an {\ttfamily \doxylink{classhmap_1_1Edge}{Edge}} object with specified start and end points and a default weight of 0. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1Edge_a2111e89e23eca2ff36cf6db1b9c57fed}{length}} ()
+\begin{DoxyCompactList}\small\item\em Computes the length of the edge. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1Point}{Point}} \mbox{\hyperlink{classhmap_1_1Edge_aaafc727142dadc4d1e5a5e040aade087}{p1}}
+\begin{DoxyCompactList}\small\item\em The start point of the edge. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Point}{Point}} \mbox{\hyperlink{classhmap_1_1Edge_a3ced3b4d72d4829fe8ddef173db5bb5a}{p2}}
+\begin{DoxyCompactList}\small\item\em The end point of the edge. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1Edge_aeeceb458f6abbe1a5faea8123f83ce4f}{w}}
+\begin{DoxyCompactList}\small\item\em A weight associated with the edge. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a line segment in 2D space. 
+
+The {\ttfamily \doxylink{classhmap_1_1Edge}{Edge}} class defines a line segment using two {\ttfamily \doxylink{classhmap_1_1Point}{Point}} objects to represent the start and end of the segment. Additionally, it has a weight associated with the edge, and provides functionality to compute the length of the segment. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classhmap_1_1Edge_a1807bf5546717f8355354926a5b49634}\label{classhmap_1_1Edge_a1807bf5546717f8355354926a5b49634} 
+\index{hmap::Edge@{hmap::Edge}!Edge@{Edge}}
+\index{Edge@{Edge}!hmap::Edge@{hmap::Edge}}
+\doxysubsubsection{\texorpdfstring{Edge()}{Edge()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily hmap\+::\+Edge\+::\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classhmap_1_1Point}{Point}}}]{p1,  }\item[{\mbox{\hyperlink{classhmap_1_1Point}{Point}}}]{p2,  }\item[{float}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs an {\ttfamily \doxylink{classhmap_1_1Edge}{Edge}} object with specified start and end points and a weight. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p1} & The start point of the edge. \\
+\hline
+{\em p2} & The end point of the edge. \\
+\hline
+{\em w} & The weight associated with the edge. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classhmap_1_1Edge_a418b34ac512506a53da3b7c105fe9619}\label{classhmap_1_1Edge_a418b34ac512506a53da3b7c105fe9619} 
+\index{hmap::Edge@{hmap::Edge}!Edge@{Edge}}
+\index{Edge@{Edge}!hmap::Edge@{hmap::Edge}}
+\doxysubsubsection{\texorpdfstring{Edge()}{Edge()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily hmap\+::\+Edge\+::\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classhmap_1_1Point}{Point}}}]{p1,  }\item[{\mbox{\hyperlink{classhmap_1_1Point}{Point}}}]{p2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs an {\ttfamily \doxylink{classhmap_1_1Edge}{Edge}} object with specified start and end points and a default weight of 0. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p1} & The start point of the edge. \\
+\hline
+{\em p2} & The end point of the edge. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classhmap_1_1Edge_a2111e89e23eca2ff36cf6db1b9c57fed}\label{classhmap_1_1Edge_a2111e89e23eca2ff36cf6db1b9c57fed} 
+\index{hmap::Edge@{hmap::Edge}!length@{length}}
+\index{length@{length}!hmap::Edge@{hmap::Edge}}
+\doxysubsubsection{\texorpdfstring{length()}{length()}}
+{\footnotesize\ttfamily float hmap\+::\+Edge\+::length (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Computes the length of the edge. 
+
+This function calculates the distance between the start and end points of the edge.
+
+\begin{DoxyReturn}{Returns}
+The length of the edge. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classhmap_1_1Edge_aaafc727142dadc4d1e5a5e040aade087}\label{classhmap_1_1Edge_aaafc727142dadc4d1e5a5e040aade087} 
+\index{hmap::Edge@{hmap::Edge}!p1@{p1}}
+\index{p1@{p1}!hmap::Edge@{hmap::Edge}}
+\doxysubsubsection{\texorpdfstring{p1}{p1}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Point}{Point}} hmap\+::\+Edge\+::p1}
+
+
+
+The start point of the edge. 
+
+\Hypertarget{classhmap_1_1Edge_a3ced3b4d72d4829fe8ddef173db5bb5a}\label{classhmap_1_1Edge_a3ced3b4d72d4829fe8ddef173db5bb5a} 
+\index{hmap::Edge@{hmap::Edge}!p2@{p2}}
+\index{p2@{p2}!hmap::Edge@{hmap::Edge}}
+\doxysubsubsection{\texorpdfstring{p2}{p2}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Point}{Point}} hmap\+::\+Edge\+::p2}
+
+
+
+The end point of the edge. 
+
+\Hypertarget{classhmap_1_1Edge_aeeceb458f6abbe1a5faea8123f83ce4f}\label{classhmap_1_1Edge_aeeceb458f6abbe1a5faea8123f83ce4f} 
+\index{hmap::Edge@{hmap::Edge}!w@{w}}
+\index{w@{w}!hmap::Edge@{hmap::Edge}}
+\doxysubsubsection{\texorpdfstring{w}{w}}
+{\footnotesize\ttfamily float hmap\+::\+Edge\+::w}
+
+
+
+A weight associated with the edge. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+High\+Map/include/highmap/geometry/\mbox{\hyperlink{edge_8hpp}{edge.\+hpp}}\end{DoxyCompactItemize}

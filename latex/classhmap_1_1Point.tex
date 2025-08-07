@@ -1,0 +1,311 @@
+\doxysection{hmap\+::Point Class Reference}
+\hypertarget{classhmap_1_1Point}{}\label{classhmap_1_1Point}\index{hmap::Point@{hmap::Point}}
+
+
+A class to represent and manipulate 2D points that can carry a value.  
+
+
+
+
+{\ttfamily \#include $<$point.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1Point_a986aebcb6409cd7836a48e0e8b973c81}{Point}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor initializing the point to (0, 0, 0). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Point_ad1041e7d925d820f47e80f0986a5e047}{Point}} (float \mbox{\hyperlink{classhmap_1_1Point_ac0d4eaf8062b8f11638db83e08198e48}{x}}, float \mbox{\hyperlink{classhmap_1_1Point_aa045aed7ca12dffe13ba8f2db730a9bf}{y}}, float \mbox{\hyperlink{classhmap_1_1Point_ac67fb22939ed39d6c5ff4194b4405efb}{v}}=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+\begin{DoxyCompactList}\small\item\em Parameterized constructor initializing the point to given values. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classhmap_1_1Point_a429b1d09f454a3e4e4e2175e29eea313}{operator==}} (const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&other) const
+\begin{DoxyCompactList}\small\item\em Equality operator to check if two points are the same. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classhmap_1_1Point_ac8b559ae275f04c0d19d8ec66595847d}{operator!=}} (const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&other) const
+\begin{DoxyCompactList}\small\item\em Inequality operator to check if two points are different. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Point}{Point}} \mbox{\hyperlink{classhmap_1_1Point_ab43556f6025fcd8c82d2b76c54b3e435}{operator+}} (const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&other) const
+\begin{DoxyCompactList}\small\item\em Adds two points. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Point}{Point}} \mbox{\hyperlink{classhmap_1_1Point_a5c07600ab9d070fd7ca05fb88a954154}{operator-\/}} (const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&other) const
+\begin{DoxyCompactList}\small\item\em Subtracts two points. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Point}{Point}} \mbox{\hyperlink{classhmap_1_1Point_abbf64509c9c91b8e8b344503223e5747}{operator\texorpdfstring{$\ast$}{*}}} (float scalar) const
+\begin{DoxyCompactList}\small\item\em Multiplies the point by a scalar. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Point}{Point}} \mbox{\hyperlink{classhmap_1_1Point_a9009acb41438a016cb7398c09abd86d2}{operator/}} (float scalar) const
+\begin{DoxyCompactList}\small\item\em Divides the point by a scalar. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1Point_abc414635893bad912e30e009fbf8af35}{print}} ()
+\begin{DoxyCompactList}\small\item\em Prints the coordinates and value of the \doxylink{classhmap_1_1Point}{Point} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1Point_a71f412d383764f8df8f56a5439eb4da7}{set\+\_\+value\+\_\+from\+\_\+array}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ bbox)
+\begin{DoxyCompactList}\small\item\em Set the point value by interpolating values of an array at the point position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1Point_acda3ac23316079302a53e34ef3008fef}{update\+\_\+value\+\_\+from\+\_\+array}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ bbox)
+\begin{DoxyCompactList}\small\item\em Updates the point\textquotesingle{}s value based on bilinear interpolation from an array. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{classhmap_1_1Point_ac0d4eaf8062b8f11638db83e08198e48}{x}}
+\begin{DoxyCompactList}\small\item\em The x-\/coordinate of the point. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1Point_aa045aed7ca12dffe13ba8f2db730a9bf}{y}}
+\begin{DoxyCompactList}\small\item\em The y-\/coordinate of the point. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1Point_ac67fb22939ed39d6c5ff4194b4405efb}{v}}
+\begin{DoxyCompactList}\small\item\em The value at the point. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1Point}{Point}} \mbox{\hyperlink{classhmap_1_1Point_aa185c78a5385009de9f6f6461b536db2}{operator\texorpdfstring{$\ast$}{*}}} (float scalar, const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&point)
+\begin{DoxyCompactList}\small\item\em Scalar multiplication (scalar \texorpdfstring{$\ast$}{*} \doxylink{structhmap_1_1Vec2}{Vec2}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class to represent and manipulate 2D points that can carry a value. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classhmap_1_1Point_a986aebcb6409cd7836a48e0e8b973c81}\label{classhmap_1_1Point_a986aebcb6409cd7836a48e0e8b973c81} 
+\index{hmap::Point@{hmap::Point}!Point@{Point}}
+\index{Point@{Point}!hmap::Point@{hmap::Point}}
+\doxysubsubsection{\texorpdfstring{Point()}{Point()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily hmap\+::\+Point\+::\+Point (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor initializing the point to (0, 0, 0). 
+
+\Hypertarget{classhmap_1_1Point_ad1041e7d925d820f47e80f0986a5e047}\label{classhmap_1_1Point_ad1041e7d925d820f47e80f0986a5e047} 
+\index{hmap::Point@{hmap::Point}!Point@{Point}}
+\index{Point@{Point}!hmap::Point@{hmap::Point}}
+\doxysubsubsection{\texorpdfstring{Point()}{Point()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily hmap\+::\+Point\+::\+Point (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{v = {\ttfamily 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Parameterized constructor initializing the point to given values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & The x-\/coordinate of the point. \\
+\hline
+{\em y} & The y-\/coordinate of the point. \\
+\hline
+{\em v} & The value at the point. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classhmap_1_1Point_a429b1d09f454a3e4e4e2175e29eea313}\label{classhmap_1_1Point_a429b1d09f454a3e4e4e2175e29eea313} 
+\index{hmap::Point@{hmap::Point}!operator==@{operator==}}
+\index{operator==@{operator==}!hmap::Point@{hmap::Point}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool hmap\+::\+Point\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Equality operator to check if two points are the same. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The point to compare with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the points are equal, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classhmap_1_1Point_ac8b559ae275f04c0d19d8ec66595847d}\label{classhmap_1_1Point_ac8b559ae275f04c0d19d8ec66595847d} 
+\index{hmap::Point@{hmap::Point}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!hmap::Point@{hmap::Point}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily bool hmap\+::\+Point\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Inequality operator to check if two points are different. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The point to compare with. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the points are not equal, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classhmap_1_1Point_ab43556f6025fcd8c82d2b76c54b3e435}\label{classhmap_1_1Point_ab43556f6025fcd8c82d2b76c54b3e435} 
+\index{hmap::Point@{hmap::Point}!operator+@{operator+}}
+\index{operator+@{operator+}!hmap::Point@{hmap::Point}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Point}{Point}} hmap\+::\+Point\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds two points. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The point to add. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of adding the two points. 
+\end{DoxyReturn}
+\Hypertarget{classhmap_1_1Point_a5c07600ab9d070fd7ca05fb88a954154}\label{classhmap_1_1Point_a5c07600ab9d070fd7ca05fb88a954154} 
+\index{hmap::Point@{hmap::Point}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!hmap::Point@{hmap::Point}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Point}{Point}} hmap\+::\+Point\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Subtracts two points. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The point to subtract. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of subtracting the other point from this point. 
+\end{DoxyReturn}
+\Hypertarget{classhmap_1_1Point_abbf64509c9c91b8e8b344503223e5747}\label{classhmap_1_1Point_abbf64509c9c91b8e8b344503223e5747} 
+\index{hmap::Point@{hmap::Point}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!hmap::Point@{hmap::Point}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}()}{operator*()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Point}{Point}} hmap\+::\+Point\+::operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}\item[{float}]{scalar }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Multiplies the point by a scalar. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar to multiply by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of the multiplication. 
+\end{DoxyReturn}
+\Hypertarget{classhmap_1_1Point_a9009acb41438a016cb7398c09abd86d2}\label{classhmap_1_1Point_a9009acb41438a016cb7398c09abd86d2} 
+\index{hmap::Point@{hmap::Point}!operator/@{operator/}}
+\index{operator/@{operator/}!hmap::Point@{hmap::Point}}
+\doxysubsubsection{\texorpdfstring{operator/()}{operator/()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Point}{Point}} hmap\+::\+Point\+::operator/ (\begin{DoxyParamCaption}\item[{float}]{scalar }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Divides the point by a scalar. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar to divide by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result of the division. 
+\end{DoxyReturn}
+\Hypertarget{classhmap_1_1Point_abc414635893bad912e30e009fbf8af35}\label{classhmap_1_1Point_abc414635893bad912e30e009fbf8af35} 
+\index{hmap::Point@{hmap::Point}!print@{print}}
+\index{print@{print}!hmap::Point@{hmap::Point}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily void hmap\+::\+Point\+::print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Prints the coordinates and value of the \doxylink{classhmap_1_1Point}{Point} object. 
+
+This function outputs the \doxylink{classhmap_1_1Point}{Point}\textquotesingle{}s x, y coordinates, and an additional value {\ttfamily v} to the standard output in the format {\ttfamily (x, y, v)}, followed by a newline. \Hypertarget{classhmap_1_1Point_a71f412d383764f8df8f56a5439eb4da7}\label{classhmap_1_1Point_a71f412d383764f8df8f56a5439eb4da7} 
+\index{hmap::Point@{hmap::Point}!set\_value\_from\_array@{set\_value\_from\_array}}
+\index{set\_value\_from\_array@{set\_value\_from\_array}!hmap::Point@{hmap::Point}}
+\doxysubsubsection{\texorpdfstring{set\_value\_from\_array()}{set\_value\_from\_array()}}
+{\footnotesize\ttfamily void hmap\+::\+Point\+::set\+\_\+value\+\_\+from\+\_\+array (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{\mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$}]{bbox }\end{DoxyParamCaption})}
+
+
+
+Set the point value by interpolating values of an array at the point position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & Input array. \\
+\hline
+{\em bbox} & \doxylink{classhmap_1_1Array}{Array} bounding box of the area, used to draw a correspondance between point position and array cells positions. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classhmap_1_1Point_acda3ac23316079302a53e34ef3008fef}\label{classhmap_1_1Point_acda3ac23316079302a53e34ef3008fef} 
+\index{hmap::Point@{hmap::Point}!update\_value\_from\_array@{update\_value\_from\_array}}
+\index{update\_value\_from\_array@{update\_value\_from\_array}!hmap::Point@{hmap::Point}}
+\doxysubsubsection{\texorpdfstring{update\_value\_from\_array()}{update\_value\_from\_array()}}
+{\footnotesize\ttfamily void hmap\+::\+Point\+::update\+\_\+value\+\_\+from\+\_\+array (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{\mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$}]{bbox }\end{DoxyParamCaption})}
+
+
+
+Updates the point\textquotesingle{}s value based on bilinear interpolation from an array. 
+
+This function updates the value of the {\ttfamily \doxylink{classhmap_1_1Point}{Point}} object by performing bilinear interpolation on the input {\ttfamily \doxylink{classhmap_1_1Array}{Array}} using the coordinates of the {\ttfamily \doxylink{classhmap_1_1Point}{Point}} and a given bounding box. The point\textquotesingle{}s coordinates are first normalized to the unit interval using the provided bounding box. Then, these normalized coordinates are scaled to the array\textquotesingle{}s dimensions and used to fetch the value from the array through bilinear interpolation.
+
+If the normalized coordinates fall outside the bounds of the array, the point\textquotesingle{}s value is set to zero.
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & The input {\ttfamily \doxylink{classhmap_1_1Array}{Array}} from which the value is interpolated. The {\ttfamily \doxylink{classhmap_1_1Array}{Array}} should support bilinear interpolation. \\
+\hline
+{\em bbox} & Bounding box used for normalizing the {\ttfamily \doxylink{classhmap_1_1Point}{Point}}\textquotesingle{}s coordinates. This box is defined by a {\ttfamily \doxylink{structhmap_1_1Vec4}{Vec4}\texorpdfstring{$<$}{<}float\texorpdfstring{$>$}{>}} containing minimum and maximum values for both x and y dimensions in the format {\ttfamily \{xmin, xmax, ymin, ymax\}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+If the coordinates are outside the bounds of the array after scaling, the point\textquotesingle{}s value is set to zero. 
+\end{DoxyNote}
+
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{classhmap_1_1Point_aa185c78a5385009de9f6f6461b536db2}\label{classhmap_1_1Point_aa185c78a5385009de9f6f6461b536db2} 
+\index{hmap::Point@{hmap::Point}!operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}}
+\index{operator\texorpdfstring{$\ast$}{*}@{operator\texorpdfstring{$\ast$}{*}}!hmap::Point@{hmap::Point}}
+\doxysubsubsection{\texorpdfstring{operator\texorpdfstring{$\ast$}{*}}{operator*}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Point}{Point}} operator\texorpdfstring{$\ast$}{*} (\begin{DoxyParamCaption}\item[{float}]{scalar,  }\item[{const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&}]{point }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Scalar multiplication (scalar \texorpdfstring{$\ast$}{*} \doxylink{structhmap_1_1Vec2}{Vec2}). 
+
+Multiplies each component of the vector by a scalar value. This function allows expressions where the scalar is on the left side of the multiplication operator.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar value to multiply with. \\
+\hline
+{\em point} & The vector to multiply. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{classhmap_1_1Point}{Point} A new vector with each component multiplied by the scalar. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classhmap_1_1Point_ac0d4eaf8062b8f11638db83e08198e48}\label{classhmap_1_1Point_ac0d4eaf8062b8f11638db83e08198e48} 
+\index{hmap::Point@{hmap::Point}!x@{x}}
+\index{x@{x}!hmap::Point@{hmap::Point}}
+\doxysubsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily float hmap\+::\+Point\+::x}
+
+
+
+The x-\/coordinate of the point. 
+
+\Hypertarget{classhmap_1_1Point_aa045aed7ca12dffe13ba8f2db730a9bf}\label{classhmap_1_1Point_aa045aed7ca12dffe13ba8f2db730a9bf} 
+\index{hmap::Point@{hmap::Point}!y@{y}}
+\index{y@{y}!hmap::Point@{hmap::Point}}
+\doxysubsubsection{\texorpdfstring{y}{y}}
+{\footnotesize\ttfamily float hmap\+::\+Point\+::y}
+
+
+
+The y-\/coordinate of the point. 
+
+\Hypertarget{classhmap_1_1Point_ac67fb22939ed39d6c5ff4194b4405efb}\label{classhmap_1_1Point_ac67fb22939ed39d6c5ff4194b4405efb} 
+\index{hmap::Point@{hmap::Point}!v@{v}}
+\index{v@{v}!hmap::Point@{hmap::Point}}
+\doxysubsubsection{\texorpdfstring{v}{v}}
+{\footnotesize\ttfamily float hmap\+::\+Point\+::v}
+
+
+
+The value at the point. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+High\+Map/include/highmap/geometry/\mbox{\hyperlink{point_8hpp}{point.\+hpp}}\item 
+High\+Map/src/geometry/\mbox{\hyperlink{points_8cpp}{points.\+cpp}}\end{DoxyCompactItemize}

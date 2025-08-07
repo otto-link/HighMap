@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_3fff8e57683f346a5b9ac4f0c61c9931" kind="dir">
+    <compoundname>HighMap/src/math</compoundname>
+    <innerfile refid="distance__function_8cpp">distance_function.cpp</innerfile>
+    <innerfile refid="math_8cpp">math.cpp</innerfile>
+    <innerfile refid="phasor__profile__function_8cpp">phasor_profile_function.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="HighMap/src/math/"/>
+  </compounddef>
+</doxygen>

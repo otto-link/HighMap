@@ -1,0 +1,252 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classhmap_1_1WaveTriangularFunction" kind="class" language="C++" prot="public">
+    <compoundname>hmap::WaveTriangularFunction</compoundname>
+    <basecompoundref refid="classhmap_1_1Function" prot="public" virt="non-virtual">hmap::Function</basecompoundref>
+    <includes refid="functions_8hpp" local="no">functions.hpp</includes>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhmap_1_1WaveTriangularFunction_1aaa4ea017567f9e92a01895262d3c6d12" prot="protected" static="no" mutable="no">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+        <definition>Vec2&lt;float&gt; hmap::WaveTriangularFunction::kw</definition>
+        <argsstring></argsstring>
+        <name>kw</name>
+        <qualifiedname>hmap::WaveTriangularFunction::kw</qualifiedname>
+        <briefdescription>
+<para>Frequency scaling vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="652" column="8" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="652" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1WaveTriangularFunction_1ab49a906dde5df326c1263724c2b477e6" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::WaveTriangularFunction::angle</definition>
+        <argsstring></argsstring>
+        <name>angle</name>
+        <qualifiedname>hmap::WaveTriangularFunction::angle</qualifiedname>
+        <briefdescription>
+<para>Overall rotation angle (in degrees). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="653" column="15" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="653" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1WaveTriangularFunction_1a58593bbbdade49717f157e44d4f196df" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::WaveTriangularFunction::slant_ratio</definition>
+        <argsstring></argsstring>
+        <name>slant_ratio</name>
+        <qualifiedname>hmap::WaveTriangularFunction::slant_ratio</qualifiedname>
+        <briefdescription>
+<para>Relative location of the triangle apex, in [0, 1]. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="654" column="9" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="654" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1WaveTriangularFunction_1abf7528af6e80038e800596f70d863bdb" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::WaveTriangularFunction::phase_shift</definition>
+        <argsstring></argsstring>
+        <name>phase_shift</name>
+        <qualifiedname>hmap::WaveTriangularFunction::phase_shift</qualifiedname>
+        <briefdescription>
+<para>Phase shift (in radians). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="655" column="9" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="655" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhmap_1_1WaveTriangularFunction_1adc916672e49f01aa0ed01734ea58b88c" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::WaveTriangularFunction::ca</definition>
+        <argsstring></argsstring>
+        <name>ca</name>
+        <qualifiedname>hmap::WaveTriangularFunction::ca</qualifiedname>
+        <briefdescription>
+<para>Cached cosine of the angle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="658" column="9" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="658" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1WaveTriangularFunction_1a2aea98b453e4fd1cc5aab38f94570538" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::WaveTriangularFunction::sa</definition>
+        <argsstring></argsstring>
+        <name>sa</name>
+        <qualifiedname>hmap::WaveTriangularFunction::sa</qualifiedname>
+        <briefdescription>
+<para>Cached sine of the angle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="659" column="9" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="659" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhmap_1_1WaveTriangularFunction_1adb2b1395fe194eb560bdd9d855fa6e32" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hmap::WaveTriangularFunction::WaveTriangularFunction</definition>
+        <argsstring>(Vec2&lt; float &gt; kw, float angle, float slant_ratio, float phase_shift)</argsstring>
+        <name>WaveTriangularFunction</name>
+        <qualifiedname>hmap::WaveTriangularFunction::WaveTriangularFunction</qualifiedname>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+          <declname>kw</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>angle</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>slant_ratio</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>phase_shift</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new Wave Triangular <ref refid="classhmap_1_1Function" kindref="compound">Function</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>kw</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Noise wavenumbers {kx, ky} for each direction, with respect to a unit domain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>angle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Overall rotation angle (in degrees). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>slant_ratio</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Relative location of the triangle apex, in [0, 1]. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>phase_shift</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Phase shift (in radians). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="634" column="3" bodyfile="HighMap/src/primitives/functions/functions.cpp" bodystart="364" bodyend="384"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1WaveTriangularFunction_1af4b2e32e38e99dcaee78fe998bec84c1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::WaveTriangularFunction::set_angle</definition>
+        <argsstring>(float new_angle)</argsstring>
+        <name>set_angle</name>
+        <qualifiedname>hmap::WaveTriangularFunction::set_angle</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>new_angle</declname>
+        </param>
+        <briefdescription>
+<para>Set the angle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>new_angle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New angle. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="644" column="8" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="644" bodyend="649"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Wave triangular (x, y) function class. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class models a wave triangular function with specific noise wavenumbers, rotation angle, slant ratio, and phase shift. It extends the base <ref refid="classhmap_1_1Function" kindref="compound">Function</ref> class. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hmap::Function</label>
+        <link refid="classhmap_1_1Function"/>
+      </node>
+      <node id="1">
+        <label>hmap::WaveTriangularFunction</label>
+        <link refid="classhmap_1_1WaveTriangularFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>hmap::Vec2&lt; float &gt;</label>
+        <link refid="structhmap_1_1Vec2"/>
+      </node>
+      <node id="2">
+        <label>hmap::Function</label>
+        <link refid="classhmap_1_1Function"/>
+      </node>
+      <node id="1">
+        <label>hmap::WaveTriangularFunction</label>
+        <link refid="classhmap_1_1WaveTriangularFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>kw</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="HighMap/include/highmap/functions.hpp" line="622" column="1" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="623" bodyend="660"/>
+    <listofallmembers>
+      <member refid="classhmap_1_1WaveTriangularFunction_1ab49a906dde5df326c1263724c2b477e6" prot="protected" virt="non-virtual"><scope>hmap::WaveTriangularFunction</scope><name>angle</name></member>
+      <member refid="classhmap_1_1WaveTriangularFunction_1adc916672e49f01aa0ed01734ea58b88c" prot="private" virt="non-virtual"><scope>hmap::WaveTriangularFunction</scope><name>ca</name></member>
+      <member refid="classhmap_1_1Function_1a1f77a2faa84c84fb147f48af0bfbc96e" prot="public" virt="non-virtual"><scope>hmap::WaveTriangularFunction</scope><name>Function</name></member>
+      <member refid="classhmap_1_1Function_1ae1f9e64626fb671ed37a45d09cf551e8" prot="public" virt="non-virtual"><scope>hmap::WaveTriangularFunction</scope><name>Function</name></member>
+      <member refid="classhmap_1_1Function_1a32214e30c36be7650c47867fd14f6a0c" prot="public" virt="non-virtual"><scope>hmap::WaveTriangularFunction</scope><name>get_delegate</name></member>
+      <member refid="classhmap_1_1Function_1a82fb7788314b339a062cb80115e2e1da" prot="public" virt="non-virtual"><scope>hmap::WaveTriangularFunction</scope><name>get_value</name></member>
+      <member refid="classhmap_1_1WaveTriangularFunction_1aaa4ea017567f9e92a01895262d3c6d12" prot="protected" virt="non-virtual"><scope>hmap::WaveTriangularFunction</scope><name>kw</name></member>
+      <member refid="classhmap_1_1WaveTriangularFunction_1abf7528af6e80038e800596f70d863bdb" prot="protected" virt="non-virtual"><scope>hmap::WaveTriangularFunction</scope><name>phase_shift</name></member>
+      <member refid="classhmap_1_1WaveTriangularFunction_1a2aea98b453e4fd1cc5aab38f94570538" prot="private" virt="non-virtual"><scope>hmap::WaveTriangularFunction</scope><name>sa</name></member>
+      <member refid="classhmap_1_1WaveTriangularFunction_1af4b2e32e38e99dcaee78fe998bec84c1" prot="public" virt="non-virtual"><scope>hmap::WaveTriangularFunction</scope><name>set_angle</name></member>
+      <member refid="classhmap_1_1Function_1a6163e6f231dc77a7e7d83e74d2b44abe" prot="public" virt="non-virtual"><scope>hmap::WaveTriangularFunction</scope><name>set_delegate</name></member>
+      <member refid="classhmap_1_1WaveTriangularFunction_1a58593bbbdade49717f157e44d4f196df" prot="protected" virt="non-virtual"><scope>hmap::WaveTriangularFunction</scope><name>slant_ratio</name></member>
+      <member refid="classhmap_1_1WaveTriangularFunction_1adb2b1395fe194eb560bdd9d855fa6e32" prot="public" virt="non-virtual"><scope>hmap::WaveTriangularFunction</scope><name>WaveTriangularFunction</name></member>
+      <member refid="classhmap_1_1Function_1a8efd89e31947f2508ce45b133e30322f" prot="public" virt="virtual"><scope>hmap::WaveTriangularFunction</scope><name>~Function</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

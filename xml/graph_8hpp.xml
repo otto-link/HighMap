@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="graph_8hpp" kind="file" language="C++">
+    <compoundname>graph.hpp</compoundname>
+    <innerclass refid="classhmap_1_1Graph" prot="public">hmap::Graph</innerclass>
+    <innernamespace refid="namespacehmap">hmap</innernamespace>
+    <briefdescription>
+<para>Definition of the <computeroutput>Graph</computeroutput> class for manipulating 2D graphs. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Otto Link (<ulink url="mailto:otto.link.bv@gmail.com">otto.link.bv@gmail.com</ulink>) </para>
+</simplesect>
+This file contains the definition of the <computeroutput>Graph</computeroutput> class, which extends from the <computeroutput>Cloud</computeroutput> class to handle graph data structures in a 2D space. The <computeroutput>Graph</computeroutput> class supports various functionalities such as graph visualization, edge operations, graph algorithms (e.g., Dijkstra&apos;s algorithm, Minimum Spanning Tree), and exporting data to different formats (CSV, PNG).</para>
+<para>The class includes methods for computing distances, generating visual representations, and manipulating graph edges and nodes. It also provides functionalities for exporting the graph data to CSV and PNG formats, as well as for calculating Signed Distance Functions (SDF) of the graph.</para>
+<para><simplesect kind="version"><para>0.1 Initial version. </para>
+</simplesect>
+<simplesect kind="date"><para>2023-06-18</para>
+</simplesect>
+<simplesect kind="copyright"><para>Copyright (c) 2023 Otto Link</para>
+</simplesect>
+This software is distributed under the terms of the GNU General Public License. The full license is available in the LICENSE file distributed with this software. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>Copyright<sp/>(c)<sp/>2023<sp/>Otto<sp/>Link.<sp/>Distributed<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>General</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/><sp/><sp/>Public<sp/>License.<sp/>The<sp/>full<sp/>license<sp/>is<sp/>in<sp/>the<sp/>file<sp/>LICENSE,<sp/>distributed<sp/>with</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/><sp/><sp/>this<sp/>software.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="array_8hpp" kindref="compound">highmap/array.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="cloud_8hpp" kindref="compound">highmap/geometry/cloud.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="point_8hpp" kindref="compound">highmap/geometry/point.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehmap" kindref="compound">hmap</ref></highlight></codeline>
+<codeline lineno="38"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">Cloud;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="classhmap_1_1Graph" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classhmap_1_1Cloud" kindref="compound">Cloud</ref></highlight></codeline>
+<codeline lineno="58"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="68" refid="classhmap_1_1Graph_1ae6a15dbafff50f5aa083c975292acffd" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;std::vector&lt;int&gt;&gt;<sp/><ref refid="classhmap_1_1Graph_1ae6a15dbafff50f5aa083c975292acffd" kindref="member">edges</ref><sp/>=<sp/>{};</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="classhmap_1_1Graph_1a72f35dca4fd9c5f061bdc6b2ad70cb5e" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;float&gt;<sp/><ref refid="classhmap_1_1Graph_1a72f35dca4fd9c5f061bdc6b2ad70cb5e" kindref="member">weights</ref><sp/>=<sp/>{};</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88" refid="classhmap_1_1Graph_1ac4fa0788cdc6162d9254b059ae9857da" refkind="member"><highlight class="normal"><sp/><sp/>std::vector&lt;std::vector&lt;int&gt;&gt;<sp/><ref refid="classhmap_1_1Graph_1ac4fa0788cdc6162d9254b059ae9857da" kindref="member">connectivity</ref><sp/>=<sp/>{};</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98" refid="classhmap_1_1Graph_1a93e452d7229b47e83f431502a18f68da" refkind="member"><highlight class="normal"><sp/><sp/>std::map&lt;std::pair&lt;int,<sp/>int&gt;,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">&gt;<sp/><ref refid="classhmap_1_1Graph_1a93e452d7229b47e83f431502a18f68da" kindref="member">adjacency_matrix</ref>;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108" refid="classhmap_1_1Graph_1a1209ddaafbb68fed3c43ec7766d8dc0a" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Graph_1a1209ddaafbb68fed3c43ec7766d8dc0a" kindref="member">Graph</ref>()<sp/>:<sp/><ref refid="classhmap_1_1Cloud" kindref="compound">Cloud</ref>(){};</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120" refid="classhmap_1_1Graph_1af7cd4377270d4e0dd90e7c8793351191" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Graph_1af7cd4377270d4e0dd90e7c8793351191" kindref="member">Graph</ref>(<ref refid="classhmap_1_1Cloud" kindref="compound">Cloud</ref><sp/>cloud)<sp/>:<sp/><ref refid="classhmap_1_1Cloud" kindref="compound">Cloud</ref>(cloud){};</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132" refid="classhmap_1_1Graph_1a0ff744b8d48139b49e7dae7c7d4e7a18" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Graph_1a0ff744b8d48139b49e7dae7c7d4e7a18" kindref="member">Graph</ref>(std::vector&lt;Point&gt;<sp/><ref refid="classhmap_1_1Cloud_1aad75fb7bcfa7a2c3f139d2e3d3d6cc54" kindref="member">points</ref>)<sp/>:<sp/><ref refid="classhmap_1_1Cloud" kindref="compound">Cloud</ref>(<ref refid="classhmap_1_1Cloud_1aad75fb7bcfa7a2c3f139d2e3d3d6cc54" kindref="member">points</ref>){};</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146" refid="classhmap_1_1Graph_1a6d56f1e42407c74f2cf097b7a9b05d7b" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Graph_1a6d56f1e42407c74f2cf097b7a9b05d7b" kindref="member">Graph</ref>(std::vector&lt;float&gt;<sp/>x,<sp/>std::vector&lt;float&gt;<sp/>y)<sp/>:<sp/><ref refid="classhmap_1_1Cloud" kindref="compound">Cloud</ref>(x,<sp/>y){};</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhmap_1_1Graph_1a1f632d4e9ee628a4dcab783f08e42277" kindref="member">add_edge</ref>(std::vector&lt;int&gt;<sp/>edge,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>weight);</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhmap_1_1Graph_1a1f632d4e9ee628a4dcab783f08e42277" kindref="member">add_edge</ref>(std::vector&lt;int&gt;<sp/>edge);</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/>std::vector&lt;int&gt;<sp/><ref refid="classhmap_1_1Graph_1a07e0c31ab59d4f51c51c3f90117ca71a" kindref="member">dijkstra</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>source_point_index,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>target_point_index);</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classhmap_1_1Graph_1aa04970dd704339909bcc4770fa0481ab" kindref="member">get_edge_length</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>k);</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/>std::vector&lt;float&gt;<sp/><ref refid="classhmap_1_1Graph_1ab9c3f02b3a4921f785eb7f80834ed9d7" kindref="member">get_edge_x_pairs</ref>();</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"></highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/>std::vector&lt;float&gt;<sp/><ref refid="classhmap_1_1Graph_1a0088d1935cc3ee61ede820f51ccf117c" kindref="member">get_edge_y_pairs</ref>();</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/>std::vector&lt;float&gt;<sp/><ref refid="classhmap_1_1Graph_1abee24a8b157637b7e667531aca13f1c4" kindref="member">get_lengths</ref>();</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"></highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="classhmap_1_1Graph_1ad110d66385a8e4ef83708914cc972260" kindref="member">get_nedges</ref>();</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"></highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref><sp/><ref refid="classhmap_1_1Graph_1ad3b05e01d0c31e189fa6bae4ac43de7c" kindref="member">minimum_spanning_tree_prim</ref>();</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"></highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhmap_1_1Graph_1a862b83b369721a4930917a78bd313421" kindref="member">print</ref>();</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"></highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref><sp/><ref refid="classhmap_1_1Graph_1ad1aeb414389af66a30d891d8fc28bc46" kindref="member">remove_orphan_points</ref>();</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"></highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhmap_1_1Graph_1ad116684b58ddb292d2af17642b90b40f" kindref="member">to_array</ref>(<ref refid="classhmap_1_1Array" kindref="compound">Array</ref><sp/><sp/><sp/><sp/><sp/><sp/>&amp;array,</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4&lt;float&gt;</ref><sp/>bbox,</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>color_by_edge_weight<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"></highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhmap_1_1Graph_1a3a8332f8fc1cc9abaad0096ed3949000" kindref="member">to_array_fractalize</ref>(<ref refid="classhmap_1_1Array" kindref="compound">Array</ref><sp/><sp/><sp/><sp/><sp/><sp/>&amp;array,</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4&lt;float&gt;</ref><sp/>bbox,</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iterations,</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="array_8hpp_1a91ad9478d81a7aaf2593e8d9c3d06a14" kindref="member">uint</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed,</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sigma<sp/>=<sp/>0.3f,</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>orientation<sp/>=<sp/>0.f,</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>persistence<sp/>=<sp/>1.f);</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"></highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">Array</ref><sp/><ref refid="classhmap_1_1Graph_1af636b5aa0bfa2c3021f7e33ee282b018" kindref="member">to_array_sdf</ref>(<ref refid="structhmap_1_1Vec2" kindref="compound">Vec2&lt;int&gt;</ref><sp/><sp/><sp/>shape,</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4&lt;float&gt;</ref><sp/>bbox,</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">Array</ref><sp/><sp/><sp/><sp/><sp/><sp/>*p_noise_x<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">Array</ref><sp/><sp/><sp/><sp/><sp/><sp/>*p_noise_y<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4&lt;float&gt;</ref><sp/>bbox_array<sp/>=<sp/>{0.f,<sp/>1.f,<sp/>0.f,<sp/>1.f});</highlight></codeline>
+<codeline lineno="362"><highlight class="normal"></highlight></codeline>
+<codeline lineno="376"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhmap_1_1Graph_1a47f4e4792141971443d9dbeb714ae612" kindref="member">to_csv</ref>(std::string<sp/>fname_xy,<sp/>std::string<sp/>fname_adjacency);</highlight></codeline>
+<codeline lineno="377"><highlight class="normal"></highlight></codeline>
+<codeline lineno="388"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhmap_1_1Graph_1a9ceef3779f34960009226304494d5f6c" kindref="member">to_png</ref>(std::string<sp/>fname,<sp/>Vec2&lt;int&gt;<sp/>shape<sp/>=<sp/>{512,<sp/>512});</highlight></codeline>
+<codeline lineno="389"><highlight class="normal"></highlight></codeline>
+<codeline lineno="397"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhmap_1_1Graph_1a6accdaeaf48a49a3a751f4a83e59df47" kindref="member">update_adjacency_matrix</ref>();</highlight></codeline>
+<codeline lineno="398"><highlight class="normal"></highlight></codeline>
+<codeline lineno="405"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhmap_1_1Graph_1ad37ed278a791b43779733f7f22187f15" kindref="member">update_connectivity</ref>();</highlight></codeline>
+<codeline lineno="406"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="407"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hmap</highlight></codeline>
+    </programlisting>
+    <location file="HighMap/include/highmap/geometry/graph.hpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="interpolate1d_8hpp" kind="file" language="C++">
+    <compoundname>interpolate1d.hpp</compoundname>
+    <innerclass refid="classhmap_1_1Interpolator1D" prot="public">hmap::Interpolator1D</innerclass>
+    <innernamespace refid="namespacehmap">hmap</innernamespace>
+    <briefdescription>
+<para>Defines a 1D interpolation class using the GSL (GNU Scientific Library). </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>* Otto Link (<ulink url="mailto:otto.link.bv@gmail.com">otto.link.bv@gmail.com</ulink>) </para>
+</simplesect>
+This file contains the <computeroutput>Interpolator1D</computeroutput> class and <computeroutput>InterpolationMethod1D</computeroutput> enum, which provide a simple interface for performing 1D interpolation with various methods available in the GSL. The interpolation methods include Akima, cubic, linear, polynomial, and Steffen interpolation.</para>
+<para><simplesect kind="copyright"><para>Copyright (c) 2023 Otto Link </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>Copyright<sp/>(c)<sp/>2023<sp/>Otto<sp/>Link.<sp/>Distributed<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>General</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/><sp/><sp/>Public<sp/>License.<sp/>The<sp/>full<sp/>license<sp/>is<sp/>in<sp/>the<sp/>file<sp/>LICENSE,<sp/>distributed<sp/>with</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/><sp/><sp/>this<sp/>software.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;map&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;gsl/gsl_interp.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;gsl/gsl_spline.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehmap" kindref="compound">hmap</ref></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="namespacehmap_1a46291bb4766800deacc1ce9b45a9ea6b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="namespacehmap_1a46291bb4766800deacc1ce9b45a9ea6b" kindref="member">InterpolationMethod1D</ref><sp/>:<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="37" refid="namespacehmap_1a46291bb4766800deacc1ce9b45a9ea6ba55d2df97f3e8f051fb84453093374c96" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a46291bb4766800deacc1ce9b45a9ea6ba55d2df97f3e8f051fb84453093374c96" kindref="member">AKIMA</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="38" refid="namespacehmap_1a46291bb4766800deacc1ce9b45a9ea6bac3c354b92a241b06cbe768faa834b85e" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a46291bb4766800deacc1ce9b45a9ea6bac3c354b92a241b06cbe768faa834b85e" kindref="member">AKIMA_PERIODIC</ref>,<sp/></highlight></codeline>
+<codeline lineno="39" refid="namespacehmap_1a46291bb4766800deacc1ce9b45a9ea6ba212e7c8d91a9697cccd7df7d006a5547" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a46291bb4766800deacc1ce9b45a9ea6ba212e7c8d91a9697cccd7df7d006a5547" kindref="member">CUBIC</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40" refid="namespacehmap_1a46291bb4766800deacc1ce9b45a9ea6ba842713d3dc1b52f8b51bb2eaeb8bcf7e" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a46291bb4766800deacc1ce9b45a9ea6ba842713d3dc1b52f8b51bb2eaeb8bcf7e" kindref="member">CUBIC_PERIODIC</ref>,<sp/></highlight></codeline>
+<codeline lineno="41" refid="namespacehmap_1a46291bb4766800deacc1ce9b45a9ea6ba26ec6481025765e03b9c750137bd9d84" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a46291bb4766800deacc1ce9b45a9ea6ba26ec6481025765e03b9c750137bd9d84" kindref="member">LINEAR</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42" refid="namespacehmap_1a46291bb4766800deacc1ce9b45a9ea6ba2c387e5d1f5342e28fa6a3132e9b461d" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a46291bb4766800deacc1ce9b45a9ea6ba2c387e5d1f5342e28fa6a3132e9b461d" kindref="member">POLYNOMIAL</ref>,<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43" refid="namespacehmap_1a46291bb4766800deacc1ce9b45a9ea6ba9c7fc85c23ace48f52c365aae11b6e0b" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a46291bb4766800deacc1ce9b45a9ea6ba9c7fc85c23ace48f52c365aae11b6e0b" kindref="member">STEFFEN</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="classhmap_1_1Interpolator1D" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhmap_1_1Interpolator1D" kindref="compound">Interpolator1D</ref></highlight></codeline>
+<codeline lineno="65"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Interpolator1D" kindref="compound">Interpolator1D</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;float&gt;<sp/>&amp;x,</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;float&gt;<sp/>&amp;y,</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1a46291bb4766800deacc1ce9b45a9ea6b" kindref="member">InterpolationMethod1D</ref><sp/>method<sp/>=<sp/><ref refid="namespacehmap_1a46291bb4766800deacc1ce9b45a9ea6ba26ec6481025765e03b9c750137bd9d84" kindref="member">InterpolationMethod1D::LINEAR</ref>);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Interpolator1D_1afce7ba6809a4c7b28a561c7c646227e3" kindref="member">~Interpolator1D</ref>();</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classhmap_1_1Interpolator1D_1a47dab539e9e8ce30c350278d01dfb1aa" kindref="member">operator()</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>x)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classhmap_1_1Interpolator1D_1a1ab067195430386cae3158bfccf4847f" kindref="member">interpolate</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>x)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/>gsl_spline<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*interp;<sp/></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/>gsl_interp_accel<sp/><sp/><sp/>*accel_;<sp/></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/>std::vector&lt;double&gt;<sp/>x_data;<sp/></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/>std::vector&lt;double&gt;<sp/>y_data;<sp/></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>xmin;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>xmax;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="123"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hmap</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="HighMap/include/highmap/interpolate1d.hpp"/>
+  </compounddef>
+</doxygen>

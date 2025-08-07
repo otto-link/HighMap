@@ -1,0 +1,109 @@
+\doxysection{High\+Map/include/highmap/heightmap.hpp File Reference}
+\hypertarget{heightmap_8hpp}{}\label{heightmap_8hpp}\index{HighMap/include/highmap/heightmap.hpp@{HighMap/include/highmap/heightmap.hpp}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classhmap_1_1Tile}{hmap\+::\+Tile}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classhmap_1_1Tile}{Tile} class, to manipulate a restricted region of an heightmap (with contextual informations). \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classhmap_1_1Heightmap}{hmap\+::\+Heightmap}}
+\begin{DoxyCompactList}\small\item\em Height\+Map class, to manipulate heightmap (with contextual informations). \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structhmap_1_1HeightmapRGB}{hmap\+::\+Heightmap\+RGB}}
+\begin{DoxyCompactList}\small\item\em Height\+Map class, to manipulate a set of RGB heightmap for heightmap texturing. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structhmap_1_1HeightmapRGBA}{hmap\+::\+Heightmap\+RGBA}}
+\begin{DoxyCompactList}\small\item\em Height\+Map class, to manipulate a set of RGBA heightmap for heightmap texturing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacehmap_abc952321c99ec11d60b4037e3d27db9b}{hmap\+::\+Normal\+Map\+Blending\+Method}} \+: int \{ \newline
+\mbox{\hyperlink{namespacehmap_abc952321c99ec11d60b4037e3d27db9bac248af7dd230247485e3c09a663cedd0}{hmap\+::\+NMAP\+\_\+\+LINEAR}}
+, \mbox{\hyperlink{namespacehmap_abc952321c99ec11d60b4037e3d27db9ba97d5a1740991179c436482de8c1c1f34}{hmap\+::\+NMAP\+\_\+\+DERIVATIVE}}
+, \mbox{\hyperlink{namespacehmap_abc952321c99ec11d60b4037e3d27db9ba25b053ebbd8db9d348737e6f343c61bf}{hmap\+::\+NMAP\+\_\+\+UDN}}
+, \mbox{\hyperlink{namespacehmap_abc952321c99ec11d60b4037e3d27db9ba54fd5928677cd19616ec52d6d59d4c60}{hmap\+::\+NMAP\+\_\+\+UNITY}}
+, \newline
+\mbox{\hyperlink{namespacehmap_abc952321c99ec11d60b4037e3d27db9ba6ba5e07d11326f7567d533f169321e37}{hmap\+::\+NMAP\+\_\+\+WHITEOUT}}
+ \}
+\item 
+enum \mbox{\hyperlink{namespacehmap_ab36df744301ada377d4a3f3a34bca77f}{hmap\+::\+Transform\+Mode}} \+: int \{ \mbox{\hyperlink{namespacehmap_ab36df744301ada377d4a3f3a34bca77fac40707c2538151422af1c84dfd46252b}{hmap\+::\+DISTRIBUTED}}
+, \mbox{\hyperlink{namespacehmap_ab36df744301ada377d4a3f3a34bca77fabd8181f845a88e68d0653323c26ac4ac}{hmap\+::\+SEQUENTIAL}}
+, \mbox{\hyperlink{namespacehmap_ab36df744301ada377d4a3f3a34bca77fadb0544f4a0452ffb75e88eff0b39095d}{hmap\+::\+SINGLE\+\_\+\+ARRAY}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structhmap_1_1HeightmapRGBA}{Heightmap\+RGBA}} \mbox{\hyperlink{namespacehmap_a054b11b366d585ac3d228619d9cb5928}{hmap\+::mix\+\_\+heightmap\+\_\+rgba}} (\mbox{\hyperlink{structhmap_1_1HeightmapRGBA}{Heightmap\+RGBA}} \&rgba1, \mbox{\hyperlink{structhmap_1_1HeightmapRGBA}{Heightmap\+RGBA}} \&rgba2, bool use\+\_\+sqrt\+\_\+avg=true)
+\item 
+\mbox{\hyperlink{structhmap_1_1HeightmapRGBA}{Heightmap\+RGBA}} \mbox{\hyperlink{namespacehmap_ab5bf9c7f8dd053e585c61c1fdb532b7a}{hmap\+::mix\+\_\+heightmap\+\_\+rgba}} (std\+::vector$<$ \mbox{\hyperlink{structhmap_1_1HeightmapRGBA}{Heightmap\+RGBA}} \texorpdfstring{$\ast$}{*} $>$ p\+\_\+rgba\+\_\+list, bool use\+\_\+sqrt\+\_\+avg=true)
+\item 
+\mbox{\hyperlink{structhmap_1_1HeightmapRGBA}{Heightmap\+RGBA}} \mbox{\hyperlink{namespacehmap_a2751ce7799f172484dd06a1b72d168da}{hmap\+::mix\+\_\+normal\+\_\+map\+\_\+rgba}} (\mbox{\hyperlink{structhmap_1_1HeightmapRGBA}{Heightmap\+RGBA}} \&nmap\+\_\+base, \mbox{\hyperlink{structhmap_1_1HeightmapRGBA}{Heightmap\+RGBA}} \&nmap\+\_\+detail, float detail\+\_\+scaling=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, \mbox{\hyperlink{namespacehmap_abc952321c99ec11d60b4037e3d27db9b}{Normal\+Map\+Blending\+Method}} blending\+\_\+method=\mbox{\hyperlink{namespacehmap_abc952321c99ec11d60b4037e3d27db9ba97d5a1740991179c436482de8c1c1f34}{Normal\+Map\+Blending\+Method\+::\+NMAP\+\_\+\+DERIVATIVE}})
+\begin{DoxyCompactList}\small\item\em Mixes two normal maps in RGBA format to create a blended normal map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a0c5529e52be9242f4e2587d043ece704}{hmap\+::fill}} (\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+x, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+y, std\+::function$<$ \mbox{\hyperlink{classhmap_1_1Array}{Array}}(\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+x, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+y)$>$ nullary\+\_\+op)
+\begin{DoxyCompactList}\small\item\em Fills the heightmap using the provided noise maps and operation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a3751517b263e1178a1ab3a2378d77dfa}{hmap\+::fill}} (\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&hin, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+x, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+y, std\+::function$<$ \mbox{\hyperlink{classhmap_1_1Array}{Array}}(\mbox{\hyperlink{classhmap_1_1Array}{hmap\+::\+Array}} \&, \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$, \mbox{\hyperlink{classhmap_1_1Array}{hmap\+::\+Array}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{classhmap_1_1Array}{hmap\+::\+Array}} \texorpdfstring{$\ast$}{*})$>$ nullary\+\_\+op)
+\item 
+void \mbox{\hyperlink{namespacehmap_ad4261372b2cfa77557684f8d15c3ce39}{hmap\+::fill}} (\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+x, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+y, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \texorpdfstring{$\ast$}{*}p\+\_\+stretching, std\+::function$<$ \mbox{\hyperlink{classhmap_1_1Array}{Array}}(\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$, \mbox{\hyperlink{classhmap_1_1Array}{hmap\+::\+Array}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{classhmap_1_1Array}{hmap\+::\+Array}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{classhmap_1_1Array}{hmap\+::\+Array}} \texorpdfstring{$\ast$}{*})$>$ nullary\+\_\+op)
+\item 
+void \mbox{\hyperlink{namespacehmap_afaa31506353c8fe10a751a0cbf992c33}{hmap\+::fill}} (\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \texorpdfstring{$\ast$}{*}p\+\_\+noise, std\+::function$<$ \mbox{\hyperlink{classhmap_1_1Array}{Array}}(\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise)$>$ nullary\+\_\+op)
+\item 
+void \mbox{\hyperlink{namespacehmap_a3e1330c25846f757ce15146d8fba4724}{hmap\+::fill}} (\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h, std\+::function$<$ \mbox{\hyperlink{classhmap_1_1Array}{Array}}(\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$)$>$ nullary\+\_\+op)
+\item 
+void \mbox{\hyperlink{namespacehmap_a808d4ce63d0da9e4bab0f204991d88b0}{hmap\+::fill}} (\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h, std\+::function$<$ \mbox{\hyperlink{classhmap_1_1Array}{Array}}(\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$)$>$ nullary\+\_\+op)
+\item 
+void \mbox{\hyperlink{namespacehmap_a6d8728c019a17094c326f31501ea5482}{hmap\+::transform}} (\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h, std\+::function$<$ void(\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&)$>$ unary\+\_\+op)
+\item 
+void \mbox{\hyperlink{namespacehmap_afd9639dca483f8e95f83f58e7171c8ad}{hmap\+::transform}} (\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h, std\+::function$<$ void(\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$)$>$ unary\+\_\+op)
+\item 
+void \mbox{\hyperlink{namespacehmap_a0c9955183689e50bb323cb74e14d47ee}{hmap\+::transform}} (\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+x, std\+::function$<$ void(\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*})$>$ unary\+\_\+op)
+\item 
+void \mbox{\hyperlink{namespacehmap_a8097627251f8fca6407bf397bbdb2eeb}{hmap\+::transform}} (\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+x, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+y, std\+::function$<$ void(\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*})$>$ unary\+\_\+op)
+\item 
+void \mbox{\hyperlink{namespacehmap_a7834b788b003e00411db069fe53dd8da}{hmap\+::transform}} (\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h, std\+::function$<$ void(\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&, \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$, \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$)$>$ unary\+\_\+op)
+\item 
+void \mbox{\hyperlink{namespacehmap_a3124c0500ac67c3c6bafc77c6486d7a1}{hmap\+::transform}} (\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \texorpdfstring{$\ast$}{*}p\+\_\+mask, std\+::function$<$ void(\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*})$>$ unary\+\_\+op)
+\item 
+void \mbox{\hyperlink{namespacehmap_aed492e4ecec2a21b7525e06760c99e48}{hmap\+::transform}} (\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h, \mbox{\hyperlink{classhmap_1_1Heightmap}{hmap\+::\+Heightmap}} \texorpdfstring{$\ast$}{*}p\+\_\+1, \mbox{\hyperlink{classhmap_1_1Heightmap}{hmap\+::\+Heightmap}} \texorpdfstring{$\ast$}{*}p\+\_\+2, \mbox{\hyperlink{classhmap_1_1Heightmap}{hmap\+::\+Heightmap}} \texorpdfstring{$\ast$}{*}p\+\_\+3, \mbox{\hyperlink{classhmap_1_1Heightmap}{hmap\+::\+Heightmap}} \texorpdfstring{$\ast$}{*}p\+\_\+4, \mbox{\hyperlink{classhmap_1_1Heightmap}{hmap\+::\+Heightmap}} \texorpdfstring{$\ast$}{*}p\+\_\+5, std\+::function$<$ void(\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*})$>$ unary\+\_\+op)
+\item 
+void \mbox{\hyperlink{namespacehmap_aa7a794c92aebf181390461a3d8f85721}{hmap\+::transform}} (\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h, \mbox{\hyperlink{classhmap_1_1Heightmap}{hmap\+::\+Heightmap}} \texorpdfstring{$\ast$}{*}p\+\_\+1, \mbox{\hyperlink{classhmap_1_1Heightmap}{hmap\+::\+Heightmap}} \texorpdfstring{$\ast$}{*}p\+\_\+2, \mbox{\hyperlink{classhmap_1_1Heightmap}{hmap\+::\+Heightmap}} \texorpdfstring{$\ast$}{*}p\+\_\+3, std\+::function$<$ void(\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*})$>$ unary\+\_\+op)
+\item 
+void \mbox{\hyperlink{namespacehmap_a8189a2f0b773b7883777e6601f247634}{hmap\+::transform}} (\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h, \mbox{\hyperlink{classhmap_1_1Heightmap}{hmap\+::\+Heightmap}} \texorpdfstring{$\ast$}{*}p\+\_\+1, \mbox{\hyperlink{classhmap_1_1Heightmap}{hmap\+::\+Heightmap}} \texorpdfstring{$\ast$}{*}p\+\_\+2, std\+::function$<$ void(\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*})$>$ unary\+\_\+op)
+\item 
+void \mbox{\hyperlink{namespacehmap_a02f88b129d0c61ec241c54333a617109}{hmap\+::transform}} (\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h1, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h2, std\+::function$<$ void(\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&)$>$ binary\+\_\+op)
+\item 
+void \mbox{\hyperlink{namespacehmap_a59b8719b8ab27bf954ebaa961e25c2e7}{hmap\+::transform}} (\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h1, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h2, std\+::function$<$ void(\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$)$>$ binary\+\_\+op)
+\item 
+void \mbox{\hyperlink{namespacehmap_a32d77f6607e40ad1429906e5e9e08e17}{hmap\+::transform}} (\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h1, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h2, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h3, std\+::function$<$ void(\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&)$>$ ternary\+\_\+op)
+\item 
+void \mbox{\hyperlink{namespacehmap_a9ee71d4c48644e9f0e29601eb0636b07}{hmap\+::transform}} (\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h1, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h2, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h3, std\+::function$<$ void(\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$)$>$ ternary\+\_\+op)
+\item 
+void \mbox{\hyperlink{namespacehmap_a23b3861a8be80a910c10401284fe9e59}{hmap\+::transform}} (\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h\+\_\+out, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h1, std\+::function$<$ \mbox{\hyperlink{classhmap_1_1Array}{Array}}(\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&)$>$ unary\+\_\+op)
+\item 
+void \mbox{\hyperlink{namespacehmap_a529a8a23044dcdd9ed0fb7f0e628d4c7}{hmap\+::transform}} (\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h\+\_\+out, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h1, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h2, std\+::function$<$ \mbox{\hyperlink{classhmap_1_1Array}{Array}}(\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&)$>$ binary\+\_\+op)
+\item 
+void \mbox{\hyperlink{namespacehmap_a31d9bb3f85a02d60bd03e8bb6ef4f4f4}{hmap\+::transform}} (\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h1, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h2, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h3, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h4, std\+::function$<$ void(\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&)$>$ ternary\+\_\+op)
+\item 
+void \mbox{\hyperlink{namespacehmap_aa6f9b7363268c106d5154d7370053c35}{hmap\+::transform}} (\mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h1, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h2, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h3, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h4, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h5, \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \&h6, std\+::function$<$ void(\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&)$>$ op)
+\item 
+void \mbox{\hyperlink{namespacehmap_a086b4d007e08e88d2fc1166e67c524ee}{hmap\+::transform}} (std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \texorpdfstring{$\ast$}{*} $>$ p\+\_\+hmaps, std\+::function$<$ void(const std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*} $>$, const \mbox{\hyperlink{structhmap_1_1Vec2}{hmap\+::\+Vec2}}$<$ int $>$, const \mbox{\hyperlink{structhmap_1_1Vec4}{hmap\+::\+Vec4}}$<$ float $>$)$>$ op, \mbox{\hyperlink{namespacehmap_ab36df744301ada377d4a3f3a34bca77f}{Transform\+Mode}} transform\+\_\+mode=\mbox{\hyperlink{namespacehmap_ab36df744301ada377d4a3f3a34bca77fac40707c2538151422af1c84dfd46252b}{Transform\+Mode\+::\+DISTRIBUTED}})
+\begin{DoxyCompactList}\small\item\em Applies a transformation operation to a collection of heightmaps. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a3438427cf944820ce19e7ca9ce438985}{hmap\+::transform}} (std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}} \texorpdfstring{$\ast$}{*} $>$ p\+\_\+hmaps, std\+::function$<$ void(const std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*} $>$)$>$ op, \mbox{\hyperlink{namespacehmap_ab36df744301ada377d4a3f3a34bca77f}{Transform\+Mode}} transform\+\_\+mode=\mbox{\hyperlink{namespacehmap_ab36df744301ada377d4a3f3a34bca77fac40707c2538151422af1c84dfd46252b}{Transform\+Mode\+::\+DISTRIBUTED}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Otto Link (\href{mailto:otto.link.bv@gmail.com}{\texttt{ otto.\+link.\+bv@gmail.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/07-\/23
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}

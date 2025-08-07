@@ -1,0 +1,28 @@
+GENERATE_HTML         = YES
+OUTPUT_DIRECTORY      = docs
+HTML_OUTPUT           = .
+
+INPUT                  = HighMap/include/ HighMap/src/ docs/.
+CITE_BIB_FILES         = docs/bib/references.bib
+EXAMPLE_PATH           = examples
+IMAGE_PATH             = docs/images
+
+PROJECT_NAME           = "HighMap library (C++)"
+RECURSIVE              = YES
+INLINE_SOURCES         = NO
+ALWAYS_DETAILED_SEC    = YES
+GENERATE_TREEVIEW      = YES
+BUILTIN_STL_SUPPORT    = YES
+EXTRACT_ALL            = YES
+LATEX_BIB_STYLE	       = apalike
+GENERATE_LATEX	       = YES
+USE_MATHJAX            = YES
+DISTRIBUTE_GROUP_DOC   = YES
+SOURCE_BROWSER         = NO
+EXAMPLE_PATTERNS       = ex_*.cpp
+EXAMPLE_RECURSIVE      = YES
+SORT_MEMBER_DOCS       = NO
+COLLABORATION_GRAPH    = YES
+INTERACTIVE_SVG        = YES
+GENERATE_XML           = YES
+ENABLE_PREPROCESSING   = NO

@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_d973d9aaff4af7d4184a10e5b87a6887" kind="dir">
+    <compoundname>HighMap/src/primitives/functions</compoundname>
+    <innerfile refid="fbm__functions_8cpp">fbm_functions.cpp</innerfile>
+    <innerfile refid="field__function_8cpp">field_function.cpp</innerfile>
+    <innerfile refid="functions_8cpp">functions.cpp</innerfile>
+    <innerfile refid="noise__functions_8cpp">noise_functions.cpp</innerfile>
+    <innerfile refid="parberry__function_8cpp">parberry_function.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="HighMap/src/primitives/functions/"/>
+  </compounddef>
+</doxygen>

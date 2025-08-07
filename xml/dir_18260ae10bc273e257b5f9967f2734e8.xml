@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_18260ae10bc273e257b5f9967f2734e8" kind="dir">
+    <compoundname>HighMap/src/array</compoundname>
+    <innerfile refid="array_8cpp">array.cpp</innerfile>
+    <innerfile refid="io_8cpp">io.cpp</innerfile>
+    <innerfile refid="methods_8cpp">methods.cpp</innerfile>
+    <innerfile refid="opencv__wrapper_8cpp">opencv_wrapper.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="HighMap/src/array/"/>
+  </compounddef>
+</doxygen>

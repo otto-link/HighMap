@@ -1,0 +1,44 @@
+\doxysection{High\+Map/include/highmap/geometry/cloud.hpp File Reference}
+\hypertarget{cloud_8hpp}{}\label{cloud_8hpp}\index{HighMap/include/highmap/geometry/cloud.hpp@{HighMap/include/highmap/geometry/cloud.hpp}}
+
+
+Definition of the {\ttfamily Cloud} class for manipulating sets of 2D points.  
+
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classhmap_1_1Cloud}{hmap\+::\+Cloud}}
+\begin{DoxyCompactList}\small\item\em Represents a collection of unordered points in 2D space. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1Cloud}{Cloud}} \mbox{\hyperlink{namespacehmap_abd7c616c225d31eb2fd4e3ff023e3ed5}{hmap\+::merge\+\_\+cloud}} (const \mbox{\hyperlink{classhmap_1_1Cloud}{Cloud}} \&cloud1, const \mbox{\hyperlink{classhmap_1_1Cloud}{Cloud}} \&cloud2)
+\begin{DoxyCompactList}\small\item\em Merges two point clouds into one. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Definition of the {\ttfamily Cloud} class for manipulating sets of 2D points. 
+
+\begin{DoxyAuthor}{Author}
+Otto Link (\href{mailto:otto.link.bv@gmail.com}{\texttt{ otto.\+link.\+bv@gmail.\+com}}) 
+\end{DoxyAuthor}
+This file contains the definition of the {\ttfamily Cloud} class, which is used to manage and manipulate unordered sets of points in a 2D space. The {\ttfamily Cloud} class provides functionalities for creating clouds of points, including random generation, value assignment, and data export. It also supports operations such as computing bounding boxes, distances, and interpolating values from arrays.
+
+The class includes methods for adding and removing points, randomizing positions and values, remapping values, and exporting data to CSV files. Additional functionalities include calculating Signed Distance Functions (SDF) and projecting point clouds onto arrays.
+
+\begin{DoxyVersion}{Version}
+0.\+1 Initial version. 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/06-\/18
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 Otto Link
+\end{DoxyCopyright}
+This software is distributed under the terms of the GNU General Public License. The full license is available in the LICENSE file distributed with this software. 

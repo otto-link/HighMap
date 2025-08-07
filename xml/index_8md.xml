@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="index_8md" kind="file" language="Markdown">
+    <compoundname>index.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">\mainpage</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>HighMap<sp/>library<sp/>documentation!</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Welcome<sp/>to<sp/>the<sp/>documentation<sp/>of<sp/>the<sp/>HighMap,<sp/>a<sp/>C++<sp/>library<sp/>designed</highlight></codeline>
+<codeline><highlight class="normal">to<sp/>facilitate<sp/>the<sp/>generation<sp/>of<sp/>heightmaps<sp/>for<sp/>video<sp/>games,</highlight></codeline>
+<codeline><highlight class="normal">simulations,<sp/>and<sp/>other<sp/>applications<sp/>that<sp/>require<sp/>detailed<sp/>terrain</highlight></codeline>
+<codeline><highlight class="normal">data.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Heightmaps?</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">A<sp/>heightmap<sp/>is<sp/>a<sp/>type<sp/>of<sp/>digital<sp/>image<sp/>or<sp/>data<sp/>grid<sp/>that<sp/>represents</highlight></codeline>
+<codeline><highlight class="normal">the<sp/>elevation<sp/>or<sp/>height<sp/>of<sp/>terrain<sp/>in<sp/>a<sp/>two-dimensional<sp/>format.<sp/>Each</highlight></codeline>
+<codeline><highlight class="normal">pixel<sp/>or<sp/>point<sp/>in<sp/>a<sp/>heightmap<sp/>corresponds<sp/>to<sp/>a<sp/>specific<sp/>location<sp/>on</highlight></codeline>
+<codeline><highlight class="normal">the<sp/>terrain,<sp/>with<sp/>the<sp/>value<sp/>at<sp/>that<sp/>point<sp/>indicating<sp/>the<sp/>elevation</highlight></codeline>
+<codeline><highlight class="normal">above<sp/>anny<sp/>reference<sp/>level.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">In<sp/>a<sp/>grayscale<sp/>heightmap,<sp/>darker<sp/>shades<sp/>typically<sp/>represent<sp/>lower</highlight></codeline>
+<codeline><highlight class="normal">elevations,<sp/>while<sp/>lighter<sp/>shades<sp/>indicate<sp/>higher<sp/>elevations.<sp/>This</highlight></codeline>
+<codeline><highlight class="normal">visual<sp/>representation<sp/>allows<sp/>developers<sp/>to<sp/>easily<sp/>map<sp/>out<sp/>and</highlight></codeline>
+<codeline><highlight class="normal">manipulate<sp/>terrain<sp/>features<sp/>such<sp/>as<sp/>hills,<sp/>valleys,<sp/>mountains,<sp/>and</highlight></codeline>
+<codeline><highlight class="normal">plains<sp/>in<sp/>a<sp/>virtual<sp/>environment.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">![](images/illustrations/dem_example_rendered.png<sp/>&quot;Heightmap<sp/>(left)<sp/>and<sp/>3D<sp/>rendering<sp/>of<sp/>this<sp/>heightmap<sp/>(right).&quot;)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Getting<sp/>started</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Sources<sp/>and<sp/>installation</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">For<sp/>installation<sp/>instructions,<sp/>please<sp/>refer<sp/>to<sp/>the<sp/>README<sp/>in<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">GitHub<sp/>repository:</highlight></codeline>
+<codeline><highlight class="normal">[https://github.com/otto-link/HighMap](https://github.com/otto-link/HighMap).</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Basic<sp/>principle<sp/>and<sp/>data<sp/>structure</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>library<sp/>represents<sp/>heightmaps<sp/>using<sp/>a<sp/>2D<sp/>array<sp/>of<sp/>floating-point</highlight></codeline>
+<codeline><highlight class="normal">values,<sp/>where<sp/>each<sp/>value<sp/>corresponds<sp/>to<sp/>the<sp/>elevation<sp/>at<sp/>a<sp/>specific</highlight></codeline>
+<codeline><highlight class="normal">point<sp/>on<sp/>the<sp/>terrain.<sp/>To<sp/>work<sp/>with<sp/>these<sp/>heightmaps,<sp/>the<sp/>library</highlight></codeline>
+<codeline><highlight class="normal">includes<sp/>specialized<sp/>data<sp/>structures<sp/>that<sp/>allow<sp/>for<sp/>efficient</highlight></codeline>
+<codeline><highlight class="normal">generation,<sp/>manipulation,<sp/>and<sp/>modification<sp/>of<sp/>these<sp/>arrays,<sp/>making<sp/>it</highlight></codeline>
+<codeline><highlight class="normal">easier<sp/>to<sp/>create<sp/>and<sp/>adjust<sp/>complex<sp/>terrain<sp/>features.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Provided<sp/>data<sp/>structures<sp/>are:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>2D<sp/>array,</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>\ref<sp/>hmap.Array<sp/>for<sp/>2D<sp/>array<sp/>of<sp/>floats,</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>\ref<sp/>hmap.HeightMap<sp/>for<sp/>a<sp/>tiled<sp/>representation<sp/>and<sp/>parallel</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>computation<sp/>of<sp/>2D<sp/>array<sp/>of<sp/>floats,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>bivariate<sp/>\f((x,<sp/>y)\f)<sp/>functions<sp/>for<sp/>locally<sp/>computable<sp/>noise</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>generators<sp/>or<sp/>basic<sp/>functions,</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>\ref<sp/>hmap.Function<sp/>and<sp/>its<sp/>derivates<sp/>\ref<sp/>hmap.NoiseFunction,<sp/>\ref</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>hmap.FbmFunction,<sp/>\ref<sp/>hmap.FieldFunction,...</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>geometric<sp/>primitives,</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>\ref<sp/>hmap.Point,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>\ref<sp/>hmap.Edge,</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>\ref<sp/>hmap.Cloud<sp/>for<sp/>set<sp/>of<sp/>points<sp/>,</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>\ref<sp/>hmap.Path<sp/>for<sp/>set<sp/>of<sp/>ordered<sp/>points<sp/>(i.e.<sp/>open<sp/>or<sp/>closed<sp/>polylines),</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>\ref<sp/>hmap.Graph.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>&quot;Array&quot;<sp/>-<sp/>Elementary<sp/>Data<sp/>Structure<sp/>for<sp/>Building<sp/>Heightmaps</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>`Array`<sp/>object<sp/>is<sp/>the<sp/>fundamental<sp/>class<sp/>upon<sp/>which<sp/>the<sp/>heightmap</highlight></codeline>
+<codeline><highlight class="normal">construction<sp/>algorithms<sp/>rely.<sp/>A<sp/>heightmap<sp/>is<sp/>a<sp/>two-dimensional</highlight></codeline>
+<codeline><highlight class="normal">representation<sp/>where<sp/>each<sp/>cell&apos;s<sp/>value<sp/>corresponds<sp/>to<sp/>a<sp/>height<sp/>or</highlight></codeline>
+<codeline><highlight class="normal">elevation<sp/>at<sp/>that<sp/>point.<sp/>An<sp/>`Array`<sp/>is<sp/>simply<sp/>a<sp/>2D<sp/>array<sp/>with</highlight></codeline>
+<codeline><highlight class="normal">dimensions<sp/>defined<sp/>by<sp/>`shape`<sp/>(length/width).</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Indexing<sp/>is<sp/>typically<sp/>based<sp/>on<sp/>a<sp/>pair<sp/>of<sp/>indices<sp/>`(i,<sp/>j)`.<sp/>The<sp/>cell<sp/>at</highlight></codeline>
+<codeline><highlight class="normal">`(i=0,<sp/>j=0)`<sp/>is<sp/>assumed<sp/>to<sp/>be<sp/>at<sp/>the<sp/>bottom-left<sp/>corner<sp/>of<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">heightmap.<sp/>This<sp/>assumption<sp/>is<sp/>usually<sp/>inconsequential,<sp/>except<sp/>when<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">heightmap<sp/>needs<sp/>to<sp/>be<sp/>aligned<sp/>with<sp/>specific<sp/>spatial<sp/>positions<sp/>`(x,</highlight></codeline>
+<codeline><highlight class="normal">y)`.<sp/>The<sp/>conversion<sp/>between<sp/>indices<sp/>`(i,<sp/>j)`<sp/>and<sp/>spatial<sp/>positions<sp/>`(x,<sp/>y)`</highlight></codeline>
+<codeline><highlight class="normal">depends<sp/>on<sp/>the<sp/>heightmap&apos;s<sp/>&quot;bounding<sp/>box,&quot;<sp/>which<sp/>is<sp/>the<sp/>spatial<sp/>domain</highlight></codeline>
+<codeline><highlight class="normal">covered<sp/>by<sp/>the<sp/>heightmap.<sp/>By<sp/>default,<sp/>this<sp/>bounding<sp/>box<sp/>is<sp/>assumed<sp/>to</highlight></codeline>
+<codeline><highlight class="normal">be<sp/>a<sp/>unit<sp/>domain,<sp/>meaning<sp/>it<sp/>spans<sp/>a<sp/>square<sp/>of<sp/>size<sp/>1<sp/>in<sp/>both<sp/>x<sp/>and<sp/>y</highlight></codeline>
+<codeline><highlight class="normal">directions.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>values<sp/>within<sp/>the<sp/>heightmap<sp/>cells<sp/>are<sp/>generally<sp/>within<sp/>the<sp/>range</highlight></codeline>
+<codeline><highlight class="normal">`[0,<sp/>1]`.<sp/>While<sp/>this<sp/>range<sp/>is<sp/>not<sp/>strictly<sp/>enforced,<sp/>some<sp/>algorithms</highlight></codeline>
+<codeline><highlight class="normal">assume<sp/>that<sp/>the<sp/>data<sp/>adheres<sp/>to<sp/>this<sp/>scale.<sp/>It<sp/>is<sp/>always<sp/>possible<sp/>to</highlight></codeline>
+<codeline><highlight class="normal">use<sp/>the<sp/>\ref<sp/>hmap::remap<sp/>function<sp/>to<sp/>adjust<sp/>the<sp/>scale<sp/>of<sp/>the<sp/>heightmap</highlight></codeline>
+<codeline><highlight class="normal">values<sp/>to<sp/>fit<sp/>within<sp/>the<sp/>desired<sp/>range.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Example<sp/>usage</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>Generate<sp/>classical<sp/>coherent<sp/>noises<sp/>(Perlin,<sp/>Simplex,<sp/>fractal<sp/>layering,<sp/>etc...)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>Filters</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>Physical<sp/>processes</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>Bivariate<sp/>functions</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Exporting</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>Image<sp/>formats<sp/>(png,<sp/>tiff,<sp/>exr...)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>Numpy<sp/>binary<sp/>file</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>library<sp/>includes<sp/>a<sp/>function<sp/>that<sp/>enables<sp/>exporting<sp/>data<sp/>to<sp/>the</highlight></codeline>
+<codeline><highlight class="normal">NumPy<sp/>binary<sp/>format<sp/>(.npy),<sp/>facilitating<sp/>integration<sp/>with<sp/>Python&apos;s</highlight></codeline>
+<codeline><highlight class="normal">NumPy<sp/>library.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">@include<sp/>ex_to_numpy.cpp</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>Raw<sp/>binary<sp/>file</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>Asset<sp/>export<sp/>(3D<sp/>mesh<sp/>and<sp/>texture)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">hmap::AssetExportFormat</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">hmap::MeshType</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Library<sp/>functionalities</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>Header<sp/>|<sp/>Description<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|--|--|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>array.hpp<sp/>|<sp/>Declaration<sp/>of<sp/>the<sp/>Array<sp/>class<sp/>for<sp/>2D<sp/>floating-point<sp/>arrays<sp/>with<sp/>various<sp/>mathematical<sp/>operations<sp/>and<sp/>utilities.<sp/>|</highlight></codeline>
+    </programlisting>
+    <location file="docs/index.md"/>
+  </compounddef>
+</doxygen>

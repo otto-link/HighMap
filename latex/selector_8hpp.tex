@@ -1,0 +1,60 @@
+\doxysection{High\+Map/include/highmap/selector.hpp File Reference}
+\hypertarget{selector_8hpp}{}\label{selector_8hpp}\index{HighMap/include/highmap/selector.hpp@{HighMap/include/highmap/selector.hpp}}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\item 
+namespace \mbox{\hyperlink{namespacehmap_1_1gpu}{hmap\+::gpu}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a6c6abf2b8bd3161610e273ef97ee4771}{hmap\+::scan\+\_\+mask}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float contrast=0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float brightness=0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+\begin{DoxyCompactList}\small\item\em Mask adjustement using a \textquotesingle{}scanning\textquotesingle{} method. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a17edf2c011829f4eed9f45152b3f8eb9}{hmap\+::select\+\_\+angle}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float \mbox{\hyperlink{namespacehmap_aac71bb6c14edc17967957f7918acdbdd}{angle}}, float sigma, int ir=0)
+\begin{DoxyCompactList}\small\item\em Return angle selection for a given angle and a tolerance half-\/width on this value. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_aeaaf7a8ae8cf8de1dad3a82950879473}{hmap\+::select\+\_\+blob\+\_\+log}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int ir)
+\begin{DoxyCompactList}\small\item\em Return blob detection using the Laplacian of Gaussian (LoG) approach. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_ac3436096f5ea39274658f503d7c950c1}{hmap\+::select\+\_\+cavities}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int ir, bool concave=true)
+\begin{DoxyCompactList}\small\item\em Return holes or bumps detection based on the mean curvature of the heightmap. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a13c7f71c6fa727ee090e483c328270a0}{hmap\+::select\+\_\+elevation\+\_\+slope}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float gradient\+\_\+scale)
+\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_aee36bf04c8ae880814a5341d4ea262f4}{hmap\+::select\+\_\+elevation\+\_\+slope}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float gradient\+\_\+scale, float vmax)
+\begin{DoxyCompactList}\small\item\em This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_acd41c33e7bb689f6e3b94274f15869b3}{hmap\+::select\+\_\+eq}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float value)
+\begin{DoxyCompactList}\small\item\em Return an array with elements equal to 1 where input elements are equal to {\ttfamily value}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_aa387b6418bf9dac2b4f05b41a2a106d5}{hmap\+::select\+\_\+gradient\+\_\+angle}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float \mbox{\hyperlink{namespacehmap_aac71bb6c14edc17967957f7918acdbdd}{angle}})
+\begin{DoxyCompactList}\small\item\em Return an array weighted by the gap between the gradient angle and a given angle. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_acd0eee71be926266e51f908bdc7e2199}{hmap\+::select\+\_\+gradient\+\_\+binary}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float talus\+\_\+center)
+\begin{DoxyCompactList}\small\item\em Return an array filled with 1 where the gradient is larger than a given value and 0 elsewhere. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a4c42905cbb910cb4017ef3e026a31d59}{hmap\+::select\+\_\+gradient\+\_\+exp}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float talus\+\_\+center, float talus\+\_\+sigma)
+\begin{DoxyCompactList}\small\item\em Return an array weighted (exponantial decay) by the gradient norm of the input array. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a60843740c9f6153042e0466b696239fd}{hmap\+::select\+\_\+gradient\+\_\+inv}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float talus\+\_\+center, float talus\+\_\+sigma)
+\begin{DoxyCompactList}\small\item\em Return an array weighted (square inverse) by the gradient norm of the input array. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a5c54b11ce530d2b0cfc75de360e25ebf}{hmap\+::select\+\_\+gt}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float value)
+\begin{DoxyCompactList}\small\item\em Return an array with elements equal to 1 where input elements are larger than {\ttfamily value}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a849d37221d492c5d96d945dc64b02754}{hmap\+::select\+\_\+interval}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float value1, float value2)
+\begin{DoxyCompactList}\small\item\em Return an array with elements equal to 1 where input elements are within the bounds provided. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a2f1c2f2b2aa922b94ccbee3d40b83b8c}{hmap\+::select\+\_\+inward\+\_\+outward\+\_\+slope}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$ center=\{0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\})
+\begin{DoxyCompactList}\small\item\em Return an array with positive values if the slope is pointing to the center (slope is inward), and negative values otherwise (slope is outward). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a01db711d188b71bc0ff2118364f3d60b}{hmap\+::select\+\_\+lt}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float value)
+\begin{DoxyCompactList}\small\item\em Return an array with elements equal to 1 where input elements are smaller than {\ttfamily value}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a7b42d7b9a8dfdf8b67a1a482974ee33f}{hmap\+::select\+\_\+midrange}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float \mbox{\hyperlink{namespacehmap_ab1e1b26c0c1eb51d0b256db94d6ca22e}{gain}}, float vmin, float vmax)
+\begin{DoxyCompactList}\small\item\em Selects the midrange values of the input array within a specified range. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a565788418282bab28d9d3384622abd9d}{hmap\+::select\+\_\+midrange}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float \mbox{\hyperlink{namespacehmap_ab1e1b26c0c1eb51d0b256db94d6ca22e}{gain}})
+\begin{DoxyCompactList}\small\item\em Selects and scales the midrange values of the input array. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a6ee46e297f2d253660bfe461b9321fe2}{hmap\+::select\+\_\+multiband3}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&band\+\_\+low, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&band\+\_\+mid, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&band\+\_\+high, float ratio1, float ratio2, float overlap, float vmin, float vmax)
+\begin{DoxyCompactList}\small\item\em Splits the input array into three bands (low, mid, and high) based on given ratios and overlap. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a3ce44e59b5eeb5c47a597f893f53eadb}{hmap\+::select\+\_\+multiband3}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&band\+\_\+low, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&band\+\_\+mid, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&band\+\_\+high, float ratio1, float ratio2, float overlap)
+\begin{DoxyCompactList}\small\item\em Splits the input array into three bands (low, mid, and high) based on given ratios and overlap. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a183508644aea6442e249cfc2973fef97}{hmap\+::select\+\_\+pulse}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float value, float sigma)
+\begin{DoxyCompactList}\small\item\em Return an array filled with non-\/zero values where the input is in the interval \mbox{[}value -\/ sigma, value + sigma\mbox{]}. Output array values have a cubic pulse distribution within this interval. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a1f35e2238ee222ab2aa87304f6692ce6}{hmap\+::select\+\_\+rivers}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float talus\+\_\+ref, float clipping\+\_\+ratio)
+\begin{DoxyCompactList}\small\item\em Return an array filled with a criterion based on the occurence of a river bed. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_ac6dcaa05c7c34302fa2560ddedbb9931}{hmap\+::select\+\_\+transitions}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array1, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array2, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array\+\_\+blend)
+\begin{DoxyCompactList}\small\item\em Return an array filled with 1 at the blending transition between two arrays, and 0 elsewhere. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a701106cd57412e72a5d3ee41b46ab4e8}{hmap\+::select\+\_\+valley}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int ir, bool zero\+\_\+at\+\_\+borders=true, bool ridge\+\_\+select=false)
+\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_af91ed08d142ffe71069e00475654d786}{hmap\+::gpu\+::select\+\_\+valley}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int ir, bool zero\+\_\+at\+\_\+borders=true, bool ridge\+\_\+select=false)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_a701106cd57412e72a5d3ee41b46ab4e8}{hmap\+::select\+\_\+valley}. \end{DoxyCompactList}\end{DoxyCompactItemize}

@@ -1,0 +1,44 @@
+\doxysection{High\+Map/include/highmap/interpolate1d.hpp File Reference}
+\hypertarget{interpolate1d_8hpp}{}\label{interpolate1d_8hpp}\index{HighMap/include/highmap/interpolate1d.hpp@{HighMap/include/highmap/interpolate1d.hpp}}
+
+
+Defines a 1D interpolation class using the GSL (GNU Scientific Library).  
+
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classhmap_1_1Interpolator1D}{hmap\+::\+Interpolator1D}}
+\begin{DoxyCompactList}\small\item\em A class for performing 1D interpolation using the GSL library. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacehmap_a46291bb4766800deacc1ce9b45a9ea6b}{hmap\+::\+Interpolation\+Method1D}} \+: int \{ \newline
+\mbox{\hyperlink{namespacehmap_a46291bb4766800deacc1ce9b45a9ea6ba55d2df97f3e8f051fb84453093374c96}{hmap\+::\+AKIMA}}
+, \mbox{\hyperlink{namespacehmap_a46291bb4766800deacc1ce9b45a9ea6bac3c354b92a241b06cbe768faa834b85e}{hmap\+::\+AKIMA\+\_\+\+PERIODIC}}
+, \mbox{\hyperlink{namespacehmap_a46291bb4766800deacc1ce9b45a9ea6ba212e7c8d91a9697cccd7df7d006a5547}{hmap\+::\+CUBIC}}
+, \mbox{\hyperlink{namespacehmap_a46291bb4766800deacc1ce9b45a9ea6ba842713d3dc1b52f8b51bb2eaeb8bcf7e}{hmap\+::\+CUBIC\+\_\+\+PERIODIC}}
+, \newline
+\mbox{\hyperlink{namespacehmap_a46291bb4766800deacc1ce9b45a9ea6ba26ec6481025765e03b9c750137bd9d84}{hmap\+::\+LINEAR}}
+, \mbox{\hyperlink{namespacehmap_a46291bb4766800deacc1ce9b45a9ea6ba2c387e5d1f5342e28fa6a3132e9b461d}{hmap\+::\+POLYNOMIAL}}
+, \mbox{\hyperlink{namespacehmap_a46291bb4766800deacc1ce9b45a9ea6ba9c7fc85c23ace48f52c365aae11b6e0b}{hmap\+::\+STEFFEN}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration of the available 1D interpolation methods. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Defines a 1D interpolation class using the GSL (GNU Scientific Library). 
+
+\begin{DoxyAuthor}{Author}
+\texorpdfstring{$\ast$}{*} Otto Link (\href{mailto:otto.link.bv@gmail.com}{\texttt{ otto.\+link.\+bv@gmail.\+com}}) 
+\end{DoxyAuthor}
+This file contains the {\ttfamily Interpolator1D} class and {\ttfamily Interpolation\+Method1D} enum, which provide a simple interface for performing 1D interpolation with various methods available in the GSL. The interpolation methods include Akima, cubic, linear, polynomial, and Steffen interpolation.
+
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 Otto Link 
+\end{DoxyCopyright}

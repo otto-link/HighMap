@@ -1,0 +1,54 @@
+\doxysection{interpolate1d.\+hpp}
+\hypertarget{interpolate1d_8hpp_source}{}\label{interpolate1d_8hpp_source}\index{HighMap/include/highmap/interpolate1d.hpp@{HighMap/include/highmap/interpolate1d.hpp}}
+\mbox{\hyperlink{interpolate1d_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ Copyright\ (c)\ 2023\ Otto\ Link.\ Distributed\ under\ the\ terms\ of\ the\ GNU\ General}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ \ \ Public\ License.\ The\ full\ license\ is\ in\ the\ file\ LICENSE,\ distributed\ with}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ \ this\ software.\ */}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <gsl/gsl\_interp.h>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <gsl/gsl\_spline.h>}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacehmap}{hmap}}}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespacehmap_a46291bb4766800deacc1ce9b45a9ea6b}{InterpolationMethod1D}}\ :\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \ \ \mbox{\hyperlink{namespacehmap_a46291bb4766800deacc1ce9b45a9ea6ba55d2df97f3e8f051fb84453093374c96}{AKIMA}},\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \mbox{\hyperlink{namespacehmap_a46291bb4766800deacc1ce9b45a9ea6bac3c354b92a241b06cbe768faa834b85e}{AKIMA\_PERIODIC}},\ }
+\DoxyCodeLine{00039\ \ \ \mbox{\hyperlink{namespacehmap_a46291bb4766800deacc1ce9b45a9ea6ba212e7c8d91a9697cccd7df7d006a5547}{CUBIC}},\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \mbox{\hyperlink{namespacehmap_a46291bb4766800deacc1ce9b45a9ea6ba842713d3dc1b52f8b51bb2eaeb8bcf7e}{CUBIC\_PERIODIC}},\ }
+\DoxyCodeLine{00041\ \ \ \mbox{\hyperlink{namespacehmap_a46291bb4766800deacc1ce9b45a9ea6ba26ec6481025765e03b9c750137bd9d84}{LINEAR}},\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \mbox{\hyperlink{namespacehmap_a46291bb4766800deacc1ce9b45a9ea6ba2c387e5d1f5342e28fa6a3132e9b461d}{POLYNOMIAL}},\ \ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \mbox{\hyperlink{namespacehmap_a46291bb4766800deacc1ce9b45a9ea6ba9c7fc85c23ace48f52c365aae11b6e0b}{STEFFEN}},\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00044\ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classhmap_1_1Interpolator1D}{Interpolator1D}}}
+\DoxyCodeLine{00065\ \{}
+\DoxyCodeLine{00066\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00082\ \ \ \mbox{\hyperlink{classhmap_1_1Interpolator1D}{Interpolator1D}}(\textcolor{keyword}{const}\ std::vector<float>\ \&x,}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<float>\ \&y,}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacehmap_a46291bb4766800deacc1ce9b45a9ea6b}{InterpolationMethod1D}}\ method\ =\ \mbox{\hyperlink{namespacehmap_a46291bb4766800deacc1ce9b45a9ea6ba26ec6481025765e03b9c750137bd9d84}{InterpolationMethod1D::LINEAR}});}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00091\ \ \ \mbox{\hyperlink{classhmap_1_1Interpolator1D_afce7ba6809a4c7b28a561c7c646227e3}{\string~Interpolator1D}}();}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00103\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1Interpolator1D_a47dab539e9e8ce30c350278d01dfb1aa}{operator()}}(\textcolor{keywordtype}{float}\ x)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00114\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1Interpolator1D_a1ab067195430386cae3158bfccf4847f}{interpolate}}(\textcolor{keywordtype}{float}\ x)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00117\ \ \ gsl\_spline\ \ \ \ \ \ \ \ \ *interp;\ }
+\DoxyCodeLine{00118\ \ \ gsl\_interp\_accel\ \ \ *accel\_;\ }
+\DoxyCodeLine{00119\ \ \ std::vector<double>\ x\_data;\ }
+\DoxyCodeLine{00120\ \ \ std::vector<double>\ y\_data;\ }
+\DoxyCodeLine{00121\ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \ \ \ xmin;\ \ \ }
+\DoxyCodeLine{00122\ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \ \ \ \ \ xmax;\ \ \ }
+\DoxyCodeLine{00123\ \};}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \}\ \textcolor{comment}{//\ namespace\ hmap}}
+
+\end{DoxyCode}

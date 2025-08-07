@@ -1,0 +1,20 @@
+\doxysection{High\+Map/src/operator/stitching\+\_\+helpers.cpp File Reference}
+\hypertarget{stitching__helpers_8cpp}{}\label{stitching__helpers_8cpp}\index{HighMap/src/operator/stitching\_helpers.cpp@{HighMap/src/operator/stitching\_helpers.cpp}}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{namespacehmap_a5ce9334e0b274e48f7ba8bcaa9dd12a3}{hmap\+::cmp\+\_\+path}} (std\+::pair$<$ float, std\+::vector$<$ int $>$ $>$ \&a, std\+::pair$<$ float, std\+::vector$<$ int $>$ $>$ \&b)
+\item 
+void \mbox{\hyperlink{namespacehmap_ae0a3c73cc23a288fe03bf5ed6ac73c3d}{hmap\+::find\+\_\+vertical\+\_\+cut\+\_\+path}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&error, std\+::vector$<$ int $>$ \&path\+\_\+i)
+\begin{DoxyCompactList}\small\item\em Find the vertical cut path with the minimum cost using Dijkstra\textquotesingle{}s algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_aa3277a726a81e3c6b4dcbc0d2a86f4d7}{hmap\+::generate\+\_\+mask}} (\mbox{\hyperlink{structhmap_1_1Vec2}{hmap\+::\+Vec2}}$<$ int $>$ shape, std\+::vector$<$ int $>$ cut\+\_\+path\+\_\+i, int ir)
+\begin{DoxyCompactList}\small\item\em Generate a smooth mask based on a cut path. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a36f7eca67d2fdc5dd03a63f8b1d7255e}{hmap\+::helper\+\_\+flip\+\_\+rot\+\_\+transpose}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, bool do\+\_\+flip\+\_\+ud, bool do\+\_\+flip\+\_\+lr, bool do\+\_\+rot90, bool do\+\_\+transpose)
+\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a27362ea31c92dd9c15e1bb3c6f5b18e8}{hmap\+::get\+\_\+random\+\_\+patch}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, \mbox{\hyperlink{structhmap_1_1Vec2}{hmap\+::\+Vec2}}$<$ int $>$ patch\+\_\+shape, std\+::mt19937 \&gen, bool patch\+\_\+flip=false, bool patch\+\_\+rotate=false, bool patch\+\_\+transpose=false, std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*} $>$ \texorpdfstring{$\ast$}{*}p\+\_\+secondary\+\_\+arrays=nullptr, std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Array}{Array}} $>$ \texorpdfstring{$\ast$}{*}p\+\_\+secondary\+\_\+patches=nullptr)
+\begin{DoxyCompactList}\small\item\em Extracts a random sub-\/array (patch) from the input array, with optional transformations. \end{DoxyCompactList}\end{DoxyCompactItemize}

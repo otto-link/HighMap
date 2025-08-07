@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="edge_8hpp" kind="file" language="C++">
+    <compoundname>edge.hpp</compoundname>
+    <innerclass refid="classhmap_1_1Edge" prot="public">hmap::Edge</innerclass>
+    <innernamespace refid="namespacehmap">hmap</innernamespace>
+    <briefdescription>
+<para>This file defines the <computeroutput>Edge</computeroutput> class for manipulating segments in 2D space. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Otto Link (<ulink url="mailto:otto.link.bv@gmail.com">otto.link.bv@gmail.com</ulink>) </para>
+</simplesect>
+The <computeroutput>Edge</computeroutput> class represents a line segment in 2D space, defined by its start and end points. It provides methods to initialize an edge and compute its length.</para>
+<para><simplesect kind="version"><para>0.1 </para>
+</simplesect>
+<simplesect kind="date"><para>2023-06-18</para>
+</simplesect>
+<simplesect kind="copyright"><para>Copyright (c) 2023</para>
+</simplesect>
+This software is distributed under the terms of the GNU General Public License. The full license is in the file LICENSE, distributed with this software. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>Copyright<sp/>(c)<sp/>2023<sp/>Otto<sp/>Link.<sp/>Distributed<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>General</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/><sp/><sp/>Public<sp/>License.<sp/>The<sp/>full<sp/>license<sp/>is<sp/>in<sp/>the<sp/>file<sp/>LICENSE,<sp/>distributed<sp/>with</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/><sp/><sp/>this<sp/>software.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="point_8hpp" kindref="compound">highmap/geometry/point.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacehmap" kindref="compound">hmap</ref></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="classhmap_1_1Edge" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classhmap_1_1Edge" kindref="compound">Edge</ref></highlight></codeline>
+<codeline lineno="41"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="43" refid="classhmap_1_1Edge_1aaafc727142dadc4d1e5a5e040aade087" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Point" kindref="compound">Point</ref><sp/><ref refid="classhmap_1_1Edge_1aaafc727142dadc4d1e5a5e040aade087" kindref="member">p1</ref>;<sp/></highlight></codeline>
+<codeline lineno="44" refid="classhmap_1_1Edge_1a3ced3b4d72d4829fe8ddef173db5bb5a" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Point" kindref="compound">Point</ref><sp/><ref refid="classhmap_1_1Edge_1a3ced3b4d72d4829fe8ddef173db5bb5a" kindref="member">p2</ref>;<sp/></highlight></codeline>
+<codeline lineno="45" refid="classhmap_1_1Edge_1aeeceb458f6abbe1a5faea8123f83ce4f" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classhmap_1_1Edge_1aeeceb458f6abbe1a5faea8123f83ce4f" kindref="member">w</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="classhmap_1_1Edge_1a1807bf5546717f8355354926a5b49634" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Edge_1a1807bf5546717f8355354926a5b49634" kindref="member">Edge</ref>(<ref refid="classhmap_1_1Point" kindref="compound">Point</ref><sp/><ref refid="classhmap_1_1Edge_1aaafc727142dadc4d1e5a5e040aade087" kindref="member">p1</ref>,<sp/><ref refid="classhmap_1_1Point" kindref="compound">Point</ref><sp/><ref refid="classhmap_1_1Edge_1a3ced3b4d72d4829fe8ddef173db5bb5a" kindref="member">p2</ref>,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classhmap_1_1Edge_1aeeceb458f6abbe1a5faea8123f83ce4f" kindref="member">w</ref>)<sp/>:<sp/><ref refid="classhmap_1_1Edge_1aaafc727142dadc4d1e5a5e040aade087" kindref="member">p1</ref>(<ref refid="classhmap_1_1Edge_1aaafc727142dadc4d1e5a5e040aade087" kindref="member">p1</ref>),<sp/><ref refid="classhmap_1_1Edge_1a3ced3b4d72d4829fe8ddef173db5bb5a" kindref="member">p2</ref>(<ref refid="classhmap_1_1Edge_1a3ced3b4d72d4829fe8ddef173db5bb5a" kindref="member">p2</ref>),<sp/><ref refid="classhmap_1_1Edge_1aeeceb458f6abbe1a5faea8123f83ce4f" kindref="member">w</ref>(<ref refid="classhmap_1_1Edge_1aeeceb458f6abbe1a5faea8123f83ce4f" kindref="member">w</ref>)</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="classhmap_1_1Edge_1a418b34ac512506a53da3b7c105fe9619" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Edge_1a418b34ac512506a53da3b7c105fe9619" kindref="member">Edge</ref>(<ref refid="classhmap_1_1Point" kindref="compound">Point</ref><sp/><ref refid="classhmap_1_1Edge_1aaafc727142dadc4d1e5a5e040aade087" kindref="member">p1</ref>,<sp/><ref refid="classhmap_1_1Point" kindref="compound">Point</ref><sp/><ref refid="classhmap_1_1Edge_1a3ced3b4d72d4829fe8ddef173db5bb5a" kindref="member">p2</ref>)<sp/>:<sp/><ref refid="classhmap_1_1Edge_1aaafc727142dadc4d1e5a5e040aade087" kindref="member">p1</ref>(<ref refid="classhmap_1_1Edge_1aaafc727142dadc4d1e5a5e040aade087" kindref="member">p1</ref>),<sp/><ref refid="classhmap_1_1Edge_1a3ced3b4d72d4829fe8ddef173db5bb5a" kindref="member">p2</ref>(<ref refid="classhmap_1_1Edge_1a3ced3b4d72d4829fe8ddef173db5bb5a" kindref="member">p2</ref>),<sp/><ref refid="classhmap_1_1Edge_1aeeceb458f6abbe1a5faea8123f83ce4f" kindref="member">w</ref>(0)</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="classhmap_1_1Edge_1a2111e89e23eca2ff36cf6db1b9c57fed" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classhmap_1_1Edge_1a2111e89e23eca2ff36cf6db1b9c57fed" kindref="member">length</ref>()</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="namespacehmap_1a567410971127d39a9e3c2d7b75364def" kindref="member">distance</ref>(<ref refid="classhmap_1_1Edge_1aaafc727142dadc4d1e5a5e040aade087" kindref="member">p1</ref>,<sp/><ref refid="classhmap_1_1Edge_1a3ced3b4d72d4829fe8ddef173db5bb5a" kindref="member">p2</ref>);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="82"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hmap</highlight></codeline>
+    </programlisting>
+    <location file="HighMap/include/highmap/geometry/edge.hpp"/>
+  </compounddef>
+</doxygen>

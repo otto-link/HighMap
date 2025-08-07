@@ -1,0 +1,566 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structhmap_1_1Vec2" kind="struct" language="C++" prot="public">
+    <compoundname>hmap::Vec2</compoundname>
+    <includes refid="algebra_8hpp" local="no">algebra.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structhmap_1_1Vec2_1a2dc51e83492f966eeddbdac3d58ab447" prot="public" static="no" mutable="no">
+        <type>T</type>
+        <definition>T hmap::Vec2&lt; T &gt;::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <qualifiedname>hmap::Vec2::x</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/algebra.hpp" line="41" column="5" bodyfile="HighMap/include/highmap/algebra.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Vec2_1a087ff9ff4159d1e5778c0b65ee2a1648" prot="public" static="no" mutable="no">
+        <type>T</type>
+        <definition>T hmap::Vec2&lt; T &gt;::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <qualifiedname>hmap::Vec2::y</qualifiedname>
+        <briefdescription>
+<para>The x and y components of the vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/algebra.hpp" line="41" column="7" bodyfile="HighMap/include/highmap/algebra.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structhmap_1_1Vec2_1ab537a59a10cd7d21e2169a5742cfe2ad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hmap::Vec2&lt; T &gt;::Vec2</definition>
+        <argsstring>()</argsstring>
+        <name>Vec2</name>
+        <qualifiedname>hmap::Vec2::Vec2</qualifiedname>
+        <briefdescription>
+<para>Default constructor initializing the vector to (0, 0). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes both x and y components to zero. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/algebra.hpp" line="48" column="3" bodyfile="HighMap/include/highmap/algebra.hpp" bodystart="48" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1Vec2_1ae137e7edf6223fc6aeda839eb2672d92" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hmap::Vec2&lt; T &gt;::Vec2</definition>
+        <argsstring>(T x, T y)</argsstring>
+        <name>Vec2</name>
+        <qualifiedname>hmap::Vec2::Vec2</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+<para>Parameterized constructor initializing the vector to given values. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The x component of the vector. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The y component of the vector. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/algebra.hpp" line="59" column="3" bodyfile="HighMap/include/highmap/algebra.hpp" bodystart="59" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1Vec2_1a7a51b0894ccdea14a7d86fbb8e7289c3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hmap::Vec2&lt; T &gt;::Vec2</definition>
+        <argsstring>(const std::vector&lt; T &gt; &amp;vec)</argsstring>
+        <name>Vec2</name>
+        <qualifiedname>hmap::Vec2::Vec2</qualifiedname>
+        <param>
+          <type>const std::vector&lt; T &gt; &amp;</type>
+          <declname>vec</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a <ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref> object from a std::vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This constructor takes a vector containing exactly two elements and assigns the first element to <computeroutput>x</computeroutput> and the second element to <computeroutput>y</computeroutput>.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The type of elements in the vector (e.g., float, int, double). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A const reference to a vector of size 2, where the first element corresponds to <computeroutput>x</computeroutput> and the second to <computeroutput>y</computeroutput>.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::invalid_argument</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If the vector does not contain exactly two elements. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/algebra.hpp" line="77" column="3" bodyfile="HighMap/include/highmap/algebra.hpp" bodystart="77" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1Vec2_1a17f563df244715a4120feac38b48be21" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hmap::Vec2&lt; T &gt;::operator==</definition>
+        <argsstring>(const Vec2 &amp;other_vec) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>hmap::Vec2::operator==</qualifiedname>
+        <param>
+          <type>const <ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref> &amp;</type>
+          <declname>other_vec</declname>
+        </param>
+        <briefdescription>
+<para>Equality operator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Compares two vectors for equality.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other_vec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The vector to compare with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the vectors are equal, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/algebra.hpp" line="95" column="8" bodyfile="HighMap/include/highmap/algebra.hpp" bodystart="95" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1Vec2_1a34b1d441d8fc9bdac23f03f98c46449e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hmap::Vec2&lt; T &gt;::operator!=</definition>
+        <argsstring>(const Vec2 &amp;other_vec) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>hmap::Vec2::operator!=</qualifiedname>
+        <param>
+          <type>const <ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref> &amp;</type>
+          <declname>other_vec</declname>
+        </param>
+        <briefdescription>
+<para>Inequality operator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Compares two vectors for inequality.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other_vec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The vector to compare with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the vectors are not equal, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/algebra.hpp" line="108" column="8" bodyfile="HighMap/include/highmap/algebra.hpp" bodystart="108" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1Vec2_1ae1fb5814b4e498396b5a32418f37e343" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref> &amp;</type>
+        <definition>Vec2 &amp; hmap::Vec2&lt; T &gt;::operator/=</definition>
+        <argsstring>(const T value)</argsstring>
+        <name>operator/=</name>
+        <qualifiedname>hmap::Vec2::operator/=</qualifiedname>
+        <param>
+          <type>const T</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Division-assignment operator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Divides both components of the vector by a scalar value and assigns the result.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar value to divide by. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A reference to the current vector after division. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/algebra.hpp" line="122" column="8" bodyfile="HighMap/include/highmap/algebra.hpp" bodystart="122" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1Vec2_1a0e9a33a8699ada5082f6d4e974993d48" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref></type>
+        <definition>Vec2 hmap::Vec2&lt; T &gt;::operator/</definition>
+        <argsstring>(const Vec2 &amp;other_vec) const</argsstring>
+        <name>operator/</name>
+        <qualifiedname>hmap::Vec2::operator/</qualifiedname>
+        <param>
+          <type>const <ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref> &amp;</type>
+          <declname>other_vec</declname>
+        </param>
+        <briefdescription>
+<para>Division operator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Divides each component of the vector by the corresponding component of another vector.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other_vec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The vector to divide by. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A new vector that is the result of the division. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/algebra.hpp" line="138" column="8" bodyfile="HighMap/include/highmap/algebra.hpp" bodystart="138" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1Vec2_1adb6f4c5789a26dfaddaadce1ac5fdc7f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref></type>
+        <definition>Vec2 hmap::Vec2&lt; T &gt;::operator*</definition>
+        <argsstring>(const Vec2 &amp;other_vec) const</argsstring>
+        <name>operator*</name>
+        <qualifiedname>hmap::Vec2::operator*</qualifiedname>
+        <param>
+          <type>const <ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref> &amp;</type>
+          <declname>other_vec</declname>
+        </param>
+        <briefdescription>
+<para>Multiplication operator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Multiplies each component of the vector by the corresponding component of another vector.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other_vec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The vector to multiply by. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A new vector that is the result of the multiplication. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/algebra.hpp" line="156" column="8" bodyfile="HighMap/include/highmap/algebra.hpp" bodystart="156" bodyend="162"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1Vec2_1a1df60c9894d8d6f4380ef9ba932125e2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref></type>
+        <definition>Vec2 hmap::Vec2&lt; T &gt;::operator+</definition>
+        <argsstring>(const Vec2 &amp;other_vec) const</argsstring>
+        <name>operator+</name>
+        <qualifiedname>hmap::Vec2::operator+</qualifiedname>
+        <param>
+          <type>const <ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref> &amp;</type>
+          <declname>other_vec</declname>
+        </param>
+        <briefdescription>
+<para>Addition operator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Adds each component of the vector to the corresponding component of another vector.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other_vec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The vector to add. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A new vector that is the result of the addition. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/algebra.hpp" line="173" column="8" bodyfile="HighMap/include/highmap/algebra.hpp" bodystart="173" bodyend="179"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1Vec2_1a85f26a9e80d8b99b72e3e7d02f4325aa" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref></type>
+        <definition>Vec2 hmap::Vec2&lt; T &gt;::operator-</definition>
+        <argsstring>(const Vec2 &amp;other_vec) const</argsstring>
+        <name>operator-</name>
+        <qualifiedname>hmap::Vec2::operator-</qualifiedname>
+        <param>
+          <type>const <ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref> &amp;</type>
+          <declname>other_vec</declname>
+        </param>
+        <briefdescription>
+<para>Subtraction operator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Subtracts each component of another vector from the corresponding component of this vector.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other_vec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The vector to subtract. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A new vector that is the result of the subtraction. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/algebra.hpp" line="190" column="8" bodyfile="HighMap/include/highmap/algebra.hpp" bodystart="190" bodyend="196"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1Vec2_1a5fa624eca898ddf0dde96e63891540d8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref></type>
+        <definition>Vec2 hmap::Vec2&lt; T &gt;::operator*</definition>
+        <argsstring>(T scalar) const</argsstring>
+        <name>operator*</name>
+        <qualifiedname>hmap::Vec2::operator*</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>scalar</declname>
+        </param>
+        <briefdescription>
+<para>Scalar multiplication (<ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref> * scalar). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Multiplies each component of the vector by a scalar value.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar value to multiply with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref> A new vector with each component multiplied by the scalar. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/algebra.hpp" line="207" column="8" bodyfile="HighMap/include/highmap/algebra.hpp" bodystart="207" bodyend="210"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1Vec2_1a89bca88f3a07365a28ad89477500bf33" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T hmap::Vec2&lt; T &gt;::magnitude</definition>
+        <argsstring>() const</argsstring>
+        <name>magnitude</name>
+        <qualifiedname>hmap::Vec2::magnitude</qualifiedname>
+        <briefdescription>
+<para>Calculate the magnitude (length) of the vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The magnitude of the vector. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/algebra.hpp" line="249" column="5" bodyfile="HighMap/include/highmap/algebra.hpp" bodystart="249" bodyend="252"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1Vec2_1a46c73f1340298ca58fe607c04ca09ab1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Vec2&lt; T &gt;::normalize</definition>
+        <argsstring>()</argsstring>
+        <name>normalize</name>
+        <qualifiedname>hmap::Vec2::normalize</qualifiedname>
+        <briefdescription>
+<para>Normalize the vector to have a magnitude of 1. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method modifies the vector in place. If the vector has zero length, the components remain unchanged to avoid division by zero. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/algebra.hpp" line="260" column="8" bodyfile="HighMap/include/highmap/algebra.hpp" bodystart="260" bodyend="268"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="structhmap_1_1Vec2_1a7a945fff9f1e4964c135dbc5d226fd69" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref></type>
+        <definition>Vec2 operator*</definition>
+        <argsstring>(T scalar, const Vec2 &amp;vec)</argsstring>
+        <name>operator*</name>
+        <qualifiedname>hmap::Vec2::operator*</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>scalar</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref> &amp;</type>
+          <declname>vec</declname>
+        </param>
+        <briefdescription>
+<para>Scalar multiplication (scalar * <ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Multiplies each component of the vector by a scalar value. This function allows expressions where the scalar is on the left side of the multiplication operator.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar value to multiply with. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vec</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The vector to multiply. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref> A new vector with each component multiplied by the scalar. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/algebra.hpp" line="224" column="15" bodyfile="HighMap/include/highmap/algebra.hpp" bodystart="224" bodyend="227"/>
+      </memberdef>
+      <memberdef kind="friend" id="structhmap_1_1Vec2_1a975fced8e2bb23c427542159c5641c26" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float dot</definition>
+        <argsstring>(const Vec2 v1, const Vec2 v2)</argsstring>
+        <name>dot</name>
+        <qualifiedname>hmap::Vec2::dot</qualifiedname>
+        <param>
+          <type>const <ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref></type>
+          <declname>v1</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref></type>
+          <declname>v2</declname>
+        </param>
+        <briefdescription>
+<para>Friend function to calculate the dot product of two vectors. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The dot product is the sum of the products of the corresponding components of the vectors.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>v1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first vector. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>v2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second vector. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The dot product of the two vectors. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/algebra.hpp" line="239" column="16" bodyfile="HighMap/include/highmap/algebra.hpp" bodystart="239" bodyend="242"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref> class for basic manipulation of 2D vectors. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class provides basic operations for 2D vectors, such as addition, subtraction, multiplication, division, and dot product calculation. The class supports various data types through templating.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Data type for the vector components (e.g., int, float, double). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <location file="HighMap/include/highmap/algebra.hpp" line="39" column="12" bodyfile="HighMap/include/highmap/algebra.hpp" bodystart="40" bodyend="269"/>
+    <listofallmembers>
+      <member refid="structhmap_1_1Vec2_1a975fced8e2bb23c427542159c5641c26" prot="public" virt="non-virtual"><scope>hmap::Vec2</scope><name>dot</name></member>
+      <member refid="structhmap_1_1Vec2_1a89bca88f3a07365a28ad89477500bf33" prot="public" virt="non-virtual"><scope>hmap::Vec2</scope><name>magnitude</name></member>
+      <member refid="structhmap_1_1Vec2_1a46c73f1340298ca58fe607c04ca09ab1" prot="public" virt="non-virtual"><scope>hmap::Vec2</scope><name>normalize</name></member>
+      <member refid="structhmap_1_1Vec2_1a34b1d441d8fc9bdac23f03f98c46449e" prot="public" virt="non-virtual"><scope>hmap::Vec2</scope><name>operator!=</name></member>
+      <member refid="structhmap_1_1Vec2_1adb6f4c5789a26dfaddaadce1ac5fdc7f" prot="public" virt="non-virtual"><scope>hmap::Vec2</scope><name>operator*</name></member>
+      <member refid="structhmap_1_1Vec2_1a5fa624eca898ddf0dde96e63891540d8" prot="public" virt="non-virtual"><scope>hmap::Vec2</scope><name>operator*</name></member>
+      <member refid="structhmap_1_1Vec2_1a7a945fff9f1e4964c135dbc5d226fd69" prot="public" virt="non-virtual"><scope>hmap::Vec2</scope><name>operator*</name></member>
+      <member refid="structhmap_1_1Vec2_1a1df60c9894d8d6f4380ef9ba932125e2" prot="public" virt="non-virtual"><scope>hmap::Vec2</scope><name>operator+</name></member>
+      <member refid="structhmap_1_1Vec2_1a85f26a9e80d8b99b72e3e7d02f4325aa" prot="public" virt="non-virtual"><scope>hmap::Vec2</scope><name>operator-</name></member>
+      <member refid="structhmap_1_1Vec2_1a0e9a33a8699ada5082f6d4e974993d48" prot="public" virt="non-virtual"><scope>hmap::Vec2</scope><name>operator/</name></member>
+      <member refid="structhmap_1_1Vec2_1ae1fb5814b4e498396b5a32418f37e343" prot="public" virt="non-virtual"><scope>hmap::Vec2</scope><name>operator/=</name></member>
+      <member refid="structhmap_1_1Vec2_1a17f563df244715a4120feac38b48be21" prot="public" virt="non-virtual"><scope>hmap::Vec2</scope><name>operator==</name></member>
+      <member refid="structhmap_1_1Vec2_1ab537a59a10cd7d21e2169a5742cfe2ad" prot="public" virt="non-virtual"><scope>hmap::Vec2</scope><name>Vec2</name></member>
+      <member refid="structhmap_1_1Vec2_1ae137e7edf6223fc6aeda839eb2672d92" prot="public" virt="non-virtual"><scope>hmap::Vec2</scope><name>Vec2</name></member>
+      <member refid="structhmap_1_1Vec2_1a7a51b0894ccdea14a7d86fbb8e7289c3" prot="public" virt="non-virtual"><scope>hmap::Vec2</scope><name>Vec2</name></member>
+      <member refid="structhmap_1_1Vec2_1a2dc51e83492f966eeddbdac3d58ab447" prot="public" virt="non-virtual"><scope>hmap::Vec2</scope><name>x</name></member>
+      <member refid="structhmap_1_1Vec2_1a087ff9ff4159d1e5778c0b65ee2a1648" prot="public" virt="non-virtual"><scope>hmap::Vec2</scope><name>y</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

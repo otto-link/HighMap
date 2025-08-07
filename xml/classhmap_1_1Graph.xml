@@ -1,0 +1,1056 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classhmap_1_1Graph" kind="class" language="C++" prot="public">
+    <compoundname>hmap::Graph</compoundname>
+    <basecompoundref refid="classhmap_1_1Cloud" prot="public" virt="non-virtual">hmap::Cloud</basecompoundref>
+    <includes refid="graph_8hpp" local="no">graph.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classhmap_1_1Graph_1ae6a15dbafff50f5aa083c975292acffd" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; std::vector&lt; int &gt; &gt;</type>
+        <definition>std::vector&lt;std::vector&lt;int&gt; &gt; hmap::Graph::edges</definition>
+        <argsstring></argsstring>
+        <name>edges</name>
+        <qualifiedname>hmap::Graph::edges</qualifiedname>
+        <initializer>= {}</initializer>
+        <briefdescription>
+<para>Edges of the graph. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This member variable stores the edges of the graph. Each edge is represented as a pair of indices referring to the vertices in the graph. The edges are stored as a vector of vectors, where each inner vector contains the indices of vertices connected by that edge. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="68" column="15" bodyfile="HighMap/include/highmap/geometry/graph.hpp" bodystart="68" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1Graph_1a72f35dca4fd9c5f061bdc6b2ad70cb5e" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; hmap::Graph::weights</definition>
+        <argsstring></argsstring>
+        <name>weights</name>
+        <qualifiedname>hmap::Graph::weights</qualifiedname>
+        <initializer>= {}</initializer>
+        <briefdescription>
+<para><ref refid="classhmap_1_1Edge" kindref="compound">Edge</ref> weights. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This member variable stores the weights associated with the edges of the graph. Each weight corresponds to an edge and is stored in a vector. The weights are used to represent the cost or distance associated with traveling along an edge in the graph. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="78" column="15" bodyfile="HighMap/include/highmap/geometry/graph.hpp" bodystart="78" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1Graph_1ac4fa0788cdc6162d9254b059ae9857da" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; std::vector&lt; int &gt; &gt;</type>
+        <definition>std::vector&lt;std::vector&lt;int&gt; &gt; hmap::Graph::connectivity</definition>
+        <argsstring></argsstring>
+        <name>connectivity</name>
+        <qualifiedname>hmap::Graph::connectivity</qualifiedname>
+        <initializer>= {}</initializer>
+        <briefdescription>
+<para>Store point connectivity. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This member variable stores the connectivity information of the points in the graph. It is represented as a vector of vectors, where each inner vector contains the indices of neighboring vertices connected to the corresponding point. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="88" column="15" bodyfile="HighMap/include/highmap/geometry/graph.hpp" bodystart="88" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1Graph_1a93e452d7229b47e83f431502a18f68da" prot="public" static="no" mutable="no">
+        <type>std::map&lt; std::pair&lt; int, int &gt;, float &gt;</type>
+        <definition>std::map&lt;std::pair&lt;int, int&gt;, float&gt; hmap::Graph::adjacency_matrix</definition>
+        <argsstring></argsstring>
+        <name>adjacency_matrix</name>
+        <qualifiedname>hmap::Graph::adjacency_matrix</qualifiedname>
+        <briefdescription>
+<para>Adjacency matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This member variable represents the adjacency matrix of the graph. It is a map where each key is a pair of vertex indices and the value is the weight of the edge connecting those vertices. The adjacency matrix provides a way to quickly access the weight of an edge between any two vertices. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="98" column="12" bodyfile="HighMap/include/highmap/geometry/graph.hpp" bodystart="98" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhmap_1_1Graph_1a1209ddaafbb68fed3c43ec7766d8dc0a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hmap::Graph::Graph</definition>
+        <argsstring>()</argsstring>
+        <name>Graph</name>
+        <qualifiedname>hmap::Graph::Graph</qualifiedname>
+        <briefdescription>
+<para>Construct a new <ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>The default constructor initializes a new <computeroutput><ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref></computeroutput> object. It calls the base class constructor <computeroutput><ref refid="classhmap_1_1Cloud_1a710bdb9a8b189d0886682dcc785c0bc5" kindref="member">Cloud()</ref></computeroutput> to set up any inherited functionality from the <computeroutput><ref refid="classhmap_1_1Cloud" kindref="compound">Cloud</ref></computeroutput> class. This constructor sets up an empty graph with no edges, weights, connectivity, or adjacency matrix. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="108" column="3" bodyfile="HighMap/include/highmap/geometry/graph.hpp" bodystart="108" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Graph_1af7cd4377270d4e0dd90e7c8793351191" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hmap::Graph::Graph</definition>
+        <argsstring>(Cloud cloud)</argsstring>
+        <name>Graph</name>
+        <qualifiedname>hmap::Graph::Graph</qualifiedname>
+        <param>
+          <type><ref refid="classhmap_1_1Cloud" kindref="compound">Cloud</ref></type>
+          <declname>cloud</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref> object based on a cloud of points. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This constructor initializes a <computeroutput><ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref></computeroutput> object using a <computeroutput><ref refid="classhmap_1_1Cloud" kindref="compound">Cloud</ref></computeroutput> object. The <computeroutput><ref refid="classhmap_1_1Cloud" kindref="compound">Cloud</ref></computeroutput> object provides the points which will be used to construct the graph. This constructor is useful when you have a <computeroutput><ref refid="classhmap_1_1Cloud" kindref="compound">Cloud</ref></computeroutput> object and want to create a <computeroutput><ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref></computeroutput> representation from it.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cloud</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The cloud of points used to initialize the graph. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="120" column="3" bodyfile="HighMap/include/highmap/geometry/graph.hpp" bodystart="120" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Graph_1a0ff744b8d48139b49e7dae7c7d4e7a18" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hmap::Graph::Graph</definition>
+        <argsstring>(std::vector&lt; Point &gt; points)</argsstring>
+        <name>Graph</name>
+        <qualifiedname>hmap::Graph::Graph</qualifiedname>
+        <param>
+          <type>std::vector&lt; <ref refid="classhmap_1_1Point" kindref="compound">Point</ref> &gt;</type>
+          <declname>points</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref> object based on a list of points. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This constructor initializes a <computeroutput><ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref></computeroutput> object using a vector of <computeroutput><ref refid="classhmap_1_1Point" kindref="compound">Point</ref></computeroutput> objects. The <computeroutput><ref refid="classhmap_1_1Point" kindref="compound">Point</ref></computeroutput> objects are used to populate the vertices of the graph. This constructor is useful when you have a list of <computeroutput><ref refid="classhmap_1_1Point" kindref="compound">Point</ref></computeroutput> objects and want to create a <computeroutput><ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref></computeroutput> representation from them.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>points</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The list of points used to initialize the graph. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="132" column="3" bodyfile="HighMap/include/highmap/geometry/graph.hpp" bodystart="132" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Graph_1a6d56f1e42407c74f2cf097b7a9b05d7b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hmap::Graph::Graph</definition>
+        <argsstring>(std::vector&lt; float &gt; x, std::vector&lt; float &gt; y)</argsstring>
+        <name>Graph</name>
+        <qualifiedname>hmap::Graph::Graph</qualifiedname>
+        <param>
+          <type>std::vector&lt; float &gt;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; float &gt;</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref> object based on x and y coordinates. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This constructor initializes a <computeroutput><ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref></computeroutput> object using separate vectors for x and y coordinates. The points are created from these coordinates and used to populate the vertices of the graph. This constructor is useful when you have x and y coordinates and want to create a <computeroutput><ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref></computeroutput> representation from them.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of x coordinates for the points. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of y coordinates for the points. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="146" column="3" bodyfile="HighMap/include/highmap/geometry/graph.hpp" bodystart="146" bodyend="146"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Graph_1a1f632d4e9ee628a4dcab783f08e42277" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Graph::add_edge</definition>
+        <argsstring>(std::vector&lt; int &gt; edge, float weight)</argsstring>
+        <name>add_edge</name>
+        <qualifiedname>hmap::Graph::add_edge</qualifiedname>
+        <param>
+          <type>std::vector&lt; int &gt;</type>
+          <declname>edge</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>weight</declname>
+        </param>
+        <briefdescription>
+<para>Add an edge to the graph. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method adds a new edge to the graph. The edge is specified by a vector of two indices representing the points connected by the edge. The weight of the edge can be provided explicitly; if not provided, the Euclidean distance between the connected points is used as the default weight.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>edge</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of two integers representing the indices of the points connected by the edge. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>weight</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The weight of the edge. If not provided, the default weight is calculated as the Euclidean distance between the points. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="161" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="86" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Graph_1a91ad513cd4834aa3424e9bbd56d891ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Graph::add_edge</definition>
+        <argsstring>(std::vector&lt; int &gt; edge)</argsstring>
+        <name>add_edge</name>
+        <qualifiedname>hmap::Graph::add_edge</qualifiedname>
+        <param>
+          <type>std::vector&lt; int &gt;</type>
+          <declname>edge</declname>
+        </param>
+        <briefdescription>
+<para>Add an edge to the graph with default weight. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method adds a new edge to the graph. The edge is specified by a vector of two indices representing the points connected by the edge. The weight of the edge is calculated as the Euclidean distance between the connected points.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>edge</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of two integers representing the indices of the points connected by the edge. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="174" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="92" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Graph_1a07e0c31ab59d4f51c51c3f90117ca71a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt; int &gt; hmap::Graph::dijkstra</definition>
+        <argsstring>(int source_point_index, int target_point_index)</argsstring>
+        <name>dijkstra</name>
+        <qualifiedname>hmap::Graph::dijkstra</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>source_point_index</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>target_point_index</declname>
+        </param>
+        <briefdescription>
+<para>Return the shortest route between two points using Dijkstra&apos;s algorithm. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method computes the shortest path from a specified source point to a target point in the graph using Dijkstra&apos;s algorithm. It returns a vector of point indices representing the route from the source to the target point.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>source_point_index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of the starting point in the graph. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>target_point_index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of the ending point in the graph. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::vector&lt;int&gt; A vector of point indices representing the shortest path from the source to the target.</para>
+</simplesect>
+<bold>Example</bold> <programlisting filename="ex_graph_dijkstra.cpp"><codeline><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="highmap_8hpp" kindref="compound">highmap.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>main(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="structhmap_1_1Vec4" kindref="compound">hmap::Vec4&lt;float&gt;</ref><sp/>bbox<sp/>=<sp/>{-1.f,<sp/>2.f,<sp/>0.f,<sp/>5.f};</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>create<sp/>a<sp/>cloud<sp/>of<sp/>points<sp/>and<sp/>convert<sp/>it<sp/>to<sp/>a<sp/>graph<sp/>using<sp/>Delaunay</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>triangulation</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>npoints<sp/>=<sp/>15;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Cloud" kindref="compound">hmap::Cloud</ref><sp/>cloud<sp/>=<sp/><ref refid="classhmap_1_1Cloud" kindref="compound">hmap::Cloud</ref>(npoints,<sp/>seed,<sp/>bbox);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Graph" kindref="compound">hmap::Graph</ref><sp/>graph<sp/>=<sp/>cloud.<ref refid="classhmap_1_1Cloud_1add728a8b00dadb4a1d043ce50876c569" kindref="member">to_graph_delaunay</ref>();</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>graph.<ref refid="classhmap_1_1Graph_1a862b83b369721a4930917a78bd313421" kindref="member">print</ref>();</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>graph.<ref refid="classhmap_1_1Graph_1a6accdaeaf48a49a3a751f4a83e59df47" kindref="member">update_adjacency_matrix</ref>();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>graph.<ref refid="classhmap_1_1Graph_1ad37ed278a791b43779733f7f22187f15" kindref="member">update_connectivity</ref>();</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i_point_start<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i_point_end<sp/>=<sp/>4;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>std::vector&lt;int&gt;<sp/>route<sp/>=<sp/>graph.<ref refid="classhmap_1_1Graph_1a07e0c31ab59d4f51c51c3f90117ca71a" kindref="member">dijkstra</ref>(i_point_start,<sp/>i_point_end);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Route<sp/>(point<sp/>indices):\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;p<sp/>:<sp/>route)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/>p<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="194" column="15" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="21" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Graph_1aa04970dd704339909bcc4770fa0481ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float hmap::Graph::get_edge_length</definition>
+        <argsstring>(int k)</argsstring>
+        <name>get_edge_length</name>
+        <qualifiedname>hmap::Graph::get_edge_length</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>k</declname>
+        </param>
+        <briefdescription>
+<para>Get the length of edge <computeroutput>k</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method calculates the Euclidean length of a specific edge in the graph. The edge is identified by the index <computeroutput>k</computeroutput>, and its length is determined by the distance between the two vertices connected by the edge.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>k</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Index of the edge for which the length is to be computed. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>float The Euclidean length of the edge. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="206" column="9" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="98" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Graph_1ab9c3f02b3a4921f785eb7f80834ed9d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt; float &gt; hmap::Graph::get_edge_x_pairs</definition>
+        <argsstring>()</argsstring>
+        <name>get_edge_x_pairs</name>
+        <qualifiedname>hmap::Graph::get_edge_x_pairs</qualifiedname>
+        <briefdescription>
+<para>Return x coordinates of the edges (as pairs). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method returns the x coordinates of the endpoints of each edge in the graph. The coordinates are returned as a vector of floats, where each pair of floats represents the x coordinates of an edge&apos;s endpoints.</para>
+<para><simplesect kind="return"><para>std::vector&lt;float&gt; The x coordinates of the edges. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="217" column="15" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="115" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Graph_1a0088d1935cc3ee61ede820f51ccf117c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt; float &gt; hmap::Graph::get_edge_y_pairs</definition>
+        <argsstring>()</argsstring>
+        <name>get_edge_y_pairs</name>
+        <qualifiedname>hmap::Graph::get_edge_y_pairs</qualifiedname>
+        <briefdescription>
+<para>Return y coordinates of the edges (as pairs). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method returns the y coordinates of the endpoints of each edge in the graph. The coordinates are returned as a vector of floats, where each pair of floats represents the y coordinates of an edge&apos;s endpoints.</para>
+<para><simplesect kind="return"><para>std::vector&lt;float&gt; The y coordinates of the edges. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="228" column="15" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="127" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Graph_1abee24a8b157637b7e667531aca13f1c4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt; float &gt; hmap::Graph::get_lengths</definition>
+        <argsstring>()</argsstring>
+        <name>get_lengths</name>
+        <qualifiedname>hmap::Graph::get_lengths</qualifiedname>
+        <briefdescription>
+<para>Get the length of all the edges. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method returns the lengths of all the edges in the graph. The lengths are computed using the Euclidean distance formula, and the result is returned as a vector of floats.</para>
+<para><simplesect kind="return"><para>std::vector&lt;float&gt; The lengths of all the edges in the graph. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="239" column="15" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="104" bodyend="113"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Graph_1ad110d66385a8e4ef83708914cc972260" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t hmap::Graph::get_nedges</definition>
+        <argsstring>()</argsstring>
+        <name>get_nedges</name>
+        <qualifiedname>hmap::Graph::get_nedges</qualifiedname>
+        <briefdescription>
+<para>Get the number of edges in the graph. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method returns the total number of edges present in the graph. The edges are stored in a vector, and this method returns the size of that vector, which represents the number of edges.</para>
+<para><simplesect kind="return"><para>size_t The number of edges in the graph. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="250" column="10" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="139" bodyend="142"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Graph_1ad3b05e01d0c31e189fa6bae4ac43de7c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref></type>
+        <definition>Graph hmap::Graph::minimum_spanning_tree_prim</definition>
+        <argsstring>()</argsstring>
+        <name>minimum_spanning_tree_prim</name>
+        <qualifiedname>hmap::Graph::minimum_spanning_tree_prim</qualifiedname>
+        <briefdescription>
+<para>Generate a Minimum Spanning Tree (MST) of the graph using Prim&apos;s algorithm. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method creates a Minimum Spanning Tree from the graph using Prim&apos;s algorithm. It returns a new <computeroutput><ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref></computeroutput> object that represents the MST, which connects all the points in the graph with the minimum total edge weight.</para>
+<para><simplesect kind="return"><para><ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref> The Minimum Spanning Tree (MST) of the original graph.</para>
+</simplesect>
+<bold>Example</bold> <programlisting filename="ex_graph_minimum_spanning_tree_prim.cpp"><codeline><highlight class="preprocessor">#include<sp/>&quot;<ref refid="highmap_8hpp" kindref="compound">highmap.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>main(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="structhmap_1_1Vec4" kindref="compound">hmap::Vec4&lt;float&gt;</ref><sp/>bbox<sp/>=<sp/>{-1.f,<sp/>2.f,<sp/>0.f,<sp/>5.f};</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>create<sp/>a<sp/>cloud<sp/>of<sp/>points<sp/>and<sp/>convert<sp/>it<sp/>to<sp/>a<sp/>graph<sp/>using<sp/>Delaunay</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>triangulation</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>npoints<sp/>=<sp/>10;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Cloud" kindref="compound">hmap::Cloud</ref><sp/>cloud<sp/>=<sp/><ref refid="classhmap_1_1Cloud" kindref="compound">hmap::Cloud</ref>(npoints,<sp/>seed,<sp/>bbox);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Graph" kindref="compound">hmap::Graph</ref><sp/>graph_delaunay<sp/>=<sp/>cloud.<ref refid="classhmap_1_1Cloud_1add728a8b00dadb4a1d043ce50876c569" kindref="member">to_graph_delaunay</ref>();</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>graph_delaunay.<ref refid="classhmap_1_1Graph_1a6accdaeaf48a49a3a751f4a83e59df47" kindref="member">update_adjacency_matrix</ref>();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Graph" kindref="compound">hmap::Graph</ref><sp/>graph_mst<sp/>=<sp/>graph_delaunay.<ref refid="classhmap_1_1Graph_1ad3b05e01d0c31e189fa6bae4ac43de7c" kindref="member">minimum_spanning_tree_prim</ref>();</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>graph_delaunay.<ref refid="classhmap_1_1Graph_1a9ceef3779f34960009226304494d5f6c" kindref="member">to_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_graph_minimum_spanning_tree_prim0.png&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>graph_mst.<ref refid="classhmap_1_1Graph_1a9ceef3779f34960009226304494d5f6c" kindref="member">to_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_graph_minimum_spanning_tree_prim1.png&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> Result** <image type="html" name="ex_graph_minimum_spanning_tree_prim0.png"></image>
+ <image type="html" name="ex_graph_minimum_spanning_tree_prim1.png"></image>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="267" column="9" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="144" bodyend="192"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Graph_1a862b83b369721a4930917a78bd313421" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Graph::print</definition>
+        <argsstring>()</argsstring>
+        <name>print</name>
+        <qualifiedname>hmap::Graph::print</qualifiedname>
+        <briefdescription>
+<para>Print the graph data to the standard output. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method prints the current state of the graph, including point coordinates, edges, and edge weights. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="275" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="194" bodyend="215"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Graph_1ad1aeb414389af66a30d891d8fc28bc46" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref></type>
+        <definition>Graph hmap::Graph::remove_orphan_points</definition>
+        <argsstring>()</argsstring>
+        <name>remove_orphan_points</name>
+        <qualifiedname>hmap::Graph::remove_orphan_points</qualifiedname>
+        <briefdescription>
+<para>Remove orphan points from the graph. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Orphan points are points that are not connected to any edges. This method removes such points from the graph and returns a new <computeroutput><ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref></computeroutput> object that excludes these orphan points.</para>
+<para><simplesect kind="return"><para><ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref> A new graph object with orphan points removed. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="286" column="9" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="217" bodyend="261"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Graph_1ad116684b58ddb292d2af17642b90b40f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Graph::to_array</definition>
+        <argsstring>(Array &amp;array, Vec4&lt; float &gt; bbox, bool color_by_edge_weight=true)</argsstring>
+        <name>to_array</name>
+        <qualifiedname>hmap::Graph::to_array</qualifiedname>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>array</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4</ref>&lt; float &gt;</type>
+          <declname>bbox</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>color_by_edge_weight</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Project the graph to an array and optionally color by edge weight. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method projects the graph onto a 2D array. The array&apos;s elements are filled based on the graph&apos;s structure, and optionally, the color can represent edge weights. This allows visual representation of the graph in array form.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input array to project the graph onto. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bbox</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The bounding box for the array. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>color_by_edge_weight</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If <computeroutput>true</computeroutput>, colors the array based on edge weights; otherwise, colors by node values. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="301" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="263" bodyend="283"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Graph_1a3a8332f8fc1cc9abaad0096ed3949000" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Graph::to_array_fractalize</definition>
+        <argsstring>(Array &amp;array, Vec4&lt; float &gt; bbox, int iterations, uint seed, float sigma=0.3f, int orientation=0.f, float persistence=1.f)</argsstring>
+        <name>to_array_fractalize</name>
+        <qualifiedname>hmap::Graph::to_array_fractalize</qualifiedname>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>array</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4</ref>&lt; float &gt;</type>
+          <declname>bbox</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>iterations</declname>
+        </param>
+        <param>
+          <type><ref refid="array_8hpp_1a91ad9478d81a7aaf2593e8d9c3d06a14" kindref="member">uint</ref></type>
+          <declname>seed</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>sigma</declname>
+          <defval>0.3<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>orientation</declname>
+          <defval>0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>persistence</declname>
+          <defval>1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <briefdescription>
+<para>Apply fractalization to graph edges and project to an array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method applies a fractalization process to the graph edges, creating a more complex structure, and then projects the result onto an array. The fractalization includes multiple iterations and random Gaussian displacement to generate a fractal effect. The parameters control the number of iterations, randomness, and how the graph path is altered.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input array to project the fractalized graph onto. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bbox</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The bounding box for the array. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iterations</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of fractalization iterations to perform. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>seed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Random seed number for stochastic processes. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Half-width of the Gaussian displacement normalized by the distance between points. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>orientation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Displacement orientation: 0 for random inward/outward, 1 to inflate, -1 to deflate. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>persistence</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Noise persistence factor with respect to iteration number. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="325" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="285" bodyend="313"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Graph_1af636b5aa0bfa2c3021f7e33ee282b018" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
+        <definition>Array hmap::Graph::to_array_sdf</definition>
+        <argsstring>(Vec2&lt; int &gt; shape, Vec4&lt; float &gt; bbox, Array *p_noise_x=nullptr, Array *p_noise_y=nullptr, Vec4&lt; float &gt; bbox_array={0.f, 1.f, 0.f, 1.f})</argsstring>
+        <name>to_array_sdf</name>
+        <qualifiedname>hmap::Graph::to_array_sdf</qualifiedname>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; int &gt;</type>
+          <declname>shape</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4</ref>&lt; float &gt;</type>
+          <declname>bbox</declname>
+        </param>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
+          <declname>p_noise_x</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
+          <declname>p_noise_y</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4</ref>&lt; float &gt;</type>
+          <declname>bbox_array</declname>
+          <defval>{0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</defval>
+        </param>
+        <briefdescription>
+<para>Generate an array filled with the Signed Distance <ref refid="classhmap_1_1Function" kindref="compound">Function</ref> (SDF) to the graph. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method computes the signed distance function for the graph, which measures the distance of each point in the array to the nearest edge of the graph. The result is projected onto an output array. The optional noise arrays can be used for domain warping.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>shape</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The shape of the output array. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bbox</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The bounding box defining the area over which the SDF is computed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_noise_x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the input noise array for domain warping in the x-direction (optional). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_noise_y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the input noise array for domain warping in the y-direction (optional). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bbox_array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The bounding box of the destination array. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> The resulting array with the signed distance function values.</para>
+</simplesect>
+<bold>Example</bold> <programlisting filename="ex_cloud_sdf.cpp"><codeline><highlight class="preprocessor">#include<sp/>&quot;<ref refid="highmap_8hpp" kindref="compound">highmap.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>main(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="structhmap_1_1Vec2" kindref="compound">hmap::Vec2&lt;int&gt;</ref><sp/>shape<sp/>=<sp/>{256,<sp/>256};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="array_8hpp_1a91ad9478d81a7aaf2593e8d9c3d06a14" kindref="member">uint</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="namespacehmap_1a03c0be3a7198eebacefcb208b0cfee99" kindref="member">noise</ref><sp/>=<sp/><ref refid="namespacehmap_1a40b948c49a05c14f2d540dc1a6952130" kindref="member">hmap::noise_fbm</ref>(<ref refid="namespacehmap_1ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581" kindref="member">hmap::NoiseType::PERLIN</ref>,<sp/>shape,<sp/>{2,<sp/>2},<sp/>seed);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a262e6495cb2d02598f36a2b46114b2b4" kindref="member">hmap::remap</ref>(<ref refid="namespacehmap_1a03c0be3a7198eebacefcb208b0cfee99" kindref="member">noise</ref>,<sp/>0.f,<sp/>0.2f);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="structhmap_1_1Vec4" kindref="compound">hmap::Vec4&lt;float&gt;</ref><sp/>bbox<sp/>=<sp/>{0.2f,<sp/>0.8f,<sp/>0.2f,<sp/>0.8f};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Cloud" kindref="compound">hmap::Cloud</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cloud<sp/>=<sp/><ref refid="classhmap_1_1Cloud" kindref="compound">hmap::Cloud</ref>(5,<sp/>seed,<sp/>bbox);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="structhmap_1_1Vec4" kindref="compound">hmap::Vec4&lt;float&gt;</ref><sp/>bbox_array<sp/>=<sp/>{0.f,<sp/>1.f,<sp/>0.f,<sp/>1.f};</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>z_sdf1<sp/>=<sp/>cloud.<ref refid="classhmap_1_1Cloud_1a04dcb02dd2df076553e410dbcceb2c35" kindref="member">to_array_sdf</ref>(shape,<sp/>bbox_array);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>z_sdf2<sp/>=<sp/>cloud.<ref refid="classhmap_1_1Cloud_1a04dcb02dd2df076553e410dbcceb2c35" kindref="member">to_array_sdf</ref>(shape,<sp/>bbox_array,<sp/>&amp;<ref refid="namespacehmap_1a03c0be3a7198eebacefcb208b0cfee99" kindref="member">noise</ref>,<sp/>&amp;<ref refid="namespacehmap_1a03c0be3a7198eebacefcb208b0cfee99" kindref="member">noise</ref>);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a1c490f296571a75e35d05b10c075ae6c" kindref="member">hmap::export_banner_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_cloud_sdf.png&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{z_sdf1,<sp/>z_sdf2},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369a65146260717d07e4773aec50520b9ced" kindref="member">hmap::Cmap::JET</ref>);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> Result** <image type="html" name="ex_cloud_sdf.png"></image>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="357" column="9" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="315" bodyend="357"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Graph_1a47f4e4792141971443d9dbeb714ae612" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Graph::to_csv</definition>
+        <argsstring>(std::string fname_xy, std::string fname_adjacency)</argsstring>
+        <name>to_csv</name>
+        <qualifiedname>hmap::Graph::to_csv</qualifiedname>
+        <param>
+          <type>std::string</type>
+          <declname>fname_xy</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>fname_adjacency</declname>
+        </param>
+        <briefdescription>
+<para>Export graph data to CSV files. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method exports the graph data to two separate CSV files: one for node coordinates and one for the adjacency matrix. The node coordinates file contains the <computeroutput>(x, y)</computeroutput> coordinates of the graph&apos;s nodes, and the adjacency matrix file contains the graph&apos;s connectivity information.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fname_xy</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Filename for the CSV file containing node <computeroutput>(x, y)</computeroutput> coordinates. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fname_adjacency</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Filename for the CSV file containing the adjacency matrix. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="376" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="359" bodyend="384"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Graph_1a9ceef3779f34960009226304494d5f6c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Graph::to_png</definition>
+        <argsstring>(std::string fname, Vec2&lt; int &gt; shape={512, 512})</argsstring>
+        <name>to_png</name>
+        <qualifiedname>hmap::Graph::to_png</qualifiedname>
+        <param>
+          <type>std::string</type>
+          <declname>fname</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; int &gt;</type>
+          <declname>shape</declname>
+          <defval>{512, 512}</defval>
+        </param>
+        <briefdescription>
+<para>Export the graph as a PNG image file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method exports a visual representation of the graph as a PNG image file. The resolution of the image can be specified using the <computeroutput>shape</computeroutput> parameter.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fname</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The file name for the PNG image. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>shape</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The resolution of the image in pixels (width, height). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="388" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="386" bodyend="391"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Graph_1a6accdaeaf48a49a3a751f4a83e59df47" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Graph::update_adjacency_matrix</definition>
+        <argsstring>()</argsstring>
+        <name>update_adjacency_matrix</name>
+        <qualifiedname>hmap::Graph::update_adjacency_matrix</qualifiedname>
+        <briefdescription>
+<para>Update the adjacency matrix of the graph. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method updates the adjacency matrix based on the current graph edges and weights. The adjacency matrix represents the connectivity between nodes in the graph. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="397" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="393" bodyend="405"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Graph_1ad37ed278a791b43779733f7f22187f15" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Graph::update_connectivity</definition>
+        <argsstring>()</argsstring>
+        <name>update_connectivity</name>
+        <qualifiedname>hmap::Graph::update_connectivity</qualifiedname>
+        <briefdescription>
+<para>Update the point connectivity information. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This method updates the point connectivity data, which describes the relationships between nodes in the graph based on the current edges. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="405" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="407" bodyend="418"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref> class, to manipulate graphs in 2D. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class represents a 2D graph, allowing the creation, manipulation, and analysis of graphs derived from point clouds. It supports operations such as graph construction, traversal, and various geometric analyses. This class inherits from the <computeroutput><ref refid="classhmap_1_1Cloud" kindref="compound">Cloud</ref></computeroutput> class, leveraging the functionalities of point clouds while adding graph-specific methods.</para>
+<para><bold>Example</bold> <programlisting filename="ex_graph.cpp"><codeline><highlight class="preprocessor">#include<sp/>&quot;<ref refid="highmap_8hpp" kindref="compound">highmap.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>main(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="structhmap_1_1Vec4" kindref="compound">hmap::Vec4&lt;float&gt;</ref><sp/>bbox<sp/>=<sp/>{-1.f,<sp/>2.f,<sp/>0.f,<sp/>5.f};</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>create<sp/>a<sp/>cloud<sp/>of<sp/>points<sp/>and<sp/>convert<sp/>it<sp/>to<sp/>a<sp/>graph<sp/>using<sp/>Delaunay</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>triangulation</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>npoints<sp/>=<sp/>10;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Cloud" kindref="compound">hmap::Cloud</ref><sp/>cloud<sp/>=<sp/><ref refid="classhmap_1_1Cloud" kindref="compound">hmap::Cloud</ref>(npoints,<sp/>seed,<sp/>bbox);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Graph" kindref="compound">hmap::Graph</ref><sp/>graph<sp/>=<sp/>cloud.<ref refid="classhmap_1_1Cloud_1add728a8b00dadb4a1d043ce50876c569" kindref="member">to_graph_delaunay</ref>();</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>graph.<ref refid="classhmap_1_1Graph_1a862b83b369721a4930917a78bd313421" kindref="member">print</ref>();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>graph.<ref refid="classhmap_1_1Graph_1a9ceef3779f34960009226304494d5f6c" kindref="member">to_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_graph0.png&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>graph.<ref refid="classhmap_1_1Graph_1a6accdaeaf48a49a3a751f4a83e59df47" kindref="member">update_adjacency_matrix</ref>();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>graph.<ref refid="classhmap_1_1Graph_1a47f4e4792141971443d9dbeb714ae612" kindref="member">to_csv</ref>(</highlight><highlight class="stringliteral">&quot;ex_graph_nodes.csv&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;ex_graph_adj.csv&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><bold>Result</bold> <image type="html" name="ex_graph0.png"></image>
+ </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hmap::Cloud</label>
+        <link refid="classhmap_1_1Cloud"/>
+      </node>
+      <node id="1">
+        <label>hmap::Graph</label>
+        <link refid="classhmap_1_1Graph"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>hmap::Cloud</label>
+        <link refid="classhmap_1_1Cloud"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>points</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hmap::Graph</label>
+        <link refid="classhmap_1_1Graph"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>connectivity</edgelabel>
+          <edgelabel>edges</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>weights</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>adjacency_matrix</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>hmap::Point</label>
+        <link refid="classhmap_1_1Point"/>
+      </node>
+      <node id="7">
+        <label>std::map&lt; std::pair&lt; int, int &gt;, float &gt;</label>
+      </node>
+      <node id="6">
+        <label>std::vector&lt; float &gt;</label>
+      </node>
+      <node id="3">
+        <label>std::vector&lt; hmap::Point &gt;</label>
+        <childnode refid="4" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>std::vector&lt; std::vector&lt; int &gt; &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="HighMap/include/highmap/geometry/graph.hpp" line="57" column="1" bodyfile="HighMap/include/highmap/geometry/graph.hpp" bodystart="58" bodyend="406"/>
+    <listofallmembers>
+      <member refid="classhmap_1_1Graph_1a1f632d4e9ee628a4dcab783f08e42277" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>add_edge</name></member>
+      <member refid="classhmap_1_1Graph_1a91ad513cd4834aa3424e9bbd56d891ac" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>add_edge</name></member>
+      <member refid="classhmap_1_1Cloud_1ab1149531131111567d9f8760162d90ff" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>add_point</name></member>
+      <member refid="classhmap_1_1Graph_1a93e452d7229b47e83f431502a18f68da" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>adjacency_matrix</name></member>
+      <member refid="classhmap_1_1Cloud_1a247e64e1c0e5cb85570c0ec3aed3d774" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>clear</name></member>
+      <member refid="classhmap_1_1Cloud_1a710bdb9a8b189d0886682dcc785c0bc5" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>Cloud</name></member>
+      <member refid="classhmap_1_1Cloud_1a658dec15f637182f4451df23f52498af" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>Cloud</name></member>
+      <member refid="classhmap_1_1Cloud_1a76ba65d3116849aecbc2a6d90cd4d652" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>Cloud</name></member>
+      <member refid="classhmap_1_1Cloud_1a34e33bc454459b077a2384ecaea4ba26" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>Cloud</name></member>
+      <member refid="classhmap_1_1Cloud_1a189ddb2d4389ab85c28ad586fbbc4c30" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>Cloud</name></member>
+      <member refid="classhmap_1_1Graph_1ac4fa0788cdc6162d9254b059ae9857da" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>connectivity</name></member>
+      <member refid="classhmap_1_1Graph_1a07e0c31ab59d4f51c51c3f90117ca71a" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>dijkstra</name></member>
+      <member refid="classhmap_1_1Graph_1ae6a15dbafff50f5aa083c975292acffd" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>edges</name></member>
+      <member refid="classhmap_1_1Cloud_1a45c0878a8bcc06335e6afeb8c786a3e0" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>from_csv</name></member>
+      <member refid="classhmap_1_1Cloud_1ab0fc0cc8fd56bfe1e553843c192630d9" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>get_bbox</name></member>
+      <member refid="classhmap_1_1Cloud_1a2f4679015ee69b12c50f60a607388965" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>get_center</name></member>
+      <member refid="classhmap_1_1Cloud_1a10f22c402c1e8e4043c01327bca0f9e8" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>get_convex_hull_point_indices</name></member>
+      <member refid="classhmap_1_1Graph_1aa04970dd704339909bcc4770fa0481ab" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>get_edge_length</name></member>
+      <member refid="classhmap_1_1Graph_1ab9c3f02b3a4921f785eb7f80834ed9d7" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>get_edge_x_pairs</name></member>
+      <member refid="classhmap_1_1Graph_1a0088d1935cc3ee61ede820f51ccf117c" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>get_edge_y_pairs</name></member>
+      <member refid="classhmap_1_1Graph_1abee24a8b157637b7e667531aca13f1c4" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>get_lengths</name></member>
+      <member refid="classhmap_1_1Graph_1ad110d66385a8e4ef83708914cc972260" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>get_nedges</name></member>
+      <member refid="classhmap_1_1Cloud_1a4d6feb0c127bcea6566b600444cf103c" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>get_npoints</name></member>
+      <member refid="classhmap_1_1Cloud_1a53cb47401f1e9d027a638f3680c3004d" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>get_values</name></member>
+      <member refid="classhmap_1_1Cloud_1abe70a230c2bfecad67112321b3040286" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>get_values_max</name></member>
+      <member refid="classhmap_1_1Cloud_1a9194835457c70bfa13d0dfa66d964f01" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>get_values_min</name></member>
+      <member refid="classhmap_1_1Cloud_1aab450c9376e44def1d4e4465f0b1b691" prot="public" virt="virtual"><scope>hmap::Graph</scope><name>get_x</name></member>
+      <member refid="classhmap_1_1Cloud_1ab0c1fe00f5465c5b0b04e3e397bae5d5" prot="public" virt="virtual"><scope>hmap::Graph</scope><name>get_xy</name></member>
+      <member refid="classhmap_1_1Cloud_1abf5f933e3506395b5369cb090119002e" prot="public" virt="virtual"><scope>hmap::Graph</scope><name>get_y</name></member>
+      <member refid="classhmap_1_1Graph_1a1209ddaafbb68fed3c43ec7766d8dc0a" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>Graph</name></member>
+      <member refid="classhmap_1_1Graph_1af7cd4377270d4e0dd90e7c8793351191" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>Graph</name></member>
+      <member refid="classhmap_1_1Graph_1a0ff744b8d48139b49e7dae7c7d4e7a18" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>Graph</name></member>
+      <member refid="classhmap_1_1Graph_1a6d56f1e42407c74f2cf097b7a9b05d7b" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>Graph</name></member>
+      <member refid="classhmap_1_1Cloud_1abc74893b061b954d7a112551036fdb17" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>interpolate_values_from_array</name></member>
+      <member refid="classhmap_1_1Graph_1ad3b05e01d0c31e189fa6bae4ac43de7c" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>minimum_spanning_tree_prim</name></member>
+      <member refid="classhmap_1_1Cloud_1aad75fb7bcfa7a2c3f139d2e3d3d6cc54" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>points</name></member>
+      <member refid="classhmap_1_1Graph_1a862b83b369721a4930917a78bd313421" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>print</name></member>
+      <member refid="classhmap_1_1Cloud_1a5b3c241babf8bbf52436013b5e816718" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>randomize</name></member>
+      <member refid="classhmap_1_1Cloud_1a35d0d2e48f4063bd7b582bd24a132294" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>remap_values</name></member>
+      <member refid="classhmap_1_1Graph_1ad1aeb414389af66a30d891d8fc28bc46" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>remove_orphan_points</name></member>
+      <member refid="classhmap_1_1Cloud_1afa8d7286a65d513bdc90c4c05bc42e0f" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>remove_point</name></member>
+      <member refid="classhmap_1_1Cloud_1a604e61fbcbd8cc469ed21501e65f5c7b" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>set_values</name></member>
+      <member refid="classhmap_1_1Cloud_1a540b582307b8457f38c43d12d899f2bf" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>set_values</name></member>
+      <member refid="classhmap_1_1Cloud_1a9071aba6d7344639eede19e54ec3e7cb" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>set_values_from_array</name></member>
+      <member refid="classhmap_1_1Cloud_1adf0b7a7c0c7d414e5d01e19be624aa3c" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>set_values_from_chull_distance</name></member>
+      <member refid="classhmap_1_1Graph_1ad116684b58ddb292d2af17642b90b40f" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>to_array</name></member>
+      <member refid="classhmap_1_1Cloud_1ad83d71a8729a0e4fcce993c0141275ee" prot="public" virt="non-virtual" ambiguityscope="hmap::Cloud::"><scope>hmap::Graph</scope><name>to_array</name></member>
+      <member refid="classhmap_1_1Graph_1a3a8332f8fc1cc9abaad0096ed3949000" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>to_array_fractalize</name></member>
+      <member refid="classhmap_1_1Cloud_1a8d03bbce76e09b07ff9e2901c80a06c7" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>to_array_interp</name></member>
+      <member refid="classhmap_1_1Graph_1af636b5aa0bfa2c3021f7e33ee282b018" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>to_array_sdf</name></member>
+      <member refid="classhmap_1_1Cloud_1a04dcb02dd2df076553e410dbcceb2c35" prot="public" virt="non-virtual" ambiguityscope="hmap::Cloud::"><scope>hmap::Graph</scope><name>to_array_sdf</name></member>
+      <member refid="classhmap_1_1Graph_1a47f4e4792141971443d9dbeb714ae612" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>to_csv</name></member>
+      <member refid="classhmap_1_1Cloud_1aea876ffcd05ba762a9a12d2fc4a5d27c" prot="public" virt="non-virtual" ambiguityscope="hmap::Cloud::"><scope>hmap::Graph</scope><name>to_csv</name></member>
+      <member refid="classhmap_1_1Cloud_1add728a8b00dadb4a1d043ce50876c569" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>to_graph_delaunay</name></member>
+      <member refid="classhmap_1_1Graph_1a9ceef3779f34960009226304494d5f6c" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>to_png</name></member>
+      <member refid="classhmap_1_1Cloud_1a91285c977568113029ee6864928d6ee2" prot="public" virt="non-virtual" ambiguityscope="hmap::Cloud::"><scope>hmap::Graph</scope><name>to_png</name></member>
+      <member refid="classhmap_1_1Graph_1a6accdaeaf48a49a3a751f4a83e59df47" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>update_adjacency_matrix</name></member>
+      <member refid="classhmap_1_1Graph_1ad37ed278a791b43779733f7f22187f15" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>update_connectivity</name></member>
+      <member refid="classhmap_1_1Graph_1a72f35dca4fd9c5f061bdc6b2ad70cb5e" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>weights</name></member>
+      <member refid="classhmap_1_1Cloud_1a37e6f8229904ba2b013fbdf25751c6d4" prot="public" virt="virtual"><scope>hmap::Graph</scope><name>~Cloud</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="todo" kind="page">
+    <compoundname>todo</compoundname>
+    <title>Todo List</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><variablelist>
+<varlistentry><term>Member <ref refid="namespacehmap_1a2f83e2631c0b0dee67aae188f439f1bb" kindref="member">hmap::sediment_deposition</ref>  (<ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;z, <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *p_mask, const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;talus, <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *p_deposition_map=nullptr, float max_deposition=0.01, int iterations=5, int thermal_subiterations=10)</term></varlistentry>
+<listitem><para><anchor id="todo_1_todo000001"/>deposition map </para>
+</listitem>
+<varlistentry><term>Member <ref refid="namespacehmap_1acbd2a3c82ec3ce4eaf77dbc92d580321" kindref="member">hmap::thermal_auto_bedrock</ref>  (<ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;z, const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;talus, int iterations=10, <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *p_deposition_map=nullptr)</term></varlistentry>
+<listitem><para><anchor id="todo_1_todo000002"/>more comprehensive documentation on auto-bedrock algo. </para>
+<para></para>
+<para>fix hard-coded parameters.</para>
+</listitem>
+</variablelist>
+</para>
+    </detaileddescription>
+    <location file="todo"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,127 @@
+\doxysection{hmap\+::Perlin\+Function Class Reference}
+\hypertarget{classhmap_1_1PerlinFunction}{}\label{classhmap_1_1PerlinFunction}\index{hmap::PerlinFunction@{hmap::PerlinFunction}}
+
+
+Perlin (x, y) function class.  
+
+
+
+
+{\ttfamily \#include $<$functions.\+hpp$>$}
+
+
+
+Inheritance diagram for hmap\+::Perlin\+Function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=199pt]{classhmap_1_1PerlinFunction__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for hmap\+::Perlin\+Function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=308pt]{classhmap_1_1PerlinFunction__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1PerlinFunction_a6c170021a7bec6e6727d977e5dc99a58}{Perlin\+Function}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$ \mbox{\hyperlink{classhmap_1_1NoiseFunction_a6d7d9881bedbf82be095183cd36bf0a6}{kw}}, \mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \mbox{\hyperlink{classhmap_1_1NoiseFunction_a9f125dfcb60e4d9bd2b0fbc44b21d406}{seed}})
+\begin{DoxyCompactList}\small\item\em Construct a new Perlin \doxylink{classhmap_1_1Function}{Function} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1PerlinFunction_ae75b79af5b8439bdbceb18d27cded150}{set\+\_\+seed}} (\mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} new\+\_\+seed)
+\begin{DoxyCompactList}\small\item\em Set the seed attribute. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classhmap_1_1NoiseFunction}{hmap\+::\+Noise\+Function}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1NoiseFunction_a9823b1c76555631d442f52a3d768c162}{Noise\+Function}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. Initializes with default frequency scaling and seed. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1NoiseFunction_abf8560e5e4036c13ccac01e25b8fe899}{Noise\+Function}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$ \mbox{\hyperlink{classhmap_1_1NoiseFunction_a6d7d9881bedbf82be095183cd36bf0a6}{kw}})
+\begin{DoxyCompactList}\small\item\em Constructor to initialize with specific frequency scaling. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1NoiseFunction_ad075abd6473d4ab8ec811f30192fdb9b}{Noise\+Function}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$ \mbox{\hyperlink{classhmap_1_1NoiseFunction_a6d7d9881bedbf82be095183cd36bf0a6}{kw}}, \mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \mbox{\hyperlink{classhmap_1_1NoiseFunction_a9f125dfcb60e4d9bd2b0fbc44b21d406}{seed}})
+\begin{DoxyCompactList}\small\item\em Constructor to initialize with specific frequency scaling and seed. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$ \mbox{\hyperlink{classhmap_1_1NoiseFunction_ae3ebc5789e25c4147b745427370be629}{get\+\_\+kw}} () const
+\begin{DoxyCompactList}\small\item\em Get the frequency scaling vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \mbox{\hyperlink{classhmap_1_1NoiseFunction_a40c235c115a268592312e00c383ad581}{get\+\_\+seed}} () const
+\begin{DoxyCompactList}\small\item\em Get the random seed. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classhmap_1_1NoiseFunction_a1618d5c2d235802470b4f7713695d281}{set\+\_\+kw}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$ new\+\_\+kw)
+\begin{DoxyCompactList}\small\item\em Set a new frequency scaling vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classhmap_1_1Function}{hmap\+::\+Function}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1Function_a1f77a2faa84c84fb147f48af0bfbc96e}{Function}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. Initializes the delegate function to a default that returns 0. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classhmap_1_1Function_a8efd89e31947f2508ce45b133e30322f}{\texorpdfstring{$\sim$}{\string~}\+Function}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure proper cleanup in derived classes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Function_ae1f9e64626fb671ed37a45d09cf551e8}{Function}} (HMAP\+\_\+\+FCT\+\_\+\+XY\+\_\+\+TYPE delegate)
+\begin{DoxyCompactList}\small\item\em Constructor to initialize with a specific delegate function. \end{DoxyCompactList}\item 
+HMAP\+\_\+\+FCT\+\_\+\+XY\+\_\+\+TYPE \mbox{\hyperlink{classhmap_1_1Function_a32214e30c36be7650c47867fd14f6a0c}{get\+\_\+delegate}} () const
+\begin{DoxyCompactList}\small\item\em Get the current delegate function. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1Function_a82fb7788314b339a062cb80115e2e1da}{get\+\_\+value}} (float x, float y, float ctrl\+\_\+param) const
+\begin{DoxyCompactList}\small\item\em Call the delegate function with given arguments. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1Function_a6163e6f231dc77a7e7d83e74d2b44abe}{set\+\_\+delegate}} (HMAP\+\_\+\+FCT\+\_\+\+XY\+\_\+\+TYPE new\+\_\+delegate)
+\begin{DoxyCompactList}\small\item\em Set a new delegate function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classhmap_1_1NoiseFunction}{hmap\+::\+Noise\+Function}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$ \mbox{\hyperlink{classhmap_1_1NoiseFunction_a6d7d9881bedbf82be095183cd36bf0a6}{kw}}
+\begin{DoxyCompactList}\small\item\em Frequency scaling vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \mbox{\hyperlink{classhmap_1_1NoiseFunction_a9f125dfcb60e4d9bd2b0fbc44b21d406}{seed}}
+\begin{DoxyCompactList}\small\item\em Random seed for noise generation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Perlin (x, y) function class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classhmap_1_1PerlinFunction_a6c170021a7bec6e6727d977e5dc99a58}\label{classhmap_1_1PerlinFunction_a6c170021a7bec6e6727d977e5dc99a58} 
+\index{hmap::PerlinFunction@{hmap::PerlinFunction}!PerlinFunction@{PerlinFunction}}
+\index{PerlinFunction@{PerlinFunction}!hmap::PerlinFunction@{hmap::PerlinFunction}}
+\doxysubsubsection{\texorpdfstring{PerlinFunction()}{PerlinFunction()}}
+{\footnotesize\ttfamily hmap\+::\+Perlin\+Function\+::\+Perlin\+Function (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$}]{kw,  }\item[{\mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}}]{seed }\end{DoxyParamCaption})}
+
+
+
+Construct a new Perlin \doxylink{classhmap_1_1Function}{Function} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em kw} & Noise wavenumbers \{kx, ky\} for each directions, with respect to a unit domain. \\
+\hline
+{\em seed} & Random seed number. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classhmap_1_1PerlinFunction_ae75b79af5b8439bdbceb18d27cded150}\label{classhmap_1_1PerlinFunction_ae75b79af5b8439bdbceb18d27cded150} 
+\index{hmap::PerlinFunction@{hmap::PerlinFunction}!set\_seed@{set\_seed}}
+\index{set\_seed@{set\_seed}!hmap::PerlinFunction@{hmap::PerlinFunction}}
+\doxysubsubsection{\texorpdfstring{set\_seed()}{set\_seed()}}
+{\footnotesize\ttfamily void hmap\+::\+Perlin\+Function\+::set\+\_\+seed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}}]{new\+\_\+seed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Set the seed attribute. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+seed} & New seed. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classhmap_1_1NoiseFunction_a75b08569040f1ce6b318d380d4967c0d}{hmap\+::\+Noise\+Function}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+High\+Map/include/highmap/\mbox{\hyperlink{functions_8hpp}{functions.\+hpp}}\item 
+High\+Map/src/primitives/functions/\mbox{\hyperlink{noise__functions_8cpp}{noise\+\_\+functions.\+cpp}}\end{DoxyCompactItemize}

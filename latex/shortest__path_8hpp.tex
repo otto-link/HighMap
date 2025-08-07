@@ -1,0 +1,30 @@
+\doxysection{High\+Map/include/highmap/shortest\+\_\+path.hpp File Reference}
+\hypertarget{shortest__path_8hpp}{}\label{shortest__path_8hpp}\index{HighMap/include/highmap/shortest\_path.hpp@{HighMap/include/highmap/shortest\_path.hpp}}
+
+
+Implements shortest path algorithms including Dijkstra\textquotesingle{}s method for 2D array data representation.  
+
+
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacehmap_a5926ef94ecc7024dab83b57fd9712aa2}{hmap\+::find\+\_\+path\+\_\+dijkstra}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ ij\+\_\+start, \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ ij\+\_\+end, std\+::vector$<$ int $>$ \&i\+\_\+path, std\+::vector$<$ int $>$ \&j\+\_\+path, float elevation\+\_\+ratio=0.\+1\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float distance\+\_\+exponent=2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float upward\+\_\+penalization=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+mask\+\_\+nogo=nullptr)
+\begin{DoxyCompactList}\small\item\em Finds the path with the lowest elevation and elevation difference between two points in a 2D array using Dijkstra\textquotesingle{}s algorithm. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a358bc9bb5c4be98fbb9bb0f1300272bf}{hmap\+::find\+\_\+path\+\_\+dijkstra}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ ij\+\_\+start, std\+::vector$<$ \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ $>$ ij\+\_\+end\+\_\+list, std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \&i\+\_\+path\+\_\+list, std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \&j\+\_\+path\+\_\+list, float elevation\+\_\+ratio=0.\+1\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float distance\+\_\+exponent=2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float upward\+\_\+penalization=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+mask\+\_\+nogo=nullptr)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implements shortest path algorithms including Dijkstra\textquotesingle{}s method for 2D array data representation. 
+
+\begin{DoxyAuthor}{Author}
+Otto Link (\href{mailto:otto.link.bv@gmail.com}{\texttt{ otto.\+link.\+bv@gmail.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}

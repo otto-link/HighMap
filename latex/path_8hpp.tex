@@ -1,0 +1,46 @@
+\doxysection{High\+Map/include/highmap/geometry/path.hpp File Reference}
+\hypertarget{path_8hpp}{}\label{path_8hpp}\index{HighMap/include/highmap/geometry/path.hpp@{HighMap/include/highmap/geometry/path.hpp}}
+
+
+Path class for manipulating and analyzing paths in 2D space.  
+
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classhmap_1_1Path}{hmap\+::\+Path}}
+\begin{DoxyCompactList}\small\item\em Represents an ordered set of points in 2D, forming a polyline (open or closed). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacehmap_a7ba4bc3a43f42b6a4bf00e94e86064ff}{hmap\+::dig\+\_\+path}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, \mbox{\hyperlink{classhmap_1_1Path}{Path}} \&path, int width=1, int decay=2, int flattening\+\_\+radius=16, bool force\+\_\+downhill=false, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}, float depth=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+\begin{DoxyCompactList}\small\item\em Dig a path on a heightmap. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a6d536f0d67ade56c6a60927d8c8e9720}{hmap\+::dig\+\_\+river}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, const std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Path}{Path}} $>$ \&path\+\_\+list, float riverbank\+\_\+talus, int river\+\_\+width=0, int merging\+\_\+width=0, float depth=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float riverbed\+\_\+talus=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float noise\+\_\+ratio=0.\+9\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, \mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} seed=0, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+mask=nullptr)
+\begin{DoxyCompactList}\small\item\em Modifies the elevation array to carve a river along a specified path. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a31b3cde3ce1fa52f1856b962f4443d49}{hmap\+::dig\+\_\+river}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, const \mbox{\hyperlink{classhmap_1_1Path}{Path}} \&path, float riverbank\+\_\+talus, int river\+\_\+width=0, int merging\+\_\+width=0, float depth=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float riverbed\+\_\+talus=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float noise\+\_\+ratio=0.\+9\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, \mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} seed=0, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+mask=nullptr)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Path class for manipulating and analyzing paths in 2D space. 
+
+\begin{DoxyAuthor}{Author}
+Otto Link (\href{mailto:otto.link.bv@gmail.com}{\texttt{ otto.\+link.\+bv@gmail.\+com}}) 
+\end{DoxyAuthor}
+This file defines the {\ttfamily Path} class, which extends the {\ttfamily Cloud} class to provide functionalities specific to paths. The {\ttfamily Path} class includes methods for creating, manipulating, and analyzing paths, including smoothing the path with various curves, resampling, and performing operations like meandering and fractalizing.
+
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/06-\/18
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 Otto Link
+\end{DoxyCopyright}
+This software is distributed under the terms of the GNU General Public License. The full license is in the file LICENSE, distributed with this software. 

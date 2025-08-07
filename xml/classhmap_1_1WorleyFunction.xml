@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classhmap_1_1WorleyFunction" kind="class" language="C++" prot="public">
+    <compoundname>hmap::WorleyFunction</compoundname>
+    <basecompoundref refid="classhmap_1_1NoiseFunction" prot="public" virt="non-virtual">hmap::NoiseFunction</basecompoundref>
+    <includes refid="functions_8hpp" local="no">functions.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhmap_1_1WorleyFunction_1a2aebbc9d2cb9ea5de8b143b8b93b4195" prot="private" static="no" mutable="no">
+        <type>FastNoiseLite</type>
+        <definition>FastNoiseLite hmap::WorleyFunction::noise</definition>
+        <argsstring></argsstring>
+        <name>noise</name>
+        <qualifiedname>hmap::WorleyFunction::noise</qualifiedname>
+        <briefdescription>
+<para>FastNoiseLite noise generator object. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="1197" column="17" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="1197" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhmap_1_1WorleyFunction_1a952bcd0483f6fa1089138dcf212cf90f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hmap::WorleyFunction::WorleyFunction</definition>
+        <argsstring>(Vec2&lt; float &gt; kw, uint seed, bool return_cell_value=false)</argsstring>
+        <name>WorleyFunction</name>
+        <qualifiedname>hmap::WorleyFunction::WorleyFunction</qualifiedname>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+          <declname>kw</declname>
+        </param>
+        <param>
+          <type><ref refid="array_8hpp_1a91ad9478d81a7aaf2593e8d9c3d06a14" kindref="member">uint</ref></type>
+          <declname>seed</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>return_cell_value</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Construct a new Worley <ref refid="classhmap_1_1Function" kindref="compound">Function</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>kw</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Noise wavenumbers {kx, ky} for each directions, with respect to a unit domain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>seed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Random seed number. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="1180" column="3" bodyfile="HighMap/src/primitives/functions/noise_functions.cpp" bodystart="270" bodyend="293"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1WorleyFunction_1a1b43b6f8a602ee8b6159131bf16e6d07" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void hmap::WorleyFunction::set_seed</definition>
+        <argsstring>(uint new_seed)</argsstring>
+        <name>set_seed</name>
+        <qualifiedname>hmap::WorleyFunction::set_seed</qualifiedname>
+        <reimplements refid="classhmap_1_1NoiseFunction_1a75b08569040f1ce6b318d380d4967c0d">set_seed</reimplements>
+        <param>
+          <type><ref refid="array_8hpp_1a91ad9478d81a7aaf2593e8d9c3d06a14" kindref="member">uint</ref></type>
+          <declname>new_seed</declname>
+        </param>
+        <briefdescription>
+<para>Set the seed attribute. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>new_seed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New seed. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="1187" column="8" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="1187" bodyend="1191"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Worley (x, y) function class. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>hmap::Function</label>
+        <link refid="classhmap_1_1Function"/>
+      </node>
+      <node id="2">
+        <label>hmap::NoiseFunction</label>
+        <link refid="classhmap_1_1NoiseFunction"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hmap::WorleyFunction</label>
+        <link refid="classhmap_1_1WorleyFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>hmap::Vec2&lt; float &gt;</label>
+        <link refid="structhmap_1_1Vec2"/>
+      </node>
+      <node id="3">
+        <label>hmap::Function</label>
+        <link refid="classhmap_1_1Function"/>
+      </node>
+      <node id="2">
+        <label>hmap::NoiseFunction</label>
+        <link refid="classhmap_1_1NoiseFunction"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>kw</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hmap::WorleyFunction</label>
+        <link refid="classhmap_1_1WorleyFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="HighMap/include/highmap/functions.hpp" line="1170" column="1" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="1171" bodyend="1198"/>
+    <listofallmembers>
+      <member refid="classhmap_1_1Function_1a1f77a2faa84c84fb147f48af0bfbc96e" prot="public" virt="non-virtual"><scope>hmap::WorleyFunction</scope><name>Function</name></member>
+      <member refid="classhmap_1_1Function_1ae1f9e64626fb671ed37a45d09cf551e8" prot="public" virt="non-virtual"><scope>hmap::WorleyFunction</scope><name>Function</name></member>
+      <member refid="classhmap_1_1Function_1a32214e30c36be7650c47867fd14f6a0c" prot="public" virt="non-virtual"><scope>hmap::WorleyFunction</scope><name>get_delegate</name></member>
+      <member refid="classhmap_1_1NoiseFunction_1ae3ebc5789e25c4147b745427370be629" prot="public" virt="non-virtual"><scope>hmap::WorleyFunction</scope><name>get_kw</name></member>
+      <member refid="classhmap_1_1NoiseFunction_1a40c235c115a268592312e00c383ad581" prot="public" virt="non-virtual"><scope>hmap::WorleyFunction</scope><name>get_seed</name></member>
+      <member refid="classhmap_1_1Function_1a82fb7788314b339a062cb80115e2e1da" prot="public" virt="non-virtual"><scope>hmap::WorleyFunction</scope><name>get_value</name></member>
+      <member refid="classhmap_1_1NoiseFunction_1a6d7d9881bedbf82be095183cd36bf0a6" prot="protected" virt="non-virtual"><scope>hmap::WorleyFunction</scope><name>kw</name></member>
+      <member refid="classhmap_1_1WorleyFunction_1a2aebbc9d2cb9ea5de8b143b8b93b4195" prot="private" virt="non-virtual"><scope>hmap::WorleyFunction</scope><name>noise</name></member>
+      <member refid="classhmap_1_1NoiseFunction_1a9823b1c76555631d442f52a3d768c162" prot="public" virt="non-virtual"><scope>hmap::WorleyFunction</scope><name>NoiseFunction</name></member>
+      <member refid="classhmap_1_1NoiseFunction_1abf8560e5e4036c13ccac01e25b8fe899" prot="public" virt="non-virtual"><scope>hmap::WorleyFunction</scope><name>NoiseFunction</name></member>
+      <member refid="classhmap_1_1NoiseFunction_1ad075abd6473d4ab8ec811f30192fdb9b" prot="public" virt="non-virtual"><scope>hmap::WorleyFunction</scope><name>NoiseFunction</name></member>
+      <member refid="classhmap_1_1NoiseFunction_1a9f125dfcb60e4d9bd2b0fbc44b21d406" prot="protected" virt="non-virtual"><scope>hmap::WorleyFunction</scope><name>seed</name></member>
+      <member refid="classhmap_1_1Function_1a6163e6f231dc77a7e7d83e74d2b44abe" prot="public" virt="non-virtual"><scope>hmap::WorleyFunction</scope><name>set_delegate</name></member>
+      <member refid="classhmap_1_1NoiseFunction_1a1618d5c2d235802470b4f7713695d281" prot="public" virt="virtual"><scope>hmap::WorleyFunction</scope><name>set_kw</name></member>
+      <member refid="classhmap_1_1WorleyFunction_1a1b43b6f8a602ee8b6159131bf16e6d07" prot="public" virt="virtual"><scope>hmap::WorleyFunction</scope><name>set_seed</name></member>
+      <member refid="classhmap_1_1WorleyFunction_1a952bcd0483f6fa1089138dcf212cf90f" prot="public" virt="non-virtual"><scope>hmap::WorleyFunction</scope><name>WorleyFunction</name></member>
+      <member refid="classhmap_1_1Function_1a8efd89e31947f2508ce45b133e30322f" prot="public" virt="virtual"><scope>hmap::WorleyFunction</scope><name>~Function</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_566db01fb988f9afe1600b0dcd492ac3" kind="dir">
+    <compoundname>HighMap/src/heightmap</compoundname>
+    <innerfile refid="heightmap__base_8cpp">heightmap_base.cpp</innerfile>
+    <innerfile refid="heightmap__rgb_8cpp">heightmap_rgb.cpp</innerfile>
+    <innerfile refid="heightmap__rgba_8cpp">heightmap_rgba.cpp</innerfile>
+    <innerfile refid="heightmap__transform_8cpp">heightmap_transform.cpp</innerfile>
+    <innerfile refid="tile__base_8cpp">tile_base.cpp</innerfile>
+    <innerfile refid="heightmap_2transform_8cpp">transform.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="HighMap/src/heightmap/"/>
+  </compounddef>
+</doxygen>

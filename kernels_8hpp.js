@@ -1,0 +1,36 @@
+var kernels_8hpp =
+[
+    [ "KernelType", "kernels_8hpp.html#a4b6f135c6e81d313ca54ae1efac5f2c9", [
+      [ "BIWEIGHT", "kernels_8hpp.html#a4b6f135c6e81d313ca54ae1efac5f2c9a77e92279e9a89de241e361bd74b8803a", null ],
+      [ "CUBIC_PULSE", "kernels_8hpp.html#a4b6f135c6e81d313ca54ae1efac5f2c9ac3a721c2d521e171c529d24f3b768803", null ],
+      [ "CONE", "kernels_8hpp.html#a4b6f135c6e81d313ca54ae1efac5f2c9af76c60e345bf176e74af026ed87eb030", null ],
+      [ "CONE_SMOOTH", "kernels_8hpp.html#a4b6f135c6e81d313ca54ae1efac5f2c9ac140897e531cacd604bec544a49f7ca2", null ],
+      [ "DISK", "kernels_8hpp.html#a4b6f135c6e81d313ca54ae1efac5f2c9a52c31358178f16aaf1e9148aa9e1c4f6", null ],
+      [ "LORENTZIAN", "kernels_8hpp.html#a4b6f135c6e81d313ca54ae1efac5f2c9adca1c57725ab84b424723316de5ba3dc", null ],
+      [ "SMOOTH_COSINE", "kernels_8hpp.html#a4b6f135c6e81d313ca54ae1efac5f2c9a483c1cdf57c344c139e7aeeb826120b7", null ],
+      [ "SQUARE", "kernels_8hpp.html#a4b6f135c6e81d313ca54ae1efac5f2c9aa90e813d22c88c29e9effe934ce6149d", null ],
+      [ "TRICUBE", "kernels_8hpp.html#a4b6f135c6e81d313ca54ae1efac5f2c9abd845bef8f2959d8d9e7355aa9c44d86", null ]
+    ] ],
+    [ "biweight", "kernels_8hpp.html#ae0ab7faed3577159bc8051ad0e25b051", null ],
+    [ "blackman", "kernels_8hpp.html#adfc320d14c66c6a40dedd9410efa269d", null ],
+    [ "cone", "kernels_8hpp.html#a9880bdc35440162c24103a5df4c137a6", null ],
+    [ "cone_talus", "kernels_8hpp.html#a553a4572c845a1286836bc08b67b3e34", null ],
+    [ "cone_smooth", "kernels_8hpp.html#ad1133df106eb662c9411a5501a5a3469", null ],
+    [ "cubic_pulse", "kernels_8hpp.html#af6af5d27dcec83e466ca6b58244cafe7", null ],
+    [ "cubic_pulse_1d", "kernels_8hpp.html#a0b3237f9cc015299bf3e436be71d3587", null ],
+    [ "cubic_pulse_directional", "kernels_8hpp.html#a2938b1bbfe89794423055e6ee9d2f79b", null ],
+    [ "cubic_pulse_truncated", "kernels_8hpp.html#a1004e5d8355c36fc1945d73c3b44eda0", null ],
+    [ "disk", "kernels_8hpp.html#acffafcfa04738c04fdd82eea8aa262dc", null ],
+    [ "disk_smooth", "kernels_8hpp.html#a04f44c4dc11d46f5089f5213d4c5d1a5", null ],
+    [ "gabor", "kernels_8hpp.html#aab655567714a21e6308c09d07056d52f", null ],
+    [ "gabor_dune", "kernels_8hpp.html#a3b8ba9062298d434c8c10af3e92309a6", null ],
+    [ "get_kernel", "kernels_8hpp.html#a4ad7940c796973a615558a8dc773281c", null ],
+    [ "hann", "kernels_8hpp.html#ab4e60cf8b20170484e3ac2942cc05d59", null ],
+    [ "lorentzian", "kernels_8hpp.html#a1d9165a0056e99a90b7734268f231901", null ],
+    [ "lorentzian_compact", "kernels_8hpp.html#a8be1ca22c14c4989ec8f18842fda2766", null ],
+    [ "sinc_radial", "kernels_8hpp.html#a06769c66065dd19c0fd54f4505d0e06c", null ],
+    [ "sinc_separable", "kernels_8hpp.html#abf04df687d39ce436fc5cbfae573dbff", null ],
+    [ "smooth_cosine", "kernels_8hpp.html#a0d6dfb8771368f84f2256ae38fe669fa", null ],
+    [ "square", "kernels_8hpp.html#a784bc655283255591d04afd181d756f8", null ],
+    [ "tricube", "kernels_8hpp.html#a78d3f33a357986539e654f0d42510659", null ]
+];

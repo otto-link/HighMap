@@ -1,0 +1,40 @@
+\doxysection{High\+Map/include/highmap/convolve.hpp File Reference}
+\hypertarget{convolve_8hpp}{}\label{convolve_8hpp}\index{HighMap/include/highmap/convolve.hpp@{HighMap/include/highmap/convolve.hpp}}
+
+
+Provides functions for convolution operations on arrays.  
+
+
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a9411ccef8a74e06ef51efd1f5041c7b4}{hmap\+::convolve1d\+\_\+i}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, const std\+::vector$<$ float $>$ \&kernel)
+\begin{DoxyCompactList}\small\item\em Return the convolution product of the array with a 1D kernel along the \textquotesingle{}i\textquotesingle{} direction. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a2f3f79308ada9782de6c4866b567b167}{hmap\+::convolve1d\+\_\+j}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, const std\+::vector$<$ float $>$ \&kernel)
+\begin{DoxyCompactList}\small\item\em Return the convolution product of the array with a 1D kernel along the \textquotesingle{}j\textquotesingle{} direction. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_acf8376b5e40b4373986c9a6b41c02429}{hmap\+::convolve2d}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&kernel)
+\begin{DoxyCompactList}\small\item\em Return the convolution product of the array with a given 2D kernel. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a6108df0909730083cb6dd7cf4a217c1b}{hmap\+::convolve2d\+\_\+truncated}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&kernel)
+\begin{DoxyCompactList}\small\item\em Return the convolution product of the array with a given 2D kernel, with a truncated output size. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a15951dcd1ef3999591c757944f894e15}{hmap\+::convolve2d\+\_\+svd}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&kernel, int rank=3)
+\begin{DoxyCompactList}\small\item\em Return the approximate convolution product of the array with a Singular Value Decomposition (SVD) of a kernel. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_addbc812a7b7523f4e0f185fb27016469}{hmap\+::convolve2d\+\_\+svd\+\_\+rotated\+\_\+kernel}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&kernel, int rank=3, int n\+\_\+rotations=6, \mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} seed=1)
+\begin{DoxyCompactList}\small\item\em Return the approximate convolution product of the array with a Singular Value Decomposition (SVD) of a kernel combined with kernel rotations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Provides functions for convolution operations on arrays. 
+
+\begin{DoxyAuthor}{Author}
+Otto Link (\href{mailto:otto.link.bv@gmail.com}{\texttt{ otto.\+link.\+bv@gmail.\+com}}) 
+\end{DoxyAuthor}
+This header file defines functions for performing convolution operations on 1D and 2D arrays using various kernels. The operations include 1D convolutions along different directions, 2D convolutions with symmetry boundary conditions, truncated 2D convolutions, and approximate convolutions using Singular Value Decomposition (SVD).
+
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 Otto Link 
+\end{DoxyCopyright}

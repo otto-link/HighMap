@@ -1,0 +1,47 @@
+\doxysection{High\+Map/include/highmap/synthesis.hpp File Reference}
+\hypertarget{synthesis_8hpp}{}\label{synthesis_8hpp}\index{HighMap/include/highmap/synthesis.hpp@{HighMap/include/highmap/synthesis.hpp}}
+
+
+Provides functions for synthesizing new heightmaps from input arrays.  
+
+
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a92483ef87c6a5877abe30af6b270f2a0}{hmap\+::non\+\_\+parametric\+\_\+sampling}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, \mbox{\hyperlink{structhmap_1_1Vec2}{hmap\+::\+Vec2}}$<$ int $>$ patch\+\_\+shape, \mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} seed, float error\+\_\+threshold=0.\+1\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+\begin{DoxyCompactList}\small\item\em Synthesize a new heightmap based on an input array using a non-\/parametric sampling method. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a94a0d14d841251b9803f6fa11097b175}{hmap\+::quilting}} (const std\+::vector$<$ const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*} $>$ \&p\+\_\+arrays, \mbox{\hyperlink{structhmap_1_1Vec2}{hmap\+::\+Vec2}}$<$ int $>$ patch\+\_\+base\+\_\+shape, \mbox{\hyperlink{structhmap_1_1Vec2}{hmap\+::\+Vec2}}$<$ int $>$ tiling, float overlap, \mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} seed, std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*} $>$ secondary\+\_\+arrays=\{\}, bool patch\+\_\+flip=true, bool patch\+\_\+rotate=true, bool patch\+\_\+transpose=true, float filter\+\_\+width\+\_\+ratio=0.\+25\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+\begin{DoxyCompactList}\small\item\em Synthesize a new heightmap by stitching together small patches from input heightmaps. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a77691c31ed316374c25becc7ecddd133}{hmap\+::quilting\+\_\+blend}} (const std\+::vector$<$ const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*} $>$ \&p\+\_\+arrays, \mbox{\hyperlink{structhmap_1_1Vec2}{hmap\+::\+Vec2}}$<$ int $>$ patch\+\_\+base\+\_\+shape, float overlap, \mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} seed, bool patch\+\_\+flip=true, bool patch\+\_\+rotate=true, bool patch\+\_\+transpose=true, float filter\+\_\+width\+\_\+ratio=0.\+25\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+\begin{DoxyCompactList}\small\item\em Synthesize a new heightmap by stitching together small patches from a list of input heightmaps. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_aa23790e26c213a550660e479a28f21e5}{hmap\+::quilting\+\_\+expand}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float expansion\+\_\+ratio, \mbox{\hyperlink{structhmap_1_1Vec2}{hmap\+::\+Vec2}}$<$ int $>$ patch\+\_\+base\+\_\+shape, float overlap, \mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} seed, std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*} $>$ secondary\+\_\+arrays=\{\}, bool keep\+\_\+input\+\_\+shape=false, bool patch\+\_\+flip=true, bool patch\+\_\+rotate=true, bool patch\+\_\+transpose=true, float filter\+\_\+width\+\_\+ratio=0.\+25\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+\begin{DoxyCompactList}\small\item\em Synthesize a new heightmap by expanding the input heightmap and stitching patches. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_af2faad7feceeb1059da7303748438a51}{hmap\+::quilting\+\_\+shuffle}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, \mbox{\hyperlink{structhmap_1_1Vec2}{hmap\+::\+Vec2}}$<$ int $>$ patch\+\_\+base\+\_\+shape, float overlap, \mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} seed, std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*} $>$ secondary\+\_\+arrays=\{\}, bool patch\+\_\+flip=true, bool patch\+\_\+rotate=true, bool patch\+\_\+transpose=true, float filter\+\_\+width\+\_\+ratio=0.\+25\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+\begin{DoxyCompactList}\small\item\em Synthesize a new heightmap by reshuffling patches of the input heightmap. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Provides functions for synthesizing new heightmaps from input arrays. 
+
+\begin{DoxyAuthor}{Author}
+Otto Link (\href{mailto:otto.link.bv@gmail.com}{\texttt{ otto.\+link.\+bv@gmail.\+com}}) 
+\end{DoxyAuthor}
+This header file defines functions for synthesizing new heightmaps by using various techniques such as non-\/parametric sampling, patch quilting, and blending. These functions allow for the generation of larger or modified heightmaps based on input data, using methods like patch stitching and random sampling.
+
+Functions provided\+:
+\begin{DoxyItemize}
+\item {\ttfamily non\+\_\+parametric\+\_\+sampling}\+: Generates a new heightmap using non-\/parametric sampling.
+\item {\ttfamily quilting}\+: Synthesizes a new heightmap by stitching patches from a set of input heightmaps.
+\item {\ttfamily quilting\+\_\+blend}\+: Similar to {\ttfamily quilting}, but includes blending of patches.
+\item {\ttfamily quilting\+\_\+expand}\+: Synthesizes a larger heightmap by expanding and stitching patches from an input heightmap.
+\item {\ttfamily quilting\+\_\+shuffle}\+: Similar to {\ttfamily quilting\+\_\+expand}, but reshuffles patches to generate a new heightmap with the same shape.
+\end{DoxyItemize}
+
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 Otto Link 
+\end{DoxyCopyright}

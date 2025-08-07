@@ -1,0 +1,416 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classhmap_1_1PyramidDecomposition" kind="class" language="C++" prot="public">
+    <compoundname>hmap::PyramidDecomposition</compoundname>
+    <includes refid="pyramid_8hpp" local="no">pyramid.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classhmap_1_1PyramidDecomposition_1ac3688f38d739c9eed21b4d32b49648bc" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hmap::PyramidDecomposition::nlevels</definition>
+        <argsstring></argsstring>
+        <name>nlevels</name>
+        <qualifiedname>hmap::PyramidDecomposition::nlevels</qualifiedname>
+        <briefdescription>
+<para>Number of levels in the pyramid. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/multiscale/pyramid.hpp" line="45" column="7" bodyfile="HighMap/include/highmap/multiscale/pyramid.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1PyramidDecomposition_1ac711ffdbd5c38eb1f028106ceed16075" prot="public" static="no" mutable="no">
+        <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
+        <definition>Array hmap::PyramidDecomposition::residual</definition>
+        <argsstring></argsstring>
+        <name>residual</name>
+        <qualifiedname>hmap::PyramidDecomposition::residual</qualifiedname>
+        <briefdescription>
+<para>Residual field (low-pass component) a the coarsest level. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/multiscale/pyramid.hpp" line="50" column="9" bodyfile="HighMap/include/highmap/multiscale/pyramid.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1PyramidDecomposition_1ae28c747403f67117823f3bf6ad1b931f" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &gt;</type>
+        <definition>std::vector&lt;Array&gt; hmap::PyramidDecomposition::components</definition>
+        <argsstring></argsstring>
+        <name>components</name>
+        <qualifiedname>hmap::PyramidDecomposition::components</qualifiedname>
+        <initializer>= {}</initializer>
+        <briefdescription>
+<para>High-pass component for each level. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/multiscale/pyramid.hpp" line="55" column="15" bodyfile="HighMap/include/highmap/multiscale/pyramid.hpp" bodystart="55" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1PyramidDecomposition_1ab7684296d0993168de59ca6938d30cd2" prot="public" static="no" mutable="no">
+        <type>std::function&lt; <ref refid="classhmap_1_1Array" kindref="compound">Array</ref>(const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;)&gt;</type>
+        <definition>std::function&lt;Array(const Array &amp;)&gt; hmap::PyramidDecomposition::low_pass_filter_function</definition>
+        <argsstring></argsstring>
+        <name>low_pass_filter_function</name>
+        <qualifiedname>hmap::PyramidDecomposition::low_pass_filter_function</qualifiedname>
+        <briefdescription>
+<para>Reference to the low-pass filter function. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/multiscale/pyramid.hpp" line="60" column="17" bodyfile="HighMap/include/highmap/multiscale/pyramid.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhmap_1_1PyramidDecomposition_1a260a2bb87e7077a29036bc967ccfa6dc" prot="private" static="no" mutable="no">
+        <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
+        <definition>Array* hmap::PyramidDecomposition::p_array</definition>
+        <argsstring></argsstring>
+        <name>p_array</name>
+        <qualifiedname>hmap::PyramidDecomposition::p_array</qualifiedname>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+<para>Reference to the input array. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/multiscale/pyramid.hpp" line="128" column="9" bodyfile="HighMap/include/highmap/multiscale/pyramid.hpp" bodystart="128" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhmap_1_1PyramidDecomposition_1a802f02d09f6a5073d9ecd523f5a0624c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hmap::PyramidDecomposition::PyramidDecomposition</definition>
+        <argsstring>(Array &amp;array, int nlevels)</argsstring>
+        <name>PyramidDecomposition</name>
+        <qualifiedname>hmap::PyramidDecomposition::PyramidDecomposition</qualifiedname>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>array</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nlevels</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new Pyramid Decomposition object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the input array. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nlevels</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of levels (if set to a null or negative value, the maximum number of levels is taken minus the number provided).</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<bold>Example</bold> <programlisting filename="ex_pyramid_decomposition.cpp"><codeline><highlight class="preprocessor">#include<sp/>&quot;<ref refid="highmap_8hpp" kindref="compound">highmap.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>main(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="structhmap_1_1Vec2" kindref="compound">hmap::Vec2&lt;int&gt;</ref><sp/><sp/><sp/>shape<sp/>=<sp/>{256,<sp/>256};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="structhmap_1_1Vec2" kindref="compound">hmap::Vec2&lt;float&gt;</ref><sp/>res<sp/>=<sp/>{4.f,<sp/>4.f};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>z<sp/>=<sp/><ref refid="namespacehmap_1a40b948c49a05c14f2d540dc1a6952130" kindref="member">hmap::noise_fbm</ref>(<ref refid="namespacehmap_1ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581" kindref="member">hmap::NoiseType::PERLIN</ref>,<sp/>shape,<sp/>res,<sp/>seed);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhmap_1_1PyramidDecomposition_1ac3688f38d739c9eed21b4d32b49648bc" kindref="member">nlevels</ref><sp/>=<sp/>4;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1PyramidDecomposition" kindref="compound">hmap::PyramidDecomposition</ref><sp/>pyr<sp/>=<sp/><ref refid="classhmap_1_1PyramidDecomposition" kindref="compound">hmap::PyramidDecomposition</ref>(z,<sp/><ref refid="classhmap_1_1PyramidDecomposition_1ac3688f38d739c9eed21b4d32b49648bc" kindref="member">nlevels</ref>);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>pyr.<ref refid="classhmap_1_1PyramidDecomposition_1a620e9d62b2613f30c23b3d87b766d0bc" kindref="member">decompose</ref>();</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>some<sp/>intermediate<sp/>outputs<sp/>for<sp/>checking</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n<sp/>=<sp/>0;<sp/>n<sp/>&lt;<sp/>pyr.<ref refid="classhmap_1_1PyramidDecomposition_1ac3688f38d739c9eed21b4d32b49648bc" kindref="member">nlevels</ref>;<sp/>n++)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>pyr.<ref refid="classhmap_1_1PyramidDecomposition_1ae28c747403f67117823f3bf6ad1b931f" kindref="member">components</ref>[n].to_png(</highlight><highlight class="stringliteral">&quot;components_&quot;</highlight><highlight class="normal"><sp/>+<sp/>std::to_string(n)<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;.png&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369a65146260717d07e4773aec50520b9ced" kindref="member">hmap::Cmap::JET</ref>);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pyr.<ref refid="classhmap_1_1PyramidDecomposition_1ac711ffdbd5c38eb1f028106ceed16075" kindref="member">residual</ref>.<ref refid="classhmap_1_1Array_1a9ff7b2c0be8f2b5dd9fc33085cd647d1" kindref="member">to_png</ref>(</highlight><highlight class="stringliteral">&quot;components_res.png&quot;</highlight><highlight class="normal">,<sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369a65146260717d07e4773aec50520b9ced" kindref="member">hmap::Cmap::JET</ref>);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>z.<ref refid="classhmap_1_1Array_1a9ff7b2c0be8f2b5dd9fc33085cd647d1" kindref="member">to_png</ref>(</highlight><highlight class="stringliteral">&quot;components_initial.png&quot;</highlight><highlight class="normal">,<sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369a65146260717d07e4773aec50520b9ced" kindref="member">hmap::Cmap::JET</ref>);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>zr<sp/>=<sp/>pyr.<ref refid="classhmap_1_1PyramidDecomposition_1ac666baf987922967aec5fc7bb86acedf" kindref="member">reconstruct</ref>();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>zr.<ref refid="classhmap_1_1Array_1a9ff7b2c0be8f2b5dd9fc33085cd647d1" kindref="member">to_png</ref>(</highlight><highlight class="stringliteral">&quot;components_rebuild.png&quot;</highlight><highlight class="normal">,<sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369a65146260717d07e4773aec50520b9ced" kindref="member">hmap::Cmap::JET</ref>,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>pyr.<ref refid="classhmap_1_1PyramidDecomposition_1aefa4ee30147d004b1398e4dca1edb637" kindref="member">to_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_pyramid_decomposition0.png&quot;</highlight><highlight class="normal">,<sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369a744ead0b170889e33126895264f1af2c" kindref="member">hmap::Cmap::MAGMA</ref>);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a1c490f296571a75e35d05b10c075ae6c" kindref="member">hmap::export_banner_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_pyramid_decomposition1.png&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{z,<sp/>zr},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369afd0b9cd53cbae62c25ef686ba527d143" kindref="member">hmap::Cmap::INFERNO</ref>);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><bold>Result</bold> <image type="html" name="ex_pyramid_decomposition.png"></image>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/multiscale/pyramid.hpp" line="76" column="3" bodyfile="HighMap/src/multiscale/pyramid_decomposition.cpp" bodystart="16" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1PyramidDecomposition_1a620e9d62b2613f30c23b3d87b766d0bc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::PyramidDecomposition::decompose</definition>
+        <argsstring>()</argsstring>
+        <name>decompose</name>
+        <qualifiedname>hmap::PyramidDecomposition::decompose</qualifiedname>
+        <briefdescription>
+<para>Generate the pyramid decomposition. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/multiscale/pyramid.hpp" line="81" column="8" bodyfile="HighMap/src/multiscale/pyramid_decomposition.cpp" bodystart="48" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1PyramidDecomposition_1ac666baf987922967aec5fc7bb86acedf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
+        <definition>Array hmap::PyramidDecomposition::reconstruct</definition>
+        <argsstring>()</argsstring>
+        <name>reconstruct</name>
+        <qualifiedname>hmap::PyramidDecomposition::reconstruct</qualifiedname>
+        <briefdescription>
+<para>Reconstruct a field (ideally identical to the input field) based on the pyramid decomposition. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> Reconstructed field. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/multiscale/pyramid.hpp" line="88" column="9" bodyfile="HighMap/src/multiscale/pyramid_decomposition.cpp" bodystart="81" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1PyramidDecomposition_1aefa4ee30147d004b1398e4dca1edb637" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::PyramidDecomposition::to_png</definition>
+        <argsstring>(std::string fname, int cmap, bool hillshading=false)</argsstring>
+        <name>to_png</name>
+        <qualifiedname>hmap::PyramidDecomposition::to_png</qualifiedname>
+        <param>
+          <type>std::string</type>
+          <declname>fname</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>cmap</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>hillshading</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Export pyramid as png image file. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fname</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>File name. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cmap</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Colormap (</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>cmap). </para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>hillshading</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Activate hillshading. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/multiscale/pyramid.hpp" line="97" column="8" bodyfile="HighMap/src/multiscale/pyramid_decomposition.cpp" bodystart="101" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1PyramidDecomposition_1aa23f39a63086657fffda6cb5ca1842a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
+        <definition>Array hmap::PyramidDecomposition::transform</definition>
+        <argsstring>(std::function&lt; Array(const Array &amp;, const int current_level)&gt; function, int support=0, std::vector&lt; float &gt; level_weights={}, int finest_level=0)</argsstring>
+        <name>transform</name>
+        <qualifiedname>hmap::PyramidDecomposition::transform</qualifiedname>
+        <param>
+          <type>std::function&lt; <ref refid="classhmap_1_1Array" kindref="compound">Array</ref>(const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;, const int current_level)&gt;</type>
+          <declname>function</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>support</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>std::vector&lt; float &gt;</type>
+          <declname>level_weights</declname>
+          <defval>{}</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>finest_level</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>Apply a transformation to each component of the pyramid and return the field constructed based on the modified pyramid. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>function</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the function applied to the pyramid components. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>support</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classhmap_1_1Function" kindref="compound">Function</ref> support, should it be applied to the lowpass components only, the highpass only the full field. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>level_weights</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Weight in [0, 1] for each level (the resulting component is lerp between no transform and transform according to this weight). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> Resulting array.</para>
+</simplesect>
+<bold>Example</bold> <programlisting filename="ex_pyramid_transform.cpp"><codeline><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="highmap_8hpp" kindref="compound">highmap.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>main(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="structhmap_1_1Vec2" kindref="compound">hmap::Vec2&lt;int&gt;</ref><sp/>shape<sp/>=<sp/>{256,<sp/>256};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>shape<sp/>=<sp/>{512,<sp/>512};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="structhmap_1_1Vec2" kindref="compound">hmap::Vec2&lt;float&gt;</ref><sp/>res<sp/>=<sp/>{4.f,<sp/>4.f};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>z<sp/>=<sp/><ref refid="namespacehmap_1a40b948c49a05c14f2d540dc1a6952130" kindref="member">hmap::noise_fbm</ref>(<ref refid="namespacehmap_1ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581" kindref="member">hmap::NoiseType::PERLIN</ref>,<sp/>shape,<sp/>res,<sp/>seed);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a262e6495cb2d02598f36a2b46114b2b4" kindref="member">hmap::remap</ref>(z);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhmap_1_1PyramidDecomposition_1ac3688f38d739c9eed21b4d32b49648bc" kindref="member">nlevels</ref><sp/>=<sp/>4;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1PyramidDecomposition" kindref="compound">hmap::PyramidDecomposition</ref><sp/>pyr<sp/>=<sp/><ref refid="classhmap_1_1PyramidDecomposition" kindref="compound">hmap::PyramidDecomposition</ref>(z,<sp/><ref refid="classhmap_1_1PyramidDecomposition_1ac3688f38d739c9eed21b4d32b49648bc" kindref="member">nlevels</ref>);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>pyr.<ref refid="classhmap_1_1PyramidDecomposition_1a620e9d62b2613f30c23b3d87b766d0bc" kindref="member">decompose</ref>();</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>&apos;transform&apos;<sp/>function</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>fct<sp/>=<sp/>[&amp;seed](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>&amp;input,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>current_level)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;applying<sp/>erosion<sp/>to<sp/>level<sp/>and<sp/>shape:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>current_level<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>input.<ref refid="classhmap_1_1Array_1a3cf6ada373f8af1affcbbed22db1194f" kindref="member">shape</ref>.<ref refid="structhmap_1_1Vec2_1a2dc51e83492f966eeddbdac3d58ab447" kindref="member">x</ref><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>input.<ref refid="classhmap_1_1Array_1a3cf6ada373f8af1affcbbed22db1194f" kindref="member">shape</ref>.<ref refid="structhmap_1_1Vec2_1a087ff9ff4159d1e5778c0b65ee2a1648" kindref="member">y</ref><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>apply<sp/>hydraulic<sp/>erosion<sp/>to<sp/>each<sp/>component</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>output<sp/>=<sp/>input;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>particle_density<sp/>=<sp/>0.4f;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nparticles<sp/>=<sp/>(int)(particle_density<sp/>*<sp/>input.<ref refid="classhmap_1_1Array_1a16e6671dbf3202dbc86f5eccb0fcb1ad" kindref="member">size</ref>());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1a9571076da7c13d9bd3ab99f137ef8188" kindref="member">hydraulic_particle</ref>(output,<sp/>nparticles,<sp/>++seed);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>output;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>zr<sp/>=<sp/>pyr.<ref refid="classhmap_1_1PyramidDecomposition_1aa23f39a63086657fffda6cb5ca1842a5" kindref="member">transform</ref>(fct,<sp/><ref refid="namespacehmap_1ae84abe9052dcb9c88f3c50716addfe44a335e6fca97d53bfb6cc3a55c566f1dd7" kindref="member">hmap::pyramid_transform_support::FULL</ref>);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a1c490f296571a75e35d05b10c075ae6c" kindref="member">hmap::export_banner_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_pyramid_transform.png&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{z,<sp/>zr},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369a6d093dbf3088c52a8acee413942545d9" kindref="member">hmap::Cmap::TERRAIN</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><bold>Result</bold> <image type="html" name="ex_pyramid_transform.png"></image>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/multiscale/pyramid.hpp" line="118" column="9" bodyfile="HighMap/src/multiscale/pyramid_decomposition.cpp" bodystart="130" bodyend="189"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Pyramid decomposition class, to handle low-pass pyramids (like Laplacian pyramid). </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>hmap::Vec2&lt; int &gt;</label>
+        <link refid="structhmap_1_1Vec2"/>
+      </node>
+      <node id="2">
+        <label>hmap::Array</label>
+        <link refid="classhmap_1_1Array"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>shape</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>vector</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hmap::PyramidDecomposition</label>
+        <link refid="classhmap_1_1PyramidDecomposition"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>residual</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>components</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>std::vector&lt; float &gt;</label>
+      </node>
+      <node id="5">
+        <label>std::vector&lt; hmap::Array &gt;</label>
+        <childnode refid="2" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="HighMap/include/highmap/multiscale/pyramid.hpp" line="39" column="1" bodyfile="HighMap/include/highmap/multiscale/pyramid.hpp" bodystart="40" bodyend="129"/>
+    <listofallmembers>
+      <member refid="classhmap_1_1PyramidDecomposition_1ae28c747403f67117823f3bf6ad1b931f" prot="public" virt="non-virtual"><scope>hmap::PyramidDecomposition</scope><name>components</name></member>
+      <member refid="classhmap_1_1PyramidDecomposition_1a620e9d62b2613f30c23b3d87b766d0bc" prot="public" virt="non-virtual"><scope>hmap::PyramidDecomposition</scope><name>decompose</name></member>
+      <member refid="classhmap_1_1PyramidDecomposition_1ab7684296d0993168de59ca6938d30cd2" prot="public" virt="non-virtual"><scope>hmap::PyramidDecomposition</scope><name>low_pass_filter_function</name></member>
+      <member refid="classhmap_1_1PyramidDecomposition_1ac3688f38d739c9eed21b4d32b49648bc" prot="public" virt="non-virtual"><scope>hmap::PyramidDecomposition</scope><name>nlevels</name></member>
+      <member refid="classhmap_1_1PyramidDecomposition_1a260a2bb87e7077a29036bc967ccfa6dc" prot="private" virt="non-virtual"><scope>hmap::PyramidDecomposition</scope><name>p_array</name></member>
+      <member refid="classhmap_1_1PyramidDecomposition_1a802f02d09f6a5073d9ecd523f5a0624c" prot="public" virt="non-virtual"><scope>hmap::PyramidDecomposition</scope><name>PyramidDecomposition</name></member>
+      <member refid="classhmap_1_1PyramidDecomposition_1ac666baf987922967aec5fc7bb86acedf" prot="public" virt="non-virtual"><scope>hmap::PyramidDecomposition</scope><name>reconstruct</name></member>
+      <member refid="classhmap_1_1PyramidDecomposition_1ac711ffdbd5c38eb1f028106ceed16075" prot="public" virt="non-virtual"><scope>hmap::PyramidDecomposition</scope><name>residual</name></member>
+      <member refid="classhmap_1_1PyramidDecomposition_1aefa4ee30147d004b1398e4dca1edb637" prot="public" virt="non-virtual"><scope>hmap::PyramidDecomposition</scope><name>to_png</name></member>
+      <member refid="classhmap_1_1PyramidDecomposition_1aa23f39a63086657fffda6cb5ca1842a5" prot="public" virt="non-virtual"><scope>hmap::PyramidDecomposition</scope><name>transform</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

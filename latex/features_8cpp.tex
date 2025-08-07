@@ -1,0 +1,26 @@
+\doxysection{High\+Map/src/features/features.cpp File Reference}
+\hypertarget{features_8cpp}{}\label{features_8cpp}\index{HighMap/src/features/features.cpp@{HighMap/src/features/features.cpp}}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a9b6a1d2ca8ef58a4a0605d04bcbff038}{hmap\+::local\+\_\+median\+\_\+deviation}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int ir)
+\begin{DoxyCompactList}\small\item\em Computes the local median deviation of a 2D array. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a39d52250df1825ecea1e63309d94d1fb}{hmap\+::mean\+\_\+local}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int ir)
+\begin{DoxyCompactList}\small\item\em Return the local mean based on a mean filter with a square kernel. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a941d446cad19c166f4f6c4df857dba65}{hmap\+::relative\+\_\+elevation}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int ir)
+\begin{DoxyCompactList}\small\item\em Calculates the relative elevation within a specified radius, helping to identify local highs and lows. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_af4ec8b5be149e6749fdf09759daf1e9e}{hmap\+::ruggedness}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int ir)
+\begin{DoxyCompactList}\small\item\em Computes the ruggedness of each element in the input array. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a85e411c67e97deb8459f25d4440546c3}{hmap\+::rugosity}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int ir, bool convex=true)
+\begin{DoxyCompactList}\small\item\em Estimates the rugosity of a surface by analyzing the skewness of the elevation data, which reflects surface roughness. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a0157f72a2a70dae28d0767a13739f4b5}{hmap\+::std\+\_\+local}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int ir)
+\begin{DoxyCompactList}\small\item\em Computes the local standard deviation of a 2D array. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_ab4d8048b79080012b8e60c270de8137f}{hmap\+::valley\+\_\+width}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int ir=0, bool ridge\+\_\+select=false)
+\begin{DoxyCompactList}\small\item\em Measures the valley width by calculating the distance from each point in a concave region to the frontier of that region. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a732a83c92c4a2d232fc9f421f98c0c6b}{hmap\+::z\+\_\+score}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int ir)
+\end{DoxyCompactItemize}

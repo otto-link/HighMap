@@ -1,0 +1,112 @@
+\doxysection{hmap\+::Bump\+Function Class Reference}
+\hypertarget{classhmap_1_1BumpFunction}{}\label{classhmap_1_1BumpFunction}\index{hmap::BumpFunction@{hmap::BumpFunction}}
+
+
+Bump (x, y) function class.  
+
+
+
+
+{\ttfamily \#include $<$functions.\+hpp$>$}
+
+
+
+Inheritance diagram for hmap\+::Bump\+Function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{classhmap_1_1BumpFunction__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for hmap\+::Bump\+Function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=308pt]{classhmap_1_1BumpFunction__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1BumpFunction_a178d0bca834491174e38281174d8aa95}{Bump\+Function}} (float \mbox{\hyperlink{classhmap_1_1BumpFunction_affb0947701a602022d242613b244df72}{gain}}, \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$ \mbox{\hyperlink{classhmap_1_1BumpFunction_a95331eacf3f4fed187dbc1e00080c35d}{center}})
+\begin{DoxyCompactList}\small\item\em Construct a new Bump \doxylink{classhmap_1_1Function}{Function} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classhmap_1_1Function}{hmap\+::\+Function}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1Function_a1f77a2faa84c84fb147f48af0bfbc96e}{Function}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. Initializes the delegate function to a default that returns 0. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classhmap_1_1Function_a8efd89e31947f2508ce45b133e30322f}{\texorpdfstring{$\sim$}{\string~}\+Function}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure proper cleanup in derived classes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Function_ae1f9e64626fb671ed37a45d09cf551e8}{Function}} (HMAP\+\_\+\+FCT\+\_\+\+XY\+\_\+\+TYPE delegate)
+\begin{DoxyCompactList}\small\item\em Constructor to initialize with a specific delegate function. \end{DoxyCompactList}\item 
+HMAP\+\_\+\+FCT\+\_\+\+XY\+\_\+\+TYPE \mbox{\hyperlink{classhmap_1_1Function_a32214e30c36be7650c47867fd14f6a0c}{get\+\_\+delegate}} () const
+\begin{DoxyCompactList}\small\item\em Get the current delegate function. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1Function_a82fb7788314b339a062cb80115e2e1da}{get\+\_\+value}} (float x, float y, float ctrl\+\_\+param) const
+\begin{DoxyCompactList}\small\item\em Call the delegate function with given arguments. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1Function_a6163e6f231dc77a7e7d83e74d2b44abe}{set\+\_\+delegate}} (HMAP\+\_\+\+FCT\+\_\+\+XY\+\_\+\+TYPE new\+\_\+delegate)
+\begin{DoxyCompactList}\small\item\em Set a new delegate function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{classhmap_1_1BumpFunction_affb0947701a602022d242613b244df72}{gain}}
+\begin{DoxyCompactList}\small\item\em Gain value that controls the steepness of the bump. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$ \mbox{\hyperlink{classhmap_1_1BumpFunction_a95331eacf3f4fed187dbc1e00080c35d}{center}}
+\begin{DoxyCompactList}\small\item\em Primitive reference center. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Bump (x, y) function class. 
+
+This class models a bump function with a specified gain and reference center. It extends the base \doxylink{classhmap_1_1Function}{Function} class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classhmap_1_1BumpFunction_a178d0bca834491174e38281174d8aa95}\label{classhmap_1_1BumpFunction_a178d0bca834491174e38281174d8aa95} 
+\index{hmap::BumpFunction@{hmap::BumpFunction}!BumpFunction@{BumpFunction}}
+\index{BumpFunction@{BumpFunction}!hmap::BumpFunction@{hmap::BumpFunction}}
+\doxysubsubsection{\texorpdfstring{BumpFunction()}{BumpFunction()}}
+{\footnotesize\ttfamily hmap\+::\+Bump\+Function\+::\+Bump\+Function (\begin{DoxyParamCaption}\item[{float}]{gain,  }\item[{\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$}]{center }\end{DoxyParamCaption})}
+
+
+
+Construct a new Bump \doxylink{classhmap_1_1Function}{Function} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gain} & Gain that controls the steepness of the bump. \\
+\hline
+{\em center} & Primitive reference center. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classhmap_1_1BumpFunction_affb0947701a602022d242613b244df72}\label{classhmap_1_1BumpFunction_affb0947701a602022d242613b244df72} 
+\index{hmap::BumpFunction@{hmap::BumpFunction}!gain@{gain}}
+\index{gain@{gain}!hmap::BumpFunction@{hmap::BumpFunction}}
+\doxysubsubsection{\texorpdfstring{gain}{gain}}
+{\footnotesize\ttfamily float hmap\+::\+Bump\+Function\+::gain\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Gain value that controls the steepness of the bump. 
+
+\Hypertarget{classhmap_1_1BumpFunction_a95331eacf3f4fed187dbc1e00080c35d}\label{classhmap_1_1BumpFunction_a95331eacf3f4fed187dbc1e00080c35d} 
+\index{hmap::BumpFunction@{hmap::BumpFunction}!center@{center}}
+\index{center@{center}!hmap::BumpFunction@{hmap::BumpFunction}}
+\doxysubsubsection{\texorpdfstring{center}{center}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$float$>$ hmap\+::\+Bump\+Function\+::center\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Primitive reference center. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+High\+Map/include/highmap/\mbox{\hyperlink{functions_8hpp}{functions.\+hpp}}\item 
+High\+Map/src/primitives/functions/\mbox{\hyperlink{functions_8cpp}{functions.\+cpp}}\end{DoxyCompactItemize}

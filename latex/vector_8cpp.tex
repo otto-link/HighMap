@@ -1,0 +1,20 @@
+\doxysection{High\+Map/src/operator/vector.cpp File Reference}
+\hypertarget{vector_8cpp}{}\label{vector_8cpp}\index{HighMap/src/operator/vector.cpp@{HighMap/src/operator/vector.cpp}}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ float $>$ \mbox{\hyperlink{namespacehmap_ab0755dccfcae2b02a211c091e33f79a9}{hmap\+::gradient1d}} (const std\+::vector$<$ float $>$ \&v)
+\begin{DoxyCompactList}\small\item\em Compute the gradient of a 1D vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_abf9521082ba09eb022834306bc6c354b}{hmap\+::laplace1d}} (std\+::vector$<$ float $>$ \&v, float sigma=0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, int iterations=1)
+\begin{DoxyCompactList}\small\item\em Apply a low-\/pass Laplace filter to a vector. \end{DoxyCompactList}\item 
+std\+::vector$<$ float $>$ \mbox{\hyperlink{namespacehmap_a3957ac4ae673f8ad402b5dd71e99b015}{hmap\+::linspace}} (float start, float stop, int num, bool endpoint=true)
+\begin{DoxyCompactList}\small\item\em Generate a vector of evenly spaced numbers over a specified interval. \end{DoxyCompactList}\item 
+std\+::vector$<$ float $>$ \mbox{\hyperlink{namespacehmap_a068e4d5be8c16ab9e708dca9678dc8de}{hmap\+::linspace\+\_\+jitted}} (float start, float stop, int num, float ratio, int seed, bool endpoint=true)
+\begin{DoxyCompactList}\small\item\em Generate a vector of jittered (noised) numbers over a specified interval. \end{DoxyCompactList}\item 
+std\+::vector$<$ float $>$ \mbox{\hyperlink{namespacehmap_a3e6de5f9e14f11872651af22e5756c32}{hmap\+::random\+\_\+vector}} (float min, float max, int num, int seed)
+\begin{DoxyCompactList}\small\item\em Generate a vector filled with random values within a specified range. \end{DoxyCompactList}\end{DoxyCompactItemize}

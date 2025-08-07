@@ -1,0 +1,56 @@
+\doxysection{pyramid.\+hpp}
+\hypertarget{pyramid_8hpp_source}{}\label{pyramid_8hpp_source}\index{HighMap/include/highmap/multiscale/pyramid.hpp@{HighMap/include/highmap/multiscale/pyramid.hpp}}
+\mbox{\hyperlink{pyramid_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ Copyright\ (c)\ 2023\ Otto\ Link.\ Distributed\ under\ the\ terms\ of\ the\ GNU\ General}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ \ \ Public\ License.\ The\ full\ license\ is\ in\ the\ file\ LICENSE,\ distributed\ with}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ \ this\ software.\ */}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{array_8hpp}{highmap/array.hpp}}"{}}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacehmap}{hmap}}}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespacehmap_ae84abe9052dcb9c88f3c50716addfe44}{pyramid\_transform\_support}}\ :\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ \ \ \mbox{\hyperlink{namespacehmap_ae84abe9052dcb9c88f3c50716addfe44a335e6fca97d53bfb6cc3a55c566f1dd7}{FULL}},\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \mbox{\hyperlink{namespacehmap_ae84abe9052dcb9c88f3c50716addfe44ab02b262c560a970e4f082d4edee376fb}{LOWPASS\_ONLY}},\ }
+\DoxyCodeLine{00032\ \ \ \mbox{\hyperlink{namespacehmap_ae84abe9052dcb9c88f3c50716addfe44a23fde294eee1dbe59e1c6bb2bc0d5132}{HIGHPASS\_ONLY}}\ }
+\DoxyCodeLine{00033\ \};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classhmap_1_1PyramidDecomposition}{PyramidDecomposition}}}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classhmap_1_1PyramidDecomposition_ac3688f38d739c9eed21b4d32b49648bc}{nlevels}};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00050\ \ \ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \mbox{\hyperlink{classhmap_1_1PyramidDecomposition_ac711ffdbd5c38eb1f028106ceed16075}{residual}};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00055\ \ \ std::vector<Array>\ \mbox{\hyperlink{classhmap_1_1PyramidDecomposition_ae28c747403f67117823f3bf6ad1b931f}{components}}\ =\ \{\};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00060\ \ \ std::function<\mbox{\hyperlink{classhmap_1_1Array}{Array}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \&)>\ \mbox{\hyperlink{classhmap_1_1PyramidDecomposition_ab7684296d0993168de59ca6938d30cd2}{low\_pass\_filter\_function}};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00076\ \ \ \mbox{\hyperlink{classhmap_1_1PyramidDecomposition}{PyramidDecomposition}}(\mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \&array,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classhmap_1_1PyramidDecomposition_ac3688f38d739c9eed21b4d32b49648bc}{nlevels}});}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00081\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1PyramidDecomposition_a620e9d62b2613f30c23b3d87b766d0bc}{decompose}}();}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00088\ \ \ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \mbox{\hyperlink{classhmap_1_1PyramidDecomposition_ac666baf987922967aec5fc7bb86acedf}{reconstruct}}();}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00097\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1PyramidDecomposition_aefa4ee30147d004b1398e4dca1edb637}{to\_png}}(std::string\ fname,\ \textcolor{keywordtype}{int}\ cmap,\ \textcolor{keywordtype}{bool}\ hillshading\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00118\ \ \ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \mbox{\hyperlink{classhmap_1_1PyramidDecomposition_aa23f39a63086657fffda6cb5ca1842a5}{transform}}(}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ std::function<\mbox{\hyperlink{classhmap_1_1Array}{Array}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \&,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ current\_level)>\ function,}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ support\ =\ 0,}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ std::vector<float>\ level\_weights\ =\ \{\},}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ finest\_level\ =\ 0);}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00128\ \ \ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ *p\_array\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00129\ \};}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \}\ \textcolor{comment}{//\ namespace\ hmap}}
+
+\end{DoxyCode}

@@ -1,0 +1,78 @@
+\doxysection{High\+Map/include/highmap/curvature.hpp File Reference}
+\hypertarget{curvature_8hpp}{}\label{curvature_8hpp}\index{HighMap/include/highmap/curvature.hpp@{HighMap/include/highmap/curvature.hpp}}
+
+
+Header file defining a collection of functions for curvature analysis.  
+
+
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\item 
+namespace \mbox{\hyperlink{namespacehmap_1_1gpu}{hmap\+::gpu}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a4bc3d501e53aebe8e15428798656a3e4}{hmap\+::accumulation\+\_\+curvature}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int ir)
+\begin{DoxyCompactList}\small\item\em Computes the accumulation curvature of a heightmap. Acumulation curvature is a measure of the extent of local accumulation of flows at a given point. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_acad6026e6aab9d084238c6c12cb2c565}{hmap\+::curvature\+\_\+gaussian}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z)
+\begin{DoxyCompactList}\small\item\em Calculates the Gaussian curvature of a heightmap, providing insights into the surface\textquotesingle{}s intrinsic curvature at each point. Gaussian curvature is a fundamental measure of surface curvature, indicating how the surface bends in multiple directions at each point. This metric is often used in geomorphology to understand landform shapes. Usage\+: Use this function to analyze the overall shape of terrain features, identifying whether regions are saddle-\/like, dome-\/like, or basin-\/like. Useful in studies related to tectonics, erosion patterns, and landform development. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_adfe8eddd79327602ea551c79524e0a21}{hmap\+::curvature\+\_\+horizontal\+\_\+cross\+\_\+sectional}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int ir)
+\begin{DoxyCompactList}\small\item\em TODO. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a1bf0dae54c5b8bd4e0aeb738c26644fc}{hmap\+::curvature\+\_\+horizontal\+\_\+plan}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int ir)
+\begin{DoxyCompactList}\small\item\em TODO. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a6c28c3adca1bc50a9e769e3bacaf777b}{hmap\+::curvature\+\_\+horizontal\+\_\+tangential}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int ir)
+\begin{DoxyCompactList}\small\item\em TODO. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a0f5685e5bb02e29d1d35720d3aaedca0}{hmap\+::curvature\+\_\+mean}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z)
+\begin{DoxyCompactList}\small\item\em Computes the mean curvature of a heightmap, indicating the average curvature at each point on the surface. Mean curvature is another critical metric in geomorphology, representing the average bending of the surface. This measure is useful in understanding terrain smoothness and can help identify areas of potential erosion or deposition. Usage\+: Apply this function to detect areas prone to erosion or sediment deposition. Useful in landscape evolution models and in analyzing the stability of slopes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_ac60627713d4f7ff0c406182ac9941483}{hmap\+::curvature\+\_\+ring}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int ir)
+\begin{DoxyCompactList}\small\item\em Ring curvature is a second-\/order derivative of the elevation surface. It describes how the surface bends along a ring-\/like shape, often computed from the principal curvatures. Positive Values\+: Indicate convex surfaces where flow disperses (ridges, hilltops). Negative Values\+: Indicate concave surfaces where flow converges (valleys, depressions). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_ab983266e7db85af59452a75364a6bad8}{hmap\+::curvature\+\_\+rotor}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int ir)
+\begin{DoxyCompactList}\small\item\em Rotor curvature, also called flow line curvature, describes how the curvature of a terrain surface influences the acceleration or deceleration of flow (e.\+g., water, debris, or air) along the direction of maximum slope. Positive values\+: Flow is decelerating (convex-\/up terrain, such as ridges or crests). Negative values\+: Flow is accelerating (concave-\/down terrain, such as valleys or channels). Zero values\+: Flow moves in a linear, constant-\/slope manner. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_ab2de0fa5e51719f4139d0fc0309a9f7f}{hmap\+::curvature\+\_\+vertical\+\_\+longitudinal}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int ir)
+\begin{DoxyCompactList}\small\item\em TODO. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_ac56ceece101a652bd52592149e031a41}{hmap\+::curvature\+\_\+vertical\+\_\+profile}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int ir)
+\begin{DoxyCompactList}\small\item\em TODO. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a4e9ebf2cab88b81e28538a5432abf68c}{hmap\+::shape\+\_\+index}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int ir)
+\begin{DoxyCompactList}\small\item\em Computes the Shape Index (SI) of the terrain, quantifying landform complexity based on curvature. The Shape Index is a metric used to describe the shape of landforms, particularly in digital elevation models (DEMs). It differentiates between convex (e.\+g., hilltops), concave (e.\+g., valleys), and flat surfaces. Usage\+: Use this function to classify terrain into different morphological types, which can be important in land use planning and environmental studies. Useful in landscape ecology and in understanding geomorphological processes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a5dc8b3117305f025eb4d0da50bf3c674}{hmap\+::unsphericity}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int ir)
+\begin{DoxyCompactList}\small\item\em Calculates the unsphericity of a surface, indicating how much the terrain deviates from a perfect spherical shape. Unsphericity is a measure used to understand the degree of asymmetry in terrain surfaces. It quantifies how much a surface deviates from being perfectly spherical or symmetrical, which can be critical in various geomorphological analyses. Usage\+: Use this function to identify areas of terrain that significantly deviate from a spherical shape, which may indicate unique geological formations or erosion patterns. Helpful in identifying and analyzing landforms that are not perfectly round or symmetrical, such as irregular hills or basins. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_ad8bed5d4ec0f54adc017527fa134f455}{hmap\+::compute\+\_\+curvature\+\_\+gradients}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&p, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&q, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&r, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&s, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&t)
+\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a4a1660bb65728209b9d07f6ce4486584}{hmap\+::compute\+\_\+curvature\+\_\+h}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&r, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&t)
+\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_af54b122203d5eee61b9b6d6c7979ddfe}{hmap\+::compute\+\_\+curvature\+\_\+k}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&p, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&q, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&r, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&s, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&t)
+\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_ad73cfd73fcd2e2744e8eb912eaf6f3bf}{hmap\+::gpu\+::accumulation\+\_\+curvature}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int ir)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_a4bc3d501e53aebe8e15428798656a3e4}{hmap\+::accumulation\+\_\+curvature}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_afd24580b2b5fe7107bbff0ae2d3a1473}{hmap\+::gpu\+::curvature\+\_\+horizontal\+\_\+cross\+\_\+sectional}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int ir)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_adfe8eddd79327602ea551c79524e0a21}{hmap\+::curvature\+\_\+horizontal\+\_\+cross\+\_\+sectional}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_a60a4aaece2c081b0a76e50404022934f}{hmap\+::gpu\+::curvature\+\_\+horizontal\+\_\+plan}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int ir)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_a1bf0dae54c5b8bd4e0aeb738c26644fc}{hmap\+::curvature\+\_\+horizontal\+\_\+plan}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_a73a9ccd515e8907c142e001da179856b}{hmap\+::gpu\+::curvature\+\_\+horizontal\+\_\+tangential}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int ir)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_a6c28c3adca1bc50a9e769e3bacaf777b}{hmap\+::curvature\+\_\+horizontal\+\_\+tangential}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_a8cc1e9e21a72aab7e29c563817df89b6}{hmap\+::gpu\+::curvature\+\_\+ring}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int ir)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_ac60627713d4f7ff0c406182ac9941483}{hmap\+::curvature\+\_\+ring}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_a664f80c07e3609c285c98ed5f8bb2be3}{hmap\+::gpu\+::curvature\+\_\+rotor}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int ir)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_ab983266e7db85af59452a75364a6bad8}{hmap\+::curvature\+\_\+rotor}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_aec95543aaf6a305eb2f7b85cd3dd54d3}{hmap\+::gpu\+::curvature\+\_\+vertical\+\_\+longitudinal}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int ir)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_ab2de0fa5e51719f4139d0fc0309a9f7f}{hmap\+::curvature\+\_\+vertical\+\_\+longitudinal}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_ad1529cdd1f7e79e385e138f1005c7e74}{hmap\+::gpu\+::curvature\+\_\+vertical\+\_\+profile}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int ir)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_ac56ceece101a652bd52592149e031a41}{hmap\+::curvature\+\_\+vertical\+\_\+profile}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_a5bec8dfa40b4c176d348698d9074a7e7}{hmap\+::gpu\+::shape\+\_\+index}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int ir)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_a4e9ebf2cab88b81e28538a5432abf68c}{hmap\+::shape\+\_\+index}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_a112db22b157fcb69d867e1e5ee3a1afd}{hmap\+::gpu\+::unsphericity}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int ir)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_a5dc8b3117305f025eb4d0da50bf3c674}{hmap\+::unsphericity}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file defining a collection of functions for curvature analysis. 
+
+\begin{DoxyAuthor}{Author}
+Otto Link (\href{mailto:otto.link.bv@gmail.com}{\texttt{ otto.\+link.\+bv@gmail.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 Otto Link 
+\end{DoxyCopyright}

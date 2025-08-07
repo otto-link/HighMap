@@ -1,0 +1,5 @@
+<map id="hmap::Edge" name="hmap::Edge">
+<area shape="rect" id="Node000001" title="Represents a line segment in 2D space." alt="" coords="6,108,105,133"/>
+<area shape="rect" id="Node000002" href="$classhmap_1_1Point.html" title="A class to represent and manipulate 2D points that can carry a value." alt="" coords="5,5,105,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="58,45,58,108,53,108,53,45"/>
+</map>

@@ -1,0 +1,66 @@
+\doxysection{High\+Map/include/highmap/features.hpp File Reference}
+\hypertarget{features_8hpp}{}\label{features_8hpp}\index{HighMap/include/highmap/features.hpp@{HighMap/include/highmap/features.hpp}}
+
+
+Header file defining a collection of functions for terrain analysis and feature extraction from heightmaps.  
+
+
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\item 
+namespace \mbox{\hyperlink{namespacehmap_1_1gpu}{hmap\+::gpu}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a9f8b079598b5ab3850c747ece6c81345}{hmap\+::connected\+\_\+components}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float surface\+\_\+threshold=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float background\+\_\+value=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+\begin{DoxyCompactList}\small\item\em Identifies and labels connected components within a binary or labeled array, with optional filtering by size. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_aa60fa2d3f02d1e064b520fa1623200d0}{hmap\+::geomorphons}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int irmin, int irmax, float epsilon)
+\begin{DoxyCompactList}\small\item\em Classifies terrain into geomorphological features based on the geomorphons method. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_ae19d507d917f1f4cbc61fc76cc5baab0}{hmap\+::kmeans\+\_\+clustering2}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array1, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array2, int nclusters, std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Array}{Array}} $>$ \texorpdfstring{$\ast$}{*}p\+\_\+scoring=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+aggregate\+\_\+scoring=nullptr, \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$ weights=\{1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}, \mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} seed=1)
+\begin{DoxyCompactList}\small\item\em Performs k-\/means clustering on two input arrays, grouping similar data points into clusters. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_ac177e8615e697e3096737cb21a15f3ed}{hmap\+::kmeans\+\_\+clustering3}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array1, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array2, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array3, int nclusters, std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Array}{Array}} $>$ \texorpdfstring{$\ast$}{*}p\+\_\+scoring=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+aggregate\+\_\+scoring=nullptr, \mbox{\hyperlink{structhmap_1_1Vec3}{Vec3}}$<$ float $>$ weights=\{1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}, \mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} seed=1)
+\begin{DoxyCompactList}\small\item\em Performs k-\/means clustering on three input arrays, providing more detailed cluster analysis by considering an additional dimension. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a9b6a1d2ca8ef58a4a0605d04bcbff038}{hmap\+::local\+\_\+median\+\_\+deviation}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int ir)
+\begin{DoxyCompactList}\small\item\em Computes the local median deviation of a 2D array. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a39d52250df1825ecea1e63309d94d1fb}{hmap\+::mean\+\_\+local}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int ir)
+\begin{DoxyCompactList}\small\item\em Return the local mean based on a mean filter with a square kernel. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a941d446cad19c166f4f6c4df857dba65}{hmap\+::relative\+\_\+elevation}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int ir)
+\begin{DoxyCompactList}\small\item\em Calculates the relative elevation within a specified radius, helping to identify local highs and lows. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_af4ec8b5be149e6749fdf09759daf1e9e}{hmap\+::ruggedness}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int ir)
+\begin{DoxyCompactList}\small\item\em Computes the ruggedness of each element in the input array. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a85e411c67e97deb8459f25d4440546c3}{hmap\+::rugosity}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int ir, bool convex=true)
+\begin{DoxyCompactList}\small\item\em Estimates the rugosity of a surface by analyzing the skewness of the elevation data, which reflects surface roughness. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a0157f72a2a70dae28d0767a13739f4b5}{hmap\+::std\+\_\+local}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int ir)
+\begin{DoxyCompactList}\small\item\em Computes the local standard deviation of a 2D array. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_ab4d8048b79080012b8e60c270de8137f}{hmap\+::valley\+\_\+width}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int ir=0, bool ridge\+\_\+select=false)
+\begin{DoxyCompactList}\small\item\em Measures the valley width by calculating the distance from each point in a concave region to the frontier of that region. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a732a83c92c4a2d232fc9f421f98c0c6b}{hmap\+::z\+\_\+score}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int ir)
+\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_a022f5800d7e28f79f9e2d3abf687f490}{hmap\+::gpu\+::local\+\_\+median\+\_\+deviation}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int ir)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_a9b6a1d2ca8ef58a4a0605d04bcbff038}{hmap\+::local\+\_\+median\+\_\+deviation}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_afed4e84e60dd0cdc453e7da72940ed27}{hmap\+::gpu\+::mean\+\_\+local}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int ir)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_a39d52250df1825ecea1e63309d94d1fb}{hmap\+::mean\+\_\+local}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_a2dcbc7dac085b61f3c47e17256741a9a}{hmap\+::gpu\+::relative\+\_\+elevation}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int ir)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_a941d446cad19c166f4f6c4df857dba65}{hmap\+::relative\+\_\+elevation}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_a62292cc4bf9f6eb5c7b63b1e26f8cc88}{hmap\+::gpu\+::ruggedness}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int ir)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_af4ec8b5be149e6749fdf09759daf1e9e}{hmap\+::ruggedness}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_aa5a3e087822525c41f057a51255e2bad}{hmap\+::gpu\+::rugosity}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int ir, bool convex=true)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_a85e411c67e97deb8459f25d4440546c3}{hmap\+::rugosity}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_aa5f9b68baa2c17c23c8f21708e8fac9e}{hmap\+::gpu\+::std\+\_\+local}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int ir)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_a0157f72a2a70dae28d0767a13739f4b5}{hmap\+::std\+\_\+local}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_a802ae2cfde5f1a4124ebd0bd2f2dc6c4}{hmap\+::gpu\+::z\+\_\+score}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int ir)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_a732a83c92c4a2d232fc9f421f98c0c6b}{hmap\+::z\+\_\+score}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file defining a collection of functions for terrain analysis and feature extraction from heightmaps. 
+
+\begin{DoxyAuthor}{Author}
+Otto Link (\href{mailto:otto.link.bv@gmail.com}{\texttt{ otto.\+link.\+bv@gmail.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 Otto Link 
+\end{DoxyCopyright}

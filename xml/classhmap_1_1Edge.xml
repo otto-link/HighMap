@@ -1,0 +1,198 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classhmap_1_1Edge" kind="class" language="C++" prot="public">
+    <compoundname>hmap::Edge</compoundname>
+    <includes refid="edge_8hpp" local="no">edge.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classhmap_1_1Edge_1aaafc727142dadc4d1e5a5e040aade087" prot="public" static="no" mutable="no">
+        <type><ref refid="classhmap_1_1Point" kindref="compound">Point</ref></type>
+        <definition>Point hmap::Edge::p1</definition>
+        <argsstring></argsstring>
+        <name>p1</name>
+        <qualifiedname>hmap::Edge::p1</qualifiedname>
+        <briefdescription>
+<para>The start point of the edge. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/edge.hpp" line="43" column="9" bodyfile="HighMap/include/highmap/geometry/edge.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1Edge_1a3ced3b4d72d4829fe8ddef173db5bb5a" prot="public" static="no" mutable="no">
+        <type><ref refid="classhmap_1_1Point" kindref="compound">Point</ref></type>
+        <definition>Point hmap::Edge::p2</definition>
+        <argsstring></argsstring>
+        <name>p2</name>
+        <qualifiedname>hmap::Edge::p2</qualifiedname>
+        <briefdescription>
+<para>The end point of the edge. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/edge.hpp" line="44" column="9" bodyfile="HighMap/include/highmap/geometry/edge.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1Edge_1aeeceb458f6abbe1a5faea8123f83ce4f" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::Edge::w</definition>
+        <argsstring></argsstring>
+        <name>w</name>
+        <qualifiedname>hmap::Edge::w</qualifiedname>
+        <briefdescription>
+<para>A weight associated with the edge. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/edge.hpp" line="45" column="9" bodyfile="HighMap/include/highmap/geometry/edge.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhmap_1_1Edge_1a1807bf5546717f8355354926a5b49634" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hmap::Edge::Edge</definition>
+        <argsstring>(Point p1, Point p2, float w)</argsstring>
+        <name>Edge</name>
+        <qualifiedname>hmap::Edge::Edge</qualifiedname>
+        <param>
+          <type><ref refid="classhmap_1_1Point" kindref="compound">Point</ref></type>
+          <declname>p1</declname>
+        </param>
+        <param>
+          <type><ref refid="classhmap_1_1Point" kindref="compound">Point</ref></type>
+          <declname>p2</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>w</declname>
+        </param>
+        <briefdescription>
+<para>Constructs an <computeroutput><ref refid="classhmap_1_1Edge" kindref="compound">Edge</ref></computeroutput> object with specified start and end points and a weight. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The start point of the edge. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The end point of the edge. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>w</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The weight associated with the edge. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/edge.hpp" line="55" column="3" bodyfile="HighMap/include/highmap/geometry/edge.hpp" bodystart="55" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Edge_1a418b34ac512506a53da3b7c105fe9619" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hmap::Edge::Edge</definition>
+        <argsstring>(Point p1, Point p2)</argsstring>
+        <name>Edge</name>
+        <qualifiedname>hmap::Edge::Edge</qualifiedname>
+        <param>
+          <type><ref refid="classhmap_1_1Point" kindref="compound">Point</ref></type>
+          <declname>p1</declname>
+        </param>
+        <param>
+          <type><ref refid="classhmap_1_1Point" kindref="compound">Point</ref></type>
+          <declname>p2</declname>
+        </param>
+        <briefdescription>
+<para>Constructs an <computeroutput><ref refid="classhmap_1_1Edge" kindref="compound">Edge</ref></computeroutput> object with specified start and end points and a default weight of 0. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The start point of the edge. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The end point of the edge. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/edge.hpp" line="66" column="3" bodyfile="HighMap/include/highmap/geometry/edge.hpp" bodystart="66" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Edge_1a2111e89e23eca2ff36cf6db1b9c57fed" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float hmap::Edge::length</definition>
+        <argsstring>()</argsstring>
+        <name>length</name>
+        <qualifiedname>hmap::Edge::length</qualifiedname>
+        <briefdescription>
+<para>Computes the length of the edge. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function calculates the distance between the start and end points of the edge.</para>
+<para><simplesect kind="return"><para>The length of the edge. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/edge.hpp" line="78" column="9" bodyfile="HighMap/include/highmap/geometry/edge.hpp" bodystart="78" bodyend="81"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Represents a line segment in 2D space. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The <computeroutput><ref refid="classhmap_1_1Edge" kindref="compound">Edge</ref></computeroutput> class defines a line segment using two <computeroutput><ref refid="classhmap_1_1Point" kindref="compound">Point</ref></computeroutput> objects to represent the start and end of the segment. Additionally, it has a weight associated with the edge, and provides functionality to compute the length of the segment. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>hmap::Edge</label>
+        <link refid="classhmap_1_1Edge"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>p1</edgelabel>
+          <edgelabel>p2</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hmap::Point</label>
+        <link refid="classhmap_1_1Point"/>
+      </node>
+    </collaborationgraph>
+    <location file="HighMap/include/highmap/geometry/edge.hpp" line="40" column="1" bodyfile="HighMap/include/highmap/geometry/edge.hpp" bodystart="41" bodyend="82"/>
+    <listofallmembers>
+      <member refid="classhmap_1_1Edge_1a1807bf5546717f8355354926a5b49634" prot="public" virt="non-virtual"><scope>hmap::Edge</scope><name>Edge</name></member>
+      <member refid="classhmap_1_1Edge_1a418b34ac512506a53da3b7c105fe9619" prot="public" virt="non-virtual"><scope>hmap::Edge</scope><name>Edge</name></member>
+      <member refid="classhmap_1_1Edge_1a2111e89e23eca2ff36cf6db1b9c57fed" prot="public" virt="non-virtual"><scope>hmap::Edge</scope><name>length</name></member>
+      <member refid="classhmap_1_1Edge_1aaafc727142dadc4d1e5a5e040aade087" prot="public" virt="non-virtual"><scope>hmap::Edge</scope><name>p1</name></member>
+      <member refid="classhmap_1_1Edge_1a3ced3b4d72d4829fe8ddef173db5bb5a" prot="public" virt="non-virtual"><scope>hmap::Edge</scope><name>p2</name></member>
+      <member refid="classhmap_1_1Edge_1aeeceb458f6abbe1a5faea8123f83ce4f" prot="public" virt="non-virtual"><scope>hmap::Edge</scope><name>w</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

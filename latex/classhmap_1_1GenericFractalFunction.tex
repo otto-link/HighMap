@@ -1,0 +1,374 @@
+\doxysection{hmap\+::Generic\+Fractal\+Function Class Reference}
+\hypertarget{classhmap_1_1GenericFractalFunction}{}\label{classhmap_1_1GenericFractalFunction}\index{hmap::GenericFractalFunction@{hmap::GenericFractalFunction}}
+
+
+A class for generating fractal noise functions based on an underlying noise function.  
+
+
+
+
+{\ttfamily \#include $<$functions.\+hpp$>$}
+
+
+
+Inheritance diagram for hmap\+::Generic\+Fractal\+Function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classhmap_1_1GenericFractalFunction__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for hmap\+::Generic\+Fractal\+Function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=327pt]{classhmap_1_1GenericFractalFunction__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1GenericFractalFunction_afe25e31c4669a13d18da6d69458b95c1}{Generic\+Fractal\+Function}} (std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classhmap_1_1NoiseFunction}{Noise\+Function}} $>$ \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a8fec1973e7b8a6dcca079c8017326ab2}{p\+\_\+base}}, int \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a3ee2dbe91dd0512d380a8b28b11438b9}{octaves}}, float \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a57139030bd456787c06bf3d7d808837a}{weight}}, float \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_ab14745ebb9beee94828d13aa587de69a}{persistence}}, float \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a9a205468c861c5f142b738d514b2d9ce}{lacunarity}})
+\begin{DoxyCompactList}\small\item\em Construct a new \doxylink{classhmap_1_1GenericFractalFunction}{Generic\+Fractal\+Function} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a01f72c359ac852c53ce5830249eb6796}{set\+\_\+kw}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$ new\+\_\+kw) override
+\begin{DoxyCompactList}\small\item\em Set the frequency scaling vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_ae08ab9d6e6235037d485ccd80d5e9b8d}{set\+\_\+lacunarity}} (float new\+\_\+lacunarity)
+\begin{DoxyCompactList}\small\item\em Set the lacunarity of the fractal noise. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a28608337593666bcbbf91822a28062f5}{set\+\_\+octaves}} (int new\+\_\+octaves)
+\begin{DoxyCompactList}\small\item\em Set the number of octaves in the fractal noise. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a310ff66b4c0d7c3d76f6abdbd335bd18}{set\+\_\+persistence}} (float new\+\_\+persistence)
+\begin{DoxyCompactList}\small\item\em Set the persistence of the fractal noise. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a29009b8473d71f0024685703aedb641b}{set\+\_\+seed}} (\mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} new\+\_\+seed) override
+\begin{DoxyCompactList}\small\item\em Set a new random seed for the noise generation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a37b6ec1a0d712dc9fbf6fb292b29001e}{scale\+\_\+amp0}} (float scale)
+\begin{DoxyCompactList}\small\item\em Scale the initial amplitude of the fractal noise. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a4b6d0013c636b85aaee08e40119dfab0}{get\+\_\+lacunarity}} () const
+\begin{DoxyCompactList}\small\item\em Get the lacunarity of the fractal noise. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a57b80d6a0cbdc8e14963d1417b1c0b07}{get\+\_\+octaves}} () const
+\begin{DoxyCompactList}\small\item\em Get the number of octaves in the fractal noise. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_aa2c95085c01b4dd7edbcf3caa8074c91}{get\+\_\+persistence}} () const
+\begin{DoxyCompactList}\small\item\em Get the persistence of the fractal noise. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a260af30d21b8af880d9208376984c002}{get\+\_\+weight}} () const
+\begin{DoxyCompactList}\small\item\em Get the weight of the fractal noise. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classhmap_1_1NoiseFunction}{hmap\+::\+Noise\+Function}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1NoiseFunction_a9823b1c76555631d442f52a3d768c162}{Noise\+Function}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. Initializes with default frequency scaling and seed. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1NoiseFunction_abf8560e5e4036c13ccac01e25b8fe899}{Noise\+Function}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$ \mbox{\hyperlink{classhmap_1_1NoiseFunction_a6d7d9881bedbf82be095183cd36bf0a6}{kw}})
+\begin{DoxyCompactList}\small\item\em Constructor to initialize with specific frequency scaling. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1NoiseFunction_ad075abd6473d4ab8ec811f30192fdb9b}{Noise\+Function}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$ \mbox{\hyperlink{classhmap_1_1NoiseFunction_a6d7d9881bedbf82be095183cd36bf0a6}{kw}}, \mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \mbox{\hyperlink{classhmap_1_1NoiseFunction_a9f125dfcb60e4d9bd2b0fbc44b21d406}{seed}})
+\begin{DoxyCompactList}\small\item\em Constructor to initialize with specific frequency scaling and seed. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$ \mbox{\hyperlink{classhmap_1_1NoiseFunction_ae3ebc5789e25c4147b745427370be629}{get\+\_\+kw}} () const
+\begin{DoxyCompactList}\small\item\em Get the frequency scaling vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \mbox{\hyperlink{classhmap_1_1NoiseFunction_a40c235c115a268592312e00c383ad581}{get\+\_\+seed}} () const
+\begin{DoxyCompactList}\small\item\em Get the random seed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classhmap_1_1Function}{hmap\+::\+Function}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1Function_a1f77a2faa84c84fb147f48af0bfbc96e}{Function}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. Initializes the delegate function to a default that returns 0. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classhmap_1_1Function_a8efd89e31947f2508ce45b133e30322f}{\texorpdfstring{$\sim$}{\string~}\+Function}} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual destructor to ensure proper cleanup in derived classes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Function_ae1f9e64626fb671ed37a45d09cf551e8}{Function}} (HMAP\+\_\+\+FCT\+\_\+\+XY\+\_\+\+TYPE delegate)
+\begin{DoxyCompactList}\small\item\em Constructor to initialize with a specific delegate function. \end{DoxyCompactList}\item 
+HMAP\+\_\+\+FCT\+\_\+\+XY\+\_\+\+TYPE \mbox{\hyperlink{classhmap_1_1Function_a32214e30c36be7650c47867fd14f6a0c}{get\+\_\+delegate}} () const
+\begin{DoxyCompactList}\small\item\em Get the current delegate function. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1Function_a82fb7788314b339a062cb80115e2e1da}{get\+\_\+value}} (float x, float y, float ctrl\+\_\+param) const
+\begin{DoxyCompactList}\small\item\em Call the delegate function with given arguments. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1Function_a6163e6f231dc77a7e7d83e74d2b44abe}{set\+\_\+delegate}} (HMAP\+\_\+\+FCT\+\_\+\+XY\+\_\+\+TYPE new\+\_\+delegate)
+\begin{DoxyCompactList}\small\item\em Set a new delegate function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_ae14db6b39dcdae409ad1561d471e7d5d}{update\+\_\+amp0}} ()
+\begin{DoxyCompactList}\small\item\em Update the initial amplitude (amp0) based on the current octaves and persistence. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classhmap_1_1NoiseFunction}{Noise\+Function}} $>$ \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a8fec1973e7b8a6dcca079c8017326ab2}{p\+\_\+base}}
+\begin{DoxyCompactList}\small\item\em Unique pointer to the base noise function. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a3ee2dbe91dd0512d380a8b28b11438b9}{octaves}}
+\begin{DoxyCompactList}\small\item\em Number of octaves in the fractal noise. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a57139030bd456787c06bf3d7d808837a}{weight}}
+\begin{DoxyCompactList}\small\item\em Weight of the base noise function. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_ab14745ebb9beee94828d13aa587de69a}{persistence}}
+\begin{DoxyCompactList}\small\item\em Persistence of the fractal noise. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a9a205468c861c5f142b738d514b2d9ce}{lacunarity}}
+\begin{DoxyCompactList}\small\item\em Lacunarity of the fractal noise. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1GenericFractalFunction_a60d32ed5ee9b8674fe6323f71ec668cd}{amp0}}
+\begin{DoxyCompactList}\small\item\em Initial amplitude of the fractal noise. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classhmap_1_1NoiseFunction}{hmap\+::\+Noise\+Function}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$ \mbox{\hyperlink{classhmap_1_1NoiseFunction_a6d7d9881bedbf82be095183cd36bf0a6}{kw}}
+\begin{DoxyCompactList}\small\item\em Frequency scaling vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \mbox{\hyperlink{classhmap_1_1NoiseFunction_a9f125dfcb60e4d9bd2b0fbc44b21d406}{seed}}
+\begin{DoxyCompactList}\small\item\em Random seed for noise generation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class for generating fractal noise functions based on an underlying noise function. 
+
+The {\ttfamily \doxylink{classhmap_1_1GenericFractalFunction}{Generic\+Fractal\+Function}} class generates fractal noise using an underlying base noise function. It allows customization of the fractal properties such as octaves, weight, persistence, and lacunarity. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classhmap_1_1GenericFractalFunction_afe25e31c4669a13d18da6d69458b95c1}\label{classhmap_1_1GenericFractalFunction_afe25e31c4669a13d18da6d69458b95c1} 
+\index{hmap::GenericFractalFunction@{hmap::GenericFractalFunction}!GenericFractalFunction@{GenericFractalFunction}}
+\index{GenericFractalFunction@{GenericFractalFunction}!hmap::GenericFractalFunction@{hmap::GenericFractalFunction}}
+\doxysubsubsection{\texorpdfstring{GenericFractalFunction()}{GenericFractalFunction()}}
+{\footnotesize\ttfamily hmap\+::\+Generic\+Fractal\+Function\+::\+Generic\+Fractal\+Function (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classhmap_1_1NoiseFunction}{Noise\+Function}} $>$}]{p\+\_\+base,  }\item[{int}]{octaves,  }\item[{float}]{weight,  }\item[{float}]{persistence,  }\item[{float}]{lacunarity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Construct a new \doxylink{classhmap_1_1GenericFractalFunction}{Generic\+Fractal\+Function} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+\_\+base} & Unique pointer to the base noise function. \\
+\hline
+{\em octaves} & Number of octaves in the fractal noise. \\
+\hline
+{\em weight} & Weight of the base noise function. \\
+\hline
+{\em persistence} & Persistence of the fractal noise. \\
+\hline
+{\em lacunarity} & Lacunarity of the fractal noise. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classhmap_1_1GenericFractalFunction_a01f72c359ac852c53ce5830249eb6796}\label{classhmap_1_1GenericFractalFunction_a01f72c359ac852c53ce5830249eb6796} 
+\index{hmap::GenericFractalFunction@{hmap::GenericFractalFunction}!set\_kw@{set\_kw}}
+\index{set\_kw@{set\_kw}!hmap::GenericFractalFunction@{hmap::GenericFractalFunction}}
+\doxysubsubsection{\texorpdfstring{set\_kw()}{set\_kw()}}
+{\footnotesize\ttfamily void hmap\+::\+Generic\+Fractal\+Function\+::set\+\_\+kw (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$}]{new\+\_\+kw }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Set the frequency scaling vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+kw} & The new frequency scaling vector. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classhmap_1_1NoiseFunction_a1618d5c2d235802470b4f7713695d281}{hmap\+::\+Noise\+Function}}.
+
+\Hypertarget{classhmap_1_1GenericFractalFunction_ae08ab9d6e6235037d485ccd80d5e9b8d}\label{classhmap_1_1GenericFractalFunction_ae08ab9d6e6235037d485ccd80d5e9b8d} 
+\index{hmap::GenericFractalFunction@{hmap::GenericFractalFunction}!set\_lacunarity@{set\_lacunarity}}
+\index{set\_lacunarity@{set\_lacunarity}!hmap::GenericFractalFunction@{hmap::GenericFractalFunction}}
+\doxysubsubsection{\texorpdfstring{set\_lacunarity()}{set\_lacunarity()}}
+{\footnotesize\ttfamily void hmap\+::\+Generic\+Fractal\+Function\+::set\+\_\+lacunarity (\begin{DoxyParamCaption}\item[{float}]{new\+\_\+lacunarity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the lacunarity of the fractal noise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+lacunarity} & The new lacunarity value. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classhmap_1_1GenericFractalFunction_a28608337593666bcbbf91822a28062f5}\label{classhmap_1_1GenericFractalFunction_a28608337593666bcbbf91822a28062f5} 
+\index{hmap::GenericFractalFunction@{hmap::GenericFractalFunction}!set\_octaves@{set\_octaves}}
+\index{set\_octaves@{set\_octaves}!hmap::GenericFractalFunction@{hmap::GenericFractalFunction}}
+\doxysubsubsection{\texorpdfstring{set\_octaves()}{set\_octaves()}}
+{\footnotesize\ttfamily void hmap\+::\+Generic\+Fractal\+Function\+::set\+\_\+octaves (\begin{DoxyParamCaption}\item[{int}]{new\+\_\+octaves }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the number of octaves in the fractal noise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+octaves} & The new number of octaves. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classhmap_1_1GenericFractalFunction_a310ff66b4c0d7c3d76f6abdbd335bd18}\label{classhmap_1_1GenericFractalFunction_a310ff66b4c0d7c3d76f6abdbd335bd18} 
+\index{hmap::GenericFractalFunction@{hmap::GenericFractalFunction}!set\_persistence@{set\_persistence}}
+\index{set\_persistence@{set\_persistence}!hmap::GenericFractalFunction@{hmap::GenericFractalFunction}}
+\doxysubsubsection{\texorpdfstring{set\_persistence()}{set\_persistence()}}
+{\footnotesize\ttfamily void hmap\+::\+Generic\+Fractal\+Function\+::set\+\_\+persistence (\begin{DoxyParamCaption}\item[{float}]{new\+\_\+persistence }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the persistence of the fractal noise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+persistence} & The new persistence value. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classhmap_1_1GenericFractalFunction_a29009b8473d71f0024685703aedb641b}\label{classhmap_1_1GenericFractalFunction_a29009b8473d71f0024685703aedb641b} 
+\index{hmap::GenericFractalFunction@{hmap::GenericFractalFunction}!set\_seed@{set\_seed}}
+\index{set\_seed@{set\_seed}!hmap::GenericFractalFunction@{hmap::GenericFractalFunction}}
+\doxysubsubsection{\texorpdfstring{set\_seed()}{set\_seed()}}
+{\footnotesize\ttfamily void hmap\+::\+Generic\+Fractal\+Function\+::set\+\_\+seed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}}]{new\+\_\+seed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Set a new random seed for the noise generation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+seed} & The new random seed. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classhmap_1_1NoiseFunction_a75b08569040f1ce6b318d380d4967c0d}{hmap\+::\+Noise\+Function}}.
+
+\Hypertarget{classhmap_1_1GenericFractalFunction_a37b6ec1a0d712dc9fbf6fb292b29001e}\label{classhmap_1_1GenericFractalFunction_a37b6ec1a0d712dc9fbf6fb292b29001e} 
+\index{hmap::GenericFractalFunction@{hmap::GenericFractalFunction}!scale\_amp0@{scale\_amp0}}
+\index{scale\_amp0@{scale\_amp0}!hmap::GenericFractalFunction@{hmap::GenericFractalFunction}}
+\doxysubsubsection{\texorpdfstring{scale\_amp0()}{scale\_amp0()}}
+{\footnotesize\ttfamily void hmap\+::\+Generic\+Fractal\+Function\+::scale\+\_\+amp0 (\begin{DoxyParamCaption}\item[{float}]{scale }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Scale the initial amplitude of the fractal noise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scale} & The scale factor for the initial amplitude. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classhmap_1_1GenericFractalFunction_a4b6d0013c636b85aaee08e40119dfab0}\label{classhmap_1_1GenericFractalFunction_a4b6d0013c636b85aaee08e40119dfab0} 
+\index{hmap::GenericFractalFunction@{hmap::GenericFractalFunction}!get\_lacunarity@{get\_lacunarity}}
+\index{get\_lacunarity@{get\_lacunarity}!hmap::GenericFractalFunction@{hmap::GenericFractalFunction}}
+\doxysubsubsection{\texorpdfstring{get\_lacunarity()}{get\_lacunarity()}}
+{\footnotesize\ttfamily float hmap\+::\+Generic\+Fractal\+Function\+::get\+\_\+lacunarity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the lacunarity of the fractal noise. 
+
+\begin{DoxyReturn}{Returns}
+The current lacunarity value. 
+\end{DoxyReturn}
+\Hypertarget{classhmap_1_1GenericFractalFunction_a57b80d6a0cbdc8e14963d1417b1c0b07}\label{classhmap_1_1GenericFractalFunction_a57b80d6a0cbdc8e14963d1417b1c0b07} 
+\index{hmap::GenericFractalFunction@{hmap::GenericFractalFunction}!get\_octaves@{get\_octaves}}
+\index{get\_octaves@{get\_octaves}!hmap::GenericFractalFunction@{hmap::GenericFractalFunction}}
+\doxysubsubsection{\texorpdfstring{get\_octaves()}{get\_octaves()}}
+{\footnotesize\ttfamily int hmap\+::\+Generic\+Fractal\+Function\+::get\+\_\+octaves (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the number of octaves in the fractal noise. 
+
+\begin{DoxyReturn}{Returns}
+The current number of octaves. 
+\end{DoxyReturn}
+\Hypertarget{classhmap_1_1GenericFractalFunction_aa2c95085c01b4dd7edbcf3caa8074c91}\label{classhmap_1_1GenericFractalFunction_aa2c95085c01b4dd7edbcf3caa8074c91} 
+\index{hmap::GenericFractalFunction@{hmap::GenericFractalFunction}!get\_persistence@{get\_persistence}}
+\index{get\_persistence@{get\_persistence}!hmap::GenericFractalFunction@{hmap::GenericFractalFunction}}
+\doxysubsubsection{\texorpdfstring{get\_persistence()}{get\_persistence()}}
+{\footnotesize\ttfamily float hmap\+::\+Generic\+Fractal\+Function\+::get\+\_\+persistence (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the persistence of the fractal noise. 
+
+\begin{DoxyReturn}{Returns}
+The current persistence value. 
+\end{DoxyReturn}
+\Hypertarget{classhmap_1_1GenericFractalFunction_a260af30d21b8af880d9208376984c002}\label{classhmap_1_1GenericFractalFunction_a260af30d21b8af880d9208376984c002} 
+\index{hmap::GenericFractalFunction@{hmap::GenericFractalFunction}!get\_weight@{get\_weight}}
+\index{get\_weight@{get\_weight}!hmap::GenericFractalFunction@{hmap::GenericFractalFunction}}
+\doxysubsubsection{\texorpdfstring{get\_weight()}{get\_weight()}}
+{\footnotesize\ttfamily float hmap\+::\+Generic\+Fractal\+Function\+::get\+\_\+weight (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the weight of the fractal noise. 
+
+\begin{DoxyReturn}{Returns}
+The current weight value. 
+\end{DoxyReturn}
+\Hypertarget{classhmap_1_1GenericFractalFunction_ae14db6b39dcdae409ad1561d471e7d5d}\label{classhmap_1_1GenericFractalFunction_ae14db6b39dcdae409ad1561d471e7d5d} 
+\index{hmap::GenericFractalFunction@{hmap::GenericFractalFunction}!update\_amp0@{update\_amp0}}
+\index{update\_amp0@{update\_amp0}!hmap::GenericFractalFunction@{hmap::GenericFractalFunction}}
+\doxysubsubsection{\texorpdfstring{update\_amp0()}{update\_amp0()}}
+{\footnotesize\ttfamily void hmap\+::\+Generic\+Fractal\+Function\+::update\+\_\+amp0 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Update the initial amplitude (amp0) based on the current octaves and persistence. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classhmap_1_1GenericFractalFunction_a8fec1973e7b8a6dcca079c8017326ab2}\label{classhmap_1_1GenericFractalFunction_a8fec1973e7b8a6dcca079c8017326ab2} 
+\index{hmap::GenericFractalFunction@{hmap::GenericFractalFunction}!p\_base@{p\_base}}
+\index{p\_base@{p\_base}!hmap::GenericFractalFunction@{hmap::GenericFractalFunction}}
+\doxysubsubsection{\texorpdfstring{p\_base}{p\_base}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{classhmap_1_1NoiseFunction}{Noise\+Function}}$>$ hmap\+::\+Generic\+Fractal\+Function\+::p\+\_\+base\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Unique pointer to the base noise function. 
+
+\Hypertarget{classhmap_1_1GenericFractalFunction_a3ee2dbe91dd0512d380a8b28b11438b9}\label{classhmap_1_1GenericFractalFunction_a3ee2dbe91dd0512d380a8b28b11438b9} 
+\index{hmap::GenericFractalFunction@{hmap::GenericFractalFunction}!octaves@{octaves}}
+\index{octaves@{octaves}!hmap::GenericFractalFunction@{hmap::GenericFractalFunction}}
+\doxysubsubsection{\texorpdfstring{octaves}{octaves}}
+{\footnotesize\ttfamily int hmap\+::\+Generic\+Fractal\+Function\+::octaves\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Number of octaves in the fractal noise. 
+
+\Hypertarget{classhmap_1_1GenericFractalFunction_a57139030bd456787c06bf3d7d808837a}\label{classhmap_1_1GenericFractalFunction_a57139030bd456787c06bf3d7d808837a} 
+\index{hmap::GenericFractalFunction@{hmap::GenericFractalFunction}!weight@{weight}}
+\index{weight@{weight}!hmap::GenericFractalFunction@{hmap::GenericFractalFunction}}
+\doxysubsubsection{\texorpdfstring{weight}{weight}}
+{\footnotesize\ttfamily float hmap\+::\+Generic\+Fractal\+Function\+::weight\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Weight of the base noise function. 
+
+\Hypertarget{classhmap_1_1GenericFractalFunction_ab14745ebb9beee94828d13aa587de69a}\label{classhmap_1_1GenericFractalFunction_ab14745ebb9beee94828d13aa587de69a} 
+\index{hmap::GenericFractalFunction@{hmap::GenericFractalFunction}!persistence@{persistence}}
+\index{persistence@{persistence}!hmap::GenericFractalFunction@{hmap::GenericFractalFunction}}
+\doxysubsubsection{\texorpdfstring{persistence}{persistence}}
+{\footnotesize\ttfamily float hmap\+::\+Generic\+Fractal\+Function\+::persistence\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Persistence of the fractal noise. 
+
+\Hypertarget{classhmap_1_1GenericFractalFunction_a9a205468c861c5f142b738d514b2d9ce}\label{classhmap_1_1GenericFractalFunction_a9a205468c861c5f142b738d514b2d9ce} 
+\index{hmap::GenericFractalFunction@{hmap::GenericFractalFunction}!lacunarity@{lacunarity}}
+\index{lacunarity@{lacunarity}!hmap::GenericFractalFunction@{hmap::GenericFractalFunction}}
+\doxysubsubsection{\texorpdfstring{lacunarity}{lacunarity}}
+{\footnotesize\ttfamily float hmap\+::\+Generic\+Fractal\+Function\+::lacunarity\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Lacunarity of the fractal noise. 
+
+\Hypertarget{classhmap_1_1GenericFractalFunction_a60d32ed5ee9b8674fe6323f71ec668cd}\label{classhmap_1_1GenericFractalFunction_a60d32ed5ee9b8674fe6323f71ec668cd} 
+\index{hmap::GenericFractalFunction@{hmap::GenericFractalFunction}!amp0@{amp0}}
+\index{amp0@{amp0}!hmap::GenericFractalFunction@{hmap::GenericFractalFunction}}
+\doxysubsubsection{\texorpdfstring{amp0}{amp0}}
+{\footnotesize\ttfamily float hmap\+::\+Generic\+Fractal\+Function\+::amp0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Initial amplitude of the fractal noise. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+High\+Map/include/highmap/\mbox{\hyperlink{functions_8hpp}{functions.\+hpp}}\item 
+High\+Map/src/primitives/functions/\mbox{\hyperlink{fbm__functions_8cpp}{fbm\+\_\+functions.\+cpp}}\end{DoxyCompactItemize}

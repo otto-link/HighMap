@@ -1,0 +1,127 @@
+\doxysection{point.\+hpp}
+\hypertarget{point_8hpp_source}{}\label{point_8hpp_source}\index{HighMap/include/highmap/geometry/point.hpp@{HighMap/include/highmap/geometry/point.hpp}}
+\mbox{\hyperlink{point_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ Copyright\ (c)\ 2023\ Otto\ Link.\ Distributed\ under\ the\ terms\ of\ the\ GNU\ General}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ \ \ Public\ License.\ The\ full\ license\ is\ in\ the\ file\ LICENSE,\ distributed\ with}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ \ this\ software.\ */}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{array_8hpp}{highmap/array.hpp}}"{}}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacehmap}{hmap}}}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classhmap_1_1Point}{Point}}}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1Point_ac0d4eaf8062b8f11638db83e08198e48}{x}};\ }
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1Point_aa045aed7ca12dffe13ba8f2db730a9bf}{y}};\ }
+\DoxyCodeLine{00042\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1Point_ac67fb22939ed39d6c5ff4194b4405efb}{v}};\ }
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00047\ \ \ \mbox{\hyperlink{classhmap_1_1Point_a986aebcb6409cd7836a48e0e8b973c81}{Point}}()\ :\ \mbox{\hyperlink{classhmap_1_1Point_ac0d4eaf8062b8f11638db83e08198e48}{x}}(0.f),\ \mbox{\hyperlink{classhmap_1_1Point_aa045aed7ca12dffe13ba8f2db730a9bf}{y}}(0.f),\ \mbox{\hyperlink{classhmap_1_1Point_ac67fb22939ed39d6c5ff4194b4405efb}{v}}(0.f)}
+\DoxyCodeLine{00048\ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00057\ \ \ \mbox{\hyperlink{classhmap_1_1Point_ad1041e7d925d820f47e80f0986a5e047}{Point}}(\textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1Point_ac0d4eaf8062b8f11638db83e08198e48}{x}},\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1Point_aa045aed7ca12dffe13ba8f2db730a9bf}{y}},\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1Point_ac67fb22939ed39d6c5ff4194b4405efb}{v}}\ =\ 0.f)\ :\ \mbox{\hyperlink{classhmap_1_1Point_ac0d4eaf8062b8f11638db83e08198e48}{x}}(\mbox{\hyperlink{classhmap_1_1Point_ac0d4eaf8062b8f11638db83e08198e48}{x}}),\ \mbox{\hyperlink{classhmap_1_1Point_aa045aed7ca12dffe13ba8f2db730a9bf}{y}}(\mbox{\hyperlink{classhmap_1_1Point_aa045aed7ca12dffe13ba8f2db730a9bf}{y}}),\ \mbox{\hyperlink{classhmap_1_1Point_ac67fb22939ed39d6c5ff4194b4405efb}{v}}(\mbox{\hyperlink{classhmap_1_1Point_ac67fb22939ed39d6c5ff4194b4405efb}{v}})}
+\DoxyCodeLine{00058\ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00067\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classhmap_1_1Point_a429b1d09f454a3e4e4e2175e29eea313}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00068\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{classhmap_1_1Point_ac0d4eaf8062b8f11638db83e08198e48}{x}}\ ==\ other.\mbox{\hyperlink{classhmap_1_1Point_ac0d4eaf8062b8f11638db83e08198e48}{x}}\ \&\&\ \mbox{\hyperlink{classhmap_1_1Point_aa045aed7ca12dffe13ba8f2db730a9bf}{y}}\ ==\ other.\mbox{\hyperlink{classhmap_1_1Point_aa045aed7ca12dffe13ba8f2db730a9bf}{y}}\ \&\&\ \mbox{\hyperlink{classhmap_1_1Point_ac67fb22939ed39d6c5ff4194b4405efb}{v}}\ ==\ other.\mbox{\hyperlink{classhmap_1_1Point_ac67fb22939ed39d6c5ff4194b4405efb}{v}});}
+\DoxyCodeLine{00070\ \ \ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00078\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classhmap_1_1Point_ac8b559ae275f04c0d19d8ec66595847d}{operator!=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00079\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ ==\ other);}
+\DoxyCodeLine{00081\ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00088\ \ \ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \mbox{\hyperlink{classhmap_1_1Point_ab43556f6025fcd8c82d2b76c54b3e435}{operator+}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00089\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classhmap_1_1Point_a986aebcb6409cd7836a48e0e8b973c81}{Point}}(\mbox{\hyperlink{classhmap_1_1Point_ac0d4eaf8062b8f11638db83e08198e48}{x}}\ +\ other.\mbox{\hyperlink{classhmap_1_1Point_ac0d4eaf8062b8f11638db83e08198e48}{x}},\ \mbox{\hyperlink{classhmap_1_1Point_aa045aed7ca12dffe13ba8f2db730a9bf}{y}}\ +\ other.\mbox{\hyperlink{classhmap_1_1Point_aa045aed7ca12dffe13ba8f2db730a9bf}{y}},\ \mbox{\hyperlink{classhmap_1_1Point_ac67fb22939ed39d6c5ff4194b4405efb}{v}}\ +\ other.\mbox{\hyperlink{classhmap_1_1Point_ac67fb22939ed39d6c5ff4194b4405efb}{v}});}
+\DoxyCodeLine{00091\ \ \ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00098\ \ \ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \mbox{\hyperlink{classhmap_1_1Point_a5c07600ab9d070fd7ca05fb88a954154}{operator-\/}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&other)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00099\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classhmap_1_1Point_a986aebcb6409cd7836a48e0e8b973c81}{Point}}(\mbox{\hyperlink{classhmap_1_1Point_ac0d4eaf8062b8f11638db83e08198e48}{x}}\ -\/\ other.\mbox{\hyperlink{classhmap_1_1Point_ac0d4eaf8062b8f11638db83e08198e48}{x}},\ \mbox{\hyperlink{classhmap_1_1Point_aa045aed7ca12dffe13ba8f2db730a9bf}{y}}\ -\/\ other.\mbox{\hyperlink{classhmap_1_1Point_aa045aed7ca12dffe13ba8f2db730a9bf}{y}},\ \mbox{\hyperlink{classhmap_1_1Point_ac67fb22939ed39d6c5ff4194b4405efb}{v}}\ -\/\ other.\mbox{\hyperlink{classhmap_1_1Point_ac67fb22939ed39d6c5ff4194b4405efb}{v}});}
+\DoxyCodeLine{00101\ \ \ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00108\ \ \ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \mbox{\hyperlink{classhmap_1_1Point_abbf64509c9c91b8e8b344503223e5747}{operator*}}(\textcolor{keywordtype}{float}\ scalar)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00109\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classhmap_1_1Point_a986aebcb6409cd7836a48e0e8b973c81}{Point}}(\mbox{\hyperlink{classhmap_1_1Point_ac0d4eaf8062b8f11638db83e08198e48}{x}}\ *\ scalar,\ \mbox{\hyperlink{classhmap_1_1Point_aa045aed7ca12dffe13ba8f2db730a9bf}{y}}\ *\ scalar,\ \mbox{\hyperlink{classhmap_1_1Point_ac67fb22939ed39d6c5ff4194b4405efb}{v}}\ *\ scalar);}
+\DoxyCodeLine{00111\ \ \ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00118\ \ \ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \mbox{\hyperlink{classhmap_1_1Point_a9009acb41438a016cb7398c09abd86d2}{operator/}}(\textcolor{keywordtype}{float}\ scalar)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00119\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classhmap_1_1Point_a986aebcb6409cd7836a48e0e8b973c81}{Point}}(\mbox{\hyperlink{classhmap_1_1Point_ac0d4eaf8062b8f11638db83e08198e48}{x}}\ /\ scalar,\ \mbox{\hyperlink{classhmap_1_1Point_aa045aed7ca12dffe13ba8f2db730a9bf}{y}}\ /\ scalar,\ \mbox{\hyperlink{classhmap_1_1Point_ac67fb22939ed39d6c5ff4194b4405efb}{v}}\ /\ scalar);}
+\DoxyCodeLine{00121\ \ \ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00135\ \ \ \textcolor{keyword}{friend}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \mbox{\hyperlink{classhmap_1_1Point_aa185c78a5385009de9f6f6461b536db2}{operator*}}(\textcolor{keywordtype}{float}\ scalar,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&point)}
+\DoxyCodeLine{00136\ \ \ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classhmap_1_1Point_a986aebcb6409cd7836a48e0e8b973c81}{Point}}(scalar\ *\ point.\mbox{\hyperlink{classhmap_1_1Point_ac0d4eaf8062b8f11638db83e08198e48}{x}},\ scalar\ *\ point.\mbox{\hyperlink{classhmap_1_1Point_aa045aed7ca12dffe13ba8f2db730a9bf}{y}},\ scalar\ *\ point.\mbox{\hyperlink{classhmap_1_1Point_ac67fb22939ed39d6c5ff4194b4405efb}{v}});}
+\DoxyCodeLine{00138\ \ \ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00147\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1Point_abc414635893bad912e30e009fbf8af35}{print}}();}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00156\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1Point_a71f412d383764f8df8f56a5439eb4da7}{set\_value\_from\_array}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \&array,\ \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4<float>}}\ bbox);}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00182\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1Point_acda3ac23316079302a53e34ef3008fef}{update\_value\_from\_array}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \&array,\ \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4<float>}}\ bbox);}
+\DoxyCodeLine{00183\ \};}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00197\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacehmap_aac71bb6c14edc17967957f7918acdbdd}{angle}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p2);}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00218\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacehmap_aac71bb6c14edc17967957f7918acdbdd}{angle}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p0,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p2);}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00237\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacehmap_a81ad5d7feec9716598307f4de02d47de}{cross\_product}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p0,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p2);}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00247\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacehmap_a30122e874f6a99af65954458cc9e4de9}{curvature}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p3);}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00258\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacehmap_a567410971127d39a9e3c2d7b75364def}{distance}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p2);}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00282\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \mbox{\hyperlink{namespacehmap_ac5cbdd19410027f3d4e26fd68fd9bdb7}{interp\_bezier}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p\_start,}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p\_ctrl\_start,}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p\_ctrl\_end,}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p\_end,}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ t);}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00311\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \mbox{\hyperlink{namespacehmap_af148c924b422baa2e359e0788b7392d0}{interp\_bspline}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p0,}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p1,}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p2,}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p3,}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ t);}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00340\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \mbox{\hyperlink{namespacehmap_ac7a93fe9501041332e1ff7a128742c6f}{interp\_catmullrom}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p0,}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p1,}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p2,}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p3,}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ t);}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00369\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \mbox{\hyperlink{namespacehmap_aab4ce9b01f013efdc3dd817da4177737}{interp\_decasteljau}}(\textcolor{keyword}{const}\ std::vector<Point>\ \&points,\ \textcolor{keywordtype}{float}\ t);}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00384\ \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4<float>}}\ \mbox{\hyperlink{namespacehmap_a61b30a7773960b38e0a231e240a64af6}{intersect\_bounding\_boxes}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4<float>}}\ \&bbox1,}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4<float>}}\ \&bbox2);}
+\DoxyCodeLine{00386\ }
+\DoxyCodeLine{00401\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacehmap_a0c5a341999c6f1b64fd04f2a6bd6dd66}{is\_point\_within\_bounding\_box}}(\mbox{\hyperlink{classhmap_1_1Point}{Point}}\ p,\ \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4<float>}}\ bbox);}
+\DoxyCodeLine{00402\ }
+\DoxyCodeLine{00417\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacehmap_a0c5a341999c6f1b64fd04f2a6bd6dd66}{is\_point\_within\_bounding\_box}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y,\ \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4<float>}}\ bbox);}
+\DoxyCodeLine{00418\ }
+\DoxyCodeLine{00434\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \mbox{\hyperlink{namespacehmap_ac14815cf025b7430d31d08125a5c6f0d}{lerp}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p2,\ \textcolor{keywordtype}{float}\ t);}
+\DoxyCodeLine{00435\ }
+\DoxyCodeLine{00461\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \mbox{\hyperlink{namespacehmap_a520a1e42c4e492e81b334914807abc22}{midpoint}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p1,}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p2,}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ orientation,}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ distance\_ratio,}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ t\ =\ 0.5f);}
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00478\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacehmap_a69877ef43645c767daa0735fde59821c}{sort\_points}}(std::vector<Point>\ \&points);}
+\DoxyCodeLine{00479\ }
+\DoxyCodeLine{00493\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacehmap_a9249226d73f4396157c1c6415ebf3a7c}{triangle\_area}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p2,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Point}{Point}}\ \&p3);}
+\DoxyCodeLine{00494\ }
+\DoxyCodeLine{00504\ \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4<float>}}\ \mbox{\hyperlink{namespacehmap_a4910efa1a82d5dd66d7d02a87fab7e7a}{unit\_square\_bbox}}();}
+\DoxyCodeLine{00505\ }
+\DoxyCodeLine{00506\ \}\ \textcolor{comment}{//\ namespace\ hmap}}
+
+\end{DoxyCode}

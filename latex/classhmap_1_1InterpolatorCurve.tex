@@ -1,0 +1,74 @@
+\doxysection{hmap\+::Interpolator\+Curve Class Reference}
+\hypertarget{classhmap_1_1InterpolatorCurve}{}\label{classhmap_1_1InterpolatorCurve}\index{hmap::InterpolatorCurve@{hmap::InterpolatorCurve}}
+
+
+Class for performing curve interpolation on a set of points.  
+
+
+
+
+{\ttfamily \#include $<$interpolate\+\_\+curve.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1InterpolatorCurve_a8c8b2ad64ffe45f673420f80d5118b32}{Interpolator\+Curve}} (std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Point}{Point}} $>$ points, \mbox{\hyperlink{namespacehmap_aa78bf111867e13c63d8bd2ec005ad6c8}{Interpolation\+Method\+Curve}} method=\mbox{\hyperlink{namespacehmap_aa78bf111867e13c63d8bd2ec005ad6c8a90555eaf70e5d0c043f8bc5bf16338df}{Interpolation\+Method\+Curve\+::\+POINTS\+\_\+\+LERP}})
+\begin{DoxyCompactList}\small\item\em Constructs an {\ttfamily \doxylink{classhmap_1_1InterpolatorCurve}{Interpolator\+Curve}} object. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Point}{Point}} $>$ \mbox{\hyperlink{classhmap_1_1InterpolatorCurve_ad244270f8660a2d4bbafb1dc3a46208f}{operator()}} (std\+::vector$<$ float $>$ t) const
+\begin{DoxyCompactList}\small\item\em Performs interpolation over the provided parameter values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for performing curve interpolation on a set of points. 
+
+The {\ttfamily \doxylink{classhmap_1_1InterpolatorCurve}{Interpolator\+Curve}} class allows interpolation over a set of points using a specified interpolation method (Bezier, B-\/spline, Catmull-\/\+Rom, or linear interpolation). 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classhmap_1_1InterpolatorCurve_a8c8b2ad64ffe45f673420f80d5118b32}\label{classhmap_1_1InterpolatorCurve_a8c8b2ad64ffe45f673420f80d5118b32} 
+\index{hmap::InterpolatorCurve@{hmap::InterpolatorCurve}!InterpolatorCurve@{InterpolatorCurve}}
+\index{InterpolatorCurve@{InterpolatorCurve}!hmap::InterpolatorCurve@{hmap::InterpolatorCurve}}
+\doxysubsubsection{\texorpdfstring{InterpolatorCurve()}{InterpolatorCurve()}}
+{\footnotesize\ttfamily hmap\+::\+Interpolator\+Curve\+::\+Interpolator\+Curve (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Point}{Point}} $>$}]{points,  }\item[{\mbox{\hyperlink{namespacehmap_aa78bf111867e13c63d8bd2ec005ad6c8}{Interpolation\+Method\+Curve}}}]{method = {\ttfamily \mbox{\hyperlink{namespacehmap_aa78bf111867e13c63d8bd2ec005ad6c8a90555eaf70e5d0c043f8bc5bf16338df}{Interpolation\+Method\+Curve\+::\+POINTS\+\_\+\+LERP}}} }\end{DoxyParamCaption})}
+
+
+
+Constructs an {\ttfamily \doxylink{classhmap_1_1InterpolatorCurve}{Interpolator\+Curve}} object. 
+
+Initializes the interpolator with a vector of points and an interpolation method.
+
+
+\begin{DoxyParams}{Parameters}
+{\em points} & A vector of {\ttfamily \doxylink{classhmap_1_1Point}{Point}} objects to interpolate. \\
+\hline
+{\em method} & The interpolation method to use. Default is {\ttfamily POINTS\+\_\+\+LERP}. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classhmap_1_1InterpolatorCurve_ad244270f8660a2d4bbafb1dc3a46208f}\label{classhmap_1_1InterpolatorCurve_ad244270f8660a2d4bbafb1dc3a46208f} 
+\index{hmap::InterpolatorCurve@{hmap::InterpolatorCurve}!operator()@{operator()}}
+\index{operator()@{operator()}!hmap::InterpolatorCurve@{hmap::InterpolatorCurve}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Point}{Point}} $>$ hmap\+::\+Interpolator\+Curve\+::operator() (\begin{DoxyParamCaption}\item[{std\+::vector$<$ float $>$}]{t }\end{DoxyParamCaption}) const}
+
+
+
+Performs interpolation over the provided parameter values. 
+
+Given a vector of parameter values {\ttfamily t}, this function returns a vector of interpolated points corresponding to those parameter values.
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & A vector of parameter values, typically in the range \mbox{[}0, 1\mbox{]}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of interpolated {\ttfamily \doxylink{classhmap_1_1Point}{Point}} objects. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+High\+Map/include/highmap/\mbox{\hyperlink{interpolate__curve_8hpp}{interpolate\+\_\+curve.\+hpp}}\item 
+High\+Map/src/interpolate/\mbox{\hyperlink{interpolate__curve_8cpp}{interpolate\+\_\+curve.\+cpp}}\end{DoxyCompactItemize}

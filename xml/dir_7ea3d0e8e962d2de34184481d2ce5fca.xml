@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_7ea3d0e8e962d2de34184481d2ce5fca" kind="dir">
+    <compoundname>HighMap/src/features</compoundname>
+    <innerfile refid="connected__components_8cpp">connected_components.cpp</innerfile>
+    <innerfile refid="features_8cpp">features.cpp</innerfile>
+    <innerfile refid="features__gpu_8cpp">features_gpu.cpp</innerfile>
+    <innerfile refid="geomorphons_8cpp">geomorphons.cpp</innerfile>
+    <innerfile refid="kmeans__clustering_8cpp">kmeans_clustering.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="HighMap/src/features/"/>
+  </compounddef>
+</doxygen>

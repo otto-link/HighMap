@@ -1,0 +1,126 @@
+\doxysection{hmap\+::Timer Class Reference}
+\hypertarget{classhmap_1_1Timer}{}\label{classhmap_1_1Timer}\index{hmap::Timer@{hmap::Timer}}
+
+
+The \doxylink{classhmap_1_1Timer}{Timer} class is a singleton that manages multiple Recorders and provides an interface for timing events.  
+
+
+
+
+{\ttfamily \#include $<$timer.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::map$<$ std\+::string, \mbox{\hyperlink{structhmap_1_1Recorder}{Recorder}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classhmap_1_1Timer_ae06258adb9e67342e56835291be5226f}{get\+\_\+records}} () const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classhmap_1_1Timer}{Timer}} \& \mbox{\hyperlink{classhmap_1_1Timer_a576626db87904b2c0937e8441fee866f}{get\+\_\+instance}} ()
+\begin{DoxyCompactList}\small\item\em Gets the singleton instance of the \doxylink{classhmap_1_1Timer}{Timer} class. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classhmap_1_1Timer_ae9248cf01bfd4d8f680a6c7d5b80f45b}{Start}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Starts a timer for the specified event name. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classhmap_1_1Timer_a6054c197a10338a1bd48299be29593b5}{Stop}} (const std\+::string \&name)
+\begin{DoxyCompactList}\small\item\em Stops the timer for the specified event name. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classhmap_1_1Timer_a5bc931885a549c561740f39cea91dd5f}{Dump}} ()
+\begin{DoxyCompactList}\small\item\em Dumps the timing information for all recorded events to the console. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \doxylink{classhmap_1_1Timer}{Timer} class is a singleton that manages multiple Recorders and provides an interface for timing events. 
+
+The \doxylink{classhmap_1_1Timer}{Timer} class allows you to measure the duration of multiple events by using start and stop commands. Each event is identified by a unique name. The \doxylink{classhmap_1_1Timer}{Timer} class maintains a collection of these events and their corresponding durations. The class is designed as a singleton, meaning only one instance of \doxylink{classhmap_1_1Timer}{Timer} will exist throughout the lifetime of the program.\hypertarget{classhmap_1_1Timer_autotoc_md0}{}\doxysubsubsubsection{\texorpdfstring{Usage Example\+:}{Usage Example:}}\label{classhmap_1_1Timer_autotoc_md0}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{timer_8hpp}{timer.hpp}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Start\ timing\ an\ event\ named\ "{}step\ 1"{}}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classhmap_1_1Timer_ae9248cf01bfd4d8f680a6c7d5b80f45b}{Timer::Start}}(\textcolor{stringliteral}{"{}step\ 1"{}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Perform\ some\ work\ here...}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Stop\ timing\ the\ event\ named\ "{}step\ 1"{}}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classhmap_1_1Timer_a6054c197a10338a1bd48299be29593b5}{Timer::Stop}}(\textcolor{stringliteral}{"{}step\ 1"{}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Start\ and\ stop\ another\ event\ Timer::Start("{}step\ 2"{});}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Perform\ more\ work\ here...}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classhmap_1_1Timer_a6054c197a10338a1bd48299be29593b5}{Timer::Stop}}(\textcolor{stringliteral}{"{}step\ 2"{}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Dump\ the\ timing\ results\ for\ all\ recorded\ events\ Timer::Dump();}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classhmap_1_1Timer_a576626db87904b2c0937e8441fee866f}\label{classhmap_1_1Timer_a576626db87904b2c0937e8441fee866f} 
+\index{hmap::Timer@{hmap::Timer}!get\_instance@{get\_instance}}
+\index{get\_instance@{get\_instance}!hmap::Timer@{hmap::Timer}}
+\doxysubsubsection{\texorpdfstring{get\_instance()}{get\_instance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Timer}{Timer}} \& hmap\+::\+Timer\+::get\+\_\+instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Gets the singleton instance of the \doxylink{classhmap_1_1Timer}{Timer} class. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{classhmap_1_1Timer}{Timer}\& Reference to the singleton instance. 
+\end{DoxyReturn}
+\Hypertarget{classhmap_1_1Timer_ae9248cf01bfd4d8f680a6c7d5b80f45b}\label{classhmap_1_1Timer_ae9248cf01bfd4d8f680a6c7d5b80f45b} 
+\index{hmap::Timer@{hmap::Timer}!Start@{Start}}
+\index{Start@{Start}!hmap::Timer@{hmap::Timer}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily void hmap\+::\+Timer\+::\+Start (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Starts a timer for the specified event name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the event to start timing. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classhmap_1_1Timer_a6054c197a10338a1bd48299be29593b5}\label{classhmap_1_1Timer_a6054c197a10338a1bd48299be29593b5} 
+\index{hmap::Timer@{hmap::Timer}!Stop@{Stop}}
+\index{Stop@{Stop}!hmap::Timer@{hmap::Timer}}
+\doxysubsubsection{\texorpdfstring{Stop()}{Stop()}}
+{\footnotesize\ttfamily void hmap\+::\+Timer\+::\+Stop (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Stops the timer for the specified event name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the event to stop timing. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classhmap_1_1Timer_a5bc931885a549c561740f39cea91dd5f}\label{classhmap_1_1Timer_a5bc931885a549c561740f39cea91dd5f} 
+\index{hmap::Timer@{hmap::Timer}!Dump@{Dump}}
+\index{Dump@{Dump}!hmap::Timer@{hmap::Timer}}
+\doxysubsubsection{\texorpdfstring{Dump()}{Dump()}}
+{\footnotesize\ttfamily void hmap\+::\+Timer\+::\+Dump (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Dumps the timing information for all recorded events to the console. 
+
+\Hypertarget{classhmap_1_1Timer_ae06258adb9e67342e56835291be5226f}\label{classhmap_1_1Timer_ae06258adb9e67342e56835291be5226f} 
+\index{hmap::Timer@{hmap::Timer}!get\_records@{get\_records}}
+\index{get\_records@{get\_records}!hmap::Timer@{hmap::Timer}}
+\doxysubsubsection{\texorpdfstring{get\_records()}{get\_records()}}
+{\footnotesize\ttfamily std\+::map$<$ std\+::string, \mbox{\hyperlink{structhmap_1_1Recorder}{Recorder}} \texorpdfstring{$\ast$}{*} $>$ hmap\+::\+Timer\+::get\+\_\+records (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+High\+Map/include/highmap/dbg/\mbox{\hyperlink{timer_8hpp}{timer.\+hpp}}\item 
+High\+Map/src/dbg/\mbox{\hyperlink{timer_8cpp}{timer.\+cpp}}\end{DoxyCompactItemize}

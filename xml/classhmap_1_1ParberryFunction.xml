@@ -1,0 +1,294 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classhmap_1_1ParberryFunction" kind="class" language="C++" prot="public">
+    <compoundname>hmap::ParberryFunction</compoundname>
+    <basecompoundref refid="classhmap_1_1NoiseFunction" prot="public" virt="non-virtual">hmap::NoiseFunction</basecompoundref>
+    <includes refid="functions_8hpp" local="no">functions.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classhmap_1_1ParberryFunction_1aa696f9cd712760f68d9aa0a376bcef9d" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::ParberryFunction::mu</definition>
+        <argsstring></argsstring>
+        <name>mu</name>
+        <qualifiedname>hmap::ParberryFunction::mu</qualifiedname>
+        <briefdescription>
+<para>Gradient magnitude exponent. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="757" column="9" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="757" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhmap_1_1ParberryFunction_1ab3ff7743ad054f3fb38ffe39db816944" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hmap::ParberryFunction::perlin_b</definition>
+        <argsstring></argsstring>
+        <name>perlin_b</name>
+        <qualifiedname>hmap::ParberryFunction::perlin_b</qualifiedname>
+        <initializer>= 0X100</initializer>
+        <briefdescription>
+<para>Perlin&apos;s B, a power of 2 usually equal to 256. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="788" column="7" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="788" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1ParberryFunction_1a37a888743b30f03446b84cc9cba642a1" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hmap::ParberryFunction::perlin_bm</definition>
+        <argsstring></argsstring>
+        <name>perlin_bm</name>
+        <qualifiedname>hmap::ParberryFunction::perlin_bm</qualifiedname>
+        <initializer>= 0xff</initializer>
+        <briefdescription>
+<para>A bit mask, one less than B. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="793" column="7" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="793" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1ParberryFunction_1a20b3338e82b47d3496ea110ef276c641" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hmap::ParberryFunction::perlin_n</definition>
+        <argsstring></argsstring>
+        <name>perlin_n</name>
+        <qualifiedname>hmap::ParberryFunction::perlin_n</qualifiedname>
+        <initializer>= 0x100</initializer>
+        <briefdescription>
+<para>Perlin&apos;s N. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="798" column="7" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="798" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1ParberryFunction_1a12c83204773ab340d99249b131323cd4" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt;int&gt; hmap::ParberryFunction::p</definition>
+        <argsstring></argsstring>
+        <name>p</name>
+        <qualifiedname>hmap::ParberryFunction::p</qualifiedname>
+        <briefdescription>
+<para>Perlin&apos;s permutation table. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="803" column="15" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="803" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1ParberryFunction_1a66bab3c1ef20c076097e224389159888" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::vector&lt; float &gt; &gt;</type>
+        <definition>std::vector&lt;std::vector&lt;float&gt; &gt; hmap::ParberryFunction::g2</definition>
+        <argsstring></argsstring>
+        <name>g2</name>
+        <qualifiedname>hmap::ParberryFunction::g2</qualifiedname>
+        <briefdescription>
+<para>Perlin&apos;s gradient table. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="808" column="15" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="808" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1ParberryFunction_1adc43ddda85da49ac9d060a23f120ac37" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; hmap::ParberryFunction::m</definition>
+        <argsstring></argsstring>
+        <name>m</name>
+        <qualifiedname>hmap::ParberryFunction::m</qualifiedname>
+        <briefdescription>
+<para>Ian Parberry&apos;s gradient magnitude table. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="813" column="15" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="813" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhmap_1_1ParberryFunction_1a1f546aa5377f10ce1865bfd3d0ffecd7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hmap::ParberryFunction::ParberryFunction</definition>
+        <argsstring>(Vec2&lt; float &gt; kw, uint seed, float mu)</argsstring>
+        <name>ParberryFunction</name>
+        <qualifiedname>hmap::ParberryFunction::ParberryFunction</qualifiedname>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+          <declname>kw</declname>
+        </param>
+        <param>
+          <type><ref refid="array_8hpp_1a91ad9478d81a7aaf2593e8d9c3d06a14" kindref="member">uint</ref></type>
+          <declname>seed</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>mu</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new Perlin <ref refid="classhmap_1_1Function" kindref="compound">Function</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>kw</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Noise wavenumbers {kx, ky} for each directions, with respect to a unit domain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>seed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Random seed number. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mu</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Gradient magnitude exponent. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="767" column="3" bodyfile="HighMap/src/primitives/functions/parberry_function.cpp" bodystart="15" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1ParberryFunction_1a4891e1931b857fb12b8da7047fb1200a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::ParberryFunction::initialize</definition>
+        <argsstring>()</argsstring>
+        <name>initialize</name>
+        <qualifiedname>hmap::ParberryFunction::initialize</qualifiedname>
+        <briefdescription>
+<para>Initialize generator. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="772" column="8" bodyfile="HighMap/src/primitives/functions/parberry_function.cpp" bodystart="25" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1ParberryFunction_1ab0a4935178fb5f5a74e59769c7185f10" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void hmap::ParberryFunction::set_seed</definition>
+        <argsstring>(uint)</argsstring>
+        <name>set_seed</name>
+        <qualifiedname>hmap::ParberryFunction::set_seed</qualifiedname>
+        <reimplements refid="classhmap_1_1NoiseFunction_1a75b08569040f1ce6b318d380d4967c0d">set_seed</reimplements>
+        <param>
+          <type><ref refid="array_8hpp_1a91ad9478d81a7aaf2593e8d9c3d06a14" kindref="member">uint</ref></type>
+        </param>
+        <briefdescription>
+<para>Set the seed attribute. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>new_seed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New seed. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="779" column="8" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="779" bodyend="782"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Parberry (x, y) function class. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>hmap::Function</label>
+        <link refid="classhmap_1_1Function"/>
+      </node>
+      <node id="2">
+        <label>hmap::NoiseFunction</label>
+        <link refid="classhmap_1_1NoiseFunction"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hmap::ParberryFunction</label>
+        <link refid="classhmap_1_1ParberryFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>hmap::Vec2&lt; float &gt;</label>
+        <link refid="structhmap_1_1Vec2"/>
+      </node>
+      <node id="3">
+        <label>hmap::Function</label>
+        <link refid="classhmap_1_1Function"/>
+      </node>
+      <node id="2">
+        <label>hmap::NoiseFunction</label>
+        <link refid="classhmap_1_1NoiseFunction"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>kw</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hmap::ParberryFunction</label>
+        <link refid="classhmap_1_1ParberryFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="HighMap/include/highmap/functions.hpp" line="751" column="1" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="752" bodyend="814"/>
+    <listofallmembers>
+      <member refid="classhmap_1_1Function_1a1f77a2faa84c84fb147f48af0bfbc96e" prot="public" virt="non-virtual"><scope>hmap::ParberryFunction</scope><name>Function</name></member>
+      <member refid="classhmap_1_1Function_1ae1f9e64626fb671ed37a45d09cf551e8" prot="public" virt="non-virtual"><scope>hmap::ParberryFunction</scope><name>Function</name></member>
+      <member refid="classhmap_1_1ParberryFunction_1a66bab3c1ef20c076097e224389159888" prot="private" virt="non-virtual"><scope>hmap::ParberryFunction</scope><name>g2</name></member>
+      <member refid="classhmap_1_1Function_1a32214e30c36be7650c47867fd14f6a0c" prot="public" virt="non-virtual"><scope>hmap::ParberryFunction</scope><name>get_delegate</name></member>
+      <member refid="classhmap_1_1NoiseFunction_1ae3ebc5789e25c4147b745427370be629" prot="public" virt="non-virtual"><scope>hmap::ParberryFunction</scope><name>get_kw</name></member>
+      <member refid="classhmap_1_1NoiseFunction_1a40c235c115a268592312e00c383ad581" prot="public" virt="non-virtual"><scope>hmap::ParberryFunction</scope><name>get_seed</name></member>
+      <member refid="classhmap_1_1Function_1a82fb7788314b339a062cb80115e2e1da" prot="public" virt="non-virtual"><scope>hmap::ParberryFunction</scope><name>get_value</name></member>
+      <member refid="classhmap_1_1ParberryFunction_1a4891e1931b857fb12b8da7047fb1200a" prot="public" virt="non-virtual"><scope>hmap::ParberryFunction</scope><name>initialize</name></member>
+      <member refid="classhmap_1_1NoiseFunction_1a6d7d9881bedbf82be095183cd36bf0a6" prot="protected" virt="non-virtual"><scope>hmap::ParberryFunction</scope><name>kw</name></member>
+      <member refid="classhmap_1_1ParberryFunction_1adc43ddda85da49ac9d060a23f120ac37" prot="private" virt="non-virtual"><scope>hmap::ParberryFunction</scope><name>m</name></member>
+      <member refid="classhmap_1_1ParberryFunction_1aa696f9cd712760f68d9aa0a376bcef9d" prot="public" virt="non-virtual"><scope>hmap::ParberryFunction</scope><name>mu</name></member>
+      <member refid="classhmap_1_1NoiseFunction_1a9823b1c76555631d442f52a3d768c162" prot="public" virt="non-virtual"><scope>hmap::ParberryFunction</scope><name>NoiseFunction</name></member>
+      <member refid="classhmap_1_1NoiseFunction_1abf8560e5e4036c13ccac01e25b8fe899" prot="public" virt="non-virtual"><scope>hmap::ParberryFunction</scope><name>NoiseFunction</name></member>
+      <member refid="classhmap_1_1NoiseFunction_1ad075abd6473d4ab8ec811f30192fdb9b" prot="public" virt="non-virtual"><scope>hmap::ParberryFunction</scope><name>NoiseFunction</name></member>
+      <member refid="classhmap_1_1ParberryFunction_1a12c83204773ab340d99249b131323cd4" prot="private" virt="non-virtual"><scope>hmap::ParberryFunction</scope><name>p</name></member>
+      <member refid="classhmap_1_1ParberryFunction_1a1f546aa5377f10ce1865bfd3d0ffecd7" prot="public" virt="non-virtual"><scope>hmap::ParberryFunction</scope><name>ParberryFunction</name></member>
+      <member refid="classhmap_1_1ParberryFunction_1ab3ff7743ad054f3fb38ffe39db816944" prot="private" virt="non-virtual"><scope>hmap::ParberryFunction</scope><name>perlin_b</name></member>
+      <member refid="classhmap_1_1ParberryFunction_1a37a888743b30f03446b84cc9cba642a1" prot="private" virt="non-virtual"><scope>hmap::ParberryFunction</scope><name>perlin_bm</name></member>
+      <member refid="classhmap_1_1ParberryFunction_1a20b3338e82b47d3496ea110ef276c641" prot="private" virt="non-virtual"><scope>hmap::ParberryFunction</scope><name>perlin_n</name></member>
+      <member refid="classhmap_1_1NoiseFunction_1a9f125dfcb60e4d9bd2b0fbc44b21d406" prot="protected" virt="non-virtual"><scope>hmap::ParberryFunction</scope><name>seed</name></member>
+      <member refid="classhmap_1_1Function_1a6163e6f231dc77a7e7d83e74d2b44abe" prot="public" virt="non-virtual"><scope>hmap::ParberryFunction</scope><name>set_delegate</name></member>
+      <member refid="classhmap_1_1NoiseFunction_1a1618d5c2d235802470b4f7713695d281" prot="public" virt="virtual"><scope>hmap::ParberryFunction</scope><name>set_kw</name></member>
+      <member refid="classhmap_1_1ParberryFunction_1ab0a4935178fb5f5a74e59769c7185f10" prot="public" virt="virtual"><scope>hmap::ParberryFunction</scope><name>set_seed</name></member>
+      <member refid="classhmap_1_1Function_1a8efd89e31947f2508ce45b133e30322f" prot="public" virt="virtual"><scope>hmap::ParberryFunction</scope><name>~Function</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

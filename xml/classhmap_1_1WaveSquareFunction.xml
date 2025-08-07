@@ -1,0 +1,224 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classhmap_1_1WaveSquareFunction" kind="class" language="C++" prot="public">
+    <compoundname>hmap::WaveSquareFunction</compoundname>
+    <basecompoundref refid="classhmap_1_1Function" prot="public" virt="non-virtual">hmap::Function</basecompoundref>
+    <includes refid="functions_8hpp" local="no">functions.hpp</includes>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhmap_1_1WaveSquareFunction_1a3be88fe3b006b44a8de54d30507ac9ac" prot="protected" static="no" mutable="no">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+        <definition>Vec2&lt;float&gt; hmap::WaveSquareFunction::kw</definition>
+        <argsstring></argsstring>
+        <name>kw</name>
+        <qualifiedname>hmap::WaveSquareFunction::kw</qualifiedname>
+        <briefdescription>
+<para>Frequency scaling vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="605" column="8" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="605" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1WaveSquareFunction_1af82dce648585f265eb2f3c9e50520e90" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::WaveSquareFunction::angle</definition>
+        <argsstring></argsstring>
+        <name>angle</name>
+        <qualifiedname>hmap::WaveSquareFunction::angle</qualifiedname>
+        <briefdescription>
+<para>Overall rotation angle (in degrees). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="606" column="15" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="606" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1WaveSquareFunction_1acafda7056c558f5daf9090944ab43e47" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::WaveSquareFunction::phase_shift</definition>
+        <argsstring></argsstring>
+        <name>phase_shift</name>
+        <qualifiedname>hmap::WaveSquareFunction::phase_shift</qualifiedname>
+        <briefdescription>
+<para>Phase shift (in radians). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="607" column="15" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="607" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhmap_1_1WaveSquareFunction_1a126e289bdf1799d81ba92d7700321aa2" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::WaveSquareFunction::ca</definition>
+        <argsstring></argsstring>
+        <name>ca</name>
+        <qualifiedname>hmap::WaveSquareFunction::ca</qualifiedname>
+        <briefdescription>
+<para>Cached cosine of the angle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="610" column="9" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="610" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1WaveSquareFunction_1a5887a1ef39e4030cc6419087d7797dc2" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::WaveSquareFunction::sa</definition>
+        <argsstring></argsstring>
+        <name>sa</name>
+        <qualifiedname>hmap::WaveSquareFunction::sa</qualifiedname>
+        <briefdescription>
+<para>Cached sine of the angle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="611" column="9" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="611" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhmap_1_1WaveSquareFunction_1a7d588b14e51922e77638a8dedd1359ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hmap::WaveSquareFunction::WaveSquareFunction</definition>
+        <argsstring>(Vec2&lt; float &gt; kw, float angle, float phase_shift)</argsstring>
+        <name>WaveSquareFunction</name>
+        <qualifiedname>hmap::WaveSquareFunction::WaveSquareFunction</qualifiedname>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+          <declname>kw</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>angle</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>phase_shift</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new Wave Square <ref refid="classhmap_1_1Function" kindref="compound">Function</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>kw</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Noise wavenumbers {kx, ky} for each direction, with respect to a unit domain. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>angle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Overall rotation angle (in degrees). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>phase_shift</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Phase shift (in radians). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="590" column="3" bodyfile="HighMap/src/primitives/functions/functions.cpp" bodystart="349" bodyend="362"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1WaveSquareFunction_1a9b4eaf1b2fbb9e0e4e9b365a1659d8c1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::WaveSquareFunction::set_angle</definition>
+        <argsstring>(float new_angle)</argsstring>
+        <name>set_angle</name>
+        <qualifiedname>hmap::WaveSquareFunction::set_angle</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>new_angle</declname>
+        </param>
+        <briefdescription>
+<para>Set the angle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>new_angle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New angle. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="597" column="8" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="597" bodyend="602"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Wave square (x, y) function class. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class models a wave square function with specific noise wavenumbers, rotation angle, and phase shift. It extends the base <ref refid="classhmap_1_1Function" kindref="compound">Function</ref> class. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hmap::Function</label>
+        <link refid="classhmap_1_1Function"/>
+      </node>
+      <node id="1">
+        <label>hmap::WaveSquareFunction</label>
+        <link refid="classhmap_1_1WaveSquareFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>hmap::Vec2&lt; float &gt;</label>
+        <link refid="structhmap_1_1Vec2"/>
+      </node>
+      <node id="2">
+        <label>hmap::Function</label>
+        <link refid="classhmap_1_1Function"/>
+      </node>
+      <node id="1">
+        <label>hmap::WaveSquareFunction</label>
+        <link refid="classhmap_1_1WaveSquareFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>kw</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="HighMap/include/highmap/functions.hpp" line="579" column="1" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="580" bodyend="612"/>
+    <listofallmembers>
+      <member refid="classhmap_1_1WaveSquareFunction_1af82dce648585f265eb2f3c9e50520e90" prot="protected" virt="non-virtual"><scope>hmap::WaveSquareFunction</scope><name>angle</name></member>
+      <member refid="classhmap_1_1WaveSquareFunction_1a126e289bdf1799d81ba92d7700321aa2" prot="private" virt="non-virtual"><scope>hmap::WaveSquareFunction</scope><name>ca</name></member>
+      <member refid="classhmap_1_1Function_1a1f77a2faa84c84fb147f48af0bfbc96e" prot="public" virt="non-virtual"><scope>hmap::WaveSquareFunction</scope><name>Function</name></member>
+      <member refid="classhmap_1_1Function_1ae1f9e64626fb671ed37a45d09cf551e8" prot="public" virt="non-virtual"><scope>hmap::WaveSquareFunction</scope><name>Function</name></member>
+      <member refid="classhmap_1_1Function_1a32214e30c36be7650c47867fd14f6a0c" prot="public" virt="non-virtual"><scope>hmap::WaveSquareFunction</scope><name>get_delegate</name></member>
+      <member refid="classhmap_1_1Function_1a82fb7788314b339a062cb80115e2e1da" prot="public" virt="non-virtual"><scope>hmap::WaveSquareFunction</scope><name>get_value</name></member>
+      <member refid="classhmap_1_1WaveSquareFunction_1a3be88fe3b006b44a8de54d30507ac9ac" prot="protected" virt="non-virtual"><scope>hmap::WaveSquareFunction</scope><name>kw</name></member>
+      <member refid="classhmap_1_1WaveSquareFunction_1acafda7056c558f5daf9090944ab43e47" prot="protected" virt="non-virtual"><scope>hmap::WaveSquareFunction</scope><name>phase_shift</name></member>
+      <member refid="classhmap_1_1WaveSquareFunction_1a5887a1ef39e4030cc6419087d7797dc2" prot="private" virt="non-virtual"><scope>hmap::WaveSquareFunction</scope><name>sa</name></member>
+      <member refid="classhmap_1_1WaveSquareFunction_1a9b4eaf1b2fbb9e0e4e9b365a1659d8c1" prot="public" virt="non-virtual"><scope>hmap::WaveSquareFunction</scope><name>set_angle</name></member>
+      <member refid="classhmap_1_1Function_1a6163e6f231dc77a7e7d83e74d2b44abe" prot="public" virt="non-virtual"><scope>hmap::WaveSquareFunction</scope><name>set_delegate</name></member>
+      <member refid="classhmap_1_1WaveSquareFunction_1a7d588b14e51922e77638a8dedd1359ff" prot="public" virt="non-virtual"><scope>hmap::WaveSquareFunction</scope><name>WaveSquareFunction</name></member>
+      <member refid="classhmap_1_1Function_1a8efd89e31947f2508ce45b133e30322f" prot="public" virt="virtual"><scope>hmap::WaveSquareFunction</scope><name>~Function</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

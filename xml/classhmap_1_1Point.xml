@@ -1,0 +1,482 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classhmap_1_1Point" kind="class" language="C++" prot="public">
+    <compoundname>hmap::Point</compoundname>
+    <includes refid="point_8hpp" local="no">point.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classhmap_1_1Point_1ac0d4eaf8062b8f11638db83e08198e48" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::Point::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <qualifiedname>hmap::Point::x</qualifiedname>
+        <briefdescription>
+<para>The x-coordinate of the point. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/point.hpp" line="40" column="9" bodyfile="HighMap/include/highmap/geometry/point.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1Point_1aa045aed7ca12dffe13ba8f2db730a9bf" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::Point::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <qualifiedname>hmap::Point::y</qualifiedname>
+        <briefdescription>
+<para>The y-coordinate of the point. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/point.hpp" line="41" column="9" bodyfile="HighMap/include/highmap/geometry/point.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1Point_1ac67fb22939ed39d6c5ff4194b4405efb" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::Point::v</definition>
+        <argsstring></argsstring>
+        <name>v</name>
+        <qualifiedname>hmap::Point::v</qualifiedname>
+        <briefdescription>
+<para>The value at the point. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/point.hpp" line="42" column="9" bodyfile="HighMap/include/highmap/geometry/point.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhmap_1_1Point_1a986aebcb6409cd7836a48e0e8b973c81" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hmap::Point::Point</definition>
+        <argsstring>()</argsstring>
+        <name>Point</name>
+        <qualifiedname>hmap::Point::Point</qualifiedname>
+        <briefdescription>
+<para>Default constructor initializing the point to (0, 0, 0). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/point.hpp" line="47" column="3" bodyfile="HighMap/include/highmap/geometry/point.hpp" bodystart="47" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Point_1ad1041e7d925d820f47e80f0986a5e047" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hmap::Point::Point</definition>
+        <argsstring>(float x, float y, float v=0.f)</argsstring>
+        <name>Point</name>
+        <qualifiedname>hmap::Point::Point</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>v</declname>
+          <defval>0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <briefdescription>
+<para>Parameterized constructor initializing the point to given values. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The x-coordinate of the point. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The y-coordinate of the point. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>v</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value at the point. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/point.hpp" line="57" column="3" bodyfile="HighMap/include/highmap/geometry/point.hpp" bodystart="57" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Point_1a429b1d09f454a3e4e4e2175e29eea313" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hmap::Point::operator==</definition>
+        <argsstring>(const Point &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>hmap::Point::operator==</qualifiedname>
+        <param>
+          <type>const <ref refid="classhmap_1_1Point" kindref="compound">Point</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Equality operator to check if two points are the same. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The point to compare with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the points are equal, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/point.hpp" line="67" column="8" bodyfile="HighMap/include/highmap/geometry/point.hpp" bodystart="67" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Point_1ac8b559ae275f04c0d19d8ec66595847d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hmap::Point::operator!=</definition>
+        <argsstring>(const Point &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>hmap::Point::operator!=</qualifiedname>
+        <param>
+          <type>const <ref refid="classhmap_1_1Point" kindref="compound">Point</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Inequality operator to check if two points are different. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The point to compare with. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if the points are not equal, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/point.hpp" line="78" column="8" bodyfile="HighMap/include/highmap/geometry/point.hpp" bodystart="78" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Point_1ab43556f6025fcd8c82d2b76c54b3e435" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhmap_1_1Point" kindref="compound">Point</ref></type>
+        <definition>Point hmap::Point::operator+</definition>
+        <argsstring>(const Point &amp;other) const</argsstring>
+        <name>operator+</name>
+        <qualifiedname>hmap::Point::operator+</qualifiedname>
+        <param>
+          <type>const <ref refid="classhmap_1_1Point" kindref="compound">Point</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Adds two points. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The point to add. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The result of adding the two points. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/point.hpp" line="88" column="9" bodyfile="HighMap/include/highmap/geometry/point.hpp" bodystart="88" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Point_1a5c07600ab9d070fd7ca05fb88a954154" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhmap_1_1Point" kindref="compound">Point</ref></type>
+        <definition>Point hmap::Point::operator-</definition>
+        <argsstring>(const Point &amp;other) const</argsstring>
+        <name>operator-</name>
+        <qualifiedname>hmap::Point::operator-</qualifiedname>
+        <param>
+          <type>const <ref refid="classhmap_1_1Point" kindref="compound">Point</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>Subtracts two points. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The point to subtract. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The result of subtracting the other point from this point. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/point.hpp" line="98" column="9" bodyfile="HighMap/include/highmap/geometry/point.hpp" bodystart="98" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Point_1abbf64509c9c91b8e8b344503223e5747" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhmap_1_1Point" kindref="compound">Point</ref></type>
+        <definition>Point hmap::Point::operator*</definition>
+        <argsstring>(float scalar) const</argsstring>
+        <name>operator*</name>
+        <qualifiedname>hmap::Point::operator*</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>scalar</declname>
+        </param>
+        <briefdescription>
+<para>Multiplies the point by a scalar. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar to multiply by. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The result of the multiplication. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/point.hpp" line="108" column="9" bodyfile="HighMap/include/highmap/geometry/point.hpp" bodystart="108" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Point_1a9009acb41438a016cb7398c09abd86d2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhmap_1_1Point" kindref="compound">Point</ref></type>
+        <definition>Point hmap::Point::operator/</definition>
+        <argsstring>(float scalar) const</argsstring>
+        <name>operator/</name>
+        <qualifiedname>hmap::Point::operator/</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>scalar</declname>
+        </param>
+        <briefdescription>
+<para>Divides the point by a scalar. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar to divide by. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The result of the division. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/point.hpp" line="118" column="9" bodyfile="HighMap/include/highmap/geometry/point.hpp" bodystart="118" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Point_1abc414635893bad912e30e009fbf8af35" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Point::print</definition>
+        <argsstring>()</argsstring>
+        <name>print</name>
+        <qualifiedname>hmap::Point::print</qualifiedname>
+        <briefdescription>
+<para>Prints the coordinates and value of the <ref refid="classhmap_1_1Point" kindref="compound">Point</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function outputs the <ref refid="classhmap_1_1Point" kindref="compound">Point</ref>&apos;s x, y coordinates, and an additional value <computeroutput>v</computeroutput> to the standard output in the format <computeroutput>(x, y, v)</computeroutput>, followed by a newline. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/point.hpp" line="147" column="8" bodyfile="HighMap/src/geometry/points.cpp" bodystart="36" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Point_1a71f412d383764f8df8f56a5439eb4da7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Point::set_value_from_array</definition>
+        <argsstring>(const Array &amp;array, Vec4&lt; float &gt; bbox)</argsstring>
+        <name>set_value_from_array</name>
+        <qualifiedname>hmap::Point::set_value_from_array</qualifiedname>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>array</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4</ref>&lt; float &gt;</type>
+          <declname>bbox</declname>
+        </param>
+        <briefdescription>
+<para>Set the point value by interpolating values of an array at the point position. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input array. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bbox</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> bounding box of the area, used to draw a correspondance between point position and array cells positions. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/point.hpp" line="156" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Point_1acda3ac23316079302a53e34ef3008fef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Point::update_value_from_array</definition>
+        <argsstring>(const Array &amp;array, Vec4&lt; float &gt; bbox)</argsstring>
+        <name>update_value_from_array</name>
+        <qualifiedname>hmap::Point::update_value_from_array</qualifiedname>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>array</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4</ref>&lt; float &gt;</type>
+          <declname>bbox</declname>
+        </param>
+        <briefdescription>
+<para>Updates the point&apos;s value based on bilinear interpolation from an array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function updates the value of the <computeroutput><ref refid="classhmap_1_1Point" kindref="compound">Point</ref></computeroutput> object by performing bilinear interpolation on the input <computeroutput><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></computeroutput> using the coordinates of the <computeroutput><ref refid="classhmap_1_1Point" kindref="compound">Point</ref></computeroutput> and a given bounding box. The point&apos;s coordinates are first normalized to the unit interval using the provided bounding box. Then, these normalized coordinates are scaled to the array&apos;s dimensions and used to fetch the value from the array through bilinear interpolation.</para>
+<para>If the normalized coordinates fall outside the bounds of the array, the point&apos;s value is set to zero.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input <computeroutput><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></computeroutput> from which the value is interpolated. The <computeroutput><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></computeroutput> should support bilinear interpolation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bbox</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Bounding box used for normalizing the <computeroutput><ref refid="classhmap_1_1Point" kindref="compound">Point</ref></computeroutput>&apos;s coordinates. This box is defined by a <computeroutput><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4</ref>&lt;float&gt;</computeroutput> containing minimum and maximum values for both x and y dimensions in the format <computeroutput>{xmin, xmax, ymin, ymax}</computeroutput>.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>If the coordinates are outside the bounds of the array after scaling, the point&apos;s value is set to zero. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/point.hpp" line="182" column="8" bodyfile="HighMap/src/geometry/points.cpp" bodystart="13" bodyend="34"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="friend">
+      <memberdef kind="friend" id="classhmap_1_1Point_1aa185c78a5385009de9f6f6461b536db2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classhmap_1_1Point" kindref="compound">Point</ref></type>
+        <definition>Point operator*</definition>
+        <argsstring>(float scalar, const Point &amp;point)</argsstring>
+        <name>operator*</name>
+        <qualifiedname>hmap::Point::operator*</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>scalar</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhmap_1_1Point" kindref="compound">Point</ref> &amp;</type>
+          <declname>point</declname>
+        </param>
+        <briefdescription>
+<para>Scalar multiplication (scalar * <ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Multiplies each component of the vector by a scalar value. This function allows expressions where the scalar is on the left side of the multiplication operator.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scalar value to multiply with. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>point</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The vector to multiply. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classhmap_1_1Point" kindref="compound">Point</ref> A new vector with each component multiplied by the scalar. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/point.hpp" line="135" column="16" bodyfile="HighMap/include/highmap/geometry/point.hpp" bodystart="135" bodyend="138"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A class to represent and manipulate 2D points that can carry a value. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="HighMap/include/highmap/geometry/point.hpp" line="37" column="1" bodyfile="HighMap/include/highmap/geometry/point.hpp" bodystart="38" bodyend="183"/>
+    <listofallmembers>
+      <member refid="classhmap_1_1Point_1ac8b559ae275f04c0d19d8ec66595847d" prot="public" virt="non-virtual"><scope>hmap::Point</scope><name>operator!=</name></member>
+      <member refid="classhmap_1_1Point_1abbf64509c9c91b8e8b344503223e5747" prot="public" virt="non-virtual"><scope>hmap::Point</scope><name>operator*</name></member>
+      <member refid="classhmap_1_1Point_1aa185c78a5385009de9f6f6461b536db2" prot="public" virt="non-virtual"><scope>hmap::Point</scope><name>operator*</name></member>
+      <member refid="classhmap_1_1Point_1ab43556f6025fcd8c82d2b76c54b3e435" prot="public" virt="non-virtual"><scope>hmap::Point</scope><name>operator+</name></member>
+      <member refid="classhmap_1_1Point_1a5c07600ab9d070fd7ca05fb88a954154" prot="public" virt="non-virtual"><scope>hmap::Point</scope><name>operator-</name></member>
+      <member refid="classhmap_1_1Point_1a9009acb41438a016cb7398c09abd86d2" prot="public" virt="non-virtual"><scope>hmap::Point</scope><name>operator/</name></member>
+      <member refid="classhmap_1_1Point_1a429b1d09f454a3e4e4e2175e29eea313" prot="public" virt="non-virtual"><scope>hmap::Point</scope><name>operator==</name></member>
+      <member refid="classhmap_1_1Point_1a986aebcb6409cd7836a48e0e8b973c81" prot="public" virt="non-virtual"><scope>hmap::Point</scope><name>Point</name></member>
+      <member refid="classhmap_1_1Point_1ad1041e7d925d820f47e80f0986a5e047" prot="public" virt="non-virtual"><scope>hmap::Point</scope><name>Point</name></member>
+      <member refid="classhmap_1_1Point_1abc414635893bad912e30e009fbf8af35" prot="public" virt="non-virtual"><scope>hmap::Point</scope><name>print</name></member>
+      <member refid="classhmap_1_1Point_1a71f412d383764f8df8f56a5439eb4da7" prot="public" virt="non-virtual"><scope>hmap::Point</scope><name>set_value_from_array</name></member>
+      <member refid="classhmap_1_1Point_1acda3ac23316079302a53e34ef3008fef" prot="public" virt="non-virtual"><scope>hmap::Point</scope><name>update_value_from_array</name></member>
+      <member refid="classhmap_1_1Point_1ac67fb22939ed39d6c5ff4194b4405efb" prot="public" virt="non-virtual"><scope>hmap::Point</scope><name>v</name></member>
+      <member refid="classhmap_1_1Point_1ac0d4eaf8062b8f11638db83e08198e48" prot="public" virt="non-virtual"><scope>hmap::Point</scope><name>x</name></member>
+      <member refid="classhmap_1_1Point_1aa045aed7ca12dffe13ba8f2db730a9bf" prot="public" virt="non-virtual"><scope>hmap::Point</scope><name>y</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

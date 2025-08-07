@@ -1,0 +1,14 @@
+\doxysection{High\+Map/src/erosion/hydraulic\+\_\+procedural.cpp File Reference}
+\hypertarget{hydraulic__procedural_8cpp}{}\label{hydraulic__procedural_8cpp}\index{HighMap/src/erosion/hydraulic\_procedural.cpp@{HighMap/src/erosion/hydraulic\_procedural.cpp}}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::function$<$ float(float)$>$ \mbox{\hyperlink{namespacehmap_a10284155e51dc2eb2dcf601e43593420}{hmap\+::helper\+\_\+get\+\_\+profile\+\_\+function}} (const \mbox{\hyperlink{namespacehmap_a25a4e4775f3c0918ed75f0503f5ed0a6}{Erosion\+Profile}} \&erosion\+\_\+profile, float delta, float \&profile\+\_\+avg)
+\item 
+void \mbox{\hyperlink{namespacehmap_af65bb48580b5f860571161387a22fbb4}{hmap\+::hydraulic\+\_\+procedural}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, \mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} seed, float ridge\+\_\+wavelength, float ridge\+\_\+scaling=0.\+1\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, \mbox{\hyperlink{namespacehmap_a25a4e4775f3c0918ed75f0503f5ed0a6}{Erosion\+Profile}} erosion\+\_\+profile=\mbox{\hyperlink{namespacehmap_a25a4e4775f3c0918ed75f0503f5ed0a6af078cf93214e8043479eb5906a456880}{Erosion\+Profile\+::\+TRIANGLE\+\_\+\+SMOOTH}}, float delta=0.\+02\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float noise\+\_\+ratio=0.\+2\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, int prefilter\+\_\+ir=-\/1, float density\+\_\+factor=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float kernel\+\_\+width\+\_\+ratio=2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float phase\+\_\+smoothing=2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float phase\+\_\+noise\+\_\+amp=M\+\_\+\+PI, bool reverse\+\_\+phase=false, bool rotate90=false, bool use\+\_\+default\+\_\+mask=true, float talus\+\_\+mask=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+mask=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+ridge\+\_\+mask=nullptr, float vmin=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float vmax=-\/1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+\begin{DoxyCompactList}\small\item\em Generates a procedurally eroded terrain using hydraulic erosion and ridge generation techniques. \end{DoxyCompactList}\end{DoxyCompactItemize}

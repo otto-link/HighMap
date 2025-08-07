@@ -1,0 +1,598 @@
+\doxysection{hmap\+::Heightmap Class Reference}
+\hypertarget{classhmap_1_1Heightmap}{}\label{classhmap_1_1Heightmap}\index{hmap::Heightmap@{hmap::Heightmap}}
+
+
+Height\+Map class, to manipulate heightmap (with contextual informations).  
+
+
+
+
+{\ttfamily \#include $<$heightmap.\+hpp$>$}
+
+
+
+Collaboration diagram for hmap\+::Heightmap\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classhmap_1_1Heightmap__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classhmap_1_1Heightmap_ae2c00388213fc4aad8dd29617b4f71a1}{Heightmap}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ \mbox{\hyperlink{classhmap_1_1Heightmap_a88f20f7b64d0a3c5575fb29d047cf8de}{shape}}, \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ \mbox{\hyperlink{classhmap_1_1Heightmap_a0449acf3cd11bf117babc80ae54e23b4}{tiling}}, float \mbox{\hyperlink{classhmap_1_1Heightmap_a8298ec219210890eec720792cffdb598}{overlap}})
+\begin{DoxyCompactList}\small\item\em This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Heightmap_a15580b39a3489f19a32dd52d234601a7}{Heightmap}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ \mbox{\hyperlink{classhmap_1_1Heightmap_a88f20f7b64d0a3c5575fb29d047cf8de}{shape}}, \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ \mbox{\hyperlink{classhmap_1_1Heightmap_a0449acf3cd11bf117babc80ae54e23b4}{tiling}}, float \mbox{\hyperlink{classhmap_1_1Heightmap_a8298ec219210890eec720792cffdb598}{overlap}}, float fill\+\_\+value)
+\begin{DoxyCompactList}\small\item\em This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Heightmap_ad2a302ea6666fb5f2c2ffe5ddeb90451}{Heightmap}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ \mbox{\hyperlink{classhmap_1_1Heightmap_a88f20f7b64d0a3c5575fb29d047cf8de}{shape}}, \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ \mbox{\hyperlink{classhmap_1_1Heightmap_a0449acf3cd11bf117babc80ae54e23b4}{tiling}})
+\begin{DoxyCompactList}\small\item\em This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Heightmap_a1b72b37e0244f481471c965b86288504}{Heightmap}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ \mbox{\hyperlink{classhmap_1_1Heightmap_a88f20f7b64d0a3c5575fb29d047cf8de}{shape}})
+\begin{DoxyCompactList}\small\item\em This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Heightmap_aac582367b38b2ccdb5a53f2bd002cac5}{Heightmap}} ()
+\begin{DoxyCompactList}\small\item\em This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classhmap_1_1Heightmap_a51cf765f4ffe966ebe3e9f7c933ecf69}{get\+\_\+ntiles}} () const
+\begin{DoxyCompactList}\small\item\em Get the number of tiles. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classhmap_1_1Heightmap_a92216a319cfae7fb7380ea78ba7c1485}{get\+\_\+tile\+\_\+index}} (int i, int j) const
+\begin{DoxyCompactList}\small\item\em Get the tile linear index. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1Heightmap_a33052feab03d0ee8bb4f89a9c8ea3111}{get\+\_\+value\+\_\+bilinear}} (float x, float y) const
+\item 
+float \mbox{\hyperlink{classhmap_1_1Heightmap_ad622aa51772286c4c2b6088e16558012}{get\+\_\+value\+\_\+nearest}} (float x, float y) const
+\item 
+void \mbox{\hyperlink{classhmap_1_1Heightmap_a82f4c09a6555cc278a52e85536f04224}{set\+\_\+overlap}} (float new\+\_\+overlap)
+\begin{DoxyCompactList}\small\item\em Set the tile overlapping. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1Heightmap_a5fd80cb8814b56637b2e466c0af9b0d3}{set\+\_\+shape}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ new\+\_\+shape)
+\begin{DoxyCompactList}\small\item\em Set the heightmap shape. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1Heightmap_a1788a169993965e3aaed7a2040fe6591}{set\+\_\+sto}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ new\+\_\+shape, \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ new\+\_\+tiling, float new\+\_\+overlap)
+\begin{DoxyCompactList}\small\item\em Set the shape / tiling / overlap in one pass. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1Heightmap_adf7d0c37562ffdc3463efd8938f5dd62}{set\+\_\+tiling}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ new\+\_\+tiling)
+\begin{DoxyCompactList}\small\item\em Set the tiling setup. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1Heightmap_a912a9da1b07157e05787a135737a118c}{from\+\_\+array\+\_\+interp}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array)
+\begin{DoxyCompactList}\small\item\em Fill tile values by interpolating (bilinear) values from another array. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1Heightmap_ad11c364899cc7efe5435b0bbb452a53f}{from\+\_\+array\+\_\+interp\+\_\+bicubic}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array)
+\begin{DoxyCompactList}\small\item\em Fill tile values by interpolating (bicubic) values from another array. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1Heightmap_ad3ae824068b1c390f5e2c41d9065ff1e}{from\+\_\+array\+\_\+interp\+\_\+bilinear}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array)
+\begin{DoxyCompactList}\small\item\em Fill tile values by interpolating (bilinear) values from another array. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1Heightmap_aff6ab20163da2db6c9e54d55238c6fa8}{from\+\_\+array\+\_\+interp\+\_\+nearest}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array)
+\begin{DoxyCompactList}\small\item\em Fill tile values by interpolating (nearest neighbor) values from another array. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1Heightmap_aa2564ec4ee33447cf53c01e9fc143419}{infos}} ()
+\begin{DoxyCompactList}\small\item\em Print some informations about the object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1Heightmap_a83a804689020e229b4428e691eee5b74}{inverse}} ()
+\begin{DoxyCompactList}\small\item\em Inverse the heightmap values (max -\/ values). \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1Heightmap_a1d7484a3e217925b3602119a032179f2}{max}} ()
+\begin{DoxyCompactList}\small\item\em Return the value of the greatest element in the heightmap data. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1Heightmap_a2c77598d7fbf9853ecb15bee3e057d3f}{mean}} ()
+\begin{DoxyCompactList}\small\item\em Return the mean of the heightmap data. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1Heightmap_ae24bd69e7adfb7ea06ed7809c46dc6c7}{min}} ()
+\begin{DoxyCompactList}\small\item\em Return the value of the smallest element in the heightmap data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1Heightmap_adfc18a86337d8283576ae1fa601433c9}{remap}} (float vmin=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float vmax=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+\begin{DoxyCompactList}\small\item\em Remap heightmap elements from a starting range to a target range. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1Heightmap_ab8aadcca8aa81e221ddd50437b692ffb}{remap}} (float vmin, float vmax, float from\+\_\+min, float from\+\_\+max)
+\begin{DoxyCompactList}\small\item\em This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1Heightmap_adc1c2a7a9af9062bfb0124a208882b24}{smooth\+\_\+overlap\+\_\+buffers}} ()
+\begin{DoxyCompactList}\small\item\em Smooth the transitions between each tiles (when overlap \texorpdfstring{$>$}{>} 0). \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1Heightmap_a655ef5409be462ce32f37f203ad78c27}{sum}} ()
+\begin{DoxyCompactList}\small\item\em Return the sum of the heightmap data. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{classhmap_1_1Heightmap_a03097c67e4ea2448e202ee1f43b77961}{to\+\_\+array}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape\+\_\+export)
+\begin{DoxyCompactList}\small\item\em Return the heightmap as an array. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{classhmap_1_1Heightmap_a0bb7e5c6b9b2e6bb680ac57913f68080}{to\+\_\+array}} ()
+\begin{DoxyCompactList}\small\item\em This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \end{DoxyCompactList}\item 
+std\+::vector$<$ uint16\+\_\+t $>$ \mbox{\hyperlink{classhmap_1_1Heightmap_ad133d0b58d12221384e024c02f6a916b}{to\+\_\+grayscale\+\_\+image\+\_\+16bit}} ()
+\begin{DoxyCompactList}\small\item\em Converts the heightmap to a 16-\/bit grayscale representation. \end{DoxyCompactList}\item 
+std\+::vector$<$ uint16\+\_\+t $>$ \mbox{\hyperlink{classhmap_1_1Heightmap_ae094aadc9d5ffef0f1bfc812612e1340}{to\+\_\+grayscale\+\_\+image\+\_\+16bit\+\_\+multithread}} ()
+\item 
+std\+::vector$<$ uint8\+\_\+t $>$ \mbox{\hyperlink{classhmap_1_1Heightmap_a14f24a37b572ca2e51ed03d9b69bff25}{to\+\_\+grayscale\+\_\+image\+\_\+8bit}} ()
+\item 
+std\+::vector$<$ float $>$ \mbox{\hyperlink{classhmap_1_1Heightmap_aad0014b044807456d80479f50c96395c}{unique\+\_\+values}} ()
+\begin{DoxyCompactList}\small\item\em Returns the unique elements of the heightmap. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1Heightmap_a7efe2f6a3e1deccc86772797eacf89c4}{update\+\_\+tile\+\_\+parameters}} ()
+\begin{DoxyCompactList}\small\item\em Update tile parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ \mbox{\hyperlink{classhmap_1_1Heightmap_a88f20f7b64d0a3c5575fb29d047cf8de}{shape}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classhmap_1_1Heightmap}{Heightmap} global shape. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ \mbox{\hyperlink{classhmap_1_1Heightmap_a0449acf3cd11bf117babc80ae54e23b4}{tiling}} = \{1, 1\}
+\begin{DoxyCompactList}\small\item\em Tiling setup (number of tiles in each direction). \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classhmap_1_1Heightmap_a8298ec219210890eec720792cffdb598}{overlap}} = 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classhmap_1_1Tile}{Tile} overlapping, in \mbox{[}0, 1\mbox{[}. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Tile}{Tile}} $>$ \mbox{\hyperlink{classhmap_1_1Heightmap_a1c464dcd079e78751edc88fccc7dd4b5}{tiles}} = \{\}
+\begin{DoxyCompactList}\small\item\em \doxylink{classhmap_1_1Tile}{Tile} storage. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Height\+Map class, to manipulate heightmap (with contextual informations). 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classhmap_1_1Heightmap_ae2c00388213fc4aad8dd29617b4f71a1}\label{classhmap_1_1Heightmap_ae2c00388213fc4aad8dd29617b4f71a1} 
+\index{hmap::Heightmap@{hmap::Heightmap}!Heightmap@{Heightmap}}
+\index{Heightmap@{Heightmap}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{Heightmap()}{Heightmap()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily hmap\+::\+Heightmap\+::\+Heightmap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$}]{shape,  }\item[{\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$}]{tiling,  }\item[{float}]{overlap }\end{DoxyParamCaption})}
+
+
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
+
+\Hypertarget{classhmap_1_1Heightmap_a15580b39a3489f19a32dd52d234601a7}\label{classhmap_1_1Heightmap_a15580b39a3489f19a32dd52d234601a7} 
+\index{hmap::Heightmap@{hmap::Heightmap}!Heightmap@{Heightmap}}
+\index{Heightmap@{Heightmap}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{Heightmap()}{Heightmap()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily hmap\+::\+Heightmap\+::\+Heightmap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$}]{shape,  }\item[{\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$}]{tiling,  }\item[{float}]{overlap,  }\item[{float}]{fill\+\_\+value }\end{DoxyParamCaption})}
+
+
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
+
+\Hypertarget{classhmap_1_1Heightmap_ad2a302ea6666fb5f2c2ffe5ddeb90451}\label{classhmap_1_1Heightmap_ad2a302ea6666fb5f2c2ffe5ddeb90451} 
+\index{hmap::Heightmap@{hmap::Heightmap}!Heightmap@{Heightmap}}
+\index{Heightmap@{Heightmap}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{Heightmap()}{Heightmap()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily hmap\+::\+Heightmap\+::\+Heightmap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$}]{shape,  }\item[{\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$}]{tiling }\end{DoxyParamCaption})}
+
+
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
+
+\Hypertarget{classhmap_1_1Heightmap_a1b72b37e0244f481471c965b86288504}\label{classhmap_1_1Heightmap_a1b72b37e0244f481471c965b86288504} 
+\index{hmap::Heightmap@{hmap::Heightmap}!Heightmap@{Heightmap}}
+\index{Heightmap@{Heightmap}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{Heightmap()}{Heightmap()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily hmap\+::\+Heightmap\+::\+Heightmap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$}]{shape }\end{DoxyParamCaption})}
+
+
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
+
+\Hypertarget{classhmap_1_1Heightmap_aac582367b38b2ccdb5a53f2bd002cac5}\label{classhmap_1_1Heightmap_aac582367b38b2ccdb5a53f2bd002cac5} 
+\index{hmap::Heightmap@{hmap::Heightmap}!Heightmap@{Heightmap}}
+\index{Heightmap@{Heightmap}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{Heightmap()}{Heightmap()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily hmap\+::\+Heightmap\+::\+Heightmap (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classhmap_1_1Heightmap_a51cf765f4ffe966ebe3e9f7c933ecf69}\label{classhmap_1_1Heightmap_a51cf765f4ffe966ebe3e9f7c933ecf69} 
+\index{hmap::Heightmap@{hmap::Heightmap}!get\_ntiles@{get\_ntiles}}
+\index{get\_ntiles@{get\_ntiles}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{get\_ntiles()}{get\_ntiles()}}
+{\footnotesize\ttfamily size\+\_\+t hmap\+::\+Heightmap\+::get\+\_\+ntiles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the number of tiles. 
+
+\begin{DoxyReturn}{Returns}
+size\+\_\+t Number of tiles. 
+\end{DoxyReturn}
+\Hypertarget{classhmap_1_1Heightmap_a92216a319cfae7fb7380ea78ba7c1485}\label{classhmap_1_1Heightmap_a92216a319cfae7fb7380ea78ba7c1485} 
+\index{hmap::Heightmap@{hmap::Heightmap}!get\_tile\_index@{get\_tile\_index}}
+\index{get\_tile\_index@{get\_tile\_index}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{get\_tile\_index()}{get\_tile\_index()}}
+{\footnotesize\ttfamily int hmap\+::\+Heightmap\+::get\+\_\+tile\+\_\+index (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption}) const}
+
+
+
+Get the tile linear index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & \doxylink{classhmap_1_1Tile}{Tile} i index. \\
+\hline
+{\em j} & \doxylink{classhmap_1_1Tile}{Tile} j index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Linear index. 
+\end{DoxyReturn}
+\Hypertarget{classhmap_1_1Heightmap_a33052feab03d0ee8bb4f89a9c8ea3111}\label{classhmap_1_1Heightmap_a33052feab03d0ee8bb4f89a9c8ea3111} 
+\index{hmap::Heightmap@{hmap::Heightmap}!get\_value\_bilinear@{get\_value\_bilinear}}
+\index{get\_value\_bilinear@{get\_value\_bilinear}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{get\_value\_bilinear()}{get\_value\_bilinear()}}
+{\footnotesize\ttfamily float hmap\+::\+Heightmap\+::get\+\_\+value\+\_\+bilinear (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classhmap_1_1Heightmap_ad622aa51772286c4c2b6088e16558012}\label{classhmap_1_1Heightmap_ad622aa51772286c4c2b6088e16558012} 
+\index{hmap::Heightmap@{hmap::Heightmap}!get\_value\_nearest@{get\_value\_nearest}}
+\index{get\_value\_nearest@{get\_value\_nearest}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{get\_value\_nearest()}{get\_value\_nearest()}}
+{\footnotesize\ttfamily float hmap\+::\+Heightmap\+::get\+\_\+value\+\_\+nearest (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classhmap_1_1Heightmap_a82f4c09a6555cc278a52e85536f04224}\label{classhmap_1_1Heightmap_a82f4c09a6555cc278a52e85536f04224} 
+\index{hmap::Heightmap@{hmap::Heightmap}!set\_overlap@{set\_overlap}}
+\index{set\_overlap@{set\_overlap}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{set\_overlap()}{set\_overlap()}}
+{\footnotesize\ttfamily void hmap\+::\+Heightmap\+::set\+\_\+overlap (\begin{DoxyParamCaption}\item[{float}]{new\+\_\+overlap }\end{DoxyParamCaption})}
+
+
+
+Set the tile overlapping. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+overlap} & New overlap. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classhmap_1_1Heightmap_a5fd80cb8814b56637b2e466c0af9b0d3}\label{classhmap_1_1Heightmap_a5fd80cb8814b56637b2e466c0af9b0d3} 
+\index{hmap::Heightmap@{hmap::Heightmap}!set\_shape@{set\_shape}}
+\index{set\_shape@{set\_shape}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{set\_shape()}{set\_shape()}}
+{\footnotesize\ttfamily void hmap\+::\+Heightmap\+::set\+\_\+shape (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$}]{new\+\_\+shape }\end{DoxyParamCaption})}
+
+
+
+Set the heightmap shape. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+shape} & New shape. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classhmap_1_1Heightmap_a1788a169993965e3aaed7a2040fe6591}\label{classhmap_1_1Heightmap_a1788a169993965e3aaed7a2040fe6591} 
+\index{hmap::Heightmap@{hmap::Heightmap}!set\_sto@{set\_sto}}
+\index{set\_sto@{set\_sto}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{set\_sto()}{set\_sto()}}
+{\footnotesize\ttfamily void hmap\+::\+Heightmap\+::set\+\_\+sto (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$}]{new\+\_\+shape,  }\item[{\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$}]{new\+\_\+tiling,  }\item[{float}]{new\+\_\+overlap }\end{DoxyParamCaption})}
+
+
+
+Set the shape / tiling / overlap in one pass. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+shape} & New shape. \\
+\hline
+{\em new\+\_\+tiling} & New tiling. \\
+\hline
+{\em new\+\_\+overlap} & New overlap. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classhmap_1_1Heightmap_adf7d0c37562ffdc3463efd8938f5dd62}\label{classhmap_1_1Heightmap_adf7d0c37562ffdc3463efd8938f5dd62} 
+\index{hmap::Heightmap@{hmap::Heightmap}!set\_tiling@{set\_tiling}}
+\index{set\_tiling@{set\_tiling}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{set\_tiling()}{set\_tiling()}}
+{\footnotesize\ttfamily void hmap\+::\+Heightmap\+::set\+\_\+tiling (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$}]{new\+\_\+tiling }\end{DoxyParamCaption})}
+
+
+
+Set the tiling setup. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+tiling} & New tiling. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classhmap_1_1Heightmap_a912a9da1b07157e05787a135737a118c}\label{classhmap_1_1Heightmap_a912a9da1b07157e05787a135737a118c} 
+\index{hmap::Heightmap@{hmap::Heightmap}!from\_array\_interp@{from\_array\_interp}}
+\index{from\_array\_interp@{from\_array\_interp}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{from\_array\_interp()}{from\_array\_interp()}}
+{\footnotesize\ttfamily void hmap\+::\+Heightmap\+::from\+\_\+array\+\_\+interp (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array }\end{DoxyParamCaption})}
+
+
+
+Fill tile values by interpolating (bilinear) values from another array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & Input array.\\
+\hline
+\end{DoxyParams}
+{\bfseries{Example}} 
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{highmap_8hpp}{highmap.hpp}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{structhmap_1_1Vec2}{hmap::Vec2<int>}}\ \ \ \mbox{\hyperlink{classhmap_1_1Heightmap_a88f20f7b64d0a3c5575fb29d047cf8de}{shape}}\ =\ \{256,\ 256\};}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{structhmap_1_1Vec2}{hmap::Vec2<int>}}\ \ \ \mbox{\hyperlink{classhmap_1_1Heightmap_a0449acf3cd11bf117babc80ae54e23b4}{tiling}}\ =\ \{4,\ 2\};}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classhmap_1_1Heightmap_a8298ec219210890eec720792cffdb598}{overlap}}\ =\ 0.25;}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{structhmap_1_1Vec2}{hmap::Vec2<float>}}\ kw\ =\ \{4.f,\ 4.f\};}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seed\ =\ 1;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ \ \ \ \ z\ =\ \mbox{\hyperlink{namespacehmap_a03c0be3a7198eebacefcb208b0cfee99}{hmap::noise}}(\mbox{\hyperlink{namespacehmap_ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581}{hmap::NoiseType::PERLIN}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structhmap_1_1Vec2}{hmap::Vec2<int>}}(64,\ 64),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ kw,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seed);}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Heightmap}{hmap::Heightmap}}\ h\ =\ \mbox{\hyperlink{classhmap_1_1Heightmap}{hmap::Heightmap}}(\mbox{\hyperlink{classhmap_1_1Heightmap_a88f20f7b64d0a3c5575fb29d047cf8de}{shape}},\ \mbox{\hyperlink{classhmap_1_1Heightmap_a0449acf3cd11bf117babc80ae54e23b4}{tiling}},\ \mbox{\hyperlink{classhmap_1_1Heightmap_a8298ec219210890eec720792cffdb598}{overlap}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ h.\mbox{\hyperlink{classhmap_1_1Heightmap_ad11c364899cc7efe5435b0bbb452a53f}{from\_array\_interp\_bicubic}}(z);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ z.\mbox{\hyperlink{classhmap_1_1Array_a9ff7b2c0be8f2b5dd9fc33085cd647d1}{to\_png}}(\textcolor{stringliteral}{"{}ex\_heightmap\_from\_array0.png"{}},\ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369afd0b9cd53cbae62c25ef686ba527d143}{hmap::Cmap::INFERNO}});}
+\DoxyCodeLine{\ \ h.\mbox{\hyperlink{classhmap_1_1Heightmap_a03097c67e4ea2448e202ee1f43b77961}{to\_array}}().\mbox{\hyperlink{classhmap_1_1Array_a9ff7b2c0be8f2b5dd9fc33085cd647d1}{to\_png}}(\textcolor{stringliteral}{"{}ex\_heightmap\_from\_array1.png"{}},\ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369afd0b9cd53cbae62c25ef686ba527d143}{hmap::Cmap::INFERNO}});}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+
+
+{\bfseries{Result}}   \Hypertarget{classhmap_1_1Heightmap_ad11c364899cc7efe5435b0bbb452a53f}\label{classhmap_1_1Heightmap_ad11c364899cc7efe5435b0bbb452a53f} 
+\index{hmap::Heightmap@{hmap::Heightmap}!from\_array\_interp\_bicubic@{from\_array\_interp\_bicubic}}
+\index{from\_array\_interp\_bicubic@{from\_array\_interp\_bicubic}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{from\_array\_interp\_bicubic()}{from\_array\_interp\_bicubic()}}
+{\footnotesize\ttfamily void hmap\+::\+Heightmap\+::from\+\_\+array\+\_\+interp\+\_\+bicubic (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array }\end{DoxyParamCaption})}
+
+
+
+Fill tile values by interpolating (bicubic) values from another array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & Input array. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classhmap_1_1Heightmap_ad3ae824068b1c390f5e2c41d9065ff1e}\label{classhmap_1_1Heightmap_ad3ae824068b1c390f5e2c41d9065ff1e} 
+\index{hmap::Heightmap@{hmap::Heightmap}!from\_array\_interp\_bilinear@{from\_array\_interp\_bilinear}}
+\index{from\_array\_interp\_bilinear@{from\_array\_interp\_bilinear}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{from\_array\_interp\_bilinear()}{from\_array\_interp\_bilinear()}}
+{\footnotesize\ttfamily void hmap\+::\+Heightmap\+::from\+\_\+array\+\_\+interp\+\_\+bilinear (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array }\end{DoxyParamCaption})}
+
+
+
+Fill tile values by interpolating (bilinear) values from another array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & Input array. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classhmap_1_1Heightmap_aff6ab20163da2db6c9e54d55238c6fa8}\label{classhmap_1_1Heightmap_aff6ab20163da2db6c9e54d55238c6fa8} 
+\index{hmap::Heightmap@{hmap::Heightmap}!from\_array\_interp\_nearest@{from\_array\_interp\_nearest}}
+\index{from\_array\_interp\_nearest@{from\_array\_interp\_nearest}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{from\_array\_interp\_nearest()}{from\_array\_interp\_nearest()}}
+{\footnotesize\ttfamily void hmap\+::\+Heightmap\+::from\+\_\+array\+\_\+interp\+\_\+nearest (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array }\end{DoxyParamCaption})}
+
+
+
+Fill tile values by interpolating (nearest neighbor) values from another array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & Input array. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classhmap_1_1Heightmap_aa2564ec4ee33447cf53c01e9fc143419}\label{classhmap_1_1Heightmap_aa2564ec4ee33447cf53c01e9fc143419} 
+\index{hmap::Heightmap@{hmap::Heightmap}!infos@{infos}}
+\index{infos@{infos}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{infos()}{infos()}}
+{\footnotesize\ttfamily void hmap\+::\+Heightmap\+::infos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Print some informations about the object. 
+
+\Hypertarget{classhmap_1_1Heightmap_a83a804689020e229b4428e691eee5b74}\label{classhmap_1_1Heightmap_a83a804689020e229b4428e691eee5b74} 
+\index{hmap::Heightmap@{hmap::Heightmap}!inverse@{inverse}}
+\index{inverse@{inverse}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{inverse()}{inverse()}}
+{\footnotesize\ttfamily void hmap\+::\+Heightmap\+::inverse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Inverse the heightmap values (max -\/ values). 
+
+\Hypertarget{classhmap_1_1Heightmap_a1d7484a3e217925b3602119a032179f2}\label{classhmap_1_1Heightmap_a1d7484a3e217925b3602119a032179f2} 
+\index{hmap::Heightmap@{hmap::Heightmap}!max@{max}}
+\index{max@{max}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{max()}{max()}}
+{\footnotesize\ttfamily float hmap\+::\+Heightmap\+::max (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Return the value of the greatest element in the heightmap data. 
+
+\begin{DoxyReturn}{Returns}
+float 
+\end{DoxyReturn}
+\Hypertarget{classhmap_1_1Heightmap_a2c77598d7fbf9853ecb15bee3e057d3f}\label{classhmap_1_1Heightmap_a2c77598d7fbf9853ecb15bee3e057d3f} 
+\index{hmap::Heightmap@{hmap::Heightmap}!mean@{mean}}
+\index{mean@{mean}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{mean()}{mean()}}
+{\footnotesize\ttfamily float hmap\+::\+Heightmap\+::mean (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Return the mean of the heightmap data. 
+
+\begin{DoxyReturn}{Returns}
+float 
+\end{DoxyReturn}
+\Hypertarget{classhmap_1_1Heightmap_ae24bd69e7adfb7ea06ed7809c46dc6c7}\label{classhmap_1_1Heightmap_ae24bd69e7adfb7ea06ed7809c46dc6c7} 
+\index{hmap::Heightmap@{hmap::Heightmap}!min@{min}}
+\index{min@{min}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{min()}{min()}}
+{\footnotesize\ttfamily float hmap\+::\+Heightmap\+::min (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Return the value of the smallest element in the heightmap data. 
+
+\begin{DoxyReturn}{Returns}
+float 
+\end{DoxyReturn}
+\Hypertarget{classhmap_1_1Heightmap_adfc18a86337d8283576ae1fa601433c9}\label{classhmap_1_1Heightmap_adfc18a86337d8283576ae1fa601433c9} 
+\index{hmap::Heightmap@{hmap::Heightmap}!remap@{remap}}
+\index{remap@{remap}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{remap()}{remap()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void hmap\+::\+Heightmap\+::remap (\begin{DoxyParamCaption}\item[{float}]{vmin = {\ttfamily 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{float}]{vmax = {\ttfamily 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}} }\end{DoxyParamCaption})}
+
+
+
+Remap heightmap elements from a starting range to a target range. 
+
+By default the starting range is taken to be \mbox{[}\doxylink{classhmap_1_1Heightmap_ae24bd69e7adfb7ea06ed7809c46dc6c7}{min()}, \doxylink{classhmap_1_1Heightmap_a1d7484a3e217925b3602119a032179f2}{max()}\mbox{]} of the input array.
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & Input array. \\
+\hline
+{\em vmin} & The lower bound of the range to remap to. \\
+\hline
+{\em vmax} & The lower bound of the range to remap to. \\
+\hline
+{\em from\+\_\+min} & The lower bound of the range to remap from. \\
+\hline
+{\em from\+\_\+max} & The upper bound of the range to remap from. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classhmap_1_1Heightmap_ab8aadcca8aa81e221ddd50437b692ffb}\label{classhmap_1_1Heightmap_ab8aadcca8aa81e221ddd50437b692ffb} 
+\index{hmap::Heightmap@{hmap::Heightmap}!remap@{remap}}
+\index{remap@{remap}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{remap()}{remap()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void hmap\+::\+Heightmap\+::remap (\begin{DoxyParamCaption}\item[{float}]{vmin,  }\item[{float}]{vmax,  }\item[{float}]{from\+\_\+min,  }\item[{float}]{from\+\_\+max }\end{DoxyParamCaption})}
+
+
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
+
+\Hypertarget{classhmap_1_1Heightmap_adc1c2a7a9af9062bfb0124a208882b24}\label{classhmap_1_1Heightmap_adc1c2a7a9af9062bfb0124a208882b24} 
+\index{hmap::Heightmap@{hmap::Heightmap}!smooth\_overlap\_buffers@{smooth\_overlap\_buffers}}
+\index{smooth\_overlap\_buffers@{smooth\_overlap\_buffers}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{smooth\_overlap\_buffers()}{smooth\_overlap\_buffers()}}
+{\footnotesize\ttfamily void hmap\+::\+Heightmap\+::smooth\+\_\+overlap\+\_\+buffers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Smooth the transitions between each tiles (when overlap \texorpdfstring{$>$}{>} 0). 
+
+\Hypertarget{classhmap_1_1Heightmap_a655ef5409be462ce32f37f203ad78c27}\label{classhmap_1_1Heightmap_a655ef5409be462ce32f37f203ad78c27} 
+\index{hmap::Heightmap@{hmap::Heightmap}!sum@{sum}}
+\index{sum@{sum}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{sum()}{sum()}}
+{\footnotesize\ttfamily float hmap\+::\+Heightmap\+::sum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Return the sum of the heightmap data. 
+
+\begin{DoxyReturn}{Returns}
+float 
+\end{DoxyReturn}
+\Hypertarget{classhmap_1_1Heightmap_a03097c67e4ea2448e202ee1f43b77961}\label{classhmap_1_1Heightmap_a03097c67e4ea2448e202ee1f43b77961} 
+\index{hmap::Heightmap@{hmap::Heightmap}!to\_array@{to\_array}}
+\index{to\_array@{to\_array}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{to\_array()}{to\_array()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::\+Heightmap\+::to\+\_\+array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$}]{shape\+\_\+export }\end{DoxyParamCaption})}
+
+
+
+Return the heightmap as an array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shape\+\_\+export} & \doxylink{classhmap_1_1Array}{Array} shape. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{classhmap_1_1Array}{Array} Resulting array. 
+\end{DoxyReturn}
+\Hypertarget{classhmap_1_1Heightmap_a0bb7e5c6b9b2e6bb680ac57913f68080}\label{classhmap_1_1Heightmap_a0bb7e5c6b9b2e6bb680ac57913f68080} 
+\index{hmap::Heightmap@{hmap::Heightmap}!to\_array@{to\_array}}
+\index{to\_array@{to\_array}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{to\_array()}{to\_array()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::\+Heightmap\+::to\+\_\+array (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
+
+\Hypertarget{classhmap_1_1Heightmap_ad133d0b58d12221384e024c02f6a916b}\label{classhmap_1_1Heightmap_ad133d0b58d12221384e024c02f6a916b} 
+\index{hmap::Heightmap@{hmap::Heightmap}!to\_grayscale\_image\_16bit@{to\_grayscale\_image\_16bit}}
+\index{to\_grayscale\_image\_16bit@{to\_grayscale\_image\_16bit}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{to\_grayscale\_image\_16bit()}{to\_grayscale\_image\_16bit()}}
+{\footnotesize\ttfamily std\+::vector$<$ uint16\+\_\+t $>$ hmap\+::\+Heightmap\+::to\+\_\+grayscale\+\_\+image\+\_\+16bit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Converts the heightmap to a 16-\/bit grayscale representation. 
+
+\begin{DoxyReturn}{Returns}
+A {\ttfamily std\+::vector\texorpdfstring{$<$}{<}uint16\+\_\+t\texorpdfstring{$>$}{>}} containing the 16-\/bit grayscale image data. 
+\end{DoxyReturn}
+\Hypertarget{classhmap_1_1Heightmap_ae094aadc9d5ffef0f1bfc812612e1340}\label{classhmap_1_1Heightmap_ae094aadc9d5ffef0f1bfc812612e1340} 
+\index{hmap::Heightmap@{hmap::Heightmap}!to\_grayscale\_image\_16bit\_multithread@{to\_grayscale\_image\_16bit\_multithread}}
+\index{to\_grayscale\_image\_16bit\_multithread@{to\_grayscale\_image\_16bit\_multithread}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{to\_grayscale\_image\_16bit\_multithread()}{to\_grayscale\_image\_16bit\_multithread()}}
+{\footnotesize\ttfamily std\+::vector$<$ uint16\+\_\+t $>$ hmap\+::\+Heightmap\+::to\+\_\+grayscale\+\_\+image\+\_\+16bit\+\_\+multithread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classhmap_1_1Heightmap_a14f24a37b572ca2e51ed03d9b69bff25}\label{classhmap_1_1Heightmap_a14f24a37b572ca2e51ed03d9b69bff25} 
+\index{hmap::Heightmap@{hmap::Heightmap}!to\_grayscale\_image\_8bit@{to\_grayscale\_image\_8bit}}
+\index{to\_grayscale\_image\_8bit@{to\_grayscale\_image\_8bit}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{to\_grayscale\_image\_8bit()}{to\_grayscale\_image\_8bit()}}
+{\footnotesize\ttfamily std\+::vector$<$ uint8\+\_\+t $>$ hmap\+::\+Heightmap\+::to\+\_\+grayscale\+\_\+image\+\_\+8bit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classhmap_1_1Heightmap_aad0014b044807456d80479f50c96395c}\label{classhmap_1_1Heightmap_aad0014b044807456d80479f50c96395c} 
+\index{hmap::Heightmap@{hmap::Heightmap}!unique\_values@{unique\_values}}
+\index{unique\_values@{unique\_values}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{unique\_values()}{unique\_values()}}
+{\footnotesize\ttfamily std\+::vector$<$ float $>$ hmap\+::\+Heightmap\+::unique\+\_\+values (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the unique elements of the heightmap. 
+
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$float$>$ Unique values. 
+\end{DoxyReturn}
+\Hypertarget{classhmap_1_1Heightmap_a7efe2f6a3e1deccc86772797eacf89c4}\label{classhmap_1_1Heightmap_a7efe2f6a3e1deccc86772797eacf89c4} 
+\index{hmap::Heightmap@{hmap::Heightmap}!update\_tile\_parameters@{update\_tile\_parameters}}
+\index{update\_tile\_parameters@{update\_tile\_parameters}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{update\_tile\_parameters()}{update\_tile\_parameters()}}
+{\footnotesize\ttfamily void hmap\+::\+Heightmap\+::update\+\_\+tile\+\_\+parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Update tile parameters. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classhmap_1_1Heightmap_a88f20f7b64d0a3c5575fb29d047cf8de}\label{classhmap_1_1Heightmap_a88f20f7b64d0a3c5575fb29d047cf8de} 
+\index{hmap::Heightmap@{hmap::Heightmap}!shape@{shape}}
+\index{shape@{shape}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{shape}{shape}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$int$>$ hmap\+::\+Heightmap\+::shape}
+
+
+
+\doxylink{classhmap_1_1Heightmap}{Heightmap} global shape. 
+
+\Hypertarget{classhmap_1_1Heightmap_a0449acf3cd11bf117babc80ae54e23b4}\label{classhmap_1_1Heightmap_a0449acf3cd11bf117babc80ae54e23b4} 
+\index{hmap::Heightmap@{hmap::Heightmap}!tiling@{tiling}}
+\index{tiling@{tiling}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{tiling}{tiling}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$int$>$ hmap\+::\+Heightmap\+::tiling = \{1, 1\}}
+
+
+
+Tiling setup (number of tiles in each direction). 
+
+\Hypertarget{classhmap_1_1Heightmap_a8298ec219210890eec720792cffdb598}\label{classhmap_1_1Heightmap_a8298ec219210890eec720792cffdb598} 
+\index{hmap::Heightmap@{hmap::Heightmap}!overlap@{overlap}}
+\index{overlap@{overlap}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{overlap}{overlap}}
+{\footnotesize\ttfamily float hmap\+::\+Heightmap\+::overlap = 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}}
+
+
+
+\doxylink{classhmap_1_1Tile}{Tile} overlapping, in \mbox{[}0, 1\mbox{[}. 
+
+\Hypertarget{classhmap_1_1Heightmap_a1c464dcd079e78751edc88fccc7dd4b5}\label{classhmap_1_1Heightmap_a1c464dcd079e78751edc88fccc7dd4b5} 
+\index{hmap::Heightmap@{hmap::Heightmap}!tiles@{tiles}}
+\index{tiles@{tiles}!hmap::Heightmap@{hmap::Heightmap}}
+\doxysubsubsection{\texorpdfstring{tiles}{tiles}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classhmap_1_1Tile}{Tile}}$>$ hmap\+::\+Heightmap\+::tiles = \{\}}
+
+
+
+\doxylink{classhmap_1_1Tile}{Tile} storage. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+High\+Map/include/highmap/\mbox{\hyperlink{heightmap_8hpp}{heightmap.\+hpp}}\item 
+High\+Map/src/heightmap/\mbox{\hyperlink{heightmap__base_8cpp}{heightmap\+\_\+base.\+cpp}}\end{DoxyCompactItemize}

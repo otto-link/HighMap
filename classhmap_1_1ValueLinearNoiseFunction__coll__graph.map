@@ -1,0 +1,9 @@
+<map id="hmap::ValueLinearNoiseFunction" name="hmap::ValueLinearNoiseFunction">
+<area shape="rect" id="Node000001" title="ValueLinearNoiseFunction (x, y) function class." alt="" coords="31,168,265,193"/>
+<area shape="rect" id="Node000002" href="$classhmap_1_1NoiseFunction.html" title="A class for generating noise functions." alt="" coords="69,93,227,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="151,133,151,168,145,168,145,133"/>
+<area shape="rect" id="Node000003" href="$classhmap_1_1Function.html" title="A class that wraps a callable entity taking three floats and returning a float." alt="" coords="5,5,128,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="89,39,139,91,135,95,85,43"/>
+<area shape="rect" id="Node000004" href="$structhmap_1_1Vec2.html" title=" " alt="" coords="152,5,309,31"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="212,43,161,95,158,91,208,39"/>
+</map>

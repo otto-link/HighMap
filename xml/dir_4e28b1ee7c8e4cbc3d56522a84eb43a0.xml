@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_4e28b1ee7c8e4cbc3d56522a84eb43a0" kind="dir">
+    <compoundname>HighMap/src/authoring</compoundname>
+    <innerfile refid="alter__elevation_8cpp">alter_elevation.cpp</innerfile>
+    <innerfile refid="base__elevation_8cpp">base_elevation.cpp</innerfile>
+    <innerfile refid="reverse__midpoint_8cpp">reverse_midpoint.cpp</innerfile>
+    <innerfile refid="ridgelines_8cpp">ridgelines.cpp</innerfile>
+    <innerfile refid="stamping_8cpp">stamping.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="HighMap/src/authoring/"/>
+  </compounddef>
+</doxygen>

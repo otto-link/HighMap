@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_cf7059bcc3c8d9d07f321966fb202cdc" kind="dir">
+    <compoundname>HighMap/src/transform</compoundname>
+    <innerfile refid="transform_2transform_8cpp">transform.cpp</innerfile>
+    <innerfile refid="transform__gpu_8cpp">transform_gpu.cpp</innerfile>
+    <innerfile refid="warp_8cpp">warp.cpp</innerfile>
+    <innerfile refid="warp__gpu_8cpp">warp_gpu.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="HighMap/src/transform/"/>
+  </compounddef>
+</doxygen>

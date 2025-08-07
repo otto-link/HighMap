@@ -1,0 +1,427 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classhmap_1_1NoiseFunction" kind="class" language="C++" prot="public">
+    <compoundname>hmap::NoiseFunction</compoundname>
+    <basecompoundref refid="classhmap_1_1Function" prot="public" virt="non-virtual">hmap::Function</basecompoundref>
+    <derivedcompoundref refid="classhmap_1_1GenericFractalFunction" prot="public" virt="non-virtual">hmap::GenericFractalFunction</derivedcompoundref>
+    <derivedcompoundref refid="classhmap_1_1ParberryFunction" prot="public" virt="non-virtual">hmap::ParberryFunction</derivedcompoundref>
+    <derivedcompoundref refid="classhmap_1_1PerlinBillowFunction" prot="public" virt="non-virtual">hmap::PerlinBillowFunction</derivedcompoundref>
+    <derivedcompoundref refid="classhmap_1_1PerlinFunction" prot="public" virt="non-virtual">hmap::PerlinFunction</derivedcompoundref>
+    <derivedcompoundref refid="classhmap_1_1PerlinHalfFunction" prot="public" virt="non-virtual">hmap::PerlinHalfFunction</derivedcompoundref>
+    <derivedcompoundref refid="classhmap_1_1PerlinMixFunction" prot="public" virt="non-virtual">hmap::PerlinMixFunction</derivedcompoundref>
+    <derivedcompoundref refid="classhmap_1_1Simplex2Function" prot="public" virt="non-virtual">hmap::Simplex2Function</derivedcompoundref>
+    <derivedcompoundref refid="classhmap_1_1Simplex2SFunction" prot="public" virt="non-virtual">hmap::Simplex2SFunction</derivedcompoundref>
+    <derivedcompoundref refid="classhmap_1_1ValueCubicNoiseFunction" prot="public" virt="non-virtual">hmap::ValueCubicNoiseFunction</derivedcompoundref>
+    <derivedcompoundref refid="classhmap_1_1ValueDelaunayNoiseFunction" prot="public" virt="non-virtual">hmap::ValueDelaunayNoiseFunction</derivedcompoundref>
+    <derivedcompoundref refid="classhmap_1_1ValueLinearNoiseFunction" prot="public" virt="non-virtual">hmap::ValueLinearNoiseFunction</derivedcompoundref>
+    <derivedcompoundref refid="classhmap_1_1ValueNoiseFunction" prot="public" virt="non-virtual">hmap::ValueNoiseFunction</derivedcompoundref>
+    <derivedcompoundref refid="classhmap_1_1WorleyDoubleFunction" prot="public" virt="non-virtual">hmap::WorleyDoubleFunction</derivedcompoundref>
+    <derivedcompoundref refid="classhmap_1_1WorleyFunction" prot="public" virt="non-virtual">hmap::WorleyFunction</derivedcompoundref>
+    <includes refid="functions_8hpp" local="no">functions.hpp</includes>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhmap_1_1NoiseFunction_1a6d7d9881bedbf82be095183cd36bf0a6" prot="protected" static="no" mutable="no">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+        <definition>Vec2&lt;float&gt; hmap::NoiseFunction::kw</definition>
+        <argsstring></argsstring>
+        <name>kw</name>
+        <qualifiedname>hmap::NoiseFunction::kw</qualifiedname>
+        <briefdescription>
+<para>Frequency scaling vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="740" column="8" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="740" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1NoiseFunction_1a9f125dfcb60e4d9bd2b0fbc44b21d406" prot="protected" static="no" mutable="no">
+        <type><ref refid="array_8hpp_1a91ad9478d81a7aaf2593e8d9c3d06a14" kindref="member">uint</ref></type>
+        <definition>uint hmap::NoiseFunction::seed</definition>
+        <argsstring></argsstring>
+        <name>seed</name>
+        <qualifiedname>hmap::NoiseFunction::seed</qualifiedname>
+        <briefdescription>
+<para>Random seed for noise generation. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="741" column="15" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="741" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhmap_1_1NoiseFunction_1a9823b1c76555631d442f52a3d768c162" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hmap::NoiseFunction::NoiseFunction</definition>
+        <argsstring>()</argsstring>
+        <name>NoiseFunction</name>
+        <qualifiedname>hmap::NoiseFunction::NoiseFunction</qualifiedname>
+        <briefdescription>
+<para>Default constructor. Initializes with default frequency scaling and seed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="682" column="3" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="682" bodyend="684"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1NoiseFunction_1abf8560e5e4036c13ccac01e25b8fe899" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hmap::NoiseFunction::NoiseFunction</definition>
+        <argsstring>(Vec2&lt; float &gt; kw)</argsstring>
+        <name>NoiseFunction</name>
+        <qualifiedname>hmap::NoiseFunction::NoiseFunction</qualifiedname>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+          <declname>kw</declname>
+        </param>
+        <briefdescription>
+<para>Constructor to initialize with specific frequency scaling. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>kw</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Frequency scaling vector. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="690" column="3" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="690" bodyend="692"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1NoiseFunction_1ad075abd6473d4ab8ec811f30192fdb9b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>hmap::NoiseFunction::NoiseFunction</definition>
+        <argsstring>(Vec2&lt; float &gt; kw, uint seed)</argsstring>
+        <name>NoiseFunction</name>
+        <qualifiedname>hmap::NoiseFunction::NoiseFunction</qualifiedname>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+          <declname>kw</declname>
+        </param>
+        <param>
+          <type><ref refid="array_8hpp_1a91ad9478d81a7aaf2593e8d9c3d06a14" kindref="member">uint</ref></type>
+          <declname>seed</declname>
+        </param>
+        <briefdescription>
+<para>Constructor to initialize with specific frequency scaling and seed. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>kw</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Frequency scaling vector. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>seed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Random seed for noise generation. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="699" column="3" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="699" bodyend="701"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1NoiseFunction_1ae3ebc5789e25c4147b745427370be629" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+        <definition>Vec2&lt; float &gt; hmap::NoiseFunction::get_kw</definition>
+        <argsstring>() const</argsstring>
+        <name>get_kw</name>
+        <qualifiedname>hmap::NoiseFunction::get_kw</qualifiedname>
+        <briefdescription>
+<para>Get the frequency scaling vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The current frequency scaling vector. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="707" column="8" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="707" bodyend="710"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1NoiseFunction_1a40c235c115a268592312e00c383ad581" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="array_8hpp_1a91ad9478d81a7aaf2593e8d9c3d06a14" kindref="member">uint</ref></type>
+        <definition>uint hmap::NoiseFunction::get_seed</definition>
+        <argsstring>() const</argsstring>
+        <name>get_seed</name>
+        <qualifiedname>hmap::NoiseFunction::get_seed</qualifiedname>
+        <briefdescription>
+<para>Get the random seed. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The current random seed. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="716" column="8" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="716" bodyend="719"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1NoiseFunction_1a75b08569040f1ce6b318d380d4967c0d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hmap::NoiseFunction::set_seed</definition>
+        <argsstring>(uint new_seed)</argsstring>
+        <name>set_seed</name>
+        <qualifiedname>hmap::NoiseFunction::set_seed</qualifiedname>
+        <reimplementedby refid="classhmap_1_1PerlinFunction_1ae75b79af5b8439bdbceb18d27cded150">set_seed</reimplementedby>
+        <reimplementedby refid="classhmap_1_1PerlinBillowFunction_1aac15bfbc3c383a6937c11374b83282f9">set_seed</reimplementedby>
+        <reimplementedby refid="classhmap_1_1PerlinHalfFunction_1a9c7e23b1a5c3e597dbdb2bf555f9cf12">set_seed</reimplementedby>
+        <reimplementedby refid="classhmap_1_1PerlinMixFunction_1a5a9b2b40231a3460fa8cb475a3c0a9da">set_seed</reimplementedby>
+        <reimplementedby refid="classhmap_1_1Simplex2Function_1a552c323e89c24eb19cb129b2babfd1ce">set_seed</reimplementedby>
+        <reimplementedby refid="classhmap_1_1Simplex2SFunction_1a68640705758e7d9d420bc92a927b89f3">set_seed</reimplementedby>
+        <reimplementedby refid="classhmap_1_1ValueNoiseFunction_1afda07f7cf9e14815e31436ad10c1bf35">set_seed</reimplementedby>
+        <reimplementedby refid="classhmap_1_1ValueCubicNoiseFunction_1a21bbed725c903e74442d3b018600cbb1">set_seed</reimplementedby>
+        <reimplementedby refid="classhmap_1_1ValueDelaunayNoiseFunction_1a71016b2cfa4c465d6dea7ae47e199aff">set_seed</reimplementedby>
+        <reimplementedby refid="classhmap_1_1ValueLinearNoiseFunction_1aa2d9d48d84b810f0b80c47891fe7b268">set_seed</reimplementedby>
+        <reimplementedby refid="classhmap_1_1WorleyFunction_1a1b43b6f8a602ee8b6159131bf16e6d07">set_seed</reimplementedby>
+        <reimplementedby refid="classhmap_1_1WorleyDoubleFunction_1a32cec14474912671deee673440d193f1">set_seed</reimplementedby>
+        <reimplementedby refid="classhmap_1_1GenericFractalFunction_1a29009b8473d71f0024685703aedb641b">set_seed</reimplementedby>
+        <reimplementedby refid="classhmap_1_1ParberryFunction_1ab0a4935178fb5f5a74e59769c7185f10">set_seed</reimplementedby>
+        <param>
+          <type><ref refid="array_8hpp_1a91ad9478d81a7aaf2593e8d9c3d06a14" kindref="member">uint</ref></type>
+          <declname>new_seed</declname>
+        </param>
+        <briefdescription>
+<para>Set a new random seed for noise generation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>new_seed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new random seed. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="725" column="16" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="725" bodyend="728"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1NoiseFunction_1a1618d5c2d235802470b4f7713695d281" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void hmap::NoiseFunction::set_kw</definition>
+        <argsstring>(Vec2&lt; float &gt; new_kw)</argsstring>
+        <name>set_kw</name>
+        <qualifiedname>hmap::NoiseFunction::set_kw</qualifiedname>
+        <reimplementedby refid="classhmap_1_1ValueDelaunayNoiseFunction_1ae1c04ec5e4e82a3f50b4985af3cf7d31">set_kw</reimplementedby>
+        <reimplementedby refid="classhmap_1_1ValueLinearNoiseFunction_1a31c396513eecafdef5385a2ef6440a11">set_kw</reimplementedby>
+        <reimplementedby refid="classhmap_1_1GenericFractalFunction_1a01f72c359ac852c53ce5830249eb6796">set_kw</reimplementedby>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+          <declname>new_kw</declname>
+        </param>
+        <briefdescription>
+<para>Set a new frequency scaling vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>new_kw</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The new frequency scaling vector. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="734" column="16" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="734" bodyend="737"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A class for generating noise functions. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The <computeroutput><ref refid="classhmap_1_1NoiseFunction" kindref="compound">NoiseFunction</ref></computeroutput> class provides an interface for generating noise-based functions. It inherits from the <computeroutput><ref refid="classhmap_1_1Function" kindref="compound">Function</ref></computeroutput> class and adds parameters for frequency scaling (<computeroutput>kw</computeroutput>) and a random seed (<computeroutput>seed</computeroutput>) to customize the noise generation. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>hmap::FbmFunction</label>
+        <link refid="classhmap_1_1FbmFunction"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>hmap::FbmIqFunction</label>
+        <link refid="classhmap_1_1FbmIqFunction"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>hmap::FbmJordanFunction</label>
+        <link refid="classhmap_1_1FbmJordanFunction"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>hmap::FbmPingpongFunction</label>
+        <link refid="classhmap_1_1FbmPingpongFunction"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>hmap::FbmRidgedFunction</label>
+        <link refid="classhmap_1_1FbmRidgedFunction"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>hmap::FbmSwissFunction</label>
+        <link refid="classhmap_1_1FbmSwissFunction"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hmap::Function</label>
+        <link refid="classhmap_1_1Function"/>
+      </node>
+      <node id="3">
+        <label>hmap::GenericFractalFunction</label>
+        <link refid="classhmap_1_1GenericFractalFunction"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hmap::NoiseFunction</label>
+        <link refid="classhmap_1_1NoiseFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>hmap::ParberryFunction</label>
+        <link refid="classhmap_1_1ParberryFunction"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>hmap::PerlinBillowFunction</label>
+        <link refid="classhmap_1_1PerlinBillowFunction"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>hmap::PerlinFunction</label>
+        <link refid="classhmap_1_1PerlinFunction"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>hmap::PerlinHalfFunction</label>
+        <link refid="classhmap_1_1PerlinHalfFunction"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>hmap::PerlinMixFunction</label>
+        <link refid="classhmap_1_1PerlinMixFunction"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>hmap::Simplex2Function</label>
+        <link refid="classhmap_1_1Simplex2Function"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>hmap::Simplex2SFunction</label>
+        <link refid="classhmap_1_1Simplex2SFunction"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>hmap::ValueCubicNoiseFunction</label>
+        <link refid="classhmap_1_1ValueCubicNoiseFunction"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>hmap::ValueDelaunayNoiseFunction</label>
+        <link refid="classhmap_1_1ValueDelaunayNoiseFunction"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>hmap::ValueLinearNoiseFunction</label>
+        <link refid="classhmap_1_1ValueLinearNoiseFunction"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>hmap::ValueNoiseFunction</label>
+        <link refid="classhmap_1_1ValueNoiseFunction"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>hmap::WorleyDoubleFunction</label>
+        <link refid="classhmap_1_1WorleyDoubleFunction"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>hmap::WorleyFunction</label>
+        <link refid="classhmap_1_1WorleyFunction"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>hmap::Vec2&lt; float &gt;</label>
+        <link refid="structhmap_1_1Vec2"/>
+      </node>
+      <node id="2">
+        <label>hmap::Function</label>
+        <link refid="classhmap_1_1Function"/>
+      </node>
+      <node id="1">
+        <label>hmap::NoiseFunction</label>
+        <link refid="classhmap_1_1NoiseFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>kw</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="HighMap/include/highmap/functions.hpp" line="675" column="1" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="676" bodyend="742"/>
+    <listofallmembers>
+      <member refid="classhmap_1_1Function_1a1f77a2faa84c84fb147f48af0bfbc96e" prot="public" virt="non-virtual"><scope>hmap::NoiseFunction</scope><name>Function</name></member>
+      <member refid="classhmap_1_1Function_1ae1f9e64626fb671ed37a45d09cf551e8" prot="public" virt="non-virtual"><scope>hmap::NoiseFunction</scope><name>Function</name></member>
+      <member refid="classhmap_1_1Function_1a32214e30c36be7650c47867fd14f6a0c" prot="public" virt="non-virtual"><scope>hmap::NoiseFunction</scope><name>get_delegate</name></member>
+      <member refid="classhmap_1_1NoiseFunction_1ae3ebc5789e25c4147b745427370be629" prot="public" virt="non-virtual"><scope>hmap::NoiseFunction</scope><name>get_kw</name></member>
+      <member refid="classhmap_1_1NoiseFunction_1a40c235c115a268592312e00c383ad581" prot="public" virt="non-virtual"><scope>hmap::NoiseFunction</scope><name>get_seed</name></member>
+      <member refid="classhmap_1_1Function_1a82fb7788314b339a062cb80115e2e1da" prot="public" virt="non-virtual"><scope>hmap::NoiseFunction</scope><name>get_value</name></member>
+      <member refid="classhmap_1_1NoiseFunction_1a6d7d9881bedbf82be095183cd36bf0a6" prot="protected" virt="non-virtual"><scope>hmap::NoiseFunction</scope><name>kw</name></member>
+      <member refid="classhmap_1_1NoiseFunction_1a9823b1c76555631d442f52a3d768c162" prot="public" virt="non-virtual"><scope>hmap::NoiseFunction</scope><name>NoiseFunction</name></member>
+      <member refid="classhmap_1_1NoiseFunction_1abf8560e5e4036c13ccac01e25b8fe899" prot="public" virt="non-virtual"><scope>hmap::NoiseFunction</scope><name>NoiseFunction</name></member>
+      <member refid="classhmap_1_1NoiseFunction_1ad075abd6473d4ab8ec811f30192fdb9b" prot="public" virt="non-virtual"><scope>hmap::NoiseFunction</scope><name>NoiseFunction</name></member>
+      <member refid="classhmap_1_1NoiseFunction_1a9f125dfcb60e4d9bd2b0fbc44b21d406" prot="protected" virt="non-virtual"><scope>hmap::NoiseFunction</scope><name>seed</name></member>
+      <member refid="classhmap_1_1Function_1a6163e6f231dc77a7e7d83e74d2b44abe" prot="public" virt="non-virtual"><scope>hmap::NoiseFunction</scope><name>set_delegate</name></member>
+      <member refid="classhmap_1_1NoiseFunction_1a1618d5c2d235802470b4f7713695d281" prot="public" virt="virtual"><scope>hmap::NoiseFunction</scope><name>set_kw</name></member>
+      <member refid="classhmap_1_1NoiseFunction_1a75b08569040f1ce6b318d380d4967c0d" prot="public" virt="virtual"><scope>hmap::NoiseFunction</scope><name>set_seed</name></member>
+      <member refid="classhmap_1_1Function_1a8efd89e31947f2508ce45b133e30322f" prot="public" virt="virtual"><scope>hmap::NoiseFunction</scope><name>~Function</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

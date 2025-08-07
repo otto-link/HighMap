@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classhmap_1_1BumpFunction" kind="class" language="C++" prot="public">
+    <compoundname>hmap::BumpFunction</compoundname>
+    <basecompoundref refid="classhmap_1_1Function" prot="public" virt="non-virtual">hmap::Function</basecompoundref>
+    <includes refid="functions_8hpp" local="no">functions.hpp</includes>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhmap_1_1BumpFunction_1affb0947701a602022d242613b244df72" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::BumpFunction::gain</definition>
+        <argsstring></argsstring>
+        <name>gain</name>
+        <qualifiedname>hmap::BumpFunction::gain</qualifiedname>
+        <briefdescription>
+<para>Gain value that controls the steepness of the bump. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="201" column="15" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="201" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1BumpFunction_1a95331eacf3f4fed187dbc1e00080c35d" prot="protected" static="no" mutable="no">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+        <definition>Vec2&lt;float&gt; hmap::BumpFunction::center</definition>
+        <argsstring></argsstring>
+        <name>center</name>
+        <qualifiedname>hmap::BumpFunction::center</qualifiedname>
+        <briefdescription>
+<para>Primitive reference center. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="202" column="8" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="202" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhmap_1_1BumpFunction_1a178d0bca834491174e38281174d8aa95" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hmap::BumpFunction::BumpFunction</definition>
+        <argsstring>(float gain, Vec2&lt; float &gt; center)</argsstring>
+        <name>BumpFunction</name>
+        <qualifiedname>hmap::BumpFunction::BumpFunction</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>gain</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+          <declname>center</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new Bump <ref refid="classhmap_1_1Function" kindref="compound">Function</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>gain</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Gain that controls the steepness of the bump. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>center</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Primitive reference center. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="198" column="3" bodyfile="HighMap/src/primitives/functions/functions.cpp" bodystart="89" bodyend="103"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Bump (x, y) function class. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class models a bump function with a specified gain and reference center. It extends the base <ref refid="classhmap_1_1Function" kindref="compound">Function</ref> class. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>hmap::BumpFunction</label>
+        <link refid="classhmap_1_1BumpFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hmap::Function</label>
+        <link refid="classhmap_1_1Function"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>hmap::Vec2&lt; float &gt;</label>
+        <link refid="structhmap_1_1Vec2"/>
+      </node>
+      <node id="1">
+        <label>hmap::BumpFunction</label>
+        <link refid="classhmap_1_1BumpFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>center</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hmap::Function</label>
+        <link refid="classhmap_1_1Function"/>
+      </node>
+    </collaborationgraph>
+    <location file="HighMap/include/highmap/functions.hpp" line="189" column="1" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="190" bodyend="203"/>
+    <listofallmembers>
+      <member refid="classhmap_1_1BumpFunction_1a178d0bca834491174e38281174d8aa95" prot="public" virt="non-virtual"><scope>hmap::BumpFunction</scope><name>BumpFunction</name></member>
+      <member refid="classhmap_1_1BumpFunction_1a95331eacf3f4fed187dbc1e00080c35d" prot="protected" virt="non-virtual"><scope>hmap::BumpFunction</scope><name>center</name></member>
+      <member refid="classhmap_1_1Function_1a1f77a2faa84c84fb147f48af0bfbc96e" prot="public" virt="non-virtual"><scope>hmap::BumpFunction</scope><name>Function</name></member>
+      <member refid="classhmap_1_1Function_1ae1f9e64626fb671ed37a45d09cf551e8" prot="public" virt="non-virtual"><scope>hmap::BumpFunction</scope><name>Function</name></member>
+      <member refid="classhmap_1_1BumpFunction_1affb0947701a602022d242613b244df72" prot="protected" virt="non-virtual"><scope>hmap::BumpFunction</scope><name>gain</name></member>
+      <member refid="classhmap_1_1Function_1a32214e30c36be7650c47867fd14f6a0c" prot="public" virt="non-virtual"><scope>hmap::BumpFunction</scope><name>get_delegate</name></member>
+      <member refid="classhmap_1_1Function_1a82fb7788314b339a062cb80115e2e1da" prot="public" virt="non-virtual"><scope>hmap::BumpFunction</scope><name>get_value</name></member>
+      <member refid="classhmap_1_1Function_1a6163e6f231dc77a7e7d83e74d2b44abe" prot="public" virt="non-virtual"><scope>hmap::BumpFunction</scope><name>set_delegate</name></member>
+      <member refid="classhmap_1_1Function_1a8efd89e31947f2508ce45b133e30322f" prot="public" virt="virtual"><scope>hmap::BumpFunction</scope><name>~Function</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

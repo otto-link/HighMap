@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classhmap_1_1GaussianPulseFunction" kind="class" language="C++" prot="public">
+    <compoundname>hmap::GaussianPulseFunction</compoundname>
+    <basecompoundref refid="classhmap_1_1Function" prot="public" virt="non-virtual">hmap::Function</basecompoundref>
+    <includes refid="functions_8hpp" local="no">functions.hpp</includes>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhmap_1_1GaussianPulseFunction_1ae2a824a67b6250f8952315b5ba4a1bc3" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::GaussianPulseFunction::sigma</definition>
+        <argsstring></argsstring>
+        <name>sigma</name>
+        <qualifiedname>hmap::GaussianPulseFunction::sigma</qualifiedname>
+        <briefdescription>
+<para>Pulse half-width. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="293" column="15" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="293" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1GaussianPulseFunction_1a453222c85362fe09c19bb1f1c2daf9a0" prot="protected" static="no" mutable="no">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+        <definition>Vec2&lt;float&gt; hmap::GaussianPulseFunction::center</definition>
+        <argsstring></argsstring>
+        <name>center</name>
+        <qualifiedname>hmap::GaussianPulseFunction::center</qualifiedname>
+        <briefdescription>
+<para>Primitive reference center. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="294" column="8" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="294" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classhmap_1_1GaussianPulseFunction_1a7b459b923552e3c3b44d39cb2ec0abb9" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::GaussianPulseFunction::inv_sigma2</definition>
+        <argsstring></argsstring>
+        <name>inv_sigma2</name>
+        <qualifiedname>hmap::GaussianPulseFunction::inv_sigma2</qualifiedname>
+        <briefdescription>
+<para>Cached squared inverse of the half-width. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="297" column="9" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="297" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhmap_1_1GaussianPulseFunction_1a2a6928a872749e2f064d1181ed36bbf2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hmap::GaussianPulseFunction::GaussianPulseFunction</definition>
+        <argsstring>(float sigma, Vec2&lt; float &gt; center)</argsstring>
+        <name>GaussianPulseFunction</name>
+        <qualifiedname>hmap::GaussianPulseFunction::GaussianPulseFunction</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>sigma</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+          <declname>center</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new GaussianPulse <ref refid="classhmap_1_1Function" kindref="compound">Function</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pulse half-width (with respect to a unit domain). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>center</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Primitive reference center. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="279" column="3" bodyfile="HighMap/src/primitives/functions/functions.cpp" bodystart="154" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1GaussianPulseFunction_1aee45551cd4b5e2df61e13e0fc90a0c98" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::GaussianPulseFunction::set_sigma</definition>
+        <argsstring>(float new_sigma)</argsstring>
+        <name>set_sigma</name>
+        <qualifiedname>hmap::GaussianPulseFunction::set_sigma</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>new_sigma</declname>
+        </param>
+        <briefdescription>
+<para>Set the half-width. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>new_sigma</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New half-width. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="286" column="8" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="286" bodyend="290"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>GaussianPulse (x, y) function class. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class models a gaussian pulse function. It extends the base <ref refid="classhmap_1_1Function" kindref="compound">Function</ref> class. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>hmap::Function</label>
+        <link refid="classhmap_1_1Function"/>
+      </node>
+      <node id="1">
+        <label>hmap::GaussianPulseFunction</label>
+        <link refid="classhmap_1_1GaussianPulseFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>hmap::Vec2&lt; float &gt;</label>
+        <link refid="structhmap_1_1Vec2"/>
+      </node>
+      <node id="2">
+        <label>hmap::Function</label>
+        <link refid="classhmap_1_1Function"/>
+      </node>
+      <node id="1">
+        <label>hmap::GaussianPulseFunction</label>
+        <link refid="classhmap_1_1GaussianPulseFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>center</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="HighMap/include/highmap/functions.hpp" line="270" column="1" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="271" bodyend="298"/>
+    <listofallmembers>
+      <member refid="classhmap_1_1GaussianPulseFunction_1a453222c85362fe09c19bb1f1c2daf9a0" prot="protected" virt="non-virtual"><scope>hmap::GaussianPulseFunction</scope><name>center</name></member>
+      <member refid="classhmap_1_1Function_1a1f77a2faa84c84fb147f48af0bfbc96e" prot="public" virt="non-virtual"><scope>hmap::GaussianPulseFunction</scope><name>Function</name></member>
+      <member refid="classhmap_1_1Function_1ae1f9e64626fb671ed37a45d09cf551e8" prot="public" virt="non-virtual"><scope>hmap::GaussianPulseFunction</scope><name>Function</name></member>
+      <member refid="classhmap_1_1GaussianPulseFunction_1a2a6928a872749e2f064d1181ed36bbf2" prot="public" virt="non-virtual"><scope>hmap::GaussianPulseFunction</scope><name>GaussianPulseFunction</name></member>
+      <member refid="classhmap_1_1Function_1a32214e30c36be7650c47867fd14f6a0c" prot="public" virt="non-virtual"><scope>hmap::GaussianPulseFunction</scope><name>get_delegate</name></member>
+      <member refid="classhmap_1_1Function_1a82fb7788314b339a062cb80115e2e1da" prot="public" virt="non-virtual"><scope>hmap::GaussianPulseFunction</scope><name>get_value</name></member>
+      <member refid="classhmap_1_1GaussianPulseFunction_1a7b459b923552e3c3b44d39cb2ec0abb9" prot="private" virt="non-virtual"><scope>hmap::GaussianPulseFunction</scope><name>inv_sigma2</name></member>
+      <member refid="classhmap_1_1Function_1a6163e6f231dc77a7e7d83e74d2b44abe" prot="public" virt="non-virtual"><scope>hmap::GaussianPulseFunction</scope><name>set_delegate</name></member>
+      <member refid="classhmap_1_1GaussianPulseFunction_1aee45551cd4b5e2df61e13e0fc90a0c98" prot="public" virt="non-virtual"><scope>hmap::GaussianPulseFunction</scope><name>set_sigma</name></member>
+      <member refid="classhmap_1_1GaussianPulseFunction_1ae2a824a67b6250f8952315b5ba4a1bc3" prot="protected" virt="non-virtual"><scope>hmap::GaussianPulseFunction</scope><name>sigma</name></member>
+      <member refid="classhmap_1_1Function_1a8efd89e31947f2508ce45b133e30322f" prot="public" virt="virtual"><scope>hmap::GaussianPulseFunction</scope><name>~Function</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

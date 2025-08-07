@@ -1,0 +1,303 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structhmap_1_1Particle" kind="struct" language="C++" prot="public">
+    <compoundname>hmap::Particle</compoundname>
+    <includes refid="particles_8hpp" local="no">particles.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structhmap_1_1Particle_1a222658f8cbd80a6694ce8c8bdd48b73a" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::Particle::c_capacity</definition>
+        <argsstring></argsstring>
+        <name>c_capacity</name>
+        <qualifiedname>hmap::Particle::c_capacity</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/particles.hpp" line="39" column="9" bodyfile="HighMap/include/highmap/internal/particles.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Particle_1a2acb2e8abff32ae56a4c10bd18320e9b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::Particle::c_erosion</definition>
+        <argsstring></argsstring>
+        <name>c_erosion</name>
+        <qualifiedname>hmap::Particle::c_erosion</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/particles.hpp" line="40" column="9" bodyfile="HighMap/include/highmap/internal/particles.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Particle_1a7bc8b314a9be4b840b0035a661565f50" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::Particle::c_deposition</definition>
+        <argsstring></argsstring>
+        <name>c_deposition</name>
+        <qualifiedname>hmap::Particle::c_deposition</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/particles.hpp" line="41" column="9" bodyfile="HighMap/include/highmap/internal/particles.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Particle_1abb13d46c7c952be43c11e9e7d494a063" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::Particle::c_inertia</definition>
+        <argsstring></argsstring>
+        <name>c_inertia</name>
+        <qualifiedname>hmap::Particle::c_inertia</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/particles.hpp" line="42" column="9" bodyfile="HighMap/include/highmap/internal/particles.hpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Particle_1a9fe6d66398ff6cc1d74b308339d23cc8" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::Particle::drag_rate</definition>
+        <argsstring></argsstring>
+        <name>drag_rate</name>
+        <qualifiedname>hmap::Particle::drag_rate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/particles.hpp" line="43" column="9" bodyfile="HighMap/include/highmap/internal/particles.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Particle_1ab2b144ca00a4749b96dd99947cb4ef39" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::Particle::sediment</definition>
+        <argsstring></argsstring>
+        <name>sediment</name>
+        <qualifiedname>hmap::Particle::sediment</qualifiedname>
+        <initializer>= 0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/particles.hpp" line="46" column="9" bodyfile="HighMap/include/highmap/internal/particles.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Particle_1a5547cd4ba43e9f495b1a40543837b968" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::Particle::volume</definition>
+        <argsstring></argsstring>
+        <name>volume</name>
+        <qualifiedname>hmap::Particle::volume</qualifiedname>
+        <initializer>= 0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/particles.hpp" line="47" column="9" bodyfile="HighMap/include/highmap/internal/particles.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Particle_1a562e380263d7ec95a836210440438fd6" prot="public" static="no" mutable="no">
+        <type><ref refid="structhmap_1_1Pos" kindref="compound">Pos</ref></type>
+        <definition>Pos hmap::Particle::pos</definition>
+        <argsstring></argsstring>
+        <name>pos</name>
+        <qualifiedname>hmap::Particle::pos</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/particles.hpp" line="50" column="15" bodyfile="HighMap/include/highmap/internal/particles.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Particle_1a3ef8fe111090f3eb88d5e307ec46617f" prot="public" static="no" mutable="no">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+        <definition>Vec2&lt;float&gt; hmap::Particle::vel</definition>
+        <argsstring></argsstring>
+        <name>vel</name>
+        <qualifiedname>hmap::Particle::vel</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/particles.hpp" line="51" column="8" bodyfile="HighMap/include/highmap/internal/particles.hpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Particle_1a4445403784eef25349ae658bce615281" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::Particle::vnorm</definition>
+        <argsstring></argsstring>
+        <name>vnorm</name>
+        <qualifiedname>hmap::Particle::vnorm</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/particles.hpp" line="52" column="15" bodyfile="HighMap/include/highmap/internal/particles.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Particle_1aec443049972d7785719450352b13024b" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hmap::Particle::vlim</definition>
+        <argsstring></argsstring>
+        <name>vlim</name>
+        <qualifiedname>hmap::Particle::vlim</qualifiedname>
+        <initializer>= 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/particles.hpp" line="53" column="15" bodyfile="HighMap/include/highmap/internal/particles.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Particle_1a309083ce9d3d68a1375dfa428d858b59" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool hmap::Particle::is_active</definition>
+        <argsstring></argsstring>
+        <name>is_active</name>
+        <qualifiedname>hmap::Particle::is_active</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/particles.hpp" line="54" column="15" bodyfile="HighMap/include/highmap/internal/particles.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structhmap_1_1Particle_1aac5e0fcce44d71a064500d531ee0dee4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hmap::Particle::Particle</definition>
+        <argsstring>(float c_capacity, float c_erosion, float c_deposition, float c_inertia, float drag_rate)</argsstring>
+        <name>Particle</name>
+        <qualifiedname>hmap::Particle::Particle</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>c_capacity</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>c_erosion</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>c_deposition</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>c_inertia</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>drag_rate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/particles.hpp" line="57" column="3" bodyfile="HighMap/src/particles/particles.cpp" bodystart="12" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1Particle_1a18d28e7255f4745e296c3d8ecf3c307c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Particle::move</definition>
+        <argsstring>(const Array &amp;h, float dt)</argsstring>
+        <name>move</name>
+        <qualifiedname>hmap::Particle::move</qualifiedname>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>h</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>dt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/particles.hpp" line="64" column="8" bodyfile="HighMap/src/particles/particles.cpp" bodystart="25" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1Particle_1a03fef1381cdbac9a0424433146aa41b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Particle::set_xy</definition>
+        <argsstring>(float x, float y)</argsstring>
+        <name>set_xy</name>
+        <qualifiedname>hmap::Particle::set_xy</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/particles.hpp" line="66" column="8" bodyfile="HighMap/src/particles/particles.cpp" bodystart="73" bodyend="81"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>hmap::Vec2&lt; float &gt;</label>
+        <link refid="structhmap_1_1Vec2"/>
+      </node>
+      <node id="1">
+        <label>hmap::Particle</label>
+        <link refid="structhmap_1_1Particle"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>pos</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>vel</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hmap::Pos</label>
+        <link refid="structhmap_1_1Pos"/>
+      </node>
+    </collaborationgraph>
+    <location file="HighMap/include/highmap/internal/particles.hpp" line="36" column="1" bodyfile="HighMap/include/highmap/internal/particles.hpp" bodystart="37" bodyend="67"/>
+    <listofallmembers>
+      <member refid="structhmap_1_1Particle_1a222658f8cbd80a6694ce8c8bdd48b73a" prot="public" virt="non-virtual"><scope>hmap::Particle</scope><name>c_capacity</name></member>
+      <member refid="structhmap_1_1Particle_1a7bc8b314a9be4b840b0035a661565f50" prot="public" virt="non-virtual"><scope>hmap::Particle</scope><name>c_deposition</name></member>
+      <member refid="structhmap_1_1Particle_1a2acb2e8abff32ae56a4c10bd18320e9b" prot="public" virt="non-virtual"><scope>hmap::Particle</scope><name>c_erosion</name></member>
+      <member refid="structhmap_1_1Particle_1abb13d46c7c952be43c11e9e7d494a063" prot="public" virt="non-virtual"><scope>hmap::Particle</scope><name>c_inertia</name></member>
+      <member refid="structhmap_1_1Particle_1a9fe6d66398ff6cc1d74b308339d23cc8" prot="public" virt="non-virtual"><scope>hmap::Particle</scope><name>drag_rate</name></member>
+      <member refid="structhmap_1_1Particle_1a309083ce9d3d68a1375dfa428d858b59" prot="public" virt="non-virtual"><scope>hmap::Particle</scope><name>is_active</name></member>
+      <member refid="structhmap_1_1Particle_1a18d28e7255f4745e296c3d8ecf3c307c" prot="public" virt="non-virtual"><scope>hmap::Particle</scope><name>move</name></member>
+      <member refid="structhmap_1_1Particle_1aac5e0fcce44d71a064500d531ee0dee4" prot="public" virt="non-virtual"><scope>hmap::Particle</scope><name>Particle</name></member>
+      <member refid="structhmap_1_1Particle_1a562e380263d7ec95a836210440438fd6" prot="public" virt="non-virtual"><scope>hmap::Particle</scope><name>pos</name></member>
+      <member refid="structhmap_1_1Particle_1ab2b144ca00a4749b96dd99947cb4ef39" prot="public" virt="non-virtual"><scope>hmap::Particle</scope><name>sediment</name></member>
+      <member refid="structhmap_1_1Particle_1a03fef1381cdbac9a0424433146aa41b2" prot="public" virt="non-virtual"><scope>hmap::Particle</scope><name>set_xy</name></member>
+      <member refid="structhmap_1_1Particle_1a3ef8fe111090f3eb88d5e307ec46617f" prot="public" virt="non-virtual"><scope>hmap::Particle</scope><name>vel</name></member>
+      <member refid="structhmap_1_1Particle_1aec443049972d7785719450352b13024b" prot="public" virt="non-virtual"><scope>hmap::Particle</scope><name>vlim</name></member>
+      <member refid="structhmap_1_1Particle_1a4445403784eef25349ae658bce615281" prot="public" virt="non-virtual"><scope>hmap::Particle</scope><name>vnorm</name></member>
+      <member refid="structhmap_1_1Particle_1a5547cd4ba43e9f495b1a40543837b968" prot="public" virt="non-virtual"><scope>hmap::Particle</scope><name>volume</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

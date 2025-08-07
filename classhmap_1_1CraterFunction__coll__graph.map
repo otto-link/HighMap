@@ -1,0 +1,7 @@
+<map id="hmap::CraterFunction" name="hmap::CraterFunction">
+<area shape="rect" id="Node000001" title="Crater (x, y) function class." alt="" coords="67,93,229,119"/>
+<area shape="rect" id="Node000002" href="$classhmap_1_1Function.html" title="A class that wraps a callable entity taking three floats and returning a float." alt="" coords="5,5,128,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,39,139,91,135,95,85,43"/>
+<area shape="rect" id="Node000003" href="$structhmap_1_1Vec2.html" title=" " alt="" coords="152,5,309,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="212,43,161,95,158,91,208,39"/>
+</map>

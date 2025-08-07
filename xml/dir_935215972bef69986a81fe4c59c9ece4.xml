@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_935215972bef69986a81fe4c59c9ece4" kind="dir">
+    <compoundname>HighMap/src/interpolate</compoundname>
+    <innerfile refid="interpolate1d_8cpp">interpolate1d.cpp</innerfile>
+    <innerfile refid="interpolate2d_8cpp">interpolate2d.cpp</innerfile>
+    <innerfile refid="interpolate__array_8cpp">interpolate_array.cpp</innerfile>
+    <innerfile refid="interpolate__array__gpu_8cpp">interpolate_array_gpu.cpp</innerfile>
+    <innerfile refid="interpolate__curve_8cpp">interpolate_curve.cpp</innerfile>
+    <innerfile refid="interpolate__heightmap_8cpp">interpolate_heightmap.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="HighMap/src/interpolate/"/>
+  </compounddef>
+</doxygen>

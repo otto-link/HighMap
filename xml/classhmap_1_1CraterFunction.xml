@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classhmap_1_1CraterFunction" kind="class" language="C++" prot="public">
+    <compoundname>hmap::CraterFunction</compoundname>
+    <basecompoundref refid="classhmap_1_1Function" prot="public" virt="non-virtual">hmap::Function</basecompoundref>
+    <includes refid="functions_8hpp" local="no">functions.hpp</includes>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classhmap_1_1CraterFunction_1adae66715438224e2baf42c710132a856" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::CraterFunction::radius</definition>
+        <argsstring></argsstring>
+        <name>radius</name>
+        <qualifiedname>hmap::CraterFunction::radius</qualifiedname>
+        <briefdescription>
+<para>Radius of the crater. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="234" column="15" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="234" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1CraterFunction_1a22cd542ac531801292f1616de8ac4c4a" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::CraterFunction::depth</definition>
+        <argsstring></argsstring>
+        <name>depth</name>
+        <qualifiedname>hmap::CraterFunction::depth</qualifiedname>
+        <briefdescription>
+<para>Depth of the crater. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="235" column="15" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="235" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1CraterFunction_1a63b0e7af7d92d3090e32a4b31d9e69c2" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::CraterFunction::lip_decay</definition>
+        <argsstring></argsstring>
+        <name>lip_decay</name>
+        <qualifiedname>hmap::CraterFunction::lip_decay</qualifiedname>
+        <briefdescription>
+<para>Decay rate of the crater&apos;s lip. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="236" column="15" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="236" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1CraterFunction_1af2b79780902a1088c500476267163cbe" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::CraterFunction::lip_height_ratio</definition>
+        <argsstring></argsstring>
+        <name>lip_height_ratio</name>
+        <qualifiedname>hmap::CraterFunction::lip_height_ratio</qualifiedname>
+        <briefdescription>
+<para>Height ratio of the crater&apos;s lip. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="237" column="15" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="237" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classhmap_1_1CraterFunction_1a3e77322d1dccf43f983359435489c21a" prot="protected" static="no" mutable="no">
+        <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+        <definition>Vec2&lt;float&gt; hmap::CraterFunction::center</definition>
+        <argsstring></argsstring>
+        <name>center</name>
+        <qualifiedname>hmap::CraterFunction::center</qualifiedname>
+        <briefdescription>
+<para>Primitive reference center. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="238" column="8" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="238" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhmap_1_1CraterFunction_1aa7f43909502764f30dffddcbc313023d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hmap::CraterFunction::CraterFunction</definition>
+        <argsstring>(float radius, float depth, float lip_decay, float lip_height_ratio, Vec2&lt; float &gt; center)</argsstring>
+        <name>CraterFunction</name>
+        <qualifiedname>hmap::CraterFunction::CraterFunction</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>radius</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>depth</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>lip_decay</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>lip_height_ratio</declname>
+        </param>
+        <param>
+          <type><ref refid="structhmap_1_1Vec2" kindref="compound">Vec2</ref>&lt; float &gt;</type>
+          <declname>center</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new Crater <ref refid="classhmap_1_1Function" kindref="compound">Function</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>radius</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Radius of the crater (with respect to a unit domain). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>depth</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Depth of the crater (with respect to a unit domain). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lip_decay</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Decay rate of the crater&apos;s lip (with respect to a unit domain). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>lip_height_ratio</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Height ratio of the crater&apos;s lip. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>center</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Primitive reference center. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/functions.hpp" line="227" column="3" bodyfile="HighMap/src/primitives/functions/functions.cpp" bodystart="105" bodyend="132"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Crater (x, y) function class. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class models a crater function with specified radius, depth, lip decay, lip height ratio, and reference center. It extends the base <ref refid="classhmap_1_1Function" kindref="compound">Function</ref> class. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>hmap::CraterFunction</label>
+        <link refid="classhmap_1_1CraterFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hmap::Function</label>
+        <link refid="classhmap_1_1Function"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>hmap::Vec2&lt; float &gt;</label>
+        <link refid="structhmap_1_1Vec2"/>
+      </node>
+      <node id="1">
+        <label>hmap::CraterFunction</label>
+        <link refid="classhmap_1_1CraterFunction"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>center</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hmap::Function</label>
+        <link refid="classhmap_1_1Function"/>
+      </node>
+    </collaborationgraph>
+    <location file="HighMap/include/highmap/functions.hpp" line="212" column="1" bodyfile="HighMap/include/highmap/functions.hpp" bodystart="213" bodyend="239"/>
+    <listofallmembers>
+      <member refid="classhmap_1_1CraterFunction_1a3e77322d1dccf43f983359435489c21a" prot="protected" virt="non-virtual"><scope>hmap::CraterFunction</scope><name>center</name></member>
+      <member refid="classhmap_1_1CraterFunction_1aa7f43909502764f30dffddcbc313023d" prot="public" virt="non-virtual"><scope>hmap::CraterFunction</scope><name>CraterFunction</name></member>
+      <member refid="classhmap_1_1CraterFunction_1a22cd542ac531801292f1616de8ac4c4a" prot="protected" virt="non-virtual"><scope>hmap::CraterFunction</scope><name>depth</name></member>
+      <member refid="classhmap_1_1Function_1a1f77a2faa84c84fb147f48af0bfbc96e" prot="public" virt="non-virtual"><scope>hmap::CraterFunction</scope><name>Function</name></member>
+      <member refid="classhmap_1_1Function_1ae1f9e64626fb671ed37a45d09cf551e8" prot="public" virt="non-virtual"><scope>hmap::CraterFunction</scope><name>Function</name></member>
+      <member refid="classhmap_1_1Function_1a32214e30c36be7650c47867fd14f6a0c" prot="public" virt="non-virtual"><scope>hmap::CraterFunction</scope><name>get_delegate</name></member>
+      <member refid="classhmap_1_1Function_1a82fb7788314b339a062cb80115e2e1da" prot="public" virt="non-virtual"><scope>hmap::CraterFunction</scope><name>get_value</name></member>
+      <member refid="classhmap_1_1CraterFunction_1a63b0e7af7d92d3090e32a4b31d9e69c2" prot="protected" virt="non-virtual"><scope>hmap::CraterFunction</scope><name>lip_decay</name></member>
+      <member refid="classhmap_1_1CraterFunction_1af2b79780902a1088c500476267163cbe" prot="protected" virt="non-virtual"><scope>hmap::CraterFunction</scope><name>lip_height_ratio</name></member>
+      <member refid="classhmap_1_1CraterFunction_1adae66715438224e2baf42c710132a856" prot="protected" virt="non-virtual"><scope>hmap::CraterFunction</scope><name>radius</name></member>
+      <member refid="classhmap_1_1Function_1a6163e6f231dc77a7e7d83e74d2b44abe" prot="public" virt="non-virtual"><scope>hmap::CraterFunction</scope><name>set_delegate</name></member>
+      <member refid="classhmap_1_1Function_1a8efd89e31947f2508ce45b133e30322f" prot="public" virt="virtual"><scope>hmap::CraterFunction</scope><name>~Function</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,62 @@
+\doxysection{High\+Map/include/highmap/transform.hpp File Reference}
+\hypertarget{transform_8hpp}{}\label{transform_8hpp}\index{HighMap/include/highmap/transform.hpp@{HighMap/include/highmap/transform.hpp}}
+
+
+Header file for array transformation functions including rotation, flipping, warping, and transposition.  
+
+
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\item 
+namespace \mbox{\hyperlink{namespacehmap_1_1gpu}{hmap\+::gpu}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacehmap_a19dec938e688ef4b73cf27ff3934043b}{hmap\+::flip\+\_\+lr}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array)
+\begin{DoxyCompactList}\small\item\em Flip the array horizontally (left/right). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a2c304fc0d8cefe164e3070c885b43aaa}{hmap\+::flip\+\_\+ud}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array)
+\begin{DoxyCompactList}\small\item\em Flip the array vertically (up/down). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a5a621a9b245b5f9a4c9e5aa3ba3bbee0}{hmap\+::rot180}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array)
+\begin{DoxyCompactList}\small\item\em Rotate the array by 180 degrees. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a836dbf6645c0e60bd887d6f14210b9d3}{hmap\+::rot270}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array)
+\begin{DoxyCompactList}\small\item\em Rotate the array by 270 degrees. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_ab2362d8dcac398c859dd4ec37214af01}{hmap\+::rot90}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array)
+\begin{DoxyCompactList}\small\item\em Rotate the array by 90 degrees. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a888dcfe5adb36448366400f04efcde04}{hmap\+::rotate}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float \mbox{\hyperlink{namespacehmap_aac71bb6c14edc17967957f7918acdbdd}{angle}}, bool zoom\+\_\+in=true, bool zero\+\_\+padding=false)
+\begin{DoxyCompactList}\small\item\em Rotate the array by a specified angle. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a9b059a298d27843519baa3b6bfe291cd}{hmap\+::transpose}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array)
+\begin{DoxyCompactList}\small\item\em Return the transposed array. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a7b342891b252b6156d3a0c20ec57fe90}{hmap\+::translate}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float dx, float dy, bool periodic=false, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+x=nullptr, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+y=nullptr, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\})
+\begin{DoxyCompactList}\small\item\em Translates a 2D array by a specified amount along the x and y axes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a19148ad2a95f7ad5b05161e9a0f0f732}{hmap\+::warp}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+dx, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+dy)
+\begin{DoxyCompactList}\small\item\em Apply a warping effect to the array. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_accbbc6e5bedf98c7a7fa85fbe364194e}{hmap\+::warp\+\_\+directional}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float \mbox{\hyperlink{namespacehmap_aac71bb6c14edc17967957f7918acdbdd}{angle}}, float amount=0.\+02\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, int ir=4, bool reverse=false)
+\begin{DoxyCompactList}\small\item\em Apply a warping effect following the downward local gradient direction (deflate/inflate effect). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a6b780e74228ec5cca45602eb19b8975c}{hmap\+::warp\+\_\+directional}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float \mbox{\hyperlink{namespacehmap_aac71bb6c14edc17967957f7918acdbdd}{angle}}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+mask, float amount=0.\+02\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, int ir=4, bool reverse=false)
+\begin{DoxyCompactList}\small\item\em Apply a warping effect following the downward local gradient direction (deflate/inflate effect) with a mask. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a5d5baa80ff76a31a24e3b348edb0520a}{hmap\+::warp\+\_\+downslope}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float amount=0.\+02\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, int ir=4, bool reverse=false)
+\begin{DoxyCompactList}\small\item\em Apply a warping effect following the downward local gradient direction (deflate/inflate effect). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a2dba417aca5a0dcd02509617939d741b}{hmap\+::warp\+\_\+downslope}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+mask, float amount=0.\+02\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, int ir=4, bool reverse=false)
+\begin{DoxyCompactList}\small\item\em Apply a warping effect following the downward local gradient direction (deflate/inflate effect) with a mask. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_aa49ad80ba2711183ea6758d6d6d4d5f7}{hmap\+::zoom}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float zoom\+\_\+factor, bool periodic=false, \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ float $>$ center=\{0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+x=nullptr, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+y=nullptr, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\})
+\begin{DoxyCompactList}\small\item\em Applies a zoom effect to a 2D array with an adjustable center. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_1_1gpu_aab128e15988875b5d350d6f156612aa5}{hmap\+::gpu\+::rotate}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float \mbox{\hyperlink{namespacehmap_aac71bb6c14edc17967957f7918acdbdd}{angle}}, bool zoom\+\_\+in=true)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_a888dcfe5adb36448366400f04efcde04}{hmap\+::rotate}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_1_1gpu_a99659d06f84b0e92e6731f28ca28937c}{hmap\+::gpu\+::warp}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+dx, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+dy)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_a19148ad2a95f7ad5b05161e9a0f0f732}{hmap\+::warp}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for array transformation functions including rotation, flipping, warping, and transposition. 
+
+\begin{DoxyAuthor}{Author}
+Otto Link (\href{mailto:otto.link.bv@gmail.com}{\texttt{ otto.\+link.\+bv@gmail.\+com}}) 
+\end{DoxyAuthor}
+This header file provides declarations for various functions used to transform arrays in different ways. It includes functionalities for rotating arrays, flipping them horizontally or vertically, applying warping effects, and transposing arrays. These transformations are useful in image processing, data manipulation, and other applications requiring geometric modifications of arrays.
+
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 Otto Link 
+\end{DoxyCopyright}

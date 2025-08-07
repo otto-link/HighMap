@@ -1,0 +1,38 @@
+\doxysection{High\+Map/src/erosion/thermal\+\_\+gpu.cpp File Reference}
+\hypertarget{thermal__gpu_8cpp}{}\label{thermal__gpu_8cpp}\index{HighMap/src/erosion/thermal\_gpu.cpp@{HighMap/src/erosion/thermal\_gpu.cpp}}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\item 
+namespace \mbox{\hyperlink{namespacehmap_1_1gpu}{hmap\+::gpu}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacehmap_1_1gpu_a2eb4bdf2d7dc4441e56865027764425e}{hmap\+::gpu\+::thermal}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&talus, int iterations=10, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+bedrock=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+deposition\+\_\+map=nullptr)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_ab6221592aa07d117715b474afab7db1c}{hmap\+::thermal}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_1_1gpu_a1be1d9c97f7da805703dadab064fb793}{hmap\+::gpu\+::thermal}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+mask, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&talus, int iterations=10, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+bedrock=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+deposition\+\_\+map=nullptr)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_ab6221592aa07d117715b474afab7db1c}{hmap\+::thermal}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_1_1gpu_aac5f0e0045cf767611fb8d2def2c4cb5}{hmap\+::gpu\+::thermal}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, float talus, int iterations=10, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+bedrock=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+deposition\+\_\+map=nullptr)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_ab6221592aa07d117715b474afab7db1c}{hmap\+::thermal}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_1_1gpu_a36a2eba6d158e44d0ef917d9582987fe}{hmap\+::gpu\+::thermal\+\_\+auto\+\_\+bedrock}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&talus, int iterations=10, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+deposition\+\_\+map=nullptr)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_acbd2a3c82ec3ce4eaf77dbc92d580321}{hmap\+::thermal\+\_\+auto\+\_\+bedrock}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_1_1gpu_ac87a6d725bf0751510f6b1f426a8af27}{hmap\+::gpu\+::thermal\+\_\+auto\+\_\+bedrock}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, float, int iterations=10, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+deposition\+\_\+map=nullptr)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_acbd2a3c82ec3ce4eaf77dbc92d580321}{hmap\+::thermal\+\_\+auto\+\_\+bedrock}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_1_1gpu_ad5bd9a318918350b56ccc887139ca554}{hmap\+::gpu\+::thermal\+\_\+auto\+\_\+bedrock}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+mask, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&talus, int iterations=10, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+deposition\+\_\+map=nullptr)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_acbd2a3c82ec3ce4eaf77dbc92d580321}{hmap\+::thermal\+\_\+auto\+\_\+bedrock}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_1_1gpu_ae57a1e9bd94f218d4be17c9d8be012c3}{hmap\+::gpu\+::thermal\+\_\+inflate}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&talus, int iterations=10)
+\begin{DoxyCompactList}\small\item\em Apply thermal weathering erosion to give a scree like effect. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_1_1gpu_a72c9d220589d2724b4e48e9c37ff55ad}{hmap\+::gpu\+::thermal\+\_\+inflate}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+mask, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&talus, int iterations=10)
+\begin{DoxyCompactList}\small\item\em This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_1_1gpu_afabf7cb3077839af03388c0d1236d912}{hmap\+::gpu\+::thermal\+\_\+rib}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int iterations, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+bedrock=nullptr)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_a4ca4c918ef88ea4fc16e25c7017e15c9}{hmap\+::thermal\+\_\+rib}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_1_1gpu_a1489150d5e1af976a9f814b9911b3ea0}{hmap\+::gpu\+::thermal\+\_\+ridge}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&talus, int iterations=10, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+deposition\+\_\+map=nullptr)
+\begin{DoxyCompactList}\small\item\em Apply thermal weathering erosion to give a ridge like effect. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_1_1gpu_ad0a05ed0beea669300d62197a0dadaf2}{hmap\+::gpu\+::thermal\+\_\+ridge}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+mask, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&talus, int iterations=10, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+deposition\+\_\+map=nullptr)
+\begin{DoxyCompactList}\small\item\em This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_1_1gpu_a87339ed12fc8a86b1f59e351b06e67e6}{hmap\+::gpu\+::thermal\+\_\+scree}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&talus, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&zmax, int iterations=10, bool talus\+\_\+constraint=true, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+deposition\+\_\+map=nullptr)
+\begin{DoxyCompactList}\small\item\em Performs thermal scree erosion on a heightmap. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_1_1gpu_a112228c7b9ebff5463329da76d00fff1}{hmap\+::gpu\+::thermal\+\_\+scree}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+mask, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&talus, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&zmax, int iterations=10, bool talus\+\_\+constraint=true, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+deposition\+\_\+map=nullptr)
+\begin{DoxyCompactList}\small\item\em This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \end{DoxyCompactList}\end{DoxyCompactItemize}

@@ -1,0 +1,5 @@
+<map id="hmap::Array" name="hmap::Array">
+<area shape="rect" id="Node000001" title="Array class, helper to manipulate 2D float array with &quot;(i, j)&quot; indexing." alt="" coords="5,5,108,31"/>
+<area shape="rect" id="Node000002" href="$classhmap_1_1Tile.html" title="Tile class, to manipulate a restricted region of an heightmap (with contextual informations)." alt="" coords="11,79,102,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="59,44,59,79,54,79,54,44"/>
+</map>

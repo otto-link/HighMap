@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structhmap_1_1Pos" kind="struct" language="C++" prot="public">
+    <compoundname>hmap::Pos</compoundname>
+    <includes refid="particles_8hpp" local="no">particles.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structhmap_1_1Pos_1af5905f099364a5e3b2f22e4d0489e870" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::Pos::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <qualifiedname>hmap::Pos::x</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/particles.hpp" line="28" column="9" bodyfile="HighMap/include/highmap/internal/particles.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Pos_1adeb88ba0e2503cab592cfa94795c9f9a" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::Pos::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <qualifiedname>hmap::Pos::y</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/particles.hpp" line="29" column="9" bodyfile="HighMap/include/highmap/internal/particles.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Pos_1a2ae9877f46f0fde4c22f1820b6d243ab" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hmap::Pos::i</definition>
+        <argsstring></argsstring>
+        <name>i</name>
+        <qualifiedname>hmap::Pos::i</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/particles.hpp" line="30" column="9" bodyfile="HighMap/include/highmap/internal/particles.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Pos_1a5350d73ae336fd44609e3a0c72c76c78" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hmap::Pos::j</definition>
+        <argsstring></argsstring>
+        <name>j</name>
+        <qualifiedname>hmap::Pos::j</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/particles.hpp" line="31" column="9" bodyfile="HighMap/include/highmap/internal/particles.hpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Pos_1a33ddf06bcbb181e1de3a2556ba73d78c" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::Pos::u</definition>
+        <argsstring></argsstring>
+        <name>u</name>
+        <qualifiedname>hmap::Pos::u</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/particles.hpp" line="32" column="9" bodyfile="HighMap/include/highmap/internal/particles.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Pos_1ac25b27d114c9e5e065f11d6ca6468df8" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::Pos::v</definition>
+        <argsstring></argsstring>
+        <name>v</name>
+        <qualifiedname>hmap::Pos::v</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/internal/particles.hpp" line="33" column="9" bodyfile="HighMap/include/highmap/internal/particles.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="HighMap/include/highmap/internal/particles.hpp" line="26" column="1" bodyfile="HighMap/include/highmap/internal/particles.hpp" bodystart="27" bodyend="34"/>
+    <listofallmembers>
+      <member refid="structhmap_1_1Pos_1a2ae9877f46f0fde4c22f1820b6d243ab" prot="public" virt="non-virtual"><scope>hmap::Pos</scope><name>i</name></member>
+      <member refid="structhmap_1_1Pos_1a5350d73ae336fd44609e3a0c72c76c78" prot="public" virt="non-virtual"><scope>hmap::Pos</scope><name>j</name></member>
+      <member refid="structhmap_1_1Pos_1a33ddf06bcbb181e1de3a2556ba73d78c" prot="public" virt="non-virtual"><scope>hmap::Pos</scope><name>u</name></member>
+      <member refid="structhmap_1_1Pos_1ac25b27d114c9e5e065f11d6ca6468df8" prot="public" virt="non-virtual"><scope>hmap::Pos</scope><name>v</name></member>
+      <member refid="structhmap_1_1Pos_1af5905f099364a5e3b2f22e4d0489e870" prot="public" virt="non-virtual"><scope>hmap::Pos</scope><name>x</name></member>
+      <member refid="structhmap_1_1Pos_1adeb88ba0e2503cab592cfa94795c9f9a" prot="public" virt="non-virtual"><scope>hmap::Pos</scope><name>y</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

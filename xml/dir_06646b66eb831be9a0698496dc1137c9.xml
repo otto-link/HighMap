@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_06646b66eb831be9a0698496dc1137c9" kind="dir">
+    <compoundname>HighMap/include/highmap</compoundname>
+    <innerdir refid="dir_4b50d38dbb9a706f2e01389671935eb1">HighMap/include/highmap/dbg</innerdir>
+    <innerdir refid="dir_e3886812acc4a770a1eeec0ffad797b7">HighMap/include/highmap/geometry</innerdir>
+    <innerdir refid="dir_82014d7f7e4330eda10391193d6d8c10">HighMap/include/highmap/internal</innerdir>
+    <innerdir refid="dir_0bbe76a3bf266ee6a809b4127139d936">HighMap/include/highmap/multiscale</innerdir>
+    <innerdir refid="dir_e47ebac3a1b43abbbafa1ff9f643dddd">HighMap/include/highmap/opencl</innerdir>
+    <innerfile refid="algebra_8hpp">algebra.hpp</innerfile>
+    <innerfile refid="array_8hpp">array.hpp</innerfile>
+    <innerfile refid="authoring_8hpp">authoring.hpp</innerfile>
+    <innerfile refid="blending_8hpp">blending.hpp</innerfile>
+    <innerfile refid="boundary_8hpp">boundary.hpp</innerfile>
+    <innerfile refid="colorize_8hpp">colorize.hpp</innerfile>
+    <innerfile refid="colormaps_8hpp">colormaps.hpp</innerfile>
+    <innerfile refid="convolve_8hpp">convolve.hpp</innerfile>
+    <innerfile refid="coord__frame_8hpp">coord_frame.hpp</innerfile>
+    <innerfile refid="curvature_8hpp">curvature.hpp</innerfile>
+    <innerfile refid="erosion_8hpp">erosion.hpp</innerfile>
+    <innerfile refid="export_8hpp">export.hpp</innerfile>
+    <innerfile refid="features_8hpp">features.hpp</innerfile>
+    <innerfile refid="filters_8hpp">filters.hpp</innerfile>
+    <innerfile refid="functions_8hpp">functions.hpp</innerfile>
+    <innerfile refid="gradient_8hpp">gradient.hpp</innerfile>
+    <innerfile refid="heightmap_8hpp">heightmap.hpp</innerfile>
+    <innerfile refid="hydrology_8hpp">hydrology.hpp</innerfile>
+    <innerfile refid="interpolate1d_8hpp">interpolate1d.hpp</innerfile>
+    <innerfile refid="interpolate2d_8hpp">interpolate2d.hpp</innerfile>
+    <innerfile refid="interpolate__array_8hpp">interpolate_array.hpp</innerfile>
+    <innerfile refid="interpolate__curve_8hpp">interpolate_curve.hpp</innerfile>
+    <innerfile refid="kernels_8hpp">kernels.hpp</innerfile>
+    <innerfile refid="math_8hpp">math.hpp</innerfile>
+    <innerfile refid="morphology_8hpp">morphology.hpp</innerfile>
+    <innerfile refid="operator_8hpp">operator.hpp</innerfile>
+    <innerfile refid="primitives_8hpp">primitives.hpp</innerfile>
+    <innerfile refid="range_8hpp">range.hpp</innerfile>
+    <innerfile refid="roads_8hpp">roads.hpp</innerfile>
+    <innerfile refid="sdf_8hpp">sdf.hpp</innerfile>
+    <innerfile refid="selector_8hpp">selector.hpp</innerfile>
+    <innerfile refid="shadows_8hpp">shadows.hpp</innerfile>
+    <innerfile refid="shortest__path_8hpp">shortest_path.hpp</innerfile>
+    <innerfile refid="synthesis_8hpp">synthesis.hpp</innerfile>
+    <innerfile refid="tensor_8hpp">tensor.hpp</innerfile>
+    <innerfile refid="transform_8hpp">transform.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="HighMap/include/highmap/"/>
+  </compounddef>
+</doxygen>

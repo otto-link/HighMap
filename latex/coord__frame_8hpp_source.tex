@@ -1,0 +1,89 @@
+\doxysection{coord\+\_\+frame.\+hpp}
+\hypertarget{coord__frame_8hpp_source}{}\label{coord__frame_8hpp_source}\index{HighMap/include/highmap/coord\_frame.hpp@{HighMap/include/highmap/coord\_frame.hpp}}
+\mbox{\hyperlink{coord__frame_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ Copyright\ (c)\ 2023\ Otto\ Link.\ Distributed\ under\ the\ terms\ of\ the\ GNU\ General}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ \ \ Public\ License.\ The\ full\ license\ is\ in\ the\ file\ LICENSE,\ distributed\ with}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ \ this\ software.\ */}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{algebra_8hpp}{highmap/algebra.hpp}}"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{heightmap_8hpp}{highmap/heightmap.hpp}}"{}}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacehmap}{hmap}}}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classhmap_1_1CoordFrame}{CoordFrame}}}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \mbox{\hyperlink{classhmap_1_1CoordFrame_ab015ceb2231eee4beeee57ee07bb19f3}{CoordFrame}}();}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \mbox{\hyperlink{classhmap_1_1CoordFrame_ab015ceb2231eee4beeee57ee07bb19f3}{CoordFrame}}(\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2<float>}}\ origin,\ \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2<float>}}\ size,\ \textcolor{keywordtype}{float}\ rotation\_angle);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \textcolor{comment}{//\ Getters}}
+\DoxyCodeLine{00031\ \ \ \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2<float>}}\ \mbox{\hyperlink{classhmap_1_1CoordFrame_a36fcc247066a8f861e54ce601c011a2b}{get\_origin}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00032\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>origin;}
+\DoxyCodeLine{00034\ \ \ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2<float>}}\ \mbox{\hyperlink{classhmap_1_1CoordFrame_ad287a48d7ec9ce91213d67895f471bbd}{get\_size}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00037\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>size;}
+\DoxyCodeLine{00039\ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1CoordFrame_aebce63606ddca495d41de463cafb33bd}{get\_rotation\_angle}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \textcolor{comment}{//\ Setters}}
+\DoxyCodeLine{00044\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1CoordFrame_a03b6f72775d839e2fbe9b244c7d860e1}{set\_origin}}(\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2<float>}}\ new\_origin)}
+\DoxyCodeLine{00045\ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ this-\/>origin\ =\ new\_origin;}
+\DoxyCodeLine{00047\ \ \ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1CoordFrame_a38eeb1a63ec5bfd703549d5edd916b89}{set\_size}}(\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2<float>}}\ new\_size)}
+\DoxyCodeLine{00050\ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ this-\/>size\ =\ new\_size;}
+\DoxyCodeLine{00052\ \ \ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1CoordFrame_a309642c71a4058665a48427b0c9248fc}{set\_rotation\_angle}}(\textcolor{keywordtype}{float}\ new\_angle);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \textcolor{comment}{//\ Methods}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4<float>}}\ \mbox{\hyperlink{classhmap_1_1CoordFrame_aec33c4aa81bf7c9da22122ae3e8b8967}{compute\_bounding\_box}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1CoordFrame_a2aa2757fdf9392b46fe8a68471e276de}{get\_heightmap\_value\_bilinear}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}}\ \&h,}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ gx,}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ gy,}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ fill\_value\ =\ 0.f)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1CoordFrame_a2036bedca813d27d6845a258f673fac2}{get\_heightmap\_value\_nearest}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Heightmap}{Heightmap}}\ \&h,}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ gx,}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ gy,}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ fill\_value\ =\ 0.f)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classhmap_1_1CoordFrame_a712f76df08417fcffc44b704e4ddd1be}{is\_point\_within}}(\textcolor{keywordtype}{float}\ gx,\ \textcolor{keywordtype}{float}\ gy)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2<float>}}\ \mbox{\hyperlink{classhmap_1_1CoordFrame_a695f820d6db87e1502cb6562a4e37586}{map\_to\_global\_coords}}(\textcolor{keywordtype}{float}\ rx,\ \textcolor{keywordtype}{float}\ ry)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \textcolor{comment}{//\ relative\ coords\ always\ in\ [0,\ 1]\ x\ [0,\ 1]\ (unit\ square)}}
+\DoxyCodeLine{00075\ \ \ \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2<float>}}\ \mbox{\hyperlink{classhmap_1_1CoordFrame_a714e286bb111d3055ea4a4976ebeb43a}{map\_to\_relative\_coords}}(\textcolor{keywordtype}{float}\ gx,\ \textcolor{keywordtype}{float}\ gy)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1CoordFrame_af1f76997d4d33cc1cc1e63ffb1ca3ebd}{normalized\_distance\_to\_edges}}(\textcolor{keywordtype}{float}\ gx,\ \textcolor{keywordtype}{float}\ gy)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1CoordFrame_ab1c8fa8ed0244f4a54759253b629255c}{normalized\_shape\_factor}}(\textcolor{keywordtype}{float}\ gx,\ \textcolor{keywordtype}{float}\ gy)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00082\ \ \ \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2<float>}}\ origin;}
+\DoxyCodeLine{00083\ \ \ \mbox{\hyperlink{structhmap_1_1Vec2}{Vec2<float>}}\ size;}
+\DoxyCodeLine{00084\ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ rotation\_angle;}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \textcolor{keywordtype}{float}\ cos\_angle;}
+\DoxyCodeLine{00087\ \ \ \textcolor{keywordtype}{float}\ sin\_angle;}
+\DoxyCodeLine{00088\ \};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \}\ \textcolor{comment}{//\ namespace\ hmap}}
+
+\end{DoxyCode}

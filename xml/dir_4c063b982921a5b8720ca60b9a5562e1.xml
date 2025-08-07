@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_4c063b982921a5b8720ca60b9a5562e1" kind="dir">
+    <compoundname>HighMap/src/filters</compoundname>
+    <innerfile refid="diffusion__retargeting_8cpp">diffusion_retargeting.cpp</innerfile>
+    <innerfile refid="directional__blur_8cpp">directional_blur.cpp</innerfile>
+    <innerfile refid="faceted_8cpp">faceted.cpp</innerfile>
+    <innerfile refid="filters_8cpp">filters.cpp</innerfile>
+    <innerfile refid="filters__gpu_8cpp">filters_gpu.cpp</innerfile>
+    <innerfile refid="recast_8cpp">recast.cpp</innerfile>
+    <innerfile refid="recurve_8cpp">recurve.cpp</innerfile>
+    <innerfile refid="tesselate_8cpp">tesselate.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="HighMap/src/filters/"/>
+  </compounddef>
+</doxygen>

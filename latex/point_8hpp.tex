@@ -1,0 +1,74 @@
+\doxysection{High\+Map/include/highmap/geometry/point.hpp File Reference}
+\hypertarget{point_8hpp}{}\label{point_8hpp}\index{HighMap/include/highmap/geometry/point.hpp@{HighMap/include/highmap/geometry/point.hpp}}
+
+
+Defines a class for representing and manipulating 3D points.  
+
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classhmap_1_1Point}{hmap\+::\+Point}}
+\begin{DoxyCompactList}\small\item\em A class to represent and manipulate 2D points that can carry a value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{namespacehmap_aac71bb6c14edc17967957f7918acdbdd}{hmap\+::angle}} (const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p1, const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p2)
+\begin{DoxyCompactList}\small\item\em Computes the angle between two points relative to the x-\/axis. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{namespacehmap_a1f02679c93973b91046f26960bf266d4}{hmap\+::angle}} (const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p0, const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p1, const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p2)
+\begin{DoxyCompactList}\small\item\em Computes the angle formed by three points with the reference point as the origin. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{namespacehmap_a81ad5d7feec9716598307f4de02d47de}{hmap\+::cross\+\_\+product}} (const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p0, const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p1, const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p2)
+\begin{DoxyCompactList}\small\item\em Computes the 2D cross product of vectors formed by three points. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{namespacehmap_a30122e874f6a99af65954458cc9e4de9}{hmap\+::curvature}} (const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p1, const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p2, const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p3)
+\begin{DoxyCompactList}\small\item\em Calculates the curvature formed by three points in 2D space. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{namespacehmap_a567410971127d39a9e3c2d7b75364def}{hmap\+::distance}} (const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p1, const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p2)
+\begin{DoxyCompactList}\small\item\em Calculates the distance between two points. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Point}{Point}} \mbox{\hyperlink{namespacehmap_ac5cbdd19410027f3d4e26fd68fd9bdb7}{hmap\+::interp\+\_\+bezier}} (const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p\+\_\+start, const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p\+\_\+ctrl\+\_\+start, const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p\+\_\+ctrl\+\_\+end, const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p\+\_\+end, float t)
+\begin{DoxyCompactList}\small\item\em Performs a cubic Bezier interpolation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Point}{Point}} \mbox{\hyperlink{namespacehmap_af148c924b422baa2e359e0788b7392d0}{hmap\+::interp\+\_\+bspline}} (const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p0, const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p1, const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p2, const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p3, float t)
+\begin{DoxyCompactList}\small\item\em Performs a cubic B-\/spline interpolation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Point}{Point}} \mbox{\hyperlink{namespacehmap_ac7a93fe9501041332e1ff7a128742c6f}{hmap\+::interp\+\_\+catmullrom}} (const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p0, const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p1, const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p2, const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p3, float t)
+\begin{DoxyCompactList}\small\item\em Performs a Catmull-\/\+Rom spline interpolation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Point}{Point}} \mbox{\hyperlink{namespacehmap_aab4ce9b01f013efdc3dd817da4177737}{hmap\+::interp\+\_\+decasteljau}} (const std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Point}{Point}} $>$ \&points, float t)
+\begin{DoxyCompactList}\small\item\em Performs a De Casteljau algorithm-\/based interpolation for Bezier curves. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ \mbox{\hyperlink{namespacehmap_a61b30a7773960b38e0a231e240a64af6}{hmap\+::intersect\+\_\+bounding\+\_\+boxes}} (const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ \&bbox1, const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ \&bbox2)
+\begin{DoxyCompactList}\small\item\em Determines the intersection of two bounding boxes. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacehmap_a0c5a341999c6f1b64fd04f2a6bd6dd66}{hmap\+::is\+\_\+point\+\_\+within\+\_\+bounding\+\_\+box}} (\mbox{\hyperlink{classhmap_1_1Point}{Point}} p, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ bbox)
+\begin{DoxyCompactList}\small\item\em Checks if a point is within a specified bounding box. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacehmap_abcecf8666a7291e978c81ba31eae37a4}{hmap\+::is\+\_\+point\+\_\+within\+\_\+bounding\+\_\+box}} (float x, float y, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ bbox)
+\begin{DoxyCompactList}\small\item\em Checks if a point is within a specified bounding box. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Point}{Point}} \mbox{\hyperlink{namespacehmap_ac14815cf025b7430d31d08125a5c6f0d}{hmap\+::lerp}} (const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p1, const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p2, float t)
+\begin{DoxyCompactList}\small\item\em Linearly interpolates between two points. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Point}{Point}} \mbox{\hyperlink{namespacehmap_a520a1e42c4e492e81b334914807abc22}{hmap\+::midpoint}} (const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p1, const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p2, int orientation, float distance\+\_\+ratio, float t=0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+\begin{DoxyCompactList}\small\item\em Computes the midpoint displacement in 1D with a perpendicular displacement. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a69877ef43645c767daa0735fde59821c}{hmap\+::sort\+\_\+points}} (std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Point}{Point}} $>$ \&points)
+\begin{DoxyCompactList}\small\item\em Sorts a vector of points in ascending order based on their coordinates. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{namespacehmap_a9249226d73f4396157c1c6415ebf3a7c}{hmap\+::triangle\+\_\+area}} (const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p1, const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p2, const \mbox{\hyperlink{classhmap_1_1Point}{Point}} \&p3)
+\begin{DoxyCompactList}\small\item\em Calculates the area of a triangle formed by three points in 2D space. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ \mbox{\hyperlink{namespacehmap_a4910efa1a82d5dd66d7d02a87fab7e7a}{hmap\+::unit\+\_\+square\+\_\+bbox}} ()
+\begin{DoxyCompactList}\small\item\em Constructs a 4D bounding box for a unit square. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Defines a class for representing and manipulating 3D points. 
+
+\begin{DoxyAuthor}{Author}
+Otto Link (\href{mailto:otto.link.bv@gmail.com}{\texttt{ otto.\+link.\+bv@gmail.\+com}}) 
+\end{DoxyAuthor}
+This file contains the definition of the {\ttfamily Point3} class, which represents a point in 2D space with {\ttfamily x}, {\ttfamily y}, carrying a vlue {\ttfamily v}. The class includes basic vector operations such as addition, subtraction, and scalar multiplication. It also provides functionality for linear interpolation between two points.
+
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/06-\/18
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023
+\end{DoxyCopyright}
+This software is distributed under the terms of the GNU General Public License. The full license is in the file LICENSE, distributed with this software. 

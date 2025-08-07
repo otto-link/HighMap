@@ -1,0 +1,80 @@
+\doxysection{features.\+hpp}
+\hypertarget{features_8hpp_source}{}\label{features_8hpp_source}\index{HighMap/include/highmap/features.hpp@{HighMap/include/highmap/features.hpp}}
+\mbox{\hyperlink{features_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ Copyright\ (c)\ 2023\ Otto\ Link.\ Distributed\ under\ the\ terms\ of\ the\ GNU\ General}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ \ \ Public\ License.\ The\ full\ license\ is\ in\ the\ file\ LICENSE,\ distributed\ with}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ \ this\ software.\ */}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{array_8hpp}{highmap/array.hpp}}"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ HMAP\_PACK8(a,\ b,\ c,\ d,\ e,\ f,\ g,\ h)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\ \ ((a\ <<\ 15)\ +\ (b\ <<\ 13)\ +\ (c\ <<\ 11)\ +\ (d\ <<\ 9)\ +\ (e\ <<\ 7)\ +\ (f\ <<\ 5)\ +\ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\ \ \ (g\ <<\ 3)\ +\ (h\ <<\ 1))}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacehmap}{hmap}}}
+\DoxyCodeLine{00045\ \{}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00082\ Array\ \mbox{\hyperlink{namespacehmap_a9f8b079598b5ab3850c747ece6c81345}{connected\_components}}(\textcolor{keyword}{const}\ Array\ \&array,}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ surface\_threshold\ =\ 0.f,}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ background\_value\ =\ 0.f);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00117\ Array\ \mbox{\hyperlink{namespacehmap_aa60fa2d3f02d1e064b520fa1623200d0}{geomorphons}}(\textcolor{keyword}{const}\ Array\ \&array,\ \textcolor{keywordtype}{int}\ irmin,\ \textcolor{keywordtype}{int}\ irmax,\ \textcolor{keywordtype}{float}\ epsilon);}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00169\ Array\ \mbox{\hyperlink{namespacehmap_ae19d507d917f1f4cbc61fc76cc5baab0}{kmeans\_clustering2}}(\textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \&array1,}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \&array2,}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nclusters,}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Array>\ *p\_scoring\ =\ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Array\ \ \ \ \ \ \ \ \ \ \ \ \ \ *p\_aggregate\_scoring\ =\ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Vec2<float>\ \ \ \ \ \ \ \ \ weights\ =\ \{1.f,\ 1.f\},}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seed\ =\ 1);}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00220\ Array\ \mbox{\hyperlink{namespacehmap_ac177e8615e697e3096737cb21a15f3ed}{kmeans\_clustering3}}(\textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \&array1,}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \&array2,}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \&array3,}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nclusters,}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Array>\ *p\_scoring\ =\ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Array\ \ \ \ \ \ \ \ \ \ \ \ \ \ *p\_aggregate\_scoring\ =\ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Vec3<float>\ \ \ \ \ \ \ \ \ weights\ =\ \{1.f,\ 1.f,\ 1.f\},}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{array_8hpp_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seed\ =\ 1);}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00256\ Array\ \mbox{\hyperlink{namespacehmap_a9b6a1d2ca8ef58a4a0605d04bcbff038}{local\_median\_deviation}}(\textcolor{keyword}{const}\ Array\ \&array,\ \textcolor{keywordtype}{int}\ ir);}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00281\ Array\ \mbox{\hyperlink{namespacehmap_a39d52250df1825ecea1e63309d94d1fb}{mean\_local}}(\textcolor{keyword}{const}\ Array\ \&array,\ \textcolor{keywordtype}{int}\ ir);}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00308\ Array\ \mbox{\hyperlink{namespacehmap_a941d446cad19c166f4f6c4df857dba65}{relative\_elevation}}(\textcolor{keyword}{const}\ Array\ \&array,\ \textcolor{keywordtype}{int}\ ir);}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00331\ Array\ \mbox{\hyperlink{namespacehmap_af4ec8b5be149e6749fdf09759daf1e9e}{ruggedness}}(\textcolor{keyword}{const}\ Array\ \&array,\ \textcolor{keywordtype}{int}\ ir);}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00357\ Array\ \mbox{\hyperlink{namespacehmap_a85e411c67e97deb8459f25d4440546c3}{rugosity}}(\textcolor{keyword}{const}\ Array\ \&z,\ \textcolor{keywordtype}{int}\ ir,\ \textcolor{keywordtype}{bool}\ convex\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00382\ Array\ \mbox{\hyperlink{namespacehmap_a0157f72a2a70dae28d0767a13739f4b5}{std\_local}}(\textcolor{keyword}{const}\ Array\ \&array,\ \textcolor{keywordtype}{int}\ ir);}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00418\ Array\ \mbox{\hyperlink{namespacehmap_ab4d8048b79080012b8e60c270de8137f}{valley\_width}}(\textcolor{keyword}{const}\ Array\ \&z,\ \textcolor{keywordtype}{int}\ ir\ =\ 0,\ \textcolor{keywordtype}{bool}\ ridge\_select\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00420\ Array\ \mbox{\hyperlink{namespacehmap_a732a83c92c4a2d232fc9f421f98c0c6b}{z\_score}}(\textcolor{keyword}{const}\ Array\ \&array,\ \textcolor{keywordtype}{int}\ ir);}
+\DoxyCodeLine{00421\ }
+\DoxyCodeLine{00422\ \}\ \textcolor{comment}{//\ namespace\ hmap}}
+\DoxyCodeLine{00423\ }
+\DoxyCodeLine{00424\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacehmap_1_1gpu}{hmap::gpu}}}
+\DoxyCodeLine{00425\ \{}
+\DoxyCodeLine{00426\ }
+\DoxyCodeLine{00428\ Array\ \mbox{\hyperlink{namespacehmap_1_1gpu_a022f5800d7e28f79f9e2d3abf687f490}{local\_median\_deviation}}(\textcolor{keyword}{const}\ Array\ \&array,\ \textcolor{keywordtype}{int}\ ir);}
+\DoxyCodeLine{00429\ }
+\DoxyCodeLine{00431\ Array\ \mbox{\hyperlink{namespacehmap_1_1gpu_afed4e84e60dd0cdc453e7da72940ed27}{mean\_local}}(\textcolor{keyword}{const}\ Array\ \&array,\ \textcolor{keywordtype}{int}\ ir);}
+\DoxyCodeLine{00432\ }
+\DoxyCodeLine{00434\ Array\ \mbox{\hyperlink{namespacehmap_1_1gpu_a2dcbc7dac085b61f3c47e17256741a9a}{relative\_elevation}}(\textcolor{keyword}{const}\ Array\ \&array,\ \textcolor{keywordtype}{int}\ ir);}
+\DoxyCodeLine{00435\ }
+\DoxyCodeLine{00437\ Array\ \mbox{\hyperlink{namespacehmap_1_1gpu_a62292cc4bf9f6eb5c7b63b1e26f8cc88}{ruggedness}}(\textcolor{keyword}{const}\ Array\ \&array,\ \textcolor{keywordtype}{int}\ ir);}
+\DoxyCodeLine{00438\ }
+\DoxyCodeLine{00440\ Array\ \mbox{\hyperlink{namespacehmap_1_1gpu_aa5a3e087822525c41f057a51255e2bad}{rugosity}}(\textcolor{keyword}{const}\ Array\ \&z,\ \textcolor{keywordtype}{int}\ ir,\ \textcolor{keywordtype}{bool}\ convex\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00441\ }
+\DoxyCodeLine{00443\ Array\ \mbox{\hyperlink{namespacehmap_1_1gpu_aa5f9b68baa2c17c23c8f21708e8fac9e}{std\_local}}(\textcolor{keyword}{const}\ Array\ \&array,\ \textcolor{keywordtype}{int}\ ir);}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00446\ Array\ \mbox{\hyperlink{namespacehmap_1_1gpu_a802ae2cfde5f1a4124ebd0bd2f2dc6c4}{z\_score}}(\textcolor{keyword}{const}\ Array\ \&array,\ \textcolor{keywordtype}{int}\ ir);}
+\DoxyCodeLine{00447\ }
+\DoxyCodeLine{00448\ \}\ \textcolor{comment}{//\ namespace\ hmap::gpu}}
+
+\end{DoxyCode}

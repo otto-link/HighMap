@@ -1,0 +1,42 @@
+\doxysection{High\+Map/include/highmap/colorize.hpp File Reference}
+\hypertarget{colorize_8hpp}{}\label{colorize_8hpp}\index{HighMap/include/highmap/colorize.hpp@{HighMap/include/highmap/colorize.hpp}}
+
+
+Header file for functions related to applying colorization and hillshading.  
+
+
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacehmap_a4960846742ad118ec9eadaba40ca39ac}{hmap\+::apply\+\_\+hillshade}} (\mbox{\hyperlink{classhmap_1_1Tensor}{Tensor}} \&img, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float vmin=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float vmax=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float exponent=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+\begin{DoxyCompactList}\small\item\em Apply hillshading to a \doxylink{classhmap_1_1Tensor}{Tensor} image. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_aefc8cbe645337bb5b663436c0324f9e2}{hmap\+::apply\+\_\+hillshade}} (std\+::vector$<$ uint8\+\_\+t $>$ \&img, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float vmin=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float vmax=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float exponent=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, bool is\+\_\+img\+\_\+rgba=false)
+\begin{DoxyCompactList}\small\item\em Apply hillshading to an 8-\/bit image. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Tensor}{Tensor}} \mbox{\hyperlink{namespacehmap_a33a635351aa13228557a585470ba4563}{hmap\+::colorize}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float vmin, float vmax, int cmap, bool hillshading, bool reverse=false, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise=nullptr)
+\begin{DoxyCompactList}\small\item\em Apply colorization to an array. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Tensor}{Tensor}} \mbox{\hyperlink{namespacehmap_aa76bdaf8b572bcea0778ef8815965307}{hmap\+::colorize\+\_\+grayscale}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array)
+\begin{DoxyCompactList}\small\item\em Convert an array to a grayscale image. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Tensor}{Tensor}} \mbox{\hyperlink{namespacehmap_afda3d37dc8fba4a56818964784d2178b}{hmap\+::colorize\+\_\+histogram}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array)
+\begin{DoxyCompactList}\small\item\em Convert an array to a histogram-\/based grayscale image. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Tensor}{Tensor}} \mbox{\hyperlink{namespacehmap_aa60f142e186d43472cdda569c03b31b2}{hmap\+::colorize\+\_\+slope\+\_\+height\+\_\+heatmap}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int cmap)
+\begin{DoxyCompactList}\small\item\em Colorizes a slope height heatmap based on the gradient norms of a given array. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Tensor}{Tensor}} \mbox{\hyperlink{namespacehmap_a9f21720d5e7b1c93e0d5b50631f1ca8f}{hmap\+::colorize\+\_\+vec2}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array1, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array2)
+\begin{DoxyCompactList}\small\item\em Combine two arrays into a colored image. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for functions related to applying colorization and hillshading. 
+
+\begin{DoxyAuthor}{Author}
+Otto Link (\href{mailto:otto.link.bv@gmail.com}{\texttt{ otto.\+link.\+bv@gmail.\+com}}) 
+\end{DoxyAuthor}
+This file contains the declarations of functions that are used to apply colorization and hillshading effects to images and arrays. The functions allow for creating grayscale, histogram-\/based, and colored images from elevation data and other input arrays.
+
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 Otto Link 
+\end{DoxyCopyright}

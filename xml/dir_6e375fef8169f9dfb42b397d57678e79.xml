@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_6e375fef8169f9dfb42b397d57678e79" kind="dir">
+    <compoundname>HighMap/src/morphology</compoundname>
+    <innerfile refid="distance__transform_8cpp">distance_transform.cpp</innerfile>
+    <innerfile refid="distance__transform__approx_8cpp">distance_transform_approx.cpp</innerfile>
+    <innerfile refid="morphology_8cpp">morphology.cpp</innerfile>
+    <innerfile refid="morphology__gpu_8cpp">morphology_gpu.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="HighMap/src/morphology/"/>
+  </compounddef>
+</doxygen>

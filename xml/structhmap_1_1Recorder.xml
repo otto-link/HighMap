@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structhmap_1_1Recorder" kind="struct" language="C++" prot="public">
+    <compoundname>hmap::Recorder</compoundname>
+    <includes refid="timer_8hpp" local="no">timer.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structhmap_1_1Recorder_1a383fac701048b5d6717ed4c007161ba3" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string hmap::Recorder::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <qualifiedname>hmap::Recorder::name</qualifiedname>
+        <briefdescription>
+<para>The name of the event. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/dbg/timer.hpp" line="59" column="15" bodyfile="HighMap/include/highmap/dbg/timer.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Recorder_1ad553f417348e2de1e528eaacdfbf2d5e" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hmap::Recorder::nb_calls</definition>
+        <argsstring></argsstring>
+        <name>nb_calls</name>
+        <qualifiedname>hmap::Recorder::nb_calls</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>The number of times the event has been recorded. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/dbg/timer.hpp" line="60" column="7" bodyfile="HighMap/include/highmap/dbg/timer.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Recorder_1a0ec174294138be0e1d677a7c33011959" prot="public" static="no" mutable="no">
+        <type>std::chrono::high_resolution_clock::time_point</type>
+        <definition>std::chrono::high_resolution_clock::time_point hmap::Recorder::t0</definition>
+        <argsstring></argsstring>
+        <name>t0</name>
+        <qualifiedname>hmap::Recorder::t0</qualifiedname>
+        <briefdescription>
+<para>The start time of the event. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/dbg/timer.hpp" line="62" column="9" bodyfile="HighMap/include/highmap/dbg/timer.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Recorder_1af6f300d4c80eabfbaf57fdbebde9062e" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::Recorder::total</definition>
+        <argsstring></argsstring>
+        <name>total</name>
+        <qualifiedname>hmap::Recorder::total</qualifiedname>
+        <initializer>= 0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+<para>The total time recorded for the event. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/dbg/timer.hpp" line="63" column="9" bodyfile="HighMap/include/highmap/dbg/timer.hpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structhmap_1_1Recorder_1a91405999f103db680d9c0445a5e8c807" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>hmap::Recorder::Recorder</definition>
+        <argsstring>(std::string name)</argsstring>
+        <name>Recorder</name>
+        <qualifiedname>hmap::Recorder::Recorder</qualifiedname>
+        <param>
+          <type>std::string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a new <ref refid="structhmap_1_1Recorder" kindref="compound">Recorder</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the event to be recorded. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/dbg/timer.hpp" line="41" column="3" bodyfile="HighMap/src/dbg/timer.cpp" bodystart="10" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1Recorder_1ac5bd6628a256636229047bbc12ced680" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Recorder::dump</definition>
+        <argsstring>()</argsstring>
+        <name>dump</name>
+        <qualifiedname>hmap::Recorder::dump</qualifiedname>
+        <briefdescription>
+<para>Outputs the timing data to the console. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/dbg/timer.hpp" line="46" column="8" bodyfile="HighMap/src/dbg/timer.cpp" bodystart="14" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1Recorder_1ad758a2382f097ff1fb636744e902aa49" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Recorder::start</definition>
+        <argsstring>()</argsstring>
+        <name>start</name>
+        <qualifiedname>hmap::Recorder::start</qualifiedname>
+        <briefdescription>
+<para>Starts the timer for this <ref refid="structhmap_1_1Recorder" kindref="compound">Recorder</ref> instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/dbg/timer.hpp" line="51" column="8" bodyfile="HighMap/src/dbg/timer.cpp" bodystart="22" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1Recorder_1aba9c05c56a1c5a769f12467684735add" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Recorder::stop</definition>
+        <argsstring>()</argsstring>
+        <name>stop</name>
+        <qualifiedname>hmap::Recorder::stop</qualifiedname>
+        <briefdescription>
+<para>Stops the timer for this <ref refid="structhmap_1_1Recorder" kindref="compound">Recorder</ref> instance and updates the total elapsed time. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/dbg/timer.hpp" line="57" column="8" bodyfile="HighMap/src/dbg/timer.cpp" bodystart="28" bodyend="36"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The <ref refid="structhmap_1_1Recorder" kindref="compound">Recorder</ref> class is responsible for recording timing information for individual events. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>hmap::Recorder</label>
+        <link refid="structhmap_1_1Recorder"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>name</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="2">
+        <label>std::string</label>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="HighMap/include/highmap/dbg/timer.hpp" line="33" column="1" bodyfile="HighMap/include/highmap/dbg/timer.hpp" bodystart="34" bodyend="64"/>
+    <listofallmembers>
+      <member refid="structhmap_1_1Recorder_1ac5bd6628a256636229047bbc12ced680" prot="public" virt="non-virtual"><scope>hmap::Recorder</scope><name>dump</name></member>
+      <member refid="structhmap_1_1Recorder_1a383fac701048b5d6717ed4c007161ba3" prot="public" virt="non-virtual"><scope>hmap::Recorder</scope><name>name</name></member>
+      <member refid="structhmap_1_1Recorder_1ad553f417348e2de1e528eaacdfbf2d5e" prot="public" virt="non-virtual"><scope>hmap::Recorder</scope><name>nb_calls</name></member>
+      <member refid="structhmap_1_1Recorder_1a91405999f103db680d9c0445a5e8c807" prot="public" virt="non-virtual"><scope>hmap::Recorder</scope><name>Recorder</name></member>
+      <member refid="structhmap_1_1Recorder_1ad758a2382f097ff1fb636744e902aa49" prot="public" virt="non-virtual"><scope>hmap::Recorder</scope><name>start</name></member>
+      <member refid="structhmap_1_1Recorder_1aba9c05c56a1c5a769f12467684735add" prot="public" virt="non-virtual"><scope>hmap::Recorder</scope><name>stop</name></member>
+      <member refid="structhmap_1_1Recorder_1a0ec174294138be0e1d677a7c33011959" prot="public" virt="non-virtual"><scope>hmap::Recorder</scope><name>t0</name></member>
+      <member refid="structhmap_1_1Recorder_1af6f300d4c80eabfbaf57fdbebde9062e" prot="public" virt="non-virtual"><scope>hmap::Recorder</scope><name>total</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
