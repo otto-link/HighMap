@@ -147,15 +147,6 @@ public:
   void print();
 
   /**
-   * @brief Set the point value by interpolating values of an array at the point
-   * position.
-   * @param array Input array.
-   * @param bbox  Array bounding box of the area, used to draw a correspondance
-   *              between point position and array cells positions.
-   */
-  void set_value_from_array(const Array &array, Vec4<float> bbox);
-
-  /**
    * @brief Updates the point's value based on bilinear interpolation from an
    * array.
    *
@@ -179,7 +170,7 @@ public:
    * @note If the coordinates are outside the bounds of the array after scaling,
    * the point's value is set to zero.
    */
-  void update_value_from_array(const Array &array, Vec4<float> bbox);
+  void set_value_from_array(const Array &array, Vec4<float> bbox);
 };
 
 /**

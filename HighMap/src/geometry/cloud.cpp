@@ -342,7 +342,7 @@ void Cloud::set_values(float new_value)
 void Cloud::set_values_from_array(const Array &array, Vec4<float> bbox)
 {
   for (auto &p : this->points)
-    p.update_value_from_array(array, bbox);
+    p.set_value_from_array(array, bbox);
 }
 
 void Cloud::set_values_from_chull_distance()

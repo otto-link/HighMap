@@ -10,7 +10,7 @@
 namespace hmap
 {
 
-void Point::update_value_from_array(const Array &array, Vec4<float> bbox)
+void Point::set_value_from_array(const Array &array, Vec4<float> bbox)
 {
   // scale to unit interval
   float xn = (this->x - bbox.a) / (bbox.b - bbox.a);
