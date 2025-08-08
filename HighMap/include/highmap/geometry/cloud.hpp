@@ -530,27 +530,146 @@ public:
  */
 Cloud merge_cloud(const Cloud &cloud1, const Cloud &cloud2);
 
+/**
+ * @brief Generates a random cloud of points within a bounding box.
+ *
+ * Points are sampled according to the given sampling method, optionally seeded
+ * for reproducibility.
+ *
+ * @param  count  Number of points to generate.
+ * @param  seed   Random number generator seed.
+ * @param  method Sampling method to use. Defaults to
+ *                PointSamplingMethod::RND_RANDOM.
+ * @param  bbox   Bounding box in which to generate the points (a,b,c,d = xmin,
+ *                xmax, ymin, ymax). Defaults to the unit square {0.f, 1.f, 0.f,
+ *                1.f}.
+ * @return        A Cloud containing the generated points.
+ *
+ * **Example**
+ * @include ex_point_sampling.cpp
+ *
+ * **Result**
+ * @image html ex_point_sampling0.png
+ * @image html ex_point_sampling1.png
+ * @image html ex_point_sampling2.png
+ * @image html ex_point_sampling3.png
+ */
 Cloud random_cloud(
     size_t                     count,
     uint                       seed,
     const PointSamplingMethod &method = PointSamplingMethod::RND_RANDOM,
     const Vec4<float>         &bbox = {0.f, 1.f, 0.f, 1.f});
 
+/**
+ * @brief Generates a random cloud of points based on a spatial density map.
+ *
+ * The probability of placing a point at a location is proportional to the
+ * density value at that location.
+ *
+ * @param  count   Number of points to generate.
+ * @param  density 2D array representing spatial density values.
+ * @param  seed    Random number generator seed.
+ * @param  bbox    Bounding box in which to generate the points (a,b,c,d = xmin,
+ *                 xmax, ymin, ymax). Defaults to the unit square {0.f, 1.f,
+ *                 0.f, 1.f}.
+ * @return         A Cloud containing the generated points.
+ *
+ * **Example**
+ * @include ex_point_sampling.cpp
+ *
+ * **Result**
+ * @image html ex_point_sampling0.png
+ * @image html ex_point_sampling1.png
+ * @image html ex_point_sampling2.png
+ * @image html ex_point_sampling3.png
+ */
 Cloud random_cloud_density(size_t             count,
                            const Array       &density,
                            uint               seed,
                            const Vec4<float> &bbox = {0.f, 1.f, 0.f, 1.f});
 
+/**
+ * @brief Generates a random cloud of points separated by at least a given
+ * minimum distance.
+ *
+ * Points are distributed randomly but maintain a minimum separation, producing
+ * a blue-noise-like distribution.
+ *
+ * @param  min_dist Minimum allowed distance between any two points.
+ * @param  seed     Random number generator seed.
+ * @param  bbox     Bounding box in which to generate the points (a,b,c,d =
+ *                  xmin, xmax, ymin, ymax). Defaults to the unit square {0.f,
+ *                  1.f, 0.f, 1.f}.
+ * @return          A Cloud containing the generated points.
+ *
+ * **Example**
+ * @include ex_point_sampling.cpp
+ *
+ * **Result**
+ * @image html ex_point_sampling0.png
+ * @image html ex_point_sampling1.png
+ * @image html ex_point_sampling2.png
+ * @image html ex_point_sampling3.png
+ */
 Cloud random_cloud_distance(float              min_dist,
                             uint               seed,
                             const Vec4<float> &bbox = {0.f, 1.f, 0.f, 1.f});
 
+/**
+ * @brief Generates a random cloud of points separated by a distance range,
+ * influenced by a density map.
+ *
+ * Points maintain a separation between min_dist and max_dist, and are
+ * distributed according to the provided density map.
+ *
+ * @param  min_dist Minimum allowed distance between points.
+ * @param  max_dist Maximum allowed distance between points.
+ * @param  density  2D array representing spatial density values.
+ * @param  seed     Random number generator seed.
+ * @param  bbox     Bounding box in which to generate the points (a,b,c,d =
+ *                  xmin, xmax, ymin, ymax). Defaults to the unit square {0.f,
+ *                  1.f, 0.f, 1.f}.
+ * @return          A Cloud containing the generated points.
+ *
+ * **Example**
+ * @include ex_point_sampling.cpp
+ *
+ * **Result**
+ * @image html ex_point_sampling0.png
+ * @image html ex_point_sampling1.png
+ * @image html ex_point_sampling2.png
+ * @image html ex_point_sampling3.png
+ */
 Cloud random_cloud_distance(float              min_dist,
                             float              max_dist,
                             const Array       &density,
                             uint               seed,
                             const Vec4<float> &bbox = {0.f, 1.f, 0.f, 1.f});
 
+/**
+ * @brief Generates a jittered grid cloud of points.
+ *
+ * Points are placed on a grid and then offset by a jitter amount, optionally
+ * staggered for a more irregular pattern.
+ *
+ * @param  count         Number of points to generate.
+ * @param  jitter_amount Maximum jitter to apply in each axis (x, y).
+ * @param  stagger_ratio Ratio of staggering between consecutive rows or
+ *                       columns.
+ * @param  seed          Random number generator seed.
+ * @param  bbox          Bounding box in which to generate the points (a,b,c,d =
+ * xmin, xmax, ymin, ymax). Defaults to the unit square {0.f, 1.f, 0.f, 1.f}.
+ * @return               A Cloud containing the generated points.
+ *
+ * **Example**
+ * @include ex_point_sampling.cpp
+ *
+ * **Result**
+ * @image html ex_point_sampling0.png
+ * @image html ex_point_sampling1.png
+ * @image html ex_point_sampling2.png
+ * @image html ex_point_sampling3.png
+ */
 Cloud random_cloud_jittered(size_t                   count,
                             const hmap::Vec2<float> &jitter_amount,
                             const hmap::Vec2<float> &stagger_ratio,
