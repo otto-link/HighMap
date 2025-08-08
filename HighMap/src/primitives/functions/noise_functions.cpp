@@ -9,6 +9,7 @@
 #include "highmap/boundary.hpp"
 #include "highmap/functions.hpp"
 #include "highmap/geometry/grids.hpp"
+#include "highmap/geometry/point_sampling.hpp"
 #include "highmap/math.hpp"
 #include "highmap/primitives.hpp"
 #include "highmap/range.hpp"
@@ -143,7 +144,13 @@ void ValueDelaunayNoiseFunction::update_interpolation_function()
   std::vector<float> y(n);
   std::vector<float> value(n);
 
-  random_grid(x, y, value, this->seed, {0.f, 1.f, 0.f, 1.f});
+  auto xy = random_points(n,
+                          this->seed,
+                          PointSamplingMethod::RND_LHS,
+                          {0.f, 1.f, 0.f, 1.f});
+  x = xy[0];
+  y = xy[1];
+
   expand_grid(x, y, value, {0.f, 1.f, 0.f, 1.f});
 
   // --- interpolation function

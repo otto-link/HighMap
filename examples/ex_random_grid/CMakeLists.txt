@@ -1,2 +1,0 @@
-add_executable(ex_random_grid ex_random_grid.cpp)
-target_link_libraries(ex_random_grid highmap)

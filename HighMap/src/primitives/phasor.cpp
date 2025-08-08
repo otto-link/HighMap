@@ -4,7 +4,7 @@
 #include "macrologger.h"
 
 #include "highmap/array.hpp"
-#include "highmap/geometry/grids.hpp"
+#include "highmap/geometry/point_sampling.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/math.hpp"
 #include "highmap/operator.hpp"
@@ -44,10 +44,18 @@ Array phasor(PhasorProfile phasor_profile,
 
   // generate Gabor kernel "spawn" points
   std::vector<float> x(npoints), y(npoints);
-  float              scale = 0.8f;
   Vec4<float>        bbox(0.f, (float)shape.x - 1.f, 0.f, (float)shape.y - 1.f);
 
-  random_grid_jittered(x, y, scale, seed, bbox);
+  const Vec2<float> jitter_amount = {0.5f, 0.5f};
+  const Vec2<float> stagger_ratio = {0.f, 0.f};
+
+  auto xy = random_points_jittered(npoints,
+                                   jitter_amount,
+                                   stagger_ratio,
+                                   seed,
+                                   bbox);
+  x = xy[0];
+  y = xy[1];
 
   for (int k = 0; k < npoints; k++)
   {

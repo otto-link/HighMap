@@ -9,7 +9,7 @@
 #include "highmap/boundary.hpp"
 #include "highmap/erosion.hpp"
 #include "highmap/filters.hpp"
-#include "highmap/geometry/grids.hpp"
+#include "highmap/geometry/point_sampling.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/math.hpp"
 #include "highmap/primitives.hpp"
@@ -65,7 +65,9 @@ void hydraulic_particle(Array &z,
   Array       density = p_moisture_map ? *p_moisture_map : Array(z.shape, 1.f);
   Vec4<float> bbox(1.f, (float)z.shape.x - 2.f, 1.f, (float)z.shape.y - 2.f);
 
-  random_grid_density(x0, y0, density, seed, bbox);
+  auto xy = random_points_density(nparticles, density, seed, bbox);
+  x0 = xy[0];
+  y0 = xy[1];
 
   // spawn particles
   std::vector<Particle> particles;

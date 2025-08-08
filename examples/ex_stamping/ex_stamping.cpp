@@ -10,15 +10,14 @@ int main(void)
   hmap::Array     kernel = hmap::gabor(shape_kernel, 8.f, 15.f);
 
   // generate stamping locations
-  int                n = 50;
-  std::vector<float> x(n), y(n), v(n);
-  hmap::random_grid(x, y, v, seed);
+  size_t n = 50;
+  hmap::Cloud cloud = hmap::random_cloud(n, seed);
 
   // eventually stamp...
   hmap::Array z = hmap::stamping(shape,
-                                 x,
-                                 y,
-                                 v,
+                                 cloud.get_x(),
+                                 cloud.get_y(),
+                                 cloud.get_values(),
                                  kernel,
                                  32,   // kernel radius in pixels
                                  true, // scale ampl
@@ -29,7 +28,6 @@ int main(void)
                                  true); // rotate
 
   // export points to a cloud to generate a png file
-  hmap::Cloud cloud = hmap::Cloud(x, y, v);
   hmap::Array c = hmap::Array(shape);
   cloud.to_array(c);
 

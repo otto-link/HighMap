@@ -546,11 +546,11 @@ Cloud random_cloud_distance(float              min_dist,
   return Cloud(xy[0], xy[1], v);
 }
 
-Cloud random_cloud_jittered(size_t                   count,
-                            const hmap::Vec2<float> &jitter_amount,
-                            const hmap::Vec2<float> &stagger_ratio,
-                            uint                     seed,
-                            const Vec4<float>       &bbox)
+Cloud random_cloud_jittered(size_t             count,
+                            const Vec2<float> &jitter_amount,
+                            const Vec2<float> &stagger_ratio,
+                            uint               seed,
+                            const Vec4<float> &bbox)
 {
   auto xy = random_points_jittered(count,
                                    jitter_amount,

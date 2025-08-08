@@ -6,7 +6,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/geometry/graph.hpp"
-#include "highmap/geometry/grids.hpp"
+#include "highmap/geometry/point_sampling.hpp"
 
 #include "highmap/internal/vector_utils.hpp"
 
@@ -31,10 +31,14 @@ Graph generate_network_alpha_model(const std::vector<float> &xc,
 
   Graph graph = Graph();
   {
-    std::vector<float> x(n_dummy_nodes);
-    std::vector<float> y(n_dummy_nodes);
-    random_grid_jittered(x, y, 0.4f, seed, bbox);
-    Cloud cloud = Cloud(x, y);
+    const Vec2<float> jitter_amount = {0.5f, 0.5f};
+    const Vec2<float> stagger_ratio = {0.f, 0.f};
+
+    Cloud cloud = random_cloud_jittered(n_dummy_nodes,
+                                        jitter_amount,
+                                        stagger_ratio,
+                                        seed,
+                                        bbox);
 
     for (size_t k = 0; k < nc; k++)
     {

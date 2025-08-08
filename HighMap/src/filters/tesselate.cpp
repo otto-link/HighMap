@@ -8,6 +8,7 @@
 #include "highmap/array.hpp"
 #include "highmap/geometry/cloud.hpp"
 #include "highmap/geometry/grids.hpp"
+#include "highmap/geometry/point_sampling.hpp"
 #include "highmap/interpolate2d.hpp"
 #include "highmap/primitives.hpp"
 
@@ -34,7 +35,9 @@ Array tessellate(Array       &array,
   std::vector<float> y(nnodes);
   Vec4<float>        bbox = unit_square_bbox();
 
-  random_grid_density(x, y, *p_weight, seed, bbox);
+  auto xy = random_points_density(nnodes, *p_weight, seed, bbox);
+  x = xy[0];
+  y = xy[1];
 
   {
     std::vector<float> value(nnodes);
