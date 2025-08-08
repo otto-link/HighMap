@@ -33,6 +33,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/geometry/point.hpp"
+#include "highmap/geometry/point_sampling.hpp"
 #include "highmap/interpolate2d.hpp"
 
 namespace hmap
@@ -528,5 +529,32 @@ public:
  *                `cloud1` and `cloud2`.
  */
 Cloud merge_cloud(const Cloud &cloud1, const Cloud &cloud2);
+
+Cloud random_cloud(
+    size_t                     count,
+    uint                       seed,
+    const PointSamplingMethod &method = PointSamplingMethod::RND_RANDOM,
+    const Vec4<float>         &bbox = {0.f, 1.f, 0.f, 1.f});
+
+Cloud random_cloud_density(size_t             count,
+                           const Array       &density,
+                           uint               seed,
+                           const Vec4<float> &bbox = {0.f, 1.f, 0.f, 1.f});
+
+Cloud random_cloud_distance(float              min_dist,
+                            uint               seed,
+                            const Vec4<float> &bbox = {0.f, 1.f, 0.f, 1.f});
+
+Cloud random_cloud_distance(float              min_dist,
+                            float              max_dist,
+                            const Array       &density,
+                            uint               seed,
+                            const Vec4<float> &bbox = {0.f, 1.f, 0.f, 1.f});
+
+Cloud random_cloud_jittered(size_t                   count,
+                            const hmap::Vec2<float> &jitter_amount,
+                            const hmap::Vec2<float> &stagger_ratio,
+                            uint                     seed,
+                            const Vec4<float> &bbox = {0.f, 1.f, 0.f, 1.f});
 
 } // namespace hmap

@@ -1,0 +1,2 @@
+add_executable(ex_point_sampling ex_point_sampling.cpp)
+target_link_libraries(ex_point_sampling highmap)

@@ -33,5 +33,6 @@ target_link_libraries(
   NoiseLib
   OpenMP::OpenMP_CXX
   ${OpenCV_LIBS}
+  point_sampler
   clwrapper
   ${OpenCL_LIBRARIES})

@@ -20,3 +20,6 @@
 [submodule "external/CLWrapper"]
 	path = external/CLWrapper
 	url = git@github.com:otto-link/CLWrapper.git
+[submodule "external/PointSampler"]
+	path = external/PointSampler
+	url = git@github.com:otto-link/PointSampler.git

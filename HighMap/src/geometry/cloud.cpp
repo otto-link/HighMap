@@ -508,4 +508,57 @@ Cloud merge_cloud(const Cloud &cloud1, const Cloud &cloud2)
   return Cloud(x1, y1, v1);
 }
 
+Cloud random_cloud(size_t                     count,
+                   uint                       seed,
+                   const PointSamplingMethod &method,
+                   const Vec4<float>         &bbox)
+{
+  auto xy = random_points(count, seed, method, bbox);
+  auto v = random_vector(0.f, 1.f, xy[0].size(), ++seed);
+  return Cloud(xy[0], xy[1], v);
+}
+
+Cloud random_cloud_density(size_t             count,
+                           const Array       &density,
+                           uint               seed,
+                           const Vec4<float> &bbox)
+{
+  auto xy = random_points_density(count, density, seed, bbox);
+  auto v = random_vector(0.f, 1.f, xy[0].size(), ++seed);
+  return Cloud(xy[0], xy[1], v);
+}
+
+Cloud random_cloud_distance(float min_dist, uint seed, const Vec4<float> &bbox)
+{
+  auto xy = random_points_distance(min_dist, seed, bbox);
+  auto v = random_vector(0.f, 1.f, xy[0].size(), ++seed);
+  return Cloud(xy[0], xy[1], v);
+}
+
+Cloud random_cloud_distance(float              min_dist,
+                            float              max_dist,
+                            const Array       &density,
+                            uint               seed,
+                            const Vec4<float> &bbox)
+{
+  auto xy = random_points_distance(min_dist, max_dist, density, seed, bbox);
+  auto v = random_vector(0.f, 1.f, xy[0].size(), ++seed);
+  return Cloud(xy[0], xy[1], v);
+}
+
+Cloud random_cloud_jittered(size_t                   count,
+                            const hmap::Vec2<float> &jitter_amount,
+                            const hmap::Vec2<float> &stagger_ratio,
+                            uint                     seed,
+                            const Vec4<float>       &bbox)
+{
+  auto xy = random_points_jittered(count,
+                                   jitter_amount,
+                                   stagger_ratio,
+                                   seed,
+                                   bbox);
+  auto v = random_vector(0.f, 1.f, xy[0].size(), ++seed);
+  return Cloud(xy[0], xy[1], v);
+}
+
 } // namespace hmap
