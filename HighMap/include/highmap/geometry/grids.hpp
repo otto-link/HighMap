@@ -89,27 +89,6 @@ void expand_grid_corners(std::vector<float> &x,
                          float               corner_value = 0.f);
 
 /**
- * @brief
- * @param array     Input array.
- * @param x         `x` coordinates (output).
- * @param y         `y` coordinates (output).
- * @param bbox      Bounding box.
- * @param threshold Theshold 'background' value.
- *
- * **Example**
- * @include ex_grid_from_array.cpp
- *
- * **Result**
- * @image html ex_grid_from_array.png
- */
-void grid_from_array(Array              &array,
-                     std::vector<float> &x,
-                     std::vector<float> &y,
-                     std::vector<float> &value,
-                     Vec4<float>         bbox = {0.f, 1.f, 0.f, 1.f},
-                     float               threshold = 0.f);
-
-/**
  * @brief Return x and y coordinates of a regular grid, as two 1D vectors.
  * @param x[out]   Vector x.
  * @param y[out]   Vector y.

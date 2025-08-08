@@ -106,33 +106,6 @@ void expand_grid_corners(std::vector<float> &x,
     value.push_back(corner_value);
 }
 
-void grid_from_array(Array              &array,
-                     std::vector<float> &x,
-                     std::vector<float> &y,
-                     std::vector<float> &value,
-                     Vec4<float>         bbox,
-                     float               threshold)
-{
-  x.clear();
-  y.clear();
-  value.clear();
-
-  float ax = (bbox.b - bbox.a) / (float)(array.shape.x - 1);
-  float ay = (bbox.d - bbox.c) / (float)(array.shape.y - 1);
-
-  for (int i = 0; i < array.shape.x; i++)
-  {
-    float xtmp = bbox.a + ax * (float)i;
-    for (int j = 0; j < array.shape.y; j++)
-      if (array(i, j) > threshold)
-      {
-        x.push_back(xtmp);
-        y.push_back(bbox.c + ay * (float)j);
-        value.push_back(array(i, j));
-      }
-  }
-}
-
 void grid_xy_vector(std::vector<float> &x,
                     std::vector<float> &y,
                     Vec2<int>           shape,
