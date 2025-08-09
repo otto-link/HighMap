@@ -47,6 +47,49 @@ static std::map<std::string, int> point_sampling_method_as_string = {
 };
 
 /**
+ * @brief Expand grid by translating and copying the values of the current
+ * bounding box to the 8 first neighboring bounding boxes.
+ * @param x     `x` coordinates.
+ * @param y     `y` coordinates.
+ * @param value values.
+ * @param bbox  Bounding box.
+ */
+void expand_points_domain(std::vector<float> &x,
+                          std::vector<float> &y,
+                          std::vector<float> &value,
+                          Vec4<float>         bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
+ * @brief Expand the grid by adding points on the boundaries of the bounding
+ * box.
+ * @param x            `x` coordinates.
+ * @param y            `y` coordinates.
+ * @param value        values.
+ * @param bbox         Bounding box.
+ * @param corner_value Value at the boundary points.
+ */
+void expand_points_at_domain_boundaries(std::vector<float> &x,
+                                        std::vector<float> &y,
+                                        std::vector<float> &value,
+                                        Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f},
+                                        float       boundary_value = 0.f);
+
+/**
+ * @brief Expand the grid by adding four points at the corner of the bounding
+ * box.
+ * @param x            `x` coordinates.
+ * @param y            `y` coordinates.
+ * @param value        values.
+ * @param bbox         Bounding box.
+ * @param corner_value Value at the four corner points.
+ */
+void expand_points_domain_corners(std::vector<float> &x,
+                                  std::vector<float> &y,
+                                  std::vector<float> &value,
+                                  Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f},
+                                  float       corner_value = 0.f);
+
+/**
  * @brief Generates random 2D points within a bounding box using a sampling
  * method.
  *

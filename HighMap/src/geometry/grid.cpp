@@ -6,7 +6,7 @@
 
 #include "macrologger.h"
 
-#include "highmap/geometry/grids.hpp"
+#include "highmap/geometry/point_sampling.hpp"
 #include "highmap/operator.hpp"
 
 namespace hmap
@@ -24,10 +24,10 @@ int convert_length_to_pixel(float x,
   return ir;
 }
 
-void expand_grid(std::vector<float> &x,
-                 std::vector<float> &y,
-                 std::vector<float> &value,
-                 Vec4<float>         bbox)
+void expand_points_domain(std::vector<float> &x,
+                          std::vector<float> &y,
+                          std::vector<float> &value,
+                          Vec4<float>         bbox)
 {
   size_t n = x.size();
   x.resize(9 * n);
@@ -52,13 +52,13 @@ void expand_grid(std::vector<float> &x,
       }
 }
 
-void expand_grid_boundaries(std::vector<float> &x,
-                            std::vector<float> &y,
-                            std::vector<float> &value,
-                            Vec4<float>         bbox,
-                            float               boundary_value)
+void expand_points_at_domain_boundaries(std::vector<float> &x,
+                                        std::vector<float> &y,
+                                        std::vector<float> &value,
+                                        Vec4<float>         bbox,
+                                        float               boundary_value)
 {
-  expand_grid_corners(x, y, value, bbox, boundary_value);
+  expand_points_domain_corners(x, y, value, bbox, boundary_value);
 
   int npoints = std::max(0, (int)std::sqrt((float)x.size()));
 
@@ -86,11 +86,11 @@ void expand_grid_boundaries(std::vector<float> &x,
   }
 }
 
-void expand_grid_corners(std::vector<float> &x,
-                         std::vector<float> &y,
-                         std::vector<float> &value,
-                         Vec4<float>         bbox,
-                         float               corner_value)
+void expand_points_domain_corners(std::vector<float> &x,
+                                  std::vector<float> &y,
+                                  std::vector<float> &value,
+                                  Vec4<float>         bbox,
+                                  float               corner_value)
 {
   x.push_back(bbox.a);
   x.push_back(bbox.a);

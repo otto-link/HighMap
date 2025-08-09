@@ -151,7 +151,7 @@ void ValueDelaunayNoiseFunction::update_interpolation_function()
   x = xy[0];
   y = xy[1];
 
-  expand_grid(x, y, value, {0.f, 1.f, 0.f, 1.f});
+  expand_points_domain(x, y, value, {0.f, 1.f, 0.f, 1.f});
 
   // --- interpolation function
 

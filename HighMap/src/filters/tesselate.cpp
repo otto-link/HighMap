@@ -41,7 +41,7 @@ Array tessellate(Array       &array,
 
   {
     std::vector<float> value(nnodes);
-    expand_grid_boundaries(x, y, value, bbox);
+    expand_points_at_domain_boundaries(x, y, value, bbox);
   }
 
   // get values at control nodes

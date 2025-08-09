@@ -395,7 +395,7 @@ void Cloud::to_array_interp(Array                &array,
                                      bbox.b + lx,
                                      bbox.c - ly,
                                      bbox.d + ly};
-  expand_grid_corners(x, y, v, bbox_expanded, 0.f);
+  expand_points_domain_corners(x, y, v, bbox_expanded, 0.f);
 
   array = interpolate2d(array.shape,
                         x,

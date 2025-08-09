@@ -7,7 +7,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/filters.hpp"
-#include "highmap/geometry/grids.hpp"
+#include "highmap/geometry/point_sampling.hpp"
 #include "highmap/interpolate2d.hpp"
 #include "highmap/primitives.hpp"
 
@@ -95,7 +95,7 @@ Array faceted(const Array &array,
   }
 
   //
-  expand_grid(x, y, value, {0.f, 1.f, 0.f, 1.f});
+  expand_points_domain(x, y, value, {0.f, 1.f, 0.f, 1.f});
 
   // interpolate
   Array array_out = interpolate2d(array.shape,
