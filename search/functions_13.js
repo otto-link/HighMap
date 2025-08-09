@@ -9,7 +9,6 @@ var searchData=
   ['update_5fconnectivity_6',['update_connectivity',['../classhmap_1_1Graph.html#ad37ed278a791b43779733f7f22187f15',1,'hmap::Graph']]],
   ['update_5finterpolation_5ffunction_7',['update_interpolation_function',['../classhmap_1_1ValueDelaunayNoiseFunction.html#a26d8c8dbaa5817fb72cf93ec3a4bfac3',1,'hmap::ValueDelaunayNoiseFunction::update_interpolation_function()'],['../classhmap_1_1ValueLinearNoiseFunction.html#a811511a1a6517d78a71ba050250c4ef0',1,'hmap::ValueLinearNoiseFunction::update_interpolation_function()']]],
   ['update_5ftile_5fparameters_8',['update_tile_parameters',['../classhmap_1_1Heightmap.html#a7efe2f6a3e1deccc86772797eacf89c4',1,'hmap::Heightmap']]],
-  ['update_5fvalue_5ffrom_5farray_9',['update_value_from_array',['../classhmap_1_1Point.html#acda3ac23316079302a53e34ef3008fef',1,'hmap::Point']]],
-  ['upperbound_5fright_10',['upperbound_right',['../namespacehmap.html#a0b7db6f8ce57fcdeca7ca1e3b7d1e686',1,'hmap']]],
-  ['upscale_5famplification_11',['upscale_amplification',['../namespacehmap.html#a868ae7c781d7e72af7b1416898a2f891',1,'hmap']]]
+  ['upperbound_5fright_9',['upperbound_right',['../namespacehmap.html#a0b7db6f8ce57fcdeca7ca1e3b7d1e686',1,'hmap']]],
+  ['upscale_5famplification_10',['upscale_amplification',['../namespacehmap.html#a868ae7c781d7e72af7b1416898a2f891',1,'hmap']]]
 ];

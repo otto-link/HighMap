@@ -61,7 +61,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/functions.hpp" line="1063" column="3" bodyfile="HighMap/src/primitives/functions/noise_functions.cpp" bodystart="116" bodyend="126"/>
+        <location file="HighMap/include/highmap/functions.hpp" line="1063" column="3" bodyfile="HighMap/src/primitives/functions/noise_functions.cpp" bodystart="117" bodyend="127"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1ValueCubicNoiseFunction_1a21bbed725c903e74442d3b018600cbb1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>void</type>

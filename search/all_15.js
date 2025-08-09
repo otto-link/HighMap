@@ -68,6 +68,6 @@ var searchData=
   ['triangle_5fgrenier_65',['TRIANGLE_GRENIER',['../namespacehmap.html#a25a4e4775f3c0918ed75f0503f5ed0a6a3b4b1fb15aaf3888333a9d6958eae76a',1,'hmap']]],
   ['triangle_5fsharp_66',['TRIANGLE_SHARP',['../namespacehmap.html#a25a4e4775f3c0918ed75f0503f5ed0a6ac6ec19319c947a3b6484c42b69007636',1,'hmap']]],
   ['triangle_5fsmooth_67',['TRIANGLE_SMOOTH',['../namespacehmap.html#a25a4e4775f3c0918ed75f0503f5ed0a6af078cf93214e8043479eb5906a456880',1,'hmap']]],
-  ['tricube_68',['tricube',['../namespacehmap.html#a78d3f33a357986539e654f0d42510659',1,'hmap::tricube(Vec2&lt; int &gt; shape)'],['../namespacehmap.html#a4b6f135c6e81d313ca54ae1efac5f2c9abd845bef8f2959d8d9e7355aa9c44d86',1,'hmap::TRICUBE']]],
+  ['tricube_68',['tricube',['../namespacehmap.html#a4b6f135c6e81d313ca54ae1efac5f2c9abd845bef8f2959d8d9e7355aa9c44d86',1,'hmap::TRICUBE'],['../namespacehmap.html#a78d3f33a357986539e654f0d42510659',1,'hmap::tricube(Vec2&lt; int &gt; shape)']]],
   ['turbo_69',['TURBO',['../namespacehmap.html#ac70fe3cbb32e0340d5dd3e15cdcf9369a555dbf2f8e5b83b9117850a8938e65f9',1,'hmap']]]
 ];

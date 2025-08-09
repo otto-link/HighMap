@@ -80,6 +80,5 @@ var searchData=
   ['gradient_5fx_77',['gradient_x',['../namespacehmap.html#a11c1600c2d67387c1b037fadcca9a069',1,'hmap::gradient_x(const Array &amp;array, Array &amp;dx)'],['../namespacehmap.html#a11d438a3f643427c957d160b7c1a04de',1,'hmap::gradient_x(const Array &amp;array)']]],
   ['gradient_5fy_78',['gradient_y',['../namespacehmap.html#a6032811e40d11b8957dc48d98711acf9',1,'hmap::gradient_y(const Array &amp;array, Array &amp;dy)'],['../namespacehmap.html#a8dbef7ccc1936646831eb5a24db58d81',1,'hmap::gradient_y(const Array &amp;array)']]],
   ['graph_79',['graph',['../classhmap_1_1Graph.html#a0ff744b8d48139b49e7dae7c7d4e7a18',1,'hmap::Graph::Graph(std::vector&lt; Point &gt; points)'],['../classhmap_1_1Graph.html#a1209ddaafbb68fed3c43ec7766d8dc0a',1,'hmap::Graph::Graph()'],['../classhmap_1_1Graph.html#af7cd4377270d4e0dd90e7c8793351191',1,'hmap::Graph::Graph(Cloud cloud)'],['../classhmap_1_1Graph.html#a6d56f1e42407c74f2cf097b7a9b05d7b',1,'hmap::Graph::Graph(std::vector&lt; float &gt; x, std::vector&lt; float &gt; y)']]],
-  ['grid_5ffrom_5farray_80',['grid_from_array',['../namespacehmap.html#addca3b204d0b0ef9120cf3606cb3f53a',1,'hmap']]],
-  ['grid_5fxy_5fvector_81',['grid_xy_vector',['../namespacehmap.html#a5325e50550ce04f027ffa3c6b2a3ef53',1,'hmap']]]
+  ['grid_5fxy_5fvector_80',['grid_xy_vector',['../namespacehmap.html#a5325e50550ce04f027ffa3c6b2a3ef53',1,'hmap']]]
 ];

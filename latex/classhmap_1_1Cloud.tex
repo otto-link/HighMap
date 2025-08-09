@@ -84,10 +84,14 @@ void \mbox{\hyperlink{classhmap_1_1Cloud_a604e61fbcbd8cc469ed21501e65f5c7b}{set\
 \begin{DoxyCompactList}\small\item\em Set new values for the cloud points. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classhmap_1_1Cloud_a540b582307b8457f38c43d12d899f2bf}{set\+\_\+values}} (float new\+\_\+value)
 \begin{DoxyCompactList}\small\item\em Set a single value for all cloud points. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classhmap_1_1Cloud_a9071aba6d7344639eede19e54ec3e7cb}{set\+\_\+values\+\_\+from\+\_\+array}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ bbox)
+void \mbox{\hyperlink{classhmap_1_1Cloud_ac8d31a5787a009175695ff16904e7944}{set\+\_\+values\+\_\+from\+\_\+array}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ \&bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\})
 \begin{DoxyCompactList}\small\item\em Set the values of the cloud points using values from an underlying array. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1Cloud_ae21ace9436c536e848cdda8d6ab61ac0}{set\+\_\+values\+\_\+from\+\_\+border\+\_\+distance}} (const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ \&bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\})
+\begin{DoxyCompactList}\small\item\em Sets point values based on their distance to the bounding box border. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classhmap_1_1Cloud_adf0b7a7c0c7d414e5d01e19be624aa3c}{set\+\_\+values\+\_\+from\+\_\+chull\+\_\+distance}} ()
 \begin{DoxyCompactList}\small\item\em Set the values of the cloud points based on the distance to the convex hull of the cloud. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1Cloud_ad8b2d626436107c4b0e2c9877747375f}{set\+\_\+values\+\_\+from\+\_\+min\+\_\+distance}} ()
+\begin{DoxyCompactList}\small\item\em Sets point values based on the distance to their nearest neighbor. Actually returns the squared distance. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classhmap_1_1Cloud_ad83d71a8729a0e4fcce993c0141275ee}{to\+\_\+array}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}) const
 \begin{DoxyCompactList}\small\item\em Project the cloud points onto an array. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{classhmap_1_1Cloud_a04dcb02dd2df076553e410dbcceb2c35}{to\+\_\+array\+\_\+sdf}} (\mbox{\hyperlink{structhmap_1_1Vec2}{Vec2}}$<$ int $>$ shape, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ bbox, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+x=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+y=nullptr, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ bbox\+\_\+array=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}) const
@@ -591,11 +595,11 @@ This method assigns the same value to all points in the cloud.
 {\em new\+\_\+value} & The value to assign to all points. \\
 \hline
 \end{DoxyParams}
-\Hypertarget{classhmap_1_1Cloud_a9071aba6d7344639eede19e54ec3e7cb}\label{classhmap_1_1Cloud_a9071aba6d7344639eede19e54ec3e7cb} 
+\Hypertarget{classhmap_1_1Cloud_ac8d31a5787a009175695ff16904e7944}\label{classhmap_1_1Cloud_ac8d31a5787a009175695ff16904e7944} 
 \index{hmap::Cloud@{hmap::Cloud}!set\_values\_from\_array@{set\_values\_from\_array}}
 \index{set\_values\_from\_array@{set\_values\_from\_array}!hmap::Cloud@{hmap::Cloud}}
 \doxysubsubsection{\texorpdfstring{set\_values\_from\_array()}{set\_values\_from\_array()}}
-{\footnotesize\ttfamily void hmap\+::\+Cloud\+::set\+\_\+values\+\_\+from\+\_\+array (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{\mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$}]{bbox }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void hmap\+::\+Cloud\+::set\+\_\+values\+\_\+from\+\_\+array (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ \&}]{bbox = {\ttfamily \{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}},~1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}},~0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}},~1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}} }\end{DoxyParamCaption})}
 
 
 
@@ -610,6 +614,30 @@ This method assigns values to the cloud points by interpolating values from an i
 {\em bbox} & The bounding box that defines the mapping from the cloud points\textquotesingle{} coordinates to the array\textquotesingle{}s coordinates. \\
 \hline
 \end{DoxyParams}
+\Hypertarget{classhmap_1_1Cloud_ae21ace9436c536e848cdda8d6ab61ac0}\label{classhmap_1_1Cloud_ae21ace9436c536e848cdda8d6ab61ac0} 
+\index{hmap::Cloud@{hmap::Cloud}!set\_values\_from\_border\_distance@{set\_values\_from\_border\_distance}}
+\index{set\_values\_from\_border\_distance@{set\_values\_from\_border\_distance}!hmap::Cloud@{hmap::Cloud}}
+\doxysubsubsection{\texorpdfstring{set\_values\_from\_border\_distance()}{set\_values\_from\_border\_distance()}}
+{\footnotesize\ttfamily void hmap\+::\+Cloud\+::set\+\_\+values\+\_\+from\+\_\+border\+\_\+distance (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ \&}]{bbox = {\ttfamily \{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}},~1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}},~0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}},~1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}} }\end{DoxyParamCaption})}
+
+
+
+Sets point values based on their distance to the bounding box border. 
+
+For each point in the cloud, this method computes the shortest distance to the edges of the given bounding box and stores it as the point\textquotesingle{}s value.
+
+The distance is calculated in 2D space, where\+:
+\begin{DoxyItemize}
+\item The x and y coordinates are extracted from the cloud.
+\item Points are merged into a 2D coordinate list.
+\item The distance to the nearest boundary of the bounding box is computed.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em bbox} & Bounding box in the format \{xmin, xmax, ymin, ymax\}. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classhmap_1_1Cloud_adf0b7a7c0c7d414e5d01e19be624aa3c}\label{classhmap_1_1Cloud_adf0b7a7c0c7d414e5d01e19be624aa3c} 
 \index{hmap::Cloud@{hmap::Cloud}!set\_values\_from\_chull\_distance@{set\_values\_from\_chull\_distance}}
 \index{set\_values\_from\_chull\_distance@{set\_values\_from\_chull\_distance}!hmap::Cloud@{hmap::Cloud}}
@@ -620,7 +648,22 @@ This method assigns values to the cloud points by interpolating values from an i
 
 Set the values of the cloud points based on the distance to the convex hull of the cloud. 
 
-This method assigns values to the cloud points based on their distance to the convex hull of the cloud. The convex hull must be initialized using {\ttfamily \doxylink{classhmap_1_1Cloud_add728a8b00dadb4a1d043ce50876c569}{to\+\_\+graph\+\_\+delaunay()}} before this method is called to ensure the correct indices of the convex hull points are available. \Hypertarget{classhmap_1_1Cloud_ad83d71a8729a0e4fcce993c0141275ee}\label{classhmap_1_1Cloud_ad83d71a8729a0e4fcce993c0141275ee} 
+This method assigns values to the cloud points based on their distance to the convex hull of the cloud. The convex hull must be initialized using {\ttfamily \doxylink{classhmap_1_1Cloud_add728a8b00dadb4a1d043ce50876c569}{to\+\_\+graph\+\_\+delaunay()}} before this method is called to ensure the correct indices of the convex hull points are available. \Hypertarget{classhmap_1_1Cloud_ad8b2d626436107c4b0e2c9877747375f}\label{classhmap_1_1Cloud_ad8b2d626436107c4b0e2c9877747375f} 
+\index{hmap::Cloud@{hmap::Cloud}!set\_values\_from\_min\_distance@{set\_values\_from\_min\_distance}}
+\index{set\_values\_from\_min\_distance@{set\_values\_from\_min\_distance}!hmap::Cloud@{hmap::Cloud}}
+\doxysubsubsection{\texorpdfstring{set\_values\_from\_min\_distance()}{set\_values\_from\_min\_distance()}}
+{\footnotesize\ttfamily void hmap\+::\+Cloud\+::set\+\_\+values\+\_\+from\+\_\+min\+\_\+distance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Sets point values based on the distance to their nearest neighbor. Actually returns the squared distance. 
+
+The computation process\+:
+\begin{DoxyItemize}
+\item Extracts the x and y coordinates from the cloud.
+\item Merges them into a 2D point list.
+\item Calculates the minimum distance to any other point using {\ttfamily ps\+::first\+\_\+neighbor\+\_\+distance}. 
+\end{DoxyItemize}\Hypertarget{classhmap_1_1Cloud_ad83d71a8729a0e4fcce993c0141275ee}\label{classhmap_1_1Cloud_ad83d71a8729a0e4fcce993c0141275ee} 
 \index{hmap::Cloud@{hmap::Cloud}!to\_array@{to\_array}}
 \index{to\_array@{to\_array}!hmap::Cloud@{hmap::Cloud}}
 \doxysubsubsection{\texorpdfstring{to\_array()}{to\_array()}}

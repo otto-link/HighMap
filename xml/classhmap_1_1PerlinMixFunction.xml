@@ -61,7 +61,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/functions.hpp" line="931" column="3" bodyfile="HighMap/src/primitives/functions/noise_functions.cpp" bodystart="65" bodyend="78"/>
+        <location file="HighMap/include/highmap/functions.hpp" line="931" column="3" bodyfile="HighMap/src/primitives/functions/noise_functions.cpp" bodystart="66" bodyend="79"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1PerlinMixFunction_1a5a9b2b40231a3460fa8cb475a3c0a9da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>void</type>

@@ -140,11 +140,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:abc414635893bad912e30e009fbf8af35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the coordinates and value of the <a class="el" href="classhmap_1_1Point.html" title="A class to represent and manipulate 2D points that can carry a value.">Point</a> object.  <br /></td></tr>
 <tr class="separator:abc414635893bad912e30e009fbf8af35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a71f412d383764f8df8f56a5439eb4da7" id="r_a71f412d383764f8df8f56a5439eb4da7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhmap_1_1Point.html#a71f412d383764f8df8f56a5439eb4da7">set_value_from_array</a> (const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;array, <a class="el" href="structhmap_1_1Vec4.html">Vec4</a>&lt; float &gt; bbox)</td></tr>
-<tr class="memdesc:a71f412d383764f8df8f56a5439eb4da7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the point value by interpolating values of an array at the point position.  <br /></td></tr>
+<tr class="memdesc:a71f412d383764f8df8f56a5439eb4da7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the point's value based on bilinear interpolation from an array.  <br /></td></tr>
 <tr class="separator:a71f412d383764f8df8f56a5439eb4da7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acda3ac23316079302a53e34ef3008fef" id="r_acda3ac23316079302a53e34ef3008fef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhmap_1_1Point.html#acda3ac23316079302a53e34ef3008fef">update_value_from_array</a> (const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;array, <a class="el" href="structhmap_1_1Vec4.html">Vec4</a>&lt; float &gt; bbox)</td></tr>
-<tr class="memdesc:acda3ac23316079302a53e34ef3008fef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the point's value based on bilinear interpolation from an array.  <br /></td></tr>
-<tr class="separator:acda3ac23316079302a53e34ef3008fef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -485,43 +482,6 @@ Friends</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">void hmap::Point::set_value_from_array </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;&#160;</td>
-          <td class="paramname"><em>array</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structhmap_1_1Vec4.html">Vec4</a>&lt; float &gt;&#160;</td>
-          <td class="paramname"><em>bbox</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Set the point value by interpolating values of an array at the point position. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">array</td><td>Input array. </td></tr>
-    <tr><td class="paramname">bbox</td><td><a class="el" href="classhmap_1_1Array.html" title="Array class, helper to manipulate 2D float array with &quot;(i, j)&quot; indexing.">Array</a> bounding box of the area, used to draw a correspondance between point position and array cells positions. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="acda3ac23316079302a53e34ef3008fef" name="acda3ac23316079302a53e34ef3008fef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acda3ac23316079302a53e34ef3008fef">&#9670;&#160;</a></span>update_value_from_array()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void hmap::Point::update_value_from_array </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;&#160;</td>
           <td class="paramname"><em>array</em>, </td>

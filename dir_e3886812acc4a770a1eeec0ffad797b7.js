@@ -5,5 +5,6 @@ var dir_e3886812acc4a770a1eeec0ffad797b7 =
     [ "graph.hpp", "graph_8hpp.html", "graph_8hpp" ],
     [ "grids.hpp", "grids_8hpp.html", "grids_8hpp" ],
     [ "path.hpp", "path_8hpp.html", "path_8hpp" ],
-    [ "point.hpp", "point_8hpp.html", "point_8hpp" ]
+    [ "point.hpp", "point_8hpp.html", "point_8hpp" ],
+    [ "point_sampling.hpp", "point__sampling_8hpp.html", "point__sampling_8hpp" ]
 ];

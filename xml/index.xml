@@ -148,8 +148,10 @@
     <member refid="classhmap_1_1Cloud_1afa8d7286a65d513bdc90c4c05bc42e0f" kind="function"><name>remove_point</name></member>
     <member refid="classhmap_1_1Cloud_1a604e61fbcbd8cc469ed21501e65f5c7b" kind="function"><name>set_values</name></member>
     <member refid="classhmap_1_1Cloud_1a540b582307b8457f38c43d12d899f2bf" kind="function"><name>set_values</name></member>
-    <member refid="classhmap_1_1Cloud_1a9071aba6d7344639eede19e54ec3e7cb" kind="function"><name>set_values_from_array</name></member>
+    <member refid="classhmap_1_1Cloud_1ac8d31a5787a009175695ff16904e7944" kind="function"><name>set_values_from_array</name></member>
+    <member refid="classhmap_1_1Cloud_1ae21ace9436c536e848cdda8d6ab61ac0" kind="function"><name>set_values_from_border_distance</name></member>
     <member refid="classhmap_1_1Cloud_1adf0b7a7c0c7d414e5d01e19be624aa3c" kind="function"><name>set_values_from_chull_distance</name></member>
+    <member refid="classhmap_1_1Cloud_1ad8b2d626436107c4b0e2c9877747375f" kind="function"><name>set_values_from_min_distance</name></member>
     <member refid="classhmap_1_1Cloud_1ad83d71a8729a0e4fcce993c0141275ee" kind="function"><name>to_array</name></member>
     <member refid="classhmap_1_1Cloud_1a04dcb02dd2df076553e410dbcceb2c35" kind="function"><name>to_array_sdf</name></member>
     <member refid="classhmap_1_1Cloud_1a8d03bbce76e09b07ff9e2901c80a06c7" kind="function"><name>to_array_interp</name></member>
@@ -532,7 +534,6 @@
     <member refid="classhmap_1_1Point_1a9009acb41438a016cb7398c09abd86d2" kind="function"><name>operator/</name></member>
     <member refid="classhmap_1_1Point_1abc414635893bad912e30e009fbf8af35" kind="function"><name>print</name></member>
     <member refid="classhmap_1_1Point_1a71f412d383764f8df8f56a5439eb4da7" kind="function"><name>set_value_from_array</name></member>
-    <member refid="classhmap_1_1Point_1acda3ac23316079302a53e34ef3008fef" kind="function"><name>update_value_from_array</name></member>
     <member refid="classhmap_1_1Point_1aa185c78a5385009de9f6f6461b536db2" kind="friend"><name>operator*</name></member>
   </compound>
   <compound refid="structhmap_1_1Pos" kind="struct"><name>hmap::Pos</name>
@@ -883,6 +884,11 @@
     <member refid="namespacehmap_1ab8197c4c7a85dacb616fee7a7d0df195a035bda7c8c2179b47b9a766531c2e89e" kind="enumvalue"><name>WORLEY</name></member>
     <member refid="namespacehmap_1ab8197c4c7a85dacb616fee7a7d0df195a1d1ba101960a8a8234df2d16ac305d45" kind="enumvalue"><name>WORLEY_DOUBLE</name></member>
     <member refid="namespacehmap_1ab8197c4c7a85dacb616fee7a7d0df195a803cca1f65b9596dbde7c54039773a39" kind="enumvalue"><name>WORLEY_VALUE</name></member>
+    <member refid="namespacehmap_1aba758c4143b6e499ec6f4385467a6d77" kind="enum"><name>PointSamplingMethod</name></member>
+    <member refid="namespacehmap_1aba758c4143b6e499ec6f4385467a6d77aea0acc8d27d5a8a13e107f49120c084e" kind="enumvalue"><name>RND_RANDOM</name></member>
+    <member refid="namespacehmap_1aba758c4143b6e499ec6f4385467a6d77a99ca15104343ff0356c6fc0ffe4f837d" kind="enumvalue"><name>RND_HALTON</name></member>
+    <member refid="namespacehmap_1aba758c4143b6e499ec6f4385467a6d77aeebf5714b383e3b3be100ceba46d8fe5" kind="enumvalue"><name>RND_HAMMERSLEY</name></member>
+    <member refid="namespacehmap_1aba758c4143b6e499ec6f4385467a6d77a8943dd2a2e3993c1e0cff37be3f65957" kind="enumvalue"><name>RND_LHS</name></member>
     <member refid="namespacehmap_1abc952321c99ec11d60b4037e3d27db9b" kind="enum"><name>NormalMapBlendingMethod</name></member>
     <member refid="namespacehmap_1abc952321c99ec11d60b4037e3d27db9bac248af7dd230247485e3c09a663cedd0" kind="enumvalue"><name>NMAP_LINEAR</name></member>
     <member refid="namespacehmap_1abc952321c99ec11d60b4037e3d27db9ba97d5a1740991179c436482de8c1c1f34" kind="enumvalue"><name>NMAP_DERIVATIVE</name></member>
@@ -952,6 +958,7 @@
     <member refid="namespacehmap_1a88ca6ccdcae8eba404dc38abac40991d" kind="variable"><name>cmap_as_string</name></member>
     <member refid="namespacehmap_1abba6b48f25191652ca4a9d643bb6542b" kind="variable"><name>mesh_type_as_string</name></member>
     <member refid="namespacehmap_1a53ee5c5907cfb58acb8f30d94f536b21" kind="variable"><name>asset_export_format_as_string</name></member>
+    <member refid="namespacehmap_1a10e5f27f8bd4a9e5feecc7016f754ebb" kind="variable"><name>point_sampling_method_as_string</name></member>
     <member refid="namespacehmap_1aed9d644531f4c1132298258bfb9dbf36" kind="variable"><name>normal_map_blending_method_as_string</name></member>
     <member refid="namespacehmap_1a5dfb33caf527f7b85895937c1e05286b" kind="variable"><name>transform_mode_as_string</name></member>
     <member refid="namespacehmap_1af6d8f4ad58c37bccc50d1f8227c6999d" kind="variable"><name>interpolation_method_2d_as_string</name></member>
@@ -1193,19 +1200,13 @@
     <member refid="namespacehmap_1aa2d7277ba1c9b10d75e5ba1d38ac7d80" kind="function"><name>wrinkle</name></member>
     <member refid="namespacehmap_1a17514d1658d2a065892f061864a538ad" kind="function"><name>create_noise_function_from_type</name></member>
     <member refid="namespacehmap_1abd7c616c225d31eb2fd4e3ff023e3ed5" kind="function"><name>merge_cloud</name></member>
+    <member refid="namespacehmap_1aa0bf57ef5e675f0aa851bc8f4b734acd" kind="function"><name>random_cloud</name></member>
+    <member refid="namespacehmap_1a83368f74414e23015bf543c36d8bfbef" kind="function"><name>random_cloud_density</name></member>
+    <member refid="namespacehmap_1a3c7d0352e60c2fd0ea923a68b569ffb0" kind="function"><name>random_cloud_distance</name></member>
+    <member refid="namespacehmap_1a75179356e03f22029303a31db1320ac0" kind="function"><name>random_cloud_distance</name></member>
+    <member refid="namespacehmap_1a45d91dd35adc332dfaea80188aa88529" kind="function"><name>random_cloud_jittered</name></member>
     <member refid="namespacehmap_1ab085d07bc0e897729ca16c0dd2035fe1" kind="function"><name>convert_length_to_pixel</name></member>
-    <member refid="namespacehmap_1ac774958287179e45c9915027d9351a1c" kind="function"><name>expand_grid</name></member>
-    <member refid="namespacehmap_1ae36e2bd1ea48979ff888771814b093e9" kind="function"><name>expand_grid_boundaries</name></member>
-    <member refid="namespacehmap_1a1f2ad9d57b6c0bdd3eb726beb01281d3" kind="function"><name>expand_grid_corners</name></member>
-    <member refid="namespacehmap_1addca3b204d0b0ef9120cf3606cb3f53a" kind="function"><name>grid_from_array</name></member>
     <member refid="namespacehmap_1a5325e50550ce04f027ffa3c6b2a3ef53" kind="function"><name>grid_xy_vector</name></member>
-    <member refid="namespacehmap_1a1b302517681613c5b82b06f55237fb98" kind="function"><name>random_grid</name></member>
-    <member refid="namespacehmap_1ab5a98f96f35de7ff88e55553a986e7c2" kind="function"><name>random_grid</name></member>
-    <member refid="namespacehmap_1a9871f7fdc4cefc81ca452a107751b0f5" kind="function"><name>random_grid</name></member>
-    <member refid="namespacehmap_1a6e4da549ca29a6c78c0c19dd3b8714d0" kind="function"><name>random_grid_density</name></member>
-    <member refid="namespacehmap_1a43b619bc125fb2379db0cd5f469acf68" kind="function"><name>random_grid_jittered</name></member>
-    <member refid="namespacehmap_1a872f3c8ff3b20a1a78dcf4eb2d9290ee" kind="function"><name>remove_grid_points_outside_bbox</name></member>
-    <member refid="namespacehmap_1a62470967e02836ce5e6e65607729f954" kind="function"><name>rescale_grid_to_unit_square</name></member>
     <member refid="namespacehmap_1a7ba4bc3a43f42b6a4bf00e94e86064ff" kind="function"><name>dig_path</name></member>
     <member refid="namespacehmap_1a6d536f0d67ade56c6a60927d8c8e9720" kind="function"><name>dig_river</name></member>
     <member refid="namespacehmap_1a31b3cde3ce1fa52f1856b962f4443d49" kind="function"><name>dig_river</name></member>
@@ -1226,6 +1227,17 @@
     <member refid="namespacehmap_1a69877ef43645c767daa0735fde59821c" kind="function"><name>sort_points</name></member>
     <member refid="namespacehmap_1a9249226d73f4396157c1c6415ebf3a7c" kind="function"><name>triangle_area</name></member>
     <member refid="namespacehmap_1a4910efa1a82d5dd66d7d02a87fab7e7a" kind="function"><name>unit_square_bbox</name></member>
+    <member refid="namespacehmap_1ae3b069feb998593e6bd1ccdbb41f14eb" kind="function"><name>bbox_to_ranges2d</name></member>
+    <member refid="namespacehmap_1ac3b1e6c5b2380e41efff2501021638f1" kind="function"><name>expand_points_domain</name></member>
+    <member refid="namespacehmap_1a98c0cc0d90ceb61a0ba28205458b18df" kind="function"><name>expand_points_at_domain_boundaries</name></member>
+    <member refid="namespacehmap_1a813c58d6f5d3b7febc0ba4f1a22619d6" kind="function"><name>expand_points_domain_corners</name></member>
+    <member refid="namespacehmap_1a9cb4524fa8aa7f074bed3793ad1e0302" kind="function"><name>random_points</name></member>
+    <member refid="namespacehmap_1ac30b62e2cc35d56c33af4d1c12c54f81" kind="function"><name>random_points_density</name></member>
+    <member refid="namespacehmap_1acb1099889036fd10623012ab68592914" kind="function"><name>random_points_distance</name></member>
+    <member refid="namespacehmap_1aca05646c60f189d1cb4ade3c062ea0e2" kind="function"><name>random_points_distance</name></member>
+    <member refid="namespacehmap_1a8dad71368ba3687b381f3c72b66cace5" kind="function"><name>random_points_jittered</name></member>
+    <member refid="namespacehmap_1a9e701766f54eaf6ad79956bf90b9bb8b" kind="function"><name>remove_points_outside_bbox</name></member>
+    <member refid="namespacehmap_1a72b1f87026fe5d88b0febb8bc6592c2c" kind="function"><name>rescale_points_to_unit_square</name></member>
     <member refid="namespacehmap_1ab0755dccfcae2b02a211c091e33f79a9" kind="function"><name>gradient1d</name></member>
     <member refid="namespacehmap_1ae23a30f7964baacd6d0457c288fd3598" kind="function"><name>gradient_angle</name></member>
     <member refid="namespacehmap_1a5f58c4149344b401d82f0be3c3807156" kind="function"><name>gradient_norm</name></member>
@@ -1529,6 +1541,7 @@
     <member refid="namespacehmap_1ad8482d5a5c0650c20ffe1dc86b5f8a61" kind="function"><name>recurve_bexp</name></member>
     <member refid="namespacehmap_1ad1ea450b3a5185e8066a5da48718489c" kind="function"><name>recurve_exp</name></member>
     <member refid="namespacehmap_1a61bb54fa22f06f142b0c99d5f39f5b42" kind="function"><name>rescale_grid_from_unit_square_to_bbox</name></member>
+    <member refid="namespacehmap_1a4a5d39e7cb51316261039010654f2737" kind="function"><name>helper_make_pointwise_function</name></member>
     <member refid="namespacehmap_1ac070e7f9253f57fe6b44ad1f6c9fd753" kind="function"><name>cmp_inf</name></member>
     <member refid="namespacehmap_1ad97b6a0082efd4063f7839c95a51b294" kind="function"><name>compute_gradient</name></member>
     <member refid="namespacehmap_1aa2c4a82ac72b15cac34f868be9743471" kind="function"><name>compute_gradient_norm</name></member>
@@ -1726,6 +1739,8 @@
   <compound refid="path_8hpp" kind="file"><name>path.hpp</name>
   </compound>
   <compound refid="point_8hpp" kind="file"><name>point.hpp</name>
+  </compound>
+  <compound refid="point__sampling_8hpp" kind="file"><name>point_sampling.hpp</name>
   </compound>
   <compound refid="gradient_8hpp" kind="file"><name>gradient.hpp</name>
   </compound>
@@ -1927,6 +1942,8 @@
   <compound refid="grid_8cpp" kind="file"><name>grid.cpp</name>
   </compound>
   <compound refid="path_8cpp" kind="file"><name>path.cpp</name>
+  </compound>
+  <compound refid="point__sampling_8cpp" kind="file"><name>point_sampling.cpp</name>
   </compound>
   <compound refid="points_8cpp" kind="file"><name>points.cpp</name>
   </compound>

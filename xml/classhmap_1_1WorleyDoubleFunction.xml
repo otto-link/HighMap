@@ -131,7 +131,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/functions.hpp" line="1225" column="3" bodyfile="HighMap/src/primitives/functions/noise_functions.cpp" bodystart="295" bodyend="323"/>
+        <location file="HighMap/include/highmap/functions.hpp" line="1225" column="3" bodyfile="HighMap/src/primitives/functions/noise_functions.cpp" bodystart="302" bodyend="330"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1WorleyDoubleFunction_1a32cec14474912671deee673440d193f1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>void</type>

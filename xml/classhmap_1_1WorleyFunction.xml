@@ -66,7 +66,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/functions.hpp" line="1180" column="3" bodyfile="HighMap/src/primitives/functions/noise_functions.cpp" bodystart="270" bodyend="293"/>
+        <location file="HighMap/include/highmap/functions.hpp" line="1180" column="3" bodyfile="HighMap/src/primitives/functions/noise_functions.cpp" bodystart="277" bodyend="300"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1WorleyFunction_1a1b43b6f8a602ee8b6159131bf16e6d07" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
         <type>void</type>

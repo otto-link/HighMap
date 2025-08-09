@@ -40,7 +40,7 @@
 <codeline lineno="30"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>normalized<sp/>node<sp/>coordinates</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="31"><highlight class="normal"><sp/><sp/>std::vector&lt;float&gt;<sp/>xrs<sp/>=<sp/>xr;</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"><sp/><sp/>std::vector&lt;float&gt;<sp/>yrs<sp/>=<sp/>yr;</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a62470967e02836ce5e6e65607729f954" kindref="member">rescale_grid_to_unit_square</ref>(xrs,<sp/>yrs,<sp/>bbox);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a72b1f87026fe5d88b0febb8bc6592c2c" kindref="member">rescale_points_to_unit_square</ref>(xrs,<sp/>yrs,<sp/>bbox);</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight></codeline>
 <codeline lineno="35"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>define<sp/>noise<sp/>function</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="36"><highlight class="normal"><sp/><sp/>std::function&lt;float(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">)&gt;<sp/>lambda;</highlight></codeline>
@@ -124,7 +124,7 @@
 <codeline lineno="114"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>normalized<sp/>node<sp/>coordinates</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="115"><highlight class="normal"><sp/><sp/>std::vector&lt;float&gt;<sp/>xrs<sp/>=<sp/>xr;</highlight></codeline>
 <codeline lineno="116"><highlight class="normal"><sp/><sp/>std::vector&lt;float&gt;<sp/>yrs<sp/>=<sp/>yr;</highlight></codeline>
-<codeline lineno="117"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a62470967e02836ce5e6e65607729f954" kindref="member">rescale_grid_to_unit_square</ref>(xrs,<sp/>yrs,<sp/>bbox);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a72b1f87026fe5d88b0febb8bc6592c2c" kindref="member">rescale_points_to_unit_square</ref>(xrs,<sp/>yrs,<sp/>bbox);</highlight></codeline>
 <codeline lineno="118"><highlight class="normal"></highlight></codeline>
 <codeline lineno="119"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>define<sp/>noise<sp/>function</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="120"><highlight class="normal"><sp/><sp/>std::function&lt;float(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">)&gt;<sp/>lambda;</highlight></codeline>

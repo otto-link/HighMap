@@ -1034,8 +1034,10 @@
       <member refid="classhmap_1_1Cloud_1afa8d7286a65d513bdc90c4c05bc42e0f" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>remove_point</name></member>
       <member refid="classhmap_1_1Cloud_1a604e61fbcbd8cc469ed21501e65f5c7b" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>set_values</name></member>
       <member refid="classhmap_1_1Cloud_1a540b582307b8457f38c43d12d899f2bf" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>set_values</name></member>
-      <member refid="classhmap_1_1Cloud_1a9071aba6d7344639eede19e54ec3e7cb" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>set_values_from_array</name></member>
+      <member refid="classhmap_1_1Cloud_1ac8d31a5787a009175695ff16904e7944" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>set_values_from_array</name></member>
+      <member refid="classhmap_1_1Cloud_1ae21ace9436c536e848cdda8d6ab61ac0" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>set_values_from_border_distance</name></member>
       <member refid="classhmap_1_1Cloud_1adf0b7a7c0c7d414e5d01e19be624aa3c" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>set_values_from_chull_distance</name></member>
+      <member refid="classhmap_1_1Cloud_1ad8b2d626436107c4b0e2c9877747375f" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>set_values_from_min_distance</name></member>
       <member refid="classhmap_1_1Graph_1ad116684b58ddb292d2af17642b90b40f" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>to_array</name></member>
       <member refid="classhmap_1_1Cloud_1ad83d71a8729a0e4fcce993c0141275ee" prot="public" virt="non-virtual" ambiguityscope="hmap::Cloud::"><scope>hmap::Graph</scope><name>to_array</name></member>
       <member refid="classhmap_1_1Graph_1a3a8332f8fc1cc9abaad0096ed3949000" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>to_array_fractalize</name></member>

@@ -84,21 +84,21 @@ var NAVTREEINDEX =
 [
 "_2home_2runner_2work_2HighMap_2HighMap_2HighMap_2include_2highmap_2export_8hpp-example.html",
 "classhmap_1_1Array.html#ae6ede66a645d489770813dd75c62c01e",
-"classhmap_1_1FbmSwissFunction.html#acf6aa4df64b19333e9ad64a76c19b75a",
-"classhmap_1_1ParberryFunction.html",
-"classhmap_1_1Tensor.html#a767c4e297a0ab687fbcb181598248597",
-"curvature_8hpp.html#a5bec8dfa40b4c176d348698d9074a7e7",
-"export__banner__png_8cpp.html",
-"filters_8hpp.html#ad99aff62bcc6c5c7a610d315e255b6d5",
-"heightmap_8hpp.html#a23b3861a8be80a910c10401284fe9e59",
-"kernels_8hpp.html#a1d9165a0056e99a90b7734268f231901",
-"namespacehmap.html#a1b7c375c3335b31ab4773d792365faac",
-"namespacehmap.html#a79a02efb856e14f99c2accbfa595e0d4",
-"namespacehmap.html#ac3d35efc6e5b596f508e2b17a5aa871ba83492c49190ded5f6cffeab29a42e77d",
-"namespacehmap_1_1gpu.html#aae6131a978635eb515958f41584bcbfc",
-"primitives_8hpp.html#a8e3756915e28aa80cec2190043cc8c2faf044e64b09fbae8b02b6c44f2d69925f",
-"stitching__helpers_8cpp.html#ae0a3c73cc23a288fe03bf5ed6ac73c3d",
-"structhmap_1_1Vec4.html#a080d1200616967db1349c9b912b1186c"
+"classhmap_1_1FbmSwissFunction.html#a21cf0b7a0a44a271bacc0a8c095e698b",
+"classhmap_1_1NoiseFunction.html#ad075abd6473d4ab8ec811f30192fdb9b",
+"classhmap_1_1Tensor.html#a61599497cbeaddf588b012eff837ad52",
+"curvature_8cpp.html#ac60627713d4f7ff0c406182ac9941483",
+"export_8hpp.html#ac81a92060b89699c4eb9826495d87250a68dced9d7f19cbd741feae05ad17ca14",
+"filters_8hpp.html#ac95c3b559d18eb6ef17b3f740ce5e67f",
+"heightmap_8hpp.html#a3751517b263e1178a1ab3a2378d77dfa",
+"kernels_8hpp.html#a4b6f135c6e81d313ca54ae1efac5f2c9a52c31358178f16aaf1e9148aa9e1c4f6",
+"namespacehmap.html#a1d5e665c9e945b8ad9a6b5f0c1b673ad",
+"namespacehmap.html#a7ba4bc3a43f42b6a4bf00e94e86064ff",
+"namespacehmap.html#ac3d35efc6e5b596f508e2b17a5aa871ba255d4f7c6ccaff8e1dbba731b721c118",
+"namespacehmap_1_1gpu.html#aa5f9b68baa2c17c23c8f21708e8fac9e",
+"primitives_8hpp.html#a2fe434844b8b2c091b589cbc4fa81db1",
+"selector_8hpp.html#ac6dcaa05c7c34302fa2560ddedbb9931",
+"structhmap_1_1Vec3.html#a3d41e7c6ee51cf75a2cd35fe087d6c9c"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -10,7 +10,6 @@ var classhmap_1_1Point =
     [ "operator/", "classhmap_1_1Point.html#a9009acb41438a016cb7398c09abd86d2", null ],
     [ "print", "classhmap_1_1Point.html#abc414635893bad912e30e009fbf8af35", null ],
     [ "set_value_from_array", "classhmap_1_1Point.html#a71f412d383764f8df8f56a5439eb4da7", null ],
-    [ "update_value_from_array", "classhmap_1_1Point.html#acda3ac23316079302a53e34ef3008fef", null ],
     [ "operator*", "classhmap_1_1Point.html#aa185c78a5385009de9f6f6461b536db2", null ],
     [ "x", "classhmap_1_1Point.html#ac0d4eaf8062b8f11638db83e08198e48", null ],
     [ "y", "classhmap_1_1Point.html#aa045aed7ca12dffe13ba8f2db730a9bf", null ],

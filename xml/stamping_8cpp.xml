@@ -47,7 +47,7 @@
 <codeline lineno="37"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>normalized<sp/>node<sp/>coordinates</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="38"><highlight class="normal"><sp/><sp/>std::vector&lt;float&gt;<sp/>xrs<sp/>=<sp/>xr;</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"><sp/><sp/>std::vector&lt;float&gt;<sp/>yrs<sp/>=<sp/>yr;</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a62470967e02836ce5e6e65607729f954" kindref="member">rescale_grid_to_unit_square</ref>(xrs,<sp/>yrs,<sp/>bbox_array);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a72b1f87026fe5d88b0febb8bc6592c2c" kindref="member">rescale_points_to_unit_square</ref>(xrs,<sp/>yrs,<sp/>bbox_array);</highlight></codeline>
 <codeline lineno="41"><highlight class="normal"></highlight></codeline>
 <codeline lineno="42"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>---<sp/>define<sp/>blending<sp/>function</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight></codeline>

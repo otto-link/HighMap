@@ -337,47 +337,6 @@
           <declname>bbox</declname>
         </param>
         <briefdescription>
-<para>Set the point value by interpolating values of an array at the point position. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>array</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Input array. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>bbox</parametername>
-</parameternamelist>
-<parameterdescription>
-<para><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> bounding box of the area, used to draw a correspondance between point position and array cells positions. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/point.hpp" line="156" column="8"/>
-      </memberdef>
-      <memberdef kind="function" id="classhmap_1_1Point_1acda3ac23316079302a53e34ef3008fef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void hmap::Point::update_value_from_array</definition>
-        <argsstring>(const Array &amp;array, Vec4&lt; float &gt; bbox)</argsstring>
-        <name>update_value_from_array</name>
-        <qualifiedname>hmap::Point::update_value_from_array</qualifiedname>
-        <param>
-          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
-          <declname>array</declname>
-        </param>
-        <param>
-          <type><ref refid="structhmap_1_1Vec4" kindref="compound">Vec4</ref>&lt; float &gt;</type>
-          <declname>bbox</declname>
-        </param>
-        <briefdescription>
 <para>Updates the point&apos;s value based on bilinear interpolation from an array. </para>
         </briefdescription>
         <detaileddescription>
@@ -406,7 +365,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/point.hpp" line="182" column="8" bodyfile="HighMap/src/geometry/points.cpp" bodystart="13" bodyend="34"/>
+        <location file="HighMap/include/highmap/geometry/point.hpp" line="173" column="8" bodyfile="HighMap/src/geometry/points.cpp" bodystart="13" bodyend="34"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="friend">
@@ -460,7 +419,7 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="HighMap/include/highmap/geometry/point.hpp" line="37" column="1" bodyfile="HighMap/include/highmap/geometry/point.hpp" bodystart="38" bodyend="183"/>
+    <location file="HighMap/include/highmap/geometry/point.hpp" line="37" column="1" bodyfile="HighMap/include/highmap/geometry/point.hpp" bodystart="38" bodyend="174"/>
     <listofallmembers>
       <member refid="classhmap_1_1Point_1ac8b559ae275f04c0d19d8ec66595847d" prot="public" virt="non-virtual"><scope>hmap::Point</scope><name>operator!=</name></member>
       <member refid="classhmap_1_1Point_1abbf64509c9c91b8e8b344503223e5747" prot="public" virt="non-virtual"><scope>hmap::Point</scope><name>operator*</name></member>
@@ -473,7 +432,6 @@
       <member refid="classhmap_1_1Point_1ad1041e7d925d820f47e80f0986a5e047" prot="public" virt="non-virtual"><scope>hmap::Point</scope><name>Point</name></member>
       <member refid="classhmap_1_1Point_1abc414635893bad912e30e009fbf8af35" prot="public" virt="non-virtual"><scope>hmap::Point</scope><name>print</name></member>
       <member refid="classhmap_1_1Point_1a71f412d383764f8df8f56a5439eb4da7" prot="public" virt="non-virtual"><scope>hmap::Point</scope><name>set_value_from_array</name></member>
-      <member refid="classhmap_1_1Point_1acda3ac23316079302a53e34ef3008fef" prot="public" virt="non-virtual"><scope>hmap::Point</scope><name>update_value_from_array</name></member>
       <member refid="classhmap_1_1Point_1ac67fb22939ed39d6c5ff4194b4405efb" prot="public" virt="non-virtual"><scope>hmap::Point</scope><name>v</name></member>
       <member refid="classhmap_1_1Point_1ac0d4eaf8062b8f11638db83e08198e48" prot="public" virt="non-virtual"><scope>hmap::Point</scope><name>x</name></member>
       <member refid="classhmap_1_1Point_1aa045aed7ca12dffe13ba8f2db730a9bf" prot="public" virt="non-virtual"><scope>hmap::Point</scope><name>y</name></member>

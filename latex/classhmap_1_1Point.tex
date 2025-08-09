@@ -31,8 +31,6 @@ bool \mbox{\hyperlink{classhmap_1_1Point_ac8b559ae275f04c0d19d8ec66595847d}{oper
 void \mbox{\hyperlink{classhmap_1_1Point_abc414635893bad912e30e009fbf8af35}{print}} ()
 \begin{DoxyCompactList}\small\item\em Prints the coordinates and value of the \doxylink{classhmap_1_1Point}{Point} object. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classhmap_1_1Point_a71f412d383764f8df8f56a5439eb4da7}{set\+\_\+value\+\_\+from\+\_\+array}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ bbox)
-\begin{DoxyCompactList}\small\item\em Set the point value by interpolating values of an array at the point position. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classhmap_1_1Point_acda3ac23316079302a53e34ef3008fef}{update\+\_\+value\+\_\+from\+\_\+array}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, \mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$ bbox)
 \begin{DoxyCompactList}\small\item\em Updates the point\textquotesingle{}s value based on bilinear interpolation from an array. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -209,23 +207,6 @@ This function outputs the \doxylink{classhmap_1_1Point}{Point}\textquotesingle{}
 \index{set\_value\_from\_array@{set\_value\_from\_array}!hmap::Point@{hmap::Point}}
 \doxysubsubsection{\texorpdfstring{set\_value\_from\_array()}{set\_value\_from\_array()}}
 {\footnotesize\ttfamily void hmap\+::\+Point\+::set\+\_\+value\+\_\+from\+\_\+array (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{\mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$}]{bbox }\end{DoxyParamCaption})}
-
-
-
-Set the point value by interpolating values of an array at the point position. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em array} & Input array. \\
-\hline
-{\em bbox} & \doxylink{classhmap_1_1Array}{Array} bounding box of the area, used to draw a correspondance between point position and array cells positions. \\
-\hline
-\end{DoxyParams}
-\Hypertarget{classhmap_1_1Point_acda3ac23316079302a53e34ef3008fef}\label{classhmap_1_1Point_acda3ac23316079302a53e34ef3008fef} 
-\index{hmap::Point@{hmap::Point}!update\_value\_from\_array@{update\_value\_from\_array}}
-\index{update\_value\_from\_array@{update\_value\_from\_array}!hmap::Point@{hmap::Point}}
-\doxysubsubsection{\texorpdfstring{update\_value\_from\_array()}{update\_value\_from\_array()}}
-{\footnotesize\ttfamily void hmap\+::\+Point\+::update\+\_\+value\+\_\+from\+\_\+array (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{\mbox{\hyperlink{structhmap_1_1Vec4}{Vec4}}$<$ float $>$}]{bbox }\end{DoxyParamCaption})}
 
 
 

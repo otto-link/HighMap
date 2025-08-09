@@ -805,7 +805,7 @@
 <codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>path<sp/>=<sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref>(3,<sp/>seed,<sp/>{1.1f,<sp/>1.9f,<sp/>-0.4,<sp/>0.4f});</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>path.<ref refid="classhmap_1_1Path_1a2ea3482a302d8ef30084fd39e57715de" kindref="member">closed</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>path.<ref refid="classhmap_1_1Path_1ad68abaa80879402c3758e24626acfb53" kindref="member">reorder_nns</ref>();</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>path.<ref refid="classhmap_1_1Cloud_1a9071aba6d7344639eede19e54ec3e7cb" kindref="member">set_values_from_array</ref>(z,<sp/>bbox);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>path.<ref refid="classhmap_1_1Cloud_1ac8d31a5787a009175695ff16904e7944" kindref="member">set_values_from_array</ref>(z,<sp/>bbox);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>before</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>z1<sp/>=<sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref>(shape);</highlight></codeline>
@@ -814,7 +814,7 @@
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>after</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>edge_divisions<sp/>=<sp/>0;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>path.<ref refid="classhmap_1_1Path_1a5bc0253d1ce863a772b3ac77aaf41b91" kindref="member">dijkstra</ref>(z,<sp/>bbox,<sp/>edge_divisions,<sp/>0.9f);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>path.<ref refid="classhmap_1_1Cloud_1a9071aba6d7344639eede19e54ec3e7cb" kindref="member">set_values_from_array</ref>(z,<sp/>bbox);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>path.<ref refid="classhmap_1_1Cloud_1ac8d31a5787a009175695ff16904e7944" kindref="member">set_values_from_array</ref>(z,<sp/>bbox);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>z2<sp/>=<sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref>(shape);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>path.<ref refid="classhmap_1_1Path_1a3b90d30abcdc4da9e381957d76c5d8db" kindref="member">to_array</ref>(z2,<sp/>bbox);</highlight></codeline>
@@ -2370,8 +2370,10 @@
       <member refid="classhmap_1_1Path_1ad4afe09089c84b5452ff0801b7161baf" prot="public" virt="non-virtual"><scope>hmap::Path</scope><name>sdf_open</name></member>
       <member refid="classhmap_1_1Cloud_1a604e61fbcbd8cc469ed21501e65f5c7b" prot="public" virt="non-virtual"><scope>hmap::Path</scope><name>set_values</name></member>
       <member refid="classhmap_1_1Cloud_1a540b582307b8457f38c43d12d899f2bf" prot="public" virt="non-virtual"><scope>hmap::Path</scope><name>set_values</name></member>
-      <member refid="classhmap_1_1Cloud_1a9071aba6d7344639eede19e54ec3e7cb" prot="public" virt="non-virtual"><scope>hmap::Path</scope><name>set_values_from_array</name></member>
+      <member refid="classhmap_1_1Cloud_1ac8d31a5787a009175695ff16904e7944" prot="public" virt="non-virtual"><scope>hmap::Path</scope><name>set_values_from_array</name></member>
+      <member refid="classhmap_1_1Cloud_1ae21ace9436c536e848cdda8d6ab61ac0" prot="public" virt="non-virtual"><scope>hmap::Path</scope><name>set_values_from_border_distance</name></member>
       <member refid="classhmap_1_1Cloud_1adf0b7a7c0c7d414e5d01e19be624aa3c" prot="public" virt="non-virtual"><scope>hmap::Path</scope><name>set_values_from_chull_distance</name></member>
+      <member refid="classhmap_1_1Cloud_1ad8b2d626436107c4b0e2c9877747375f" prot="public" virt="non-virtual"><scope>hmap::Path</scope><name>set_values_from_min_distance</name></member>
       <member refid="classhmap_1_1Path_1abdb4fffc12c3cfee268f8afad9ec3893" prot="public" virt="non-virtual"><scope>hmap::Path</scope><name>smooth</name></member>
       <member refid="classhmap_1_1Path_1a9816b231362dd1ca5208a839626f1f68" prot="public" virt="non-virtual"><scope>hmap::Path</scope><name>subsample</name></member>
       <member refid="classhmap_1_1Path_1a3b90d30abcdc4da9e381957d76c5d8db" prot="public" virt="non-virtual"><scope>hmap::Path</scope><name>to_array</name></member>

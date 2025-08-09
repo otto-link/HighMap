@@ -97,6 +97,7 @@ var menudata={children:[
 {text:"n",url:"namespacemembers_eval.html#index_n"},
 {text:"o",url:"namespacemembers_eval.html#index_o"},
 {text:"p",url:"namespacemembers_eval.html#index_p"},
+{text:"r",url:"namespacemembers_eval.html#index_r"},
 {text:"s",url:"namespacemembers_eval.html#index_s"},
 {text:"t",url:"namespacemembers_eval.html#index_t"},
 {text:"v",url:"namespacemembers_eval.html#index_v"},

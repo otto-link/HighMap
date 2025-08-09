@@ -6,6 +6,7 @@
     <innerfile refid="graph_8cpp">graph.cpp</innerfile>
     <innerfile refid="grid_8cpp">grid.cpp</innerfile>
     <innerfile refid="path_8cpp">path.cpp</innerfile>
+    <innerfile refid="point__sampling_8cpp">point_sampling.cpp</innerfile>
     <innerfile refid="points_8cpp">points.cpp</innerfile>
     <briefdescription>
     </briefdescription>

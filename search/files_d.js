@@ -9,10 +9,12 @@ var searchData=
   ['phasor_2ecpp_6',['phasor.cpp',['../phasor_8cpp.html',1,'']]],
   ['phasor_5fprofile_5ffunction_2ecpp_7',['phasor_profile_function.cpp',['../phasor__profile__function_8cpp.html',1,'']]],
   ['point_2ehpp_8',['point.hpp',['../point_8hpp.html',1,'']]],
-  ['points_2ecpp_9',['points.cpp',['../points_8cpp.html',1,'']]],
-  ['primitives_2ecpp_10',['primitives.cpp',['../primitives_8cpp.html',1,'']]],
-  ['primitives_2ehpp_11',['primitives.hpp',['../primitives_8hpp.html',1,'']]],
-  ['primitives_5fgpu_2ecpp_12',['primitives_gpu.cpp',['../primitives__gpu_8cpp.html',1,'']]],
-  ['pyramid_2ehpp_13',['pyramid.hpp',['../pyramid_8hpp.html',1,'']]],
-  ['pyramid_5fdecomposition_2ecpp_14',['pyramid_decomposition.cpp',['../pyramid__decomposition_8cpp.html',1,'']]]
+  ['point_5fsampling_2ecpp_9',['point_sampling.cpp',['../point__sampling_8cpp.html',1,'']]],
+  ['point_5fsampling_2ehpp_10',['point_sampling.hpp',['../point__sampling_8hpp.html',1,'']]],
+  ['points_2ecpp_11',['points.cpp',['../points_8cpp.html',1,'']]],
+  ['primitives_2ecpp_12',['primitives.cpp',['../primitives_8cpp.html',1,'']]],
+  ['primitives_2ehpp_13',['primitives.hpp',['../primitives_8hpp.html',1,'']]],
+  ['primitives_5fgpu_2ecpp_14',['primitives_gpu.cpp',['../primitives__gpu_8cpp.html',1,'']]],
+  ['pyramid_2ehpp_15',['pyramid.hpp',['../pyramid_8hpp.html',1,'']]],
+  ['pyramid_5fdecomposition_2ecpp_16',['pyramid_decomposition.cpp',['../pyramid__decomposition_8cpp.html',1,'']]]
 ];
