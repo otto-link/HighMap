@@ -148,4 +148,27 @@ std::array<std::vector<float>, 2> random_points_jittered(
     uint                     seed,
     const Vec4<float>       &bbox = {0.f, 1.f, 0.f, 1.f});
 
+/**
+ * @brief Remove grid points that are outside a given bounding box.
+ * @param x     `x` coordinates.
+ * @param y     `y` coordinates.
+ * @param value Values at points.
+ * @param bbox  Bounding box.
+ */
+void remove_points_outside_bbox(std::vector<float> &x,
+                                std::vector<float> &y,
+                                std::vector<float> &value,
+                                Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
+ * @brief Rescale coordinate (x, y) so that they fit in a unit-square box based
+ * on a given initial bounding box.
+ * @param x[in, out] `x` coordinates (output).
+ * @param y[in, out] `y` coordinates (output).
+ * @param bbox       Initial bounding box.
+ */
+void rescale_points_to_unit_square(std::vector<float> &x,
+                                   std::vector<float> &y,
+                                   Vec4<float>         bbox);
+
 } // namespace hmap

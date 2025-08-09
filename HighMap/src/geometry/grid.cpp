@@ -136,9 +136,9 @@ void rescale_grid_from_unit_square_to_bbox(std::vector<float> &x,
   }
 }
 
-void rescale_grid_to_unit_square(std::vector<float> &x,
-                                 std::vector<float> &y,
-                                 Vec4<float>         bbox)
+void rescale_points_to_unit_square(std::vector<float> &x,
+                                   std::vector<float> &y,
+                                   Vec4<float>         bbox)
 {
   for (size_t k = 0; k < x.size(); k++)
     x[k] = (x[k] - bbox.a) / (bbox.b - bbox.a);

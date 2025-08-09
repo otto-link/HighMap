@@ -37,7 +37,7 @@ Array stamping(Vec2<int>                 shape,
   // normalized node coordinates
   std::vector<float> xrs = xr;
   std::vector<float> yrs = yr;
-  rescale_grid_to_unit_square(xrs, yrs, bbox_array);
+  rescale_points_to_unit_square(xrs, yrs, bbox_array);
 
   // --- define blending function
 

@@ -102,27 +102,4 @@ void grid_xy_vector(std::vector<float> &x,
                     Vec4<float>         bbox = {0.f, 1.f, 0.f, 1.f},
                     bool                endpoint = false);
 
-/**
- * @brief Remove grid points that are outside a given bounding box.
- * @param x     `x` coordinates.
- * @param y     `y` coordinates.
- * @param value Values at points.
- * @param bbox  Bounding box.
- */
-void remove_grid_points_outside_bbox(std::vector<float> &x,
-                                     std::vector<float> &y,
-                                     std::vector<float> &value,
-                                     Vec4<float> bbox = {0.f, 1.f, 0.f, 1.f});
-
-/**
- * @brief Rescale coordinate (x, y) so that they fit in a unit-square box based
- * on a given initial bounding box.
- * @param x[in, out] `x` coordinates (output).
- * @param y[in, out] `y` coordinates (output).
- * @param bbox       Initial bounding box.
- */
-void rescale_grid_to_unit_square(std::vector<float> &x,
-                                 std::vector<float> &y,
-                                 Vec4<float>         bbox);
-
 } // namespace hmap
