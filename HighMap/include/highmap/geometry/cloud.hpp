@@ -366,7 +366,8 @@ public:
    * @param bbox  The bounding box that defines the mapping from the cloud
    * points' coordinates to the array's coordinates.
    */
-  void set_values_from_array(const Array &array, Vec4<float> bbox);
+  void set_values_from_array(const Array       &array,
+                             const Vec4<float> &bbox = {0.f, 1.f, 0.f, 1.f});
 
   /**
    * @brief Sets point values based on their distance to the bounding box
@@ -395,6 +396,18 @@ public:
    * indices of the convex hull points are available.
    */
   void set_values_from_chull_distance();
+
+  /**
+   * @brief Sets point values based on the distance to their nearest neighbor.
+   * Actually returns the squared distance.
+   *
+   * The computation process:
+   * - Extracts the x and y coordinates from the cloud.
+   * - Merges them into a 2D point list.
+   * - Calculates the minimum distance to any other point using
+   *   `ps::first_neighbor_distance`.
+   */
+  void set_values_from_min_distance();
 
   /**
    * @brief Project the cloud points onto an array.

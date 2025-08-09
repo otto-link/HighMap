@@ -335,7 +335,7 @@ void Cloud::set_values(float new_value)
     this->points[k].v = new_value;
 }
 
-void Cloud::set_values_from_array(const Array &array, Vec4<float> bbox)
+void Cloud::set_values_from_array(const Array &array, const Vec4<float> &bbox)
 {
   for (auto &p : this->points)
     p.set_value_from_array(array, bbox);
@@ -369,6 +369,15 @@ void Cloud::set_values_from_chull_distance()
       }
     }
   }
+}
+
+void Cloud::set_values_from_min_distance()
+{
+  std::array<std::vector<float>, 2> xy = {this->get_x(), this->get_y()};
+  std::vector<ps::Point<float, 2>>  points = ps::merge_by_dimension(xy);
+  std::vector<float>                dist = ps::first_neighbor_distance(points);
+
+  this->set_values(dist);
 }
 
 void Cloud::to_array(Array &array, Vec4<float> bbox) const
