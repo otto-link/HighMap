@@ -47,6 +47,22 @@ static std::map<std::string, int> point_sampling_method_as_string = {
 };
 
 /**
+ * @brief Converts a 2D bounding box into coordinate ranges.
+ *
+ * This function takes a bounding box defined by four values (xmin, xmax, ymin,
+ * ymax) stored in a Vec4<float> and returns an array of two ranges:
+ *   - ranges[0] = {xmin, xmax}
+ *   - ranges[1] = {ymin, ymax}
+ *
+ * @param  bbox Bounding box in the format {xmin, xmax, ymin, ymax}.
+ * @return      An array of two pairs:
+ *         - First pair: x-axis range (min, max)
+ *         - Second pair: y-axis range (min, max)
+ */
+std::array<std::pair<float, float>, 2> bbox_to_ranges2d(
+    const Vec4<float> &bbox);
+
+/**
  * @brief Expand grid by translating and copying the values of the current
  * bounding box to the 8 first neighboring bounding boxes.
  * @param x     `x` coordinates.
@@ -138,7 +154,7 @@ std::array<std::vector<float>, 2> random_points_density(
  * @param  seed     Random number generator seed.
  * @param  bbox     Bounding box in which to generate the points (a,b,c,d =
  *                  xmin, xmax, ymin, ymax). Defaults to the unit square {0.f,
- *                  1.f, 0.f, 1.f}.
+ * 1.f, 0.f, 1.f}.
  * @return          A pair of float vectors {x_coords, y_coords}.
  */
 std::array<std::vector<float>, 2> random_points_distance(
@@ -159,7 +175,7 @@ std::array<std::vector<float>, 2> random_points_distance(
  * @param  seed     Random number generator seed.
  * @param  bbox     Bounding box in which to generate the points (a,b,c,d =
  *                  xmin, xmax, ymin, ymax). Defaults to the unit square {0.f,
- *                  1.f, 0.f, 1.f}.
+ * 1.f, 0.f, 1.f}.
  * @return          A pair of float vectors {x_coords, y_coords}.
  */
 std::array<std::vector<float>, 2> random_points_distance(

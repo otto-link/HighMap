@@ -100,6 +100,7 @@ int main(void)
                                                     jitter_amount,
                                                     stagger_ratio,
                                                     seed);
+    cloud.set_values_from_border_distance();
 
     raster = 0.f;
     cloud.to_array(raster);

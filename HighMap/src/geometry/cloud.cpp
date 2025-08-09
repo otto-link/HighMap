@@ -341,6 +341,17 @@ void Cloud::set_values_from_array(const Array &array, Vec4<float> bbox)
     p.set_value_from_array(array, bbox);
 }
 
+void Cloud::set_values_from_border_distance(const Vec4<float> &bbox)
+{
+  std::array<std::vector<float>, 2> xy = {this->get_x(), this->get_y()};
+  std::vector<ps::Point<float, 2>>  points = ps::merge_by_dimension(xy);
+
+  std::vector<float> dist = ps::distance_to_boundary(points,
+                                                     bbox_to_ranges2d(bbox));
+
+  this->set_values(dist);
+}
+
 void Cloud::set_values_from_chull_distance()
 {
   std::vector<int> chull = this->get_convex_hull_point_indices();

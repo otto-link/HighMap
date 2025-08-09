@@ -369,6 +369,23 @@ public:
   void set_values_from_array(const Array &array, Vec4<float> bbox);
 
   /**
+   * @brief Sets point values based on their distance to the bounding box
+   * border.
+   *
+   * For each point in the cloud, this method computes the shortest distance to
+   * the edges of the given bounding box and stores it as the point's value.
+   *
+   * The distance is calculated in 2D space, where:
+   * - The x and y coordinates are extracted from the cloud.
+   * - Points are merged into a 2D coordinate list.
+   * - The distance to the nearest boundary of the bounding box is computed.
+   *
+   * @param bbox Bounding box in the format {xmin, xmax, ymin, ymax}.
+   */
+  void set_values_from_border_distance(
+      const Vec4<float> &bbox = {0.f, 1.f, 0.f, 1.f});
+
+  /**
    * @brief Set the values of the cloud points based on the distance to the
    * convex hull of the cloud.
    *
@@ -599,7 +616,7 @@ Cloud random_cloud_density(size_t             count,
  * @param  seed     Random number generator seed.
  * @param  bbox     Bounding box in which to generate the points (a,b,c,d =
  *                  xmin, xmax, ymin, ymax). Defaults to the unit square {0.f,
- *                  1.f, 0.f, 1.f}.
+ * 1.f, 0.f, 1.f}.
  * @return          A Cloud containing the generated points.
  *
  * **Example**
@@ -628,7 +645,7 @@ Cloud random_cloud_distance(float              min_dist,
  * @param  seed     Random number generator seed.
  * @param  bbox     Bounding box in which to generate the points (a,b,c,d =
  *                  xmin, xmax, ymin, ymax). Defaults to the unit square {0.f,
- *                  1.f, 0.f, 1.f}.
+ * 1.f, 0.f, 1.f}.
  * @return          A Cloud containing the generated points.
  *
  * **Example**

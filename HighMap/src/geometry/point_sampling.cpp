@@ -7,15 +7,6 @@
 namespace hmap
 {
 
-std::array<std::pair<float, float>, 2> helper_bbox_to_ranges2d(
-    const Vec4<float> &bbox)
-{
-  std::array<std::pair<float, float>, 2> ranges = {
-      std::make_pair(bbox.a, bbox.b),
-      std::make_pair(bbox.c, bbox.d)};
-  return ranges;
-}
-
 auto helper_make_pointwise_function(const Array &array, const Vec4<float> &bbox)
 {
   return [&array, &bbox](const ps::Point<float, 2> &p) -> float
@@ -38,6 +29,14 @@ auto helper_make_pointwise_function(const Array &array, const Vec4<float> &bbox)
   };
 }
 
+std::array<std::pair<float, float>, 2> bbox_to_ranges2d(const Vec4<float> &bbox)
+{
+  std::array<std::pair<float, float>, 2> ranges = {
+      std::make_pair(bbox.a, bbox.b),
+      std::make_pair(bbox.c, bbox.d)};
+  return ranges;
+}
+
 std::array<std::vector<float>, 2> random_points(
     size_t                     count,
     uint                       seed,
@@ -45,7 +44,7 @@ std::array<std::vector<float>, 2> random_points(
     const Vec4<float>         &bbox)
 {
   std::vector<ps::Point<float, 2>> points;
-  auto                             ranges = helper_bbox_to_ranges2d(bbox);
+  auto                             ranges = bbox_to_ranges2d(bbox);
 
   switch (method)
   {
@@ -83,7 +82,7 @@ std::array<std::vector<float>, 2> random_points_density(size_t       count,
                                                         uint         seed,
                                                         const Vec4<float> &bbox)
 {
-  auto ranges = helper_bbox_to_ranges2d(bbox);
+  auto ranges = bbox_to_ranges2d(bbox);
   auto density_fct = helper_make_pointwise_function(density, bbox);
 
   auto points = ps::rejection_sampling<float, 2>(count,
@@ -98,7 +97,7 @@ std::array<std::vector<float>, 2> random_points_distance(
     uint               seed,
     const Vec4<float> &bbox)
 {
-  auto ranges = helper_bbox_to_ranges2d(bbox);
+  auto ranges = bbox_to_ranges2d(bbox);
 
   // estimate a maximum count using the minimum distance
   size_t count = (size_t)(2.f * (bbox.b - bbox.a) / min_dist *
@@ -118,7 +117,7 @@ std::array<std::vector<float>, 2> random_points_distance(
     uint               seed,
     const Vec4<float> &bbox)
 {
-  auto ranges = helper_bbox_to_ranges2d(bbox);
+  auto ranges = bbox_to_ranges2d(bbox);
 
   // convert density [0, 1] to scale (when density = 0, enforce
   // max_dist, when density = 1, enforce min_dist)
@@ -144,7 +143,7 @@ std::array<std::vector<float>, 2> random_points_jittered(
     uint                     seed,
     const Vec4<float>       &bbox)
 {
-  auto                 ranges = helper_bbox_to_ranges2d(bbox);
+  auto                 ranges = bbox_to_ranges2d(bbox);
   std::array<float, 2> jt = {jitter_amount.x, jitter_amount.y};
   std::array<float, 2> sr = {stagger_ratio.x, stagger_ratio.y};
 
