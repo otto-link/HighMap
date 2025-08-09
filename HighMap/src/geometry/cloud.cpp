@@ -292,17 +292,13 @@ void Cloud::print()
 
 void Cloud::randomize(uint seed, Vec4<float> bbox)
 {
-  std::mt19937                          gen(seed);
-  std::uniform_real_distribution<float> x_dist(bbox.a, bbox.b);
-  std::uniform_real_distribution<float> y_dist(bbox.c, bbox.d);
-  std::uniform_real_distribution<float> v_dist(0.0f, 1.0f);
+  Cloud cloud_rnd = random_cloud(this->get_npoints(),
+                                 seed,
+                                 PointSamplingMethod::RND_LHS,
+                                 bbox);
 
-  for (auto &p : this->points)
-  {
-    p.x = x_dist(gen);
-    p.y = y_dist(gen);
-    p.v = v_dist(gen);
-  }
+  for (size_t k = 0; k < this->get_npoints(); ++k)
+    this->points[k] = cloud_rnd.points[k];
 }
 
 void Cloud::remap_values(float vmin, float vmax)

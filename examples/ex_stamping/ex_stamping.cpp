@@ -10,7 +10,7 @@ int main(void)
   hmap::Array     kernel = hmap::gabor(shape_kernel, 8.f, 15.f);
 
   // generate stamping locations
-  size_t n = 50;
+  size_t      n = 50;
   hmap::Cloud cloud = hmap::random_cloud(n, seed);
 
   // eventually stamp...
