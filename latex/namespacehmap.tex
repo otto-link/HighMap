@@ -512,10 +512,12 @@ void \mbox{\hyperlink{namespacehmap_a6123c18788ae302332416d5d7585fd9f}{alter\+\_
 \begin{DoxyCompactList}\small\item\em Point-\/wise alteration\+: locally enforce a new elevation value while maintaining the \textquotesingle{}shape\textquotesingle{} of the heightmap. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_ad0679d167a3129dc403e3ca7082579f8}{base\+\_\+elevation}} (glm\+::ivec2 \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}, const std\+::vector$<$ std\+::vector$<$ float $>$ $>$ \&values, float width\+\_\+factor=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+x=nullptr, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+y=nullptr, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+stretching=nullptr, glm\+::vec4 bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\})
 \begin{DoxyCompactList}\small\item\em Generate a heightmap from a coarse grid of control points with defined elevation values. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a1cd0f776fce02a28d7a58af8c40cb7aa}{elevation\+\_\+from\+\_\+contours}} (glm\+::ivec2 \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}, const std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Path}{Path}} $>$ \&contours, const std\+::vector$<$ float $>$ \&elevations, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+probability=nullptr, float randomness=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, std\+::uint32\+\_\+t seed=0, float peak\+\_\+ratio=0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float outside\+\_\+ratio=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, bool smoothstep=false, glm\+::vec4 bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\})
+\begin{DoxyCompactList}\small\item\em Synthesize a heightmap from sparse closed iso-\/contours with known elevations using stochastic front propagation (proof of concept). \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a77df59a73e83bc371eceae7793c690dc}{elevation\+\_\+from\+\_\+sparse\+\_\+constraints}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&mountains, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+coastline=nullptr, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+boundary=nullptr, float mountain\+\_\+elevation=1.\+0f, float coastline\+\_\+elevation=0.\+0f, float boundary\+\_\+elevation=-\/1.\+0f, int iterations\+\_\+max=500, float tolerance=1e-\/5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise=nullptr, float noise\+\_\+amplitude=0.\+0f)
 \begin{DoxyCompactList}\small\item\em Synthesize a smooth heightmap from sparse elevation constraints using GPU harmonic interpolation (Laplacian PDE). \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a78736b79e58ddaad2b196e7cc9bbe37b}{elevation\+\_\+from\+\_\+contours}} (glm\+::ivec2 \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}, const std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Path}{Path}} $>$ \&contours, const std\+::vector$<$ float $>$ \&elevations, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+probability=nullptr, float randomness=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, std\+::uint32\+\_\+t seed=0, float peak\+\_\+ratio=0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float outside\+\_\+ratio=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, glm\+::vec4 bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\})
-\begin{DoxyCompactList}\small\item\em Synthesize a heightmap from sparse closed iso-\/contours with known elevations using stochastic front propagation (proof of concept). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_ab2537bdacf8200eeeb381c4b4825bf1b}{elevation\+\_\+from\+\_\+contours}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&contours, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+probability=nullptr, float randomness=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, std\+::uint32\+\_\+t seed=0, float peak\+\_\+ratio=0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float outside\+\_\+ratio=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, bool smoothstep=false)
+\begin{DoxyCompactList}\small\item\em Synthesize a heightmap from a raster of sparse iso-\/contours with known elevations using stochastic front propagation. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a6f7e6e0cffaf7d03cfe1eef62b1c3575}{reverse\+\_\+midpoint}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, std\+::uint32\+\_\+t seed, float noise\+\_\+scale=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float \mbox{\hyperlink{namespacehmap_a30b11da38799224ac6d138dce87278b9}{threshold}}=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
 \begin{DoxyCompactList}\small\item\em Apply the reverse midpoint displacement algorithm to the input array. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a74f6ef0464e0ec67df5179f49e14e35a}{ridgelines}} (glm\+::ivec2 \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}, const std\+::vector$<$ float $>$ \&xr, const std\+::vector$<$ float $>$ \&yr, const std\+::vector$<$ float $>$ \&zr, float \mbox{\hyperlink{namespacehmap_a04e7abe100708990e2464cc5df2ccafa}{slope}}, float k\+\_\+smoothing=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float width=0.\+1\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float vmin=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, glm\+::vec4 bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+x=nullptr, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+y=nullptr, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+stretching=nullptr, glm\+::vec4 bbox\+\_\+array=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\})
@@ -3515,6 +3517,257 @@ The interpolation is performed using a Gaussian function, with the {\ttfamily wi
 \end{DoxyCodeInclude}
 
 
+{\bfseries{Result}}  \Hypertarget{namespacehmap_a1cd0f776fce02a28d7a58af8c40cb7aa}\label{namespacehmap_a1cd0f776fce02a28d7a58af8c40cb7aa} 
+\index{hmap@{hmap}!elevation\_from\_contours@{elevation\_from\_contours}}
+\index{elevation\_from\_contours@{elevation\_from\_contours}!hmap@{hmap}}
+\doxysubsubsection{\texorpdfstring{elevation\_from\_contours()}{elevation\_from\_contours()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::elevation\+\_\+from\+\_\+contours (\begin{DoxyParamCaption}\item[{glm\+::ivec2}]{shape,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Path}{Path}} $>$ \&}]{contours,  }\item[{const std\+::vector$<$ float $>$ \&}]{elevations,  }\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+probability = {\ttfamily nullptr},  }\item[{float}]{randomness = {\ttfamily 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{std\+::uint32\+\_\+t}]{seed = {\ttfamily 0},  }\item[{float}]{peak\+\_\+ratio = {\ttfamily 0.5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{float}]{outside\+\_\+ratio = {\ttfamily 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{bool}]{smoothstep = {\ttfamily false},  }\item[{glm\+::vec4}]{bbox = {\ttfamily \{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}},~1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}},~0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}},~1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}} }\end{DoxyParamCaption})}
+
+
+
+Synthesize a heightmap from sparse closed iso-\/contours with known elevations using stochastic front propagation (proof of concept). 
+
+Experimental raster adaptation of the contour-\/based terrain synthesis of Huftier et al. {\bfseries [Huftier2026]}. Each input path is treated as a closed polygon at a constant elevation. Contour pixels are fixed to their elevation (Dirichlet constraints) and the innermost enclosing contour defines the "{}zone"{} of every other pixel. Within a zone, two fronts are propagated from the fixed pixels with an Eden growth process implemented as first-\/passage percolation (Dijkstra with random passage times)\+: one front from the zone\textquotesingle{}s own contour, one from its child contours. The time needed to enter a pixel is {\ttfamily ((1 -\/ randomness) + randomness \texorpdfstring{$\ast$}{*} E) / rate} with {\ttfamily E} an exponential random variable and {\ttfamily rate} given by the probability map for the rising front and by its complement for the descending front. The arrival times {\ttfamily t\+\_\+near} and {\ttfamily t\+\_\+far} define a progress {\ttfamily t\+\_\+near / (t\+\_\+near + t\+\_\+far)} that is mapped linearly between the two contour elevations after spurious pits are removed by a priority flood.
+
+With {\ttfamily randomness = 0} the passage times equal their expectation and the method reduces to a deterministic, probability-\/weighted geodesic front propagation. With a uniform probability map the result is then close to an inverse-\/distance interpolation between consecutive contours.
+
+Leaf contours (contours without children) rise to {\ttfamily elevation + peak\+\_\+ratio \texorpdfstring{$\ast$}{*} spacing} at their farthest interior point, or sink by the same amount when the contour is lower than its parent (basins). Outside all contours the terrain falls off to {\ttfamily elevation -\/ outside\+\_\+ratio \texorpdfstring{$\ast$}{*} spacing}. {\ttfamily spacing} is the mean elevation gap between nested contours (falls back to the elevation range, then to 1).
+
+Limitations of this proof of concept\+: contours must not cross each other; children of a contour with different elevations produce a discontinuity along the seam between their regions; pit removal is only applied to zones whose child contours are all higher than the enclosing contour.
+
+
+\begin{DoxyParams}{Parameters}
+{\em shape} & Output array shape. \\
+\hline
+{\em contours} & Closed contour polygons (at least 3 points each), in {\ttfamily bbox} coordinates. The {\ttfamily closed} flag of the paths is ignored, every path is closed. \\
+\hline
+{\em elevations} & Elevation of each contour (same size as {\ttfamily contours}). \\
+\hline
+{\em p\+\_\+probability} & Optional probability map in \mbox{[}0, 1\mbox{]} with shape {\ttfamily shape}. Where it is high the rising front advances fast and the terrain stays low longer (gentle slopes); where it is low the terrain rises quickly (steep slopes). If null, a uniform map (0.\+5) is used. \\
+\hline
+{\em randomness} & Amount of randomness in the front propagation in \mbox{[}0, 1\mbox{]}\+: 0 is deterministic, 1 is the Eden growth model. \\
+\hline
+{\em seed} & Random seed. \\
+\hline
+{\em peak\+\_\+ratio} & Elevation gain of leaf contour interiors, relative to the mean elevation gap between nested contours. \\
+\hline
+{\em outside\+\_\+ratio} & Elevation drop outside all contours, relative to the mean elevation gap between nested contours. \\
+\hline
+{\em smoothstep} & If true, applies smoothstep (S-\/curve) interpolation between contours, yielding softer transitions near contour boundaries. If false (default), uses linear interpolation. \\
+\hline
+{\em bbox} & Domain bounding box \{xmin, xmax, ymin, ymax\}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{classhmap_1_1Array}{Array} Synthesized heightmap, or an empty array if the inputs are invalid.
+\end{DoxyReturn}
+{\bfseries{Example}} 
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{highmap_8hpp}{highmap.hpp}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ closed\ star-\/shaped\ contour:\ radius\ r0\ modulated\ by\ a\ fixed\ angular\ profile}}
+\DoxyCodeLine{\textcolor{comment}{//\ (all\ blobs\ share\ the\ profile\ so\ that\ nested\ blobs\ never\ cross)}}
+\DoxyCodeLine{\mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ blob(\textcolor{keywordtype}{float}\ cx,\ \textcolor{keywordtype}{float}\ cy,\ \textcolor{keywordtype}{float}\ r0,\ \textcolor{keywordtype}{int}\ npts\ =\ 96)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ std::vector<float>\ x,\ y;}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ k\ =\ 0;\ k\ <\ npts;\ ++k)}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{elevation__from__contours_8cpp_a305c809f0e63e80705b5138b76dc0cc2}{t}}\ =\ 2.f\ *\ M\_PI\ *\ k\ /\ npts;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{float}\ m\ =\ 1.f\ +\ 0.12f\ *\ std::sin(3.f\ *\ \mbox{\hyperlink{elevation__from__contours_8cpp_a305c809f0e63e80705b5138b76dc0cc2}{t}}\ +\ 0.7f)\ +}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.08f\ *\ std::sin(5.f\ *\ \mbox{\hyperlink{elevation__from__contours_8cpp_a305c809f0e63e80705b5138b76dc0cc2}{t}}\ +\ 2.1f);}
+\DoxyCodeLine{\ \ \ \ x.push\_back(cx\ +\ r0\ *\ m\ *\ std::cos(\mbox{\hyperlink{elevation__from__contours_8cpp_a305c809f0e63e80705b5138b76dc0cc2}{t}}));}
+\DoxyCodeLine{\ \ \ \ y.push\_back(cy\ +\ r0\ *\ m\ *\ std::sin(\mbox{\hyperlink{elevation__from__contours_8cpp_a305c809f0e63e80705b5138b76dc0cc2}{t}}));}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ p(x,\ y);}
+\DoxyCodeLine{\ \ p.set\_closed(\textcolor{keyword}{true});}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{return}\ p;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ extract\ n\ iso-\/level\ contours\ as\ a\ heightmap\ where\ contour\ pixels\ hold\ their}}
+\DoxyCodeLine{\textcolor{comment}{//\ elevation\ and\ other\ pixels\ are\ 0}}
+\DoxyCodeLine{\mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ extract\_contours\_from\_heightmap(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ \&heightmap,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ n\_levels)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}\ (heightmap.\mbox{\hyperlink{classhmap_1_1Array_a16e6671dbf3202dbc86f5eccb0fcb1ad}{size}}()\ ==\ 0\ ||\ n\_levels\ <=\ 0)\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{const}\ glm::ivec2\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}\ =\ heightmap.\mbox{\hyperlink{classhmap_1_1Array_a9ee3e85888021b80660357e73f35a5ea}{shape}};}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ \ \ \ \ \ out(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ 0.f);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ h\_min\ =\ heightmap.\mbox{\hyperlink{classhmap_1_1Array_a56c77f78e4864f5c6f2cbd6de8100556}{min}}();}
+\DoxyCodeLine{\ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ h\_max\ =\ heightmap.\mbox{\hyperlink{classhmap_1_1Array_a68aac609ccba8f581da1cdf5cee671b9}{max}}();}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}\ (std::abs(h\_max\ -\/\ h\_min)\ <\ 1e-\/6f)\ \textcolor{keywordflow}{return}\ out;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ l\ =\ 1;\ l\ <=\ n\_levels;\ ++l)}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ isoval\ =\ h\_min\ +}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (float(l)\ /\ float(n\_levels\ +\ 1))\ *\ (h\_max\ -\/\ h\_min);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ a\ pixel\ is\ on\ the\ contour\ if\ it\ crosses\ the\ isovalue\ relative\ to\ any}}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 4-\/neighbor}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}.y;\ ++j)}
+\DoxyCodeLine{\ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}.x;\ ++i)}
+\DoxyCodeLine{\ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ v\ =\ heightmap(i,\ j);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ check\ horizontal\ neighbor}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ +\ 1\ <\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}.x)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ vr\ =\ heightmap(i\ +\ 1,\ j);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((v\ <=\ isoval\ \&\&\ vr\ >=\ isoval)\ ||\ (v\ >=\ isoval\ \&\&\ vr\ <=\ isoval))}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (std::abs(v\ -\/\ isoval)\ <=\ std::abs(vr\ -\/\ isoval))}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ out(i,\ j)\ =\ isoval;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ out(i\ +\ 1,\ j)\ =\ isoval;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ check\ vertical\ neighbor}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (j\ +\ 1\ <\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}.y)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ vt\ =\ heightmap(i,\ j\ +\ 1);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((v\ <=\ isoval\ \&\&\ vt\ >=\ isoval)\ ||\ (v\ >=\ isoval\ \&\&\ vt\ <=\ isoval))}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (std::abs(v\ -\/\ isoval)\ <=\ std::abs(vt\ -\/\ isoval))}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ out(i,\ j)\ =\ isoval;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ out(i,\ j\ +\ 1)\ =\ isoval;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{return}\ out;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ glm::ivec2\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}\ =\ \{256,\ 256\};}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ shape\ =\ \{1024,\ 1024\};}}
+\DoxyCodeLine{\ \ glm::vec4\ bbox\ =\ \{0.f,\ 1.f,\ 0.f,\ 1.f\};}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ seed\ =\ 1;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ sparse\ contours:\ a\ main\ hill\ with\ 4\ nested\ levels,\ a\ small\ basin\ in}}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ its\ lowest\ ring\ and\ a\ second,\ separate\ hill}}
+\DoxyCodeLine{\ \ std::vector<hmap::Path>\ contours\ =\ \{blob(0.38f,\ 0.48f,\ 0.30f),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ blob(0.38f,\ 0.48f,\ 0.21f),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ blob(0.38f,\ 0.48f,\ 0.13f),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ blob(0.38f,\ 0.48f,\ 0.06f),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ blob(0.67f,\ 0.48f,\ 0.03f),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ blob(0.82f,\ 0.82f,\ 0.11f),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ blob(0.82f,\ 0.82f,\ 0.04f)\};}
+\DoxyCodeLine{\ \ std::vector<float>\ elevations\ =\ \{0.1f,\ 0.3f,\ 0.5f,\ 0.7f,\ 0.f,\ 0.2f,\ 0.4f\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ input\ contours\ drawn\ at\ their\ elevation,\ for\ reference}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ z\_contours(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}});}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ k\ =\ 0;\ k\ <\ contours.size();\ ++k)}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ p\ =\ contours[k];}
+\DoxyCodeLine{\ \ \ \ p.\mbox{\hyperlink{classhmap_1_1Cloud_a604e61fbcbd8cc469ed21501e65f5c7b}{set\_values}}(elevations[k]);}
+\DoxyCodeLine{\ \ \ \ p.\mbox{\hyperlink{classhmap_1_1Path_a4d1e1e63fea24bf8f23bc3343f8b746e}{to\_array}}(z\_contours,\ bbox);}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ deterministic\ front\ propagation\ (weighted\ geodesic\ interpolation)}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ z1\ =\ \mbox{\hyperlink{namespacehmap_a1cd0f776fce02a28d7a58af8c40cb7aa}{hmap::elevation\_from\_contours}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ contours,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ elevations,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.f);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ stochastic\ Eden\ growth,\ uniform\ probability}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ z2\ =\ \mbox{\hyperlink{namespacehmap_a1cd0f776fce02a28d7a58af8c40cb7aa}{hmap::elevation\_from\_contours}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ contours,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ elevations,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1.f,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seed);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ stochastic\ Eden\ growth\ biased\ by\ a\ noise\ probability\ map}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ proba\ =\ \mbox{\hyperlink{namespacehmap_a7d699a468a18be16c70654958ee13b41}{hmap::noise\_fbm}}(\mbox{\hyperlink{namespacehmap_ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581}{hmap::NoiseType::PERLIN}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{4.f,\ 4.f\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seed,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 8);}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{hmap::remap}}(proba,\ 0.05f,\ 0.95f);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ z3\ =\ \mbox{\hyperlink{namespacehmap_a1cd0f776fce02a28d7a58af8c40cb7aa}{hmap::elevation\_from\_contours}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ contours,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ elevations,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&proba,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1.f,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seed);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ deterministic\ propagation\ with\ the\ same\ probability\ map}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ z4\ =\ \mbox{\hyperlink{namespacehmap_a1cd0f776fce02a28d7a58af8c40cb7aa}{hmap::elevation\_from\_contours}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ contours,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ elevations,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&proba,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.f);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ noise-\/based\ raster\ contours:\ extract\ iso-\/contours\ from\ Perlin\ fbm\ noise}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ noise\_hmap\ =\ \mbox{\hyperlink{namespacehmap_a7d699a468a18be16c70654958ee13b41}{hmap::noise\_fbm}}(\mbox{\hyperlink{namespacehmap_ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581}{hmap::NoiseType::PERLIN}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{3.f,\ 3.f\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seed,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 6);}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{hmap::remap}}(noise\_hmap,\ 0.1f,\ 0.9f);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ raster\_contours\ =\ extract\_contours\_from\_heightmap(noise\_hmap,\ 3);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ synthesize\ elevation\ directly\ from\ raster\ contours\ with\ smoothstep}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ z\_noise\_reconstructed\ =\ \mbox{\hyperlink{namespacehmap_a1cd0f776fce02a28d7a58af8c40cb7aa}{hmap::elevation\_from\_contours}}(}
+\DoxyCodeLine{\ \ \ \ \ \ raster\_contours,}
+\DoxyCodeLine{\ \ \ \ \ \ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{\ \ \ \ \ \ 0.f,}
+\DoxyCodeLine{\ \ \ \ \ \ seed,}
+\DoxyCodeLine{\ \ \ \ \ \ 0.5f,}
+\DoxyCodeLine{\ \ \ \ \ \ 1.f,}
+\DoxyCodeLine{\ \ \ \ \ \ \textcolor{keyword}{true});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ z\_noise\_reconstructed.\mbox{\hyperlink{classhmap_1_1Array_a00b8f7462c1e22b1da8a67ec62d4c8c8}{dump}}();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ evaluation:\ elevation\ error\ along\ the\ input\ contours}}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ *pz\ :\ \{\&z1,\ \&z2,\ \&z3,\ \&z4\})}
+\DoxyCodeLine{\ \ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{float}\ err\_max\ =\ 0.f;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{float}\ err\_mean\ =\ 0.f;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ \ \ n\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ k\ =\ 0;\ k\ <\ contours.size();\ ++k)}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ std::vector<float>\ v\ =\ \mbox{\hyperlink{namespacehmap_ab62e174cd14e34aa08ec4c5f00c14df8}{hmap::interpolate\_values\_from\_array}}(contours[k],}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *pz,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bbox);}
+\DoxyCodeLine{\ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{float}\ vi\ :\ v)}
+\DoxyCodeLine{\ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ e\ =\ std::abs(vi\ -\/\ elevations[k]);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ err\_max\ =\ std::max(err\_max,\ e);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ err\_mean\ +=\ e;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ++n;}
+\DoxyCodeLine{\ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}contour\ elevation\ error:\ max\ "{}}\ <<\ err\_max\ <<\ \textcolor{stringliteral}{"{},\ mean\ "{}}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ err\_mean\ /\ n\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_ac2452e568959bc21c9b7b09202e5977a}{hmap::export\_banner\_png}}(\textcolor{stringliteral}{"{}ex\_elevation\_from\_contours.png"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{z\_contours,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ z1,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ z2,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ z3,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ z4,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ noise\_hmap,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ raster\_contours,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ z\_noise\_reconstructed\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a6d093dbf3088c52a8acee413942545d9}{hmap::Cmap::TERRAIN}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{true});}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+
+
 {\bfseries{Result}}  \Hypertarget{namespacehmap_a77df59a73e83bc371eceae7793c690dc}\label{namespacehmap_a77df59a73e83bc371eceae7793c690dc} 
 \index{hmap@{hmap}!elevation\_from\_sparse\_constraints@{elevation\_from\_sparse\_constraints}}
 \index{elevation\_from\_sparse\_constraints@{elevation\_from\_sparse\_constraints}!hmap@{hmap}}
@@ -3631,33 +3884,23 @@ This function allows generating a continuous terrain elevation model from sparse
 \DoxyCodeLine{\}}
 
 \end{DoxyCodeInclude}
- \Hypertarget{namespacehmap_a78736b79e58ddaad2b196e7cc9bbe37b}\label{namespacehmap_a78736b79e58ddaad2b196e7cc9bbe37b} 
+ \Hypertarget{namespacehmap_ab2537bdacf8200eeeb381c4b4825bf1b}\label{namespacehmap_ab2537bdacf8200eeeb381c4b4825bf1b} 
 \index{hmap@{hmap}!elevation\_from\_contours@{elevation\_from\_contours}}
 \index{elevation\_from\_contours@{elevation\_from\_contours}!hmap@{hmap}}
-\doxysubsubsection{\texorpdfstring{elevation\_from\_contours()}{elevation\_from\_contours()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::elevation\+\_\+from\+\_\+contours (\begin{DoxyParamCaption}\item[{glm\+::ivec2}]{shape,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Path}{Path}} $>$ \&}]{contours,  }\item[{const std\+::vector$<$ float $>$ \&}]{elevations,  }\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+probability = {\ttfamily nullptr},  }\item[{float}]{randomness = {\ttfamily 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{std\+::uint32\+\_\+t}]{seed = {\ttfamily 0},  }\item[{float}]{peak\+\_\+ratio = {\ttfamily 0.5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{float}]{outside\+\_\+ratio = {\ttfamily 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{glm\+::vec4}]{bbox = {\ttfamily \{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}},~1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}},~0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}},~1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}} }\end{DoxyParamCaption})}
+\doxysubsubsection{\texorpdfstring{elevation\_from\_contours()}{elevation\_from\_contours()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::elevation\+\_\+from\+\_\+contours (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{contours,  }\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+probability = {\ttfamily nullptr},  }\item[{float}]{randomness = {\ttfamily 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{std\+::uint32\+\_\+t}]{seed = {\ttfamily 0},  }\item[{float}]{peak\+\_\+ratio = {\ttfamily 0.5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{float}]{outside\+\_\+ratio = {\ttfamily 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{bool}]{smoothstep = {\ttfamily false} }\end{DoxyParamCaption})}
 
 
 
-Synthesize a heightmap from sparse closed iso-\/contours with known elevations using stochastic front propagation (proof of concept). 
+Synthesize a heightmap from a raster of sparse iso-\/contours with known elevations using stochastic front propagation. 
 
-Experimental raster adaptation of the contour-\/based terrain synthesis of Huftier et al. {\bfseries [Huftier2026]}. Each input path is treated as a closed polygon at a constant elevation. Contour pixels are fixed to their elevation (Dirichlet constraints) and the innermost enclosing contour defines the "{}zone"{} of every other pixel. Within a zone, two fronts are propagated from the fixed pixels with an Eden growth process implemented as first-\/passage percolation (Dijkstra with random passage times)\+: one front from the zone\textquotesingle{}s own contour, one from its child contours. The time needed to enter a pixel is {\ttfamily ((1 -\/ randomness) + randomness \texorpdfstring{$\ast$}{*} E) / rate} with {\ttfamily E} an exponential random variable and {\ttfamily rate} given by the probability map for the rising front and by its complement for the descending front. The arrival times {\ttfamily t\+\_\+near} and {\ttfamily t\+\_\+far} define a progress {\ttfamily t\+\_\+near / (t\+\_\+near + t\+\_\+far)} that is mapped linearly between the two contour elevations after spurious pits are removed by a priority flood.
-
-With {\ttfamily randomness = 0} the passage times equal their expectation and the method reduces to a deterministic, probability-\/weighted geodesic front propagation. With a uniform probability map the result is then close to an inverse-\/distance interpolation between consecutive contours.
-
-Leaf contours (contours without children) rise to {\ttfamily elevation + peak\+\_\+ratio \texorpdfstring{$\ast$}{*} spacing} at their farthest interior point, or sink by the same amount when the contour is lower than its parent (basins). Outside all contours the terrain falls off to {\ttfamily elevation -\/ outside\+\_\+ratio \texorpdfstring{$\ast$}{*} spacing}. {\ttfamily spacing} is the mean elevation gap between nested contours (falls back to the elevation range, then to 1).
-
-Limitations of this proof of concept\+: contours must not cross each other; children of a contour with different elevations produce a discontinuity along the seam between their regions; pit removal is only applied to zones whose child contours are all higher than the enclosing contour.
+Overload of elevation\+\_\+from\+\_\+contours where contour elevations are provided directly on a raster grid ({\ttfamily contours}). Pixels with non-\/zero values (or distinct non-\/background elevation values) serve as the Dirichlet constraints.
 
 
 \begin{DoxyParams}{Parameters}
-{\em shape} & Output array shape. \\
+{\em contours} & Raster array containing contour elevations at contour pixels and zero elsewhere. \\
 \hline
-{\em contours} & Closed contour polygons (at least 3 points each), in {\ttfamily bbox} coordinates. The {\ttfamily closed} flag of the paths is ignored, every path is closed. \\
-\hline
-{\em elevations} & Elevation of each contour (same size as {\ttfamily contours}). \\
-\hline
-{\em p\+\_\+probability} & Optional probability map in \mbox{[}0, 1\mbox{]} with shape {\ttfamily shape}. Where it is high the rising front advances fast and the terrain stays low longer (gentle slopes); where it is low the terrain rises quickly (steep slopes). If null, a uniform map (0.\+5) is used. \\
+{\em p\+\_\+probability} & Optional probability map in \mbox{[}0, 1\mbox{]} with the same shape as {\ttfamily contours}. \\
 \hline
 {\em randomness} & Amount of randomness in the front propagation in \mbox{[}0, 1\mbox{]}\+: 0 is deterministic, 1 is the Eden growth model. \\
 \hline
@@ -3667,133 +3910,13 @@ Limitations of this proof of concept\+: contours must not cross each other; chil
 \hline
 {\em outside\+\_\+ratio} & Elevation drop outside all contours, relative to the mean elevation gap between nested contours. \\
 \hline
-{\em bbox} & Domain bounding box \{xmin, xmax, ymin, ymax\}. \\
+{\em smoothstep} & If true, applies smoothstep (S-\/curve) interpolation between contours. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-\doxylink{classhmap_1_1Array}{Array} Synthesized heightmap, or an empty array if the inputs are invalid.
+\doxylink{classhmap_1_1Array}{Array} Synthesized heightmap. 
 \end{DoxyReturn}
-{\bfseries{Example}} 
-\begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <cmath>}}
-\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{highmap_8hpp}{highmap.hpp}}"{}}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{comment}{//\ closed\ star-\/shaped\ contour:\ radius\ r0\ modulated\ by\ a\ fixed\ angular\ profile}}
-\DoxyCodeLine{\textcolor{comment}{//\ (all\ blobs\ share\ the\ profile\ so\ that\ nested\ blobs\ never\ cross)}}
-\DoxyCodeLine{\mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ blob(\textcolor{keywordtype}{float}\ cx,\ \textcolor{keywordtype}{float}\ cy,\ \textcolor{keywordtype}{float}\ r0,\ \textcolor{keywordtype}{int}\ npts\ =\ 96)}
-\DoxyCodeLine{\{}
-\DoxyCodeLine{\ \ std::vector<float>\ x,\ y;}
-\DoxyCodeLine{\ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ k\ =\ 0;\ k\ <\ npts;\ ++k)}
-\DoxyCodeLine{\ \ \{}
-\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{elevation__from__contours_8cpp_a305c809f0e63e80705b5138b76dc0cc2}{t}}\ =\ 2.f\ *\ M\_PI\ *\ k\ /\ npts;}
-\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{float}\ m\ =\ 1.f\ +\ 0.12f\ *\ std::sin(3.f\ *\ \mbox{\hyperlink{elevation__from__contours_8cpp_a305c809f0e63e80705b5138b76dc0cc2}{t}}\ +\ 0.7f)\ +}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.08f\ *\ std::sin(5.f\ *\ \mbox{\hyperlink{elevation__from__contours_8cpp_a305c809f0e63e80705b5138b76dc0cc2}{t}}\ +\ 2.1f);}
-\DoxyCodeLine{\ \ \ \ x.push\_back(cx\ +\ r0\ *\ m\ *\ std::cos(\mbox{\hyperlink{elevation__from__contours_8cpp_a305c809f0e63e80705b5138b76dc0cc2}{t}}));}
-\DoxyCodeLine{\ \ \ \ y.push\_back(cy\ +\ r0\ *\ m\ *\ std::sin(\mbox{\hyperlink{elevation__from__contours_8cpp_a305c809f0e63e80705b5138b76dc0cc2}{t}}));}
-\DoxyCodeLine{\ \ \}}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ p(x,\ y);}
-\DoxyCodeLine{\ \ p.set\_closed(\textcolor{keyword}{true});}
-\DoxyCodeLine{\ \ \textcolor{keywordflow}{return}\ p;}
-\DoxyCodeLine{\}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{void})}
-\DoxyCodeLine{\{}
-\DoxyCodeLine{\ \ glm::ivec2\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}\ =\ \{256,\ 256\};}
-\DoxyCodeLine{\ \ glm::vec4\ \ bbox\ =\ \{0.f,\ 1.f,\ 0.f,\ 1.f\};}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ seed\ =\ 1;}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ sparse\ contours:\ a\ main\ hill\ with\ 4\ nested\ levels,\ a\ small\ basin\ in}}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ its\ lowest\ ring\ and\ a\ second,\ separate\ hill}}
-\DoxyCodeLine{\ \ std::vector<hmap::Path>\ contours\ =\ \{blob(0.38f,\ 0.48f,\ 0.30f),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ blob(0.38f,\ 0.48f,\ 0.21f),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ blob(0.38f,\ 0.48f,\ 0.13f),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ blob(0.38f,\ 0.48f,\ 0.06f),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ blob(0.67f,\ 0.48f,\ 0.03f),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ blob(0.82f,\ 0.82f,\ 0.11f),}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ blob(0.82f,\ 0.82f,\ 0.04f)\};}
-\DoxyCodeLine{\ \ std::vector<float>\ elevations\ =\ \{0.1f,\ 0.3f,\ 0.5f,\ 0.7f,\ 0.f,\ 0.2f,\ 0.4f\};}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ input\ contours\ drawn\ at\ their\ elevation,\ for\ reference}}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ z\_contours(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}});}
-\DoxyCodeLine{\ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ k\ =\ 0;\ k\ <\ contours.size();\ ++k)}
-\DoxyCodeLine{\ \ \{}
-\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ p\ =\ contours[k];}
-\DoxyCodeLine{\ \ \ \ p.\mbox{\hyperlink{classhmap_1_1Cloud_a604e61fbcbd8cc469ed21501e65f5c7b}{set\_values}}(elevations[k]);}
-\DoxyCodeLine{\ \ \ \ p.\mbox{\hyperlink{classhmap_1_1Path_a4d1e1e63fea24bf8f23bc3343f8b746e}{to\_array}}(z\_contours,\ bbox);}
-\DoxyCodeLine{\ \ \}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ deterministic\ front\ propagation\ (weighted\ geodesic\ interpolation)}}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ z1\ =\ \mbox{\hyperlink{namespacehmap_a78736b79e58ddaad2b196e7cc9bbe37b}{hmap::elevation\_from\_contours}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ contours,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ elevations,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.f);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ stochastic\ Eden\ growth,\ uniform\ probability}}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ z2\ =\ \mbox{\hyperlink{namespacehmap_a78736b79e58ddaad2b196e7cc9bbe37b}{hmap::elevation\_from\_contours}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ contours,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ elevations,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1.f,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seed);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ stochastic\ Eden\ growth\ biased\ by\ a\ noise\ probability\ map}}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ proba\ =\ \mbox{\hyperlink{namespacehmap_a7d699a468a18be16c70654958ee13b41}{hmap::noise\_fbm}}(\mbox{\hyperlink{namespacehmap_ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581}{hmap::NoiseType::PERLIN}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{4.f,\ 4.f\},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seed,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 8);}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{hmap::remap}}(proba,\ 0.05f,\ 0.95f);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ z3\ =\ \mbox{\hyperlink{namespacehmap_a78736b79e58ddaad2b196e7cc9bbe37b}{hmap::elevation\_from\_contours}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ contours,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ elevations,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&proba,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1.f,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seed);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ deterministic\ propagation\ with\ the\ same\ probability\ map}}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ z4\ =\ \mbox{\hyperlink{namespacehmap_a78736b79e58ddaad2b196e7cc9bbe37b}{hmap::elevation\_from\_contours}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ contours,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ elevations,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&proba,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.f);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ evaluation:\ elevation\ error\ along\ the\ input\ contours}}
-\DoxyCodeLine{\ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ *pz\ :\ \{\&z1,\ \&z2,\ \&z3,\ \&z4\})}
-\DoxyCodeLine{\ \ \{}
-\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{float}\ err\_max\ =\ 0.f;}
-\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{float}\ err\_mean\ =\ 0.f;}
-\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ \ \ n\ =\ 0;}
-\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ k\ =\ 0;\ k\ <\ contours.size();\ ++k)}
-\DoxyCodeLine{\ \ \ \ \{}
-\DoxyCodeLine{\ \ \ \ \ \ std::vector<float>\ v\ =\ \mbox{\hyperlink{namespacehmap_ab62e174cd14e34aa08ec4c5f00c14df8}{hmap::interpolate\_values\_from\_array}}(contours[k],}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *pz,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bbox);}
-\DoxyCodeLine{\ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{float}\ vi\ :\ v)}
-\DoxyCodeLine{\ \ \ \ \ \ \{}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ e\ =\ std::abs(vi\ -\/\ elevations[k]);}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ err\_max\ =\ std::max(err\_max,\ e);}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ err\_mean\ +=\ e;}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ ++n;}
-\DoxyCodeLine{\ \ \ \ \ \ \}}
-\DoxyCodeLine{\ \ \ \ \}}
-\DoxyCodeLine{\ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}contour\ elevation\ error:\ max\ "{}}\ <<\ err\_max\ <<\ \textcolor{stringliteral}{"{},\ mean\ "{}}}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ err\_mean\ /\ n\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
-\DoxyCodeLine{\ \ \}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_ac2452e568959bc21c9b7b09202e5977a}{hmap::export\_banner\_png}}(\textcolor{stringliteral}{"{}ex\_elevation\_from\_contours.png"{}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{z\_contours,\ z1,\ z2,\ z3,\ z4\},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a6d093dbf3088c52a8acee413942545d9}{hmap::Cmap::TERRAIN}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{true});}
-\DoxyCodeLine{\}}
-
-\end{DoxyCodeInclude}
-
-
-{\bfseries{Result}}  \Hypertarget{namespacehmap_a6f7e6e0cffaf7d03cfe1eef62b1c3575}\label{namespacehmap_a6f7e6e0cffaf7d03cfe1eef62b1c3575} 
+\Hypertarget{namespacehmap_a6f7e6e0cffaf7d03cfe1eef62b1c3575}\label{namespacehmap_a6f7e6e0cffaf7d03cfe1eef62b1c3575} 
 \index{hmap@{hmap}!reverse\_midpoint@{reverse\_midpoint}}
 \index{reverse\_midpoint@{reverse\_midpoint}!hmap@{hmap}}
 \doxysubsubsection{\texorpdfstring{reverse\_midpoint()}{reverse\_midpoint()}}

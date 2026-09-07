@@ -1365,8 +1365,9 @@
     <member refid="namespacehmap_1a8a43091b3356d69271fa6d185f5bdcbe" kind="function"><name>for_each_cell</name></member>
     <member refid="namespacehmap_1a6123c18788ae302332416d5d7585fd9f" kind="function"><name>alter_elevation</name></member>
     <member refid="namespacehmap_1ad0679d167a3129dc403e3ca7082579f8" kind="function"><name>base_elevation</name></member>
+    <member refid="namespacehmap_1a1cd0f776fce02a28d7a58af8c40cb7aa" kind="function"><name>elevation_from_contours</name></member>
     <member refid="namespacehmap_1a77df59a73e83bc371eceae7793c690dc" kind="function"><name>elevation_from_sparse_constraints</name></member>
-    <member refid="namespacehmap_1a78736b79e58ddaad2b196e7cc9bbe37b" kind="function"><name>elevation_from_contours</name></member>
+    <member refid="namespacehmap_1ab2537bdacf8200eeeb381c4b4825bf1b" kind="function"><name>elevation_from_contours</name></member>
     <member refid="namespacehmap_1a6f7e6e0cffaf7d03cfe1eef62b1c3575" kind="function"><name>reverse_midpoint</name></member>
     <member refid="namespacehmap_1a74f6ef0464e0ec67df5179f49e14e35a" kind="function"><name>ridgelines</name></member>
     <member refid="namespacehmap_1a4e7db58b8b58def3b862476f18b6005e" kind="function"><name>ridgelines_bezier</name></member>
@@ -3311,6 +3312,9 @@
     <member refid="test__elevation__from__contours_8cpp_1aba1203936765b8bdbf6f8288c94b0f16" kind="function"><name>TEST</name></member>
     <member refid="test__elevation__from__contours_8cpp_1a770298e767ffed549b66464d003a8552" kind="function"><name>TEST</name></member>
     <member refid="test__elevation__from__contours_8cpp_1af8a64f7cc3eea30762c5dd09b55d34e7" kind="function"><name>TEST</name></member>
+    <member refid="test__elevation__from__contours_8cpp_1a1845713717e759d70953d82dd3b08168" kind="function"><name>TEST</name></member>
+    <member refid="test__elevation__from__contours_8cpp_1a64c96c2f1fb1d699a0e4c55e36d209d6" kind="function"><name>TEST</name></member>
+    <member refid="test__elevation__from__contours_8cpp_1ad32ae03bd6cab528dc0f91b1a91b30a8" kind="function"><name>TEST</name></member>
   </compound>
   <compound refid="test__elevation__from__sparse__constraints_8cpp" kind="file"><name>test_elevation_from_sparse_constraints.cpp</name>
     <member refid="test__elevation__from__sparse__constraints_8cpp_1aa11c1ef46cff15cd29d16b3b4f5bc88f" kind="function"><name>TEST</name></member>

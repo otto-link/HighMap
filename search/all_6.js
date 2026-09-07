@@ -9,7 +9,7 @@ var searchData=
   ['edm_5ffull_5farc_6',['EDM_FULL_ARC',['../classhmap_1_1Path.html#a52c62bad1cdef88e8793d9c022357787a5809dc79c1bc0e85924a160c89a46338',1,'hmap::Path']]],
   ['edm_5fper_5fedge_7',['EDM_PER_EDGE',['../classhmap_1_1Path.html#a52c62bad1cdef88e8793d9c022357787a5192c60669f946857f5bed6f43c212ee',1,'hmap::Path']]],
   ['elementary_20data_20structure_20for_20building_20heightmaps_8',['&quot;Array&quot; - Elementary Data Structure for Building Heightmaps',['../index.html#autotoc_md6',1,'']]],
-  ['elevation_5ffrom_5fcontours_9',['elevation_from_contours',['../namespacehmap.html#a78736b79e58ddaad2b196e7cc9bbe37b',1,'hmap']]],
+  ['elevation_5ffrom_5fcontours_9',['elevation_from_contours',['../namespacehmap.html#a1cd0f776fce02a28d7a58af8c40cb7aa',1,'hmap::elevation_from_contours(glm::ivec2 shape, const std::vector&lt; Path &gt; &amp;contours, const std::vector&lt; float &gt; &amp;elevations, const Array *p_probability=nullptr, float randomness=1.f, std::uint32_t seed=0, float peak_ratio=0.5f, float outside_ratio=1.f, bool smoothstep=false, glm::vec4 bbox={0.f, 1.f, 0.f, 1.f})'],['../namespacehmap.html#ab2537bdacf8200eeeb381c4b4825bf1b',1,'hmap::elevation_from_contours(const Array &amp;contours, const Array *p_probability=nullptr, float randomness=1.f, std::uint32_t seed=0, float peak_ratio=0.5f, float outside_ratio=1.f, bool smoothstep=false)']]],
   ['elevation_5ffrom_5fcontours_2ecpp_10',['elevation_from_contours.cpp',['../elevation__from__contours_8cpp.html',1,'']]],
   ['elevation_5ffrom_5fsparse_5fconstraints_11',['elevation_from_sparse_constraints',['../namespacehmap.html#a77df59a73e83bc371eceae7793c690dc',1,'hmap']]],
   ['elevation_5ffrom_5fsparse_5fconstraints_2ecpp_12',['elevation_from_sparse_constraints.cpp',['../elevation__from__sparse__constraints_8cpp.html',1,'']]],
@@ -79,6 +79,6 @@ var searchData=
   ['exporting_76',['Exporting',['../index.html#autotoc_md12',1,'']]],
   ['exposure_77',['exposure',['../structhmap_1_1ColorAdjust.html#acd22feabf5d46054cd4f4fd9771c0d26',1,'hmap::ColorAdjust']]],
   ['exr_78',['Image formats (png, tiff, exr...)',['../index.html#autotoc_md13',1,'']]],
-  ['extract_5fslice_79',['extract_slice',['../classhmap_1_1Array.html#a7d552a649bcc47445b11d2e42d193492',1,'hmap::Array::extract_slice(int i1, int i2, int j1, int j2) const'],['../classhmap_1_1Array.html#a2cb7491733f41de0f72f132c0ecff188',1,'hmap::Array::extract_slice(glm::ivec4 idx) const']]],
+  ['extract_5fslice_79',['extract_slice',['../classhmap_1_1Array.html#a2cb7491733f41de0f72f132c0ecff188',1,'hmap::Array::extract_slice(glm::ivec4 idx) const'],['../classhmap_1_1Array.html#a7d552a649bcc47445b11d2e42d193492',1,'hmap::Array::extract_slice(int i1, int i2, int j1, int j2) const']]],
   ['extrapolate_5fborders_80',['extrapolate_borders',['../namespacehmap.html#a8802e95ba76a252d2098bdb3fb5cfc28',1,'hmap']]]
 ];
