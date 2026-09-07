@@ -343,20 +343,34 @@ TEST(ElevationFromContours, SmoothstepInterpolation)
                                square(0.5f, 0.5f, 0.2f)};
   std::vector<float>      h = {0.0f, 1.0f};
 
-  hmap::Array z_linear =
-      hmap::elevation_from_contours(shape, c, h, nullptr, 0.f, 0, 0.5f, 1.f, false);
-  hmap::Array z_smooth =
-      hmap::elevation_from_contours(shape, c, h, nullptr, 0.f, 0, 0.5f, 1.f, true);
+  hmap::Array z_linear = hmap::elevation_from_contours(shape,
+                                                       c,
+                                                       h,
+                                                       nullptr,
+                                                       0.f,
+                                                       0,
+                                                       0.5f,
+                                                       1.f,
+                                                       false);
+  hmap::Array z_smooth = hmap::elevation_from_contours(shape,
+                                                       c,
+                                                       h,
+                                                       nullptr,
+                                                       0.f,
+                                                       0,
+                                                       0.5f,
+                                                       1.f,
+                                                       true);
 
   ASSERT_EQ(z_smooth.shape, shape);
 
-  // Near the midpoint, both should be close to 0.5 (since smoothstep(0.5) == 0.5)
-  // For points in the first quarter (e.g. u = 0.25), smoothstep(0.25) = 0.15625 < 0.25
-  // For points in the third quarter (e.g. u = 0.75), smoothstep(0.75) = 0.84375 > 0.75
-  // Check between outer contour (x=0.1) and inner contour (x=0.3):
-  // i=6 is x~0.1 (h=0), i=19 is x~0.3 (h=1)
-  // i=9 is closer to 0: smoothstep elevation should be lower than linear
-  // i=16 is closer to 1: smoothstep elevation should be higher than linear
+  // Near the midpoint, both should be close to 0.5 (since smoothstep(0.5) ==
+  // 0.5) For points in the first quarter (e.g. u = 0.25), smoothstep(0.25) =
+  // 0.15625 < 0.25 For points in the third quarter (e.g. u = 0.75),
+  // smoothstep(0.75) = 0.84375 > 0.75 Check between outer contour (x=0.1) and
+  // inner contour (x=0.3): i=6 is x~0.1 (h=0), i=19 is x~0.3 (h=1) i=9 is
+  // closer to 0: smoothstep elevation should be lower than linear i=16 is
+  // closer to 1: smoothstep elevation should be higher than linear
   EXPECT_LT(z_smooth(9, 32), z_linear(9, 32));
   EXPECT_GT(z_smooth(16, 32), z_linear(16, 32));
 }
