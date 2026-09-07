@@ -16,7 +16,8 @@ option(HIGHMAP_ENABLE_LOGS "Enable logging" ON)
 option(HIGHMAP_ENABLE_EXAMPLES "" ON)
 option(HIGHMAP_ENABLE_TESTS "" ON)
 option(HIGHMAP_ENABLE_BENCHMARKS "" ON)
-option(HIGHMAP_ENABLE_PROFILE_BUILD "Enable build time profiling (-ftime-trace)" OFF)
+option(HIGHMAP_ENABLE_PROFILE_BUILD
+       "Enable build time profiling (-ftime-trace)" OFF)
 option(HIGHMAP_ENABLE_PCH "Enable Precompiled Headers (PCH)" OFF)
 
 # -----------------------------------------------------------------------------
@@ -142,7 +143,8 @@ message(STATUS "│ HIGHMAP_ENABLE_TESTS:               ${HIGHMAP_ENABLE_TESTS}"
 message(
   STATUS "│ HIGHMAP_ENABLE_BENCHMARKS:          ${HIGHMAP_ENABLE_BENCHMARKS}")
 message(
-  STATUS "│ HIGHMAP_ENABLE_PROFILE_BUILD:       ${HIGHMAP_ENABLE_PROFILE_BUILD}")
+  STATUS "│ HIGHMAP_ENABLE_PROFILE_BUILD:       ${HIGHMAP_ENABLE_PROFILE_BUILD}"
+)
 message(STATUS "│ CMAKE_CXX_STANDARD:                 ${CMAKE_CXX_STANDARD}")
 message(STATUS "│ CMAKE_BUILD_TYPE:                   ${CMAKE_BUILD_TYPE}")
 message(STATUS "│ CMAKE_CXX_COMPILER_ID:              ${CMAKE_CXX_COMPILER_ID}")

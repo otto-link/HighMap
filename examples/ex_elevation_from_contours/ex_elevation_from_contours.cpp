@@ -21,11 +21,69 @@ hmap::Path blob(float cx, float cy, float r0, int npts = 96)
   return p;
 }
 
+// extract n iso-level contours as a heightmap where contour pixels hold their
+// elevation and other pixels are 0
+hmap::Array extract_contours_from_heightmap(const hmap::Array &heightmap,
+                                            int                n_levels)
+{
+  if (heightmap.size() == 0 || n_levels <= 0) return hmap::Array();
+
+  const glm::ivec2 shape = heightmap.shape;
+  hmap::Array      out(shape, 0.f);
+
+  const float h_min = heightmap.min();
+  const float h_max = heightmap.max();
+  if (std::abs(h_max - h_min) < 1e-6f) return out;
+
+  for (int l = 1; l <= n_levels; ++l)
+  {
+    const float isoval = h_min +
+                         (float(l) / float(n_levels + 1)) * (h_max - h_min);
+
+    // a pixel is on the contour if it crosses the isovalue relative to any
+    // 4-neighbor
+    for (int j = 0; j < shape.y; ++j)
+      for (int i = 0; i < shape.x; ++i)
+      {
+        const float v = heightmap(i, j);
+
+        // check horizontal neighbor
+        if (i + 1 < shape.x)
+        {
+          const float vr = heightmap(i + 1, j);
+          if ((v <= isoval && vr >= isoval) || (v >= isoval && vr <= isoval))
+          {
+            if (std::abs(v - isoval) <= std::abs(vr - isoval))
+              out(i, j) = isoval;
+            else
+              out(i + 1, j) = isoval;
+          }
+        }
+
+        // check vertical neighbor
+        if (j + 1 < shape.y)
+        {
+          const float vt = heightmap(i, j + 1);
+          if ((v <= isoval && vt >= isoval) || (v >= isoval && vt <= isoval))
+          {
+            if (std::abs(v - isoval) <= std::abs(vt - isoval))
+              out(i, j) = isoval;
+            else
+              out(i, j + 1) = isoval;
+          }
+        }
+      }
+  }
+
+  return out;
+}
+
 int main(void)
 {
   glm::ivec2 shape = {256, 256};
-  glm::vec4  bbox = {0.f, 1.f, 0.f, 1.f};
-  int        seed = 1;
+  // shape = {1024, 1024};
+  glm::vec4 bbox = {0.f, 1.f, 0.f, 1.f};
+  int       seed = 1;
 
   // --- sparse contours: a main hill with 4 nested levels, a small basin in
   // its lowest ring and a second, separate hill
@@ -84,6 +142,28 @@ int main(void)
                                                  &proba,
                                                  0.f);
 
+  // --- noise-based raster contours: extract iso-contours from Perlin fbm noise
+  hmap::Array noise_hmap = hmap::noise_fbm(hmap::NoiseType::PERLIN,
+                                           shape,
+                                           {3.f, 3.f},
+                                           seed,
+                                           6);
+  hmap::remap(noise_hmap, 0.1f, 0.9f);
+
+  hmap::Array raster_contours = extract_contours_from_heightmap(noise_hmap, 3);
+
+  // synthesize elevation directly from raster contours with smoothstep
+  hmap::Array z_noise_reconstructed = hmap::elevation_from_contours(
+      raster_contours,
+      nullptr,
+      0.f,
+      seed,
+      0.5f,
+      1.f,
+      true);
+
+  z_noise_reconstructed.dump();
+
   // --- evaluation: elevation error along the input contours
   for (const hmap::Array *pz : {&z1, &z2, &z3, &z4})
   {
@@ -108,7 +188,14 @@ int main(void)
   }
 
   hmap::export_banner_png("ex_elevation_from_contours.png",
-                          {z_contours, z1, z2, z3, z4},
+                          {z_contours,
+                           z1,
+                           z2,
+                           z3,
+                           z4,
+                           noise_hmap,
+                           raster_contours,
+                           z_noise_reconstructed},
                           hmap::Cmap::TERRAIN,
                           true);
 }

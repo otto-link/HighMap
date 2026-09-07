@@ -27,7 +27,9 @@ TEST(ElevationFromContours, InvalidInputsReturnEmpty)
   glm::ivec2 shape = {32, 32};
 
   // no contours
-  EXPECT_TRUE(is_empty(hmap::elevation_from_contours(shape, {}, {})));
+  EXPECT_TRUE(is_empty(hmap::elevation_from_contours(shape,
+                                                     std::vector<hmap::Path>{},
+                                                     std::vector<float>{})));
 
   // contours / elevations size mismatch
   EXPECT_TRUE(is_empty(hmap::elevation_from_contours(shape,
@@ -280,4 +282,81 @@ TEST(ElevationFromContours, SiblingsAtDifferentElevationsAreContinuous)
   // row through both children, in the ring between them (outlines at
   // i = 31 and 64)
   EXPECT_LT(max_row_jump(z, 32, 32, 63), 0.03f);
+}
+
+TEST(ElevationFromContours, RasterContoursOverloadWorks)
+{
+  glm::ivec2  shape = {64, 64};
+  hmap::Array raster_contours(shape, 0.f);
+
+  // Draw outer square contour at elevation 0.2
+  for (int i = 10; i <= 54; ++i)
+  {
+    raster_contours(i, 10) = 0.2f;
+    raster_contours(i, 54) = 0.2f;
+    raster_contours(10, i) = 0.2f;
+    raster_contours(54, i) = 0.2f;
+  }
+
+  // Draw inner square contour at elevation 0.6
+  for (int i = 24; i <= 40; ++i)
+  {
+    raster_contours(i, 24) = 0.6f;
+    raster_contours(i, 40) = 0.6f;
+    raster_contours(24, i) = 0.6f;
+    raster_contours(40, i) = 0.6f;
+  }
+
+  hmap::Array z = hmap::elevation_from_contours(raster_contours, nullptr, 0.f);
+  ASSERT_EQ(z.shape, shape);
+
+  // Contour pixels should match exactly
+  EXPECT_NEAR(z(10, 32), 0.2f, 1e-6f);
+  EXPECT_NEAR(z(24, 32), 0.6f, 1e-6f);
+
+  // Point between nested contours (e.g. at (17, 32)) should be strictly between
+  // 0.2 and 0.6
+  EXPECT_GT(z(17, 32), 0.2f);
+  EXPECT_LT(z(17, 32), 0.6f);
+
+  // Point inside innermost contour (leaf peak) should rise above 0.6
+  EXPECT_GT(z(32, 32), 0.6f);
+
+  // Point outside outermost contour should drop below 0.2
+  EXPECT_LT(z(2, 32), 0.2f);
+}
+
+TEST(ElevationFromContours, RasterContoursEmptyInput)
+{
+  hmap::Array empty_arr;
+  EXPECT_TRUE(is_empty(hmap::elevation_from_contours(empty_arr)));
+
+  // Array with all zeros (no contour)
+  hmap::Array zero_arr({32, 32}, 0.f);
+  EXPECT_TRUE(is_empty(hmap::elevation_from_contours(zero_arr)));
+}
+
+TEST(ElevationFromContours, SmoothstepInterpolation)
+{
+  glm::ivec2              shape = {64, 64};
+  std::vector<hmap::Path> c = {square(0.5f, 0.5f, 0.4f),
+                               square(0.5f, 0.5f, 0.2f)};
+  std::vector<float>      h = {0.0f, 1.0f};
+
+  hmap::Array z_linear =
+      hmap::elevation_from_contours(shape, c, h, nullptr, 0.f, 0, 0.5f, 1.f, false);
+  hmap::Array z_smooth =
+      hmap::elevation_from_contours(shape, c, h, nullptr, 0.f, 0, 0.5f, 1.f, true);
+
+  ASSERT_EQ(z_smooth.shape, shape);
+
+  // Near the midpoint, both should be close to 0.5 (since smoothstep(0.5) == 0.5)
+  // For points in the first quarter (e.g. u = 0.25), smoothstep(0.25) = 0.15625 < 0.25
+  // For points in the third quarter (e.g. u = 0.75), smoothstep(0.75) = 0.84375 > 0.75
+  // Check between outer contour (x=0.1) and inner contour (x=0.3):
+  // i=6 is x~0.1 (h=0), i=19 is x~0.3 (h=1)
+  // i=9 is closer to 0: smoothstep elevation should be lower than linear
+  // i=16 is closer to 1: smoothstep elevation should be higher than linear
+  EXPECT_LT(z_smooth(9, 32), z_linear(9, 32));
+  EXPECT_GT(z_smooth(16, 32), z_linear(16, 32));
 }

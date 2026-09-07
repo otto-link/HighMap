@@ -308,54 +308,19 @@ void fill_pits(const ContourRaster &r, int zone_id, std::vector<float> &z)
   }
 }
 
-} // namespace
-
-Array elevation_from_contours(glm::ivec2                shape,
-                              const std::vector<Path>  &contours,
-                              const std::vector<float> &elevations,
-                              const Array              *p_probability,
-                              float                     randomness,
-                              std::uint32_t             seed,
-                              float                     peak_ratio,
-                              float                     outside_ratio,
-                              glm::vec4                 bbox)
+/// Core synthesis from rasterised contours
+Array synthesize_from_contour_raster(const ContourRaster      &r,
+                                     const std::vector<float> &elevations,
+                                     const Array              *p_probability,
+                                     float                     randomness,
+                                     std::uint32_t             seed,
+                                     float                     peak_ratio,
+                                     float                     outside_ratio,
+                                     bool                      smoothstep)
 {
-  // --- validation
-  if (!validate_shape(shape)) return Array();
-
-  if (contours.empty())
-  {
-    log::error("elevation_from_contours: at least one contour is required");
-    return Array();
-  }
-
-  if (contours.size() != elevations.size())
-  {
-    log::error("elevation_from_contours: contours ({}) and elevations ({}) "
-               "sizes differ",
-               contours.size(),
-               elevations.size());
-    return Array();
-  }
-
-  for (size_t k = 0; k < contours.size(); ++k)
-    if (contours[k].points.size() < 3)
-    {
-      log::error("elevation_from_contours: contour {} has fewer than 3 points",
-                 k);
-      return Array();
-    }
-
-  if (p_probability && !validate_same_shape(shape, *p_probability))
-    return Array();
-
-  randomness = std::clamp(randomness, 0.f, 1.f);
-
-  const int    n = (int)contours.size();
-  const size_t npix = (size_t)shape.x * shape.y;
-
-  // --- rasterization, zones and nesting tree
-  const ContourRaster r = rasterize_contours(contours, shape, bbox);
+  const glm::ivec2 shape = r.shape;
+  const int        n = (int)elevations.size();
+  const size_t     npix = (size_t)shape.x * shape.y;
 
   std::vector<std::vector<int>> children(n);
   std::vector<int>              roots;
@@ -443,8 +408,10 @@ Array elevation_from_contours(glm::ivec2                shape,
           {
             const float t = far[c].t[p];
             const float w = 1.f / std::max(t, t_eps);
+            const float u = far[c].tmax > 0.f ? t / far[c].tmax : 0.f;
+            const float factor = smoothstep ? smoothstep3(u) : u;
             const float zc = elevations[kids[c]] -
-                             outside_ratio * spacing * t / far[c].tmax;
+                             outside_ratio * spacing * factor;
             num += w * zc;
             den += w;
           }
@@ -458,12 +425,15 @@ Array elevation_from_contours(glm::ivec2                shape,
         const float delta = (up ? 1.f : -1.f) * peak_ratio * spacing;
         z[p] = elevations[k];
         if (own.reached[p] && own.tmax > 0.f)
-          z[p] += delta * own.t[p] / own.tmax;
+        {
+          const float u = own.t[p] / own.tmax;
+          const float factor = smoothstep ? smoothstep3(u) : u;
+          z[p] += delta * factor;
+        }
       }
       else
       {
-        // ring zone: inverse-travel-time blend of the own contour and the
-        // children (reduces to a linear ramp between two contours)
+        // ring zone: blend own contour with child contours
         float num = 0.f, den = 0.f;
         if (own.reached[p])
         {
@@ -478,7 +448,21 @@ Array elevation_from_contours(glm::ivec2                shape,
             num += w * elevations[kids[c]];
             den += w;
           }
-        z[p] = den > 0.f ? num / den : elevations[k];
+
+        float val = den > 0.f ? num / den : elevations[k];
+        if (smoothstep && kids.size() == 1 && own.reached[p] &&
+            far[0].reached[p])
+        {
+          const float t0 = own.t[p];
+          const float t1 = far[0].t[p];
+          const float tot = t0 + t1;
+          const float u = tot > 0.f
+                              ? t0 / tot
+                              : 0.f; // u=0 at outer (own), u=1 at inner (child)
+          val = (1.f - smoothstep3(u)) * elevations[k] +
+                smoothstep3(u) * elevations[kids[0]];
+        }
+        z[p] = val;
       }
     }
 
@@ -495,6 +479,296 @@ Array elevation_from_contours(glm::ivec2                shape,
   Array out(shape);
   out.vector = z;
   return out;
+}
+
+// Build ContourRaster from an Array with rasterized contours where contour
+// pixels have their elevation and non-contour pixels are 0
+ContourRaster rasterize_contours_from_array(const Array        &contours,
+                                            std::vector<float> &elevations)
+{
+  const glm::ivec2 shape = contours.shape;
+  const size_t     npix = (size_t)shape.x * shape.y;
+
+  // 1. Group 8-connected non-zero pixels into distinct contour components
+  std::vector<int>   contour_id(npix, -1);
+  std::vector<float> comp_elev;
+  int                num_contours = 0;
+
+  for (size_t p = 0; p < npix; ++p)
+  {
+    if (contours((int)p) == 0.f || contour_id[p] >= 0) continue;
+
+    const float target_elev = contours((int)p);
+    const int   id = num_contours++;
+    comp_elev.push_back(target_elev);
+
+    std::vector<int> q;
+    contour_id[p] = id;
+    q.push_back((int)p);
+
+    size_t head = 0;
+    while (head < q.size())
+    {
+      int curr = q[head++];
+      int cx = curr % shape.x;
+      int cy = curr / shape.x;
+
+      for (int m = 0; m < 8; ++m)
+      {
+        int nx = cx + DI[m];
+        int ny = cy + DJ[m];
+        if (nx < 0 || nx >= shape.x || ny < 0 || ny >= shape.y) continue;
+
+        int nidx = ny * shape.x + nx;
+        if (contours(nidx) != 0.f && contour_id[nidx] < 0)
+        {
+          contour_id[nidx] = id;
+          q.push_back(nidx);
+        }
+      }
+    }
+  }
+
+  elevations = comp_elev;
+  const int n = num_contours;
+
+  ContourRaster r;
+  r.shape = shape;
+  r.contour_of.assign(npix, -1);
+  r.zone.assign(npix, -1);
+  r.parent.assign(n, -1);
+
+  if (n == 0) return r;
+
+  for (size_t p = 0; p < npix; ++p)
+    if (contour_id[p] >= 0) r.contour_of[p] = contour_id[p];
+
+  // 2. Interior filling for each contour component using flood fill from outer
+  // border
+  std::vector<std::vector<char>> inside(n, std::vector<char>(npix, 0));
+  std::vector<int>               area(n, 0);
+  std::vector<int>               rep(n, -1);
+
+  for (size_t p = 0; p < npix; ++p)
+  {
+    int id = contour_id[p];
+    if (id >= 0 && rep[id] < 0) rep[id] = (int)p;
+  }
+
+  for (int k = 0; k < n; ++k)
+  {
+    std::vector<char> visited(npix, 0);
+    std::vector<int>  q;
+    q.reserve(npix);
+
+    // Seed flood fill from domain boundary
+    for (int i = 0; i < shape.x; ++i)
+    {
+      int p_top = i;
+      int p_bot = (shape.y - 1) * shape.x + i;
+      if (contour_id[p_top] != k && !visited[p_top])
+      {
+        visited[p_top] = 1;
+        q.push_back(p_top);
+      }
+      if (contour_id[p_bot] != k && !visited[p_bot])
+      {
+        visited[p_bot] = 1;
+        q.push_back(p_bot);
+      }
+    }
+    for (int j = 0; j < shape.y; ++j)
+    {
+      int p_left = j * shape.x;
+      int p_right = j * shape.x + (shape.x - 1);
+      if (contour_id[p_left] != k && !visited[p_left])
+      {
+        visited[p_left] = 1;
+        q.push_back(p_left);
+      }
+      if (contour_id[p_right] != k && !visited[p_right])
+      {
+        visited[p_right] = 1;
+        q.push_back(p_right);
+      }
+    }
+
+    size_t head = 0;
+    while (head < q.size())
+    {
+      int curr = q[head++];
+      int cx = curr % shape.x;
+      int cy = curr / shape.x;
+
+      constexpr int d4x[4] = {1, -1, 0, 0};
+      constexpr int d4y[4] = {0, 0, 1, -1};
+
+      for (int m = 0; m < 4; ++m)
+      {
+        int nx = cx + d4x[m];
+        int ny = cy + d4y[m];
+        if (nx < 0 || nx >= shape.x || ny < 0 || ny >= shape.y) continue;
+
+        int nidx = ny * shape.x + nx;
+        if (contour_id[nidx] != k && !visited[nidx])
+        {
+          visited[nidx] = 1;
+          q.push_back(nidx);
+        }
+      }
+    }
+
+    int in_count = 0;
+    for (size_t p = 0; p < npix; ++p)
+    {
+      if (contour_id[p] != k && !visited[p])
+      {
+        inside[k][p] = 1;
+        ++in_count;
+      }
+    }
+    area[k] = in_count;
+  }
+
+  // 3. Parent identification by smallest containing enclosing contour
+  for (int k = 0; k < n; ++k)
+  {
+    int smallest_parent = -1;
+    int min_parent_area = std::numeric_limits<int>::max();
+    int r_idx = rep[k];
+
+    for (int j = 0; j < n; ++j)
+    {
+      if (j == k) continue;
+      if (inside[j][r_idx])
+      {
+        if (area[j] < min_parent_area)
+        {
+          min_parent_area = area[j];
+          smallest_parent = j;
+        }
+      }
+    }
+    r.parent[k] = smallest_parent;
+  }
+
+  // 4. Assign each pixel to innermost contour containing it, or -1 if outside
+  // all
+  for (size_t p = 0; p < npix; ++p)
+  {
+    if (contour_id[p] >= 0)
+    {
+      r.zone[p] = -2;
+      continue;
+    }
+
+    int zone_id = -1;
+    int min_area = std::numeric_limits<int>::max();
+    for (int k = 0; k < n; ++k)
+    {
+      if (inside[k][p] && area[k] < min_area)
+      {
+        min_area = area[k];
+        zone_id = k;
+      }
+    }
+    r.zone[p] = zone_id;
+  }
+
+  return r;
+}
+
+} // namespace
+
+// --- Public API
+
+Array elevation_from_contours(glm::ivec2                shape,
+                              const std::vector<Path>  &contours,
+                              const std::vector<float> &elevations,
+                              const Array              *p_probability,
+                              float                     randomness,
+                              std::uint32_t             seed,
+                              float                     peak_ratio,
+                              float                     outside_ratio,
+                              bool                      smoothstep,
+                              glm::vec4                 bbox)
+{
+  // --- validation
+  if (!validate_shape(shape)) return Array();
+
+  if (contours.empty())
+  {
+    log::error("elevation_from_contours: at least one contour is required");
+    return Array();
+  }
+
+  if (contours.size() != elevations.size())
+  {
+    log::error("elevation_from_contours: contours ({}) and elevations ({}) "
+               "sizes differ",
+               contours.size(),
+               elevations.size());
+    return Array();
+  }
+
+  for (size_t k = 0; k < contours.size(); ++k)
+    if (contours[k].points.size() < 3)
+    {
+      log::error("elevation_from_contours: contour {} has fewer than 3 points",
+                 k);
+      return Array();
+    }
+
+  if (p_probability && !validate_same_shape(shape, *p_probability))
+    return Array();
+
+  randomness = std::clamp(randomness, 0.f, 1.f);
+
+  // --- rasterization, zones and nesting tree
+  const ContourRaster r = rasterize_contours(contours, shape, bbox);
+
+  return synthesize_from_contour_raster(r,
+                                        elevations,
+                                        p_probability,
+                                        randomness,
+                                        seed,
+                                        peak_ratio,
+                                        outside_ratio,
+                                        smoothstep);
+}
+
+Array elevation_from_contours(const Array  &contours,
+                              const Array  *p_probability,
+                              float         randomness,
+                              std::uint32_t seed,
+                              float         peak_ratio,
+                              float         outside_ratio,
+                              bool          smoothstep)
+{
+  if (!validate_non_empty(contours)) return Array();
+
+  if (p_probability && !validate_same_shape(contours.shape, *p_probability))
+    return Array();
+
+  randomness = std::clamp(randomness, 0.f, 1.f);
+
+  std::vector<float>  elevations;
+  const ContourRaster r = rasterize_contours_from_array(contours, elevations);
+
+  if (elevations.empty())
+  {
+    log::error("elevation_from_contours: no contours found in input array");
+    return Array();
+  }
+
+  return synthesize_from_contour_raster(r,
+                                        elevations,
+                                        p_probability,
+                                        randomness,
+                                        seed,
+                                        peak_ratio,
+                                        outside_ratio,
+                                        smoothstep);
 }
 
 } // namespace hmap

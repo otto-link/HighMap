@@ -91,7 +91,10 @@ TEST(BoundaryTest, FalloffWithAndWithoutNoise)
 
 TEST(BoundaryTest, MakePeriodicStitchingContinuity)
 {
-  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::PERLIN, glm::ivec2(64, 64), glm::vec2(4.f, 4.f), 1);
+  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::PERLIN,
+                                  glm::ivec2(64, 64),
+                                  glm::vec2(4.f, 4.f),
+                                  1);
   hmap::Array zp = hmap::make_periodic_stitching(z, 0.5f);
 
   EXPECT_EQ(zp.shape.x, 64);
@@ -107,4 +110,3 @@ TEST(BoundaryTest, MakePeriodicStitchingContinuity)
     EXPECT_NEAR(zp(i, 0), zp(i, zp.shape.y - 1), 1e-2f);
   }
 }
-
