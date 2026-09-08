@@ -863,7 +863,6 @@
 <codeline lineno="339"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">Array</ref><sp/>res_flat<sp/>=<sp/><ref refid="namespacehmap_1a15951dcd1ef3999591c757944f894e15" kindref="member">convolve2d_svd</ref>(input,<sp/>flat_kernel);</highlight></codeline>
 <codeline lineno="340"><highlight class="normal"><sp/><sp/>EXPECT_TRUE(<ref refid="namespacehmap_1a7d7c20120bea803d47a9a8394007e383" kindref="member">assert_almost_equal</ref>(res_flat,<sp/>input));</highlight></codeline>
 <codeline lineno="341"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="342"><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="tests/src/test_math.cpp"/>
   </compounddef>
