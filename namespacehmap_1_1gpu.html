@@ -487,8 +487,6 @@ Functions</h2></td></tr>
 <tr class="memitem:ab2b13ab0053ffacaf2d2da56a59f1781" id="r_ab2b13ab0053ffacaf2d2da56a59f1781"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhmap_1_1Array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap_1_1gpu.html#ab2b13ab0053ffacaf2d2da56a59f1781">snow_simulation</a> (const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;z, float snow_depth, const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;fall_map, const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;melting_map, const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;talus, int iterations, float dt=0.5<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float fall_iterations_ratio=1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float k_snow=0.5<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float k_visc=0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float k_melt_factor=0.8<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float k_depth_ratio=1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float k_depth_slope_ratio=1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float k_creep=0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, bool post_filter=true, float thermal_talus_ratio=0.2<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, bool outflow_boundaries=true)</td></tr>
 <tr class="memdesc:ab2b13ab0053ffacaf2d2da56a59f1781"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simulate snow accumulation and redistribution over a terrain.  <br /></td></tr>
 <tr class="separator:ab2b13ab0053ffacaf2d2da56a59f1781"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac42f26a43c72d9e7b6fdc0715e70fc06" id="r_ac42f26a43c72d9e7b6fdc0715e70fc06"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhmap_1_1Array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap_1_1gpu.html#ac42f26a43c72d9e7b6fdc0715e70fc06">snow_simulation_layered</a> (const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;z, float snow_depth, const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;talus)</td></tr>
-<tr class="separator:ac42f26a43c72d9e7b6fdc0715e70fc06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a687d85d20bee065ffabeecea9124f432" id="r_a687d85d20bee065ffabeecea9124f432"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap_1_1gpu.html#a687d85d20bee065ffabeecea9124f432">water_depth_filter</a> (<a class="el" href="classhmap_1_1Array.html">Array</a> &amp;depth, const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;z, int <a class="el" href="sls__deformation_8cpp.html#a108a1d0fcea4288c9e48f5dc4fa0a1b0">ir</a>, const <a class="el" href="classhmap_1_1Array.html">Array</a> *p_water_mask=nullptr, bool smooth_contour=false, float transition_ratio=0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>)</td></tr>
 <tr class="memdesc:a687d85d20bee065ffabeecea9124f432"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filters water depth values using elevation data and a given radius.  <br /></td></tr>
 <tr class="separator:a687d85d20bee065ffabeecea9124f432"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -10768,40 +10766,6 @@ Only available if OpenCL is enabled.</dd></dl>
 <img src="ex_snow_simulation.png" alt=""/>
 </div>
  
-</div>
-</div>
-<a id="ac42f26a43c72d9e7b6fdc0715e70fc06" name="ac42f26a43c72d9e7b6fdc0715e70fc06"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac42f26a43c72d9e7b6fdc0715e70fc06">&#9670;&#160;</a></span>snow_simulation_layered()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classhmap_1_1Array.html">Array</a> hmap::gpu::snow_simulation_layered </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;&#160;</td>
-          <td class="paramname"><em>z</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>snow_depth</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;&#160;</td>
-          <td class="paramname"><em>talus</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
 </div>
 </div>
 <a id="a687d85d20bee065ffabeecea9124f432" name="a687d85d20bee065ffabeecea9124f432"></a>

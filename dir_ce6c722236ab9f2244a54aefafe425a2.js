@@ -19,6 +19,5 @@ var dir_ce6c722236ab9f2244a54aefafe425a2 =
     [ "generate_riverbed.cpp", "generate__riverbed_8cpp.html", "generate__riverbed_8cpp" ],
     [ "generate_riverbed_gpu.cpp", "generate__riverbed__gpu_8cpp.html", "generate__riverbed__gpu_8cpp" ],
     [ "snow_simulation.cpp", "snow__simulation_8cpp.html", "snow__simulation_8cpp" ],
-    [ "snow_simulation_layered.cpp", "snow__simulation__layered_8cpp.html", "snow__simulation__layered_8cpp" ],
     [ "water_depth.cpp", "water__depth_8cpp.html", "water__depth_8cpp" ]
 ];

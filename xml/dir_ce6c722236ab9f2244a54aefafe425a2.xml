@@ -21,7 +21,6 @@
     <innerfile refid="generate__riverbed_8cpp">generate_riverbed.cpp</innerfile>
     <innerfile refid="generate__riverbed__gpu_8cpp">generate_riverbed_gpu.cpp</innerfile>
     <innerfile refid="snow__simulation_8cpp">snow_simulation.cpp</innerfile>
-    <innerfile refid="snow__simulation__layered_8cpp">snow_simulation_layered.cpp</innerfile>
     <innerfile refid="water__depth_8cpp">water_depth.cpp</innerfile>
     <briefdescription>
     </briefdescription>

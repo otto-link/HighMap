@@ -79,13 +79,13 @@ var NAVTREEINDEX11 =
 "hydrology_2hydrology_8hpp.html#a3624c1660e60d16a87c90222606f7050":[5,0,1,0,0,2,2,11],
 "hydrology_2hydrology_8hpp.html#a3a5454dd7547ce6b9d995be17a2ac410":[5,0,1,0,0,2,2,27],
 "hydrology_2hydrology_8hpp.html#a3aebd62906b90ccfde11140e13b0853f":[5,0,1,0,0,2,2,28],
-"hydrology_2hydrology_8hpp.html#a4b9ba3dd7bc6c093329b262fd4ca8f6c":[5,0,1,0,0,2,2,45],
+"hydrology_2hydrology_8hpp.html#a4b9ba3dd7bc6c093329b262fd4ca8f6c":[5,0,1,0,0,2,2,44],
 "hydrology_2hydrology_8hpp.html#a4d151da78c906907ca5ae39beaa1ed03":[5,0,1,0,0,2,2,22],
 "hydrology_2hydrology_8hpp.html#a58ba4910af868f70849f343e0c73adf3":[5,0,1,0,0,2,2,14],
 "hydrology_2hydrology_8hpp.html#a62e937a8e394092689481bb392bc15cf":[5,0,1,0,0,2,2,21],
 "hydrology_2hydrology_8hpp.html#a64fbc0261e13ea842762efd3ac6bcc53":[5,0,1,0,0,2,2,25],
-"hydrology_2hydrology_8hpp.html#a687d85d20bee065ffabeecea9124f432":[5,0,1,0,0,2,2,44],
-"hydrology_2hydrology_8hpp.html#a703eaf095338c94f1b6589a5b8a650fe":[5,0,1,0,0,2,2,46],
+"hydrology_2hydrology_8hpp.html#a687d85d20bee065ffabeecea9124f432":[5,0,1,0,0,2,2,43],
+"hydrology_2hydrology_8hpp.html#a703eaf095338c94f1b6589a5b8a650fe":[5,0,1,0,0,2,2,45],
 "hydrology_2hydrology_8hpp.html#a70e5aa1009c3de1d301e0a8994dd8b03":[5,0,1,0,0,2,2,1],
 "hydrology_2hydrology_8hpp.html#a731ad5f4c97f6c8d9987c9b8c2881d55":[5,0,1,0,0,2,2,34],
 "hydrology_2hydrology_8hpp.html#a78419f7981186b40c4a2d04456e4e63f":[5,0,1,0,0,2,2,26],
@@ -102,7 +102,6 @@ var NAVTREEINDEX11 =
 "hydrology_2hydrology_8hpp.html#ab562e00b361d918c52dd5860fc88ae06":[5,0,1,0,0,2,2,31],
 "hydrology_2hydrology_8hpp.html#ab6d1b3c418405a0174462f6ea40a665f":[5,0,1,0,0,2,2,10],
 "hydrology_2hydrology_8hpp.html#abc5928f49e530927c8fb61a9afea3274":[5,0,1,0,0,2,2,33],
-"hydrology_2hydrology_8hpp.html#ac42f26a43c72d9e7b6fdc0715e70fc06":[5,0,1,0,0,2,2,43],
 "hydrology_2hydrology_8hpp.html#ad1d77ab375dfcca54183bbb687c82e9d":[5,0,1,0,0,2,2,19],
 "hydrology_2hydrology_8hpp.html#ad20345f6e15426e0b6a150a1fd9e4bfa":[5,0,1,0,0,2,2,35],
 "hydrology_2hydrology_8hpp.html#ad39c72e2b4c07d3013f7b0143c31137c":[5,0,1,0,0,2,2,32],
@@ -249,5 +248,6 @@ var NAVTREEINDEX11 =
 "kd__tree_8hpp_source.html":[5,0,1,0,0,1,4],
 "kernels_8cpp.html":[5,0,1,1,22,0],
 "kernels_8cpp.html#a0b3237f9cc015299bf3e436be71d3587":[5,0,1,1,22,0,6],
-"kernels_8cpp.html#a0cfa024afb9246aaa89ec6b2e69501c3":[5,0,1,1,22,0,16]
+"kernels_8cpp.html#a0cfa024afb9246aaa89ec6b2e69501c3":[5,0,1,1,22,0,16],
+"kernels_8cpp.html#a2d1ef54ca8c981d95eb5a990c5d6fa23":[5,0,1,1,22,0,8]
 };
