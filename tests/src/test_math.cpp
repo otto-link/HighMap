@@ -1,4 +1,5 @@
 #include "highmap/array.hpp"
+#include "highmap/convolve.hpp"
 #include "highmap/dbg/assert.hpp"
 #include "highmap/math/array.hpp"
 #include "highmap/math/core.hpp"
@@ -312,3 +313,30 @@ TEST(MathTest, RMinRMaxArray)
   EXPECT_FLOAT_EQ(out_max_exact(0, 0), 5.f);
   EXPECT_FLOAT_EQ(out_max_exact(0, 1), 4.f);
 }
+
+// ------------------------------------------------------------
+// CONVOLVE SVD
+// ------------------------------------------------------------
+
+TEST(ConvolveSvdTest, ReturnInputWhenKernelNullOrFlat)
+{
+  Array input(glm::ivec2(32, 32));
+  for (int j = 0; j < input.shape.y; ++j)
+  {
+    for (int i = 0; i < input.shape.x; ++i)
+    {
+      input(i, j) = static_cast<float>(i + 2 * j);
+    }
+  }
+
+  // Null kernel (all zeros)
+  Array null_kernel(glm::ivec2(5, 5), 0.0f);
+  Array res_null = convolve2d_svd(input, null_kernel);
+  EXPECT_TRUE(assert_almost_equal(res_null, input));
+
+  // Flat kernel (constant non-zero values)
+  Array flat_kernel(glm::ivec2(5, 5), 3.5f);
+  Array res_flat = convolve2d_svd(input, flat_kernel);
+  EXPECT_TRUE(assert_almost_equal(res_flat, input));
+}
+
