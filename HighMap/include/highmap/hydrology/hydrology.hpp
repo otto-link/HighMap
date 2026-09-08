@@ -1171,6 +1171,10 @@ Array snow_simulation(const Array &z,
                       bool         post_filter = true,
                       float        thermal_talus_ratio = 0.2f);
 
+Array snow_simulation_layered(const Array &z,
+                              float        snow_depth,
+                              const Array &talus);
+
 /**
  * @brief Filters water depth values using elevation data and a given radius.
  *
