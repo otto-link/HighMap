@@ -14,5 +14,7 @@ var test__elevation__from__contours_8cpp =
     [ "TEST", "test__elevation__from__contours_8cpp.html#af8a64f7cc3eea30762c5dd09b55d34e7", null ],
     [ "TEST", "test__elevation__from__contours_8cpp.html#a1845713717e759d70953d82dd3b08168", null ],
     [ "TEST", "test__elevation__from__contours_8cpp.html#a64c96c2f1fb1d699a0e4c55e36d209d6", null ],
-    [ "TEST", "test__elevation__from__contours_8cpp.html#ad32ae03bd6cab528dc0f91b1a91b30a8", null ]
+    [ "TEST", "test__elevation__from__contours_8cpp.html#ad32ae03bd6cab528dc0f91b1a91b30a8", null ],
+    [ "TEST", "test__elevation__from__contours_8cpp.html#a4b662dde6f35df2d50d857cc67d8257a", null ],
+    [ "TEST", "test__elevation__from__contours_8cpp.html#a962c8895ed30e43ed1900f0f1e8e4c20", null ]
 ];

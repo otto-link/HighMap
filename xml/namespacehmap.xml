@@ -3070,10 +3070,9 @@
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="main_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
 <codeline><highlight class="normal">{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>glm::ivec2<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref><sp/>=<sp/>{256,<sp/>256};</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>shape<sp/>=<sp/>{1024,<sp/>1024};</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>glm::vec4<sp/>bbox<sp/>=<sp/>{0.f,<sp/>1.f,<sp/>0.f,<sp/>1.f};</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>glm::ivec2<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref><sp/>=<sp/>{1024,<sp/>1024};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>glm::vec4<sp/><sp/>bbox<sp/>=<sp/>{0.f,<sp/>1.f,<sp/>0.f,<sp/>1.f};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>---<sp/>sparse<sp/>contours:<sp/>a<sp/>main<sp/>hill<sp/>with<sp/>4<sp/>nested<sp/>levels,<sp/>a<sp/>small<sp/>basin<sp/>in</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>its<sp/>lowest<sp/>ring<sp/>and<sp/>a<sp/>second,<sp/>separate<sp/>hill</highlight><highlight class="normal"></highlight></codeline>
@@ -3135,22 +3134,21 @@
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>---<sp/>noise-based<sp/>raster<sp/>contours:<sp/>extract<sp/>iso-contours<sp/>from<sp/>Perlin<sp/>fbm<sp/>noise</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>noise_hmap<sp/>=<sp/><ref refid="namespacehmap_1a7d699a468a18be16c70654958ee13b41" kindref="member">hmap::noise_fbm</ref>(<ref refid="namespacehmap_1ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581" kindref="member">hmap::NoiseType::PERLIN</ref>,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{3.f,<sp/>3.f},</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>6);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{2.f,<sp/>2.f},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a262e6495cb2d02598f36a2b46114b2b4" kindref="member">hmap::remap</ref>(noise_hmap,<sp/>0.1f,<sp/>0.9f);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>raster_contours<sp/>=<sp/>extract_contours_from_heightmap(noise_hmap,<sp/>3);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>raster_contours<sp/>=<sp/>extract_contours_from_heightmap(noise_hmap,<sp/>6);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>synthesize<sp/>elevation<sp/>directly<sp/>from<sp/>raster<sp/>contours<sp/>with<sp/>smoothstep</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>z_noise_reconstructed<sp/>=<sp/><ref refid="namespacehmap_1a1cd0f776fce02a28d7a58af8c40cb7aa" kindref="member">hmap::elevation_from_contours</ref>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>raster_contours,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>&amp;proba,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>0.f,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>seed,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>0.5f,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>1.f,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>0.f,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>z_noise_reconstructed.<ref refid="classhmap_1_1Array_1a00b8f7462c1e22b1da8a67ec62d4c8c8" kindref="member">dump</ref>();</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
@@ -3195,7 +3193,117 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/authoring/elevation_from_contours.cpp" line="685" column="7" bodyfile="HighMap/src/authoring/elevation_from_contours.cpp" bodystart="685" bodyend="738" declfile="HighMap/include/highmap/authoring.hpp" declline="266" declcolumn="7"/>
+        <location file="HighMap/src/authoring/elevation_from_contours.cpp" line="862" column="7" bodyfile="HighMap/src/authoring/elevation_from_contours.cpp" bodystart="862" bodyend="915" declfile="HighMap/include/highmap/authoring.hpp" declline="266" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehmap_1ab2537bdacf8200eeeb381c4b4825bf1b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
+        <definition>Array hmap::elevation_from_contours</definition>
+        <argsstring>(const Array &amp;contours, const Array *p_probability=nullptr, float randomness=1.f, std::uint32_t seed=0, float peak_ratio=0.5f, float outside_ratio=1.f, bool smoothstep=false)</argsstring>
+        <name>elevation_from_contours</name>
+        <qualifiedname>hmap::elevation_from_contours</qualifiedname>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>contours</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
+          <declname>p_probability</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>randomness</declname>
+          <defval>1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <param>
+          <type>std::uint32_t</type>
+          <declname>seed</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>peak_ratio</declname>
+          <defval>0.5<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>outside_ratio</declname>
+          <defval>1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>smoothstep</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Synthesize a heightmap from a raster of sparse iso-contours with known elevations using stochastic front propagation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Overload of elevation_from_contours where contour elevations are provided directly on a raster grid (<computeroutput>contours</computeroutput>). Pixels with non-zero values (or distinct non-background elevation values) serve as the Dirichlet constraints.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>contours</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Raster array containing contour elevations at contour pixels and zero elsewhere. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_probability</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optional probability map in [0, 1] with the same shape as <computeroutput>contours</computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>randomness</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Amount of randomness in the front propagation in [0, 1]: 0 is deterministic, 1 is the Eden growth model. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>seed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Random seed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>peak_ratio</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Elevation gain of leaf contour interiors, relative to the mean elevation gap between nested contours. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outside_ratio</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Elevation drop outside all contours, relative to the mean elevation gap between nested contours. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>smoothstep</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If true, applies smoothstep (S-curve) interpolation between contours. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> Synthesized heightmap. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/src/authoring/elevation_from_contours.cpp" line="917" column="7" bodyfile="HighMap/src/authoring/elevation_from_contours.cpp" bodystart="917" bodyend="949" declfile="HighMap/include/highmap/authoring.hpp" declline="301" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a77df59a73e83bc371eceae7793c690dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -3418,117 +3526,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/authoring/elevation_from_sparse_constraints.cpp" line="11" column="7" bodyfile="HighMap/src/authoring/elevation_from_sparse_constraints.cpp" bodystart="11" bodyend="110" declfile="HighMap/include/highmap/authoring.hpp" declline="311" declcolumn="7"/>
-      </memberdef>
-      <memberdef kind="function" id="namespacehmap_1ab2537bdacf8200eeeb381c4b4825bf1b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
-        <definition>Array hmap::elevation_from_contours</definition>
-        <argsstring>(const Array &amp;contours, const Array *p_probability=nullptr, float randomness=1.f, std::uint32_t seed=0, float peak_ratio=0.5f, float outside_ratio=1.f, bool smoothstep=false)</argsstring>
-        <name>elevation_from_contours</name>
-        <qualifiedname>hmap::elevation_from_contours</qualifiedname>
-        <param>
-          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
-          <declname>contours</declname>
-        </param>
-        <param>
-          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
-          <declname>p_probability</declname>
-          <defval>nullptr</defval>
-        </param>
-        <param>
-          <type>float</type>
-          <declname>randomness</declname>
-          <defval>1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
-        </param>
-        <param>
-          <type>std::uint32_t</type>
-          <declname>seed</declname>
-          <defval>0</defval>
-        </param>
-        <param>
-          <type>float</type>
-          <declname>peak_ratio</declname>
-          <defval>0.5<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
-        </param>
-        <param>
-          <type>float</type>
-          <declname>outside_ratio</declname>
-          <defval>1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
-        </param>
-        <param>
-          <type>bool</type>
-          <declname>smoothstep</declname>
-          <defval>false</defval>
-        </param>
-        <briefdescription>
-<para>Synthesize a heightmap from a raster of sparse iso-contours with known elevations using stochastic front propagation. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>Overload of elevation_from_contours where contour elevations are provided directly on a raster grid (<computeroutput>contours</computeroutput>). Pixels with non-zero values (or distinct non-background elevation values) serve as the Dirichlet constraints.</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>contours</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Raster array containing contour elevations at contour pixels and zero elsewhere. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>p_probability</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Optional probability map in [0, 1] with the same shape as <computeroutput>contours</computeroutput>. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>randomness</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Amount of randomness in the front propagation in [0, 1]: 0 is deterministic, 1 is the Eden growth model. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>seed</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Random seed. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>peak_ratio</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Elevation gain of leaf contour interiors, relative to the mean elevation gap between nested contours. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>outside_ratio</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Elevation drop outside all contours, relative to the mean elevation gap between nested contours. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>smoothstep</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>If true, applies smoothstep (S-curve) interpolation between contours. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> Synthesized heightmap. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="HighMap/src/authoring/elevation_from_contours.cpp" line="740" column="7" bodyfile="HighMap/src/authoring/elevation_from_contours.cpp" bodystart="740" bodyend="772" declfile="HighMap/include/highmap/authoring.hpp" declline="346" declcolumn="7"/>
+        <location file="HighMap/src/authoring/elevation_from_sparse_constraints.cpp" line="11" column="7" bodyfile="HighMap/src/authoring/elevation_from_sparse_constraints.cpp" bodystart="11" bodyend="110" declfile="HighMap/include/highmap/authoring.hpp" declline="343" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a6f7e6e0cffaf7d03cfe1eef62b1c3575" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
