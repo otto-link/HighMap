@@ -1114,19 +1114,19 @@
     <member refid="classhmap_1_1XyControlFunction_1acfe5c441363f35d36a13084fb56c6dca" kind="function"><name>MinimumImpl</name></member>
     <member refid="classhmap_1_1XyControlFunction_1ab32abc0861325b3ea6f547b938a9225d" kind="function"><name>MaximumImpl</name></member>
   </compound>
-  <compound refid="namespace_0d348" kind="namespace"><name>@348</name>
+  <compound refid="namespace_0d349" kind="namespace"><name>@349</name>
   </compound>
-  <compound refid="namespace_0d355" kind="namespace"><name>@355</name>
+  <compound refid="namespace_0d356" kind="namespace"><name>@356</name>
   </compound>
-  <compound refid="namespace_0d361" kind="namespace"><name>@361</name>
+  <compound refid="namespace_0d362" kind="namespace"><name>@362</name>
   </compound>
-  <compound refid="namespace_0d371" kind="namespace"><name>@371</name>
+  <compound refid="namespace_0d372" kind="namespace"><name>@372</name>
   </compound>
-  <compound refid="namespace_0d386" kind="namespace"><name>@386</name>
+  <compound refid="namespace_0d387" kind="namespace"><name>@387</name>
   </compound>
-  <compound refid="namespace_0d392" kind="namespace"><name>@392</name>
+  <compound refid="namespace_0d393" kind="namespace"><name>@393</name>
   </compound>
-  <compound refid="namespace_0d396" kind="namespace"><name>@396</name>
+  <compound refid="namespace_0d397" kind="namespace"><name>@397</name>
   </compound>
   <compound refid="namespacehmap" kind="namespace"><name>hmap</name>
     <member refid="namespacehmap_1a5101273ec456f5267dddc3e22dae223b" kind="enum"><name>StampingBlendMethod</name></member>
@@ -2045,6 +2045,7 @@
     <member refid="namespacehmap_1a1f35e2238ee222ab2aa87304f6692ce6" kind="function"><name>select_rivers</name></member>
     <member refid="namespacehmap_1ac6dcaa05c7c34302fa2560ddedbb9931" kind="function"><name>select_transitions</name></member>
     <member refid="namespacehmap_1ac72cb684be1045c7f2a5c8941f905772" kind="function"><name>select_valley</name></member>
+    <member refid="namespacehmap_1a11a2a1f3cd9295fd38e05e61819b06fd" kind="function"><name>smooth_mask_preserve_frontier</name></member>
     <member refid="namespacehmap_1acbc412801dcbcce77b0e60b219dc946a" kind="function"><name>hillshade</name></member>
     <member refid="namespacehmap_1a12f76d80fee40f96dc5b6540bb83be80" kind="function"><name>shadow_grid</name></member>
     <member refid="namespacehmap_1ac28f43b4f0b1b481dc8eb528f1be0f3d" kind="function"><name>shadow_heightmap</name></member>
@@ -2170,7 +2171,7 @@
   </compound>
   <compound refid="namespacehmap_1_1_0d214" kind="namespace"><name>hmap::@214</name>
   </compound>
-  <compound refid="namespacehmap_1_1_0d321" kind="namespace"><name>hmap::@321</name>
+  <compound refid="namespacehmap_1_1_0d322" kind="namespace"><name>hmap::@322</name>
   </compound>
   <compound refid="namespacehmap_1_1_0d94" kind="namespace"><name>hmap::@94</name>
   </compound>
@@ -2311,7 +2312,8 @@
     <member refid="namespacehmap_1_1gpu_1aea15be4e56a0076b7cafb4435bf5b155" kind="function"><name>flow_simulation</name></member>
     <member refid="namespacehmap_1_1gpu_1ab4a0a4e3cea15b07f864be30c7f1e44d" kind="function"><name>flow_simulation_viscous</name></member>
     <member refid="namespacehmap_1_1gpu_1a129b54789c706428d04afd91d5eb8ae6" kind="function"><name>generate_riverbed</name></member>
-    <member refid="namespacehmap_1_1gpu_1a7bed0a401445a2b13d8d37e7a34ea598" kind="function"><name>snow_simulation</name></member>
+    <member refid="namespacehmap_1_1gpu_1ab2b13ab0053ffacaf2d2da56a59f1781" kind="function"><name>snow_simulation</name></member>
+    <member refid="namespacehmap_1_1gpu_1ac42f26a43c72d9e7b6fdc0715e70fc06" kind="function"><name>snow_simulation_layered</name></member>
     <member refid="namespacehmap_1_1gpu_1a687d85d20bee065ffabeecea9124f432" kind="function"><name>water_depth_filter</name></member>
     <member refid="namespacehmap_1_1gpu_1a4b9ba3dd7bc6c093329b262fd4ca8f6c" kind="function"><name>water_frontier_curvature</name></member>
     <member refid="namespacehmap_1_1gpu_1a703eaf095338c94f1b6589a5b8a650fe" kind="function"><name>water_depth_from_mask</name></member>
@@ -2429,6 +2431,8 @@
     <member refid="namespacehmap_1_1gpu_1a8583f0ee018a30b63c9cacb4580cd3e9" kind="function"><name>helper_radial_profile</name></member>
     <member refid="namespacehmap_1_1gpu_1a04ae8a1ec2b8156be692aa690d32e1ff" kind="function"><name>helper_apply_leeward</name></member>
     <member refid="namespacehmap_1_1gpu_1a7aac37734b22ffed4807f274511861be" kind="function"><name>helper_apply_uplift</name></member>
+  </compound>
+  <compound refid="namespacehmap_1_1gpu_1_1_0d222" kind="namespace"><name>hmap::gpu::@222</name>
   </compound>
   <compound refid="namespacehmap_1_1gpu_1_1detail" kind="namespace"><name>hmap::gpu::detail</name>
     <member refid="namespacehmap_1_1gpu_1_1detail_1a7f0fb6c386fb84a72714bbc74a003b6f" kind="function"><name>mcdonald_run_steps</name></member>
@@ -2948,6 +2952,8 @@
   <compound refid="generate__riverbed__gpu_8cpp" kind="file"><name>generate_riverbed_gpu.cpp</name>
   </compound>
   <compound refid="snow__simulation_8cpp" kind="file"><name>snow_simulation.cpp</name>
+  </compound>
+  <compound refid="snow__simulation__layered_8cpp" kind="file"><name>snow_simulation_layered.cpp</name>
   </compound>
   <compound refid="water__depth_8cpp" kind="file"><name>water_depth.cpp</name>
   </compound>

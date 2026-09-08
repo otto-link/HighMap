@@ -1847,6 +1847,8 @@ void \mbox{\hyperlink{namespacehmap_a3ce44e59b5eeb5c47a597f893f53eadb}{select\+\
 \begin{DoxyCompactList}\small\item\em Return an array filled with 1 at the blending transition between two arrays, and 0 elsewhere. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_ac72cb684be1045c7f2a5c8941f905772}{select\+\_\+valley}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, int \mbox{\hyperlink{sls__deformation_8cpp_a108a1d0fcea4288c9e48f5dc4fa0a1b0}{ir}}, bool ridge\+\_\+select=false)
 \item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a11a2a1f3cd9295fd38e05e61819b06fd}{smooth\+\_\+mask\+\_\+preserve\+\_\+frontier}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&mask, float feather\+\_\+width)
+\begin{DoxyCompactList}\small\item\em Smooths a binary mask with an inward falloff while preserving its 0-\/boundary. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_acbc412801dcbcce77b0e60b219dc946a}{hillshade}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, float azimuth, float zenith, float talus\+\_\+ref=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
 \begin{DoxyCompactList}\small\item\em Compute the shaded relief map (hillshading) from a heightmap. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a12f76d80fee40f96dc5b6540bb83be80}{shadow\+\_\+grid}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&z, float shadow\+\_\+talus)
@@ -19144,7 +19146,7 @@ Melting map with values in \mbox{[}0,1\mbox{]}, where higher values indicate str
 \DoxyCodeLine{\ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ talus(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ talus\_repose);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \textcolor{comment}{//\ no-\/melting}}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ snow\_depth0\ =\ \mbox{\hyperlink{namespacehmap_1_1gpu_a7bed0a401445a2b13d8d37e7a34ea598}{hmap::gpu::snow\_simulation}}(}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ snow\_depth0\ =\ \mbox{\hyperlink{namespacehmap_1_1gpu_ab2b13ab0053ffacaf2d2da56a59f1781}{hmap::gpu::snow\_simulation}}(}
 \DoxyCodeLine{\ \ \ \ \ \ z,}
 \DoxyCodeLine{\ \ \ \ \ \ amount,}
 \DoxyCodeLine{\ \ \ \ \ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ 1.f),\ \textcolor{comment}{//\ fall\_map}}
@@ -19155,7 +19157,7 @@ Melting map with values in \mbox{[}0,1\mbox{]}, where higher values indicate str
 \DoxyCodeLine{\ \ \textcolor{comment}{//\ with\ melting}}
 \DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ melt\_map\ =\ \mbox{\hyperlink{namespacehmap_a78419f7981186b40c4a2d04456e4e63f}{hmap::snow\_melting\_map}}(z);}
 \DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ snow\_depth1\ =\ \mbox{\hyperlink{namespacehmap_1_1gpu_a7bed0a401445a2b13d8d37e7a34ea598}{hmap::gpu::snow\_simulation}}(}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ snow\_depth1\ =\ \mbox{\hyperlink{namespacehmap_1_1gpu_ab2b13ab0053ffacaf2d2da56a59f1781}{hmap::gpu::snow\_simulation}}(}
 \DoxyCodeLine{\ \ \ \ \ \ z,}
 \DoxyCodeLine{\ \ \ \ \ \ amount,}
 \DoxyCodeLine{\ \ \ \ \ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ 1.f),\ \textcolor{comment}{//\ fall\_map}}
@@ -31278,6 +31280,28 @@ Return an array filled with 1 at the blending transition between two arrays, and
 \doxysubsubsection{\texorpdfstring{select\_valley()}{select\_valley()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::select\+\_\+valley (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{z,  }\item[{int}]{ir,  }\item[{bool}]{ridge\+\_\+select = {\ttfamily false} }\end{DoxyParamCaption})}
 
+\Hypertarget{namespacehmap_a11a2a1f3cd9295fd38e05e61819b06fd}\label{namespacehmap_a11a2a1f3cd9295fd38e05e61819b06fd} 
+\index{hmap@{hmap}!smooth\_mask\_preserve\_frontier@{smooth\_mask\_preserve\_frontier}}
+\index{smooth\_mask\_preserve\_frontier@{smooth\_mask\_preserve\_frontier}!hmap@{hmap}}
+\doxysubsubsection{\texorpdfstring{smooth\_mask\_preserve\_frontier()}{smooth\_mask\_preserve\_frontier()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::smooth\+\_\+mask\+\_\+preserve\+\_\+frontier (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{mask,  }\item[{float}]{feather\+\_\+width }\end{DoxyParamCaption})}
+
+
+
+Smooths a binary mask with an inward falloff while preserving its 0-\/boundary. 
+
+Computes a smooth falloff inside the non-\/zero region of the mask towards the 0/1 frontier using distance transform and smoothstep. The 0-\/set of the output remains identical to the input mask (no dilation beyond the boundary).
+
+
+\begin{DoxyParams}{Parameters}
+{\em mask} & Input binary mask (\{0, 1\}). \\
+\hline
+{\em feather\+\_\+width} & Width of the feathering falloff in grid units. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{classhmap_1_1Array}{Array} Smoothed mask with smooth falloff of the 1s. 
+\end{DoxyReturn}
 \Hypertarget{namespacehmap_acbc412801dcbcce77b0e60b219dc946a}\label{namespacehmap_acbc412801dcbcce77b0e60b219dc946a} 
 \index{hmap@{hmap}!hillshade@{hillshade}}
 \index{hillshade@{hillshade}!hmap@{hmap}}

@@ -1028,6 +1028,7 @@ var namespacehmap =
     [ "select_rivers", "namespacehmap.html#a1f35e2238ee222ab2aa87304f6692ce6", null ],
     [ "select_transitions", "namespacehmap.html#ac6dcaa05c7c34302fa2560ddedbb9931", null ],
     [ "select_valley", "namespacehmap.html#ac72cb684be1045c7f2a5c8941f905772", null ],
+    [ "smooth_mask_preserve_frontier", "namespacehmap.html#a11a2a1f3cd9295fd38e05e61819b06fd", null ],
     [ "hillshade", "namespacehmap.html#acbc412801dcbcce77b0e60b219dc946a", null ],
     [ "shadow_grid", "namespacehmap.html#a12f76d80fee40f96dc5b6540bb83be80", null ],
     [ "shadow_heightmap", "namespacehmap.html#ac28f43b4f0b1b481dc8eb528f1be0f3d", null ],

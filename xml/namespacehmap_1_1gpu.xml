@@ -11086,10 +11086,10 @@ This is an overloaded member function, provided for convenience. It differs from
         </inbodydescription>
         <location file="HighMap/src/hydrology/generate_riverbed_gpu.cpp" line="20" column="7" bodyfile="HighMap/src/hydrology/generate_riverbed_gpu.cpp" bodystart="20" bodyend="90" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1110" declcolumn="7"/>
       </memberdef>
-      <memberdef kind="function" id="namespacehmap_1_1gpu_1a7bed0a401445a2b13d8d37e7a34ea598" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespacehmap_1_1gpu_1ab2b13ab0053ffacaf2d2da56a59f1781" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
         <definition>Array hmap::gpu::snow_simulation</definition>
-        <argsstring>(const Array &amp;z, float snow_depth, const Array &amp;fall_map, const Array &amp;melting_map, const Array &amp;talus, int iterations, float dt=0.5f, float fall_iterations_ratio=1.f, float k_snow=0.5f, float k_visc=0.1f, float k_melt_factor=0.8f, float k_depth_ratio=1.f, float k_depth_slope_ratio=1.f, bool post_filter=true, float thermal_talus_ratio=0.2f)</argsstring>
+        <argsstring>(const Array &amp;z, float snow_depth, const Array &amp;fall_map, const Array &amp;melting_map, const Array &amp;talus, int iterations, float dt=0.5f, float fall_iterations_ratio=1.f, float k_snow=0.5f, float k_visc=0.1f, float k_melt_factor=0.8f, float k_depth_ratio=1.f, float k_depth_slope_ratio=1.f, float k_creep=0.1f, bool post_filter=true, float thermal_talus_ratio=0.2f, bool outflow_boundaries=true)</argsstring>
         <name>snow_simulation</name>
         <qualifiedname>hmap::gpu::snow_simulation</qualifiedname>
         <param>
@@ -11152,6 +11152,11 @@ This is an overloaded member function, provided for convenience. It differs from
           <defval>1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
         </param>
         <param>
+          <type>float</type>
+          <declname>k_creep</declname>
+          <defval>0.1<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <param>
           <type>bool</type>
           <declname>post_filter</declname>
           <defval>true</defval>
@@ -11160,6 +11165,11 @@ This is an overloaded member function, provided for convenience. It differs from
           <type>float</type>
           <declname>thermal_talus_ratio</declname>
           <defval>0.2<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>outflow_boundaries</declname>
+          <defval>true</defval>
         </param>
         <briefdescription>
 <para>Simulate snow accumulation and redistribution over a terrain. </para>
@@ -11283,7 +11293,15 @@ This is an overloaded member function, provided for convenience. It differs from
 <parametername>thermal_talus_ratio</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>Controls creep strength relative to talus.</para>
+<para>Controls creep strength relative to talus. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outflow_boundaries</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Allows snow to freely discharge outside the domain at boundaries.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -11310,7 +11328,7 @@ This is an overloaded member function, provided for convenience. It differs from
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>talus(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>talus_repose);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>no-melting</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>snow_depth0<sp/>=<sp/><ref refid="namespacehmap_1_1gpu_1a7bed0a401445a2b13d8d37e7a34ea598" kindref="member">hmap::gpu::snow_simulation</ref>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>snow_depth0<sp/>=<sp/><ref refid="namespacehmap_1_1gpu_1ab2b13ab0053ffacaf2d2da56a59f1781" kindref="member">hmap::gpu::snow_simulation</ref>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>z,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>amount,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>1.f),<sp/></highlight><highlight class="comment">//<sp/>fall_map</highlight><highlight class="normal"></highlight></codeline>
@@ -11321,7 +11339,7 @@ This is an overloaded member function, provided for convenience. It differs from
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>with<sp/>melting</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>melt_map<sp/>=<sp/><ref refid="namespacehmap_1a78419f7981186b40c4a2d04456e4e63f" kindref="member">hmap::snow_melting_map</ref>(z);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>snow_depth1<sp/>=<sp/><ref refid="namespacehmap_1_1gpu_1a7bed0a401445a2b13d8d37e7a34ea598" kindref="member">hmap::gpu::snow_simulation</ref>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>snow_depth1<sp/>=<sp/><ref refid="namespacehmap_1_1gpu_1ab2b13ab0053ffacaf2d2da56a59f1781" kindref="member">hmap::gpu::snow_simulation</ref>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>z,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>amount,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>1.f),<sp/></highlight><highlight class="comment">//<sp/>fall_map</highlight><highlight class="normal"></highlight></codeline>
@@ -11343,7 +11361,33 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/snow_simulation.cpp" line="85" column="7" bodyfile="HighMap/src/hydrology/snow_simulation.cpp" bodystart="85" bodyend="194" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1158" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/snow_simulation.cpp" line="88" column="7" bodyfile="HighMap/src/hydrology/snow_simulation.cpp" bodystart="88" bodyend="209" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1160" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehmap_1_1gpu_1ac42f26a43c72d9e7b6fdc0715e70fc06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
+        <definition>Array hmap::gpu::snow_simulation_layered</definition>
+        <argsstring>(const Array &amp;z, float snow_depth, const Array &amp;talus)</argsstring>
+        <name>snow_simulation_layered</name>
+        <qualifiedname>hmap::gpu::snow_simulation_layered</qualifiedname>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>snow_depth</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>talus</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/src/hydrology/snow_simulation_layered.cpp" line="66" column="7" bodyfile="HighMap/src/hydrology/snow_simulation_layered.cpp" bodystart="66" bodyend="153" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1178" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a687d85d20bee065ffabeecea9124f432" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -11443,7 +11487,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/water_depth.cpp" line="367" column="6" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="367" bodyend="409" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1187" declcolumn="6"/>
+        <location file="HighMap/src/hydrology/water_depth.cpp" line="367" column="6" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="367" bodyend="409" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1195" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a4b9ba3dd7bc6c093329b262fd4ca8f6c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -11471,7 +11515,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/water_depth.cpp" line="436" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="436" bodyend="466" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1195" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/water_depth.cpp" line="436" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="436" bodyend="466" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1203" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a703eaf095338c94f1b6589a5b8a650fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -11509,7 +11553,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/water_depth.cpp" line="411" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="411" bodyend="434" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1200" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/water_depth.cpp" line="411" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="411" bodyend="434" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1208" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1ac6263cc13b02f77fddd917b8fe4f2662" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -21006,7 +21050,7 @@ This function leverages an OpenCL kernel to compute the GavoroNoise values on th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/selector/selector_gpu.cpp" line="14" column="7" bodyfile="HighMap/src/selector/selector_gpu.cpp" bodystart="14" bodyend="26" declfile="HighMap/include/highmap/selector.hpp" declline="464" declcolumn="7"/>
+        <location file="HighMap/src/selector/selector_gpu.cpp" line="14" column="7" bodyfile="HighMap/src/selector/selector_gpu.cpp" bodystart="14" bodyend="26" declfile="HighMap/include/highmap/selector.hpp" declline="478" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1afb62cf56466c5bdfb9b6a26458a52d12" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -21173,7 +21217,7 @@ This function leverages an OpenCL kernel to compute the GavoroNoise values on th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/selector/select_soil_flow.cpp" line="14" column="7" bodyfile="HighMap/src/selector/select_soil_flow.cpp" bodystart="14" bodyend="42" declfile="HighMap/include/highmap/selector.hpp" declline="492" declcolumn="7"/>
+        <location file="HighMap/src/selector/select_soil_flow.cpp" line="14" column="7" bodyfile="HighMap/src/selector/select_soil_flow.cpp" bodystart="14" bodyend="42" declfile="HighMap/include/highmap/selector.hpp" declline="506" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a735421f1b5f42ade55224b932603c58e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -21307,7 +21351,7 @@ This function leverages an OpenCL kernel to compute the GavoroNoise values on th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/selector/select_soil_rocks.cpp" line="16" column="7" bodyfile="HighMap/src/selector/select_soil_rocks.cpp" bodystart="16" bodyend="54" declfile="HighMap/include/highmap/selector.hpp" declline="529" declcolumn="7"/>
+        <location file="HighMap/src/selector/select_soil_rocks.cpp" line="16" column="7" bodyfile="HighMap/src/selector/select_soil_rocks.cpp" bodystart="16" bodyend="54" declfile="HighMap/include/highmap/selector.hpp" declline="543" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1ae394dd88c39510d2ada01cf120922719" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -21472,7 +21516,7 @@ This function leverages an OpenCL kernel to compute the GavoroNoise values on th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/selector/select_soil_weathered.cpp" line="15" column="7" bodyfile="HighMap/src/selector/select_soil_weathered.cpp" bodystart="15" bodyend="40" declfile="HighMap/include/highmap/selector.hpp" declline="571" declcolumn="7"/>
+        <location file="HighMap/src/selector/select_soil_weathered.cpp" line="15" column="7" bodyfile="HighMap/src/selector/select_soil_weathered.cpp" bodystart="15" bodyend="40" declfile="HighMap/include/highmap/selector.hpp" declline="585" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a07420c28501484b219710bac89da8f60" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -21518,7 +21562,7 @@ This function leverages an OpenCL kernel to compute the GavoroNoise values on th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/selector/select_soil_weathered.cpp" line="42" column="7" bodyfile="HighMap/src/selector/select_soil_weathered.cpp" bodystart="42" bodyend="64" declfile="HighMap/include/highmap/selector.hpp" declline="582" declcolumn="7"/>
+        <location file="HighMap/src/selector/select_soil_weathered.cpp" line="42" column="7" bodyfile="HighMap/src/selector/select_soil_weathered.cpp" bodystart="42" bodyend="64" declfile="HighMap/include/highmap/selector.hpp" declline="596" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a13f97a9cf5f7f219e5ed9a32fefbfa1a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -21546,7 +21590,7 @@ This function leverages an OpenCL kernel to compute the GavoroNoise values on th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/selector/selector_gpu.cpp" line="28" column="7" bodyfile="HighMap/src/selector/selector_gpu.cpp" bodystart="28" bodyend="36" declfile="HighMap/include/highmap/selector.hpp" declline="592" declcolumn="7"/>
+        <location file="HighMap/src/selector/selector_gpu.cpp" line="28" column="7" bodyfile="HighMap/src/selector/selector_gpu.cpp" bodystart="28" bodyend="36" declfile="HighMap/include/highmap/selector.hpp" declline="606" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a646bc97523a9d9d93712405e77c0c14b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
