@@ -5,7 +5,7 @@
 
 int main(void)
 {
-  const glm::ivec2 shape = {512, 512};
+  const glm::ivec2 shape = {256, 256};
   const uint32_t   seed = 1;
 
   const float water_level = 0.5f;
@@ -77,6 +77,13 @@ int main(void)
   preserve.weight = not_path;
   preserve.type = hmap::DeformationConstraintType::MATCH;
 
+  // preserve original heights on the island so positive pushes do not inflate
+  // land amplitude
+  hmap::DeformationConstraint land_preserve;
+  land_preserve.target = z;
+  land_preserve.weight = mask;
+  land_preserve.type = hmap::DeformationConstraintType::MATCH;
+
   // 3. Run the search for each set of constraints, and for the combination
   // (the road is allowed to cross the sea as a causeway: sea vertices under
   // the road are released from the ocean constraint)
@@ -110,7 +117,7 @@ int main(void)
     return out;
   };
 
-  hmap::Array z_star = run("star island", {land, ocean}, 600);
+  hmap::Array z_star = run("star island", {land, ocean, land_preserve}, 600);
   hmap::Array z_road = run("flat road", {flat_road, preserve}, 800);
 
   hmap::DeformationConstraint ocean_causeway = ocean;
