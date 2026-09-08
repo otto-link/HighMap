@@ -3503,6 +3503,7 @@
     <member refid="test__math_8cpp_1aadf625b04e18f699126571a15974e05e" kind="function"><name>TEST</name></member>
     <member refid="test__math_8cpp_1a1fbe4505bcd7cda7622e393dea9f0d54" kind="function"><name>TEST</name></member>
     <member refid="test__math_8cpp_1ade0af126985b67ea09aa9df742aed632" kind="function"><name>TEST</name></member>
+    <member refid="test__math_8cpp_1af5e4581106876c327f162c65209fbc08" kind="function"><name>TEST</name></member>
   </compound>
   <compound refid="test__math__histogram_8cpp" kind="file"><name>test_math_histogram.cpp</name>
     <member refid="test__math__histogram_8cpp_1ac25a16a6fe4b1f2330b7b6177c8ced21" kind="function"><name>TEST</name></member>

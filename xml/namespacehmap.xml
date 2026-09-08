@@ -9110,7 +9110,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/convolve/convolve2d_svd.cpp" line="23" column="7" bodyfile="HighMap/src/convolve/convolve2d_svd.cpp" bodystart="23" bodyend="82" declfile="HighMap/include/highmap/convolve.hpp" declline="122" declcolumn="7"/>
+        <location file="HighMap/src/convolve/convolve2d_svd.cpp" line="23" column="7" bodyfile="HighMap/src/convolve/convolve2d_svd.cpp" bodystart="23" bodyend="84" declfile="HighMap/include/highmap/convolve.hpp" declline="122" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a820e82bc70b4f44fb46a742a77879071" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -9221,7 +9221,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/convolve/convolve2d_svd.cpp" line="84" column="7" bodyfile="HighMap/src/convolve/convolve2d_svd.cpp" bodystart="84" bodyend="110" declfile="HighMap/include/highmap/convolve.hpp" declline="149" declcolumn="7"/>
+        <location file="HighMap/src/convolve/convolve2d_svd.cpp" line="86" column="7" bodyfile="HighMap/src/convolve/convolve2d_svd.cpp" bodystart="86" bodyend="112" declfile="HighMap/include/highmap/convolve.hpp" declline="149" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1aa1f2e119a09d246fe0cf27e859ddb2e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
