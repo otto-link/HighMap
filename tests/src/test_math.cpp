@@ -339,4 +339,3 @@ TEST(ConvolveSvdTest, ReturnInputWhenKernelNullOrFlat)
   Array res_flat = convolve2d_svd(input, flat_kernel);
   EXPECT_TRUE(assert_almost_equal(res_flat, input));
 }
-
