@@ -1,5 +1,7 @@
 #include "highmap/dbg/assert.hpp"
+#include "highmap/erosion.hpp"
 #include "highmap/morphology.hpp"
+#include "highmap/primitives.hpp"
 
 #include <gtest/gtest.h>
 
@@ -94,4 +96,18 @@ TEST(Erosion, NonSquareArray)
 
   EXPECT_TRUE(assert_almost_equal(cpu, expected));
   EXPECT_TRUE(assert_almost_equal(gpu, expected));
+}
+
+TEST(ThermalConserve, MassPreserved)
+{
+  hmap::gpu::init_opencl();
+
+  glm::ivec2 shape = {64, 64};
+  glm::vec2  kw = {4.f, 4.f};
+  Array      z0 = noise_fbm(NoiseType::PERLIN, shape, kw, 42);
+
+  Array z = z0;
+  gpu::thermal_conserve(z, 0.1f / shape.x, 100);
+
+  EXPECT_NEAR(z.sum(), z0.sum(), 1e-2f);
 }
