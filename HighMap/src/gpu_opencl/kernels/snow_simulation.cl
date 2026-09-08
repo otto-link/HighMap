@@ -16,7 +16,8 @@ kernel void snow_simulation(read_only image2d_t  z,
                             float                k_melt,
                             float                k_visc,
                             float                k_depth_ratio,
-                            float                k_depth_slope_ratio)
+                            float                k_depth_slope_ratio,
+                            float                k_creep)
 {
   int i = get_global_id(0);
   int j = get_global_id(1);
@@ -54,14 +55,21 @@ kernel void snow_simulation(read_only image2d_t  z,
   float sy = 0.5f * (Hu - Hd);
   float slope = hypot(sx, sy);
 
+  // Avalanche flux (for slope > repose angle)
   float excess = max(0.f, slope - slope_repose_eff);
+  float flux_out_avalanche = k_snow * excess * dt;
 
-  float flux_out = k_snow * excess * dt;
+  // Flat-terrain creep flux (sub-talus settling/drift)
+  float flat_factor = max(0.f, 1.f - (slope / max(slope_repose_eff, 1e-4f)));
+  float flux_out_creep = k_creep * flat_factor * slope * dt;
+
+  float flux_out = flux_out_avalanche + flux_out_creep;
   flux_out = fmin(flux_out, sc);
 
-  // depth at which snow starts to lock
-  float mobility = exp(-sc / sc0);
-  flux_out *= mobility;
+  // depth at which snow starts to lock for avalanche flow
+  float mobility = exp(-sc / max(sc0, 1e-4f));
+  flux_out = (flux_out_avalanche * mobility) + flux_out_creep;
+  flux_out = fmin(flux_out, sc);
 
   float wl = max(0.f, Hc - Hl);
   float wr = max(0.f, Hc - Hr);
@@ -83,9 +91,13 @@ kernel void snow_simulation(read_only image2d_t  z,
   // LEFT neighbor (i-1,j) sends RIGHT to (i,j)
   {
     float Hn = Hl;
-    float wn = max(0.f, Hn - Hc);
-    float excess_n = max(0.f, (Hn - Hc) - slope_repose_eff);
-    float factor_n = k_snow * excess_n * dt;
+    float sn = TGET(s, i - 1, j);
+    float slope_n = max(0.f, Hn - Hc);
+    float excess_n = max(0.f, slope_n - slope_repose_eff);
+    float flat_n = max(0.f, 1.f - (slope_n / max(slope_repose_eff, 1e-4f)));
+    float f_av = k_snow * excess_n * dt * exp(-sn / max(sc0, 1e-4f));
+    float f_cr = k_creep * flat_n * slope_n * dt;
+    float factor_n = fmin(sn, f_av + f_cr);
 
     float sum = max(0.f, Hn - Hr) +
                 max(0.f, Hn - (TGET(z, i - 1, j - 1) + TGET(s, i - 1, j - 1))) *
@@ -93,15 +105,19 @@ kernel void snow_simulation(read_only image2d_t  z,
                 max(0.f, Hn - (TGET(z, i - 1, j + 1) + TGET(s, i - 1, j + 1))) *
                     diag;
 
-    if (sum > 1e-6f) in += factor_n * wn / sum;
+    if (sum > 1e-6f) in += factor_n * slope_n / sum;
   }
 
   // RIGHT neighbor (i+1,j) sends LEFT to (i,j)
   {
     float Hn = Hr;
-    float wn = max(0.f, Hn - Hc);
-    float excess_n = max(0.f, (Hn - Hc) - slope_repose_eff);
-    float factor_n = k_snow * excess_n * dt;
+    float sn = TGET(s, i + 1, j);
+    float slope_n = max(0.f, Hn - Hc);
+    float excess_n = max(0.f, slope_n - slope_repose_eff);
+    float flat_n = max(0.f, 1.f - (slope_n / max(slope_repose_eff, 1e-4f)));
+    float f_av = k_snow * excess_n * dt * exp(-sn / max(sc0, 1e-4f));
+    float f_cr = k_creep * flat_n * slope_n * dt;
+    float factor_n = fmin(sn, f_av + f_cr);
 
     float sum = max(0.f, Hn - Hl) +
                 max(0.f, Hn - (TGET(z, i + 1, j - 1) + TGET(s, i + 1, j - 1))) *
@@ -109,15 +125,19 @@ kernel void snow_simulation(read_only image2d_t  z,
                 max(0.f, Hn - (TGET(z, i + 1, j + 1) + TGET(s, i + 1, j + 1))) *
                     diag;
 
-    if (sum > 1e-6f) in += factor_n * wn / sum;
+    if (sum > 1e-6f) in += factor_n * slope_n / sum;
   }
 
   // DOWN neighbor (i,j-1) sends UP to (i,j)
   {
     float Hn = Hd;
-    float wn = max(0.f, Hn - Hc);
-    float excess_n = max(0.f, (Hn - Hc) - slope_repose_eff);
-    float factor_n = k_snow * excess_n * dt;
+    float sn = TGET(s, i, j - 1);
+    float slope_n = max(0.f, Hn - Hc);
+    float excess_n = max(0.f, slope_n - slope_repose_eff);
+    float flat_n = max(0.f, 1.f - (slope_n / max(slope_repose_eff, 1e-4f)));
+    float f_av = k_snow * excess_n * dt * exp(-sn / max(sc0, 1e-4f));
+    float f_cr = k_creep * flat_n * slope_n * dt;
+    float factor_n = fmin(sn, f_av + f_cr);
 
     float sum = max(0.f, Hn - Hu) +
                 max(0.f, Hn - (TGET(z, i - 1, j - 1) + TGET(s, i - 1, j - 1))) *
@@ -125,15 +145,19 @@ kernel void snow_simulation(read_only image2d_t  z,
                 max(0.f, Hn - (TGET(z, i + 1, j - 1) + TGET(s, i + 1, j - 1))) *
                     diag;
 
-    if (sum > 1e-6f) in += factor_n * wn / sum;
+    if (sum > 1e-6f) in += factor_n * slope_n / sum;
   }
 
   // UP neighbor (i,j+1) sends DOWN to (i,j)
   {
     float Hn = Hu;
-    float wn = max(0.f, Hn - Hc);
-    float excess_n = max(0.f, (Hn - Hc) - slope_repose_eff);
-    float factor_n = k_snow * excess_n * dt;
+    float sn = TGET(s, i, j + 1);
+    float slope_n = max(0.f, Hn - Hc);
+    float excess_n = max(0.f, slope_n - slope_repose_eff);
+    float flat_n = max(0.f, 1.f - (slope_n / max(slope_repose_eff, 1e-4f)));
+    float f_av = k_snow * excess_n * dt * exp(-sn / max(sc0, 1e-4f));
+    float f_cr = k_creep * flat_n * slope_n * dt;
+    float factor_n = fmin(sn, f_av + f_cr);
 
     float sum = max(0.f, Hn - Hd) +
                 max(0.f, Hn - (TGET(z, i - 1, j + 1) + TGET(s, i - 1, j + 1))) *
@@ -141,20 +165,20 @@ kernel void snow_simulation(read_only image2d_t  z,
                 max(0.f, Hn - (TGET(z, i + 1, j + 1) + TGET(s, i + 1, j + 1))) *
                     diag;
 
-    if (sum > 1e-6f) in += factor_n * wn / sum;
+    if (sum > 1e-6f) in += factor_n * slope_n / sum;
   }
 
   float sc_new = sc - out + in;
 
-  // --- viscosity (numerical damping)
+  // --- surface viscosity (smooths total surface H = z + s to fill hollows)
 
-  float s_avg = (TGET(s, i - 1, j) + TGET(s, i + 1, j) + TGET(s, i, j - 1) +
-                 TGET(s, i, j + 1) +
-                 diag * (TGET(s, i - 1, j - 1) + TGET(s, i + 1, j - 1) +
-                         TGET(s, i - 1, j + 1) + TGET(s, i + 1, j + 1))) /
+  float H_avg = (Hl + Hr + Hd + Hu + diag * (Hdl + Hdr + Hul + Hur)) /
                 (4.f + 4.f * diag);
 
-  sc_new = mix(sc_new, s_avg, k_visc);
+  float z_c = TGET(z, i, j);
+  float s_target = max(0.f, H_avg - z_c);
+
+  sc_new = mix(sc_new, s_target, k_visc);
 
   // --- melting
 

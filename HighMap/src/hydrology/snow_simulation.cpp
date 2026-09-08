@@ -95,6 +95,7 @@ Array snow_simulation(const Array &z,
                       float        k_melt_factor,
                       float        k_depth_ratio,
                       float        k_depth_slope_ratio,
+                      float        k_creep,
                       bool         post_filter,
                       float        thermal_talus_ratio)
 {
@@ -133,7 +134,8 @@ Array snow_simulation(const Array &z,
                      k_melt,
                      k_visc,
                      k_depth_ratio,
-                     k_depth_slope_ratio);
+                     k_depth_slope_ratio,
+                     k_creep);
 
   auto run_fall = std::make_unique<clwrapper::Run>("hydraulic_vpipes_rain_pass",
                                                    run.get_queue());

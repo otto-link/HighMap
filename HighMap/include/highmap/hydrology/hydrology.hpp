@@ -1168,6 +1168,7 @@ Array snow_simulation(const Array &z,
                       float        k_melt_factor = 0.8f,
                       float        k_depth_ratio = 1.f,
                       float        k_depth_slope_ratio = 1.f,
+                      float        k_creep = 0.1f,
                       bool         post_filter = true,
                       float        thermal_talus_ratio = 0.2f);
 
