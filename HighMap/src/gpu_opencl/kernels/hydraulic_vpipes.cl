@@ -37,8 +37,10 @@ void kernel hydraulic_vpipes_flow_pass(read_only image2d_t  z,
   float ft_val = TGET(ft, i, j);
   float fb_val = TGET(fb, i, j);
 
-  // fast early-exit: if cell is dry and has no existing flux, outgoing fluxes are strictly zero
-  if (d0 <= 0.f && fl_val <= 0.f && fr_val <= 0.f && ft_val <= 0.f && fb_val <= 0.f)
+  // fast early-exit: if cell is dry and has no existing flux, outgoing fluxes
+  // are strictly zero
+  if (d0 <= 0.f && fl_val <= 0.f && fr_val <= 0.f && ft_val <= 0.f &&
+      fb_val <= 0.f)
   {
     TSET(fl_out, i, j, 0.f);
     TSET(fr_out, i, j, 0.f);
@@ -134,8 +136,7 @@ void kernel hydraulic_vpipes_water_pass(read_only image2d_t  z,
 
   // fast early-exit: if cell is dry and has no incoming or outgoing fluxes
   if (d0 <= 0.f && fl_val <= 0.f && fr_val <= 0.f && ft_val <= 0.f &&
-      fb_val <= 0.f && in_l <= 0.f && in_r <= 0.f && in_b <= 0.f &&
-      in_t <= 0.f)
+      fb_val <= 0.f && in_l <= 0.f && in_r <= 0.f && in_b <= 0.f && in_t <= 0.f)
   {
     TSET(d2_out, i, j, 0.f);
     TSET(u_out, i, j, 0.f);
@@ -143,7 +144,8 @@ void kernel hydraulic_vpipes_water_pass(read_only image2d_t  z,
     return;
   }
 
-  float dv = dt * (in_l + in_b + in_r + in_t - fl_val - fr_val - ft_val - fb_val);
+  float dv = dt *
+             (in_l + in_b + in_r + in_t - fl_val - fr_val - ft_val - fb_val);
   float d2_new = max(0.f, d0 + dv / (plength * plength));
 
   if (evap_rate > 0.f)
@@ -153,10 +155,14 @@ void kernel hydraulic_vpipes_water_pass(read_only image2d_t  z,
 
   TSET(d2_out, i, j, d2_new);
 
-  float u_new = 0.5f * (in_l - fl_val + fr_val -
-                        ((outflow_boundaries && i == nx - 1) ? 0.f : TGET(fl, i + 1, j)));
-  float v_new = 0.5f * (in_b - fb_val + ft_val -
-                        ((outflow_boundaries && j == ny - 1) ? 0.f : TGET(fb, i, j + 1)));
+  float u_new = 0.5f *
+                (in_l - fl_val + fr_val -
+                 ((outflow_boundaries && i == nx - 1) ? 0.f
+                                                      : TGET(fl, i + 1, j)));
+  float v_new = 0.5f *
+                (in_b - fb_val + ft_val -
+                 ((outflow_boundaries && j == ny - 1) ? 0.f
+                                                      : TGET(fb, i, j + 1)));
 
   float dmean = max(0.001f * water_height, d2_new);
 
@@ -262,4 +268,29 @@ void kernel hydraulic_vpipes_sediment_transport_pass(read_only image2d_t  u,
 
   TSET(s_out, i, j, s_new);
 }
+
+// Adds one rainfall increment. FP contraction is disabled so the result is
+// bit-identical to the former host-side `d += rain_map * amount`.
+#pragma OPENCL FP_CONTRACT OFF
+void kernel hydraulic_vpipes_rain_pass(read_only image2d_t  d_in,
+                                       read_only image2d_t  rain_map,
+                                       write_only image2d_t d_out,
+                                       const int            nx,
+                                       const int            ny,
+                                       const float          amount,
+                                       const int            use_map)
+{
+  const int2 g = {get_global_id(0), get_global_id(1)};
+
+  if (g.x >= nx || g.y >= ny) return;
+
+  const sampler_t sampler = CLK_NORMALIZED_COORDS_FALSE |
+                            CLK_ADDRESS_CLAMP_TO_EDGE | CLK_FILTER_NEAREST;
+
+  float d = TGET(d_in, g.x, g.y);
+  float r = use_map ? TGET(rain_map, g.x, g.y) * amount : amount;
+
+  TSET(d_out, g.x, g.y, d + r);
+}
+#pragma OPENCL FP_CONTRACT DEFAULT
 )""

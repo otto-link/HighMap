@@ -1037,6 +1037,9 @@ Array flow_direction_d8(const Array &z);
  * @brief GPU hydraulic flow simulation using a virtual-pipes model; simulates
  * shallow-water transport over a height field using iterative flux computation
  * and water transport passes, with optional flux diffusion and post-simulation
+ * dry-out. The whole iteration loop runs on the device: the terrain is
+ * uploaded once, depth and fluxes ping-pong between device images, and only
+ * the final depth (and velocity, if requested) are read back.
  * @param  z                       Terrain height field.
  * @param  water_height            Global water scaling factor.
  * @param  depth_map               Initial relative water distribution.
@@ -1082,7 +1085,7 @@ Array flow_simulation(const Array &z,
  * @param  water_depth        Global initial water scaling factor.
  * @param  depth_map          Initial relative water distribution.
  * @param  iterations         Number of simulation steps.
- * @param  dt                 Time step size.
+ * @param  dt                 Time step size (-1 for adaptive).
  * @param  dry_out_ratio      Ratio for removing thin remaining water layers.
  * @param  viscosity          Fluid dynamic viscosity.
  * @param  power              Non-linear mobility depth exponent.
@@ -1096,7 +1099,7 @@ Array flow_simulation_viscous(const Array &z,
                               float        water_depth,
                               const Array &depth_map,
                               int          iterations,
-                              float        dt = 0.5f,
+                              float        dt = -1.f,
                               float        dry_out_ratio = 0.f,
                               float        viscosity = 1.f,
                               float        power = 2.5f,
