@@ -25,6 +25,8 @@ Array convolve2d_svd(const Array &array, const Array &kernel, int rank)
   if (!validate_non_empty(array)) return Array();
   if (!validate_non_empty(kernel)) return Array(array.shape);
 
+  if (kernel.ptp() == 0.f) return array;
+
   if (kernel.shape.x < kernel.shape.y)
   {
     hmap::log::warn(

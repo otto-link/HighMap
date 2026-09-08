@@ -1,6 +1,7 @@
 #include "highmap/dbg/assert.hpp"
 #include "highmap/erosion.hpp"
 #include "highmap/morphology.hpp"
+#include "highmap/opencl/gpu_opencl.hpp"
 #include "highmap/primitives.hpp"
 
 #include <gtest/gtest.h>
