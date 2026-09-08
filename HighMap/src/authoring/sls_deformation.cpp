@@ -104,13 +104,10 @@ bool helper_is_active(DeformationConstraintType type, float d)
 {
   switch (type)
   {
-  case ABOVE:
-    return d < 0.f;
-  case BELOW:
-    return d > 0.f;
+  case ABOVE: return d < 0.f;
+  case BELOW: return d > 0.f;
   case MATCH:
-  default:
-    return true;
+  default: return true;
   }
 }
 

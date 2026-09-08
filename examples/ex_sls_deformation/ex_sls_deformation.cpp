@@ -87,7 +87,8 @@ int main(void)
   {
     std::vector<hmap::GaussianPush> pushes;
 
-    auto        t0 = std::chrono::steady_clock::now();
+    auto t0 = std::chrono::steady_clock::now();
+
     hmap::Array out = hmap::sls_deformation(z,
                                             constraints,
                                             seed,
@@ -101,7 +102,8 @@ int main(void)
                                             0.1f,
                                             1e-3f,
                                             &pushes);
-    auto        t1 = std::chrono::steady_clock::now();
+
+    auto t1 = std::chrono::steady_clock::now();
 
     std::cout << label << ": " << pushes.size() << " pushes in "
               << std::chrono::duration<float>(t1 - t0).count() << " s\n";
