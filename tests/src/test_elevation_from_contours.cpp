@@ -374,3 +374,61 @@ TEST(ElevationFromContours, SmoothstepInterpolation)
   EXPECT_LT(z_smooth(9, 32), z_linear(9, 32));
   EXPECT_GT(z_smooth(16, 32), z_linear(16, 32));
 }
+
+TEST(ElevationFromContours, OpenBoundaryContourPathRisesToPeak)
+{
+  glm::ivec2 shape = {64, 64};
+  // Arc/polyline cutting the top-left corner: (0, 0.7) -> (0.3, 0.7) ->
+  // (0.3, 1.0) Enclosing the corner [0, 0.3] x [0.7, 1.0]
+  hmap::Path corner_path({0.0f, 0.3f, 0.3f}, {0.7f, 0.7f, 1.0f});
+  corner_path.set_closed(false);
+
+  std::vector<hmap::Path> c = {corner_path};
+  std::vector<float>      h = {0.5f};
+
+  hmap::Array z =
+      hmap::elevation_from_contours(shape, c, h, nullptr, 0.f, 0, 0.5f, 1.0f);
+  ASSERT_EQ(z.shape, shape);
+
+  // Outline pixel at x=0.3, y=0.85 -> i = round(0.3 * 63) = 19, j = round(0.85
+  // * 63) = 54
+  EXPECT_NEAR(z(19, 54), 0.5f, 1e-6f);
+
+  // Inside the corner: top-left pixel (0, 63) should rise as a peak (> 0.5)
+  EXPECT_GT(z(0, 63), 0.5f);
+
+  // Outside the corner: e.g. center of domain (32, 32) should drop below
+  // contour (< 0.5)
+  EXPECT_LT(z(32, 32), 0.5f);
+}
+
+TEST(ElevationFromContours, OpenBoundaryContourRasterRisesToPeak)
+{
+  glm::ivec2  shape = {64, 64};
+  hmap::Array raster_contours(shape, 0.f);
+
+  // Draw corner contour from left edge (x=0, y=40) to top edge (x=20, y=63)
+  for (int x = 0; x <= 20; ++x)
+    raster_contours(x, 40) = 0.5f;
+  for (int y = 40; y < 64; ++y)
+    raster_contours(20, y) = 0.5f;
+
+  hmap::Array z = hmap::elevation_from_contours(raster_contours,
+                                                nullptr,
+                                                0.f,
+                                                0,
+                                                0.5f,
+                                                1.0f);
+  ASSERT_EQ(z.shape, shape);
+
+  // Outline pixel
+  EXPECT_NEAR(z(20, 50), 0.5f, 1e-6f);
+
+  // Inside the corner leaf zone: top-left corner (0, 63) should rise to a peak
+  // (> 0.5)
+  EXPECT_GT(z(0, 63), 0.5f);
+
+  // Outside the corner: center of domain (32, 32) should drop below contour (<
+  // 0.5)
+  EXPECT_LT(z(32, 32), 0.5f);
+}

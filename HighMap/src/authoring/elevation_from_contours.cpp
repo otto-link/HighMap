@@ -47,14 +47,18 @@ std::vector<glm::vec2> contour_to_pixel_coords(const Path &path,
   return pts;
 }
 
-// Pixels of the closed polygon outline (Bresenham, closing segment included).
+// Pixels of the polygon outline (Bresenham, closing segment included only if
+// closed).
 std::vector<glm::ivec2> rasterize_outline(const std::vector<glm::vec2> &pts,
-                                          glm::ivec2                    shape)
+                                          glm::ivec2                    shape,
+                                          bool is_closed = true)
 {
   std::vector<glm::ivec2> cells;
   const size_t            n = pts.size();
+  if (n == 0) return cells;
 
-  for (size_t k = 0; k < n; ++k)
+  const size_t num_segments = is_closed ? n : n - 1;
+  for (size_t k = 0; k < num_segments; ++k)
   {
     const glm::vec2 &a = pts[k];
     const glm::vec2 &b = pts[(k + 1) % n];
@@ -72,7 +76,8 @@ std::vector<glm::ivec2> rasterize_outline(const std::vector<glm::vec2> &pts,
   return out;
 }
 
-// Even-odd scanline fill of the closed polygon, evaluated at pixel centres.
+// Even-odd scanline fill of the closed polygon, evaluated at pixel centres (j +
+// 0.5).
 std::vector<char> fill_polygon(const std::vector<glm::vec2> &pts,
                                glm::ivec2                    shape)
 {
@@ -82,7 +87,7 @@ std::vector<char> fill_polygon(const std::vector<glm::vec2> &pts,
 
   for (int j = 0; j < shape.y; ++j)
   {
-    const float y = (float)j;
+    const float y = (float)j + 0.5f;
     xs.clear();
 
     for (size_t k = 0; k < n; ++k)
@@ -97,13 +102,169 @@ std::vector<char> fill_polygon(const std::vector<glm::vec2> &pts,
 
     for (size_t m = 0; m + 1 < xs.size(); m += 2)
     {
-      const int i0 = std::max(0, (int)std::ceil(xs[m]));
-      const int i1 = std::min(shape.x - 1, (int)std::floor(xs[m + 1]));
+      const int i0 = std::max(0, (int)std::ceil(xs[m] - 0.5f));
+      const int i1 = std::min(shape.x - 1, (int)std::floor(xs[m + 1] + 0.5f));
       for (int i = i0; i <= i1; ++i)
         inside[j * shape.x + i] = 1;
     }
   }
   return inside;
+}
+
+// Classification of a point on the domain boundary [0, shape.x - 1] x [0,
+// shape.y - 1] Returns side: 0=bottom(y=0), 1=right(x=xmax), 2=top(y=ymax),
+// 3=left(x=0), -1=interior
+int get_border_side(const glm::vec2 &p, glm::ivec2 shape, float eps = 1e-3f)
+{
+  const float xmax = (float)(shape.x - 1);
+  const float ymax = (float)(shape.y - 1);
+  if (std::abs(p.y) <= eps) return 0;
+  if (std::abs(p.x - xmax) <= eps) return 1;
+  if (std::abs(p.y - ymax) <= eps) return 2;
+  if (std::abs(p.x) <= eps) return 3;
+  return -1;
+}
+
+// Perimeter coordinate along rectangle perimeter in clockwise order:
+// Bottom edge (y=0, x increasing from 0 to xmax): (x, 0) -> x
+// Right edge (x=xmax, y increasing from 0 to ymax): (xmax, y) -> xmax + y
+// Top edge (y=ymax, x decreasing from xmax to 0): (x, ymax) -> xmax + ymax +
+// (xmax - x) Left edge (x=0, y decreasing from ymax to 0): (0, y) -> 2*xmax +
+// ymax + (ymax - y)
+float perimeter_pos_cw(const glm::vec2 &p, glm::ivec2 shape)
+{
+  const float xmax = (float)(shape.x - 1);
+  const float ymax = (float)(shape.y - 1);
+  const float x = std::clamp(p.x, 0.f, xmax);
+  const float y = std::clamp(p.y, 0.f, ymax);
+
+  int side = get_border_side(p, shape);
+  if (side == 0) return x;
+  if (side == 1) return xmax + y;
+  if (side == 2) return xmax + ymax + (xmax - x);
+  if (side == 3) return 2.f * xmax + ymax + (ymax - y);
+
+  // If not exactly on border, snap to nearest border
+  float d_bot = y;
+  float d_right = xmax - x;
+  float d_top = ymax - y;
+  float d_left = x;
+  float min_d = std::min({d_bot, d_right, d_top, d_left});
+  if (min_d == d_bot) return x;
+  if (min_d == d_right) return xmax + y;
+  if (min_d == d_top) return xmax + ymax + (xmax - x);
+  return 2.f * xmax + ymax + (ymax - y);
+}
+
+// Extended Corner point at perimeter coordinate (slightly outside [0, xmax]x[0,
+// ymax] so that boundary pixel centers (e.g. y = ymax + 0.5 - 0.5) are strictly
+// enclosed by fill_polygon)
+glm::vec2 corner_at_cw(int corner_idx, glm::ivec2 shape, float margin = 1.0f)
+{
+  const float xmax = (float)(shape.x - 1);
+  const float ymax = (float)(shape.y - 1);
+  switch (corner_idx)
+  {
+  case 0: return {xmax + margin, -margin};
+  case 1: return {xmax + margin, ymax + margin};
+  case 2: return {-margin, ymax + margin};
+  case 3: return {-margin, -margin};
+  default: return {-margin, -margin};
+  }
+}
+
+// Close an open polyline along the domain boundary by taking the shorter
+// boundary path
+std::vector<glm::vec2> close_contour_along_boundary(
+    const std::vector<glm::vec2> &pts,
+    glm::ivec2                    shape)
+{
+  if (pts.size() < 2) return pts;
+
+  const glm::vec2 &p_start = pts.front();
+  const glm::vec2 &p_end = pts.back();
+
+  // If already closed, return as is
+  if (glm::distance(p_start, p_end) < 1e-2f) return pts;
+
+  const float xmax = (float)(shape.x - 1);
+  const float ymax = (float)(shape.y - 1);
+  const float total_peri = 2.f * (xmax + ymax);
+
+  float s0 = perimeter_pos_cw(p_end, shape);
+  float s1 = perimeter_pos_cw(p_start, shape);
+
+  // Helper to extend boundary points slightly outside the grid
+  auto extend_point = [xmax, ymax](const glm::vec2 &p,
+                                   float            margin = 1.0f) -> glm::vec2
+  {
+    glm::vec2 ext = p;
+    if (ext.x <= 0.01f) ext.x = -margin;
+    if (ext.x >= xmax - 0.01f) ext.x = xmax + margin;
+    if (ext.y <= 0.01f) ext.y = -margin;
+    if (ext.y >= ymax - 0.01f) ext.y = ymax + margin;
+    return ext;
+  };
+
+  // Corner perimeter positions:
+  // 0: (xmax, 0) at s = xmax
+  // 1: (xmax, ymax) at s = xmax + ymax
+  // 2: (0, ymax) at s = 2*xmax + ymax
+  // 3: (0, 0) at s = 0 / total_peri
+  const float corner_pos[4] = {xmax, xmax + ymax, 2.f * xmax + ymax, 0.f};
+
+  // Construct CW closing path (from s0 increasing to s1 modulo total_peri)
+  std::vector<glm::vec2> pts_cw = pts;
+  pts_cw.push_back(extend_point(p_end));
+  float dist_cw = s1 >= s0 ? (s1 - s0) : (s1 + total_peri - s0);
+  std::vector<std::pair<float, int>> cw_corners;
+  for (int c = 0; c < 4; ++c)
+  {
+    float cp = (c == 3 && s0 > 0.f) ? total_peri : corner_pos[c];
+    float d = cp >= s0 ? (cp - s0) : (cp + total_peri - s0);
+    if (d > 1e-2f && d < dist_cw - 1e-2f) cw_corners.emplace_back(d, c);
+  }
+  std::sort(cw_corners.begin(), cw_corners.end());
+  for (const auto &p : cw_corners)
+    pts_cw.push_back(corner_at_cw(p.second, shape));
+  pts_cw.push_back(extend_point(p_start));
+
+  // Construct CCW closing path (from s0 decreasing to s1 modulo total_peri)
+  std::vector<glm::vec2> pts_ccw = pts;
+  pts_ccw.push_back(extend_point(p_end));
+  float       dist_ccw = s0 >= s1 ? (s0 - s1) : (s0 + total_peri - s1);
+  const float ccw_corner_pos[4] = {xmax,
+                                   xmax + ymax,
+                                   2.f * xmax + ymax,
+                                   total_peri};
+  std::vector<std::pair<float, int>> ccw_corners;
+  for (int c = 0; c < 4; ++c)
+  {
+    float cp = ccw_corner_pos[c];
+    // Distance moving backward (decreasing s) from s0 to cp
+    float d = s0 >= cp ? (s0 - cp) : (s0 + total_peri - cp);
+    if (d > 1e-2f && d < dist_ccw - 1e-2f) ccw_corners.emplace_back(d, c);
+  }
+  std::sort(ccw_corners.begin(), ccw_corners.end());
+  for (const auto &p : ccw_corners)
+    pts_ccw.push_back(corner_at_cw(p.second, shape));
+  pts_ccw.push_back(extend_point(p_start));
+
+  // Pick whichever creates the smaller enclosed polygon area on grid
+  auto poly_area = [](const std::vector<glm::vec2> &p)
+  {
+    float  a = 0.f;
+    size_t m = p.size();
+    for (size_t i = 0; i < m; ++i)
+    {
+      const glm::vec2 &p1 = p[i];
+      const glm::vec2 &p2 = p[(i + 1) % m];
+      a += (p1.x * p2.y - p2.x * p1.y);
+    }
+    return std::abs(a) * 0.5f;
+  };
+
+  return (poly_area(pts_cw) <= poly_area(pts_ccw)) ? pts_cw : pts_ccw;
 }
 
 // Rasterised representation of the contour set.
@@ -139,11 +300,17 @@ ContourRaster rasterize_contours(const std::vector<Path> &contours,
                                                          shape,
                                                          bbox);
 
-    for (const glm::ivec2 &c : rasterize_outline(pts, shape))
+    for (const glm::ivec2 &c :
+         rasterize_outline(pts, shape, contours[k].is_closed()))
     {
       const int p = c.y * shape.x + c.x;
       r.contour_of[p] = k;
       if (rep[k] < 0) rep[k] = p;
+    }
+
+    if (!contours[k].is_closed())
+    {
+      pts = close_contour_along_boundary(pts, shape);
     }
 
     inside[k] = fill_polygon(pts, shape);
@@ -543,8 +710,9 @@ ContourRaster rasterize_contours_from_array(const Array        &contours,
   for (size_t p = 0; p < npix; ++p)
     if (contour_id[p] >= 0) r.contour_of[p] = contour_id[p];
 
-  // 2. Interior filling for each contour component using flood fill from outer
-  // border
+  // 2. Interior filling for each contour component: find connected components
+  // of pixels != k. The component containing the most boundary pixels (or
+  // largest area) is the exterior; all other components are inside.
   std::vector<std::vector<char>> inside(n, std::vector<char>(npix, 0));
   std::vector<int>               area(n, 0);
   std::vector<int>               rep(n, -1);
@@ -557,71 +725,80 @@ ContourRaster rasterize_contours_from_array(const Array        &contours,
 
   for (int k = 0; k < n; ++k)
   {
-    std::vector<char> visited(npix, 0);
-    std::vector<int>  q;
-    q.reserve(npix);
+    std::vector<int> comp(npix, -1);
+    std::vector<int> comp_sizes;
+    std::vector<int> comp_border_counts;
+    int              num_comps = 0;
 
-    // Seed flood fill from domain boundary
-    for (int i = 0; i < shape.x; ++i)
+    for (size_t p = 0; p < npix; ++p)
     {
-      int p_top = i;
-      int p_bot = (shape.y - 1) * shape.x + i;
-      if (contour_id[p_top] != k && !visited[p_top])
-      {
-        visited[p_top] = 1;
-        q.push_back(p_top);
-      }
-      if (contour_id[p_bot] != k && !visited[p_bot])
-      {
-        visited[p_bot] = 1;
-        q.push_back(p_bot);
-      }
-    }
-    for (int j = 0; j < shape.y; ++j)
-    {
-      int p_left = j * shape.x;
-      int p_right = j * shape.x + (shape.x - 1);
-      if (contour_id[p_left] != k && !visited[p_left])
-      {
-        visited[p_left] = 1;
-        q.push_back(p_left);
-      }
-      if (contour_id[p_right] != k && !visited[p_right])
-      {
-        visited[p_right] = 1;
-        q.push_back(p_right);
-      }
-    }
+      if (contour_id[p] == k || comp[p] >= 0) continue;
 
-    size_t head = 0;
-    while (head < q.size())
-    {
-      int curr = q[head++];
-      int cx = curr % shape.x;
-      int cy = curr / shape.x;
+      int cid = num_comps++;
+      int sz = 0;
+      int border_cnt = 0;
 
-      constexpr int d4x[4] = {1, -1, 0, 0};
-      constexpr int d4y[4] = {0, 0, 1, -1};
+      std::vector<int> q;
+      comp[p] = cid;
+      q.push_back((int)p);
 
-      for (int m = 0; m < 4; ++m)
+      size_t head = 0;
+      while (head < q.size())
       {
-        int nx = cx + d4x[m];
-        int ny = cy + d4y[m];
-        if (nx < 0 || nx >= shape.x || ny < 0 || ny >= shape.y) continue;
+        int curr = q[head++];
+        ++sz;
+        int cx = curr % shape.x;
+        int cy = curr / shape.x;
 
-        int nidx = ny * shape.x + nx;
-        if (contour_id[nidx] != k && !visited[nidx])
+        if (cx == 0 || cx == shape.x - 1 || cy == 0 || cy == shape.y - 1)
+          ++border_cnt;
+
+        constexpr int d4x[4] = {1, -1, 0, 0};
+        constexpr int d4y[4] = {0, 0, 1, -1};
+
+        for (int m = 0; m < 4; ++m)
         {
-          visited[nidx] = 1;
-          q.push_back(nidx);
+          int nx = cx + d4x[m];
+          int ny = cy + d4y[m];
+          if (nx < 0 || nx >= shape.x || ny < 0 || ny >= shape.y) continue;
+
+          int nidx = ny * shape.x + nx;
+          if (contour_id[nidx] != k && comp[nidx] < 0)
+          {
+            comp[nidx] = cid;
+            q.push_back(nidx);
+          }
         }
+      }
+
+      comp_sizes.push_back(sz);
+      comp_border_counts.push_back(border_cnt);
+    }
+
+    if (num_comps <= 1)
+    {
+      // No enclosed interior or only a single connected background
+      area[k] = 0;
+      continue;
+    }
+
+    // Exterior component is the one touching the most domain boundary pixels,
+    // breaking ties with maximum size
+    int ext_comp = 0;
+    for (int c = 1; c < num_comps; ++c)
+    {
+      if (comp_border_counts[c] > comp_border_counts[ext_comp] ||
+          (comp_border_counts[c] == comp_border_counts[ext_comp] &&
+           comp_sizes[c] > comp_sizes[ext_comp]))
+      {
+        ext_comp = c;
       }
     }
 
     int in_count = 0;
     for (size_t p = 0; p < npix; ++p)
     {
-      if (contour_id[p] != k && !visited[p])
+      if (comp[p] >= 0 && comp[p] != ext_comp)
       {
         inside[k][p] = 1;
         ++in_count;

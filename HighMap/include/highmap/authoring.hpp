@@ -275,6 +275,38 @@ Array elevation_from_contours(glm::ivec2                shape,
                               glm::vec4 bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
+ * @brief Synthesize a heightmap from a raster of sparse iso-contours with known
+ * elevations using stochastic front propagation.
+ *
+ * Overload of elevation_from_contours where contour elevations are provided
+ * directly on a raster grid (@p contours). Pixels with non-zero values (or
+ * distinct non-background elevation values) serve as the Dirichlet constraints.
+ *
+ * @param  contours      Raster array containing contour elevations at contour
+ *                       pixels and zero elsewhere.
+ * @param  p_probability Optional probability map in [0, 1] with the same
+ *                       shape as @p contours.
+ * @param  randomness    Amount of randomness in the front propagation in
+ *                       [0, 1]: 0 is deterministic, 1 is the Eden growth
+ *                       model.
+ * @param  seed          Random seed.
+ * @param  peak_ratio    Elevation gain of leaf contour interiors, relative to
+ *                       the mean elevation gap between nested contours.
+ * @param  outside_ratio Elevation drop outside all contours, relative to the
+ *                       mean elevation gap between nested contours.
+ * @param  smoothstep    If true, applies smoothstep (S-curve) interpolation
+ *                       between contours.
+ * @return               Array Synthesized heightmap.
+ */
+Array elevation_from_contours(const Array  &contours,
+                              const Array  *p_probability = nullptr,
+                              float         randomness = 1.f,
+                              std::uint32_t seed = 0,
+                              float         peak_ratio = 0.5f,
+                              float         outside_ratio = 1.f,
+                              bool          smoothstep = false);
+
+/**
  * @brief Synthesize a smooth heightmap from sparse elevation constraints using
  * GPU harmonic interpolation (Laplacian PDE).
  *
@@ -318,38 +350,6 @@ Array elevation_from_sparse_constraints(const Array &mountains,
                                         float        tolerance = 1e-5f,
                                         const Array *p_noise = nullptr,
                                         float        noise_amplitude = 0.0f);
-
-/**
- * @brief Synthesize a heightmap from a raster of sparse iso-contours with known
- * elevations using stochastic front propagation.
- *
- * Overload of elevation_from_contours where contour elevations are provided
- * directly on a raster grid (@p contours). Pixels with non-zero values (or
- * distinct non-background elevation values) serve as the Dirichlet constraints.
- *
- * @param  contours      Raster array containing contour elevations at contour
- *                       pixels and zero elsewhere.
- * @param  p_probability Optional probability map in [0, 1] with the same
- *                       shape as @p contours.
- * @param  randomness    Amount of randomness in the front propagation in
- *                       [0, 1]: 0 is deterministic, 1 is the Eden growth
- *                       model.
- * @param  seed          Random seed.
- * @param  peak_ratio    Elevation gain of leaf contour interiors, relative to
- *                       the mean elevation gap between nested contours.
- * @param  outside_ratio Elevation drop outside all contours, relative to the
- *                       mean elevation gap between nested contours.
- * @param  smoothstep    If true, applies smoothstep (S-curve) interpolation
- *                       between contours.
- * @return               Array Synthesized heightmap.
- */
-Array elevation_from_contours(const Array  &contours,
-                              const Array  *p_probability = nullptr,
-                              float         randomness = 1.f,
-                              std::uint32_t seed = 0,
-                              float         peak_ratio = 0.5f,
-                              float         outside_ratio = 1.f,
-                              bool          smoothstep = false);
 
 /**
  * @brief Apply the reverse midpoint displacement algorithm to the input array.

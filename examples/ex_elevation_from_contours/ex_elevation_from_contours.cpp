@@ -80,10 +80,9 @@ hmap::Array extract_contours_from_heightmap(const hmap::Array &heightmap,
 
 int main(void)
 {
-  glm::ivec2 shape = {256, 256};
-  // shape = {1024, 1024};
-  glm::vec4 bbox = {0.f, 1.f, 0.f, 1.f};
-  int       seed = 1;
+  glm::ivec2 shape = {1024, 1024};
+  glm::vec4  bbox = {0.f, 1.f, 0.f, 1.f};
+  int        seed = 1;
 
   // --- sparse contours: a main hill with 4 nested levels, a small basin in
   // its lowest ring and a second, separate hill
@@ -145,22 +144,21 @@ int main(void)
   // --- noise-based raster contours: extract iso-contours from Perlin fbm noise
   hmap::Array noise_hmap = hmap::noise_fbm(hmap::NoiseType::PERLIN,
                                            shape,
-                                           {3.f, 3.f},
-                                           seed,
-                                           6);
+                                           {2.f, 2.f},
+                                           seed);
   hmap::remap(noise_hmap, 0.1f, 0.9f);
 
-  hmap::Array raster_contours = extract_contours_from_heightmap(noise_hmap, 3);
+  hmap::Array raster_contours = extract_contours_from_heightmap(noise_hmap, 6);
 
   // synthesize elevation directly from raster contours with smoothstep
   hmap::Array z_noise_reconstructed = hmap::elevation_from_contours(
       raster_contours,
-      nullptr,
+      &proba,
       0.f,
       seed,
-      0.5f,
       1.f,
-      true);
+      0.f,
+      false);
 
   z_noise_reconstructed.dump();
 
