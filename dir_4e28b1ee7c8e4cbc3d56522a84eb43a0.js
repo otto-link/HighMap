@@ -6,5 +6,6 @@ var dir_4e28b1ee7c8e4cbc3d56522a84eb43a0 =
     [ "elevation_from_sparse_constraints.cpp", "elevation__from__sparse__constraints_8cpp.html", "elevation__from__sparse__constraints_8cpp" ],
     [ "reverse_midpoint.cpp", "reverse__midpoint_8cpp.html", "reverse__midpoint_8cpp" ],
     [ "ridgelines.cpp", "ridgelines_8cpp.html", "ridgelines_8cpp" ],
+    [ "sls_deformation.cpp", "sls__deformation_8cpp.html", "sls__deformation_8cpp" ],
     [ "stamping.cpp", "stamping_8cpp.html", "stamping_8cpp" ]
 ];

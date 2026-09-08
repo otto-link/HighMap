@@ -15,6 +15,7 @@ var namespacehmap =
     [ "ComputeMode", "structhmap_1_1ComputeMode.html", "structhmap_1_1ComputeMode" ],
     [ "CoordFrame", "classhmap_1_1CoordFrame.html", "classhmap_1_1CoordFrame" ],
     [ "CraterFunction", "classhmap_1_1CraterFunction.html", "classhmap_1_1CraterFunction" ],
+    [ "DeformationConstraint", "structhmap_1_1DeformationConstraint.html", "structhmap_1_1DeformationConstraint" ],
     [ "DiskFunction", "classhmap_1_1DiskFunction.html", "classhmap_1_1DiskFunction" ],
     [ "DiskLruTileStorage", "classhmap_1_1DiskLruTileStorage.html", "classhmap_1_1DiskLruTileStorage" ],
     [ "DiskSequentialTileStorage", "classhmap_1_1DiskSequentialTileStorage.html", "classhmap_1_1DiskSequentialTileStorage" ],
@@ -29,6 +30,7 @@ var namespacehmap =
     [ "FieldFunction", "classhmap_1_1FieldFunction.html", "classhmap_1_1FieldFunction" ],
     [ "Function", "classhmap_1_1Function.html", "classhmap_1_1Function" ],
     [ "GaussianPulseFunction", "classhmap_1_1GaussianPulseFunction.html", "classhmap_1_1GaussianPulseFunction" ],
+    [ "GaussianPush", "structhmap_1_1GaussianPush.html", "structhmap_1_1GaussianPush" ],
     [ "GenericFractalFunction", "classhmap_1_1GenericFractalFunction.html", "classhmap_1_1GenericFractalFunction" ],
     [ "Graph", "classhmap_1_1Graph.html", "classhmap_1_1Graph" ],
     [ "Interpolator1D", "classhmap_1_1Interpolator1D.html", "classhmap_1_1Interpolator1D" ],
@@ -92,6 +94,11 @@ var namespacehmap =
       [ "MINIMUM_SMOOTH", "namespacehmap.html#a5101273ec456f5267dddc3e22dae223bab783b937b8da3552b0a4a5d6c88157ee", null ],
       [ "MULTIPLY", "namespacehmap.html#a5101273ec456f5267dddc3e22dae223babadb712f0f7627d6892ea66c9743aec1", null ],
       [ "SUBSTRACT", "namespacehmap.html#a5101273ec456f5267dddc3e22dae223ba2c10f19f935a5c6dd7fb0ac7bbb2c4ed", null ]
+    ] ],
+    [ "DeformationConstraintType", "namespacehmap.html#aaa31d3f4691447f824bf7ca1e88897a2", [
+      [ "MATCH", "namespacehmap.html#aaa31d3f4691447f824bf7ca1e88897a2aa5529116b7eb6406ffb42de58ae3314d", null ],
+      [ "ABOVE", "namespacehmap.html#aaa31d3f4691447f824bf7ca1e88897a2a4a4ff914bd69d6b43e40b58f08627a3e", null ],
+      [ "BELOW", "namespacehmap.html#aaa31d3f4691447f824bf7ca1e88897a2a7e9c666cdfeb7b317902253fda25e978", null ]
     ] ],
     [ "PeriodicityType", "namespacehmap.html#a41f6f4d40b566b87f78344d9efe71c71", [
       [ "PERIODICITY_X", "namespacehmap.html#a41f6f4d40b566b87f78344d9efe71c71a0676aefdc33468b2c6e93b2005b3ee9f", null ],
@@ -358,6 +365,7 @@ var namespacehmap =
     [ "for_each_cell", "namespacehmap.html#a05ee0ea53f1a06ac43741f11e25ec2cc", null ],
     [ "for_each_cell", "namespacehmap.html#a8a43091b3356d69271fa6d185f5bdcbe", null ],
     [ "alter_elevation", "namespacehmap.html#a6123c18788ae302332416d5d7585fd9f", null ],
+    [ "apply_gaussian_pushes", "namespacehmap.html#a127e7abc79d661d10705158a312c550c", null ],
     [ "base_elevation", "namespacehmap.html#ad0679d167a3129dc403e3ca7082579f8", null ],
     [ "elevation_from_contours", "namespacehmap.html#a1cd0f776fce02a28d7a58af8c40cb7aa", null ],
     [ "elevation_from_sparse_constraints", "namespacehmap.html#a77df59a73e83bc371eceae7793c690dc", null ],
@@ -365,6 +373,7 @@ var namespacehmap =
     [ "reverse_midpoint", "namespacehmap.html#a6f7e6e0cffaf7d03cfe1eef62b1c3575", null ],
     [ "ridgelines", "namespacehmap.html#a74f6ef0464e0ec67df5179f49e14e35a", null ],
     [ "ridgelines_bezier", "namespacehmap.html#a4e7db58b8b58def3b862476f18b6005e", null ],
+    [ "sls_deformation", "namespacehmap.html#abec90e80c5d42318a7aadf6dd1016fec", null ],
     [ "stamping", "namespacehmap.html#ae7ea4f9f968fc3a4aa706ea3b9cc1f0a", null ],
     [ "blend_exclusion", "namespacehmap.html#aafb76d7961d1655fdc07422982357588", null ],
     [ "blend_gradients", "namespacehmap.html#af91a60a9fcbed7e38f53df57631a5298", null ],

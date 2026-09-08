@@ -8,6 +8,7 @@
     <innerfile refid="elevation__from__sparse__constraints_8cpp">elevation_from_sparse_constraints.cpp</innerfile>
     <innerfile refid="reverse__midpoint_8cpp">reverse_midpoint.cpp</innerfile>
     <innerfile refid="ridgelines_8cpp">ridgelines.cpp</innerfile>
+    <innerfile refid="sls__deformation_8cpp">sls_deformation.cpp</innerfile>
     <innerfile refid="stamping_8cpp">stamping.cpp</innerfile>
     <briefdescription>
     </briefdescription>

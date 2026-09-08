@@ -171,7 +171,7 @@ $(document).ready(function(){initNavTree('coherent__noise_8hpp_source.html','');
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>             glm::vec4      bbox = {0.f, 1.f, 0.f, 1.f});</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>Array <a class="code hl_function" href="namespacehmap.html#a43cf2b960fc4f48be0548d87e78cdcb2">diffusion_limited_aggregation</a>(glm::ivec2    <a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>,</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>                                    <span class="keywordtype">float</span>         <a class="code hl_function" href="namespacehmap.html#a7e352e19687bc236a6360e56ec92251e">scale</a>,</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>                                    <span class="keywordtype">float</span>         <a class="code hl_variable" href="sls__deformation_8cpp.html#a1d28dec57cce925ad92342891bd71e7c">scale</a>,</div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>                                    std::uint32_t seed,</div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>                                    <span class="keywordtype">float</span>         seeding_radius = 0.4f,</div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>                                    <span class="keywordtype">float</span> seeding_outer_radius_ratio = 0.2f,</div>
@@ -211,7 +211,7 @@ $(document).ready(function(){initNavTree('coherent__noise_8hpp_source.html','');
 <div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>                glm::vec2     kw,</div>
 <div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>                std::uint32_t seed,</div>
 <div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>                <span class="keywordtype">int</span>           octaves = 8,</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>                <span class="keywordtype">float</span>         weight = 0.7f,</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>                <span class="keywordtype">float</span>         <a class="code hl_variable" href="sls__deformation_8cpp.html#aeb4aca717b10b3f05f897485b4e1e9a6">weight</a> = 0.7f,</div>
 <div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>                <span class="keywordtype">float</span>         persistence = 0.5f,</div>
 <div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>                <span class="keywordtype">float</span>         lacunarity = 2.f,</div>
 <div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>                <span class="keyword">const</span> Array  *p_ctrl_param = <span class="keyword">nullptr</span>,</div>
@@ -224,7 +224,7 @@ $(document).ready(function(){initNavTree('coherent__noise_8hpp_source.html','');
 <div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>               glm::vec2     kw,</div>
 <div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>               std::uint32_t seed,</div>
 <div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>               <span class="keywordtype">int</span>           octaves = 8,</div>
-<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>               <span class="keywordtype">float</span>         weight = 0.7f,</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>               <span class="keywordtype">float</span>         <a class="code hl_variable" href="sls__deformation_8cpp.html#aeb4aca717b10b3f05f897485b4e1e9a6">weight</a> = 0.7f,</div>
 <div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>               <span class="keywordtype">float</span>         persistence = 0.5f,</div>
 <div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>               <span class="keywordtype">float</span>         lacunarity = 2.f,</div>
 <div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>               <span class="keywordtype">float</span>         gradient_scale = 0.05f,</div>
@@ -238,7 +238,7 @@ $(document).ready(function(){initNavTree('coherent__noise_8hpp_source.html','');
 <div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>                   glm::vec2     kw,</div>
 <div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>                   std::uint32_t seed,</div>
 <div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>                   <span class="keywordtype">int</span>           octaves = 8,</div>
-<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>                   <span class="keywordtype">float</span>         weight = 0.7f,</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>                   <span class="keywordtype">float</span>         <a class="code hl_variable" href="sls__deformation_8cpp.html#aeb4aca717b10b3f05f897485b4e1e9a6">weight</a> = 0.7f,</div>
 <div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>                   <span class="keywordtype">float</span>         persistence = 0.5f,</div>
 <div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>                   <span class="keywordtype">float</span>         lacunarity = 2.f,</div>
 <div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>                   <span class="keywordtype">float</span>         warp0 = 0.4f,</div>
@@ -254,7 +254,7 @@ $(document).ready(function(){initNavTree('coherent__noise_8hpp_source.html','');
 <div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>                     glm::vec2     kw,</div>
 <div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>                     std::uint32_t seed,</div>
 <div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>                     <span class="keywordtype">int</span>           octaves = 8,</div>
-<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>                     <span class="keywordtype">float</span>         weight = 0.7f,</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>                     <span class="keywordtype">float</span>         <a class="code hl_variable" href="sls__deformation_8cpp.html#aeb4aca717b10b3f05f897485b4e1e9a6">weight</a> = 0.7f,</div>
 <div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>                     <span class="keywordtype">float</span>         persistence = 0.5f,</div>
 <div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>                     <span class="keywordtype">float</span>         lacunarity = 2.f,</div>
 <div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>                     <span class="keywordtype">float</span>         mu = 1.02f,</div>
@@ -268,7 +268,7 @@ $(document).ready(function(){initNavTree('coherent__noise_8hpp_source.html','');
 <div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span>                     glm::vec2     kw,</div>
 <div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span>                     std::uint32_t seed,</div>
 <div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>                     <span class="keywordtype">int</span>           octaves = 8,</div>
-<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span>                     <span class="keywordtype">float</span>         weight = 0.7f,</div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span>                     <span class="keywordtype">float</span>         <a class="code hl_variable" href="sls__deformation_8cpp.html#aeb4aca717b10b3f05f897485b4e1e9a6">weight</a> = 0.7f,</div>
 <div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>                     <span class="keywordtype">float</span>         persistence = 0.5f,</div>
 <div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span>                     <span class="keywordtype">float</span>         lacunarity = 2.f,</div>
 <div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span>                     <span class="keyword">const</span> Array  *p_ctrl_param = <span class="keyword">nullptr</span>,</div>
@@ -281,7 +281,7 @@ $(document).ready(function(){initNavTree('coherent__noise_8hpp_source.html','');
 <div class="line"><a id="l00491" name="l00491"></a><span class="lineno">  491</span>                   glm::vec2     kw,</div>
 <div class="line"><a id="l00492" name="l00492"></a><span class="lineno">  492</span>                   std::uint32_t seed,</div>
 <div class="line"><a id="l00493" name="l00493"></a><span class="lineno">  493</span>                   <span class="keywordtype">int</span>           octaves = 8,</div>
-<div class="line"><a id="l00494" name="l00494"></a><span class="lineno">  494</span>                   <span class="keywordtype">float</span>         weight = 0.7f,</div>
+<div class="line"><a id="l00494" name="l00494"></a><span class="lineno">  494</span>                   <span class="keywordtype">float</span>         <a class="code hl_variable" href="sls__deformation_8cpp.html#aeb4aca717b10b3f05f897485b4e1e9a6">weight</a> = 0.7f,</div>
 <div class="line"><a id="l00495" name="l00495"></a><span class="lineno">  495</span>                   <span class="keywordtype">float</span>         persistence = 0.5f,</div>
 <div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span>                   <span class="keywordtype">float</span>         lacunarity = 2.f,</div>
 <div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span>                   <span class="keywordtype">float</span>         k_smoothing = 0.1f,</div>
@@ -295,7 +295,7 @@ $(document).ready(function(){initNavTree('coherent__noise_8hpp_source.html','');
 <div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span>                  glm::vec2     kw,</div>
 <div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span>                  std::uint32_t seed,</div>
 <div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span>                  <span class="keywordtype">int</span>           octaves = 8,</div>
-<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span>                  <span class="keywordtype">float</span>         weight = 0.7f,</div>
+<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span>                  <span class="keywordtype">float</span>         <a class="code hl_variable" href="sls__deformation_8cpp.html#aeb4aca717b10b3f05f897485b4e1e9a6">weight</a> = 0.7f,</div>
 <div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span>                  <span class="keywordtype">float</span>         persistence = 0.5f,</div>
 <div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span>                  <span class="keywordtype">float</span>         lacunarity = 2.f,</div>
 <div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span>                  <span class="keywordtype">float</span>         warp_scale = 0.1f,</div>
@@ -339,7 +339,7 @@ $(document).ready(function(){initNavTree('coherent__noise_8hpp_source.html','');
 <div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span>                     <span class="keyword">const</span> Array  &amp;<a class="code hl_function" href="namespacehmap.html#aac71bb6c14edc17967957f7918acdbdd">angle</a>,</div>
 <div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span>                     <span class="keywordtype">float</span>         angle_spread_ratio = 1.f,</div>
 <div class="line"><a id="l00661" name="l00661"></a><span class="lineno">  661</span>                     <span class="keywordtype">int</span>           octaves = 8,</div>
-<div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span>                     <span class="keywordtype">float</span>         weight = 0.7f,</div>
+<div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span>                     <span class="keywordtype">float</span>         <a class="code hl_variable" href="sls__deformation_8cpp.html#aeb4aca717b10b3f05f897485b4e1e9a6">weight</a> = 0.7f,</div>
 <div class="line"><a id="l00663" name="l00663"></a><span class="lineno">  663</span>                     <span class="keywordtype">float</span>         persistence = 0.5f,</div>
 <div class="line"><a id="l00664" name="l00664"></a><span class="lineno">  664</span>                     <span class="keywordtype">float</span>         lacunarity = 2.f,</div>
 <div class="line"><a id="l00665" name="l00665"></a><span class="lineno">  665</span>                     <span class="keyword">const</span> Array  *p_ctrl_param = <span class="keyword">nullptr</span>,</div>
@@ -353,7 +353,7 @@ $(document).ready(function(){initNavTree('coherent__noise_8hpp_source.html','');
 <div class="line"><a id="l00673" name="l00673"></a><span class="lineno">  673</span>                     <span class="keywordtype">float</span>         <a class="code hl_function" href="namespacehmap.html#aac71bb6c14edc17967957f7918acdbdd">angle</a> = 0.f,</div>
 <div class="line"><a id="l00674" name="l00674"></a><span class="lineno">  674</span>                     <span class="keywordtype">float</span>         angle_spread_ratio = 1.f,</div>
 <div class="line"><a id="l00675" name="l00675"></a><span class="lineno">  675</span>                     <span class="keywordtype">int</span>           octaves = 8,</div>
-<div class="line"><a id="l00676" name="l00676"></a><span class="lineno">  676</span>                     <span class="keywordtype">float</span>         weight = 0.7f,</div>
+<div class="line"><a id="l00676" name="l00676"></a><span class="lineno">  676</span>                     <span class="keywordtype">float</span>         <a class="code hl_variable" href="sls__deformation_8cpp.html#aeb4aca717b10b3f05f897485b4e1e9a6">weight</a> = 0.7f,</div>
 <div class="line"><a id="l00677" name="l00677"></a><span class="lineno">  677</span>                     <span class="keywordtype">float</span>         persistence = 0.5f,</div>
 <div class="line"><a id="l00678" name="l00678"></a><span class="lineno">  678</span>                     <span class="keywordtype">float</span>         lacunarity = 2.f,</div>
 <div class="line"><a id="l00679" name="l00679"></a><span class="lineno">  679</span>                     <span class="keyword">const</span> Array  *p_ctrl_param = <span class="keyword">nullptr</span>,</div>
@@ -365,7 +365,7 @@ $(document).ready(function(){initNavTree('coherent__noise_8hpp_source.html','');
 <div class="line"><a id="l00732" name="l00732"></a><span class="lineno">  732</span>                  glm::vec2     kw,</div>
 <div class="line"><a id="l00733" name="l00733"></a><span class="lineno">  733</span>                  std::uint32_t seed,</div>
 <div class="line"><a id="l00734" name="l00734"></a><span class="lineno">  734</span>                  <span class="keyword">const</span> Array  &amp;<a class="code hl_function" href="namespacehmap.html#aac71bb6c14edc17967957f7918acdbdd">angle</a>,</div>
-<div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span>                  <span class="keywordtype">float</span>         amplitude = 0.05f,</div>
+<div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span>                  <span class="keywordtype">float</span>         <a class="code hl_variable" href="sls__deformation_8cpp.html#a31bef58f966d97b1ace9bd3a58ffd9a6">amplitude</a> = 0.05f,</div>
 <div class="line"><a id="l00736" name="l00736"></a><span class="lineno">  736</span>                  <span class="keywordtype">float</span>         angle_spread_ratio = 1.f,</div>
 <div class="line"><a id="l00737" name="l00737"></a><span class="lineno">  737</span>                  glm::vec2     kw_multiplier = {4.f, 4.f},</div>
 <div class="line"><a id="l00738" name="l00738"></a><span class="lineno">  738</span>                  <span class="keywordtype">float</span>         slope_strength = 1.f,</div>
@@ -384,7 +384,7 @@ $(document).ready(function(){initNavTree('coherent__noise_8hpp_source.html','');
 <div class="line"><a id="l00751" name="l00751"></a><span class="lineno">  751</span>                  glm::vec2     kw,</div>
 <div class="line"><a id="l00752" name="l00752"></a><span class="lineno">  752</span>                  std::uint32_t seed,</div>
 <div class="line"><a id="l00753" name="l00753"></a><span class="lineno">  753</span>                  <span class="keywordtype">float</span>         <a class="code hl_function" href="namespacehmap.html#aac71bb6c14edc17967957f7918acdbdd">angle</a> = 0.f,</div>
-<div class="line"><a id="l00754" name="l00754"></a><span class="lineno">  754</span>                  <span class="keywordtype">float</span>         amplitude = 0.05f,</div>
+<div class="line"><a id="l00754" name="l00754"></a><span class="lineno">  754</span>                  <span class="keywordtype">float</span>         <a class="code hl_variable" href="sls__deformation_8cpp.html#a31bef58f966d97b1ace9bd3a58ffd9a6">amplitude</a> = 0.05f,</div>
 <div class="line"><a id="l00755" name="l00755"></a><span class="lineno">  755</span>                  <span class="keywordtype">float</span>         angle_spread_ratio = 1.f,</div>
 <div class="line"><a id="l00756" name="l00756"></a><span class="lineno">  756</span>                  glm::vec2     kw_multiplier = {4.f, 4.f},</div>
 <div class="line"><a id="l00757" name="l00757"></a><span class="lineno">  757</span>                  <span class="keywordtype">float</span>         slope_strength = 1.f,</div>
@@ -402,7 +402,7 @@ $(document).ready(function(){initNavTree('coherent__noise_8hpp_source.html','');
 <div class="line"><a id="l00769" name="l00769"></a><span class="lineno">  769</span>Array <a class="code hl_function" href="namespacehmap_1_1gpu.html#a69284690bd169e5a7ef49283a56fedac">gavoronoise</a>(<span class="keyword">const</span> Array  &amp;base,</div>
 <div class="line"><a id="l00770" name="l00770"></a><span class="lineno">  770</span>                  glm::vec2     kw,</div>
 <div class="line"><a id="l00771" name="l00771"></a><span class="lineno">  771</span>                  std::uint32_t seed,</div>
-<div class="line"><a id="l00772" name="l00772"></a><span class="lineno">  772</span>                  <span class="keywordtype">float</span>         amplitude = 0.05f,</div>
+<div class="line"><a id="l00772" name="l00772"></a><span class="lineno">  772</span>                  <span class="keywordtype">float</span>         <a class="code hl_variable" href="sls__deformation_8cpp.html#a31bef58f966d97b1ace9bd3a58ffd9a6">amplitude</a> = 0.05f,</div>
 <div class="line"><a id="l00773" name="l00773"></a><span class="lineno">  773</span>                  glm::vec2     kw_multiplier = {4.f, 4.f},</div>
 <div class="line"><a id="l00774" name="l00774"></a><span class="lineno">  774</span>                  <span class="keywordtype">float</span>         slope_strength = 1.f,</div>
 <div class="line"><a id="l00775" name="l00775"></a><span class="lineno">  775</span>                  <span class="keywordtype">float</span>         branch_strength = 2.f,</div>
@@ -430,7 +430,7 @@ $(document).ready(function(){initNavTree('coherent__noise_8hpp_source.html','');
 <div class="line"><a id="l00811" name="l00811"></a><span class="lineno">  811</span>                glm::vec2     kw,</div>
 <div class="line"><a id="l00812" name="l00812"></a><span class="lineno">  812</span>                std::uint32_t seed,</div>
 <div class="line"><a id="l00813" name="l00813"></a><span class="lineno">  813</span>                <span class="keywordtype">int</span>           octaves = 8,</div>
-<div class="line"><a id="l00814" name="l00814"></a><span class="lineno">  814</span>                <span class="keywordtype">float</span>         weight = 0.7f,</div>
+<div class="line"><a id="l00814" name="l00814"></a><span class="lineno">  814</span>                <span class="keywordtype">float</span>         <a class="code hl_variable" href="sls__deformation_8cpp.html#aeb4aca717b10b3f05f897485b4e1e9a6">weight</a> = 0.7f,</div>
 <div class="line"><a id="l00815" name="l00815"></a><span class="lineno">  815</span>                <span class="keywordtype">float</span>         persistence = 0.5f,</div>
 <div class="line"><a id="l00816" name="l00816"></a><span class="lineno">  816</span>                <span class="keywordtype">float</span>         lacunarity = 2.f,</div>
 <div class="line"><a id="l00817" name="l00817"></a><span class="lineno">  817</span>                <span class="keyword">const</span> Array  *p_ctrl_param = <span class="keyword">nullptr</span>,</div>
@@ -446,7 +446,7 @@ $(document).ready(function(){initNavTree('coherent__noise_8hpp_source.html','');
 <div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span>             <span class="keywordtype">float</span>           angle_shift = 0.f,</div>
 <div class="line"><a id="l00855" name="l00855"></a><span class="lineno">  855</span>             <span class="keywordtype">int</span>             n_kernel_samples = 8,</div>
 <div class="line"><a id="l00856" name="l00856"></a><span class="lineno">  856</span>             <span class="keyword">const</span> glm::vec2 jitter = {1.f, 1.f},</div>
-<div class="line"><a id="l00857" name="l00857"></a><span class="lineno">  857</span>             <span class="keywordtype">float</span>           delta = 0.01f,</div>
+<div class="line"><a id="l00857" name="l00857"></a><span class="lineno">  857</span>             <span class="keywordtype">float</span>           <a class="code hl_variable" href="sls__deformation_8cpp.html#a1ee4a05b54419bfadd66ee351d05812e">delta</a> = 0.01f,</div>
 <div class="line"><a id="l00858" name="l00858"></a><span class="lineno">  858</span>             <span class="keywordtype">float</span>           phase_smoothing = 10.f,</div>
 <div class="line"><a id="l00859" name="l00859"></a><span class="lineno">  859</span>             <span class="keyword">const</span> Array    *p_angle = <span class="keyword">nullptr</span>,</div>
 <div class="line"><a id="l00860" name="l00860"></a><span class="lineno">  860</span>             <span class="keyword">const</span> Array    *p_noise_x = <span class="keyword">nullptr</span>,</div>
@@ -459,12 +459,12 @@ $(document).ready(function(){initNavTree('coherent__noise_8hpp_source.html','');
 <div class="line"><a id="l00898" name="l00898"></a><span class="lineno">  898</span>                 std::uint32_t   seed,</div>
 <div class="line"><a id="l00899" name="l00899"></a><span class="lineno">  899</span>                 <span class="keywordtype">float</span>           angle_shift = 0.f,</div>
 <div class="line"><a id="l00900" name="l00900"></a><span class="lineno">  900</span>                 <span class="keywordtype">int</span>             octaves = 8,</div>
-<div class="line"><a id="l00901" name="l00901"></a><span class="lineno">  901</span>                 <span class="keywordtype">float</span>           weight = 0.7f,</div>
+<div class="line"><a id="l00901" name="l00901"></a><span class="lineno">  901</span>                 <span class="keywordtype">float</span>           <a class="code hl_variable" href="sls__deformation_8cpp.html#aeb4aca717b10b3f05f897485b4e1e9a6">weight</a> = 0.7f,</div>
 <div class="line"><a id="l00902" name="l00902"></a><span class="lineno">  902</span>                 <span class="keywordtype">float</span>           persistence = 0.5f,</div>
 <div class="line"><a id="l00903" name="l00903"></a><span class="lineno">  903</span>                 <span class="keywordtype">float</span>           lacunarity = 2.f,</div>
 <div class="line"><a id="l00904" name="l00904"></a><span class="lineno">  904</span>                 <span class="keywordtype">int</span>             n_kernel_samples = 8,</div>
 <div class="line"><a id="l00905" name="l00905"></a><span class="lineno">  905</span>                 <span class="keyword">const</span> glm::vec2 jitter = {1.f, 1.f},</div>
-<div class="line"><a id="l00906" name="l00906"></a><span class="lineno">  906</span>                 <span class="keywordtype">float</span>           delta = 0.01f,</div>
+<div class="line"><a id="l00906" name="l00906"></a><span class="lineno">  906</span>                 <span class="keywordtype">float</span>           <a class="code hl_variable" href="sls__deformation_8cpp.html#a1ee4a05b54419bfadd66ee351d05812e">delta</a> = 0.01f,</div>
 <div class="line"><a id="l00907" name="l00907"></a><span class="lineno">  907</span>                 <span class="keywordtype">float</span>           phase_smoothing = 10.f,</div>
 <div class="line"><a id="l00908" name="l00908"></a><span class="lineno">  908</span>                 <span class="keyword">const</span> Array    *p_angle = <span class="keyword">nullptr</span>,</div>
 <div class="line"><a id="l00909" name="l00909"></a><span class="lineno">  909</span>                 <span class="keyword">const</span> Array    *p_noise_x = <span class="keyword">nullptr</span>,</div>
@@ -494,7 +494,7 @@ $(document).ready(function(){initNavTree('coherent__noise_8hpp_source.html','');
 <div class="line"><a id="l01033" name="l01033"></a><span class="lineno"> 1033</span>    <span class="keywordtype">float</span>             alpha_span = M_PI,</div>
 <div class="line"><a id="l01034" name="l01034"></a><span class="lineno"> 1034</span>    <a class="code hl_enumeration" href="namespacehmap.html#a8e3756915e28aa80cec2190043cc8c2f">VoronoiReturnType</a> return_type = <a class="code hl_enumvalue" href="namespacehmap.html#a8e3756915e28aa80cec2190043cc8c2fa3e5996ed4314058911435c50bc95e1c2">VoronoiReturnType::F1_SQUARED</a>,</div>
 <div class="line"><a id="l01035" name="l01035"></a><span class="lineno"> 1035</span>    <span class="keywordtype">int</span>               octaves = 8,</div>
-<div class="line"><a id="l01036" name="l01036"></a><span class="lineno"> 1036</span>    <span class="keywordtype">float</span>             weight = 0.7f,</div>
+<div class="line"><a id="l01036" name="l01036"></a><span class="lineno"> 1036</span>    <span class="keywordtype">float</span>             <a class="code hl_variable" href="sls__deformation_8cpp.html#aeb4aca717b10b3f05f897485b4e1e9a6">weight</a> = 0.7f,</div>
 <div class="line"><a id="l01037" name="l01037"></a><span class="lineno"> 1037</span>    <span class="keywordtype">float</span>             persistence = 0.5f,</div>
 <div class="line"><a id="l01038" name="l01038"></a><span class="lineno"> 1038</span>    <span class="keywordtype">float</span>             lacunarity = 2.f,</div>
 <div class="line"><a id="l01039" name="l01039"></a><span class="lineno"> 1039</span>    <span class="keyword">const</span> Array      *p_noise_x = <span class="keyword">nullptr</span>,</div>
@@ -522,7 +522,7 @@ $(document).ready(function(){initNavTree('coherent__noise_8hpp_source.html','');
 <div class="line"><a id="l01146" name="l01146"></a><span class="lineno"> 1146</span>                  <span class="keywordtype">float</span>             exp_sigma = 0.f,</div>
 <div class="line"><a id="l01147" name="l01147"></a><span class="lineno"> 1147</span>                  <a class="code hl_enumeration" href="namespacehmap.html#a8e3756915e28aa80cec2190043cc8c2f">VoronoiReturnType</a> return_type = <a class="code hl_enumvalue" href="namespacehmap.html#a8e3756915e28aa80cec2190043cc8c2fa3e5996ed4314058911435c50bc95e1c2">VoronoiReturnType::F1_SQUARED</a>,</div>
 <div class="line"><a id="l01148" name="l01148"></a><span class="lineno"> 1148</span>                  <span class="keywordtype">int</span>               octaves = 8,</div>
-<div class="line"><a id="l01149" name="l01149"></a><span class="lineno"> 1149</span>                  <span class="keywordtype">float</span>             weight = 0.7f,</div>
+<div class="line"><a id="l01149" name="l01149"></a><span class="lineno"> 1149</span>                  <span class="keywordtype">float</span>             <a class="code hl_variable" href="sls__deformation_8cpp.html#aeb4aca717b10b3f05f897485b4e1e9a6">weight</a> = 0.7f,</div>
 <div class="line"><a id="l01150" name="l01150"></a><span class="lineno"> 1150</span>                  <span class="keywordtype">float</span>             persistence = 0.5f,</div>
 <div class="line"><a id="l01151" name="l01151"></a><span class="lineno"> 1151</span>                  <span class="keywordtype">float</span>             lacunarity = 2.f,</div>
 <div class="line"><a id="l01152" name="l01152"></a><span class="lineno"> 1152</span>                  <span class="keyword">const</span> Array      *p_ctrl_param = <span class="keyword">nullptr</span>,</div>
@@ -554,7 +554,7 @@ $(document).ready(function(){initNavTree('coherent__noise_8hpp_source.html','');
 <div class="line"><a id="l01267" name="l01267"></a><span class="lineno"> 1267</span>                    <span class="keywordtype">float</span>         v_param,</div>
 <div class="line"><a id="l01268" name="l01268"></a><span class="lineno"> 1268</span>                    std::uint32_t seed,</div>
 <div class="line"><a id="l01269" name="l01269"></a><span class="lineno"> 1269</span>                    <span class="keywordtype">int</span>           octaves = 8,</div>
-<div class="line"><a id="l01270" name="l01270"></a><span class="lineno"> 1270</span>                    <span class="keywordtype">float</span>         weight = 0.7f,</div>
+<div class="line"><a id="l01270" name="l01270"></a><span class="lineno"> 1270</span>                    <span class="keywordtype">float</span>         <a class="code hl_variable" href="sls__deformation_8cpp.html#aeb4aca717b10b3f05f897485b4e1e9a6">weight</a> = 0.7f,</div>
 <div class="line"><a id="l01271" name="l01271"></a><span class="lineno"> 1271</span>                    <span class="keywordtype">float</span>         persistence = 0.5f,</div>
 <div class="line"><a id="l01272" name="l01272"></a><span class="lineno"> 1272</span>                    <span class="keywordtype">float</span>         lacunarity = 2.f,</div>
 <div class="line"><a id="l01273" name="l01273"></a><span class="lineno"> 1273</span>                    <span class="keyword">const</span> Array  *p_ctrl_param = <span class="keyword">nullptr</span>,</div>
@@ -591,7 +591,7 @@ $(document).ready(function(){initNavTree('coherent__noise_8hpp_source.html','');
 <div class="line"><a id="l01408" name="l01408"></a><span class="lineno"> 1408</span>                    <span class="keywordtype">float</span>         vorticity = 0.f,</div>
 <div class="line"><a id="l01409" name="l01409"></a><span class="lineno"> 1409</span>                    <span class="keywordtype">float</span>         density = 1.f,</div>
 <div class="line"><a id="l01410" name="l01410"></a><span class="lineno"> 1410</span>                    <span class="keywordtype">int</span>           octaves = 8,</div>
-<div class="line"><a id="l01411" name="l01411"></a><span class="lineno"> 1411</span>                    <span class="keywordtype">float</span>         weight = 0.7f,</div>
+<div class="line"><a id="l01411" name="l01411"></a><span class="lineno"> 1411</span>                    <span class="keywordtype">float</span>         <a class="code hl_variable" href="sls__deformation_8cpp.html#aeb4aca717b10b3f05f897485b4e1e9a6">weight</a> = 0.7f,</div>
 <div class="line"><a id="l01412" name="l01412"></a><span class="lineno"> 1412</span>                    <span class="keywordtype">float</span>         persistence = 0.5f,</div>
 <div class="line"><a id="l01413" name="l01413"></a><span class="lineno"> 1413</span>                    <span class="keywordtype">float</span>         lacunarity = 2.f,</div>
 <div class="line"><a id="l01414" name="l01414"></a><span class="lineno"> 1414</span>                    <span class="keyword">const</span> Array  *p_ctrl_param = <span class="keyword">nullptr</span>,</div>
@@ -636,7 +636,6 @@ $(document).ready(function(){initNavTree('coherent__noise_8hpp_source.html','');
 <div class="ttc" id="anamespacehmap_html_a67d6620c147710ebb09b64f0f738241a"><div class="ttname"><a href="namespacehmap.html#a67d6620c147710ebb09b64f0f738241a">hmap::PhasorProfile</a></div><div class="ttdeci">PhasorProfile</div><div class="ttdoc">Phasor angular profile type.</div><div class="ttdef"><b>Definition</b> profiles.hpp:38</div></div>
 <div class="ttc" id="anamespacehmap_html_a79addb22d64cf3e7b43466b3a907b76f"><div class="ttname"><a href="namespacehmap.html#a79addb22d64cf3e7b43466b3a907b76f">hmap::noise_jordan</a></div><div class="ttdeci">Array noise_jordan(NoiseType noise_type, glm::ivec2 shape, glm::vec2 kw, std::uint32_t seed, int octaves=8, float weight=0.7f, float persistence=0.5f, float lacunarity=2.f, float warp0=0.4f, float damp0=1.f, float warp_scale=0.4f, float damp_scale=1.f, const Array *p_ctrl_param=nullptr, const Array *p_noise_x=nullptr, const Array *p_noise_y=nullptr, glm::vec4 bbox={0.f, 1.f, 0.f, 1.f})</div><div class="ttdoc">Return an array filled with coherence fbm noise.</div><div class="ttdef"><b>Definition</b> noise.cpp:129</div></div>
 <div class="ttc" id="anamespacehmap_html_a7d699a468a18be16c70654958ee13b41"><div class="ttname"><a href="namespacehmap.html#a7d699a468a18be16c70654958ee13b41">hmap::noise_fbm</a></div><div class="ttdeci">Array noise_fbm(NoiseType noise_type, glm::ivec2 shape, glm::vec2 kw, std::uint32_t seed, int octaves=8, float weight=0.7f, float persistence=0.5f, float lacunarity=2.f, const Array *p_ctrl_param=nullptr, const Array *p_noise_x=nullptr, const Array *p_noise_y=nullptr, glm::vec4 bbox={0.f, 1.f, 0.f, 1.f})</div><div class="ttdoc">Return an array filled with coherence fbm noise.</div><div class="ttdef"><b>Definition</b> noise.cpp:45</div></div>
-<div class="ttc" id="anamespacehmap_html_a7e352e19687bc236a6360e56ec92251e"><div class="ttname"><a href="namespacehmap.html#a7e352e19687bc236a6360e56ec92251e">hmap::scale</a></div><div class="ttdeci">Cloud scale(const Cloud &amp;cloud, glm::vec2 scale, glm::vec2 center={0.5f, 0.5f})</div><div class="ttdoc">Scales the point coordinates in a cloud relative to a center point.</div><div class="ttdef"><b>Definition</b> cloud_functions.cpp:165</div></div>
 <div class="ttc" id="anamespacehmap_html_a8a1798b7ade14956ecd1d8fb10fb26c1"><div class="ttname"><a href="namespacehmap.html#a8a1798b7ade14956ecd1d8fb10fb26c1">hmap::worley_double</a></div><div class="ttdeci">Array worley_double(glm::ivec2 shape, glm::vec2 kw, std::uint32_t seed, float ratio=0.5f, float k=0.f, const Array *p_ctrl_param=nullptr, const Array *p_noise_x=nullptr, const Array *p_noise_y=nullptr, glm::vec4 bbox={0.f, 1.f, 0.f, 1.f})</div><div class="ttdoc">Return an array filled with the maximum of two Worley (cellular) noises.</div><div class="ttdef"><b>Definition</b> worley.cpp:16</div></div>
 <div class="ttc" id="anamespacehmap_html_a8e3756915e28aa80cec2190043cc8c2f"><div class="ttname"><a href="namespacehmap.html#a8e3756915e28aa80cec2190043cc8c2f">hmap::VoronoiReturnType</a></div><div class="ttdeci">VoronoiReturnType</div><div class="ttdoc">Selects the value returned by the Voronoi evaluation.</div><div class="ttdef"><b>Definition</b> coherent_noise.hpp:29</div></div>
 <div class="ttc" id="anamespacehmap_html_a8e3756915e28aa80cec2190043cc8c2fa1d0f88509ad557940f07cd8c5d721820"><div class="ttname"><a href="namespacehmap.html#a8e3756915e28aa80cec2190043cc8c2fa1d0f88509ad557940f07cd8c5d721820">hmap::EDGE_DISTANCE_SQUARED</a></div><div class="ttdeci">@ EDGE_DISTANCE_SQUARED</div><div class="ttdoc">Squared edge distance.</div><div class="ttdef"><b>Definition</b> coherent_noise.hpp:36</div></div>
@@ -653,6 +652,10 @@ $(document).ready(function(){initNavTree('coherent__noise_8hpp_source.html','');
 <div class="ttc" id="anamespacehmap_html_ae067755e4e2def08c3e4e94834cb2977"><div class="ttname"><a href="namespacehmap.html#ae067755e4e2def08c3e4e94834cb2977">hmap::dendry</a></div><div class="ttdeci">Array dendry(glm::ivec2 shape, glm::vec2 kw, std::uint32_t seed, Array &amp;control_function, float eps=0.05, int resolution=1, float displacement=0.075, int primitives_resolution_steps=3, float slope_power=2.f, float noise_amplitude_proportion=0.01, bool add_control_function=true, float control_function_overlap=0.5f, const Array *p_noise_x=nullptr, const Array *p_noise_y=nullptr, glm::vec4 bbox={0.f, 1.f, 0.f, 1.f}, int subsampling=1)</div><div class="ttdoc">Dendry is a locally computable procedural function that generates branching patterns at various scale...</div><div class="ttdef"><b>Definition</b> dendry.cpp:32</div></div>
 <div class="ttc" id="anamespacehmap_html_ae75e563471c02f0c7620f3385be26a18"><div class="ttname"><a href="namespacehmap.html#ae75e563471c02f0c7620f3385be26a18">hmap::noise_ridged</a></div><div class="ttdeci">Array noise_ridged(NoiseType noise_type, glm::ivec2 shape, glm::vec2 kw, std::uint32_t seed, int octaves=8, float weight=0.7f, float persistence=0.5f, float lacunarity=2.f, float k_smoothing=0.1f, const Array *p_ctrl_param=nullptr, const Array *p_noise_x=nullptr, const Array *p_noise_y=nullptr, glm::vec4 bbox={0.f, 1.f, 0.f, 1.f})</div><div class="ttdoc">Return an array filled with coherence fbm ridged noise.</div><div class="ttdef"><b>Definition</b> noise.cpp:259</div></div>
 <div class="ttc" id="aprofiles_8hpp_html"><div class="ttname"><a href="profiles_8hpp.html">profiles.hpp</a></div></div>
+<div class="ttc" id="asls__deformation_8cpp_html_a1d28dec57cce925ad92342891bd71e7c"><div class="ttname"><a href="sls__deformation_8cpp.html#a1d28dec57cce925ad92342891bd71e7c">scale</a></div><div class="ttdeci">float scale</div><div class="ttdef"><b>Definition</b> sls_deformation.cpp:100</div></div>
+<div class="ttc" id="asls__deformation_8cpp_html_a1ee4a05b54419bfadd66ee351d05812e"><div class="ttname"><a href="sls__deformation_8cpp.html#a1ee4a05b54419bfadd66ee351d05812e">delta</a></div><div class="ttdeci">float delta</div><div class="ttdef"><b>Definition</b> sls_deformation.cpp:134</div></div>
+<div class="ttc" id="asls__deformation_8cpp_html_a31bef58f966d97b1ace9bd3a58ffd9a6"><div class="ttname"><a href="sls__deformation_8cpp.html#a31bef58f966d97b1ace9bd3a58ffd9a6">amplitude</a></div><div class="ttdeci">float amplitude</div><div class="ttdef"><b>Definition</b> sls_deformation.cpp:133</div></div>
+<div class="ttc" id="asls__deformation_8cpp_html_aeb4aca717b10b3f05f897485b4e1e9a6"><div class="ttname"><a href="sls__deformation_8cpp.html#aeb4aca717b10b3f05f897485b4e1e9a6">weight</a></div><div class="ttdeci">const float * weight</div><div class="ttdef"><b>Definition</b> sls_deformation.cpp:98</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

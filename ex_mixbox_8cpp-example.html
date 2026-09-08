@@ -139,28 +139,28 @@ Mixbox Blending</div></div>
 <div class="line">  tex2[2] = <a class="code hl_class" href="classhmap_1_1Array.html">hmap::Array</a>(<a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>, yellow.z);</div>
 <div class="line"> </div>
 <div class="line">  <a class="code hl_class" href="classhmap_1_1Array.html">hmap::Array</a> alpha(<a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>);</div>
-<div class="line">  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; <a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>.y; ++j)</div>
+<div class="line">  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> <a id="a4" name="a4"></a><a class="code hl_variable" href="sls__deformation_8cpp.html#a37d972ae0b47b9099e30983131d31916">j</a> = 0; <a class="code hl_variable" href="sls__deformation_8cpp.html#a37d972ae0b47b9099e30983131d31916">j</a> &lt; <a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>.y; ++<a class="code hl_variable" href="sls__deformation_8cpp.html#a37d972ae0b47b9099e30983131d31916">j</a>)</div>
 <div class="line">  {</div>
-<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>.x; ++i)</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> <a id="a5" name="a5"></a><a class="code hl_variable" href="sls__deformation_8cpp.html#acb559820d9ca11295b4500f179ef6392">i</a> = 0; <a class="code hl_variable" href="sls__deformation_8cpp.html#acb559820d9ca11295b4500f179ef6392">i</a> &lt; <a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>.x; ++<a class="code hl_variable" href="sls__deformation_8cpp.html#acb559820d9ca11295b4500f179ef6392">i</a>)</div>
 <div class="line">    {</div>
-<div class="line">      alpha(i, j) = float(i) / float(<a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>.x - 1);</div>
+<div class="line">      alpha(<a class="code hl_variable" href="sls__deformation_8cpp.html#acb559820d9ca11295b4500f179ef6392">i</a>, <a class="code hl_variable" href="sls__deformation_8cpp.html#a37d972ae0b47b9099e30983131d31916">j</a>) = float(<a class="code hl_variable" href="sls__deformation_8cpp.html#acb559820d9ca11295b4500f179ef6392">i</a>) / float(<a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>.x - 1);</div>
 <div class="line">    }</div>
 <div class="line">  }</div>
 <div class="line">  tex2[3] = alpha;</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">// Mix using the three different methods</span></div>
-<div class="line">  <a class="code hl_class" href="classhmap_1_1Texture.html">hmap::Texture</a> blended_linear = <a id="a4" name="a4"></a><a class="code hl_function" href="namespacehmap.html#ad5894053c042e2076fbbc7003bf69451">hmap::mix</a>(tex1,</div>
+<div class="line">  <a class="code hl_class" href="classhmap_1_1Texture.html">hmap::Texture</a> blended_linear = <a id="a6" name="a6"></a><a class="code hl_function" href="namespacehmap.html#ad5894053c042e2076fbbc7003bf69451">hmap::mix</a>(tex1,</div>
 <div class="line">                                           tex2,</div>
-<div class="line">                                           <a id="a5" name="a5"></a><a class="code hl_enumvalue" href="namespacehmap.html#ad3b2ee0d951dd1116cc489ab96600c0fadb442265791dc4c41e19aa2d350bd15d">hmap::MixMethod::MM_LINEAR</a>);</div>
+<div class="line">                                           <a id="a7" name="a7"></a><a class="code hl_enumvalue" href="namespacehmap.html#ad3b2ee0d951dd1116cc489ab96600c0fadb442265791dc4c41e19aa2d350bd15d">hmap::MixMethod::MM_LINEAR</a>);</div>
 <div class="line">  <a class="code hl_class" href="classhmap_1_1Texture.html">hmap::Texture</a> blended_sqrt = <a class="code hl_function" href="namespacehmap.html#ad5894053c042e2076fbbc7003bf69451">hmap::mix</a>(tex1,</div>
 <div class="line">                                         tex2,</div>
-<div class="line">                                         <a id="a6" name="a6"></a><a class="code hl_enumvalue" href="namespacehmap.html#ad3b2ee0d951dd1116cc489ab96600c0fa87c04d9fc25c1a1408df6899b50a96b9">hmap::MixMethod::MM_SQRT_AVG</a>);</div>
+<div class="line">                                         <a id="a8" name="a8"></a><a class="code hl_enumvalue" href="namespacehmap.html#ad3b2ee0d951dd1116cc489ab96600c0fa87c04d9fc25c1a1408df6899b50a96b9">hmap::MixMethod::MM_SQRT_AVG</a>);</div>
 <div class="line">  <a class="code hl_class" href="classhmap_1_1Texture.html">hmap::Texture</a> blended_mixbox = <a class="code hl_function" href="namespacehmap.html#ad5894053c042e2076fbbc7003bf69451">hmap::mix</a>(tex1,</div>
 <div class="line">                                           tex2,</div>
-<div class="line">                                           <a id="a7" name="a7"></a><a class="code hl_enumvalue" href="namespacehmap.html#ad3b2ee0d951dd1116cc489ab96600c0fa1f0467ead0c69d25b41b6838f330902e">hmap::MixMethod::MM_MIXBOX</a>);</div>
+<div class="line">                                           <a id="a9" name="a9"></a><a class="code hl_enumvalue" href="namespacehmap.html#ad3b2ee0d951dd1116cc489ab96600c0fa1f0467ead0c69d25b41b6838f330902e">hmap::MixMethod::MM_MIXBOX</a>);</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">// Save the blended gradients</span></div>
-<div class="line">  blended_linear.<a id="a8" name="a8"></a><a class="code hl_function" href="classhmap_1_1Texture.html#a8459decef6432076cc6f307d8719f012">to_png</a>(<span class="stringliteral">&quot;ex_mixbox_linear.png&quot;</span>);</div>
+<div class="line">  blended_linear.<a id="a10" name="a10"></a><a class="code hl_function" href="classhmap_1_1Texture.html#a8459decef6432076cc6f307d8719f012">to_png</a>(<span class="stringliteral">&quot;ex_mixbox_linear.png&quot;</span>);</div>
 <div class="line">  blended_sqrt.<a class="code hl_function" href="classhmap_1_1Texture.html#a8459decef6432076cc6f307d8719f012">to_png</a>(<span class="stringliteral">&quot;ex_mixbox_sqrt.png&quot;</span>);</div>
 <div class="line">  blended_mixbox.<a class="code hl_function" href="classhmap_1_1Texture.html#a8459decef6432076cc6f307d8719f012">to_png</a>(<span class="stringliteral">&quot;ex_mixbox_mixbox.png&quot;</span>);</div>
 <div class="line"> </div>
@@ -176,6 +176,8 @@ Mixbox Blending</div></div>
 <div class="ttc" id="anamespacehmap_html_ad3b2ee0d951dd1116cc489ab96600c0fa87c04d9fc25c1a1408df6899b50a96b9"><div class="ttname"><a href="namespacehmap.html#ad3b2ee0d951dd1116cc489ab96600c0fa87c04d9fc25c1a1408df6899b50a96b9">hmap::MM_SQRT_AVG</a></div><div class="ttdeci">@ MM_SQRT_AVG</div><div class="ttdoc">Square-root average mixing.</div><div class="ttdef"><b>Definition</b> colorize.hpp:46</div></div>
 <div class="ttc" id="anamespacehmap_html_ad3b2ee0d951dd1116cc489ab96600c0fadb442265791dc4c41e19aa2d350bd15d"><div class="ttname"><a href="namespacehmap.html#ad3b2ee0d951dd1116cc489ab96600c0fadb442265791dc4c41e19aa2d350bd15d">hmap::MM_LINEAR</a></div><div class="ttdeci">@ MM_LINEAR</div><div class="ttdoc">Linear RGB mixing.</div><div class="ttdef"><b>Definition</b> colorize.hpp:45</div></div>
 <div class="ttc" id="anamespacehmap_html_ad5894053c042e2076fbbc7003bf69451"><div class="ttname"><a href="namespacehmap.html#ad5894053c042e2076fbbc7003bf69451">hmap::mix</a></div><div class="ttdeci">Texture mix(const Texture &amp;tex1, const Texture &amp;tex2, MixMethod method=MM_SQRT_AVG)</div><div class="ttdoc">Mix two textures into an output texture.</div><div class="ttdef"><b>Definition</b> colorize.cpp:550</div></div>
+<div class="ttc" id="asls__deformation_8cpp_html_a37d972ae0b47b9099e30983131d31916"><div class="ttname"><a href="sls__deformation_8cpp.html#a37d972ae0b47b9099e30983131d31916">j</a></div><div class="ttdeci">int j</div><div class="ttdef"><b>Definition</b> sls_deformation.cpp:131</div></div>
+<div class="ttc" id="asls__deformation_8cpp_html_acb559820d9ca11295b4500f179ef6392"><div class="ttname"><a href="sls__deformation_8cpp.html#acb559820d9ca11295b4500f179ef6392">i</a></div><div class="ttdeci">int i</div><div class="ttdef"><b>Definition</b> sls_deformation.cpp:130</div></div>
 </div><!-- fragment --> </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

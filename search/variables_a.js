@@ -1,10 +1,8 @@
 var searchData=
 [
-  ['lacunarity_0',['lacunarity',['../classhmap_1_1GenericFractalFunction.html#a9a205468c861c5f142b738d514b2d9ce',1,'hmap::GenericFractalFunction']]],
-  ['lip_5fdecay_1',['lip_decay',['../classhmap_1_1CraterFunction.html#a63b0e7af7d92d3090e32a4b31d9e69c2',1,'hmap::CraterFunction']]],
-  ['lip_5fheight_5fratio_2',['lip_height_ratio',['../classhmap_1_1CraterFunction.html#af2b79780902a1088c500476267163cbe',1,'hmap::CraterFunction']]],
-  ['loc_3',['loc',['../structhmap_1_1log_1_1format__string__with__loc.html#ab3a11e4b6aabb05b776944e597250bdd',1,'hmap::log::format_string_with_loc']]],
-  ['low_5fpass_5ffilter_5ffunction_4',['low_pass_filter_function',['../classhmap_1_1PyramidDecomposition.html#ab7684296d0993168de59ca6938d30cd2',1,'hmap::PyramidDecomposition']]],
-  ['lru_5',['lru',['../classhmap_1_1LruTileStorage.html#a503160ae137678b2255088de204a5d7c',1,'hmap::LruTileStorage']]],
-  ['lru_5fit_6',['lru_it',['../structhmap_1_1LruTileEntry.html#a4b419114b2a041fe2e303cf6dbea4c39',1,'hmap::LruTileEntry']]]
+  ['k_0',['k',['../classhmap_1_1PerlinHalfFunction.html#aa00e81a0bf0458d37e90807a0f550607',1,'hmap::PerlinHalfFunction::k'],['../classhmap_1_1WorleyDoubleFunction.html#af26f43647e20fe6fc3ff88ed4c1e1274',1,'hmap::WorleyDoubleFunction::k']]],
+  ['k_5fcutoff_1',['k_cutoff',['../structhmap_1_1ComputeMode.html#a5a23331035fb8f7e50e22a6e8663ba25',1,'hmap::ComputeMode']]],
+  ['k_5fsmoothing_2',['k_smoothing',['../classhmap_1_1FbmPingpongFunction.html#ae77c4b0f049d8d69f861e2e25df5e635',1,'hmap::FbmPingpongFunction::k_smoothing'],['../classhmap_1_1FbmRidgedFunction.html#a9c9642aaca3aad5f54a9efbcb3f9a4fc',1,'hmap::FbmRidgedFunction::k_smoothing']]],
+  ['key_3',['key',['../structhmap_1_1TileRegion.html#afb89981844bdc0270441e8464f00ccdc',1,'hmap::TileRegion']]],
+  ['kw_4',['kw',['../classhmap_1_1ArrayFunction.html#a8798b3b0589c55bfab6bc24caa48d7c8',1,'hmap::ArrayFunction::kw'],['../classhmap_1_1WaveDuneFunction.html#a1a36a83da22d7e1af019667a624fbd57',1,'hmap::WaveDuneFunction::kw'],['../classhmap_1_1WaveSineFunction.html#a092bf348107917e0362e104b4adb5dc7',1,'hmap::WaveSineFunction::kw'],['../classhmap_1_1WaveSquareFunction.html#ae5868d6390bfa7e5ed15857749b7d460',1,'hmap::WaveSquareFunction::kw'],['../classhmap_1_1WaveTriangularFunction.html#aa35fb98f18848ac7c99f15678d0ac71c',1,'hmap::WaveTriangularFunction::kw'],['../classhmap_1_1NoiseFunction.html#a332703b9642cf219cb6d6e91488648cf',1,'hmap::NoiseFunction::kw']]]
 ];

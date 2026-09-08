@@ -16,6 +16,7 @@ var hierarchy =
       [ "hmap::XyControlFunction", "classhmap_1_1XyControlFunction.html", null ]
     ] ],
     [ "hmap::CoordFrame", "classhmap_1_1CoordFrame.html", null ],
+    [ "hmap::DeformationConstraint", "structhmap_1_1DeformationConstraint.html", null ],
     [ "hmap::DrainageBasin", "classhmap_1_1DrainageBasin.html", null ],
     [ "hmap::DrainageBasinCellBased", "classhmap_1_1DrainageBasinCellBased.html", null ],
     [ "hmap::TerrainTriMesh::Edge", "structhmap_1_1TerrainTriMesh_1_1Edge.html", null ],
@@ -61,6 +62,7 @@ var hierarchy =
       [ "hmap::WaveSquareFunction", "classhmap_1_1WaveSquareFunction.html", null ],
       [ "hmap::WaveTriangularFunction", "classhmap_1_1WaveTriangularFunction.html", null ]
     ] ],
+    [ "hmap::GaussianPush", "structhmap_1_1GaussianPush.html", null ],
     [ "hmap::Interpolator1D", "classhmap_1_1Interpolator1D.html", null ],
     [ "hmap::InterpolatorCurve", "classhmap_1_1InterpolatorCurve.html", null ],
     [ "hmap::IVec2Eq", "structhmap_1_1IVec2Eq.html", null ],

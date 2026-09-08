@@ -82,9 +82,9 @@
 \DoxyCodeLine{00088\ \ \ \}}
 \DoxyCodeLine{00089\ }
 \DoxyCodeLine{00090\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00091\ \ \ \textcolor{keywordtype}{float}\ get(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00091\ \ \ \textcolor{keywordtype}{float}\ get(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}})\textcolor{keyword}{\ const}}
 \DoxyCodeLine{00092\ \textcolor{keyword}{\ \ }\{}
-\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{float})m\_array(i,\ j);}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{float})m\_array(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}});}
 \DoxyCodeLine{00094\ \ \ \}}
 \DoxyCodeLine{00095\ }
 \DoxyCodeLine{00096\ \ \ \textcolor{keywordtype}{float}\ sample(\textcolor{keywordtype}{float}\ ri,\ \textcolor{keywordtype}{float}\ rj)\textcolor{keyword}{\ const}}
@@ -92,29 +92,29 @@
 \DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{float}\ x\ =\ ri\ *\ (m\_array.\mbox{\hyperlink{classhmap_1_1Array_a9ee3e85888021b80660357e73f35a5ea}{shape}}.x\ -\/\ 1);}
 \DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{float}\ y\ =\ rj\ *\ (m\_array.\mbox{\hyperlink{classhmap_1_1Array_a9ee3e85888021b80660357e73f35a5ea}{shape}}.y\ -\/\ 1);}
 \DoxyCodeLine{00100\ }
-\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ (int)x;}
-\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{int}\ j\ =\ (int)y;}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ (int)x;}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}}\ =\ (int)y;}
 \DoxyCodeLine{00103\ }
 \DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{float}\ u;}
 \DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{float}\ v;}
 \DoxyCodeLine{00106\ }
-\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ ==\ m\_array.\mbox{\hyperlink{classhmap_1_1Array_a9ee3e85888021b80660357e73f35a5ea}{shape}}.x\ -\/\ 1)}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}}\ ==\ m\_array.\mbox{\hyperlink{classhmap_1_1Array_a9ee3e85888021b80660357e73f35a5ea}{shape}}.x\ -\/\ 1)}
 \DoxyCodeLine{00108\ \ \ \ \ \{}
-\DoxyCodeLine{00109\ \ \ \ \ \ \ i\ =\ m\_array.\mbox{\hyperlink{classhmap_1_1Array_a9ee3e85888021b80660357e73f35a5ea}{shape}}.x\ -\/\ 2;}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ m\_array.\mbox{\hyperlink{classhmap_1_1Array_a9ee3e85888021b80660357e73f35a5ea}{shape}}.x\ -\/\ 2;}
 \DoxyCodeLine{00110\ \ \ \ \ \ \ u\ =\ 1.f;}
 \DoxyCodeLine{00111\ \ \ \ \ \}}
 \DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00113\ \ \ \ \ \ \ u\ =\ x\ -\/\ (float)i;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ u\ =\ x\ -\/\ (float)\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}};}
 \DoxyCodeLine{00114\ }
-\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordflow}{if}\ (j\ ==\ m\_array.\mbox{\hyperlink{classhmap_1_1Array_a9ee3e85888021b80660357e73f35a5ea}{shape}}.y\ -\/\ 1)}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}}\ ==\ m\_array.\mbox{\hyperlink{classhmap_1_1Array_a9ee3e85888021b80660357e73f35a5ea}{shape}}.y\ -\/\ 1)}
 \DoxyCodeLine{00116\ \ \ \ \ \{}
-\DoxyCodeLine{00117\ \ \ \ \ \ \ j\ =\ m\_array.\mbox{\hyperlink{classhmap_1_1Array_a9ee3e85888021b80660357e73f35a5ea}{shape}}.y\ -\/\ 2;}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}}\ =\ m\_array.\mbox{\hyperlink{classhmap_1_1Array_a9ee3e85888021b80660357e73f35a5ea}{shape}}.y\ -\/\ 2;}
 \DoxyCodeLine{00118\ \ \ \ \ \ \ v\ =\ 1.f;}
 \DoxyCodeLine{00119\ \ \ \ \ \}}
 \DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00121\ \ \ \ \ \ \ v\ =\ y\ -\/\ (float)j;}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ v\ =\ y\ -\/\ (float)\mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}};}
 \DoxyCodeLine{00122\ }
-\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_array.\mbox{\hyperlink{classhmap_1_1Array_a12eb51c18154e3e452afe9743636085f}{get\_value\_bilinear\_at}}(i,\ j,\ u,\ v);}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_array.\mbox{\hyperlink{classhmap_1_1Array_a12eb51c18154e3e452afe9743636085f}{get\_value\_bilinear\_at}}(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}},\ u,\ v);}
 \DoxyCodeLine{00124\ \ \ \}}
 \DoxyCodeLine{00125\ }
 \DoxyCodeLine{00126\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ m\_array;}

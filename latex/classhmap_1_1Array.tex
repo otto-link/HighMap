@@ -70,9 +70,9 @@ Collaboration diagram for hmap\+::Array\+:
 \begin{DoxyCompactList}\small\item\em Overloads the subtraction operator for scalar subtraction. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{classhmap_1_1Array_a5f94f3bb00f0d5ac33a7e82d80366cc4}{operator-\/}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array) const
 \begin{DoxyCompactList}\small\item\em Overloads the subtraction operator for element-\/wise subtraction with another array. \end{DoxyCompactList}\item 
-float \& \mbox{\hyperlink{classhmap_1_1Array_ad8a812fa8efe5590cf0f1c619909eafe}{operator()}} (int i, int j)
+float \& \mbox{\hyperlink{classhmap_1_1Array_ad8a812fa8efe5590cf0f1c619909eafe}{operator()}} (int \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}}, int \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}})
 \begin{DoxyCompactList}\small\item\em Overloads the function call operator to access the array value at index (i, j). \end{DoxyCompactList}\item 
-const float \& \mbox{\hyperlink{classhmap_1_1Array_a4befd40052e9d7390eb7499e592769e5}{operator()}} (int i, int j) const
+const float \& \mbox{\hyperlink{classhmap_1_1Array_a4befd40052e9d7390eb7499e592769e5}{operator()}} (int \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}}, int \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}}) const
 \begin{DoxyCompactList}\small\item\em Overloads the function call operator to access the array value at index (i, j) (const version). \end{DoxyCompactList}\item 
 float \& \mbox{\hyperlink{classhmap_1_1Array_a57ede86b78e7fd6f6d332800f5b021b1}{operator()}} (glm\+::ivec2 ij)
 \item 
@@ -82,15 +82,15 @@ const float \& \mbox{\hyperlink{classhmap_1_1Array_ae2a75c00dc1d8f16fa97ab1e4943
 \begin{DoxyCompactList}\small\item\em Overloads the function call operator to access the array value at the linear index \textquotesingle{}index\textquotesingle{} (const version). \end{DoxyCompactList}\item 
 float \& \mbox{\hyperlink{classhmap_1_1Array_a5299b00bc91a36d8aad629bcd1436d63}{operator()}} (int index)
 \begin{DoxyCompactList}\small\item\em Overloads the function call operator to access the array value at the linear index \textquotesingle{}index\textquotesingle{}. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classhmap_1_1Array_a9c70ac5b5ca393c53bcc423407572a2b}{argmax}} (float \&vmax, int \&i, int \&j) const
+void \mbox{\hyperlink{classhmap_1_1Array_a9c70ac5b5ca393c53bcc423407572a2b}{argmax}} (float \&vmax, int \&\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}}, int \&\mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}}) const
 \begin{DoxyCompactList}\small\item\em Finds the maximum value in the array and its coordinates. \end{DoxyCompactList}\item 
-std\+::vector$<$ float $>$ \mbox{\hyperlink{classhmap_1_1Array_a832a302b58fa7b346df04675a14ad59c}{col\+\_\+to\+\_\+vector}} (int j)
+std\+::vector$<$ float $>$ \mbox{\hyperlink{classhmap_1_1Array_a832a302b58fa7b346df04675a14ad59c}{col\+\_\+to\+\_\+vector}} (int \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}})
 \begin{DoxyCompactList}\small\item\em Extracts a column \textquotesingle{}j\textquotesingle{} as a std\+::vector. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classhmap_1_1Array_aec532fdab57a1b7571a0e273a567537c}{depose\+\_\+amount\+\_\+bilinear\+\_\+at}} (int i, int j, float u, float v, float amount)
+void \mbox{\hyperlink{classhmap_1_1Array_aec532fdab57a1b7571a0e273a567537c}{depose\+\_\+amount\+\_\+bilinear\+\_\+at}} (int \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}}, int \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}}, float u, float v, float amount)
 \begin{DoxyCompactList}\small\item\em Distribute a value \textquotesingle{}amount\textquotesingle{} around the four cells (i, j), (i + 1, j), (i, j + 1), (i + 1, j + 1) by "{}reversing"{} the bilinear interpolation. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classhmap_1_1Array_a8bc07abfedb22639797124b951331ddf}{depose\+\_\+amount\+\_\+kernel\+\_\+bilinear\+\_\+at}} (int i, int j, float u, float v, int ir, float amount)
+void \mbox{\hyperlink{classhmap_1_1Array_a8bc07abfedb22639797124b951331ddf}{depose\+\_\+amount\+\_\+kernel\+\_\+bilinear\+\_\+at}} (int \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}}, int \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}}, float u, float v, int \mbox{\hyperlink{sls__deformation_8cpp_a108a1d0fcea4288c9e48f5dc4fa0a1b0}{ir}}, float amount)
 \item 
-void \mbox{\hyperlink{classhmap_1_1Array_a8c78b70cb181e3e43169b2b4e8d28e55}{depose\+\_\+amount\+\_\+kernel\+\_\+at}} (int i, int j, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&kernel, float amount)
+void \mbox{\hyperlink{classhmap_1_1Array_a8c78b70cb181e3e43169b2b4e8d28e55}{depose\+\_\+amount\+\_\+kernel\+\_\+at}} (int \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}}, int \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&kernel, float amount)
 \begin{DoxyCompactList}\small\item\em Distributes a specified amount of value around the cell located at (i, j) using a 1D deposition kernel applied in both horizontal and vertical directions. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classhmap_1_1Array_a00b8f7462c1e22b1da8a67ec62d4c8c8}{dump}} (const std\+::string \&fname="{}out.\+png"{}) const
 \begin{DoxyCompactList}\small\item\em Debug tool, dump some infos and generate an output file (16bits grayscale) \end{DoxyCompactList}\item 
@@ -98,29 +98,29 @@ void \mbox{\hyperlink{classhmap_1_1Array_a36fa8104b8fe789f5035a1ddfa5b1519}{dump
 \begin{DoxyCompactList}\small\item\em Debug tool, dump array content as an ASCII histogram to the consol. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{classhmap_1_1Array_a2cb7491733f41de0f72f132c0ecff188}{extract\+\_\+slice}} (glm\+::ivec4 idx) const
 \begin{DoxyCompactList}\small\item\em Extracts a subarray defined by the slice indices \{i1, i2, j1, j2\} from the original array, creating a new array. Note that i2 and j2 are excluded from the slice. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{classhmap_1_1Array_a7d552a649bcc47445b11d2e42d193492}{extract\+\_\+slice}} (int i1, int i2, int j1, int j2) const
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{classhmap_1_1Array_a7d552a649bcc47445b11d2e42d193492}{extract\+\_\+slice}} (int \mbox{\hyperlink{sls__deformation_8cpp_ac1148b6c7c73300331ae93335f42241d}{i1}}, int i2, int \mbox{\hyperlink{sls__deformation_8cpp_a08aa804c51363a3108206b96b0d33522}{j1}}, int j2) const
 \begin{DoxyCompactList}\small\item\em This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classhmap_1_1Array_a000acd474d036adfa4e5e334139788ce}{from\+\_\+file}} (const std\+::string \&fname)
 \begin{DoxyCompactList}\small\item\em Import array data from a raw binary file. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classhmap_1_1Array_a61b4eb10e50548b12cfd0cb2f9eddde1}{from\+\_\+numpy}} (const std\+::string \&fname)
 \begin{DoxyCompactList}\small\item\em Import array data from a numpy binary file. \end{DoxyCompactList}\item 
-float \mbox{\hyperlink{classhmap_1_1Array_a1bc074aa8ae60f52c105702637631e62}{get\+\_\+gradient\+\_\+x\+\_\+at}} (int i, int j) const
+float \mbox{\hyperlink{classhmap_1_1Array_a1bc074aa8ae60f52c105702637631e62}{get\+\_\+gradient\+\_\+x\+\_\+at}} (int \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}}, int \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}}) const
 \begin{DoxyCompactList}\small\item\em Calculates the gradient in the \textquotesingle{}x\textquotesingle{} (or \textquotesingle{}i\textquotesingle{}) direction at a specified index (i, j) using a 2nd order central difference scheme. \end{DoxyCompactList}\item 
-float \mbox{\hyperlink{classhmap_1_1Array_acbe5c386af495d4648cdfa140f098398}{get\+\_\+gradient\+\_\+y\+\_\+at}} (int i, int j) const
+float \mbox{\hyperlink{classhmap_1_1Array_acbe5c386af495d4648cdfa140f098398}{get\+\_\+gradient\+\_\+y\+\_\+at}} (int \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}}, int \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}}) const
 \begin{DoxyCompactList}\small\item\em Calculates the gradient in the \textquotesingle{}y\textquotesingle{} (or \textquotesingle{}j\textquotesingle{}) direction at a specified index (i, j) using a 2nd order central difference scheme. \end{DoxyCompactList}\item 
-float \mbox{\hyperlink{classhmap_1_1Array_a80c3088214a250b00d9e9649266e30d2}{get\+\_\+gradient\+\_\+x\+\_\+bilinear\+\_\+at}} (int i, int j, float u, float v) const
+float \mbox{\hyperlink{classhmap_1_1Array_a80c3088214a250b00d9e9649266e30d2}{get\+\_\+gradient\+\_\+x\+\_\+bilinear\+\_\+at}} (int \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}}, int \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}}, float u, float v) const
 \begin{DoxyCompactList}\small\item\em Calculates the gradient in the \textquotesingle{}x\textquotesingle{} (or \textquotesingle{}i\textquotesingle{}) direction at a location (x, y) near the index (i, j) using bilinear interpolation. \end{DoxyCompactList}\item 
-float \mbox{\hyperlink{classhmap_1_1Array_a5f8056879200c2cfa85a757e8c87bb3d}{get\+\_\+gradient\+\_\+y\+\_\+bilinear\+\_\+at}} (int i, int j, float u, float v) const
+float \mbox{\hyperlink{classhmap_1_1Array_a5f8056879200c2cfa85a757e8c87bb3d}{get\+\_\+gradient\+\_\+y\+\_\+bilinear\+\_\+at}} (int \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}}, int \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}}, float u, float v) const
 \begin{DoxyCompactList}\small\item\em Calculates the gradient in the \textquotesingle{}y\textquotesingle{} (or \textquotesingle{}j\textquotesingle{}) direction at a location (x, y) near the index (i, j) using bilinear interpolation. \end{DoxyCompactList}\item 
-glm\+::vec3 \mbox{\hyperlink{classhmap_1_1Array_afb197b692634f022bb7c284277cb6742}{get\+\_\+normal\+\_\+at}} (int i, int j) const
+glm\+::vec3 \mbox{\hyperlink{classhmap_1_1Array_afb197b692634f022bb7c284277cb6742}{get\+\_\+normal\+\_\+at}} (int \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}}, int \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}}) const
 \begin{DoxyCompactList}\small\item\em Calculates the surface normal vector at the index (i, j). \end{DoxyCompactList}\item 
 glm\+::ivec2 \mbox{\hyperlink{classhmap_1_1Array_a274c1949d19454402a640b54f7e005c5}{get\+\_\+shape}} ()
 \begin{DoxyCompactList}\small\item\em Retrieves the shape of the array. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classhmap_1_1Array_a7ef7005c4ca95be75c82bded5165634c}{get\+\_\+sizeof}} () const
 \begin{DoxyCompactList}\small\item\em Retrieves the number of bytes occupied by the array data. \end{DoxyCompactList}\item 
-float \mbox{\hyperlink{classhmap_1_1Array_ae47cb152f3e887d17160519afd589ee2}{get\+\_\+value\+\_\+bicubic\+\_\+at}} (int i, int j, float u, float v) const
+float \mbox{\hyperlink{classhmap_1_1Array_ae47cb152f3e887d17160519afd589ee2}{get\+\_\+value\+\_\+bicubic\+\_\+at}} (int \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}}, int \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}}, float u, float v) const
 \begin{DoxyCompactList}\small\item\em Retrieves the array value at the location (x, y) near the index (i, j) using bicubic interpolation. \end{DoxyCompactList}\item 
-float \mbox{\hyperlink{classhmap_1_1Array_a12eb51c18154e3e452afe9743636085f}{get\+\_\+value\+\_\+bilinear\+\_\+at}} (int i, int j, float u, float v) const
+float \mbox{\hyperlink{classhmap_1_1Array_a12eb51c18154e3e452afe9743636085f}{get\+\_\+value\+\_\+bilinear\+\_\+at}} (int \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}}, int \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}}, float u, float v) const
 \begin{DoxyCompactList}\small\item\em Retrieves the array value at the location (x, y) near the index (i, j) using bilinear interpolation. \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{classhmap_1_1Array_afff00e67eea65de385d7cd2e9ea4d189}{get\+\_\+value\+\_\+nearest}} (float x, float y, glm\+::vec4 bbox) const
 \begin{DoxyCompactList}\small\item\em Retrieves the nearest value at the location (x, y) within a bounded domain. \end{DoxyCompactList}\item 
@@ -128,7 +128,7 @@ std\+::vector$<$ float $>$ \mbox{\hyperlink{classhmap_1_1Array_a65336e3091ee64a9
 \begin{DoxyCompactList}\small\item\em Retrieves the underlying data vector. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classhmap_1_1Array_a0a68f43a6e0cf3a2b0392a161ea18339}{infos}} (const std\+::string \&msg="{}"{}) const
 \begin{DoxyCompactList}\small\item\em Display various information about the array. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{classhmap_1_1Array_a296cad1c7a3fd75b30a39a628bc7bcbe}{linear\+\_\+index}} (int i, int j) const
+int \mbox{\hyperlink{classhmap_1_1Array_a296cad1c7a3fd75b30a39a628bc7bcbe}{linear\+\_\+index}} (int \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}}, int \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}}) const
 \begin{DoxyCompactList}\small\item\em Return the linear index corresponding to the (i, j) cell in a 2D array. \end{DoxyCompactList}\item 
 glm\+::ivec2 \mbox{\hyperlink{classhmap_1_1Array_a15bdceec6c77955e7c4a640f0a231ac7}{linear\+\_\+index\+\_\+reverse}} (int k) const
 \begin{DoxyCompactList}\small\item\em Convert a linear index to its corresponding (i, j) cell coordinates. \end{DoxyCompactList}\item 
@@ -162,7 +162,7 @@ glm\+::vec2 \mbox{\hyperlink{classhmap_1_1Array_abef6971c016bf7dda37715878ffe480
 \item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{classhmap_1_1Array_aead9df3c2a79ee8bc479b04ca314743e}{resample\+\_\+to\+\_\+shape\+\_\+nearest}} (glm\+::ivec2 new\+\_\+shape) const
 \begin{DoxyCompactList}\small\item\em Return a resampled array of shape {\ttfamily new\+\_\+shape} using nearest neighbor interpolation. \end{DoxyCompactList}\item 
-std\+::vector$<$ float $>$ \mbox{\hyperlink{classhmap_1_1Array_a82d3cc92545cb9ee442d47b4d672750c}{row\+\_\+to\+\_\+vector}} (int i)
+std\+::vector$<$ float $>$ \mbox{\hyperlink{classhmap_1_1Array_a82d3cc92545cb9ee442d47b4d672750c}{row\+\_\+to\+\_\+vector}} (int \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}})
 \begin{DoxyCompactList}\small\item\em Return a row {\ttfamily i} as a {\ttfamily std\+::vector\texorpdfstring{$<$}{<}float\texorpdfstring{$>$}{>}}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classhmap_1_1Array_afb1e51a296eee1c7375afa500877b261}{set\+\_\+shape}} (glm\+::ivec2 new\+\_\+shape)
 \begin{DoxyCompactList}\small\item\em Sets a new shape for the array. \end{DoxyCompactList}\item 

@@ -879,7 +879,7 @@
 <codeline lineno="313"><highlight class="normal"><ref refid="test__point_8cpp_1aa191917728614c210eb51b166798c3a4" kindref="member">TEST</ref>(PointTest,<sp/>ScaleUniformDefaultCenter)</highlight></codeline>
 <codeline lineno="314"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="315"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Point" kindref="compound">Point</ref><sp/>p(0.f,<sp/>1.f,<sp/>5.f);</highlight></codeline>
-<codeline lineno="316"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Point" kindref="compound">Point</ref><sp/>scaled<sp/>=<sp/><ref refid="namespacehmap_1a7e352e19687bc236a6360e56ec92251e" kindref="member">scale</ref>(p,<sp/>0.8f);</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Point" kindref="compound">Point</ref><sp/>scaled<sp/>=<sp/><ref refid="sls__deformation_8cpp_1a1d28dec57cce925ad92342891bd71e7c" kindref="member">scale</ref>(p,<sp/>0.8f);</highlight></codeline>
 <codeline lineno="317"><highlight class="normal"></highlight></codeline>
 <codeline lineno="318"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(scaled.<ref refid="classhmap_1_1Point_1ac0d4eaf8062b8f11638db83e08198e48" kindref="member">x</ref>,<sp/>0.1f,<sp/>eps);</highlight></codeline>
 <codeline lineno="319"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(scaled.<ref refid="classhmap_1_1Point_1aa045aed7ca12dffe13ba8f2db730a9bf" kindref="member">y</ref>,<sp/>0.9f,<sp/>eps);</highlight></codeline>
@@ -889,7 +889,7 @@
 <codeline lineno="323"><highlight class="normal"><ref refid="test__point_8cpp_1aa191917728614c210eb51b166798c3a4" kindref="member">TEST</ref>(PointTest,<sp/>ScaleNonUniformCustomCenter)</highlight></codeline>
 <codeline lineno="324"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="325"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Point" kindref="compound">Point</ref><sp/>p(1.f,<sp/>2.f,<sp/>3.f);</highlight></codeline>
-<codeline lineno="326"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Point" kindref="compound">Point</ref><sp/>scaled<sp/>=<sp/><ref refid="namespacehmap_1a7e352e19687bc236a6360e56ec92251e" kindref="member">scale</ref>(p,<sp/>glm::vec2(2.f,<sp/>0.5f),<sp/>glm::vec2(0.f,<sp/>0.f));</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Point" kindref="compound">Point</ref><sp/>scaled<sp/>=<sp/><ref refid="sls__deformation_8cpp_1a1d28dec57cce925ad92342891bd71e7c" kindref="member">scale</ref>(p,<sp/>glm::vec2(2.f,<sp/>0.5f),<sp/>glm::vec2(0.f,<sp/>0.f));</highlight></codeline>
 <codeline lineno="327"><highlight class="normal"></highlight></codeline>
 <codeline lineno="328"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(scaled.<ref refid="classhmap_1_1Point_1ac0d4eaf8062b8f11638db83e08198e48" kindref="member">x</ref>,<sp/>2.f,<sp/>eps);</highlight></codeline>
 <codeline lineno="329"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(scaled.<ref refid="classhmap_1_1Point_1aa045aed7ca12dffe13ba8f2db730a9bf" kindref="member">y</ref>,<sp/>1.f,<sp/>eps);</highlight></codeline>

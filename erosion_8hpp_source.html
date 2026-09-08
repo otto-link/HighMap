@@ -195,7 +195,7 @@ $(document).ready(function(){initNavTree('erosion_8hpp_source.html',''); initRes
 <div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacehmap.html#ac4f3c8b3d5f766b15c0ac64359fdc219">hydraulic_algebric</a>(Array &amp;z,</div>
 <div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>                        Array *p_mask,</div>
 <div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>                        <span class="keywordtype">float</span>  talus_ref,</div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>                        <span class="keywordtype">int</span>    ir,</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>                        <span class="keywordtype">int</span>    <a class="code hl_variable" href="sls__deformation_8cpp.html#a108a1d0fcea4288c9e48f5dc4fa0a1b0">ir</a>,</div>
 <div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>                        Array *p_bedrock = <span class="keyword">nullptr</span>,</div>
 <div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>                        Array *p_erosion_map = <span class="keyword">nullptr</span>,</div>
 <div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>                        Array *p_deposition_map = <span class="keyword">nullptr</span>,</div>
@@ -205,7 +205,7 @@ $(document).ready(function(){initNavTree('erosion_8hpp_source.html',''); initRes
 <div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
 <div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacehmap.html#ac4f3c8b3d5f766b15c0ac64359fdc219">hydraulic_algebric</a>(Array &amp;z,</div>
 <div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>                        <span class="keywordtype">float</span>  talus_ref,</div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>                        <span class="keywordtype">int</span>    ir,</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>                        <span class="keywordtype">int</span>    <a class="code hl_variable" href="sls__deformation_8cpp.html#a108a1d0fcea4288c9e48f5dc4fa0a1b0">ir</a>,</div>
 <div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>                        Array *p_bedrock = <span class="keyword">nullptr</span>,</div>
 <div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>                        Array *p_erosion_map = <span class="keyword">nullptr</span>,</div>
 <div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>                        Array *p_deposition_map = <span class="keyword">nullptr</span>,</div>
@@ -328,7 +328,7 @@ $(document).ready(function(){initNavTree('erosion_8hpp_source.html',''); initRes
 <div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span>                      Array *p_bedrock = <span class="keyword">nullptr</span>,</div>
 <div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span>                      Array *p_moisture_map = <span class="keyword">nullptr</span>,</div>
 <div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span>                      Array *p_erosion_map = <span class="keyword">nullptr</span>, <span class="comment">// -&gt; out</span></div>
-<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span>                      <span class="keywordtype">int</span>    ir = 1,</div>
+<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span>                      <span class="keywordtype">int</span>    <a class="code hl_variable" href="sls__deformation_8cpp.html#a108a1d0fcea4288c9e48f5dc4fa0a1b0">ir</a> = 1,</div>
 <div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span>                      <span class="keywordtype">float</span>  clipping_ratio = 10.f);</div>
 <div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span> </div>
 <div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacehmap.html#acbf32c30d68183eb5522888af2ede316">hydraulic_stream</a>(Array &amp;z,</div>
@@ -338,7 +338,7 @@ $(document).ready(function(){initNavTree('erosion_8hpp_source.html',''); initRes
 <div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span>                      Array *p_bedrock = <span class="keyword">nullptr</span>,</div>
 <div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span>                      Array *p_moisture_map = <span class="keyword">nullptr</span>,</div>
 <div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span>                      Array *p_erosion_map = <span class="keyword">nullptr</span>, <span class="comment">// -&gt; out</span></div>
-<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span>                      <span class="keywordtype">int</span>    ir = 1,</div>
+<div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span>                      <span class="keywordtype">int</span>    <a class="code hl_variable" href="sls__deformation_8cpp.html#a108a1d0fcea4288c9e48f5dc4fa0a1b0">ir</a> = 1,</div>
 <div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span>                      <span class="keywordtype">float</span>  clipping_ratio = 10.f); </div>
 <div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span> </div>
 <div class="line"><a id="l00600" name="l00600"></a><span class="lineno">  600</span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacehmap.html#a37caab05db1b9791bf8a8ca10852c0da">hydraulic_stream_log</a>(Array &amp;z,</div>
@@ -377,7 +377,7 @@ $(document).ready(function(){initNavTree('erosion_8hpp_source.html',''); initRes
 <div class="line"><a id="l00665" name="l00665"></a><span class="lineno">  665</span>                                            <span class="keywordtype">float</span>  talus_ref,</div>
 <div class="line"><a id="l00666" name="l00666"></a><span class="lineno">  666</span>                                            <span class="keywordtype">int</span>    upscaling_levels = 1,</div>
 <div class="line"><a id="l00667" name="l00667"></a><span class="lineno">  667</span>                                            <span class="keywordtype">float</span>  persistence = 1.f,</div>
-<div class="line"><a id="l00668" name="l00668"></a><span class="lineno">  668</span>                                            <span class="keywordtype">int</span>    ir = 1,</div>
+<div class="line"><a id="l00668" name="l00668"></a><span class="lineno">  668</span>                                            <span class="keywordtype">int</span>    <a class="code hl_variable" href="sls__deformation_8cpp.html#a108a1d0fcea4288c9e48f5dc4fa0a1b0">ir</a> = 1,</div>
 <div class="line"><a id="l00669" name="l00669"></a><span class="lineno">  669</span>                                            <span class="keywordtype">float</span>  clipping_ratio = 10.f);</div>
 <div class="line"><a id="l00670" name="l00670"></a><span class="lineno">  670</span> </div>
 <div class="line"><a id="l00704" name="l00704"></a><span class="lineno">  704</span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacehmap.html#a66355f091aa60d97d5a7c7eeb08c51cc">hydraulic_stream_upscale_amplification</a>(</div>
@@ -387,7 +387,7 @@ $(document).ready(function(){initNavTree('erosion_8hpp_source.html',''); initRes
 <div class="line"><a id="l00708" name="l00708"></a><span class="lineno">  708</span>    <span class="keywordtype">float</span>  talus_ref,</div>
 <div class="line"><a id="l00709" name="l00709"></a><span class="lineno">  709</span>    <span class="keywordtype">int</span>    upscaling_levels = 1,</div>
 <div class="line"><a id="l00710" name="l00710"></a><span class="lineno">  710</span>    <span class="keywordtype">float</span>  persistence = 1.f,</div>
-<div class="line"><a id="l00711" name="l00711"></a><span class="lineno">  711</span>    <span class="keywordtype">int</span>    ir = 1,</div>
+<div class="line"><a id="l00711" name="l00711"></a><span class="lineno">  711</span>    <span class="keywordtype">int</span>    <a class="code hl_variable" href="sls__deformation_8cpp.html#a108a1d0fcea4288c9e48f5dc4fa0a1b0">ir</a> = 1,</div>
 <div class="line"><a id="l00712" name="l00712"></a><span class="lineno">  712</span>    <span class="keywordtype">float</span>  clipping_ratio = 10.f); </div>
 <div class="line"><a id="l00713" name="l00713"></a><span class="lineno">  713</span> </div>
 <div class="line"><a id="l00714" name="l00714"></a><span class="lineno">  714</span>} <span class="comment">// namespace hmap</span></div>
@@ -712,7 +712,7 @@ $(document).ready(function(){initNavTree('erosion_8hpp_source.html',''); initRes
 <div class="line"><a id="l01426" name="l01426"></a><span class="lineno"> 1426</span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacehmap_1_1gpu.html#ace06af8ac4d53033c221b1e0f7462a54">rifts</a>(<a class="code hl_class" href="classhmap_1_1Array.html">Array</a>           &amp;z,</div>
 <div class="line"><a id="l01427" name="l01427"></a><span class="lineno"> 1427</span>           <span class="keyword">const</span> glm::vec2 &amp;kw,    <span class="comment">//  = {4.f, 1.2f},</span></div>
 <div class="line"><a id="l01428" name="l01428"></a><span class="lineno"> 1428</span>           <span class="keywordtype">float</span>            <a class="code hl_function" href="namespacehmap.html#aac71bb6c14edc17967957f7918acdbdd">angle</a>, <span class="comment">// degs</span></div>
-<div class="line"><a id="l01429" name="l01429"></a><span class="lineno"> 1429</span>           <span class="keywordtype">float</span>            amplitude,</div>
+<div class="line"><a id="l01429" name="l01429"></a><span class="lineno"> 1429</span>           <span class="keywordtype">float</span>            <a class="code hl_variable" href="sls__deformation_8cpp.html#a31bef58f966d97b1ace9bd3a58ffd9a6">amplitude</a>,</div>
 <div class="line"><a id="l01430" name="l01430"></a><span class="lineno"> 1430</span>           std::uint32_t    seed,</div>
 <div class="line"><a id="l01431" name="l01431"></a><span class="lineno"> 1431</span>           <span class="keywordtype">float</span>            elevation_noise_shift = 0.f,</div>
 <div class="line"><a id="l01432" name="l01432"></a><span class="lineno"> 1432</span>           <span class="keywordtype">float</span>            k_smooth_bottom = 0.05f,</div>
@@ -1008,7 +1008,7 @@ $(document).ready(function(){initNavTree('erosion_8hpp_source.html',''); initRes
 <div class="line"><a id="l02191" name="l02191"></a><span class="lineno"> 2191</span> </div>
 <div class="line"><a id="l02213" name="l02213"></a><span class="lineno"> 2213</span>Array <a class="code hl_function" href="namespacehmap_1_1gpu.html#a52a653b3b3be84e8ff2330f30a6b5bf3">watershed_ridge</a>(</div>
 <div class="line"><a id="l02214" name="l02214"></a><span class="lineno"> 2214</span>    <span class="keyword">const</span> Array        &amp;z,</div>
-<div class="line"><a id="l02215" name="l02215"></a><span class="lineno"> 2215</span>    <span class="keywordtype">float</span>               amplitude = 0.2f,</div>
+<div class="line"><a id="l02215" name="l02215"></a><span class="lineno"> 2215</span>    <span class="keywordtype">float</span>               <a class="code hl_variable" href="sls__deformation_8cpp.html#a31bef58f966d97b1ace9bd3a58ffd9a6">amplitude</a> = 0.2f,</div>
 <div class="line"><a id="l02216" name="l02216"></a><span class="lineno"> 2216</span>    <span class="keywordtype">float</span>               width = 32.f, <span class="comment">// pixels</span></div>
 <div class="line"><a id="l02217" name="l02217"></a><span class="lineno"> 2217</span>    <span class="keywordtype">float</span>               edt_exponent = 0.5f,</div>
 <div class="line"><a id="l02218" name="l02218"></a><span class="lineno"> 2218</span>    <span class="keywordtype">int</span>                 prefilter_ir = 0,</div>
@@ -1020,7 +1020,7 @@ $(document).ready(function(){initNavTree('erosion_8hpp_source.html',''); initRes
 <div class="line"><a id="l02224" name="l02224"></a><span class="lineno"> 2224</span>Array <a class="code hl_function" href="namespacehmap_1_1gpu.html#a52a653b3b3be84e8ff2330f30a6b5bf3">watershed_ridge</a>(</div>
 <div class="line"><a id="l02225" name="l02225"></a><span class="lineno"> 2225</span>    <span class="keyword">const</span> Array        &amp;z,</div>
 <div class="line"><a id="l02226" name="l02226"></a><span class="lineno"> 2226</span>    <span class="keyword">const</span> Array        *p_mask,</div>
-<div class="line"><a id="l02227" name="l02227"></a><span class="lineno"> 2227</span>    <span class="keywordtype">float</span>               amplitude = 0.2f,</div>
+<div class="line"><a id="l02227" name="l02227"></a><span class="lineno"> 2227</span>    <span class="keywordtype">float</span>               <a class="code hl_variable" href="sls__deformation_8cpp.html#a31bef58f966d97b1ace9bd3a58ffd9a6">amplitude</a> = 0.2f,</div>
 <div class="line"><a id="l02228" name="l02228"></a><span class="lineno"> 2228</span>    <span class="keywordtype">float</span>               width = 32.f,</div>
 <div class="line"><a id="l02229" name="l02229"></a><span class="lineno"> 2229</span>    <span class="keywordtype">float</span>               edt_exponent = 0.5f,</div>
 <div class="line"><a id="l02230" name="l02230"></a><span class="lineno"> 2230</span>    <span class="keywordtype">int</span>                 prefilter_ir = 0,</div>
@@ -1093,6 +1093,8 @@ $(document).ready(function(){initNavTree('erosion_8hpp_source.html',''); initRes
 <div class="ttc" id="anamespacehmap_html_ae80026143790cc7a8f0dd1f4c7bc8e24"><div class="ttname"><a href="namespacehmap.html#ae80026143790cc7a8f0dd1f4c7bc8e24">hmap::generate_bedrock</a></div><div class="ttdeci">Array generate_bedrock(const Array &amp;z, float elevation_strength, float slope_strength, float slope_limit, float zmin=0.f, float zmax=-1.f)</div><div class="ttdoc">Generates a modified bedrock heightmap from an input elevation array.</div><div class="ttdef"><b>Definition</b> generate_bedrock.cpp:12</div></div>
 <div class="ttc" id="anamespacehmap_html_af91e2b8638aab2c4357ce37812b8a99c"><div class="ttname"><a href="namespacehmap.html#af91e2b8638aab2c4357ce37812b8a99c">hmap::erosion_maps</a></div><div class="ttdeci">void erosion_maps(Array &amp;z_before, Array &amp;z_after, Array &amp;erosion_map, Array &amp;deposition_map, float tolerance=0.f)</div><div class="ttdef"><b>Definition</b> erosion_maps.cpp:12</div></div>
 <div class="ttc" id="aprofiles_8hpp_html"><div class="ttname"><a href="profiles_8hpp.html">profiles.hpp</a></div></div>
+<div class="ttc" id="asls__deformation_8cpp_html_a108a1d0fcea4288c9e48f5dc4fa0a1b0"><div class="ttname"><a href="sls__deformation_8cpp.html#a108a1d0fcea4288c9e48f5dc4fa0a1b0">ir</a></div><div class="ttdeci">int ir</div><div class="ttdef"><b>Definition</b> sls_deformation.cpp:27</div></div>
+<div class="ttc" id="asls__deformation_8cpp_html_a31bef58f966d97b1ace9bd3a58ffd9a6"><div class="ttname"><a href="sls__deformation_8cpp.html#a31bef58f966d97b1ace9bd3a58ffd9a6">amplitude</a></div><div class="ttdeci">float amplitude</div><div class="ttdef"><b>Definition</b> sls_deformation.cpp:133</div></div>
 <div class="ttc" id="aterrain__tri__mesh_8hpp_html"><div class="ttname"><a href="terrain__tri__mesh_8hpp.html">terrain_tri_mesh.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

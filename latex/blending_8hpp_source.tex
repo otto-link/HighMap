@@ -15,7 +15,7 @@
 \DoxyCodeLine{00025\ }
 \DoxyCodeLine{00054\ Array\ \mbox{\hyperlink{namespacehmap_aafb76d7961d1655fdc07422982357588}{blend\_exclusion}}(\textcolor{keyword}{const}\ Array\ \&array1,\ \textcolor{keyword}{const}\ Array\ \&array2);}
 \DoxyCodeLine{00055\ }
-\DoxyCodeLine{00068\ Array\ \mbox{\hyperlink{namespacehmap_af91a60a9fcbed7e38f53df57631a5298}{blend\_gradients}}(\textcolor{keyword}{const}\ Array\ \&array1,\ \textcolor{keyword}{const}\ Array\ \&array2,\ \textcolor{keywordtype}{int}\ ir\ =\ 4);}
+\DoxyCodeLine{00068\ Array\ \mbox{\hyperlink{namespacehmap_af91a60a9fcbed7e38f53df57631a5298}{blend\_gradients}}(\textcolor{keyword}{const}\ Array\ \&array1,\ \textcolor{keyword}{const}\ Array\ \&array2,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_a108a1d0fcea4288c9e48f5dc4fa0a1b0}{ir}}\ =\ 4);}
 \DoxyCodeLine{00069\ }
 \DoxyCodeLine{00085\ Array\ \mbox{\hyperlink{namespacehmap_a183cf8de980d1886130cac97fd41bcc5}{blend\_negate}}(\textcolor{keyword}{const}\ Array\ \&array1,\ \textcolor{keyword}{const}\ Array\ \&array2);}
 \DoxyCodeLine{00086\ }
@@ -35,9 +35,9 @@
 \DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ gain\_factor\ =\ 1.f);}
 \DoxyCodeLine{00186\ }
 \DoxyCodeLine{00216\ Array\ \mbox{\hyperlink{namespacehmap_a6786fe2ccf9bd2ceb294927c88bd898d}{transfer}}(\textcolor{keyword}{const}\ Array\ \&source,}
-\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Array\ \&target,}
-\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ ir,}
-\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ amplitude,}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Array\ \&\mbox{\hyperlink{sls__deformation_8cpp_a2975431cdfb0da699844afbc6058ebc9}{target}},}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sls__deformation_8cpp_a108a1d0fcea4288c9e48f5dc4fa0a1b0}{ir}},}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \mbox{\hyperlink{sls__deformation_8cpp_a31bef58f966d97b1ace9bd3a58ffd9a6}{amplitude}},}
 \DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ target\_prefiltering\ =\ \textcolor{keyword}{false});}
 \DoxyCodeLine{00221\ }
 \DoxyCodeLine{00222\ \}\ \textcolor{comment}{//\ namespace\ hmap}}
@@ -45,7 +45,7 @@
 \DoxyCodeLine{00224\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacehmap_1_1gpu}{hmap::gpu}}}
 \DoxyCodeLine{00225\ \{}
 \DoxyCodeLine{00226\ }
-\DoxyCodeLine{00228\ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \mbox{\hyperlink{namespacehmap_1_1gpu_a3a43696b1d6b8f0d966f9f05e5085edf}{blend\_gradients}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \&array1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \&array2,\ \textcolor{keywordtype}{int}\ ir\ =\ 4);}
+\DoxyCodeLine{00228\ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \mbox{\hyperlink{namespacehmap_1_1gpu_a3a43696b1d6b8f0d966f9f05e5085edf}{blend\_gradients}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \&array1,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \&array2,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_a108a1d0fcea4288c9e48f5dc4fa0a1b0}{ir}}\ =\ 4);}
 \DoxyCodeLine{00229\ }
 \DoxyCodeLine{00253\ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \mbox{\hyperlink{namespacehmap_1_1gpu_a65a176508b404f80e5f5abd31456712e}{blend\_poisson\_bf}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \&array1,}
 \DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \&array2,}
@@ -58,9 +58,9 @@
 \DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \ \ *p\_mask\ =\ \textcolor{keyword}{nullptr});}
 \DoxyCodeLine{00278\ }
 \DoxyCodeLine{00280\ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \mbox{\hyperlink{namespacehmap_1_1gpu_acff6d6d559781cdeba565ed795bb81d8}{transfer}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \&source,}
-\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \&target,}
-\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ ir,}
-\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ amplitude,}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \&\mbox{\hyperlink{sls__deformation_8cpp_a2975431cdfb0da699844afbc6058ebc9}{target}},}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sls__deformation_8cpp_a108a1d0fcea4288c9e48f5dc4fa0a1b0}{ir}},}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \mbox{\hyperlink{sls__deformation_8cpp_a31bef58f966d97b1ace9bd3a58ffd9a6}{amplitude}},}
 \DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ target\_prefiltering\ =\ \textcolor{keyword}{false});}
 \DoxyCodeLine{00285\ }
 \DoxyCodeLine{00286\ \}\ \textcolor{comment}{//\ namespace\ hmap::gpu}}

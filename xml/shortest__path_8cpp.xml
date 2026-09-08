@@ -34,10 +34,10 @@
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"><sp/><sp/>ShortestPathResult<sp/>result;</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n<sp/>=<sp/>points.size();</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="sls__deformation_8cpp_1a76f11d9a0a47b94f72c2d0e77fb32240" kindref="member">n</ref><sp/>=<sp/>points.size();</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"><sp/><sp/>result.distance.assign(n,<sp/>std::numeric_limits&lt;float&gt;::infinity());</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/>result.parent.assign(n,<sp/>INVALID);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/>result.distance.assign(<ref refid="sls__deformation_8cpp_1a76f11d9a0a47b94f72c2d0e77fb32240" kindref="member">n</ref>,<sp/>std::numeric_limits&lt;float&gt;::infinity());</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/>result.parent.assign(<ref refid="sls__deformation_8cpp_1a76f11d9a0a47b94f72c2d0e77fb32240" kindref="member">n</ref>,<sp/>INVALID);</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
 <codeline lineno="32"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">QueueNode<sp/>=<sp/>std::pair&lt;float,<sp/>size_t&gt;;</highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
@@ -57,28 +57,28 @@
 <codeline lineno="47"><highlight class="normal"></highlight></codeline>
 <codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(dist<sp/>&gt;<sp/>result.distance[v])<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Neighbor<sp/>&amp;n<sp/>:<sp/>neighbors.adjacency[v])</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Neighbor<sp/>&amp;<ref refid="sls__deformation_8cpp_1a76f11d9a0a47b94f72c2d0e77fb32240" kindref="member">n</ref><sp/>:<sp/>neighbors.adjacency[v])</highlight></codeline>
 <codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>edge_cost;</highlight></codeline>
 <codeline lineno="53"><highlight class="normal"></highlight></codeline>
 <codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(use_delta_z)</highlight></codeline>
 <codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>dz<sp/>=<sp/>points[v].z<sp/>-<sp/>points[n.index].z;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>dz<sp/>=<sp/>points[v].z<sp/>-<sp/>points[<ref refid="sls__deformation_8cpp_1a76f11d9a0a47b94f72c2d0e77fb32240" kindref="member">n</ref>.index].z;</highlight></codeline>
 <codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>edge_cost<sp/>=<sp/>std::abs(dz)<sp/>+<sp/>elevation_weight<sp/>*<sp/>points[v].z;</highlight></codeline>
 <codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>edge_cost<sp/>=<sp/>n.distance2d;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>edge_cost<sp/>=<sp/><ref refid="sls__deformation_8cpp_1a76f11d9a0a47b94f72c2d0e77fb32240" kindref="member">n</ref>.distance2d;</highlight></codeline>
 <codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="63"><highlight class="normal"></highlight></codeline>
 <codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>new_dist<sp/>=<sp/>dist<sp/>+<sp/>edge_cost;</highlight></codeline>
 <codeline lineno="65"><highlight class="normal"></highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(new_dist<sp/>&lt;<sp/>result.distance[n.index])</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(new_dist<sp/>&lt;<sp/>result.distance[<ref refid="sls__deformation_8cpp_1a76f11d9a0a47b94f72c2d0e77fb32240" kindref="member">n</ref>.index])</highlight></codeline>
 <codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result.distance[n.index]<sp/>=<sp/>new_dist;</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result.parent[n.index]<sp/>=<sp/>v;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result.distance[<ref refid="sls__deformation_8cpp_1a76f11d9a0a47b94f72c2d0e77fb32240" kindref="member">n</ref>.index]<sp/>=<sp/>new_dist;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result.parent[<ref refid="sls__deformation_8cpp_1a76f11d9a0a47b94f72c2d0e77fb32240" kindref="member">n</ref>.index]<sp/>=<sp/>v;</highlight></codeline>
 <codeline lineno="70"><highlight class="normal"></highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>queue.emplace(new_dist,<sp/>n.index);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>queue.emplace(new_dist,<sp/><ref refid="sls__deformation_8cpp_1a76f11d9a0a47b94f72c2d0e77fb32240" kindref="member">n</ref>.index);</highlight></codeline>
 <codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="74"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
@@ -94,10 +94,10 @@
 <codeline lineno="84"><highlight class="normal"></highlight></codeline>
 <codeline lineno="85"><highlight class="normal"><sp/><sp/>ShortestPathResult<sp/>result;</highlight></codeline>
 <codeline lineno="86"><highlight class="normal"></highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n<sp/>=<sp/>points.size();</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="sls__deformation_8cpp_1a76f11d9a0a47b94f72c2d0e77fb32240" kindref="member">n</ref><sp/>=<sp/>points.size();</highlight></codeline>
 <codeline lineno="88"><highlight class="normal"></highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/>result.distance.assign(n,<sp/>std::numeric_limits&lt;float&gt;::infinity());</highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/>result.parent.assign(n,<sp/>INVALID);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/>result.distance.assign(<ref refid="sls__deformation_8cpp_1a76f11d9a0a47b94f72c2d0e77fb32240" kindref="member">n</ref>,<sp/>std::numeric_limits&lt;float&gt;::infinity());</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/>result.parent.assign(<ref refid="sls__deformation_8cpp_1a76f11d9a0a47b94f72c2d0e77fb32240" kindref="member">n</ref>,<sp/>INVALID);</highlight></codeline>
 <codeline lineno="91"><highlight class="normal"></highlight></codeline>
 <codeline lineno="92"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">QueueNode<sp/>=<sp/>std::pair&lt;float,<sp/>size_t&gt;;</highlight></codeline>
 <codeline lineno="93"><highlight class="normal"></highlight></codeline>
@@ -119,28 +119,28 @@
 <codeline lineno="109"><highlight class="normal"></highlight></codeline>
 <codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(dist<sp/>&gt;<sp/>result.distance[v])<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="111"><highlight class="normal"></highlight></codeline>
-<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Neighbor<sp/>&amp;n<sp/>:<sp/>neighbors.adjacency[v])</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Neighbor<sp/>&amp;<ref refid="sls__deformation_8cpp_1a76f11d9a0a47b94f72c2d0e77fb32240" kindref="member">n</ref><sp/>:<sp/>neighbors.adjacency[v])</highlight></codeline>
 <codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>edge_cost;</highlight></codeline>
 <codeline lineno="115"><highlight class="normal"></highlight></codeline>
 <codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(use_delta_z)</highlight></codeline>
 <codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>dz<sp/>=<sp/>points[v].z<sp/>-<sp/>points[n.index].z;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>dz<sp/>=<sp/>points[v].z<sp/>-<sp/>points[<ref refid="sls__deformation_8cpp_1a76f11d9a0a47b94f72c2d0e77fb32240" kindref="member">n</ref>.index].z;</highlight></codeline>
 <codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>edge_cost<sp/>=<sp/>std::abs(dz)<sp/>+<sp/>elevation_weight<sp/>*<sp/>points[v].z;</highlight></codeline>
 <codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>edge_cost<sp/>=<sp/>n.distance2d;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>edge_cost<sp/>=<sp/><ref refid="sls__deformation_8cpp_1a76f11d9a0a47b94f72c2d0e77fb32240" kindref="member">n</ref>.distance2d;</highlight></codeline>
 <codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="125"><highlight class="normal"></highlight></codeline>
 <codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>new_dist<sp/>=<sp/>dist<sp/>+<sp/>edge_cost;</highlight></codeline>
 <codeline lineno="127"><highlight class="normal"></highlight></codeline>
-<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(new_dist<sp/>&lt;<sp/>result.distance[n.index])</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(new_dist<sp/>&lt;<sp/>result.distance[<ref refid="sls__deformation_8cpp_1a76f11d9a0a47b94f72c2d0e77fb32240" kindref="member">n</ref>.index])</highlight></codeline>
 <codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result.distance[n.index]<sp/>=<sp/>new_dist;</highlight></codeline>
-<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result.parent[n.index]<sp/>=<sp/>v;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result.distance[<ref refid="sls__deformation_8cpp_1a76f11d9a0a47b94f72c2d0e77fb32240" kindref="member">n</ref>.index]<sp/>=<sp/>new_dist;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result.parent[<ref refid="sls__deformation_8cpp_1a76f11d9a0a47b94f72c2d0e77fb32240" kindref="member">n</ref>.index]<sp/>=<sp/>v;</highlight></codeline>
 <codeline lineno="132"><highlight class="normal"></highlight></codeline>
-<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>queue.emplace(new_dist,<sp/>n.index);</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>queue.emplace(new_dist,<sp/><ref refid="sls__deformation_8cpp_1a76f11d9a0a47b94f72c2d0e77fb32240" kindref="member">n</ref>.index);</highlight></codeline>
 <codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="136"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
