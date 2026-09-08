@@ -6454,10 +6454,10 @@ Results are reproducible up to atomic scheduling order (particles read fields th
         </inbodydescription>
         <location file="HighMap/src/erosion/strata.cpp" line="335" column="6" bodyfile="HighMap/src/erosion/strata.cpp" bodystart="335" bodyend="362" declfile="HighMap/include/highmap/erosion.hpp" declline="1870" declcolumn="6"/>
       </memberdef>
-      <memberdef kind="function" id="namespacehmap_1_1gpu_1a2eb4bdf2d7dc4441e56865027764425e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespacehmap_1_1gpu_1a4e8be6889c281171b841805b17b42b7f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void hmap::gpu::thermal</definition>
-        <argsstring>(Array &amp;z, const Array &amp;talus, int iterations=10, Array *p_bedrock=nullptr, Array *p_deposition_map=nullptr)</argsstring>
+        <argsstring>(Array &amp;z, const Array &amp;talus, int iterations=10, const Array *p_bedrock=nullptr, Array *p_deposition_map=nullptr)</argsstring>
         <name>thermal</name>
         <qualifiedname>hmap::gpu::thermal</qualifiedname>
         <param>
@@ -6474,7 +6474,7 @@ Results are reproducible up to atomic scheduling order (particles read fields th
           <defval>10</defval>
         </param>
         <param>
-          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
           <declname>p_bedrock</declname>
           <defval>nullptr</defval>
         </param>
@@ -6547,14 +6547,22 @@ Results are reproducible up to atomic scheduling order (particles read fields th
 <codeline><highlight class="normal"><sp/><sp/>glm::vec2<sp/><sp/>kw<sp/>=<sp/>{4.f,<sp/>4.f};</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>z<sp/>=<sp/><ref refid="namespacehmap_1a7d699a468a18be16c70654958ee13b41" kindref="member">hmap::noise_fbm</ref>(<ref refid="namespacehmap_1ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581" kindref="member">hmap::NoiseType::PERLIN</ref>,<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>kw,<sp/>seed);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>z0<sp/>=<sp/>z;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>z0<sp/>=<sp/><ref refid="namespacehmap_1a7d699a468a18be16c70654958ee13b41" kindref="member">hmap::noise_fbm</ref>(<ref refid="namespacehmap_1ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581" kindref="member">hmap::NoiseType::PERLIN</ref>,<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>kw,<sp/>seed);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>dmap<sp/>=<sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>z1<sp/>=<sp/>z0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>z2<sp/>=<sp/>z0;</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1_1gpu_1a2eb4bdf2d7dc4441e56865027764425e" kindref="member">hmap::gpu::thermal</ref>(z,<sp/>0.1f<sp/>/<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.x,<sp/>500);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1_1gpu_1a4e8be6889c281171b841805b17b42b7f" kindref="member">hmap::gpu::thermal</ref>(z1,<sp/>0.1f<sp/>/<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.x,<sp/>500);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1_1gpu_1a551ff43fadc1798ab22617dfe68f231b" kindref="member">hmap::gpu::thermal_conserve</ref>(z2,<sp/>0.1f<sp/>/<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.x,<sp/>500);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1ac2452e568959bc21c9b7b09202e5977a" kindref="member">hmap::export_banner_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_thermal.png&quot;</highlight><highlight class="normal">,<sp/>{z0,<sp/>z},<sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369a6d093dbf3088c52a8acee413942545d9" kindref="member">hmap::Cmap::TERRAIN</ref>,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1_1log_1a6480b435f3a81f37c203245b752fb5c7" kindref="member">hmap::log::trace</ref>(</highlight><highlight class="stringliteral">&quot;z0<sp/>sum:<sp/>{}&quot;</highlight><highlight class="normal">,<sp/>z0.<ref refid="classhmap_1_1Array_1a7ee63fb7135276ed8d6643d082f06892" kindref="member">sum</ref>());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1_1log_1a6480b435f3a81f37c203245b752fb5c7" kindref="member">hmap::log::trace</ref>(</highlight><highlight class="stringliteral">&quot;z0<sp/>sum:<sp/>{}&quot;</highlight><highlight class="normal">,<sp/>z1.sum());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1_1log_1a6480b435f3a81f37c203245b752fb5c7" kindref="member">hmap::log::trace</ref>(</highlight><highlight class="stringliteral">&quot;z0<sp/>sum:<sp/>{}&quot;</highlight><highlight class="normal">,<sp/>z2.sum());</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1ac2452e568959bc21c9b7b09202e5977a" kindref="member">hmap::export_banner_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_thermal.png&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{z0,<sp/>z1,<sp/>z2},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369a6d093dbf3088c52a8acee413942545d9" kindref="member">hmap::Cmap::TERRAIN</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 </programlisting></para>
 <para><bold>Result</bold> <image type="html" name="ex_thermal.png"></image>
@@ -6564,10 +6572,10 @@ Results are reproducible up to atomic scheduling order (particles read fields th
         </inbodydescription>
         <location file="HighMap/src/erosion/thermal_gpu.cpp" line="18" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="18" bodyend="76" declfile="HighMap/include/highmap/erosion.hpp" declline="1901" declcolumn="6"/>
       </memberdef>
-      <memberdef kind="function" id="namespacehmap_1_1gpu_1a0cd57e6ed132067e5768937fe84f1f46" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespacehmap_1_1gpu_1a2ce8ecd08ace98c21dfb354bab5451a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void hmap::gpu::thermal</definition>
-        <argsstring>(Array &amp;z, const Array *p_mask, const Array &amp;talus, int iterations=10, Array *p_bedrock=nullptr, Array *p_deposition_map=nullptr)</argsstring>
+        <argsstring>(Array &amp;z, const Array *p_mask, const Array &amp;talus, int iterations=10, const Array *p_bedrock=nullptr, Array *p_deposition_map=nullptr)</argsstring>
         <name>thermal</name>
         <qualifiedname>hmap::gpu::thermal</qualifiedname>
         <param>
@@ -6588,7 +6596,7 @@ Results are reproducible up to atomic scheduling order (particles read fields th
           <defval>10</defval>
         </param>
         <param>
-          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
           <declname>p_bedrock</declname>
           <defval>nullptr</defval>
         </param>
@@ -6604,12 +6612,12 @@ Results are reproducible up to atomic scheduling order (particles read fields th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="78" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="78" bodyend="90" declfile="HighMap/include/highmap/erosion.hpp" declline="1907" declcolumn="6"/>
+        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="191" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="191" bodyend="203" declfile="HighMap/include/highmap/erosion.hpp" declline="1907" declcolumn="6"/>
       </memberdef>
-      <memberdef kind="function" id="namespacehmap_1_1gpu_1aac5f0e0045cf767611fb8d2def2c4cb5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespacehmap_1_1gpu_1abfffd9aa12ea86a2c191a7a5b9cbe5f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void hmap::gpu::thermal</definition>
-        <argsstring>(Array &amp;z, float talus, int iterations=10, Array *p_bedrock=nullptr, Array *p_deposition_map=nullptr)</argsstring>
+        <argsstring>(Array &amp;z, float talus, int iterations=10, const Array *p_bedrock=nullptr, Array *p_deposition_map=nullptr)</argsstring>
         <name>thermal</name>
         <qualifiedname>hmap::gpu::thermal</qualifiedname>
         <param>
@@ -6626,7 +6634,7 @@ Results are reproducible up to atomic scheduling order (particles read fields th
           <defval>10</defval>
         </param>
         <param>
-          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
           <declname>p_bedrock</declname>
           <defval>nullptr</defval>
         </param>
@@ -6642,7 +6650,7 @@ Results are reproducible up to atomic scheduling order (particles read fields th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="92" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="92" bodyend="103" declfile="HighMap/include/highmap/erosion.hpp" declline="1914" declcolumn="6"/>
+        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="205" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="205" bodyend="216" declfile="HighMap/include/highmap/erosion.hpp" declline="1914" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a36a2eba6d158e44d0ef917d9582987fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -6675,7 +6683,7 @@ Results are reproducible up to atomic scheduling order (particles read fields th
 <para><xrefsect id="todo_1_todo000002"><xreftitle>Todo</xreftitle><xrefdescription><para>more comprehensive documentation on auto-bedrock algo. </para>
 <para>fix hard-coded parameters.</para>
 </xrefdescription></xrefsect></para>
-<para><simplesect kind="see"><para><computeroutput><ref refid="namespacehmap_1_1gpu_1a2eb4bdf2d7dc4441e56865027764425e" kindref="member">thermal</ref></computeroutput></para>
+<para><simplesect kind="see"><para><computeroutput><ref refid="namespacehmap_1_1gpu_1a4e8be6889c281171b841805b17b42b7f" kindref="member">thermal</ref></computeroutput></para>
 </simplesect>
 <parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -6736,7 +6744,7 @@ Results are reproducible up to atomic scheduling order (particles read fields th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="105" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="105" bodyend="139" declfile="HighMap/include/highmap/erosion.hpp" declline="1941" declcolumn="6"/>
+        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="218" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="218" bodyend="252" declfile="HighMap/include/highmap/erosion.hpp" declline="1941" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1ae3402d591c3b13ef13cece96cdab85b4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -6773,7 +6781,7 @@ Results are reproducible up to atomic scheduling order (particles read fields th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="152" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="152" bodyend="163" declfile="HighMap/include/highmap/erosion.hpp" declline="1946" declcolumn="6"/>
+        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="265" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="265" bodyend="276" declfile="HighMap/include/highmap/erosion.hpp" declline="1946" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1ac87a6d725bf0751510f6b1f426a8af27" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -6806,7 +6814,190 @@ Results are reproducible up to atomic scheduling order (particles read fields th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="141" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="141" bodyend="150" declfile="HighMap/include/highmap/erosion.hpp" declline="1952" declcolumn="6"/>
+        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="254" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="254" bodyend="263" declfile="HighMap/include/highmap/erosion.hpp" declline="1952" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehmap_1_1gpu_1a551ff43fadc1798ab22617dfe68f231b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::gpu::thermal_conserve</definition>
+        <argsstring>(Array &amp;z, const Array &amp;talus, int iterations=10, float rate=0.5f, const Array *p_bedrock=nullptr, Array *p_deposition_map=nullptr)</argsstring>
+        <name>thermal_conserve</name>
+        <qualifiedname>hmap::gpu::thermal_conserve</qualifiedname>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>talus</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>iterations</declname>
+          <defval>10</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>rate</declname>
+          <defval>0.5<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
+          <declname>p_bedrock</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
+          <declname>p_deposition_map</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>Apply mass-preserving thermal weathering erosion. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>z</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input array. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>talus</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Talus limit. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>iterations</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of iterations. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rate</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Erosion rate factor. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_bedrock</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Lower elevation limit. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_deposition_map</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>[out] Reference to the deposition map, provided as an output field. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="78" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="78" bodyend="149" declfile="HighMap/include/highmap/erosion.hpp" declline="1968" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehmap_1_1gpu_1a76130f083fcac4a25954f37f7ff6b34e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::gpu::thermal_conserve</definition>
+        <argsstring>(Array &amp;z, const Array *p_mask, const Array &amp;talus, int iterations=10, float rate=0.5f, const Array *p_bedrock=nullptr, Array *p_deposition_map=nullptr)</argsstring>
+        <name>thermal_conserve</name>
+        <qualifiedname>hmap::gpu::thermal_conserve</qualifiedname>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
+          <declname>p_mask</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>talus</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>iterations</declname>
+          <defval>10</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>rate</declname>
+          <defval>0.5<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
+          <declname>p_bedrock</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
+          <declname>p_deposition_map</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="151" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="151" bodyend="170" declfile="HighMap/include/highmap/erosion.hpp" declline="1975" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehmap_1_1gpu_1ad8a556d7caa0d6bda80d7f28b8374b4a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::gpu::thermal_conserve</definition>
+        <argsstring>(Array &amp;z, float talus, int iterations=10, float rate=0.5f, const Array *p_bedrock=nullptr, Array *p_deposition_map=nullptr)</argsstring>
+        <name>thermal_conserve</name>
+        <qualifiedname>hmap::gpu::thermal_conserve</qualifiedname>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>talus</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>iterations</declname>
+          <defval>10</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>rate</declname>
+          <defval>0.5<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
+          <declname>p_bedrock</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
+          <declname>p_deposition_map</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="172" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="172" bodyend="189" declfile="HighMap/include/highmap/erosion.hpp" declline="1983" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a5a5275d0f2588dbbd766e2c5b1a8d55a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -6887,7 +7078,7 @@ Results are reproducible up to atomic scheduling order (particles read fields th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="165" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="165" bodyend="189" declfile="HighMap/include/highmap/erosion.hpp" declline="1972" declcolumn="6"/>
+        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="278" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="278" bodyend="302" declfile="HighMap/include/highmap/erosion.hpp" declline="2005" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a13e5b18eb4ff1cf1f7357a9b29bf9368" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -6928,7 +7119,7 @@ Results are reproducible up to atomic scheduling order (particles read fields th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="191" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="191" bodyend="203" declfile="HighMap/include/highmap/erosion.hpp" declline="1978" declcolumn="6"/>
+        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="304" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="304" bodyend="316" declfile="HighMap/include/highmap/erosion.hpp" declline="2011" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a00b54f4e60a8fbd6ed5213600d598869" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -7007,7 +7198,7 @@ Results are reproducible up to atomic scheduling order (particles read fields th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="236" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="236" bodyend="254" declfile="HighMap/include/highmap/erosion.hpp" declline="2004" declcolumn="6"/>
+        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="349" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="349" bodyend="367" declfile="HighMap/include/highmap/erosion.hpp" declline="2037" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a2bb49a523386fcb8fc34f27741c520a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -7038,7 +7229,7 @@ Results are reproducible up to atomic scheduling order (particles read fields th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="256" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="256" bodyend="264" declfile="HighMap/include/highmap/erosion.hpp" declline="2006" declcolumn="6"/>
+        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="369" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="369" bodyend="377" declfile="HighMap/include/highmap/erosion.hpp" declline="2039" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1ae57a1e9bd94f218d4be17c9d8be012c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -7137,7 +7328,7 @@ Results are reproducible up to atomic scheduling order (particles read fields th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="205" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="205" bodyend="223" declfile="HighMap/include/highmap/erosion.hpp" declline="2028" declcolumn="6"/>
+        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="318" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="318" bodyend="336" declfile="HighMap/include/highmap/erosion.hpp" declline="2061" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a72c9d220589d2724b4e48e9c37ff55ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -7169,7 +7360,7 @@ Results are reproducible up to atomic scheduling order (particles read fields th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="225" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="225" bodyend="234" declfile="HighMap/include/highmap/erosion.hpp" declline="2030" declcolumn="6"/>
+        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="338" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="338" bodyend="347" declfile="HighMap/include/highmap/erosion.hpp" declline="2063" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a435a38880a6bcabfb8991d5834a0f786" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -7240,7 +7431,7 @@ Results are reproducible up to atomic scheduling order (particles read fields th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="266" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="266" bodyend="284" declfile="HighMap/include/highmap/erosion.hpp" declline="2047" declcolumn="6"/>
+        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="379" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="379" bodyend="397" declfile="HighMap/include/highmap/erosion.hpp" declline="2080" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a812be167a39917ce8c869f7399dee231" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -7267,7 +7458,7 @@ Results are reproducible up to atomic scheduling order (particles read fields th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="286" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="286" bodyend="291" declfile="HighMap/include/highmap/erosion.hpp" declline="2049" declcolumn="6"/>
+        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="399" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="399" bodyend="404" declfile="HighMap/include/highmap/erosion.hpp" declline="2082" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a1489150d5e1af976a9f814b9911b3ea0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -7373,7 +7564,7 @@ Results are reproducible up to atomic scheduling order (particles read fields th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="293" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="293" bodyend="319" declfile="HighMap/include/highmap/erosion.hpp" declline="2070" declcolumn="6"/>
+        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="406" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="406" bodyend="432" declfile="HighMap/include/highmap/erosion.hpp" declline="2103" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1ad0a05ed0beea669300d62197a0dadaf2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -7410,7 +7601,7 @@ Results are reproducible up to atomic scheduling order (particles read fields th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="321" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="321" bodyend="332" declfile="HighMap/include/highmap/erosion.hpp" declline="2075" declcolumn="6"/>
+        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="434" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="434" bodyend="445" declfile="HighMap/include/highmap/erosion.hpp" declline="2108" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a525c9818a95840ee8dfaa0c4e0d4f779" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -7517,7 +7708,7 @@ Results are reproducible up to atomic scheduling order (particles read fields th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="334" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="334" bodyend="361" declfile="HighMap/include/highmap/erosion.hpp" declline="2102" declcolumn="6"/>
+        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="447" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="447" bodyend="474" declfile="HighMap/include/highmap/erosion.hpp" declline="2135" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a659c9749a413a9042480f0de9c4133cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -7559,7 +7750,7 @@ Results are reproducible up to atomic scheduling order (particles read fields th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="363" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="363" bodyend="376" declfile="HighMap/include/highmap/erosion.hpp" declline="2108" declcolumn="6"/>
+        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="476" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="476" bodyend="489" declfile="HighMap/include/highmap/erosion.hpp" declline="2141" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1ab753c4abd819aa6945c1cfc5e25ccec4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -7639,7 +7830,7 @@ Results are reproducible up to atomic scheduling order (particles read fields th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="378" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="378" bodyend="409" declfile="HighMap/include/highmap/erosion.hpp" declline="2134" declcolumn="6"/>
+        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="491" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="491" bodyend="522" declfile="HighMap/include/highmap/erosion.hpp" declline="2167" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1acfe28321531d2c03721588054da1446a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -7680,7 +7871,7 @@ Results are reproducible up to atomic scheduling order (particles read fields th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="411" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="411" bodyend="423" declfile="HighMap/include/highmap/erosion.hpp" declline="2140" declcolumn="6"/>
+        <location file="HighMap/src/erosion/thermal_gpu.cpp" line="524" column="6" bodyfile="HighMap/src/erosion/thermal_gpu.cpp" bodystart="524" bodyend="536" declfile="HighMap/include/highmap/erosion.hpp" declline="2173" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1ae8a8da3d95deb978d813ce782a1492bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -7830,7 +8021,7 @@ Results are reproducible up to atomic scheduling order (particles read fields th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/valley_fill.cpp" line="14" column="6" bodyfile="HighMap/src/erosion/valley_fill.cpp" bodystart="14" bodyend="68" declfile="HighMap/include/highmap/erosion.hpp" declline="2167" declcolumn="6"/>
+        <location file="HighMap/src/erosion/valley_fill.cpp" line="14" column="6" bodyfile="HighMap/src/erosion/valley_fill.cpp" bodystart="14" bodyend="68" declfile="HighMap/include/highmap/erosion.hpp" declline="2200" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1aa7ce5c44914d54ec7fa0162c5ccbab86" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -7901,7 +8092,7 @@ Results are reproducible up to atomic scheduling order (particles read fields th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/valley_fill.cpp" line="70" column="6" bodyfile="HighMap/src/erosion/valley_fill.cpp" bodystart="70" bodyend="117" declfile="HighMap/include/highmap/erosion.hpp" declline="2179" declcolumn="6"/>
+        <location file="HighMap/src/erosion/valley_fill.cpp" line="70" column="6" bodyfile="HighMap/src/erosion/valley_fill.cpp" bodystart="70" bodyend="117" declfile="HighMap/include/highmap/erosion.hpp" declline="2212" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a52a653b3b3be84e8ff2330f30a6b5bf3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -8044,7 +8235,7 @@ Results are reproducible up to atomic scheduling order (particles read fields th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/watershed_ridge.cpp" line="22" column="7" bodyfile="HighMap/src/erosion/watershed_ridge.cpp" bodystart="22" bodyend="88" declfile="HighMap/include/highmap/erosion.hpp" declline="2213" declcolumn="7"/>
+        <location file="HighMap/src/erosion/watershed_ridge.cpp" line="22" column="7" bodyfile="HighMap/src/erosion/watershed_ridge.cpp" bodystart="22" bodyend="88" declfile="HighMap/include/highmap/erosion.hpp" declline="2246" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a04047f16ece68b32c1c8e68b4780f0df" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -8106,7 +8297,7 @@ Results are reproducible up to atomic scheduling order (particles read fields th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/watershed_ridge.cpp" line="90" column="7" bodyfile="HighMap/src/erosion/watershed_ridge.cpp" bodystart="90" bodyend="130" declfile="HighMap/include/highmap/erosion.hpp" declline="2224" declcolumn="7"/>
+        <location file="HighMap/src/erosion/watershed_ridge.cpp" line="90" column="7" bodyfile="HighMap/src/erosion/watershed_ridge.cpp" bodystart="90" bodyend="130" declfile="HighMap/include/highmap/erosion.hpp" declline="2257" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1ad6240ccabf3a0f858698dc0b77ab619e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>

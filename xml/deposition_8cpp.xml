@@ -45,7 +45,7 @@
 <codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>smap<sp/>=<sp/>smap<sp/>+<sp/>deposition_step;</highlight></codeline>
 <codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>Array<sp/>z_tot<sp/>=<sp/>z<sp/>+<sp/>smap;</highlight></codeline>
 <codeline lineno="36"><highlight class="normal"></highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1_1gpu_1a2eb4bdf2d7dc4441e56865027764425e" kindref="member">gpu::thermal</ref>(z_tot,<sp/>talus,<sp/>thermal_subiterations);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1_1gpu_1a4e8be6889c281171b841805b17b42b7f" kindref="member">gpu::thermal</ref>(z_tot,<sp/>talus,<sp/>thermal_subiterations);</highlight></codeline>
 <codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>smap<sp/>=<sp/><ref refid="namespacehmap_1aa52f3e1fcb1cad464a512c09a0c8eb54" kindref="member">maximum</ref>(z_tot<sp/>-<sp/>z,<sp/>0.f);</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"><sp/><sp/>z<sp/>=<sp/>z<sp/>+<sp/>smap;</highlight></codeline>
@@ -115,7 +115,7 @@
 <codeline lineno="104"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>apply<sp/>thermal<sp/>erosion<sp/>with<sp/>prepared<sp/>inputs</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="105"><highlight class="normal"><sp/><sp/>Array<sp/>sediment_layer_map(z.shape);</highlight></codeline>
 <codeline lineno="106"><highlight class="normal"></highlight></codeline>
-<codeline lineno="107"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1_1gpu_1a2eb4bdf2d7dc4441e56865027764425e" kindref="member">gpu::thermal</ref>(z,<sp/>talus_ref,<sp/>iterations,<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">,<sp/>&amp;sediment_layer_map);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1_1gpu_1a4e8be6889c281171b841805b17b42b7f" kindref="member">gpu::thermal</ref>(z,<sp/>talus_ref,<sp/>iterations,<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">,<sp/>&amp;sediment_layer_map);</highlight></codeline>
 <codeline lineno="108"><highlight class="normal"></highlight></codeline>
 <codeline lineno="109"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>smooth<sp/>transitions</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="110"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(apply_post_filter)</highlight></codeline>

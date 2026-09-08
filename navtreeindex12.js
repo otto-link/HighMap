@@ -1,5 +1,8 @@
 var NAVTREEINDEX12 =
 {
+"kernels_8cpp.html#a38c0a582a98d48f73f49f12ebf1b78f9":[5,0,1,1,22,0,5],
+"kernels_8cpp.html#a39b5e3442edf55eaf7392b2bca967242":[5,0,1,1,22,0,11],
+"kernels_8cpp.html#a44931abadbb5fea3bba9dd59540cf9cb":[5,0,1,1,22,0,0],
 "kernels_8cpp.html#a553a4572c845a1286836bc08b67b3e34":[5,0,1,1,22,0,4],
 "kernels_8cpp.html#a660d632fc99c8af533a9d3b2326d8e7d":[5,0,1,1,22,0,3],
 "kernels_8cpp.html#a675ff649d5e55194bfa93fac4c423adb":[5,0,1,1,22,0,18],
@@ -246,8 +249,5 @@ var NAVTREEINDEX12 =
 "morphology_8cpp.html#a2c98f2116e221df5f6684a7546bb233f":[5,0,1,1,25,3,19],
 "morphology_8cpp.html#a35df7dd9ad7cff66bed5f5dcdac30797":[5,0,1,1,25,3,15],
 "morphology_8cpp.html#a511226f8c6989729ff59e5079a6cff29":[5,0,1,1,25,3,7],
-"morphology_8cpp.html#a5b01ee5f465847e08cde67a9533590e3":[5,0,1,1,25,3,17],
-"morphology_8cpp.html#a7c7d934cc5a3a5e1a6f17c09a0e1e51f":[5,0,1,1,25,3,21],
-"morphology_8cpp.html#a7e2e905cda124cb865b4bc1bf7b48645":[5,0,1,1,25,3,22],
-"morphology_8cpp.html#a889405ce11be91e33cc80ca4dbd192b0":[5,0,1,1,25,3,2]
+"morphology_8cpp.html#a5b01ee5f465847e08cde67a9533590e3":[5,0,1,1,25,3,17]
 };

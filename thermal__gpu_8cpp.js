@@ -1,8 +1,11 @@
 var thermal__gpu_8cpp =
 [
-    [ "thermal", "thermal__gpu_8cpp.html#a2eb4bdf2d7dc4441e56865027764425e", null ],
-    [ "thermal", "thermal__gpu_8cpp.html#a0cd57e6ed132067e5768937fe84f1f46", null ],
-    [ "thermal", "thermal__gpu_8cpp.html#aac5f0e0045cf767611fb8d2def2c4cb5", null ],
+    [ "thermal", "thermal__gpu_8cpp.html#a4e8be6889c281171b841805b17b42b7f", null ],
+    [ "thermal_conserve", "thermal__gpu_8cpp.html#a551ff43fadc1798ab22617dfe68f231b", null ],
+    [ "thermal_conserve", "thermal__gpu_8cpp.html#a76130f083fcac4a25954f37f7ff6b34e", null ],
+    [ "thermal_conserve", "thermal__gpu_8cpp.html#ad8a556d7caa0d6bda80d7f28b8374b4a", null ],
+    [ "thermal", "thermal__gpu_8cpp.html#a2ce8ecd08ace98c21dfb354bab5451a2", null ],
+    [ "thermal", "thermal__gpu_8cpp.html#abfffd9aa12ea86a2c191a7a5b9cbe5f8", null ],
     [ "thermal_auto_bedrock", "thermal__gpu_8cpp.html#a36a2eba6d158e44d0ef917d9582987fe", null ],
     [ "thermal_auto_bedrock", "thermal__gpu_8cpp.html#ac87a6d725bf0751510f6b1f426a8af27", null ],
     [ "thermal_auto_bedrock", "thermal__gpu_8cpp.html#ae3402d591c3b13ef13cece96cdab85b4", null ],
