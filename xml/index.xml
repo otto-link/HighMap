@@ -1473,8 +1473,8 @@
     <member refid="namespacehmap_1a98290631d4a1247b31b11ee1f42cd6e4" kind="function"><name>hydraulic_stream_log</name></member>
     <member refid="namespacehmap_1a66355f091aa60d97d5a7c7eeb08c51cc" kind="function"><name>hydraulic_stream_upscale_amplification</name></member>
     <member refid="namespacehmap_1af975837e0f5b169dcb6d3f5f58c95fe9" kind="function"><name>hydraulic_stream_upscale_amplification</name></member>
-    <member refid="namespacehmap_1a7b8945745feaeaa365d965ce66b32f58" kind="function"><name>export_asset</name></member>
-    <member refid="namespacehmap_1a0892411b8f3af0942381044595a99e52" kind="function"><name>export_asset</name></member>
+    <member refid="namespacehmap_1a33c845361a82a1863a6a8a65f8027573" kind="function"><name>export_asset</name></member>
+    <member refid="namespacehmap_1a4f0b91aff70b29e8173cf4189a59bcad" kind="function"><name>export_asset</name></member>
     <member refid="namespacehmap_1a2f24b35f08d0ba5cce622c8896690fbd" kind="function"><name>export_as_ascii</name></member>
     <member refid="namespacehmap_1a3aa96cd684efd827ce57ffd9fef3c950" kind="function"><name>export_as_cubemap</name></member>
     <member refid="namespacehmap_1ac2452e568959bc21c9b7b09202e5977a" kind="function"><name>export_banner_png</name></member>
@@ -2140,8 +2140,8 @@
     <member refid="namespacehmap_1a9bab94bd2d87290be7f4fde49095b311" kind="function"><name>helper_get_rtheta_stretch</name></member>
     <member refid="namespacehmap_1acc54c794223302fc298eeeb563a27d0e" kind="function"><name>helper_get_distance_polar</name></member>
     <member refid="namespacehmap_1a44e4240c5e7a9cfd46de3c27562ed201" kind="function"><name>helper_smooth_triple_corner</name></member>
-    <member refid="namespacehmap_1ae06d18b75bba588de10ecdc71fb4402e" kind="function"><name>helper_build_mesh_masked</name></member>
-    <member refid="namespacehmap_1ae564e80e124dba15721b06a76e0cf541" kind="function"><name>helper_build_mesh</name></member>
+    <member refid="namespacehmap_1ac56df1dc268d53f122abc88ae8f9b124" kind="function"><name>helper_build_mesh_masked</name></member>
+    <member refid="namespacehmap_1aec2b0c4bc7a299e0506e3568715c38a8" kind="function"><name>helper_build_mesh</name></member>
     <member refid="namespacehmap_1a5635a383951e6438d8baa2cb1150f5e8" kind="function"><name>compute_splatmap</name></member>
     <member refid="namespacehmap_1af0767f033501ba4d10fc09be32833520" kind="function"><name>helper_compute_tile_bounds</name></member>
     <member refid="namespacehmap_1ad8482d5a5c0650c20ffe1dc86b5f8a61" kind="function"><name>recurve_bexp</name></member>
@@ -3386,6 +3386,9 @@
   <compound refid="test__export__asset_8cpp" kind="file"><name>test_export_asset.cpp</name>
     <member refid="test__export__asset_8cpp_1ac0c1a1c179d45048063a80250c97a030" kind="function"><name>TEST</name></member>
     <member refid="test__export__asset_8cpp_1a216b177c5af4777d280bf4c3b4ce3e30" kind="function"><name>TEST</name></member>
+    <member refid="test__export__asset_8cpp_1ac61228454a82e7f5db84b77f32ee6514" kind="function"><name>TEST</name></member>
+    <member refid="test__export__asset_8cpp_1ad9c6a6647c08d16490c704cd211adc92" kind="function"><name>TEST</name></member>
+    <member refid="test__export__asset_8cpp_1ad4bf70a58a479cbead4a7f7c24a816d3" kind="function"><name>TEST</name></member>
   </compound>
   <compound refid="test__fill__talus_8cpp" kind="file"><name>test_fill_talus.cpp</name>
     <member refid="test__fill__talus_8cpp_1a99dca05ff93c7b5d78d8a5096c275b76" kind="function"><name>TEST</name></member>

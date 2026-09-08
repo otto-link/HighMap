@@ -25,8 +25,8 @@ var export_8hpp =
       [ "OBJ", "export_8hpp.html#ac3d35efc6e5b596f508e2b17a5aa871bad7b6b74b201392410caefcc4933811e0", null ],
       [ "OBJNOMTL", "export_8hpp.html#ac3d35efc6e5b596f508e2b17a5aa871baf1ff28325bd7912ef3267a9ed0049efe", null ]
     ] ],
-    [ "export_asset", "export_8hpp.html#a7b8945745feaeaa365d965ce66b32f58", null ],
-    [ "export_asset", "export_8hpp.html#a0892411b8f3af0942381044595a99e52", null ],
+    [ "export_asset", "export_8hpp.html#a33c845361a82a1863a6a8a65f8027573", null ],
+    [ "export_asset", "export_8hpp.html#a4f0b91aff70b29e8173cf4189a59bcad", null ],
     [ "export_as_ascii", "export_8hpp.html#a2f24b35f08d0ba5cce622c8896690fbd", null ],
     [ "export_as_cubemap", "export_8hpp.html#a3aa96cd684efd827ce57ffd9fef3c950", null ],
     [ "export_banner_png", "export_8hpp.html#ac2452e568959bc21c9b7b09202e5977a", null ],

@@ -12729,10 +12729,10 @@ additional_depth)</computeroutput>.</para>
         </inbodydescription>
         <location file="HighMap/src/erosion/hydraulic_stream_upscale_amplification.cpp" line="43" column="6" bodyfile="HighMap/src/erosion/hydraulic_stream_upscale_amplification.cpp" bodystart="43" bodyend="75" declfile="HighMap/include/highmap/erosion.hpp" declline="704" declcolumn="6"/>
       </memberdef>
-      <memberdef kind="function" id="namespacehmap_1a7b8945745feaeaa365d965ce66b32f58" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespacehmap_1a33c845361a82a1863a6a8a65f8027573" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
         <definition>bool hmap::export_asset</definition>
-        <argsstring>(const std::string &amp;fname, const Array &amp;array, MeshType mesh_type=MeshType::TRI, AssetExportFormat export_format=AssetExportFormat::GLB2, float elevation_scaling=0.2f, const std::string &amp;texture_fname=&quot;&quot;, const std::string &amp;normal_map_fname=&quot;&quot;, float max_error=5e-4f)</argsstring>
+        <argsstring>(const std::string &amp;fname, const Array &amp;array, MeshType mesh_type=MeshType::TRI, AssetExportFormat export_format=AssetExportFormat::GLB2, float elevation_scaling=0.2f, const std::string &amp;texture_fname=&quot;&quot;, const std::string &amp;normal_map_fname=&quot;&quot;, float max_error=5e-4f, bool fit_boundaries=false)</argsstring>
         <name>export_asset</name>
         <qualifiedname>hmap::export_asset</qualifiedname>
         <param>
@@ -12772,6 +12772,11 @@ additional_depth)</computeroutput>.</para>
           <type>float</type>
           <declname>max_error</declname>
           <defval>5e-4<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>fit_boundaries</declname>
+          <defval>false</defval>
         </param>
         <briefdescription>
 <para>Exports a heightmap to various 3D file formats. </para>
@@ -12842,6 +12847,14 @@ additional_depth)</computeroutput>.</para>
 <para>The maximum allowable error for optimized Delaunay triangulation. Default is 5e-4f. </para>
 </parameterdescription>
 </parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fit_boundaries</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If true, domain coordinates are scaled to [0, 1] x [0, 1]. Default is false (domain scaled to [0, 1 - 1/shape.x] x [0, 1 - 1/shape.y]). </para>
+</parameterdescription>
+</parameteritem>
 </parameterlist>
 <simplesect kind="return"><para><computeroutput>true</computeroutput> if the export is successful, <computeroutput>false</computeroutput> otherwise. </para>
 </simplesect>
@@ -12849,12 +12862,12 @@ additional_depth)</computeroutput>.</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/export/export_asset.cpp" line="234" column="6" bodyfile="HighMap/src/export/export_asset.cpp" bodystart="234" bodyend="307" declfile="HighMap/include/highmap/export.hpp" declline="158" declcolumn="6"/>
+        <location file="HighMap/src/export/export_asset.cpp" line="262" column="6" bodyfile="HighMap/src/export/export_asset.cpp" bodystart="262" bodyend="338" declfile="HighMap/include/highmap/export.hpp" declline="161" declcolumn="6"/>
       </memberdef>
-      <memberdef kind="function" id="namespacehmap_1a0892411b8f3af0942381044595a99e52" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespacehmap_1a4f0b91aff70b29e8173cf4189a59bcad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
         <definition>bool hmap::export_asset</definition>
-        <argsstring>(const std::string &amp;fname, const Array &amp;array, const Array &amp;mask, AssetExportFormat export_format=AssetExportFormat::GLB2, float elevation_scaling=0.2f, const std::string &amp;texture_fname=&quot;&quot;, const std::string &amp;normal_map_fname=&quot;&quot;)</argsstring>
+        <argsstring>(const std::string &amp;fname, const Array &amp;array, const Array &amp;mask, AssetExportFormat export_format=AssetExportFormat::GLB2, float elevation_scaling=0.2f, const std::string &amp;texture_fname=&quot;&quot;, const std::string &amp;normal_map_fname=&quot;&quot;, bool fit_boundaries=false)</argsstring>
         <name>export_asset</name>
         <qualifiedname>hmap::export_asset</qualifiedname>
         <param>
@@ -12889,13 +12902,18 @@ additional_depth)</computeroutput>.</para>
           <declname>normal_map_fname</declname>
           <defval>&quot;&quot;</defval>
         </param>
+        <param>
+          <type>bool</type>
+          <declname>fit_boundaries</declname>
+          <defval>false</defval>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/export/export_asset.cpp" line="309" column="6" bodyfile="HighMap/src/export/export_asset.cpp" bodystart="309" bodyend="384" declfile="HighMap/include/highmap/export.hpp" declline="167" declcolumn="6"/>
+        <location file="HighMap/src/export/export_asset.cpp" line="340" column="6" bodyfile="HighMap/src/export/export_asset.cpp" bodystart="340" bodyend="417" declfile="HighMap/include/highmap/export.hpp" declline="171" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a2f24b35f08d0ba5cce622c8896690fbd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::string</type>
@@ -12957,7 +12975,7 @@ additional_depth)</computeroutput>.</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/export/export_as_ascii.cpp" line="14" column="13" bodyfile="HighMap/src/export/export_as_ascii.cpp" bodystart="14" bodyend="39" declfile="HighMap/include/highmap/export.hpp" declline="196" declcolumn="13"/>
+        <location file="HighMap/src/export/export_as_ascii.cpp" line="14" column="13" bodyfile="HighMap/src/export/export_as_ascii.cpp" bodystart="14" bodyend="39" declfile="HighMap/include/highmap/export.hpp" declline="201" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a3aa96cd684efd827ce57ffd9fef3c950" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -13094,7 +13112,7 @@ The generated cubemap maintains continuity between faces, adjusting values at ov
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/export/export_as_cubemap.cpp" line="181" column="6" bodyfile="HighMap/src/export/export_as_cubemap.cpp" bodystart="181" bodyend="520" declfile="HighMap/include/highmap/export.hpp" declline="238" declcolumn="6"/>
+        <location file="HighMap/src/export/export_as_cubemap.cpp" line="181" column="6" bodyfile="HighMap/src/export/export_as_cubemap.cpp" bodystart="181" bodyend="520" declfile="HighMap/include/highmap/export.hpp" declline="243" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ac2452e568959bc21c9b7b09202e5977a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -13166,7 +13184,7 @@ The generated cubemap maintains continuity between faces, adjusting values at ov
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/export/export_banner_png.cpp" line="16" column="6" bodyfile="HighMap/src/export/export_banner_png.cpp" bodystart="16" bodyend="54" declfile="HighMap/include/highmap/export.hpp" declline="263" declcolumn="6"/>
+        <location file="HighMap/src/export/export_banner_png.cpp" line="16" column="6" bodyfile="HighMap/src/export/export_banner_png.cpp" bodystart="16" bodyend="54" declfile="HighMap/include/highmap/export.hpp" declline="268" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a9648a23e61a84a702d89159d516dd4ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -13237,7 +13255,7 @@ The generated cubemap maintains continuity between faces, adjusting values at ov
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/export/export_normal_map.cpp" line="15" column="6" bodyfile="HighMap/src/export/export_normal_map.cpp" bodystart="15" bodyend="23" declfile="HighMap/include/highmap/export.hpp" declline="284" declcolumn="6"/>
+        <location file="HighMap/src/export/export_normal_map.cpp" line="15" column="6" bodyfile="HighMap/src/export/export_normal_map.cpp" bodystart="15" bodyend="23" declfile="HighMap/include/highmap/export.hpp" declline="289" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a32464922c39713910ebeab632e0e8fd1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -13359,7 +13377,7 @@ The generated cubemap maintains continuity between faces, adjusting values at ov
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/export/export_splatmap.cpp" line="34" column="6" bodyfile="HighMap/src/export/export_splatmap.cpp" bodystart="34" bodyend="45" declfile="HighMap/include/highmap/export.hpp" declline="317" declcolumn="6"/>
+        <location file="HighMap/src/export/export_splatmap.cpp" line="34" column="6" bodyfile="HighMap/src/export/export_splatmap.cpp" bodystart="34" bodyend="45" declfile="HighMap/include/highmap/export.hpp" declline="322" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ae01b5471d28a8f4a9104e2ffea4484a9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -13461,7 +13479,7 @@ The generated cubemap maintains continuity between faces, adjusting values at ov
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/export/export_points_to_ply.cpp" line="17" column="6" bodyfile="HighMap/src/export/export_points_to_ply.cpp" bodystart="17" bodyend="84" declfile="HighMap/include/highmap/export.hpp" declline="342" declcolumn="6"/>
+        <location file="HighMap/src/export/export_points_to_ply.cpp" line="17" column="6" bodyfile="HighMap/src/export/export_points_to_ply.cpp" bodystart="17" bodyend="84" declfile="HighMap/include/highmap/export.hpp" declline="347" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a91708f107a53c4b8ef68bb1d0291c73f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -13610,7 +13628,7 @@ Each tile is extracted using slicing, adjusted for overlap if specified, and the
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/export/export_tiled.cpp" line="46" column="6" bodyfile="HighMap/src/export/export_tiled.cpp" bodystart="46" bodyend="88" declfile="HighMap/include/highmap/export.hpp" declline="381" declcolumn="6"/>
+        <location file="HighMap/src/export/export_tiled.cpp" line="46" column="6" bodyfile="HighMap/src/export/export_tiled.cpp" bodystart="46" bodyend="88" declfile="HighMap/include/highmap/export.hpp" declline="386" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a09aeebc31234cb19376836a7009054d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -13652,7 +13670,7 @@ Each tile is extracted using slicing, adjusted for overlap if specified, and the
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/export/read_to_array.cpp" line="15" column="7" bodyfile="HighMap/src/export/read_to_array.cpp" bodystart="15" bodyend="28" declfile="HighMap/include/highmap/export.hpp" declline="404" declcolumn="7"/>
+        <location file="HighMap/src/export/read_to_array.cpp" line="15" column="7" bodyfile="HighMap/src/export/read_to_array.cpp" bodystart="15" bodyend="28" declfile="HighMap/include/highmap/export.hpp" declline="409" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a466d4275bb86ca9ca603c9d4192f931a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -13694,7 +13712,7 @@ Each tile is extracted using slicing, adjusted for overlap if specified, and the
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/export/format_raw.cpp" line="15" column="6" bodyfile="HighMap/src/export/format_raw.cpp" bodystart="15" bodyend="49" declfile="HighMap/include/highmap/export.hpp" declline="420" declcolumn="6"/>
+        <location file="HighMap/src/export/format_raw.cpp" line="15" column="6" bodyfile="HighMap/src/export/format_raw.cpp" bodystart="15" bodyend="49" declfile="HighMap/include/highmap/export.hpp" declline="425" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a34efdecd3db27a30c06537acda6d9457" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -64547,10 +64565,10 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </inbodydescription>
         <location file="HighMap/src/export/export_as_cubemap.cpp" line="100" column="6" bodyfile="HighMap/src/export/export_as_cubemap.cpp" bodystart="100" bodyend="175"/>
       </memberdef>
-      <memberdef kind="function" id="namespacehmap_1ae06d18b75bba588de10ecdc71fb4402e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespacehmap_1ac56df1dc268d53f122abc88ae8f9b124" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void hmap::helper_build_mesh_masked</definition>
-        <argsstring>(aiMesh *p_mesh, const Array &amp;array, const Array &amp;mask, float elevation_scaling)</argsstring>
+        <argsstring>(aiMesh *p_mesh, const Array &amp;array, const Array &amp;mask, float elevation_scaling, bool fit_boundaries)</argsstring>
         <name>helper_build_mesh_masked</name>
         <qualifiedname>hmap::helper_build_mesh_masked</qualifiedname>
         <param>
@@ -64569,18 +64587,22 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
           <type>float</type>
           <declname>elevation_scaling</declname>
         </param>
+        <param>
+          <type>bool</type>
+          <declname>fit_boundaries</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/export/export_asset.cpp" line="33" column="6" bodyfile="HighMap/src/export/export_asset.cpp" bodystart="33" bodyend="113"/>
+        <location file="HighMap/src/export/export_asset.cpp" line="33" column="6" bodyfile="HighMap/src/export/export_asset.cpp" bodystart="33" bodyend="124"/>
       </memberdef>
-      <memberdef kind="function" id="namespacehmap_1ae564e80e124dba15721b06a76e0cf541" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespacehmap_1aec2b0c4bc7a299e0506e3568715c38a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void hmap::helper_build_mesh</definition>
-        <argsstring>(aiMesh *p_mesh, const Array &amp;array, MeshType mesh_type, float elevation_scaling, float max_error)</argsstring>
+        <argsstring>(aiMesh *p_mesh, const Array &amp;array, MeshType mesh_type, float elevation_scaling, float max_error, bool fit_boundaries)</argsstring>
         <name>helper_build_mesh</name>
         <qualifiedname>hmap::helper_build_mesh</qualifiedname>
         <param>
@@ -64603,13 +64625,17 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
           <type>float</type>
           <declname>max_error</declname>
         </param>
+        <param>
+          <type>bool</type>
+          <declname>fit_boundaries</declname>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/export/export_asset.cpp" line="115" column="6" bodyfile="HighMap/src/export/export_asset.cpp" bodystart="115" bodyend="232"/>
+        <location file="HighMap/src/export/export_asset.cpp" line="126" column="6" bodyfile="HighMap/src/export/export_asset.cpp" bodystart="126" bodyend="260"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a5635a383951e6438d8baa2cb1150f5e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Texture" kindref="compound">Texture</ref></type>
