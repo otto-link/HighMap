@@ -455,6 +455,20 @@ Array select_transitions(const Array &array1,
 
 Array select_valley(const Array &z, int ir, bool ridge_select = false);
 
+/**
+ * @brief Smooths a binary mask with an inward falloff while preserving its
+ * 0-boundary.
+ *
+ * Computes a smooth falloff inside the non-zero region of the mask towards the
+ * 0/1 frontier using distance transform and smoothstep. The 0-set of the output
+ * remains identical to the input mask (no dilation beyond the boundary).
+ *
+ * @param  mask          Input binary mask ({0, 1}).
+ * @param  feather_width Width of the feathering falloff in grid units.
+ * @return Array         Smoothed mask with smooth falloff of the 1s.
+ */
+Array smooth_mask_preserve_frontier(const Array &mask, float feather_width);
+
 } // namespace hmap
 
 namespace hmap::gpu

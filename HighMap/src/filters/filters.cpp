@@ -20,6 +20,7 @@
 #include "highmap/local_metrics.hpp"
 #include "highmap/math/array.hpp"
 #include "highmap/math/core.hpp"
+#include "highmap/morphology.hpp"
 #include "highmap/operator.hpp"
 #include "highmap/primitives/random.hpp"
 #include "highmap/range.hpp"

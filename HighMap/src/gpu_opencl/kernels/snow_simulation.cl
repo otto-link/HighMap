@@ -17,7 +17,8 @@ kernel void snow_simulation(read_only image2d_t  z,
                             float                k_visc,
                             float                k_depth_ratio,
                             float                k_depth_slope_ratio,
-                            float                k_creep)
+                            float                k_creep,
+                            int                  outflow_boundaries)
 {
   int i = get_global_id(0);
   int j = get_global_id(1);
@@ -30,6 +31,7 @@ kernel void snow_simulation(read_only image2d_t  z,
   const float diag = 0.70710678f;
   const float slope_repose = TGET(talus, i, j);
   const float sc = TGET(s, i, j);
+  const float zc = TGET(z, i, j);
 
   //
   const float sc0 = k_depth_ratio * snow_depth;
@@ -37,19 +39,47 @@ kernel void snow_simulation(read_only image2d_t  z,
                              k_depth_slope_ratio * smoothstep(0.f, sc0, sc);
   const float slope_repose_eff = slope_repose * depth_factor;
 
-  float Hc = TGET(z, i, j) + sc;
+  float Hc = zc + sc;
 
   // --- outgoing flux from center
 
-  float Hl = TGET(z, i - 1, j) + TGET(s, i - 1, j);
-  float Hr = TGET(z, i + 1, j) + TGET(s, i + 1, j);
-  float Hd = TGET(z, i, j - 1) + TGET(s, i, j - 1);
-  float Hu = TGET(z, i, j + 1) + TGET(s, i, j + 1);
+  float sl = (outflow_boundaries && i == 0) ? 0.f : TGET(s, i - 1, j);
+  float sr = (outflow_boundaries && i == nx - 1) ? 0.f : TGET(s, i + 1, j);
+  float sd = (outflow_boundaries && j == 0) ? 0.f : TGET(s, i, j - 1);
+  float su = (outflow_boundaries && j == ny - 1) ? 0.f : TGET(s, i, j + 1);
 
-  float Hdl = TGET(z, i - 1, j - 1) + TGET(s, i - 1, j - 1);
-  float Hdr = TGET(z, i + 1, j - 1) + TGET(s, i + 1, j - 1);
-  float Hul = TGET(z, i - 1, j + 1) + TGET(s, i - 1, j + 1);
-  float Hur = TGET(z, i + 1, j + 1) + TGET(s, i + 1, j + 1);
+  float sdl = (outflow_boundaries && (i == 0 || j == 0))
+                  ? 0.f
+                  : TGET(s, i - 1, j - 1);
+  float sdr = (outflow_boundaries && (i == nx - 1 || j == 0))
+                  ? 0.f
+                  : TGET(s, i + 1, j - 1);
+  float sul = (outflow_boundaries && (i == 0 || j == ny - 1))
+                  ? 0.f
+                  : TGET(s, i - 1, j + 1);
+  float sur = (outflow_boundaries && (i == nx - 1 || j == ny - 1))
+                  ? 0.f
+                  : TGET(s, i + 1, j + 1);
+
+  float Hl = (outflow_boundaries && i == 0) ? zc : (TGET(z, i - 1, j) + sl);
+  float Hr = (outflow_boundaries && i == nx - 1) ? zc
+                                                 : (TGET(z, i + 1, j) + sr);
+  float Hd = (outflow_boundaries && j == 0) ? zc : (TGET(z, i, j - 1) + sd);
+  float Hu = (outflow_boundaries && j == ny - 1) ? zc
+                                                 : (TGET(z, i, j + 1) + su);
+
+  float Hdl = (outflow_boundaries && (i == 0 || j == 0))
+                  ? zc
+                  : (TGET(z, i - 1, j - 1) + sdl);
+  float Hdr = (outflow_boundaries && (i == nx - 1 || j == 0))
+                  ? zc
+                  : (TGET(z, i + 1, j - 1) + sdr);
+  float Hul = (outflow_boundaries && (i == 0 || j == ny - 1))
+                  ? zc
+                  : (TGET(z, i - 1, j + 1) + sul);
+  float Hur = (outflow_boundaries && (i == nx - 1 || j == ny - 1))
+                  ? zc
+                  : (TGET(z, i + 1, j + 1) + sur);
 
   float sx = 0.5f * (Hr - Hl);
   float sy = 0.5f * (Hu - Hd);
@@ -89,9 +119,10 @@ kernel void snow_simulation(read_only image2d_t  z,
   float in = 0.f;
 
   // LEFT neighbor (i-1,j) sends RIGHT to (i,j)
+  if (!(outflow_boundaries && i == 0))
   {
     float Hn = Hl;
-    float sn = TGET(s, i - 1, j);
+    float sn = sl;
     float slope_n = max(0.f, Hn - Hc);
     float excess_n = max(0.f, slope_n - slope_repose_eff);
     float flat_n = max(0.f, 1.f - (slope_n / max(slope_repose_eff, 1e-4f)));
@@ -109,9 +140,10 @@ kernel void snow_simulation(read_only image2d_t  z,
   }
 
   // RIGHT neighbor (i+1,j) sends LEFT to (i,j)
+  if (!(outflow_boundaries && i == nx - 1))
   {
     float Hn = Hr;
-    float sn = TGET(s, i + 1, j);
+    float sn = sr;
     float slope_n = max(0.f, Hn - Hc);
     float excess_n = max(0.f, slope_n - slope_repose_eff);
     float flat_n = max(0.f, 1.f - (slope_n / max(slope_repose_eff, 1e-4f)));
@@ -129,9 +161,10 @@ kernel void snow_simulation(read_only image2d_t  z,
   }
 
   // DOWN neighbor (i,j-1) sends UP to (i,j)
+  if (!(outflow_boundaries && j == 0))
   {
     float Hn = Hd;
-    float sn = TGET(s, i, j - 1);
+    float sn = sd;
     float slope_n = max(0.f, Hn - Hc);
     float excess_n = max(0.f, slope_n - slope_repose_eff);
     float flat_n = max(0.f, 1.f - (slope_n / max(slope_repose_eff, 1e-4f)));
@@ -149,9 +182,10 @@ kernel void snow_simulation(read_only image2d_t  z,
   }
 
   // UP neighbor (i,j+1) sends DOWN to (i,j)
+  if (!(outflow_boundaries && j == ny - 1))
   {
     float Hn = Hu;
-    float sn = TGET(s, i, j + 1);
+    float sn = su;
     float slope_n = max(0.f, Hn - Hc);
     float excess_n = max(0.f, slope_n - slope_repose_eff);
     float flat_n = max(0.f, 1.f - (slope_n / max(slope_repose_eff, 1e-4f)));
@@ -175,8 +209,7 @@ kernel void snow_simulation(read_only image2d_t  z,
   float H_avg = (Hl + Hr + Hd + Hu + diag * (Hdl + Hdr + Hul + Hur)) /
                 (4.f + 4.f * diag);
 
-  float z_c = TGET(z, i, j);
-  float s_target = max(0.f, H_avg - z_c);
+  float s_target = max(0.f, H_avg - zc);
 
   sc_new = mix(sc_new, s_target, k_visc);
 

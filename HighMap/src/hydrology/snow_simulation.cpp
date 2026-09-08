@@ -10,11 +10,14 @@
 #include "highmap/array.hpp"
 #include "highmap/boundary.hpp"
 #include "highmap/erosion.hpp"
+#include "highmap/filters.hpp"
 #include "highmap/gradient.hpp"
 #include "highmap/hydrology/hydrology.hpp"
 #include "highmap/internal/validation.hpp"
+#include "highmap/math/array.hpp"
 #include "highmap/math/core.hpp"
 #include "highmap/range.hpp"
+#include "highmap/selector.hpp"
 
 namespace hmap
 {
@@ -97,7 +100,8 @@ Array snow_simulation(const Array &z,
                       float        k_depth_slope_ratio,
                       float        k_creep,
                       bool         post_filter,
-                      float        thermal_talus_ratio)
+                      float        thermal_talus_ratio,
+                      bool         outflow_boundaries)
 {
   if (!validate_non_empty(z)) return Array();
   if (!validate_same_shape(z, fall_map)) return Array();
@@ -135,7 +139,8 @@ Array snow_simulation(const Array &z,
                      k_visc,
                      k_depth_ratio,
                      k_depth_slope_ratio,
-                     k_creep);
+                     k_creep,
+                     outflow_boundaries ? 1 : 0);
 
   auto run_fall = std::make_unique<clwrapper::Run>("hydraulic_vpipes_rain_pass",
                                                    run.get_queue());
@@ -176,17 +181,25 @@ Array snow_simulation(const Array &z,
   // retrieve results (both snow depth images map to the host array `s`)
   run.read_imagef(sc == 0 ? "s_a" : "s_b");
 
-  extrapolate_borders(s);
-
   if (post_filter)
   {
-    Array mask = s / snow_depth;
-    clamp_max_smooth(mask, 1.f);
     Array z_wrk = z + s;
-    gpu::thermal(z_wrk,
-                 &mask,
-                 thermal_talus_ratio * hmap::gradient_norm(z_wrk),
-                 iterations);
+
+    {
+      Array mask = s / std::max(s.max(), 1e-6f);
+      mask = smooth_mask_preserve_frontier(mask, 8.f);
+
+      Array talus_smooth = talus;
+      // gpu::smooth_cpulse(talus_smooth, 32);
+
+      gpu::thermal_conserve(z_wrk,
+                            &mask,
+                            thermal_talus_ratio * talus_smooth,
+                            std::min(iterations, 30),
+                            0.5f,
+                            &z);
+    }
+
     s = z_wrk - z;
   }
 

@@ -1146,6 +1146,8 @@ Array generate_riverbed(const Path &path,
  * @param  k_depth_slope_ratio   Depth influence on repose angle.
  * @param  post_filter           Apply final smoothing pass if true.
  * @param  thermal_talus_ratio   Controls creep strength relative to talus.
+ * @param  outflow_boundaries    Allows snow to freely discharge outside the
+ *                               domain at boundaries.
  *
  * @return                       Final snow depth field.
  *
@@ -1170,7 +1172,8 @@ Array snow_simulation(const Array &z,
                       float        k_depth_slope_ratio = 1.f,
                       float        k_creep = 0.1f,
                       bool         post_filter = true,
-                      float        thermal_talus_ratio = 0.2f);
+                      float        thermal_talus_ratio = 0.2f,
+                      bool         outflow_boundaries = true);
 
 Array snow_simulation_layered(const Array &z,
                               float        snow_depth,

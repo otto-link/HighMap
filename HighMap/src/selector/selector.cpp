@@ -439,4 +439,28 @@ Array select_valley(const Array &z, int ir, bool ridge_select)
     return morphological_black_hat(z, ir);
 }
 
+Array smooth_mask_preserve_frontier(const Array &mask, float feather_width)
+{
+  if (!validate_non_empty(mask)) return Array();
+
+  if (feather_width <= 0.f) return mask;
+
+  // distance to the 0/1 frontier inside the mask
+  Array dist = distance_transform(is_zero(mask));
+
+  Array smoothed = mask;
+
+  for (int j = 0; j < mask.shape.y; j++)
+    for (int i = 0; i < mask.shape.x; i++)
+    {
+      if (mask(i, j) > 0.f)
+      {
+        float t = std::clamp(dist(i, j) / feather_width, 0.f, 1.f);
+        smoothed(i, j) = smoothstep3(t);
+      }
+    }
+
+  return smoothed;
+}
+
 } // namespace hmap
