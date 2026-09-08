@@ -152,6 +152,9 @@ asset_export_format_as_string = {
  *                           the asset (optional).
  * @param  max_error         The maximum allowable error for optimized Delaunay
  *                           triangulation. Default is 5e-4f.
+ * @param  fit_boundaries    If true, domain coordinates are scaled to [0, 1] x
+ * [0, 1]. Default is false (domain scaled to [0, 1 - 1/shape.x] x [0, 1 -
+ * 1/shape.y]).
  * @return                   `true` if the export is successful, `false`
  *                           otherwise.
  */
@@ -162,7 +165,8 @@ bool export_asset(const std::string &fname,
                   float              elevation_scaling = 0.2f,
                   const std::string &texture_fname = "",
                   const std::string &normal_map_fname = "",
-                  float              max_error = 5e-4f);
+                  float              max_error = 5e-4f,
+                  bool               fit_boundaries = false);
 
 bool export_asset(const std::string &fname,
                   const Array       &array,
@@ -170,7 +174,8 @@ bool export_asset(const std::string &fname,
                   AssetExportFormat  export_format = AssetExportFormat::GLB2,
                   float              elevation_scaling = 0.2f,
                   const std::string &texture_fname = "",
-                  const std::string &normal_map_fname = "");
+                  const std::string &normal_map_fname = "",
+                  bool               fit_boundaries = false);
 
 /**
  * @brief Export a 2D array as an ASCII-art string representation.

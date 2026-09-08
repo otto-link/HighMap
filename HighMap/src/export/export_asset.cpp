@@ -33,10 +33,21 @@ namespace hmap
 void helper_build_mesh_masked(aiMesh      *p_mesh,
                               const Array &array,
                               const Array &mask,
-                              float        elevation_scaling)
+                              float        elevation_scaling,
+                              bool         fit_boundaries)
 {
-  std::vector<float> x = linspace(1.f, 0.f, array.shape.x);
-  std::vector<float> y = linspace(0.f, 1.f, array.shape.y);
+  float x_max = fit_boundaries
+                    ? 1.f
+                    : (array.shape.x > 0 ? 1.f - 1.f / (float)array.shape.x
+                                         : 1.f);
+  float y_max = fit_boundaries
+                    ? 1.f
+                    : (array.shape.y > 0 ? 1.f - 1.f / (float)array.shape.y
+                                         : 1.f);
+
+  std::vector<float> x = linspace(0.f, x_max, array.shape.x);
+  std::vector<float> y = linspace(y_max, 0.f, array.shape.y);
+  std::vector<float> y_uv = linspace(0.f, y_max, array.shape.y);
 
   {
     std::uint32_t n_vertices = count_non_zero(mask);
@@ -58,11 +69,11 @@ void helper_build_mesh_masked(aiMesh      *p_mesh,
       {
         if (mask(i, j))
         {
-          p_mesh->mVertices[k] = aiVector3D(1.f - y[j],
+          p_mesh->mVertices[k] = aiVector3D(y[j],
                                             elevation_scaling * array(i, j),
-                                            1.f - x[i]);
+                                            x[i]);
 
-          p_mesh->mTextureCoords[0][k] = aiVector3D(1.f - x[i], y[j], 0.f);
+          p_mesh->mTextureCoords[0][k] = aiVector3D(x[i], y_uv[j], 0.f);
 
           // store association
           index_map[{i, j}] = k;
@@ -116,10 +127,21 @@ void helper_build_mesh(aiMesh      *p_mesh,
                        const Array &array,
                        MeshType     mesh_type,
                        float        elevation_scaling,
-                       float        max_error)
+                       float        max_error,
+                       bool         fit_boundaries)
 {
-  std::vector<float> x = linspace(1.f, 0.f, array.shape.x);
-  std::vector<float> y = linspace(0.f, 1.f, array.shape.y);
+  float x_max = fit_boundaries
+                    ? 1.f
+                    : (array.shape.x > 0 ? 1.f - 1.f / (float)array.shape.x
+                                         : 1.f);
+  float y_max = fit_boundaries
+                    ? 1.f
+                    : (array.shape.y > 0 ? 1.f - 1.f / (float)array.shape.y
+                                         : 1.f);
+
+  std::vector<float> x = linspace(0.f, x_max, array.shape.x);
+  std::vector<float> y = linspace(y_max, 0.f, array.shape.y);
+  std::vector<float> y_uv = linspace(0.f, y_max, array.shape.y);
 
   switch (mesh_type)
   {
@@ -139,11 +161,11 @@ void helper_build_mesh(aiMesh      *p_mesh,
       {
         int k = array.linear_index(i, j);
 
-        p_mesh->mVertices[k] = aiVector3D(1.f - y[j],
+        p_mesh->mVertices[k] = aiVector3D(y[j],
                                           elevation_scaling * array(i, j),
-                                          1.f - x[i]);
+                                          x[i]);
 
-        p_mesh->mTextureCoords[0][k] = aiVector3D(1.f - x[i], y[j], 0.f);
+        p_mesh->mTextureCoords[0][k] = aiVector3D(x[i], y_uv[j], 0.f);
       }
 
     p_mesh->mNumFaces = n_faces;
@@ -189,8 +211,14 @@ void helper_build_mesh(aiMesh      *p_mesh,
     auto points = tri.Points(elevation_scaling);
     auto triangles = tri.Triangles();
 
-    float ax = 1.f / (float)array.shape.y;
-    float ay = 1.f / (float)array.shape.x;
+    float ax = fit_boundaries
+                   ? (array.shape.y > 1 ? 1.f / (float)(array.shape.y - 1)
+                                        : 1.f)
+                   : 1.f / (float)array.shape.y;
+    float ay = fit_boundaries
+                   ? (array.shape.x > 1 ? 1.f / (float)(array.shape.x - 1)
+                                        : 1.f)
+                   : 1.f / (float)array.shape.x;
 
     std::uint32_t n_vertices = points.size();
     std::uint32_t n_faces = triangles.size();
@@ -208,7 +236,7 @@ void helper_build_mesh(aiMesh      *p_mesh,
                                         ax * points[k].x);
 
       p_mesh->mTextureCoords[0][k] = aiVector3D(ax * points[k].x,
-                                                1.f - ay * points[k].y,
+                                                x_max - ay * points[k].y,
                                                 0.f);
     }
 
@@ -238,7 +266,8 @@ bool export_asset(const std::string &fname,
                   float              elevation_scaling,
                   const std::string &texture_fname,
                   const std::string &normal_map_fname,
-                  float              max_error)
+                  float              max_error,
+                  bool               fit_boundaries)
 {
   if (!validate_non_empty(array)) return false;
 
@@ -250,9 +279,6 @@ bool export_asset(const std::string &fname,
   aiMesh  *p_mesh = new aiMesh();
 
   // --- generate mesh
-
-  std::vector<float> x = linspace(1.f, 0.f, array.shape.x);
-  std::vector<float> y = linspace(0.f, 1.f, array.shape.y);
 
   aiMaterial *p_material = new aiMaterial();
   aiNode     *p_root = new aiNode();
@@ -280,7 +306,12 @@ bool export_asset(const std::string &fname,
 
   // --- build mesh
 
-  helper_build_mesh(p_mesh, array, mesh_type, elevation_scaling, max_error);
+  helper_build_mesh(p_mesh,
+                    array,
+                    mesh_type,
+                    elevation_scaling,
+                    max_error,
+                    fit_boundaries);
 
   // --- export
 
@@ -312,7 +343,8 @@ bool export_asset(const std::string &fname,
                   AssetExportFormat  export_format,
                   float              elevation_scaling,
                   const std::string &texture_fname,
-                  const std::string &normal_map_fname)
+                  const std::string &normal_map_fname,
+                  bool               fit_boundaries)
 {
   if (!validate_non_empty(array) || !validate_same_shape(array, mask))
     return false;
@@ -325,9 +357,6 @@ bool export_asset(const std::string &fname,
   aiMesh  *p_mesh = new aiMesh();
 
   // --- generate mesh
-
-  std::vector<float> x = linspace(1.f, 0.f, array.shape.x);
-  std::vector<float> y = linspace(0.f, 1.f, array.shape.y);
 
   aiMaterial *p_material = new aiMaterial();
   aiNode     *p_root = new aiNode();
@@ -355,7 +384,11 @@ bool export_asset(const std::string &fname,
 
   // --- build mesh
 
-  helper_build_mesh_masked(p_mesh, array, mask, elevation_scaling);
+  helper_build_mesh_masked(p_mesh,
+                           array,
+                           mask,
+                           elevation_scaling,
+                           fit_boundaries);
 
   // --- export
 
