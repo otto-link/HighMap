@@ -19,6 +19,8 @@ var filters_8hpp =
     [ "fill_talus", "filters_8hpp.html#a3bbe50f04fdbaf14c55b7eaf1ceb67e1", null ],
     [ "fold", "filters_8hpp.html#a2ba465615ff1d745cfcf7a27b7dcb37e", null ],
     [ "fold", "filters_8hpp.html#a2dc21bf2079bb06efa5d16445a00ca7b", null ],
+    [ "fold_periodic", "filters_8hpp.html#a282b654f34aa733607bf2039dcd880d7", null ],
+    [ "fold_periodic", "filters_8hpp.html#a8ce7ce8c10a98afdaf2ab7156573cf21", null ],
     [ "gain", "filters_8hpp.html#ab1e1b26c0c1eb51d0b256db94d6ca22e", null ],
     [ "gain", "filters_8hpp.html#a2f49cb88fec2755be122d5b097bedc9b", null ],
     [ "gamma_correction", "filters_8hpp.html#aba3674787d520af15267ee7d1e46d220", null ],

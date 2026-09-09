@@ -759,6 +759,10 @@ void \mbox{\hyperlink{namespacehmap_a2ba465615ff1d745cfcf7a27b7dcb37e}{fold}} (\
 \begin{DoxyCompactList}\small\item\em Apply a "{}folding"{} filter (successive absolute values) to the array elements. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespacehmap_a2dc21bf2079bb06efa5d16445a00ca7b}{fold}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int iterations=3, float k=0.\+05\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
 \begin{DoxyCompactList}\small\item\em Apply a "{}folding"{} filter with default reference values and parameters. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a282b654f34aa733607bf2039dcd880d7}{fold\+\_\+periodic}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, \mbox{\hyperlink{namespacehmap_a67d6620c147710ebb09b64f0f738241a}{Phasor\+Profile}} phasor\+\_\+profile, float vmin, float vmax, int iterations=3, float \mbox{\hyperlink{sls__deformation_8cpp_a1ee4a05b54419bfadd66ee351d05812e}{delta}}=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+\begin{DoxyCompactList}\small\item\em Apply a periodic "{}folding"{} filter to the array elements using a periodic phasor profile. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a8ce7ce8c10a98afdaf2ab7156573cf21}{fold\+\_\+periodic}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, \mbox{\hyperlink{namespacehmap_a67d6620c147710ebb09b64f0f738241a}{Phasor\+Profile}} phasor\+\_\+profile=\mbox{\hyperlink{namespacehmap_a67d6620c147710ebb09b64f0f738241aafeda57dc66f5efb1d5f0fcc48ddb5319}{Phasor\+Profile\+::\+PP\+\_\+\+COSINE\+\_\+\+STD}}, int iterations=3, float \mbox{\hyperlink{sls__deformation_8cpp_a1ee4a05b54419bfadd66ee351d05812e}{delta}}=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+\begin{DoxyCompactList}\small\item\em Apply a periodic "{}folding"{} filter with default reference values. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespacehmap_ab1e1b26c0c1eb51d0b256db94d6ca22e}{gain}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float factor, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+mask)
 \begin{DoxyCompactList}\small\item\em Apply a gain correction to the array elements. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespacehmap_a2f49cb88fec2755be122d5b097bedc9b}{gain}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float factor)
@@ -9702,6 +9706,56 @@ This overload applies the folding filter to the input array with the default num
 {\em iterations} & Number of iterations for applying the folding filter. The default is 3. \\
 \hline
 {\em k} & Smoothing parameter for the absolute value operation, expected to be greater than 0. It controls the degree of smoothing applied during folding. The default value is 0.\+05.\\
+\hline
+\end{DoxyParams}
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \Hypertarget{namespacehmap_a282b654f34aa733607bf2039dcd880d7}\label{namespacehmap_a282b654f34aa733607bf2039dcd880d7} 
+\index{hmap@{hmap}!fold\_periodic@{fold\_periodic}}
+\index{fold\_periodic@{fold\_periodic}!hmap@{hmap}}
+\doxysubsubsection{\texorpdfstring{fold\_periodic()}{fold\_periodic()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void hmap\+::fold\+\_\+periodic (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{\mbox{\hyperlink{namespacehmap_a67d6620c147710ebb09b64f0f738241a}{Phasor\+Profile}}}]{phasor\+\_\+profile,  }\item[{float}]{vmin,  }\item[{float}]{vmax,  }\item[{int}]{iterations = {\ttfamily 3},  }\item[{float}]{delta = {\ttfamily 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}} }\end{DoxyParamCaption})}
+
+
+
+Apply a periodic "{}folding"{} filter to the array elements using a periodic phasor profile. 
+
+This function applies a folding filter based on a periodic profile function (Phasor\+Profile) rather than successive absolute-\/value operations. For each iteration, the function evaluates the periodic profile across the range defined by \mbox{[}vmin, vmax\mbox{]} with an increasing frequency (doubled per iteration).
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & Input array to which the periodic folding filter is applied. \\
+\hline
+{\em phasor\+\_\+profile} & Type of phasor profile to use for folding. \\
+\hline
+{\em delta} & Profile shape parameter (defaults to 0.\+0). \\
+\hline
+{\em vmin} & Minimum reference value used as a lower bound for the folding operation. \\
+\hline
+{\em vmax} & Maximum reference value used as an upper bound for the folding operation. \\
+\hline
+{\em iterations} & Number of iterations for applying the folding filter. The default is 3. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{namespacehmap_a8ce7ce8c10a98afdaf2ab7156573cf21}\label{namespacehmap_a8ce7ce8c10a98afdaf2ab7156573cf21} 
+\index{hmap@{hmap}!fold\_periodic@{fold\_periodic}}
+\index{fold\_periodic@{fold\_periodic}!hmap@{hmap}}
+\doxysubsubsection{\texorpdfstring{fold\_periodic()}{fold\_periodic()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void hmap\+::fold\+\_\+periodic (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{\mbox{\hyperlink{namespacehmap_a67d6620c147710ebb09b64f0f738241a}{Phasor\+Profile}}}]{phasor\+\_\+profile = {\ttfamily \mbox{\hyperlink{namespacehmap_a67d6620c147710ebb09b64f0f738241aafeda57dc66f5efb1d5f0fcc48ddb5319}{Phasor\+Profile\+::\+PP\+\_\+\+COSINE\+\_\+\+STD}}},  }\item[{int}]{iterations = {\ttfamily 3},  }\item[{float}]{delta = {\ttfamily 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}} }\end{DoxyParamCaption})}
+
+
+
+Apply a periodic "{}folding"{} filter with default reference values. 
+
+This overload applies the periodic folding filter using the array\textquotesingle{}s minimum and maximum values as reference bounds.
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & Input array to which the periodic folding filter is applied. \\
+\hline
+{\em phasor\+\_\+profile} & Type of phasor profile to use for folding. \\
+\hline
+{\em iterations} & Number of iterations for applying the folding filter. The default is 3. \\
+\hline
+{\em delta} & Profile shape parameter (defaults to 0.\+0).\\
 \hline
 \end{DoxyParams}
 This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \Hypertarget{namespacehmap_ab1e1b26c0c1eb51d0b256db94d6ca22e}\label{namespacehmap_ab1e1b26c0c1eb51d0b256db94d6ca22e} 

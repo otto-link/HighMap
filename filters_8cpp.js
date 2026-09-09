@@ -9,6 +9,8 @@ var filters_8cpp =
     [ "expand_directional", "filters_8cpp.html#affdf6ff9564f31cb988131c2b2c4c280", null ],
     [ "fold", "filters_8cpp.html#a2dc21bf2079bb06efa5d16445a00ca7b", null ],
     [ "fold", "filters_8cpp.html#a2ba465615ff1d745cfcf7a27b7dcb37e", null ],
+    [ "fold_periodic", "filters_8cpp.html#a8ce7ce8c10a98afdaf2ab7156573cf21", null ],
+    [ "fold_periodic", "filters_8cpp.html#a282b654f34aa733607bf2039dcd880d7", null ],
     [ "gain", "filters_8cpp.html#a2f49cb88fec2755be122d5b097bedc9b", null ],
     [ "gain", "filters_8cpp.html#ab1e1b26c0c1eb51d0b256db94d6ca22e", null ],
     [ "gamma_correction", "filters_8cpp.html#a4e87766dc576eec73cfef1f4050f3bb3", null ],

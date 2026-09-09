@@ -1,5 +1,9 @@
 var NAVTREEINDEX12 =
 {
+"island_8cpp.html#ae20d5b7f78d4c3eb5064490a3a407533":[5,0,1,1,30,2,4,4],
+"island_8cpp.html#af9603ba2d41af899dbef9b0bd16b39bd":[5,0,1,1,30,2,4,5],
+"island__chain_8cpp.html":[5,0,1,1,30,2,5],
+"island__chain_8cpp.html#a1b24d28eff3fda2f950daa821441760c":[5,0,1,1,30,2,5,0],
 "kd__tree_8cpp.html":[5,0,1,1,17,5],
 "kd__tree_8hpp.html":[5,0,1,0,0,1,4],
 "kd__tree_8hpp.html#ae4a8f5c1d747f5eccbe078ab94598707":[5,0,1,0,0,1,4,2],
@@ -245,9 +249,5 @@ var NAVTREEINDEX12 =
 "math_8cpp.html#addd566daeeba4b807513b59951de0003":[5,0,1,1,24,3,1],
 "math_8hpp.html":[5,0,1,0,0,33],
 "math_8hpp_source.html":[5,0,1,0,0,33],
-"methods_8cpp.html":[5,0,1,1,1,3],
-"morphology_8cpp.html":[5,0,1,1,25,3],
-"morphology_8cpp.html#a01f3be1fd053428ea67030e3736d15ca":[5,0,1,1,25,3,11],
-"morphology_8cpp.html#a11ddd5ab1aa625db9419d9b65c0eaa64":[5,0,1,1,25,3,23],
-"morphology_8cpp.html#a1cf22c68188d0e35aa74983f3a01c488":[5,0,1,1,25,3,10]
+"methods_8cpp.html":[5,0,1,1,1,3]
 };
