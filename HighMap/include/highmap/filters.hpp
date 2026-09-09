@@ -1578,6 +1578,40 @@ void reverse_above_theshold(Array       &array,
                             float transition_extent = 0.f); ///< @overload
 
 /**
+ * @brief Accentuate ridges by gradient-directed resampling along the normal
+ * direction.
+ *
+ * This filter sharpens and accentuates ridgelines in a heightmap. For each
+ * pixel, the terrain surface normal is computed at a scale controlled by
+ * `ir`. The sampling position is displaced along the horizontal normal
+ * direction by an amount proportional to `strength`, and the original heightmap
+ * is resampled.
+ *
+ * @param array    Input array representing the terrain (modified in place).
+ * @param strength Displacement amount / ridge intensity (default is 0.1f).
+ * @param ir       Filter radius used to smooth terrain before computing the
+ *                 normal (default is 0).
+ * @param reverse  If true, inverts displacement direction to form
+ *                 valleys/channels (default is false).
+ *
+ * **Example**
+ * @include ex_ridge_accentuate.cpp
+ *
+ * **Result**
+ * @image html ex_ridge_accentuate.png
+ */
+void ridge_accentuate(Array &array,
+                      float  strength = 0.1f,
+                      int    ir = 0,
+                      bool   reverse = false);
+
+void ridge_accentuate(Array       &array,
+                      const Array *p_mask,
+                      float        strength = 0.1f,
+                      int          ir = 0,
+                      bool         reverse = false); ///< @overload
+
+/**
  * @brief Saturate the array values based on the input interval [vmin, vmax]
  * (the output amplitude is not modified).
  *
@@ -2374,6 +2408,19 @@ Array project_talus_along_direction(const Array &array,
                                     const Array *p_mask,
                                     int          direction = 0,
                                     float        vmin = -FLT_MAX);
+
+/*! @brief See hmap::ridge_accentuate */
+void ridge_accentuate(Array &array,
+                      float  strength = 0.1f,
+                      int    ir = 0,
+                      bool   reverse = false);
+
+/*! @brief See hmap::ridge_accentuate */
+void ridge_accentuate(Array       &array,
+                      const Array *p_mask,
+                      float        strength = 0.1f,
+                      int          ir = 0,
+                      bool         reverse = false);
 
 /*! @brief See hmap::shrink */
 void shrink(Array &array, int ir, int iterations = 1);
