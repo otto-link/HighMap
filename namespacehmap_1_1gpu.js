@@ -108,6 +108,8 @@ var namespacehmap_1_1gpu =
     [ "plateau", "namespacehmap_1_1gpu.html#aa1d48aaeafd42970a2b0c9b6795d73b5", null ],
     [ "project_talus_along_direction", "namespacehmap_1_1gpu.html#a0925ea6d4015309249863be8076af45f", null ],
     [ "project_talus_along_direction", "namespacehmap_1_1gpu.html#ae6c94ff5fe464c75e5ef05b05d5ccacf", null ],
+    [ "ridge_accentuate", "namespacehmap_1_1gpu.html#af3c4a498eabdcccc53e6ad750e069e79", null ],
+    [ "ridge_accentuate", "namespacehmap_1_1gpu.html#a02adff51ac10629e93424abc5451d535", null ],
     [ "shrink", "namespacehmap_1_1gpu.html#a5639aa9dbe4048e12f83ff5c5660db07", null ],
     [ "shrink", "namespacehmap_1_1gpu.html#a551b9d1203331ed95e472c57a6e439c4", null ],
     [ "shrink", "namespacehmap_1_1gpu.html#a95377c44e7202205d867d42fe4cfa93d", null ],

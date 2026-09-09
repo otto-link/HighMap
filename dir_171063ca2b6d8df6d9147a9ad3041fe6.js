@@ -43,6 +43,7 @@ var dir_171063ca2b6d8df6d9147a9ad3041fe6 =
     [ "test_range.cpp", "test__range_8cpp.html", "test__range_8cpp" ],
     [ "test_remap.cpp", "test__remap_8cpp.html", "test__remap_8cpp" ],
     [ "test_remove_endpoints.cpp", "test__remove__endpoints_8cpp.html", "test__remove__endpoints_8cpp" ],
+    [ "test_ridge_accentuate.cpp", "test__ridge__accentuate_8cpp.html", "test__ridge__accentuate_8cpp" ],
     [ "test_saturate.cpp", "test__saturate_8cpp.html", "test__saturate_8cpp" ],
     [ "test_skeleton.cpp", "test__skeleton_8cpp.html", "test__skeleton_8cpp" ],
     [ "test_sls_deformation.cpp", "test__sls__deformation_8cpp.html", "test__sls__deformation_8cpp" ],

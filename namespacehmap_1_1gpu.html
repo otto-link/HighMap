@@ -395,6 +395,12 @@ Functions</h2></td></tr>
 <tr class="separator:a0925ea6d4015309249863be8076af45f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6c94ff5fe464c75e5ef05b05d5ccacf" id="r_ae6c94ff5fe464c75e5ef05b05d5ccacf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhmap_1_1Array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap_1_1gpu.html#ae6c94ff5fe464c75e5ef05b05d5ccacf">project_talus_along_direction</a> (const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;array, const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;talus, const <a class="el" href="classhmap_1_1Array.html">Array</a> *p_mask, int direction=0, float vmin=-FLT_MAX)</td></tr>
 <tr class="separator:ae6c94ff5fe464c75e5ef05b05d5ccacf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3c4a498eabdcccc53e6ad750e069e79" id="r_af3c4a498eabdcccc53e6ad750e069e79"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap_1_1gpu.html#af3c4a498eabdcccc53e6ad750e069e79">ridge_accentuate</a> (<a class="el" href="classhmap_1_1Array.html">Array</a> &amp;array, float strength=0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, int <a class="el" href="sls__deformation_8cpp.html#a108a1d0fcea4288c9e48f5dc4fa0a1b0">ir</a>=0, bool reverse=false)</td></tr>
+<tr class="memdesc:af3c4a498eabdcccc53e6ad750e069e79"><td class="mdescLeft">&#160;</td><td class="mdescRight">See <a class="el" href="namespacehmap.html#a99a2046c1536aef27a965709811898fc" title="Accentuate ridges by gradient-directed resampling along the normal direction.">hmap::ridge_accentuate</a>.  <br /></td></tr>
+<tr class="separator:af3c4a498eabdcccc53e6ad750e069e79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02adff51ac10629e93424abc5451d535" id="r_a02adff51ac10629e93424abc5451d535"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap_1_1gpu.html#a02adff51ac10629e93424abc5451d535">ridge_accentuate</a> (<a class="el" href="classhmap_1_1Array.html">Array</a> &amp;array, const <a class="el" href="classhmap_1_1Array.html">Array</a> *p_mask, float strength=0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, int <a class="el" href="sls__deformation_8cpp.html#a108a1d0fcea4288c9e48f5dc4fa0a1b0">ir</a>=0, bool reverse=false)</td></tr>
+<tr class="memdesc:a02adff51ac10629e93424abc5451d535"><td class="mdescLeft">&#160;</td><td class="mdescRight">See <a class="el" href="namespacehmap.html#a99a2046c1536aef27a965709811898fc" title="Accentuate ridges by gradient-directed resampling along the normal direction.">hmap::ridge_accentuate</a>.  <br /></td></tr>
+<tr class="separator:a02adff51ac10629e93424abc5451d535"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5639aa9dbe4048e12f83ff5c5660db07" id="r_a5639aa9dbe4048e12f83ff5c5660db07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap_1_1gpu.html#a5639aa9dbe4048e12f83ff5c5660db07">shrink</a> (<a class="el" href="classhmap_1_1Array.html">Array</a> &amp;array, int <a class="el" href="sls__deformation_8cpp.html#a108a1d0fcea4288c9e48f5dc4fa0a1b0">ir</a>, int iterations=1)</td></tr>
 <tr class="memdesc:a5639aa9dbe4048e12f83ff5c5660db07"><td class="mdescLeft">&#160;</td><td class="mdescRight">See <a class="el" href="namespacehmap.html#acde2b4e7bac6ebfe2c2dcfe3f0a369f1" title="Apply shrinking, or &quot;deflating&quot;, to emphasize the ridges in the heightmap.">hmap::shrink</a>.  <br /></td></tr>
 <tr class="separator:a5639aa9dbe4048e12f83ff5c5660db07"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -8775,6 +8781,96 @@ Only available if OpenCL is enabled.</dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="af3c4a498eabdcccc53e6ad750e069e79" name="af3c4a498eabdcccc53e6ad750e069e79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3c4a498eabdcccc53e6ad750e069e79">&#9670;&#160;</a></span>ridge_accentuate() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hmap::gpu::ridge_accentuate </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classhmap_1_1Array.html">Array</a> &amp;&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>strength</em> = <code>0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ir</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>reverse</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>See <a class="el" href="namespacehmap.html#a99a2046c1536aef27a965709811898fc" title="Accentuate ridges by gradient-directed resampling along the normal direction.">hmap::ridge_accentuate</a>. </p>
+
+</div>
+</div>
+<a id="a02adff51ac10629e93424abc5451d535" name="a02adff51ac10629e93424abc5451d535"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02adff51ac10629e93424abc5451d535">&#9670;&#160;</a></span>ridge_accentuate() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hmap::gpu::ridge_accentuate </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classhmap_1_1Array.html">Array</a> &amp;&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classhmap_1_1Array.html">Array</a> *&#160;</td>
+          <td class="paramname"><em>p_mask</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>strength</em> = <code>0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ir</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>reverse</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>See <a class="el" href="namespacehmap.html#a99a2046c1536aef27a965709811898fc" title="Accentuate ridges by gradient-directed resampling along the normal direction.">hmap::ridge_accentuate</a>. </p>
 
 </div>
 </div>

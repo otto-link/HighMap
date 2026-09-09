@@ -209,6 +209,10 @@ void \mbox{\hyperlink{namespacehmap_1_1gpu_aa1d48aaeafd42970a2b0c9b6795d73b5}{pl
 \begin{DoxyCompactList}\small\item\em Projects array values along a given direction using talus attenuation. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_ae6c94ff5fe464c75e5ef05b05d5ccacf}{project\+\_\+talus\+\_\+along\+\_\+direction}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&talus, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+mask, int direction=0, float vmin=-\/FLT\+\_\+\+MAX)
 \item 
+void \mbox{\hyperlink{namespacehmap_1_1gpu_af3c4a498eabdcccc53e6ad750e069e79}{ridge\+\_\+accentuate}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float strength=0.\+1\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, int \mbox{\hyperlink{sls__deformation_8cpp_a108a1d0fcea4288c9e48f5dc4fa0a1b0}{ir}}=0, bool reverse=false)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_a99a2046c1536aef27a965709811898fc}{hmap\+::ridge\+\_\+accentuate}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_1_1gpu_a02adff51ac10629e93424abc5451d535}{ridge\+\_\+accentuate}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+mask, float strength=0.\+1\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, int \mbox{\hyperlink{sls__deformation_8cpp_a108a1d0fcea4288c9e48f5dc4fa0a1b0}{ir}}=0, bool reverse=false)
+\begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_a99a2046c1536aef27a965709811898fc}{hmap\+::ridge\+\_\+accentuate}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespacehmap_1_1gpu_a5639aa9dbe4048e12f83ff5c5660db07}{shrink}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int \mbox{\hyperlink{sls__deformation_8cpp_a108a1d0fcea4288c9e48f5dc4fa0a1b0}{ir}}, int iterations=1)
 \begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_acde2b4e7bac6ebfe2c2dcfe3f0a369f1}{hmap\+::shrink}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespacehmap_1_1gpu_a551b9d1203331ed95e472c57a6e439c4}{shrink}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int \mbox{\hyperlink{sls__deformation_8cpp_a108a1d0fcea4288c9e48f5dc4fa0a1b0}{ir}}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+mask, int iterations=1)
@@ -3856,6 +3860,26 @@ The array is temporarily shifted to non-\/negative values to ensure correctness 
 \index{project\_talus\_along\_direction@{project\_talus\_along\_direction}!hmap::gpu@{hmap::gpu}}
 \doxysubsubsection{\texorpdfstring{project\_talus\_along\_direction()}{project\_talus\_along\_direction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::gpu\+::project\+\_\+talus\+\_\+along\+\_\+direction (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{talus,  }\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+mask,  }\item[{int}]{direction = {\ttfamily 0},  }\item[{float}]{vmin = {\ttfamily -\/FLT\+\_\+MAX} }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacehmap_1_1gpu_af3c4a498eabdcccc53e6ad750e069e79}\label{namespacehmap_1_1gpu_af3c4a498eabdcccc53e6ad750e069e79} 
+\index{hmap::gpu@{hmap::gpu}!ridge\_accentuate@{ridge\_accentuate}}
+\index{ridge\_accentuate@{ridge\_accentuate}!hmap::gpu@{hmap::gpu}}
+\doxysubsubsection{\texorpdfstring{ridge\_accentuate()}{ridge\_accentuate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void hmap\+::gpu\+::ridge\+\_\+accentuate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{float}]{strength = {\ttfamily 0.1\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{int}]{ir = {\ttfamily 0},  }\item[{bool}]{reverse = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+See \doxylink{namespacehmap_a99a2046c1536aef27a965709811898fc}{hmap\+::ridge\+\_\+accentuate}. 
+
+\Hypertarget{namespacehmap_1_1gpu_a02adff51ac10629e93424abc5451d535}\label{namespacehmap_1_1gpu_a02adff51ac10629e93424abc5451d535} 
+\index{hmap::gpu@{hmap::gpu}!ridge\_accentuate@{ridge\_accentuate}}
+\index{ridge\_accentuate@{ridge\_accentuate}!hmap::gpu@{hmap::gpu}}
+\doxysubsubsection{\texorpdfstring{ridge\_accentuate()}{ridge\_accentuate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void hmap\+::gpu\+::ridge\+\_\+accentuate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+mask,  }\item[{float}]{strength = {\ttfamily 0.1\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{int}]{ir = {\ttfamily 0},  }\item[{bool}]{reverse = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+See \doxylink{namespacehmap_a99a2046c1536aef27a965709811898fc}{hmap\+::ridge\+\_\+accentuate}. 
 
 \Hypertarget{namespacehmap_1_1gpu_a5639aa9dbe4048e12f83ff5c5660db07}\label{namespacehmap_1_1gpu_a5639aa9dbe4048e12f83ff5c5660db07} 
 \index{hmap::gpu@{hmap::gpu}!shrink@{shrink}}

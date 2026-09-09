@@ -1,5 +1,15 @@
 var NAVTREEINDEX20 =
 {
+"primitives_2functions_8hpp.html#a0b06b24568140dc46bacb4132cd35e4a":[5,0,1,0,0,8,1,31],
+"primitives_2functions_8hpp.html#a1bdde74ca6ad37104c99c074f7a2387a":[5,0,1,0,0,8,1,17],
+"primitives_2functions_8hpp.html#a244398042a7032506bf76ca61805094a":[5,0,1,0,0,8,1,29],
+"primitives_2functions_8hpp.html#a2b25a71f7da0b8324df986e01e5b08dc":[5,0,1,0,0,8,1,12],
+"primitives_2functions_8hpp.html#a32035fe3ef18a31240ace195c721ecd7":[5,0,1,0,0,8,1,6],
+"primitives_2functions_8hpp.html#a342e86d5f5b6da70427e3c66c25b419d":[5,0,1,0,0,8,1,30],
+"primitives_2functions_8hpp.html#a41239b5831a88a5b2528f24e8c95a92a":[5,0,1,0,0,8,1,21],
+"primitives_2functions_8hpp.html#a4af0bde798f0266db4dfe24e1134a506":[5,0,1,0,0,8,1,7],
+"primitives_2functions_8hpp.html#a55542a66f890ef9ecf5f82af2c23a0cf":[5,0,1,0,0,8,1,0],
+"primitives_2functions_8hpp.html#a55542a66f890ef9ecf5f82af2c23a0cfa4807402e27d4ee7cb042237cbeb26a69":[5,0,1,0,0,8,1,0,0],
 "primitives_2functions_8hpp.html#a55542a66f890ef9ecf5f82af2c23a0cfa71a3d57896b6c2d066433962e74e8961":[5,0,1,0,0,8,1,0,3],
 "primitives_2functions_8hpp.html#a55542a66f890ef9ecf5f82af2c23a0cfa938e2b9cd9d4c9249f6d45285457891b":[5,0,1,0,0,8,1,0,1],
 "primitives_2functions_8hpp.html#a55542a66f890ef9ecf5f82af2c23a0cfad8c75d88dbfd854dbcedfaf3a4b9c65c":[5,0,1,0,0,8,1,0,5],
@@ -239,15 +249,5 @@ var NAVTREEINDEX20 =
 "reverse__midpoint_8cpp.html#a3d953aa5fcf59193b3b8b98db3f5a872":[5,0,1,1,2,4,0],
 "reverse__midpoint_8cpp.html#a6f7e6e0cffaf7d03cfe1eef62b1c3575":[5,0,1,1,2,4,2],
 "reverse__midpoint_8cpp.html#af5440364a346b297246885e95793ef45":[5,0,1,1,2,4,1],
-"ridgelines_8cpp.html":[5,0,1,1,2,5],
-"ridgelines_8cpp.html#a4e7db58b8b58def3b862476f18b6005e":[5,0,1,1,2,5,1],
-"ridgelines_8cpp.html#a74f6ef0464e0ec67df5179f49e14e35a":[5,0,1,1,2,5,0],
-"rift_8cpp.html":[5,0,1,1,30,2,11],
-"rift_8cpp.html#a0da433ef9eb80cc11084bd3adbe75051":[5,0,1,1,30,2,11,0],
-"rifts__gpu_8cpp.html":[5,0,1,1,12,23],
-"rifts__gpu_8cpp.html#ace06af8ac4d53033c221b1e0f7462a54":[5,0,1,1,12,23,0],
-"roads_8hpp.html":[5,0,1,0,0,42],
-"roads_8hpp.html#a286e4e74e6495802dba7f873c06ccb20":[5,0,1,0,0,42,0],
-"roads_8hpp_source.html":[5,0,1,0,0,42],
-"sdf_8hpp.html":[5,0,1,0,0,43]
+"ridge__accentuate_8cpp.html":[5,0,1,1,15,10]
 };

@@ -881,6 +881,10 @@ void \mbox{\hyperlink{namespacehmap_a4b4c16f9dcd3cdb8e4e53c7cb6a44ed7}{reverse\+
 \begin{DoxyCompactList}\small\item\em This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespacehmap_a56f425774168f76ab81c2c8a06145761}{reverse\+\_\+above\+\_\+theshold}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float \mbox{\hyperlink{namespacehmap_a30b11da38799224ac6d138dce87278b9}{threshold}}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+mask, float scaling=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float transition\+\_\+extent=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
 \begin{DoxyCompactList}\small\item\em This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_a99a2046c1536aef27a965709811898fc}{ridge\+\_\+accentuate}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float strength=0.\+1\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, int \mbox{\hyperlink{sls__deformation_8cpp_a108a1d0fcea4288c9e48f5dc4fa0a1b0}{ir}}=0, bool reverse=false)
+\begin{DoxyCompactList}\small\item\em Accentuate ridges by gradient-\/directed resampling along the normal direction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacehmap_ae9761a6d8d3b32eda18f767d10489e73}{ridge\+\_\+accentuate}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+mask, float strength=0.\+1\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, int \mbox{\hyperlink{sls__deformation_8cpp_a108a1d0fcea4288c9e48f5dc4fa0a1b0}{ir}}=0, bool reverse=false)
+\begin{DoxyCompactList}\small\item\em This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespacehmap_a2e4283dd5da8add89788c5023c73042c}{saturate}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float vmin, float vmax, float from\+\_\+min, float from\+\_\+max, float k=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
 \begin{DoxyCompactList}\small\item\em Saturate the array values based on the input interval \mbox{[}vmin, vmax\mbox{]} (the output amplitude is not modified). \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespacehmap_ad4c8b8b2361aa1fec5c984287a837461}{saturate}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float vmin, float vmax, float k=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
@@ -12323,6 +12327,79 @@ This is an overloaded member function, provided for convenience. It differs from
 \index{reverse\_above\_theshold@{reverse\_above\_theshold}!hmap@{hmap}}
 \doxysubsubsection{\texorpdfstring{reverse\_above\_theshold()}{reverse\_above\_theshold()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
 {\footnotesize\ttfamily void hmap\+::reverse\+\_\+above\+\_\+theshold (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{float}]{threshold,  }\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+mask,  }\item[{float}]{scaling = {\ttfamily 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{float}]{transition\+\_\+extent = {\ttfamily 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}} }\end{DoxyParamCaption})}
+
+
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
+
+\Hypertarget{namespacehmap_a99a2046c1536aef27a965709811898fc}\label{namespacehmap_a99a2046c1536aef27a965709811898fc} 
+\index{hmap@{hmap}!ridge\_accentuate@{ridge\_accentuate}}
+\index{ridge\_accentuate@{ridge\_accentuate}!hmap@{hmap}}
+\doxysubsubsection{\texorpdfstring{ridge\_accentuate()}{ridge\_accentuate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void hmap\+::ridge\+\_\+accentuate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{float}]{strength = {\ttfamily 0.1\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{int}]{ir = {\ttfamily 0},  }\item[{bool}]{reverse = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Accentuate ridges by gradient-\/directed resampling along the normal direction. 
+
+This filter sharpens and accentuates ridgelines in a heightmap. For each pixel, the terrain surface normal is computed at a scale controlled by {\ttfamily ir}. The sampling position is displaced along the horizontal normal direction by an amount proportional to {\ttfamily strength}, and the original heightmap is resampled.
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & Input array representing the terrain (modified in place). \\
+\hline
+{\em strength} & Displacement amount / ridge intensity (default is 0.\+1f). \\
+\hline
+{\em ir} & Filter radius used to smooth terrain before computing the normal (default is 0). \\
+\hline
+{\em reverse} & If true, inverts displacement direction to form valleys/channels (default is false).\\
+\hline
+\end{DoxyParams}
+{\bfseries{Example}} 
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{highmap_8hpp}{highmap.hpp}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_1_1gpu_adb8336ed4d83c15500872185dee45d50}{hmap::gpu::init\_opencl}}();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ glm::ivec2\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}\ =\ \{512,\ 512\};}
+\DoxyCodeLine{\ \ glm::vec2\ \ res\ =\ \{4.f,\ 4.f\};}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ seed\ =\ 42;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ base\ terrain\ using\ fractional\ Brownian\ motion}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ z1\ =\ \mbox{\hyperlink{namespacehmap_a7d699a468a18be16c70654958ee13b41}{hmap::noise\_fbm}}(\mbox{\hyperlink{namespacehmap_ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581}{hmap::NoiseType::PERLIN}},\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ res,\ seed);}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{hmap::remap}}(z1);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ accentuate\ ridges\ using\ gradient-\/directed\ resampling}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ z2\ =\ z1;}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ z3\ =\ z1;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{float}\ strength\ =\ 0.01f;}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \mbox{\hyperlink{sls__deformation_8cpp_a108a1d0fcea4288c9e48f5dc4fa0a1b0}{ir}}\ =\ 32;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a99a2046c1536aef27a965709811898fc}{hmap::ridge\_accentuate}}(z2,\ strength,\ \mbox{\hyperlink{sls__deformation_8cpp_a108a1d0fcea4288c9e48f5dc4fa0a1b0}{ir}});}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_1_1gpu_af3c4a498eabdcccc53e6ad750e069e79}{hmap::gpu::ridge\_accentuate}}(z3,\ strength,\ \mbox{\hyperlink{sls__deformation_8cpp_a108a1d0fcea4288c9e48f5dc4fa0a1b0}{ir}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ z1.\mbox{\hyperlink{classhmap_1_1Array_a00b8f7462c1e22b1da8a67ec62d4c8c8}{dump}}(\textcolor{stringliteral}{"{}z1.png"{}});}
+\DoxyCodeLine{\ \ z2.\mbox{\hyperlink{classhmap_1_1Array_a00b8f7462c1e22b1da8a67ec62d4c8c8}{dump}}(\textcolor{stringliteral}{"{}z2.png"{}});}
+\DoxyCodeLine{\ \ z3.\mbox{\hyperlink{classhmap_1_1Array_a00b8f7462c1e22b1da8a67ec62d4c8c8}{dump}}(\textcolor{stringliteral}{"{}z3.png"{}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ export\ before\ and\ after\ banner}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_ac2452e568959bc21c9b7b09202e5977a}{hmap::export\_banner\_png}}(\textcolor{stringliteral}{"{}ex\_ridge\_accentuate.png"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{z1,\ z2,\ z3\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a6d093dbf3088c52a8acee413942545d9}{hmap::Cmap::TERRAIN}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{true});}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+
+
+{\bfseries{Result}}  \Hypertarget{namespacehmap_ae9761a6d8d3b32eda18f767d10489e73}\label{namespacehmap_ae9761a6d8d3b32eda18f767d10489e73} 
+\index{hmap@{hmap}!ridge\_accentuate@{ridge\_accentuate}}
+\index{ridge\_accentuate@{ridge\_accentuate}!hmap@{hmap}}
+\doxysubsubsection{\texorpdfstring{ridge\_accentuate()}{ridge\_accentuate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void hmap\+::ridge\+\_\+accentuate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+mask,  }\item[{float}]{strength = {\ttfamily 0.1\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{int}]{ir = {\ttfamily 0},  }\item[{bool}]{reverse = {\ttfamily false} }\end{DoxyParamCaption})}
 
 
 

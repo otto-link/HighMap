@@ -1266,6 +1266,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a56f425774168f76ab81c2c8a06145761" id="r_a56f425774168f76ab81c2c8a06145761"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#a56f425774168f76ab81c2c8a06145761">reverse_above_theshold</a> (<a class="el" href="classhmap_1_1Array.html">Array</a> &amp;array, float <a class="el" href="namespacehmap.html#a30b11da38799224ac6d138dce87278b9">threshold</a>, const <a class="el" href="classhmap_1_1Array.html">Array</a> *p_mask, float scaling=1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float transition_extent=0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>)</td></tr>
 <tr class="memdesc:a56f425774168f76ab81c2c8a06145761"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.  <br /></td></tr>
 <tr class="separator:a56f425774168f76ab81c2c8a06145761"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99a2046c1536aef27a965709811898fc" id="r_a99a2046c1536aef27a965709811898fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#a99a2046c1536aef27a965709811898fc">ridge_accentuate</a> (<a class="el" href="classhmap_1_1Array.html">Array</a> &amp;array, float strength=0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, int <a class="el" href="sls__deformation_8cpp.html#a108a1d0fcea4288c9e48f5dc4fa0a1b0">ir</a>=0, bool reverse=false)</td></tr>
+<tr class="memdesc:a99a2046c1536aef27a965709811898fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accentuate ridges by gradient-directed resampling along the normal direction.  <br /></td></tr>
+<tr class="separator:a99a2046c1536aef27a965709811898fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9761a6d8d3b32eda18f767d10489e73" id="r_ae9761a6d8d3b32eda18f767d10489e73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#ae9761a6d8d3b32eda18f767d10489e73">ridge_accentuate</a> (<a class="el" href="classhmap_1_1Array.html">Array</a> &amp;array, const <a class="el" href="classhmap_1_1Array.html">Array</a> *p_mask, float strength=0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, int <a class="el" href="sls__deformation_8cpp.html#a108a1d0fcea4288c9e48f5dc4fa0a1b0">ir</a>=0, bool reverse=false)</td></tr>
+<tr class="memdesc:ae9761a6d8d3b32eda18f767d10489e73"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.  <br /></td></tr>
+<tr class="separator:ae9761a6d8d3b32eda18f767d10489e73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e4283dd5da8add89788c5023c73042c" id="r_a2e4283dd5da8add89788c5023c73042c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#a2e4283dd5da8add89788c5023c73042c">saturate</a> (<a class="el" href="classhmap_1_1Array.html">Array</a> &amp;array, float vmin, float vmax, float from_min, float from_max, float k=0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>)</td></tr>
 <tr class="memdesc:a2e4283dd5da8add89788c5023c73042c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saturate the array values based on the input interval [vmin, vmax] (the output amplitude is not modified).  <br /></td></tr>
 <tr class="separator:a2e4283dd5da8add89788c5023c73042c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -19552,6 +19558,145 @@ A_{i,j}^{t+1} = A_{i,j}^{t} + \sigma \cdot
 
 </div>
 </div>
+<a id="a99a2046c1536aef27a965709811898fc" name="a99a2046c1536aef27a965709811898fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99a2046c1536aef27a965709811898fc">&#9670;&#160;</a></span>ridge_accentuate() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hmap::ridge_accentuate </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classhmap_1_1Array.html">Array</a> &amp;&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>strength</em> = <code>0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ir</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>reverse</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Accentuate ridges by gradient-directed resampling along the normal direction. </p>
+<p>This filter sharpens and accentuates ridgelines in a heightmap. For each pixel, the terrain surface normal is computed at a scale controlled by <code>ir</code>. The sampling position is displaced along the horizontal normal direction by an amount proportional to <code>strength</code>, and the original heightmap is resampled.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">array</td><td>Input array representing the terrain (modified in place). </td></tr>
+    <tr><td class="paramname">strength</td><td>Displacement amount / ridge intensity (default is 0.1f). </td></tr>
+    <tr><td class="paramname">ir</td><td>Filter radius used to smooth terrain before computing the normal (default is 0). </td></tr>
+    <tr><td class="paramname">reverse</td><td>If true, inverts displacement direction to form valleys/channels (default is false).</td></tr>
+  </table>
+  </dd>
+</dl>
+<p><b>Example</b> </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="highmap_8hpp.html">highmap.hpp</a>&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> <a class="code hl_function" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>(<span class="keywordtype">void</span>)</div>
+<div class="line">{</div>
+<div class="line">  <a class="code hl_function" href="namespacehmap_1_1gpu.html#adb8336ed4d83c15500872185dee45d50">hmap::gpu::init_opencl</a>();</div>
+<div class="line"> </div>
+<div class="line">  glm::ivec2 <a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a> = {512, 512};</div>
+<div class="line">  glm::vec2  res = {4.f, 4.f};</div>
+<div class="line">  <span class="keywordtype">int</span>        seed = 42;</div>
+<div class="line"> </div>
+<div class="line">  <span class="comment">// base terrain using fractional Brownian motion</span></div>
+<div class="line">  <a class="code hl_class" href="classhmap_1_1Array.html">hmap::Array</a> z1 = <a class="code hl_function" href="namespacehmap.html#a7d699a468a18be16c70654958ee13b41">hmap::noise_fbm</a>(<a class="code hl_enumvalue" href="namespacehmap.html#ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581">hmap::NoiseType::PERLIN</a>, <a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>, res, seed);</div>
+<div class="line">  <a class="code hl_function" href="namespacehmap.html#a262e6495cb2d02598f36a2b46114b2b4">hmap::remap</a>(z1);</div>
+<div class="line"> </div>
+<div class="line">  <span class="comment">// accentuate ridges using gradient-directed resampling</span></div>
+<div class="line">  <a class="code hl_class" href="classhmap_1_1Array.html">hmap::Array</a> z2 = z1;</div>
+<div class="line">  <a class="code hl_class" href="classhmap_1_1Array.html">hmap::Array</a> z3 = z1;</div>
+<div class="line"> </div>
+<div class="line">  <span class="keywordtype">float</span> strength = 0.01f;</div>
+<div class="line">  <span class="keywordtype">int</span>   <a class="code hl_variable" href="sls__deformation_8cpp.html#a108a1d0fcea4288c9e48f5dc4fa0a1b0">ir</a> = 32;</div>
+<div class="line"> </div>
+<div class="line">  <a class="code hl_function" href="namespacehmap.html#a99a2046c1536aef27a965709811898fc">hmap::ridge_accentuate</a>(z2, strength, <a class="code hl_variable" href="sls__deformation_8cpp.html#a108a1d0fcea4288c9e48f5dc4fa0a1b0">ir</a>);</div>
+<div class="line">  <a class="code hl_function" href="namespacehmap_1_1gpu.html#af3c4a498eabdcccc53e6ad750e069e79">hmap::gpu::ridge_accentuate</a>(z3, strength, <a class="code hl_variable" href="sls__deformation_8cpp.html#a108a1d0fcea4288c9e48f5dc4fa0a1b0">ir</a>);</div>
+<div class="line"> </div>
+<div class="line">  z1.<a class="code hl_function" href="classhmap_1_1Array.html#a00b8f7462c1e22b1da8a67ec62d4c8c8">dump</a>(<span class="stringliteral">&quot;z1.png&quot;</span>);</div>
+<div class="line">  z2.<a class="code hl_function" href="classhmap_1_1Array.html#a00b8f7462c1e22b1da8a67ec62d4c8c8">dump</a>(<span class="stringliteral">&quot;z2.png&quot;</span>);</div>
+<div class="line">  z3.<a class="code hl_function" href="classhmap_1_1Array.html#a00b8f7462c1e22b1da8a67ec62d4c8c8">dump</a>(<span class="stringliteral">&quot;z3.png&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">  <span class="comment">// export before and after banner</span></div>
+<div class="line">  <a class="code hl_function" href="namespacehmap.html#ac2452e568959bc21c9b7b09202e5977a">hmap::export_banner_png</a>(<span class="stringliteral">&quot;ex_ridge_accentuate.png&quot;</span>,</div>
+<div class="line">                          {z1, z2, z3},</div>
+<div class="line">                          <a class="code hl_enumvalue" href="namespacehmap.html#ac70fe3cbb32e0340d5dd3e15cdcf9369a6d093dbf3088c52a8acee413942545d9">hmap::Cmap::TERRAIN</a>,</div>
+<div class="line">                          <span class="keyword">true</span>);</div>
+<div class="line">}</div>
+<div class="ttc" id="anamespacehmap_1_1gpu_html_af3c4a498eabdcccc53e6ad750e069e79"><div class="ttname"><a href="namespacehmap_1_1gpu.html#af3c4a498eabdcccc53e6ad750e069e79">hmap::gpu::ridge_accentuate</a></div><div class="ttdeci">void ridge_accentuate(Array &amp;array, float strength=0.1f, int ir=0, bool reverse=false)</div><div class="ttdoc">See hmap::ridge_accentuate.</div><div class="ttdef"><b>Definition</b> filters_gpu.cpp:392</div></div>
+<div class="ttc" id="anamespacehmap_html_a99a2046c1536aef27a965709811898fc"><div class="ttname"><a href="namespacehmap.html#a99a2046c1536aef27a965709811898fc">hmap::ridge_accentuate</a></div><div class="ttdeci">void ridge_accentuate(Array &amp;array, float strength=0.1f, int ir=0, bool reverse=false)</div><div class="ttdoc">Accentuate ridges by gradient-directed resampling along the normal direction.</div><div class="ttdef"><b>Definition</b> ridge_accentuate.cpp:15</div></div>
+</div><!-- fragment --><p><b>Result</b> </p><div class="image">
+<img src="ex_ridge_accentuate.png" alt=""/>
+</div>
+ 
+</div>
+</div>
+<a id="ae9761a6d8d3b32eda18f767d10489e73" name="ae9761a6d8d3b32eda18f767d10489e73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9761a6d8d3b32eda18f767d10489e73">&#9670;&#160;</a></span>ridge_accentuate() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hmap::ridge_accentuate </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classhmap_1_1Array.html">Array</a> &amp;&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classhmap_1_1Array.html">Array</a> *&#160;</td>
+          <td class="paramname"><em>p_mask</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>strength</em> = <code>0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ir</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>reverse</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </p>
+
+</div>
+</div>
 <a id="a2e4283dd5da8add89788c5023c73042c" name="a2e4283dd5da8add89788c5023c73042c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2e4283dd5da8add89788c5023c73042c">&#9670;&#160;</a></span>saturate() <span class="overload">[1/2]</span></h2>
 
@@ -20420,7 +20565,7 @@ A_{i,j}^{t+1} = A_{i,j}^{t} + \sigma \cdot
 <div class="line">                          <span class="keyword">false</span>,</div>
 <div class="line">                          <span class="keyword">true</span>);</div>
 <div class="line">}</div>
-<div class="ttc" id="anamespacehmap_1_1gpu_html_a7d2aae253f1f67bbdbc718859f83ef0a"><div class="ttname"><a href="namespacehmap_1_1gpu.html#a7d2aae253f1f67bbdbc718859f83ef0a">hmap::gpu::smooth_cpulse</a></div><div class="ttdeci">void smooth_cpulse(Array &amp;array, int ir)</div><div class="ttdoc">See hmap::smooth_cpulse.</div><div class="ttdef"><b>Definition</b> filters_gpu.cpp:465</div></div>
+<div class="ttc" id="anamespacehmap_1_1gpu_html_a7d2aae253f1f67bbdbc718859f83ef0a"><div class="ttname"><a href="namespacehmap_1_1gpu.html#a7d2aae253f1f67bbdbc718859f83ef0a">hmap::gpu::smooth_cpulse</a></div><div class="ttdeci">void smooth_cpulse(Array &amp;array, int ir)</div><div class="ttdoc">See hmap::smooth_cpulse.</div><div class="ttdef"><b>Definition</b> filters_gpu.cpp:501</div></div>
 <div class="ttc" id="anamespacehmap_html_a95c0f4c53278620f0812381ccaa7459e"><div class="ttname"><a href="namespacehmap.html#a95c0f4c53278620f0812381ccaa7459e">hmap::smooth_cpulse</a></div><div class="ttdeci">void smooth_cpulse(Array &amp;array, int ir)</div><div class="ttdoc">Apply filtering to the array using convolution with a cubic pulse kernel.</div><div class="ttdef"><b>Definition</b> filters.cpp:945</div></div>
 </div><!-- fragment --><p><b>Result</b> </p><div class="image">
 <img src="ex_smooth_cpulse.png" alt=""/>

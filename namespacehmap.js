@@ -546,6 +546,8 @@ var namespacehmap =
     [ "reverse_above_theshold", "namespacehmap.html#a4e0ce9e13f26f66fa546e5127a68956c", null ],
     [ "reverse_above_theshold", "namespacehmap.html#a4b4c16f9dcd3cdb8e4e53c7cb6a44ed7", null ],
     [ "reverse_above_theshold", "namespacehmap.html#a56f425774168f76ab81c2c8a06145761", null ],
+    [ "ridge_accentuate", "namespacehmap.html#a99a2046c1536aef27a965709811898fc", null ],
+    [ "ridge_accentuate", "namespacehmap.html#ae9761a6d8d3b32eda18f767d10489e73", null ],
     [ "saturate", "namespacehmap.html#a2e4283dd5da8add89788c5023c73042c", null ],
     [ "saturate", "namespacehmap.html#ad4c8b8b2361aa1fec5c984287a837461", null ],
     [ "saturate_percentile", "namespacehmap.html#aa5afebf536169cd294d771fa2d6f7756", null ],

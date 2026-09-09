@@ -1114,19 +1114,19 @@
     <member refid="classhmap_1_1XyControlFunction_1acfe5c441363f35d36a13084fb56c6dca" kind="function"><name>MinimumImpl</name></member>
     <member refid="classhmap_1_1XyControlFunction_1ab32abc0861325b3ea6f547b938a9225d" kind="function"><name>MaximumImpl</name></member>
   </compound>
-  <compound refid="namespace_0d348" kind="namespace"><name>@348</name>
+  <compound refid="namespace_0d349" kind="namespace"><name>@349</name>
   </compound>
-  <compound refid="namespace_0d355" kind="namespace"><name>@355</name>
+  <compound refid="namespace_0d356" kind="namespace"><name>@356</name>
   </compound>
-  <compound refid="namespace_0d361" kind="namespace"><name>@361</name>
+  <compound refid="namespace_0d362" kind="namespace"><name>@362</name>
   </compound>
-  <compound refid="namespace_0d371" kind="namespace"><name>@371</name>
+  <compound refid="namespace_0d372" kind="namespace"><name>@372</name>
   </compound>
-  <compound refid="namespace_0d386" kind="namespace"><name>@386</name>
+  <compound refid="namespace_0d387" kind="namespace"><name>@387</name>
   </compound>
-  <compound refid="namespace_0d392" kind="namespace"><name>@392</name>
+  <compound refid="namespace_0d394" kind="namespace"><name>@394</name>
   </compound>
-  <compound refid="namespace_0d396" kind="namespace"><name>@396</name>
+  <compound refid="namespace_0d398" kind="namespace"><name>@398</name>
   </compound>
   <compound refid="namespacehmap" kind="namespace"><name>hmap</name>
     <member refid="namespacehmap_1a5101273ec456f5267dddc3e22dae223b" kind="enum"><name>StampingBlendMethod</name></member>
@@ -1563,6 +1563,8 @@
     <member refid="namespacehmap_1a4e0ce9e13f26f66fa546e5127a68956c" kind="function"><name>reverse_above_theshold</name></member>
     <member refid="namespacehmap_1a4b4c16f9dcd3cdb8e4e53c7cb6a44ed7" kind="function"><name>reverse_above_theshold</name></member>
     <member refid="namespacehmap_1a56f425774168f76ab81c2c8a06145761" kind="function"><name>reverse_above_theshold</name></member>
+    <member refid="namespacehmap_1a99a2046c1536aef27a965709811898fc" kind="function"><name>ridge_accentuate</name></member>
+    <member refid="namespacehmap_1ae9761a6d8d3b32eda18f767d10489e73" kind="function"><name>ridge_accentuate</name></member>
     <member refid="namespacehmap_1a2e4283dd5da8add89788c5023c73042c" kind="function"><name>saturate</name></member>
     <member refid="namespacehmap_1ad4c8b8b2361aa1fec5c984287a837461" kind="function"><name>saturate</name></member>
     <member refid="namespacehmap_1aa5afebf536169cd294d771fa2d6f7756" kind="function"><name>saturate_percentile</name></member>
@@ -2167,11 +2169,11 @@
     <member refid="namespacehmap_1ac1fdc0ac0b6e1024faeaddcd30ebe2fe" kind="function"><name>reindex_vector</name></member>
     <member refid="namespacehmap_1a5cca080874e8af74fa03a3f0f0d2f307" kind="function"><name>reindex_vector</name></member>
   </compound>
-  <compound refid="namespacehmap_1_1_0d192" kind="namespace"><name>hmap::@192</name>
+  <compound refid="namespacehmap_1_1_0d193" kind="namespace"><name>hmap::@193</name>
   </compound>
-  <compound refid="namespacehmap_1_1_0d214" kind="namespace"><name>hmap::@214</name>
+  <compound refid="namespacehmap_1_1_0d215" kind="namespace"><name>hmap::@215</name>
   </compound>
-  <compound refid="namespacehmap_1_1_0d321" kind="namespace"><name>hmap::@321</name>
+  <compound refid="namespacehmap_1_1_0d322" kind="namespace"><name>hmap::@322</name>
   </compound>
   <compound refid="namespacehmap_1_1_0d94" kind="namespace"><name>hmap::@94</name>
   </compound>
@@ -2282,6 +2284,8 @@
     <member refid="namespacehmap_1_1gpu_1aa1d48aaeafd42970a2b0c9b6795d73b5" kind="function"><name>plateau</name></member>
     <member refid="namespacehmap_1_1gpu_1a0925ea6d4015309249863be8076af45f" kind="function"><name>project_talus_along_direction</name></member>
     <member refid="namespacehmap_1_1gpu_1ae6c94ff5fe464c75e5ef05b05d5ccacf" kind="function"><name>project_talus_along_direction</name></member>
+    <member refid="namespacehmap_1_1gpu_1af3c4a498eabdcccc53e6ad750e069e79" kind="function"><name>ridge_accentuate</name></member>
+    <member refid="namespacehmap_1_1gpu_1a02adff51ac10629e93424abc5451d535" kind="function"><name>ridge_accentuate</name></member>
     <member refid="namespacehmap_1_1gpu_1a5639aa9dbe4048e12f83ff5c5660db07" kind="function"><name>shrink</name></member>
     <member refid="namespacehmap_1_1gpu_1a551b9d1203331ed95e472c57a6e439c4" kind="function"><name>shrink</name></member>
     <member refid="namespacehmap_1_1gpu_1a95377c44e7202205d867d42fe4cfa93d" kind="function"><name>shrink</name></member>
@@ -2859,6 +2863,8 @@
   <compound refid="recast_8cpp" kind="file"><name>recast.cpp</name>
   </compound>
   <compound refid="recurve_8cpp" kind="file"><name>recurve.cpp</name>
+  </compound>
+  <compound refid="ridge__accentuate_8cpp" kind="file"><name>ridge_accentuate.cpp</name>
   </compound>
   <compound refid="spectral__equalizer_8cpp" kind="file"><name>spectral_equalizer.cpp</name>
   </compound>
@@ -3657,6 +3663,15 @@
     <member refid="test__remove__endpoints_8cpp_1a0f36849cc78680734cb656875022354d" kind="function"><name>TEST</name></member>
     <member refid="test__remove__endpoints_8cpp_1aabab944b488bb1bc90c789ad505eb159" kind="function"><name>TEST</name></member>
     <member refid="test__remove__endpoints_8cpp_1a16b5264cad1ba687791ad75f7310b634" kind="function"><name>TEST</name></member>
+  </compound>
+  <compound refid="test__ridge__accentuate_8cpp" kind="file"><name>test_ridge_accentuate.cpp</name>
+    <member refid="test__ridge__accentuate_8cpp_1a64851d70409f3b9cf7c82dbda4244a1a" kind="function"><name>TEST</name></member>
+    <member refid="test__ridge__accentuate_8cpp_1af8ede7eb277a335eea2cff4675e26bc3" kind="function"><name>TEST</name></member>
+    <member refid="test__ridge__accentuate_8cpp_1aa1bb48642942a3cc9495c12f0853d9ca" kind="function"><name>TEST</name></member>
+    <member refid="test__ridge__accentuate_8cpp_1a5a96fa422c6184739b8d7d525fa98081" kind="function"><name>TEST</name></member>
+    <member refid="test__ridge__accentuate_8cpp_1a702e27a5b5a2514a88d944740744e957" kind="function"><name>TEST</name></member>
+    <member refid="test__ridge__accentuate_8cpp_1ac738e9fd739c21164ef688e02b996388" kind="function"><name>TEST</name></member>
+    <member refid="test__ridge__accentuate_8cpp_1a8c55e18a56236b474110522fbf4f8b6c" kind="function"><name>TEST</name></member>
   </compound>
   <compound refid="test__saturate_8cpp" kind="file"><name>test_saturate.cpp</name>
     <member refid="test__saturate_8cpp_1a20a613f35fe7628a3b711e40709abeed" kind="function"><name>TEST</name></member>

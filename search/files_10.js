@@ -10,8 +10,9 @@ var searchData=
   ['recast_2ecpp_7',['recast.cpp',['../recast_8cpp.html',1,'']]],
   ['recurve_2ecpp_8',['recurve.cpp',['../recurve_8cpp.html',1,'']]],
   ['reverse_5fmidpoint_2ecpp_9',['reverse_midpoint.cpp',['../reverse__midpoint_8cpp.html',1,'']]],
-  ['ridgelines_2ecpp_10',['ridgelines.cpp',['../ridgelines_8cpp.html',1,'']]],
-  ['rift_2ecpp_11',['rift.cpp',['../rift_8cpp.html',1,'']]],
-  ['rifts_5fgpu_2ecpp_12',['rifts_gpu.cpp',['../rifts__gpu_8cpp.html',1,'']]],
-  ['roads_2ehpp_13',['roads.hpp',['../roads_8hpp.html',1,'']]]
+  ['ridge_5faccentuate_2ecpp_10',['ridge_accentuate.cpp',['../ridge__accentuate_8cpp.html',1,'']]],
+  ['ridgelines_2ecpp_11',['ridgelines.cpp',['../ridgelines_8cpp.html',1,'']]],
+  ['rift_2ecpp_12',['rift.cpp',['../rift_8cpp.html',1,'']]],
+  ['rifts_5fgpu_2ecpp_13',['rifts_gpu.cpp',['../rifts__gpu_8cpp.html',1,'']]],
+  ['roads_2ehpp_14',['roads.hpp',['../roads_8hpp.html',1,'']]]
 ];
