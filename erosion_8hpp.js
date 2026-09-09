@@ -30,6 +30,7 @@ var erosion_8hpp =
     [ "hydraulic_particle", "erosion_8hpp.html#a4634556eb8cdc81b0bb52b5ebcd5309b", null ],
     [ "hydraulic_particle", "erosion_8hpp.html#a896738bf580453d50668885176c3371a", null ],
     [ "hydraulic_particle_multiscale", "erosion_8hpp.html#a6bf71c5a5b9e73d823bab65dc40c0287", null ],
+    [ "hydraulic_particle_multiscale", "erosion_8hpp.html#aef2fdf67297395cdbe6e86991580f7da", null ],
     [ "hydraulic_mcdonald", "erosion_8hpp.html#a95d94b88a44f0b1c6b21a020d8779b1f", null ],
     [ "hydraulic_mcdonald_multiscale", "erosion_8hpp.html#a33b7748b6322b458482b3a60c6a3a7c6", null ],
     [ "hydraulic_procedural", "erosion_8hpp.html#a99e82fd045db7e5fddd177449289c3b6", null ],

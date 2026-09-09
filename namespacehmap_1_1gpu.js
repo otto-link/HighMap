@@ -33,6 +33,7 @@ var namespacehmap_1_1gpu =
     [ "hydraulic_particle", "namespacehmap_1_1gpu.html#a4634556eb8cdc81b0bb52b5ebcd5309b", null ],
     [ "hydraulic_particle", "namespacehmap_1_1gpu.html#a896738bf580453d50668885176c3371a", null ],
     [ "hydraulic_particle_multiscale", "namespacehmap_1_1gpu.html#a6bf71c5a5b9e73d823bab65dc40c0287", null ],
+    [ "hydraulic_particle_multiscale", "namespacehmap_1_1gpu.html#aef2fdf67297395cdbe6e86991580f7da", null ],
     [ "hydraulic_mcdonald", "namespacehmap_1_1gpu.html#a95d94b88a44f0b1c6b21a020d8779b1f", null ],
     [ "hydraulic_mcdonald_multiscale", "namespacehmap_1_1gpu.html#a33b7748b6322b458482b3a60c6a3a7c6", null ],
     [ "hydraulic_procedural", "namespacehmap_1_1gpu.html#a99e82fd045db7e5fddd177449289c3b6", null ],

@@ -1,5 +1,7 @@
 var NAVTREEINDEX12 =
 {
+"kd__tree_8cpp.html":[5,0,1,1,17,5],
+"kd__tree_8hpp.html":[5,0,1,0,0,1,4],
 "kd__tree_8hpp.html#ae4a8f5c1d747f5eccbe078ab94598707":[5,0,1,0,0,1,4,2],
 "kd__tree_8hpp_source.html":[5,0,1,0,0,1,4],
 "kernels_8cpp.html":[5,0,1,1,22,0],
@@ -247,7 +249,5 @@ var NAVTREEINDEX12 =
 "morphology_8cpp.html":[5,0,1,1,25,3],
 "morphology_8cpp.html#a01f3be1fd053428ea67030e3736d15ca":[5,0,1,1,25,3,11],
 "morphology_8cpp.html#a11ddd5ab1aa625db9419d9b65c0eaa64":[5,0,1,1,25,3,23],
-"morphology_8cpp.html#a1cf22c68188d0e35aa74983f3a01c488":[5,0,1,1,25,3,10],
-"morphology_8cpp.html#a211108a73f7ebadb6ac87621c4e47301":[5,0,1,1,25,3,13],
-"morphology_8cpp.html#a2420e66a1e851eff3503d805004495b3":[5,0,1,1,25,3,4]
+"morphology_8cpp.html#a1cf22c68188d0e35aa74983f3a01c488":[5,0,1,1,25,3,10]
 };
