@@ -30,7 +30,7 @@ struct ForestSeedingOptions
 {
   glm::vec4 bbox = {0.f, 1.f, 0.f, 1.f}; ///< Bounding box {xmin, xmax, ymin, ymax}.
   uint32_t seed = 0;                     ///< Random number generator seed.
-  float    exclusion_threshold = 0.5f;   ///< Threshold for exclusion map masking.
+  float    exclusion_threshold = 0.f;    ///< Threshold for exclusion map masking.
   std::vector<Species> species = {};     ///< Optional Species definitions.
 };
 
@@ -64,8 +64,10 @@ struct ForestSeedingOptions
  *                               map.
  * @param  weight_secondary      Weight for optional secondary density map in
  *                               [0, 1].
- * @param  exclusion_mask        Optional exclusion mask (where <= 0, density is
- *                               set to 0).
+ * @param  exclusion_mask        Optional exclusion mask (where > exclusion_threshold,
+ *                               density is set to 0).
+ * @param  exclusion_threshold   Threshold above which exclusion mask excludes
+ *                               trees (default 0.f).
  * @return                       Array Computed density array in [0, 1].
  */
 Array build_tree_density(const Array &heightmap,
@@ -82,7 +84,8 @@ Array build_tree_density(const Array &heightmap,
                          float        weight_twi = 0.5f,
                          const Array &secondary_density = {},
                          float        weight_secondary = 1.0f,
-                         const Array &exclusion_mask = {});
+                         const Array &exclusion_mask = {},
+                         float        exclusion_threshold = 0.f);
 
 /**
  * @brief Generates a clustered forest distribution using inverse transform

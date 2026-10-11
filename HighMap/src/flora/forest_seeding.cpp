@@ -52,7 +52,8 @@ Array build_tree_density(const Array &heightmap,
                          float        weight_twi,
                          const Array &secondary_density,
                          float        weight_secondary,
-                         const Array &exclusion_mask)
+                         const Array &exclusion_mask,
+                         float        exclusion_threshold)
 {
   // validate inputs
   if (!validate_non_empty(heightmap)) return Array();
@@ -142,7 +143,7 @@ Array build_tree_density(const Array &heightmap,
     for (int j = 0; j < density.shape.y; ++j)
       for (int i = 0; i < density.shape.x; ++i)
       {
-        if (exclusion_mask(i, j) <= 0.0f) density(i, j) = 0.0f;
+        if (exclusion_mask(i, j) > exclusion_threshold) density(i, j) = 0.0f;
       }
   }
 

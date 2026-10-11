@@ -937,12 +937,12 @@ TEST(TreeDensityTest, ExclusionMask)
 {
   glm::ivec2 shape = {32, 32};
   Array      hmap(shape, 0.5f);
-  Array      mask(shape, 1.0f);
+  Array      mask(shape, 0.0f);
 
-  // Mask out half the domain with 0.0
+  // Mask out half the domain with 1.0
   for (int j = 0; j < shape.y; ++j)
     for (int i = 0; i < shape.x / 2; ++i)
-      mask(i, j) = 0.0f;
+      mask(i, j) = 1.0f;
 
   Array density = build_tree_density(hmap,
                                      0.0f,
