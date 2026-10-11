@@ -13394,7 +13394,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="64" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="64" bodyend="112" declfile="HighMap/include/highmap/local_metrics.hpp" declline="385" declcolumn="7"/>
+        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="64" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="64" bodyend="130" declfile="HighMap/include/highmap/local_metrics.hpp" declline="385" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1ae009181cccaea0d4b151eca85b5d21dd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -13465,7 +13465,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="114" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="114" bodyend="136" declfile="HighMap/include/highmap/local_metrics.hpp" declline="401" declcolumn="7"/>
+        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="132" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="132" bodyend="154" declfile="HighMap/include/highmap/local_metrics.hpp" declline="401" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a022f5800d7e28f79f9e2d3abf687f490" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -13488,7 +13488,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="269" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="269" bodyend="276" declfile="HighMap/include/highmap/local_metrics.hpp" declline="404" declcolumn="7"/>
+        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="305" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="305" bodyend="312" declfile="HighMap/include/highmap/local_metrics.hpp" declline="404" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1ae64f19dccba3c247ebf45e8b1b65acd8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -13544,7 +13544,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="162" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="162" bodyend="173" declfile="HighMap/include/highmap/local_metrics.hpp" declline="414" declcolumn="7"/>
+        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="180" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="180" bodyend="191" declfile="HighMap/include/highmap/local_metrics.hpp" declline="414" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a07ca1cc6d3e9693e25bb37b5a741c260" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -13647,7 +13647,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="175" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="175" bodyend="193" declfile="HighMap/include/highmap/local_metrics.hpp" declline="434" declcolumn="7"/>
+        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="193" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="193" bodyend="211" declfile="HighMap/include/highmap/local_metrics.hpp" declline="434" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a36a5f96566c4074dd1032c63bf95ee5e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -13718,7 +13718,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="195" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="195" bodyend="243" declfile="HighMap/include/highmap/local_metrics.hpp" declline="450" declcolumn="7"/>
+        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="213" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="213" bodyend="279" declfile="HighMap/include/highmap/local_metrics.hpp" declline="450" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a6d96c1601f55373944acfc5fe8cabaa2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -13789,7 +13789,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="245" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="245" bodyend="267" declfile="HighMap/include/highmap/local_metrics.hpp" declline="466" declcolumn="7"/>
+        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="281" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="281" bodyend="303" declfile="HighMap/include/highmap/local_metrics.hpp" declline="466" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a1650177561553b49c125d4f302df6d8a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -13868,7 +13868,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="278" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="278" bodyend="283" declfile="HighMap/include/highmap/local_metrics.hpp" declline="492" declcolumn="7"/>
+        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="314" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="314" bodyend="319" declfile="HighMap/include/highmap/local_metrics.hpp" declline="492" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1aeca9d8454f50273ca4a4f3db0c25a1b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -13934,7 +13934,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="305" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="305" bodyend="323" declfile="HighMap/include/highmap/local_metrics.hpp" declline="513" declcolumn="7"/>
+        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="341" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="341" bodyend="359" declfile="HighMap/include/highmap/local_metrics.hpp" declline="513" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a72341578d241e21b4c31d7497287cfc3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -13957,7 +13957,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="138" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="138" bodyend="160" declfile="HighMap/include/highmap/local_metrics.hpp" declline="516" declcolumn="7"/>
+        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="156" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="156" bodyend="178" declfile="HighMap/include/highmap/local_metrics.hpp" declline="516" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1aa40b626be86c63829e7e118fa389d260" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -13979,7 +13979,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="285" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="285" bodyend="303" declfile="HighMap/include/highmap/local_metrics.hpp" declline="518" declcolumn="7"/>
+        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="321" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="321" bodyend="339" declfile="HighMap/include/highmap/local_metrics.hpp" declline="518" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1ad6ef648576e9339058037a28ce17d225" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -14045,7 +14045,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="325" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="325" bodyend="343" declfile="HighMap/include/highmap/local_metrics.hpp" declline="536" declcolumn="7"/>
+        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="361" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="361" bodyend="379" declfile="HighMap/include/highmap/local_metrics.hpp" declline="536" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a74594cae7628bcfb1c038ac6930fe97d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -14113,7 +14113,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="436" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="436" bodyend="454" declfile="HighMap/include/highmap/local_metrics.hpp" declline="554" declcolumn="7"/>
+        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="472" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="472" bodyend="490" declfile="HighMap/include/highmap/local_metrics.hpp" declline="554" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a778cf36acffc481571ad51d607a1719e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -14141,7 +14141,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="345" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="345" bodyend="353" declfile="HighMap/include/highmap/local_metrics.hpp" declline="557" declcolumn="7"/>
+        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="381" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="381" bodyend="389" declfile="HighMap/include/highmap/local_metrics.hpp" declline="557" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1aebca5a0fef9c05a0e2378aef452707ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -14164,7 +14164,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="355" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="355" bodyend="363" declfile="HighMap/include/highmap/local_metrics.hpp" declline="562" declcolumn="7"/>
+        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="391" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="391" bodyend="399" declfile="HighMap/include/highmap/local_metrics.hpp" declline="562" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1ab7698c2ed65e59a06231e0a84838165c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -14187,7 +14187,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="365" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="365" bodyend="379" declfile="HighMap/include/highmap/local_metrics.hpp" declline="565" declcolumn="7"/>
+        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="401" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="401" bodyend="415" declfile="HighMap/include/highmap/local_metrics.hpp" declline="565" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a62292cc4bf9f6eb5c7b63b1e26f8cc88" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -14210,7 +14210,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="381" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="381" bodyend="398" declfile="HighMap/include/highmap/local_metrics.hpp" declline="568" declcolumn="7"/>
+        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="417" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="417" bodyend="434" declfile="HighMap/include/highmap/local_metrics.hpp" declline="568" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1aa5a3e087822525c41f057a51255e2bad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -14238,7 +14238,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="400" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="400" bodyend="434" declfile="HighMap/include/highmap/local_metrics.hpp" declline="571" declcolumn="7"/>
+        <location file="HighMap/src/local_metrics/local_metrics_gpu.cpp" line="436" column="7" bodyfile="HighMap/src/local_metrics/local_metrics_gpu.cpp" bodystart="436" bodyend="470" declfile="HighMap/include/highmap/local_metrics.hpp" declline="571" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a3816b73c0f933147dc86ee9f8d2dd701" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
