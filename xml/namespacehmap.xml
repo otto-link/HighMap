@@ -25583,7 +25583,7 @@ This function:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/flora/forest_seeding.cpp" line="41" column="7" bodyfile="HighMap/src/flora/forest_seeding.cpp" bodystart="41" bodyend="144" declfile="HighMap/include/highmap/flora/forest_seeding.hpp" declline="71" declcolumn="7"/>
+        <location file="HighMap/src/flora/forest_seeding.cpp" line="41" column="7" bodyfile="HighMap/src/flora/forest_seeding.cpp" bodystart="41" bodyend="150" declfile="HighMap/include/highmap/flora/forest_seeding.hpp" declline="71" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a395c1a2f15f7114fac122c864a1e78e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Forest" kindref="compound">Forest</ref></type>
@@ -25689,7 +25689,7 @@ This function:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/flora/forest_seeding.cpp" line="146" column="8" bodyfile="HighMap/src/flora/forest_seeding.cpp" bodystart="146" bodyend="287" declfile="HighMap/include/highmap/flora/forest_seeding.hpp" declline="101" declcolumn="8"/>
+        <location file="HighMap/src/flora/forest_seeding.cpp" line="152" column="8" bodyfile="HighMap/src/flora/forest_seeding.cpp" bodystart="152" bodyend="293" declfile="HighMap/include/highmap/flora/forest_seeding.hpp" declline="101" declcolumn="8"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1aa6ba2bd6f00bf38f87b87f1179dcc70a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Forest" kindref="compound">Forest</ref></type>
@@ -25797,7 +25797,7 @@ This function:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/flora/forest_seeding.cpp" line="289" column="8" bodyfile="HighMap/src/flora/forest_seeding.cpp" bodystart="289" bodyend="505" declfile="HighMap/include/highmap/flora/forest_seeding.hpp" declline="129" declcolumn="8"/>
+        <location file="HighMap/src/flora/forest_seeding.cpp" line="295" column="8" bodyfile="HighMap/src/flora/forest_seeding.cpp" bodystart="295" bodyend="511" declfile="HighMap/include/highmap/flora/forest_seeding.hpp" declline="129" declcolumn="8"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a84ca1f41de32e4beacb10787127b4b8a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::function&lt; float(float, float)&gt;</type>
@@ -42442,7 +42442,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="130" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="130" bodyend="166" declfile="HighMap/include/highmap/math/array.hpp" declline="101" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="130" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="130" bodyend="195" declfile="HighMap/include/highmap/math/array.hpp" declline="101" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1aeb27a88fc257ddfb11aa587eb7a796df" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -42502,7 +42502,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="168" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="168" bodyend="201" declfile="HighMap/include/highmap/math/array.hpp" declline="117" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="197" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="197" bodyend="256" declfile="HighMap/include/highmap/math/array.hpp" declline="117" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a4a3589145183ecdcc6392e28cd1ebef8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -42533,7 +42533,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="203" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="203" bodyend="213" declfile="HighMap/include/highmap/math/array.hpp" declline="127" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="258" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="258" bodyend="268" declfile="HighMap/include/highmap/math/array.hpp" declline="127" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1aad00066161ccf5ba4d6f93ab48c10876" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -42564,7 +42564,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="215" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="215" bodyend="225" declfile="HighMap/include/highmap/math/array.hpp" declline="135" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="270" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="270" bodyend="280" declfile="HighMap/include/highmap/math/array.hpp" declline="135" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a99778512aa5779e70039e6b04e62d40c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -42627,7 +42627,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="227" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="227" bodyend="239" declfile="HighMap/include/highmap/math/array.hpp" declline="150" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="282" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="282" bodyend="294" declfile="HighMap/include/highmap/math/array.hpp" declline="150" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1acc88d4cddcb41e8142b7fef4846e3454" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -42671,7 +42671,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="241" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="241" bodyend="253" declfile="HighMap/include/highmap/math/array.hpp" declline="161" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="296" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="296" bodyend="308" declfile="HighMap/include/highmap/math/array.hpp" declline="161" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1abf083eedad3497bd58486775bcf3e80d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -42714,7 +42714,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="255" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="255" bodyend="265" declfile="HighMap/include/highmap/math/array.hpp" declline="170" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="310" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="310" bodyend="320" declfile="HighMap/include/highmap/math/array.hpp" declline="170" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a339d883dc34fc818dd25077c5daab953" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -42745,7 +42745,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="267" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="267" bodyend="277" declfile="HighMap/include/highmap/math/array.hpp" declline="178" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="322" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="322" bodyend="332" declfile="HighMap/include/highmap/math/array.hpp" declline="178" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a3a1e261b646c9df967e78fb77e5bf8c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -42776,7 +42776,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="279" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="279" bodyend="289" declfile="HighMap/include/highmap/math/array.hpp" declline="186" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="334" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="334" bodyend="344" declfile="HighMap/include/highmap/math/array.hpp" declline="186" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ad78d0f991f4f0eee67929b00469aea39" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -42831,7 +42831,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="291" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="291" bodyend="307" declfile="HighMap/include/highmap/math/array.hpp" declline="196" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="346" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="346" bodyend="362" declfile="HighMap/include/highmap/math/array.hpp" declline="196" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a6d85b2b635d15a4361344451619253f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -42858,7 +42858,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="309" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="309" bodyend="321" declfile="HighMap/include/highmap/math/array.hpp" declline="199" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="364" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="364" bodyend="376" declfile="HighMap/include/highmap/math/array.hpp" declline="199" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a75475b6109023ce0ad64f6f9f7c4c525" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -42889,7 +42889,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="323" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="323" bodyend="333" declfile="HighMap/include/highmap/math/array.hpp" declline="207" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="378" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="378" bodyend="388" declfile="HighMap/include/highmap/math/array.hpp" declline="207" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ab1eced4f7ca867833f06336d9894c1a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -42934,7 +42934,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="335" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="335" bodyend="345" declfile="HighMap/include/highmap/math/array.hpp" declline="218" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="390" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="390" bodyend="400" declfile="HighMap/include/highmap/math/array.hpp" declline="218" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a105e497c433e14b4235534ae6d2b87b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -42977,7 +42977,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="347" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="347" bodyend="365" declfile="HighMap/include/highmap/math/array.hpp" declline="227" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="402" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="402" bodyend="420" declfile="HighMap/include/highmap/math/array.hpp" declline="227" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ad1eb8e81ef31a0e0bc7a5bd093c3aefc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -43033,7 +43033,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="367" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="367" bodyend="379" declfile="HighMap/include/highmap/math/array.hpp" declline="239" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="422" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="422" bodyend="434" declfile="HighMap/include/highmap/math/array.hpp" declline="239" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1aa8f3fda9e1dd32c7b8011c7f2b9cbc55" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -43089,7 +43089,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="381" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="381" bodyend="393" declfile="HighMap/include/highmap/math/array.hpp" declline="251" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="436" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="436" bodyend="448" declfile="HighMap/include/highmap/math/array.hpp" declline="251" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a0aa2c50266e16cf5af077e4e3f77bd8f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -43196,7 +43196,7 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="395" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="395" bodyend="406" declfile="HighMap/include/highmap/math/array.hpp" declline="275" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="450" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="450" bodyend="461" declfile="HighMap/include/highmap/math/array.hpp" declline="275" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a03359e722d96524598aa525022317c95" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -43227,7 +43227,7 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="408" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="408" bodyend="418" declfile="HighMap/include/highmap/math/array.hpp" declline="287" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="463" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="463" bodyend="473" declfile="HighMap/include/highmap/math/array.hpp" declline="287" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a413648e2595721d8ba4096357dbb1f84" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -43306,7 +43306,7 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="420" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="420" bodyend="442" declfile="HighMap/include/highmap/math/array.hpp" declline="303" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="475" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="475" bodyend="497" declfile="HighMap/include/highmap/math/array.hpp" declline="303" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a99273ca3e6836ccf87808571f30479e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -43337,7 +43337,7 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="444" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="444" bodyend="454" declfile="HighMap/include/highmap/math/array.hpp" declline="313" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="499" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="499" bodyend="509" declfile="HighMap/include/highmap/math/array.hpp" declline="313" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a01df0f07ab6d0583d0794d7c03abc1eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -43368,7 +43368,7 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="456" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="456" bodyend="466" declfile="HighMap/include/highmap/math/array.hpp" declline="323" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="511" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="511" bodyend="521" declfile="HighMap/include/highmap/math/array.hpp" declline="323" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1aa4468d1e57ee67ba0be8fb1ab931045a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -43447,7 +43447,7 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="468" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="468" bodyend="490" declfile="HighMap/include/highmap/math/array.hpp" declline="339" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="523" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="523" bodyend="545" declfile="HighMap/include/highmap/math/array.hpp" declline="339" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1aa5cc0ca00f731884d7a1dad714a254c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -43473,7 +43473,7 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="492" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="492" bodyend="523" declfile="HighMap/include/highmap/math/array.hpp" declline="340" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="547" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="547" bodyend="578" declfile="HighMap/include/highmap/math/array.hpp" declline="340" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a9a1737227fa77975c69a2e5bea897cc1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -43504,7 +43504,7 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="525" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="525" bodyend="535" declfile="HighMap/include/highmap/math/array.hpp" declline="348" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="580" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="580" bodyend="590" declfile="HighMap/include/highmap/math/array.hpp" declline="348" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a24e678431e227720e4acab6ee0edcddf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -43535,7 +43535,7 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="537" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="537" bodyend="547" declfile="HighMap/include/highmap/math/array.hpp" declline="356" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="592" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="592" bodyend="602" declfile="HighMap/include/highmap/math/array.hpp" declline="356" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a1862b04695ee11f6b35f131f7e7e2e1d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -43566,7 +43566,7 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="549" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="549" bodyend="559" declfile="HighMap/include/highmap/math/array.hpp" declline="364" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="604" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="604" bodyend="614" declfile="HighMap/include/highmap/math/array.hpp" declline="364" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a6b608e2826c1f9ba54a0e8922d5faa6b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -43597,7 +43597,7 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="561" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="561" bodyend="571" declfile="HighMap/include/highmap/math/array.hpp" declline="372" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="616" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="616" bodyend="626" declfile="HighMap/include/highmap/math/array.hpp" declline="372" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a30e6961ce99edeb86af6f4ce61651bd0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -43629,7 +43629,7 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="573" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="573" bodyend="583" declfile="HighMap/include/highmap/math/array.hpp" declline="382" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="628" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="628" bodyend="638" declfile="HighMap/include/highmap/math/array.hpp" declline="382" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a30b11da38799224ac6d138dce87278b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -43684,7 +43684,7 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="585" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="585" bodyend="595" declfile="HighMap/include/highmap/math/array.hpp" declline="392" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="640" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="640" bodyend="650" declfile="HighMap/include/highmap/math/array.hpp" declline="392" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a49cba67ac4811585d8c11f10972f6d8c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -43739,7 +43739,7 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/math.cpp" line="597" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="597" bodyend="607" declfile="HighMap/include/highmap/math/array.hpp" declline="402" declcolumn="7"/>
+        <location file="HighMap/src/math/math.cpp" line="652" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="652" bodyend="662" declfile="HighMap/include/highmap/math/array.hpp" declline="402" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ab7bb73f6a918ffc68129e3a861080efd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>

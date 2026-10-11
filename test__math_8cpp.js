@@ -30,6 +30,7 @@ var test__math_8cpp =
     [ "TEST", "test__math_8cpp.html#ad407fc2f663f38212b448afd60501371", null ],
     [ "TEST", "test__math_8cpp.html#a1686db8319d7c3529f478b86ed16b566", null ],
     [ "TEST", "test__math_8cpp.html#ac568d9a8b2c08f494ba8b190e012265b", null ],
+    [ "TEST", "test__math_8cpp.html#ad884c7c3377439372e80442a8a1ee859", null ],
     [ "TEST", "test__math_8cpp.html#a7b1f71f6f6471c3be8890161a817e2fe", null ],
     [ "TEST", "test__math_8cpp.html#a8c28ed869e1727500fda0cdb74172462", null ]
 ];

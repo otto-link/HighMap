@@ -4396,6 +4396,7 @@
     <member refid="test__forest__seeding_8cpp_1a454b2187ebd05763106c190edee89e1e" kind="function"><name>TEST</name></member>
     <member refid="test__forest__seeding_8cpp_1af68121cff770f4377f879115b814775e" kind="function"><name>TEST</name></member>
     <member refid="test__forest__seeding_8cpp_1a8f981872e31c2a76ff6f42c56f872095" kind="function"><name>TEST</name></member>
+    <member refid="test__forest__seeding_8cpp_1a085a9ea10de140940323b638ea5f46e8" kind="function"><name>TEST</name></member>
     <member refid="test__forest__seeding_8cpp_1a180408b83dfa4061c2e84e6c2839f5d8" kind="function"><name>TEST</name></member>
     <member refid="test__forest__seeding_8cpp_1ad67032fd5289e043873117cd68f7c5f1" kind="function"><name>TEST</name></member>
     <member refid="test__forest__seeding_8cpp_1add7f5646a906ba67cfd632f2e1caa7fa" kind="function"><name>TEST</name></member>
@@ -4566,6 +4567,7 @@
     <member refid="test__math_8cpp_1ad407fc2f663f38212b448afd60501371" kind="function"><name>TEST</name></member>
     <member refid="test__math_8cpp_1a1686db8319d7c3529f478b86ed16b566" kind="function"><name>TEST</name></member>
     <member refid="test__math_8cpp_1ac568d9a8b2c08f494ba8b190e012265b" kind="function"><name>TEST</name></member>
+    <member refid="test__math_8cpp_1ad884c7c3377439372e80442a8a1ee859" kind="function"><name>TEST</name></member>
     <member refid="test__math_8cpp_1a7b1f71f6f6471c3be8890161a817e2fe" kind="function"><name>TEST</name></member>
     <member refid="test__math_8cpp_1a8c28ed869e1727500fda0cdb74172462" kind="function"><name>TEST</name></member>
   </compound>

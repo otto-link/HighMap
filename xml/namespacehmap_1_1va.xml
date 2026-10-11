@@ -369,7 +369,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/flora/forest_seeding.cpp" line="512" column="8" bodyfile="HighMap/src/flora/forest_seeding.cpp" bodystart="512" bodyend="687" declfile="HighMap/include/highmap/flora/forest_seeding.hpp" declline="157" declcolumn="8"/>
+        <location file="HighMap/src/flora/forest_seeding.cpp" line="518" column="8" bodyfile="HighMap/src/flora/forest_seeding.cpp" bodystart="518" bodyend="693" declfile="HighMap/include/highmap/flora/forest_seeding.hpp" declline="157" declcolumn="8"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1va_1ae8000dce23f7622c2ba67910124bc353" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structhmap_1_1VirtualArray" kindref="compound">VirtualArray</ref></type>
