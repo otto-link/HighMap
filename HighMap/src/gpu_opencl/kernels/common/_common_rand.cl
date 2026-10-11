@@ -16,6 +16,14 @@ float hash12f(float2 p, float fseed)
                &pi);
 }
 
+float hash13f(float3 p, float fseed)
+{
+  float pi;
+  return fract(sin(dot(p, (float3)(127.1f, 311.7f, 74.7f)) + fseed) *
+                   43758.5453123f,
+               &pi);
+}
+
 uint hash21u(uint x, uint y)
 {
   uint h = x * 0x8da6b343u ^ y * 0xd8163841u;
