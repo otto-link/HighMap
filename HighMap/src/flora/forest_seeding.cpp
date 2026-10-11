@@ -121,7 +121,13 @@ Array build_tree_density(const Array &heightmap,
     weights.push_back(weight_secondary);
   }
 
-  Array density = build_density_linear(layers, weights);
+  // failsafe if all weights are zero
+  Array density;
+
+  if (layers.empty())
+    density = Array(heightmap.shape, 1.0f);
+  else
+    density = build_density_linear(layers, weights);
 
   // --- Exclusion Mask
 

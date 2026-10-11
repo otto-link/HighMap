@@ -397,6 +397,18 @@ TEST(MathTest, BuildDensityLogBasic)
   EXPECT_NEAR(out3(0, 1), 0.5f, 1e-5f);
 }
 
+TEST(MathTest, BuildDensityLogEmptyAndMismatched)
+{
+  Array empty_arr;
+  EXPECT_TRUE(build_density_log({}).vector.empty());
+  EXPECT_TRUE(build_density_log({&empty_arr}).vector.empty());
+
+  Array a = Array(glm::ivec2(2, 2), 1.f);
+  Array b = Array(glm::ivec2(3, 3), 1.f);
+  EXPECT_TRUE(build_density_log({&a, &b}).vector.empty());
+  EXPECT_TRUE(build_density_log({&a}, {1.f, 0.5f}).vector.empty());
+}
+
 // --- Log safe
 
 TEST(MathTest, LogSafeScalar)

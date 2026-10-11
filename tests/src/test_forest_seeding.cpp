@@ -1001,6 +1001,35 @@ TEST(TreeDensityTest, SecondaryDensityModulation)
   }
 }
 
+TEST(TreeDensityTest, ZeroWeightsFailsafe)
+{
+  glm::ivec2 shape = {32, 32};
+  Array      hmap(shape, 0.5f);
+
+  Array density = build_tree_density(hmap,
+                                     0.0f,
+                                     1.0f,
+                                     0.1f,
+                                     0.003f,
+                                     0.005f,
+                                     30.0f,
+                                     90.0f,
+                                     0.0f, // weight_elev
+                                     0.0f, // weight_talus
+                                     0.0f, // weight_angle
+                                     0.0f, // weight_twi
+                                     {},
+                                     0.0f); // weight_secondary
+
+  EXPECT_EQ(density.shape, shape);
+  ASSERT_EQ(density.vector.size(), 32 * 32);
+
+  for (float v : density.vector)
+  {
+    EXPECT_FLOAT_EQ(v, 1.0f);
+  }
+}
+
 // --- VirtualArray Seeding Tests
 
 TEST(ForestSeedingTest, VirtualArrayBasicClusterSeeding)

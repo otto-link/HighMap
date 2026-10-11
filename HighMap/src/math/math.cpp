@@ -130,15 +130,44 @@ Array atan2(const Array &y, const Array &array)
 Array build_density_linear(const std::vector<const Array *> &layers,
                            const std::vector<float>         &weights)
 {
-  if (layers.empty()) return Array();
-  if (layers[0] == nullptr || !validate_non_empty(*layers[0])) return Array();
-  if (!weights.empty() && weights.size() != layers.size()) return Array();
+  // --- Validate inputs
+
+  if (layers.empty())
+  {
+    hmap::log::warn("build_density_linear: layers list is empty");
+    return Array();
+  }
+
+  if (layers[0] == nullptr)
+  {
+    hmap::log::warn("build_density_linear: layer 0 is null");
+    return Array();
+  }
+
+  if (!validate_non_empty(*layers[0])) return Array();
+
+  if (!weights.empty() && weights.size() != layers.size())
+  {
+    hmap::log::warn(
+        "build_density_linear: weights size ({}) does not match layers size "
+        "({})",
+        weights.size(),
+        layers.size());
+    return Array();
+  }
 
   for (size_t k = 1; k < layers.size(); ++k)
   {
-    if (layers[k] == nullptr || !validate_same_shape(*layers[0], *layers[k]))
+    if (layers[k] == nullptr)
+    {
+      hmap::log::warn("build_density_linear: layer {} is null", k);
       return Array();
+    }
+
+    if (!validate_same_shape(*layers[0], *layers[k])) return Array();
   }
+
+  // --- Core
 
   const glm::ivec2 shape = layers[0]->shape;
   Array            array_out(shape, 1.f);
@@ -169,15 +198,41 @@ Array build_density_log(const std::vector<const Array *> &layers,
                         const std::vector<float>         &weights,
                         float                             eps)
 {
-  if (layers.empty()) return Array();
-  if (layers[0] == nullptr || !validate_non_empty(*layers[0])) return Array();
-  if (!weights.empty() && weights.size() != layers.size()) return Array();
+  if (layers.empty())
+  {
+    hmap::log::warn("build_density_log: layers list is empty");
+    return Array();
+  }
+
+  if (layers[0] == nullptr)
+  {
+    hmap::log::warn("build_density_log: layer 0 is null");
+    return Array();
+  }
+
+  if (!validate_non_empty(*layers[0])) return Array();
+
+  if (!weights.empty() && weights.size() != layers.size())
+  {
+    hmap::log::warn(
+        "build_density_log: weights size ({}) does not match layers size ({})",
+        weights.size(),
+        layers.size());
+    return Array();
+  }
 
   for (size_t k = 1; k < layers.size(); ++k)
   {
-    if (layers[k] == nullptr || !validate_same_shape(*layers[0], *layers[k]))
+    if (layers[k] == nullptr)
+    {
+      hmap::log::warn("build_density_log: layer {} is null", k);
       return Array();
+    }
+
+    if (!validate_same_shape(*layers[0], *layers[k])) return Array();
   }
+
+  // --- Core
 
   const glm::ivec2   shape = layers[0]->shape;
   const size_t       n = layers[0]->vector.size();
