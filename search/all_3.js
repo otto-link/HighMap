@@ -68,7 +68,7 @@ var searchData=
   ['build_65',['build',['../classhmap_1_1NaturalNeighborInterpolator.html#a9404f1043455692be64d35116a00742c',1,'hmap::NaturalNeighborInterpolator']]],
   ['build_5fdensity_5flinear_66',['build_density_linear',['../namespacehmap.html#aeb287bebf689e973b6b5ed1020968d8f',1,'hmap']]],
   ['build_5fdensity_5flog_67',['build_density_log',['../namespacehmap.html#aeb27a88fc257ddfb11aa587eb7a796df',1,'hmap']]],
-  ['build_5ftree_5fdensity_68',['build_tree_density',['../namespacehmap.html#aed2820706625d4a715c0cb457b3d7ab4',1,'hmap']]],
+  ['build_5ftree_5fdensity_68',['build_tree_density',['../namespacehmap.html#ae7c74f46c267db50e3c562eebb118e27',1,'hmap']]],
   ['building_20heightmaps_69',['&quot;Array&quot; - Elementary Data Structure for Building Heightmaps',['../index.html#autotoc_md8',1,'']]],
   ['bulkify_70',['bulkify',['../namespacehmap.html#ae3ecf5f88476c5d49978a130f8cab2f3',1,'hmap']]],
   ['bulkify_2ecpp_71',['bulkify.cpp',['../bulkify_8cpp.html',1,'']]],

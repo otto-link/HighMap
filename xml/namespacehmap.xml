@@ -25372,10 +25372,10 @@ This function:<itemizedlist>
         </inbodydescription>
         <location file="HighMap/src/flora/grow_forest_soft_core.cpp" line="28" column="8" bodyfile="HighMap/src/flora/grow_forest_soft_core.cpp" bodystart="28" bodyend="184" declfile="HighMap/include/highmap/flora/forest_growth.hpp" declline="308" declcolumn="8"/>
       </memberdef>
-      <memberdef kind="function" id="namespacehmap_1aed2820706625d4a715c0cb457b3d7ab4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespacehmap_1ae7c74f46c267db50e3c562eebb118e27" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
         <definition>Array hmap::build_tree_density</definition>
-        <argsstring>(const Array &amp;heightmap, float min_elev=0.0f, float max_elev=0.9f, float elev_transition_width=0.1f, float min_talus=0.003f, float max_talus=0.005f, float angle=30.0f, float angle_width=90.0f, float weight_elev=1.0f, float weight_talus=1.0f, float weight_angle=0.8f, float weight_twi=0.5f, const Array &amp;secondary_density={}, float weight_secondary=1.0f, const Array &amp;exclusion_mask={})</argsstring>
+        <argsstring>(const Array &amp;heightmap, float min_elev=0.0f, float max_elev=0.9f, float elev_transition_width=0.1f, float min_talus=0.003f, float max_talus=0.005f, float angle=30.0f, float angle_width=90.0f, float weight_elev=1.0f, float weight_talus=1.0f, float weight_angle=0.8f, float weight_twi=0.5f, const Array &amp;secondary_density={}, float weight_secondary=1.0f, const Array &amp;exclusion_mask={}, float exclusion_threshold=0.f)</argsstring>
         <name>build_tree_density</name>
         <qualifiedname>hmap::build_tree_density</qualifiedname>
         <param>
@@ -25451,6 +25451,11 @@ This function:<itemizedlist>
           <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
           <declname>exclusion_mask</declname>
           <defval>{}</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>exclusion_threshold</declname>
+          <defval>0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
         </param>
         <briefdescription>
 <para>Computes an environmental suitability criteria map in [0, 1] representing tree probability density based on elevation, slope talus, aspect angle, topographic wetness index (TWI), an optional secondary density map, and an optional exclusion mask. </para>
@@ -25573,7 +25578,15 @@ This function:<itemizedlist>
 <parametername>exclusion_mask</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>Optional exclusion mask (where &lt;= 0, density is set to 0). </para>
+<para>Optional exclusion mask (where &gt; exclusion_threshold, density is set to 0). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>exclusion_threshold</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Threshold above which exclusion mask excludes trees (default 0.f). </para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -25583,7 +25596,7 @@ This function:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/flora/forest_seeding.cpp" line="41" column="7" bodyfile="HighMap/src/flora/forest_seeding.cpp" bodystart="41" bodyend="150" declfile="HighMap/include/highmap/flora/forest_seeding.hpp" declline="71" declcolumn="7"/>
+        <location file="HighMap/src/flora/forest_seeding.cpp" line="41" column="7" bodyfile="HighMap/src/flora/forest_seeding.cpp" bodystart="41" bodyend="151" declfile="HighMap/include/highmap/flora/forest_seeding.hpp" declline="73" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a395c1a2f15f7114fac122c864a1e78e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Forest" kindref="compound">Forest</ref></type>
@@ -25689,7 +25702,7 @@ This function:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/flora/forest_seeding.cpp" line="152" column="8" bodyfile="HighMap/src/flora/forest_seeding.cpp" bodystart="152" bodyend="293" declfile="HighMap/include/highmap/flora/forest_seeding.hpp" declline="101" declcolumn="8"/>
+        <location file="HighMap/src/flora/forest_seeding.cpp" line="153" column="8" bodyfile="HighMap/src/flora/forest_seeding.cpp" bodystart="153" bodyend="294" declfile="HighMap/include/highmap/flora/forest_seeding.hpp" declline="104" declcolumn="8"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1aa6ba2bd6f00bf38f87b87f1179dcc70a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Forest" kindref="compound">Forest</ref></type>
@@ -25797,7 +25810,7 @@ This function:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/flora/forest_seeding.cpp" line="295" column="8" bodyfile="HighMap/src/flora/forest_seeding.cpp" bodystart="295" bodyend="511" declfile="HighMap/include/highmap/flora/forest_seeding.hpp" declline="129" declcolumn="8"/>
+        <location file="HighMap/src/flora/forest_seeding.cpp" line="296" column="8" bodyfile="HighMap/src/flora/forest_seeding.cpp" bodystart="296" bodyend="512" declfile="HighMap/include/highmap/flora/forest_seeding.hpp" declline="132" declcolumn="8"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a84ca1f41de32e4beacb10787127b4b8a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::function&lt; float(float, float)&gt;</type>

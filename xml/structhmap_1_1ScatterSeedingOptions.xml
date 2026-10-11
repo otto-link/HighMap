@@ -42,7 +42,7 @@
         <argsstring></argsstring>
         <name>exclusion_threshold</name>
         <qualifiedname>hmap::ScatterSeedingOptions::exclusion_threshold</qualifiedname>
-        <initializer>= 0.5<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <initializer>= 0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
         <briefdescription>
 <para>Threshold for exclusion map masking. </para>
         </briefdescription>
