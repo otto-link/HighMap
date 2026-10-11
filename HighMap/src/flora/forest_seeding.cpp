@@ -180,7 +180,7 @@ Forest seed_forest_clusters(size_t                      species_count,
     for (int j = 0; j < density.shape.y; ++j)
       for (int i = 0; i < density.shape.x; ++i)
       {
-        if (exclusion(i, j) >= options.exclusion_threshold)
+        if (exclusion(i, j) > options.exclusion_threshold)
           effective_density(i, j) = 0.0f;
       }
   }
@@ -322,7 +322,7 @@ Forest seed_forest_kmeans(size_t                      species_count,
     for (int j = 0; j < density.shape.y; ++j)
       for (int i = 0; i < density.shape.x; ++i)
       {
-        if (exclusion(i, j) >= options.exclusion_threshold)
+        if (exclusion(i, j) > options.exclusion_threshold)
           effective_density(i, j) = 0.0f;
       }
   }
@@ -524,8 +524,7 @@ Forest seed_forest_clusters(size_t                      species_count,
                             const ForestSeedingOptions &options,
                             const ComputeMode          &cm)
 {
-  // validate inputs
-  (void)cm;
+  // --- Validate inputs
 
   if (species_count == 0 || tree_count == 0 || points_per_cluster == 0 ||
       density.empty())
@@ -560,65 +559,56 @@ Forest seed_forest_clusters(size_t                      species_count,
   std::vector<float> tile_full_sums(total_tiles, 0.f);
   float              total_inner_sum = 0.f;
 
-  for (int ty = 0; ty < num_tiles.y; ++ty)
-  {
-    for (int tx = 0; tx < num_tiles.x; ++tx)
-    {
-      int        tile_index = ty * num_tiles.x + tx;
-      TileRegion region = density.tile_region_from_tile_coords(tx, ty);
+  const VirtualArray *p_exclusion_va = has_exclusion ? &exclusion : nullptr;
 
-      const Array &density_tile = density.storage->get_tile(region);
-      const Array *p_exclusion_tile = nullptr;
-
-      if (has_exclusion)
+  hmap::for_each_tile(
+      {&density, p_exclusion_va},
+      {},
+      [&](const std::vector<const Array *> &p_arrays_in,
+          std::vector<Array *> &,
+          const TileRegion &region)
       {
-        p_exclusion_tile = &exclusion.storage->get_tile(region);
-      }
+        const auto [p_density_tile, p_exclusion_tile] = unpack<2>(p_arrays_in);
 
-      float tile_full_sum = 0.f;
-      float tile_inner_sum = 0.f;
+        int tile_index = region.key.ty * num_tiles.x + region.key.tx;
 
-      const glm::ivec4 &halo = region.halo;
-      int               shape_x = region.shape.x;
-      int               shape_y = region.shape.y;
+        float tile_full_sum = 0.f;
+        float tile_inner_sum = 0.f;
 
-      for (int j = 0; j < shape_y; ++j)
-      {
-        bool is_inner_y = (j >= halo.z && j < shape_y - halo.w);
+        const glm::ivec4 &halo = region.halo;
+        int               shape_x = region.shape.x;
+        int               shape_y = region.shape.y;
 
-        for (int i = 0; i < shape_x; ++i)
+        for (int j = 0; j < shape_y; ++j)
         {
-          float d_val = density_tile(i, j);
+          bool is_inner_y = (j >= halo.z && j < shape_y - halo.w);
 
-          if (has_exclusion && p_exclusion_tile &&
-              (*p_exclusion_tile)(i, j) >= options.exclusion_threshold)
+          for (int i = 0; i < shape_x; ++i)
           {
-            d_val = 0.0f;
-          }
+            float d_val = (*p_density_tile)(i, j);
 
-          if (d_val > 0.0f)
-          {
-            tile_full_sum += d_val;
-
-            if (is_inner_y && i >= halo.x && i < shape_x - halo.y)
+            if (p_exclusion_tile &&
+                (*p_exclusion_tile)(i, j) > options.exclusion_threshold)
             {
-              tile_inner_sum += d_val;
+              d_val = 0.0f;
+            }
+
+            if (d_val > 0.0f)
+            {
+              tile_full_sum += d_val;
+
+              if (is_inner_y && i >= halo.x && i < shape_x - halo.y)
+              {
+                tile_inner_sum += d_val;
+              }
             }
           }
         }
-      }
 
-      tile_full_sums[tile_index] = tile_full_sum;
-      total_inner_sum += tile_inner_sum;
-
-      density.storage->release_tile(region);
-
-      if (has_exclusion && p_exclusion_tile)
-      {
-        exclusion.storage->release_tile(region);
-      }
-    }
-  }
+        tile_full_sums[tile_index] = tile_full_sum;
+        total_inner_sum += tile_inner_sum;
+      },
+      cm);
 
   if (total_inner_sum <= 1e-7f)
   {
@@ -627,63 +617,48 @@ Forest seed_forest_clusters(size_t                      species_count,
 
   // --- Generate Sub-Forests per Tile
 
-  std::vector<ScatterField> tile_fields;
-  std::vector<glm::vec4>    tile_bboxs;
+  std::vector<ScatterField> tile_fields(total_tiles);
+  std::vector<glm::vec4>    tile_bboxs(total_tiles);
 
-  tile_fields.reserve(total_tiles);
-  tile_bboxs.reserve(total_tiles);
-
-  for (int ty = 0; ty < num_tiles.y; ++ty)
-  {
-    for (int tx = 0; tx < num_tiles.x; ++tx)
-    {
-      int        tile_index = ty * num_tiles.x + tx;
-      TileRegion region = density.tile_region_from_tile_coords(tx, ty);
-
-      tile_bboxs.push_back(region.bbox);
-
-      float  tile_sum = tile_full_sums[tile_index];
-      size_t tile_tree_count = static_cast<size_t>(std::round(
-          static_cast<float>(tree_count) * (tile_sum / total_inner_sum)));
-
-      if (tile_tree_count == 0)
+  hmap::for_each_tile(
+      {&density, p_exclusion_va},
+      {},
+      [&](const std::vector<const Array *> &p_arrays_in,
+          std::vector<Array *> &,
+          const TileRegion &region)
       {
-        tile_fields.emplace_back();
-        continue;
-      }
+        const auto [p_density_tile, p_exclusion_tile] = unpack<2>(p_arrays_in);
 
-      const Array &density_tile = density.storage->get_tile(region);
-      const Array *p_exclusion_tile = nullptr;
+        int tile_index = region.key.ty * num_tiles.x + region.key.tx;
 
-      if (has_exclusion)
-      {
-        p_exclusion_tile = &exclusion.storage->get_tile(region);
-      }
+        tile_bboxs[tile_index] = region.bbox;
 
-      ForestSeedingOptions tile_options = options;
-      tile_options.bbox = region.bbox;
-      tile_options.seed = options.seed +
-                          static_cast<uint32_t>(tile_index) * 1999u + 17u;
+        float  tile_sum = tile_full_sums[tile_index];
+        size_t tile_tree_count = static_cast<size_t>(std::round(
+            static_cast<float>(tree_count) * (tile_sum / total_inner_sum)));
 
-      Forest tile_forest = seed_forest_clusters(
-          species_count,
-          tile_tree_count,
-          density_tile,
-          p_exclusion_tile ? *p_exclusion_tile : Array(),
-          cluster_spread,
-          points_per_cluster,
-          tile_options);
+        if (tile_tree_count == 0)
+        {
+          return;
+        }
 
-      tile_fields.push_back(std::move(tile_forest));
+        ForestSeedingOptions tile_options = options;
+        tile_options.bbox = region.bbox;
+        tile_options.seed = options.seed +
+                            static_cast<uint32_t>(tile_index) * 1999u + 17u;
 
-      density.storage->release_tile(region);
+        Forest tile_forest = seed_forest_clusters(
+            species_count,
+            tile_tree_count,
+            *p_density_tile,
+            p_exclusion_tile ? *p_exclusion_tile : Array(),
+            cluster_spread,
+            points_per_cluster,
+            tile_options);
 
-      if (has_exclusion && p_exclusion_tile)
-      {
-        exclusion.storage->release_tile(region);
-      }
-    }
-  }
+        tile_fields[tile_index] = std::move(tile_forest);
+      },
+      cm);
 
   // --- Merge Forests with Bounding Box Overlap Resolution
 

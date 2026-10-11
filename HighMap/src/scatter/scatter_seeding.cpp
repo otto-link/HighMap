@@ -61,7 +61,7 @@ ScatterField seed_scatter_clusters(size_t       class_count,
     for (int j = 0; j < density.shape.y; ++j)
       for (int i = 0; i < density.shape.x; ++i)
       {
-        if (exclusion(i, j) >= options.exclusion_threshold)
+        if (exclusion(i, j) > options.exclusion_threshold)
           effective_density(i, j) = 0.0f;
       }
   }
@@ -184,7 +184,7 @@ ScatterField seed_scatter_kmeans(size_t       class_count,
     for (int j = 0; j < density.shape.y; ++j)
       for (int i = 0; i < density.shape.x; ++i)
       {
-        if (exclusion(i, j) >= options.exclusion_threshold)
+        if (exclusion(i, j) > options.exclusion_threshold)
           effective_density(i, j) = 0.0f;
       }
   }
