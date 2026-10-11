@@ -74,39 +74,57 @@ Array local_max_octagon(const Array &array, int ir)
 
   auto run = clwrapper::Run("local_max_octagon");
 
-  run.bind_imagef("in", array_out.vector, array.shape.x, array.shape.y);
-  run.bind_imagef("out", array_out.vector, array.shape.x, array.shape.y, true);
+  using clwrapper::Direction;
+
+  run.bind_imagef("img_0",
+                  array_out.vector,
+                  array.shape.x,
+                  array.shape.y,
+                  Direction::INOUT);
+  run.bind_imagef("img_1",
+                  array_out.vector,
+                  array.shape.x,
+                  array.shape.y,
+                  Direction::INOUT);
+
   run.bind_arguments(array.shape.x, array.shape.y, a, 0);
 
+  const std::array<cl::Image2D, 2> images = {run.get_image2d("img_0").cl_image,
+                                             run.get_image2d("img_1").cl_image};
+
+  int curr = 0;
+
+  auto execute_pass = [&](int radius, int iter)
+  {
+    int next = 1 - curr;
+
+    run.set_argument(0, images[curr]);
+    run.set_argument(1, images[next]);
+    run.set_argument(4, radius);
+    run.set_argument(5, iter);
+
+    run.execute_async({array.shape.x, array.shape.y});
+
+    curr = next;
+  };
+
   // pass 0: horizontal pass
-  run.set_argument(4, a);
-  run.set_argument(5, 0);
-  run.execute({array.shape.x, array.shape.y});
-  run.read_imagef("out");
+  execute_pass(a, 0);
 
   // pass 1: vertical pass
-  run.set_argument(4, a);
-  run.set_argument(5, 1);
-  run.write_imagef("in");
-  run.execute({array.shape.x, array.shape.y});
-  run.read_imagef("out");
+  execute_pass(a, 1);
 
   if (b > 0)
   {
     // pass 2: main diagonal (+1, +1)
-    run.set_argument(4, b);
-    run.set_argument(5, 2);
-    run.write_imagef("in");
-    run.execute({array.shape.x, array.shape.y});
-    run.read_imagef("out");
+    execute_pass(b, 2);
 
     // pass 3: anti diagonal (+1, -1)
-    run.set_argument(4, b);
-    run.set_argument(5, 3);
-    run.write_imagef("in");
-    run.execute({array.shape.x, array.shape.y});
-    run.read_imagef("out");
+    execute_pass(b, 3);
   }
+
+  run.finish();
+  run.read_imagef(curr == 0 ? "img_0" : "img_1");
 
   return array_out;
 }
@@ -205,39 +223,57 @@ Array local_min_octagon(const Array &array, int ir)
 
   auto run = clwrapper::Run("local_min_octagon");
 
-  run.bind_imagef("in", array_out.vector, array.shape.x, array.shape.y);
-  run.bind_imagef("out", array_out.vector, array.shape.x, array.shape.y, true);
+  using clwrapper::Direction;
+
+  run.bind_imagef("img_0",
+                  array_out.vector,
+                  array.shape.x,
+                  array.shape.y,
+                  Direction::INOUT);
+  run.bind_imagef("img_1",
+                  array_out.vector,
+                  array.shape.x,
+                  array.shape.y,
+                  Direction::INOUT);
+
   run.bind_arguments(array.shape.x, array.shape.y, a, 0);
 
+  const std::array<cl::Image2D, 2> images = {run.get_image2d("img_0").cl_image,
+                                             run.get_image2d("img_1").cl_image};
+
+  int curr = 0;
+
+  auto execute_pass = [&](int radius, int iter)
+  {
+    int next = 1 - curr;
+
+    run.set_argument(0, images[curr]);
+    run.set_argument(1, images[next]);
+    run.set_argument(4, radius);
+    run.set_argument(5, iter);
+
+    run.execute_async({array.shape.x, array.shape.y});
+
+    curr = next;
+  };
+
   // pass 0: horizontal pass
-  run.set_argument(4, a);
-  run.set_argument(5, 0);
-  run.execute({array.shape.x, array.shape.y});
-  run.read_imagef("out");
+  execute_pass(a, 0);
 
   // pass 1: vertical pass
-  run.set_argument(4, a);
-  run.set_argument(5, 1);
-  run.write_imagef("in");
-  run.execute({array.shape.x, array.shape.y});
-  run.read_imagef("out");
+  execute_pass(a, 1);
 
   if (b > 0)
   {
     // pass 2: main diagonal (+1, +1)
-    run.set_argument(4, b);
-    run.set_argument(5, 2);
-    run.write_imagef("in");
-    run.execute({array.shape.x, array.shape.y});
-    run.read_imagef("out");
+    execute_pass(b, 2);
 
     // pass 3: anti diagonal (+1, -1)
-    run.set_argument(4, b);
-    run.set_argument(5, 3);
-    run.write_imagef("in");
-    run.execute({array.shape.x, array.shape.y});
-    run.read_imagef("out");
+    execute_pass(b, 3);
   }
+
+  run.finish();
+  run.read_imagef(curr == 0 ? "img_0" : "img_1");
 
   return array_out;
 }
