@@ -689,7 +689,6 @@
 <codeline lineno="431"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(path_center.<ref refid="classhmap_1_1Cloud_1a0ccd5b43ebbf2d1f1ef4777f66943553" kindref="member">back</ref>().<ref refid="classhmap_1_1Point_1ac0d4eaf8062b8f11638db83e08198e48" kindref="member">x</ref>,<sp/>end.x,<sp/>0.2f);</highlight></codeline>
 <codeline lineno="432"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(path_center.<ref refid="classhmap_1_1Cloud_1a0ccd5b43ebbf2d1f1ef4777f66943553" kindref="member">back</ref>().<ref refid="classhmap_1_1Point_1aa045aed7ca12dffe13ba8f2db730a9bf" kindref="member">y</ref>,<sp/>end.y,<sp/>0.2f);</highlight></codeline>
 <codeline lineno="433"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="434"><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="tests/src/test_path_multiscale.cpp"/>
   </compounddef>

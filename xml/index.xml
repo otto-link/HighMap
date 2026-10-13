@@ -4900,6 +4900,13 @@
     <member refid="test__terrain__super__resolution_8cpp_1a96f6404d4b4cc84fd9e80914cbbcdd59" kind="function"><name>TEST</name></member>
     <member refid="test__terrain__super__resolution_8cpp_1a2c9ce05c1c8d5656695361385f625c83" kind="function"><name>TEST</name></member>
   </compound>
+  <compound refid="test__terrain__tri__mesh_8cpp" kind="file"><name>test_terrain_tri_mesh.cpp</name>
+    <member refid="test__terrain__tri__mesh_8cpp_1a82f0bcd98e3d50c7e14bbe2c02c7e32e" kind="function"><name>TEST</name></member>
+    <member refid="test__terrain__tri__mesh_8cpp_1a80979cd41d6bd6efef88bb25714c2bf8" kind="function"><name>TEST</name></member>
+    <member refid="test__terrain__tri__mesh_8cpp_1a7ed4aaa3369b261b9bca54beca54be9c" kind="function"><name>TEST</name></member>
+    <member refid="test__terrain__tri__mesh_8cpp_1a8dbcea55e6c56dfe11c9d2d3353725af" kind="function"><name>TEST</name></member>
+    <member refid="test__terrain__tri__mesh_8cpp_1a81fb09f7db2c2010c9d5b21634ec7b8a" kind="function"><name>TEST</name></member>
+  </compound>
   <compound refid="test__texture_8cpp" kind="file"><name>test_texture.cpp</name>
     <member refid="test__texture_8cpp_1a4405a808cd5494737bc748a446d31c55" kind="function"><name>TEST</name></member>
     <member refid="test__texture_8cpp_1aeb82a4f8fba7e0397af21d7883eec5bc" kind="function"><name>TEST</name></member>

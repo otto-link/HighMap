@@ -924,7 +924,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/shortest_path/dijsktra.cpp" line="258" column="6" bodyfile="HighMap/src/shortest_path/dijsktra.cpp" bodystart="258" bodyend="333" declfile="HighMap/include/highmap/shortest_path.hpp" declline="534" declcolumn="6"/>
+        <location file="HighMap/src/shortest_path/dijsktra.cpp" line="257" column="6" bodyfile="HighMap/src/shortest_path/dijsktra.cpp" bodystart="257" bodyend="332" declfile="HighMap/include/highmap/shortest_path.hpp" declline="534" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1va_1ac5a99fc7607556be58fb75ae10125940" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1TerrainTriMesh" kindref="compound">TerrainTriMesh</ref></type>

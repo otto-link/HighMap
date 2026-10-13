@@ -206,7 +206,6 @@
 <codeline lineno="540"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>favor_domain_center<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="541"><highlight class="normal"></highlight></codeline>
 <codeline lineno="542"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hmap::va</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="543"><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="HighMap/include/highmap/shortest_path.hpp"/>
   </compounddef>
