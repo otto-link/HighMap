@@ -120,6 +120,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structhmap_1_1TerrainTriMesh_1_1EdgeHash.html">EdgeHash</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hash functor for <a class="el" href="structhmap_1_1TerrainTriMesh_1_1Edge.html" title="Undirected edge between two vertices.">Edge</a>.  <a href="structhmap_1_1TerrainTriMesh_1_1EdgeHash.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig.html">MeshPathCostConfig</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration for shortest-path edge costs and heuristics.  <a href="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structhmap_1_1TerrainTriMesh_1_1Neighbor.html">Neighbor</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structhmap_1_1TerrainTriMesh_1_1Neighbor.html" title="Neighbor vertex information.">Neighbor</a> vertex information.  <a href="structhmap_1_1TerrainTriMesh_1_1Neighbor.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -219,12 +222,24 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a572d32bcabab1879831bcfc490bf5532" id="r_a572d32bcabab1879831bcfc490bf5532"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structhmap_1_1TerrainTriMesh_1_1ShortestPathResult.html">ShortestPathResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhmap_1_1TerrainTriMesh.html#a572d32bcabab1879831bcfc490bf5532">compute_shortest_paths_to_hull</a> (bool use_delta_z=false, float elevation_weight=1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>) const</td></tr>
 <tr class="memdesc:a572d32bcabab1879831bcfc490bf5532"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute shortest paths to the convex hull.  <br /></td></tr>
 <tr class="separator:a572d32bcabab1879831bcfc490bf5532"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ba71147927a2addb0e22a310691b8c3" id="r_a0ba71147927a2addb0e22a310691b8c3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structhmap_1_1TerrainTriMesh_1_1ShortestPathResult.html">ShortestPathResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhmap_1_1TerrainTriMesh.html#a0ba71147927a2addb0e22a310691b8c3">compute_shortest_paths</a> (const std::vector&lt; std::pair&lt; size_t, float &gt; &gt; &amp;sources, const <a class="el" href="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig.html">MeshPathCostConfig</a> &amp;config) const</td></tr>
+<tr class="memdesc:a0ba71147927a2addb0e22a310691b8c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute shortest paths from multiple sources with a cost config.  <br /></td></tr>
+<tr class="separator:a0ba71147927a2addb0e22a310691b8c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05f72e51d5736312655330dd72ae9f12" id="r_a05f72e51d5736312655330dd72ae9f12"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structhmap_1_1TerrainTriMesh_1_1ShortestPathResult.html">ShortestPathResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhmap_1_1TerrainTriMesh.html#a05f72e51d5736312655330dd72ae9f12">compute_shortest_paths</a> (size_t start, const <a class="el" href="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig.html">MeshPathCostConfig</a> &amp;config) const</td></tr>
+<tr class="memdesc:a05f72e51d5736312655330dd72ae9f12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute shortest paths from a single source with a cost config.  <br /></td></tr>
+<tr class="separator:a05f72e51d5736312655330dd72ae9f12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad3b7896049e2e13a76dfe09dd6f708d" id="r_aad3b7896049e2e13a76dfe09dd6f708d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structhmap_1_1TerrainTriMesh_1_1ShortestPathResult.html">ShortestPathResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhmap_1_1TerrainTriMesh.html#aad3b7896049e2e13a76dfe09dd6f708d">compute_shortest_paths</a> (size_t start, bool use_delta_z=false, float elevation_weight=1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float domain_center_weight=0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>) const</td></tr>
 <tr class="memdesc:aad3b7896049e2e13a76dfe09dd6f708d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute shortest paths from a source vertex.  <br /></td></tr>
 <tr class="separator:aad3b7896049e2e13a76dfe09dd6f708d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0bc9d9d006e47ca2c0246cd98482e83" id="r_af0bc9d9d006e47ca2c0246cd98482e83"><td class="memItemLeft" align="right" valign="top">std::vector&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhmap_1_1TerrainTriMesh.html#af0bc9d9d006e47ca2c0246cd98482e83">shortest_path</a> (size_t start, size_t end, const <a class="el" href="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig.html">MeshPathCostConfig</a> &amp;config) const</td></tr>
+<tr class="memdesc:af0bc9d9d006e47ca2c0246cd98482e83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the shortest path between two vertices with a cost config.  <br /></td></tr>
+<tr class="separator:af0bc9d9d006e47ca2c0246cd98482e83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1053a02d395e2ad59acbfd028a73edf" id="r_aa1053a02d395e2ad59acbfd028a73edf"><td class="memItemLeft" align="right" valign="top">std::vector&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhmap_1_1TerrainTriMesh.html#aa1053a02d395e2ad59acbfd028a73edf">shortest_path</a> (size_t start, size_t end, bool use_delta_z=false, float elevation_weight=1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float domain_center_weight=0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>) const</td></tr>
 <tr class="memdesc:aa1053a02d395e2ad59acbfd028a73edf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the shortest path between two vertices.  <br /></td></tr>
 <tr class="separator:aa1053a02d395e2ad59acbfd028a73edf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a517bba7785f15c38e91a5a4742122968" id="r_a517bba7785f15c38e91a5a4742122968"><td class="memItemLeft" align="right" valign="top">std::vector&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhmap_1_1TerrainTriMesh.html#a517bba7785f15c38e91a5a4742122968">reconstruct_path</a> (size_t start, size_t end, const <a class="el" href="structhmap_1_1TerrainTriMesh_1_1ShortestPathResult.html">ShortestPathResult</a> &amp;result) const</td></tr>
+<tr class="memdesc:a517bba7785f15c38e91a5a4742122968"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconstruct a path from start to end from a shortest path result.  <br /></td></tr>
+<tr class="separator:a517bba7785f15c38e91a5a4742122968"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7c875682dd45ac1626bdfe6046fc5ca" id="r_ad7c875682dd45ac1626bdfe6046fc5ca"><td class="memItemLeft" align="right" valign="top">std::vector&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhmap_1_1TerrainTriMesh.html#ad7c875682dd45ac1626bdfe6046fc5ca">path_to_hull</a> (size_t start, const <a class="el" href="structhmap_1_1TerrainTriMesh_1_1ShortestPathResult.html">ShortestPathResult</a> &amp;result) const</td></tr>
 <tr class="memdesc:ad7c875682dd45ac1626bdfe6046fc5ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconstruct a path to the convex hull.  <br /></td></tr>
 <tr class="separator:ad7c875682dd45ac1626bdfe6046fc5ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1066,8 +1081,68 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a0ba71147927a2addb0e22a310691b8c3" name="a0ba71147927a2addb0e22a310691b8c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ba71147927a2addb0e22a310691b8c3">&#9670;&#160;</a></span>compute_shortest_paths() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structhmap_1_1TerrainTriMesh_1_1ShortestPathResult.html">TerrainTriMesh::ShortestPathResult</a> hmap::TerrainTriMesh::compute_shortest_paths </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; std::pair&lt; size_t, float &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>sources</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig.html">MeshPathCostConfig</a> &amp;&#160;</td>
+          <td class="paramname"><em>config</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compute shortest paths from multiple sources with a cost config. </p>
+
+</div>
+</div>
+<a id="a05f72e51d5736312655330dd72ae9f12" name="a05f72e51d5736312655330dd72ae9f12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05f72e51d5736312655330dd72ae9f12">&#9670;&#160;</a></span>compute_shortest_paths() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structhmap_1_1TerrainTriMesh_1_1ShortestPathResult.html">TerrainTriMesh::ShortestPathResult</a> hmap::TerrainTriMesh::compute_shortest_paths </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig.html">MeshPathCostConfig</a> &amp;&#160;</td>
+          <td class="paramname"><em>config</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compute shortest paths from a single source with a cost config. </p>
+
+</div>
+</div>
 <a id="aad3b7896049e2e13a76dfe09dd6f708d" name="aad3b7896049e2e13a76dfe09dd6f708d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aad3b7896049e2e13a76dfe09dd6f708d">&#9670;&#160;</a></span>compute_shortest_paths()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aad3b7896049e2e13a76dfe09dd6f708d">&#9670;&#160;</a></span>compute_shortest_paths() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1108,8 +1183,44 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="af0bc9d9d006e47ca2c0246cd98482e83" name="af0bc9d9d006e47ca2c0246cd98482e83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0bc9d9d006e47ca2c0246cd98482e83">&#9670;&#160;</a></span>shortest_path() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; size_t &gt; hmap::TerrainTriMesh::shortest_path </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>end</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig.html">MeshPathCostConfig</a> &amp;&#160;</td>
+          <td class="paramname"><em>config</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compute the shortest path between two vertices with a cost config. </p>
+
+</div>
+</div>
 <a id="aa1053a02d395e2ad59acbfd028a73edf" name="aa1053a02d395e2ad59acbfd028a73edf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa1053a02d395e2ad59acbfd028a73edf">&#9670;&#160;</a></span>shortest_path()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1053a02d395e2ad59acbfd028a73edf">&#9670;&#160;</a></span>shortest_path() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1153,6 +1264,42 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Compute the shortest path between two vertices. </p>
+
+</div>
+</div>
+<a id="a517bba7785f15c38e91a5a4742122968" name="a517bba7785f15c38e91a5a4742122968"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a517bba7785f15c38e91a5a4742122968">&#9670;&#160;</a></span>reconstruct_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; size_t &gt; hmap::TerrainTriMesh::reconstruct_path </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>end</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structhmap_1_1TerrainTriMesh_1_1ShortestPathResult.html">ShortestPathResult</a> &amp;&#160;</td>
+          <td class="paramname"><em>result</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reconstruct a path from start to end from a shortest path result. </p>
 
 </div>
 </div>

@@ -22,6 +22,7 @@ var searchData=
   ['upscale_5famplification_19',['upscale_amplification',['../namespacehmap.html#a868ae7c781d7e72af7b1416898a2f891',1,'hmap']]],
   ['upscale_5famplification_2ecpp_20',['upscale_amplification.cpp',['../upscale__amplification_8cpp.html',1,'']]],
   ['upscaling_2ehpp_21',['upscaling.hpp',['../upscaling_8hpp.html',1,'']]],
-  ['usage_22',['Example usage',['../index.html#autotoc_md9',1,'']]],
-  ['usage_20example_3a_23',['Usage Example:',['../classhmap_1_1Timer.html#autotoc_md0',1,'']]]
+  ['upward_5fpenalization_22',['upward_penalization',['../structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig.html#a1232bf5b364db44d55bf012e29066c3d',1,'hmap::TerrainTriMesh::MeshPathCostConfig']]],
+  ['usage_23',['Example usage',['../index.html#autotoc_md9',1,'']]],
+  ['usage_20example_3a_24',['Usage Example:',['../classhmap_1_1Timer.html#autotoc_md0',1,'']]]
 ];

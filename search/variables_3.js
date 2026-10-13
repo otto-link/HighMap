@@ -7,7 +7,7 @@ var searchData=
   ['data_5ftype_4',['data_type',['../structhmap_1_1ImageWriterConfig.html#a481586b28e6d78db02843fcb819e0583',1,'hmap::ImageWriterConfig']]],
   ['debris_5',['debris',['../structhmap_1_1MiseParams.html#ad1ba2da17a0fa03a7378c068e594dc33',1,'hmap::MiseParams']]],
   ['default_5fradius_6',['default_radius',['../structhmap_1_1ScatterSeedingOptions.html#acde123c9a6543999f9f9c42fe9e73164',1,'hmap::ScatterSeedingOptions']]],
-  ['delta_7',['delta',['../hydraulic__mise_8cpp.html#aca83790abf7dd42cf3e835653762d804',1,'delta:&#160;hydraulic_mise.cpp'],['../sls__deformation_8cpp.html#a1ee4a05b54419bfadd66ee351d05812e',1,'delta:&#160;sls_deformation.cpp']]],
+  ['delta_7',['delta',['../sls__deformation_8cpp.html#a1ee4a05b54419bfadd66ee351d05812e',1,'delta:&#160;sls_deformation.cpp'],['../hydraulic__mise_8cpp.html#aca83790abf7dd42cf3e835653762d804',1,'delta:&#160;hydraulic_mise.cpp']]],
   ['deposition_8',['deposition',['../structhmap_1_1gpu_1_1McDonaldParams.html#ade24cbf1c7e3dac028493914320f9a9f',1,'hmap::gpu::McDonaldParams']]],
   ['deposition_5farea_9',['deposition_area',['../structhmap_1_1MiseParams.html#a220209b13130586e4acfb2d6cf939e79',1,'hmap::MiseParams']]],
   ['deposition_5fexp_10',['deposition_exp',['../structhmap_1_1MiseParams.html#a80e1dd3848305407a2fa533828fb86aa',1,'hmap::MiseParams']]],
@@ -20,7 +20,9 @@ var searchData=
   ['dinf_5f8_17',['DINF_8',['../namespacehmap_1_1neighborhood.html#a185f583368e9047630b2a788d2bcb02c',1,'hmap::neighborhood']]],
   ['distance_18',['distance',['../structhmap_1_1TerrainTriMesh_1_1ShortestPathResult.html#ad9901b3bb269976ef8b20b4d596eb06f',1,'hmap::TerrainTriMesh::ShortestPathResult::distance'],['../structhmap_1_1neighborhood_1_1NeighborWeighted.html#a4958b60eef7eb9c7f0fb84ee0d5fea5b',1,'hmap::neighborhood::NeighborWeighted::distance'],['../structhmap_1_1neighborhood_1_1Neighbor.html#af697ae3acea5d914fa544f23b2764f29',1,'hmap::neighborhood::Neighbor::distance']]],
   ['distance2d_19',['distance2d',['../structhmap_1_1TerrainTriMesh_1_1Neighbor.html#a1d8844b86573fc6e3e0037a6f9d4632c',1,'hmap::TerrainTriMesh::Neighbor']]],
-  ['distribution_20',['distribution',['../structhmap_1_1RockSeedingOptions.html#aca6ad1d77615f1daa14f51938ac5971d',1,'hmap::RockSeedingOptions']]],
-  ['dither_5famp_21',['dither_amp',['../structhmap_1_1ColorAdjust.html#a0d6901dbb470d8b91a91bbd741c95481',1,'hmap::ColorAdjust']]],
-  ['downcutting_22',['downcutting',['../structhmap_1_1MiseParams.html#a19ff20011be86e498792e137b174297e',1,'hmap::MiseParams']]]
+  ['distance_5fexponent_20',['distance_exponent',['../structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig.html#a51a7a21b3029516eb39be45b2d8b15f1',1,'hmap::TerrainTriMesh::MeshPathCostConfig']]],
+  ['distribution_21',['distribution',['../structhmap_1_1RockSeedingOptions.html#aca6ad1d77615f1daa14f51938ac5971d',1,'hmap::RockSeedingOptions']]],
+  ['dither_5famp_22',['dither_amp',['../structhmap_1_1ColorAdjust.html#a0d6901dbb470d8b91a91bbd741c95481',1,'hmap::ColorAdjust']]],
+  ['domain_5fcenter_5fweight_23',['domain_center_weight',['../structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig.html#a9ac96f45efe81174ad5f2af359b2c9a8',1,'hmap::TerrainTriMesh::MeshPathCostConfig']]],
+  ['downcutting_24',['downcutting',['../structhmap_1_1MiseParams.html#a19ff20011be86e498792e137b174297e',1,'hmap::MiseParams']]]
 ];

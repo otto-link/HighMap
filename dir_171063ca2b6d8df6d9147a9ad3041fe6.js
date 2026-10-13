@@ -31,6 +31,7 @@ var dir_171063ca2b6d8df6d9147a9ad3041fe6 =
     [ "test_flora.cpp", "test__flora_8cpp.html", "test__flora_8cpp" ],
     [ "test_flow_fixing.cpp", "test__flow__fixing_8cpp.html", "test__flow__fixing_8cpp" ],
     [ "test_flow_simulation.cpp", "test__flow__simulation_8cpp.html", "test__flow__simulation_8cpp" ],
+    [ "test_flow_stream.cpp", "test__flow__stream_8cpp.html", "test__flow__stream_8cpp" ],
     [ "test_fold_periodic.cpp", "test__fold__periodic_8cpp.html", "test__fold__periodic_8cpp" ],
     [ "test_forest_seeding.cpp", "test__forest__seeding_8cpp.html", "test__forest__seeding_8cpp" ],
     [ "test_gpu_cpu.cpp", "test__gpu__cpu_8cpp.html", "test__gpu__cpu_8cpp" ],

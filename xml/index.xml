@@ -813,6 +813,18 @@
     <member refid="structhmap_1_1gpu_1_1McDonaldParams_1a37f6ecca05e08dd313553aa601023d08" kind="variable"><name>relief_scale</name></member>
     <member refid="structhmap_1_1gpu_1_1McDonaldParams_1a153ea9cbc50dcb176ecabad849eb4159" kind="function"><name>to_physical</name></member>
   </compound>
+  <compound refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig" kind="struct"><name>hmap::TerrainTriMesh::MeshPathCostConfig</name>
+    <member refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_1a273ae8b085bc1309827cb47afdc2ea9a" kind="enum"><name>Metric</name></member>
+    <member refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_1a273ae8b085bc1309827cb47afdc2ea9aaa0127f42b58ed1e4feff9b17a290ded7" kind="enumvalue"><name>EUCLIDEAN_2D</name></member>
+    <member refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_1a273ae8b085bc1309827cb47afdc2ea9aa3db07082ff51d740670b0f24f3a1cb79" kind="enumvalue"><name>SYMMETRIC_Z</name></member>
+    <member refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_1a273ae8b085bc1309827cb47afdc2ea9aab372763954316f3e914ee39ce92124ef" kind="enumvalue"><name>HYDROLOGICAL</name></member>
+    <member refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_1aa2e00e48af26fe6bbd9c8513e95c929e" kind="variable"><name>metric</name></member>
+    <member refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_1aa4e659b73d4ea2a70567d9659f1475ee" kind="variable"><name>elevation_weight</name></member>
+    <member refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_1a9c91dda4b33f7152939aafa0ca77ab4d" kind="variable"><name>elevation_ratio</name></member>
+    <member refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_1a51a7a21b3029516eb39be45b2d8b15f1" kind="variable"><name>distance_exponent</name></member>
+    <member refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_1a1232bf5b364db44d55bf012e29066c3d" kind="variable"><name>upward_penalization</name></member>
+    <member refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_1a9ac96f45efe81174ad5f2af359b2c9a8" kind="variable"><name>domain_center_weight</name></member>
+  </compound>
   <compound refid="structhmap_1_1MiseParams" kind="struct"><name>hmap::MiseParams</name>
     <member refid="structhmap_1_1MiseParams_1a022506912199ad2fe033d6277097ba95" kind="variable"><name>strength</name></member>
     <member refid="structhmap_1_1MiseParams_1a356f5adb117f44de2077df80a0b7aef7" kind="variable"><name>area_exp</name></member>
@@ -1358,8 +1370,12 @@
     <member refid="classhmap_1_1TerrainTriMesh_1a11aca8515dbf3f60d71d0debf5f4308f" kind="function"><name>get_reference_area</name></member>
     <member refid="classhmap_1_1TerrainTriMesh_1a9dc6c3e9a3a765e3cd16f1f490da636a" kind="function"><name>size</name></member>
     <member refid="classhmap_1_1TerrainTriMesh_1a572d32bcabab1879831bcfc490bf5532" kind="function"><name>compute_shortest_paths_to_hull</name></member>
+    <member refid="classhmap_1_1TerrainTriMesh_1a0ba71147927a2addb0e22a310691b8c3" kind="function"><name>compute_shortest_paths</name></member>
+    <member refid="classhmap_1_1TerrainTriMesh_1a05f72e51d5736312655330dd72ae9f12" kind="function"><name>compute_shortest_paths</name></member>
     <member refid="classhmap_1_1TerrainTriMesh_1aad3b7896049e2e13a76dfe09dd6f708d" kind="function"><name>compute_shortest_paths</name></member>
+    <member refid="classhmap_1_1TerrainTriMesh_1af0bc9d9d006e47ca2c0246cd98482e83" kind="function"><name>shortest_path</name></member>
     <member refid="classhmap_1_1TerrainTriMesh_1aa1053a02d395e2ad59acbfd028a73edf" kind="function"><name>shortest_path</name></member>
+    <member refid="classhmap_1_1TerrainTriMesh_1a517bba7785f15c38e91a5a4742122968" kind="function"><name>reconstruct_path</name></member>
     <member refid="classhmap_1_1TerrainTriMesh_1ad7c875682dd45ac1626bdfe6046fc5ca" kind="function"><name>path_to_hull</name></member>
     <member refid="classhmap_1_1TerrainTriMesh_1adcf186f3884969d2b85db0b2186b8d34" kind="function"><name>pick_mesh_boundary_vertex</name></member>
     <member refid="classhmap_1_1TerrainTriMesh_1a9702d210cd3c967a066eb5ae6919476b" kind="function"><name>get_points</name></member>
@@ -1648,15 +1664,15 @@
   </compound>
   <compound refid="namespace_0d439" kind="namespace"><name>@439</name>
   </compound>
-  <compound refid="namespace_0d457" kind="namespace"><name>@457</name>
+  <compound refid="namespace_0d458" kind="namespace"><name>@458</name>
   </compound>
-  <compound refid="namespace_0d464" kind="namespace"><name>@464</name>
+  <compound refid="namespace_0d465" kind="namespace"><name>@465</name>
   </compound>
-  <compound refid="namespace_0d477" kind="namespace"><name>@477</name>
+  <compound refid="namespace_0d478" kind="namespace"><name>@478</name>
   </compound>
-  <compound refid="namespace_0d488" kind="namespace"><name>@488</name>
+  <compound refid="namespace_0d489" kind="namespace"><name>@489</name>
   </compound>
-  <compound refid="namespace_0d492" kind="namespace"><name>@492</name>
+  <compound refid="namespace_0d493" kind="namespace"><name>@493</name>
   </compound>
   <compound refid="namespacehmap" kind="namespace"><name>hmap</name>
     <member refid="namespacehmap_1a5101273ec456f5267dddc3e22dae223b" kind="enum"><name>StampingBlendMethod</name></member>
@@ -2315,6 +2331,8 @@
     <member refid="namespacehmap_1ab0fe57b3afd4499d08c362d8acd5f6f9" kind="function"><name>flow_fixing_mst_paths</name></member>
     <member refid="namespacehmap_1a5fbbe4a3db33c7783faa794c3051ddb4" kind="function"><name>flow_fixing_mst_triangulated</name></member>
     <member refid="namespacehmap_1a948b4703486f175cd2681bd9bc7b5a88" kind="function"><name>flow_stream</name></member>
+    <member refid="namespacehmap_1ac46adb5c67650ea6660a4edfc8d213c3" kind="function"><name>flow_stream</name></member>
+    <member refid="namespacehmap_1a5420856e4ed4060e782414c4bb97e63e" kind="function"><name>flow_stream</name></member>
     <member refid="namespacehmap_1a30d55fae5c75a1c45a005a3f9a9467eb" kind="function"><name>generate_riverbed</name></member>
     <member refid="namespacehmap_1a64fbc0261e13ea842762efd3ac6bcc53" kind="function"><name>merge_water_depths</name></member>
     <member refid="namespacehmap_1a78419f7981186b40c4a2d04456e4e63f" kind="function"><name>snow_melting_map</name></member>
@@ -2781,7 +2799,6 @@
     <member refid="namespacehmap_1a16538c6df2abf1338814fa38402e03d0" kind="function"><name>cmp_inf</name></member>
     <member refid="namespacehmap_1ad97b6a0082efd4063f7839c95a51b294" kind="function"><name>compute_gradient</name></member>
     <member refid="namespacehmap_1aa2c4a82ac72b15cac34f868be9743471" kind="function"><name>compute_gradient_norm</name></member>
-    <member refid="namespacehmap_1a5acae3ca582cc9a70ad321ef484c05f2" kind="function"><name>helper_find_up_downslope</name></member>
     <member refid="namespacehmap_1a567abeb8b68a281411d811987a84ee42" kind="function"><name>is_monotonic</name></member>
     <member refid="namespacehmap_1ad2cd9e279b20e6621b1daca2d2b732bf" kind="function"><name>find_last_index_smaller_than</name></member>
     <member refid="namespacehmap_1a18d33562e8ffbb8be79e2ec87bcf285f" kind="function"><name>helper_wrap_phi</name></member>
@@ -3156,6 +3173,7 @@
     <member refid="namespacehmap_1_1va_1ae8000dce23f7622c2ba67910124bc353" kind="function"><name>flooding_lake_system</name></member>
     <member refid="namespacehmap_1_1va_1a050c3c7ecc102d86f566bf55b3a72c51" kind="function"><name>flow_fixing_mst_paths</name></member>
     <member refid="namespacehmap_1_1va_1a79c8b1b0f1447fcb8f94f6e2cec8788b" kind="function"><name>flow_fixing_mst_triangulated</name></member>
+    <member refid="namespacehmap_1_1va_1ae0522b3668ec88bf0a3d8ad785a6185e" kind="function"><name>flow_stream</name></member>
     <member refid="namespacehmap_1_1va_1afa19680ed9583277c2fb76daa95bfa96" kind="function"><name>find_cut_path_dijkstra</name></member>
     <member refid="namespacehmap_1_1va_1a996f3a9161ae2f85e2ef1d257dd43349" kind="function"><name>find_path_dijkstra</name></member>
     <member refid="namespacehmap_1_1va_1ac5a99fc7607556be58fb75ae10125940" kind="function"><name>generate_terrain_tri_mesh_from_heightmap_random</name></member>
@@ -4412,6 +4430,12 @@
     <member refid="test__flow__simulation_8cpp_1afbc530619b799f14f9c92d847eba0538" kind="function"><name>TEST</name></member>
     <member refid="test__flow__simulation_8cpp_1a1680fbb583d6e31fafc9eb04a2da5368" kind="function"><name>TEST</name></member>
     <member refid="test__flow__simulation_8cpp_1aa43cbefc00d5c5e1774050a11d4d6937" kind="function"><name>TEST</name></member>
+  </compound>
+  <compound refid="test__flow__stream_8cpp" kind="file"><name>test_flow_stream.cpp</name>
+    <member refid="test__flow__stream_8cpp_1afbd4cfcd9a4ad587be7003f17852132d" kind="function"><name>TEST</name></member>
+    <member refid="test__flow__stream_8cpp_1a2e549057559ff7720b74b461d973ed6c" kind="function"><name>TEST</name></member>
+    <member refid="test__flow__stream_8cpp_1a1291587bb42b21da07316833e2d0238d" kind="function"><name>TEST</name></member>
+    <member refid="test__flow__stream_8cpp_1abb5efc0e838d0f6637e7a01b4108bc5a" kind="function"><name>TEST</name></member>
   </compound>
   <compound refid="test__fold__periodic_8cpp" kind="file"><name>test_fold_periodic.cpp</name>
     <member refid="test__fold__periodic_8cpp_1a0b09ca0b954c7d3624e0457ec0282027" kind="function"><name>TEST</name></member>

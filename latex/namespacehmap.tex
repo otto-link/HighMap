@@ -1361,6 +1361,10 @@ std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Path}{Path}} $>$ \mbox{\hyperlink
 \begin{DoxyCompactList}\small\item\em Resolves flow sinks on a heightmap by computing an MST on a triangular mesh and carving the resulting river paths with trenching. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Path}{Path}} \mbox{\hyperlink{namespacehmap_a948b4703486f175cd2681bd9bc7b5a88}{flow\+\_\+stream}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}, const glm\+::ivec2 ij\+\_\+start, const float elevation\+\_\+ratio=0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, const float distance\+\_\+exponent=2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, const float upward\+\_\+penalization=100.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
 \begin{DoxyCompactList}\small\item\em Computes the optimal flow path from a starting point to the boundary of a given elevation array. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Path}{Path}} \mbox{\hyperlink{namespacehmap_ac46adb5c67650ea6660a4edfc8d213c3}{flow\+\_\+stream}} (const \mbox{\hyperlink{classhmap_1_1TerrainTriMesh}{Terrain\+Tri\+Mesh}} \&mesh, size\+\_\+t start\+\_\+vertex\+\_\+index, float elevation\+\_\+ratio=0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float distance\+\_\+exponent=2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float upward\+\_\+penalization=100.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, bool favor\+\_\+domain\+\_\+center=false)
+\begin{DoxyCompactList}\small\item\em Computes the optimal flow path from a starting vertex to the boundary of a terrain triangular mesh. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Path}{Path}} \mbox{\hyperlink{namespacehmap_a5420856e4ed4060e782414c4bb97e63e}{flow\+\_\+stream}} (const \mbox{\hyperlink{classhmap_1_1TerrainTriMesh}{Terrain\+Tri\+Mesh}} \&mesh, glm\+::vec2 xy\+\_\+start, float elevation\+\_\+ratio=0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float distance\+\_\+exponent=2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float upward\+\_\+penalization=100.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, bool favor\+\_\+domain\+\_\+center=false)
+\begin{DoxyCompactList}\small\item\em Computes the optimal flow path from starting 2D coordinates to the boundary of a terrain triangular mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a30d55fae5c75a1c45a005a3f9a9467eb}{generate\+\_\+riverbed}} (const \mbox{\hyperlink{classhmap_1_1Path}{Path}} \&\mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}, glm\+::ivec2 \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}, glm\+::vec4 bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}, bool bezier\+\_\+smoothing=false, float depth\+\_\+start=0.\+01\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float depth\+\_\+end=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float slope\+\_\+start=64.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float slope\+\_\+end=32.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float shape\+\_\+exponent\+\_\+start=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float shape\+\_\+exponent\+\_\+end=10.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float k\+\_\+smoothing=0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, int post\+\_\+filter\+\_\+ir=0, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+x=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+y=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+r=nullptr)
 \begin{DoxyCompactList}\small\item\em Generates a 2D array representing a riverbed based on a specified path. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a64fbc0261e13ea842762efd3ac6bcc53}{merge\+\_\+water\+\_\+depths}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&depth1, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&depth2, float k\+\_\+smooth=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
@@ -2292,8 +2296,6 @@ size\+\_\+t \mbox{\hyperlink{namespacehmap_a680e3eafe72e649e15f076c59c86ab01}{he
 void \mbox{\hyperlink{namespacehmap_ad97b6a0082efd4063f7839c95a51b294}{compute\+\_\+gradient}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&dx, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&dy, float x\+\_\+coeff\mbox{[}3\mbox{]}, float y\+\_\+coeff\mbox{[}3\mbox{]}, float normalize\+\_\+factor)
 \item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_aa2c4a82ac72b15cac34f868be9743471}{compute\+\_\+gradient\+\_\+norm}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float x\+\_\+coeff\mbox{[}3\mbox{]}, float y\+\_\+coeff\mbox{[}3\mbox{]}, float normalize\+\_\+factor, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+dx=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+dy=nullptr)
-\item 
-void \mbox{\hyperlink{namespacehmap_a5acae3ca582cc9a70ad321ef484c05f2}{helper\+\_\+find\+\_\+up\+\_\+downslope}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}, const glm\+::ivec2 \&ij, glm\+::ivec2 \&ij\+\_\+dw, glm\+::ivec2 \&ij\+\_\+up)
 \item 
 bool \mbox{\hyperlink{namespacehmap_a567abeb8b68a281411d811987a84ee42}{is\+\_\+monotonic}} (const std\+::vector$<$ float $>$ \&data)
 \item 
@@ -20359,7 +20361,7 @@ Carved elevation array with unbroken flow paths.
 \Hypertarget{namespacehmap_a948b4703486f175cd2681bd9bc7b5a88}\label{namespacehmap_a948b4703486f175cd2681bd9bc7b5a88} 
 \index{hmap@{hmap}!flow\_stream@{flow\_stream}}
 \index{flow\_stream@{flow\_stream}!hmap@{hmap}}
-\doxysubsubsection{\texorpdfstring{flow\_stream()}{flow\_stream()}}
+\doxysubsubsection{\texorpdfstring{flow\_stream()}{flow\_stream()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Path}{Path}} hmap\+::flow\+\_\+stream (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{z,  }\item[{const glm\+::ivec2}]{ij\+\_\+start,  }\item[{const float}]{elevation\+\_\+ratio = {\ttfamily 0.5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{const float}]{distance\+\_\+exponent = {\ttfamily 2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{const float}]{upward\+\_\+penalization = {\ttfamily 100.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}} }\end{DoxyParamCaption})}
 
 
@@ -20460,7 +20462,63 @@ The output path consists of\+:
 \end{DoxyCodeInclude}
 
 
-{\bfseries{Result}}  \Hypertarget{namespacehmap_a30d55fae5c75a1c45a005a3f9a9467eb}\label{namespacehmap_a30d55fae5c75a1c45a005a3f9a9467eb} 
+{\bfseries{Result}}  \Hypertarget{namespacehmap_ac46adb5c67650ea6660a4edfc8d213c3}\label{namespacehmap_ac46adb5c67650ea6660a4edfc8d213c3} 
+\index{hmap@{hmap}!flow\_stream@{flow\_stream}}
+\index{flow\_stream@{flow\_stream}!hmap@{hmap}}
+\doxysubsubsection{\texorpdfstring{flow\_stream()}{flow\_stream()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Path}{Path}} hmap\+::flow\+\_\+stream (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1TerrainTriMesh}{Terrain\+Tri\+Mesh}} \&}]{mesh,  }\item[{size\+\_\+t}]{start\+\_\+vertex\+\_\+index,  }\item[{float}]{elevation\+\_\+ratio = {\ttfamily 0.5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{float}]{distance\+\_\+exponent = {\ttfamily 2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{float}]{upward\+\_\+penalization = {\ttfamily 100.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{bool}]{favor\+\_\+domain\+\_\+center = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Computes the optimal flow path from a starting vertex to the boundary of a terrain triangular mesh. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mesh} & Input triangular terrain mesh. \\
+\hline
+{\em start\+\_\+vertex\+\_\+index} & Index of the starting vertex. \\
+\hline
+{\em elevation\+\_\+ratio} & Weight for elevation difference in the cost function (default\+: 0.\+5). \\
+\hline
+{\em distance\+\_\+exponent} & Exponent for the distance/elevation term (default\+: 2.\+0). \\
+\hline
+{\em upward\+\_\+penalization} & Penalty factor for upward elevation changes (default\+: 100.\+0). \\
+\hline
+{\em favor\+\_\+domain\+\_\+center} & Favor passing through the center of the domain (default\+: false). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \doxylink{classhmap_1_1Path}{Path} object representing the optimal flow path. 
+\end{DoxyReturn}
+\Hypertarget{namespacehmap_a5420856e4ed4060e782414c4bb97e63e}\label{namespacehmap_a5420856e4ed4060e782414c4bb97e63e} 
+\index{hmap@{hmap}!flow\_stream@{flow\_stream}}
+\index{flow\_stream@{flow\_stream}!hmap@{hmap}}
+\doxysubsubsection{\texorpdfstring{flow\_stream()}{flow\_stream()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Path}{Path}} hmap\+::flow\+\_\+stream (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1TerrainTriMesh}{Terrain\+Tri\+Mesh}} \&}]{mesh,  }\item[{glm\+::vec2}]{xy\+\_\+start,  }\item[{float}]{elevation\+\_\+ratio = {\ttfamily 0.5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{float}]{distance\+\_\+exponent = {\ttfamily 2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{float}]{upward\+\_\+penalization = {\ttfamily 100.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{bool}]{favor\+\_\+domain\+\_\+center = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Computes the optimal flow path from starting 2D coordinates to the boundary of a terrain triangular mesh. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mesh} & Input triangular terrain mesh. \\
+\hline
+{\em xy\+\_\+start} & Starting coordinates (x, y) in \mbox{[}0, 1\mbox{]}. \\
+\hline
+{\em elevation\+\_\+ratio} & Weight for elevation difference in the cost function (default\+: 0.\+5). \\
+\hline
+{\em distance\+\_\+exponent} & Exponent for the distance/elevation term (default\+: 2.\+0). \\
+\hline
+{\em upward\+\_\+penalization} & Penalty factor for upward elevation changes (default\+: 100.\+0). \\
+\hline
+{\em favor\+\_\+domain\+\_\+center} & Favor passing through the center of the domain (default\+: false). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \doxylink{classhmap_1_1Path}{Path} object representing the optimal flow path. 
+\end{DoxyReturn}
+\Hypertarget{namespacehmap_a30d55fae5c75a1c45a005a3f9a9467eb}\label{namespacehmap_a30d55fae5c75a1c45a005a3f9a9467eb} 
 \index{hmap@{hmap}!generate\_riverbed@{generate\_riverbed}}
 \index{generate\_riverbed@{generate\_riverbed}!hmap@{hmap}}
 \doxysubsubsection{\texorpdfstring{generate\_riverbed()}{generate\_riverbed()}}
@@ -38373,12 +38431,6 @@ void hmap\+::convert\+\_\+mat\+\_\+to\+\_\+array (\begin{DoxyParamCaption}\item[
 \index{compute\_gradient\_norm@{compute\_gradient\_norm}!hmap@{hmap}}
 \doxysubsubsection{\texorpdfstring{compute\_gradient\_norm()}{compute\_gradient\_norm()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::compute\+\_\+gradient\+\_\+norm (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{float}]{x\+\_\+coeff\mbox{[}3\mbox{]},  }\item[{float}]{y\+\_\+coeff\mbox{[}3\mbox{]},  }\item[{float}]{normalize\+\_\+factor,  }\item[{\mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+dx = {\ttfamily nullptr},  }\item[{\mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+dy = {\ttfamily nullptr} }\end{DoxyParamCaption})}
-
-\Hypertarget{namespacehmap_a5acae3ca582cc9a70ad321ef484c05f2}\label{namespacehmap_a5acae3ca582cc9a70ad321ef484c05f2} 
-\index{hmap@{hmap}!helper\_find\_up\_downslope@{helper\_find\_up\_downslope}}
-\index{helper\_find\_up\_downslope@{helper\_find\_up\_downslope}!hmap@{hmap}}
-\doxysubsubsection{\texorpdfstring{helper\_find\_up\_downslope()}{helper\_find\_up\_downslope()}}
-{\footnotesize\ttfamily void hmap\+::helper\+\_\+find\+\_\+up\+\_\+downslope (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{z,  }\item[{const glm\+::ivec2 \&}]{ij,  }\item[{glm\+::ivec2 \&}]{ij\+\_\+dw,  }\item[{glm\+::ivec2 \&}]{ij\+\_\+up }\end{DoxyParamCaption})}
 
 \Hypertarget{namespacehmap_a567abeb8b68a281411d811987a84ee42}\label{namespacehmap_a567abeb8b68a281411d811987a84ee42} 
 \index{hmap@{hmap}!is\_monotonic@{is\_monotonic}}

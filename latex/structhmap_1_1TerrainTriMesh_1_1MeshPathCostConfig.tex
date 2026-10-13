@@ -1,0 +1,134 @@
+\doxysection{hmap\+::Terrain\+Tri\+Mesh\+::Mesh\+Path\+Cost\+Config Struct Reference}
+\hypertarget{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig}{}\label{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig}\index{hmap::TerrainTriMesh::MeshPathCostConfig@{hmap::TerrainTriMesh::MeshPathCostConfig}}
+
+
+Configuration for shortest-\/path edge costs and heuristics.  
+
+
+
+
+{\ttfamily \#include $<$terrain\+\_\+tri\+\_\+mesh.\+hpp$>$}
+
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a273ae8b085bc1309827cb47afdc2ea9a}{Metric}} \{ \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a273ae8b085bc1309827cb47afdc2ea9aaa0127f42b58ed1e4feff9b17a290ded7}{EUCLIDEAN\+\_\+2D}}
+, \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a273ae8b085bc1309827cb47afdc2ea9aa3db07082ff51d740670b0f24f3a1cb79}{SYMMETRIC\+\_\+Z}}
+, \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a273ae8b085bc1309827cb47afdc2ea9aab372763954316f3e914ee39ce92124ef}{HYDROLOGICAL}}
+ \}
+\begin{DoxyCompactList}\small\item\em Cost metric model used for edge traversal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a273ae8b085bc1309827cb47afdc2ea9a}{hmap\+::\+Terrain\+Tri\+Mesh\+::\+Mesh\+Path\+Cost\+Config\+::\+Metric}} \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_aa2e00e48af26fe6bbd9c8513e95c929e}{metric}} = \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a273ae8b085bc1309827cb47afdc2ea9aaa0127f42b58ed1e4feff9b17a290ded7}{Metric\+::\+EUCLIDEAN\+\_\+2D}}
+\item 
+float \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_aa4e659b73d4ea2a70567d9659f1475ee}{elevation\+\_\+weight}} = 1.\+0f
+\begin{DoxyCompactList}\small\item\em Weight for absolute vertex elevation in SYMMETRIC\+\_\+Z mode. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a9c91dda4b33f7152939aafa0ca77ab4d}{elevation\+\_\+ratio}} = 0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}
+\begin{DoxyCompactList}\small\item\em Elevation vs distance balance factor in HYDROLOGICAL mode. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a51a7a21b3029516eb39be45b2d8b15f1}{distance\+\_\+exponent}} = 2.\+0f
+\begin{DoxyCompactList}\small\item\em Power exponent applied to upward elevation steps in HYDROLOGICAL mode. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a1232bf5b364db44d55bf012e29066c3d}{upward\+\_\+penalization}} = 100.\+0f
+\begin{DoxyCompactList}\small\item\em Penalty multiplier for uphill steps in HYDROLOGICAL mode. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a9ac96f45efe81174ad5f2af359b2c9a8}{domain\+\_\+center\+\_\+weight}} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em Additional penalty favoring paths passing through the center of the domain. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Configuration for shortest-\/path edge costs and heuristics. 
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a273ae8b085bc1309827cb47afdc2ea9a}\label{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a273ae8b085bc1309827cb47afdc2ea9a} 
+\index{hmap::TerrainTriMesh::MeshPathCostConfig@{hmap::TerrainTriMesh::MeshPathCostConfig}!Metric@{Metric}}
+\index{Metric@{Metric}!hmap::TerrainTriMesh::MeshPathCostConfig@{hmap::TerrainTriMesh::MeshPathCostConfig}}
+\doxysubsubsection{\texorpdfstring{Metric}{Metric}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a273ae8b085bc1309827cb47afdc2ea9a}{hmap\+::\+Terrain\+Tri\+Mesh\+::\+Mesh\+Path\+Cost\+Config\+::\+Metric}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Cost metric model used for edge traversal. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EUCLIDEAN\_2D@{EUCLIDEAN\_2D}!hmap::TerrainTriMesh::MeshPathCostConfig@{hmap::TerrainTriMesh::MeshPathCostConfig}}\index{hmap::TerrainTriMesh::MeshPathCostConfig@{hmap::TerrainTriMesh::MeshPathCostConfig}!EUCLIDEAN\_2D@{EUCLIDEAN\_2D}}}\Hypertarget{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a273ae8b085bc1309827cb47afdc2ea9aaa0127f42b58ed1e4feff9b17a290ded7}\label{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a273ae8b085bc1309827cb47afdc2ea9aaa0127f42b58ed1e4feff9b17a290ded7} 
+EUCLIDEAN\+\_\+2D&Pure 2D Euclidean distance in the XY plane. \doxylink{structhmap_1_1TerrainTriMesh_1_1Edge}{Edge} cost is simply the 2D segment length\+: $ \text{cost} = d_{2D} $ \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SYMMETRIC\_Z@{SYMMETRIC\_Z}!hmap::TerrainTriMesh::MeshPathCostConfig@{hmap::TerrainTriMesh::MeshPathCostConfig}}\index{hmap::TerrainTriMesh::MeshPathCostConfig@{hmap::TerrainTriMesh::MeshPathCostConfig}!SYMMETRIC\_Z@{SYMMETRIC\_Z}}}\Hypertarget{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a273ae8b085bc1309827cb47afdc2ea9aa3db07082ff51d740670b0f24f3a1cb79}\label{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a273ae8b085bc1309827cb47afdc2ea9aa3db07082ff51d740670b0f24f3a1cb79} 
+SYMMETRIC\+\_\+Z&Symmetric elevation change metric. Treats uphill and downhill elevation changes equally\+: $ \text{cost} = |\Delta z| + w_{elev} \cdot z_{curr} $ where $ w_{elev} $ is \doxylink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_aa4e659b73d4ea2a70567d9659f1475ee}{elevation\+\_\+weight}. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HYDROLOGICAL@{HYDROLOGICAL}!hmap::TerrainTriMesh::MeshPathCostConfig@{hmap::TerrainTriMesh::MeshPathCostConfig}}\index{hmap::TerrainTriMesh::MeshPathCostConfig@{hmap::TerrainTriMesh::MeshPathCostConfig}!HYDROLOGICAL@{HYDROLOGICAL}}}\Hypertarget{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a273ae8b085bc1309827cb47afdc2ea9aab372763954316f3e914ee39ce92124ef}\label{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a273ae8b085bc1309827cb47afdc2ea9aab372763954316f3e914ee39ce92124ef} 
+HYDROLOGICAL&Asymmetric hydrological flow metric for streams. Strongly penalizes uphill steps while favoring natural downhill flow\+:  \[
+  \text{cost} = (1 - r_{elev}) \cdot d_{2D}
+              + (\Delta z > 0 \;?\; p_{up} \cdot (\Delta
+z)^{e_{dist}} : |\Delta z|)
+              + r_{elev} \cdot \max(0, \Delta z)
+\] where $ r_{elev} $ is \doxylink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a9c91dda4b33f7152939aafa0ca77ab4d}{elevation\+\_\+ratio}, $
+e_{dist} $ is \doxylink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a51a7a21b3029516eb39be45b2d8b15f1}{distance\+\_\+exponent}, and $ p_{up} $ is \doxylink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a1232bf5b364db44d55bf012e29066c3d}{upward\+\_\+penalization}. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_aa2e00e48af26fe6bbd9c8513e95c929e}\label{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_aa2e00e48af26fe6bbd9c8513e95c929e} 
+\index{hmap::TerrainTriMesh::MeshPathCostConfig@{hmap::TerrainTriMesh::MeshPathCostConfig}!metric@{metric}}
+\index{metric@{metric}!hmap::TerrainTriMesh::MeshPathCostConfig@{hmap::TerrainTriMesh::MeshPathCostConfig}}
+\doxysubsubsection{\texorpdfstring{metric}{metric}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a273ae8b085bc1309827cb47afdc2ea9a}{hmap\+::\+Terrain\+Tri\+Mesh\+::\+Mesh\+Path\+Cost\+Config\+::\+Metric}} hmap\+::\+Terrain\+Tri\+Mesh\+::\+Mesh\+Path\+Cost\+Config\+::metric = \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a273ae8b085bc1309827cb47afdc2ea9aaa0127f42b58ed1e4feff9b17a290ded7}{Metric\+::\+EUCLIDEAN\+\_\+2D}}}
+
+\Hypertarget{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_aa4e659b73d4ea2a70567d9659f1475ee}\label{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_aa4e659b73d4ea2a70567d9659f1475ee} 
+\index{hmap::TerrainTriMesh::MeshPathCostConfig@{hmap::TerrainTriMesh::MeshPathCostConfig}!elevation\_weight@{elevation\_weight}}
+\index{elevation\_weight@{elevation\_weight}!hmap::TerrainTriMesh::MeshPathCostConfig@{hmap::TerrainTriMesh::MeshPathCostConfig}}
+\doxysubsubsection{\texorpdfstring{elevation\_weight}{elevation\_weight}}
+{\footnotesize\ttfamily float hmap\+::\+Terrain\+Tri\+Mesh\+::\+Mesh\+Path\+Cost\+Config\+::elevation\+\_\+weight = 1.\+0f}
+
+
+
+Weight for absolute vertex elevation in SYMMETRIC\+\_\+Z mode. 
+
+\Hypertarget{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a9c91dda4b33f7152939aafa0ca77ab4d}\label{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a9c91dda4b33f7152939aafa0ca77ab4d} 
+\index{hmap::TerrainTriMesh::MeshPathCostConfig@{hmap::TerrainTriMesh::MeshPathCostConfig}!elevation\_ratio@{elevation\_ratio}}
+\index{elevation\_ratio@{elevation\_ratio}!hmap::TerrainTriMesh::MeshPathCostConfig@{hmap::TerrainTriMesh::MeshPathCostConfig}}
+\doxysubsubsection{\texorpdfstring{elevation\_ratio}{elevation\_ratio}}
+{\footnotesize\ttfamily float hmap\+::\+Terrain\+Tri\+Mesh\+::\+Mesh\+Path\+Cost\+Config\+::elevation\+\_\+ratio = 0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}}
+
+
+
+Elevation vs distance balance factor in HYDROLOGICAL mode. 
+
+\Hypertarget{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a51a7a21b3029516eb39be45b2d8b15f1}\label{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a51a7a21b3029516eb39be45b2d8b15f1} 
+\index{hmap::TerrainTriMesh::MeshPathCostConfig@{hmap::TerrainTriMesh::MeshPathCostConfig}!distance\_exponent@{distance\_exponent}}
+\index{distance\_exponent@{distance\_exponent}!hmap::TerrainTriMesh::MeshPathCostConfig@{hmap::TerrainTriMesh::MeshPathCostConfig}}
+\doxysubsubsection{\texorpdfstring{distance\_exponent}{distance\_exponent}}
+{\footnotesize\ttfamily float hmap\+::\+Terrain\+Tri\+Mesh\+::\+Mesh\+Path\+Cost\+Config\+::distance\+\_\+exponent = 2.\+0f}
+
+
+
+Power exponent applied to upward elevation steps in HYDROLOGICAL mode. 
+
+\Hypertarget{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a1232bf5b364db44d55bf012e29066c3d}\label{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a1232bf5b364db44d55bf012e29066c3d} 
+\index{hmap::TerrainTriMesh::MeshPathCostConfig@{hmap::TerrainTriMesh::MeshPathCostConfig}!upward\_penalization@{upward\_penalization}}
+\index{upward\_penalization@{upward\_penalization}!hmap::TerrainTriMesh::MeshPathCostConfig@{hmap::TerrainTriMesh::MeshPathCostConfig}}
+\doxysubsubsection{\texorpdfstring{upward\_penalization}{upward\_penalization}}
+{\footnotesize\ttfamily float hmap\+::\+Terrain\+Tri\+Mesh\+::\+Mesh\+Path\+Cost\+Config\+::upward\+\_\+penalization = 100.\+0f}
+
+
+
+Penalty multiplier for uphill steps in HYDROLOGICAL mode. 
+
+\Hypertarget{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a9ac96f45efe81174ad5f2af359b2c9a8}\label{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a9ac96f45efe81174ad5f2af359b2c9a8} 
+\index{hmap::TerrainTriMesh::MeshPathCostConfig@{hmap::TerrainTriMesh::MeshPathCostConfig}!domain\_center\_weight@{domain\_center\_weight}}
+\index{domain\_center\_weight@{domain\_center\_weight}!hmap::TerrainTriMesh::MeshPathCostConfig@{hmap::TerrainTriMesh::MeshPathCostConfig}}
+\doxysubsubsection{\texorpdfstring{domain\_center\_weight}{domain\_center\_weight}}
+{\footnotesize\ttfamily float hmap\+::\+Terrain\+Tri\+Mesh\+::\+Mesh\+Path\+Cost\+Config\+::domain\+\_\+center\+\_\+weight = 0.\+0f}
+
+
+
+Additional penalty favoring paths passing through the center of the domain. 
+
+Adds $ w_{center} \cdot (1 - 2 \cdot d_{border}) $ to the edge cost. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+High\+Map/include/highmap/\mbox{\hyperlink{terrain__tri__mesh_8hpp}{terrain\+\_\+tri\+\_\+mesh.\+hpp}}\end{DoxyCompactItemize}

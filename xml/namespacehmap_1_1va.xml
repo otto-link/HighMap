@@ -428,7 +428,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flooding.cpp" line="215" column="14" bodyfile="HighMap/src/hydrology/flooding.cpp" bodystart="215" bodyend="246" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1325" declcolumn="14"/>
+        <location file="HighMap/src/hydrology/flooding.cpp" line="215" column="14" bodyfile="HighMap/src/hydrology/flooding.cpp" bodystart="215" bodyend="246" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1371" declcolumn="14"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1va_1a050c3c7ecc102d86f566bf55b3a72c51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; <ref refid="classhmap_1_1Path" kindref="compound">Path</ref> &gt;</type>
@@ -594,7 +594,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1063" column="13" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1063" bodyend="1085" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1356" declcolumn="13"/>
+        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1063" column="13" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1063" bodyend="1085" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1402" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1va_1a79c8b1b0f1447fcb8f94f6e2cec8788b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structhmap_1_1VirtualArray" kindref="compound">VirtualArray</ref></type>
@@ -671,7 +671,140 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1087" column="14" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1087" bodyend="1153" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1366" declcolumn="14"/>
+        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1087" column="14" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1087" bodyend="1153" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1412" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehmap_1_1va_1ae0522b3668ec88bf0a3d8ad785a6185e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhmap_1_1Path" kindref="compound">Path</ref></type>
+        <definition>Path hmap::va::flow_stream</definition>
+        <argsstring>(const ComputeMode &amp;cm, const VirtualArray &amp;z, glm::vec2 start, std::uint32_t seed=0, size_t control_points_count=2048, float elevation_ratio=0.5f, float distance_exponent=2.f, float upward_penalization=100.f, bool favor_domain_center=false)</argsstring>
+        <name>flow_stream</name>
+        <qualifiedname>hmap::va::flow_stream</qualifiedname>
+        <param>
+          <type>const <ref refid="structhmap_1_1ComputeMode" kindref="compound">ComputeMode</ref> &amp;</type>
+          <declname>cm</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structhmap_1_1VirtualArray" kindref="compound">VirtualArray</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>glm::vec2</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>std::uint32_t</type>
+          <declname>seed</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>control_points_count</declname>
+          <defval>2048</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>elevation_ratio</declname>
+          <defval>0.5<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>distance_exponent</declname>
+          <defval>2.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>upward_penalization</declname>
+          <defval>100.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>favor_domain_center</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Computes the optimal flow path from starting 2D coordinates across a <ref refid="structhmap_1_1VirtualArray" kindref="compound">VirtualArray</ref> using an intermediate random terrain triangular mesh. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Compute mode configuration. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>z</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Heightmap <ref refid="structhmap_1_1VirtualArray" kindref="compound">VirtualArray</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>start</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Start coordinates (x, y) in [0, 1]. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>seed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Random seed for mesh point generation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>control_points_count</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of control points sampled for the mesh. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>elevation_ratio</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Weight for elevation difference in the cost function (default: 0.5). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>distance_exponent</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Exponent for the distance/elevation term (default: 2.0). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>upward_penalization</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Penalty factor for upward elevation changes (default: 100.0). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>favor_domain_center</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Favor passing through the center of the domain (default: false). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A <ref refid="classhmap_1_1Path" kindref="compound">Path</ref> object representing the optimal flow path. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/src/hydrology/flow_stream.cpp" line="240" column="6" bodyfile="HighMap/src/hydrology/flow_stream.cpp" bodystart="240" bodyend="262" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1447" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1va_1afa19680ed9583277c2fb76daa95bfa96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Path" kindref="compound">Path</ref></type>
@@ -955,7 +1088,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" line="76" column="16" bodyfile="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" bodystart="76" bodyend="110" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="306" declcolumn="16"/>
+        <location file="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" line="76" column="16" bodyfile="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" bodystart="76" bodyend="110" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="394" declcolumn="16"/>
       </memberdef>
     </sectiondef>
     <briefdescription>

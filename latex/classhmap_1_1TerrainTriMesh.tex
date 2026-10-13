@@ -18,6 +18,8 @@ struct \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1Edge}{Edge}}
 \begin{DoxyCompactList}\small\item\em Undirected edge between two vertices. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1EdgeHash}{Edge\+Hash}}
 \begin{DoxyCompactList}\small\item\em Hash functor for \doxylink{structhmap_1_1TerrainTriMesh_1_1Edge}{Edge}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig}{Mesh\+Path\+Cost\+Config}}
+\begin{DoxyCompactList}\small\item\em Configuration for shortest-\/path edge costs and heuristics. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1Neighbor}{Neighbor}}
 \begin{DoxyCompactList}\small\item\em \doxylink{structhmap_1_1TerrainTriMesh_1_1Neighbor}{Neighbor} vertex information. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1NeighborData}{Neighbor\+Data}}
@@ -85,10 +87,18 @@ size\+\_\+t \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a9dc6c3e9a3a765e3cd16f1
 \begin{DoxyCompactList}\small\item\em Return the number of vertices. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1ShortestPathResult}{Shortest\+Path\+Result}} \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a572d32bcabab1879831bcfc490bf5532}{compute\+\_\+shortest\+\_\+paths\+\_\+to\+\_\+hull}} (bool use\+\_\+delta\+\_\+z=false, float elevation\+\_\+weight=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}) const
 \begin{DoxyCompactList}\small\item\em Compute shortest paths to the convex hull. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1ShortestPathResult}{Shortest\+Path\+Result}} \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a0ba71147927a2addb0e22a310691b8c3}{compute\+\_\+shortest\+\_\+paths}} (const std\+::vector$<$ std\+::pair$<$ size\+\_\+t, float $>$ $>$ \&sources, const \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig}{Mesh\+Path\+Cost\+Config}} \&config) const
+\begin{DoxyCompactList}\small\item\em Compute shortest paths from multiple sources with a cost config. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1ShortestPathResult}{Shortest\+Path\+Result}} \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a05f72e51d5736312655330dd72ae9f12}{compute\+\_\+shortest\+\_\+paths}} (size\+\_\+t start, const \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig}{Mesh\+Path\+Cost\+Config}} \&config) const
+\begin{DoxyCompactList}\small\item\em Compute shortest paths from a single source with a cost config. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1ShortestPathResult}{Shortest\+Path\+Result}} \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_aad3b7896049e2e13a76dfe09dd6f708d}{compute\+\_\+shortest\+\_\+paths}} (size\+\_\+t start, bool use\+\_\+delta\+\_\+z=false, float elevation\+\_\+weight=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float domain\+\_\+center\+\_\+weight=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}) const
 \begin{DoxyCompactList}\small\item\em Compute shortest paths from a source vertex. \end{DoxyCompactList}\item 
+std\+::vector$<$ size\+\_\+t $>$ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_af0bc9d9d006e47ca2c0246cd98482e83}{shortest\+\_\+path}} (size\+\_\+t start, size\+\_\+t end, const \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig}{Mesh\+Path\+Cost\+Config}} \&config) const
+\begin{DoxyCompactList}\small\item\em Compute the shortest path between two vertices with a cost config. \end{DoxyCompactList}\item 
 std\+::vector$<$ size\+\_\+t $>$ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_aa1053a02d395e2ad59acbfd028a73edf}{shortest\+\_\+path}} (size\+\_\+t start, size\+\_\+t end, bool use\+\_\+delta\+\_\+z=false, float elevation\+\_\+weight=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float domain\+\_\+center\+\_\+weight=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}) const
 \begin{DoxyCompactList}\small\item\em Compute the shortest path between two vertices. \end{DoxyCompactList}\item 
+std\+::vector$<$ size\+\_\+t $>$ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a517bba7785f15c38e91a5a4742122968}{reconstruct\+\_\+path}} (size\+\_\+t start, size\+\_\+t end, const \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1ShortestPathResult}{Shortest\+Path\+Result}} \&result) const
+\begin{DoxyCompactList}\small\item\em Reconstruct a path from start to end from a shortest path result. \end{DoxyCompactList}\item 
 std\+::vector$<$ size\+\_\+t $>$ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_ad7c875682dd45ac1626bdfe6046fc5ca}{path\+\_\+to\+\_\+hull}} (size\+\_\+t start, const \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1ShortestPathResult}{Shortest\+Path\+Result}} \&result) const
 \begin{DoxyCompactList}\small\item\em Reconstruct a path to the convex hull. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_adcf186f3884969d2b85db0b2186b8d34}{pick\+\_\+mesh\+\_\+boundary\+\_\+vertex}} (\mbox{\hyperlink{namespacehmap_a1ba9d4ce7afe3309f8ae8e617f7154ee}{Domain\+Boundary}} boundary, std\+::uint32\+\_\+t seed=0, bool favor\+\_\+boundary\+\_\+center=true, bool favor\+\_\+lower\+\_\+elevation=true, bool favor\+\_\+sinks=true) const
@@ -404,25 +414,65 @@ Return the number of vertices.
 
 Compute shortest paths to the convex hull. 
 
+\Hypertarget{classhmap_1_1TerrainTriMesh_a0ba71147927a2addb0e22a310691b8c3}\label{classhmap_1_1TerrainTriMesh_a0ba71147927a2addb0e22a310691b8c3} 
+\index{hmap::TerrainTriMesh@{hmap::TerrainTriMesh}!compute\_shortest\_paths@{compute\_shortest\_paths}}
+\index{compute\_shortest\_paths@{compute\_shortest\_paths}!hmap::TerrainTriMesh@{hmap::TerrainTriMesh}}
+\doxysubsubsection{\texorpdfstring{compute\_shortest\_paths()}{compute\_shortest\_paths()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1ShortestPathResult}{Terrain\+Tri\+Mesh\+::\+Shortest\+Path\+Result}} hmap\+::\+Terrain\+Tri\+Mesh\+::compute\+\_\+shortest\+\_\+paths (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::pair$<$ size\+\_\+t, float $>$ $>$ \&}]{sources,  }\item[{const \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig}{Mesh\+Path\+Cost\+Config}} \&}]{config }\end{DoxyParamCaption}) const}
+
+
+
+Compute shortest paths from multiple sources with a cost config. 
+
+\Hypertarget{classhmap_1_1TerrainTriMesh_a05f72e51d5736312655330dd72ae9f12}\label{classhmap_1_1TerrainTriMesh_a05f72e51d5736312655330dd72ae9f12} 
+\index{hmap::TerrainTriMesh@{hmap::TerrainTriMesh}!compute\_shortest\_paths@{compute\_shortest\_paths}}
+\index{compute\_shortest\_paths@{compute\_shortest\_paths}!hmap::TerrainTriMesh@{hmap::TerrainTriMesh}}
+\doxysubsubsection{\texorpdfstring{compute\_shortest\_paths()}{compute\_shortest\_paths()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1ShortestPathResult}{Terrain\+Tri\+Mesh\+::\+Shortest\+Path\+Result}} hmap\+::\+Terrain\+Tri\+Mesh\+::compute\+\_\+shortest\+\_\+paths (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{start,  }\item[{const \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig}{Mesh\+Path\+Cost\+Config}} \&}]{config }\end{DoxyParamCaption}) const}
+
+
+
+Compute shortest paths from a single source with a cost config. 
+
 \Hypertarget{classhmap_1_1TerrainTriMesh_aad3b7896049e2e13a76dfe09dd6f708d}\label{classhmap_1_1TerrainTriMesh_aad3b7896049e2e13a76dfe09dd6f708d} 
 \index{hmap::TerrainTriMesh@{hmap::TerrainTriMesh}!compute\_shortest\_paths@{compute\_shortest\_paths}}
 \index{compute\_shortest\_paths@{compute\_shortest\_paths}!hmap::TerrainTriMesh@{hmap::TerrainTriMesh}}
-\doxysubsubsection{\texorpdfstring{compute\_shortest\_paths()}{compute\_shortest\_paths()}}
+\doxysubsubsection{\texorpdfstring{compute\_shortest\_paths()}{compute\_shortest\_paths()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
 {\footnotesize\ttfamily \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1ShortestPathResult}{Terrain\+Tri\+Mesh\+::\+Shortest\+Path\+Result}} hmap\+::\+Terrain\+Tri\+Mesh\+::compute\+\_\+shortest\+\_\+paths (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{start,  }\item[{bool}]{use\+\_\+delta\+\_\+z = {\ttfamily false},  }\item[{float}]{elevation\+\_\+weight = {\ttfamily 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{float}]{domain\+\_\+center\+\_\+weight = {\ttfamily 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}} }\end{DoxyParamCaption}) const}
 
 
 
 Compute shortest paths from a source vertex. 
 
+\Hypertarget{classhmap_1_1TerrainTriMesh_af0bc9d9d006e47ca2c0246cd98482e83}\label{classhmap_1_1TerrainTriMesh_af0bc9d9d006e47ca2c0246cd98482e83} 
+\index{hmap::TerrainTriMesh@{hmap::TerrainTriMesh}!shortest\_path@{shortest\_path}}
+\index{shortest\_path@{shortest\_path}!hmap::TerrainTriMesh@{hmap::TerrainTriMesh}}
+\doxysubsubsection{\texorpdfstring{shortest\_path()}{shortest\_path()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::vector$<$ size\+\_\+t $>$ hmap\+::\+Terrain\+Tri\+Mesh\+::shortest\+\_\+path (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{start,  }\item[{size\+\_\+t}]{end,  }\item[{const \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig}{Mesh\+Path\+Cost\+Config}} \&}]{config }\end{DoxyParamCaption}) const}
+
+
+
+Compute the shortest path between two vertices with a cost config. 
+
 \Hypertarget{classhmap_1_1TerrainTriMesh_aa1053a02d395e2ad59acbfd028a73edf}\label{classhmap_1_1TerrainTriMesh_aa1053a02d395e2ad59acbfd028a73edf} 
 \index{hmap::TerrainTriMesh@{hmap::TerrainTriMesh}!shortest\_path@{shortest\_path}}
 \index{shortest\_path@{shortest\_path}!hmap::TerrainTriMesh@{hmap::TerrainTriMesh}}
-\doxysubsubsection{\texorpdfstring{shortest\_path()}{shortest\_path()}}
+\doxysubsubsection{\texorpdfstring{shortest\_path()}{shortest\_path()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily std\+::vector$<$ size\+\_\+t $>$ hmap\+::\+Terrain\+Tri\+Mesh\+::shortest\+\_\+path (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{start,  }\item[{size\+\_\+t}]{end,  }\item[{bool}]{use\+\_\+delta\+\_\+z = {\ttfamily false},  }\item[{float}]{elevation\+\_\+weight = {\ttfamily 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{float}]{domain\+\_\+center\+\_\+weight = {\ttfamily 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}} }\end{DoxyParamCaption}) const}
 
 
 
 Compute the shortest path between two vertices. 
+
+\Hypertarget{classhmap_1_1TerrainTriMesh_a517bba7785f15c38e91a5a4742122968}\label{classhmap_1_1TerrainTriMesh_a517bba7785f15c38e91a5a4742122968} 
+\index{hmap::TerrainTriMesh@{hmap::TerrainTriMesh}!reconstruct\_path@{reconstruct\_path}}
+\index{reconstruct\_path@{reconstruct\_path}!hmap::TerrainTriMesh@{hmap::TerrainTriMesh}}
+\doxysubsubsection{\texorpdfstring{reconstruct\_path()}{reconstruct\_path()}}
+{\footnotesize\ttfamily std\+::vector$<$ size\+\_\+t $>$ hmap\+::\+Terrain\+Tri\+Mesh\+::reconstruct\+\_\+path (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{start,  }\item[{size\+\_\+t}]{end,  }\item[{const \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1ShortestPathResult}{Shortest\+Path\+Result}} \&}]{result }\end{DoxyParamCaption}) const}
+
+
+
+Reconstruct a path from start to end from a shortest path result. 
 
 \Hypertarget{classhmap_1_1TerrainTriMesh_ad7c875682dd45ac1626bdfe6046fc5ca}\label{classhmap_1_1TerrainTriMesh_ad7c875682dd45ac1626bdfe6046fc5ca} 
 \index{hmap::TerrainTriMesh@{hmap::TerrainTriMesh}!path\_to\_hull@{path\_to\_hull}}
