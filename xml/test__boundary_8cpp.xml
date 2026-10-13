@@ -136,6 +136,25 @@
         </inbodydescription>
         <location file="tests/src/test_boundary.cpp" line="135" column="1" bodyfile="tests/src/test_boundary.cpp" bodystart="135" bodyend="174"/>
       </memberdef>
+      <memberdef kind="function" id="test__boundary_8cpp_1a6ccbc6e35db6b97e60f64cdc9f397145" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TEST</definition>
+        <argsstring>(BoundaryTest, ExtrapolateBorders)</argsstring>
+        <name>TEST</name>
+        <param>
+          <type>BoundaryTest</type>
+        </param>
+        <param>
+          <type>ExtrapolateBorders</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="tests/src/test_boundary.cpp" line="176" column="1" bodyfile="tests/src/test_boundary.cpp" bodystart="176" bodyend="209"/>
+      </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
@@ -316,6 +335,41 @@
 <codeline lineno="172"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(a_uniform(32,<sp/>64),<sp/>0.0f,<sp/>0.05f);</highlight></codeline>
 <codeline lineno="173"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(a_uniform(32,<sp/>32),<sp/>1.0f,<sp/>1e-5f);</highlight></codeline>
 <codeline lineno="174"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><ref refid="test__boundary_8cpp_1a638a9b40f5aa5d5761cb802b87596316" kindref="member">TEST</ref>(BoundaryTest,<sp/>ExtrapolateBorders)</highlight></codeline>
+<codeline lineno="177"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Test<sp/>with<sp/>sigma<sp/>=<sp/>0.0f</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>a1(glm::ivec2(6,<sp/>6),<sp/>0.0f);</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="sls__deformation_8cpp_1a37d972ae0b47b9099e30983131d31916" kindref="member">j</ref><sp/>=<sp/>1;<sp/><ref refid="sls__deformation_8cpp_1a37d972ae0b47b9099e30983131d31916" kindref="member">j</ref><sp/>&lt;<sp/>5;<sp/>++<ref refid="sls__deformation_8cpp_1a37d972ae0b47b9099e30983131d31916" kindref="member">j</ref>)</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="sls__deformation_8cpp_1acb559820d9ca11295b4500f179ef6392" kindref="member">i</ref><sp/>=<sp/>1;<sp/><ref refid="sls__deformation_8cpp_1acb559820d9ca11295b4500f179ef6392" kindref="member">i</ref><sp/>&lt;<sp/>5;<sp/>++<ref refid="sls__deformation_8cpp_1acb559820d9ca11295b4500f179ef6392" kindref="member">i</ref>)</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>a1(<ref refid="sls__deformation_8cpp_1acb559820d9ca11295b4500f179ef6392" kindref="member">i</ref>,<sp/><ref refid="sls__deformation_8cpp_1a37d972ae0b47b9099e30983131d31916" kindref="member">j</ref>)<sp/>=<sp/>2.0f;</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>inner<sp/>points<sp/>(1,<sp/>j)<sp/>=<sp/>2,<sp/>(2,<sp/>j)<sp/>=<sp/>2<sp/>-&gt;<sp/>2*2<sp/>-<sp/>2<sp/>=<sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a1e4edcaea744a4a364839905693ee9e3" kindref="member">hmap::extrapolate_borders</ref>(a1,<sp/>1,<sp/>0.0f);</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(a1(0,<sp/>3),<sp/>2.0f,<sp/>1e-5f);</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(a1(5,<sp/>3),<sp/>2.0f,<sp/>1e-5f);</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(a1(3,<sp/>0),<sp/>2.0f,<sp/>1e-5f);</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(a1(3,<sp/>5),<sp/>2.0f,<sp/>1e-5f);</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Test<sp/>with<sp/>sigma<sp/>&gt;<sp/>0.0f</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>a2(glm::ivec2(6,<sp/>6),<sp/>0.0f);</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="sls__deformation_8cpp_1a37d972ae0b47b9099e30983131d31916" kindref="member">j</ref><sp/>=<sp/>1;<sp/><ref refid="sls__deformation_8cpp_1a37d972ae0b47b9099e30983131d31916" kindref="member">j</ref><sp/>&lt;<sp/>5;<sp/>++<ref refid="sls__deformation_8cpp_1a37d972ae0b47b9099e30983131d31916" kindref="member">j</ref>)</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="sls__deformation_8cpp_1acb559820d9ca11295b4500f179ef6392" kindref="member">i</ref><sp/>=<sp/>1;<sp/><ref refid="sls__deformation_8cpp_1acb559820d9ca11295b4500f179ef6392" kindref="member">i</ref><sp/>&lt;<sp/>5;<sp/>++<ref refid="sls__deformation_8cpp_1acb559820d9ca11295b4500f179ef6392" kindref="member">i</ref>)</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>a2(<ref refid="sls__deformation_8cpp_1acb559820d9ca11295b4500f179ef6392" kindref="member">i</ref>,<sp/><ref refid="sls__deformation_8cpp_1a37d972ae0b47b9099e30983131d31916" kindref="member">j</ref>)<sp/>=<sp/>(<ref refid="sls__deformation_8cpp_1acb559820d9ca11295b4500f179ef6392" kindref="member">i</ref><sp/>==<sp/>1<sp/>||<sp/><ref refid="sls__deformation_8cpp_1acb559820d9ca11295b4500f179ef6392" kindref="member">i</ref><sp/>==<sp/>4<sp/>||<sp/><ref refid="sls__deformation_8cpp_1a37d972ae0b47b9099e30983131d31916" kindref="member">j</ref><sp/>==<sp/>1<sp/>||<sp/><ref refid="sls__deformation_8cpp_1a37d972ae0b47b9099e30983131d31916" kindref="member">j</ref><sp/>==<sp/>4)<sp/>?<sp/>4.0f<sp/>:<sp/>2.0f;</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>At<sp/>boundary<sp/>(k<sp/>=<sp/>0,<sp/>j<sp/>=<sp/>3):</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>array(1,<sp/>3)<sp/>=<sp/>4,<sp/>array(2,<sp/>3)<sp/>=<sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Extrapolated<sp/>before<sp/>lerp:<sp/>2<sp/>*<sp/>array(1,<sp/>3)<sp/>-<sp/>array(2,<sp/>3)<sp/>=<sp/>2<sp/>*<sp/>4<sp/>-<sp/>2<sp/>=<sp/>6</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>vref1<sp/>=<sp/>array(1,<sp/>3)<sp/>=<sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>lerp(6,<sp/>4,<sp/>0.5)<sp/>=<sp/>5</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a1e4edcaea744a4a364839905693ee9e3" kindref="member">hmap::extrapolate_borders</ref>(a2,<sp/>1,<sp/>0.5f);</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(a2(0,<sp/>3),<sp/>5.0f,<sp/>1e-5f);</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(a2(5,<sp/>3),<sp/>5.0f,<sp/>1e-5f);</highlight></codeline>
+<codeline lineno="209"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="tests/src/test_boundary.cpp"/>
   </compounddef>

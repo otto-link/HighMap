@@ -5587,7 +5587,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/boundary/boundary.cpp" line="20" column="6" bodyfile="HighMap/src/boundary/boundary.cpp" bodystart="20" bodyend="92" declfile="HighMap/include/highmap/boundary.hpp" declline="71" declcolumn="6"/>
+        <location file="HighMap/src/boundary/boundary.cpp" line="20" column="6" bodyfile="HighMap/src/boundary/boundary.cpp" bodystart="20" bodyend="89" declfile="HighMap/include/highmap/boundary.hpp" declline="71" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a9dd09c08e06c1144910d3fa30250643c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -5697,7 +5697,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/boundary/boundary.cpp" line="94" column="6" bodyfile="HighMap/src/boundary/boundary.cpp" bodystart="94" bodyend="134" declfile="HighMap/include/highmap/boundary.hpp" declline="104" declcolumn="6"/>
+        <location file="HighMap/src/boundary/boundary.cpp" line="91" column="6" bodyfile="HighMap/src/boundary/boundary.cpp" bodystart="91" bodyend="131" declfile="HighMap/include/highmap/boundary.hpp" declline="104" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a072f0c93c6e3e5e0f8f88c760850dce8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -5729,7 +5729,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/boundary/boundary.cpp" line="136" column="6" bodyfile="HighMap/src/boundary/boundary.cpp" bodystart="136" bodyend="156" declfile="HighMap/include/highmap/boundary.hpp" declline="123" declcolumn="6"/>
+        <location file="HighMap/src/boundary/boundary.cpp" line="133" column="6" bodyfile="HighMap/src/boundary/boundary.cpp" bodystart="133" bodyend="153" declfile="HighMap/include/highmap/boundary.hpp" declline="123" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a8b7bdf4f052ba72e3dc8150d324a53b6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -5752,7 +5752,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/boundary/boundary.cpp" line="158" column="6" bodyfile="HighMap/src/boundary/boundary.cpp" bodystart="158" bodyend="185" declfile="HighMap/include/highmap/boundary.hpp" declline="126" declcolumn="6"/>
+        <location file="HighMap/src/boundary/boundary.cpp" line="155" column="6" bodyfile="HighMap/src/boundary/boundary.cpp" bodystart="155" bodyend="182" declfile="HighMap/include/highmap/boundary.hpp" declline="126" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a9254ab903bd000631c5f5216e21f7caa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -5809,7 +5809,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/boundary/boundary.cpp" line="187" column="7" bodyfile="HighMap/src/boundary/boundary.cpp" bodystart="187" bodyend="227" declfile="HighMap/include/highmap/boundary.hpp" declline="147" declcolumn="7"/>
+        <location file="HighMap/src/boundary/boundary.cpp" line="184" column="7" bodyfile="HighMap/src/boundary/boundary.cpp" bodystart="184" bodyend="224" declfile="HighMap/include/highmap/boundary.hpp" declline="147" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a3d23e9f95cfe4a8ceeecd6ea01d1d3e4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -5890,7 +5890,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/boundary/boundary.cpp" line="229" column="6" bodyfile="HighMap/src/boundary/boundary.cpp" bodystart="229" bodyend="298" declfile="HighMap/include/highmap/boundary.hpp" declline="170" declcolumn="6"/>
+        <location file="HighMap/src/boundary/boundary.cpp" line="226" column="6" bodyfile="HighMap/src/boundary/boundary.cpp" bodystart="226" bodyend="295" declfile="HighMap/include/highmap/boundary.hpp" declline="170" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a0cfa879188da80b9e5bf16e8c325c9ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -5963,7 +5963,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/boundary/boundary.cpp" line="300" column="7" bodyfile="HighMap/src/boundary/boundary.cpp" bodystart="300" bodyend="403" declfile="HighMap/include/highmap/boundary.hpp" declline="200" declcolumn="7"/>
+        <location file="HighMap/src/boundary/boundary.cpp" line="297" column="7" bodyfile="HighMap/src/boundary/boundary.cpp" bodystart="297" bodyend="400" declfile="HighMap/include/highmap/boundary.hpp" declline="200" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1abef85b092005d7c5b1d2962c3ed27ef0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -6040,7 +6040,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/boundary/boundary.cpp" line="405" column="7" bodyfile="HighMap/src/boundary/boundary.cpp" bodystart="405" bodyend="429" declfile="HighMap/include/highmap/boundary.hpp" declline="226" declcolumn="7"/>
+        <location file="HighMap/src/boundary/boundary.cpp" line="402" column="7" bodyfile="HighMap/src/boundary/boundary.cpp" bodystart="402" bodyend="426" declfile="HighMap/include/highmap/boundary.hpp" declline="226" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a7b12baa935f3ffb6a16e1809a85d0a6f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>glm::ivec2</type>
@@ -6478,7 +6478,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/boundary/boundary.cpp" line="431" column="6" bodyfile="HighMap/src/boundary/boundary.cpp" bodystart="431" bodyend="456" declfile="HighMap/include/highmap/boundary.hpp" declline="359" declcolumn="6"/>
+        <location file="HighMap/src/boundary/boundary.cpp" line="428" column="6" bodyfile="HighMap/src/boundary/boundary.cpp" bodystart="428" bodyend="453" declfile="HighMap/include/highmap/boundary.hpp" declline="359" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ae8bdfc965780305d1d26ff8b84e1dced" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -6510,7 +6510,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/boundary/boundary.cpp" line="458" column="6" bodyfile="HighMap/src/boundary/boundary.cpp" bodystart="458" bodyend="476" declfile="HighMap/include/highmap/boundary.hpp" declline="373" declcolumn="6"/>
+        <location file="HighMap/src/boundary/boundary.cpp" line="455" column="6" bodyfile="HighMap/src/boundary/boundary.cpp" bodystart="455" bodyend="473" declfile="HighMap/include/highmap/boundary.hpp" declline="373" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a8e2364315f5b159daae10f508dd1d2a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>

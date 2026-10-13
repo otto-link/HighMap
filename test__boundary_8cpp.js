@@ -6,5 +6,6 @@ var test__boundary_8cpp =
     [ "TEST", "test__boundary_8cpp.html#ad9119d9f0f802eea240d8462b766f878", null ],
     [ "TEST", "test__boundary_8cpp.html#a76c037d5119a2b61f11710543fcdf857", null ],
     [ "TEST", "test__boundary_8cpp.html#aeb7717394d9e23f1d74b712324123410", null ],
-    [ "TEST", "test__boundary_8cpp.html#ab6d36db89c5f1ff0389f1188e9d22478", null ]
+    [ "TEST", "test__boundary_8cpp.html#ab6d36db89c5f1ff0389f1188e9d22478", null ],
+    [ "TEST", "test__boundary_8cpp.html#a6ccbc6e35db6b97e60f64cdc9f397145", null ]
 ];

@@ -4114,6 +4114,7 @@
     <member refid="test__boundary_8cpp_1a76c037d5119a2b61f11710543fcdf857" kind="function"><name>TEST</name></member>
     <member refid="test__boundary_8cpp_1aeb7717394d9e23f1d74b712324123410" kind="function"><name>TEST</name></member>
     <member refid="test__boundary_8cpp_1ab6d36db89c5f1ff0389f1188e9d22478" kind="function"><name>TEST</name></member>
+    <member refid="test__boundary_8cpp_1a6ccbc6e35db6b97e60f64cdc9f397145" kind="function"><name>TEST</name></member>
   </compound>
   <compound refid="test__canyonize_8cpp" kind="file"><name>test_canyonize.cpp</name>
     <member refid="test__canyonize_8cpp_1a98dbe957ec86d8dadf9400e49d942667" kind="function"><name>TEST</name></member>
