@@ -1155,14 +1155,15 @@
 <codeline lineno="1144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>k_neighbors<sp/>*/</highlight><highlight class="normal"><sp/>4,</highlight></codeline>
 <codeline lineno="1145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>p_noise_r<sp/>*/</highlight><highlight class="normal"><sp/>pa_noise_r,</highlight></codeline>
 <codeline lineno="1146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>p_bending_mask<sp/>*/</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">,</highlight></codeline>
-<codeline lineno="1147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>bbox<sp/>*/</highlight><highlight class="normal"><sp/>region.bbox);</highlight></codeline>
-<codeline lineno="1148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>},</highlight></codeline>
-<codeline lineno="1149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cm);</highlight></codeline>
-<codeline lineno="1150"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1151"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>zb;</highlight></codeline>
-<codeline lineno="1152"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="1153"><highlight class="normal"></highlight></codeline>
-<codeline lineno="1154"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hmap::va</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>tile_size<sp/>*/</highlight><highlight class="normal"><sp/>32,</highlight></codeline>
+<codeline lineno="1148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>bbox<sp/>*/</highlight><highlight class="normal"><sp/>region.bbox);</highlight></codeline>
+<codeline lineno="1149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>},</highlight></codeline>
+<codeline lineno="1150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cm);</highlight></codeline>
+<codeline lineno="1151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1152"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>zb;</highlight></codeline>
+<codeline lineno="1153"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="1154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="1155"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hmap::va</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="HighMap/src/hydrology/flow_fixing_mst.cpp"/>
   </compounddef>

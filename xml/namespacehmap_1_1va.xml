@@ -671,7 +671,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1087" column="14" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1087" bodyend="1152" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1366" declcolumn="14"/>
+        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1087" column="14" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1087" bodyend="1153" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1366" declcolumn="14"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1va_1afa19680ed9583277c2fb76daa95bfa96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Path" kindref="compound">Path</ref></type>
