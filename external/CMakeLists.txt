@@ -15,3 +15,5 @@ add_subdirectory(PointSampler)
 include(nanoflann.cmake)
 
 include(lightusd.cmake)
+
+include(pocketfft.cmake)
