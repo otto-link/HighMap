@@ -1,10 +1,7 @@
 /* Copyright (c) 2025 Otto Link. Distributed under the terms of the GNU General
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
-#include <algorithm>
 #include <cstdint>
-#include <numeric>
-#include <random>
 #include <vector>
 
 #include "highmap/array.hpp"
@@ -152,128 +149,6 @@ Path find_cut_path_multiscale(const Array   &z,
 namespace hmap::va
 {
 
-namespace
-{
-
-size_t pick_mesh_boundary_vertex(const TerrainTriMesh &mesh,
-                                 DomainBoundary        boundary,
-                                 std::uint32_t         seed,
-                                 bool                  favor_boundary_center,
-                                 bool                  favor_lower_elevation,
-                                 bool                  favor_sinks)
-{
-  const auto &points = mesh.get_points();
-  if (points.empty()) return 0;
-
-  const auto &nbrs = mesh.get_neighbors();
-
-  constexpr float     eps = 1e-4f;
-  std::vector<size_t> candidates;
-
-  for (size_t i = 0; i < points.size(); ++i)
-  {
-    const auto &p = points[i];
-
-    bool match = false;
-    switch (boundary)
-    {
-    case BOUNDARY_LEFT: match = (p.x <= eps); break;
-
-    case BOUNDARY_RIGHT: match = (p.x >= 1.f - eps); break;
-
-    case BOUNDARY_BOTTOM: match = (p.y <= eps); break;
-
-    case BOUNDARY_TOP: match = (p.y >= 1.f - eps); break;
-    }
-
-    if (match) candidates.push_back(i);
-  }
-
-  // Fallback to convex hull vertices if none strictly matched
-  if (candidates.empty())
-  {
-    const auto &hull = mesh.get_convex_hull();
-    if (!hull.empty())
-    {
-      candidates = hull;
-    }
-    else
-    {
-      candidates.resize(points.size());
-      std::iota(candidates.begin(), candidates.end(), 0);
-    }
-  }
-
-  // Sort candidates along the boundary coordinate for consistent ordering
-  if (boundary == BOUNDARY_LEFT || boundary == BOUNDARY_RIGHT)
-  {
-    std::sort(candidates.begin(),
-              candidates.end(),
-              [&](size_t a, size_t b) { return points[a].y < points[b].y; });
-  }
-  else
-  {
-    std::sort(candidates.begin(),
-              candidates.end(),
-              [&](size_t a, size_t b) { return points[a].x < points[b].x; });
-  }
-
-  // Find min and max elevation among candidates
-  float min_z = points[candidates.front()].z;
-  float max_z = min_z;
-  for (size_t idx : candidates)
-  {
-    min_z = std::min(min_z, points[idx].z);
-    max_z = std::max(max_z, points[idx].z);
-  }
-
-  const size_t       nc = candidates.size();
-  std::vector<float> weights(nc, 1.f);
-
-  for (size_t k = 0; k < nc; ++k)
-  {
-    size_t idx = candidates[k];
-
-    if (favor_boundary_center && nc > 1)
-    {
-      float w = float(k) / float(nc - 1);
-      weights[k] *= 4.f * w * (1.f - w);
-    }
-
-    if (favor_lower_elevation)
-    {
-      float delta = max_z - min_z;
-      float w = (delta > 1e-7f) ? (points[idx].z - min_z) / delta : 0.f;
-      weights[k] *= (1.f - w) * (1.f - w);
-    }
-
-    if (favor_sinks)
-    {
-      float center_z = points[idx].z;
-      float min_neigh = center_z;
-
-      for (const auto &nb : nbrs.adjacency[idx])
-        min_neigh = std::min(min_neigh, points[nb.index].z);
-
-      if (center_z <= min_neigh) weights[k] = std::min(1.f, 4.f * weights[k]);
-    }
-  }
-
-  // Handle case where all weights sum to zero
-  float sum_w = 0.f;
-  for (float w : weights)
-    sum_w += w;
-
-  if (sum_w <= 1e-7f) return candidates[candidates.size() / 2];
-
-  std::mt19937                    gen(seed);
-  std::discrete_distribution<int> dist(weights.begin(), weights.end());
-
-  return candidates[dist(gen)];
-}
-
-} // namespace
-
 Path find_cut_path_midpoint(const ComputeMode  &cm,
                             const VirtualArray &z,
                             DomainBoundary      start,
@@ -294,21 +169,19 @@ Path find_cut_path_midpoint(const ComputeMode  &cm,
 
   if (mesh.size() == 0) return Path();
 
-  size_t start_idx = pick_mesh_boundary_vertex(mesh,
-                                               start,
-                                               seed,
-                                               favor_boundary_center,
-                                               favor_lower_elevation,
-                                               favor_sinks);
+  size_t start_idx = mesh.pick_mesh_boundary_vertex(start,
+                                                    seed,
+                                                    favor_boundary_center,
+                                                    favor_lower_elevation,
+                                                    favor_sinks);
 
   // use seed + 1 for selecting end vertex to avoid identical index selection on
   // same distributions
-  size_t end_idx = pick_mesh_boundary_vertex(mesh,
-                                             end,
-                                             seed + 1,
-                                             favor_boundary_center,
-                                             favor_lower_elevation,
-                                             favor_sinks);
+  size_t end_idx = mesh.pick_mesh_boundary_vertex(end,
+                                                  seed + 1,
+                                                  favor_boundary_center,
+                                                  favor_lower_elevation,
+                                                  favor_sinks);
 
   std::vector<size_t> vertex_indices = mesh.shortest_path(start_idx,
                                                           end_idx,

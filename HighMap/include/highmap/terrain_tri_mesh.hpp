@@ -10,6 +10,7 @@
 #include <glm/vec4.hpp>
 
 #include "highmap/array.hpp"
+#include "highmap/boundary.hpp"
 
 #include <unordered_map>
 
@@ -229,6 +230,13 @@ public:
   /** @brief Reconstruct a path to the convex hull. */
   std::vector<size_t> path_to_hull(size_t                    start,
                                    const ShortestPathResult &result) const;
+
+  /** @brief Pick a boundary vertex according to domain boundary and weights. */
+  size_t pick_mesh_boundary_vertex(DomainBoundary boundary,
+                                   std::uint32_t  seed = 0,
+                                   bool           favor_boundary_center = true,
+                                   bool           favor_lower_elevation = true,
+                                   bool           favor_sinks = true) const;
 
   /** @brief Return mesh vertices. */
   const std::vector<glm::vec3> &get_points() const;
