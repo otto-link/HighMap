@@ -11,7 +11,8 @@ var namespacehmap =
       [ "seed_forest_clusters", "namespacehmap_1_1va.html#ac597da164f0981c1f45e81e2ac47c7e3", null ],
       [ "flooding_lake_system", "namespacehmap_1_1va.html#ae8000dce23f7622c2ba67910124bc353", null ],
       [ "flow_fixing_mst_paths", "namespacehmap_1_1va.html#a050c3c7ecc102d86f566bf55b3a72c51", null ],
-      [ "flow_fixing_mst_triangulated", "namespacehmap_1_1va.html#a79c8b1b0f1447fcb8f94f6e2cec8788b", null ]
+      [ "flow_fixing_mst_triangulated", "namespacehmap_1_1va.html#a79c8b1b0f1447fcb8f94f6e2cec8788b", null ],
+      [ "generate_terrain_tri_mesh_from_heightmap_random", "namespacehmap_1_1va.html#ac5a99fc7607556be58fb75ae10125940", null ]
     ] ],
     [ "Array", "classhmap_1_1Array.html", "classhmap_1_1Array" ],
     [ "ArrayControlFunction", "classhmap_1_1ArrayControlFunction.html", "classhmap_1_1ArrayControlFunction" ],

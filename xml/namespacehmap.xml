@@ -14189,7 +14189,7 @@ additional_depth)</computeroutput>.</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/hydraulic_saleve.cpp" line="72" column="7" bodyfile="HighMap/src/erosion/hydraulic_saleve.cpp" bodystart="72" bodyend="192" declfile="HighMap/include/highmap/erosion/hydraulic_erosion.hpp" declline="158" declcolumn="7"/>
+        <location file="HighMap/src/erosion/hydraulic_saleve.cpp" line="72" column="7" bodyfile="HighMap/src/erosion/hydraulic_saleve.cpp" bodystart="72" bodyend="191" declfile="HighMap/include/highmap/erosion/hydraulic_erosion.hpp" declline="158" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a5ec83fc1497f653486bc4cc22ecee87b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -14300,7 +14300,7 @@ additional_depth)</computeroutput>.</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/hydraulic_saleve.cpp" line="194" column="7" bodyfile="HighMap/src/erosion/hydraulic_saleve.cpp" bodystart="194" bodyend="244" declfile="HighMap/include/highmap/erosion/hydraulic_erosion.hpp" declline="179" declcolumn="7"/>
+        <location file="HighMap/src/erosion/hydraulic_saleve.cpp" line="193" column="7" bodyfile="HighMap/src/erosion/hydraulic_saleve.cpp" bodystart="193" bodyend="243" declfile="HighMap/include/highmap/erosion/hydraulic_erosion.hpp" declline="179" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a33c845361a82a1863a6a8a65f8027573" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -68083,7 +68083,7 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" line="999" column="13" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="999" bodyend="1027" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="275" declcolumn="13"/>
+        <location file="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" line="1001" column="13" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="1001" bodyend="1029" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="278" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1af9fdabd692817be603ff5c44e68ea619" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1TerrainTriMesh" kindref="compound">TerrainTriMesh</ref></type>
@@ -68116,7 +68116,7 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" line="1029" column="16" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="1029" bodyend="1057" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="278" declcolumn="16"/>
+        <location file="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" line="1031" column="16" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="1031" bodyend="1059" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="281" declcolumn="16"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a5078af3eb73fb47ab1aad6cc872ab29a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1TerrainTriMesh" kindref="compound">TerrainTriMesh</ref></type>
@@ -68143,7 +68143,7 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" line="1059" column="16" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="1059" bodyend="1077" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="284" declcolumn="16"/>
+        <location file="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" line="1061" column="16" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="1061" bodyend="1079" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="287" declcolumn="16"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a19dec938e688ef4b73cf27ff3934043b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>

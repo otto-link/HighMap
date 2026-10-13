@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="31" column="15" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="31" bodyend="-1"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="34" column="15" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="34" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structhmap_1_1TerrainTriMesh_1_1BoundingBox_1a5e5137be28d3192dc989d549fc957639" prot="public" static="no" mutable="no">
         <type>glm::vec2</type>
@@ -30,7 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="32" column="15" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="32" bodyend="-1"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="35" column="15" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="35" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -51,7 +51,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="35" column="10" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="40" bodyend="44"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="38" column="10" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="42" bodyend="46"/>
       </memberdef>
       <memberdef kind="function" id="structhmap_1_1TerrainTriMesh_1_1BoundingBox_1a4e07cb0e3758539b1356d0b6276da46b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>glm::vec2</type>
@@ -70,7 +70,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="38" column="15" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="46" bodyend="50"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="41" column="15" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="48" bodyend="52"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -78,7 +78,7 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="29" column="3" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="30" bodyend="39"/>
+    <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="32" column="3" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="33" bodyend="42"/>
     <listofallmembers>
       <member refid="structhmap_1_1TerrainTriMesh_1_1BoundingBox_1a4e07cb0e3758539b1356d0b6276da46b" prot="public" virt="non-virtual"><scope>hmap::TerrainTriMesh::BoundingBox</scope><name>clamp</name></member>
       <member refid="structhmap_1_1TerrainTriMesh_1_1BoundingBox_1aa6890766fe5088242981462b35944b7e" prot="public" virt="non-virtual"><scope>hmap::TerrainTriMesh::BoundingBox</scope><name>contains</name></member>

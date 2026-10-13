@@ -187,7 +187,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/hydraulic_saleve.cpp" line="251" column="14" bodyfile="HighMap/src/erosion/hydraulic_saleve.cpp" bodystart="251" bodyend="417" declfile="HighMap/include/highmap/erosion/hydraulic_erosion.hpp" declline="709" declcolumn="14"/>
+        <location file="HighMap/src/erosion/hydraulic_saleve.cpp" line="250" column="14" bodyfile="HighMap/src/erosion/hydraulic_saleve.cpp" bodystart="250" bodyend="400" declfile="HighMap/include/highmap/erosion/hydraulic_erosion.hpp" declline="709" declcolumn="14"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1va_1aec2c193932c4d5d1fe00d09b81e243d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -594,7 +594,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1063" column="13" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1063" bodyend="1107" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1356" declcolumn="13"/>
+        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1063" column="13" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1063" bodyend="1085" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1356" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1va_1a79c8b1b0f1447fcb8f94f6e2cec8788b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structhmap_1_1VirtualArray" kindref="compound">VirtualArray</ref></type>
@@ -671,7 +671,38 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1109" column="14" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1109" bodyend="1174" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1366" declcolumn="14"/>
+        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1087" column="14" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1087" bodyend="1152" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1366" declcolumn="14"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehmap_1_1va_1ac5a99fc7607556be58fb75ae10125940" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhmap_1_1TerrainTriMesh" kindref="compound">TerrainTriMesh</ref></type>
+        <definition>TerrainTriMesh hmap::va::generate_terrain_tri_mesh_from_heightmap_random</definition>
+        <argsstring>(const ComputeMode &amp;cm, const VirtualArray &amp;z, int control_points_count, std::uint32_t seed)</argsstring>
+        <name>generate_terrain_tri_mesh_from_heightmap_random</name>
+        <qualifiedname>hmap::va::generate_terrain_tri_mesh_from_heightmap_random</qualifiedname>
+        <param>
+          <type>const <ref refid="structhmap_1_1ComputeMode" kindref="compound">ComputeMode</ref> &amp;</type>
+          <declname>cm</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structhmap_1_1VirtualArray" kindref="compound">VirtualArray</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>control_points_count</declname>
+        </param>
+        <param>
+          <type>std::uint32_t</type>
+          <declname>seed</declname>
+        </param>
+        <briefdescription>
+<para>Generate a random terrain mesh from a heightmap <ref refid="structhmap_1_1VirtualArray" kindref="compound">VirtualArray</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" line="1086" column="16" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="1086" bodyend="1120" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="298" declcolumn="16"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
