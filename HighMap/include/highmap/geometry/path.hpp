@@ -284,6 +284,21 @@ public:
   void enforce_monotonic_values(bool decreasing = true);
 
   /**
+   * @brief Rasterize path segments as capsules with a given radius onto a
+   * distance map.
+   *
+   * For each segment in the path, rasterizes a capsule of the specified @p
+   * radius into @p out_dist_sq. Only pixels within each capsule are evaluated.
+   *
+   * @param out_dist_sq Output array receiving the minimum squared distance.
+   * @param radius      Capsule radius in world domain coordinates.
+   * @param bbox        Domain bounding box (xmin, xmax, ymin, ymax).
+   */
+  void rasterize_capsules(Array    &out_dist_sq,
+                          float     radius,
+                          glm::vec4 bbox = {0.f, 1.f, 0.f, 1.f}) const;
+
+  /**
    * @brief Reorder points using a nearest neighbor search.
    *
    * This method reorders the points in the path to minimize the total distance

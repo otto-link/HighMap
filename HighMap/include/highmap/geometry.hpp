@@ -9,6 +9,7 @@
  */
 #pragma once
 
+#include "highmap/geometry/bvh.hpp"
 #include "highmap/geometry/cell_path.hpp"
 #include "highmap/geometry/cloud.hpp"
 #include "highmap/geometry/graph.hpp"

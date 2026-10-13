@@ -201,6 +201,13 @@ void flatbed_carve(Array        &z,
  *                                           width (can be nullptr).
  * @param[out]    p_bending_mask             Optional output mask representing
  *                                           blending weights (can be nullptr).
+ * @param[in]     tile_size                  Tile size in pixels for spatial BVH
+ *                                           partitioning (default: 32). A
+ *                                           recommended rule of thumb is to
+ *                                           choose tile_size on the order of
+ *                                           the trench width in pixels:
+ *                                           tile_size ~ clamp(width / dx, 16,
+ *                                           128).
  * @param[in]     bbox                       Bounding box of the domain as
  *                                           (xmin, xmax, ymin, ymax).
  *
@@ -233,6 +240,7 @@ void trench(Array        &z,
             size_t       k_neighbors = 8,
             const Array *p_noise_r = nullptr,
             Array       *p_bending_mask = nullptr,
+            int          tile_size = 32,
             glm::vec4    bbox = {0.f, 1.f, 0.f, 1.f});
 
 void trench(Array                   &z,
@@ -255,6 +263,7 @@ void trench(Array                   &z,
             size_t       k_neighbors = 8,
             const Array *p_noise_r = nullptr,
             Array       *p_bending_mask = nullptr,
+            int          tile_size = 32,
             glm::vec4    bbox = {0.f, 1.f, 0.f, 1.f});
 
 } // namespace hmap

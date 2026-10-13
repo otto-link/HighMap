@@ -78,6 +78,89 @@ void Path::enforce_monotonic_values(bool decreasing)
   }
 }
 
+void Path::rasterize_capsules(Array    &out_dist_sq,
+                              float     radius,
+                              glm::vec4 bbox) const
+{
+  if (!validate_non_empty(out_dist_sq)) return;
+  if (this->points.empty() || radius <= 0.f) return;
+
+  const glm::ivec2 &shape = out_dist_sq.shape;
+  float             dx = (bbox.y - bbox.x) / float(shape.x);
+  float             dy = (bbox.w - bbox.z) / float(shape.y);
+
+  if (dx <= 0.f || dy <= 0.f) return;
+
+  size_t npts = this->points.size();
+
+  // ensure all segments are covered, including closed paths if applicable
+  size_t num_segments = (npts == 1) ? 1
+                                    : ((this->is_closed()) ? npts : (npts - 1));
+
+  float rad_sq = radius * radius;
+
+  for (size_t k = 0; k < num_segments; ++k)
+  {
+    const Point &p0 = this->points[k];
+    const Point &p1 = (npts == 1) ? p0 : this->points[(k + 1) % npts];
+
+    float seg_xmin = std::min(p0.x, p1.x) - radius;
+    float seg_xmax = std::max(p0.x, p1.x) + radius;
+    float seg_ymin = std::min(p0.y, p1.y) - radius;
+    float seg_ymax = std::max(p0.y, p1.y) + radius;
+
+    // check if capsule intersects the tile domain
+    if (seg_xmax < bbox.x || seg_xmin > bbox.y || seg_ymax < bbox.z ||
+        seg_ymin > bbox.w)
+      continue;
+
+    int imin = std::clamp(
+        static_cast<int>(std::floor((seg_xmin - bbox.x) / dx)),
+        0,
+        shape.x - 1);
+    int imax = std::clamp(static_cast<int>(std::ceil((seg_xmax - bbox.x) / dx)),
+                          0,
+                          shape.x - 1);
+    int jmin = std::clamp(
+        static_cast<int>(std::floor((seg_ymin - bbox.z) / dy)),
+        0,
+        shape.y - 1);
+    int jmax = std::clamp(static_cast<int>(std::ceil((seg_ymax - bbox.z) / dy)),
+                          0,
+                          shape.y - 1);
+
+    float seg_dx = p1.x - p0.x;
+    float seg_dy = p1.y - p0.y;
+    float len_sq = seg_dx * seg_dx + seg_dy * seg_dy;
+    float inv_len_sq = (len_sq > 1e-12f) ? (1.f / len_sq) : 0.f;
+
+    for (int j = jmin; j <= jmax; ++j)
+    {
+      float y = bbox.z + float(j) * dy;
+      float qy = y - p0.y;
+
+      for (int i = imin; i <= imax; ++i)
+      {
+        float x = bbox.x + float(i) * dx;
+        float qx = x - p0.x;
+
+        float t = std::clamp((qx * seg_dx + qy * seg_dy) * inv_len_sq,
+                             0.f,
+                             1.f);
+        float proj_x = p0.x + t * seg_dx;
+        float proj_y = p0.y + t * seg_dy;
+
+        float d_sq = (x - proj_x) * (x - proj_x) + (y - proj_y) * (y - proj_y);
+
+        if (d_sq <= rad_sq && d_sq < out_dist_sq(i, j))
+        {
+          out_dist_sq(i, j) = d_sq;
+        }
+      }
+    }
+  }
+}
+
 std::vector<float> Path::get_arc_length() const
 {
   if (this->empty()) return {};

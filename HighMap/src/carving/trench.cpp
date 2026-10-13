@@ -12,6 +12,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/carving.hpp"
+#include "highmap/geometry/bvh.hpp"
 #include "highmap/geometry/cloud.hpp"
 #include "highmap/geometry/grids.hpp"
 #include "highmap/geometry/path.hpp"
@@ -27,58 +28,25 @@ namespace hmap
 namespace
 {
 
-struct Segment
+struct PreprocessedPath
 {
-  float    x0, y0, v0;
-  float    x1, y1, v1;
-  float    dx, dy;
-  float    inv_len_sq;
-  float    s0, s1;
-  size_t   k0, k1;
-  uint32_t path_index;
+  Path               path;
+  std::vector<float> arc_length;
+  std::vector<float> curvature;
+  std::vector<float> curv_radius;
+  std::vector<float> curv_shape_factor;
 };
 
-} // namespace
-
-void trench(Array                       &z,
-            const std::vector<Path>     &paths,
-            float                        width,
-            bool                         enable_width_depth_scaling,
-            bool                         enable_width_distance_scaling,
-            bool                         enable_width_curvature_scaling,
-            float                        curvature_radius_min,
-            float                        curv_width_ratio_min,
-            float                        curv_width_ratio_max,
-            RadialProfile                radial_profile,
-            float                        radial_profile_parameter,
-            ElevationLongitudinalProfile longitudinal_profile,
-            float                        elevation_shift,
-            float                        shift_ramp_start_ratio,
-            float                        shift_ramp_end_ratio,
-            float                        min_slope,
-            size_t                       k_neighbors,
-            const Array                 *p_noise_r,
-            Array                       *p_bending_mask,
-            glm::vec4                    bbox)
+std::vector<PreprocessedPath> preprocess_paths(
+    const std::vector<Path>     &paths,
+    float                        elevation_shift,
+    float                        shift_ramp_start_ratio,
+    float                        shift_ramp_end_ratio,
+    ElevationLongitudinalProfile longitudinal_profile,
+    float                        min_slope,
+    bool                         enable_width_curvature_scaling,
+    float                        curvature_radius_min)
 {
-  (void)k_neighbors;
-  if (!validate_non_empty(z)) return;
-  if (p_noise_r && !validate_same_shape(z, *p_noise_r)) return;
-  if (paths.empty()) return;
-
-  const glm::ivec2 &shape = z.shape;
-
-  // --- Preprocess paths
-
-  struct PreprocessedPath
-  {
-    Path               path;
-    std::vector<float> arc_length;
-    std::vector<float> curvature;
-    std::vector<float> curv_radius;
-    std::vector<float> curv_shape_factor;
-  };
-
   std::vector<PreprocessedPath> prep_paths;
   prep_paths.reserve(paths.size());
 
@@ -219,34 +187,14 @@ void trench(Array                       &z,
     prep_paths.push_back(std::move(pp));
   }
 
-  if (prep_paths.empty()) return;
+  return prep_paths;
+}
 
-  // --- Calculate maximum influence width
+std::vector<Segment2D> build_segments(
+    const std::vector<PreprocessedPath> &prep_paths)
+{
+  std::vector<Segment2D> segments;
 
-  float max_effective_width = width;
-  if (p_noise_r)
-    max_effective_width = std::max(0.f, width * (1.f + p_noise_r->max()));
-  if (enable_width_curvature_scaling)
-    max_effective_width *= std::max(1.f, curv_width_ratio_max);
-
-  if (max_effective_width <= 0.f) return;
-
-  // radial profile
-  auto profile_fct = get_radial_profile_function(radial_profile,
-                                                 radial_profile_parameter);
-
-  // interpolation base grid
-  std::vector<float> xg, yg;
-  grid_xy_vector(xg, yg, shape, bbox, /* endpoint */ false);
-
-  float dx = (bbox.y - bbox.x) / float(shape.x);
-  float dy = (bbox.w - bbox.z) / float(shape.y);
-
-  Array blending_mask;
-  if (p_bending_mask) blending_mask = Array(shape);
-
-  // build segments across all paths
-  std::vector<Segment> segments;
   for (size_t p_idx = 0; p_idx < prep_paths.size(); ++p_idx)
   {
     const auto &pp = prep_paths[p_idx];
@@ -255,21 +203,17 @@ void trench(Array                       &z,
     if (npts == 1)
     {
       const auto &p0 = pp.path[0];
-      Segment     seg;
-      seg.x0 = p0.x;
-      seg.y0 = p0.y;
+      Segment2D   seg;
+      seg.p0 = glm::vec2(p0.x, p0.y);
+      seg.p1 = glm::vec2(p0.x, p0.y);
       seg.v0 = p0.v;
-      seg.x1 = p0.x;
-      seg.y1 = p0.y;
       seg.v1 = p0.v;
-      seg.dx = 0.f;
-      seg.dy = 0.f;
-      seg.inv_len_sq = 0.f;
       seg.s0 = 0.f;
       seg.s1 = 0.f;
       seg.k0 = 0;
       seg.k1 = 0;
       seg.path_index = static_cast<uint32_t>(p_idx);
+      seg.id = static_cast<uint32_t>(segments.size());
       segments.push_back(seg);
     }
     else
@@ -279,82 +223,129 @@ void trench(Array                       &z,
         const auto &p0 = pp.path[k];
         const auto &p1 = pp.path[k + 1];
 
-        Segment seg;
-        seg.x0 = p0.x;
-        seg.y0 = p0.y;
+        Segment2D seg;
+        seg.p0 = glm::vec2(p0.x, p0.y);
+        seg.p1 = glm::vec2(p1.x, p1.y);
         seg.v0 = p0.v;
-        seg.x1 = p1.x;
-        seg.y1 = p1.y;
         seg.v1 = p1.v;
-        seg.dx = p1.x - p0.x;
-        seg.dy = p1.y - p0.y;
-        float len_sq = seg.dx * seg.dx + seg.dy * seg.dy;
-        seg.inv_len_sq = (len_sq > 1e-12f) ? (1.f / len_sq) : 0.f;
         seg.s0 = pp.arc_length[k];
         seg.s1 = pp.arc_length[k + 1];
         seg.k0 = k;
         seg.k1 = k + 1;
         seg.path_index = static_cast<uint32_t>(p_idx);
+        seg.id = static_cast<uint32_t>(segments.size());
+        seg.d = seg.p1 - seg.p0;
+        float len_sq = seg.d.x * seg.d.x + seg.d.y * seg.d.y;
+        seg.inv_len_sq = (len_sq > 1e-12f) ? (1.f / len_sq) : 0.f;
         segments.push_back(seg);
       }
     }
   }
 
-  if (segments.empty()) return;
+  return segments;
+}
 
-  // tile spatial partitioning
-  constexpr int tile_size = 32;
-  int           num_tiles_x = (shape.x + tile_size - 1) / tile_size;
-  int           num_tiles_y = (shape.y + tile_size - 1) / tile_size;
-  int           total_tiles = num_tiles_x * num_tiles_y;
+} // namespace
+
+void trench(Array                       &z,
+            const std::vector<Path>     &paths,
+            float                        width,
+            bool                         enable_width_depth_scaling,
+            bool                         enable_width_distance_scaling,
+            bool                         enable_width_curvature_scaling,
+            float                        curvature_radius_min,
+            float                        curv_width_ratio_min,
+            float                        curv_width_ratio_max,
+            RadialProfile                radial_profile,
+            float                        radial_profile_parameter,
+            ElevationLongitudinalProfile longitudinal_profile,
+            float                        elevation_shift,
+            float                        shift_ramp_start_ratio,
+            float                        shift_ramp_end_ratio,
+            float                        min_slope,
+            size_t                       k_neighbors,
+            const Array                 *p_noise_r,
+            Array                       *p_bending_mask,
+            int                          tile_size,
+            glm::vec4                    bbox)
+{
+  (void)k_neighbors;
+  if (!validate_non_empty(z)) return;
+  if (p_noise_r && !validate_same_shape(z, *p_noise_r)) return;
+  if (paths.empty()) return;
+
+  const glm::ivec2 &shape = z.shape;
+
+  auto prep_paths = preprocess_paths(paths,
+                                     elevation_shift,
+                                     shift_ramp_start_ratio,
+                                     shift_ramp_end_ratio,
+                                     longitudinal_profile,
+                                     min_slope,
+                                     enable_width_curvature_scaling,
+                                     curvature_radius_min);
+  if (prep_paths.empty()) return;
+
+  float max_effective_width = width;
+  if (p_noise_r)
+    max_effective_width = std::max(0.f, width * (1.f + p_noise_r->max()));
+  if (enable_width_curvature_scaling)
+    max_effective_width *= std::max(1.f, curv_width_ratio_max);
+
+  if (max_effective_width <= 0.f) return;
+
+  auto profile_fct = get_radial_profile_function(radial_profile,
+                                                 radial_profile_parameter);
+
+  float dx = (bbox.y - bbox.x) / float(shape.x);
+  float dy = (bbox.w - bbox.z) / float(shape.y);
+
+  Array blending_mask;
+  if (p_bending_mask) blending_mask = Array(shape);
+
+  auto all_segments = build_segments(prep_paths);
+  if (all_segments.empty()) return;
+
+  // --- Build 2D Bounding Volume Hierarchy (BVH) over path segments
+
+  BVH2D bvh(all_segments, max_effective_width);
+
+  // Check if the path intersects the current heightmap or tile bbox domain
+  AABB2D domain_aabb(bbox.x, bbox.z, bbox.y, bbox.w);
+  if (!bvh.root_bbox().overlaps(domain_aabb)) return;
+
+  // --- Tile Spatial Partitioning using BVH2D queries
+
+  int actual_tile_size = std::max(1, tile_size);
+  int num_tiles_x = (shape.x + actual_tile_size - 1) / actual_tile_size;
+  int num_tiles_y = (shape.y + actual_tile_size - 1) / actual_tile_size;
+  int total_tiles = num_tiles_x * num_tiles_y;
 
   std::vector<std::vector<uint32_t>> tile_segments(total_tiles);
 
-  for (size_t k = 0; k < segments.size(); ++k)
+#pragma omp parallel for schedule(static)
+  for (int tile_idx = 0; tile_idx < total_tiles; ++tile_idx)
   {
-    const auto &seg = segments[k];
+    int tx = tile_idx % num_tiles_x;
+    int ty = tile_idx / num_tiles_x;
 
-    float seg_xmin = std::min(seg.x0, seg.x1) - max_effective_width;
-    float seg_xmax = std::max(seg.x0, seg.x1) + max_effective_width;
-    float seg_ymin = std::min(seg.y0, seg.y1) - max_effective_width;
-    float seg_ymax = std::max(seg.y0, seg.y1) + max_effective_width;
+    float tile_xmin = bbox.x + float(tx * actual_tile_size) * dx;
+    float tile_xmax = bbox.x +
+                      float(std::min((tx + 1) * actual_tile_size, shape.x)) *
+                          dx;
+    float tile_ymin = bbox.z + float(ty * actual_tile_size) * dy;
+    float tile_ymax = bbox.z +
+                      float(std::min((ty + 1) * actual_tile_size, shape.y)) *
+                          dy;
 
-    // a segment farther than the influence width from the whole array
-    // (e.g. in another tile) cannot touch any cell: skip it instead of
-    // clamping it into the border tiles
-    if (seg_xmax < bbox.x || seg_xmin > bbox.y || seg_ymax < bbox.z ||
-        seg_ymin > bbox.w)
-      continue;
-
-    int imin = std::clamp(
-        static_cast<int>(std::floor((seg_xmin - bbox.x) / dx)),
-        0,
-        shape.x - 1);
-    int imax = std::clamp(static_cast<int>(std::ceil((seg_xmax - bbox.x) / dx)),
-                          0,
-                          shape.x - 1);
-    int jmin = std::clamp(
-        static_cast<int>(std::floor((seg_ymin - bbox.z) / dy)),
-        0,
-        shape.y - 1);
-    int jmax = std::clamp(static_cast<int>(std::ceil((seg_ymax - bbox.z) / dy)),
-                          0,
-                          shape.y - 1);
-
-    int t_imin = imin / tile_size;
-    int t_imax = imax / tile_size;
-    int t_jmin = jmin / tile_size;
-    int t_jmax = jmax / tile_size;
-
-    for (int ty = t_jmin; ty <= t_jmax; ++ty)
-    {
-      for (int tx = t_imin; tx <= t_imax; ++tx)
-      {
-        tile_segments[ty * num_tiles_x + tx].push_back(
-            static_cast<uint32_t>(k));
-      }
-    }
+    AABB2D tile_box(tile_xmin, tile_ymin, tile_xmax, tile_ymax);
+    bvh.query_box(tile_box, tile_segments[tile_idx]);
   }
+
+  std::vector<float> xg, yg;
+  grid_xy_vector(xg, yg, shape, bbox, false);
+
+  float max_w_sq = max_effective_width * max_effective_width;
 
 #pragma omp parallel for schedule(dynamic, 8)
   for (int tile_idx = 0; tile_idx < total_tiles; ++tile_idx)
@@ -365,46 +356,50 @@ void trench(Array                       &z,
     int tx = tile_idx % num_tiles_x;
     int ty = tile_idx / num_tiles_x;
 
-    int i_start = tx * tile_size;
-    int i_end = std::min(i_start + tile_size, shape.x);
-    int j_start = ty * tile_size;
-    int j_end = std::min(j_start + tile_size, shape.y);
+    int i_start = tx * actual_tile_size;
+    int i_end = std::min(i_start + actual_tile_size, shape.x);
+    int j_start = ty * actual_tile_size;
+    int j_end = std::min(j_start + actual_tile_size, shape.y);
 
     for (int j = j_start; j < j_end; ++j)
     {
-      float yi = yg[j];
+      float y = yg[j];
 
       for (int i = i_start; i < i_end; ++i)
       {
-        float xi = xg[i];
+        float x = xg[i];
 
-        // find closest segment
-        float    min_dist_sq = std::numeric_limits<float>::max();
-        float    best_t = 0.f;
-        uint32_t best_seg_idx = segs[0];
+        float min_dist_sq = max_w_sq;
+        float best_t = 0.f;
+        int   best_seg_idx = -1;
 
         for (uint32_t seg_idx : segs)
         {
-          const auto &seg = segments[seg_idx];
-          float       qx = xi - seg.x0;
-          float       qy = yi - seg.y0;
-          float t = std::clamp((qx * seg.dx + qy * seg.dy) * seg.inv_len_sq,
+          const auto &seg = all_segments[seg_idx];
+          float       qx = x - seg.p0.x;
+          float       qy = y - seg.p0.y;
+
+          float t = std::clamp((qx * seg.d.x + qy * seg.d.y) * seg.inv_len_sq,
                                0.f,
                                1.f);
-          float proj_x = seg.x0 + t * seg.dx;
-          float proj_y = seg.y0 + t * seg.dy;
-          float d_sq = (xi - proj_x) * (xi - proj_x) +
-                       (yi - proj_y) * (yi - proj_y);
+
+          float proj_x = seg.p0.x + t * seg.d.x;
+          float proj_y = seg.p0.y + t * seg.d.y;
+
+          float d_sq = (x - proj_x) * (x - proj_x) +
+                       (y - proj_y) * (y - proj_y);
 
           if (d_sq < min_dist_sq)
           {
             min_dist_sq = d_sq;
             best_t = t;
-            best_seg_idx = seg_idx;
+            best_seg_idx = static_cast<int>(seg_idx);
           }
         }
 
-        const auto &seg = segments[best_seg_idx];
+        if (best_seg_idx < 0) continue;
+
+        const auto &seg = all_segments[best_seg_idx];
         const auto &pp = prep_paths[seg.path_index];
         size_t      k0 = (best_t <= 0.5f) ? seg.k0 : seg.k1;
         float       zref = (1.f - best_t) * seg.v0 + best_t * seg.v1;
@@ -415,7 +410,7 @@ void trench(Array                       &z,
 
         if (enable_width_distance_scaling) effective_width *= smoothstep3(arc);
 
-        if (enable_width_depth_scaling)
+        if (enable_width_depth_scaling && std::abs(elevation_shift) > 1e-6f)
         {
           float dz = std::abs((z(i, j) - zref) / elevation_shift);
           effective_width *= std::clamp(dz, 0.f, 1.f);
@@ -429,7 +424,7 @@ void trench(Array                       &z,
           float s = -classify_point(pp.path[km],
                                     pp.path[k0],
                                     pp.path[kp],
-                                    Point(xi, yi));
+                                    Point(x, y));
 
           float t_long = arc;
           t_long = t_long * (1.f - t_long) * 4.f;
@@ -484,6 +479,7 @@ void trench(Array                       &z,
             size_t                       k_neighbors,
             const Array                 *p_noise_r,
             Array                       *p_bending_mask,
+            int                          tile_size,
             glm::vec4                    bbox)
 {
   if (!validate_non_empty(path, "Path")) return;
@@ -508,6 +504,7 @@ void trench(Array                       &z,
          k_neighbors,
          p_noise_r,
          p_bending_mask,
+         tile_size,
          bbox);
 }
 
