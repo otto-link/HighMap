@@ -15,6 +15,7 @@ namespace hmap
 
 Array valley_head(glm::ivec2   shape,
                   float        angle,
+                  float        min_depth,
                   float        max_depth,
                   float        min_width,
                   float        max_width,
@@ -42,6 +43,8 @@ Array valley_head(glm::ivec2   shape,
   // clamping parameters for numerical stability
   const float l_d = std::max(1e-6f, depth_length);
   const float l_w = std::max(1e-6f, width_length);
+  const float d_min = std::max(0.f, min_depth);
+  const float d_max = std::max(d_min, max_depth);
   const float w_min = std::max(1e-6f, min_width);
   const float w_max = std::max(w_min, max_width);
   const float dev_power = std::max(1e-3f, development_power);
@@ -72,7 +75,7 @@ Array valley_head(glm::ivec2   shape,
       float y_local = dx * sa + dy * ca;
 
       // upstream of valley head: no incision
-      if (y_local <= 0.f)
+      if (y_local < 0.f || (y_local == 0.f && d_min == 0.f))
       {
         z(i, j) = 0.f;
         if (p_mask) mask(i, j) = 0.f;
@@ -80,8 +83,9 @@ Array valley_head(glm::ivec2   shape,
       }
 
       // longitudinal development
-      float depth = max_depth *
-                    (1.0f - std::exp(-std::pow(y_local / l_d, dev_power)));
+      float depth = d_min +
+                    (d_max - d_min) *
+                        (1.0f - std::exp(-std::pow(y_local / l_d, dev_power)));
       float width = w_min +
                     (w_max - w_min) *
                         (1.0f - std::exp(-std::pow(y_local / l_w, dev_power)));

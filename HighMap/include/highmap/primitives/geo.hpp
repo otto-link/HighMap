@@ -321,6 +321,7 @@ Array rift(glm::ivec2    shape,
  *
  * @param  shape             Output array shape.
  * @param  angle             Valley orientation angle in degrees.
+ * @param  min_depth         Valley depth at the head.
  * @param  max_depth         Maximum incision depth at maturity.
  * @param  min_width         Valley width at the head.
  * @param  max_width         Mature valley width.
@@ -345,6 +346,7 @@ Array rift(glm::ivec2    shape,
  */
 Array valley_head(glm::ivec2   shape,
                   float        angle = 0.f,
+                  float        min_depth = 0.f,
                   float        max_depth = 0.2f,
                   float        min_width = 0.02f,
                   float        max_width = 0.15f,

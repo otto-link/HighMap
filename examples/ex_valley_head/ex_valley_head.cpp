@@ -24,6 +24,7 @@ int main(void)
   // --- Clean valley head incision
 
   float     angle = 180.f; // along -y
+  float     min_depth = 0.f;
   float     max_depth = 0.25f;
   float     min_width = 0.02f;
   float     max_width = 0.5f;
@@ -35,6 +36,7 @@ int main(void)
 
   auto delta_clean = hmap::valley_head(shape,
                                        angle,
+                                       min_depth,
                                        max_depth,
                                        min_width,
                                        max_width,
@@ -50,6 +52,7 @@ int main(void)
 
   auto delta_noisy = hmap::valley_head(shape,
                                        angle,
+                                       min_depth,
                                        max_depth,
                                        min_width,
                                        max_width,

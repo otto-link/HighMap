@@ -10,6 +10,7 @@ TEST(ValleyHead, HeadAndUpstreamZero)
   // angle = 0: valley flows toward +y (from y = 0.5 to y = 1.0)
   hmap::Array z = hmap::valley_head(shape,
                                     0.f,   // angle
+                                    0.f,   // min_depth
                                     0.2f,  // max_depth
                                     0.05f, // min_width
                                     0.2f,  // max_width
@@ -37,6 +38,7 @@ TEST(ValleyHead, DownstreamDepthIncreases)
   float      max_depth = 0.4f;
 
   hmap::Array z = hmap::valley_head(shape,
+                                    0.f,
                                     0.f,
                                     max_depth,
                                     0.05f,
@@ -69,6 +71,7 @@ TEST(ValleyHead, WidthIncreasesDownstream)
   glm::vec2  center = {0.5f, 0.2f};
 
   hmap::Array z = hmap::valley_head(shape,
+                                    0.f,
                                     0.f,
                                     0.3f,
                                     0.04f,
@@ -106,6 +109,7 @@ TEST(ValleyHead, SymmetricCrossSection)
 
   hmap::Array z = hmap::valley_head(shape,
                                     0.f,
+                                    0.f,
                                     0.3f,
                                     0.05f,
                                     0.2f,
@@ -134,6 +138,7 @@ TEST(ValleyHead, OutsideInfluenceZero)
 
   hmap::Array z = hmap::valley_head(shape,
                                     0.f,
+                                    0.f,
                                     0.3f,
                                     0.02f,
                                     0.1f,
@@ -160,6 +165,7 @@ TEST(ValleyHead, LateralContinuity)
 
   hmap::Array z = hmap::valley_head(shape,
                                     0.f,
+                                    0.f,
                                     0.5f,
                                     0.05f,
                                     0.2f,
@@ -185,23 +191,45 @@ TEST(ValleyHead, ParameterExtremes)
   glm::ivec2 shape = {64, 64};
 
   // min_width == max_width
-  hmap::Array z1 = hmap::valley_head(shape, 0.f, 0.2f, 0.1f, 0.1f);
+  hmap::Array z1 = hmap::valley_head(shape, 0.f, 0.f, 0.2f, 0.1f, 0.1f);
   EXPECT_LE(z1.min(), 0.f);
   EXPECT_GE(z1.max(), 0.f);
 
   // profile_power == 1
-  hmap::Array z2 =
-      hmap::valley_head(shape, 0.f, 0.2f, 0.05f, 0.15f, 0.5f, 0.5f, 2.f, 1.f);
+  hmap::Array z2 = hmap::valley_head(shape,
+                                     0.f,
+                                     0.f,
+                                     0.2f,
+                                     0.05f,
+                                     0.15f,
+                                     0.5f,
+                                     0.5f,
+                                     2.f,
+                                     1.f);
   EXPECT_LE(z2.min(), 0.f);
 
   // large profile_power
-  hmap::Array z3 =
-      hmap::valley_head(shape, 0.f, 0.2f, 0.05f, 0.15f, 0.5f, 0.5f, 2.f, 5.f);
+  hmap::Array z3 = hmap::valley_head(shape,
+                                     0.f,
+                                     0.f,
+                                     0.2f,
+                                     0.05f,
+                                     0.15f,
+                                     0.5f,
+                                     0.5f,
+                                     2.f,
+                                     5.f);
   EXPECT_LE(z3.min(), 0.f);
 
   // small length scales
-  hmap::Array z4 =
-      hmap::valley_head(shape, 0.f, 0.2f, 0.05f, 0.15f, 0.01f, 0.01f);
+  hmap::Array z4 = hmap::valley_head(shape,
+                                     0.f,
+                                     0.f,
+                                     0.2f,
+                                     0.05f,
+                                     0.15f,
+                                     0.01f,
+                                     0.01f);
   EXPECT_LE(z4.min(), 0.f);
 }
 
@@ -212,6 +240,7 @@ TEST(ValleyHead, OrientationRotation)
 
   // 0 degrees (+y) vs 90 degrees (+x)
   hmap::Array z_north = hmap::valley_head(shape,
+                                          0.f,
                                           0.f,
                                           0.3f,
                                           0.05f,
@@ -225,6 +254,7 @@ TEST(ValleyHead, OrientationRotation)
                                           center);
   hmap::Array z_east = hmap::valley_head(shape,
                                          90.f,
+                                         0.f,
                                          0.3f,
                                          0.05f,
                                          0.2f,
@@ -258,6 +288,7 @@ TEST(ValleyHead, CrossSectionNoise)
 
   hmap::Array z_clean = hmap::valley_head(shape,
                                           0.f,
+                                          0.f,
                                           0.3f,
                                           0.05f,
                                           0.2f,
@@ -269,6 +300,7 @@ TEST(ValleyHead, CrossSectionNoise)
                                           nullptr,
                                           center);
   hmap::Array z_noisy = hmap::valley_head(shape,
+                                          0.f,
                                           0.f,
                                           0.3f,
                                           0.05f,
@@ -284,4 +316,73 @@ TEST(ValleyHead, CrossSectionNoise)
   // at centerline (64, 80), z_noisy should differ from z_clean because center
   // is shifted
   EXPECT_NE(z_clean(64, 80), z_noisy(64, 80));
+}
+
+TEST(ValleyHead, MinDepthAtHead)
+{
+  glm::ivec2 shape = {128, 128};
+  glm::vec2  center = {0.5f, 0.5f};
+  float      min_depth = 0.15f;
+  float      max_depth = 0.4f;
+
+  hmap::Array z = hmap::valley_head(shape,
+                                    0.f, // angle: flows toward +y
+                                    min_depth,
+                                    max_depth,
+                                    0.05f,
+                                    0.2f,
+                                    0.4f,
+                                    0.4f,
+                                    2.f,
+                                    1.3f,
+                                    nullptr,
+                                    nullptr,
+                                    center);
+
+  // at valley head (x = 0.5, y = 0.5 -> grid index (64, 64)), depth must match min_depth
+  EXPECT_NEAR(-z(64, 64), min_depth, 1e-5f);
+
+  // upstream (rows j < 64): strictly zero everywhere
+  for (int j = 0; j < 64; ++j)
+    for (int i = 0; i < shape.x; ++i)
+      EXPECT_NEAR(z(i, j), 0.f, 1e-6f);
+
+  // downstream along centerline: incision depth must increase from min_depth towards max_depth
+  int   center_col = 64;
+  float prev_depth = min_depth;
+  for (int j = 70; j < 120; j += 10)
+  {
+    float depth = -z(center_col, j);
+    EXPECT_GT(depth, prev_depth);
+    EXPECT_LE(depth, max_depth);
+    prev_depth = depth;
+  }
+}
+
+TEST(ValleyHead, MinDepthEqualMaxDepth)
+{
+  glm::ivec2 shape = {128, 128};
+  glm::vec2  center = {0.5f, 0.5f};
+  float      constant_depth = 0.25f;
+
+  hmap::Array z = hmap::valley_head(shape,
+                                    0.f,
+                                    constant_depth, // min_depth
+                                    constant_depth, // max_depth
+                                    0.05f,
+                                    0.2f,
+                                    0.4f,
+                                    0.4f,
+                                    2.f,
+                                    1.3f,
+                                    nullptr,
+                                    nullptr,
+                                    center);
+
+  // at the centerline downstream, depth should remain equal to constant_depth
+  int center_col = 64;
+  for (int j = 64; j < 120; j += 10)
+  {
+    EXPECT_NEAR(-z(center_col, j), constant_depth, 1e-5f);
+  }
 }
