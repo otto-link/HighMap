@@ -64880,7 +64880,7 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/shortest_path/dijsktra.cpp" line="153" column="6" bodyfile="HighMap/src/shortest_path/dijsktra.cpp" bodystart="153" bodyend="178" declfile="HighMap/include/highmap/shortest_path.hpp" declline="220" declcolumn="6"/>
+        <location file="HighMap/src/shortest_path/dijsktra.cpp" line="157" column="6" bodyfile="HighMap/src/shortest_path/dijsktra.cpp" bodystart="157" bodyend="182" declfile="HighMap/include/highmap/shortest_path.hpp" declline="220" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1abe9f271f1c9b55a7bf910020da4023a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -64934,7 +64934,7 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/shortest_path/dijsktra.cpp" line="23" column="6" bodyfile="HighMap/src/shortest_path/dijsktra.cpp" bodystart="23" bodyend="151" declfile="HighMap/include/highmap/shortest_path.hpp" declline="230" declcolumn="6"/>
+        <location file="HighMap/src/shortest_path/dijsktra.cpp" line="27" column="6" bodyfile="HighMap/src/shortest_path/dijsktra.cpp" bodystart="27" bodyend="155" declfile="HighMap/include/highmap/shortest_path.hpp" declline="230" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1add63dbb83ccbeb2509ace508f4c391ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; glm::ivec2 &gt;</type>
@@ -65041,7 +65041,7 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/shortest_path/dijsktra.cpp" line="180" column="13" bodyfile="HighMap/src/shortest_path/dijsktra.cpp" bodystart="180" bodyend="205" declfile="HighMap/include/highmap/shortest_path.hpp" declline="253" declcolumn="13"/>
+        <location file="HighMap/src/shortest_path/dijsktra.cpp" line="184" column="13" bodyfile="HighMap/src/shortest_path/dijsktra.cpp" bodystart="184" bodyend="209" declfile="HighMap/include/highmap/shortest_path.hpp" declline="253" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1aa4fe84200d088c3bc24637ebc369c0cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Path" kindref="compound">Path</ref></type>
@@ -65160,7 +65160,7 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/shortest_path/dijsktra.cpp" line="207" column="6" bodyfile="HighMap/src/shortest_path/dijsktra.cpp" bodystart="207" bodyend="247" declfile="HighMap/include/highmap/shortest_path.hpp" declline="277" declcolumn="6"/>
+        <location file="HighMap/src/shortest_path/dijsktra.cpp" line="211" column="6" bodyfile="HighMap/src/shortest_path/dijsktra.cpp" bodystart="211" bodyend="251" declfile="HighMap/include/highmap/shortest_path.hpp" declline="277" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a6ade30d7f5f6b02e1640bea9c83d05e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; glm::ivec2 &gt;</type>

@@ -11,5 +11,6 @@ var test__path__multiscale_8cpp =
     [ "TEST", "test__path__multiscale_8cpp.html#a1cbf6fe0f3be2b892109a5dd1e6994a2", null ],
     [ "TEST", "test__path__multiscale_8cpp.html#a3e80a88ac89bb68361ab5b60fcff43f7", null ],
     [ "TEST", "test__path__multiscale_8cpp.html#a836cee34b9fcf249efa27f28f48916b1", null ],
-    [ "TEST", "test__path__multiscale_8cpp.html#a7f4b379f21bc93d53cd212675e0be300", null ]
+    [ "TEST", "test__path__multiscale_8cpp.html#a7f4b379f21bc93d53cd212675e0be300", null ],
+    [ "TEST", "test__path__multiscale_8cpp.html#a2b035ee5e0d0709addefa7b5e19fee9b", null ]
 ];

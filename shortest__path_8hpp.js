@@ -14,5 +14,6 @@ var shortest__path_8hpp =
     [ "find_path_multiscale", "shortest__path_8hpp.html#a7c174527ef9ac7c595ad65514dc00756", null ],
     [ "find_path_multiscale", "shortest__path_8hpp.html#ad23ac0ef43a4925071b5da947a7d4b1c", null ],
     [ "find_path_multiscale", "shortest__path_8hpp.html#ae49e68036a8d179017c3e41e39952318", null ],
-    [ "find_cut_path_dijkstra", "shortest__path_8hpp.html#afa19680ed9583277c2fb76daa95bfa96", null ]
+    [ "find_cut_path_dijkstra", "shortest__path_8hpp.html#afa19680ed9583277c2fb76daa95bfa96", null ],
+    [ "find_path_dijkstra", "shortest__path_8hpp.html#a996f3a9161ae2f85e2ef1d257dd43349", null ]
 ];

@@ -4,6 +4,8 @@
 \begin{DoxyCompactItemize}
 \item 
 namespace \mbox{\hyperlink{namespacehmap}{hmap}}
+\item 
+namespace \mbox{\hyperlink{namespacehmap_1_1va}{hmap\+::va}}
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -15,4 +17,6 @@ void \mbox{\hyperlink{namespacehmap_a812ed2264582321318f8f731d621f7bb}{hmap\+::f
 std\+::vector$<$ glm\+::ivec2 $>$ \mbox{\hyperlink{namespacehmap_add63dbb83ccbeb2509ace508f4c391ea}{hmap\+::find\+\_\+path\+\_\+dijkstra}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}, glm\+::ivec2 ij\+\_\+start, glm\+::ivec2 ij\+\_\+end, float elevation\+\_\+ratio=0.\+1\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float distance\+\_\+exponent=2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float upward\+\_\+penalization=0.\+1\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+mask\+\_\+nogo=nullptr)
 \begin{DoxyCompactList}\small\item\em Overload of find\+\_\+path\+\_\+dijkstra returning a vector of grid indices. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Path}{Path}} \mbox{\hyperlink{namespacehmap_aa4fe84200d088c3bc24637ebc369c0cc}{hmap\+::find\+\_\+path\+\_\+dijkstra}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}, glm\+::ivec2 ij\+\_\+start, glm\+::ivec2 ij\+\_\+end, glm\+::vec4 bbox, float elevation\+\_\+ratio=0.\+1\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float distance\+\_\+exponent=2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float upward\+\_\+penalization=0.\+1\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+mask\+\_\+nogo=nullptr)
-\begin{DoxyCompactList}\small\item\em Overload of find\+\_\+path\+\_\+dijkstra returning a \doxylink{classhmap_1_1Path}{Path} mapped to a bounding box with point values holding sampled terrain elevations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Overload of find\+\_\+path\+\_\+dijkstra returning a \doxylink{classhmap_1_1Path}{Path} mapped to a bounding box with point values holding sampled terrain elevations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Path}{Path}} \mbox{\hyperlink{namespacehmap_1_1va_a996f3a9161ae2f85e2ef1d257dd43349}{hmap\+::va\+::find\+\_\+path\+\_\+dijkstra}} (const \mbox{\hyperlink{structhmap_1_1ComputeMode}{Compute\+Mode}} \&cm, const \mbox{\hyperlink{structhmap_1_1VirtualArray}{Virtual\+Array}} \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}, glm\+::vec2 start, glm\+::vec2 end, std\+::uint32\+\_\+t seed=0, size\+\_\+t control\+\_\+points\+\_\+count=2048, bool favor\+\_\+domain\+\_\+center=false)
+\begin{DoxyCompactList}\small\item\em Generate a path between two points across a heightmap \doxylink{structhmap_1_1VirtualArray}{Virtual\+Array} using an intermediate random triangular mesh and Dijkstra shortest path search. \end{DoxyCompactList}\end{DoxyCompactItemize}
