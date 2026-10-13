@@ -310,14 +310,14 @@
 <codeline lineno="147"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1_1log_1a8329d2e0f083133cd0e3ff79fb74f2d9" kindref="member">error</ref>(0,<sp/>2)<sp/>=<sp/>0.f;</highlight></codeline>
 <codeline lineno="148"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1_1log_1a8329d2e0f083133cd0e3ff79fb74f2d9" kindref="member">error</ref>(1,<sp/>3)<sp/>=<sp/>0.f;</highlight></codeline>
 <codeline lineno="149"><highlight class="normal"></highlight></codeline>
-<codeline lineno="150"><highlight class="normal"><sp/><sp/>std::vector&lt;int&gt;<sp/>path;</highlight></codeline>
-<codeline lineno="151"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1ae0a3c73cc23a288fe03bf5ed6ac73c3d" kindref="member">find_vertical_cut_path</ref>(error,<sp/>path);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/>std::vector&lt;int&gt;<sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1ae0a3c73cc23a288fe03bf5ed6ac73c3d" kindref="member">find_vertical_cut_path</ref>(error,<sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>);</highlight></codeline>
 <codeline lineno="152"><highlight class="normal"></highlight></codeline>
-<codeline lineno="153"><highlight class="normal"><sp/><sp/>ASSERT_EQ(path.size(),<sp/>4u);</highlight></codeline>
-<codeline lineno="154"><highlight class="normal"><sp/><sp/>EXPECT_EQ(path[0],<sp/>2);</highlight></codeline>
-<codeline lineno="155"><highlight class="normal"><sp/><sp/>EXPECT_EQ(path[1],<sp/>1);</highlight></codeline>
-<codeline lineno="156"><highlight class="normal"><sp/><sp/>EXPECT_EQ(path[2],<sp/>0);</highlight></codeline>
-<codeline lineno="157"><highlight class="normal"><sp/><sp/>EXPECT_EQ(path[3],<sp/>1);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/>ASSERT_EQ(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.<ref refid="classhmap_1_1Cloud_1adc675e8b2769a94b4c23bf7e69348f84" kindref="member">size</ref>(),<sp/>4u);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/>EXPECT_EQ(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>[0],<sp/>2);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/>EXPECT_EQ(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>[1],<sp/>1);</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/>EXPECT_EQ(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>[2],<sp/>0);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/>EXPECT_EQ(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>[3],<sp/>1);</highlight></codeline>
 <codeline lineno="158"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="159"><highlight class="normal"></highlight></codeline>
 <codeline lineno="160"><highlight class="normal"><ref refid="test__quilting_8cpp_1a3080ad8ce411f35b52c886ff88c18101" kindref="member">TEST</ref>(Quilting,<sp/>ZeroOverlapQuilting)</highlight></codeline>

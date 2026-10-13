@@ -174,11 +174,11 @@
 <codeline lineno="68"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Graph_1a85e17398e3cd9215ef189f8bbc03f73f" kindref="member">add_edge</ref>(1,<sp/>0,<sp/>1.f);</highlight></codeline>
 <codeline lineno="69"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Graph_1a85e17398e3cd9215ef189f8bbc03f73f" kindref="member">add_edge</ref>(0,<sp/>2,<sp/>1.f);</highlight></codeline>
 <codeline lineno="70"><highlight class="normal"></highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/>std::vector&lt;int&gt;<sp/>path<sp/>=<sp/>g.<ref refid="classhmap_1_1Graph_1aec94f282ad2c0633edaf14ee782ff3a7" kindref="member">dijkstra</ref>(1,<sp/>2);</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/>ASSERT_EQ(path.size(),<sp/>3);</highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/>EXPECT_EQ(path[0],<sp/>1);</highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/>EXPECT_EQ(path[1],<sp/>0);</highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/>EXPECT_EQ(path[2],<sp/>2);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/>std::vector&lt;int&gt;<sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref><sp/>=<sp/>g.<ref refid="classhmap_1_1Graph_1aec94f282ad2c0633edaf14ee782ff3a7" kindref="member">dijkstra</ref>(1,<sp/>2);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/>ASSERT_EQ(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.<ref refid="classhmap_1_1Cloud_1adc675e8b2769a94b4c23bf7e69348f84" kindref="member">size</ref>(),<sp/>3);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/>EXPECT_EQ(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>[0],<sp/>1);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/>EXPECT_EQ(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>[1],<sp/>0);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/>EXPECT_EQ(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>[2],<sp/>2);</highlight></codeline>
 <codeline lineno="76"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="77"><highlight class="normal"></highlight></codeline>
 <codeline lineno="78"><highlight class="normal"><ref refid="test__alpha__model_8cpp_1aa942f8183b1f7581541308f4944db643" kindref="member">TEST</ref>(GraphDijkstraTest,<sp/>SameSourceAndTarget)</highlight></codeline>
@@ -188,9 +188,9 @@
 <codeline lineno="82"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Cloud_1ac9ab31444357a0a0c3922b4d16ccef7f" kindref="member">push_back</ref>(<ref refid="classhmap_1_1Point" kindref="compound">Point</ref>(1.f,<sp/>0.f,<sp/>0.f));</highlight></codeline>
 <codeline lineno="83"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Graph_1a85e17398e3cd9215ef189f8bbc03f73f" kindref="member">add_edge</ref>(0,<sp/>1,<sp/>1.f);</highlight></codeline>
 <codeline lineno="84"><highlight class="normal"></highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/>std::vector&lt;int&gt;<sp/>path<sp/>=<sp/>g.<ref refid="classhmap_1_1Graph_1aec94f282ad2c0633edaf14ee782ff3a7" kindref="member">dijkstra</ref>(0,<sp/>0);</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/>ASSERT_EQ(path.size(),<sp/>1);</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/>EXPECT_EQ(path[0],<sp/>0);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/>std::vector&lt;int&gt;<sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref><sp/>=<sp/>g.<ref refid="classhmap_1_1Graph_1aec94f282ad2c0633edaf14ee782ff3a7" kindref="member">dijkstra</ref>(0,<sp/>0);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/>ASSERT_EQ(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.<ref refid="classhmap_1_1Cloud_1adc675e8b2769a94b4c23bf7e69348f84" kindref="member">size</ref>(),<sp/>1);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/>EXPECT_EQ(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>[0],<sp/>0);</highlight></codeline>
 <codeline lineno="88"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="89"><highlight class="normal"></highlight></codeline>
 <codeline lineno="90"><highlight class="normal"><ref refid="test__alpha__model_8cpp_1aa942f8183b1f7581541308f4944db643" kindref="member">TEST</ref>(GraphDijkstraTest,<sp/>DisconnectedGraph)</highlight></codeline>
@@ -199,8 +199,8 @@
 <codeline lineno="93"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Cloud_1ac9ab31444357a0a0c3922b4d16ccef7f" kindref="member">push_back</ref>(<ref refid="classhmap_1_1Point" kindref="compound">Point</ref>(0.f,<sp/>0.f,<sp/>0.f));<sp/></highlight><highlight class="comment">//<sp/>node<sp/>0</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="94"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Cloud_1ac9ab31444357a0a0c3922b4d16ccef7f" kindref="member">push_back</ref>(<ref refid="classhmap_1_1Point" kindref="compound">Point</ref>(1.f,<sp/>0.f,<sp/>0.f));<sp/></highlight><highlight class="comment">//<sp/>node<sp/>1</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="95"><highlight class="normal"></highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/>std::vector&lt;int&gt;<sp/>path<sp/>=<sp/>g.<ref refid="classhmap_1_1Graph_1aec94f282ad2c0633edaf14ee782ff3a7" kindref="member">dijkstra</ref>(0,<sp/>1);</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/>EXPECT_TRUE(path.empty());</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/>std::vector&lt;int&gt;<sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref><sp/>=<sp/>g.<ref refid="classhmap_1_1Graph_1aec94f282ad2c0633edaf14ee782ff3a7" kindref="member">dijkstra</ref>(0,<sp/>1);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/>EXPECT_TRUE(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.<ref refid="classhmap_1_1Cloud_1a89f21637cf9c4857bf65ad6a6009eff9" kindref="member">empty</ref>());</highlight></codeline>
 <codeline lineno="98"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="tests/src/test_alpha_model.cpp"/>

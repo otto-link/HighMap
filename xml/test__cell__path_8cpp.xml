@@ -96,20 +96,20 @@
 <codeline lineno="9"><highlight class="normal"><sp/><sp/>EXPECT_EQ(empty_path.<ref refid="classhmap_1_1CellPath_1a373509a6e15c8e23e614ac95924f7094" kindref="member">size</ref>(),<sp/>0u);</highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight></codeline>
 <codeline lineno="11"><highlight class="normal"><sp/><sp/>std::vector&lt;glm::ivec2&gt;<sp/>indices<sp/>=<sp/>{{0,<sp/>0},<sp/>{1,<sp/>2},<sp/>{3,<sp/>4}};</highlight></codeline>
-<codeline lineno="12"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1CellPath" kindref="compound">hmap::CellPath</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>path(indices);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1CellPath" kindref="compound">hmap::CellPath</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>(indices);</highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/>EXPECT_FALSE(path.empty());</highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><sp/><sp/>EXPECT_EQ(path.size(),<sp/>3u);</highlight></codeline>
-<codeline lineno="16"><highlight class="normal"><sp/><sp/>EXPECT_EQ(path.front(),<sp/>glm::ivec2(0,<sp/>0));</highlight></codeline>
-<codeline lineno="17"><highlight class="normal"><sp/><sp/>EXPECT_EQ(path.back(),<sp/>glm::ivec2(3,<sp/>4));</highlight></codeline>
-<codeline lineno="18"><highlight class="normal"><sp/><sp/>EXPECT_EQ(path[1],<sp/>glm::ivec2(1,<sp/>2));</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/>EXPECT_FALSE(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.empty());</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/>EXPECT_EQ(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.size(),<sp/>3u);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/>EXPECT_EQ(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.front(),<sp/>glm::ivec2(0,<sp/>0));</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/>EXPECT_EQ(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.back(),<sp/>glm::ivec2(3,<sp/>4));</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/>EXPECT_EQ(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>[1],<sp/>glm::ivec2(1,<sp/>2));</highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/>path.push_back({5,<sp/>6});</highlight></codeline>
-<codeline lineno="21"><highlight class="normal"><sp/><sp/>EXPECT_EQ(path.size(),<sp/>4u);</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"><sp/><sp/>EXPECT_EQ(path.back(),<sp/>glm::ivec2(5,<sp/>6));</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.push_back({5,<sp/>6});</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/>EXPECT_EQ(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.size(),<sp/>4u);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/>EXPECT_EQ(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.back(),<sp/>glm::ivec2(5,<sp/>6));</highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/>path.clear();</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"><sp/><sp/>EXPECT_TRUE(path.empty());</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.clear();</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/>EXPECT_TRUE(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.empty());</highlight></codeline>
 <codeline lineno="26"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"><ref refid="test__cell__path_8cpp_1aa94ec20203259e4ebb5cd1a1ed3cc04d" kindref="member">TEST</ref>(CellPath,<sp/>BresenhamLine)</highlight></codeline>

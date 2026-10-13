@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structhmap_1_1BVH2D_1_1Node" kind="struct" language="C++" prot="public">
+    <compoundname>hmap::BVH2D::Node</compoundname>
+    <includes refid="bvh_8hpp" local="no">bvh.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structhmap_1_1BVH2D_1_1Node_1ad990be469f8e6654bdf8e175e2e479a0" prot="public" static="no" mutable="no">
+        <type><ref refid="structhmap_1_1AABB2D" kindref="compound">AABB2D</ref></type>
+        <definition>AABB2D hmap::BVH2D::Node::bbox</definition>
+        <argsstring></argsstring>
+        <name>bbox</name>
+        <qualifiedname>hmap::BVH2D::Node::bbox</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="122" column="14" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1BVH2D_1_1Node_1ad651286c640e44717f4600444330e672" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t hmap::BVH2D::Node::left</definition>
+        <argsstring></argsstring>
+        <name>left</name>
+        <qualifiedname>hmap::BVH2D::Node::left</qualifiedname>
+        <initializer>{-1}</initializer>
+        <briefdescription>
+<para>Left child index or -1 if leaf. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="123" column="14" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="123" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1BVH2D_1_1Node_1a5ae3aa3b4b06823e6c7d208523d6114e" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t hmap::BVH2D::Node::right</definition>
+        <argsstring></argsstring>
+        <name>right</name>
+        <qualifiedname>hmap::BVH2D::Node::right</qualifiedname>
+        <initializer>{-1}</initializer>
+        <briefdescription>
+<para>Right child index or -1 if leaf. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="124" column="14" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="124" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1BVH2D_1_1Node_1a3fe3bc6814f8a056f8f445160e3a509f" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t hmap::BVH2D::Node::seg_start</definition>
+        <argsstring></argsstring>
+        <name>seg_start</name>
+        <qualifiedname>hmap::BVH2D::Node::seg_start</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="125" column="14" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="125" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1BVH2D_1_1Node_1a9f632141b12b74699c235f2ac8b6e259" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t hmap::BVH2D::Node::seg_count</definition>
+        <argsstring></argsstring>
+        <name>seg_count</name>
+        <qualifiedname>hmap::BVH2D::Node::seg_count</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="126" column="14" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="126" bodyend="126"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structhmap_1_1BVH2D_1_1Node_1a793138413a03e4ebe169c23f37a7995d" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr bool</type>
+        <definition>constexpr bool hmap::BVH2D::Node::is_leaf</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>is_leaf</name>
+        <qualifiedname>hmap::BVH2D::Node::is_leaf</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="128" column="20" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="128" bodyend="131"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>hmap::AABB2D</label>
+        <link refid="structhmap_1_1AABB2D"/>
+      </node>
+      <node id="1">
+        <label>hmap::BVH2D::Node</label>
+        <link refid="structhmap_1_1BVH2D_1_1Node"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>bbox</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="HighMap/include/highmap/geometry/bvh.hpp" line="120" column="3" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="121" bodyend="132"/>
+    <listofallmembers>
+      <member refid="structhmap_1_1BVH2D_1_1Node_1ad990be469f8e6654bdf8e175e2e479a0" prot="public" virt="non-virtual"><scope>hmap::BVH2D::Node</scope><name>bbox</name></member>
+      <member refid="structhmap_1_1BVH2D_1_1Node_1a793138413a03e4ebe169c23f37a7995d" prot="public" virt="non-virtual"><scope>hmap::BVH2D::Node</scope><name>is_leaf</name></member>
+      <member refid="structhmap_1_1BVH2D_1_1Node_1ad651286c640e44717f4600444330e672" prot="public" virt="non-virtual"><scope>hmap::BVH2D::Node</scope><name>left</name></member>
+      <member refid="structhmap_1_1BVH2D_1_1Node_1a5ae3aa3b4b06823e6c7d208523d6114e" prot="public" virt="non-virtual"><scope>hmap::BVH2D::Node</scope><name>right</name></member>
+      <member refid="structhmap_1_1BVH2D_1_1Node_1a9f632141b12b74699c235f2ac8b6e259" prot="public" virt="non-virtual"><scope>hmap::BVH2D::Node</scope><name>seg_count</name></member>
+      <member refid="structhmap_1_1BVH2D_1_1Node_1a3fe3bc6814f8a056f8f445160e3a509f" prot="public" virt="non-virtual"><scope>hmap::BVH2D::Node</scope><name>seg_start</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

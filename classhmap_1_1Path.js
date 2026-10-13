@@ -28,6 +28,7 @@ var classhmap_1_1Path =
     [ "set_closed", "classhmap_1_1Path.html#aeb2890d2ffbbf4291baf255c621095de", null ],
     [ "clear", "classhmap_1_1Path.html#ad85aa61692aadbfa1f3f08096cb0594c", null ],
     [ "enforce_monotonic_values", "classhmap_1_1Path.html#a4934980f265ae283c847fc091fe45c75", null ],
+    [ "rasterize_capsules", "classhmap_1_1Path.html#ab22687eef2bfb9e03e0ad25a808c175b", null ],
     [ "reorder_nns", "classhmap_1_1Path.html#ad68abaa80879402c3758e24626acfb53", null ],
     [ "reverse", "classhmap_1_1Path.html#ab6fd0674d8d1f9a2d0ba224ec4c4cd46", null ],
     [ "divide", "classhmap_1_1Path.html#a8650db137a1b4ecccf05cfd0fd7d320b", null ],

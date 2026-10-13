@@ -169,18 +169,18 @@
 <codeline lineno="63"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Graph_1a85e17398e3cd9215ef189f8bbc03f73f" kindref="member">add_edge</ref>(1,<sp/>2,<sp/>2.f);</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Graph_1a85e17398e3cd9215ef189f8bbc03f73f" kindref="member">add_edge</ref>(0,<sp/>2,<sp/>10.f);</highlight></codeline>
 <codeline lineno="65"><highlight class="normal"></highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/>std::vector&lt;int&gt;<sp/>path<sp/>=<sp/>g.<ref refid="classhmap_1_1Graph_1aec94f282ad2c0633edaf14ee782ff3a7" kindref="member">dijkstra</ref>(0,<sp/>2);</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/>ASSERT_EQ(path.size(),<sp/>3u);</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/>EXPECT_EQ(path[0],<sp/>0);</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/>EXPECT_EQ(path[1],<sp/>1);</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/>EXPECT_EQ(path[2],<sp/>2);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/>std::vector&lt;int&gt;<sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref><sp/>=<sp/>g.<ref refid="classhmap_1_1Graph_1aec94f282ad2c0633edaf14ee782ff3a7" kindref="member">dijkstra</ref>(0,<sp/>2);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/>ASSERT_EQ(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.<ref refid="classhmap_1_1Cloud_1adc675e8b2769a94b4c23bf7e69348f84" kindref="member">size</ref>(),<sp/>3u);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/>EXPECT_EQ(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>[0],<sp/>0);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/>EXPECT_EQ(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>[1],<sp/>1);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/>EXPECT_EQ(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>[2],<sp/>2);</highlight></codeline>
 <codeline lineno="71"><highlight class="normal"></highlight></codeline>
 <codeline lineno="72"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Shortest<sp/>path<sp/>with<sp/>updated<sp/>direct<sp/>edge<sp/>weight</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="73"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Graph_1af9dd5d2b3ff699e1e064f4d189d74d55" kindref="member">set_edge_weight</ref>(0,<sp/>2,<sp/>0.5f);</highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/>path<sp/>=<sp/>g.<ref refid="classhmap_1_1Graph_1aec94f282ad2c0633edaf14ee782ff3a7" kindref="member">dijkstra</ref>(0,<sp/>2);</highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/>ASSERT_EQ(path.size(),<sp/>2u);</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/>EXPECT_EQ(path[0],<sp/>0);</highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/>EXPECT_EQ(path[1],<sp/>2);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref><sp/>=<sp/>g.<ref refid="classhmap_1_1Graph_1aec94f282ad2c0633edaf14ee782ff3a7" kindref="member">dijkstra</ref>(0,<sp/>2);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/>ASSERT_EQ(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.<ref refid="classhmap_1_1Cloud_1adc675e8b2769a94b4c23bf7e69348f84" kindref="member">size</ref>(),<sp/>2u);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/>EXPECT_EQ(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>[0],<sp/>0);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/>EXPECT_EQ(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>[1],<sp/>2);</highlight></codeline>
 <codeline lineno="78"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="79"><highlight class="normal"></highlight></codeline>
 <codeline lineno="80"><highlight class="normal"><ref refid="test__graph_8cpp_1ac20850ac7ca37af017fd4133bb14b8d0" kindref="member">TEST</ref>(GraphTest,<sp/>MinimumSpanningTreePrim)</highlight></codeline>

@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="dir_e3886812acc4a770a1eeec0ffad797b7" kind="dir">
     <compoundname>HighMap/include/highmap/geometry</compoundname>
+    <innerfile refid="bvh_8hpp">bvh.hpp</innerfile>
     <innerfile refid="cell__path_8hpp">cell_path.hpp</innerfile>
     <innerfile refid="cloud_8hpp">cloud.hpp</innerfile>
     <innerfile refid="graph_8hpp">graph.hpp</innerfile>

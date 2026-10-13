@@ -164,19 +164,19 @@
 <codeline lineno="153"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>make<sp/>sure<sp/>the<sp/>input<sp/>noise<sp/>displacement<sp/>do<sp/>not<sp/>modify<sp/>the<sp/>convex</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="154"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>hull<sp/>limits<sp/>to<sp/>avoid<sp/>issues<sp/>with<sp/>the<sp/>nautral<sp/>neighbor</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="155"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>interpolation</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="156"><highlight class="normal"><sp/><sp/>Array<sp/><ref refid="trench_8cpp_1a9eae6c1f38db98ab568f3ed3771a969d" kindref="member">dx</ref>;</highlight></codeline>
-<codeline lineno="157"><highlight class="normal"><sp/><sp/>Array<sp/><ref refid="trench_8cpp_1a8f461b6142ce8725218813abb23b06a3" kindref="member">dy</ref>;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/>Array<sp/>dx;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/>Array<sp/>dy;</highlight></codeline>
 <codeline lineno="158"><highlight class="normal"></highlight></codeline>
 <codeline lineno="159"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(p_noise_x)</highlight></codeline>
 <codeline lineno="160"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="trench_8cpp_1a9eae6c1f38db98ab568f3ed3771a969d" kindref="member">dx</ref><sp/>=<sp/>(*p_noise_x)<sp/>*<sp/><ref refid="namespacehmap_1a05f15dbf656e6f7ae36542c48a7d2980" kindref="member">biquad_pulse_x</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>);</highlight></codeline>
-<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>p_noise_x<sp/>=<sp/>&amp;<ref refid="trench_8cpp_1a9eae6c1f38db98ab568f3ed3771a969d" kindref="member">dx</ref>;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>dx<sp/>=<sp/>(*p_noise_x)<sp/>*<sp/><ref refid="namespacehmap_1a05f15dbf656e6f7ae36542c48a7d2980" kindref="member">biquad_pulse_x</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>);</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>p_noise_x<sp/>=<sp/>&amp;dx;</highlight></codeline>
 <codeline lineno="163"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="164"><highlight class="normal"></highlight></codeline>
 <codeline lineno="165"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(p_noise_y)</highlight></codeline>
 <codeline lineno="166"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="trench_8cpp_1a8f461b6142ce8725218813abb23b06a3" kindref="member">dy</ref><sp/>=<sp/>(*p_noise_y)<sp/>*<sp/><ref refid="namespacehmap_1aeffedc90714bfcfed6a5f18d780b1094" kindref="member">biquad_pulse_y</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>);</highlight></codeline>
-<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>p_noise_y<sp/>=<sp/>&amp;<ref refid="trench_8cpp_1a8f461b6142ce8725218813abb23b06a3" kindref="member">dy</ref>;</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>dy<sp/>=<sp/>(*p_noise_y)<sp/>*<sp/><ref refid="namespacehmap_1aeffedc90714bfcfed6a5f18d780b1094" kindref="member">biquad_pulse_y</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>);</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>p_noise_y<sp/>=<sp/>&amp;dy;</highlight></codeline>
 <codeline lineno="169"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="170"><highlight class="normal"></highlight></codeline>
 <codeline lineno="171"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>interpolate</highlight><highlight class="normal"></highlight></codeline>
@@ -362,19 +362,19 @@
 <codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>[pa_noise_x,<sp/>pa_noise_y]<sp/>=<sp/>unpack&lt;2&gt;(p_arrays_in);</highlight></codeline>
 <codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>[pa_ze]<sp/>=<sp/>unpack&lt;1&gt;(p_arrays_out);</highlight></codeline>
 <codeline lineno="353"><highlight class="normal"></highlight></codeline>
-<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Array<sp/><ref refid="trench_8cpp_1a9eae6c1f38db98ab568f3ed3771a969d" kindref="member">dx</ref>;</highlight></codeline>
-<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Array<sp/><ref refid="trench_8cpp_1a8f461b6142ce8725218813abb23b06a3" kindref="member">dy</ref>;</highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Array<sp/>dx;</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Array<sp/>dy;</highlight></codeline>
 <codeline lineno="356"><highlight class="normal"></highlight></codeline>
 <codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pa_noise_x)</highlight></codeline>
 <codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="trench_8cpp_1a9eae6c1f38db98ab568f3ed3771a969d" kindref="member">dx</ref><sp/>=<sp/>(*pa_noise_x)<sp/>*<sp/><ref refid="namespacehmap_1a05f15dbf656e6f7ae36542c48a7d2980" kindref="member">biquad_pulse_x</ref>(region.shape,<sp/>region.bbox);</highlight></codeline>
-<codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pa_noise_x<sp/>=<sp/>&amp;<ref refid="trench_8cpp_1a9eae6c1f38db98ab568f3ed3771a969d" kindref="member">dx</ref>;</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dx<sp/>=<sp/>(*pa_noise_x)<sp/>*<sp/><ref refid="namespacehmap_1a05f15dbf656e6f7ae36542c48a7d2980" kindref="member">biquad_pulse_x</ref>(region.shape,<sp/>region.bbox);</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pa_noise_x<sp/>=<sp/>&amp;dx;</highlight></codeline>
 <codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="362"><highlight class="normal"></highlight></codeline>
 <codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pa_noise_y)</highlight></codeline>
 <codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="trench_8cpp_1a8f461b6142ce8725218813abb23b06a3" kindref="member">dy</ref><sp/>=<sp/>(*pa_noise_y)<sp/>*<sp/><ref refid="namespacehmap_1aeffedc90714bfcfed6a5f18d780b1094" kindref="member">biquad_pulse_y</ref>(region.shape,<sp/>region.bbox);</highlight></codeline>
-<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pa_noise_y<sp/>=<sp/>&amp;<ref refid="trench_8cpp_1a8f461b6142ce8725218813abb23b06a3" kindref="member">dy</ref>;</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dy<sp/>=<sp/>(*pa_noise_y)<sp/>*<sp/><ref refid="namespacehmap_1aeffedc90714bfcfed6a5f18d780b1094" kindref="member">biquad_pulse_y</ref>(region.shape,<sp/>region.bbox);</highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pa_noise_y<sp/>=<sp/>&amp;dy;</highlight></codeline>
 <codeline lineno="367"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="368"><highlight class="normal"></highlight></codeline>
 <codeline lineno="369"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*pa_ze<sp/>=<sp/><ref refid="namespacehmap_1aeddca5280bfeacef3cdf4bee68a2195f" kindref="member">interpolate2d</ref>(region.shape,</highlight></codeline>

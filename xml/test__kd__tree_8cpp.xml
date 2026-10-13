@@ -364,9 +364,9 @@
 <codeline lineno="159"><highlight class="normal"><ref refid="test__kd__tree_8cpp_1a1f4e76d9a1c655a9bac41bb47c7cd9c0" kindref="member">TEST</ref>(KDTreeTest,<sp/>PathConstruction)</highlight></codeline>
 <codeline lineno="160"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="161"><highlight class="normal"><sp/><sp/>std::vector&lt;Point&gt;<sp/>pts<sp/>=<sp/>{<ref refid="classhmap_1_1Point" kindref="compound">Point</ref>(0,<sp/>0,<sp/>0),<sp/><ref refid="classhmap_1_1Point" kindref="compound">Point</ref>(5,<sp/>5,<sp/>0),<sp/><ref refid="classhmap_1_1Point" kindref="compound">Point</ref>(10,<sp/>10,<sp/>0)};</highlight></codeline>
-<codeline lineno="162"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">Path</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>path(pts);</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">Path</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>(pts);</highlight></codeline>
 <codeline lineno="163"><highlight class="normal"></highlight></codeline>
-<codeline lineno="164"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1KDTree" kindref="compound">KDTree</ref><sp/>tree(path);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1KDTree" kindref="compound">KDTree</ref><sp/>tree(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>);</highlight></codeline>
 <codeline lineno="165"><highlight class="normal"><sp/><sp/>EXPECT_EQ(tree.<ref refid="classhmap_1_1KDTree_1a16df51a0b09b285bc053200c90233d77" kindref="member">size</ref>(),<sp/>3u);</highlight></codeline>
 <codeline lineno="166"><highlight class="normal"><sp/><sp/>EXPECT_EQ(tree.<ref refid="classhmap_1_1KDTree_1a71a6e126c8f231ecd8ad296770354d63" kindref="member">nearest</ref>(4.8f,<sp/>5.2f),<sp/>1u);</highlight></codeline>
 <codeline lineno="167"><highlight class="normal">}</highlight></codeline>

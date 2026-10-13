@@ -3,6 +3,7 @@
   <compounddef id="dir_180bcd2bac99fc5b4a48aa19ac3c5b63" kind="dir">
     <compoundname>HighMap/src/geometry</compoundname>
     <innerdir refid="dir_b84418400d8b1c814bca2b279b22151e">HighMap/src/geometry/cell_path</innerdir>
+    <innerfile refid="bvh_8cpp">bvh.cpp</innerfile>
     <innerfile refid="cloud_8cpp">cloud.cpp</innerfile>
     <innerfile refid="cloud__functions_8cpp">cloud_functions.cpp</innerfile>
     <innerfile refid="graph_8cpp">graph.cpp</innerfile>

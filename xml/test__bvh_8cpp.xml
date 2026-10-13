@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="test__bvh_8cpp" kind="file" language="C++">
+    <compoundname>test_bvh.cpp</compoundname>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="test__bvh_8cpp_1aaf054bb3d198cd212b1293a1283366d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TEST</definition>
+        <argsstring>(BVH2DTest, EmptyBVHHandlesGracefully)</argsstring>
+        <name>TEST</name>
+        <param>
+          <type>BVH2DTest</type>
+        </param>
+        <param>
+          <type>EmptyBVHHandlesGracefully</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="tests/src/test_bvh.cpp" line="5" column="1" bodyfile="tests/src/test_bvh.cpp" bodystart="5" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="test__bvh_8cpp_1a056e4a25eebed768b458e2f3b16b4c6e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TEST</definition>
+        <argsstring>(BVH2DTest, SingleSegmentOverlapAndContainment)</argsstring>
+        <name>TEST</name>
+        <param>
+          <type>BVH2DTest</type>
+        </param>
+        <param>
+          <type>SingleSegmentOverlapAndContainment</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="tests/src/test_bvh.cpp" line="18" column="1" bodyfile="tests/src/test_bvh.cpp" bodystart="18" bodyend="43"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="bvh_8hpp" kindref="compound">highmap/geometry/bvh.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;gtest/gtest.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><ref refid="test__bvh_8cpp_1aaf054bb3d198cd212b1293a1283366d9" kindref="member">TEST</ref>(BVH2DTest,<sp/>EmptyBVHHandlesGracefully)</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1BVH2D" kindref="compound">hmap::BVH2D</ref><sp/>bvh;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/>EXPECT_TRUE(bvh.<ref refid="classhmap_1_1BVH2D_1ab25969c65bdb3891244c24ba6aed84bd" kindref="member">empty</ref>());</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/>std::vector&lt;uint32_t&gt;<sp/>results;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/>bvh.<ref refid="classhmap_1_1BVH2D_1a23d014d33dd25a88f48b35acfccc5524" kindref="member">query_box</ref>(<ref refid="structhmap_1_1AABB2D" kindref="compound">hmap::AABB2D</ref>(0.f,<sp/>0.f,<sp/>1.f,<sp/>1.f),<sp/>results);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/>EXPECT_TRUE(results.empty());</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/>bvh.<ref refid="classhmap_1_1BVH2D_1ac217f9bc9a9ddcd629cb725030130664" kindref="member">query_point</ref>(glm::vec2(0.5f,<sp/>0.5f),<sp/>results);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/>EXPECT_TRUE(results.empty());</highlight></codeline>
+<codeline lineno="16"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><ref refid="test__bvh_8cpp_1aaf054bb3d198cd212b1293a1283366d9" kindref="member">TEST</ref>(BVH2DTest,<sp/>SingleSegmentOverlapAndContainment)</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/>std::vector&lt;hmap::Segment2D&gt;<sp/>segs;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><ref refid="structhmap_1_1Segment2D" kindref="compound">hmap::Segment2D</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seg;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/>seg.<ref refid="structhmap_1_1Segment2D_1aa52a24826685ac61b27955a58035c96b" kindref="member">p0</ref><sp/>=<sp/>{0.2f,<sp/>0.2f};</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/>seg.<ref refid="structhmap_1_1Segment2D_1a9b492c46a400a16b19bff04228a9a8a7" kindref="member">p1</ref><sp/>=<sp/>{0.8f,<sp/>0.8f};</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/>seg.<ref refid="structhmap_1_1Segment2D_1a1808ecdd60a3fa09f046a8b84eaecfa0" kindref="member">id</ref><sp/>=<sp/>42;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/>segs.push_back(seg);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1BVH2D" kindref="compound">hmap::BVH2D</ref><sp/>bvh(segs,<sp/>0.1f);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/>EXPECT_FALSE(bvh.<ref refid="classhmap_1_1BVH2D_1ab25969c65bdb3891244c24ba6aed84bd" kindref="member">empty</ref>());</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/>std::vector&lt;uint32_t&gt;<sp/>results;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/>bvh.<ref refid="classhmap_1_1BVH2D_1ac217f9bc9a9ddcd629cb725030130664" kindref="member">query_point</ref>(glm::vec2(0.5f,<sp/>0.5f),<sp/>results);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/>EXPECT_EQ(results.size(),<sp/>1u);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/>results.clear();</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Point<sp/>far<sp/>away</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/>bvh.<ref refid="classhmap_1_1BVH2D_1ac217f9bc9a9ddcd629cb725030130664" kindref="member">query_point</ref>(glm::vec2(0.0f,<sp/>1.0f),<sp/>results);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/>EXPECT_TRUE(results.empty());</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Box<sp/>overlap</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/>results.clear();</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/>bvh.<ref refid="classhmap_1_1BVH2D_1a23d014d33dd25a88f48b35acfccc5524" kindref="member">query_box</ref>(<ref refid="structhmap_1_1AABB2D" kindref="compound">hmap::AABB2D</ref>(0.4f,<sp/>0.4f,<sp/>0.6f,<sp/>0.6f),<sp/>results);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/>EXPECT_EQ(results.size(),<sp/>1u);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="tests/src/test_bvh.cpp"/>
+  </compounddef>
+</doxygen>

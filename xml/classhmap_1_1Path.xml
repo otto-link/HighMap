@@ -57,7 +57,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/path.hpp" line="448" column="3" bodyfile="HighMap/include/highmap/geometry/path.hpp" bodystart="449" bodyend="452"/>
+        <location file="HighMap/include/highmap/geometry/path.hpp" line="463" column="3" bodyfile="HighMap/include/highmap/geometry/path.hpp" bodystart="464" bodyend="467"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
@@ -74,7 +74,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/path.hpp" line="452" column="17"/>
+        <location file="HighMap/include/highmap/geometry/path.hpp" line="467" column="17"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -448,7 +448,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/path.hpp" line="156" column="15" bodyfile="HighMap/src/geometry/path.cpp" bodystart="81" bodyend="99"/>
+        <location file="HighMap/include/highmap/geometry/path.hpp" line="156" column="15" bodyfile="HighMap/src/geometry/path.cpp" bodystart="164" bodyend="182"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Path_1a9ea0ffcf40358b7e33ff8cffc33f918a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; float &gt;</type>
@@ -467,7 +467,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/path.hpp" line="169" column="15" bodyfile="HighMap/src/geometry/path.cpp" bodystart="101" bodyend="116"/>
+        <location file="HighMap/include/highmap/geometry/path.hpp" line="169" column="15" bodyfile="HighMap/src/geometry/path.cpp" bodystart="184" bodyend="199"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Path_1ab083b81103f72c7c9b9fa81451599357" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; float &gt;</type>
@@ -499,7 +499,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/path.hpp" line="177" column="15" bodyfile="HighMap/src/geometry/path.cpp" bodystart="118" bodyend="144"/>
+        <location file="HighMap/include/highmap/geometry/path.hpp" line="177" column="15" bodyfile="HighMap/src/geometry/path.cpp" bodystart="201" bodyend="227"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Path_1a1344c82b303d10ef07d3fe9417ab2a0e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; <ref refid="classhmap_1_1Point" kindref="compound">Point</ref> &gt;</type>
@@ -518,7 +518,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/path.hpp" line="186" column="15" bodyfile="HighMap/src/geometry/path.cpp" bodystart="146" bodyend="164"/>
+        <location file="HighMap/include/highmap/geometry/path.hpp" line="186" column="15" bodyfile="HighMap/src/geometry/path.cpp" bodystart="229" bodyend="247"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Path_1acfd768645d095235067a01cb7f069155" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; glm::vec2 &gt;</type>
@@ -536,7 +536,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/path.hpp" line="192" column="15" bodyfile="HighMap/src/geometry/path.cpp" bodystart="166" bodyend="174"/>
+        <location file="HighMap/include/highmap/geometry/path.hpp" line="192" column="15" bodyfile="HighMap/src/geometry/path.cpp" bodystart="249" bodyend="257"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Path_1adb21bc9bdaea145a168b8ecdf43edf80" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; glm::vec2 &gt;</type>
@@ -554,7 +554,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/path.hpp" line="198" column="15" bodyfile="HighMap/src/geometry/path.cpp" bodystart="176" bodyend="211"/>
+        <location file="HighMap/include/highmap/geometry/path.hpp" line="198" column="15" bodyfile="HighMap/src/geometry/path.cpp" bodystart="259" bodyend="294"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Path_1a5e321e91e212ccfcb33088be73543494" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; float &gt;</type>
@@ -573,7 +573,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/path.hpp" line="210" column="15" bodyfile="HighMap/src/geometry/path.cpp" bodystart="213" bodyend="221"/>
+        <location file="HighMap/include/highmap/geometry/path.hpp" line="210" column="15" bodyfile="HighMap/src/geometry/path.cpp" bodystart="296" bodyend="304"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Path_1ac01edb126b845a027883d9abd88e826b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; float &gt;</type>
@@ -592,7 +592,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/path.hpp" line="221" column="15" bodyfile="HighMap/src/geometry/path.cpp" bodystart="223" bodyend="231"/>
+        <location file="HighMap/include/highmap/geometry/path.hpp" line="221" column="15" bodyfile="HighMap/src/geometry/path.cpp" bodystart="306" bodyend="314"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Path_1a18048b5af9a33893fa946ce76eb75781" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; float &gt;</type>
@@ -611,7 +611,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/path.hpp" line="234" column="15" bodyfile="HighMap/src/geometry/path.cpp" bodystart="233" bodyend="248"/>
+        <location file="HighMap/include/highmap/geometry/path.hpp" line="234" column="15" bodyfile="HighMap/src/geometry/path.cpp" bodystart="316" bodyend="331"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Path_1ab9ff9f7a0ea9c090c34810536458da8d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; float &gt;</type>
@@ -630,7 +630,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/path.hpp" line="245" column="15" bodyfile="HighMap/src/geometry/path.cpp" bodystart="250" bodyend="258"/>
+        <location file="HighMap/include/highmap/geometry/path.hpp" line="245" column="15" bodyfile="HighMap/src/geometry/path.cpp" bodystart="333" bodyend="341"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Path_1a39ef1335efd434f12c92527f12933d9e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -648,7 +648,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/path.hpp" line="251" column="8" bodyfile="HighMap/src/geometry/path.cpp" bodystart="260" bodyend="263"/>
+        <location file="HighMap/include/highmap/geometry/path.hpp" line="251" column="8" bodyfile="HighMap/src/geometry/path.cpp" bodystart="343" bodyend="346"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Path_1aeb2890d2ffbbf4291baf255c621095de" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -677,7 +677,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/path.hpp" line="257" column="8" bodyfile="HighMap/src/geometry/path.cpp" bodystart="436" bodyend="439"/>
+        <location file="HighMap/include/highmap/geometry/path.hpp" line="257" column="8" bodyfile="HighMap/src/geometry/path.cpp" bodystart="519" bodyend="522"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Path_1ad85aa61692aadbfa1f3f08096cb0594c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -728,6 +728,61 @@
         </inbodydescription>
         <location file="HighMap/include/highmap/geometry/path.hpp" line="284" column="8" bodyfile="HighMap/src/geometry/path.cpp" bodystart="59" bodyend="79"/>
       </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Path_1ab22687eef2bfb9e03e0ad25a808c175b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Path::rasterize_capsules</definition>
+        <argsstring>(Array &amp;out_dist_sq, float radius, glm::vec4 bbox={0.f, 1.f, 0.f, 1.f}) const</argsstring>
+        <name>rasterize_capsules</name>
+        <qualifiedname>hmap::Path::rasterize_capsules</qualifiedname>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>out_dist_sq</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>radius</declname>
+        </param>
+        <param>
+          <type>glm::vec4</type>
+          <declname>bbox</declname>
+          <defval>{0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</defval>
+        </param>
+        <briefdescription>
+<para>Rasterize path segments as capsules with a given radius onto a distance map. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>For each segment in the path, rasterizes a capsule of the specified <computeroutput>radius</computeroutput> into <computeroutput>out_dist_sq</computeroutput>. Only pixels within each capsule are evaluated.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>out_dist_sq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output array receiving the minimum squared distance. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>radius</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Capsule radius in world domain coordinates. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bbox</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Domain bounding box (xmin, xmax, ymin, ymax). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/path.hpp" line="297" column="8" bodyfile="HighMap/src/geometry/path.cpp" bodystart="81" bodyend="162"/>
+      </memberdef>
       <memberdef kind="function" id="classhmap_1_1Path_1ad68abaa80879402c3758e24626acfb53" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void hmap::Path::reorder_nns</definition>
@@ -757,7 +812,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/path.hpp" line="297" column="8" bodyfile="HighMap/src/geometry/path.cpp" bodystart="265" bodyend="311"/>
+        <location file="HighMap/include/highmap/geometry/path.hpp" line="312" column="8" bodyfile="HighMap/src/geometry/path.cpp" bodystart="348" bodyend="394"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Path_1ab6fd0674d8d1f9a2d0ba224ec4c4cd46" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -773,7 +828,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/path.hpp" line="306" column="8" bodyfile="HighMap/src/geometry/path.cpp" bodystart="386" bodyend="389"/>
+        <location file="HighMap/include/highmap/geometry/path.hpp" line="321" column="8" bodyfile="HighMap/src/geometry/path.cpp" bodystart="469" bodyend="472"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Path_1a8650db137a1b4ecccf05cfd0fd7d320b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -789,7 +844,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/path.hpp" line="320" column="8" bodyfile="HighMap/src/geometry/path.cpp" bodystart="32" bodyend="57"/>
+        <location file="HighMap/include/highmap/geometry/path.hpp" line="335" column="8" bodyfile="HighMap/src/geometry/path.cpp" bodystart="32" bodyend="57"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Path_1a649a385315a3230c058d032b2171424a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -832,7 +887,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/path.hpp" line="333" column="8" bodyfile="HighMap/src/geometry/path.cpp" bodystart="313" bodyend="321"/>
+        <location file="HighMap/include/highmap/geometry/path.hpp" line="348" column="8" bodyfile="HighMap/src/geometry/path.cpp" bodystart="396" bodyend="404"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Path_1afe00587a87fc52524487b197818404f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -879,8 +934,8 @@
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed<sp/>=<sp/>0;</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>glm::vec4<sp/><sp/>bbox<sp/>=<sp/>{1.f,<sp/>2.f,<sp/>-0.5f,<sp/>0.5f};</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>path<sp/>=<sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref>(10,<sp/>seed,<sp/>{1.2f,<sp/>1.8f,<sp/>-0.3,<sp/>0.3f});</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>path.<ref refid="classhmap_1_1Path_1ad68abaa80879402c3758e24626acfb53" kindref="member">reorder_nns</ref>();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref><sp/>=<sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref>(10,<sp/>seed,<sp/>{1.2f,<sp/>1.8f,<sp/>-0.3,<sp/>0.3f});</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.<ref refid="classhmap_1_1Path_1ad68abaa80879402c3758e24626acfb53" kindref="member">reorder_nns</ref>();</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>npoints<sp/>=<sp/>100;</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
@@ -898,15 +953,15 @@
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>---<sp/>Open<sp/>path</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>path.<ref refid="classhmap_1_1Path_1aeb2890d2ffbbf4291baf255c621095de" kindref="member">set_closed</ref>(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.set_closed(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>original<sp/>path</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>arrays.clear();</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>arrays.push_back(path.<ref refid="classhmap_1_1Path_1a4d1e1e63fea24bf8f23bc3343f8b746e" kindref="member">to_array</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>bbox));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>arrays.push_back(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.to_array(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>bbox));</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>method<sp/>:<sp/>methods)</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>path_copy<sp/>=<sp/>path;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>path_copy<sp/>=<sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>path_copy.<ref refid="classhmap_1_1Path_1afe00587a87fc52524487b197818404f0" kindref="member">resample_interp</ref>(npoints,<sp/>method);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>plot<sp/>to<sp/>an<sp/>array</highlight><highlight class="normal"></highlight></codeline>
@@ -917,15 +972,15 @@
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>---<sp/>Closed<sp/>path</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>path.<ref refid="classhmap_1_1Path_1aeb2890d2ffbbf4291baf255c621095de" kindref="member">set_closed</ref>(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.set_closed(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>original<sp/>path</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>arrays.clear();</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>arrays.push_back(path.<ref refid="classhmap_1_1Path_1a4d1e1e63fea24bf8f23bc3343f8b746e" kindref="member">to_array</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>bbox));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>arrays.push_back(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.to_array(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>bbox));</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>method<sp/>:<sp/>methods)</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>path_copy<sp/>=<sp/>path;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>path_copy<sp/>=<sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>path_copy.<ref refid="classhmap_1_1Path_1afe00587a87fc52524487b197818404f0" kindref="member">resample_interp</ref>(npoints,<sp/>method);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>plot<sp/>to<sp/>an<sp/>array</highlight><highlight class="normal"></highlight></codeline>
@@ -936,19 +991,19 @@
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>---<sp/>Wrappers</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>path.<ref refid="classhmap_1_1Path_1aeb2890d2ffbbf4291baf255c621095de" kindref="member">set_closed</ref>(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.set_closed(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>arrays.clear();</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>arrays.push_back(path.<ref refid="classhmap_1_1Path_1a4d1e1e63fea24bf8f23bc3343f8b746e" kindref="member">to_array</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>bbox));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>arrays.push_back(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.to_array(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>bbox));</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>path_copy<sp/>=<sp/>path;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>path_copy<sp/>=<sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>path_copy.<ref refid="classhmap_1_1Path_1a84e0832a3c3a4c9e1f9bcefdc6d32cd0" kindref="member">resample_uniform</ref>();</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>arrays.push_back(path_copy.<ref refid="classhmap_1_1Path_1a4d1e1e63fea24bf8f23bc3343f8b746e" kindref="member">to_array</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>bbox));</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>path_copy<sp/>=<sp/>path;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>path_copy<sp/>=<sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>path_copy.<ref refid="classhmap_1_1Path_1a649a385315a3230c058d032b2171424a" kindref="member">resample_by_spacing</ref>(0.01f);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>arrays.push_back(path_copy.<ref refid="classhmap_1_1Path_1a4d1e1e63fea24bf8f23bc3343f8b746e" kindref="member">to_array</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>bbox));</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
@@ -961,7 +1016,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/path.hpp" line="352" column="8" bodyfile="HighMap/src/geometry/path.cpp" bodystart="323" bodyend="360"/>
+        <location file="HighMap/include/highmap/geometry/path.hpp" line="367" column="8" bodyfile="HighMap/src/geometry/path.cpp" bodystart="406" bodyend="443"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Path_1a84e0832a3c3a4c9e1f9bcefdc6d32cd0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -992,7 +1047,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/path.hpp" line="366" column="8" bodyfile="HighMap/src/geometry/path.cpp" bodystart="362" bodyend="384"/>
+        <location file="HighMap/include/highmap/geometry/path.hpp" line="381" column="8" bodyfile="HighMap/src/geometry/path.cpp" bodystart="445" bodyend="467"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Path_1abed9b04c8138125196946f7453e4aea9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>glm::vec3</type>
@@ -1050,7 +1105,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/path.hpp" line="382" column="13" bodyfile="HighMap/src/geometry/path.cpp" bodystart="391" bodyend="434"/>
+        <location file="HighMap/include/highmap/geometry/path.hpp" line="397" column="13" bodyfile="HighMap/src/geometry/path.cpp" bodystart="474" bodyend="517"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Path_1a9816b231362dd1ca5208a839626f1f68" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1080,7 +1135,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/path.hpp" line="396" column="8" bodyfile="HighMap/src/geometry/path.cpp" bodystart="441" bodyend="460"/>
+        <location file="HighMap/include/highmap/geometry/path.hpp" line="411" column="8" bodyfile="HighMap/src/geometry/path.cpp" bodystart="524" bodyend="543"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Path_1a4d1e1e63fea24bf8f23bc3343f8b746e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1111,12 +1166,12 @@
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="main_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
 <codeline><highlight class="normal">{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>path;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>path.<ref refid="classhmap_1_1Cloud_1ac9ab31444357a0a0c3922b4d16ccef7f" kindref="member">push_back</ref>({10.f,<sp/>10.f});</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>path.<ref refid="classhmap_1_1Cloud_1ac9ab31444357a0a0c3922b4d16ccef7f" kindref="member">push_back</ref>({240.f,<sp/>240.f});</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.<ref refid="classhmap_1_1Cloud_1ac9ab31444357a0a0c3922b4d16ccef7f" kindref="member">push_back</ref>({10.f,<sp/>10.f});</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.push_back({240.f,<sp/>240.f});</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>({256,<sp/>256},<sp/>0.f);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>path.<ref refid="classhmap_1_1Path_1a4d1e1e63fea24bf8f23bc3343f8b746e" kindref="member">to_array</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.to_array(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 </programlisting></para>
@@ -1149,7 +1204,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/path.hpp" line="417" column="8" bodyfile="HighMap/src/geometry/path.cpp" bodystart="462" bodyend="509"/>
+        <location file="HighMap/include/highmap/geometry/path.hpp" line="432" column="8" bodyfile="HighMap/src/geometry/path.cpp" bodystart="545" bodyend="592"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Path_1a1871d04cad63f27429f42ea27f7e7af4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -1178,7 +1233,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/path.hpp" line="422" column="9" bodyfile="HighMap/src/geometry/path.cpp" bodystart="511" bodyend="518"/>
+        <location file="HighMap/include/highmap/geometry/path.hpp" line="437" column="9" bodyfile="HighMap/src/geometry/path.cpp" bodystart="594" bodyend="601"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Path_1a2292e74883cb6da795ce35a46ef8e735" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1207,7 +1262,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/path.hpp" line="427" column="8" bodyfile="HighMap/src/geometry/path.cpp" bodystart="520" bodyend="527"/>
+        <location file="HighMap/include/highmap/geometry/path.hpp" line="442" column="8" bodyfile="HighMap/src/geometry/path.cpp" bodystart="603" bodyend="610"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Path_1aaf9111fdcae15cc51cfcd5faffb38f23" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1233,11 +1288,11 @@
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="main_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
 <codeline><highlight class="normal">{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>path;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>path.<ref refid="classhmap_1_1Cloud_1ac9ab31444357a0a0c3922b4d16ccef7f" kindref="member">push_back</ref>({10.f,<sp/>10.f});</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>path.<ref refid="classhmap_1_1Cloud_1ac9ab31444357a0a0c3922b4d16ccef7f" kindref="member">push_back</ref>({240.f,<sp/>240.f});</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.<ref refid="classhmap_1_1Cloud_1ac9ab31444357a0a0c3922b4d16ccef7f" kindref="member">push_back</ref>({10.f,<sp/>10.f});</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.push_back({240.f,<sp/>240.f});</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>path.<ref refid="classhmap_1_1Path_1aaf9111fdcae15cc51cfcd5faffb38f23" kindref="member">to_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_path_to_png_output.png&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.to_png(</highlight><highlight class="stringliteral">&quot;ex_path_to_png_output.png&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
 </programlisting></para>
@@ -1262,7 +1317,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/path.hpp" line="445" column="8" bodyfile="HighMap/src/geometry/path.cpp" bodystart="529" bodyend="536"/>
+        <location file="HighMap/include/highmap/geometry/path.hpp" line="460" column="8" bodyfile="HighMap/src/geometry/path.cpp" bodystart="612" bodyend="619"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -1281,33 +1336,33 @@
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>---<sp/>open<sp/>path<sp/>with<sp/>(x,<sp/>y)<sp/>and<sp/>values<sp/>defined<sp/>as<sp/>vectors</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>path<sp/>=<sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref>({-0.5f,<sp/>1.5f,<sp/>0.5f},<sp/></highlight><highlight class="comment">//<sp/>x</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref><sp/>=<sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref>({-0.5f,<sp/>1.5f,<sp/>0.5f},<sp/></highlight><highlight class="comment">//<sp/>x</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{1.f,<sp/>2.f,<sp/>4.f},<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>y</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{0.f,<sp/>1.f,<sp/>2.f}<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>values</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>z1<sp/>=<sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>path.<ref refid="classhmap_1_1Path_1a4d1e1e63fea24bf8f23bc3343f8b746e" kindref="member">to_array</ref>(z1,<sp/>bbox);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.to_array(z1,<sp/>bbox);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>---<sp/>generate<sp/>a<sp/>closed<sp/>path<sp/>using<sp/>a<sp/>random<sp/>set<sp/>of<sp/>points</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>npoints<sp/>=<sp/>5;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>path<sp/>=<sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref>(npoints,<sp/>seed,<sp/>bbox);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>path.<ref refid="classhmap_1_1Path_1aeb2890d2ffbbf4291baf255c621095de" kindref="member">set_closed</ref>(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref><sp/>=<sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref>(npoints,<sp/>seed,<sp/>bbox);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.set_closed(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>path.<ref refid="classhmap_1_1Path_1ad68abaa80879402c3758e24626acfb53" kindref="member">reorder_nns</ref>();<sp/></highlight><highlight class="comment">//<sp/>reorder<sp/>points<sp/>to<sp/>get<sp/>a<sp/>better<sp/>look</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.reorder_nns();<sp/></highlight><highlight class="comment">//<sp/>reorder<sp/>points<sp/>to<sp/>get<sp/>a<sp/>better<sp/>look</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>z2<sp/>=<sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>path.<ref refid="classhmap_1_1Path_1a4d1e1e63fea24bf8f23bc3343f8b746e" kindref="member">to_array</ref>(z2,<sp/>bbox);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.to_array(z2,<sp/>bbox);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>fractalize</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/>iterations<sp/>=<sp/>4;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>sigma<sp/>=<sp/>0.3f;</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>path.<ref refid="classhmap_1_1Path_1a84e0832a3c3a4c9e1f9bcefdc6d32cd0" kindref="member">resample_uniform</ref>();<sp/></highlight><highlight class="comment">//<sp/>to<sp/>ensure<sp/>a<sp/>&quot;uniform&quot;<sp/>output</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>path<sp/>=<sp/><ref refid="namespacehmap_1a4b8d2696326fca08bf5143c6b492b9d1" kindref="member">hmap::fractalize</ref>(path,<sp/>iterations,<sp/>seed,<sp/>sigma);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.resample_uniform();<sp/></highlight><highlight class="comment">//<sp/>to<sp/>ensure<sp/>a<sp/>&quot;uniform&quot;<sp/>output</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref><sp/>=<sp/><ref refid="namespacehmap_1a4b8d2696326fca08bf5143c6b492b9d1" kindref="member">hmap::fractalize</ref>(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>,<sp/>iterations,<sp/>seed,<sp/>sigma);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>z3<sp/>=<sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>path.<ref refid="classhmap_1_1Path_1a4d1e1e63fea24bf8f23bc3343f8b746e" kindref="member">to_array</ref>(z3,<sp/>bbox);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.to_array(z3,<sp/>bbox);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1ac2452e568959bc21c9b7b09202e5977a" kindref="member">hmap::export_banner_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_path.png&quot;</highlight><highlight class="normal">,<sp/>{z1,<sp/>z2,<sp/>z3},<sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369afd0b9cd53cbae62c25ef686ba527d143" kindref="member">hmap::Cmap::INFERNO</ref>);</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
@@ -1352,7 +1407,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="HighMap/include/highmap/geometry/path.hpp" line="42" column="1" bodyfile="HighMap/include/highmap/geometry/path.hpp" bodystart="43" bodyend="453"/>
+    <location file="HighMap/include/highmap/geometry/path.hpp" line="42" column="1" bodyfile="HighMap/include/highmap/geometry/path.hpp" bodystart="43" bodyend="468"/>
     <listofallmembers>
       <member refid="classhmap_1_1Cloud_1a866ec6610eec3e9c0de92aacbfcbefb1" prot="public" virt="non-virtual"><scope>hmap::Path</scope><name>at</name></member>
       <member refid="classhmap_1_1Cloud_1aafa7e8dda6f65d37f30c3fa8414481c0" prot="public" virt="non-virtual"><scope>hmap::Path</scope><name>at</name></member>
@@ -1426,6 +1481,7 @@
       <member refid="classhmap_1_1Cloud_1ac9ab31444357a0a0c3922b4d16ccef7f" prot="public" virt="non-virtual"><scope>hmap::Path</scope><name>push_back</name></member>
       <member refid="classhmap_1_1Cloud_1a848261f1bc463decda8d4307c741c041" prot="public" virt="non-virtual"><scope>hmap::Path</scope><name>push_back</name></member>
       <member refid="classhmap_1_1Cloud_1aa6f1b0089949fc2e8ed6e7e3ce465448" prot="public" virt="non-virtual"><scope>hmap::Path</scope><name>randomize</name></member>
+      <member refid="classhmap_1_1Path_1ab22687eef2bfb9e03e0ad25a808c175b" prot="public" virt="non-virtual"><scope>hmap::Path</scope><name>rasterize_capsules</name></member>
       <member refid="classhmap_1_1Cloud_1a35d0d2e48f4063bd7b582bd24a132294" prot="public" virt="non-virtual"><scope>hmap::Path</scope><name>remap_values</name></member>
       <member refid="classhmap_1_1Path_1ad68abaa80879402c3758e24626acfb53" prot="public" virt="non-virtual"><scope>hmap::Path</scope><name>reorder_nns</name></member>
       <member refid="classhmap_1_1Path_1a649a385315a3230c058d032b2171424a" prot="public" virt="non-virtual"><scope>hmap::Path</scope><name>resample_by_spacing</name></member>

@@ -87,6 +87,8 @@ void \mbox{\hyperlink{classhmap_1_1Path_ad85aa61692aadbfa1f3f08096cb0594c}{clear
 \begin{DoxyCompactList}\small\item\em Clear the path data. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classhmap_1_1Path_a4934980f265ae283c847fc091fe45c75}{enforce\+\_\+monotonic\+\_\+values}} (bool decreasing=true)
 \begin{DoxyCompactList}\small\item\em Enforces monotonicity on the values of the points in the path. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1Path_ab22687eef2bfb9e03e0ad25a808c175b}{rasterize\+\_\+capsules}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&out\+\_\+dist\+\_\+sq, float radius, glm\+::vec4 bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}) const
+\begin{DoxyCompactList}\small\item\em Rasterize path segments as capsules with a given radius onto a distance map. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classhmap_1_1Path_ad68abaa80879402c3758e24626acfb53}{reorder\+\_\+nns}} (int start\+\_\+index=0)
 \begin{DoxyCompactList}\small\item\em Reorder points using a nearest neighbor search. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classhmap_1_1Path_ab6fd0674d8d1f9a2d0ba224ec4c4cd46}{reverse}} ()
@@ -232,7 +234,7 @@ void \mbox{\hyperlink{classhmap_1_1Cloud_aa6f1b0089949fc2e8ed6e7e3ce465448}{rand
 \begin{DoxyCompactList}\small\item\em Randomize the positions and values of the cloud points. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classhmap_1_1Cloud_a35d0d2e48f4063bd7b582bd24a132294}{remap\+\_\+values}} (float vmin, float vmax)
 \begin{DoxyCompactList}\small\item\em Remap the values of the cloud points to a target range. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classhmap_1_1Cloud_a40ce66b57cb73cbe322b1aa875021c98}{shuffle}} (float \mbox{\hyperlink{trench_8cpp_a9eae6c1f38db98ab568f3ed3771a969d}{dx}}, float \mbox{\hyperlink{trench_8cpp_a8f461b6142ce8725218813abb23b06a3}{dy}}, std\+::uint32\+\_\+t seed, float dv=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+void \mbox{\hyperlink{classhmap_1_1Cloud_a40ce66b57cb73cbe322b1aa875021c98}{shuffle}} (float dx, float dy, std\+::uint32\+\_\+t seed, float dv=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
 \begin{DoxyCompactList}\small\item\em Randomly perturbs the positions and values of all points in the cloud. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classhmap_1_1Cloud_a7b26dc92e0d2217b8438f1ce9376ea0d}{snap\+\_\+points\+\_\+to\+\_\+bounding\+\_\+box}} (const glm\+::vec4 \&bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}, float tolerance\+\_\+ratio=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
 \begin{DoxyCompactList}\small\item\em Snap points to the bounding box edges and corners. \end{DoxyCompactList}\item 
@@ -278,33 +280,33 @@ The {\ttfamily \doxylink{classhmap_1_1Path}{Path}} class extends the {\ttfamily 
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ open\ path\ with\ (x,\ y)\ and\ values\ defined\ as\ vectors}}
 \DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ path\ =\ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}(\{-\/0.5f,\ 1.5f,\ 0.5f\},\ \textcolor{comment}{//\ x}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}\ =\ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}(\{-\/0.5f,\ 1.5f,\ 0.5f\},\ \textcolor{comment}{//\ x}}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{1.f,\ 2.f,\ 4.f\},\ \ \ \ \ \textcolor{comment}{//\ y}}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{0.f,\ 1.f,\ 2.f\}\ \ \ \ \ \ \textcolor{comment}{//\ values}}
 \DoxyCodeLine{\ \ );}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ z1\ =\ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}});}
-\DoxyCodeLine{\ \ path.\mbox{\hyperlink{classhmap_1_1Path_a4d1e1e63fea24bf8f23bc3343f8b746e}{to\_array}}(z1,\ bbox);}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}.to\_array(z1,\ bbox);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ generate\ a\ closed\ path\ using\ a\ random\ set\ of\ points}}
 \DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ npoints\ =\ 5;}
-\DoxyCodeLine{\ \ path\ =\ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}(npoints,\ seed,\ bbox);}
-\DoxyCodeLine{\ \ path.\mbox{\hyperlink{classhmap_1_1Path_aeb2890d2ffbbf4291baf255c621095de}{set\_closed}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}\ =\ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}(npoints,\ seed,\ bbox);}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}.set\_closed(\textcolor{keyword}{true});}
 \DoxyCodeLine{}
-\DoxyCodeLine{\ \ path.\mbox{\hyperlink{classhmap_1_1Path_ad68abaa80879402c3758e24626acfb53}{reorder\_nns}}();\ \textcolor{comment}{//\ reorder\ points\ to\ get\ a\ better\ look}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}.reorder\_nns();\ \textcolor{comment}{//\ reorder\ points\ to\ get\ a\ better\ look}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ z2\ =\ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}});}
-\DoxyCodeLine{\ \ path.\mbox{\hyperlink{classhmap_1_1Path_a4d1e1e63fea24bf8f23bc3343f8b746e}{to\_array}}(z2,\ bbox);}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}.to\_array(z2,\ bbox);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \textcolor{comment}{//\ fractalize}}
 \DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ iterations\ =\ 4;}
 \DoxyCodeLine{\ \ \textcolor{keywordtype}{float}\ sigma\ =\ 0.3f;}
 \DoxyCodeLine{}
-\DoxyCodeLine{\ \ path.\mbox{\hyperlink{classhmap_1_1Path_a84e0832a3c3a4c9e1f9bcefdc6d32cd0}{resample\_uniform}}();\ \textcolor{comment}{//\ to\ ensure\ a\ "{}uniform"{}\ output}}
-\DoxyCodeLine{\ \ path\ =\ \mbox{\hyperlink{namespacehmap_a4b8d2696326fca08bf5143c6b492b9d1}{hmap::fractalize}}(path,\ iterations,\ seed,\ sigma);}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}.resample\_uniform();\ \textcolor{comment}{//\ to\ ensure\ a\ "{}uniform"{}\ output}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}\ =\ \mbox{\hyperlink{namespacehmap_a4b8d2696326fca08bf5143c6b492b9d1}{hmap::fractalize}}(\mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}},\ iterations,\ seed,\ sigma);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ z3\ =\ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}});}
-\DoxyCodeLine{\ \ path.\mbox{\hyperlink{classhmap_1_1Path_a4d1e1e63fea24bf8f23bc3343f8b746e}{to\_array}}(z3,\ bbox);}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}.to\_array(z3,\ bbox);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_ac2452e568959bc21c9b7b09202e5977a}{hmap::export\_banner\_png}}(\textcolor{stringliteral}{"{}ex\_path.png"{}},\ \{z1,\ z2,\ z3\},\ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369afd0b9cd53cbae62c25ef686ba527d143}{hmap::Cmap::INFERNO}});}
 \DoxyCodeLine{\}}
@@ -700,6 +702,27 @@ This method adjusts the {\ttfamily v} values of the points in the path to ensure
 \begin{DoxyNote}{Note}
 This method modifies the path in place. 
 \end{DoxyNote}
+\Hypertarget{classhmap_1_1Path_ab22687eef2bfb9e03e0ad25a808c175b}\label{classhmap_1_1Path_ab22687eef2bfb9e03e0ad25a808c175b} 
+\index{hmap::Path@{hmap::Path}!rasterize\_capsules@{rasterize\_capsules}}
+\index{rasterize\_capsules@{rasterize\_capsules}!hmap::Path@{hmap::Path}}
+\doxysubsubsection{\texorpdfstring{rasterize\_capsules()}{rasterize\_capsules()}}
+{\footnotesize\ttfamily void hmap\+::\+Path\+::rasterize\+\_\+capsules (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{out\+\_\+dist\+\_\+sq,  }\item[{float}]{radius,  }\item[{glm\+::vec4}]{bbox = {\ttfamily \{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}},~1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}},~0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}},~1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}} }\end{DoxyParamCaption}) const}
+
+
+
+Rasterize path segments as capsules with a given radius onto a distance map. 
+
+For each segment in the path, rasterizes a capsule of the specified {\ttfamily radius} into {\ttfamily out\+\_\+dist\+\_\+sq}. Only pixels within each capsule are evaluated.
+
+
+\begin{DoxyParams}{Parameters}
+{\em out\+\_\+dist\+\_\+sq} & Output array receiving the minimum squared distance. \\
+\hline
+{\em radius} & Capsule radius in world domain coordinates. \\
+\hline
+{\em bbox} & Domain bounding box (xmin, xmax, ymin, ymax). \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classhmap_1_1Path_ad68abaa80879402c3758e24626acfb53}\label{classhmap_1_1Path_ad68abaa80879402c3758e24626acfb53} 
 \index{hmap::Path@{hmap::Path}!reorder\_nns@{reorder\_nns}}
 \index{reorder\_nns@{reorder\_nns}!hmap::Path@{hmap::Path}}
@@ -785,8 +808,8 @@ The path is reparameterized by arc length and interpolated using cubic splines f
 \DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ seed\ =\ 0;}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ glm::vec4\ \ bbox\ =\ \{1.f,\ 2.f,\ -\/0.5f,\ 0.5f\};}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ path\ =\ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}(10,\ seed,\ \{1.2f,\ 1.8f,\ -\/0.3,\ 0.3f\});}
-\DoxyCodeLine{\ \ path.\mbox{\hyperlink{classhmap_1_1Path_ad68abaa80879402c3758e24626acfb53}{reorder\_nns}}();}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}\ =\ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}(10,\ seed,\ \{1.2f,\ 1.8f,\ -\/0.3,\ 0.3f\});}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}.\mbox{\hyperlink{classhmap_1_1Path_ad68abaa80879402c3758e24626acfb53}{reorder\_nns}}();}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ npoints\ =\ 100;}
 \DoxyCodeLine{}
@@ -804,15 +827,15 @@ The path is reparameterized by arc length and interpolated using cubic splines f
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ Open\ path}}
 \DoxyCodeLine{}
-\DoxyCodeLine{\ \ path.\mbox{\hyperlink{classhmap_1_1Path_aeb2890d2ffbbf4291baf255c621095de}{set\_closed}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}.set\_closed(\textcolor{keyword}{false});}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \textcolor{comment}{//\ original\ path}}
 \DoxyCodeLine{\ \ arrays.clear();}
-\DoxyCodeLine{\ \ arrays.push\_back(path.\mbox{\hyperlink{classhmap_1_1Path_a4d1e1e63fea24bf8f23bc3343f8b746e}{to\_array}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ bbox));}
+\DoxyCodeLine{\ \ arrays.push\_back(\mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}.to\_array(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ bbox));}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ method\ :\ methods)}
 \DoxyCodeLine{\ \ \{}
-\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ path\_copy\ =\ path;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ path\_copy\ =\ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}};}
 \DoxyCodeLine{\ \ \ \ path\_copy.\mbox{\hyperlink{classhmap_1_1Path_afe00587a87fc52524487b197818404f0}{resample\_interp}}(npoints,\ method);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ plot\ to\ an\ array}}
@@ -823,15 +846,15 @@ The path is reparameterized by arc length and interpolated using cubic splines f
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ Closed\ path}}
 \DoxyCodeLine{}
-\DoxyCodeLine{\ \ path.\mbox{\hyperlink{classhmap_1_1Path_aeb2890d2ffbbf4291baf255c621095de}{set\_closed}}(\textcolor{keyword}{true});}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}.set\_closed(\textcolor{keyword}{true});}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \textcolor{comment}{//\ original\ path}}
 \DoxyCodeLine{\ \ arrays.clear();}
-\DoxyCodeLine{\ \ arrays.push\_back(path.\mbox{\hyperlink{classhmap_1_1Path_a4d1e1e63fea24bf8f23bc3343f8b746e}{to\_array}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ bbox));}
+\DoxyCodeLine{\ \ arrays.push\_back(\mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}.to\_array(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ bbox));}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ method\ :\ methods)}
 \DoxyCodeLine{\ \ \{}
-\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ path\_copy\ =\ path;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ path\_copy\ =\ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}};}
 \DoxyCodeLine{\ \ \ \ path\_copy.\mbox{\hyperlink{classhmap_1_1Path_afe00587a87fc52524487b197818404f0}{resample\_interp}}(npoints,\ method);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ plot\ to\ an\ array}}
@@ -842,19 +865,19 @@ The path is reparameterized by arc length and interpolated using cubic splines f
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ Wrappers}}
 \DoxyCodeLine{}
-\DoxyCodeLine{\ \ path.\mbox{\hyperlink{classhmap_1_1Path_aeb2890d2ffbbf4291baf255c621095de}{set\_closed}}(\textcolor{keyword}{false});}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}.set\_closed(\textcolor{keyword}{false});}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ arrays.clear();}
-\DoxyCodeLine{\ \ arrays.push\_back(path.\mbox{\hyperlink{classhmap_1_1Path_a4d1e1e63fea24bf8f23bc3343f8b746e}{to\_array}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ bbox));}
+\DoxyCodeLine{\ \ arrays.push\_back(\mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}.to\_array(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ bbox));}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \{}
-\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ path\_copy\ =\ path;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ path\_copy\ =\ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}};}
 \DoxyCodeLine{\ \ \ \ path\_copy.\mbox{\hyperlink{classhmap_1_1Path_a84e0832a3c3a4c9e1f9bcefdc6d32cd0}{resample\_uniform}}();}
 \DoxyCodeLine{\ \ \ \ arrays.push\_back(path\_copy.\mbox{\hyperlink{classhmap_1_1Path_a4d1e1e63fea24bf8f23bc3343f8b746e}{to\_array}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ bbox));}
 \DoxyCodeLine{\ \ \}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \{}
-\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ path\_copy\ =\ path;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ path\_copy\ =\ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}};}
 \DoxyCodeLine{\ \ \ \ path\_copy.\mbox{\hyperlink{classhmap_1_1Path_a649a385315a3230c058d032b2171424a}{resample\_by\_spacing}}(0.01f);}
 \DoxyCodeLine{\ \ \ \ arrays.push\_back(path\_copy.\mbox{\hyperlink{classhmap_1_1Path_a4d1e1e63fea24bf8f23bc3343f8b746e}{to\_array}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ bbox));}
 \DoxyCodeLine{\ \ \}}
@@ -941,12 +964,12 @@ This method projects the points of the path onto a 2D array, filling the array b
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{void})}
 \DoxyCodeLine{\{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ path;}
-\DoxyCodeLine{\ \ path.\mbox{\hyperlink{classhmap_1_1Cloud_ac9ab31444357a0a0c3922b4d16ccef7f}{push\_back}}(\{10.f,\ 10.f\});}
-\DoxyCodeLine{\ \ path.\mbox{\hyperlink{classhmap_1_1Cloud_ac9ab31444357a0a0c3922b4d16ccef7f}{push\_back}}(\{240.f,\ 240.f\});}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}};}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}.\mbox{\hyperlink{classhmap_1_1Cloud_ac9ab31444357a0a0c3922b4d16ccef7f}{push\_back}}(\{10.f,\ 10.f\});}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}.push\_back(\{240.f,\ 240.f\});}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}(\{256,\ 256\},\ 0.f);}
-\DoxyCodeLine{\ \ path.\mbox{\hyperlink{classhmap_1_1Path_a4d1e1e63fea24bf8f23bc3343f8b746e}{to\_array}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}});}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}.to\_array(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}});}
 \DoxyCodeLine{\ \ \textcolor{keywordflow}{return}\ 0;}
 \DoxyCodeLine{\}}
 
@@ -1000,11 +1023,11 @@ This method generates a PNG image representing the path and saves it to the spec
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{void})}
 \DoxyCodeLine{\{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ path;}
-\DoxyCodeLine{\ \ path.\mbox{\hyperlink{classhmap_1_1Cloud_ac9ab31444357a0a0c3922b4d16ccef7f}{push\_back}}(\{10.f,\ 10.f\});}
-\DoxyCodeLine{\ \ path.\mbox{\hyperlink{classhmap_1_1Cloud_ac9ab31444357a0a0c3922b4d16ccef7f}{push\_back}}(\{240.f,\ 240.f\});}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}};}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}.\mbox{\hyperlink{classhmap_1_1Cloud_ac9ab31444357a0a0c3922b4d16ccef7f}{push\_back}}(\{10.f,\ 10.f\});}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}.push\_back(\{240.f,\ 240.f\});}
 \DoxyCodeLine{}
-\DoxyCodeLine{\ \ path.\mbox{\hyperlink{classhmap_1_1Path_aaf9111fdcae15cc51cfcd5faffb38f23}{to\_png}}(\textcolor{stringliteral}{"{}ex\_path\_to\_png\_output.png"{}});}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}.to\_png(\textcolor{stringliteral}{"{}ex\_path\_to\_png\_output.png"{}});}
 \DoxyCodeLine{\ \ \textcolor{keywordflow}{return}\ 0;}
 \DoxyCodeLine{\}}
 

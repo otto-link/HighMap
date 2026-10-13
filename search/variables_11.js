@@ -17,8 +17,9 @@ var searchData=
   ['residual_14',['residual',['../classhmap_1_1PyramidDecomposition.html#ac711ffdbd5c38eb1f028106ceed16075',1,'hmap::PyramidDecomposition']]],
   ['respawn_5fout_5fof_5fbounds_15',['respawn_out_of_bounds',['../structhmap_1_1RockSimulationOptions.html#a78f0777ea563f1e4da954608278fb544',1,'hmap::RockSimulationOptions']]],
   ['ret_16',['ret',['../structhmap_1_1AssertResults.html#a8999b609fb640f3c04ee1c54d2195ef5',1,'hmap::AssertResults']]],
-  ['rolling_5fresistance_17',['rolling_resistance',['../structhmap_1_1RockSimulationOptions.html#a60d030d641551fccabed148ab4bb8b17',1,'hmap::RockSimulationOptions']]],
-  ['roots_18',['roots',['../classhmap_1_1DrainageBasinCellBased.html#af086db7261ccb7e0f08cffb7b1e9a1a5',1,'hmap::DrainageBasinCellBased']]],
-  ['rx_19',['rx',['../classhmap_1_1RectangleFunction.html#a4cb4e1ecf55533045db6f660d410de2f',1,'hmap::RectangleFunction']]],
-  ['ry_20',['ry',['../classhmap_1_1RectangleFunction.html#a522e126417d6f1b6b8069ee05cf523a7',1,'hmap::RectangleFunction']]]
+  ['right_17',['right',['../structhmap_1_1BVH2D_1_1Node.html#a5ae3aa3b4b06823e6c7d208523d6114e',1,'hmap::BVH2D::Node']]],
+  ['rolling_5fresistance_18',['rolling_resistance',['../structhmap_1_1RockSimulationOptions.html#a60d030d641551fccabed148ab4bb8b17',1,'hmap::RockSimulationOptions']]],
+  ['roots_19',['roots',['../classhmap_1_1DrainageBasinCellBased.html#af086db7261ccb7e0f08cffb7b1e9a1a5',1,'hmap::DrainageBasinCellBased']]],
+  ['rx_20',['rx',['../classhmap_1_1RectangleFunction.html#a4cb4e1ecf55533045db6f660d410de2f',1,'hmap::RectangleFunction']]],
+  ['ry_21',['ry',['../classhmap_1_1RectangleFunction.html#a522e126417d6f1b6b8069ee05cf523a7',1,'hmap::RectangleFunction']]]
 ];

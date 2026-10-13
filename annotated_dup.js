@@ -11,6 +11,7 @@ var annotated_dup =
         [ "Neighbor", "structhmap_1_1neighborhood_1_1Neighbor.html", "structhmap_1_1neighborhood_1_1Neighbor" ],
         [ "NeighborWeighted", "structhmap_1_1neighborhood_1_1NeighborWeighted.html", "structhmap_1_1neighborhood_1_1NeighborWeighted" ]
       ] ],
+      [ "AABB2D", "structhmap_1_1AABB2D.html", "structhmap_1_1AABB2D" ],
       [ "Array", "classhmap_1_1Array.html", "classhmap_1_1Array" ],
       [ "ArrayControlFunction", "classhmap_1_1ArrayControlFunction.html", "classhmap_1_1ArrayControlFunction" ],
       [ "ArrayFunction", "classhmap_1_1ArrayFunction.html", "classhmap_1_1ArrayFunction" ],
@@ -18,6 +19,7 @@ var annotated_dup =
       [ "BigTiffWriter", "classhmap_1_1BigTiffWriter.html", "classhmap_1_1BigTiffWriter" ],
       [ "BiquadFunction", "classhmap_1_1BiquadFunction.html", "classhmap_1_1BiquadFunction" ],
       [ "BumpFunction", "classhmap_1_1BumpFunction.html", "classhmap_1_1BumpFunction" ],
+      [ "BVH2D", "classhmap_1_1BVH2D.html", "classhmap_1_1BVH2D" ],
       [ "CellPath", "classhmap_1_1CellPath.html", "classhmap_1_1CellPath" ],
       [ "ChebyshevEvaluator", "classhmap_1_1ChebyshevEvaluator.html", "classhmap_1_1ChebyshevEvaluator" ],
       [ "Cloud", "classhmap_1_1Cloud.html", "classhmap_1_1Cloud" ],
@@ -89,6 +91,7 @@ var annotated_dup =
       [ "ScatterItem", "classhmap_1_1ScatterItem.html", "classhmap_1_1ScatterItem" ],
       [ "ScatterSeedingOptions", "structhmap_1_1ScatterSeedingOptions.html", "structhmap_1_1ScatterSeedingOptions" ],
       [ "ScopedTimer", "structhmap_1_1ScopedTimer.html", "structhmap_1_1ScopedTimer" ],
+      [ "Segment2D", "structhmap_1_1Segment2D.html", "structhmap_1_1Segment2D" ],
       [ "Simplex2Function", "classhmap_1_1Simplex2Function.html", "classhmap_1_1Simplex2Function" ],
       [ "Simplex2SFunction", "classhmap_1_1Simplex2SFunction.html", "classhmap_1_1Simplex2SFunction" ],
       [ "SlopeFunction", "classhmap_1_1SlopeFunction.html", "classhmap_1_1SlopeFunction" ],

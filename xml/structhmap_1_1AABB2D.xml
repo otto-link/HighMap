@@ -1,0 +1,226 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structhmap_1_1AABB2D" kind="struct" language="C++" prot="public">
+    <compoundname>hmap::AABB2D</compoundname>
+    <includes refid="bvh_8hpp" local="no">bvh.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structhmap_1_1AABB2D_1a0c9eb176bf87c9ecc735e388d4c7c29d" prot="public" static="no" mutable="no">
+        <type>glm::vec2</type>
+        <definition>glm::vec2 hmap::AABB2D::min</definition>
+        <argsstring></argsstring>
+        <name>min</name>
+        <qualifiedname>hmap::AABB2D::min</qualifiedname>
+        <initializer>{std::numeric_limits&lt;float&gt;::infinity()}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="28" column="13" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="28" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1AABB2D_1a4559d426fe8d02c20427504407d1e895" prot="public" static="no" mutable="no">
+        <type>glm::vec2</type>
+        <definition>glm::vec2 hmap::AABB2D::max</definition>
+        <argsstring></argsstring>
+        <name>max</name>
+        <qualifiedname>hmap::AABB2D::max</qualifiedname>
+        <initializer>{-std::numeric_limits&lt;float&gt;::infinity()}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="29" column="13" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="29" bodyend="29"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structhmap_1_1AABB2D_1a36472e85e7ca16dc51b799071a99a912" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>constexpr</type>
+        <definition>constexpr hmap::AABB2D::AABB2D</definition>
+        <argsstring>() noexcept=default</argsstring>
+        <name>AABB2D</name>
+        <qualifiedname>hmap::AABB2D::AABB2D</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="31" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1AABB2D_1a02c15d457826615942f7bc826be9a88b" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr</type>
+        <definition>constexpr hmap::AABB2D::AABB2D</definition>
+        <argsstring>(const glm::vec2 &amp;min, const glm::vec2 &amp;max) noexcept</argsstring>
+        <name>AABB2D</name>
+        <qualifiedname>hmap::AABB2D::AABB2D</qualifiedname>
+        <param>
+          <type>const glm::vec2 &amp;</type>
+          <declname>min</declname>
+        </param>
+        <param>
+          <type>const glm::vec2 &amp;</type>
+          <declname>max</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="33" column="13" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="33" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1AABB2D_1a5ac3b769790cf7a9f742fe68eda2690b" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr</type>
+        <definition>constexpr hmap::AABB2D::AABB2D</definition>
+        <argsstring>(float min_x, float min_y, float max_x, float max_y) noexcept</argsstring>
+        <name>AABB2D</name>
+        <qualifiedname>hmap::AABB2D::AABB2D</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>min_x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>min_y</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>max_x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>max_y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="38" column="13" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="38" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1AABB2D_1afada0942c33ae4411eb9979e6ece8733" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr bool</type>
+        <definition>constexpr bool hmap::AABB2D::contains</definition>
+        <argsstring>(const glm::vec2 &amp;p) const noexcept</argsstring>
+        <name>contains</name>
+        <qualifiedname>hmap::AABB2D::contains</qualifiedname>
+        <param>
+          <type>const glm::vec2 &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="43" column="18" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="43" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1AABB2D_1a9cdb78ad36d25875cb0ba86e20efd765" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr bool</type>
+        <definition>constexpr bool hmap::AABB2D::overlaps</definition>
+        <argsstring>(const AABB2D &amp;other) const noexcept</argsstring>
+        <name>overlaps</name>
+        <qualifiedname>hmap::AABB2D::overlaps</qualifiedname>
+        <param>
+          <type>const <ref refid="structhmap_1_1AABB2D" kindref="compound">AABB2D</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="48" column="18" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="48" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1AABB2D_1a2cb2b855310306e35a3565d694ae957a" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr void</type>
+        <definition>constexpr void hmap::AABB2D::expand</definition>
+        <argsstring>(const glm::vec2 &amp;p) noexcept</argsstring>
+        <name>expand</name>
+        <qualifiedname>hmap::AABB2D::expand</qualifiedname>
+        <param>
+          <type>const glm::vec2 &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="54" column="18" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="54" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1AABB2D_1afe3b1691e84aca8e5febb92b684ae6b1" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr void</type>
+        <definition>constexpr void hmap::AABB2D::expand</definition>
+        <argsstring>(const AABB2D &amp;other) noexcept</argsstring>
+        <name>expand</name>
+        <qualifiedname>hmap::AABB2D::expand</qualifiedname>
+        <param>
+          <type>const <ref refid="structhmap_1_1AABB2D" kindref="compound">AABB2D</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="60" column="18" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="60" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1AABB2D_1a44650788b47dba658129e61c9c253d65" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr glm::vec2</type>
+        <definition>constexpr glm::vec2 hmap::AABB2D::center</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>center</name>
+        <qualifiedname>hmap::AABB2D::center</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="66" column="23" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="66" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1AABB2D_1a9838e3e84603ed143bdb9cc662a287a4" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr glm::vec2</type>
+        <definition>constexpr glm::vec2 hmap::AABB2D::extent</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>extent</name>
+        <qualifiedname>hmap::AABB2D::extent</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="71" column="23" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="71" bodyend="74"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>2D Axis-Aligned Bounding Box (AABB). </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="HighMap/include/highmap/geometry/bvh.hpp" line="26" column="1" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="27" bodyend="75"/>
+    <listofallmembers>
+      <member refid="structhmap_1_1AABB2D_1a36472e85e7ca16dc51b799071a99a912" prot="public" virt="non-virtual"><scope>hmap::AABB2D</scope><name>AABB2D</name></member>
+      <member refid="structhmap_1_1AABB2D_1a02c15d457826615942f7bc826be9a88b" prot="public" virt="non-virtual"><scope>hmap::AABB2D</scope><name>AABB2D</name></member>
+      <member refid="structhmap_1_1AABB2D_1a5ac3b769790cf7a9f742fe68eda2690b" prot="public" virt="non-virtual"><scope>hmap::AABB2D</scope><name>AABB2D</name></member>
+      <member refid="structhmap_1_1AABB2D_1a44650788b47dba658129e61c9c253d65" prot="public" virt="non-virtual"><scope>hmap::AABB2D</scope><name>center</name></member>
+      <member refid="structhmap_1_1AABB2D_1afada0942c33ae4411eb9979e6ece8733" prot="public" virt="non-virtual"><scope>hmap::AABB2D</scope><name>contains</name></member>
+      <member refid="structhmap_1_1AABB2D_1a2cb2b855310306e35a3565d694ae957a" prot="public" virt="non-virtual"><scope>hmap::AABB2D</scope><name>expand</name></member>
+      <member refid="structhmap_1_1AABB2D_1afe3b1691e84aca8e5febb92b684ae6b1" prot="public" virt="non-virtual"><scope>hmap::AABB2D</scope><name>expand</name></member>
+      <member refid="structhmap_1_1AABB2D_1a9838e3e84603ed143bdb9cc662a287a4" prot="public" virt="non-virtual"><scope>hmap::AABB2D</scope><name>extent</name></member>
+      <member refid="structhmap_1_1AABB2D_1a4559d426fe8d02c20427504407d1e895" prot="public" virt="non-virtual"><scope>hmap::AABB2D</scope><name>max</name></member>
+      <member refid="structhmap_1_1AABB2D_1a0c9eb176bf87c9ecc735e388d4c7c29d" prot="public" virt="non-virtual"><scope>hmap::AABB2D</scope><name>min</name></member>
+      <member refid="structhmap_1_1AABB2D_1a9cdb78ad36d25875cb0ba86e20efd765" prot="public" virt="non-virtual"><scope>hmap::AABB2D</scope><name>overlaps</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

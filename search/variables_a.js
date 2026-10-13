@@ -1,8 +1,8 @@
 var searchData=
 [
   ['k_0',['k',['../classhmap_1_1PerlinHalfFunction.html#aa00e81a0bf0458d37e90807a0f550607',1,'hmap::PerlinHalfFunction::k'],['../classhmap_1_1WorleyDoubleFunction.html#af26f43647e20fe6fc3ff88ed4c1e1274',1,'hmap::WorleyDoubleFunction::k']]],
-  ['k0_1',['k0',['../trench_8cpp.html#a02daf0fb99b2068743763985f032da4f',1,'trench.cpp']]],
-  ['k1_2',['k1',['../trench_8cpp.html#a94537a392751398dca7d2332971272c7',1,'trench.cpp']]],
+  ['k0_1',['k0',['../structhmap_1_1Segment2D.html#a31eadbad53b5abae304bdeeb562f9712',1,'hmap::Segment2D']]],
+  ['k1_2',['k1',['../structhmap_1_1Segment2D.html#ad1375ac412d56e4c1910adcac469e207',1,'hmap::Segment2D']]],
   ['k_5fcutoff_3',['k_cutoff',['../structhmap_1_1ComputeMode.html#a5a23331035fb8f7e50e22a6e8663ba25',1,'hmap::ComputeMode']]],
   ['k_5fsmoothing_4',['k_smoothing',['../classhmap_1_1FbmPingpongFunction.html#ae77c4b0f049d8d69f861e2e25df5e635',1,'hmap::FbmPingpongFunction::k_smoothing'],['../classhmap_1_1FbmRidgedFunction.html#a9c9642aaca3aad5f54a9efbcb3f9a4fc',1,'hmap::FbmRidgedFunction::k_smoothing']]],
   ['key_5',['key',['../structhmap_1_1TileRegion.html#afb89981844bdc0270441e8464f00ccdc',1,'hmap::TileRegion']]],

@@ -1,8 +1,10 @@
 var hierarchy =
 [
+    [ "hmap::AABB2D", "structhmap_1_1AABB2D.html", null ],
     [ "hmap::Array", "classhmap_1_1Array.html", null ],
     [ "hmap::AssertResults", "structhmap_1_1AssertResults.html", null ],
     [ "hmap::TerrainTriMesh::BoundingBox", "structhmap_1_1TerrainTriMesh_1_1BoundingBox.html", null ],
+    [ "hmap::BVH2D", "classhmap_1_1BVH2D.html", null ],
     [ "hmap::CellPath", "classhmap_1_1CellPath.html", null ],
     [ "hmap::ChebyshevEvaluator", "classhmap_1_1ChebyshevEvaluator.html", null ],
     [ "hmap::Cloud", "classhmap_1_1Cloud.html", [
@@ -99,6 +101,7 @@ var hierarchy =
     [ "hmap::TerrainTriMesh::Neighbor", "structhmap_1_1TerrainTriMesh_1_1Neighbor.html", null ],
     [ "hmap::TerrainTriMesh::NeighborData", "structhmap_1_1TerrainTriMesh_1_1NeighborData.html", null ],
     [ "hmap::neighborhood::NeighborWeighted", "structhmap_1_1neighborhood_1_1NeighborWeighted.html", null ],
+    [ "hmap::BVH2D::Node", "structhmap_1_1BVH2D_1_1Node.html", null ],
     [ "hmap::PdfSampler", "classhmap_1_1PdfSampler.html", null ],
     [ "hmap::gpu::McDonaldParams::PhysicalParams", "structhmap_1_1gpu_1_1McDonaldParams_1_1PhysicalParams.html", null ],
     [ "hmap::Point", "classhmap_1_1Point.html", null ],
@@ -114,6 +117,7 @@ var hierarchy =
     [ "hmap::ScatterItem", "classhmap_1_1ScatterItem.html", null ],
     [ "hmap::ScatterSeedingOptions", "structhmap_1_1ScatterSeedingOptions.html", null ],
     [ "hmap::ScopedTimer", "structhmap_1_1ScopedTimer.html", null ],
+    [ "hmap::Segment2D", "structhmap_1_1Segment2D.html", null ],
     [ "hmap::TerrainTriMesh::ShortestPathResult", "structhmap_1_1TerrainTriMesh_1_1ShortestPathResult.html", null ],
     [ "hmap::Species", "structhmap_1_1Species.html", null ],
     [ "hmap::SpeciesLookup", "structhmap_1_1SpeciesLookup.html", null ],

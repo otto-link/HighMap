@@ -1,13 +1,13 @@
 var searchData=
 [
   ['k_0',['k',['../classhmap_1_1PerlinHalfFunction.html#aa00e81a0bf0458d37e90807a0f550607',1,'hmap::PerlinHalfFunction::k'],['../classhmap_1_1WorleyDoubleFunction.html#af26f43647e20fe6fc3ff88ed4c1e1274',1,'hmap::WorleyDoubleFunction::k']]],
-  ['k0_1',['k0',['../trench_8cpp.html#a02daf0fb99b2068743763985f032da4f',1,'trench.cpp']]],
-  ['k1_2',['k1',['../trench_8cpp.html#a94537a392751398dca7d2332971272c7',1,'trench.cpp']]],
+  ['k0_1',['k0',['../structhmap_1_1Segment2D.html#a31eadbad53b5abae304bdeeb562f9712',1,'hmap::Segment2D']]],
+  ['k1_2',['k1',['../structhmap_1_1Segment2D.html#ad1375ac412d56e4c1910adcac469e207',1,'hmap::Segment2D']]],
   ['k_5fcutoff_3',['k_cutoff',['../structhmap_1_1ComputeMode.html#a5a23331035fb8f7e50e22a6e8663ba25',1,'hmap::ComputeMode']]],
   ['k_5fsmoothing_4',['k_smoothing',['../classhmap_1_1FbmPingpongFunction.html#ae77c4b0f049d8d69f861e2e25df5e635',1,'hmap::FbmPingpongFunction::k_smoothing'],['../classhmap_1_1FbmRidgedFunction.html#a9c9642aaca3aad5f54a9efbcb3f9a4fc',1,'hmap::FbmRidgedFunction::k_smoothing']]],
   ['kd_5ftree_2ecpp_5',['kd_tree.cpp',['../kd__tree_8cpp.html',1,'']]],
   ['kd_5ftree_2ehpp_6',['kd_tree.hpp',['../kd__tree_8hpp.html',1,'']]],
-  ['kdtree_7',['kdtree',['../classhmap_1_1KDTree.html#ae9918e3fef110fd3aa26bc7aaed641c0',1,'hmap::KDTree::KDTree()'],['../classhmap_1_1KDTree.html',1,'hmap::KDTree'],['../classhmap_1_1KDTree.html#a9cc921455bc2aacf05048ec70d8e1efb',1,'hmap::KDTree::KDTree(KDTree &amp;&amp;other) noexcept'],['../classhmap_1_1KDTree.html#a2089caf6b31e8717d082d178ae2ace87',1,'hmap::KDTree::KDTree(const Cloud &amp;cloud)'],['../classhmap_1_1KDTree.html#ae1e4ce256c73ac0697c31709afdf6f25',1,'hmap::KDTree::KDTree(const std::vector&lt; float &gt; &amp;x, const std::vector&lt; float &gt; &amp;y)'],['../classhmap_1_1KDTree.html#a379f309c3e8aa60ad886179c91244718',1,'hmap::KDTree::KDTree()'],['../classhmap_1_1KDTree.html#a6a69c840c8d2421d96fa453063b135e2',1,'hmap::KDTree::KDTree(const std::vector&lt; Point &gt; &amp;points)']]],
+  ['kdtree_7',['kdtree',['../classhmap_1_1KDTree.html#a2089caf6b31e8717d082d178ae2ace87',1,'hmap::KDTree::KDTree(const Cloud &amp;cloud)'],['../classhmap_1_1KDTree.html#ae9918e3fef110fd3aa26bc7aaed641c0',1,'hmap::KDTree::KDTree(const KDTree &amp;)=delete'],['../classhmap_1_1KDTree.html#a9cc921455bc2aacf05048ec70d8e1efb',1,'hmap::KDTree::KDTree(KDTree &amp;&amp;other) noexcept'],['../classhmap_1_1KDTree.html',1,'hmap::KDTree'],['../classhmap_1_1KDTree.html#a6a69c840c8d2421d96fa453063b135e2',1,'hmap::KDTree::KDTree(const std::vector&lt; Point &gt; &amp;points)'],['../classhmap_1_1KDTree.html#a379f309c3e8aa60ad886179c91244718',1,'hmap::KDTree::KDTree()'],['../classhmap_1_1KDTree.html#ae1e4ce256c73ac0697c31709afdf6f25',1,'hmap::KDTree::KDTree(const std::vector&lt; float &gt; &amp;x, const std::vector&lt; float &gt; &amp;y)']]],
   ['kernels_2ecpp_8',['kernels.cpp',['../kernels_8cpp.html',1,'']]],
   ['kernels_2ehpp_9',['kernels.hpp',['../kernels_8hpp.html',1,'']]],
   ['kerneltype_10',['KernelType',['../namespacehmap.html#a4b6f135c6e81d313ca54ae1efac5f2c9',1,'hmap']]],

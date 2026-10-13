@@ -210,10 +210,10 @@ $(document).ready(function(){initNavTree('logger_8hpp_source.html',''); initResi
 </div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
 <div class="foldopen" id="foldopen00096" data-start="{" data-end="}">
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="namespacehmap_1_1log_1_1detail.html#adf1a08821cd4c8261c3dba8acc3a332c">   96</a></span><span class="keyword">constexpr</span> std::string_view <a class="code hl_function" href="namespacehmap_1_1log_1_1detail.html#adf1a08821cd4c8261c3dba8acc3a332c">get_filename</a>(std::string_view path)</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="namespacehmap_1_1log_1_1detail.html#adf1a08821cd4c8261c3dba8acc3a332c">   96</a></span><span class="keyword">constexpr</span> std::string_view <a class="code hl_function" href="namespacehmap_1_1log_1_1detail.html#adf1a08821cd4c8261c3dba8acc3a332c">get_filename</a>(std::string_view <a class="code hl_variable" href="trench_8cpp.html#aea4bb978a006652d3ff42b927337913d">path</a>)</div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>{</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  <span class="keyword">const</span> <span class="keywordtype">size_t</span> pos = path.find_last_of(<span class="stringliteral">&quot;/\\&quot;</span>);</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  <span class="keywordflow">return</span> (pos == std::string_view::npos) ? path : path.substr(pos + 1);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  <span class="keyword">const</span> <span class="keywordtype">size_t</span> pos = <a class="code hl_variable" href="trench_8cpp.html#aea4bb978a006652d3ff42b927337913d">path</a>.find_last_of(<span class="stringliteral">&quot;/\\&quot;</span>);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  <span class="keywordflow">return</span> (pos == std::string_view::npos) ? <a class="code hl_variable" href="trench_8cpp.html#aea4bb978a006652d3ff42b927337913d">path</a> : <a class="code hl_variable" href="trench_8cpp.html#aea4bb978a006652d3ff42b927337913d">path</a>.substr(pos + 1);</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>}</div>
 </div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
@@ -438,6 +438,7 @@ $(document).ready(function(){initNavTree('logger_8hpp_source.html',''); initResi
 <div class="ttc" id="astructhmap_1_1log_1_1format__string__with__loc_html_a59f8ad67bd4d100b737202a9f4b19140"><div class="ttname"><a href="structhmap_1_1log_1_1format__string__with__loc.html#a59f8ad67bd4d100b737202a9f4b19140">hmap::log::format_string_with_loc::fmt</a></div><div class="ttdeci">std::format_string&lt; Args... &gt; fmt</div><div class="ttdef"><b>Definition</b> logger.hpp:60</div></div>
 <div class="ttc" id="astructhmap_1_1log_1_1format__string__with__loc_html_a9f42302c10cfeed598d216bf879c4ea9"><div class="ttname"><a href="structhmap_1_1log_1_1format__string__with__loc.html#a9f42302c10cfeed598d216bf879c4ea9">hmap::log::format_string_with_loc::format_string_with_loc</a></div><div class="ttdeci">consteval format_string_with_loc(const S &amp;s, const std::source_location &amp;l=std::source_location::current())</div><div class="ttdef"><b>Definition</b> logger.hpp:65</div></div>
 <div class="ttc" id="astructhmap_1_1log_1_1format__string__with__loc_html_ab3a11e4b6aabb05b776944e597250bdd"><div class="ttname"><a href="structhmap_1_1log_1_1format__string__with__loc.html#ab3a11e4b6aabb05b776944e597250bdd">hmap::log::format_string_with_loc::loc</a></div><div class="ttdeci">std::source_location loc</div><div class="ttdef"><b>Definition</b> logger.hpp:61</div></div>
+<div class="ttc" id="atrench_8cpp_html_aea4bb978a006652d3ff42b927337913d"><div class="ttname"><a href="trench_8cpp.html#aea4bb978a006652d3ff42b927337913d">path</a></div><div class="ttdeci">Path path</div><div class="ttdef"><b>Definition</b> trench.cpp:33</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

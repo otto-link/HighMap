@@ -1,0 +1,261 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structhmap_1_1Segment2D" kind="struct" language="C++" prot="public">
+    <compoundname>hmap::Segment2D</compoundname>
+    <includes refid="bvh_8hpp" local="no">bvh.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structhmap_1_1Segment2D_1aa52a24826685ac61b27955a58035c96b" prot="public" static="no" mutable="no">
+        <type>glm::vec2</type>
+        <definition>glm::vec2 hmap::Segment2D::p0</definition>
+        <argsstring></argsstring>
+        <name>p0</name>
+        <qualifiedname>hmap::Segment2D::p0</qualifiedname>
+        <initializer>{0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="82" column="13" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="82" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Segment2D_1a9b492c46a400a16b19bff04228a9a8a7" prot="public" static="no" mutable="no">
+        <type>glm::vec2</type>
+        <definition>glm::vec2 hmap::Segment2D::p1</definition>
+        <argsstring></argsstring>
+        <name>p1</name>
+        <qualifiedname>hmap::Segment2D::p1</qualifiedname>
+        <initializer>{0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="83" column="13" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="83" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Segment2D_1afa8c127225b3e6b523cfb6722971c096" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::Segment2D::v0</definition>
+        <argsstring></argsstring>
+        <name>v0</name>
+        <qualifiedname>hmap::Segment2D::v0</qualifiedname>
+        <initializer>{0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="84" column="13" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="84" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Segment2D_1ababb2e508a42f35b4dcf9867bfa5d380" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::Segment2D::v1</definition>
+        <argsstring></argsstring>
+        <name>v1</name>
+        <qualifiedname>hmap::Segment2D::v1</qualifiedname>
+        <initializer>{0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="85" column="13" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="85" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Segment2D_1abf40edf3463c349ff4bbefb4d0b845e2" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::Segment2D::s0</definition>
+        <argsstring></argsstring>
+        <name>s0</name>
+        <qualifiedname>hmap::Segment2D::s0</qualifiedname>
+        <initializer>{0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="86" column="13" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="86" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Segment2D_1abd5e629e11bf88f09ac7813a06f1a085" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::Segment2D::s1</definition>
+        <argsstring></argsstring>
+        <name>s1</name>
+        <qualifiedname>hmap::Segment2D::s1</qualifiedname>
+        <initializer>{0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="87" column="13" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="87" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Segment2D_1a31eadbad53b5abae304bdeeb562f9712" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t hmap::Segment2D::k0</definition>
+        <argsstring></argsstring>
+        <name>k0</name>
+        <qualifiedname>hmap::Segment2D::k0</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="88" column="13" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="88" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Segment2D_1ad1375ac412d56e4c1910adcac469e207" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t hmap::Segment2D::k1</definition>
+        <argsstring></argsstring>
+        <name>k1</name>
+        <qualifiedname>hmap::Segment2D::k1</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="89" column="13" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="89" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Segment2D_1a1a76687bab1ef40fd5c263fe38810797" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t hmap::Segment2D::path_index</definition>
+        <argsstring></argsstring>
+        <name>path_index</name>
+        <qualifiedname>hmap::Segment2D::path_index</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="90" column="13" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="90" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Segment2D_1a1808ecdd60a3fa09f046a8b84eaecfa0" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t hmap::Segment2D::id</definition>
+        <argsstring></argsstring>
+        <name>id</name>
+        <qualifiedname>hmap::Segment2D::id</qualifiedname>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="91" column="13" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="91" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Segment2D_1ac57fe92db5f5c0bd2acb8d7f3594582c" prot="public" static="no" mutable="no">
+        <type>glm::vec2</type>
+        <definition>glm::vec2 hmap::Segment2D::d</definition>
+        <argsstring></argsstring>
+        <name>d</name>
+        <qualifiedname>hmap::Segment2D::d</qualifiedname>
+        <initializer>{0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="92" column="13" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="92" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1Segment2D_1a441cb575bfe1c2aa4909c1993c6767cb" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::Segment2D::inv_len_sq</definition>
+        <argsstring></argsstring>
+        <name>inv_len_sq</name>
+        <qualifiedname>hmap::Segment2D::inv_len_sq</qualifiedname>
+        <initializer>{0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="93" column="13" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="93" bodyend="93"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structhmap_1_1Segment2D_1a9f3a8b48e800252900a53ba868752acc" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr <ref refid="structhmap_1_1AABB2D" kindref="compound">AABB2D</ref></type>
+        <definition>constexpr AABB2D hmap::Segment2D::bounds</definition>
+        <argsstring>(float padding=0.f) const noexcept</argsstring>
+        <name>bounds</name>
+        <qualifiedname>hmap::Segment2D::bounds</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>padding</declname>
+          <defval>0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="95" column="20" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="95" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1Segment2D_1aa99e4b2cead381642c43a7dc2089756b" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr glm::vec2</type>
+        <definition>constexpr glm::vec2 hmap::Segment2D::dir</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>dir</name>
+        <qualifiedname>hmap::Segment2D::dir</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="103" column="23" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="103" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="structhmap_1_1Segment2D_1a6b8491ff4e346c8f696ad62d61647be3" prot="public" static="no" constexpr="yes" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>constexpr float</type>
+        <definition>constexpr float hmap::Segment2D::len_sq</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>len_sq</name>
+        <qualifiedname>hmap::Segment2D::len_sq</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/bvh.hpp" line="108" column="19" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="108" bodyend="111"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>2D Directed line segment with metadata. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="HighMap/include/highmap/geometry/bvh.hpp" line="80" column="1" bodyfile="HighMap/include/highmap/geometry/bvh.hpp" bodystart="81" bodyend="112"/>
+    <listofallmembers>
+      <member refid="structhmap_1_1Segment2D_1a9f3a8b48e800252900a53ba868752acc" prot="public" virt="non-virtual"><scope>hmap::Segment2D</scope><name>bounds</name></member>
+      <member refid="structhmap_1_1Segment2D_1ac57fe92db5f5c0bd2acb8d7f3594582c" prot="public" virt="non-virtual"><scope>hmap::Segment2D</scope><name>d</name></member>
+      <member refid="structhmap_1_1Segment2D_1aa99e4b2cead381642c43a7dc2089756b" prot="public" virt="non-virtual"><scope>hmap::Segment2D</scope><name>dir</name></member>
+      <member refid="structhmap_1_1Segment2D_1a1808ecdd60a3fa09f046a8b84eaecfa0" prot="public" virt="non-virtual"><scope>hmap::Segment2D</scope><name>id</name></member>
+      <member refid="structhmap_1_1Segment2D_1a441cb575bfe1c2aa4909c1993c6767cb" prot="public" virt="non-virtual"><scope>hmap::Segment2D</scope><name>inv_len_sq</name></member>
+      <member refid="structhmap_1_1Segment2D_1a31eadbad53b5abae304bdeeb562f9712" prot="public" virt="non-virtual"><scope>hmap::Segment2D</scope><name>k0</name></member>
+      <member refid="structhmap_1_1Segment2D_1ad1375ac412d56e4c1910adcac469e207" prot="public" virt="non-virtual"><scope>hmap::Segment2D</scope><name>k1</name></member>
+      <member refid="structhmap_1_1Segment2D_1a6b8491ff4e346c8f696ad62d61647be3" prot="public" virt="non-virtual"><scope>hmap::Segment2D</scope><name>len_sq</name></member>
+      <member refid="structhmap_1_1Segment2D_1aa52a24826685ac61b27955a58035c96b" prot="public" virt="non-virtual"><scope>hmap::Segment2D</scope><name>p0</name></member>
+      <member refid="structhmap_1_1Segment2D_1a9b492c46a400a16b19bff04228a9a8a7" prot="public" virt="non-virtual"><scope>hmap::Segment2D</scope><name>p1</name></member>
+      <member refid="structhmap_1_1Segment2D_1a1a76687bab1ef40fd5c263fe38810797" prot="public" virt="non-virtual"><scope>hmap::Segment2D</scope><name>path_index</name></member>
+      <member refid="structhmap_1_1Segment2D_1abf40edf3463c349ff4bbefb4d0b845e2" prot="public" virt="non-virtual"><scope>hmap::Segment2D</scope><name>s0</name></member>
+      <member refid="structhmap_1_1Segment2D_1abd5e629e11bf88f09ac7813a06f1a085" prot="public" virt="non-virtual"><scope>hmap::Segment2D</scope><name>s1</name></member>
+      <member refid="structhmap_1_1Segment2D_1afa8c127225b3e6b523cfb6722971c096" prot="public" virt="non-virtual"><scope>hmap::Segment2D</scope><name>v0</name></member>
+      <member refid="structhmap_1_1Segment2D_1ababb2e508a42f35b4dcf9867bfa5d380" prot="public" virt="non-virtual"><scope>hmap::Segment2D</scope><name>v1</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -263,7 +263,7 @@ $(document).ready(function(){initNavTree('primitives_2functions_8hpp_source.html
 <div class="line"><a id="l00529" name="l00529"></a><span class="lineno">  529</span>                 <span class="keywordtype">float</span>        <a class="code hl_function" href="namespacehmap.html#aac71bb6c14edc17967957f7918acdbdd">angle</a>,</div>
 <div class="line"><a id="l00530" name="l00530"></a><span class="lineno">  530</span>                 <span class="keywordtype">float</span>        a,</div>
 <div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span>                 <span class="keywordtype">float</span>        b,</div>
-<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span>                 <span class="keywordtype">float</span>        <a class="code hl_variable" href="trench_8cpp.html#aadd5e2befdfeeb947fb0ff67d8fc6224">v0</a> = 0.f,</div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span>                 <span class="keywordtype">float</span>        v0 = 0.f,</div>
 <div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span>                 <span class="keywordtype">bool</span>         reverse_x = <span class="keyword">false</span>,</div>
 <div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span>                 <span class="keywordtype">bool</span>         reverse_y = <span class="keyword">false</span>,</div>
 <div class="line"><a id="l00535" name="l00535"></a><span class="lineno">  535</span>                 <span class="keyword">const</span> Array *p_noise_x = <span class="keyword">nullptr</span>,</div>
@@ -333,8 +333,8 @@ $(document).ready(function(){initNavTree('primitives_2functions_8hpp_source.html
 <div class="line"><a id="l00741" name="l00741"></a><span class="lineno">  741</span>           glm::vec2    center = {0.5f, 0.5f},</div>
 <div class="line"><a id="l00742" name="l00742"></a><span class="lineno">  742</span>           glm::vec4    bbox = {0.f, 1.f, 0.f, 1.f});</div>
 <div class="line"><a id="l00743" name="l00743"></a><span class="lineno">  743</span> </div>
-<div class="line"><a id="l00761" name="l00761"></a><span class="lineno">  761</span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacehmap.html#a7a433480a8cd89be48bc9ce8cbb25ce8">swirl</a>(Array       &amp;<a class="code hl_variable" href="trench_8cpp.html#a9eae6c1f38db98ab568f3ed3771a969d">dx</a>,</div>
-<div class="line"><a id="l00762" name="l00762"></a><span class="lineno">  762</span>           Array       &amp;<a class="code hl_variable" href="trench_8cpp.html#a8f461b6142ce8725218813abb23b06a3">dy</a>,</div>
+<div class="line"><a id="l00761" name="l00761"></a><span class="lineno">  761</span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacehmap.html#a7a433480a8cd89be48bc9ce8cbb25ce8">swirl</a>(Array       &amp;dx,</div>
+<div class="line"><a id="l00762" name="l00762"></a><span class="lineno">  762</span>           Array       &amp;dy,</div>
 <div class="line"><a id="l00763" name="l00763"></a><span class="lineno">  763</span>           <span class="keywordtype">float</span>        <a class="code hl_variable" href="sls__deformation_8cpp.html#a31bef58f966d97b1ace9bd3a58ffd9a6">amplitude</a> = 1.f,</div>
 <div class="line"><a id="l00764" name="l00764"></a><span class="lineno">  764</span>           <span class="keywordtype">float</span>        exponent = 1.f,</div>
 <div class="line"><a id="l00765" name="l00765"></a><span class="lineno">  765</span>           <span class="keyword">const</span> Array *p_noise = <span class="keyword">nullptr</span>,</div>
@@ -531,9 +531,6 @@ $(document).ready(function(){initNavTree('primitives_2functions_8hpp_source.html
 <div class="ttc" id="aprofiles_8hpp_html"><div class="ttname"><a href="profiles_8hpp.html">profiles.hpp</a></div></div>
 <div class="ttc" id="asls__deformation_8cpp_html_a1d28dec57cce925ad92342891bd71e7c"><div class="ttname"><a href="sls__deformation_8cpp.html#a1d28dec57cce925ad92342891bd71e7c">scale</a></div><div class="ttdeci">float scale</div><div class="ttdef"><b>Definition</b> sls_deformation.cpp:104</div></div>
 <div class="ttc" id="asls__deformation_8cpp_html_a31bef58f966d97b1ace9bd3a58ffd9a6"><div class="ttname"><a href="sls__deformation_8cpp.html#a31bef58f966d97b1ace9bd3a58ffd9a6">amplitude</a></div><div class="ttdeci">float amplitude</div><div class="ttdef"><b>Definition</b> sls_deformation.cpp:137</div></div>
-<div class="ttc" id="atrench_8cpp_html_a8f461b6142ce8725218813abb23b06a3"><div class="ttname"><a href="trench_8cpp.html#a8f461b6142ce8725218813abb23b06a3">dy</a></div><div class="ttdeci">float dy</div><div class="ttdef"><b>Definition</b> trench.cpp:34</div></div>
-<div class="ttc" id="atrench_8cpp_html_a9eae6c1f38db98ab568f3ed3771a969d"><div class="ttname"><a href="trench_8cpp.html#a9eae6c1f38db98ab568f3ed3771a969d">dx</a></div><div class="ttdeci">float dx</div><div class="ttdef"><b>Definition</b> trench.cpp:34</div></div>
-<div class="ttc" id="atrench_8cpp_html_aadd5e2befdfeeb947fb0ff67d8fc6224"><div class="ttname"><a href="trench_8cpp.html#aadd5e2befdfeeb947fb0ff67d8fc6224">v0</a></div><div class="ttdeci">float v0</div><div class="ttdef"><b>Definition</b> trench.cpp:32</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
