@@ -16,12 +16,12 @@ using namespace hmap;
 TEST(FFTTest, RoundtripImpulse)
 {
   glm::ivec2 shape(16, 16);
-  Array a(shape, 0.0f);
+  Array      a(shape, 0.0f);
   a(3, 5) = 1.0f;
   a(7, 2) = 2.5f;
 
   std::vector<std::complex<float>> spec = fft2d_r2c(a);
-  Array reconstructed = fft2d_c2r(spec, shape, true);
+  Array                            reconstructed = fft2d_c2r(spec, shape, true);
 
   ASSERT_EQ(reconstructed.shape.x, shape.x);
   ASSERT_EQ(reconstructed.shape.y, shape.y);
@@ -50,7 +50,7 @@ TEST(FFTTest, GoodSize)
 TEST(FFTTest, Convolve2D_FFT_DeltaKernel)
 {
   glm::ivec2 shape(32, 32);
-  Array input = white(glm::vec2(shape.x, shape.y), 0.0f, 1.0f, 1234);
+  Array      input = white(glm::vec2(shape.x, shape.y), 0.0f, 1.0f, 1234);
 
   // 1x1 Dirac delta kernel
   Array delta_kernel(glm::ivec2(1, 1), 1.0f);
@@ -71,7 +71,7 @@ TEST(FFTTest, Convolve2D_FFT_DeltaKernel)
 TEST(FFTTest, Convolve2D_FFT_MatchesConvolve2D)
 {
   glm::ivec2 shape(48, 48);
-  Array input = white(glm::vec2(shape.x, shape.y), 0.0f, 1.0f, 42);
+  Array      input = white(glm::vec2(shape.x, shape.y), 0.0f, 1.0f, 42);
 
   // 9x9 kernel
   Array kernel = cubic_pulse(glm::ivec2(9, 9));
@@ -94,7 +94,7 @@ TEST(FFTTest, Convolve2D_FFT_MatchesConvolve2D)
 TEST(FFTTest, Convolve2D_FFT_LargeKernel)
 {
   glm::ivec2 shape(64, 64);
-  Array input = white(glm::vec2(shape.x, shape.y), 0.0f, 1.0f, 999);
+  Array      input = white(glm::vec2(shape.x, shape.y), 0.0f, 1.0f, 999);
 
   // Large 31x31 kernel
   Array kernel = cubic_pulse(glm::ivec2(31, 31));

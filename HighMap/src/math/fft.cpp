@@ -2,19 +2,19 @@
  * Public License. The full license is in the file LICENSE, distributed with
  * this software. */
 
-#include "highmap/math/fft.hpp"
-
 #include <algorithm>
 #include <cmath>
 #include <complex>
 #include <vector>
 
-#include <omp.h>
-#include "pocketfft_hdronly.h"
-
 #include "highmap/boundary.hpp"
 #include "highmap/internal/validation.hpp"
 #include "highmap/logger.hpp"
+#include "highmap/math/fft.hpp"
+
+#include "pocketfft_hdronly.h"
+
+#include <omp.h>
 
 namespace hmap
 {
@@ -35,7 +35,8 @@ size_t get_num_threads()
 int fft_good_size(int n)
 {
   if (n <= 1) return 1;
-  return static_cast<int>(pocketfft::detail::util::good_size_real(static_cast<size_t>(n)));
+  return static_cast<int>(
+      pocketfft::detail::util::good_size_real(static_cast<size_t>(n)));
 }
 
 // --- FFT 2D Real-to-Complex
@@ -48,16 +49,13 @@ std::vector<std::complex<float>> fft2d_r2c(const Array &array)
   const size_t ny = static_cast<size_t>(array.shape.y);
   const size_t half_nx = nx / 2 + 1;
 
-  pocketfft::shape_t shape_in = {ny, nx};
-  pocketfft::stride_t stride_in = {
-      static_cast<ptrdiff_t>(nx * sizeof(float)),
-      static_cast<ptrdiff_t>(sizeof(float))
-  };
+  pocketfft::shape_t  shape_in = {ny, nx};
+  pocketfft::stride_t stride_in = {static_cast<ptrdiff_t>(nx * sizeof(float)),
+                                   static_cast<ptrdiff_t>(sizeof(float))};
 
   pocketfft::stride_t stride_out = {
       static_cast<ptrdiff_t>(half_nx * sizeof(std::complex<float>)),
-      static_cast<ptrdiff_t>(sizeof(std::complex<float>))
-  };
+      static_cast<ptrdiff_t>(sizeof(std::complex<float>))};
 
   pocketfft::shape_t axes = {0, 1};
 
@@ -79,8 +77,8 @@ std::vector<std::complex<float>> fft2d_r2c(const Array &array)
 // --- FFT 2D Complex-to-Real
 
 Array fft2d_c2r(const std::vector<std::complex<float>> &spectrum,
-                glm::ivec2                             shape_out,
-                bool                                   normalize)
+                glm::ivec2                              shape_out,
+                bool                                    normalize)
 {
   if (shape_out.x <= 0 || shape_out.y <= 0) return Array();
 
@@ -90,24 +88,22 @@ Array fft2d_c2r(const std::vector<std::complex<float>> &spectrum,
 
   if (spectrum.size() < ny * half_nx)
   {
-    hmap::log::error("fft2d_c2r: spectrum size ({}) is smaller than expected ({})",
-                     spectrum.size(),
-                     ny * half_nx);
+    hmap::log::error(
+        "fft2d_c2r: spectrum size ({}) is smaller than expected ({})",
+        spectrum.size(),
+        ny * half_nx);
     return Array();
   }
 
   Array result(shape_out);
 
-  pocketfft::shape_t shape = {ny, nx};
+  pocketfft::shape_t  shape = {ny, nx};
   pocketfft::stride_t stride_in = {
       static_cast<ptrdiff_t>(half_nx * sizeof(std::complex<float>)),
-      static_cast<ptrdiff_t>(sizeof(std::complex<float>))
-  };
+      static_cast<ptrdiff_t>(sizeof(std::complex<float>))};
 
-  pocketfft::stride_t stride_out = {
-      static_cast<ptrdiff_t>(nx * sizeof(float)),
-      static_cast<ptrdiff_t>(sizeof(float))
-  };
+  pocketfft::stride_t stride_out = {static_cast<ptrdiff_t>(nx * sizeof(float)),
+                                    static_cast<ptrdiff_t>(sizeof(float))};
 
   pocketfft::shape_t axes = {0, 1};
 
@@ -133,9 +129,11 @@ Array convolve2d_fft(const Array &array, const Array &kernel)
   if (!validate_non_empty(array)) return Array();
   if (!validate_non_empty(kernel)) return Array(array.shape);
 
-  const int i1 = static_cast<int>(std::ceil(0.5f * static_cast<float>(kernel.shape.x)));
+  const int i1 = static_cast<int>(
+      std::ceil(0.5f * static_cast<float>(kernel.shape.x)));
   const int i2 = kernel.shape.x - i1;
-  const int j1 = static_cast<int>(std::ceil(0.5f * static_cast<float>(kernel.shape.y)));
+  const int j1 = static_cast<int>(
+      std::ceil(0.5f * static_cast<float>(kernel.shape.y)));
   const int j2 = kernel.shape.y - j1;
 
   Array array_buffered = generate_buffered_array(array, {i1, i2, j1, j2});
@@ -182,12 +180,13 @@ Array convolve2d_fft_truncated(const Array &array, const Array &kernel)
     std::copy_n(src_row, array.shape.x, dst_row);
   }
 
-  // Prepare padded and flipped kernel data (flip for convolution: h(p, q) -> h(-p, -q))
+  // Prepare padded and flipped kernel data (flip for convolution: h(p, q) ->
+  // h(-p, -q))
   std::vector<float> padded_kernel(s_fft_x * s_fft_y, 0.0f);
   for (int j = 0; j < kernel.shape.y; ++j)
   {
-    const int    flip_j = kernel.shape.y - 1 - j;
-    float       *dst_row = &padded_kernel[j * s_fft_x];
+    const int flip_j = kernel.shape.y - 1 - j;
+    float    *dst_row = &padded_kernel[j * s_fft_x];
     for (int i = 0; i < kernel.shape.x; ++i)
     {
       const int flip_i = kernel.shape.x - 1 - i;
@@ -195,20 +194,18 @@ Array convolve2d_fft_truncated(const Array &array, const Array &kernel)
     }
   }
 
-  pocketfft::shape_t shape_real = {s_fft_y, s_fft_x};
+  pocketfft::shape_t  shape_real = {s_fft_y, s_fft_x};
   pocketfft::stride_t stride_real = {
       static_cast<ptrdiff_t>(s_fft_x * sizeof(float)),
-      static_cast<ptrdiff_t>(sizeof(float))
-  };
+      static_cast<ptrdiff_t>(sizeof(float))};
 
   pocketfft::stride_t stride_complex = {
       static_cast<ptrdiff_t>(half_fft_x * sizeof(std::complex<float>)),
-      static_cast<ptrdiff_t>(sizeof(std::complex<float>))
-  };
+      static_cast<ptrdiff_t>(sizeof(std::complex<float>))};
 
   pocketfft::shape_t axes = {0, 1};
 
-  const size_t n_complex = s_fft_y * half_fft_x;
+  const size_t                     n_complex = s_fft_y * half_fft_x;
   std::vector<std::complex<float>> dft_array(n_complex);
   std::vector<std::complex<float>> dft_kernel(n_complex);
 
@@ -255,7 +252,7 @@ Array convolve2d_fft_truncated(const Array &array, const Array &kernel)
                         num_threads);
 
   // Extract the valid region matching convolve2d_truncated
-  Array array_out(glm::ivec2(out_x, out_y));
+  Array     array_out(glm::ivec2(out_x, out_y));
   const int roi_x = kernel.shape.x - 1;
   const int roi_y = kernel.shape.y - 1;
 
