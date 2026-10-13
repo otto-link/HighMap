@@ -174,6 +174,7 @@ TEST(TrenchCarving, VirtualArrayVsArrayComparisonSingleTile)
                4,
                nullptr,
                nullptr,
+               /* tile_size */ 32,
                {0.f, 1.f, 0.f, 1.f});
 
   // Carve on 1x1 VirtualArray
@@ -204,6 +205,7 @@ TEST(TrenchCarving, VirtualArrayVsArrayComparisonSingleTile)
                      4,
                      nullptr,
                      nullptr,
+                     /* tile_size */ 32,
                      region.bbox);
       },
       cm);
@@ -256,6 +258,7 @@ TEST(TrenchCarving, VirtualArrayVsArrayComparisonMultiTile)
                4,
                nullptr,
                nullptr,
+               /* tile_size */ 32,
                {0.f, 1.f, 0.f, 1.f});
 
   // Carve on 2x2 VirtualArray with halo 16
@@ -286,6 +289,7 @@ TEST(TrenchCarving, VirtualArrayVsArrayComparisonMultiTile)
                      4,
                      nullptr,
                      nullptr,
+                     /* tile_size */ 32,
                      region.bbox);
       },
       cm);

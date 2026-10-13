@@ -1144,6 +1144,7 @@ VirtualArray flow_fixing_mst_triangulated(const ComputeMode  &cm,
                /* k_neighbors */ 4,
                /* p_noise_r */ pa_noise_r,
                /* p_bending_mask */ nullptr,
+               /* tile_size */ 32,
                /* bbox */ region.bbox);
       },
       cm);
