@@ -187,7 +187,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/hydraulic_saleve.cpp" line="255" column="14" bodyfile="HighMap/src/erosion/hydraulic_saleve.cpp" bodystart="255" bodyend="421" declfile="HighMap/include/highmap/erosion/hydraulic_erosion.hpp" declline="709" declcolumn="14"/>
+        <location file="HighMap/src/erosion/hydraulic_saleve.cpp" line="251" column="14" bodyfile="HighMap/src/erosion/hydraulic_saleve.cpp" bodystart="251" bodyend="417" declfile="HighMap/include/highmap/erosion/hydraulic_erosion.hpp" declline="709" declcolumn="14"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1va_1aec2c193932c4d5d1fe00d09b81e243d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -594,7 +594,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1068" column="13" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1068" bodyend="1112" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1356" declcolumn="13"/>
+        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1063" column="13" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1063" bodyend="1107" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1356" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1va_1a79c8b1b0f1447fcb8f94f6e2cec8788b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structhmap_1_1VirtualArray" kindref="compound">VirtualArray</ref></type>
@@ -671,7 +671,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1114" column="14" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1114" bodyend="1179" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1366" declcolumn="14"/>
+        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1109" column="14" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1109" bodyend="1174" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1366" declcolumn="14"/>
       </memberdef>
     </sectiondef>
     <briefdescription>

@@ -14189,7 +14189,7 @@ additional_depth)</computeroutput>.</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/hydraulic_saleve.cpp" line="72" column="7" bodyfile="HighMap/src/erosion/hydraulic_saleve.cpp" bodystart="72" bodyend="196" declfile="HighMap/include/highmap/erosion/hydraulic_erosion.hpp" declline="158" declcolumn="7"/>
+        <location file="HighMap/src/erosion/hydraulic_saleve.cpp" line="72" column="7" bodyfile="HighMap/src/erosion/hydraulic_saleve.cpp" bodystart="72" bodyend="192" declfile="HighMap/include/highmap/erosion/hydraulic_erosion.hpp" declline="158" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a5ec83fc1497f653486bc4cc22ecee87b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -14300,7 +14300,7 @@ additional_depth)</computeroutput>.</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/hydraulic_saleve.cpp" line="198" column="7" bodyfile="HighMap/src/erosion/hydraulic_saleve.cpp" bodystart="198" bodyend="248" declfile="HighMap/include/highmap/erosion/hydraulic_erosion.hpp" declline="179" declcolumn="7"/>
+        <location file="HighMap/src/erosion/hydraulic_saleve.cpp" line="194" column="7" bodyfile="HighMap/src/erosion/hydraulic_saleve.cpp" bodystart="194" bodyend="244" declfile="HighMap/include/highmap/erosion/hydraulic_erosion.hpp" declline="179" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a33c845361a82a1863a6a8a65f8027573" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -36417,7 +36417,7 @@ Transport for Terrain Erosion Simulation&quot; (N. McDonald, G. Cordonnier), <ul
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="982" column="13" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="982" bodyend="1009" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="620" declcolumn="13"/>
+        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="982" column="13" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="982" bodyend="1004" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="620" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a5fbbe4a3db33c7783faa794c3051ddb4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -36591,7 +36591,7 @@ Transport for Terrain Erosion Simulation&quot; (N. McDonald, G. Cordonnier), <ul
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1011" column="7" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1011" bodyend="1061" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="654" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1006" column="7" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1006" bodyend="1056" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="654" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a948b4703486f175cd2681bd9bc7b5a88" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Path" kindref="compound">Path</ref></type>
