@@ -1588,21 +1588,21 @@
     <member refid="classhmap_1_1XyControlFunction_1acfe5c441363f35d36a13084fb56c6dca" kind="function"><name>MinimumImpl</name></member>
     <member refid="classhmap_1_1XyControlFunction_1ab32abc0861325b3ea6f547b938a9225d" kind="function"><name>MaximumImpl</name></member>
   </compound>
-  <compound refid="namespace_0d417" kind="namespace"><name>@417</name>
+  <compound refid="namespace_0d418" kind="namespace"><name>@418</name>
   </compound>
-  <compound refid="namespace_0d427" kind="namespace"><name>@427</name>
+  <compound refid="namespace_0d428" kind="namespace"><name>@428</name>
   </compound>
-  <compound refid="namespace_0d436" kind="namespace"><name>@436</name>
+  <compound refid="namespace_0d437" kind="namespace"><name>@437</name>
   </compound>
-  <compound refid="namespace_0d454" kind="namespace"><name>@454</name>
+  <compound refid="namespace_0d455" kind="namespace"><name>@455</name>
   </compound>
-  <compound refid="namespace_0d461" kind="namespace"><name>@461</name>
+  <compound refid="namespace_0d462" kind="namespace"><name>@462</name>
   </compound>
-  <compound refid="namespace_0d474" kind="namespace"><name>@474</name>
+  <compound refid="namespace_0d475" kind="namespace"><name>@475</name>
   </compound>
-  <compound refid="namespace_0d485" kind="namespace"><name>@485</name>
+  <compound refid="namespace_0d486" kind="namespace"><name>@486</name>
   </compound>
-  <compound refid="namespace_0d489" kind="namespace"><name>@489</name>
+  <compound refid="namespace_0d490" kind="namespace"><name>@490</name>
   </compound>
   <compound refid="namespacehmap" kind="namespace"><name>hmap</name>
     <member refid="namespacehmap_1a5101273ec456f5267dddc3e22dae223b" kind="enum"><name>StampingBlendMethod</name></member>
@@ -3102,7 +3102,10 @@
     <member refid="namespacehmap_1_1va_1ae8000dce23f7622c2ba67910124bc353" kind="function"><name>flooding_lake_system</name></member>
     <member refid="namespacehmap_1_1va_1a050c3c7ecc102d86f566bf55b3a72c51" kind="function"><name>flow_fixing_mst_paths</name></member>
     <member refid="namespacehmap_1_1va_1a79c8b1b0f1447fcb8f94f6e2cec8788b" kind="function"><name>flow_fixing_mst_triangulated</name></member>
+    <member refid="namespacehmap_1_1va_1a57ee7ae6cd1bb3a3ba79241a55c0c347" kind="function"><name>find_cut_path_midpoint</name></member>
     <member refid="namespacehmap_1_1va_1ac5a99fc7607556be58fb75ae10125940" kind="function"><name>generate_terrain_tri_mesh_from_heightmap_random</name></member>
+  </compound>
+  <compound refid="namespacehmap_1_1va_1_1_0d379" kind="namespace"><name>hmap::va::@379</name>
   </compound>
   <compound refid="namespacestd" kind="namespace"><name>std</name>
   </compound>
@@ -4001,6 +4004,8 @@
   </compound>
   <compound refid="flow__breach_8cpp" kind="file"><name>flow_breach.cpp</name>
   </compound>
+  <compound refid="generate__terrain__tri__mesh__from__heightmap_8cpp" kind="file"><name>generate_terrain_tri_mesh_from_heightmap.cpp</name>
+  </compound>
   <compound refid="shortest__path_8cpp" kind="file"><name>shortest_path.cpp</name>
   </compound>
   <compound refid="terrain__tri__mesh_8cpp" kind="file"><name>terrain_tri_mesh.cpp</name>
@@ -4618,6 +4623,7 @@
     <member refid="test__path__multiscale_8cpp_1a8cf491e5d83d671e2765794aec240204" kind="function"><name>TEST</name></member>
     <member refid="test__path__multiscale_8cpp_1a1cbf6fe0f3be2b892109a5dd1e6994a2" kind="function"><name>TEST</name></member>
     <member refid="test__path__multiscale_8cpp_1a3e80a88ac89bb68361ab5b60fcff43f7" kind="function"><name>TEST</name></member>
+    <member refid="test__path__multiscale_8cpp_1a8c7c6ecf454e56039c015f776446b041" kind="function"><name>TEST</name></member>
   </compound>
   <compound refid="test__path__sample__at_8cpp" kind="file"><name>test_path_sample_at.cpp</name>
     <member refid="test__path__sample__at_8cpp_1a0303a86bdff92e4275a44741c3b2d182" kind="function"><name>TEST</name></member>

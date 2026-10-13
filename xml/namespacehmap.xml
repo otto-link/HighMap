@@ -64193,7 +64193,7 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/shortest_path/dijsktra_path.cpp" line="18" column="6" bodyfile="HighMap/src/shortest_path/dijsktra_path.cpp" bodystart="18" bodyend="84" declfile="HighMap/include/highmap/shortest_path.hpp" declline="55" declcolumn="6"/>
+        <location file="HighMap/src/shortest_path/dijsktra_path.cpp" line="18" column="6" bodyfile="HighMap/src/shortest_path/dijsktra_path.cpp" bodystart="18" bodyend="84" declfile="HighMap/include/highmap/shortest_path.hpp" declline="58" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a505d334a39df55be569fbc1c1f640042" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Path" kindref="compound">Path</ref></type>
@@ -64347,7 +64347,7 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/shortest_path/find_cut_path.cpp" line="15" column="6" bodyfile="HighMap/src/shortest_path/find_cut_path.cpp" bodystart="15" bodyend="52" declfile="HighMap/include/highmap/shortest_path.hpp" declline="87" declcolumn="6"/>
+        <location file="HighMap/src/shortest_path/find_cut_path.cpp" line="21" column="6" bodyfile="HighMap/src/shortest_path/find_cut_path.cpp" bodystart="21" bodyend="58" declfile="HighMap/include/highmap/shortest_path.hpp" declline="90" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a2c463175bb90319f83de452c2b55ac2b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Path" kindref="compound">Path</ref></type>
@@ -64495,7 +64495,7 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/shortest_path/find_cut_path.cpp" line="54" column="6" bodyfile="HighMap/src/shortest_path/find_cut_path.cpp" bodystart="54" bodyend="92" declfile="HighMap/include/highmap/shortest_path.hpp" declline="120" declcolumn="6"/>
+        <location file="HighMap/src/shortest_path/find_cut_path.cpp" line="60" column="6" bodyfile="HighMap/src/shortest_path/find_cut_path.cpp" bodystart="60" bodyend="98" declfile="HighMap/include/highmap/shortest_path.hpp" declline="123" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a3e877482c194619d1bf1dc398766fe66" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Path" kindref="compound">Path</ref></type>
@@ -64707,7 +64707,7 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/shortest_path/find_cut_path.cpp" line="94" column="6" bodyfile="HighMap/src/shortest_path/find_cut_path.cpp" bodystart="94" bodyend="142" declfile="HighMap/include/highmap/shortest_path.hpp" declline="157" declcolumn="6"/>
+        <location file="HighMap/src/shortest_path/find_cut_path.cpp" line="100" column="6" bodyfile="HighMap/src/shortest_path/find_cut_path.cpp" bodystart="100" bodyend="148" declfile="HighMap/include/highmap/shortest_path.hpp" declline="160" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a812ed2264582321318f8f731d621f7bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -64867,7 +64867,7 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/shortest_path/dijsktra.cpp" line="153" column="6" bodyfile="HighMap/src/shortest_path/dijsktra.cpp" bodystart="153" bodyend="178" declfile="HighMap/include/highmap/shortest_path.hpp" declline="214" declcolumn="6"/>
+        <location file="HighMap/src/shortest_path/dijsktra.cpp" line="153" column="6" bodyfile="HighMap/src/shortest_path/dijsktra.cpp" bodystart="153" bodyend="178" declfile="HighMap/include/highmap/shortest_path.hpp" declline="217" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1abe9f271f1c9b55a7bf910020da4023a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -64921,7 +64921,7 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/shortest_path/dijsktra.cpp" line="23" column="6" bodyfile="HighMap/src/shortest_path/dijsktra.cpp" bodystart="23" bodyend="151" declfile="HighMap/include/highmap/shortest_path.hpp" declline="224" declcolumn="6"/>
+        <location file="HighMap/src/shortest_path/dijsktra.cpp" line="23" column="6" bodyfile="HighMap/src/shortest_path/dijsktra.cpp" bodystart="23" bodyend="151" declfile="HighMap/include/highmap/shortest_path.hpp" declline="227" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1add63dbb83ccbeb2509ace508f4c391ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; glm::ivec2 &gt;</type>
@@ -65028,7 +65028,7 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/shortest_path/dijsktra.cpp" line="180" column="13" bodyfile="HighMap/src/shortest_path/dijsktra.cpp" bodystart="180" bodyend="205" declfile="HighMap/include/highmap/shortest_path.hpp" declline="247" declcolumn="13"/>
+        <location file="HighMap/src/shortest_path/dijsktra.cpp" line="180" column="13" bodyfile="HighMap/src/shortest_path/dijsktra.cpp" bodystart="180" bodyend="205" declfile="HighMap/include/highmap/shortest_path.hpp" declline="250" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1aa4fe84200d088c3bc24637ebc369c0cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Path" kindref="compound">Path</ref></type>
@@ -65147,7 +65147,7 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/shortest_path/dijsktra.cpp" line="207" column="6" bodyfile="HighMap/src/shortest_path/dijsktra.cpp" bodystart="207" bodyend="247" declfile="HighMap/include/highmap/shortest_path.hpp" declline="271" declcolumn="6"/>
+        <location file="HighMap/src/shortest_path/dijsktra.cpp" line="207" column="6" bodyfile="HighMap/src/shortest_path/dijsktra.cpp" bodystart="207" bodyend="247" declfile="HighMap/include/highmap/shortest_path.hpp" declline="274" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a6ade30d7f5f6b02e1640bea9c83d05e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; glm::ivec2 &gt;</type>
@@ -65291,7 +65291,7 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/shortest_path/find_path_midpoint.cpp" line="79" column="13" bodyfile="HighMap/src/shortest_path/find_path_midpoint.cpp" bodystart="79" bodyend="153" declfile="HighMap/include/highmap/shortest_path.hpp" declline="302" declcolumn="13"/>
+        <location file="HighMap/src/shortest_path/find_path_midpoint.cpp" line="79" column="13" bodyfile="HighMap/src/shortest_path/find_path_midpoint.cpp" bodystart="79" bodyend="153" declfile="HighMap/include/highmap/shortest_path.hpp" declline="305" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a33015bc241088e037e8391af53e4d505" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -65407,7 +65407,7 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/shortest_path/find_path_midpoint.cpp" line="155" column="6" bodyfile="HighMap/src/shortest_path/find_path_midpoint.cpp" bodystart="155" bodyend="181" declfile="HighMap/include/highmap/shortest_path.hpp" declline="322" declcolumn="6"/>
+        <location file="HighMap/src/shortest_path/find_path_midpoint.cpp" line="155" column="6" bodyfile="HighMap/src/shortest_path/find_path_midpoint.cpp" bodystart="155" bodyend="181" declfile="HighMap/include/highmap/shortest_path.hpp" declline="325" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ae465d3491106270fa271f3b5e33f7fed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Path" kindref="compound">Path</ref></type>
@@ -65513,7 +65513,7 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/shortest_path/find_path_midpoint.cpp" line="183" column="6" bodyfile="HighMap/src/shortest_path/find_path_midpoint.cpp" bodystart="183" bodyend="218" declfile="HighMap/include/highmap/shortest_path.hpp" declline="345" declcolumn="6"/>
+        <location file="HighMap/src/shortest_path/find_path_midpoint.cpp" line="183" column="6" bodyfile="HighMap/src/shortest_path/find_path_midpoint.cpp" bodystart="183" bodyend="218" declfile="HighMap/include/highmap/shortest_path.hpp" declline="348" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a7c174527ef9ac7c595ad65514dc00756" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -65796,7 +65796,7 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/shortest_path/find_path_multiscale.cpp" line="225" column="6" bodyfile="HighMap/src/shortest_path/find_path_multiscale.cpp" bodystart="225" bodyend="264" declfile="HighMap/include/highmap/shortest_path.hpp" declline="384" declcolumn="6"/>
+        <location file="HighMap/src/shortest_path/find_path_multiscale.cpp" line="225" column="6" bodyfile="HighMap/src/shortest_path/find_path_multiscale.cpp" bodystart="225" bodyend="264" declfile="HighMap/include/highmap/shortest_path.hpp" declline="387" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ad23ac0ef43a4925071b5da947a7d4b1c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; glm::ivec2 &gt;</type>
@@ -65968,7 +65968,7 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/shortest_path/find_path_multiscale.cpp" line="266" column="13" bodyfile="HighMap/src/shortest_path/find_path_multiscale.cpp" bodystart="266" bodyend="494" declfile="HighMap/include/highmap/shortest_path.hpp" declline="418" declcolumn="13"/>
+        <location file="HighMap/src/shortest_path/find_path_multiscale.cpp" line="266" column="13" bodyfile="HighMap/src/shortest_path/find_path_multiscale.cpp" bodystart="266" bodyend="494" declfile="HighMap/include/highmap/shortest_path.hpp" declline="421" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ae49e68036a8d179017c3e41e39952318" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Path" kindref="compound">Path</ref></type>
@@ -66152,7 +66152,7 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/shortest_path/find_path_multiscale.cpp" line="496" column="6" bodyfile="HighMap/src/shortest_path/find_path_multiscale.cpp" bodystart="496" bodyend="549" declfile="HighMap/include/highmap/shortest_path.hpp" declline="454" declcolumn="6"/>
+        <location file="HighMap/src/shortest_path/find_path_multiscale.cpp" line="496" column="6" bodyfile="HighMap/src/shortest_path/find_path_multiscale.cpp" bodystart="496" bodyend="549" declfile="HighMap/include/highmap/shortest_path.hpp" declline="457" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a414c6fe47e8dadbab8ad532a0538be40" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -68083,7 +68083,7 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" line="1001" column="13" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="1001" bodyend="1029" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="278" declcolumn="13"/>
+        <location file="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" line="997" column="13" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="997" bodyend="1025" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="278" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1af9fdabd692817be603ff5c44e68ea619" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1TerrainTriMesh" kindref="compound">TerrainTriMesh</ref></type>
@@ -68116,7 +68116,7 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" line="1031" column="16" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="1031" bodyend="1059" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="281" declcolumn="16"/>
+        <location file="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" line="21" column="16" bodyfile="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" bodystart="21" bodyend="49" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="281" declcolumn="16"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a5078af3eb73fb47ab1aad6cc872ab29a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1TerrainTriMesh" kindref="compound">TerrainTriMesh</ref></type>
@@ -68143,7 +68143,7 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" line="1061" column="16" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="1061" bodyend="1079" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="287" declcolumn="16"/>
+        <location file="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" line="51" column="16" bodyfile="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" bodystart="51" bodyend="69" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="287" declcolumn="16"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a19dec938e688ef4b73cf27ff3934043b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>

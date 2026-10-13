@@ -193,6 +193,25 @@
         </inbodydescription>
         <location file="tests/src/test_path_multiscale.cpp" line="287" column="1" bodyfile="tests/src/test_path_multiscale.cpp" bodystart="287" bodyend="313"/>
       </memberdef>
+      <memberdef kind="function" id="test__path__multiscale_8cpp_1a8c7c6ecf454e56039c015f776446b041" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TEST</definition>
+        <argsstring>(PathMultiscale, VAFindCutPathMidpoint)</argsstring>
+        <name>TEST</name>
+        <param>
+          <type>PathMultiscale</type>
+        </param>
+        <param>
+          <type>VAFindCutPathMidpoint</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="tests/src/test_path_multiscale.cpp" line="315" column="1" bodyfile="tests/src/test_path_multiscale.cpp" bodystart="315" bodyend="341"/>
+      </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
@@ -512,6 +531,34 @@
 <codeline lineno="311"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(path.<ref refid="classhmap_1_1Cloud_1a8cae222f807dfaab9f9bf5d75493da0b" kindref="member">front</ref>().<ref refid="classhmap_1_1Point_1ac67fb22939ed39d6c5ff4194b4405efb" kindref="member">v</ref>,<sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>(start.x,<sp/>start.y),<sp/>1e-5f);</highlight></codeline>
 <codeline lineno="312"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(path.<ref refid="classhmap_1_1Cloud_1a0ccd5b43ebbf2d1f1ef4777f66943553" kindref="member">back</ref>().<ref refid="classhmap_1_1Point_1ac67fb22939ed39d6c5ff4194b4405efb" kindref="member">v</ref>,<sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>(end.x,<sp/>end.y),<sp/>1e-5f);</highlight></codeline>
 <codeline lineno="313"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"></highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><ref refid="test__path__multiscale_8cpp_1a86850fc6cec7b75e01af7a321cdfdcc8" kindref="member">TEST</ref>(PathMultiscale,<sp/>VAFindCutPathMidpoint)</highlight></codeline>
+<codeline lineno="316"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/>glm::ivec2<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref><sp/>=<sp/>{128,<sp/>128};</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/>glm::ivec2<sp/>tile_shape<sp/>=<sp/>{64,<sp/>64};</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>halo<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"></highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><ref refid="structhmap_1_1ComputeMode" kindref="compound">hmap::ComputeMode</ref><sp/><sp/>cm;</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><ref refid="structhmap_1_1VirtualArray" kindref="compound">hmap::VirtualArray</ref><sp/>vz(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>tile_shape,<sp/>halo,<sp/><ref refid="namespacehmap_1ad21b93a34c88a47d6b54f3a4d5b65e6eae10df7db812e0abe9bc94fc28ae907ce" kindref="member">hmap::StorageMode::VA_RAM</ref>);</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"></highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>z_arr<sp/>=<sp/><ref refid="namespacehmap_1a7d699a468a18be16c70654958ee13b41" kindref="member">hmap::noise_fbm</ref>(<ref refid="namespacehmap_1ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581" kindref="member">hmap::NoiseType::PERLIN</ref>,</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{2.f,<sp/>2.f},</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>42);</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/>vz.from_array(z_arr,<sp/>cm);</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"></highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>path<sp/>=<sp/><ref refid="namespacehmap_1_1va_1a57ee7ae6cd1bb3a3ba79241a55c0c347" kindref="member">hmap::va::find_cut_path_midpoint</ref>(</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cm,</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>vz,</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1a1ba9d4ce7afe3309f8ae8e617f7154eea760545322569136cd3be89e004ab10d4" kindref="member">hmap::DomainBoundary::BOUNDARY_LEFT</ref>,</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1a1ba9d4ce7afe3309f8ae8e617f7154eeadb9a04ab3508704543b5dd43ae495fe7" kindref="member">hmap::DomainBoundary::BOUNDARY_RIGHT</ref>,</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>42,</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>256);</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"></highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/>ASSERT_FALSE(path.<ref refid="classhmap_1_1Cloud_1a89f21637cf9c4857bf65ad6a6009eff9" kindref="member">empty</ref>());</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(path.<ref refid="classhmap_1_1Cloud_1a8cae222f807dfaab9f9bf5d75493da0b" kindref="member">front</ref>().<ref refid="classhmap_1_1Point_1ac0d4eaf8062b8f11638db83e08198e48" kindref="member">x</ref>,<sp/>0.f,<sp/>1e-4f);</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(path.<ref refid="classhmap_1_1Cloud_1a0ccd5b43ebbf2d1f1ef4777f66943553" kindref="member">back</ref>().<ref refid="classhmap_1_1Point_1ac0d4eaf8062b8f11638db83e08198e48" kindref="member">x</ref>,<sp/>1.f,<sp/>1e-4f);</highlight></codeline>
+<codeline lineno="341"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="tests/src/test_path_multiscale.cpp"/>
   </compounddef>

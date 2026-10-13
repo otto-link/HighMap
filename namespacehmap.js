@@ -12,6 +12,7 @@ var namespacehmap =
       [ "flooding_lake_system", "namespacehmap_1_1va.html#ae8000dce23f7622c2ba67910124bc353", null ],
       [ "flow_fixing_mst_paths", "namespacehmap_1_1va.html#a050c3c7ecc102d86f566bf55b3a72c51", null ],
       [ "flow_fixing_mst_triangulated", "namespacehmap_1_1va.html#a79c8b1b0f1447fcb8f94f6e2cec8788b", null ],
+      [ "find_cut_path_midpoint", "namespacehmap_1_1va.html#a57ee7ae6cd1bb3a3ba79241a55c0c347", null ],
       [ "generate_terrain_tri_mesh_from_heightmap_random", "namespacehmap_1_1va.html#ac5a99fc7607556be58fb75ae10125940", null ]
     ] ],
     [ "Array", "classhmap_1_1Array.html", "classhmap_1_1Array" ],

@@ -19,6 +19,8 @@ std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Path}{Path}} $>$ \mbox{\hyperlink
 \begin{DoxyCompactList}\small\item\em Resolves flow sinks on a \doxylink{structhmap_1_1VirtualArray}{Virtual\+Array} by computing an MST on a triangular mesh and distributing river path carving with trenching across tiles. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structhmap_1_1VirtualArray}{Virtual\+Array}} \mbox{\hyperlink{namespacehmap_1_1va_a79c8b1b0f1447fcb8f94f6e2cec8788b}{flow\+\_\+fixing\+\_\+mst\+\_\+triangulated}} (const \mbox{\hyperlink{structhmap_1_1ComputeMode}{Compute\+Mode}} \&cm, const \mbox{\hyperlink{structhmap_1_1VirtualArray}{Virtual\+Array}} \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}, size\+\_\+t control\+\_\+points\+\_\+count=2048, std\+::uint32\+\_\+t seed=0, float riverbed\+\_\+talus=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float elevation\+\_\+ratio=0.\+95\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float distance\+\_\+exponent=2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float upward\+\_\+penalization=0.\+1\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float minimum\+\_\+depth=1e-\/4\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float merging\+\_\+distance=8.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, \mbox{\hyperlink{namespacehmap_a2affc745bc33b7555352665745741f90}{Radial\+Profile}} radial\+\_\+profile=\mbox{\hyperlink{namespacehmap_a2affc745bc33b7555352665745741f90acedc11502bd1441e893fdc5a699b6d59}{Radial\+Profile\+::\+RP\+\_\+\+SMOOTHSTEP\+\_\+\+UPPER}}, float radial\+\_\+profile\+\_\+parameter=2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, const \mbox{\hyperlink{structhmap_1_1VirtualArray}{Virtual\+Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+r=nullptr)
 \item 
+\mbox{\hyperlink{classhmap_1_1Path}{Path}} \mbox{\hyperlink{namespacehmap_1_1va_a57ee7ae6cd1bb3a3ba79241a55c0c347}{find\+\_\+cut\+\_\+path\+\_\+midpoint}} (const \mbox{\hyperlink{structhmap_1_1ComputeMode}{Compute\+Mode}} \&cm, const \mbox{\hyperlink{structhmap_1_1VirtualArray}{Virtual\+Array}} \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}, \mbox{\hyperlink{namespacehmap_a1ba9d4ce7afe3309f8ae8e617f7154ee}{Domain\+Boundary}} start, \mbox{\hyperlink{namespacehmap_a1ba9d4ce7afe3309f8ae8e617f7154ee}{Domain\+Boundary}} end, std\+::uint32\+\_\+t seed=0, size\+\_\+t control\+\_\+points\+\_\+count=2048, float offset\+\_\+ratio=0.\+2\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, int steps=16, bool favor\+\_\+boundary\+\_\+center=true, bool favor\+\_\+lower\+\_\+elevation=true, bool favor\+\_\+sinks=true)
+\begin{DoxyCompactList}\small\item\em Generate a cut path across a heightmap \doxylink{structhmap_1_1VirtualArray}{Virtual\+Array} using a random triangular mesh and shortest path search. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1TerrainTriMesh}{Terrain\+Tri\+Mesh}} \mbox{\hyperlink{namespacehmap_1_1va_ac5a99fc7607556be58fb75ae10125940}{generate\+\_\+terrain\+\_\+tri\+\_\+mesh\+\_\+from\+\_\+heightmap\+\_\+random}} (const \mbox{\hyperlink{structhmap_1_1ComputeMode}{Compute\+Mode}} \&cm, const \mbox{\hyperlink{structhmap_1_1VirtualArray}{Virtual\+Array}} \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}, int control\+\_\+points\+\_\+count, std\+::uint32\+\_\+t seed)
 \begin{DoxyCompactList}\small\item\em Generate a random terrain mesh from a heightmap \doxylink{structhmap_1_1VirtualArray}{Virtual\+Array}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -179,6 +181,46 @@ Carved elevation \doxylink{structhmap_1_1VirtualArray}{Virtual\+Array} with unbr
 \doxysubsubsection{\texorpdfstring{flow\_fixing\_mst\_triangulated()}{flow\_fixing\_mst\_triangulated()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{structhmap_1_1VirtualArray}{Virtual\+Array}} hmap\+::va\+::flow\+\_\+fixing\+\_\+mst\+\_\+triangulated (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structhmap_1_1ComputeMode}{Compute\+Mode}} \&}]{cm,  }\item[{const \mbox{\hyperlink{structhmap_1_1VirtualArray}{Virtual\+Array}} \&}]{z,  }\item[{size\+\_\+t}]{control\+\_\+points\+\_\+count = {\ttfamily 2048},  }\item[{std\+::uint32\+\_\+t}]{seed = {\ttfamily 0},  }\item[{float}]{riverbed\+\_\+talus = {\ttfamily 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{float}]{elevation\+\_\+ratio = {\ttfamily 0.95\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{float}]{distance\+\_\+exponent = {\ttfamily 2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{float}]{upward\+\_\+penalization = {\ttfamily 0.1\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{float}]{minimum\+\_\+depth = {\ttfamily 1e-\/4\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{float}]{merging\+\_\+distance = {\ttfamily 8.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{\mbox{\hyperlink{namespacehmap_a2affc745bc33b7555352665745741f90}{Radial\+Profile}}}]{radial\+\_\+profile = {\ttfamily \mbox{\hyperlink{namespacehmap_a2affc745bc33b7555352665745741f90acedc11502bd1441e893fdc5a699b6d59}{Radial\+Profile\+::\+RP\+\_\+\+SMOOTHSTEP\+\_\+\+UPPER}}},  }\item[{float}]{radial\+\_\+profile\+\_\+parameter = {\ttfamily 2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{const \mbox{\hyperlink{structhmap_1_1VirtualArray}{Virtual\+Array}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+noise\+\_\+r = {\ttfamily nullptr} }\end{DoxyParamCaption})}
 
+\Hypertarget{namespacehmap_1_1va_a57ee7ae6cd1bb3a3ba79241a55c0c347}\label{namespacehmap_1_1va_a57ee7ae6cd1bb3a3ba79241a55c0c347} 
+\index{hmap::va@{hmap::va}!find\_cut\_path\_midpoint@{find\_cut\_path\_midpoint}}
+\index{find\_cut\_path\_midpoint@{find\_cut\_path\_midpoint}!hmap::va@{hmap::va}}
+\doxysubsubsection{\texorpdfstring{find\_cut\_path\_midpoint()}{find\_cut\_path\_midpoint()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Path}{Path}} hmap\+::va\+::find\+\_\+cut\+\_\+path\+\_\+midpoint (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structhmap_1_1ComputeMode}{Compute\+Mode}} \&}]{cm,  }\item[{const \mbox{\hyperlink{structhmap_1_1VirtualArray}{Virtual\+Array}} \&}]{z,  }\item[{\mbox{\hyperlink{namespacehmap_a1ba9d4ce7afe3309f8ae8e617f7154ee}{Domain\+Boundary}}}]{start,  }\item[{\mbox{\hyperlink{namespacehmap_a1ba9d4ce7afe3309f8ae8e617f7154ee}{Domain\+Boundary}}}]{end,  }\item[{std\+::uint32\+\_\+t}]{seed = {\ttfamily 0},  }\item[{size\+\_\+t}]{control\+\_\+points\+\_\+count = {\ttfamily 2048},  }\item[{float}]{offset\+\_\+ratio = {\ttfamily 0.2\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{int}]{steps = {\ttfamily 16},  }\item[{bool}]{favor\+\_\+boundary\+\_\+center = {\ttfamily true},  }\item[{bool}]{favor\+\_\+lower\+\_\+elevation = {\ttfamily true},  }\item[{bool}]{favor\+\_\+sinks = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Generate a cut path across a heightmap \doxylink{structhmap_1_1VirtualArray}{Virtual\+Array} using a random triangular mesh and shortest path search. 
+
+Constructs a random Delaunay triangulation sampled from the \doxylink{structhmap_1_1VirtualArray}{Virtual\+Array}, selects start and end vertices along the requested domain boundaries, and computes the path connecting them across the mesh.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cm} & Compute mode configuration. \\
+\hline
+{\em z} & Heightmap \doxylink{structhmap_1_1VirtualArray}{Virtual\+Array}. \\
+\hline
+{\em start} & Boundary where the path begins. \\
+\hline
+{\em end} & Boundary where the path ends. \\
+\hline
+{\em seed} & Random seed for mesh point generation and boundary vertex picking. \\
+\hline
+{\em control\+\_\+points\+\_\+count} & Number of control points sampled for the mesh. \\
+\hline
+{\em offset\+\_\+ratio} & Displacement ratio parameter (reserved for compatibility). \\
+\hline
+{\em steps} & Subdivision steps (reserved for compatibility). \\
+\hline
+{\em favor\+\_\+boundary\+\_\+center} & Favor picking boundary vertices near center. \\
+\hline
+{\em favor\+\_\+lower\+\_\+elevation} & Favor picking boundary vertices at low elevation. \\
+\hline
+{\em favor\+\_\+sinks} & Favor picking boundary vertices at local depressions.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{classhmap_1_1Path}{Path} containing normalized 3D coordinates and elevations. 
+\end{DoxyReturn}
 \Hypertarget{namespacehmap_1_1va_ac5a99fc7607556be58fb75ae10125940}\label{namespacehmap_1_1va_ac5a99fc7607556be58fb75ae10125940} 
 \index{hmap::va@{hmap::va}!generate\_terrain\_tri\_mesh\_from\_heightmap\_random@{generate\_terrain\_tri\_mesh\_from\_heightmap\_random}}
 \index{generate\_terrain\_tri\_mesh\_from\_heightmap\_random@{generate\_terrain\_tri\_mesh\_from\_heightmap\_random}!hmap::va@{hmap::va}}
