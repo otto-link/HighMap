@@ -193,16 +193,16 @@
         </inbodydescription>
         <location file="tests/src/test_path_multiscale.cpp" line="287" column="1" bodyfile="tests/src/test_path_multiscale.cpp" bodystart="287" bodyend="313"/>
       </memberdef>
-      <memberdef kind="function" id="test__path__multiscale_8cpp_1a8c7c6ecf454e56039c015f776446b041" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="test__path__multiscale_8cpp_1a836cee34b9fcf249efa27f28f48916b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>TEST</definition>
-        <argsstring>(PathMultiscale, VAFindCutPathMidpoint)</argsstring>
+        <argsstring>(PathMultiscale, VAFindCutPathDijkstra)</argsstring>
         <name>TEST</name>
         <param>
           <type>PathMultiscale</type>
         </param>
         <param>
-          <type>VAFindCutPathMidpoint</type>
+          <type>VAFindCutPathDijkstra</type>
         </param>
         <briefdescription>
         </briefdescription>
@@ -532,7 +532,7 @@
 <codeline lineno="312"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(path.<ref refid="classhmap_1_1Cloud_1a0ccd5b43ebbf2d1f1ef4777f66943553" kindref="member">back</ref>().<ref refid="classhmap_1_1Point_1ac67fb22939ed39d6c5ff4194b4405efb" kindref="member">v</ref>,<sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>(end.x,<sp/>end.y),<sp/>1e-5f);</highlight></codeline>
 <codeline lineno="313"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="314"><highlight class="normal"></highlight></codeline>
-<codeline lineno="315"><highlight class="normal"><ref refid="test__path__multiscale_8cpp_1a86850fc6cec7b75e01af7a321cdfdcc8" kindref="member">TEST</ref>(PathMultiscale,<sp/>VAFindCutPathMidpoint)</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><ref refid="test__path__multiscale_8cpp_1a86850fc6cec7b75e01af7a321cdfdcc8" kindref="member">TEST</ref>(PathMultiscale,<sp/>VAFindCutPathDijkstra)</highlight></codeline>
 <codeline lineno="316"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="317"><highlight class="normal"><sp/><sp/>glm::ivec2<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref><sp/>=<sp/>{128,<sp/>128};</highlight></codeline>
 <codeline lineno="318"><highlight class="normal"><sp/><sp/>glm::ivec2<sp/>tile_shape<sp/>=<sp/>{64,<sp/>64};</highlight></codeline>
@@ -547,7 +547,7 @@
 <codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>42);</highlight></codeline>
 <codeline lineno="328"><highlight class="normal"><sp/><sp/>vz.from_array(z_arr,<sp/>cm);</highlight></codeline>
 <codeline lineno="329"><highlight class="normal"></highlight></codeline>
-<codeline lineno="330"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>path<sp/>=<sp/><ref refid="namespacehmap_1_1va_1a57ee7ae6cd1bb3a3ba79241a55c0c347" kindref="member">hmap::va::find_cut_path_midpoint</ref>(</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>path<sp/>=<sp/><ref refid="namespacehmap_1_1va_1a716a8788acdcfb985d47d56fbe0dd715" kindref="member">hmap::va::find_cut_path_dijkstra</ref>(</highlight></codeline>
 <codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cm,</highlight></codeline>
 <codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>vz,</highlight></codeline>
 <codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1a1ba9d4ce7afe3309f8ae8e617f7154eea760545322569136cd3be89e004ab10d4" kindref="member">hmap::DomainBoundary::BOUNDARY_LEFT</ref>,</highlight></codeline>

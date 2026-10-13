@@ -673,12 +673,12 @@
         </inbodydescription>
         <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1087" column="14" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1087" bodyend="1152" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1366" declcolumn="14"/>
       </memberdef>
-      <memberdef kind="function" id="namespacehmap_1_1va_1a57ee7ae6cd1bb3a3ba79241a55c0c347" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespacehmap_1_1va_1a716a8788acdcfb985d47d56fbe0dd715" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Path" kindref="compound">Path</ref></type>
-        <definition>Path hmap::va::find_cut_path_midpoint</definition>
-        <argsstring>(const ComputeMode &amp;cm, const VirtualArray &amp;z, DomainBoundary start, DomainBoundary end, std::uint32_t seed=0, size_t control_points_count=2048, float offset_ratio=0.2f, int steps=16, bool favor_boundary_center=true, bool favor_lower_elevation=true, bool favor_sinks=true)</argsstring>
-        <name>find_cut_path_midpoint</name>
-        <qualifiedname>hmap::va::find_cut_path_midpoint</qualifiedname>
+        <definition>Path hmap::va::find_cut_path_dijkstra</definition>
+        <argsstring>(const ComputeMode &amp;cm, const VirtualArray &amp;z, DomainBoundary start, DomainBoundary end, std::uint32_t seed=0, size_t control_points_count=2048, bool favor_boundary_center=true, bool favor_lower_elevation=true, bool favor_sinks=true)</argsstring>
+        <name>find_cut_path_dijkstra</name>
+        <qualifiedname>hmap::va::find_cut_path_dijkstra</qualifiedname>
         <param>
           <type>const <ref refid="structhmap_1_1ComputeMode" kindref="compound">ComputeMode</ref> &amp;</type>
           <declname>cm</declname>
@@ -706,16 +706,6 @@
           <defval>2048</defval>
         </param>
         <param>
-          <type>float</type>
-          <declname>offset_ratio</declname>
-          <defval>0.2<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>steps</declname>
-          <defval>16</defval>
-        </param>
-        <param>
           <type>bool</type>
           <declname>favor_boundary_center</declname>
           <defval>true</defval>
@@ -731,10 +721,10 @@
           <defval>true</defval>
         </param>
         <briefdescription>
-<para>Generate a cut path across a heightmap <ref refid="structhmap_1_1VirtualArray" kindref="compound">VirtualArray</ref> using a random triangular mesh and shortest path search. </para>
+<para>Generate a cut path across a heightmap <ref refid="structhmap_1_1VirtualArray" kindref="compound">VirtualArray</ref> using a random triangular mesh and Dijkstra shortest path search. </para>
         </briefdescription>
         <detaileddescription>
-<para>Constructs a random Delaunay triangulation sampled from the <ref refid="structhmap_1_1VirtualArray" kindref="compound">VirtualArray</ref>, selects start and end vertices along the requested domain boundaries, and computes the path connecting them across the mesh.</para>
+<para>Constructs a random Delaunay triangulation sampled from the <ref refid="structhmap_1_1VirtualArray" kindref="compound">VirtualArray</ref>, selects start and end vertices along the requested domain boundaries, and computes the Dijkstra shortest path connecting them across the mesh.</para>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>cm</parametername>
@@ -785,22 +775,6 @@
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername>offset_ratio</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Displacement ratio parameter (reserved for compatibility). </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>steps</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Subdivision steps (reserved for compatibility). </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
 <parametername>favor_boundary_center</parametername>
 </parameternamelist>
 <parameterdescription>
@@ -830,7 +804,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/shortest_path/find_cut_path.cpp" line="152" column="6" bodyfile="HighMap/src/shortest_path/find_cut_path.cpp" bodystart="152" bodyend="207" declfile="HighMap/include/highmap/shortest_path.hpp" declline="503" declcolumn="6"/>
+        <location file="HighMap/src/shortest_path/find_cut_path.cpp" line="152" column="6" bodyfile="HighMap/src/shortest_path/find_cut_path.cpp" bodystart="152" bodyend="205" declfile="HighMap/include/highmap/shortest_path.hpp" declline="500" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1va_1ac5a99fc7607556be58fb75ae10125940" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1TerrainTriMesh" kindref="compound">TerrainTriMesh</ref></type>
