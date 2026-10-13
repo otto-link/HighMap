@@ -705,6 +705,52 @@ Path flow_stream(const Array     &z,
                  const float      upward_penalization = 100.f);
 
 /**
+ * @brief Computes the optimal flow path from a starting vertex to the boundary
+ * of a terrain triangular mesh.
+ *
+ * @param  mesh                Input triangular terrain mesh.
+ * @param  start_vertex_index  Index of the starting vertex.
+ * @param  elevation_ratio     Weight for elevation difference in the cost
+ *                             function (default: 0.5).
+ * @param  distance_exponent   Exponent for the distance/elevation term
+ *                             (default: 2.0).
+ * @param  upward_penalization Penalty factor for upward elevation changes
+ *                             (default: 100.0).
+ * @param  favor_domain_center Favor passing through the center of the domain
+ *                             (default: false).
+ * @return                     A Path object representing the optimal flow path.
+ */
+Path flow_stream(const TerrainTriMesh &mesh,
+                 size_t                start_vertex_index,
+                 float                 elevation_ratio = 0.5f,
+                 float                 distance_exponent = 2.f,
+                 float                 upward_penalization = 100.f,
+                 bool                  favor_domain_center = false);
+
+/**
+ * @brief Computes the optimal flow path from starting 2D coordinates to the
+ * boundary of a terrain triangular mesh.
+ *
+ * @param  mesh                Input triangular terrain mesh.
+ * @param  xy_start            Starting coordinates (x, y) in [0, 1].
+ * @param  elevation_ratio     Weight for elevation difference in the cost
+ *                             function (default: 0.5).
+ * @param  distance_exponent   Exponent for the distance/elevation term
+ *                             (default: 2.0).
+ * @param  upward_penalization Penalty factor for upward elevation changes
+ *                             (default: 100.0).
+ * @param  favor_domain_center Favor passing through the center of the domain
+ *                             (default: false).
+ * @return                     A Path object representing the optimal flow path.
+ */
+Path flow_stream(const TerrainTriMesh &mesh,
+                 glm::vec2             xy_start,
+                 float                 elevation_ratio = 0.5f,
+                 float                 distance_exponent = 2.f,
+                 float                 upward_penalization = 100.f,
+                 bool                  favor_domain_center = false);
+
+/**
  * @brief Generates a 2D array representing a riverbed based on a specified
  * path.
  *
@@ -1377,5 +1423,35 @@ VirtualArray flow_fixing_mst_triangulated(
     RadialProfile       radial_profile = RadialProfile::RP_SMOOTHSTEP_UPPER,
     float               radial_profile_parameter = 2.f,
     const VirtualArray *p_noise_r = nullptr);
+
+/**
+ * @brief Computes the optimal flow path from starting 2D coordinates across a
+ * VirtualArray using an intermediate random terrain triangular mesh.
+ *
+ * @param  cm                   Compute mode configuration.
+ * @param  z                    Heightmap VirtualArray.
+ * @param  start                Start coordinates (x, y) in [0, 1].
+ * @param  seed                 Random seed for mesh point generation.
+ * @param  control_points_count Number of control points sampled for the mesh.
+ * @param  elevation_ratio      Weight for elevation difference in the cost
+ *                              function (default: 0.5).
+ * @param  distance_exponent    Exponent for the distance/elevation term
+ *                              (default: 2.0).
+ * @param  upward_penalization  Penalty factor for upward elevation changes
+ *                              (default: 100.0).
+ * @param  favor_domain_center  Favor passing through the center of the domain
+ *                              (default: false).
+ * @return                      A Path object representing the optimal flow
+ *                              path.
+ */
+Path flow_stream(const ComputeMode  &cm,
+                 const VirtualArray &z,
+                 glm::vec2           start,
+                 std::uint32_t       seed = 0,
+                 size_t              control_points_count = 2048,
+                 float               elevation_ratio = 0.5f,
+                 float               distance_exponent = 2.f,
+                 float               upward_penalization = 100.f,
+                 bool                favor_domain_center = false);
 
 } // namespace hmap::va

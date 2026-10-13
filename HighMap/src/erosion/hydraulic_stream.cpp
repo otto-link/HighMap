@@ -8,7 +8,6 @@
 
 #include "highmap/array.hpp"
 #include "highmap/blending.hpp"
-#include "highmap/math/convolve.hpp"
 #include "highmap/erosion/deprecated.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/gradient.hpp"
@@ -18,6 +17,7 @@
 #include "highmap/kernels.hpp"
 #include "highmap/local_metrics.hpp"
 #include "highmap/math/array.hpp"
+#include "highmap/math/convolve.hpp"
 #include "highmap/range.hpp"
 
 namespace hmap

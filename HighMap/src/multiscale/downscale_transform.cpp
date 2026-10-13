@@ -6,10 +6,10 @@
 #include <vector>
 
 #include "highmap/array.hpp"
-#include "highmap/math/convolve.hpp"
 #include "highmap/internal/validation.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/logger.hpp"
+#include "highmap/math/convolve.hpp"
 
 namespace hmap
 {

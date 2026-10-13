@@ -100,6 +100,72 @@ public:
     std::vector<size_t> parent;
   };
 
+  /** @brief Configuration for shortest-path edge costs and heuristics. */
+  struct MeshPathCostConfig
+  {
+    /**
+     * @brief Cost metric model used for edge traversal.
+     */
+    enum class Metric
+    {
+      /**
+       * @brief Pure 2D Euclidean distance in the XY plane.
+       *
+       * Edge cost is simply the 2D segment length:
+       * @f$ \text{cost} = d_{2D} @f$
+       */
+      EUCLIDEAN_2D,
+
+      /**
+       * @brief Symmetric elevation change metric.
+       *
+       * Treats uphill and downhill elevation changes equally:
+       * @f$ \text{cost} = |\Delta z| + w_{elev} \cdot z_{curr} @f$
+       * where @f$ w_{elev} @f$ is @ref elevation_weight.
+       */
+      SYMMETRIC_Z,
+
+      /**
+       * @brief Asymmetric hydrological flow metric for streams.
+       *
+       * Strongly penalizes uphill steps while favoring natural
+       * downhill flow:
+       * @f[
+       *   \text{cost} = (1 - r_{elev}) \cdot d_{2D}
+       *               + (\Delta z > 0 \;?\; p_{up} \cdot (\Delta
+       * z)^{e_{dist}} : |\Delta z|)
+       *               + r_{elev} \cdot \max(0, \Delta z)
+       * @f] where @f$ r_{elev} @f$ is @ref elevation_ratio, @f$
+       * e_{dist} @f$ is
+       * @ref distance_exponent, and @f$ p_{up} @f$ is @ref
+       * upward_penalization.
+       */
+      HYDROLOGICAL
+    } metric = Metric::EUCLIDEAN_2D;
+
+    /** @brief Weight for absolute vertex elevation in SYMMETRIC_Z mode. */
+    float elevation_weight = 1.0f;
+
+    /** @brief Elevation vs distance balance factor in HYDROLOGICAL mode. */
+    float elevation_ratio = 0.5f;
+
+    /** @brief Power exponent applied to upward elevation steps in
+       HYDROLOGICAL mode. */
+    float distance_exponent = 2.0f;
+
+    /** @brief Penalty multiplier for uphill steps in HYDROLOGICAL mode. */
+    float upward_penalization = 100.0f;
+
+    /**
+     * @brief Additional penalty favoring paths passing through the center
+     * of the domain.
+     *
+     * Adds @f$ w_{center} \cdot (1 - 2 \cdot d_{border}) @f$ to the edge
+     * cost.
+     */
+    float domain_center_weight = 0.0f;
+  };
+
 public:
   /** @brief Construct an empty mesh. */
   TerrainTriMesh() = default;
@@ -213,6 +279,16 @@ public:
       bool  use_delta_z = false,
       float elevation_weight = 1.f) const;
 
+  /** @brief Compute shortest paths from multiple sources with a cost config. */
+  ShortestPathResult compute_shortest_paths(
+      const std::vector<std::pair<size_t, float>> &sources,
+      const MeshPathCostConfig                    &config) const;
+
+  /** @brief Compute shortest paths from a single source with a cost config. */
+  ShortestPathResult compute_shortest_paths(
+      size_t                    start,
+      const MeshPathCostConfig &config) const;
+
   /** @brief Compute shortest paths from a source vertex. */
   ShortestPathResult compute_shortest_paths(
       size_t start,
@@ -220,12 +296,24 @@ public:
       float  elevation_weight = 1.f,
       float  domain_center_weight = 0.f) const;
 
+  /** @brief Compute the shortest path between two vertices with a cost config.
+   */
+  std::vector<size_t> shortest_path(size_t                    start,
+                                    size_t                    end,
+                                    const MeshPathCostConfig &config) const;
+
   /** @brief Compute the shortest path between two vertices. */
   std::vector<size_t> shortest_path(size_t start,
                                     size_t end,
                                     bool   use_delta_z = false,
                                     float  elevation_weight = 1.f,
                                     float  domain_center_weight = 0.f) const;
+
+  /** @brief Reconstruct a path from start to end from a shortest path result.
+   */
+  std::vector<size_t> reconstruct_path(size_t                    start,
+                                       size_t                    end,
+                                       const ShortestPathResult &result) const;
 
   /** @brief Reconstruct a path to the convex hull. */
   std::vector<size_t> path_to_hull(size_t                    start,

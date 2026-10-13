@@ -4,9 +4,9 @@
 #include <cstdint>
 
 #include "highmap/array.hpp"
-#include "highmap/math/convolve.hpp"
 #include "highmap/internal/validation.hpp"
 #include "highmap/kernels.hpp"
+#include "highmap/math/convolve.hpp"
 #include "highmap/primitives/coherent_noise.hpp"
 #include "highmap/primitives/random.hpp"
 

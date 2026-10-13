@@ -19,10 +19,8 @@ namespace hmap
 {
 
 TerrainTriMesh::ShortestPathResult TerrainTriMesh::compute_shortest_paths(
-    size_t start,
-    bool   use_delta_z,
-    float  elevation_weight,
-    float  domain_center_weight) const
+    const std::vector<std::pair<size_t, float>> &sources,
+    const MeshPathCostConfig                    &config) const
 {
   constexpr size_t INVALID = std::numeric_limits<size_t>::max();
 
@@ -39,10 +37,14 @@ TerrainTriMesh::ShortestPathResult TerrainTriMesh::compute_shortest_paths(
       priority_queue<QueueNode, std::vector<QueueNode>, std::greater<QueueNode>>
           queue;
 
-  result.distance[start] = 0.f;
-  result.parent[start] = start;
+  for (const auto &[src, init_dist] : sources)
+  {
+    if (src >= n) continue;
 
-  queue.emplace(0.f, start);
+    result.distance[src] = init_dist;
+    result.parent[src] = src;
+    queue.emplace(init_dist, src);
+  }
 
   while (!queue.empty())
   {
@@ -51,125 +53,120 @@ TerrainTriMesh::ShortestPathResult TerrainTriMesh::compute_shortest_paths(
 
     if (dist > result.distance[v]) continue;
 
-    for (const Neighbor &n : neighbors.adjacency[v])
+    for (const Neighbor &nb : neighbors.adjacency[v])
     {
-      float edge_cost;
+      size_t nb_idx = nb.index;
+      float  edge_cost = 0.f;
 
-      if (use_delta_z)
+      switch (config.metric)
       {
-        float dz = points[v].z - points[n.index].z;
-        edge_cost = std::abs(dz) + elevation_weight * points[v].z;
-      }
-      else
+      case MeshPathCostConfig::Metric::EUCLIDEAN_2D:
       {
-        edge_cost = n.distance2d;
+        edge_cost = nb.distance2d;
+        break;
       }
 
-      if (domain_center_weight > 0.f)
+      case MeshPathCostConfig::Metric::SYMMETRIC_Z:
       {
-        const auto &np = points[n.index];
+        float dz = points[v].z - points[nb_idx].z;
+        edge_cost = std::abs(dz) + config.elevation_weight * points[v].z;
+        break;
+      }
+
+      case MeshPathCostConfig::Metric::HYDROLOGICAL:
+      {
+        float dz = points[nb_idx].z - points[v].z;
+        edge_cost = (1.f - config.elevation_ratio) * nb.distance2d;
+
+        if (dz > 0.f)
+          edge_cost += config.upward_penalization *
+                       std::pow(dz, config.distance_exponent);
+        else
+          edge_cost += std::abs(dz);
+
+        edge_cost += config.elevation_ratio * std::max(0.f, dz);
+        break;
+      }
+      }
+
+      if (config.domain_center_weight > 0.f)
+      {
+        const auto &np = points[nb_idx];
         float dist_border = std::min({np.x, 1.f - np.x, np.y, 1.f - np.y});
         dist_border = std::clamp(dist_border, 0.f, 0.5f);
 
         // penalty is highest at boundary (1.0) and 0 at center
         float penalty = 1.f - 2.f * dist_border;
-        edge_cost += domain_center_weight * penalty;
+        edge_cost += config.domain_center_weight * penalty;
       }
 
       float new_dist = dist + edge_cost;
 
-      if (new_dist < result.distance[n.index])
+      if (new_dist < result.distance[nb_idx])
       {
-        result.distance[n.index] = new_dist;
-        result.parent[n.index] = v;
+        result.distance[nb_idx] = new_dist;
+        result.parent[nb_idx] = v;
 
-        queue.emplace(new_dist, n.index);
+        queue.emplace(new_dist, nb_idx);
       }
     }
   }
 
   return result;
+}
+
+TerrainTriMesh::ShortestPathResult TerrainTriMesh::compute_shortest_paths(
+    size_t                    start,
+    const MeshPathCostConfig &config) const
+{
+  return compute_shortest_paths({{start, 0.f}}, config);
+}
+
+TerrainTriMesh::ShortestPathResult TerrainTriMesh::compute_shortest_paths(
+    size_t start,
+    bool   use_delta_z,
+    float  elevation_weight,
+    float  domain_center_weight) const
+{
+  MeshPathCostConfig config;
+  config.metric = use_delta_z ? MeshPathCostConfig::Metric::SYMMETRIC_Z
+                              : MeshPathCostConfig::Metric::EUCLIDEAN_2D;
+  config.elevation_weight = elevation_weight;
+  config.domain_center_weight = domain_center_weight;
+
+  return compute_shortest_paths(start, config);
 }
 
 TerrainTriMesh::ShortestPathResult TerrainTriMesh::
     compute_shortest_paths_to_hull(bool  use_delta_z,
                                    float elevation_weight) const
 {
-  constexpr size_t INVALID = std::numeric_limits<size_t>::max();
+  MeshPathCostConfig config;
+  config.metric = use_delta_z ? MeshPathCostConfig::Metric::SYMMETRIC_Z
+                              : MeshPathCostConfig::Metric::EUCLIDEAN_2D;
+  config.elevation_weight = elevation_weight;
 
-  ShortestPathResult result;
-
-  const size_t n = points.size();
-
-  result.distance.assign(n, std::numeric_limits<float>::infinity());
-  result.parent.assign(n, INVALID);
-
-  using QueueNode = std::pair<float, size_t>;
-
-  std::
-      priority_queue<QueueNode, std::vector<QueueNode>, std::greater<QueueNode>>
-          queue;
+  std::vector<std::pair<size_t, float>> sources;
+  sources.reserve(convex_hull.size());
 
   for (size_t v : convex_hull)
   {
-    result.distance[v] = 0.f;
-    result.parent[v] = v;
-    queue.emplace(0.f, v);
+    sources.emplace_back(v, 0.f);
   }
 
-  while (!queue.empty())
-  {
-    auto [dist, v] = queue.top();
-    queue.pop();
-
-    if (dist > result.distance[v]) continue;
-
-    for (const Neighbor &n : neighbors.adjacency[v])
-    {
-      float edge_cost;
-
-      if (use_delta_z)
-      {
-        float dz = points[v].z - points[n.index].z;
-        edge_cost = std::abs(dz) + elevation_weight * points[v].z;
-      }
-      else
-      {
-        edge_cost = n.distance2d;
-      }
-
-      float new_dist = dist + edge_cost;
-
-      if (new_dist < result.distance[n.index])
-      {
-        result.distance[n.index] = new_dist;
-        result.parent[n.index] = v;
-
-        queue.emplace(new_dist, n.index);
-      }
-    }
-  }
-
-  return result;
+  return compute_shortest_paths(sources, config);
 }
 
-std::vector<size_t> TerrainTriMesh::shortest_path(
-    size_t start,
-    size_t end,
-    bool   use_delta_z,
-    float  elevation_weight,
-    float  domain_center_weight) const
+std::vector<size_t> TerrainTriMesh::reconstruct_path(
+    size_t                    start,
+    size_t                    end,
+    const ShortestPathResult &result) const
 {
   constexpr size_t INVALID = std::numeric_limits<size_t>::max();
 
-  auto result = compute_shortest_paths(start,
-                                       use_delta_z,
-                                       elevation_weight,
-                                       domain_center_weight);
-
   std::vector<size_t> path;
 
-  if (result.parent[end] == INVALID) return path;
+  if (end >= result.parent.size() || result.parent[end] == INVALID) return path;
 
   const size_t n = points.size();
 
@@ -190,6 +187,31 @@ std::vector<size_t> TerrainTriMesh::shortest_path(
   return path;
 }
 
+std::vector<size_t> TerrainTriMesh::shortest_path(
+    size_t                    start,
+    size_t                    end,
+    const MeshPathCostConfig &config) const
+{
+  auto result = compute_shortest_paths(start, config);
+  return reconstruct_path(start, end, result);
+}
+
+std::vector<size_t> TerrainTriMesh::shortest_path(
+    size_t start,
+    size_t end,
+    bool   use_delta_z,
+    float  elevation_weight,
+    float  domain_center_weight) const
+{
+  MeshPathCostConfig config;
+  config.metric = use_delta_z ? MeshPathCostConfig::Metric::SYMMETRIC_Z
+                              : MeshPathCostConfig::Metric::EUCLIDEAN_2D;
+  config.elevation_weight = elevation_weight;
+  config.domain_center_weight = domain_center_weight;
+
+  return shortest_path(start, end, config);
+}
+
 std::vector<size_t> TerrainTriMesh::path_to_hull(
     size_t                    start,
     const ShortestPathResult &result) const
@@ -198,7 +220,8 @@ std::vector<size_t> TerrainTriMesh::path_to_hull(
 
   std::vector<size_t> path;
 
-  if (result.parent[start] == INVALID) return path;
+  if (start >= result.parent.size() || result.parent[start] == INVALID)
+    return path;
 
   for (size_t v = start;; v = result.parent[v])
   {

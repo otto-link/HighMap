@@ -1,9 +1,9 @@
 #include "highmap/array.hpp"
-#include "highmap/math/convolve.hpp"
 #include "highmap/dbg/assert.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/local_metrics.hpp"
+#include "highmap/math/convolve.hpp"
 #include "highmap/primitives.hpp"
 
 #include <gtest/gtest.h>

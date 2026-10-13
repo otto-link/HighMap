@@ -10,9 +10,9 @@
 #include <gsl/gsl_vector_double.h>
 
 #include "highmap/array.hpp"
-#include "highmap/math/convolve.hpp"
 #include "highmap/internal/validation.hpp"
 #include "highmap/logger.hpp"
+#include "highmap/math/convolve.hpp"
 #include "highmap/operator.hpp"
 #include "highmap/primitives/random.hpp"
 #include "highmap/transform.hpp"
