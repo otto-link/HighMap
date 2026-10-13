@@ -46,10 +46,6 @@ enum \mbox{\hyperlink{namespacehmap_1_1gpu_ab0737b29664736928a86f0755493895f}{Lo
 \begin{DoxyCompactList}\small\item\em Blends two textures using Poisson blending with a brute-\/force solver. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_acff6d6d559781cdeba565ed795bb81d8}{transfer}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&source, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&\mbox{\hyperlink{sls__deformation_8cpp_a2975431cdfb0da699844afbc6058ebc9}{target}}, int \mbox{\hyperlink{sls__deformation_8cpp_a108a1d0fcea4288c9e48f5dc4fa0a1b0}{ir}}, float \mbox{\hyperlink{sls__deformation_8cpp_a31bef58f966d97b1ace9bd3a58ffd9a6}{amplitude}}, bool target\+\_\+prefiltering=false)
 \begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_a6786fe2ccf9bd2ceb294927c88bd898d}{hmap\+::transfer}. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_a0020f712944fdb63ee2894c19eaa27ca}{sparse\+\_\+max\+\_\+convolution}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&kernel, bool scale\+\_\+kernel\+\_\+with\+\_\+value=true, float k\+\_\+smoothmax=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
-\begin{DoxyCompactList}\small\item\em Apply a sparse max-\/convolution. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_a3070705e0a58ac06120981a963e17e0d}{sparse\+\_\+max\+\_\+convolution}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array\+\_\+values, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array\+\_\+sizes, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&kernel, float k\+\_\+smoothmax=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
-\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_a125118b55d309727ff0b46d686fd3829}{level\+\_\+set\+\_\+curvature}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int prefilter\+\_\+ir)
 \begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_aa1f2e119a09d246fe0cf27e859ddb2e6}{hmap\+::level\+\_\+set\+\_\+curvature}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_a7bfb7fecab3f34a73a57d7907c3ace7d}{curvature\+\_\+quadric}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}, int \mbox{\hyperlink{sls__deformation_8cpp_a108a1d0fcea4288c9e48f5dc4fa0a1b0}{ir}}, \mbox{\hyperlink{namespacehmap_ad4d5e191ca7dd12e389c842188bde88a}{Curvature\+Type}} curvature\+\_\+type, bool approx\+\_\+algo=false)
@@ -390,6 +386,10 @@ void \mbox{\hyperlink{namespacehmap_1_1gpu_ad44fefa43fdf773f241dcf4c46795e80}{in
 \begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_ab4d8048b79080012b8e60c270de8137f}{hmap\+::valley\+\_\+width}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_a7329432a304163cef4fedb8b6bb124c5}{local\+\_\+metrics}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int \mbox{\hyperlink{sls__deformation_8cpp_a108a1d0fcea4288c9e48f5dc4fa0a1b0}{ir}}, \mbox{\hyperlink{namespacehmap_1_1gpu_ab0737b29664736928a86f0755493895f}{Local\+Metrics}} metric, \mbox{\hyperlink{namespacehmap_a2ff2761f87976a24c39df7b6509576f1}{Min\+Max\+Kernel}} kernel\+\_\+type=\mbox{\hyperlink{namespacehmap_a2ff2761f87976a24c39df7b6509576f1a290d4b81f4e2b47d86fd1b0170e9aab7}{Min\+Max\+Kernel\+::\+DISK}})
 \begin{DoxyCompactList}\small\item\em Compute a local metric on the input array using a square neighborhood. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_a0020f712944fdb63ee2894c19eaa27ca}{sparse\+\_\+max\+\_\+convolution}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&kernel, bool scale\+\_\+kernel\+\_\+with\+\_\+value=true, float k\+\_\+smoothmax=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+\begin{DoxyCompactList}\small\item\em Apply a sparse max-\/convolution. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_a3070705e0a58ac06120981a963e17e0d}{sparse\+\_\+max\+\_\+convolution}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array\+\_\+values, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array\+\_\+sizes, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&kernel, float k\+\_\+smoothmax=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_a06a37576327ff4cb06746711dbdfa0de}{border}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int \mbox{\hyperlink{sls__deformation_8cpp_a108a1d0fcea4288c9e48f5dc4fa0a1b0}{ir}}, \mbox{\hyperlink{namespacehmap_a2ff2761f87976a24c39df7b6509576f1}{Min\+Max\+Kernel}} kernel\+\_\+type=\mbox{\hyperlink{namespacehmap_a2ff2761f87976a24c39df7b6509576f1a290d4b81f4e2b47d86fd1b0170e9aab7}{Min\+Max\+Kernel\+::\+DISK}})
 \begin{DoxyCompactList}\small\item\em See \doxylink{namespacehmap_af80bcff234bf1482cf26896b9d21d270}{hmap\+::border}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_1_1gpu_ae87241d6c556abd06c6b977f45f48a3f}{closing}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int \mbox{\hyperlink{sls__deformation_8cpp_a108a1d0fcea4288c9e48f5dc4fa0a1b0}{ir}}, \mbox{\hyperlink{namespacehmap_a2ff2761f87976a24c39df7b6509576f1}{Min\+Max\+Kernel}} kernel\+\_\+type=\mbox{\hyperlink{namespacehmap_a2ff2761f87976a24c39df7b6509576f1a290d4b81f4e2b47d86fd1b0170e9aab7}{Min\+Max\+Kernel\+::\+DISK}})
@@ -748,74 +748,6 @@ The blended texture resulting from the Poisson blending operation.
 
 
 See \doxylink{namespacehmap_a6786fe2ccf9bd2ceb294927c88bd898d}{hmap\+::transfer}. 
-
-\Hypertarget{namespacehmap_1_1gpu_a0020f712944fdb63ee2894c19eaa27ca}\label{namespacehmap_1_1gpu_a0020f712944fdb63ee2894c19eaa27ca} 
-\index{hmap::gpu@{hmap::gpu}!sparse\_max\_convolution@{sparse\_max\_convolution}}
-\index{sparse\_max\_convolution@{sparse\_max\_convolution}!hmap::gpu@{hmap::gpu}}
-\doxysubsubsection{\texorpdfstring{sparse\_max\_convolution()}{sparse\_max\_convolution()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::gpu\+::sparse\+\_\+max\+\_\+convolution (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{kernel,  }\item[{bool}]{scale\+\_\+kernel\+\_\+with\+\_\+value = {\ttfamily true},  }\item[{float}]{k\+\_\+smoothmax = {\ttfamily 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}} }\end{DoxyParamCaption})}
-
-
-
-Apply a sparse max-\/convolution. 
-
-This operator propagates the non-\/zero values of the input array through a spatial kernel using a max-\/reduction instead of a summation. For each non-\/zero value of the input array, the kernel is centered at the sample position and contributes to the output through a weighted maximum.
-
-The operation is conceptually similar to a sparse morphological dilation or a max-\/convolution.
-
-
-\begin{DoxyParams}{Parameters}
-{\em array} & Input sparse scalar field. \\
-\hline
-{\em kernel} & Propagation kernel. \\
-\hline
-{\em scale\+\_\+kernel\+\_\+with\+\_\+value} & If true, the effective kernel size is scaled according to the local input value. Larger values propagate over a larger neighborhood, while smaller values use a reduced kernel support. If false, the full kernel size is used everywhere. \\
-\hline
-{\em k\+\_\+smoothmax} & Smooth maximum factor.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-Sparse max-\/convolved array.
-\end{DoxyReturn}
-{\bfseries{Example}} 
-\begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{highmap_8hpp}{highmap.hpp}}"{}}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{void})}
-\DoxyCodeLine{\{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_1_1gpu_adb8336ed4d83c15500872185dee45d50}{hmap::gpu::init\_opencl}}();}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ glm::ivec2\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}\ =\ \{256,\ 256\};}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ seed\ =\ 0;}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ generate\ mask}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ glm::vec4\ \ bbox\ =\ \{0.f,\ 1.f,\ 0.f,\ 1.f\};}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}\ =\ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}(10,\ seed,\ \mbox{\hyperlink{namespacehmap_adc5300323fa35e021fd83b8b048ef3b1}{hmap::adjust}}(bbox,\ -\/0.1f));}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}.reorder\_nns();}
-\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ mask\ =\ \mbox{\hyperlink{namespacehmap_ac39b5e32d90e0351f4124ea61334461d}{hmap::bezier}}(\mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}).\mbox{\hyperlink{classhmap_1_1Path_a4d1e1e63fea24bf8f23bc3343f8b746e}{to\_array}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ bbox);}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a2badbebec49b12d0d721970a18eb420d}{hmap::clamp\_min}}(mask,\ 0.f);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ splat\ kernel}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ glm::ivec2\ \ kernel\_shape\ =\ \{64,\ 64\};}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ kernel\ =\ \mbox{\hyperlink{namespacehmap_a38c0a582a98d48f73f49f12ebf1b78f9}{hmap::cubic\_pulse}}(kernel\_shape);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}\ =\ \mbox{\hyperlink{namespacehmap_1_1gpu_a0020f712944fdb63ee2894c19eaa27ca}{hmap::gpu::sparse\_max\_convolution}}(mask,\ kernel);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_ac2452e568959bc21c9b7b09202e5977a}{hmap::export\_banner\_png}}(\textcolor{stringliteral}{"{}ex\_sparse\_max\_convolution.png"{}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{mask,\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}\},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a65146260717d07e4773aec50520b9ced}{hmap::Cmap::JET}});}
-\DoxyCodeLine{\}}
-
-\end{DoxyCodeInclude}
-
-
-{\bfseries{Result}}  \Hypertarget{namespacehmap_1_1gpu_a3070705e0a58ac06120981a963e17e0d}\label{namespacehmap_1_1gpu_a3070705e0a58ac06120981a963e17e0d} 
-\index{hmap::gpu@{hmap::gpu}!sparse\_max\_convolution@{sparse\_max\_convolution}}
-\index{sparse\_max\_convolution@{sparse\_max\_convolution}!hmap::gpu@{hmap::gpu}}
-\doxysubsubsection{\texorpdfstring{sparse\_max\_convolution()}{sparse\_max\_convolution()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::gpu\+::sparse\+\_\+max\+\_\+convolution (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array\+\_\+values,  }\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array\+\_\+sizes,  }\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{kernel,  }\item[{float}]{k\+\_\+smoothmax = {\ttfamily 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}} }\end{DoxyParamCaption})}
 
 \Hypertarget{namespacehmap_1_1gpu_a125118b55d309727ff0b46d686fd3829}\label{namespacehmap_1_1gpu_a125118b55d309727ff0b46d686fd3829} 
 \index{hmap::gpu@{hmap::gpu}!level\_set\_curvature@{level\_set\_curvature}}
@@ -5886,7 +5818,75 @@ Applies the selected local statistic or terrain descriptor (e.\+g. mean, varianc
 
 {\bfseries{Result}} 
 
-See unit tests\+: \doxylink{test__local__metrics_8cpp}{test\+\_\+local\+\_\+metrics.\+cpp} \Hypertarget{namespacehmap_1_1gpu_a06a37576327ff4cb06746711dbdfa0de}\label{namespacehmap_1_1gpu_a06a37576327ff4cb06746711dbdfa0de} 
+See unit tests\+: \doxylink{test__local__metrics_8cpp}{test\+\_\+local\+\_\+metrics.\+cpp} \Hypertarget{namespacehmap_1_1gpu_a0020f712944fdb63ee2894c19eaa27ca}\label{namespacehmap_1_1gpu_a0020f712944fdb63ee2894c19eaa27ca} 
+\index{hmap::gpu@{hmap::gpu}!sparse\_max\_convolution@{sparse\_max\_convolution}}
+\index{sparse\_max\_convolution@{sparse\_max\_convolution}!hmap::gpu@{hmap::gpu}}
+\doxysubsubsection{\texorpdfstring{sparse\_max\_convolution()}{sparse\_max\_convolution()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::gpu\+::sparse\+\_\+max\+\_\+convolution (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{kernel,  }\item[{bool}]{scale\+\_\+kernel\+\_\+with\+\_\+value = {\ttfamily true},  }\item[{float}]{k\+\_\+smoothmax = {\ttfamily 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}} }\end{DoxyParamCaption})}
+
+
+
+Apply a sparse max-\/convolution. 
+
+This operator propagates the non-\/zero values of the input array through a spatial kernel using a max-\/reduction instead of a summation. For each non-\/zero value of the input array, the kernel is centered at the sample position and contributes to the output through a weighted maximum.
+
+The operation is conceptually similar to a sparse morphological dilation or a max-\/convolution.
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & Input sparse scalar field. \\
+\hline
+{\em kernel} & Propagation kernel. \\
+\hline
+{\em scale\+\_\+kernel\+\_\+with\+\_\+value} & If true, the effective kernel size is scaled according to the local input value. Larger values propagate over a larger neighborhood, while smaller values use a reduced kernel support. If false, the full kernel size is used everywhere. \\
+\hline
+{\em k\+\_\+smoothmax} & Smooth maximum factor.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Sparse max-\/convolved array.
+\end{DoxyReturn}
+{\bfseries{Example}} 
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{highmap_8hpp}{highmap.hpp}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_1_1gpu_adb8336ed4d83c15500872185dee45d50}{hmap::gpu::init\_opencl}}();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ glm::ivec2\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}\ =\ \{256,\ 256\};}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ seed\ =\ 0;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ generate\ mask}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ glm::vec4\ \ bbox\ =\ \{0.f,\ 1.f,\ 0.f,\ 1.f\};}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}\ =\ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}(10,\ seed,\ \mbox{\hyperlink{namespacehmap_adc5300323fa35e021fd83b8b048ef3b1}{hmap::adjust}}(bbox,\ -\/0.1f));}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}.reorder\_nns();}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ mask\ =\ \mbox{\hyperlink{namespacehmap_ac39b5e32d90e0351f4124ea61334461d}{hmap::bezier}}(\mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}).\mbox{\hyperlink{classhmap_1_1Path_a4d1e1e63fea24bf8f23bc3343f8b746e}{to\_array}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ bbox);}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a2badbebec49b12d0d721970a18eb420d}{hmap::clamp\_min}}(mask,\ 0.f);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ splat\ kernel}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ glm::ivec2\ \ kernel\_shape\ =\ \{64,\ 64\};}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ kernel\ =\ \mbox{\hyperlink{namespacehmap_a38c0a582a98d48f73f49f12ebf1b78f9}{hmap::cubic\_pulse}}(kernel\_shape);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}\ =\ \mbox{\hyperlink{namespacehmap_1_1gpu_a0020f712944fdb63ee2894c19eaa27ca}{hmap::gpu::sparse\_max\_convolution}}(mask,\ kernel);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_ac2452e568959bc21c9b7b09202e5977a}{hmap::export\_banner\_png}}(\textcolor{stringliteral}{"{}ex\_sparse\_max\_convolution.png"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{mask,\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a65146260717d07e4773aec50520b9ced}{hmap::Cmap::JET}});}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+
+
+{\bfseries{Result}}  \Hypertarget{namespacehmap_1_1gpu_a3070705e0a58ac06120981a963e17e0d}\label{namespacehmap_1_1gpu_a3070705e0a58ac06120981a963e17e0d} 
+\index{hmap::gpu@{hmap::gpu}!sparse\_max\_convolution@{sparse\_max\_convolution}}
+\index{sparse\_max\_convolution@{sparse\_max\_convolution}!hmap::gpu@{hmap::gpu}}
+\doxysubsubsection{\texorpdfstring{sparse\_max\_convolution()}{sparse\_max\_convolution()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::gpu\+::sparse\+\_\+max\+\_\+convolution (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array\+\_\+values,  }\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array\+\_\+sizes,  }\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{kernel,  }\item[{float}]{k\+\_\+smoothmax = {\ttfamily 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}} }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacehmap_1_1gpu_a06a37576327ff4cb06746711dbdfa0de}\label{namespacehmap_1_1gpu_a06a37576327ff4cb06746711dbdfa0de} 
 \index{hmap::gpu@{hmap::gpu}!border@{border}}
 \index{border@{border}!hmap::gpu@{hmap::gpu}}
 \doxysubsubsection{\texorpdfstring{border()}{border()}}

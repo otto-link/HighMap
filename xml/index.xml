@@ -1999,12 +1999,6 @@
     <member refid="namespacehmap_1a31a770d3f3a00d8cf4dd8478b5a50a17" kind="function"><name>mix</name></member>
     <member refid="namespacehmap_1a5421f279cef2873c17b26c610a7fd87a" kind="function"><name>mix_normal_map</name></member>
     <member refid="namespacehmap_1a2f2ca726f4e41128135e6c77120c66d8" kind="function"><name>get_colormap_data</name></member>
-    <member refid="namespacehmap_1a9411ccef8a74e06ef51efd1f5041c7b4" kind="function"><name>convolve1d_i</name></member>
-    <member refid="namespacehmap_1a2f3f79308ada9782de6c4866b567b167" kind="function"><name>convolve1d_j</name></member>
-    <member refid="namespacehmap_1acf8376b5e40b4373986c9a6b41c02429" kind="function"><name>convolve2d</name></member>
-    <member refid="namespacehmap_1a6108df0909730083cb6dd7cf4a217c1b" kind="function"><name>convolve2d_truncated</name></member>
-    <member refid="namespacehmap_1a15951dcd1ef3999591c757944f894e15" kind="function"><name>convolve2d_svd</name></member>
-    <member refid="namespacehmap_1a820e82bc70b4f44fb46a742a77879071" kind="function"><name>convolve2d_svd_rotated_kernel</name></member>
     <member refid="namespacehmap_1aa1f2e119a09d246fe0cf27e859ddb2e6" kind="function"><name>level_set_curvature</name></member>
     <member refid="namespacehmap_1a4e2b7df70a18f94ad7f4d7cd934ec767" kind="function"><name>curvature_quadric</name></member>
     <member refid="namespacehmap_1a7d7c20120bea803d47a9a8394007e383" kind="function"><name>assert_almost_equal</name></member>
@@ -2445,6 +2439,12 @@
     <member refid="namespacehmap_1a30e6961ce99edeb86af6f4ce61651bd0" kind="function"><name>sqrt_safe</name></member>
     <member refid="namespacehmap_1a30b11da38799224ac6d138dce87278b9" kind="function"><name>threshold</name></member>
     <member refid="namespacehmap_1a49cba67ac4811585d8c11f10972f6d8c" kind="function"><name>threshold_smooth</name></member>
+    <member refid="namespacehmap_1a9411ccef8a74e06ef51efd1f5041c7b4" kind="function"><name>convolve1d_i</name></member>
+    <member refid="namespacehmap_1a2f3f79308ada9782de6c4866b567b167" kind="function"><name>convolve1d_j</name></member>
+    <member refid="namespacehmap_1acf8376b5e40b4373986c9a6b41c02429" kind="function"><name>convolve2d</name></member>
+    <member refid="namespacehmap_1a6108df0909730083cb6dd7cf4a217c1b" kind="function"><name>convolve2d_truncated</name></member>
+    <member refid="namespacehmap_1a15951dcd1ef3999591c757944f894e15" kind="function"><name>convolve2d_svd</name></member>
+    <member refid="namespacehmap_1a820e82bc70b4f44fb46a742a77879071" kind="function"><name>convolve2d_svd_rotated_kernel</name></member>
     <member refid="namespacehmap_1ab7bb73f6a918ffc68129e3a861080efd" kind="function"><name>abs_smooth</name></member>
     <member refid="namespacehmap_1a8ddf0121ee2b8c701a61a12274b5f3e3" kind="function"><name>almost_unit_identity</name></member>
     <member refid="namespacehmap_1ab0aafd1928d46167f782de3c00b937ac" kind="function"><name>almost_unit_identity_c2</name></member>
@@ -2843,8 +2843,6 @@
     <member refid="namespacehmap_1_1gpu_1a65a176508b404f80e5f5abd31456712e" kind="function"><name>blend_poisson_bf</name></member>
     <member refid="namespacehmap_1_1gpu_1a11510c63a1d13a6107720f6e220f13de" kind="function"><name>blend_poisson_bf</name></member>
     <member refid="namespacehmap_1_1gpu_1acff6d6d559781cdeba565ed795bb81d8" kind="function"><name>transfer</name></member>
-    <member refid="namespacehmap_1_1gpu_1a0020f712944fdb63ee2894c19eaa27ca" kind="function"><name>sparse_max_convolution</name></member>
-    <member refid="namespacehmap_1_1gpu_1a3070705e0a58ac06120981a963e17e0d" kind="function"><name>sparse_max_convolution</name></member>
     <member refid="namespacehmap_1_1gpu_1a125118b55d309727ff0b46d686fd3829" kind="function"><name>level_set_curvature</name></member>
     <member refid="namespacehmap_1_1gpu_1a7bfb7fecab3f34a73a57d7907c3ace7d" kind="function"><name>curvature_quadric</name></member>
     <member refid="namespacehmap_1_1gpu_1a453995ce289c0c3dad0f34fe10a54d74" kind="function"><name>conv_erosion</name></member>
@@ -3017,6 +3015,8 @@
     <member refid="namespacehmap_1_1gpu_1aa5a3e087822525c41f057a51255e2bad" kind="function"><name>rugosity</name></member>
     <member refid="namespacehmap_1_1gpu_1a3816b73c0f933147dc86ee9f8d2dd701" kind="function"><name>valley_width</name></member>
     <member refid="namespacehmap_1_1gpu_1a7329432a304163cef4fedb8b6bb124c5" kind="function"><name>local_metrics</name></member>
+    <member refid="namespacehmap_1_1gpu_1a0020f712944fdb63ee2894c19eaa27ca" kind="function"><name>sparse_max_convolution</name></member>
+    <member refid="namespacehmap_1_1gpu_1a3070705e0a58ac06120981a963e17e0d" kind="function"><name>sparse_max_convolution</name></member>
     <member refid="namespacehmap_1_1gpu_1a06a37576327ff4cb06746711dbdfa0de" kind="function"><name>border</name></member>
     <member refid="namespacehmap_1_1gpu_1ae87241d6c556abd06c6b977f45f48a3f" kind="function"><name>closing</name></member>
     <member refid="namespacehmap_1_1gpu_1aa6af85d0d97b84f5112ce63b8ea2e46a" kind="function"><name>closing_by_reconstruction</name></member>
@@ -3182,8 +3182,6 @@
   </compound>
   <compound refid="colormaps_8hpp" kind="file"><name>colormaps.hpp</name>
   </compound>
-  <compound refid="convolve_8hpp" kind="file"><name>convolve.hpp</name>
-  </compound>
   <compound refid="coord__frame_8hpp" kind="file"><name>coord_frame.hpp</name>
   </compound>
   <compound refid="curvature_8hpp" kind="file"><name>curvature.hpp</name>
@@ -3311,6 +3309,8 @@
   <compound refid="chebyshev_8hpp" kind="file"><name>chebyshev.hpp</name>
   </compound>
   <compound refid="constants_8hpp" kind="file"><name>constants.hpp</name>
+  </compound>
+  <compound refid="convolve_8hpp" kind="file"><name>convolve.hpp</name>
   </compound>
   <compound refid="core_8hpp" kind="file"><name>core.hpp</name>
   </compound>

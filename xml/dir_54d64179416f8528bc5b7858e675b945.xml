@@ -5,6 +5,7 @@
     <innerfile refid="math_2array_8hpp">array.hpp</innerfile>
     <innerfile refid="chebyshev_8hpp">chebyshev.hpp</innerfile>
     <innerfile refid="constants_8hpp">constants.hpp</innerfile>
+    <innerfile refid="convolve_8hpp">convolve.hpp</innerfile>
     <innerfile refid="core_8hpp">core.hpp</innerfile>
     <innerfile refid="distance__functions_8hpp">distance_functions.hpp</innerfile>
     <innerfile refid="profiles_8hpp">profiles.hpp</innerfile>

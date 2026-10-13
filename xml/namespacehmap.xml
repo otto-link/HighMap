@@ -9324,450 +9324,6 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </inbodydescription>
         <location file="HighMap/src/colormaps/get_colormap_data.cpp" line="22" column="13" bodyfile="HighMap/src/colormaps/get_colormap_data.cpp" bodystart="22" bodyend="45" declfile="HighMap/include/highmap/colormaps.hpp" declline="350" declcolumn="13"/>
       </memberdef>
-      <memberdef kind="function" id="namespacehmap_1a9411ccef8a74e06ef51efd1f5041c7b4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
-        <definition>Array hmap::convolve1d_i</definition>
-        <argsstring>(const Array &amp;array, const std::vector&lt; float &gt; &amp;kernel)</argsstring>
-        <name>convolve1d_i</name>
-        <qualifiedname>hmap::convolve1d_i</qualifiedname>
-        <param>
-          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
-          <declname>array</declname>
-        </param>
-        <param>
-          <type>const std::vector&lt; float &gt; &amp;</type>
-          <declname>kernel</declname>
-        </param>
-        <briefdescription>
-<para>Return the convolution product of the array with a 1D kernel along the &apos;i&apos; direction. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>This function applies a 1D convolution to the input array using the provided kernel, considering the convolution in the row direction (&apos;i&apos; direction).</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>array</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Input array to be convolved. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>kernel</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>1D kernel to be used for the convolution. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> Resulting array after applying the 1D convolution.</para>
-</simplesect>
-<bold>Example</bold> <programlisting filename="ex_convolve1d_ij.cpp"><codeline><highlight class="preprocessor">#include<sp/>&quot;<ref refid="highmap_8hpp" kindref="compound">highmap.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="main_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
-<codeline><highlight class="normal">{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>glm::ivec2<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref><sp/>=<sp/>{256,<sp/>256};</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>glm::vec2<sp/><sp/>res<sp/>=<sp/>{4.f,<sp/>4.f};</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref><sp/>=<sp/><ref refid="namespacehmap_1a7d699a468a18be16c70654958ee13b41" kindref="member">hmap::noise_fbm</ref>(<ref refid="namespacehmap_1ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581" kindref="member">hmap::NoiseType::PERLIN</ref>,<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>res,<sp/>seed);</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>std::vector&lt;float&gt;<sp/>k(32);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>std::fill(k.begin(),<sp/>k.end(),<sp/>1.f<sp/>/<sp/>32.f);</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>zc<sp/>=<sp/><ref refid="namespacehmap_1a9411ccef8a74e06ef51efd1f5041c7b4" kindref="member">hmap::convolve1d_i</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>k);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>zc<sp/>=<sp/><ref refid="namespacehmap_1a2f3f79308ada9782de6c4866b567b167" kindref="member">hmap::convolve1d_j</ref>(zc,<sp/>k);</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1ac2452e568959bc21c9b7b09202e5977a" kindref="member">hmap::export_banner_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_convolve1d_ij.png&quot;</highlight><highlight class="normal">,<sp/>{<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>zc},<sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369a0741a9943ed0e5c50042ef82d4d55492" kindref="member">hmap::Cmap::VIRIDIS</ref>);</highlight></codeline>
-<codeline><highlight class="normal">}</highlight></codeline>
-</programlisting></para>
-<para><bold>Result</bold> <image type="html" name="ex_convolve1d_ij.png"></image>
-</para>
-<para><simplesect kind="see"><para><computeroutput><ref refid="namespacehmap_1a2f3f79308ada9782de6c4866b567b167" kindref="member">convolve1d_j</ref></computeroutput> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="HighMap/src/convolve/convolve.cpp" line="22" column="7" bodyfile="HighMap/src/convolve/convolve.cpp" bodystart="22" bodyend="44" declfile="HighMap/include/highmap/convolve.hpp" declline="45" declcolumn="7"/>
-      </memberdef>
-      <memberdef kind="function" id="namespacehmap_1a2f3f79308ada9782de6c4866b567b167" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
-        <definition>Array hmap::convolve1d_j</definition>
-        <argsstring>(const Array &amp;array, const std::vector&lt; float &gt; &amp;kernel)</argsstring>
-        <name>convolve1d_j</name>
-        <qualifiedname>hmap::convolve1d_j</qualifiedname>
-        <param>
-          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
-          <declname>array</declname>
-        </param>
-        <param>
-          <type>const std::vector&lt; float &gt; &amp;</type>
-          <declname>kernel</declname>
-        </param>
-        <briefdescription>
-<para>Return the convolution product of the array with a 1D kernel along the &apos;j&apos; direction. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>This function applies a 1D convolution to the input array using the provided kernel, considering the convolution in the column direction (&apos;j&apos; direction).</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>array</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Input array to be convolved. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>kernel</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>1D kernel to be used for the convolution. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> Resulting array after applying the 1D convolution.</para>
-</simplesect>
-<bold>Example</bold> <programlisting filename="ex_convolve1d_ij.cpp"><codeline><highlight class="preprocessor">#include<sp/>&quot;<ref refid="highmap_8hpp" kindref="compound">highmap.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="main_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
-<codeline><highlight class="normal">{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>glm::ivec2<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref><sp/>=<sp/>{256,<sp/>256};</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>glm::vec2<sp/><sp/>res<sp/>=<sp/>{4.f,<sp/>4.f};</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref><sp/>=<sp/><ref refid="namespacehmap_1a7d699a468a18be16c70654958ee13b41" kindref="member">hmap::noise_fbm</ref>(<ref refid="namespacehmap_1ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581" kindref="member">hmap::NoiseType::PERLIN</ref>,<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>res,<sp/>seed);</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>std::vector&lt;float&gt;<sp/>k(32);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>std::fill(k.begin(),<sp/>k.end(),<sp/>1.f<sp/>/<sp/>32.f);</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>zc<sp/>=<sp/><ref refid="namespacehmap_1a9411ccef8a74e06ef51efd1f5041c7b4" kindref="member">hmap::convolve1d_i</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>k);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>zc<sp/>=<sp/><ref refid="namespacehmap_1a2f3f79308ada9782de6c4866b567b167" kindref="member">hmap::convolve1d_j</ref>(zc,<sp/>k);</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1ac2452e568959bc21c9b7b09202e5977a" kindref="member">hmap::export_banner_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_convolve1d_ij.png&quot;</highlight><highlight class="normal">,<sp/>{<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>zc},<sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369a0741a9943ed0e5c50042ef82d4d55492" kindref="member">hmap::Cmap::VIRIDIS</ref>);</highlight></codeline>
-<codeline><highlight class="normal">}</highlight></codeline>
-</programlisting></para>
-<para><bold>Result</bold> <image type="html" name="ex_convolve1d_ij.png"></image>
-</para>
-<para><simplesect kind="see"><para><computeroutput><ref refid="namespacehmap_1a9411ccef8a74e06ef51efd1f5041c7b4" kindref="member">convolve1d_i</ref></computeroutput> </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="HighMap/src/convolve/convolve.cpp" line="46" column="7" bodyfile="HighMap/src/convolve/convolve.cpp" bodystart="46" bodyend="66" declfile="HighMap/include/highmap/convolve.hpp" declline="66" declcolumn="7"/>
-      </memberdef>
-      <memberdef kind="function" id="namespacehmap_1acf8376b5e40b4373986c9a6b41c02429" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
-        <definition>Array hmap::convolve2d</definition>
-        <argsstring>(const Array &amp;array, const Array &amp;kernel)</argsstring>
-        <name>convolve2d</name>
-        <qualifiedname>hmap::convolve2d</qualifiedname>
-        <param>
-          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
-          <declname>array</declname>
-        </param>
-        <param>
-          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
-          <declname>kernel</declname>
-        </param>
-        <briefdescription>
-<para>Return the convolution product of the array with a given 2D kernel. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>This function performs a 2D convolution on the input array using the specified 2D kernel. The output array has the same shape as the input array, and symmetry boundary conditions are used.</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>array</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Input array to be convolved. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>kernel</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>2D kernel to be used for the convolution. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> Resulting array after applying the 2D convolution.</para>
-</simplesect>
-<bold>Example</bold> <programlisting filename="ex_convolve2d_svd.cpp"><codeline><highlight class="preprocessor">#include<sp/>&quot;<ref refid="highmap_8hpp" kindref="compound">highmap.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="main_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
-<codeline><highlight class="normal">{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>glm::ivec2<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref><sp/>=<sp/>{256,<sp/>256};</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref><sp/>=<sp/><ref refid="namespacehmap_1a5db6d20fe4a5e243dc67a713cb3ac419" kindref="member">hmap::white</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>0.f,<sp/>1.f,<sp/>seed);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>kernel<sp/>=<sp/><ref refid="namespacehmap_1ab9b4237b1eef6255e59cc20255757dcf" kindref="member">hmap::disk</ref>({32,<sp/>32});</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>kernel.<ref refid="classhmap_1_1Array_1ab55ee6021288a467f7d782b09e888f25" kindref="member">normalize</ref>();</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>SVD<sp/>approximation</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="hydraulic__mise_8cpp_1a7103bde565cfac40b7653f88a0d7c7c4" kindref="member">rank</ref><sp/>=<sp/>4;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>zs<sp/>=<sp/><ref refid="namespacehmap_1a15951dcd1ef3999591c757944f894e15" kindref="member">hmap::convolve2d_svd</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>kernel,<sp/><ref refid="hydraulic__mise_8cpp_1a7103bde565cfac40b7653f88a0d7c7c4" kindref="member">rank</ref>);</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>exact<sp/>convolution</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>zc<sp/>=<sp/><ref refid="namespacehmap_1acf8376b5e40b4373986c9a6b41c02429" kindref="member">hmap::convolve2d</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>kernel);</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a262e6495cb2d02598f36a2b46114b2b4" kindref="member">remap</ref>(zs);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a262e6495cb2d02598f36a2b46114b2b4" kindref="member">remap</ref>(zc);</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1ac2452e568959bc21c9b7b09202e5977a" kindref="member">hmap::export_banner_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_convolve2d_svd.png&quot;</highlight><highlight class="normal">,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>zs,<sp/>zc},</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369a0741a9943ed0e5c50042ef82d4d55492" kindref="member">hmap::Cmap::VIRIDIS</ref>);</highlight></codeline>
-<codeline><highlight class="normal">}</highlight></codeline>
-</programlisting> </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="HighMap/src/convolve/convolve.cpp" line="68" column="7" bodyfile="HighMap/src/convolve/convolve.cpp" bodystart="68" bodyend="82" declfile="HighMap/include/highmap/convolve.hpp" declline="82" declcolumn="7"/>
-      </memberdef>
-      <memberdef kind="function" id="namespacehmap_1a6108df0909730083cb6dd7cf4a217c1b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
-        <definition>Array hmap::convolve2d_truncated</definition>
-        <argsstring>(const Array &amp;array, const Array &amp;kernel)</argsstring>
-        <name>convolve2d_truncated</name>
-        <qualifiedname>hmap::convolve2d_truncated</qualifiedname>
-        <param>
-          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
-          <declname>array</declname>
-        </param>
-        <param>
-          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
-          <declname>kernel</declname>
-        </param>
-        <briefdescription>
-<para>Return the convolution product of the array with a given 2D kernel, with a truncated output size. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>This function performs a 2D convolution on the input array using the specified 2D kernel. The resulting output array is smaller than the input array by the dimensions of the kernel.</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>array</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Input array to be convolved. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>kernel</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>2D kernel to be used for the convolution. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> Resulting array after applying the truncated 2D convolution. Shape: {array.shape[0] - kernel.shape[0], array.shape[1] - kernel.shape[1]}. </para>
-</simplesect>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="HighMap/src/convolve/convolve.cpp" line="84" column="7" bodyfile="HighMap/src/convolve/convolve.cpp" bodystart="84" bodyend="170" declfile="HighMap/include/highmap/convolve.hpp" declline="99" declcolumn="7"/>
-      </memberdef>
-      <memberdef kind="function" id="namespacehmap_1a15951dcd1ef3999591c757944f894e15" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
-        <definition>Array hmap::convolve2d_svd</definition>
-        <argsstring>(const Array &amp;z, const Array &amp;kernel, int rank=3)</argsstring>
-        <name>convolve2d_svd</name>
-        <qualifiedname>hmap::convolve2d_svd</qualifiedname>
-        <param>
-          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
-          <declname>z</declname>
-        </param>
-        <param>
-          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
-          <declname>kernel</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>rank</declname>
-          <defval>3</defval>
-        </param>
-        <briefdescription>
-<para>Return the approximate convolution product of the array with a Singular Value Decomposition (SVD) of a kernel. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>This function approximates the convolution of the input array with a 2D kernel by using its Singular Value Decomposition (SVD). The approximation is based on the first <computeroutput>rank</computeroutput> singular values and vectors.</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>z</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Input array to be convolved. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>kernel</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>2D kernel to be used for the convolution. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>rank</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Approximation rank: number of singular values/vectors used for the approximation. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> Resulting array after applying the SVD-based convolution approximation.</para>
-</simplesect>
-<bold>Example</bold> <programlisting filename="ex_convolve2d_svd.cpp"><codeline><highlight class="preprocessor">#include<sp/>&quot;<ref refid="highmap_8hpp" kindref="compound">highmap.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="main_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
-<codeline><highlight class="normal">{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>glm::ivec2<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref><sp/>=<sp/>{256,<sp/>256};</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref><sp/>=<sp/><ref refid="namespacehmap_1a5db6d20fe4a5e243dc67a713cb3ac419" kindref="member">hmap::white</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>0.f,<sp/>1.f,<sp/>seed);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>kernel<sp/>=<sp/><ref refid="namespacehmap_1ab9b4237b1eef6255e59cc20255757dcf" kindref="member">hmap::disk</ref>({32,<sp/>32});</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>kernel.<ref refid="classhmap_1_1Array_1ab55ee6021288a467f7d782b09e888f25" kindref="member">normalize</ref>();</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>SVD<sp/>approximation</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="hydraulic__mise_8cpp_1a7103bde565cfac40b7653f88a0d7c7c4" kindref="member">rank</ref><sp/>=<sp/>4;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>zs<sp/>=<sp/><ref refid="namespacehmap_1a15951dcd1ef3999591c757944f894e15" kindref="member">hmap::convolve2d_svd</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>kernel,<sp/><ref refid="hydraulic__mise_8cpp_1a7103bde565cfac40b7653f88a0d7c7c4" kindref="member">rank</ref>);</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>exact<sp/>convolution</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>zc<sp/>=<sp/><ref refid="namespacehmap_1acf8376b5e40b4373986c9a6b41c02429" kindref="member">hmap::convolve2d</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>kernel);</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a262e6495cb2d02598f36a2b46114b2b4" kindref="member">remap</ref>(zs);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a262e6495cb2d02598f36a2b46114b2b4" kindref="member">remap</ref>(zc);</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1ac2452e568959bc21c9b7b09202e5977a" kindref="member">hmap::export_banner_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_convolve2d_svd.png&quot;</highlight><highlight class="normal">,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>zs,<sp/>zc},</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369a0741a9943ed0e5c50042ef82d4d55492" kindref="member">hmap::Cmap::VIRIDIS</ref>);</highlight></codeline>
-<codeline><highlight class="normal">}</highlight></codeline>
-</programlisting></para>
-<para><bold>Result</bold> <image type="html" name="ex_convolve2d_svd.png"></image>
- </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="HighMap/src/convolve/convolve2d_svd.cpp" line="23" column="7" bodyfile="HighMap/src/convolve/convolve2d_svd.cpp" bodystart="23" bodyend="84" declfile="HighMap/include/highmap/convolve.hpp" declline="122" declcolumn="7"/>
-      </memberdef>
-      <memberdef kind="function" id="namespacehmap_1a820e82bc70b4f44fb46a742a77879071" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
-        <definition>Array hmap::convolve2d_svd_rotated_kernel</definition>
-        <argsstring>(const Array &amp;z, const Array &amp;kernel, int rank=3, int n_rotations=6, std::uint32_t seed=1)</argsstring>
-        <name>convolve2d_svd_rotated_kernel</name>
-        <qualifiedname>hmap::convolve2d_svd_rotated_kernel</qualifiedname>
-        <param>
-          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
-          <declname>z</declname>
-        </param>
-        <param>
-          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
-          <declname>kernel</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>rank</declname>
-          <defval>3</defval>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>n_rotations</declname>
-          <defval>6</defval>
-        </param>
-        <param>
-          <type>std::uint32_t</type>
-          <declname>seed</declname>
-          <defval>1</defval>
-        </param>
-        <briefdescription>
-<para>Return the approximate convolution product of the array with a Singular Value Decomposition (SVD) of a kernel combined with kernel rotations. </para>
-        </briefdescription>
-        <detaileddescription>
-<para>This function approximates the convolution of the input array with a 2D kernel using its SVD, combined with multiple rotations of the kernel. This can enhance the convolution approximation by considering different orientations of the kernel.</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>z</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Input array to be convolved. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>kernel</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>2D kernel to be used for the convolution. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>rank</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Approximation rank: number of singular values/vectors used for the approximation. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>n_rotations</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Number of kernel rotations to be considered. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>seed</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Random seed number for kernel rotations. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> Resulting array after applying the SVD-based convolution approximation with rotations.</para>
-</simplesect>
-<bold>Example</bold> <programlisting filename="ex_convolve2d_svd.cpp"><codeline><highlight class="preprocessor">#include<sp/>&quot;<ref refid="highmap_8hpp" kindref="compound">highmap.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="main_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
-<codeline><highlight class="normal">{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>glm::ivec2<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref><sp/>=<sp/>{256,<sp/>256};</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref><sp/>=<sp/><ref refid="namespacehmap_1a5db6d20fe4a5e243dc67a713cb3ac419" kindref="member">hmap::white</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>0.f,<sp/>1.f,<sp/>seed);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>kernel<sp/>=<sp/><ref refid="namespacehmap_1ab9b4237b1eef6255e59cc20255757dcf" kindref="member">hmap::disk</ref>({32,<sp/>32});</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>kernel.<ref refid="classhmap_1_1Array_1ab55ee6021288a467f7d782b09e888f25" kindref="member">normalize</ref>();</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>SVD<sp/>approximation</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="hydraulic__mise_8cpp_1a7103bde565cfac40b7653f88a0d7c7c4" kindref="member">rank</ref><sp/>=<sp/>4;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>zs<sp/>=<sp/><ref refid="namespacehmap_1a15951dcd1ef3999591c757944f894e15" kindref="member">hmap::convolve2d_svd</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>kernel,<sp/><ref refid="hydraulic__mise_8cpp_1a7103bde565cfac40b7653f88a0d7c7c4" kindref="member">rank</ref>);</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>exact<sp/>convolution</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>zc<sp/>=<sp/><ref refid="namespacehmap_1acf8376b5e40b4373986c9a6b41c02429" kindref="member">hmap::convolve2d</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>kernel);</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a262e6495cb2d02598f36a2b46114b2b4" kindref="member">remap</ref>(zs);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a262e6495cb2d02598f36a2b46114b2b4" kindref="member">remap</ref>(zc);</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1ac2452e568959bc21c9b7b09202e5977a" kindref="member">hmap::export_banner_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_convolve2d_svd.png&quot;</highlight><highlight class="normal">,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>zs,<sp/>zc},</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369a0741a9943ed0e5c50042ef82d4d55492" kindref="member">hmap::Cmap::VIRIDIS</ref>);</highlight></codeline>
-<codeline><highlight class="normal">}</highlight></codeline>
-</programlisting></para>
-<para><bold>Result</bold> <image type="html" name="ex_convolve2d_svd.png"></image>
- </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="HighMap/src/convolve/convolve2d_svd.cpp" line="86" column="7" bodyfile="HighMap/src/convolve/convolve2d_svd.cpp" bodystart="86" bodyend="112" declfile="HighMap/include/highmap/convolve.hpp" declline="149" declcolumn="7"/>
-      </memberdef>
       <memberdef kind="function" id="namespacehmap_1aa1f2e119a09d246fe0cf27e859ddb2e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
         <definition>Array hmap::level_set_curvature</definition>
@@ -43774,6 +43330,450 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
         <inbodydescription>
         </inbodydescription>
         <location file="HighMap/src/math/math.cpp" line="652" column="7" bodyfile="HighMap/src/math/math.cpp" bodystart="652" bodyend="662" declfile="HighMap/include/highmap/math/array.hpp" declline="402" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehmap_1a9411ccef8a74e06ef51efd1f5041c7b4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
+        <definition>Array hmap::convolve1d_i</definition>
+        <argsstring>(const Array &amp;array, const std::vector&lt; float &gt; &amp;kernel)</argsstring>
+        <name>convolve1d_i</name>
+        <qualifiedname>hmap::convolve1d_i</qualifiedname>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>array</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; float &gt; &amp;</type>
+          <declname>kernel</declname>
+        </param>
+        <briefdescription>
+<para>Return the convolution product of the array with a 1D kernel along the &apos;i&apos; direction. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function applies a 1D convolution to the input array using the provided kernel, considering the convolution in the row direction (&apos;i&apos; direction).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input array to be convolved. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>kernel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>1D kernel to be used for the convolution. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> Resulting array after applying the 1D convolution.</para>
+</simplesect>
+<bold>Example</bold> <programlisting filename="ex_convolve1d_ij.cpp"><codeline><highlight class="preprocessor">#include<sp/>&quot;<ref refid="highmap_8hpp" kindref="compound">highmap.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="main_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>glm::ivec2<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref><sp/>=<sp/>{256,<sp/>256};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>glm::vec2<sp/><sp/>res<sp/>=<sp/>{4.f,<sp/>4.f};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref><sp/>=<sp/><ref refid="namespacehmap_1a7d699a468a18be16c70654958ee13b41" kindref="member">hmap::noise_fbm</ref>(<ref refid="namespacehmap_1ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581" kindref="member">hmap::NoiseType::PERLIN</ref>,<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>res,<sp/>seed);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>std::vector&lt;float&gt;<sp/>k(32);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>std::fill(k.begin(),<sp/>k.end(),<sp/>1.f<sp/>/<sp/>32.f);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>zc<sp/>=<sp/><ref refid="namespacehmap_1a9411ccef8a74e06ef51efd1f5041c7b4" kindref="member">hmap::convolve1d_i</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>k);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>zc<sp/>=<sp/><ref refid="namespacehmap_1a2f3f79308ada9782de6c4866b567b167" kindref="member">hmap::convolve1d_j</ref>(zc,<sp/>k);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1ac2452e568959bc21c9b7b09202e5977a" kindref="member">hmap::export_banner_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_convolve1d_ij.png&quot;</highlight><highlight class="normal">,<sp/>{<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>zc},<sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369a0741a9943ed0e5c50042ef82d4d55492" kindref="member">hmap::Cmap::VIRIDIS</ref>);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><bold>Result</bold> <image type="html" name="ex_convolve1d_ij.png"></image>
+</para>
+<para><simplesect kind="see"><para><computeroutput><ref refid="namespacehmap_1a2f3f79308ada9782de6c4866b567b167" kindref="member">convolve1d_j</ref></computeroutput> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/src/convolve/convolve.cpp" line="22" column="7" bodyfile="HighMap/src/convolve/convolve.cpp" bodystart="22" bodyend="44" declfile="HighMap/include/highmap/math/convolve.hpp" declline="45" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehmap_1a2f3f79308ada9782de6c4866b567b167" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
+        <definition>Array hmap::convolve1d_j</definition>
+        <argsstring>(const Array &amp;array, const std::vector&lt; float &gt; &amp;kernel)</argsstring>
+        <name>convolve1d_j</name>
+        <qualifiedname>hmap::convolve1d_j</qualifiedname>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>array</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; float &gt; &amp;</type>
+          <declname>kernel</declname>
+        </param>
+        <briefdescription>
+<para>Return the convolution product of the array with a 1D kernel along the &apos;j&apos; direction. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function applies a 1D convolution to the input array using the provided kernel, considering the convolution in the column direction (&apos;j&apos; direction).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input array to be convolved. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>kernel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>1D kernel to be used for the convolution. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> Resulting array after applying the 1D convolution.</para>
+</simplesect>
+<bold>Example</bold> <programlisting filename="ex_convolve1d_ij.cpp"><codeline><highlight class="preprocessor">#include<sp/>&quot;<ref refid="highmap_8hpp" kindref="compound">highmap.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="main_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>glm::ivec2<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref><sp/>=<sp/>{256,<sp/>256};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>glm::vec2<sp/><sp/>res<sp/>=<sp/>{4.f,<sp/>4.f};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref><sp/>=<sp/><ref refid="namespacehmap_1a7d699a468a18be16c70654958ee13b41" kindref="member">hmap::noise_fbm</ref>(<ref refid="namespacehmap_1ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581" kindref="member">hmap::NoiseType::PERLIN</ref>,<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>res,<sp/>seed);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>std::vector&lt;float&gt;<sp/>k(32);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>std::fill(k.begin(),<sp/>k.end(),<sp/>1.f<sp/>/<sp/>32.f);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>zc<sp/>=<sp/><ref refid="namespacehmap_1a9411ccef8a74e06ef51efd1f5041c7b4" kindref="member">hmap::convolve1d_i</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>k);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>zc<sp/>=<sp/><ref refid="namespacehmap_1a2f3f79308ada9782de6c4866b567b167" kindref="member">hmap::convolve1d_j</ref>(zc,<sp/>k);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1ac2452e568959bc21c9b7b09202e5977a" kindref="member">hmap::export_banner_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_convolve1d_ij.png&quot;</highlight><highlight class="normal">,<sp/>{<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>zc},<sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369a0741a9943ed0e5c50042ef82d4d55492" kindref="member">hmap::Cmap::VIRIDIS</ref>);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><bold>Result</bold> <image type="html" name="ex_convolve1d_ij.png"></image>
+</para>
+<para><simplesect kind="see"><para><computeroutput><ref refid="namespacehmap_1a9411ccef8a74e06ef51efd1f5041c7b4" kindref="member">convolve1d_i</ref></computeroutput> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/src/convolve/convolve.cpp" line="46" column="7" bodyfile="HighMap/src/convolve/convolve.cpp" bodystart="46" bodyend="66" declfile="HighMap/include/highmap/math/convolve.hpp" declline="66" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehmap_1acf8376b5e40b4373986c9a6b41c02429" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
+        <definition>Array hmap::convolve2d</definition>
+        <argsstring>(const Array &amp;array, const Array &amp;kernel)</argsstring>
+        <name>convolve2d</name>
+        <qualifiedname>hmap::convolve2d</qualifiedname>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>array</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>kernel</declname>
+        </param>
+        <briefdescription>
+<para>Return the convolution product of the array with a given 2D kernel. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function performs a 2D convolution on the input array using the specified 2D kernel. The output array has the same shape as the input array, and symmetry boundary conditions are used.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input array to be convolved. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>kernel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>2D kernel to be used for the convolution. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> Resulting array after applying the 2D convolution.</para>
+</simplesect>
+<bold>Example</bold> <programlisting filename="ex_convolve2d_svd.cpp"><codeline><highlight class="preprocessor">#include<sp/>&quot;<ref refid="highmap_8hpp" kindref="compound">highmap.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="main_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>glm::ivec2<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref><sp/>=<sp/>{256,<sp/>256};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref><sp/>=<sp/><ref refid="namespacehmap_1a5db6d20fe4a5e243dc67a713cb3ac419" kindref="member">hmap::white</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>0.f,<sp/>1.f,<sp/>seed);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>kernel<sp/>=<sp/><ref refid="namespacehmap_1ab9b4237b1eef6255e59cc20255757dcf" kindref="member">hmap::disk</ref>({32,<sp/>32});</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>kernel.<ref refid="classhmap_1_1Array_1ab55ee6021288a467f7d782b09e888f25" kindref="member">normalize</ref>();</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>SVD<sp/>approximation</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="hydraulic__mise_8cpp_1a7103bde565cfac40b7653f88a0d7c7c4" kindref="member">rank</ref><sp/>=<sp/>4;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>zs<sp/>=<sp/><ref refid="namespacehmap_1a15951dcd1ef3999591c757944f894e15" kindref="member">hmap::convolve2d_svd</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>kernel,<sp/><ref refid="hydraulic__mise_8cpp_1a7103bde565cfac40b7653f88a0d7c7c4" kindref="member">rank</ref>);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>exact<sp/>convolution</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>zc<sp/>=<sp/><ref refid="namespacehmap_1acf8376b5e40b4373986c9a6b41c02429" kindref="member">hmap::convolve2d</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>kernel);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a262e6495cb2d02598f36a2b46114b2b4" kindref="member">remap</ref>(zs);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a262e6495cb2d02598f36a2b46114b2b4" kindref="member">remap</ref>(zc);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1ac2452e568959bc21c9b7b09202e5977a" kindref="member">hmap::export_banner_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_convolve2d_svd.png&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>zs,<sp/>zc},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369a0741a9943ed0e5c50042ef82d4d55492" kindref="member">hmap::Cmap::VIRIDIS</ref>);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/src/convolve/convolve.cpp" line="68" column="7" bodyfile="HighMap/src/convolve/convolve.cpp" bodystart="68" bodyend="82" declfile="HighMap/include/highmap/math/convolve.hpp" declline="82" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehmap_1a6108df0909730083cb6dd7cf4a217c1b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
+        <definition>Array hmap::convolve2d_truncated</definition>
+        <argsstring>(const Array &amp;array, const Array &amp;kernel)</argsstring>
+        <name>convolve2d_truncated</name>
+        <qualifiedname>hmap::convolve2d_truncated</qualifiedname>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>array</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>kernel</declname>
+        </param>
+        <briefdescription>
+<para>Return the convolution product of the array with a given 2D kernel, with a truncated output size. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function performs a 2D convolution on the input array using the specified 2D kernel. The resulting output array is smaller than the input array by the dimensions of the kernel.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input array to be convolved. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>kernel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>2D kernel to be used for the convolution. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> Resulting array after applying the truncated 2D convolution. Shape: {array.shape[0] - kernel.shape[0], array.shape[1] - kernel.shape[1]}. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/src/convolve/convolve.cpp" line="84" column="7" bodyfile="HighMap/src/convolve/convolve.cpp" bodystart="84" bodyend="170" declfile="HighMap/include/highmap/math/convolve.hpp" declline="99" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehmap_1a15951dcd1ef3999591c757944f894e15" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
+        <definition>Array hmap::convolve2d_svd</definition>
+        <argsstring>(const Array &amp;z, const Array &amp;kernel, int rank=3)</argsstring>
+        <name>convolve2d_svd</name>
+        <qualifiedname>hmap::convolve2d_svd</qualifiedname>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>kernel</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>rank</declname>
+          <defval>3</defval>
+        </param>
+        <briefdescription>
+<para>Return the approximate convolution product of the array with a Singular Value Decomposition (SVD) of a kernel. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function approximates the convolution of the input array with a 2D kernel by using its Singular Value Decomposition (SVD). The approximation is based on the first <computeroutput>rank</computeroutput> singular values and vectors.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>z</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input array to be convolved. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>kernel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>2D kernel to be used for the convolution. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rank</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Approximation rank: number of singular values/vectors used for the approximation. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> Resulting array after applying the SVD-based convolution approximation.</para>
+</simplesect>
+<bold>Example</bold> <programlisting filename="ex_convolve2d_svd.cpp"><codeline><highlight class="preprocessor">#include<sp/>&quot;<ref refid="highmap_8hpp" kindref="compound">highmap.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="main_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>glm::ivec2<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref><sp/>=<sp/>{256,<sp/>256};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref><sp/>=<sp/><ref refid="namespacehmap_1a5db6d20fe4a5e243dc67a713cb3ac419" kindref="member">hmap::white</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>0.f,<sp/>1.f,<sp/>seed);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>kernel<sp/>=<sp/><ref refid="namespacehmap_1ab9b4237b1eef6255e59cc20255757dcf" kindref="member">hmap::disk</ref>({32,<sp/>32});</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>kernel.<ref refid="classhmap_1_1Array_1ab55ee6021288a467f7d782b09e888f25" kindref="member">normalize</ref>();</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>SVD<sp/>approximation</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="hydraulic__mise_8cpp_1a7103bde565cfac40b7653f88a0d7c7c4" kindref="member">rank</ref><sp/>=<sp/>4;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>zs<sp/>=<sp/><ref refid="namespacehmap_1a15951dcd1ef3999591c757944f894e15" kindref="member">hmap::convolve2d_svd</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>kernel,<sp/><ref refid="hydraulic__mise_8cpp_1a7103bde565cfac40b7653f88a0d7c7c4" kindref="member">rank</ref>);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>exact<sp/>convolution</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>zc<sp/>=<sp/><ref refid="namespacehmap_1acf8376b5e40b4373986c9a6b41c02429" kindref="member">hmap::convolve2d</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>kernel);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a262e6495cb2d02598f36a2b46114b2b4" kindref="member">remap</ref>(zs);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a262e6495cb2d02598f36a2b46114b2b4" kindref="member">remap</ref>(zc);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1ac2452e568959bc21c9b7b09202e5977a" kindref="member">hmap::export_banner_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_convolve2d_svd.png&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>zs,<sp/>zc},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369a0741a9943ed0e5c50042ef82d4d55492" kindref="member">hmap::Cmap::VIRIDIS</ref>);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><bold>Result</bold> <image type="html" name="ex_convolve2d_svd.png"></image>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/src/convolve/convolve2d_svd.cpp" line="23" column="7" bodyfile="HighMap/src/convolve/convolve2d_svd.cpp" bodystart="23" bodyend="84" declfile="HighMap/include/highmap/math/convolve.hpp" declline="122" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehmap_1a820e82bc70b4f44fb46a742a77879071" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
+        <definition>Array hmap::convolve2d_svd_rotated_kernel</definition>
+        <argsstring>(const Array &amp;z, const Array &amp;kernel, int rank=3, int n_rotations=6, std::uint32_t seed=1)</argsstring>
+        <name>convolve2d_svd_rotated_kernel</name>
+        <qualifiedname>hmap::convolve2d_svd_rotated_kernel</qualifiedname>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>kernel</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>rank</declname>
+          <defval>3</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>n_rotations</declname>
+          <defval>6</defval>
+        </param>
+        <param>
+          <type>std::uint32_t</type>
+          <declname>seed</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+<para>Return the approximate convolution product of the array with a Singular Value Decomposition (SVD) of a kernel combined with kernel rotations. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function approximates the convolution of the input array with a 2D kernel using its SVD, combined with multiple rotations of the kernel. This can enhance the convolution approximation by considering different orientations of the kernel.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>z</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input array to be convolved. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>kernel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>2D kernel to be used for the convolution. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rank</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Approximation rank: number of singular values/vectors used for the approximation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n_rotations</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of kernel rotations to be considered. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>seed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Random seed number for kernel rotations. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> Resulting array after applying the SVD-based convolution approximation with rotations.</para>
+</simplesect>
+<bold>Example</bold> <programlisting filename="ex_convolve2d_svd.cpp"><codeline><highlight class="preprocessor">#include<sp/>&quot;<ref refid="highmap_8hpp" kindref="compound">highmap.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="main_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>glm::ivec2<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref><sp/>=<sp/>{256,<sp/>256};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref><sp/>=<sp/><ref refid="namespacehmap_1a5db6d20fe4a5e243dc67a713cb3ac419" kindref="member">hmap::white</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>0.f,<sp/>1.f,<sp/>seed);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>kernel<sp/>=<sp/><ref refid="namespacehmap_1ab9b4237b1eef6255e59cc20255757dcf" kindref="member">hmap::disk</ref>({32,<sp/>32});</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>kernel.<ref refid="classhmap_1_1Array_1ab55ee6021288a467f7d782b09e888f25" kindref="member">normalize</ref>();</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>SVD<sp/>approximation</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><ref refid="hydraulic__mise_8cpp_1a7103bde565cfac40b7653f88a0d7c7c4" kindref="member">rank</ref><sp/>=<sp/>4;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>zs<sp/>=<sp/><ref refid="namespacehmap_1a15951dcd1ef3999591c757944f894e15" kindref="member">hmap::convolve2d_svd</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>kernel,<sp/><ref refid="hydraulic__mise_8cpp_1a7103bde565cfac40b7653f88a0d7c7c4" kindref="member">rank</ref>);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>exact<sp/>convolution</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>zc<sp/>=<sp/><ref refid="namespacehmap_1acf8376b5e40b4373986c9a6b41c02429" kindref="member">hmap::convolve2d</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>kernel);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a262e6495cb2d02598f36a2b46114b2b4" kindref="member">remap</ref>(zs);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a262e6495cb2d02598f36a2b46114b2b4" kindref="member">remap</ref>(zc);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1ac2452e568959bc21c9b7b09202e5977a" kindref="member">hmap::export_banner_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_convolve2d_svd.png&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>zs,<sp/>zc},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369a0741a9943ed0e5c50042ef82d4d55492" kindref="member">hmap::Cmap::VIRIDIS</ref>);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><bold>Result</bold> <image type="html" name="ex_convolve2d_svd.png"></image>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/src/convolve/convolve2d_svd.cpp" line="86" column="7" bodyfile="HighMap/src/convolve/convolve2d_svd.cpp" bodystart="86" bodyend="112" declfile="HighMap/include/highmap/math/convolve.hpp" declline="149" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ab7bb73f6a918ffc68129e3a861080efd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>

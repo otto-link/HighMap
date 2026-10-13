@@ -25,7 +25,6 @@
     <innerfile refid="carving_8hpp">carving.hpp</innerfile>
     <innerfile refid="colorize_8hpp">colorize.hpp</innerfile>
     <innerfile refid="colormaps_8hpp">colormaps.hpp</innerfile>
-    <innerfile refid="convolve_8hpp">convolve.hpp</innerfile>
     <innerfile refid="coord__frame_8hpp">coord_frame.hpp</innerfile>
     <innerfile refid="curvature_8hpp">curvature.hpp</innerfile>
     <innerfile refid="erosion_8hpp">erosion.hpp</innerfile>

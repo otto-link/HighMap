@@ -23,7 +23,6 @@ var dir_06646b66eb831be9a0698496dc1137c9 =
     [ "carving.hpp", "carving_8hpp.html", "carving_8hpp" ],
     [ "colorize.hpp", "colorize_8hpp.html", "colorize_8hpp" ],
     [ "colormaps.hpp", "colormaps_8hpp.html", "colormaps_8hpp" ],
-    [ "convolve.hpp", "convolve_8hpp.html", "convolve_8hpp" ],
     [ "coord_frame.hpp", "coord__frame_8hpp.html", "coord__frame_8hpp" ],
     [ "curvature.hpp", "curvature_8hpp.html", "curvature_8hpp" ],
     [ "erosion.hpp", "erosion_8hpp.html", null ],

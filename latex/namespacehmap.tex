@@ -729,18 +729,6 @@ void \mbox{\hyperlink{namespacehmap_a7634a1bb2505ae11370c431b0b1fd9ea}{color\+\_
 \begin{DoxyCompactList}\small\item\em Blend two normal maps into a single output normal map. \end{DoxyCompactList}\item 
 std\+::vector$<$ glm\+::vec3 $>$ \mbox{\hyperlink{namespacehmap_a2f2ca726f4e41128135e6c77120c66d8}{get\+\_\+colormap\+\_\+data}} (int cmap)
 \item 
-\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a9411ccef8a74e06ef51efd1f5041c7b4}{convolve1d\+\_\+i}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, const std\+::vector$<$ float $>$ \&kernel)
-\begin{DoxyCompactList}\small\item\em Return the convolution product of the array with a 1D kernel along the \textquotesingle{}i\textquotesingle{} direction. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a2f3f79308ada9782de6c4866b567b167}{convolve1d\+\_\+j}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, const std\+::vector$<$ float $>$ \&kernel)
-\begin{DoxyCompactList}\small\item\em Return the convolution product of the array with a 1D kernel along the \textquotesingle{}j\textquotesingle{} direction. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_acf8376b5e40b4373986c9a6b41c02429}{convolve2d}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&kernel)
-\begin{DoxyCompactList}\small\item\em Return the convolution product of the array with a given 2D kernel. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a6108df0909730083cb6dd7cf4a217c1b}{convolve2d\+\_\+truncated}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&kernel)
-\begin{DoxyCompactList}\small\item\em Return the convolution product of the array with a given 2D kernel, with a truncated output size. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a15951dcd1ef3999591c757944f894e15}{convolve2d\+\_\+svd}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&kernel, int \mbox{\hyperlink{hydraulic__mise_8cpp_a7103bde565cfac40b7653f88a0d7c7c4}{rank}}=3)
-\begin{DoxyCompactList}\small\item\em Return the approximate convolution product of the array with a Singular Value Decomposition (SVD) of a kernel. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a820e82bc70b4f44fb46a742a77879071}{convolve2d\+\_\+svd\+\_\+rotated\+\_\+kernel}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&kernel, int \mbox{\hyperlink{hydraulic__mise_8cpp_a7103bde565cfac40b7653f88a0d7c7c4}{rank}}=3, int n\+\_\+rotations=6, std\+::uint32\+\_\+t seed=1)
-\begin{DoxyCompactList}\small\item\em Return the approximate convolution product of the array with a Singular Value Decomposition (SVD) of a kernel combined with kernel rotations. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_aa1f2e119a09d246fe0cf27e859ddb2e6}{level\+\_\+set\+\_\+curvature}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int prefilter\+\_\+ir)
 \begin{DoxyCompactList}\small\item\em Computes a signed level-\/set curvature. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a4e2b7df70a18f94ad7f4d7cd934ec767}{curvature\+\_\+quadric}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}, int \mbox{\hyperlink{sls__deformation_8cpp_a108a1d0fcea4288c9e48f5dc4fa0a1b0}{ir}}, \mbox{\hyperlink{namespacehmap_ad4d5e191ca7dd12e389c842188bde88a}{Curvature\+Type}} curvature\+\_\+type)
@@ -1623,6 +1611,18 @@ std\+::vector$<$ float $>$ \mbox{\hyperlink{namespacehmap_a0b3237f9cc015299bf3e4
 \begin{DoxyCompactList}\small\item\em Linear threshold. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a49cba67ac4811585d8c11f10972f6d8c}{threshold\+\_\+smooth}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float x0, float x1)
 \begin{DoxyCompactList}\small\item\em Smooth threshold. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a9411ccef8a74e06ef51efd1f5041c7b4}{convolve1d\+\_\+i}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, const std\+::vector$<$ float $>$ \&kernel)
+\begin{DoxyCompactList}\small\item\em Return the convolution product of the array with a 1D kernel along the \textquotesingle{}i\textquotesingle{} direction. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a2f3f79308ada9782de6c4866b567b167}{convolve1d\+\_\+j}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, const std\+::vector$<$ float $>$ \&kernel)
+\begin{DoxyCompactList}\small\item\em Return the convolution product of the array with a 1D kernel along the \textquotesingle{}j\textquotesingle{} direction. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_acf8376b5e40b4373986c9a6b41c02429}{convolve2d}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&kernel)
+\begin{DoxyCompactList}\small\item\em Return the convolution product of the array with a given 2D kernel. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a6108df0909730083cb6dd7cf4a217c1b}{convolve2d\+\_\+truncated}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&kernel)
+\begin{DoxyCompactList}\small\item\em Return the convolution product of the array with a given 2D kernel, with a truncated output size. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a15951dcd1ef3999591c757944f894e15}{convolve2d\+\_\+svd}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&kernel, int \mbox{\hyperlink{hydraulic__mise_8cpp_a7103bde565cfac40b7653f88a0d7c7c4}{rank}}=3)
+\begin{DoxyCompactList}\small\item\em Return the approximate convolution product of the array with a Singular Value Decomposition (SVD) of a kernel. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a820e82bc70b4f44fb46a742a77879071}{convolve2d\+\_\+svd\+\_\+rotated\+\_\+kernel}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&kernel, int \mbox{\hyperlink{hydraulic__mise_8cpp_a7103bde565cfac40b7653f88a0d7c7c4}{rank}}=3, int n\+\_\+rotations=6, std\+::uint32\+\_\+t seed=1)
+\begin{DoxyCompactList}\small\item\em Return the approximate convolution product of the array with a Singular Value Decomposition (SVD) of a kernel combined with kernel rotations. \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{namespacehmap_ab7bb73f6a918ffc68129e3a861080efd}{abs\+\_\+smooth}} (float a, float mu)
 \begin{DoxyCompactList}\small\item\em Smooth absolute value. \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{namespacehmap_a8ddf0121ee2b8c701a61a12274b5f3e3}{almost\+\_\+unit\+\_\+identity}} (float \mbox{\hyperlink{kd__tree_8cpp_a1f4ec255d3d8677a6cd9d6a9a6eb653b}{x}})
@@ -7092,299 +7092,7 @@ Blended \doxylink{classhmap_1_1Texture}{Texture} normal map.
 \doxysubsubsection{\texorpdfstring{get\_colormap\_data()}{get\_colormap\_data()}}
 {\footnotesize\ttfamily std\+::vector$<$ glm\+::vec3 $>$ hmap\+::get\+\_\+colormap\+\_\+data (\begin{DoxyParamCaption}\item[{int}]{cmap }\end{DoxyParamCaption})}
 
-\Hypertarget{namespacehmap_a9411ccef8a74e06ef51efd1f5041c7b4}\label{namespacehmap_a9411ccef8a74e06ef51efd1f5041c7b4} 
-\index{hmap@{hmap}!convolve1d\_i@{convolve1d\_i}}
-\index{convolve1d\_i@{convolve1d\_i}!hmap@{hmap}}
-\doxysubsubsection{\texorpdfstring{convolve1d\_i()}{convolve1d\_i()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::convolve1d\+\_\+i (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{const std\+::vector$<$ float $>$ \&}]{kernel }\end{DoxyParamCaption})}
-
-
-
-Return the convolution product of the array with a 1D kernel along the \textquotesingle{}i\textquotesingle{} direction. 
-
-This function applies a 1D convolution to the input array using the provided kernel, considering the convolution in the row direction (\textquotesingle{}i\textquotesingle{} direction).
-
-
-\begin{DoxyParams}{Parameters}
-{\em array} & Input array to be convolved. \\
-\hline
-{\em kernel} & 1D kernel to be used for the convolution. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-\doxylink{classhmap_1_1Array}{Array} Resulting array after applying the 1D convolution.
-\end{DoxyReturn}
-{\bfseries{Example}} 
-\begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{highmap_8hpp}{highmap.hpp}}"{}}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{void})}
-\DoxyCodeLine{\{}
-\DoxyCodeLine{\ \ glm::ivec2\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}\ =\ \{256,\ 256\};}
-\DoxyCodeLine{\ \ glm::vec2\ \ res\ =\ \{4.f,\ 4.f\};}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ seed\ =\ 1;}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}\ =\ \mbox{\hyperlink{namespacehmap_a7d699a468a18be16c70654958ee13b41}{hmap::noise\_fbm}}(\mbox{\hyperlink{namespacehmap_ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581}{hmap::NoiseType::PERLIN}},\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ res,\ seed);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ std::vector<float>\ k(32);}
-\DoxyCodeLine{\ \ std::fill(k.begin(),\ k.end(),\ 1.f\ /\ 32.f);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ zc\ =\ \mbox{\hyperlink{namespacehmap_a9411ccef8a74e06ef51efd1f5041c7b4}{hmap::convolve1d\_i}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ k);}
-\DoxyCodeLine{\ \ zc\ =\ \mbox{\hyperlink{namespacehmap_a2f3f79308ada9782de6c4866b567b167}{hmap::convolve1d\_j}}(zc,\ k);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_ac2452e568959bc21c9b7b09202e5977a}{hmap::export\_banner\_png}}(\textcolor{stringliteral}{"{}ex\_convolve1d\_ij.png"{}},\ \{\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ zc\},\ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a0741a9943ed0e5c50042ef82d4d55492}{hmap::Cmap::VIRIDIS}});}
-\DoxyCodeLine{\}}
-
-\end{DoxyCodeInclude}
-
-
-{\bfseries{Result}} 
-
-\begin{DoxySeeAlso}{See also}
-{\ttfamily \doxylink{namespacehmap_a2f3f79308ada9782de6c4866b567b167}{convolve1d\+\_\+j}} 
-\end{DoxySeeAlso}
-\Hypertarget{namespacehmap_a2f3f79308ada9782de6c4866b567b167}\label{namespacehmap_a2f3f79308ada9782de6c4866b567b167} 
-\index{hmap@{hmap}!convolve1d\_j@{convolve1d\_j}}
-\index{convolve1d\_j@{convolve1d\_j}!hmap@{hmap}}
-\doxysubsubsection{\texorpdfstring{convolve1d\_j()}{convolve1d\_j()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::convolve1d\+\_\+j (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{const std\+::vector$<$ float $>$ \&}]{kernel }\end{DoxyParamCaption})}
-
-
-
-Return the convolution product of the array with a 1D kernel along the \textquotesingle{}j\textquotesingle{} direction. 
-
-This function applies a 1D convolution to the input array using the provided kernel, considering the convolution in the column direction (\textquotesingle{}j\textquotesingle{} direction).
-
-
-\begin{DoxyParams}{Parameters}
-{\em array} & Input array to be convolved. \\
-\hline
-{\em kernel} & 1D kernel to be used for the convolution. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-\doxylink{classhmap_1_1Array}{Array} Resulting array after applying the 1D convolution.
-\end{DoxyReturn}
-{\bfseries{Example}} 
-\begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{highmap_8hpp}{highmap.hpp}}"{}}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{void})}
-\DoxyCodeLine{\{}
-\DoxyCodeLine{\ \ glm::ivec2\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}\ =\ \{256,\ 256\};}
-\DoxyCodeLine{\ \ glm::vec2\ \ res\ =\ \{4.f,\ 4.f\};}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ seed\ =\ 1;}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}\ =\ \mbox{\hyperlink{namespacehmap_a7d699a468a18be16c70654958ee13b41}{hmap::noise\_fbm}}(\mbox{\hyperlink{namespacehmap_ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581}{hmap::NoiseType::PERLIN}},\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ res,\ seed);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ std::vector<float>\ k(32);}
-\DoxyCodeLine{\ \ std::fill(k.begin(),\ k.end(),\ 1.f\ /\ 32.f);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ zc\ =\ \mbox{\hyperlink{namespacehmap_a9411ccef8a74e06ef51efd1f5041c7b4}{hmap::convolve1d\_i}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ k);}
-\DoxyCodeLine{\ \ zc\ =\ \mbox{\hyperlink{namespacehmap_a2f3f79308ada9782de6c4866b567b167}{hmap::convolve1d\_j}}(zc,\ k);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_ac2452e568959bc21c9b7b09202e5977a}{hmap::export\_banner\_png}}(\textcolor{stringliteral}{"{}ex\_convolve1d\_ij.png"{}},\ \{\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ zc\},\ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a0741a9943ed0e5c50042ef82d4d55492}{hmap::Cmap::VIRIDIS}});}
-\DoxyCodeLine{\}}
-
-\end{DoxyCodeInclude}
-
-
-{\bfseries{Result}} 
-
-\begin{DoxySeeAlso}{See also}
-{\ttfamily \doxylink{namespacehmap_a9411ccef8a74e06ef51efd1f5041c7b4}{convolve1d\+\_\+i}} 
-\end{DoxySeeAlso}
-\Hypertarget{namespacehmap_acf8376b5e40b4373986c9a6b41c02429}\label{namespacehmap_acf8376b5e40b4373986c9a6b41c02429} 
-\index{hmap@{hmap}!convolve2d@{convolve2d}}
-\index{convolve2d@{convolve2d}!hmap@{hmap}}
-\doxysubsubsection{\texorpdfstring{convolve2d()}{convolve2d()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::convolve2d (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{kernel }\end{DoxyParamCaption})}
-
-
-
-Return the convolution product of the array with a given 2D kernel. 
-
-This function performs a 2D convolution on the input array using the specified 2D kernel. The output array has the same shape as the input array, and symmetry boundary conditions are used.
-
-
-\begin{DoxyParams}{Parameters}
-{\em array} & Input array to be convolved. \\
-\hline
-{\em kernel} & 2D kernel to be used for the convolution. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-\doxylink{classhmap_1_1Array}{Array} Resulting array after applying the 2D convolution.
-\end{DoxyReturn}
-{\bfseries{Example}} 
-\begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{highmap_8hpp}{highmap.hpp}}"{}}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{void})}
-\DoxyCodeLine{\{}
-\DoxyCodeLine{\ \ glm::ivec2\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}\ =\ \{256,\ 256\};}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ seed\ =\ 1;}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}\ =\ \mbox{\hyperlink{namespacehmap_a5db6d20fe4a5e243dc67a713cb3ac419}{hmap::white}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ 0.f,\ 1.f,\ seed);}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ kernel\ =\ \mbox{\hyperlink{namespacehmap_ab9b4237b1eef6255e59cc20255757dcf}{hmap::disk}}(\{32,\ 32\});}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ kernel.\mbox{\hyperlink{classhmap_1_1Array_ab55ee6021288a467f7d782b09e888f25}{normalize}}();}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ SVD\ approximation}}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \mbox{\hyperlink{hydraulic__mise_8cpp_a7103bde565cfac40b7653f88a0d7c7c4}{rank}}\ =\ 4;}
-\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ zs\ =\ \mbox{\hyperlink{namespacehmap_a15951dcd1ef3999591c757944f894e15}{hmap::convolve2d\_svd}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ kernel,\ \mbox{\hyperlink{hydraulic__mise_8cpp_a7103bde565cfac40b7653f88a0d7c7c4}{rank}});}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ exact\ convolution}}
-\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ zc\ =\ \mbox{\hyperlink{namespacehmap_acf8376b5e40b4373986c9a6b41c02429}{hmap::convolve2d}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ kernel);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{remap}}(zs);}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{remap}}(zc);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_ac2452e568959bc21c9b7b09202e5977a}{hmap::export\_banner\_png}}(\textcolor{stringliteral}{"{}ex\_convolve2d\_svd.png"{}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ zs,\ zc\},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a0741a9943ed0e5c50042ef82d4d55492}{hmap::Cmap::VIRIDIS}});}
-\DoxyCodeLine{\}}
-
-\end{DoxyCodeInclude}
- \Hypertarget{namespacehmap_a6108df0909730083cb6dd7cf4a217c1b}\label{namespacehmap_a6108df0909730083cb6dd7cf4a217c1b} 
-\index{hmap@{hmap}!convolve2d\_truncated@{convolve2d\_truncated}}
-\index{convolve2d\_truncated@{convolve2d\_truncated}!hmap@{hmap}}
-\doxysubsubsection{\texorpdfstring{convolve2d\_truncated()}{convolve2d\_truncated()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::convolve2d\+\_\+truncated (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{kernel }\end{DoxyParamCaption})}
-
-
-
-Return the convolution product of the array with a given 2D kernel, with a truncated output size. 
-
-This function performs a 2D convolution on the input array using the specified 2D kernel. The resulting output array is smaller than the input array by the dimensions of the kernel.
-
-
-\begin{DoxyParams}{Parameters}
-{\em array} & Input array to be convolved. \\
-\hline
-{\em kernel} & 2D kernel to be used for the convolution. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-\doxylink{classhmap_1_1Array}{Array} Resulting array after applying the truncated 2D convolution. Shape\+: \{array.\+shape\mbox{[}0\mbox{]} -\/ kernel.\+shape\mbox{[}0\mbox{]}, array.\+shape\mbox{[}1\mbox{]} -\/ kernel.\+shape\mbox{[}1\mbox{]}\}. 
-\end{DoxyReturn}
-\Hypertarget{namespacehmap_a15951dcd1ef3999591c757944f894e15}\label{namespacehmap_a15951dcd1ef3999591c757944f894e15} 
-\index{hmap@{hmap}!convolve2d\_svd@{convolve2d\_svd}}
-\index{convolve2d\_svd@{convolve2d\_svd}!hmap@{hmap}}
-\doxysubsubsection{\texorpdfstring{convolve2d\_svd()}{convolve2d\_svd()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::convolve2d\+\_\+svd (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{z,  }\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{kernel,  }\item[{int}]{rank = {\ttfamily 3} }\end{DoxyParamCaption})}
-
-
-
-Return the approximate convolution product of the array with a Singular Value Decomposition (SVD) of a kernel. 
-
-This function approximates the convolution of the input array with a 2D kernel by using its Singular Value Decomposition (SVD). The approximation is based on the first {\ttfamily rank} singular values and vectors.
-
-
-\begin{DoxyParams}{Parameters}
-{\em z} & Input array to be convolved. \\
-\hline
-{\em kernel} & 2D kernel to be used for the convolution. \\
-\hline
-{\em rank} & Approximation rank\+: number of singular values/vectors used for the approximation. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-\doxylink{classhmap_1_1Array}{Array} Resulting array after applying the SVD-\/based convolution approximation.
-\end{DoxyReturn}
-{\bfseries{Example}} 
-\begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{highmap_8hpp}{highmap.hpp}}"{}}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{void})}
-\DoxyCodeLine{\{}
-\DoxyCodeLine{\ \ glm::ivec2\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}\ =\ \{256,\ 256\};}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ seed\ =\ 1;}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}\ =\ \mbox{\hyperlink{namespacehmap_a5db6d20fe4a5e243dc67a713cb3ac419}{hmap::white}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ 0.f,\ 1.f,\ seed);}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ kernel\ =\ \mbox{\hyperlink{namespacehmap_ab9b4237b1eef6255e59cc20255757dcf}{hmap::disk}}(\{32,\ 32\});}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ kernel.\mbox{\hyperlink{classhmap_1_1Array_ab55ee6021288a467f7d782b09e888f25}{normalize}}();}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ SVD\ approximation}}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \mbox{\hyperlink{hydraulic__mise_8cpp_a7103bde565cfac40b7653f88a0d7c7c4}{rank}}\ =\ 4;}
-\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ zs\ =\ \mbox{\hyperlink{namespacehmap_a15951dcd1ef3999591c757944f894e15}{hmap::convolve2d\_svd}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ kernel,\ \mbox{\hyperlink{hydraulic__mise_8cpp_a7103bde565cfac40b7653f88a0d7c7c4}{rank}});}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ exact\ convolution}}
-\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ zc\ =\ \mbox{\hyperlink{namespacehmap_acf8376b5e40b4373986c9a6b41c02429}{hmap::convolve2d}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ kernel);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{remap}}(zs);}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{remap}}(zc);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_ac2452e568959bc21c9b7b09202e5977a}{hmap::export\_banner\_png}}(\textcolor{stringliteral}{"{}ex\_convolve2d\_svd.png"{}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ zs,\ zc\},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a0741a9943ed0e5c50042ef82d4d55492}{hmap::Cmap::VIRIDIS}});}
-\DoxyCodeLine{\}}
-
-\end{DoxyCodeInclude}
-
-
-{\bfseries{Result}}  \Hypertarget{namespacehmap_a820e82bc70b4f44fb46a742a77879071}\label{namespacehmap_a820e82bc70b4f44fb46a742a77879071} 
-\index{hmap@{hmap}!convolve2d\_svd\_rotated\_kernel@{convolve2d\_svd\_rotated\_kernel}}
-\index{convolve2d\_svd\_rotated\_kernel@{convolve2d\_svd\_rotated\_kernel}!hmap@{hmap}}
-\doxysubsubsection{\texorpdfstring{convolve2d\_svd\_rotated\_kernel()}{convolve2d\_svd\_rotated\_kernel()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::convolve2d\+\_\+svd\+\_\+rotated\+\_\+kernel (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{z,  }\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{kernel,  }\item[{int}]{rank = {\ttfamily 3},  }\item[{int}]{n\+\_\+rotations = {\ttfamily 6},  }\item[{std\+::uint32\+\_\+t}]{seed = {\ttfamily 1} }\end{DoxyParamCaption})}
-
-
-
-Return the approximate convolution product of the array with a Singular Value Decomposition (SVD) of a kernel combined with kernel rotations. 
-
-This function approximates the convolution of the input array with a 2D kernel using its SVD, combined with multiple rotations of the kernel. This can enhance the convolution approximation by considering different orientations of the kernel.
-
-
-\begin{DoxyParams}{Parameters}
-{\em z} & Input array to be convolved. \\
-\hline
-{\em kernel} & 2D kernel to be used for the convolution. \\
-\hline
-{\em rank} & Approximation rank\+: number of singular values/vectors used for the approximation. \\
-\hline
-{\em n\+\_\+rotations} & Number of kernel rotations to be considered. \\
-\hline
-{\em seed} & Random seed number for kernel rotations. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-\doxylink{classhmap_1_1Array}{Array} Resulting array after applying the SVD-\/based convolution approximation with rotations.
-\end{DoxyReturn}
-{\bfseries{Example}} 
-\begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{highmap_8hpp}{highmap.hpp}}"{}}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{void})}
-\DoxyCodeLine{\{}
-\DoxyCodeLine{\ \ glm::ivec2\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}\ =\ \{256,\ 256\};}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ seed\ =\ 1;}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}\ =\ \mbox{\hyperlink{namespacehmap_a5db6d20fe4a5e243dc67a713cb3ac419}{hmap::white}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ 0.f,\ 1.f,\ seed);}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ kernel\ =\ \mbox{\hyperlink{namespacehmap_ab9b4237b1eef6255e59cc20255757dcf}{hmap::disk}}(\{32,\ 32\});}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ kernel.\mbox{\hyperlink{classhmap_1_1Array_ab55ee6021288a467f7d782b09e888f25}{normalize}}();}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ SVD\ approximation}}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \mbox{\hyperlink{hydraulic__mise_8cpp_a7103bde565cfac40b7653f88a0d7c7c4}{rank}}\ =\ 4;}
-\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ zs\ =\ \mbox{\hyperlink{namespacehmap_a15951dcd1ef3999591c757944f894e15}{hmap::convolve2d\_svd}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ kernel,\ \mbox{\hyperlink{hydraulic__mise_8cpp_a7103bde565cfac40b7653f88a0d7c7c4}{rank}});}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ exact\ convolution}}
-\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ zc\ =\ \mbox{\hyperlink{namespacehmap_acf8376b5e40b4373986c9a6b41c02429}{hmap::convolve2d}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ kernel);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{remap}}(zs);}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{remap}}(zc);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_ac2452e568959bc21c9b7b09202e5977a}{hmap::export\_banner\_png}}(\textcolor{stringliteral}{"{}ex\_convolve2d\_svd.png"{}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ zs,\ zc\},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a0741a9943ed0e5c50042ef82d4d55492}{hmap::Cmap::VIRIDIS}});}
-\DoxyCodeLine{\}}
-
-\end{DoxyCodeInclude}
-
-
-{\bfseries{Result}}  \Hypertarget{namespacehmap_aa1f2e119a09d246fe0cf27e859ddb2e6}\label{namespacehmap_aa1f2e119a09d246fe0cf27e859ddb2e6} 
+\Hypertarget{namespacehmap_aa1f2e119a09d246fe0cf27e859ddb2e6}\label{namespacehmap_aa1f2e119a09d246fe0cf27e859ddb2e6} 
 \index{hmap@{hmap}!level\_set\_curvature@{level\_set\_curvature}}
 \index{level\_set\_curvature@{level\_set\_curvature}!hmap@{hmap}}
 \doxysubsubsection{\texorpdfstring{level\_set\_curvature()}{level\_set\_curvature()}}
@@ -24271,7 +23979,299 @@ Smooth threshold.
 \begin{DoxyReturn}{Returns}
 Output array. 
 \end{DoxyReturn}
-\Hypertarget{namespacehmap_ab7bb73f6a918ffc68129e3a861080efd}\label{namespacehmap_ab7bb73f6a918ffc68129e3a861080efd} 
+\Hypertarget{namespacehmap_a9411ccef8a74e06ef51efd1f5041c7b4}\label{namespacehmap_a9411ccef8a74e06ef51efd1f5041c7b4} 
+\index{hmap@{hmap}!convolve1d\_i@{convolve1d\_i}}
+\index{convolve1d\_i@{convolve1d\_i}!hmap@{hmap}}
+\doxysubsubsection{\texorpdfstring{convolve1d\_i()}{convolve1d\_i()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::convolve1d\+\_\+i (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{const std\+::vector$<$ float $>$ \&}]{kernel }\end{DoxyParamCaption})}
+
+
+
+Return the convolution product of the array with a 1D kernel along the \textquotesingle{}i\textquotesingle{} direction. 
+
+This function applies a 1D convolution to the input array using the provided kernel, considering the convolution in the row direction (\textquotesingle{}i\textquotesingle{} direction).
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & Input array to be convolved. \\
+\hline
+{\em kernel} & 1D kernel to be used for the convolution. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{classhmap_1_1Array}{Array} Resulting array after applying the 1D convolution.
+\end{DoxyReturn}
+{\bfseries{Example}} 
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{highmap_8hpp}{highmap.hpp}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ glm::ivec2\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}\ =\ \{256,\ 256\};}
+\DoxyCodeLine{\ \ glm::vec2\ \ res\ =\ \{4.f,\ 4.f\};}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ seed\ =\ 1;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}\ =\ \mbox{\hyperlink{namespacehmap_a7d699a468a18be16c70654958ee13b41}{hmap::noise\_fbm}}(\mbox{\hyperlink{namespacehmap_ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581}{hmap::NoiseType::PERLIN}},\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ res,\ seed);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ std::vector<float>\ k(32);}
+\DoxyCodeLine{\ \ std::fill(k.begin(),\ k.end(),\ 1.f\ /\ 32.f);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ zc\ =\ \mbox{\hyperlink{namespacehmap_a9411ccef8a74e06ef51efd1f5041c7b4}{hmap::convolve1d\_i}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ k);}
+\DoxyCodeLine{\ \ zc\ =\ \mbox{\hyperlink{namespacehmap_a2f3f79308ada9782de6c4866b567b167}{hmap::convolve1d\_j}}(zc,\ k);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_ac2452e568959bc21c9b7b09202e5977a}{hmap::export\_banner\_png}}(\textcolor{stringliteral}{"{}ex\_convolve1d\_ij.png"{}},\ \{\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ zc\},\ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a0741a9943ed0e5c50042ef82d4d55492}{hmap::Cmap::VIRIDIS}});}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+
+
+{\bfseries{Result}} 
+
+\begin{DoxySeeAlso}{See also}
+{\ttfamily \doxylink{namespacehmap_a2f3f79308ada9782de6c4866b567b167}{convolve1d\+\_\+j}} 
+\end{DoxySeeAlso}
+\Hypertarget{namespacehmap_a2f3f79308ada9782de6c4866b567b167}\label{namespacehmap_a2f3f79308ada9782de6c4866b567b167} 
+\index{hmap@{hmap}!convolve1d\_j@{convolve1d\_j}}
+\index{convolve1d\_j@{convolve1d\_j}!hmap@{hmap}}
+\doxysubsubsection{\texorpdfstring{convolve1d\_j()}{convolve1d\_j()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::convolve1d\+\_\+j (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{const std\+::vector$<$ float $>$ \&}]{kernel }\end{DoxyParamCaption})}
+
+
+
+Return the convolution product of the array with a 1D kernel along the \textquotesingle{}j\textquotesingle{} direction. 
+
+This function applies a 1D convolution to the input array using the provided kernel, considering the convolution in the column direction (\textquotesingle{}j\textquotesingle{} direction).
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & Input array to be convolved. \\
+\hline
+{\em kernel} & 1D kernel to be used for the convolution. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{classhmap_1_1Array}{Array} Resulting array after applying the 1D convolution.
+\end{DoxyReturn}
+{\bfseries{Example}} 
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{highmap_8hpp}{highmap.hpp}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ glm::ivec2\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}\ =\ \{256,\ 256\};}
+\DoxyCodeLine{\ \ glm::vec2\ \ res\ =\ \{4.f,\ 4.f\};}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ seed\ =\ 1;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}\ =\ \mbox{\hyperlink{namespacehmap_a7d699a468a18be16c70654958ee13b41}{hmap::noise\_fbm}}(\mbox{\hyperlink{namespacehmap_ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581}{hmap::NoiseType::PERLIN}},\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ res,\ seed);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ std::vector<float>\ k(32);}
+\DoxyCodeLine{\ \ std::fill(k.begin(),\ k.end(),\ 1.f\ /\ 32.f);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ zc\ =\ \mbox{\hyperlink{namespacehmap_a9411ccef8a74e06ef51efd1f5041c7b4}{hmap::convolve1d\_i}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ k);}
+\DoxyCodeLine{\ \ zc\ =\ \mbox{\hyperlink{namespacehmap_a2f3f79308ada9782de6c4866b567b167}{hmap::convolve1d\_j}}(zc,\ k);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_ac2452e568959bc21c9b7b09202e5977a}{hmap::export\_banner\_png}}(\textcolor{stringliteral}{"{}ex\_convolve1d\_ij.png"{}},\ \{\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ zc\},\ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a0741a9943ed0e5c50042ef82d4d55492}{hmap::Cmap::VIRIDIS}});}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+
+
+{\bfseries{Result}} 
+
+\begin{DoxySeeAlso}{See also}
+{\ttfamily \doxylink{namespacehmap_a9411ccef8a74e06ef51efd1f5041c7b4}{convolve1d\+\_\+i}} 
+\end{DoxySeeAlso}
+\Hypertarget{namespacehmap_acf8376b5e40b4373986c9a6b41c02429}\label{namespacehmap_acf8376b5e40b4373986c9a6b41c02429} 
+\index{hmap@{hmap}!convolve2d@{convolve2d}}
+\index{convolve2d@{convolve2d}!hmap@{hmap}}
+\doxysubsubsection{\texorpdfstring{convolve2d()}{convolve2d()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::convolve2d (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{kernel }\end{DoxyParamCaption})}
+
+
+
+Return the convolution product of the array with a given 2D kernel. 
+
+This function performs a 2D convolution on the input array using the specified 2D kernel. The output array has the same shape as the input array, and symmetry boundary conditions are used.
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & Input array to be convolved. \\
+\hline
+{\em kernel} & 2D kernel to be used for the convolution. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{classhmap_1_1Array}{Array} Resulting array after applying the 2D convolution.
+\end{DoxyReturn}
+{\bfseries{Example}} 
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{highmap_8hpp}{highmap.hpp}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ glm::ivec2\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}\ =\ \{256,\ 256\};}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ seed\ =\ 1;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}\ =\ \mbox{\hyperlink{namespacehmap_a5db6d20fe4a5e243dc67a713cb3ac419}{hmap::white}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ 0.f,\ 1.f,\ seed);}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ kernel\ =\ \mbox{\hyperlink{namespacehmap_ab9b4237b1eef6255e59cc20255757dcf}{hmap::disk}}(\{32,\ 32\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ kernel.\mbox{\hyperlink{classhmap_1_1Array_ab55ee6021288a467f7d782b09e888f25}{normalize}}();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ SVD\ approximation}}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \mbox{\hyperlink{hydraulic__mise_8cpp_a7103bde565cfac40b7653f88a0d7c7c4}{rank}}\ =\ 4;}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ zs\ =\ \mbox{\hyperlink{namespacehmap_a15951dcd1ef3999591c757944f894e15}{hmap::convolve2d\_svd}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ kernel,\ \mbox{\hyperlink{hydraulic__mise_8cpp_a7103bde565cfac40b7653f88a0d7c7c4}{rank}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ exact\ convolution}}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ zc\ =\ \mbox{\hyperlink{namespacehmap_acf8376b5e40b4373986c9a6b41c02429}{hmap::convolve2d}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ kernel);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{remap}}(zs);}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{remap}}(zc);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_ac2452e568959bc21c9b7b09202e5977a}{hmap::export\_banner\_png}}(\textcolor{stringliteral}{"{}ex\_convolve2d\_svd.png"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ zs,\ zc\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a0741a9943ed0e5c50042ef82d4d55492}{hmap::Cmap::VIRIDIS}});}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+ \Hypertarget{namespacehmap_a6108df0909730083cb6dd7cf4a217c1b}\label{namespacehmap_a6108df0909730083cb6dd7cf4a217c1b} 
+\index{hmap@{hmap}!convolve2d\_truncated@{convolve2d\_truncated}}
+\index{convolve2d\_truncated@{convolve2d\_truncated}!hmap@{hmap}}
+\doxysubsubsection{\texorpdfstring{convolve2d\_truncated()}{convolve2d\_truncated()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::convolve2d\+\_\+truncated (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{kernel }\end{DoxyParamCaption})}
+
+
+
+Return the convolution product of the array with a given 2D kernel, with a truncated output size. 
+
+This function performs a 2D convolution on the input array using the specified 2D kernel. The resulting output array is smaller than the input array by the dimensions of the kernel.
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & Input array to be convolved. \\
+\hline
+{\em kernel} & 2D kernel to be used for the convolution. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{classhmap_1_1Array}{Array} Resulting array after applying the truncated 2D convolution. Shape\+: \{array.\+shape\mbox{[}0\mbox{]} -\/ kernel.\+shape\mbox{[}0\mbox{]}, array.\+shape\mbox{[}1\mbox{]} -\/ kernel.\+shape\mbox{[}1\mbox{]}\}. 
+\end{DoxyReturn}
+\Hypertarget{namespacehmap_a15951dcd1ef3999591c757944f894e15}\label{namespacehmap_a15951dcd1ef3999591c757944f894e15} 
+\index{hmap@{hmap}!convolve2d\_svd@{convolve2d\_svd}}
+\index{convolve2d\_svd@{convolve2d\_svd}!hmap@{hmap}}
+\doxysubsubsection{\texorpdfstring{convolve2d\_svd()}{convolve2d\_svd()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::convolve2d\+\_\+svd (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{z,  }\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{kernel,  }\item[{int}]{rank = {\ttfamily 3} }\end{DoxyParamCaption})}
+
+
+
+Return the approximate convolution product of the array with a Singular Value Decomposition (SVD) of a kernel. 
+
+This function approximates the convolution of the input array with a 2D kernel by using its Singular Value Decomposition (SVD). The approximation is based on the first {\ttfamily rank} singular values and vectors.
+
+
+\begin{DoxyParams}{Parameters}
+{\em z} & Input array to be convolved. \\
+\hline
+{\em kernel} & 2D kernel to be used for the convolution. \\
+\hline
+{\em rank} & Approximation rank\+: number of singular values/vectors used for the approximation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{classhmap_1_1Array}{Array} Resulting array after applying the SVD-\/based convolution approximation.
+\end{DoxyReturn}
+{\bfseries{Example}} 
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{highmap_8hpp}{highmap.hpp}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ glm::ivec2\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}\ =\ \{256,\ 256\};}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ seed\ =\ 1;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}\ =\ \mbox{\hyperlink{namespacehmap_a5db6d20fe4a5e243dc67a713cb3ac419}{hmap::white}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ 0.f,\ 1.f,\ seed);}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ kernel\ =\ \mbox{\hyperlink{namespacehmap_ab9b4237b1eef6255e59cc20255757dcf}{hmap::disk}}(\{32,\ 32\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ kernel.\mbox{\hyperlink{classhmap_1_1Array_ab55ee6021288a467f7d782b09e888f25}{normalize}}();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ SVD\ approximation}}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \mbox{\hyperlink{hydraulic__mise_8cpp_a7103bde565cfac40b7653f88a0d7c7c4}{rank}}\ =\ 4;}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ zs\ =\ \mbox{\hyperlink{namespacehmap_a15951dcd1ef3999591c757944f894e15}{hmap::convolve2d\_svd}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ kernel,\ \mbox{\hyperlink{hydraulic__mise_8cpp_a7103bde565cfac40b7653f88a0d7c7c4}{rank}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ exact\ convolution}}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ zc\ =\ \mbox{\hyperlink{namespacehmap_acf8376b5e40b4373986c9a6b41c02429}{hmap::convolve2d}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ kernel);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{remap}}(zs);}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{remap}}(zc);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_ac2452e568959bc21c9b7b09202e5977a}{hmap::export\_banner\_png}}(\textcolor{stringliteral}{"{}ex\_convolve2d\_svd.png"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ zs,\ zc\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a0741a9943ed0e5c50042ef82d4d55492}{hmap::Cmap::VIRIDIS}});}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+
+
+{\bfseries{Result}}  \Hypertarget{namespacehmap_a820e82bc70b4f44fb46a742a77879071}\label{namespacehmap_a820e82bc70b4f44fb46a742a77879071} 
+\index{hmap@{hmap}!convolve2d\_svd\_rotated\_kernel@{convolve2d\_svd\_rotated\_kernel}}
+\index{convolve2d\_svd\_rotated\_kernel@{convolve2d\_svd\_rotated\_kernel}!hmap@{hmap}}
+\doxysubsubsection{\texorpdfstring{convolve2d\_svd\_rotated\_kernel()}{convolve2d\_svd\_rotated\_kernel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::convolve2d\+\_\+svd\+\_\+rotated\+\_\+kernel (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{z,  }\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{kernel,  }\item[{int}]{rank = {\ttfamily 3},  }\item[{int}]{n\+\_\+rotations = {\ttfamily 6},  }\item[{std\+::uint32\+\_\+t}]{seed = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+
+
+Return the approximate convolution product of the array with a Singular Value Decomposition (SVD) of a kernel combined with kernel rotations. 
+
+This function approximates the convolution of the input array with a 2D kernel using its SVD, combined with multiple rotations of the kernel. This can enhance the convolution approximation by considering different orientations of the kernel.
+
+
+\begin{DoxyParams}{Parameters}
+{\em z} & Input array to be convolved. \\
+\hline
+{\em kernel} & 2D kernel to be used for the convolution. \\
+\hline
+{\em rank} & Approximation rank\+: number of singular values/vectors used for the approximation. \\
+\hline
+{\em n\+\_\+rotations} & Number of kernel rotations to be considered. \\
+\hline
+{\em seed} & Random seed number for kernel rotations. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{classhmap_1_1Array}{Array} Resulting array after applying the SVD-\/based convolution approximation with rotations.
+\end{DoxyReturn}
+{\bfseries{Example}} 
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{highmap_8hpp}{highmap.hpp}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ glm::ivec2\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}\ =\ \{256,\ 256\};}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ seed\ =\ 1;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}\ =\ \mbox{\hyperlink{namespacehmap_a5db6d20fe4a5e243dc67a713cb3ac419}{hmap::white}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ 0.f,\ 1.f,\ seed);}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ kernel\ =\ \mbox{\hyperlink{namespacehmap_ab9b4237b1eef6255e59cc20255757dcf}{hmap::disk}}(\{32,\ 32\});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ kernel.\mbox{\hyperlink{classhmap_1_1Array_ab55ee6021288a467f7d782b09e888f25}{normalize}}();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ SVD\ approximation}}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \mbox{\hyperlink{hydraulic__mise_8cpp_a7103bde565cfac40b7653f88a0d7c7c4}{rank}}\ =\ 4;}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ zs\ =\ \mbox{\hyperlink{namespacehmap_a15951dcd1ef3999591c757944f894e15}{hmap::convolve2d\_svd}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ kernel,\ \mbox{\hyperlink{hydraulic__mise_8cpp_a7103bde565cfac40b7653f88a0d7c7c4}{rank}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ exact\ convolution}}
+\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ zc\ =\ \mbox{\hyperlink{namespacehmap_acf8376b5e40b4373986c9a6b41c02429}{hmap::convolve2d}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ kernel);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{remap}}(zs);}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{remap}}(zc);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_ac2452e568959bc21c9b7b09202e5977a}{hmap::export\_banner\_png}}(\textcolor{stringliteral}{"{}ex\_convolve2d\_svd.png"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ zs,\ zc\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a0741a9943ed0e5c50042ef82d4d55492}{hmap::Cmap::VIRIDIS}});}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+
+
+{\bfseries{Result}}  \Hypertarget{namespacehmap_ab7bb73f6a918ffc68129e3a861080efd}\label{namespacehmap_ab7bb73f6a918ffc68129e3a861080efd} 
 \index{hmap@{hmap}!abs\_smooth@{abs\_smooth}}
 \index{abs\_smooth@{abs\_smooth}!hmap@{hmap}}
 \doxysubsubsection{\texorpdfstring{abs\_smooth()}{abs\_smooth()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
