@@ -20,6 +20,9 @@
 namespace hmap
 {
 
+struct ComputeMode;
+struct VirtualArray;
+
 /**
  * @brief Divide the path by adding points based on the lowest elevation
  * difference between each pair of edge endpoints.
@@ -466,3 +469,47 @@ Path find_path_multiscale(const Array &z,
                           bool         smooth_path = false);
 
 } // namespace hmap
+
+namespace hmap::va
+{
+
+/**
+ * @brief Generate a cut path across a heightmap VirtualArray using a random
+ * triangular mesh and shortest path search.
+ *
+ * Constructs a random Delaunay triangulation sampled from the VirtualArray,
+ * selects start and end vertices along the requested domain boundaries, and
+ * computes the path connecting them across the mesh.
+ *
+ * @param  cm                    Compute mode configuration.
+ * @param  z                     Heightmap VirtualArray.
+ * @param  start                 Boundary where the path begins.
+ * @param  end                   Boundary where the path ends.
+ * @param  seed                  Random seed for mesh point generation and
+ *                               boundary vertex picking.
+ * @param  control_points_count  Number of control points sampled for the mesh.
+ * @param  offset_ratio          Displacement ratio parameter (reserved for
+ *                               compatibility).
+ * @param  steps                 Subdivision steps (reserved for compatibility).
+ * @param  favor_boundary_center Favor picking boundary vertices near center.
+ * @param  favor_lower_elevation Favor picking boundary vertices at low
+ *                               elevation.
+ * @param  favor_sinks           Favor picking boundary vertices at local
+ *                               depressions.
+ *
+ * @return                       Path containing normalized 3D coordinates and
+ *                               elevations.
+ */
+Path find_cut_path_midpoint(const ComputeMode  &cm,
+                            const VirtualArray &z,
+                            DomainBoundary      start,
+                            DomainBoundary      end,
+                            std::uint32_t       seed = 0,
+                            size_t              control_points_count = 2048,
+                            float               offset_ratio = 0.2f,
+                            int                 steps = 16,
+                            bool                favor_boundary_center = true,
+                            bool                favor_lower_elevation = true,
+                            bool                favor_sinks = true);
+
+} // namespace hmap::va

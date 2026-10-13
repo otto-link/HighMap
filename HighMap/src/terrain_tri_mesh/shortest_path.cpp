@@ -152,11 +152,18 @@ std::vector<size_t> TerrainTriMesh::shortest_path(size_t start,
 
   if (result.parent[end] == INVALID) return path;
 
+  const size_t n = points.size();
+
   for (size_t v = end;; v = result.parent[v])
   {
     path.push_back(v);
 
     if (v == start) break;
+
+    if (result.parent[v] == INVALID || result.parent[v] == v || path.size() > n)
+    {
+      return {};
+    }
   }
 
   std::reverse(path.begin(), path.end());

@@ -311,3 +311,31 @@ TEST(PathMultiscale, FindPathMidpointHarmonized)
   EXPECT_NEAR(path.front().v, z(start.x, start.y), 1e-5f);
   EXPECT_NEAR(path.back().v, z(end.x, end.y), 1e-5f);
 }
+
+TEST(PathMultiscale, VAFindCutPathMidpoint)
+{
+  glm::ivec2 shape = {128, 128};
+  glm::ivec2 tile_shape = {64, 64};
+  int        halo = 0;
+
+  hmap::ComputeMode  cm;
+  hmap::VirtualArray vz(shape, tile_shape, halo, hmap::StorageMode::VA_RAM);
+
+  hmap::Array z_arr = hmap::noise_fbm(hmap::NoiseType::PERLIN,
+                                      shape,
+                                      {2.f, 2.f},
+                                      42);
+  vz.from_array(z_arr, cm);
+
+  hmap::Path path = hmap::va::find_cut_path_midpoint(
+      cm,
+      vz,
+      hmap::DomainBoundary::BOUNDARY_LEFT,
+      hmap::DomainBoundary::BOUNDARY_RIGHT,
+      42,
+      256);
+
+  ASSERT_FALSE(path.empty());
+  EXPECT_NEAR(path.front().x, 0.f, 1e-4f);
+  EXPECT_NEAR(path.back().x, 1.f, 1e-4f);
+}
