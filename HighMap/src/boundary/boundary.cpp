@@ -61,11 +61,9 @@ void extrapolate_borders(Array &array, int nbuffer, float sigma, float vmin)
               j) = std::max(vmin,
                             2.f * array(ni - 2 - k, j) - array(ni - 3 - k, j));
 
-        array(k, j) = std::max(vmin,
-                               (1.f - sigma) * array(k, j) + sigma * vref1);
-        array(ni - 1 - k, j) = std::max(vmin,
-                                        (1.f - sigma) * array(ni - 1 - k, j) +
-                                            sigma * vref2);
+        array(k, j) = std::max(vmin, lerp(array(k, j), vref1, sigma));
+        array(ni - 1 - k,
+              j) = std::max(vmin, lerp(array(ni - 1 - k, j), vref2, sigma));
       }
     }
 
@@ -81,11 +79,10 @@ void extrapolate_borders(Array &array, int nbuffer, float sigma, float vmin)
                                         2.f * array(i, nj - 2 - k) -
                                             array(i, nj - 3 - k));
 
-        array(i, k) = std::max(vmin,
-                               ((1.f - sigma) * array(i, k) + sigma * vref1));
-        array(i, nj - 1 - k) = std::max(vmin,
-                                        (1.f - sigma) * array(i, nj - 1 - k) +
-                                            sigma * vref2);
+        array(i, k) = std::max(vmin, lerp(array(i, k), vref1, sigma));
+        array(i,
+              nj - 1 - k) = std::max(vmin,
+                                     lerp(array(i, nj - 1 - k), vref2, sigma));
       }
     }
   }

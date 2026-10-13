@@ -172,3 +172,38 @@ TEST(BoundaryTest, SetBordersBboxSubdomain)
   EXPECT_NEAR(a_uniform(32, 64), 0.0f, 0.05f);
   EXPECT_NEAR(a_uniform(32, 32), 1.0f, 1e-5f);
 }
+
+TEST(BoundaryTest, ExtrapolateBorders)
+{
+  // Test with sigma = 0.0f
+  hmap::Array a1(glm::ivec2(6, 6), 0.0f);
+  for (int j = 1; j < 5; ++j)
+    for (int i = 1; i < 5; ++i)
+      a1(i, j) = 2.0f;
+
+  // inner points (1, j) = 2, (2, j) = 2 -> 2*2 - 2 = 2
+  hmap::extrapolate_borders(a1, 1, 0.0f);
+  EXPECT_NEAR(a1(0, 3), 2.0f, 1e-5f);
+  EXPECT_NEAR(a1(5, 3), 2.0f, 1e-5f);
+  EXPECT_NEAR(a1(3, 0), 2.0f, 1e-5f);
+  EXPECT_NEAR(a1(3, 5), 2.0f, 1e-5f);
+
+  // Test with sigma > 0.0f
+  hmap::Array a2(glm::ivec2(6, 6), 0.0f);
+  for (int j = 1; j < 5; ++j)
+  {
+    for (int i = 1; i < 5; ++i)
+    {
+      a2(i, j) = (i == 1 || i == 4 || j == 1 || j == 4) ? 4.0f : 2.0f;
+    }
+  }
+
+  // At boundary (k = 0, j = 3):
+  // array(1, 3) = 4, array(2, 3) = 2
+  // Extrapolated before lerp: 2 * array(1, 3) - array(2, 3) = 2 * 4 - 2 = 6
+  // vref1 = array(1, 3) = 4
+  // lerp(6, 4, 0.5) = 5
+  hmap::extrapolate_borders(a2, 1, 0.5f);
+  EXPECT_NEAR(a2(0, 3), 5.0f, 1e-5f);
+  EXPECT_NEAR(a2(5, 3), 5.0f, 1e-5f);
+}
