@@ -830,7 +830,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/shortest_path/find_cut_path.cpp" line="277" column="6" bodyfile="HighMap/src/shortest_path/find_cut_path.cpp" bodystart="277" bodyend="334" declfile="HighMap/include/highmap/shortest_path.hpp" declline="503" declcolumn="6"/>
+        <location file="HighMap/src/shortest_path/find_cut_path.cpp" line="152" column="6" bodyfile="HighMap/src/shortest_path/find_cut_path.cpp" bodystart="152" bodyend="207" declfile="HighMap/include/highmap/shortest_path.hpp" declline="503" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1va_1ac5a99fc7607556be58fb75ae10125940" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1TerrainTriMesh" kindref="compound">TerrainTriMesh</ref></type>
@@ -861,7 +861,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" line="76" column="16" bodyfile="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" bodystart="76" bodyend="110" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="298" declcolumn="16"/>
+        <location file="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" line="76" column="16" bodyfile="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" bodystart="76" bodyend="110" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="306" declcolumn="16"/>
       </memberdef>
     </sectiondef>
     <briefdescription>

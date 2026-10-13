@@ -64347,7 +64347,7 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/shortest_path/find_cut_path.cpp" line="21" column="6" bodyfile="HighMap/src/shortest_path/find_cut_path.cpp" bodystart="21" bodyend="58" declfile="HighMap/include/highmap/shortest_path.hpp" declline="90" declcolumn="6"/>
+        <location file="HighMap/src/shortest_path/find_cut_path.cpp" line="18" column="6" bodyfile="HighMap/src/shortest_path/find_cut_path.cpp" bodystart="18" bodyend="55" declfile="HighMap/include/highmap/shortest_path.hpp" declline="90" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a2c463175bb90319f83de452c2b55ac2b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Path" kindref="compound">Path</ref></type>
@@ -64495,7 +64495,7 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/shortest_path/find_cut_path.cpp" line="60" column="6" bodyfile="HighMap/src/shortest_path/find_cut_path.cpp" bodystart="60" bodyend="98" declfile="HighMap/include/highmap/shortest_path.hpp" declline="123" declcolumn="6"/>
+        <location file="HighMap/src/shortest_path/find_cut_path.cpp" line="57" column="6" bodyfile="HighMap/src/shortest_path/find_cut_path.cpp" bodystart="57" bodyend="95" declfile="HighMap/include/highmap/shortest_path.hpp" declline="123" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a3e877482c194619d1bf1dc398766fe66" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Path" kindref="compound">Path</ref></type>
@@ -64707,7 +64707,7 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/shortest_path/find_cut_path.cpp" line="100" column="6" bodyfile="HighMap/src/shortest_path/find_cut_path.cpp" bodystart="100" bodyend="148" declfile="HighMap/include/highmap/shortest_path.hpp" declline="160" declcolumn="6"/>
+        <location file="HighMap/src/shortest_path/find_cut_path.cpp" line="97" column="6" bodyfile="HighMap/src/shortest_path/find_cut_path.cpp" bodystart="97" bodyend="145" declfile="HighMap/include/highmap/shortest_path.hpp" declline="160" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a812ed2264582321318f8f731d621f7bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -68083,7 +68083,7 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" line="997" column="13" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="997" bodyend="1025" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="278" declcolumn="13"/>
+        <location file="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" line="997" column="13" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="997" bodyend="1025" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="286" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1af9fdabd692817be603ff5c44e68ea619" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1TerrainTriMesh" kindref="compound">TerrainTriMesh</ref></type>
@@ -68116,7 +68116,7 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" line="21" column="16" bodyfile="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" bodystart="21" bodyend="49" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="281" declcolumn="16"/>
+        <location file="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" line="21" column="16" bodyfile="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" bodystart="21" bodyend="49" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="289" declcolumn="16"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a5078af3eb73fb47ab1aad6cc872ab29a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1TerrainTriMesh" kindref="compound">TerrainTriMesh</ref></type>
@@ -68143,7 +68143,7 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" line="51" column="16" bodyfile="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" bodystart="51" bodyend="69" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="287" declcolumn="16"/>
+        <location file="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" line="51" column="16" bodyfile="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" bodystart="51" bodyend="69" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="295" declcolumn="16"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a19dec938e688ef4b73cf27ff3934043b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>

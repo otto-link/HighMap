@@ -1,5 +1,7 @@
 var NAVTREEINDEX12 =
 {
+"filters__gpu_8cpp.html#ab10a6dc3d92519c7bd3244571bcd6429":[4,0,1,1,15,8,28],
+"filters__gpu_8cpp.html#ab2bb3f78e7b0943ad185213d52ab53b3":[4,0,1,1,15,8,9],
 "filters__gpu_8cpp.html#ab92f0fe4baf9678ac1c1d6f454725038":[4,0,1,1,15,8,15],
 "filters__gpu_8cpp.html#acb80d6cda31177534d6e63c97675d46d":[4,0,1,1,15,8,33],
 "filters__gpu_8cpp.html#ad201432c26c75bbab156a22c52b7121a":[4,0,1,1,15,8,26],
@@ -247,7 +249,5 @@ var NAVTREEINDEX12 =
 "geometry_8hpp.html":[4,0,1,0,0,32],
 "geometry_8hpp_source.html":[4,0,1,0,0,32],
 "geomorphons_8cpp.html":[4,0,1,1,14,1],
-"geomorphons_8cpp.html#aa60fa2d3f02d1e064b520fa1623200d0":[4,0,1,1,14,1,0],
-"get__colormap__data_8cpp.html":[4,0,1,1,7,0],
-"get__colormap__data_8cpp.html#a2f2ca726f4e41128135e6c77120c66d8":[4,0,1,1,7,0,1]
+"geomorphons_8cpp.html#aa60fa2d3f02d1e064b520fa1623200d0":[4,0,1,1,14,1,0]
 };

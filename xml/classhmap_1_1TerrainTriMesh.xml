@@ -23,7 +23,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="266" column="15" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="266" bodyend="-1"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="274" column="15" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="274" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhmap_1_1TerrainTriMesh_1a8f7e6e67b64ecc8b49107b36729f5f66" prot="private" static="no" mutable="no">
         <type>std::vector&lt; <ref refid="structhmap_1_1TerrainTriMesh_1_1Triangle" kindref="compound">Triangle</ref> &gt;</type>
@@ -37,7 +37,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="267" column="16" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="267" bodyend="-1"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="275" column="16" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="275" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhmap_1_1TerrainTriMesh_1abb5a6501cf453f42bf85fd4da26daf01" prot="private" static="no" mutable="no">
         <type>std::vector&lt; size_t &gt;</type>
@@ -51,7 +51,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="268" column="18" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="268" bodyend="-1"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="276" column="18" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="276" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhmap_1_1TerrainTriMesh_1ad3839fa27b374fee7a95c1d3e63ccc27" prot="private" static="no" mutable="no">
         <type>std::vector&lt; size_t &gt;</type>
@@ -65,7 +65,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="269" column="18" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="269" bodyend="-1"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="277" column="18" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="277" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhmap_1_1TerrainTriMesh_1a82a483ad5eb711dee94f7db1a17389ae" prot="private" static="no" mutable="no">
         <type><ref refid="structhmap_1_1TerrainTriMesh_1_1NeighborData" kindref="compound">NeighborData</ref></type>
@@ -79,7 +79,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="270" column="26" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="270" bodyend="-1"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="278" column="26" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="278" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhmap_1_1TerrainTriMesh_1aeb34b72a1c8e3b1b009435f04ebca8b5" prot="private" static="no" mutable="no">
         <type>std::vector&lt; glm::vec2 &gt;</type>
@@ -93,7 +93,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="271" column="15" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="271" bodyend="-1"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="279" column="15" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="279" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -110,7 +110,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="104" column="3"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="105" column="3"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1a37612085ed993e68df599c7917cdae80" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -129,7 +129,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="107" column="3" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="54" bodyend="59"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="108" column="3" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="54" bodyend="59"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1af20e8dd9d33a54d67734a892dbd0dcb9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -156,7 +156,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="110" column="3" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="61" bodyend="72"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="111" column="3" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="61" bodyend="72"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1a2b764615c2ac8424ffe60469d7b68970" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -171,7 +171,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="115" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="945" bodyend="991"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="116" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="945" bodyend="991"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1a9e62681c4e433aa980191f176ced7423" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -186,7 +186,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="118" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="173" bodyend="202"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="119" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="173" bodyend="202"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1aed32b7cd40a0e0bba5dd777a67fe692f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -201,7 +201,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="121" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="104" bodyend="171"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="122" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="104" bodyend="171"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1a6974ff34df6b5184f513a17641591dd3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -231,7 +231,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="124" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="667" bodyend="706"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="125" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="667" bodyend="706"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1ac5aa5f772fdcbb71c7a393b92c828b4d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -261,7 +261,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="129" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="708" bodyend="768"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="130" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="708" bodyend="768"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1aa3788669edfb1f96c24b6ec24096b570" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -296,7 +296,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="134" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="770" bodyend="781"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="135" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="770" bodyend="781"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1af46c5c65cea973438ba11a2a8fae5135" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -321,7 +321,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="140" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="635" bodyend="665"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="141" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="635" bodyend="665"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1a294e7c2d93fad24a25300028fe3937b3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -350,7 +350,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="143" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="829" bodyend="833"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="144" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="829" bodyend="833"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1a4a9987cc3413e52602717c0b6d2d5ab5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -379,7 +379,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="146" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="788" bodyend="827"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="147" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="788" bodyend="827"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1a8fa381ce42de945e2aff8944e2061def" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -394,7 +394,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="151" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="835" bodyend="871"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="152" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="835" bodyend="871"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1a1b251e7616ce7c913b148475548b080b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -418,7 +418,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="154" column="8" bodyfile="HighMap/src/terrain_tri_mesh/flow_breach.cpp" bodystart="12" bodyend="31"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="155" column="8" bodyfile="HighMap/src/terrain_tri_mesh/flow_breach.cpp" bodystart="12" bodyend="31"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1a3da697b9cfb9dc0c8b6ff8f5759021c4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -461,7 +461,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="157" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="74" bodyend="102"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="158" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="74" bodyend="102"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1ae5d88ed0cc61c8606bed76faabb77e11" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -490,7 +490,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="166" column="7" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="225" bodyend="274"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="167" column="7" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="225" bodyend="274"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1a402e4d126734c83cc388c35736a35a6a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>int</type>
@@ -513,7 +513,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="171" column="7" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="624" bodyend="628"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="172" column="7" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="624" bodyend="628"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1ad5e0b4845eb75accda1f0348cbdfaf36" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -541,7 +541,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="174" column="9" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="499" bodyend="521"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="175" column="9" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="499" bodyend="521"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1a33b6043ea3e799f78bbc3417ae6b854e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -574,7 +574,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="179" column="9" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="523" bodyend="563"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="180" column="9" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="523" bodyend="563"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1a4a0a37653662a43fbe6ed9465ab39a82" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -593,7 +593,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="185" column="9" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="565" bodyend="584"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="186" column="9" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="565" bodyend="584"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1ad5966bc7d2b1181b936b34715940b3d8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -621,7 +621,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="188" column="9" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="586" bodyend="622"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="189" column="9" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="586" bodyend="622"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1abe70758d6b941cbca110db0ac66f167c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structhmap_1_1TerrainTriMesh_1_1BoundingBox" kindref="compound">BoundingBox</ref></type>
@@ -636,7 +636,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="193" column="15" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="276" bodyend="292"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="194" column="15" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="276" bodyend="292"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1afccd515255b6a315d9e519ce611f3be8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>glm::vec2</type>
@@ -651,7 +651,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="196" column="13" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="320" bodyend="334"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="197" column="13" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="320" bodyend="334"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1af8810b7e06234e2da4dc91cccbce5c28" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>glm::vec3</type>
@@ -666,7 +666,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="199" column="13" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="376" bodyend="398"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="200" column="13" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="376" bodyend="398"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1aa9304abfd5841779b867001630112f75" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; float &gt;</type>
@@ -685,7 +685,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="202" column="15" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="406" bodyend="439"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="203" column="15" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="406" bodyend="439"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1a3e9d39039a00946a48cac2b9afea937c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -700,7 +700,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="205" column="9" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="357" bodyend="374"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="206" column="9" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="357" bodyend="374"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1a11aca8515dbf3f60d71d0debf5f4308f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -715,7 +715,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="208" column="9" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="336" bodyend="355"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="209" column="9" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="336" bodyend="355"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1a9dc6c3e9a3a765e3cd16f1f490da636a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>size_t</type>
@@ -730,7 +730,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="211" column="10" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="783" bodyend="786"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="212" column="10" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="783" bodyend="786"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1a572d32bcabab1879831bcfc490bf5532" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structhmap_1_1TerrainTriMesh_1_1ShortestPathResult" kindref="compound">ShortestPathResult</ref></type>
@@ -755,7 +755,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="214" column="22" bodyfile="HighMap/src/terrain_tri_mesh/shortest_path.cpp" bodystart="81" bodyend="140"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="215" column="22" bodyfile="HighMap/src/terrain_tri_mesh/shortest_path.cpp" bodystart="83" bodyend="142"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1abd339d80c47d53e74e4f42966f994d48" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structhmap_1_1TerrainTriMesh_1_1ShortestPathResult" kindref="compound">ShortestPathResult</ref></type>
@@ -784,7 +784,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="219" column="22" bodyfile="HighMap/src/terrain_tri_mesh/shortest_path.cpp" bodystart="19" bodyend="78"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="220" column="22" bodyfile="HighMap/src/terrain_tri_mesh/shortest_path.cpp" bodystart="21" bodyend="80"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1aec20825d2885d94e151fd073a1cdc23f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; size_t &gt;</type>
@@ -817,7 +817,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="224" column="15" bodyfile="HighMap/src/terrain_tri_mesh/shortest_path.cpp" bodystart="142" bodyend="172"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="225" column="15" bodyfile="HighMap/src/terrain_tri_mesh/shortest_path.cpp" bodystart="144" bodyend="174"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1ad7c875682dd45ac1626bdfe6046fc5ca" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; size_t &gt;</type>
@@ -840,7 +840,46 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="230" column="15" bodyfile="HighMap/src/terrain_tri_mesh/shortest_path.cpp" bodystart="174" bodyend="192"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="231" column="15" bodyfile="HighMap/src/terrain_tri_mesh/shortest_path.cpp" bodystart="176" bodyend="194"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1adcf186f3884969d2b85db0b2186b8d34" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t hmap::TerrainTriMesh::pick_mesh_boundary_vertex</definition>
+        <argsstring>(DomainBoundary boundary, std::uint32_t seed=0, bool favor_boundary_center=true, bool favor_lower_elevation=true, bool favor_sinks=true) const</argsstring>
+        <name>pick_mesh_boundary_vertex</name>
+        <qualifiedname>hmap::TerrainTriMesh::pick_mesh_boundary_vertex</qualifiedname>
+        <param>
+          <type><ref refid="namespacehmap_1a1ba9d4ce7afe3309f8ae8e617f7154ee" kindref="member">DomainBoundary</ref></type>
+          <declname>boundary</declname>
+        </param>
+        <param>
+          <type>std::uint32_t</type>
+          <declname>seed</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>favor_boundary_center</declname>
+          <defval>true</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>favor_lower_elevation</declname>
+          <defval>true</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>favor_sinks</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Pick a boundary vertex according to domain boundary and weights. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="235" column="10" bodyfile="HighMap/src/terrain_tri_mesh/shortest_path.cpp" bodystart="196" bodyend="308"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1a9702d210cd3c967a066eb5ae6919476b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>const std::vector&lt; glm::vec3 &gt; &amp;</type>
@@ -855,7 +894,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="234" column="21" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="310" bodyend="313"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="242" column="21" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="310" bodyend="313"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1aae715400b4086c69d625a00a9bd4fd17" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; glm::vec3 &gt; &amp;</type>
@@ -870,7 +909,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="237" column="15" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="315" bodyend="318"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="245" column="15" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="315" bodyend="318"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1af3fc2aebc71077496e7d794005032887" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>const std::vector&lt; <ref refid="structhmap_1_1TerrainTriMesh_1_1Triangle" kindref="compound">Triangle</ref> &gt; &amp;</type>
@@ -885,7 +924,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="240" column="21" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="400" bodyend="404"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="248" column="21" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="400" bodyend="404"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1a023c617be776b6643ceccf8dd2ca22ec" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>const std::vector&lt; size_t &gt; &amp;</type>
@@ -900,7 +939,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="243" column="21" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="294" bodyend="297"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="251" column="21" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="294" bodyend="297"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1adab683cb7235023ccd24630f401f6755" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>const <ref refid="structhmap_1_1TerrainTriMesh_1_1NeighborData" kindref="compound">NeighborData</ref> &amp;</type>
@@ -915,7 +954,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="246" column="22" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="299" bodyend="308"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="254" column="22" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="299" bodyend="308"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1aff20c6cfb3730b3c55d6d1c803057bd3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -934,7 +973,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="249" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="204" bodyend="223"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="257" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="204" bodyend="223"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1a20fa4640aa9133749e4089022836215a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::string</type>
@@ -949,7 +988,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="252" column="15" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="441" bodyend="497"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="260" column="15" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="441" bodyend="497"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1a5af9d302226d00078fba8f9e40183935" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -964,7 +1003,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="255" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="630" bodyend="633"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="263" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="630" bodyend="633"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1ad6de466d12b0ab91718c494164087224" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -993,7 +1032,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="258" column="9" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="873" bodyend="920"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="266" column="9" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="873" bodyend="920"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1TerrainTriMesh_1a634da24b2586bfade4d89f53de17706e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1012,7 +1051,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="263" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="922" bodyend="938"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="271" column="8" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="922" bodyend="938"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -1032,7 +1071,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="274" column="13" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="940" bodyend="943"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="282" column="13" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="940" bodyend="943"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -1041,7 +1080,7 @@
     <detaileddescription>
 <para>Stores vertices, triangulation, connectivity, and provides geometry, interpolation, smoothing, and pathfinding utilities. </para>
     </detaileddescription>
-    <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="28" column="1" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="29" bodyend="275"/>
+    <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="29" column="1" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="30" bodyend="283"/>
     <listofallmembers>
       <member refid="classhmap_1_1TerrainTriMesh_1a3da697b9cfb9dc0c8b6ff8f5759021c4" prot="public" virt="non-virtual"><scope>hmap::TerrainTriMesh</scope><name>barycentric</name></member>
       <member refid="classhmap_1_1TerrainTriMesh_1aed32b7cd40a0e0bba5dd777a67fe692f" prot="public" virt="non-virtual"><scope>hmap::TerrainTriMesh</scope><name>compute_gradients</name></member>
@@ -1073,6 +1112,7 @@
       <member refid="classhmap_1_1TerrainTriMesh_1a402e4d126734c83cc388c35736a35a6a" prot="public" virt="non-virtual"><scope>hmap::TerrainTriMesh</scope><name>neighbor_triangle</name></member>
       <member refid="classhmap_1_1TerrainTriMesh_1a82a483ad5eb711dee94f7db1a17389ae" prot="private" virt="non-virtual"><scope>hmap::TerrainTriMesh</scope><name>neighbors</name></member>
       <member refid="classhmap_1_1TerrainTriMesh_1ad7c875682dd45ac1626bdfe6046fc5ca" prot="public" virt="non-virtual"><scope>hmap::TerrainTriMesh</scope><name>path_to_hull</name></member>
+      <member refid="classhmap_1_1TerrainTriMesh_1adcf186f3884969d2b85db0b2186b8d34" prot="public" virt="non-virtual"><scope>hmap::TerrainTriMesh</scope><name>pick_mesh_boundary_vertex</name></member>
       <member refid="classhmap_1_1TerrainTriMesh_1a33170aa04ff9981ce09442b0bc050df8" prot="private" virt="non-virtual"><scope>hmap::TerrainTriMesh</scope><name>points</name></member>
       <member refid="classhmap_1_1TerrainTriMesh_1a5af9d302226d00078fba8f9e40183935" prot="public" virt="non-virtual"><scope>hmap::TerrainTriMesh</scope><name>print_info</name></member>
       <member refid="classhmap_1_1TerrainTriMesh_1a6974ff34df6b5184f513a17641591dd3" prot="public" virt="non-virtual"><scope>hmap::TerrainTriMesh</scope><name>relax_xy</name></member>

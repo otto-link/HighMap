@@ -93,6 +93,8 @@ std\+::vector$<$ size\+\_\+t $>$ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_ae
 \begin{DoxyCompactList}\small\item\em Compute the shortest path between two vertices. \end{DoxyCompactList}\item 
 std\+::vector$<$ size\+\_\+t $>$ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_ad7c875682dd45ac1626bdfe6046fc5ca}{path\+\_\+to\+\_\+hull}} (size\+\_\+t start, const \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1ShortestPathResult}{Shortest\+Path\+Result}} \&result) const
 \begin{DoxyCompactList}\small\item\em Reconstruct a path to the convex hull. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_adcf186f3884969d2b85db0b2186b8d34}{pick\+\_\+mesh\+\_\+boundary\+\_\+vertex}} (\mbox{\hyperlink{namespacehmap_a1ba9d4ce7afe3309f8ae8e617f7154ee}{Domain\+Boundary}} boundary, std\+::uint32\+\_\+t seed=0, bool favor\+\_\+boundary\+\_\+center=true, bool favor\+\_\+lower\+\_\+elevation=true, bool favor\+\_\+sinks=true) const
+\begin{DoxyCompactList}\small\item\em Pick a boundary vertex according to domain boundary and weights. \end{DoxyCompactList}\item 
 const std\+::vector$<$ glm\+::vec3 $>$ \& \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a9702d210cd3c967a066eb5ae6919476b}{get\+\_\+points}} () const
 \begin{DoxyCompactList}\small\item\em Return mesh vertices. \end{DoxyCompactList}\item 
 std\+::vector$<$ glm\+::vec3 $>$ \& \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_aae715400b4086c69d625a00a9bd4fd17}{get\+\_\+points}} ()
@@ -443,6 +445,16 @@ Compute the shortest path between two vertices.
 
 
 Reconstruct a path to the convex hull. 
+
+\Hypertarget{classhmap_1_1TerrainTriMesh_adcf186f3884969d2b85db0b2186b8d34}\label{classhmap_1_1TerrainTriMesh_adcf186f3884969d2b85db0b2186b8d34} 
+\index{hmap::TerrainTriMesh@{hmap::TerrainTriMesh}!pick\_mesh\_boundary\_vertex@{pick\_mesh\_boundary\_vertex}}
+\index{pick\_mesh\_boundary\_vertex@{pick\_mesh\_boundary\_vertex}!hmap::TerrainTriMesh@{hmap::TerrainTriMesh}}
+\doxysubsubsection{\texorpdfstring{pick\_mesh\_boundary\_vertex()}{pick\_mesh\_boundary\_vertex()}}
+{\footnotesize\ttfamily size\+\_\+t hmap\+::\+Terrain\+Tri\+Mesh\+::pick\+\_\+mesh\+\_\+boundary\+\_\+vertex (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacehmap_a1ba9d4ce7afe3309f8ae8e617f7154ee}{Domain\+Boundary}}}]{boundary,  }\item[{std\+::uint32\+\_\+t}]{seed = {\ttfamily 0},  }\item[{bool}]{favor\+\_\+boundary\+\_\+center = {\ttfamily true},  }\item[{bool}]{favor\+\_\+lower\+\_\+elevation = {\ttfamily true},  }\item[{bool}]{favor\+\_\+sinks = {\ttfamily true} }\end{DoxyParamCaption}) const}
+
+
+
+Pick a boundary vertex according to domain boundary and weights. 
 
 \Hypertarget{classhmap_1_1TerrainTriMesh_a9702d210cd3c967a066eb5ae6919476b}\label{classhmap_1_1TerrainTriMesh_a9702d210cd3c967a066eb5ae6919476b} 
 \index{hmap::TerrainTriMesh@{hmap::TerrainTriMesh}!get\_points@{get\_points}}

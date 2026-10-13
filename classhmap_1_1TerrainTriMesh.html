@@ -231,6 +231,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad7c875682dd45ac1626bdfe6046fc5ca" id="r_ad7c875682dd45ac1626bdfe6046fc5ca"><td class="memItemLeft" align="right" valign="top">std::vector&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhmap_1_1TerrainTriMesh.html#ad7c875682dd45ac1626bdfe6046fc5ca">path_to_hull</a> (size_t start, const <a class="el" href="structhmap_1_1TerrainTriMesh_1_1ShortestPathResult.html">ShortestPathResult</a> &amp;result) const</td></tr>
 <tr class="memdesc:ad7c875682dd45ac1626bdfe6046fc5ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconstruct a path to the convex hull.  <br /></td></tr>
 <tr class="separator:ad7c875682dd45ac1626bdfe6046fc5ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcf186f3884969d2b85db0b2186b8d34" id="r_adcf186f3884969d2b85db0b2186b8d34"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhmap_1_1TerrainTriMesh.html#adcf186f3884969d2b85db0b2186b8d34">pick_mesh_boundary_vertex</a> (<a class="el" href="namespacehmap.html#a1ba9d4ce7afe3309f8ae8e617f7154ee">DomainBoundary</a> boundary, std::uint32_t seed=0, bool favor_boundary_center=true, bool favor_lower_elevation=true, bool favor_sinks=true) const</td></tr>
+<tr class="memdesc:adcf186f3884969d2b85db0b2186b8d34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pick a boundary vertex according to domain boundary and weights.  <br /></td></tr>
+<tr class="separator:adcf186f3884969d2b85db0b2186b8d34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9702d210cd3c967a066eb5ae6919476b" id="r_a9702d210cd3c967a066eb5ae6919476b"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; glm::vec3 &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhmap_1_1TerrainTriMesh.html#a9702d210cd3c967a066eb5ae6919476b">get_points</a> () const</td></tr>
 <tr class="memdesc:a9702d210cd3c967a066eb5ae6919476b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return mesh vertices.  <br /></td></tr>
 <tr class="separator:a9702d210cd3c967a066eb5ae6919476b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1201,6 +1204,54 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Reconstruct a path to the convex hull. </p>
+
+</div>
+</div>
+<a id="adcf186f3884969d2b85db0b2186b8d34" name="adcf186f3884969d2b85db0b2186b8d34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcf186f3884969d2b85db0b2186b8d34">&#9670;&#160;</a></span>pick_mesh_boundary_vertex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t hmap::TerrainTriMesh::pick_mesh_boundary_vertex </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacehmap.html#a1ba9d4ce7afe3309f8ae8e617f7154ee">DomainBoundary</a>&#160;</td>
+          <td class="paramname"><em>boundary</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint32_t&#160;</td>
+          <td class="paramname"><em>seed</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>favor_boundary_center</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>favor_lower_elevation</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>favor_sinks</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pick a boundary vertex according to domain boundary and weights. </p>
 
 </div>
 </div>

@@ -39,6 +39,7 @@ var classhmap_1_1TerrainTriMesh =
     [ "compute_shortest_paths", "classhmap_1_1TerrainTriMesh.html#abd339d80c47d53e74e4f42966f994d48", null ],
     [ "shortest_path", "classhmap_1_1TerrainTriMesh.html#aec20825d2885d94e151fd073a1cdc23f", null ],
     [ "path_to_hull", "classhmap_1_1TerrainTriMesh.html#ad7c875682dd45ac1626bdfe6046fc5ca", null ],
+    [ "pick_mesh_boundary_vertex", "classhmap_1_1TerrainTriMesh.html#adcf186f3884969d2b85db0b2186b8d34", null ],
     [ "get_points", "classhmap_1_1TerrainTriMesh.html#a9702d210cd3c967a066eb5ae6919476b", null ],
     [ "get_points", "classhmap_1_1TerrainTriMesh.html#aae715400b4086c69d625a00a9bd4fd17", null ],
     [ "get_triangles", "classhmap_1_1TerrainTriMesh.html#af3fc2aebc71077496e7d794005032887", null ],

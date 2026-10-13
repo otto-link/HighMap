@@ -1308,6 +1308,7 @@
     <member refid="classhmap_1_1TerrainTriMesh_1abd339d80c47d53e74e4f42966f994d48" kind="function"><name>compute_shortest_paths</name></member>
     <member refid="classhmap_1_1TerrainTriMesh_1aec20825d2885d94e151fd073a1cdc23f" kind="function"><name>shortest_path</name></member>
     <member refid="classhmap_1_1TerrainTriMesh_1ad7c875682dd45ac1626bdfe6046fc5ca" kind="function"><name>path_to_hull</name></member>
+    <member refid="classhmap_1_1TerrainTriMesh_1adcf186f3884969d2b85db0b2186b8d34" kind="function"><name>pick_mesh_boundary_vertex</name></member>
     <member refid="classhmap_1_1TerrainTriMesh_1a9702d210cd3c967a066eb5ae6919476b" kind="function"><name>get_points</name></member>
     <member refid="classhmap_1_1TerrainTriMesh_1aae715400b4086c69d625a00a9bd4fd17" kind="function"><name>get_points</name></member>
     <member refid="classhmap_1_1TerrainTriMesh_1af3fc2aebc71077496e7d794005032887" kind="function"><name>get_triangles</name></member>
@@ -3104,8 +3105,6 @@
     <member refid="namespacehmap_1_1va_1a79c8b1b0f1447fcb8f94f6e2cec8788b" kind="function"><name>flow_fixing_mst_triangulated</name></member>
     <member refid="namespacehmap_1_1va_1a57ee7ae6cd1bb3a3ba79241a55c0c347" kind="function"><name>find_cut_path_midpoint</name></member>
     <member refid="namespacehmap_1_1va_1ac5a99fc7607556be58fb75ae10125940" kind="function"><name>generate_terrain_tri_mesh_from_heightmap_random</name></member>
-  </compound>
-  <compound refid="namespacehmap_1_1va_1_1_0d379" kind="namespace"><name>hmap::va::@379</name>
   </compound>
   <compound refid="namespacestd" kind="namespace"><name>std</name>
   </compound>
