@@ -60,7 +60,4 @@ int main(void)
 
     mesh.to_array(shape).to_png("mesh2.png", hmap::Cmap::JET);
   }
-
-  mesh.flow_breach(1e-6f);
-  mesh.to_array(shape).to_png("mesh3.png", hmap::Cmap::JET, true);
 }

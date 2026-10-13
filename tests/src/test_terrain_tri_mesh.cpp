@@ -24,7 +24,6 @@ TEST(TerrainTriMeshTest, EmptyMeshSanity)
   auto bbox = mesh.get_bbox();
   EXPECT_FALSE(bbox.contains({0.5f, 0.5f}));
 
-  mesh.flow_breach(0.01f);
   mesh.remap_z(0.f, 1.f);
   mesh.relax_xy(0.5f, 1);
   mesh.relax_xyz(0.5f, 1);
@@ -86,22 +85,4 @@ TEST(TerrainTriMeshTest, SlopeLimiter)
   mesh.slope_limiter(1.0f, 20, 0.5f);
 
   EXPECT_LT(mesh.get_points()[4].z, 10.0f);
-}
-
-TEST(TerrainTriMeshTest, FlowBreachDepression)
-{
-  std::vector<glm::vec3> pts = {{0.f, 0.f, 0.5f},
-                                {1.f, 0.f, 0.5f},
-                                {1.f, 1.f, 0.5f},
-                                {0.f, 1.f, 0.5f},
-                                {0.5f, 0.5f, 0.1f}};
-
-  TerrainTriMesh mesh(pts);
-  mesh.flow_breach(1e-4f);
-
-  EXPECT_EQ(mesh.size(), 5u);
-  for (const auto &p : mesh.get_points())
-  {
-    EXPECT_FALSE(std::isnan(p.z));
-  }
 }
