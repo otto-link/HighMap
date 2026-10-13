@@ -41,7 +41,7 @@ var searchData=
   ['find_5fborder_5fminima_38',['find_border_minima',['../namespacehmap.html#a330255b50cec60fc2ba713fb945e2fdd',1,'hmap']]],
   ['find_5fborder_5fsinks_39',['find_border_sinks',['../namespacehmap.html#ac92d13b60ba68e2a31afca15fcb5f82f',1,'hmap']]],
   ['find_5fcut_5fpath_2ecpp_40',['find_cut_path.cpp',['../find__cut__path_8cpp.html',1,'']]],
-  ['find_5fcut_5fpath_5fdijkstra_41',['find_cut_path_dijkstra',['../namespacehmap.html#a505d334a39df55be569fbc1c1f640042',1,'hmap::find_cut_path_dijkstra()'],['../namespacehmap_1_1va.html#a716a8788acdcfb985d47d56fbe0dd715',1,'hmap::va::find_cut_path_dijkstra()']]],
+  ['find_5fcut_5fpath_5fdijkstra_41',['find_cut_path_dijkstra',['../namespacehmap.html#ad1515214ffa088f61ffc374b68d670f8',1,'hmap::find_cut_path_dijkstra()'],['../namespacehmap_1_1va.html#afa19680ed9583277c2fb76daa95bfa96',1,'hmap::va::find_cut_path_dijkstra()']]],
   ['find_5fcut_5fpath_5fmidpoint_42',['find_cut_path_midpoint',['../namespacehmap.html#a2c463175bb90319f83de452c2b55ac2b',1,'hmap']]],
   ['find_5fcut_5fpath_5fmultiscale_43',['find_cut_path_multiscale',['../namespacehmap.html#a3e877482c194619d1bf1dc398766fe66',1,'hmap']]],
   ['find_5fflow_5fapex_44',['find_flow_apex',['../namespacehmap.html#a05b9777b63947937181d7b7406e4b50d',1,'hmap']]],

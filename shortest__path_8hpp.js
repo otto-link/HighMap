@@ -1,7 +1,7 @@
 var shortest__path_8hpp =
 [
     [ "dijkstra", "shortest__path_8hpp.html#a38e634dbf8d4bc5c7ded9abdb2ecab2a", null ],
-    [ "find_cut_path_dijkstra", "shortest__path_8hpp.html#a505d334a39df55be569fbc1c1f640042", null ],
+    [ "find_cut_path_dijkstra", "shortest__path_8hpp.html#ad1515214ffa088f61ffc374b68d670f8", null ],
     [ "find_cut_path_midpoint", "shortest__path_8hpp.html#a2c463175bb90319f83de452c2b55ac2b", null ],
     [ "find_cut_path_multiscale", "shortest__path_8hpp.html#a3e877482c194619d1bf1dc398766fe66", null ],
     [ "find_path_dijkstra", "shortest__path_8hpp.html#a812ed2264582321318f8f731d621f7bb", null ],
@@ -14,5 +14,5 @@ var shortest__path_8hpp =
     [ "find_path_multiscale", "shortest__path_8hpp.html#a7c174527ef9ac7c595ad65514dc00756", null ],
     [ "find_path_multiscale", "shortest__path_8hpp.html#ad23ac0ef43a4925071b5da947a7d4b1c", null ],
     [ "find_path_multiscale", "shortest__path_8hpp.html#ae49e68036a8d179017c3e41e39952318", null ],
-    [ "find_cut_path_dijkstra", "shortest__path_8hpp.html#a716a8788acdcfb985d47d56fbe0dd715", null ]
+    [ "find_cut_path_dijkstra", "shortest__path_8hpp.html#afa19680ed9583277c2fb76daa95bfa96", null ]
 ];

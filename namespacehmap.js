@@ -12,7 +12,7 @@ var namespacehmap =
       [ "flooding_lake_system", "namespacehmap_1_1va.html#ae8000dce23f7622c2ba67910124bc353", null ],
       [ "flow_fixing_mst_paths", "namespacehmap_1_1va.html#a050c3c7ecc102d86f566bf55b3a72c51", null ],
       [ "flow_fixing_mst_triangulated", "namespacehmap_1_1va.html#a79c8b1b0f1447fcb8f94f6e2cec8788b", null ],
-      [ "find_cut_path_dijkstra", "namespacehmap_1_1va.html#a716a8788acdcfb985d47d56fbe0dd715", null ],
+      [ "find_cut_path_dijkstra", "namespacehmap_1_1va.html#afa19680ed9583277c2fb76daa95bfa96", null ],
       [ "generate_terrain_tri_mesh_from_heightmap_random", "namespacehmap_1_1va.html#ac5a99fc7607556be58fb75ae10125940", null ]
     ] ],
     [ "Array", "classhmap_1_1Array.html", "classhmap_1_1Array" ],
@@ -1158,7 +1158,7 @@ var namespacehmap =
     [ "shadow_heightmap", "namespacehmap.html#ac28f43b4f0b1b481dc8eb528f1be0f3d", null ],
     [ "topographic_shading", "namespacehmap.html#a03570be180e333d82101d31482e78829", null ],
     [ "dijkstra", "namespacehmap.html#a38e634dbf8d4bc5c7ded9abdb2ecab2a", null ],
-    [ "find_cut_path_dijkstra", "namespacehmap.html#a505d334a39df55be569fbc1c1f640042", null ],
+    [ "find_cut_path_dijkstra", "namespacehmap.html#ad1515214ffa088f61ffc374b68d670f8", null ],
     [ "find_cut_path_midpoint", "namespacehmap.html#a2c463175bb90319f83de452c2b55ac2b", null ],
     [ "find_cut_path_multiscale", "namespacehmap.html#a3e877482c194619d1bf1dc398766fe66", null ],
     [ "find_path_dijkstra", "namespacehmap.html#a812ed2264582321318f8f731d621f7bb", null ],

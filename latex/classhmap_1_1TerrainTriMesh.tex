@@ -87,9 +87,9 @@ size\+\_\+t \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a9dc6c3e9a3a765e3cd16f1
 \begin{DoxyCompactList}\small\item\em Return the number of vertices. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1ShortestPathResult}{Shortest\+Path\+Result}} \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a572d32bcabab1879831bcfc490bf5532}{compute\+\_\+shortest\+\_\+paths\+\_\+to\+\_\+hull}} (bool use\+\_\+delta\+\_\+z=false, float elevation\+\_\+weight=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}) const
 \begin{DoxyCompactList}\small\item\em Compute shortest paths to the convex hull. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1ShortestPathResult}{Shortest\+Path\+Result}} \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_abd339d80c47d53e74e4f42966f994d48}{compute\+\_\+shortest\+\_\+paths}} (size\+\_\+t start, bool use\+\_\+delta\+\_\+z=false, float elevation\+\_\+weight=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}) const
+\mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1ShortestPathResult}{Shortest\+Path\+Result}} \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_aad3b7896049e2e13a76dfe09dd6f708d}{compute\+\_\+shortest\+\_\+paths}} (size\+\_\+t start, bool use\+\_\+delta\+\_\+z=false, float elevation\+\_\+weight=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float domain\+\_\+center\+\_\+weight=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}) const
 \begin{DoxyCompactList}\small\item\em Compute shortest paths from a source vertex. \end{DoxyCompactList}\item 
-std\+::vector$<$ size\+\_\+t $>$ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_aec20825d2885d94e151fd073a1cdc23f}{shortest\+\_\+path}} (size\+\_\+t start, size\+\_\+t end, bool use\+\_\+delta\+\_\+z=false, float elevation\+\_\+weight=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}) const
+std\+::vector$<$ size\+\_\+t $>$ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_aa1053a02d395e2ad59acbfd028a73edf}{shortest\+\_\+path}} (size\+\_\+t start, size\+\_\+t end, bool use\+\_\+delta\+\_\+z=false, float elevation\+\_\+weight=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float domain\+\_\+center\+\_\+weight=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}) const
 \begin{DoxyCompactList}\small\item\em Compute the shortest path between two vertices. \end{DoxyCompactList}\item 
 std\+::vector$<$ size\+\_\+t $>$ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_ad7c875682dd45ac1626bdfe6046fc5ca}{path\+\_\+to\+\_\+hull}} (size\+\_\+t start, const \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1ShortestPathResult}{Shortest\+Path\+Result}} \&result) const
 \begin{DoxyCompactList}\small\item\em Reconstruct a path to the convex hull. \end{DoxyCompactList}\item 
@@ -416,21 +416,21 @@ Return the number of vertices.
 
 Compute shortest paths to the convex hull. 
 
-\Hypertarget{classhmap_1_1TerrainTriMesh_abd339d80c47d53e74e4f42966f994d48}\label{classhmap_1_1TerrainTriMesh_abd339d80c47d53e74e4f42966f994d48} 
+\Hypertarget{classhmap_1_1TerrainTriMesh_aad3b7896049e2e13a76dfe09dd6f708d}\label{classhmap_1_1TerrainTriMesh_aad3b7896049e2e13a76dfe09dd6f708d} 
 \index{hmap::TerrainTriMesh@{hmap::TerrainTriMesh}!compute\_shortest\_paths@{compute\_shortest\_paths}}
 \index{compute\_shortest\_paths@{compute\_shortest\_paths}!hmap::TerrainTriMesh@{hmap::TerrainTriMesh}}
 \doxysubsubsection{\texorpdfstring{compute\_shortest\_paths()}{compute\_shortest\_paths()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1ShortestPathResult}{Terrain\+Tri\+Mesh\+::\+Shortest\+Path\+Result}} hmap\+::\+Terrain\+Tri\+Mesh\+::compute\+\_\+shortest\+\_\+paths (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{start,  }\item[{bool}]{use\+\_\+delta\+\_\+z = {\ttfamily false},  }\item[{float}]{elevation\+\_\+weight = {\ttfamily 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}} }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1ShortestPathResult}{Terrain\+Tri\+Mesh\+::\+Shortest\+Path\+Result}} hmap\+::\+Terrain\+Tri\+Mesh\+::compute\+\_\+shortest\+\_\+paths (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{start,  }\item[{bool}]{use\+\_\+delta\+\_\+z = {\ttfamily false},  }\item[{float}]{elevation\+\_\+weight = {\ttfamily 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{float}]{domain\+\_\+center\+\_\+weight = {\ttfamily 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}} }\end{DoxyParamCaption}) const}
 
 
 
 Compute shortest paths from a source vertex. 
 
-\Hypertarget{classhmap_1_1TerrainTriMesh_aec20825d2885d94e151fd073a1cdc23f}\label{classhmap_1_1TerrainTriMesh_aec20825d2885d94e151fd073a1cdc23f} 
+\Hypertarget{classhmap_1_1TerrainTriMesh_aa1053a02d395e2ad59acbfd028a73edf}\label{classhmap_1_1TerrainTriMesh_aa1053a02d395e2ad59acbfd028a73edf} 
 \index{hmap::TerrainTriMesh@{hmap::TerrainTriMesh}!shortest\_path@{shortest\_path}}
 \index{shortest\_path@{shortest\_path}!hmap::TerrainTriMesh@{hmap::TerrainTriMesh}}
 \doxysubsubsection{\texorpdfstring{shortest\_path()}{shortest\_path()}}
-{\footnotesize\ttfamily std\+::vector$<$ size\+\_\+t $>$ hmap\+::\+Terrain\+Tri\+Mesh\+::shortest\+\_\+path (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{start,  }\item[{size\+\_\+t}]{end,  }\item[{bool}]{use\+\_\+delta\+\_\+z = {\ttfamily false},  }\item[{float}]{elevation\+\_\+weight = {\ttfamily 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}} }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily std\+::vector$<$ size\+\_\+t $>$ hmap\+::\+Terrain\+Tri\+Mesh\+::shortest\+\_\+path (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{start,  }\item[{size\+\_\+t}]{end,  }\item[{bool}]{use\+\_\+delta\+\_\+z = {\ttfamily false},  }\item[{float}]{elevation\+\_\+weight = {\ttfamily 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{float}]{domain\+\_\+center\+\_\+weight = {\ttfamily 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}} }\end{DoxyParamCaption}) const}
 
 
 

@@ -673,10 +673,10 @@
         </inbodydescription>
         <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1087" column="14" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1087" bodyend="1152" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1366" declcolumn="14"/>
       </memberdef>
-      <memberdef kind="function" id="namespacehmap_1_1va_1a716a8788acdcfb985d47d56fbe0dd715" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespacehmap_1_1va_1afa19680ed9583277c2fb76daa95bfa96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Path" kindref="compound">Path</ref></type>
         <definition>Path hmap::va::find_cut_path_dijkstra</definition>
-        <argsstring>(const ComputeMode &amp;cm, const VirtualArray &amp;z, DomainBoundary start, DomainBoundary end, std::uint32_t seed=0, size_t control_points_count=2048, bool favor_boundary_center=true, bool favor_lower_elevation=true, bool favor_sinks=true)</argsstring>
+        <argsstring>(const ComputeMode &amp;cm, const VirtualArray &amp;z, DomainBoundary start, DomainBoundary end, std::uint32_t seed=0, size_t control_points_count=2048, bool favor_boundary_center=true, bool favor_lower_elevation=true, bool favor_sinks=true, bool favor_domain_center=false)</argsstring>
         <name>find_cut_path_dijkstra</name>
         <qualifiedname>hmap::va::find_cut_path_dijkstra</qualifiedname>
         <param>
@@ -719,6 +719,11 @@
           <type>bool</type>
           <declname>favor_sinks</declname>
           <defval>true</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>favor_domain_center</declname>
+          <defval>false</defval>
         </param>
         <briefdescription>
 <para>Generate a cut path across a heightmap <ref refid="structhmap_1_1VirtualArray" kindref="compound">VirtualArray</ref> using a random triangular mesh and Dijkstra shortest path search. </para>
@@ -794,7 +799,15 @@
 <parametername>favor_sinks</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>Favor picking boundary vertices at local depressions.</para>
+<para>Favor picking boundary vertices at local depressions. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>favor_domain_center</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Favor passing through the center of the domain.</para>
 </parameterdescription>
 </parameteritem>
 </parameterlist>
@@ -804,7 +817,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/shortest_path/find_cut_path.cpp" line="152" column="6" bodyfile="HighMap/src/shortest_path/find_cut_path.cpp" bodystart="152" bodyend="205" declfile="HighMap/include/highmap/shortest_path.hpp" declline="500" declcolumn="6"/>
+        <location file="HighMap/src/shortest_path/find_cut_path.cpp" line="185" column="6" bodyfile="HighMap/src/shortest_path/find_cut_path.cpp" bodystart="185" bodyend="242" declfile="HighMap/include/highmap/shortest_path.hpp" declline="504" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1va_1ac5a99fc7607556be58fb75ae10125940" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1TerrainTriMesh" kindref="compound">TerrainTriMesh</ref></type>
@@ -835,7 +848,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" line="76" column="16" bodyfile="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" bodystart="76" bodyend="110" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="306" declcolumn="16"/>
+        <location file="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" line="76" column="16" bodyfile="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" bodystart="76" bodyend="110" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="309" declcolumn="16"/>
       </memberdef>
     </sectiondef>
     <briefdescription>

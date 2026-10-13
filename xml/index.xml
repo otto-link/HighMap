@@ -1305,8 +1305,8 @@
     <member refid="classhmap_1_1TerrainTriMesh_1a11aca8515dbf3f60d71d0debf5f4308f" kind="function"><name>get_reference_area</name></member>
     <member refid="classhmap_1_1TerrainTriMesh_1a9dc6c3e9a3a765e3cd16f1f490da636a" kind="function"><name>size</name></member>
     <member refid="classhmap_1_1TerrainTriMesh_1a572d32bcabab1879831bcfc490bf5532" kind="function"><name>compute_shortest_paths_to_hull</name></member>
-    <member refid="classhmap_1_1TerrainTriMesh_1abd339d80c47d53e74e4f42966f994d48" kind="function"><name>compute_shortest_paths</name></member>
-    <member refid="classhmap_1_1TerrainTriMesh_1aec20825d2885d94e151fd073a1cdc23f" kind="function"><name>shortest_path</name></member>
+    <member refid="classhmap_1_1TerrainTriMesh_1aad3b7896049e2e13a76dfe09dd6f708d" kind="function"><name>compute_shortest_paths</name></member>
+    <member refid="classhmap_1_1TerrainTriMesh_1aa1053a02d395e2ad59acbfd028a73edf" kind="function"><name>shortest_path</name></member>
     <member refid="classhmap_1_1TerrainTriMesh_1ad7c875682dd45ac1626bdfe6046fc5ca" kind="function"><name>path_to_hull</name></member>
     <member refid="classhmap_1_1TerrainTriMesh_1adcf186f3884969d2b85db0b2186b8d34" kind="function"><name>pick_mesh_boundary_vertex</name></member>
     <member refid="classhmap_1_1TerrainTriMesh_1a9702d210cd3c967a066eb5ae6919476b" kind="function"><name>get_points</name></member>
@@ -2613,7 +2613,7 @@
     <member refid="namespacehmap_1ac28f43b4f0b1b481dc8eb528f1be0f3d" kind="function"><name>shadow_heightmap</name></member>
     <member refid="namespacehmap_1a03570be180e333d82101d31482e78829" kind="function"><name>topographic_shading</name></member>
     <member refid="namespacehmap_1a38e634dbf8d4bc5c7ded9abdb2ecab2a" kind="function"><name>dijkstra</name></member>
-    <member refid="namespacehmap_1a505d334a39df55be569fbc1c1f640042" kind="function"><name>find_cut_path_dijkstra</name></member>
+    <member refid="namespacehmap_1ad1515214ffa088f61ffc374b68d670f8" kind="function"><name>find_cut_path_dijkstra</name></member>
     <member refid="namespacehmap_1a2c463175bb90319f83de452c2b55ac2b" kind="function"><name>find_cut_path_midpoint</name></member>
     <member refid="namespacehmap_1a3e877482c194619d1bf1dc398766fe66" kind="function"><name>find_cut_path_multiscale</name></member>
     <member refid="namespacehmap_1a812ed2264582321318f8f731d621f7bb" kind="function"><name>find_path_dijkstra</name></member>
@@ -3103,7 +3103,7 @@
     <member refid="namespacehmap_1_1va_1ae8000dce23f7622c2ba67910124bc353" kind="function"><name>flooding_lake_system</name></member>
     <member refid="namespacehmap_1_1va_1a050c3c7ecc102d86f566bf55b3a72c51" kind="function"><name>flow_fixing_mst_paths</name></member>
     <member refid="namespacehmap_1_1va_1a79c8b1b0f1447fcb8f94f6e2cec8788b" kind="function"><name>flow_fixing_mst_triangulated</name></member>
-    <member refid="namespacehmap_1_1va_1a716a8788acdcfb985d47d56fbe0dd715" kind="function"><name>find_cut_path_dijkstra</name></member>
+    <member refid="namespacehmap_1_1va_1afa19680ed9583277c2fb76daa95bfa96" kind="function"><name>find_cut_path_dijkstra</name></member>
     <member refid="namespacehmap_1_1va_1ac5a99fc7607556be58fb75ae10125940" kind="function"><name>generate_terrain_tri_mesh_from_heightmap_random</name></member>
   </compound>
   <compound refid="namespacestd" kind="namespace"><name>std</name>
@@ -4623,6 +4623,7 @@
     <member refid="test__path__multiscale_8cpp_1a1cbf6fe0f3be2b892109a5dd1e6994a2" kind="function"><name>TEST</name></member>
     <member refid="test__path__multiscale_8cpp_1a3e80a88ac89bb68361ab5b60fcff43f7" kind="function"><name>TEST</name></member>
     <member refid="test__path__multiscale_8cpp_1a836cee34b9fcf249efa27f28f48916b1" kind="function"><name>TEST</name></member>
+    <member refid="test__path__multiscale_8cpp_1a7f4b379f21bc93d53cd212675e0be300" kind="function"><name>TEST</name></member>
   </compound>
   <compound refid="test__path__sample__at_8cpp" kind="file"><name>test_path_sample_at.cpp</name>
     <member refid="test__path__sample__at_8cpp_1a0303a86bdff92e4275a44741c3b2d182" kind="function"><name>TEST</name></member>
