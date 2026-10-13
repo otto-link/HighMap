@@ -1,8 +1,5 @@
 var NAVTREEINDEX19 =
 {
-"namespacehmap.html#a85e411c67e97deb8459f25d4440546c3":[2,0,0,624],
-"namespacehmap.html#a85fd747437fd49e0fcfb770ad5f5851e":[2,0,0,176],
-"namespacehmap.html#a862fef5e0387bea9358648fc7aa5680b":[2,0,0,432],
 "namespacehmap.html#a868ae7c781d7e72af7b1416898a2f891":[2,0,0,729],
 "namespacehmap.html#a86963a517ac96c442272bdf6fd967f60":[2,0,0,342],
 "namespacehmap.html#a869e8b1294539de116023ed41279c455":[2,0,0,147],
@@ -249,5 +246,8 @@ var NAVTREEINDEX19 =
 "namespacehmap.html#abc5852a4cae426341235d60a04964fc1":[2,0,0,594],
 "namespacehmap.html#abc58609556b107fdb1825a6c423efdce":[2,0,0,634],
 "namespacehmap.html#abc5928f49e530927c8fb61a9afea3274":[2,0,0,550],
-"namespacehmap.html#abc5d54d0d76a86f083db977837c28d69":[2,0,0,818]
+"namespacehmap.html#abc5d54d0d76a86f083db977837c28d69":[2,0,0,818],
+"namespacehmap.html#abc7eb3ca1df902fff8e54584547cf841":[2,0,0,452],
+"namespacehmap.html#abc952321c99ec11d60b4037e3d27db9b":[2,0,0,120],
+"namespacehmap.html#abc952321c99ec11d60b4037e3d27db9ba25b053ebbd8db9d348737e6f343c61bf":[2,0,0,120,2]
 };

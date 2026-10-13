@@ -2,7 +2,6 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
   <compounddef id="dir_28d1f6f5761f5c8b206221dff91b5473" kind="dir">
     <compoundname>HighMap/src/terrain_tri_mesh</compoundname>
-    <innerfile refid="flow__breach_8cpp">flow_breach.cpp</innerfile>
     <innerfile refid="generate__terrain__tri__mesh__from__heightmap_8cpp">generate_terrain_tri_mesh_from_heightmap.cpp</innerfile>
     <innerfile refid="shortest__path_8cpp">shortest_path.cpp</innerfile>
     <innerfile refid="terrain__tri__mesh_8cpp">terrain_tri_mesh.cpp</innerfile>

@@ -955,7 +955,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" line="76" column="16" bodyfile="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" bodystart="76" bodyend="110" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="309" declcolumn="16"/>
+        <location file="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" line="76" column="16" bodyfile="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" bodystart="76" bodyend="110" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="306" declcolumn="16"/>
       </memberdef>
     </sectiondef>
     <briefdescription>

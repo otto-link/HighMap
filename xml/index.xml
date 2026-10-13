@@ -1343,7 +1343,6 @@
     <member refid="classhmap_1_1TerrainTriMesh_1a294e7c2d93fad24a25300028fe3937b3" kind="function"><name>slope_limiter</name></member>
     <member refid="classhmap_1_1TerrainTriMesh_1a4a9987cc3413e52602717c0b6d2d5ab5" kind="function"><name>slope_limiter</name></member>
     <member refid="classhmap_1_1TerrainTriMesh_1a8fa381ce42de945e2aff8944e2061def" kind="function"><name>subdivise</name></member>
-    <member refid="classhmap_1_1TerrainTriMesh_1a1b251e7616ce7c913b148475548b080b" kind="function"><name>flow_breach</name></member>
     <member refid="classhmap_1_1TerrainTriMesh_1a3da697b9cfb9dc0c8b6ff8f5759021c4" kind="function"><name>barycentric</name></member>
     <member refid="classhmap_1_1TerrainTriMesh_1ae5d88ed0cc61c8606bed76faabb77e11" kind="function"><name>find_triangle</name></member>
     <member refid="classhmap_1_1TerrainTriMesh_1a402e4d126734c83cc388c35736a35a6a" kind="function"><name>neighbor_triangle</name></member>
@@ -1643,21 +1642,21 @@
     <member refid="classhmap_1_1XyControlFunction_1acfe5c441363f35d36a13084fb56c6dca" kind="function"><name>MinimumImpl</name></member>
     <member refid="classhmap_1_1XyControlFunction_1ab32abc0861325b3ea6f547b938a9225d" kind="function"><name>MaximumImpl</name></member>
   </compound>
-  <compound refid="namespace_0d420" kind="namespace"><name>@420</name>
+  <compound refid="namespace_0d419" kind="namespace"><name>@419</name>
   </compound>
-  <compound refid="namespace_0d431" kind="namespace"><name>@431</name>
+  <compound refid="namespace_0d430" kind="namespace"><name>@430</name>
   </compound>
-  <compound refid="namespace_0d440" kind="namespace"><name>@440</name>
+  <compound refid="namespace_0d439" kind="namespace"><name>@439</name>
   </compound>
-  <compound refid="namespace_0d458" kind="namespace"><name>@458</name>
+  <compound refid="namespace_0d457" kind="namespace"><name>@457</name>
   </compound>
-  <compound refid="namespace_0d465" kind="namespace"><name>@465</name>
+  <compound refid="namespace_0d464" kind="namespace"><name>@464</name>
   </compound>
-  <compound refid="namespace_0d478" kind="namespace"><name>@478</name>
+  <compound refid="namespace_0d477" kind="namespace"><name>@477</name>
   </compound>
-  <compound refid="namespace_0d489" kind="namespace"><name>@489</name>
+  <compound refid="namespace_0d488" kind="namespace"><name>@488</name>
   </compound>
-  <compound refid="namespace_0d493" kind="namespace"><name>@493</name>
+  <compound refid="namespace_0d492" kind="namespace"><name>@492</name>
   </compound>
   <compound refid="namespacehmap" kind="namespace"><name>hmap</name>
     <member refid="namespacehmap_1a5101273ec456f5267dddc3e22dae223b" kind="enum"><name>StampingBlendMethod</name></member>
@@ -4051,8 +4050,6 @@
   </compound>
   <compound refid="texture_8cpp" kind="file"><name>texture.cpp</name>
   </compound>
-  <compound refid="flow__breach_8cpp" kind="file"><name>flow_breach.cpp</name>
-  </compound>
   <compound refid="generate__terrain__tri__mesh__from__heightmap_8cpp" kind="file"><name>generate_terrain_tri_mesh_from_heightmap.cpp</name>
   </compound>
   <compound refid="shortest__path_8cpp" kind="file"><name>shortest_path.cpp</name>
@@ -4958,7 +4955,6 @@
     <member refid="test__terrain__tri__mesh_8cpp_1a80979cd41d6bd6efef88bb25714c2bf8" kind="function"><name>TEST</name></member>
     <member refid="test__terrain__tri__mesh_8cpp_1a7ed4aaa3369b261b9bca54beca54be9c" kind="function"><name>TEST</name></member>
     <member refid="test__terrain__tri__mesh_8cpp_1a8dbcea55e6c56dfe11c9d2d3353725af" kind="function"><name>TEST</name></member>
-    <member refid="test__terrain__tri__mesh_8cpp_1a81fb09f7db2c2010c9d5b21634ec7b8a" kind="function"><name>TEST</name></member>
   </compound>
   <compound refid="test__texture_8cpp" kind="file"><name>test_texture.cpp</name>
     <member refid="test__texture_8cpp_1a4405a808cd5494737bc748a446d31c55" kind="function"><name>TEST</name></member>
