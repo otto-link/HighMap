@@ -990,15 +990,10 @@ std::vector<Path> flow_fixing_mst_paths(const Array  &z,
 {
   if (!validate_non_empty(z)) return {};
 
-  const glm::vec4 bbox = {0.f, 1.f, 0.f, 1.f};
-  Cloud           cloud = random_cloud_jittered(control_points_count,
-                                                {0.5f, 0.5f},
-                                                {0.f, 0.f},
-                                      seed,
-                                      bbox);
-  cloud.snap_points_to_bounding_box(bbox);
-  cloud.set_values_from_array(z, bbox);
-  auto mesh = TerrainTriMesh(cloud.to_vec3());
+  TerrainTriMesh mesh = generate_terrain_tri_mesh_from_heightmap_random(
+      z,
+      control_points_count,
+      seed);
 
   return flow_fixing_mst_paths(mesh,
                                riverbed_talus,

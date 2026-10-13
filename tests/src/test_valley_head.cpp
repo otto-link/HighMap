@@ -222,14 +222,8 @@ TEST(ValleyHead, ParameterExtremes)
   EXPECT_LE(z3.min(), 0.f);
 
   // small length scales
-  hmap::Array z4 = hmap::valley_head(shape,
-                                     0.f,
-                                     0.f,
-                                     0.2f,
-                                     0.05f,
-                                     0.15f,
-                                     0.01f,
-                                     0.01f);
+  hmap::Array z4 =
+      hmap::valley_head(shape, 0.f, 0.f, 0.2f, 0.05f, 0.15f, 0.01f, 0.01f);
   EXPECT_LE(z4.min(), 0.f);
 }
 
@@ -339,7 +333,8 @@ TEST(ValleyHead, MinDepthAtHead)
                                     nullptr,
                                     center);
 
-  // at valley head (x = 0.5, y = 0.5 -> grid index (64, 64)), depth must match min_depth
+  // at valley head (x = 0.5, y = 0.5 -> grid index (64, 64)), depth must match
+  // min_depth
   EXPECT_NEAR(-z(64, 64), min_depth, 1e-5f);
 
   // upstream (rows j < 64): strictly zero everywhere
@@ -347,7 +342,8 @@ TEST(ValleyHead, MinDepthAtHead)
     for (int i = 0; i < shape.x; ++i)
       EXPECT_NEAR(z(i, j), 0.f, 1e-6f);
 
-  // downstream along centerline: incision depth must increase from min_depth towards max_depth
+  // downstream along centerline: incision depth must increase from min_depth
+  // towards max_depth
   int   center_col = 64;
   float prev_depth = min_depth;
   for (int j = 70; j < 120; j += 10)

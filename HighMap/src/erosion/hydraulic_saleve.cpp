@@ -103,14 +103,10 @@ Array hydraulic_saleve(const Array          &z,
 
   // --- generate triangle mesh
 
-  Cloud cloud = random_cloud_jittered(control_points_count,
-                                      {0.5f, 0.5f},
-                                      {0.f, 0.f},
-                                      seed,
-                                      bbox);
-  cloud.snap_points_to_bounding_box(bbox);
-  cloud.set_values_from_array(z, bbox);
-  auto mesh = TerrainTriMesh(cloud.to_vec3());
+  TerrainTriMesh mesh = generate_terrain_tri_mesh_from_heightmap_random(
+      z,
+      control_points_count,
+      seed);
 
   // --- spatial parameters
 
@@ -119,12 +115,12 @@ Array hydraulic_saleve(const Array          &z,
 
   if (scale_erodibility_with_z && (zmin != zmax))
   {
-    erodibility = cloud.get_values();
-
-    for (auto &v : erodibility)
+    erodibility.reserve(mesh.size());
+    for (const auto &p : mesh.get_points())
     {
-      v = (v - zmin) / (zmax - zmin);
+      float v = (p.z - zmin) / (zmax - zmin);
       v = std::pow(1.f - v, erodibility_distrib_exp);
+      erodibility.push_back(v);
     }
   }
   else

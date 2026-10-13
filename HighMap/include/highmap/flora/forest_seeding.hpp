@@ -64,8 +64,8 @@ struct ForestSeedingOptions
  *                               map.
  * @param  weight_secondary      Weight for optional secondary density map in
  *                               [0, 1].
- * @param  exclusion_mask        Optional exclusion mask (where > exclusion_threshold,
- *                               density is set to 0).
+ * @param  exclusion_mask        Optional exclusion mask (where >
+ *                               exclusion_threshold, density is set to 0).
  * @param  exclusion_threshold   Threshold above which exclusion mask excludes
  *                               trees (default 0.f).
  * @return                       Array Computed density array in [0, 1].
