@@ -13,7 +13,7 @@
 
 #include "highmap/algebra.hpp"
 #include "highmap/array.hpp"
-#include "highmap/convolve.hpp"
+#include "highmap/math/convolve.hpp"
 #include "highmap/erosion/deprecated.hpp"
 #include "highmap/erosion/depression_filling.hpp"
 #include "highmap/filters.hpp"

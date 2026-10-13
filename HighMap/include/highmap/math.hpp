@@ -12,6 +12,7 @@
 #include "highmap/math/array.hpp"
 #include "highmap/math/chebyshev.hpp"
 #include "highmap/math/constants.hpp"
+#include "highmap/math/convolve.hpp"
 #include "highmap/math/core.hpp"
 #include "highmap/math/distance_functions.hpp"
 #include "highmap/math/profiles.hpp"

@@ -13,7 +13,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/boundary.hpp"
-#include "highmap/convolve.hpp"
+#include "highmap/math/convolve.hpp"
 #include "highmap/curvature.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/gradient.hpp"

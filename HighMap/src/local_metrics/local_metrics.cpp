@@ -8,7 +8,7 @@
 #include <vector>
 
 #include "highmap/array.hpp"
-#include "highmap/convolve.hpp"
+#include "highmap/math/convolve.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/internal/validation.hpp"
 #include "highmap/local_metrics.hpp"

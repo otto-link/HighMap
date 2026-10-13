@@ -8,7 +8,7 @@
 
 #include "highmap/array.hpp"
 #include "highmap/blending.hpp"
-#include "highmap/convolve.hpp"
+#include "highmap/math/convolve.hpp"
 #include "highmap/erosion/deprecated.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/gradient.hpp"
