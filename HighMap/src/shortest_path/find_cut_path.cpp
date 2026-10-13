@@ -149,17 +149,15 @@ Path find_cut_path_multiscale(const Array   &z,
 namespace hmap::va
 {
 
-Path find_cut_path_midpoint(const ComputeMode  &cm,
+Path find_cut_path_dijkstra(const ComputeMode  &cm,
                             const VirtualArray &z,
                             DomainBoundary      start,
                             DomainBoundary      end,
                             std::uint32_t       seed,
                             size_t              control_points_count,
-                            float /* offset_ratio */,
-                            int /* steps */,
-                            bool favor_boundary_center,
-                            bool favor_lower_elevation,
-                            bool favor_sinks)
+                            bool                favor_boundary_center,
+                            bool                favor_lower_elevation,
+                            bool                favor_sinks)
 {
   TerrainTriMesh mesh = va::generate_terrain_tri_mesh_from_heightmap_random(
       cm,

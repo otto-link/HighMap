@@ -312,7 +312,7 @@ TEST(PathMultiscale, FindPathMidpointHarmonized)
   EXPECT_NEAR(path.back().v, z(end.x, end.y), 1e-5f);
 }
 
-TEST(PathMultiscale, VAFindCutPathMidpoint)
+TEST(PathMultiscale, VAFindCutPathDijkstra)
 {
   glm::ivec2 shape = {128, 128};
   glm::ivec2 tile_shape = {64, 64};
@@ -327,7 +327,7 @@ TEST(PathMultiscale, VAFindCutPathMidpoint)
                                       42);
   vz.from_array(z_arr, cm);
 
-  hmap::Path path = hmap::va::find_cut_path_midpoint(
+  hmap::Path path = hmap::va::find_cut_path_dijkstra(
       cm,
       vz,
       hmap::DomainBoundary::BOUNDARY_LEFT,
