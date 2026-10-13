@@ -394,3 +394,41 @@ TEST(PathMultiscale, FindCutPathDijkstraFavorDomainCenter)
   ASSERT_FALSE(path_default.empty());
   ASSERT_FALSE(path_center.empty());
 }
+
+TEST(PathMultiscale, VAFindPathDijkstra)
+{
+  glm::ivec2 shape = {128, 128};
+  glm::ivec2 tile_shape = {64, 64};
+  int        halo = 0;
+
+  hmap::ComputeMode  cm;
+  hmap::VirtualArray vz(shape, tile_shape, halo, hmap::StorageMode::VA_RAM);
+
+  hmap::Array z_arr = hmap::noise_fbm(hmap::NoiseType::PERLIN,
+                                      shape,
+                                      {2.f, 2.f},
+                                      42);
+  vz.from_array(z_arr, cm);
+
+  glm::vec2 start = {0.1f, 0.1f};
+  glm::vec2 end = {0.9f, 0.9f};
+
+  hmap::Path path = hmap::va::find_path_dijkstra(cm, vz, start, end, 42, 256);
+
+  ASSERT_FALSE(path.empty());
+  EXPECT_NEAR(path.front().x, start.x, 0.2f);
+  EXPECT_NEAR(path.front().y, start.y, 0.2f);
+  EXPECT_NEAR(path.back().x, end.x, 0.2f);
+  EXPECT_NEAR(path.back().y, end.y, 0.2f);
+
+  // test with favor_domain_center enabled
+  hmap::Path path_center =
+      hmap::va::find_path_dijkstra(cm, vz, start, end, 42, 256, true);
+
+  ASSERT_FALSE(path_center.empty());
+  EXPECT_NEAR(path_center.front().x, start.x, 0.2f);
+  EXPECT_NEAR(path_center.front().y, start.y, 0.2f);
+  EXPECT_NEAR(path_center.back().x, end.x, 0.2f);
+  EXPECT_NEAR(path_center.back().y, end.y, 0.2f);
+}
+

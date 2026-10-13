@@ -512,4 +512,32 @@ Path find_cut_path_dijkstra(const ComputeMode  &cm,
                             bool                favor_sinks = true,
                             bool                favor_domain_center = false);
 
+/**
+ * @brief Generate a path between two points across a heightmap VirtualArray
+ * using an intermediate random triangular mesh and Dijkstra shortest path
+ * search.
+ *
+ * Constructs a random Delaunay triangulation sampled from the VirtualArray,
+ * locates the nearest mesh vertices to the start and end coordinates, and
+ * computes the Dijkstra shortest path connecting them across the mesh.
+ *
+ * @param  cm                    Compute mode configuration.
+ * @param  z                     Heightmap VirtualArray.
+ * @param  start                 Start coordinates (x, y) in [0, 1].
+ * @param  end                   End coordinates (x, y) in [0, 1].
+ * @param  seed                  Random seed for mesh point generation.
+ * @param  control_points_count  Number of control points sampled for the mesh.
+ * @param  favor_domain_center   Favor passing through the center of the domain.
+ *
+ * @return                       Path containing 3D coordinates and elevations.
+ */
+Path find_path_dijkstra(const ComputeMode  &cm,
+                        const VirtualArray &z,
+                        glm::vec2           start,
+                        glm::vec2           end,
+                        std::uint32_t       seed = 0,
+                        size_t              control_points_count = 2048,
+                        bool                favor_domain_center = false);
+
 } // namespace hmap::va
+

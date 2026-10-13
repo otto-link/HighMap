@@ -14,8 +14,12 @@
 #include "highmap/geometry/path.hpp"
 #include "highmap/geometry/point.hpp"
 #include "highmap/internal/validation.hpp"
+#include "highmap/shortest_path.hpp"
+#include "highmap/terrain_tri_mesh.hpp"
+#include "highmap/virtual_array.hpp"
 
 #include <format>
+
 
 namespace hmap
 {
@@ -247,3 +251,86 @@ Path find_path_dijkstra(const Array &z,
 }
 
 } // namespace hmap
+
+namespace hmap::va
+{
+
+Path find_path_dijkstra(const ComputeMode  &cm,
+                        const VirtualArray &z,
+                        glm::vec2           start,
+                        glm::vec2           end,
+                        std::uint32_t       seed,
+                        size_t              control_points_count,
+                        bool                favor_domain_center)
+{
+  TerrainTriMesh mesh = va::generate_terrain_tri_mesh_from_heightmap_random(
+      cm,
+      z,
+      control_points_count,
+      seed);
+
+  if (mesh.size() == 0) return Path();
+
+  const auto &pts = mesh.get_points();
+
+  // find nearest vertex to start position
+  size_t start_idx = 0;
+  float  min_dist2_start = std::numeric_limits<float>::max();
+
+  for (size_t i = 0; i < pts.size(); ++i)
+  {
+    float dx = pts[i].x - start.x;
+    float dy = pts[i].y - start.y;
+    float d2 = dx * dx + dy * dy;
+
+    if (d2 < min_dist2_start)
+    {
+      min_dist2_start = d2;
+      start_idx = i;
+    }
+  }
+
+  // find nearest vertex to end position
+  size_t end_idx = 0;
+  float  min_dist2_end = std::numeric_limits<float>::max();
+
+  for (size_t i = 0; i < pts.size(); ++i)
+  {
+    float dx = pts[i].x - end.x;
+    float dy = pts[i].y - end.y;
+    float d2 = dx * dx + dy * dy;
+
+    if (d2 < min_dist2_end)
+    {
+      min_dist2_end = d2;
+      end_idx = i;
+    }
+  }
+
+  float domain_center_weight = favor_domain_center ? 1.f : 0.f;
+
+  std::vector<size_t> vertex_indices = mesh.shortest_path(start_idx,
+                                                          end_idx,
+                                                          true,
+                                                          1.f,
+                                                          domain_center_weight);
+
+  if (vertex_indices.empty())
+  {
+    vertex_indices = {start_idx, end_idx};
+  }
+
+  std::vector<Point> path_points;
+  path_points.reserve(vertex_indices.size());
+
+  for (size_t v : vertex_indices)
+  {
+    const auto &p = pts[v];
+    path_points.emplace_back(p.x, p.y, p.z);
+  }
+
+  return Path(path_points);
+}
+
+} // namespace hmap::va
+
