@@ -77,6 +77,8 @@ Path dijkstra(const Path  &path,
  * @param  dijk_elevation_ratio     Weight of elevation in the cost.
  * @param  dijk_distance_exponent   Exponent applied to distance cost.
  * @param  dijk_upward_penalization Extra penalty for uphill moves.
+ * @param  favor_domain_center      Favor passing through the center of the
+ *                                  domain.
  *
  * @return                          Path containing normalized (x, y) points and
  *                                  elevations.
@@ -96,7 +98,8 @@ Path find_cut_path_dijkstra(const Array   &z,
                             std::uint32_t  seed = 0,
                             bool           favor_boundary_center = true,
                             bool           favor_lower_elevation = true,
-                            bool           favor_sinks = true);
+                            bool           favor_sinks = true,
+                            bool           favor_domain_center = false);
 
 /**
  * @brief Generate a stochastic cut path using midpoint displacement.
@@ -493,6 +496,7 @@ namespace hmap::va
  *                               elevation.
  * @param  favor_sinks           Favor picking boundary vertices at local
  *                               depressions.
+ * @param  favor_domain_center   Favor passing through the center of the domain.
  *
  * @return                       Path containing normalized 3D coordinates and
  *                               elevations.
@@ -505,6 +509,7 @@ Path find_cut_path_dijkstra(const ComputeMode  &cm,
                             size_t              control_points_count = 2048,
                             bool                favor_boundary_center = true,
                             bool                favor_lower_elevation = true,
-                            bool                favor_sinks = true);
+                            bool                favor_sinks = true,
+                            bool                favor_domain_center = false);
 
 } // namespace hmap::va

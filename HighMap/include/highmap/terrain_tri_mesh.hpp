@@ -217,15 +217,18 @@ public:
       float elevation_weight = 1.f) const;
 
   /** @brief Compute shortest paths from a source vertex. */
-  ShortestPathResult compute_shortest_paths(size_t start,
-                                            bool   use_delta_z = false,
-                                            float elevation_weight = 1.f) const;
+  ShortestPathResult compute_shortest_paths(
+      size_t start,
+      bool   use_delta_z = false,
+      float  elevation_weight = 1.f,
+      float  domain_center_weight = 0.f) const;
 
   /** @brief Compute the shortest path between two vertices. */
   std::vector<size_t> shortest_path(size_t start,
                                     size_t end,
                                     bool   use_delta_z = false,
-                                    float  elevation_weight = 1.f) const;
+                                    float  elevation_weight = 1.f,
+                                    float  domain_center_weight = 0.f) const;
 
   /** @brief Reconstruct a path to the convex hull. */
   std::vector<size_t> path_to_hull(size_t                    start,

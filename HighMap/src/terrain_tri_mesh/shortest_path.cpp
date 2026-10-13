@@ -21,7 +21,8 @@ namespace hmap
 TerrainTriMesh::ShortestPathResult TerrainTriMesh::compute_shortest_paths(
     size_t start,
     bool   use_delta_z,
-    float  elevation_weight) const
+    float  elevation_weight,
+    float  domain_center_weight) const
 {
   constexpr size_t INVALID = std::numeric_limits<size_t>::max();
 
@@ -62,6 +63,17 @@ TerrainTriMesh::ShortestPathResult TerrainTriMesh::compute_shortest_paths(
       else
       {
         edge_cost = n.distance2d;
+      }
+
+      if (domain_center_weight > 0.f)
+      {
+        const auto &np = points[n.index];
+        float dist_border = std::min({np.x, 1.f - np.x, np.y, 1.f - np.y});
+        dist_border = std::clamp(dist_border, 0.f, 0.5f);
+
+        // penalty is highest at boundary (1.0) and 0 at center
+        float penalty = 1.f - 2.f * dist_border;
+        edge_cost += domain_center_weight * penalty;
       }
 
       float new_dist = dist + edge_cost;
@@ -141,14 +153,19 @@ TerrainTriMesh::ShortestPathResult TerrainTriMesh::
   return result;
 }
 
-std::vector<size_t> TerrainTriMesh::shortest_path(size_t start,
-                                                  size_t end,
-                                                  bool   use_delta_z,
-                                                  float  elevation_weight) const
+std::vector<size_t> TerrainTriMesh::shortest_path(
+    size_t start,
+    size_t end,
+    bool   use_delta_z,
+    float  elevation_weight,
+    float  domain_center_weight) const
 {
   constexpr size_t INVALID = std::numeric_limits<size_t>::max();
 
-  auto result = compute_shortest_paths(start, use_delta_z, elevation_weight);
+  auto result = compute_shortest_paths(start,
+                                       use_delta_z,
+                                       elevation_weight,
+                                       domain_center_weight);
 
   std::vector<size_t> path;
 

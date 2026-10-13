@@ -24,7 +24,8 @@ Path find_cut_path_dijkstra(const Array   &z,
                             std::uint32_t  seed,
                             bool           favor_boundary_center,
                             bool           favor_lower_elevation,
-                            bool           favor_sinks)
+                            bool           favor_sinks,
+                            bool           favor_domain_center)
 {
   if (!validate_non_empty(z)) return Path();
 
@@ -44,6 +45,38 @@ Path find_cut_path_dijkstra(const Array   &z,
                                          favor_sinks);
 
   // --- find cut path
+
+  if (favor_domain_center)
+  {
+    Array mask_nogo(z.shape, 0.f);
+
+    for (int j = 0; j < z.shape.y; ++j)
+    {
+      for (int i = 0; i < z.shape.x; ++i)
+      {
+        float di = (z.shape.x > 1)
+                       ? std::min(i, z.shape.x - 1 - i) / float(z.shape.x - 1)
+                       : 0.f;
+        float dj = (z.shape.y > 1)
+                       ? std::min(j, z.shape.y - 1 - j) / float(z.shape.y - 1)
+                       : 0.f;
+        float d_border = std::min(di, dj);
+        d_border = std::clamp(d_border, 0.f, 0.5f);
+
+        // normalized penalty: 1 at boundary, 0 at center
+        mask_nogo(i, j) = 1.f - 2.f * d_border;
+      }
+    }
+
+    return find_path_dijkstra(z,
+                              start_pt,
+                              end_pt,
+                              glm::vec4(0.f, 1.f, 0.f, 1.f),
+                              dijk_elevation_ratio,
+                              dijk_distance_exponent,
+                              dijk_upward_penalization,
+                              &mask_nogo);
+  }
 
   return find_path_dijkstra(z,
                             start_pt,
@@ -157,7 +190,8 @@ Path find_cut_path_dijkstra(const ComputeMode  &cm,
                             size_t              control_points_count,
                             bool                favor_boundary_center,
                             bool                favor_lower_elevation,
-                            bool                favor_sinks)
+                            bool                favor_sinks,
+                            bool                favor_domain_center)
 {
   TerrainTriMesh mesh = va::generate_terrain_tri_mesh_from_heightmap_random(
       cm,
@@ -181,10 +215,13 @@ Path find_cut_path_dijkstra(const ComputeMode  &cm,
                                                   favor_lower_elevation,
                                                   favor_sinks);
 
+  float domain_center_weight = favor_domain_center ? 1.f : 0.f;
+
   std::vector<size_t> vertex_indices = mesh.shortest_path(start_idx,
                                                           end_idx,
                                                           true,
-                                                          1.f);
+                                                          1.f,
+                                                          domain_center_weight);
 
   if (vertex_indices.empty())
   {
