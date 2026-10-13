@@ -25,7 +25,7 @@ var searchData=
   ['validation_2ehpp_22',['validation.hpp',['../validation_8hpp.html',1,'']]],
   ['valley_5ffill_23',['valley_fill',['../namespacehmap_1_1gpu.html#aa7ce5c44914d54ec7fa0162c5ccbab86',1,'hmap::gpu::valley_fill(Array &amp;z, const Array *p_mask, const Array &amp;talus, int iterations=100, float gamma=2.f, float ratio=0.8f, float zmin=0.f, float zmax=0.f, float elevation_max_ratio=1.f, bool preserve_elevation_range=true, const Array *p_noise=nullptr, Array *p_deposition_map=nullptr)'],['../namespacehmap_1_1gpu.html#ae8a8da3d95deb978d813ce782a1492bb',1,'hmap::gpu::valley_fill(Array &amp;z, const Array &amp;talus, int iterations=100, float gamma=2.f, float ratio=0.8f, float zmin=0.f, float zmax=0.f, float elevation_max_ratio=1.f, bool preserve_elevation_range=true, const Array *p_noise=nullptr, Array *p_deposition_map=nullptr)']]],
   ['valley_5ffill_2ecpp_24',['valley_fill.cpp',['../valley__fill_8cpp.html',1,'']]],
-  ['valley_5fhead_25',['valley_head',['../namespacehmap.html#a1f5d273275a3eac6e9798c966ef55d21',1,'hmap']]],
+  ['valley_5fhead_25',['valley_head',['../namespacehmap.html#a00a0ccdfd693f9da70f172169b7f36a7',1,'hmap']]],
   ['valley_5fhead_2ecpp_26',['valley_head.cpp',['../valley__head_8cpp.html',1,'']]],
   ['valley_5fwidth_27',['valley_width',['../namespacehmap.html#ab4d8048b79080012b8e60c270de8137f',1,'hmap::valley_width()'],['../namespacehmap_1_1gpu.html#a3816b73c0f933147dc86ee9f8d2dd701',1,'hmap::gpu::valley_width()']]],
   ['valley_5fwidth_2ecpp_28',['valley_width.cpp',['../valley__width_8cpp.html',1,'']]],

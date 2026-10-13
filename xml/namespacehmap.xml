@@ -58474,10 +58474,10 @@ The kernel is truncated to ensure it fits within the bounds of the array. After 
         </inbodydescription>
         <location file="HighMap/src/primitives/geo/rift.cpp" line="18" column="7" bodyfile="HighMap/src/primitives/geo/rift.cpp" bodystart="18" bodyend="125" declfile="HighMap/include/highmap/primitives/geo.hpp" declline="293" declcolumn="7"/>
       </memberdef>
-      <memberdef kind="function" id="namespacehmap_1a1f5d273275a3eac6e9798c966ef55d21" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespacehmap_1a00a0ccdfd693f9da70f172169b7f36a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
         <definition>Array hmap::valley_head</definition>
-        <argsstring>(glm::ivec2 shape, float angle=0.f, float max_depth=0.2f, float min_width=0.02f, float max_width=0.15f, float depth_length=0.5f, float width_length=0.5f, float development_power=2.f, float profile_power=1.3f, const Array *p_noise_offset=nullptr, const Array *p_noise_r=nullptr, glm::vec2 center={0.5f, 0.5f}, glm::vec4 bbox={0.f, 1.f, 0.f, 1.f}, Array *p_mask=nullptr)</argsstring>
+        <argsstring>(glm::ivec2 shape, float angle=0.f, float min_depth=0.f, float max_depth=0.2f, float min_width=0.02f, float max_width=0.15f, float depth_length=0.5f, float width_length=0.5f, float development_power=2.f, float profile_power=1.3f, const Array *p_noise_offset=nullptr, const Array *p_noise_r=nullptr, glm::vec2 center={0.5f, 0.5f}, glm::vec4 bbox={0.f, 1.f, 0.f, 1.f}, Array *p_mask=nullptr)</argsstring>
         <name>valley_head</name>
         <qualifiedname>hmap::valley_head</qualifiedname>
         <param>
@@ -58487,6 +58487,11 @@ The kernel is truncated to ensure it fits within the bounds of the array. After 
         <param>
           <type>float</type>
           <declname>angle</declname>
+          <defval>0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>min_depth</declname>
           <defval>0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
         </param>
         <param>
@@ -58568,6 +58573,14 @@ The kernel is truncated to ensure it fits within the bounds of the array. After 
 </parameternamelist>
 <parameterdescription>
 <para>Valley orientation angle in degrees. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>min_depth</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Valley depth at the head. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -58695,6 +58708,7 @@ The kernel is truncated to ensure it fits within the bounds of the array. After 
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>---<sp/>Clean<sp/>valley<sp/>head<sp/>incision</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1aac71bb6c14edc17967957f7918acdbdd" kindref="member">angle</ref><sp/>=<sp/>180.f;<sp/></highlight><highlight class="comment">//<sp/>along<sp/>-y</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>min_depth<sp/>=<sp/>0.f;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>max_depth<sp/>=<sp/>0.25f;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>min_width<sp/>=<sp/>0.02f;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>max_width<sp/>=<sp/>0.5f;</highlight></codeline>
@@ -58704,8 +58718,9 @@ The kernel is truncated to ensure it fits within the bounds of the array. After 
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>profile_power<sp/>=<sp/>1.3f;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>glm::vec2<sp/>center<sp/>=<sp/>{0.5f,<sp/>1.f};</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>delta_clean<sp/>=<sp/><ref refid="namespacehmap_1a1f5d273275a3eac6e9798c966ef55d21" kindref="member">hmap::valley_head</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>delta_clean<sp/>=<sp/><ref refid="namespacehmap_1a00a0ccdfd693f9da70f172169b7f36a7" kindref="member">hmap::valley_head</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1aac71bb6c14edc17967957f7918acdbdd" kindref="member">angle</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>min_depth,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>max_depth,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>min_width,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>max_width,</highlight></codeline>
@@ -58719,8 +58734,9 @@ The kernel is truncated to ensure it fits within the bounds of the array. After 
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>---<sp/>Noisy<sp/>valley<sp/>head<sp/>incision</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>delta_noisy<sp/>=<sp/><ref refid="namespacehmap_1a1f5d273275a3eac6e9798c966ef55d21" kindref="member">hmap::valley_head</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>delta_noisy<sp/>=<sp/><ref refid="namespacehmap_1a00a0ccdfd693f9da70f172169b7f36a7" kindref="member">hmap::valley_head</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1aac71bb6c14edc17967957f7918acdbdd" kindref="member">angle</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>min_depth,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>max_depth,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>min_width,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>max_width,</highlight></codeline>
@@ -58747,7 +58763,7 @@ The kernel is truncated to ensure it fits within the bounds of the array. After 
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/primitives/geo/valley_head.cpp" line="16" column="7" bodyfile="HighMap/src/primitives/geo/valley_head.cpp" bodystart="16" bodyend="114" declfile="HighMap/include/highmap/primitives/geo.hpp" declline="346" declcolumn="7"/>
+        <location file="HighMap/src/primitives/geo/valley_head.cpp" line="16" column="7" bodyfile="HighMap/src/primitives/geo/valley_head.cpp" bodystart="16" bodyend="118" declfile="HighMap/include/highmap/primitives/geo.hpp" declline="347" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a5db6d20fe4a5e243dc67a713cb3ac419" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>

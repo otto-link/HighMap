@@ -8,5 +8,7 @@ var test__valley__head_8cpp =
     [ "TEST", "test__valley__head_8cpp.html#a73ef8619e9fb4a3d3a44a00bb96fd637", null ],
     [ "TEST", "test__valley__head_8cpp.html#aa92c3a14701a738fce065d611705a84b", null ],
     [ "TEST", "test__valley__head_8cpp.html#a4b5df9ccba1146c19e5f974df49fd929", null ],
-    [ "TEST", "test__valley__head_8cpp.html#a0285b05fe6315202b1b5a6b9e8ba8672", null ]
+    [ "TEST", "test__valley__head_8cpp.html#a0285b05fe6315202b1b5a6b9e8ba8672", null ],
+    [ "TEST", "test__valley__head_8cpp.html#a49e99ae0e5b6b1c83eb89a8cfaf06db6", null ],
+    [ "TEST", "test__valley__head_8cpp.html#af478737096e154b1687df45d8dcf1859", null ]
 ];
