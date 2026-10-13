@@ -16,6 +16,9 @@
 namespace hmap
 {
 
+struct ComputeMode;
+struct VirtualArray;
+
 /**
  * @brief Triangle mesh representation of a terrain surface.
  *
@@ -287,3 +290,15 @@ TerrainTriMesh generate_terrain_tri_mesh_from_heightmap_random(
     std::uint32_t seed);
 
 } // namespace hmap
+
+namespace hmap::va
+{
+
+/** @brief Generate a random terrain mesh from a heightmap VirtualArray. */
+TerrainTriMesh generate_terrain_tri_mesh_from_heightmap_random(
+    const ComputeMode  &cm,
+    const VirtualArray &z,
+    int                 control_points_count,
+    std::uint32_t       seed);
+
+} // namespace hmap::va

@@ -1070,33 +1070,11 @@ std::vector<Path> flow_fixing_mst_paths(const ComputeMode  &cm,
                                         float         upward_penalization,
                                         float         minimum_depth)
 {
-  const glm::vec4 bbox = {0.f, 1.f, 0.f, 1.f};
-  Cloud           cloud = random_cloud_jittered(control_points_count,
-                                                {0.5f, 0.5f},
-                                                {0.f, 0.f},
-                                      seed,
-                                      bbox);
-  cloud.snap_points_to_bounding_box(bbox);
-
-  // sample the control points tile after tile in a fixed order: all tiles
-  // write into the same cloud, so distributed sampling races on the points in
-  // the overlaps and the resulting sinks change from one run to the next
-  ComputeMode cm_sampling = cm;
-  cm_sampling.mode = ForEachMode::VA_SEQUENTIAL;
-
-  hmap::for_each_tile(
-      {&z},
-      {},
-      [&](std::vector<const hmap::Array *> p_arrays_in,
-          std::vector<hmap::Array *>,
-          const hmap::TileRegion &region)
-      {
-        auto [pa_z] = unpack<1>(p_arrays_in);
-        cloud.set_values_from_array(*pa_z, region.bbox);
-      },
-      cm_sampling);
-
-  auto mesh = TerrainTriMesh(cloud.to_vec3());
+  TerrainTriMesh mesh = va::generate_terrain_tri_mesh_from_heightmap_random(
+      cm,
+      z,
+      control_points_count,
+      seed);
 
   return flow_fixing_mst_paths(mesh,
                                riverbed_talus,

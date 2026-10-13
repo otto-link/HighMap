@@ -94,7 +94,6 @@ Array hydraulic_saleve(const Array          &z,
   if (p_noise_y && !validate_same_shape(z, *p_noise_y)) return Array();
 
   const glm::ivec2 shape = z.shape;
-  const glm::vec4  bbox = {0.f, 1.f, 0.f, 1.f};
   const float      zmin = z.min();
   const float      zmax = z.max();
 
@@ -270,35 +269,19 @@ VirtualArray hydraulic_saleve(const ComputeMode    &cm,
                               const VirtualArray   *p_noise_y,
                               const VirtualArray   *p_mask)
 {
-  const glm::vec4 bbox = {0.f, 1.f, 0.f, 1.f};
-  const float     zmin = z.min(cm);
-  const float     zmax = z.max(cm);
+  const float zmin = z.min(cm);
+  const float zmax = z.max(cm);
 
   // safeguard
   smin = std::min(smin, smax);
 
   // --- generate triangle mesh
 
-  Cloud cloud = random_cloud_jittered(control_points_count,
-                                      {0.5f, 0.5f},
-                                      {0.f, 0.f},
-                                      seed,
-                                      bbox);
-  cloud.snap_points_to_bounding_box(bbox);
-
-  hmap::for_each_tile(
-      {&z},
-      {},
-      [&](std::vector<const hmap::Array *> p_arrays_in,
-          std::vector<hmap::Array *>,
-          const hmap::TileRegion &region)
-      {
-        auto [pa_z] = unpack<1>(p_arrays_in);
-        cloud.set_values_from_array(*pa_z, region.bbox);
-      },
-      cm);
-
-  auto mesh = TerrainTriMesh(cloud.to_vec3());
+  TerrainTriMesh mesh = va::generate_terrain_tri_mesh_from_heightmap_random(
+      cm,
+      z,
+      control_points_count,
+      seed);
 
   // --- spatial parameters
 
@@ -307,12 +290,12 @@ VirtualArray hydraulic_saleve(const ComputeMode    &cm,
 
   if (scale_erodibility_with_z && (zmin != zmax))
   {
-    erodibility = cloud.get_values();
-
-    for (auto &v : erodibility)
+    erodibility.reserve(mesh.size());
+    for (const auto &p : mesh.get_points())
     {
-      v = (v - zmin) / (zmax - zmin);
+      float v = (p.z - zmin) / (zmax - zmin);
       v = std::pow(1.f - v, erodibility_distrib_exp);
+      erodibility.push_back(v);
     }
   }
   else
