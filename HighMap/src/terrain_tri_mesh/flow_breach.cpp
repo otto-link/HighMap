@@ -11,21 +11,31 @@ namespace hmap
 
 void TerrainTriMesh::flow_breach(float epsilon, float uphill_tolerance)
 {
-  auto paths = compute_shortest_paths_to_hull(true);
+  if (this->points.empty()) return;
 
-  std::vector<bool>   visited(points.size(), false);
-  std::vector<size_t> path;
+  auto paths = this->compute_shortest_paths_to_hull(true);
 
-  for (size_t start = 0; start < points.size(); ++start)
+  // --- Carve depressions along paths to convex hull
+
+  for (size_t start = 0; start < this->points.size(); ++start)
   {
     std::vector<size_t> path = this->path_to_hull(start, paths);
+    if (path.size() < 2) continue;
 
     for (size_t i = 0; i < path.size() - 1; ++i)
     {
-      size_t child = path[i + 1];
-      size_t parent = path[i];
-      float  required = points[parent].z - epsilon + uphill_tolerance;
-      if (points[child].z > required) points[child].z = required;
+      size_t curr = path[i];
+      size_t next = path[i + 1];
+
+      // next is closer to the hull (downstream)
+      // If next is higher than curr (a sill/barrier blocking outflow from
+      // curr), carve next downwards so water can drain towards the hull
+      float max_next_z = this->points[curr].z - epsilon + uphill_tolerance;
+
+      if (this->points[next].z > max_next_z)
+      {
+        this->points[next].z = max_next_z;
+      }
     }
   }
 }

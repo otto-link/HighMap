@@ -20,7 +20,6 @@
 
 #include <format>
 
-
 namespace hmap
 {
 
@@ -333,4 +332,3 @@ Path find_path_dijkstra(const ComputeMode  &cm,
 }
 
 } // namespace hmap::va
-

@@ -431,4 +431,3 @@ TEST(PathMultiscale, VAFindPathDijkstra)
   EXPECT_NEAR(path_center.back().x, end.x, 0.2f);
   EXPECT_NEAR(path_center.back().y, end.y, 0.2f);
 }
-

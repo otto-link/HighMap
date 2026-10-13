@@ -84,19 +84,19 @@ bool TerrainTriMesh::barycentric(const glm::vec2 &p,
   float x2 = this->points[i2].x, y2 = this->points[i2].y;
 
   float det = (x1 - x0) * (y2 - y0) - (y1 - y0) * (x2 - x0);
-  if (std::abs(det) < 1e-8f) return false;
+  if (std::abs(det) < 1e-12f) return false;
 
-  w0 = (p.x - x1) * (y2 - y1) - (p.y - y1) * (x2 - x1);
-  w1 = (p.x - x2) * (y0 - y2) - (p.y - y2) * (x0 - x2);
-  w2 = (p.x - x0) * (y1 - y0) - (p.y - y0) * (x1 - x0);
-
-  const float eps = -1e-6f;
-  if (w0 < eps || w1 < eps || w2 < eps) return false;
+  float s0 = (p.x - x1) * (y2 - y1) - (p.y - y1) * (x2 - x1);
+  float s1 = (p.x - x2) * (y0 - y2) - (p.y - y2) * (x0 - x2);
+  float s2 = (p.x - x0) * (y1 - y0) - (p.y - y0) * (x1 - x0);
 
   float inv = -1.f / det;
-  w0 *= inv;
-  w1 *= inv;
-  w2 *= inv;
+  w0 = s0 * inv;
+  w1 = s1 * inv;
+  w2 = s2 * inv;
+
+  const float eps = -1e-5f;
+  if (w0 < eps || w1 < eps || w2 < eps) return false;
 
   return true;
 }
@@ -160,6 +160,7 @@ void TerrainTriMesh::compute_gradients()
   }
 
   // Normalize
+#pragma omp parallel for schedule(static)
   for (size_t i = 0; i < points.size(); ++i)
   {
     if (weight_sum[i] > 1e-12f)
@@ -226,48 +227,48 @@ int TerrainTriMesh::find_triangle(const glm::vec2 &p,
                                   int              start_tri,
                                   bool             linear_search) const
 {
-  int       tri = std::max(0, start_tri);
-  const int max_iter = int(points.size());
+  if (this->triangles.empty()) return -1;
 
   if (linear_search)
   {
     // fallback for debugging purposes: linear search
     for (size_t k = 0; k < triangles.size(); ++k)
     {
-      float       w0, w1, w2;
+      float       w0 = 0.f, w1 = 0.f, w2 = 0.f;
       const auto &t = triangles[k];
       if (barycentric(p, t.a, t.b, t.c, w0, w1, w2))
       {
-        if (w0 >= 0 && w1 >= 0 && w2 >= 0) return int(k);
+        if (w0 >= 0.f && w1 >= 0.f && w2 >= 0.f) return int(k);
       }
     }
+    return -1;
   }
-  else
+
+  int       tri = std::clamp(start_tri,
+                       0,
+                       static_cast<int>(this->triangles.size()) - 1);
+  const int max_iter = int(points.size());
+
+  for (int iter = 0; iter < max_iter; ++iter)
   {
+    if (tri < 0 || static_cast<size_t>(tri) >= this->triangles.size())
+      return -1;
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+    const auto &t = triangles[tri];
+    float       w0 = 0.f, w1 = 0.f, w2 = 0.f;
+    this->barycentric(p, t.a, t.b, t.c, w0, w1, w2);
 
-    for (int iter = 0; iter < max_iter; ++iter)
-    {
-      const auto &t = triangles[tri];
-      float       w0, w1, w2;
-      this->barycentric(p, t.a, t.b, t.c, w0, w1, w2);
+    if (w0 >= 0.f && w1 >= 0.f && w2 >= 0.f) return tri;
 
-      if (w0 >= 0 && w1 >= 0 && w2 >= 0) return tri;
+    // walk to neighbor across the negative weight
+    if (w0 < 0.f)
+      tri = this->neighbor_triangle(tri, 1);
+    else if (w1 < 0.f)
+      tri = this->neighbor_triangle(tri, 2);
+    else
+      tri = this->neighbor_triangle(tri, 0);
 
-      // walk to neighbor across the negative weight
-      if (w0 < 0.f)
-        tri = this->neighbor_triangle(tri, 1);
-      else if (w1 < 0.f)
-        tri = this->neighbor_triangle(tri, 2);
-      else
-        tri = this->neighbor_triangle(tri, 0);
-
-      if (tri < 0) return -1;
-    }
-
-#pragma GCC diagnostic pop
+    if (tri < 0) return -1;
   }
 
   return -1;
@@ -406,10 +407,17 @@ const std::vector<TerrainTriMesh::Triangle> &TerrainTriMesh::get_triangles()
 std::vector<float> TerrainTriMesh::get_vertex_areas(bool normalized) const
 {
   std::vector<float> areas(this->points.size(), 0.0f);
+  if (this->triangles.empty() || this->points.empty()) return areas;
 
   glm::vec3 ref(1.f);
 
-  if (normalized) ref = this->get_reference_lengths();
+  if (normalized)
+  {
+    ref = this->get_reference_lengths();
+    ref.x = std::max(ref.x, 1e-12f);
+    ref.y = std::max(ref.y, 1e-12f);
+    ref.z = std::max(ref.z, 1e-12f);
+  }
 
   for (const auto &tri : this->triangles)
   {
@@ -623,7 +631,12 @@ float TerrainTriMesh::interpolate_z_nearest_approx(const glm::vec2 &p,
 
 int TerrainTriMesh::neighbor_triangle(int tri_index, int edge_index) const
 {
-  int opp = this->halfedges[3 * tri_index + edge_index];
+  if (tri_index < 0 || edge_index < 0 || edge_index > 2) return -1;
+
+  size_t idx = static_cast<size_t>(3 * tri_index + edge_index);
+  if (idx >= this->halfedges.size()) return -1;
+
+  int opp = static_cast<int>(this->halfedges[idx]);
   return (opp < 0) ? -1 : (opp / 3);
 }
 
@@ -672,6 +685,7 @@ void TerrainTriMesh::relax_xy(float lambda, int iterations, bool preserve_chull)
   {
     std::vector<glm::vec3> new_points = this->points;
 
+#pragma omp parallel for schedule(static)
     for (size_t i = 0; i < this->points.size(); ++i)
     {
       const auto &nbrs = this->neighbors.adjacency[i];
@@ -715,6 +729,7 @@ void TerrainTriMesh::relax_xyz(float lambda,
   {
     std::vector<glm::vec3> buffer(this->points.size());
 
+#pragma omp parallel for schedule(static)
     for (size_t i = 0; i < this->points.size(); ++i)
     {
       const auto &nbrs = this->neighbors.adjacency[i];
@@ -795,6 +810,7 @@ void TerrainTriMesh::slope_limiter(const std::vector<float> &max_slope,
   {
     std::vector<glm::vec3> buffer(this->points.size());
 
+#pragma omp parallel for schedule(static)
     for (size_t i = 0; i < this->points.size(); ++i)
     {
       const auto      &nbrs = this->neighbors.adjacency[i];
@@ -944,6 +960,12 @@ glm::vec2 TerrainTriMesh::to_xy(const glm::vec3 &p) const
 
 void TerrainTriMesh::triangulate_delaunay()
 {
+  this->triangles.clear();
+  this->halfedges.clear();
+  this->convex_hull.clear();
+
+  if (this->points.size() < 3) return;
+
   // generate Delaunay triangulation
   std::vector<float> xy;
   xy.reserve(2 * this->points.size());
@@ -960,10 +982,7 @@ void TerrainTriMesh::triangulate_delaunay()
   {
     const std::vector<size_t> &tri = d.triangles;
 
-    this->triangles.clear();
     this->triangles.reserve(tri.size() / 3);
-
-    this->halfedges.clear();
     this->halfedges.reserve(tri.size());
 
     for (std::size_t k = 0; k < tri.size(); k += 3)
@@ -976,17 +995,19 @@ void TerrainTriMesh::triangulate_delaunay()
     }
   }
 
-  // chull
+  // convex hull
+  if (!d.triangles.empty() && !d.hull_next.empty())
   {
-    this->convex_hull.clear();
     size_t start = d.hull_start;
     size_t i = start;
+    size_t count = 0;
 
     do
     {
       this->convex_hull.push_back(i);
       i = d.hull_next[i];
-    } while (i != start);
+      count++;
+    } while (i != start && count <= this->points.size());
   }
 }
 
@@ -1004,21 +1025,21 @@ std::vector<float> cubic_pulse(const TerrainTriMesh &mesh)
 
   float lx = bbox.max.x - bbox.min.x;
   float ly = bbox.max.y - bbox.min.y;
-  float rc = std::min(lx, ly);
+  float rc = std::max(std::min(lx, ly), 1e-12f);
 
-  std::vector<float> values;
-  values.reserve(mesh.size());
+  const auto        &pts = mesh.get_points();
+  std::vector<float> values(pts.size(), 0.f);
 
-  for (auto &p : mesh.get_points())
+#pragma omp parallel for schedule(static)
+  for (size_t i = 0; i < pts.size(); ++i)
   {
-    float r = std::hypot(p.x - xc, p.y - yc) / rc;
+    const auto &p = pts[i];
+    float       r = std::hypot(p.x - xc, p.y - yc) / rc;
 
     if (r < 1.f)
-      r = 1.f - r * r * (3.f - 2.f * r);
+      values[i] = 1.f - r * r * (3.f - 2.f * r);
     else
-      r = 0.f;
-
-    values.push_back(r);
+      values[i] = 0.f;
   }
 
   return values;
