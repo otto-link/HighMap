@@ -443,4 +443,19 @@ void rescale(Array &array, float scaling, float vref)
   }
 }
 
+void normalize_and_clip(Array &array, float multiplier, float std)
+{
+  if (!validate_non_empty(array)) return;
+
+  const float mean = array.mean();
+
+  float sigma = std;
+  if (sigma <= 0.f) sigma = array.std();
+
+  const float denom = std::max(multiplier * sigma, 1e-12f);
+
+  for (float &v : array.vector)
+    v = std::clamp((v - mean) / denom, -1.f, 1.f);
+}
+
 } // namespace hmap

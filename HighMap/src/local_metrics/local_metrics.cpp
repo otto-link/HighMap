@@ -210,4 +210,17 @@ Array rugosity(const Array &z, int ir, bool convex)
   return z_skw;
 }
 
+Array topographic_residual(const Array &z, int ir, bool normalize_output)
+{
+  if (!validate_non_empty(z)) return Array();
+
+  Array b = z;
+  smooth_cpulse(b, std::max(1, ir));
+
+  Array residual = z - b;
+  if (normalize_output) normalize_and_clip(residual);
+
+  return residual;
+}
+
 } // namespace hmap

@@ -283,6 +283,24 @@ Array topographic_wetness_index(const Array &z,
                                 float        min_slope = 1e-4f);
 
 /**
+ * @brief Computes the topographic residual (relief) relative to a smoothed
+ * surface.
+ *
+ * Subtracts a smoothed version of the elevation (using smooth_cpulse with
+ * radius ir) from the input array. Optionally normalizes and clips the output
+ * to [-1, 1].
+ *
+ * @param  z                Input elevation array.
+ * @param  ir               Radius for smoothing filter.
+ * @param  normalize_output If true, normalizes and clips the residual to [-1,
+ *                          1].
+ * @return                  Array containing the topographic residual.
+ */
+Array topographic_residual(const Array &z,
+                           int          ir,
+                           bool         normalize_output = false);
+
+/**
  * @brief Measures the valley width by calculating the distance from each point
  * in a concave region to the frontier of that region.
  *

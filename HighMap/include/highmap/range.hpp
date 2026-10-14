@@ -459,4 +459,19 @@ void remap(Array &array, float vmin = 0, float vmax = 1);
  */
 void rescale(Array &array, float scaling, float vref = 0.f);
 
+/**
+ * @brief Normalize an array around its mean and clip values to [-1, 1].
+ *
+ * Centers the array by subtracting its mean, scales by (multiplier * std), and
+ * clamps the result to [-1, 1].
+ *
+ * @param array      Input array to be normalized and clipped.
+ * @param multiplier Standard deviation multiplier (default is 2.5f).
+ * @param std        Standard deviation to use. If <= 0.f (default -1.f), the
+ *                   standard deviation is computed from the array.
+ */
+void normalize_and_clip(Array &array,
+                        float  multiplier = 2.5f,
+                        float  std = -1.f);
+
 } // namespace hmap
