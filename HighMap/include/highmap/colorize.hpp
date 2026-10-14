@@ -80,6 +80,32 @@ struct ColorAdjust
   bool  agx_tonemap = false;
 };
 
+struct TerrainTextureParams
+{
+  glm::vec3 grass         = {0.38f, 0.44f, 0.29f};
+  glm::vec3 dry           = {0.60f, 0.58f, 0.42f};
+  glm::vec3 soil          = {0.64f, 0.55f, 0.43f};
+  glm::vec3 sediment      = {0.80f, 0.76f, 0.68f};
+  glm::vec3 rock          = {0.53f, 0.50f, 0.46f};
+  glm::vec3 ridge         = {0.71f, 0.70f, 0.68f};
+  glm::vec3 snow          = {0.94f, 0.95f, 0.97f};
+  float     rock_slope    = 3.f;
+  float     rock_edge     = 0.15f;
+  float     strata        = 0.35f;
+  float     streaks       = 0.8f;
+  float     streak_length = 0.06f;
+  float     flow          = 0.8f;
+  float     flow_width    = 0.5f;
+  float     deposition    = 0.5f;
+  float     snow_line     = 0.85f;
+  float     snow_amount   = 0.f;
+  uint32_t  seed          = 0;
+  float     noise_scale   = 1.f;
+  float     color_noise   = 1.f;
+  float     detail        = 1.f;
+  float     cavity        = 0.6f;
+};
+
 /**
  * @brief Adjust color by shading parameter t clamped to [0, 1].
  *
@@ -474,6 +500,23 @@ Texture mix_normal_map(const Texture          &nmap_base,
                        const Texture          &nmap_detail,
                        float                   detail_scaling,
                        NormalMapBlendingMethod blending_method);
+
+/**
+ * @brief Generate a procedural terrain texture from elevation and surface analysis.
+ *
+ * Combines slopes, ridges, flow accumulation, deposition, and noise octaves into
+ * an RGBA color Texture.
+ *
+ * @param z            Elevation input array.
+ * @param p_deposition Optional deposition array (may be nullptr).
+ * @param params       Terrain texturing parameters.
+ * @param bbox         Bounding box for coherent noise coordinates.
+ * @return             4-channel RGBA Texture.
+ */
+Texture terrain_texture(const Array                &z,
+                        const Array                *p_deposition,
+                        const TerrainTextureParams &params,
+                        const glm::vec4            &bbox = glm::vec4(0.f, 0.f, 1.f, 1.f));
 
 } // namespace hmap
 
