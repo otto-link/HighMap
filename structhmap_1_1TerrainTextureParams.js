@@ -21,5 +21,6 @@ var structhmap_1_1TerrainTextureParams =
     [ "noise_scale", "structhmap_1_1TerrainTextureParams.html#aa990ff5af742f963e6b9703fe662ccd1", null ],
     [ "color_noise", "structhmap_1_1TerrainTextureParams.html#a1d76653911df13820b77e662d82f2a7b", null ],
     [ "detail", "structhmap_1_1TerrainTextureParams.html#a830428db3c65bba3528a07098e033f50", null ],
-    [ "cavity", "structhmap_1_1TerrainTextureParams.html#ae5df313448151b2bc37c1d9d691ac9da", null ]
+    [ "cavity", "structhmap_1_1TerrainTextureParams.html#ae5df313448151b2bc37c1d9d691ac9da", null ],
+    [ "region_radius", "structhmap_1_1TerrainTextureParams.html#ae249261e8013482abb94502037cb3b31", null ]
 ];

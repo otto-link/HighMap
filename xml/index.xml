@@ -1359,6 +1359,7 @@
     <member refid="structhmap_1_1TerrainTextureParams_1a1d76653911df13820b77e662d82f2a7b" kind="variable"><name>color_noise</name></member>
     <member refid="structhmap_1_1TerrainTextureParams_1a830428db3c65bba3528a07098e033f50" kind="variable"><name>detail</name></member>
     <member refid="structhmap_1_1TerrainTextureParams_1ae5df313448151b2bc37c1d9d691ac9da" kind="variable"><name>cavity</name></member>
+    <member refid="structhmap_1_1TerrainTextureParams_1ae249261e8013482abb94502037cb3b31" kind="variable"><name>region_radius</name></member>
   </compound>
   <compound refid="classhmap_1_1TerrainTriMesh" kind="class"><name>hmap::TerrainTriMesh</name>
     <member refid="classhmap_1_1TerrainTriMesh_1a33170aa04ff9981ce09442b0bc050df8" kind="variable"><name>points</name></member>
@@ -2048,7 +2049,7 @@
     <member refid="namespacehmap_1aba3c0883b647456926804368b2a0728e" kind="function"><name>mix</name></member>
     <member refid="namespacehmap_1a31a770d3f3a00d8cf4dd8478b5a50a17" kind="function"><name>mix</name></member>
     <member refid="namespacehmap_1a5421f279cef2873c17b26c610a7fd87a" kind="function"><name>mix_normal_map</name></member>
-    <member refid="namespacehmap_1a6475a01d96663ca5304516512e362909" kind="function"><name>terrain_texture</name></member>
+    <member refid="namespacehmap_1ae04b3bcf72c7925f3d56c5dae29ec9bf" kind="function"><name>terrain_texture</name></member>
     <member refid="namespacehmap_1a2f2ca726f4e41128135e6c77120c66d8" kind="function"><name>get_colormap_data</name></member>
     <member refid="namespacehmap_1aa1f2e119a09d246fe0cf27e859ddb2e6" kind="function"><name>level_set_curvature</name></member>
     <member refid="namespacehmap_1a4e2b7df70a18f94ad7f4d7cd934ec767" kind="function"><name>curvature_quadric</name></member>
@@ -5038,6 +5039,7 @@
     <member refid="test__texture_8cpp_1aeb82a4f8fba7e0397af21d7883eec5bc" kind="function"><name>TEST</name></member>
     <member refid="test__texture_8cpp_1ace0164d5571b05ec652985e6833139e5" kind="function"><name>TEST</name></member>
     <member refid="test__texture_8cpp_1a2751e2922f0f2b3b3c4597b02047209e" kind="function"><name>TEST</name></member>
+    <member refid="test__texture_8cpp_1a517b53b7b512cc38d80d019d409d9312" kind="function"><name>TEST</name></member>
     <member refid="test__texture_8cpp_1a13d31192b2f2ad7bcbf6609fa1f9c898" kind="function"><name>TEST</name></member>
     <member refid="test__texture_8cpp_1a5d64660ed7dcca6f7846c42a97593004" kind="function"><name>TEST</name></member>
   </compound>

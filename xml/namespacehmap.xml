@@ -7876,7 +7876,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/colorize/color_adjust.cpp" line="31" column="11" bodyfile="HighMap/src/colorize/color_adjust.cpp" bodystart="31" bodyend="38" declfile="HighMap/include/highmap/colorize.hpp" declline="118" declcolumn="11"/>
+        <location file="HighMap/src/colorize/color_adjust.cpp" line="31" column="11" bodyfile="HighMap/src/colorize/color_adjust.cpp" bodystart="31" bodyend="38" declfile="HighMap/include/highmap/colorize.hpp" declline="119" declcolumn="11"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a76b37b88acf83d6a5b21f1be1b50697e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -7957,7 +7957,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/colorize/colorize.cpp" line="34" column="6" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="34" bodyend="58" declfile="HighMap/include/highmap/colorize.hpp" declline="145" declcolumn="6"/>
+        <location file="HighMap/src/colorize/colorize.cpp" line="34" column="6" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="34" bodyend="58" declfile="HighMap/include/highmap/colorize.hpp" declline="146" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1aefc8cbe645337bb5b663436c0324f9e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -8051,7 +8051,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/colorize/colorize.cpp" line="60" column="6" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="60" bodyend="113" declfile="HighMap/include/highmap/colorize.hpp" declline="169" declcolumn="6"/>
+        <location file="HighMap/src/colorize/colorize.cpp" line="60" column="6" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="60" bodyend="113" declfile="HighMap/include/highmap/colorize.hpp" declline="170" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a7634a1bb2505ae11370c431b0b1fd9ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -8156,7 +8156,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/colorize/color_adjust.cpp" line="40" column="6" bodyfile="HighMap/src/colorize/color_adjust.cpp" bodystart="40" bodyend="134" declfile="HighMap/include/highmap/colorize.hpp" declline="195" declcolumn="6"/>
+        <location file="HighMap/src/colorize/color_adjust.cpp" line="40" column="6" bodyfile="HighMap/src/colorize/color_adjust.cpp" bodystart="40" bodyend="134" declfile="HighMap/include/highmap/colorize.hpp" declline="196" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a45e198f16e345fef1b2aeebc2fe7c429" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -8264,7 +8264,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/colorize/color_match_mask.cpp" line="12" column="7" bodyfile="HighMap/src/colorize/color_match_mask.cpp" bodystart="12" bodyend="38" declfile="HighMap/include/highmap/colorize.hpp" declline="221" declcolumn="7"/>
+        <location file="HighMap/src/colorize/color_match_mask.cpp" line="12" column="7" bodyfile="HighMap/src/colorize/color_match_mask.cpp" bodystart="12" bodyend="38" declfile="HighMap/include/highmap/colorize.hpp" declline="222" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a829cc9b8788f9387bcfd7be724b86f14" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Texture" kindref="compound">Texture</ref></type>
@@ -8370,7 +8370,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/colorize/colorize.cpp" line="115" column="9" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="115" bodyend="175" declfile="HighMap/include/highmap/colorize.hpp" declline="243" declcolumn="9"/>
+        <location file="HighMap/src/colorize/colorize.cpp" line="115" column="9" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="115" bodyend="175" declfile="HighMap/include/highmap/colorize.hpp" declline="244" declcolumn="9"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ab80bd03a4b6659ec5f69873e0964edcf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Texture" kindref="compound">Texture</ref></type>
@@ -8527,7 +8527,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/colorize/colorize.cpp" line="177" column="9" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="177" bodyend="248" declfile="HighMap/include/highmap/colorize.hpp" declline="269" declcolumn="9"/>
+        <location file="HighMap/src/colorize/colorize.cpp" line="177" column="9" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="177" bodyend="248" declfile="HighMap/include/highmap/colorize.hpp" declline="270" declcolumn="9"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a0681ba921814f774569408374886c66c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Texture" kindref="compound">Texture</ref></type>
@@ -8714,7 +8714,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/colorize/colorize.cpp" line="250" column="9" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="250" bodyend="410" declfile="HighMap/include/highmap/colorize.hpp" declline="313" declcolumn="9"/>
+        <location file="HighMap/src/colorize/colorize.cpp" line="250" column="9" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="250" bodyend="410" declfile="HighMap/include/highmap/colorize.hpp" declline="314" declcolumn="9"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1aaea87a967078703a07be55bcc8a0e506" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Texture" kindref="compound">Texture</ref></type>
@@ -8746,7 +8746,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/colorize/colorize.cpp" line="412" column="9" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="412" bodyend="418" declfile="HighMap/include/highmap/colorize.hpp" declline="335" declcolumn="9"/>
+        <location file="HighMap/src/colorize/colorize.cpp" line="412" column="9" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="412" bodyend="418" declfile="HighMap/include/highmap/colorize.hpp" declline="336" declcolumn="9"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1aec795a9ab2b98eb95af8e13688175fce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Texture" kindref="compound">Texture</ref></type>
@@ -8778,7 +8778,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/colorize/colorize.cpp" line="420" column="9" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="420" bodyend="455" declfile="HighMap/include/highmap/colorize.hpp" declline="346" declcolumn="9"/>
+        <location file="HighMap/src/colorize/colorize.cpp" line="420" column="9" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="420" bodyend="455" declfile="HighMap/include/highmap/colorize.hpp" declline="347" declcolumn="9"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1add71495a25c10df4ab696a6662e741ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Texture" kindref="compound">Texture</ref></type>
@@ -8847,7 +8847,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/colorize/colorize.cpp" line="457" column="9" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="457" bodyend="502" declfile="HighMap/include/highmap/colorize.hpp" declline="387" declcolumn="9"/>
+        <location file="HighMap/src/colorize/colorize.cpp" line="457" column="9" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="457" bodyend="502" declfile="HighMap/include/highmap/colorize.hpp" declline="388" declcolumn="9"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a5fb3aceed8d4fd9bb613218bd224159b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Texture" kindref="compound">Texture</ref></type>
@@ -8905,7 +8905,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/colorize/colorize.cpp" line="504" column="9" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="504" bodyend="549" declfile="HighMap/include/highmap/colorize.hpp" declline="406" declcolumn="9"/>
+        <location file="HighMap/src/colorize/colorize.cpp" line="504" column="9" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="504" bodyend="549" declfile="HighMap/include/highmap/colorize.hpp" declline="407" declcolumn="9"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1af57ba0aebe498d0b79b91159d7e600b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -9048,7 +9048,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/colorize/colorize.cpp" line="551" column="7" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="551" bodyend="555" declfile="HighMap/include/highmap/colorize.hpp" declline="429" declcolumn="7"/>
+        <location file="HighMap/src/colorize/colorize.cpp" line="551" column="7" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="551" bodyend="555" declfile="HighMap/include/highmap/colorize.hpp" declline="430" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ad5894053c042e2076fbbc7003bf69451" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Texture" kindref="compound">Texture</ref></type>
@@ -9215,7 +9215,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/colorize/colorize.cpp" line="557" column="9" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="557" bodyend="619" declfile="HighMap/include/highmap/colorize.hpp" declline="451" declcolumn="9"/>
+        <location file="HighMap/src/colorize/colorize.cpp" line="557" column="9" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="557" bodyend="619" declfile="HighMap/include/highmap/colorize.hpp" declline="452" declcolumn="9"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1aba3c0883b647456926804368b2a0728e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Texture" kindref="compound">Texture</ref></type>
@@ -9297,7 +9297,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/colorize/colorize.cpp" line="621" column="9" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="621" bodyend="693" declfile="HighMap/include/highmap/colorize.hpp" declline="469" declcolumn="9"/>
+        <location file="HighMap/src/colorize/colorize.cpp" line="621" column="9" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="621" bodyend="693" declfile="HighMap/include/highmap/colorize.hpp" declline="470" declcolumn="9"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a31a770d3f3a00d8cf4dd8478b5a50a17" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Texture" kindref="compound">Texture</ref></type>
@@ -9341,7 +9341,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/colorize/colorize.cpp" line="695" column="9" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="695" bodyend="719" declfile="HighMap/include/highmap/colorize.hpp" declline="481" declcolumn="9"/>
+        <location file="HighMap/src/colorize/colorize.cpp" line="695" column="9" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="695" bodyend="719" declfile="HighMap/include/highmap/colorize.hpp" declline="482" declcolumn="9"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a5421f279cef2873c17b26c610a7fd87a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Texture" kindref="compound">Texture</ref></type>
@@ -9411,12 +9411,12 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/colorize/colorize.cpp" line="721" column="9" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="721" bodyend="812" declfile="HighMap/include/highmap/colorize.hpp" declline="499" declcolumn="9"/>
+        <location file="HighMap/src/colorize/colorize.cpp" line="721" column="9" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="721" bodyend="812" declfile="HighMap/include/highmap/colorize.hpp" declline="500" declcolumn="9"/>
       </memberdef>
-      <memberdef kind="function" id="namespacehmap_1a6475a01d96663ca5304516512e362909" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespacehmap_1ae04b3bcf72c7925f3d56c5dae29ec9bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Texture" kindref="compound">Texture</ref></type>
         <definition>Texture hmap::terrain_texture</definition>
-        <argsstring>(const Array &amp;z, const Array *p_deposition, const TerrainTextureParams &amp;params, const glm::vec4 &amp;bbox=glm::vec4(0.f, 0.f, 1.f, 1.f))</argsstring>
+        <argsstring>(const Array &amp;z, const Array *p_deposition, const TerrainTextureParams &amp;params, const glm::vec4 &amp;bbox=glm::vec4(0.f, 0.f, 1.f, 1.f), float zmin=0.f, float zmax=-1.f)</argsstring>
         <name>terrain_texture</name>
         <qualifiedname>hmap::terrain_texture</qualifiedname>
         <param>
@@ -9435,6 +9435,16 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
           <type>const glm::vec4 &amp;</type>
           <declname>bbox</declname>
           <defval>glm::vec4(0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>)</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>zmin</declname>
+          <defval>0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>zmax</declname>
+          <defval>-1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
         </param>
         <briefdescription>
 <para>Generate a procedural terrain texture from elevation and surface analysis. </para>
@@ -9473,6 +9483,22 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
 <para>Bounding box for coherent noise coordinates. </para>
 </parameterdescription>
 </parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>zmin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Minimum elevation to consider (computed from z if zmin &gt; zmax). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>zmax</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Maximum elevation to consider (computed from z if zmin &gt; zmax). </para>
+</parameterdescription>
+</parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>4-channel RGBA <ref refid="classhmap_1_1Texture" kindref="compound">Texture</ref>. </para>
 </simplesect>
@@ -9480,7 +9506,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/colorize/terrain_texture.cpp" line="23" column="9" bodyfile="HighMap/src/colorize/terrain_texture.cpp" bodystart="23" bodyend="291" declfile="HighMap/include/highmap/colorize.hpp" declline="516" declcolumn="9"/>
+        <location file="HighMap/src/colorize/terrain_texture.cpp" line="25" column="9" bodyfile="HighMap/src/colorize/terrain_texture.cpp" bodystart="25" bodyend="299" declfile="HighMap/include/highmap/colorize.hpp" declline="519" declcolumn="9"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a2f2ca726f4e41128135e6c77120c66d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; glm::vec3 &gt;</type>

@@ -1,5 +1,7 @@
 var NAVTREEINDEX31 =
 {
+"test__gpu__cpu_8cpp.html#afcc19e2cd5708d3686cc1643568c4bd0":[4,0,2,0,35,0],
+"test__gradient_8cpp.html":[4,0,2,0,36],
 "test__gradient_8cpp.html#a15394ac9c4dd69eda29482464f8d131f":[4,0,2,0,36,5],
 "test__gradient_8cpp.html#a181143c157346a644cacce4bbabc5a8b":[4,0,2,0,36,3],
 "test__gradient_8cpp.html#a20ea8c3252331571d45ccda6f3308653":[4,0,2,0,36,9],
@@ -247,7 +249,5 @@ var NAVTREEINDEX31 =
 "test__point_8cpp.html#aac87d74f53731d0c42f7d1d7a5d405a1":[4,0,2,0,59,5],
 "test__point_8cpp.html#abfd452f0dd09fdb2efc3174a39786c6a":[4,0,2,0,59,0],
 "test__point_8cpp.html#ac3e45516111c90d86efc4404e2e734c0":[4,0,2,0,59,3],
-"test__point_8cpp.html#ac980eb6d17f102f0b48152aae05d338a":[4,0,2,0,59,13],
-"test__point_8cpp.html#acaeb4a193fb5fd13b2344c898fdaae21":[4,0,2,0,59,10],
-"test__point_8cpp.html#ad48204c6c7e5ca2e33c5c982b971b22d":[4,0,2,0,59,6]
+"test__point_8cpp.html#ac980eb6d17f102f0b48152aae05d338a":[4,0,2,0,59,13]
 };
