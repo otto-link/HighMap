@@ -72,7 +72,8 @@ TEST(DistanceShaper, SkewControl)
                                  DistanceMode::PYRAMID,
                                  DistanceMethod::RT);
 
-  // In the +x direction (dip slope), slope is gentler and reaches higher at the same distance
+  // In the +x direction (dip slope), slope is gentler and reaches higher at the
+  // same distance
   float val_pos_x = skewed(95, 64);
 
   // In the -x direction (scarp face), slope drops much faster

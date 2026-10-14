@@ -66,7 +66,8 @@ void compute_directional_parameters(int                 directions,
   std::mt19937                          rng(seed);
   std::uniform_real_distribution<float> dist_jitter(-0.5f, 0.5f);
 
-  float dir_step = 2.f * static_cast<float>(M_PI) / static_cast<float>(directions);
+  float dir_step = 2.f * static_cast<float>(M_PI) /
+                   static_cast<float>(directions);
 
   for (int k = 0; k < directions; ++k)
   {
@@ -319,9 +320,10 @@ Array distance_shaper(const Array   &array,
                                    slopes);
 
     float z_max = work.max();
-    float max_dist = 1.41421356f * static_cast<float>(std::max(array.shape.x, array.shape.y));
+    float max_dist = 1.41421356f *
+                     static_cast<float>(std::max(array.shape.x, array.shape.y));
 
-    #pragma omp parallel for collapse(2)
+#pragma omp parallel for collapse(2)
     for (int j = 0; j < array.shape.y; ++j)
     {
       for (int i = 0; i < array.shape.x; ++i)
