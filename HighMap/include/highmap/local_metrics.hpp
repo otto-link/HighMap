@@ -588,6 +588,11 @@ Array ruggedness(const Array &array, int ir);
 /*! @brief See hmap::rugosity */
 Array rugosity(const Array &z, int ir, bool convex = true);
 
+/*! @brief See hmap::topographic_residual */
+Array topographic_residual(const Array &z,
+                           int          ir,
+                           bool         normalize_output = false);
+
 /*! @brief See hmap::valley_width */
 Array valley_width(const Array &z, int ir = 0, bool ridge_select = false);
 

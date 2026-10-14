@@ -28,6 +28,15 @@ inline float helper_hash_01(uint32_t x)
   return float(helper_hash_u32(x)) * (1.0f / float(0xffffffffu));
 }
 
+glm::vec3 shade_color(const glm::vec3 &color, float t)
+{
+  t = std::clamp(t, 0.f, 1.f);
+  const float     luma = glm::dot(color, glm::vec3(0.299f, 0.587f, 0.114f));
+  const glm::vec3 grey(luma);
+  const glm::vec3 lit = color * (1.f + 0.4f * t);
+  return glm::mix(grey * (1.f + 0.4f * t), lit, 1.f - 0.3f * t);
+}
+
 void color_adjust(Array      &r,
                   Array      &g,
                   Array      &b,
@@ -98,6 +107,10 @@ void color_adjust(Array      &r,
       // temperature
       c.r *= 1.0f + param.temperature;
       c.b *= 1.0f - param.temperature;
+
+      // shade
+      if (param.shade != 0.0f)
+        c = shade_color(c, param.shade);
 
       // gamma
       c = glm::pow(c, glm::vec3(inv_gamma));

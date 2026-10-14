@@ -450,7 +450,7 @@ void normalize_and_clip(Array &array, float multiplier, float std)
   const float mean = array.mean();
 
   float sigma = std;
-  if (sigma <= 0.f) sigma = array.std();
+  if (sigma <= 0.f) sigma = std::sqrt(array.std());
 
   const float denom = std::max(multiplier * sigma, 1e-12f);
 

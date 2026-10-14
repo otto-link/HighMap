@@ -74,10 +74,22 @@ struct ColorAdjust
   float temperature = 0.0f;
   float gamma = 1.f;
   float dither_amp = 0.f;
+  float shade = 0.0f;
   bool  filmic_tonemap = false;
   bool  aces_tonemap = false;
   bool  agx_tonemap = false;
 };
+
+/**
+ * @brief Adjust color by shading parameter t clamped to [0, 1].
+ *
+ * Darker and richer for t approaching 0, lighter and duller for t approaching 1.
+ *
+ * @param color Input RGB color.
+ * @param t     Shading parameter (clamped to [0, 1]).
+ * @return      Adjusted RGB color.
+ */
+glm::vec3 shade_color(const glm::vec3 &color, float t);
 
 /**
  * @enum Cmap

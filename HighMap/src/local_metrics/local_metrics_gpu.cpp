@@ -16,6 +16,7 @@
 #include "highmap/internal/validation.hpp"
 #include "highmap/local_metrics.hpp"
 #include "highmap/math/array.hpp"
+#include "highmap/range.hpp"
 
 namespace hmap::gpu
 {
@@ -487,6 +488,19 @@ Array topographic_position_index(const Array &array, int ir)
   run.read_imagef("out");
 
   return out;
+}
+
+Array topographic_residual(const Array &z, int ir, bool normalize_output)
+{
+  if (!validate_non_empty(z)) return Array();
+
+  Array b = z;
+  gpu::smooth_cpulse(b, std::max(1, ir));
+
+  Array residual = z - b;
+  if (normalize_output) normalize_and_clip(residual);
+
+  return residual;
 }
 
 } // namespace hmap::gpu
