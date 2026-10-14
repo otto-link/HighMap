@@ -77,23 +77,18 @@ Texture terrain_texture(const Array                &z,
   Array moisture = flow;
   smooth_cpulse(moisture, ir_crest);
 
-  // deposits relative to the thick ones (among the cells that have any), so a
-  // few strong spots do not wash out the rest and sparse maps stay sparse
-  std::vector<float> deposit(n, 0.f);
+  // normalize deposition into [0, 1] relative to the 90th percentile
+  // of non-zero cells; this prevents extreme outlier deposits from
+  // dominating the scale while preserving sparsity where no sediment
+  // accumulated
+  Array deposit(shape, 0.f);
   if (p_deposition && p_deposition->shape == shape)
   {
-    std::vector<float> positive;
-    for (float v : p_deposition->vector)
-      if (v > 0.f) positive.push_back(v);
-
-    if (!positive.empty())
-    {
-      auto it = positive.begin() + (size_t)(0.9 * (positive.size() - 1));
-      std::nth_element(positive.begin(), it, positive.end());
-      const float ref = std::max(*it, 1e-6f);
-      for (int k = 0; k < n; ++k)
-        deposit[k] = std::clamp(p_deposition->vector[k] / ref, 0.f, 1.f);
-    }
+    // reference scale: 90th percentile among active deposits
+    // (ignoring zero cells)
+    const float ref = p_deposition->range_percentile(0.f, 0.9f, 1024, true).y;
+    deposit = *p_deposition / std::max(ref, 1e-6f);
+    clamp(deposit, 0.f, 1.f);
   }
 
   // --- Noise
@@ -138,7 +133,7 @@ Texture terrain_texture(const Array                &z,
   }
 
   const float streak_px = p.streak_length * nx;
-  const int   streak_steps = std::clamp(int(streak_px), 0, 64);
+  const int   streak_steps = std::clamp(int(streak_px), 0, nx);
   const float streak_step = streak_steps ? streak_px / streak_steps : 0.f;
   const int   rill_steps = std::clamp(nx / 96, 3, 24);
 
@@ -240,7 +235,7 @@ Texture terrain_texture(const Array                &z,
                 smoothstep3(flow.vector[k] + 0.05f * nf, t0, t0 + 0.08f);
     sed = std::max(sed,
                    p.deposition *
-                       smoothstep3(deposit[k] + 0.15f * nf, 0.4f, 0.8f));
+                       smoothstep3(deposit.vector[k] + 0.15f * nf, 0.4f, 0.8f));
     sed *= 1.f - smoothstep3(s, 0.6f, 1.f);
     col = glm::mix(
         col,

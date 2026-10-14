@@ -323,7 +323,10 @@ glm::vec2 Array::range() const
   return glm::vec2(*min_it, *max_it);
 }
 
-glm::vec2 Array::range_percentile(float p_low, float p_high, size_t bins) const
+glm::vec2 Array::range_percentile(float  p_low,
+                                  float  p_high,
+                                  size_t bins,
+                                  bool   ignore_zeros) const
 {
   if (!validate_non_empty(*this) ||
       !validate_parameter_range(glm::vec2(p_low, p_high),
@@ -334,23 +337,59 @@ glm::vec2 Array::range_percentile(float p_low, float p_high, size_t bins) const
 
   const std::vector<float> &data = this->vector;
 
-  const glm::vec2 range = this->range();
-  float           min_val = range.x;
-  float           max_val = range.y;
+  float min_val = 0.f;
+  float max_val = 0.f;
+
+  if (ignore_zeros)
+  {
+    bool found = false;
+    for (float v : data)
+    {
+      if (v != 0.f)
+      {
+        if (!found)
+        {
+          min_val = v;
+          max_val = v;
+          found = true;
+        }
+        else
+        {
+          min_val = std::min(min_val, v);
+          max_val = std::max(max_val, v);
+        }
+      }
+    }
+
+    if (!found) return glm::vec2(0.f, 0.f);
+  }
+  else
+  {
+    const glm::vec2 range = this->range();
+    min_val = range.x;
+    max_val = range.y;
+  }
+
+  if (min_val == max_val) return glm::vec2(min_val, max_val);
 
   std::vector<size_t> hist(bins, 0);
+  size_t              total = 0;
 
   // fill histogram
   for (float v : data)
   {
+    if (ignore_zeros && v == 0.f) continue;
+
     size_t idx = std::min<size_t>(
         bins - 1,
         size_t((v - min_val) / (max_val - min_val) * bins));
     hist[idx]++;
+    ++total;
   }
 
+  if (total == 0) return glm::vec2(0.f, 0.f);
+
   // accumulate
-  size_t total = data.size();
   size_t low_target = size_t(p_low * total);
   size_t high_target = size_t(p_high * total);
 
