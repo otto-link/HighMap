@@ -148,6 +148,9 @@ var NAVTREEINDEX10 =
 "distance__functions_8hpp.html#a670f50d6c08ecd639d42db9c75a5273aab5937b3ae1efaa098f517fe7c761b781":[4,0,1,0,0,8,5,0,1],
 "distance__functions_8hpp.html#a670f50d6c08ecd639d42db9c75a5273aad250b63dea876f47d2b0dab1edf01b63":[4,0,1,0,0,8,5,0,3],
 "distance__functions_8hpp_source.html":[4,0,1,0,0,8,5],
+"distance__shaper_8cpp.html":[4,0,1,1,15,5],
+"distance__shaper_8cpp.html#a151d125d340efa4797d3901bbcbebd5e":[4,0,1,1,15,5,0],
+"distance__shaper_8cpp.html#a205f7ed9941d43167bb87ed41999ca0a":[4,0,1,1,15,5,1],
 "distance__transform_8cpp.html":[4,0,1,1,26,0],
 "distance__transform_8cpp.html#a345246095a5b2601fa9cd2dacf851cbc":[4,0,1,1,26,0,1],
 "distance__transform_8cpp.html#a3bad25b24d9ae0e07e692c546bc3480d":[4,0,1,1,26,0,2],
@@ -214,8 +217,8 @@ var NAVTREEINDEX10 =
 "erosion__profile__function_8cpp.html#ad3535c9e25ba863fcfe5931ccc556ac8":[4,0,1,1,25,2,1],
 "ex_mixbox_8cpp-example.html":[5,0],
 "examples.html":[5],
-"expand__talus_8cpp.html":[4,0,1,1,15,5],
-"expand__talus_8cpp.html#a8c437f3963887949da7f4433cf26bf96":[4,0,1,1,15,5,0],
+"expand__talus_8cpp.html":[4,0,1,1,15,6],
+"expand__talus_8cpp.html#a8c437f3963887949da7f4433cf26bf96":[4,0,1,1,15,6,0],
 "export_8hpp.html":[4,0,1,0,0,26],
 "export_8hpp_source.html":[4,0,1,0,0,26],
 "export__as__ascii_8cpp.html":[4,0,1,1,13,1],
@@ -246,8 +249,5 @@ var NAVTREEINDEX10 =
 "export__normal__map_8cpp.html":[4,0,1,1,13,6],
 "export__normal__map_8cpp.html#a9648a23e61a84a702d89159d516dd4ec":[4,0,1,1,13,6,0],
 "export__points__to__ply_8cpp.html":[4,0,1,1,13,7],
-"export__points__to__ply_8cpp.html#ae01b5471d28a8f4a9104e2ffea4484a9":[4,0,1,1,13,7,0],
-"export__splatmap_8cpp.html":[4,0,1,1,13,8],
-"export__splatmap_8cpp.html#a32464922c39713910ebeab632e0e8fd1":[4,0,1,1,13,8,1],
-"export__splatmap_8cpp.html#a5635a383951e6438d8baa2cb1150f5e8":[4,0,1,1,13,8,0]
+"export__points__to__ply_8cpp.html#ae01b5471d28a8f4a9104e2ffea4484a9":[4,0,1,1,13,7,0]
 };

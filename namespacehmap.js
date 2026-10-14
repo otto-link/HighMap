@@ -229,6 +229,14 @@ var namespacehmap =
       [ "UINT16", "namespacehmap.html#a451ad02eb796f23b2f68e062e8de9875a48d8f1a723d44ff4a87db1bb6c551c62", null ],
       [ "UINT8", "namespacehmap.html#a451ad02eb796f23b2f68e062e8de9875aecfc091ed2a607335524c8389cfa41b5", null ]
     ] ],
+    [ "DistanceMode", "namespacehmap.html#a17cbec9c3162ef357a9418351d66fcfd", [
+      [ "ASTERISK", "namespacehmap.html#a17cbec9c3162ef357a9418351d66fcfda71ad0fa6a6a3e480ec3446bce7073e63", null ],
+      [ "PYRAMID", "namespacehmap.html#a17cbec9c3162ef357a9418351d66fcfdacd996d3184761601a0e44e587a012d4f", null ]
+    ] ],
+    [ "DistanceMethod", "namespacehmap.html#a63d764200510382a7732cfaa750df4a4", [
+      [ "RT", "namespacehmap.html#a63d764200510382a7732cfaa750df4a4a705610ed3e5ec724f5cb0d76a5fd3aa1", null ],
+      [ "CLASSIC", "namespacehmap.html#a63d764200510382a7732cfaa750df4a4a21994d6177b29e1128b2d7f0f8342057", null ]
+    ] ],
     [ "NoiseType", "namespacehmap.html#ab8197c4c7a85dacb616fee7a7d0df195", [
       [ "PARBERRY", "namespacehmap.html#ab8197c4c7a85dacb616fee7a7d0df195a2f37fabff52c2f1b6c2e7e6aad77adbd", null ],
       [ "PERLIN", "namespacehmap.html#ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581", null ],
@@ -559,6 +567,7 @@ var namespacehmap =
     [ "canyonize", "namespacehmap.html#a3db5616398edb199912cfc2972c2ec55", null ],
     [ "canyonize", "namespacehmap.html#aca3e5de61af1e6bac4786ec33d0c1398", null ],
     [ "dequantize", "namespacehmap.html#a703bb7c67cc8998560798c104a46ce4d", null ],
+    [ "distance_shaper", "namespacehmap.html#a205f7ed9941d43167bb87ed41999ca0a", null ],
     [ "equalize", "namespacehmap.html#a1b08d9a5d25e6bcd9d080accd077cc98", null ],
     [ "equalize", "namespacehmap.html#a1470c4d74892293e4974a319c6b17267", null ],
     [ "expand", "namespacehmap.html#ae00605c7af4addcb5092c90260e2d61b", null ],

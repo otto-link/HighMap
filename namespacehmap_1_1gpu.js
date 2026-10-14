@@ -97,6 +97,7 @@ var namespacehmap_1_1gpu =
     [ "bilateral_filter", "namespacehmap_1_1gpu.html#a0cd7116e5c346fe9534e25b53d5e054a", null ],
     [ "directional_blur", "namespacehmap_1_1gpu.html#a7236194a9133a228c9965f1c3e32d6a2", null ],
     [ "directional_blur", "namespacehmap_1_1gpu.html#abe223a120cbca1cedc1eb8b8392a93b8", null ],
+    [ "distance_shaper", "namespacehmap_1_1gpu.html#a151d125d340efa4797d3901bbcbebd5e", null ],
     [ "expand", "namespacehmap_1_1gpu.html#a3638798808a7e69482de679ffbe86c95", null ],
     [ "expand", "namespacehmap_1_1gpu.html#a4078e5f2ad3a01d6aa282011662a3b5d", null ],
     [ "expand", "namespacehmap_1_1gpu.html#a70fde21fb8301d39cc7a0ed919457917", null ],

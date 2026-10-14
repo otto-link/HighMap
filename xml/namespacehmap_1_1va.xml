@@ -218,7 +218,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/filters/filters_va.cpp" line="15" column="6" bodyfile="HighMap/src/filters/filters_va.cpp" bodystart="15" bodyend="33" declfile="HighMap/include/highmap/filters.hpp" declline="3009" declcolumn="6"/>
+        <location file="HighMap/src/filters/filters_va.cpp" line="15" column="6" bodyfile="HighMap/src/filters/filters_va.cpp" bodystart="15" bodyend="33" declfile="HighMap/include/highmap/filters.hpp" declline="3097" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1va_1a3df8c2c762d79f38e07069e47063fade" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structhmap_1_1VirtualArray" kindref="compound">VirtualArray</ref></type>
@@ -249,7 +249,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/filters/filters_va.cpp" line="35" column="14" bodyfile="HighMap/src/filters/filters_va.cpp" bodystart="35" bodyend="61" declfile="HighMap/include/highmap/filters.hpp" declline="3015" declcolumn="14"/>
+        <location file="HighMap/src/filters/filters_va.cpp" line="35" column="14" bodyfile="HighMap/src/filters/filters_va.cpp" bodystart="35" bodyend="61" declfile="HighMap/include/highmap/filters.hpp" declline="3103" declcolumn="14"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1va_1ac597da164f0981c1f45e81e2ac47c7e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Forest" kindref="compound">Forest</ref></type>

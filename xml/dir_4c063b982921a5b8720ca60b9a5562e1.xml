@@ -7,6 +7,7 @@
     <innerfile refid="canyonize_8cpp">canyonize.cpp</innerfile>
     <innerfile refid="dequantize_8cpp">dequantize.cpp</innerfile>
     <innerfile refid="directional__blur_8cpp">directional_blur.cpp</innerfile>
+    <innerfile refid="distance__shaper_8cpp">distance_shaper.cpp</innerfile>
     <innerfile refid="expand__talus_8cpp">expand_talus.cpp</innerfile>
     <innerfile refid="fill__talus_8cpp">fill_talus.cpp</innerfile>
     <innerfile refid="filters_8cpp">filters.cpp</innerfile>

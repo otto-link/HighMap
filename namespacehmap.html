@@ -558,6 +558,16 @@ Enumerations</h2></td></tr>
 , <a class="el" href="namespacehmap.html#a451ad02eb796f23b2f68e062e8de9875aecfc091ed2a607335524c8389cfa41b5">UINT8</a>
  }</td></tr>
 <tr class="separator:a451ad02eb796f23b2f68e062e8de9875"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17cbec9c3162ef357a9418351d66fcfd" id="r_a17cbec9c3162ef357a9418351d66fcfd"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#a17cbec9c3162ef357a9418351d66fcfd">DistanceMode</a> : int { <a class="el" href="namespacehmap.html#a17cbec9c3162ef357a9418351d66fcfda71ad0fa6a6a3e480ec3446bce7073e63">ASTERISK</a> = 0
+, <a class="el" href="namespacehmap.html#a17cbec9c3162ef357a9418351d66fcfdacd996d3184761601a0e44e587a012d4f">PYRAMID</a> = 1
+ }</td></tr>
+<tr class="memdesc:a17cbec9c3162ef357a9418351d66fcfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Directional pattern mode for distance shaper.  <a href="namespacehmap.html#a17cbec9c3162ef357a9418351d66fcfd">More...</a><br /></td></tr>
+<tr class="separator:a17cbec9c3162ef357a9418351d66fcfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63d764200510382a7732cfaa750df4a4" id="r_a63d764200510382a7732cfaa750df4a4"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#a63d764200510382a7732cfaa750df4a4">DistanceMethod</a> : int { <a class="el" href="namespacehmap.html#a63d764200510382a7732cfaa750df4a4a705610ed3e5ec724f5cb0d76a5fd3aa1">RT</a> = 0
+, <a class="el" href="namespacehmap.html#a63d764200510382a7732cfaa750df4a4a21994d6177b29e1128b2d7f0f8342057">CLASSIC</a> = 1
+ }</td></tr>
+<tr class="memdesc:a63d764200510382a7732cfaa750df4a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method used to calculate distance.  <a href="namespacehmap.html#a63d764200510382a7732cfaa750df4a4">More...</a><br /></td></tr>
+<tr class="separator:a63d764200510382a7732cfaa750df4a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8197c4c7a85dacb616fee7a7d0df195" id="r_ab8197c4c7a85dacb616fee7a7d0df195"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#ab8197c4c7a85dacb616fee7a7d0df195">NoiseType</a> : int { <br />
 &#160;&#160;<a class="el" href="namespacehmap.html#ab8197c4c7a85dacb616fee7a7d0df195a2f37fabff52c2f1b6c2e7e6aad77adbd">PARBERRY</a>
 , <a class="el" href="namespacehmap.html#ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581">PERLIN</a>
@@ -1210,6 +1220,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a703bb7c67cc8998560798c104a46ce4d" id="r_a703bb7c67cc8998560798c104a46ce4d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhmap_1_1Array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#a703bb7c67cc8998560798c104a46ce4d">dequantize</a> (const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;array, std::uint32_t seed, float dither_amplitude=0.01<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, int filtering_iterations=1)</td></tr>
 <tr class="memdesc:a703bb7c67cc8998560798c104a46ce4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reduce quantization artifacts using dithering and smoothing.  <br /></td></tr>
 <tr class="separator:a703bb7c67cc8998560798c104a46ce4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a205f7ed9941d43167bb87ed41999ca0a" id="r_a205f7ed9941d43167bb87ed41999ca0a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhmap_1_1Array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#a205f7ed9941d43167bb87ed41999ca0a">distance_shaper</a> (const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;array, float <a class="el" href="namespacehmap.html#a9dd09c08e06c1144910d3fa30250643c">falloff</a>=0.05<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, int directions=8, float skew=0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float <a class="el" href="namespacehmap.html#aac71bb6c14edc17967957f7918acdbdd">angle</a>=0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, <a class="el" href="namespacehmap.html#a17cbec9c3162ef357a9418351d66fcfd">DistanceMode</a> mode=<a class="el" href="namespacehmap.html#a17cbec9c3162ef357a9418351d66fcfdacd996d3184761601a0e44e587a012d4f">DistanceMode::PYRAMID</a>, <a class="el" href="namespacehmap.html#a63d764200510382a7732cfaa750df4a4">DistanceMethod</a> method=<a class="el" href="namespacehmap.html#a63d764200510382a7732cfaa750df4a4a705610ed3e5ec724f5cb0d76a5fd3aa1">DistanceMethod::RT</a>, float angular_jitter=0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float falloff_jitter=0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float <a class="el" href="namespacehmap.html#a30b11da38799224ac6d138dce87278b9">threshold</a>=0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, bool invert_input=false, bool invert_output=false, float mix_ratio=1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, std::uint32_t seed=0, const <a class="el" href="classhmap_1_1Array.html">Array</a> *p_mask=nullptr, const <a class="el" href="classhmap_1_1Array.html">Array</a> *p_dx=nullptr, const <a class="el" href="classhmap_1_1Array.html">Array</a> *p_dy=nullptr)</td></tr>
+<tr class="memdesc:a205f7ed9941d43167bb87ed41999ca0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates sloped, stratified terrain profiles from shapes and masks using directional distance fields.  <br /></td></tr>
+<tr class="separator:a205f7ed9941d43167bb87ed41999ca0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b08d9a5d25e6bcd9d080accd077cc98" id="r_a1b08d9a5d25e6bcd9d080accd077cc98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#a1b08d9a5d25e6bcd9d080accd077cc98">equalize</a> (<a class="el" href="classhmap_1_1Array.html">Array</a> &amp;array)</td></tr>
 <tr class="memdesc:a1b08d9a5d25e6bcd9d080accd077cc98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply histogram equalization to the array values.  <br /></td></tr>
 <tr class="separator:a1b08d9a5d25e6bcd9d080accd077cc98"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -3727,6 +3740,66 @@ requires requires(const T &amp;<a class="el" href="elevation__from__contours_8cp
 <tr><td class="fieldname"><a id="a451ad02eb796f23b2f68e062e8de9875ac49f280a5ad551ccc77be0b01a2f386a" name="a451ad02eb796f23b2f68e062e8de9875ac49f280a5ad551ccc77be0b01a2f386a"></a>FLOAT16&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a451ad02eb796f23b2f68e062e8de9875a48d8f1a723d44ff4a87db1bb6c551c62" name="a451ad02eb796f23b2f68e062e8de9875a48d8f1a723d44ff4a87db1bb6c551c62"></a>UINT16&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a451ad02eb796f23b2f68e062e8de9875aecfc091ed2a607335524c8389cfa41b5" name="a451ad02eb796f23b2f68e062e8de9875aecfc091ed2a607335524c8389cfa41b5"></a>UINT8&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a17cbec9c3162ef357a9418351d66fcfd" name="a17cbec9c3162ef357a9418351d66fcfd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17cbec9c3162ef357a9418351d66fcfd">&#9670;&#160;</a></span>DistanceMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="namespacehmap.html#a17cbec9c3162ef357a9418351d66fcfd">hmap::DistanceMode</a> : int</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Directional pattern mode for distance shaper. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a17cbec9c3162ef357a9418351d66fcfda71ad0fa6a6a3e480ec3446bce7073e63" name="a17cbec9c3162ef357a9418351d66fcfda71ad0fa6a6a3e480ec3446bce7073e63"></a>ASTERISK&#160;</td><td class="fielddoc"><p>Star-shaped pattern with cut-ins between directions. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a17cbec9c3162ef357a9418351d66fcfdacd996d3184761601a0e44e587a012d4f" name="a17cbec9c3162ef357a9418351d66fcfdacd996d3184761601a0e44e587a012d4f"></a>PYRAMID&#160;</td><td class="fielddoc"><p>Diamond/polyhedral pattern with flat planar facets. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a63d764200510382a7732cfaa750df4a4" name="a63d764200510382a7732cfaa750df4a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63d764200510382a7732cfaa750df4a4">&#9670;&#160;</a></span>DistanceMethod</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="namespacehmap.html#a63d764200510382a7732cfaa750df4a4">hmap::DistanceMethod</a> : int</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Method used to calculate distance. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a63d764200510382a7732cfaa750df4a4a705610ed3e5ec724f5cb0d76a5fd3aa1" name="a63d764200510382a7732cfaa750df4a4a705610ed3e5ec724f5cb0d76a5fd3aa1"></a>RT&#160;</td><td class="fielddoc"><p>Real-time directional slope projection. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a63d764200510382a7732cfaa750df4a4a21994d6177b29e1128b2d7f0f8342057" name="a63d764200510382a7732cfaa750df4a4a21994d6177b29e1128b2d7f0f8342057"></a>CLASSIC&#160;</td><td class="fielddoc"><p>Standard Euclidean distance transform. </p>
+</td></tr>
 </table>
 
 </div>
@@ -16464,6 +16537,241 @@ An <a class="el" href="classhmap_1_1Array.html" title="Array class, helper to ma
 <div class="ttc" id="anamespacehmap_html_a826ce248be96455e59c2caa582836eb2"><div class="ttname"><a href="namespacehmap.html#a826ce248be96455e59c2caa582836eb2">hmap::quantize</a></div><div class="ttdeci">Array quantize(const Array &amp;array, int nlevels, float vmin, float vmax)</div><div class="ttdoc">Quantize array values into discrete levels.</div><div class="ttdef"><b>Definition</b> dequantize.cpp:33</div></div>
 </div><!-- fragment --><p><b>Result</b> </p><div class="image">
 <img src="ex_dequantize.png" alt=""/>
+</div>
+ 
+</div>
+</div>
+<a id="a205f7ed9941d43167bb87ed41999ca0a" name="a205f7ed9941d43167bb87ed41999ca0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a205f7ed9941d43167bb87ed41999ca0a">&#9670;&#160;</a></span>distance_shaper()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classhmap_1_1Array.html">Array</a> hmap::distance_shaper </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>falloff</em> = <code>0.05<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>directions</em> = <code>8</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>skew</em> = <code>0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>angle</em> = <code>0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacehmap.html#a17cbec9c3162ef357a9418351d66fcfd">DistanceMode</a>&#160;</td>
+          <td class="paramname"><em>mode</em> = <code><a class="el" href="namespacehmap.html#a17cbec9c3162ef357a9418351d66fcfdacd996d3184761601a0e44e587a012d4f">DistanceMode::PYRAMID</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacehmap.html#a63d764200510382a7732cfaa750df4a4">DistanceMethod</a>&#160;</td>
+          <td class="paramname"><em>method</em> = <code><a class="el" href="namespacehmap.html#a63d764200510382a7732cfaa750df4a4a705610ed3e5ec724f5cb0d76a5fd3aa1">DistanceMethod::RT</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>angular_jitter</em> = <code>0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>falloff_jitter</em> = <code>0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>threshold</em> = <code>0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>invert_input</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>invert_output</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>mix_ratio</em> = <code>1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::uint32_t&#160;</td>
+          <td class="paramname"><em>seed</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classhmap_1_1Array.html">Array</a> *&#160;</td>
+          <td class="paramname"><em>p_mask</em> = <code>nullptr</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classhmap_1_1Array.html">Array</a> *&#160;</td>
+          <td class="paramname"><em>p_dx</em> = <code>nullptr</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classhmap_1_1Array.html">Array</a> *&#160;</td>
+          <td class="paramname"><em>p_dy</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generates sloped, stratified terrain profiles from shapes and masks using directional distance fields. </p>
+<p>Reproduces the behavior of Gaea's Distance node. Can generate multi-directional slopes, terraced / folded rock formations, and anisotropic skewing.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">array</td><td>Input heightmap or shape mask. </td></tr>
+    <tr><td class="paramname">falloff</td><td>Slope / distance gradient decay rate. </td></tr>
+    <tr><td class="paramname">directions</td><td>Number of projection directions. </td></tr>
+    <tr><td class="paramname">skew</td><td>Asymmetry / skew strength along orientation angle. </td></tr>
+    <tr><td class="paramname">angle</td><td>Primary orientation angle in degrees. </td></tr>
+    <tr><td class="paramname">mode</td><td>Pattern mode (PYRAMID for flat faces, ASTERISK for star-shaped cuts). </td></tr>
+    <tr><td class="paramname">method</td><td>Distance calculation method (RT or CLASSIC). </td></tr>
+    <tr><td class="paramname">angular_jitter</td><td>Random jitter applied to directional angles in [0, 1]. </td></tr>
+    <tr><td class="paramname">falloff_jitter</td><td>Random variation applied to falloff in [0, 1]. </td></tr>
+    <tr><td class="paramname">threshold</td><td>Cutoff elevation threshold for sources. </td></tr>
+    <tr><td class="paramname">invert_input</td><td>If true, inverts the input prior to distance calculation. </td></tr>
+    <tr><td class="paramname">invert_output</td><td>If true, inverts the output distance field. </td></tr>
+    <tr><td class="paramname">mix_ratio</td><td>Blending factor between original input and output in [0, 1]. </td></tr>
+    <tr><td class="paramname">seed</td><td>Random seed for stochastic jitter. </td></tr>
+    <tr><td class="paramname">p_mask</td><td>Optional blend mask pointer. </td></tr>
+    <tr><td class="paramname">p_dx</td><td>Optional X displacement array for domain warp. </td></tr>
+    <tr><td class="paramname">p_dy</td><td>Optional Y displacement array for domain warp. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Resulting shaped array.</dd></dl>
+<p><b>Example</b> </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="highmap_8hpp.html">highmap.hpp</a>&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> <a class="code hl_function" href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>(<span class="keywordtype">void</span>)</div>
+<div class="line">{</div>
+<div class="line">  <a class="code hl_function" href="namespacehmap_1_1gpu.html#adb8336ed4d83c15500872185dee45d50">hmap::gpu::init_opencl</a>();</div>
+<div class="line"> </div>
+<div class="line">  glm::ivec2 <a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a> = {256, 256};</div>
+<div class="line">  glm::vec2  kw = {3.f, 3.f};</div>
+<div class="line">  <span class="keywordtype">int</span>        seed = 0;</div>
+<div class="line"> </div>
+<div class="line">  <span class="comment">// --- Base input: stepped / flat plateau shapes from quantized noise or</span></div>
+<div class="line">  <span class="comment">// Voronoi</span></div>
+<div class="line"> </div>
+<div class="line">  <a class="code hl_class" href="classhmap_1_1Array.html">hmap::Array</a> z0 = <a class="code hl_function" href="namespacehmap.html#a7d699a468a18be16c70654958ee13b41">hmap::noise_fbm</a>(<a class="code hl_enumvalue" href="namespacehmap.html#ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581">hmap::NoiseType::PERLIN</a>, <a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>, kw, seed);</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">const</span> <span class="keywordtype">float</span> <a class="code hl_function" href="namespacehmap.html#a04e7abe100708990e2464cc5df2ccafa">slope</a> = 2.f / <a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>.x;</div>
+<div class="line"> </div>
+<div class="line">  <span class="comment">// --- 1. Symmetrical slopes (Pyramid mode)</span></div>
+<div class="line"> </div>
+<div class="line">  <a class="code hl_class" href="classhmap_1_1Array.html">hmap::Array</a> z_pyramid = <a class="code hl_function" href="namespacehmap_1_1gpu.html#a151d125d340efa4797d3901bbcbebd5e">hmap::gpu::distance_shaper</a>(</div>
+<div class="line">      z0,</div>
+<div class="line">      <a class="code hl_function" href="namespacehmap.html#a04e7abe100708990e2464cc5df2ccafa">slope</a>,</div>
+<div class="line">      8,</div>
+<div class="line">      <span class="comment">/* skew */</span> 0.f,</div>
+<div class="line">      <span class="comment">/* angle */</span> 0.f,</div>
+<div class="line">      <a class="code hl_enumvalue" href="namespacehmap.html#a17cbec9c3162ef357a9418351d66fcfdacd996d3184761601a0e44e587a012d4f">hmap::DistanceMode::PYRAMID</a>);</div>
+<div class="line"> </div>
+<div class="line">  <span class="comment">// --- 2. Asterisk mode (cutting into faces)</span></div>
+<div class="line"> </div>
+<div class="line">  <a class="code hl_class" href="classhmap_1_1Array.html">hmap::Array</a> z_asterisk = <a class="code hl_function" href="namespacehmap_1_1gpu.html#a151d125d340efa4797d3901bbcbebd5e">hmap::gpu::distance_shaper</a>(</div>
+<div class="line">      z0,</div>
+<div class="line">      <a class="code hl_function" href="namespacehmap.html#a04e7abe100708990e2464cc5df2ccafa">slope</a>,</div>
+<div class="line">      8,</div>
+<div class="line">      <span class="comment">/* skew */</span> 0.f,</div>
+<div class="line">      <span class="comment">/* angle */</span> 0.f,</div>
+<div class="line">      <a class="code hl_enumvalue" href="namespacehmap.html#a17cbec9c3162ef357a9418351d66fcfda71ad0fa6a6a3e480ec3446bce7073e63">hmap::DistanceMode::ASTERISK</a>);</div>
+<div class="line"> </div>
+<div class="line">  <span class="comment">// --- 3. Skewed slopes (tilted stratified formations)</span></div>
+<div class="line"> </div>
+<div class="line">  <a class="code hl_class" href="classhmap_1_1Array.html">hmap::Array</a> z_skewed = <a class="code hl_function" href="namespacehmap_1_1gpu.html#a151d125d340efa4797d3901bbcbebd5e">hmap::gpu::distance_shaper</a>(</div>
+<div class="line">      z0,</div>
+<div class="line">      <a class="code hl_function" href="namespacehmap.html#a04e7abe100708990e2464cc5df2ccafa">slope</a>,</div>
+<div class="line">      8,</div>
+<div class="line">      <span class="comment">/* skew */</span> 0.8f,</div>
+<div class="line">      <span class="comment">/* angle */</span> 35.f,</div>
+<div class="line">      <a class="code hl_enumvalue" href="namespacehmap.html#a17cbec9c3162ef357a9418351d66fcfdacd996d3184761601a0e44e587a012d4f">hmap::DistanceMode::PYRAMID</a>);</div>
+<div class="line"> </div>
+<div class="line">  <span class="comment">// --- 4. Folded / terraced rock formation with warp displacement</span></div>
+<div class="line"> </div>
+<div class="line">  <a class="code hl_class" href="classhmap_1_1Array.html">hmap::Array</a> dx = 0.05f * <a class="code hl_function" href="namespacehmap.html#a7d699a468a18be16c70654958ee13b41">hmap::noise_fbm</a>(<a class="code hl_enumvalue" href="namespacehmap.html#ab8197c4c7a85dacb616fee7a7d0df195ac5113a637d69eb3c549e6d561da167ed">hmap::NoiseType::SIMPLEX2</a>,</div>
+<div class="line">                                           <a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>,</div>
+<div class="line">                                           {4.f, 4.f},</div>
+<div class="line">                                           seed + 10);</div>
+<div class="line">  <a class="code hl_class" href="classhmap_1_1Array.html">hmap::Array</a> dy = 0.05f * <a class="code hl_function" href="namespacehmap.html#a7d699a468a18be16c70654958ee13b41">hmap::noise_fbm</a>(<a class="code hl_enumvalue" href="namespacehmap.html#ab8197c4c7a85dacb616fee7a7d0df195ac5113a637d69eb3c549e6d561da167ed">hmap::NoiseType::SIMPLEX2</a>,</div>
+<div class="line">                                           <a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>,</div>
+<div class="line">                                           {4.f, 4.f},</div>
+<div class="line">                                           seed + 20);</div>
+<div class="line"> </div>
+<div class="line">  <a class="code hl_class" href="classhmap_1_1Array.html">hmap::Array</a> z_folded = <a class="code hl_function" href="namespacehmap_1_1gpu.html#a151d125d340efa4797d3901bbcbebd5e">hmap::gpu::distance_shaper</a>(</div>
+<div class="line">      z0,</div>
+<div class="line">      <a class="code hl_function" href="namespacehmap.html#a04e7abe100708990e2464cc5df2ccafa">slope</a>,</div>
+<div class="line">      8,</div>
+<div class="line">      <span class="comment">/* skew */</span> 0.7f,</div>
+<div class="line">      <span class="comment">/* angle */</span> 45.f,</div>
+<div class="line">      <a class="code hl_enumvalue" href="namespacehmap.html#a17cbec9c3162ef357a9418351d66fcfda71ad0fa6a6a3e480ec3446bce7073e63">hmap::DistanceMode::ASTERISK</a>,</div>
+<div class="line">      <a class="code hl_enumvalue" href="namespacehmap.html#a63d764200510382a7732cfaa750df4a4a705610ed3e5ec724f5cb0d76a5fd3aa1">hmap::DistanceMethod::RT</a>,</div>
+<div class="line">      0.1f,</div>
+<div class="line">      0.f,</div>
+<div class="line">      0.f,</div>
+<div class="line">      <span class="keyword">false</span>,</div>
+<div class="line">      <span class="keyword">false</span>,</div>
+<div class="line">      0.9f,</div>
+<div class="line">      seed,</div>
+<div class="line">      <span class="keyword">nullptr</span>,</div>
+<div class="line">      &amp;dx,</div>
+<div class="line">      &amp;dy);</div>
+<div class="line"> </div>
+<div class="line">  <a class="code hl_function" href="namespacehmap.html#ac2452e568959bc21c9b7b09202e5977a">hmap::export_banner_png</a>(<span class="stringliteral">&quot;ex_distance_shaper.png&quot;</span>,</div>
+<div class="line">                          {z0, z_pyramid, z_asterisk, z_skewed, z_folded},</div>
+<div class="line">                          <a class="code hl_enumvalue" href="namespacehmap.html#ac70fe3cbb32e0340d5dd3e15cdcf9369a6d093dbf3088c52a8acee413942545d9">hmap::Cmap::TERRAIN</a>,</div>
+<div class="line">                          <span class="keyword">true</span>);</div>
+<div class="line"> </div>
+<div class="line">  <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+<div class="ttc" id="anamespacehmap_1_1gpu_html_a151d125d340efa4797d3901bbcbebd5e"><div class="ttname"><a href="namespacehmap_1_1gpu.html#a151d125d340efa4797d3901bbcbebd5e">hmap::gpu::distance_shaper</a></div><div class="ttdeci">Array distance_shaper(const Array &amp;array, float falloff=0.05f, int directions=8, float skew=0.f, float angle=0.f, DistanceMode mode=DistanceMode::PYRAMID, DistanceMethod method=DistanceMethod::RT, float angular_jitter=0.f, float falloff_jitter=0.f, float threshold=0.f, bool invert_input=false, bool invert_output=false, float mix_ratio=1.f, std::uint32_t seed=0, const Array *p_mask=nullptr, const Array *p_dx=nullptr, const Array *p_dy=nullptr)</div><div class="ttdoc">See hmap::distance_shaper.</div><div class="ttdef"><b>Definition</b> distance_shaper.cpp:102</div></div>
+<div class="ttc" id="anamespacehmap_html_a17cbec9c3162ef357a9418351d66fcfda71ad0fa6a6a3e480ec3446bce7073e63"><div class="ttname"><a href="namespacehmap.html#a17cbec9c3162ef357a9418351d66fcfda71ad0fa6a6a3e480ec3446bce7073e63">hmap::DistanceMode::ASTERISK</a></div><div class="ttdeci">@ ASTERISK</div><div class="ttdoc">Star-shaped pattern with cut-ins between directions.</div></div>
+<div class="ttc" id="anamespacehmap_html_a17cbec9c3162ef357a9418351d66fcfdacd996d3184761601a0e44e587a012d4f"><div class="ttname"><a href="namespacehmap.html#a17cbec9c3162ef357a9418351d66fcfdacd996d3184761601a0e44e587a012d4f">hmap::DistanceMode::PYRAMID</a></div><div class="ttdeci">@ PYRAMID</div><div class="ttdoc">Diamond/polyhedral pattern with flat planar facets.</div></div>
+<div class="ttc" id="anamespacehmap_html_a63d764200510382a7732cfaa750df4a4a705610ed3e5ec724f5cb0d76a5fd3aa1"><div class="ttname"><a href="namespacehmap.html#a63d764200510382a7732cfaa750df4a4a705610ed3e5ec724f5cb0d76a5fd3aa1">hmap::DistanceMethod::RT</a></div><div class="ttdeci">@ RT</div><div class="ttdoc">Real-time directional slope projection.</div></div>
+</div><!-- fragment --><p><b>Result</b> </p><div class="image">
+<img src="ex_distance_shaper.png" alt=""/>
 </div>
  
 </div>

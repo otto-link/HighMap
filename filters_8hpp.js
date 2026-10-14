@@ -1,9 +1,18 @@
 var filters_8hpp =
 [
+    [ "DistanceMode", "filters_8hpp.html#a17cbec9c3162ef357a9418351d66fcfd", [
+      [ "ASTERISK", "filters_8hpp.html#a17cbec9c3162ef357a9418351d66fcfda71ad0fa6a6a3e480ec3446bce7073e63", null ],
+      [ "PYRAMID", "filters_8hpp.html#a17cbec9c3162ef357a9418351d66fcfdacd996d3184761601a0e44e587a012d4f", null ]
+    ] ],
+    [ "DistanceMethod", "filters_8hpp.html#a63d764200510382a7732cfaa750df4a4", [
+      [ "RT", "filters_8hpp.html#a63d764200510382a7732cfaa750df4a4a705610ed3e5ec724f5cb0d76a5fd3aa1", null ],
+      [ "CLASSIC", "filters_8hpp.html#a63d764200510382a7732cfaa750df4a4a21994d6177b29e1128b2d7f0f8342057", null ]
+    ] ],
     [ "bulkify", "filters_8hpp.html#ae3ecf5f88476c5d49978a130f8cab2f3", null ],
     [ "canyonize", "filters_8hpp.html#a3db5616398edb199912cfc2972c2ec55", null ],
     [ "canyonize", "filters_8hpp.html#aca3e5de61af1e6bac4786ec33d0c1398", null ],
     [ "dequantize", "filters_8hpp.html#a703bb7c67cc8998560798c104a46ce4d", null ],
+    [ "distance_shaper", "filters_8hpp.html#a205f7ed9941d43167bb87ed41999ca0a", null ],
     [ "equalize", "filters_8hpp.html#a1b08d9a5d25e6bcd9d080accd077cc98", null ],
     [ "equalize", "filters_8hpp.html#a1470c4d74892293e4974a319c6b17267", null ],
     [ "expand", "filters_8hpp.html#ae00605c7af4addcb5092c90260e2d61b", null ],
@@ -115,6 +124,7 @@ var filters_8hpp =
     [ "bilateral_filter", "filters_8hpp.html#a0cd7116e5c346fe9534e25b53d5e054a", null ],
     [ "directional_blur", "filters_8hpp.html#a7236194a9133a228c9965f1c3e32d6a2", null ],
     [ "directional_blur", "filters_8hpp.html#abe223a120cbca1cedc1eb8b8392a93b8", null ],
+    [ "distance_shaper", "filters_8hpp.html#a151d125d340efa4797d3901bbcbebd5e", null ],
     [ "expand", "filters_8hpp.html#a3638798808a7e69482de679ffbe86c95", null ],
     [ "expand", "filters_8hpp.html#a4078e5f2ad3a01d6aa282011662a3b5d", null ],
     [ "expand", "filters_8hpp.html#a70fde21fb8301d39cc7a0ed919457917", null ],

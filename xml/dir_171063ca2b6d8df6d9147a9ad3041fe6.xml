@@ -21,6 +21,7 @@
     <innerfile refid="test__connected__components_8cpp">test_connected_components.cpp</innerfile>
     <innerfile refid="test__convolution__scaling_8cpp">test_convolution_scaling.cpp</innerfile>
     <innerfile refid="test__decimate__vw_8cpp">test_decimate_vw.cpp</innerfile>
+    <innerfile refid="test__distance__shaper_8cpp">test_distance_shaper.cpp</innerfile>
     <innerfile refid="test__distance__transform_8cpp">test_distance_transform.cpp</innerfile>
     <innerfile refid="test__drainage__basin_8cpp">test_drainage_basin.cpp</innerfile>
     <innerfile refid="test__elevation__from__contours_8cpp">test_elevation_from_contours.cpp</innerfile>
