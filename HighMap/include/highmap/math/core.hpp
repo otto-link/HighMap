@@ -211,6 +211,15 @@ float sigmoid(float x,
 float smoothstep3(float x);
 
 /**
+ * @brief Cubic smoothstep function with clamping.
+ *
+ * @param x         Input value.
+ * @param clamp_min Lower clamp bound.
+ * @param clamp_max Upper clamp bound.
+ */
+float smoothstep3(float x, float clamp_min, float clamp_max);
+
+/**
  * @brief Cubic smoothstep (zero derivative at 0 only).
  *
  * @param x Input value.

@@ -101,6 +101,12 @@ float smoothstep3(float x)
   return x * x * (3.f - 2.f * x);
 }
 
+float smoothstep3(float x, float clamp_min, float clamp_max)
+{
+  const float t = std::clamp((x - clamp_min) / (clamp_max - clamp_min), 0.f, 1.f);
+  return smoothstep3(t);
+}
+
 float smoothstep3_lower(float x)
 {
   return x * (2.f * x - x * x);
