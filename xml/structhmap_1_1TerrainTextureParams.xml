@@ -1,0 +1,368 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structhmap_1_1TerrainTextureParams" kind="struct" language="C++" prot="public">
+    <compoundname>hmap::TerrainTextureParams</compoundname>
+    <includes refid="colorize_8hpp" local="no">colorize.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structhmap_1_1TerrainTextureParams_1a2687977db13559ef4d7ef338b4e467f1" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 hmap::TerrainTextureParams::grass</definition>
+        <argsstring></argsstring>
+        <name>grass</name>
+        <qualifiedname>hmap::TerrainTextureParams::grass</qualifiedname>
+        <initializer>= {0.38<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 0.44<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 0.29<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/colorize.hpp" line="85" column="13" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="85" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1TerrainTextureParams_1a421323eaa561b30577fb93e8e28839df" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 hmap::TerrainTextureParams::dry</definition>
+        <argsstring></argsstring>
+        <name>dry</name>
+        <qualifiedname>hmap::TerrainTextureParams::dry</qualifiedname>
+        <initializer>= {0.60f, 0.58<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 0.42<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/colorize.hpp" line="86" column="13" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="86" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1TerrainTextureParams_1ad2c7f16f4fd75071b771fb1cd1bfd7ac" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 hmap::TerrainTextureParams::soil</definition>
+        <argsstring></argsstring>
+        <name>soil</name>
+        <qualifiedname>hmap::TerrainTextureParams::soil</qualifiedname>
+        <initializer>= {0.64<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 0.55<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 0.43<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/colorize.hpp" line="87" column="13" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="87" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1TerrainTextureParams_1ac6af8bc36ebc7fc87d5718c287be6c32" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 hmap::TerrainTextureParams::sediment</definition>
+        <argsstring></argsstring>
+        <name>sediment</name>
+        <qualifiedname>hmap::TerrainTextureParams::sediment</qualifiedname>
+        <initializer>= {0.80f, 0.76<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 0.68<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/colorize.hpp" line="88" column="13" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="88" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1TerrainTextureParams_1a8fe287ffa2141604cd4cbc6fada163eb" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 hmap::TerrainTextureParams::rock</definition>
+        <argsstring></argsstring>
+        <name>rock</name>
+        <qualifiedname>hmap::TerrainTextureParams::rock</qualifiedname>
+        <initializer>= {0.53<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 0.50f, 0.46<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/colorize.hpp" line="89" column="13" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="89" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1TerrainTextureParams_1afd4d1c04553909a31b2dfbb164ecb7c6" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 hmap::TerrainTextureParams::ridge</definition>
+        <argsstring></argsstring>
+        <name>ridge</name>
+        <qualifiedname>hmap::TerrainTextureParams::ridge</qualifiedname>
+        <initializer>= {0.71<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 0.70f, 0.68<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/colorize.hpp" line="90" column="13" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="90" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1TerrainTextureParams_1a94e0e934fe0d305dc81b639ce6fb5308" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 hmap::TerrainTextureParams::snow</definition>
+        <argsstring></argsstring>
+        <name>snow</name>
+        <qualifiedname>hmap::TerrainTextureParams::snow</qualifiedname>
+        <initializer>= {0.94<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 0.95<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 0.97<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/colorize.hpp" line="91" column="13" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="91" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1TerrainTextureParams_1a9541e7974500a7d1b258d91762cc9996" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::TerrainTextureParams::rock_slope</definition>
+        <argsstring></argsstring>
+        <name>rock_slope</name>
+        <qualifiedname>hmap::TerrainTextureParams::rock_slope</qualifiedname>
+        <initializer>= 3.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/colorize.hpp" line="92" column="13" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1TerrainTextureParams_1a14538dd1a36c1018ffd330dd1d9da19a" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::TerrainTextureParams::rock_edge</definition>
+        <argsstring></argsstring>
+        <name>rock_edge</name>
+        <qualifiedname>hmap::TerrainTextureParams::rock_edge</qualifiedname>
+        <initializer>= 0.15<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/colorize.hpp" line="93" column="13" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1TerrainTextureParams_1a68387d0b2d9932e4a537080a0fcfc5e6" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::TerrainTextureParams::strata</definition>
+        <argsstring></argsstring>
+        <name>strata</name>
+        <qualifiedname>hmap::TerrainTextureParams::strata</qualifiedname>
+        <initializer>= 0.35<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/colorize.hpp" line="94" column="13" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1TerrainTextureParams_1a25f048b640e64d0d95d4c817b18017de" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::TerrainTextureParams::streaks</definition>
+        <argsstring></argsstring>
+        <name>streaks</name>
+        <qualifiedname>hmap::TerrainTextureParams::streaks</qualifiedname>
+        <initializer>= 0.8<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/colorize.hpp" line="95" column="13" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1TerrainTextureParams_1ad4e414552a881814b0f75ced04744a19" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::TerrainTextureParams::streak_length</definition>
+        <argsstring></argsstring>
+        <name>streak_length</name>
+        <qualifiedname>hmap::TerrainTextureParams::streak_length</qualifiedname>
+        <initializer>= 0.06<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/colorize.hpp" line="96" column="13" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1TerrainTextureParams_1aabe1b5e45535a0825aee57195be14aad" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::TerrainTextureParams::flow</definition>
+        <argsstring></argsstring>
+        <name>flow</name>
+        <qualifiedname>hmap::TerrainTextureParams::flow</qualifiedname>
+        <initializer>= 0.8<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/colorize.hpp" line="97" column="13" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1TerrainTextureParams_1aacf82181690c913856c28729d49ee647" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::TerrainTextureParams::flow_width</definition>
+        <argsstring></argsstring>
+        <name>flow_width</name>
+        <qualifiedname>hmap::TerrainTextureParams::flow_width</qualifiedname>
+        <initializer>= 0.5<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/colorize.hpp" line="98" column="13" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1TerrainTextureParams_1aac4aa8df429c6b862ac6308ae9515d01" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::TerrainTextureParams::deposition</definition>
+        <argsstring></argsstring>
+        <name>deposition</name>
+        <qualifiedname>hmap::TerrainTextureParams::deposition</qualifiedname>
+        <initializer>= 0.5<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/colorize.hpp" line="99" column="13" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1TerrainTextureParams_1a27c135229bc80b584fcdefb5b57e416b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::TerrainTextureParams::snow_line</definition>
+        <argsstring></argsstring>
+        <name>snow_line</name>
+        <qualifiedname>hmap::TerrainTextureParams::snow_line</qualifiedname>
+        <initializer>= 0.85<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/colorize.hpp" line="100" column="13" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1TerrainTextureParams_1abffdccaa6b60d2197d880fe5c6184b13" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::TerrainTextureParams::snow_amount</definition>
+        <argsstring></argsstring>
+        <name>snow_amount</name>
+        <qualifiedname>hmap::TerrainTextureParams::snow_amount</qualifiedname>
+        <initializer>= 0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/colorize.hpp" line="101" column="13" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1TerrainTextureParams_1a9e0e2f5bf0f9070be84d4d7f5d438f94" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t hmap::TerrainTextureParams::seed</definition>
+        <argsstring></argsstring>
+        <name>seed</name>
+        <qualifiedname>hmap::TerrainTextureParams::seed</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/colorize.hpp" line="102" column="13" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1TerrainTextureParams_1aa990ff5af742f963e6b9703fe662ccd1" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::TerrainTextureParams::noise_scale</definition>
+        <argsstring></argsstring>
+        <name>noise_scale</name>
+        <qualifiedname>hmap::TerrainTextureParams::noise_scale</qualifiedname>
+        <initializer>= 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/colorize.hpp" line="103" column="13" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1TerrainTextureParams_1a1d76653911df13820b77e662d82f2a7b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::TerrainTextureParams::color_noise</definition>
+        <argsstring></argsstring>
+        <name>color_noise</name>
+        <qualifiedname>hmap::TerrainTextureParams::color_noise</qualifiedname>
+        <initializer>= 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/colorize.hpp" line="104" column="13" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1TerrainTextureParams_1a830428db3c65bba3528a07098e033f50" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::TerrainTextureParams::detail</definition>
+        <argsstring></argsstring>
+        <name>detail</name>
+        <qualifiedname>hmap::TerrainTextureParams::detail</qualifiedname>
+        <initializer>= 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/colorize.hpp" line="105" column="13" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1TerrainTextureParams_1ae5df313448151b2bc37c1d9d691ac9da" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::TerrainTextureParams::cavity</definition>
+        <argsstring></argsstring>
+        <name>cavity</name>
+        <qualifiedname>hmap::TerrainTextureParams::cavity</qualifiedname>
+        <initializer>= 0.6<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/colorize.hpp" line="106" column="13" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="106" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="HighMap/include/highmap/colorize.hpp" line="83" column="1" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="84" bodyend="107"/>
+    <listofallmembers>
+      <member refid="structhmap_1_1TerrainTextureParams_1ae5df313448151b2bc37c1d9d691ac9da" prot="public" virt="non-virtual"><scope>hmap::TerrainTextureParams</scope><name>cavity</name></member>
+      <member refid="structhmap_1_1TerrainTextureParams_1a1d76653911df13820b77e662d82f2a7b" prot="public" virt="non-virtual"><scope>hmap::TerrainTextureParams</scope><name>color_noise</name></member>
+      <member refid="structhmap_1_1TerrainTextureParams_1aac4aa8df429c6b862ac6308ae9515d01" prot="public" virt="non-virtual"><scope>hmap::TerrainTextureParams</scope><name>deposition</name></member>
+      <member refid="structhmap_1_1TerrainTextureParams_1a830428db3c65bba3528a07098e033f50" prot="public" virt="non-virtual"><scope>hmap::TerrainTextureParams</scope><name>detail</name></member>
+      <member refid="structhmap_1_1TerrainTextureParams_1a421323eaa561b30577fb93e8e28839df" prot="public" virt="non-virtual"><scope>hmap::TerrainTextureParams</scope><name>dry</name></member>
+      <member refid="structhmap_1_1TerrainTextureParams_1aabe1b5e45535a0825aee57195be14aad" prot="public" virt="non-virtual"><scope>hmap::TerrainTextureParams</scope><name>flow</name></member>
+      <member refid="structhmap_1_1TerrainTextureParams_1aacf82181690c913856c28729d49ee647" prot="public" virt="non-virtual"><scope>hmap::TerrainTextureParams</scope><name>flow_width</name></member>
+      <member refid="structhmap_1_1TerrainTextureParams_1a2687977db13559ef4d7ef338b4e467f1" prot="public" virt="non-virtual"><scope>hmap::TerrainTextureParams</scope><name>grass</name></member>
+      <member refid="structhmap_1_1TerrainTextureParams_1aa990ff5af742f963e6b9703fe662ccd1" prot="public" virt="non-virtual"><scope>hmap::TerrainTextureParams</scope><name>noise_scale</name></member>
+      <member refid="structhmap_1_1TerrainTextureParams_1afd4d1c04553909a31b2dfbb164ecb7c6" prot="public" virt="non-virtual"><scope>hmap::TerrainTextureParams</scope><name>ridge</name></member>
+      <member refid="structhmap_1_1TerrainTextureParams_1a8fe287ffa2141604cd4cbc6fada163eb" prot="public" virt="non-virtual"><scope>hmap::TerrainTextureParams</scope><name>rock</name></member>
+      <member refid="structhmap_1_1TerrainTextureParams_1a14538dd1a36c1018ffd330dd1d9da19a" prot="public" virt="non-virtual"><scope>hmap::TerrainTextureParams</scope><name>rock_edge</name></member>
+      <member refid="structhmap_1_1TerrainTextureParams_1a9541e7974500a7d1b258d91762cc9996" prot="public" virt="non-virtual"><scope>hmap::TerrainTextureParams</scope><name>rock_slope</name></member>
+      <member refid="structhmap_1_1TerrainTextureParams_1ac6af8bc36ebc7fc87d5718c287be6c32" prot="public" virt="non-virtual"><scope>hmap::TerrainTextureParams</scope><name>sediment</name></member>
+      <member refid="structhmap_1_1TerrainTextureParams_1a9e0e2f5bf0f9070be84d4d7f5d438f94" prot="public" virt="non-virtual"><scope>hmap::TerrainTextureParams</scope><name>seed</name></member>
+      <member refid="structhmap_1_1TerrainTextureParams_1a94e0e934fe0d305dc81b639ce6fb5308" prot="public" virt="non-virtual"><scope>hmap::TerrainTextureParams</scope><name>snow</name></member>
+      <member refid="structhmap_1_1TerrainTextureParams_1abffdccaa6b60d2197d880fe5c6184b13" prot="public" virt="non-virtual"><scope>hmap::TerrainTextureParams</scope><name>snow_amount</name></member>
+      <member refid="structhmap_1_1TerrainTextureParams_1a27c135229bc80b584fcdefb5b57e416b" prot="public" virt="non-virtual"><scope>hmap::TerrainTextureParams</scope><name>snow_line</name></member>
+      <member refid="structhmap_1_1TerrainTextureParams_1ad2c7f16f4fd75071b771fb1cd1bfd7ac" prot="public" virt="non-virtual"><scope>hmap::TerrainTextureParams</scope><name>soil</name></member>
+      <member refid="structhmap_1_1TerrainTextureParams_1a68387d0b2d9932e4a537080a0fcfc5e6" prot="public" virt="non-virtual"><scope>hmap::TerrainTextureParams</scope><name>strata</name></member>
+      <member refid="structhmap_1_1TerrainTextureParams_1ad4e414552a881814b0f75ced04744a19" prot="public" virt="non-virtual"><scope>hmap::TerrainTextureParams</scope><name>streak_length</name></member>
+      <member refid="structhmap_1_1TerrainTextureParams_1a25f048b640e64d0d95d4c817b18017de" prot="public" virt="non-virtual"><scope>hmap::TerrainTextureParams</scope><name>streaks</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

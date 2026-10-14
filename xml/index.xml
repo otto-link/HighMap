@@ -1336,6 +1336,30 @@
     <member refid="classhmap_1_1StepFunction_1a41064ffb131bf640ba7ef3faa4915039" kind="function"><name>StepFunction</name></member>
     <member refid="classhmap_1_1StepFunction_1afb11e32b380acc5af950cb7be2c0e44e" kind="function"><name>set_angle</name></member>
   </compound>
+  <compound refid="structhmap_1_1TerrainTextureParams" kind="struct"><name>hmap::TerrainTextureParams</name>
+    <member refid="structhmap_1_1TerrainTextureParams_1a2687977db13559ef4d7ef338b4e467f1" kind="variable"><name>grass</name></member>
+    <member refid="structhmap_1_1TerrainTextureParams_1a421323eaa561b30577fb93e8e28839df" kind="variable"><name>dry</name></member>
+    <member refid="structhmap_1_1TerrainTextureParams_1ad2c7f16f4fd75071b771fb1cd1bfd7ac" kind="variable"><name>soil</name></member>
+    <member refid="structhmap_1_1TerrainTextureParams_1ac6af8bc36ebc7fc87d5718c287be6c32" kind="variable"><name>sediment</name></member>
+    <member refid="structhmap_1_1TerrainTextureParams_1a8fe287ffa2141604cd4cbc6fada163eb" kind="variable"><name>rock</name></member>
+    <member refid="structhmap_1_1TerrainTextureParams_1afd4d1c04553909a31b2dfbb164ecb7c6" kind="variable"><name>ridge</name></member>
+    <member refid="structhmap_1_1TerrainTextureParams_1a94e0e934fe0d305dc81b639ce6fb5308" kind="variable"><name>snow</name></member>
+    <member refid="structhmap_1_1TerrainTextureParams_1a9541e7974500a7d1b258d91762cc9996" kind="variable"><name>rock_slope</name></member>
+    <member refid="structhmap_1_1TerrainTextureParams_1a14538dd1a36c1018ffd330dd1d9da19a" kind="variable"><name>rock_edge</name></member>
+    <member refid="structhmap_1_1TerrainTextureParams_1a68387d0b2d9932e4a537080a0fcfc5e6" kind="variable"><name>strata</name></member>
+    <member refid="structhmap_1_1TerrainTextureParams_1a25f048b640e64d0d95d4c817b18017de" kind="variable"><name>streaks</name></member>
+    <member refid="structhmap_1_1TerrainTextureParams_1ad4e414552a881814b0f75ced04744a19" kind="variable"><name>streak_length</name></member>
+    <member refid="structhmap_1_1TerrainTextureParams_1aabe1b5e45535a0825aee57195be14aad" kind="variable"><name>flow</name></member>
+    <member refid="structhmap_1_1TerrainTextureParams_1aacf82181690c913856c28729d49ee647" kind="variable"><name>flow_width</name></member>
+    <member refid="structhmap_1_1TerrainTextureParams_1aac4aa8df429c6b862ac6308ae9515d01" kind="variable"><name>deposition</name></member>
+    <member refid="structhmap_1_1TerrainTextureParams_1a27c135229bc80b584fcdefb5b57e416b" kind="variable"><name>snow_line</name></member>
+    <member refid="structhmap_1_1TerrainTextureParams_1abffdccaa6b60d2197d880fe5c6184b13" kind="variable"><name>snow_amount</name></member>
+    <member refid="structhmap_1_1TerrainTextureParams_1a9e0e2f5bf0f9070be84d4d7f5d438f94" kind="variable"><name>seed</name></member>
+    <member refid="structhmap_1_1TerrainTextureParams_1aa990ff5af742f963e6b9703fe662ccd1" kind="variable"><name>noise_scale</name></member>
+    <member refid="structhmap_1_1TerrainTextureParams_1a1d76653911df13820b77e662d82f2a7b" kind="variable"><name>color_noise</name></member>
+    <member refid="structhmap_1_1TerrainTextureParams_1a830428db3c65bba3528a07098e033f50" kind="variable"><name>detail</name></member>
+    <member refid="structhmap_1_1TerrainTextureParams_1ae5df313448151b2bc37c1d9d691ac9da" kind="variable"><name>cavity</name></member>
+  </compound>
   <compound refid="classhmap_1_1TerrainTriMesh" kind="class"><name>hmap::TerrainTriMesh</name>
     <member refid="classhmap_1_1TerrainTriMesh_1a33170aa04ff9981ce09442b0bc050df8" kind="variable"><name>points</name></member>
     <member refid="classhmap_1_1TerrainTriMesh_1a8f7e6e67b64ecc8b49107b36729f5f66" kind="variable"><name>triangles</name></member>
@@ -1659,23 +1683,23 @@
     <member refid="classhmap_1_1XyControlFunction_1acfe5c441363f35d36a13084fb56c6dca" kind="function"><name>MinimumImpl</name></member>
     <member refid="classhmap_1_1XyControlFunction_1ab32abc0861325b3ea6f547b938a9225d" kind="function"><name>MaximumImpl</name></member>
   </compound>
-  <compound refid="namespace_0d215" kind="namespace"><name>@215</name>
+  <compound refid="namespace_0d216" kind="namespace"><name>@216</name>
   </compound>
-  <compound refid="namespace_0d420" kind="namespace"><name>@420</name>
+  <compound refid="namespace_0d421" kind="namespace"><name>@421</name>
   </compound>
-  <compound refid="namespace_0d431" kind="namespace"><name>@431</name>
+  <compound refid="namespace_0d432" kind="namespace"><name>@432</name>
   </compound>
-  <compound refid="namespace_0d441" kind="namespace"><name>@441</name>
+  <compound refid="namespace_0d442" kind="namespace"><name>@442</name>
   </compound>
-  <compound refid="namespace_0d460" kind="namespace"><name>@460</name>
+  <compound refid="namespace_0d461" kind="namespace"><name>@461</name>
   </compound>
-  <compound refid="namespace_0d467" kind="namespace"><name>@467</name>
+  <compound refid="namespace_0d468" kind="namespace"><name>@468</name>
   </compound>
-  <compound refid="namespace_0d480" kind="namespace"><name>@480</name>
+  <compound refid="namespace_0d481" kind="namespace"><name>@481</name>
   </compound>
-  <compound refid="namespace_0d491" kind="namespace"><name>@491</name>
+  <compound refid="namespace_0d492" kind="namespace"><name>@492</name>
   </compound>
-  <compound refid="namespace_0d495" kind="namespace"><name>@495</name>
+  <compound refid="namespace_0d496" kind="namespace"><name>@496</name>
   </compound>
   <compound refid="namespacehmap" kind="namespace"><name>hmap</name>
     <member refid="namespacehmap_1a5101273ec456f5267dddc3e22dae223b" kind="enum"><name>StampingBlendMethod</name></member>
@@ -2024,6 +2048,7 @@
     <member refid="namespacehmap_1aba3c0883b647456926804368b2a0728e" kind="function"><name>mix</name></member>
     <member refid="namespacehmap_1a31a770d3f3a00d8cf4dd8478b5a50a17" kind="function"><name>mix</name></member>
     <member refid="namespacehmap_1a5421f279cef2873c17b26c610a7fd87a" kind="function"><name>mix_normal_map</name></member>
+    <member refid="namespacehmap_1a6475a01d96663ca5304516512e362909" kind="function"><name>terrain_texture</name></member>
     <member refid="namespacehmap_1a2f2ca726f4e41128135e6c77120c66d8" kind="function"><name>get_colormap_data</name></member>
     <member refid="namespacehmap_1aa1f2e119a09d246fe0cf27e859ddb2e6" kind="function"><name>level_set_curvature</name></member>
     <member refid="namespacehmap_1a4e2b7df70a18f94ad7f4d7cd934ec767" kind="function"><name>curvature_quadric</name></member>
@@ -2835,22 +2860,22 @@
   </compound>
   <compound refid="namespacehmap_1_1_0d143" kind="namespace"><name>hmap::@143</name>
   </compound>
-  <compound refid="namespacehmap_1_1_0d172" kind="namespace"><name>hmap::@172</name>
-    <member refid="namespacehmap_1_1_0d172_1aa2cd93b7f819a0e0315db485980849c3" kind="enum"><name></name></member>
+  <compound refid="namespacehmap_1_1_0d173" kind="namespace"><name>hmap::@173</name>
+    <member refid="namespacehmap_1_1_0d173_1aa32e7742727e2edd47cae6060754165f" kind="enum"><name></name></member>
   </compound>
-  <compound refid="namespacehmap_1_1_0d201" kind="namespace"><name>hmap::@201</name>
+  <compound refid="namespacehmap_1_1_0d202" kind="namespace"><name>hmap::@202</name>
   </compound>
-  <compound refid="namespacehmap_1_1_0d249" kind="namespace"><name>hmap::@249</name>
+  <compound refid="namespacehmap_1_1_0d250" kind="namespace"><name>hmap::@250</name>
   </compound>
-  <compound refid="namespacehmap_1_1_0d252" kind="namespace"><name>hmap::@252</name>
+  <compound refid="namespacehmap_1_1_0d253" kind="namespace"><name>hmap::@253</name>
   </compound>
-  <compound refid="namespacehmap_1_1_0d274" kind="namespace"><name>hmap::@274</name>
+  <compound refid="namespacehmap_1_1_0d275" kind="namespace"><name>hmap::@275</name>
   </compound>
-  <compound refid="namespacehmap_1_1_0d384" kind="namespace"><name>hmap::@384</name>
+  <compound refid="namespacehmap_1_1_0d385" kind="namespace"><name>hmap::@385</name>
   </compound>
-  <compound refid="namespacehmap_1_1_0d389" kind="namespace"><name>hmap::@389</name>
+  <compound refid="namespacehmap_1_1_0d390" kind="namespace"><name>hmap::@390</name>
   </compound>
-  <compound refid="namespacehmap_1_1_0d392" kind="namespace"><name>hmap::@392</name>
+  <compound refid="namespacehmap_1_1_0d393" kind="namespace"><name>hmap::@393</name>
   </compound>
   <compound refid="namespacehmap_1_1gpu" kind="namespace"><name>hmap::gpu</name>
     <member refid="namespacehmap_1_1gpu_1ab0737b29664736928a86f0755493895f" kind="enum"><name>LocalMetrics</name></member>
@@ -3533,6 +3558,8 @@
   <compound refid="color__match__mask_8cpp" kind="file"><name>color_match_mask.cpp</name>
   </compound>
   <compound refid="colorize_8cpp" kind="file"><name>colorize.cpp</name>
+  </compound>
+  <compound refid="terrain__texture_8cpp" kind="file"><name>terrain_texture.cpp</name>
   </compound>
   <compound refid="get__colormap__data_8cpp" kind="file"><name>get_colormap_data.cpp</name>
   </compound>

@@ -122,6 +122,7 @@ var hierarchy =
     [ "hmap::TerrainTriMesh::ShortestPathResult", "structhmap_1_1TerrainTriMesh_1_1ShortestPathResult.html", null ],
     [ "hmap::Species", "structhmap_1_1Species.html", null ],
     [ "hmap::SpeciesLookup", "structhmap_1_1SpeciesLookup.html", null ],
+    [ "hmap::TerrainTextureParams", "structhmap_1_1TerrainTextureParams.html", null ],
     [ "hmap::TerrainTriMesh", "classhmap_1_1TerrainTriMesh.html", null ],
     [ "testing::Test", null, [
       [ "JaggedTest", "classJaggedTest.html", null ],

@@ -5,7 +5,8 @@ var searchData=
   ['name_2',['name',['../structhmap_1_1Recorder.html#a383fac701048b5d6717ed4c007161ba3',1,'hmap::Recorder::name'],['../structhmap_1_1Species.html#a2d3c5a4a42e4aae3a5c5eba55cc8da4d',1,'hmap::Species::name'],['../structhmap_1_1RockDistribution.html#af48661af063d88c06d06ceefecce5413',1,'hmap::RockDistribution::name']]],
   ['nb_5fcalls_3',['nb_calls',['../structhmap_1_1Recorder.html#ad553f417348e2de1e528eaacdfbf2d5e',1,'hmap::Recorder']]],
   ['nlevels_4',['nlevels',['../classhmap_1_1PyramidDecomposition.html#ac3688f38d739c9eed21b4d32b49648bc',1,'hmap::PyramidDecomposition']]],
-  ['null_5fcell_5',['null_cell',['../classhmap_1_1DrainageBasinCellBased.html#ad576fdd4931b25ab57bec6eeca32204b',1,'hmap::DrainageBasinCellBased']]],
-  ['nx_6',['nx',['../hydraulic__mise_8cpp.html#a02d47a4f36ec0bcce348696534567e30',1,'hydraulic_mise.cpp']]],
-  ['ny_7',['ny',['../hydraulic__mise_8cpp.html#a9f4e20a91b26459133b83992e9d8d381',1,'hydraulic_mise.cpp']]]
+  ['noise_5fscale_5',['noise_scale',['../structhmap_1_1TerrainTextureParams.html#aa990ff5af742f963e6b9703fe662ccd1',1,'hmap::TerrainTextureParams']]],
+  ['null_5fcell_6',['null_cell',['../classhmap_1_1DrainageBasinCellBased.html#ad576fdd4931b25ab57bec6eeca32204b',1,'hmap::DrainageBasinCellBased']]],
+  ['nx_7',['nx',['../hydraulic__mise_8cpp.html#a02d47a4f36ec0bcce348696534567e30',1,'hydraulic_mise.cpp']]],
+  ['ny_8',['ny',['../hydraulic__mise_8cpp.html#a9f4e20a91b26459133b83992e9d8d381',1,'hydraulic_mise.cpp']]]
 ];

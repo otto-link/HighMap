@@ -98,6 +98,7 @@ var annotated_dup =
       [ "Species", "structhmap_1_1Species.html", "structhmap_1_1Species" ],
       [ "SpeciesLookup", "structhmap_1_1SpeciesLookup.html", "structhmap_1_1SpeciesLookup" ],
       [ "StepFunction", "classhmap_1_1StepFunction.html", "classhmap_1_1StepFunction" ],
+      [ "TerrainTextureParams", "structhmap_1_1TerrainTextureParams.html", "structhmap_1_1TerrainTextureParams" ],
       [ "TerrainTriMesh", "classhmap_1_1TerrainTriMesh.html", "classhmap_1_1TerrainTriMesh" ],
       [ "Texture", "classhmap_1_1Texture.html", "classhmap_1_1Texture" ],
       [ "TileKey", "structhmap_1_1TileKey.html", "structhmap_1_1TileKey" ],

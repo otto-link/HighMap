@@ -1,6 +1,7 @@
 var colorize_8hpp =
 [
     [ "hmap::ColorAdjust", "structhmap_1_1ColorAdjust.html", "structhmap_1_1ColorAdjust" ],
+    [ "hmap::TerrainTextureParams", "structhmap_1_1TerrainTextureParams.html", "structhmap_1_1TerrainTextureParams" ],
     [ "MixMethod", "colorize_8hpp.html#ad3b2ee0d951dd1116cc489ab96600c0f", [
       [ "MM_LINEAR", "colorize_8hpp.html#ad3b2ee0d951dd1116cc489ab96600c0fadb442265791dc4c41e19aa2d350bd15d", null ],
       [ "MM_SQRT_AVG", "colorize_8hpp.html#ad3b2ee0d951dd1116cc489ab96600c0fa87c04d9fc25c1a1408df6899b50a96b9", null ],
@@ -29,5 +30,6 @@ var colorize_8hpp =
     [ "mix", "colorize_8hpp.html#ad5894053c042e2076fbbc7003bf69451", null ],
     [ "mix", "colorize_8hpp.html#aba3c0883b647456926804368b2a0728e", null ],
     [ "mix", "colorize_8hpp.html#a31a770d3f3a00d8cf4dd8478b5a50a17", null ],
-    [ "mix_normal_map", "colorize_8hpp.html#a5421f279cef2873c17b26c610a7fd87a", null ]
+    [ "mix_normal_map", "colorize_8hpp.html#a5421f279cef2873c17b26c610a7fd87a", null ],
+    [ "terrain_texture", "colorize_8hpp.html#a6475a01d96663ca5304516512e362909", null ]
 ];

@@ -63,7 +63,7 @@ var searchData=
   ['boundary_5ftop_60',['BOUNDARY_TOP',['../namespacehmap.html#a1ba9d4ce7afe3309f8ae8e617f7154eea1bda4002f204a3b745ea70dab2b6b6d8',1,'hmap']]],
   ['boundingbox_61',['BoundingBox',['../structhmap_1_1TerrainTriMesh_1_1BoundingBox.html',1,'hmap::TerrainTriMesh']]],
   ['bounds_62',['bounds',['../structhmap_1_1Segment2D.html#a9f3a8b48e800252900a53ba868752acc',1,'hmap::Segment2D']]],
-  ['bspline_63',['bspline',['../namespacehmap.html#a281c9db00eef9735e8eea7bbf50f3e34',1,'hmap::bspline(const Path &amp;path, int edge_divisions=10, Path::EdgeDivisionMode edm=Path::EdgeDivisionMode::EDM_PER_EDGE)'],['../namespacehmap.html#aa78bf111867e13c63d8bd2ec005ad6c8a60f62532461a103e7680bba841871635',1,'hmap::BSPLINE']]],
+  ['bspline_63',['bspline',['../namespacehmap.html#aa78bf111867e13c63d8bd2ec005ad6c8a60f62532461a103e7680bba841871635',1,'hmap::BSPLINE'],['../namespacehmap.html#a281c9db00eef9735e8eea7bbf50f3e34',1,'hmap::bspline(const Path &amp;path, int edge_divisions=10, Path::EdgeDivisionMode edm=Path::EdgeDivisionMode::EDM_PER_EDGE)']]],
   ['bspline_5fweights_64',['bspline_weights',['../namespacehmap.html#a5acb8e41f754d937559eb89abb87a53d',1,'hmap']]],
   ['bucket_65',['bucket',['../hydraulic__mise_8cpp.html#aa5ab47ad0bc88cdca7443a52473e9482',1,'hydraulic_mise.cpp']]],
   ['build_66',['build',['../classhmap_1_1BVH2D.html#af68093985c322ceeaeb255e6d5b9a61b',1,'hmap::BVH2D::build()'],['../classhmap_1_1NaturalNeighborInterpolator.html#a9404f1043455692be64d35116a00742c',1,'hmap::NaturalNeighborInterpolator::build()']]],

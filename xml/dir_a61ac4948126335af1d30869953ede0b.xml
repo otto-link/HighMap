@@ -5,6 +5,7 @@
     <innerfile refid="color__adjust_8cpp">color_adjust.cpp</innerfile>
     <innerfile refid="color__match__mask_8cpp">color_match_mask.cpp</innerfile>
     <innerfile refid="colorize_8cpp">colorize.cpp</innerfile>
+    <innerfile refid="terrain__texture_8cpp">terrain_texture.cpp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
