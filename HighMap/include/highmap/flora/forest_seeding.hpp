@@ -68,8 +68,8 @@ struct ForestSeedingOptions
  *                               exclusion_threshold, density is set to 0).
  * @param  exclusion_threshold   Threshold above which exclusion mask excludes
  *                               trees (default 0.f).
- * @param  creeping_distance     Creeping / spreading distance in [0, 1] (or in
- *                               pixels if >= 1.0). Default 0.f (no creeping).
+ * @param  creeping_distance     Creeping / spreading distance in pixels.
+ *                               Default 0.f (no creeping).
  * @param  creeping_intensity    Intensity of vegetation creeping in [0, 1].
  *                               Default 0.5f.
  * @return                       Array Computed density array in [0, 1].
@@ -101,15 +101,14 @@ Array build_tree_density(const Array &heightmap,
  * forest boundaries and transitions, avoiding abrupt density changes at the
  * edges of forested areas.
  *
- * @param  density            Input forest density map in [0, 1].
- * @param  creeping_distance  Maximum creeping distance in [0, 1] relative to domain
- *                            size (or in pixels if >= 1.0).
- * @param  creeping_intensity Creeping growth intensity in [0, 1].
- * @param  p_exclusion        Optional exclusion mask (density remains 0 where
- *                            exclusion > exclusion_threshold).
+ * @param  density             Input forest density map in [0, 1].
+ * @param  creeping_distance   Maximum creeping distance in pixels.
+ * @param  creeping_intensity  Creeping growth intensity in [0, 1].
+ * @param  p_exclusion         Optional exclusion mask (density remains 0 where
+ *                             exclusion > exclusion_threshold).
  * @param  exclusion_threshold Threshold above which exclusion mask excludes
- *                            trees (default 0.f).
- * @return                    Array Resulting density array in [0, 1].
+ *                             trees (default 0.f).
+ * @return                     Array Resulting density array in [0, 1].
  */
 Array creep_forest_density(const Array &density,
                            float        creeping_distance,
@@ -173,18 +172,19 @@ namespace hmap::va
 {
 
 /**
- * @brief Applies a gradual creeping/growth effect to a forest density VirtualArray,
- * allowing vegetation density to progressively spread into neighboring areas across tiles.
+ * @brief Applies a gradual creeping/growth effect to a forest density
+ * VirtualArray, allowing vegetation density to progressively spread into
+ * neighboring areas across tiles.
  *
- * @param  density            Input forest density VirtualArray in [0, 1].
- * @param  creeping_distance  Maximum creeping distance in [0, 1] relative to domain
- *                            size (or in pixels if >= 1.0).
- * @param  creeping_intensity Creeping growth intensity in [0, 1].
- * @param  p_exclusion        Optional exclusion mask VirtualArray.
+ * @param  density             Input forest density VirtualArray in [0, 1].
+ * @param  creeping_distance   Maximum creeping distance in pixels.
+ * @param  creeping_intensity  Creeping growth intensity in [0, 1].
+ * @param  p_exclusion         Optional exclusion mask VirtualArray.
  * @param  exclusion_threshold Threshold above which exclusion mask excludes
- *                            trees (default 0.f).
- * @param  cm                 Virtual array compute mode.
- * @return                    VirtualArray Resulting density VirtualArray in [0, 1].
+ *                             trees (default 0.f).
+ * @param  cm                  Virtual array compute mode.
+ * @return                     VirtualArray Resulting density VirtualArray in
+ *                             [0, 1].
  */
 VirtualArray creep_forest_density(const VirtualArray &density,
                                   float               creeping_distance,

@@ -1131,7 +1131,7 @@ TEST(TreeDensityTest, CreepingIntensityControlsMagnitude)
       density(i, j) = 0.8f;
 
   Array c_high = creep_forest_density(density, 6.0f, 1.0f);
-  Array c_low  = creep_forest_density(density, 6.0f, 0.2f);
+  Array c_low = creep_forest_density(density, 6.0f, 0.2f);
 
   // Point at distance 2 from the core (x = 21, y = 16)
   EXPECT_GT(c_high(21, 16), c_low(21, 16));
@@ -1208,7 +1208,7 @@ TEST(TreeDensityTest, BuildTreeDensityWithCreepingIntegration)
                                      1.0f,
                                      {},
                                      0.0f,
-                                     0.05f, // creeping_distance
+                                     3.0f,  // creeping_distance
                                      0.7f); // creeping_intensity
 
   // Total density with creeping should be greater than base

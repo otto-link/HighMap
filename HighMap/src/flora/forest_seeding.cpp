@@ -172,20 +172,15 @@ Array creep_forest_density(const Array &density,
 {
   // validate inputs
   if (!validate_non_empty(density)) return Array();
-  if (p_exclusion && !validate_same_shape(density, *p_exclusion)) return Array();
+  if (p_exclusion && !validate_same_shape(density, *p_exclusion))
+    return Array();
 
-  if (creeping_distance <= 0.0f || creeping_intensity <= 0.0f) return density;
-
-  const glm::ivec2 shape = density.shape;
-  const float      min_dim = static_cast<float>(std::min(shape.x, shape.y));
-  const float      radius_px = (creeping_distance <= 1.0f)
-                              ? (creeping_distance * min_dim)
-                              : creeping_distance;
-
-  if (radius_px < 1.0f) return density;
+  if (creeping_distance < 1.0f || creeping_intensity <= 0.0f) return density;
 
   const float intensity = std::clamp(creeping_intensity, 0.0f, 1.0f);
   if (intensity <= 0.0f) return density;
+
+  const glm::ivec2 shape = density.shape;
 
   // --- Identify Forest Core Areas
 
@@ -216,14 +211,13 @@ Array creep_forest_density(const Array &density,
 
 #pragma omp parallel for collapse(2) if (total_cells > 4096)
   for (int j = 0; j < shape.y; ++j)
-  {
     for (int i = 0; i < shape.x; ++i)
     {
       float d = dt(i, j);
 
-      if (d > 0.0f && d <= radius_px)
+      if (d > 0.0f && d <= creeping_distance)
       {
-        float u = d / radius_px;
+        float u = d / creeping_distance;
         float u2 = u * u;
         float prof = std::pow(std::max(0.0f, 1.0f - u2), p);
 
@@ -234,7 +228,6 @@ Array creep_forest_density(const Array &density,
         result(i, j) = std::max(result(i, j), creep_val);
       }
     }
-  }
 
   // --- Apply Exclusion Mask
 
@@ -244,12 +237,10 @@ Array creep_forest_density(const Array &density,
 
 #pragma omp parallel for collapse(2) if (total_cells > 4096)
     for (int j = 0; j < shape.y; ++j)
-    {
       for (int i = 0; i < shape.x; ++i)
       {
         if (excl(i, j) > exclusion_threshold) result(i, j) = 0.0f;
       }
-    }
   }
 
   return result;
@@ -564,7 +555,8 @@ Forest seed_forest_kmeans(size_t                      species_count,
 
     if (!effective_radii.empty() && effective_radii.size() == k_clusters)
     {
-      // sort cluster indices by centroid distance in compactness feature space
+      // sort cluster indices by centroid distance in compactness feature
+      // space
       std::vector<size_t> cluster_order(k_clusters);
       std::iota(cluster_order.begin(), cluster_order.end(), 0);
       std::sort(cluster_order.begin(),
@@ -654,7 +646,7 @@ VirtualArray creep_forest_density(const VirtualArray &density,
           const hmap::TileRegion &)
       {
         const auto [p_density_tile, p_exclusion_tile] = unpack<2>(p_arrays_in);
-        auto [p_out_tile]                             = unpack<1>(p_arrays_out);
+        auto [p_out_tile] = unpack<1>(p_arrays_out);
 
         *p_out_tile = hmap::creep_forest_density(*p_density_tile,
                                                  creeping_distance,

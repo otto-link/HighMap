@@ -16,24 +16,25 @@ int main()
 
   // --- Base Environmental Suitability Density (without creeping)
 
-  hmap::Array density_base = hmap::build_tree_density(z,
-                                                      0.1f, // min_elev
-                                                      0.7f, // max_elev
-                                                      0.05f,
-                                                      2.f / shape.x, // min_talus
-                                                      4.f / shape.x, // max_talus
-                                                      45.f,          // angle
-                                                      80.f,          // angle_width
-                                                      1.0f,          // weight_elev
-                                                      1.0f,          // weight_talus
-                                                      0.7f,          // weight_angle
-                                                      0.5f);         // weight_twi
+  hmap::Array density_base = hmap::build_tree_density(
+      z,
+      0.1f, // min_elev
+      0.7f, // max_elev
+      0.05f,
+      2.f / shape.x, // min_talus
+      4.f / shape.x, // max_talus
+      45.f,          // angle
+      80.f,          // angle_width
+      1.0f,          // weight_elev
+      1.0f,          // weight_talus
+      0.7f,          // weight_angle
+      0.5f);         // weight_twi
 
   std::cout << "Base density sum: " << density_base.sum() << std::endl;
 
   // --- Gradual Vegetation Creeping
 
-  float creeping_distance = 0.04f; // 4% of domain width (~20 pixels)
+  float creeping_distance = 20.0f; // in pixels
   float creeping_intensity = 0.7f;
 
   hmap::Array density_crept = hmap::creep_forest_density(density_base,
