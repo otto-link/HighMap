@@ -1,0 +1,2 @@
+add_executable(ex_forest_density_creeping ex_forest_density_creeping.cpp)
+target_link_libraries(ex_forest_density_creeping highmap)

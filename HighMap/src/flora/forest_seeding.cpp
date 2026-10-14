@@ -27,6 +27,7 @@
 #include "highmap/internal/validation.hpp"
 #include "highmap/local_metrics.hpp"
 #include "highmap/math/array.hpp"
+#include "highmap/morphology.hpp"
 #include "highmap/range.hpp"
 #include "highmap/selector.hpp"
 #include "highmap/virtual_array/virtual_array.hpp"
@@ -53,7 +54,9 @@ Array build_tree_density(const Array &heightmap,
                          const Array &secondary_density,
                          float        weight_secondary,
                          const Array &exclusion_mask,
-                         float        exclusion_threshold)
+                         float        exclusion_threshold,
+                         float        creeping_distance,
+                         float        creeping_intensity)
 {
   // validate inputs
   if (!validate_non_empty(heightmap)) return Array();
@@ -147,7 +150,109 @@ Array build_tree_density(const Array &heightmap,
       }
   }
 
+  // --- Vegetation Creeping
+
+  if (creeping_distance > 0.0f && creeping_intensity > 0.0f)
+  {
+    density = creep_forest_density(density,
+                                   creeping_distance,
+                                   creeping_intensity,
+                                   has_exclusion ? &exclusion_mask : nullptr,
+                                   exclusion_threshold);
+  }
+
   return density;
+}
+
+Array creep_forest_density(const Array &density,
+                           float        creeping_distance,
+                           float        creeping_intensity,
+                           const Array *p_exclusion,
+                           float        exclusion_threshold)
+{
+  // validate inputs
+  if (!validate_non_empty(density)) return Array();
+  if (p_exclusion && !validate_same_shape(density, *p_exclusion)) return Array();
+
+  if (creeping_distance <= 0.0f || creeping_intensity <= 0.0f) return density;
+
+  const glm::ivec2 shape = density.shape;
+  const float      min_dim = static_cast<float>(std::min(shape.x, shape.y));
+  const float      radius_px = (creeping_distance <= 1.0f)
+                              ? (creeping_distance * min_dim)
+                              : creeping_distance;
+
+  if (radius_px < 1.0f) return density;
+
+  const float intensity = std::clamp(creeping_intensity, 0.0f, 1.0f);
+  if (intensity <= 0.0f) return density;
+
+  // --- Identify Forest Core Areas
+
+  Array        mask(shape, 0.0f);
+  const size_t total_cells = density.vector.size();
+  bool         has_forest = false;
+
+  for (size_t k = 0; k < total_cells; ++k)
+  {
+    if (density.vector[k] > 1e-5f)
+    {
+      mask.vector[k] = 1.0f;
+      has_forest = true;
+    }
+  }
+
+  if (!has_forest) return density;
+
+  // --- Compute Euclidean Distance Field & Nearest Source
+
+  Mat<glm::ivec2> closest(shape);
+  Array           dt = distance_transform_with_closest(mask, closest);
+
+  // --- Propagate Creeping Vegetation
+
+  Array       result = density;
+  const float p = 2.0f / intensity;
+
+#pragma omp parallel for collapse(2) if (total_cells > 4096)
+  for (int j = 0; j < shape.y; ++j)
+  {
+    for (int i = 0; i < shape.x; ++i)
+    {
+      float d = dt(i, j);
+
+      if (d > 0.0f && d <= radius_px)
+      {
+        float u = d / radius_px;
+        float u2 = u * u;
+        float prof = std::pow(std::max(0.0f, 1.0f - u2), p);
+
+        glm::ivec2 src_coord = closest(i, j);
+        float      src_val = density(src_coord.x, src_coord.y);
+        float      creep_val = src_val * prof;
+
+        result(i, j) = std::max(result(i, j), creep_val);
+      }
+    }
+  }
+
+  // --- Apply Exclusion Mask
+
+  if (p_exclusion)
+  {
+    const Array &excl = *p_exclusion;
+
+#pragma omp parallel for collapse(2) if (total_cells > 4096)
+    for (int j = 0; j < shape.y; ++j)
+    {
+      for (int i = 0; i < shape.x; ++i)
+      {
+        if (excl(i, j) > exclusion_threshold) result(i, j) = 0.0f;
+      }
+    }
+  }
+
+  return result;
 }
 
 Forest seed_forest_clusters(size_t                      species_count,
@@ -515,6 +620,52 @@ Forest seed_forest_kmeans(size_t                      species_count,
 
 namespace hmap::va
 {
+
+VirtualArray creep_forest_density(const VirtualArray &density,
+                                  float               creeping_distance,
+                                  float               creeping_intensity,
+                                  const VirtualArray *p_exclusion,
+                                  float               exclusion_threshold,
+                                  const ComputeMode  &cm)
+{
+  if (density.empty()) return VirtualArray();
+
+  if (p_exclusion && (p_exclusion->shape != density.shape ||
+                      p_exclusion->tile_shape != density.tile_shape))
+  {
+    hmap::log::warn(
+        "Exclusion VirtualArray shape mismatch with density VirtualArray");
+    return VirtualArray();
+  }
+
+  VirtualArray out;
+  out.copy_from(density,
+                cm,
+                /* copy_src_data */ creeping_distance <= 0.0f ||
+                    creeping_intensity <= 0.0f);
+
+  if (creeping_distance <= 0.0f || creeping_intensity <= 0.0f) return out;
+
+  hmap::for_each_tile(
+      {&density, p_exclusion},
+      {&out},
+      [&](const std::vector<const hmap::Array *> &p_arrays_in,
+          std::vector<hmap::Array *>             &p_arrays_out,
+          const hmap::TileRegion &)
+      {
+        const auto [p_density_tile, p_exclusion_tile] = unpack<2>(p_arrays_in);
+        auto [p_out_tile]                             = unpack<1>(p_arrays_out);
+
+        *p_out_tile = hmap::creep_forest_density(*p_density_tile,
+                                                 creeping_distance,
+                                                 creeping_intensity,
+                                                 p_exclusion_tile,
+                                                 exclusion_threshold);
+      },
+      cm);
+
+  return out;
+}
 
 Forest seed_forest_clusters(size_t                      species_count,
                             size_t                      tree_count,

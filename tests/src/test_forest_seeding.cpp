@@ -1030,6 +1030,229 @@ TEST(TreeDensityTest, ZeroWeightsFailsafe)
   }
 }
 
+TEST(TreeDensityTest, CreepingZeroParameters)
+{
+  glm::ivec2 shape = {32, 32};
+  Array      density(shape, 0.0f);
+  for (int j = 10; j < 22; ++j)
+    for (int i = 10; i < 22; ++i)
+      density(i, j) = 0.8f;
+
+  // zero distance
+  Array c1 = creep_forest_density(density, 0.0f, 0.5f);
+  EXPECT_EQ(c1.vector, density.vector);
+
+  // zero intensity
+  Array c2 = creep_forest_density(density, 5.0f, 0.0f);
+  EXPECT_EQ(c2.vector, density.vector);
+}
+
+TEST(TreeDensityTest, CreepingSpreadsDensityIntoNeighboringArea)
+{
+  glm::ivec2 shape = {40, 40};
+  Array      density(shape, 0.0f);
+
+  // Forest core in [15, 25) x [15, 25) with density 0.8
+  for (int j = 15; j < 25; ++j)
+    for (int i = 15; i < 25; ++i)
+      density(i, j) = 0.8f;
+
+  float creeping_distance = 6.0f;
+  float creeping_intensity = 0.8f;
+
+  Array crept = creep_forest_density(density,
+                                     creeping_distance,
+                                     creeping_intensity);
+
+  ASSERT_EQ(crept.shape, shape);
+
+  // Check 1: original core is strictly preserved
+  for (int j = 15; j < 25; ++j)
+    for (int i = 15; i < 25; ++i)
+    {
+      EXPECT_FLOAT_EQ(crept(i, j), 0.8f);
+    }
+
+  // Check 2: adjacent pixels outside the core receive non-zero creeping density
+  EXPECT_GT(crept(25, 20), 0.0f);
+  EXPECT_GT(crept(26, 20), 0.0f);
+  EXPECT_GT(crept(27, 20), 0.0f);
+
+  // Check 3: density monotonically decreases along distance from edge
+  EXPECT_GT(crept(25, 20), crept(26, 20));
+  EXPECT_GT(crept(26, 20), crept(27, 20));
+  EXPECT_GT(crept(27, 20), crept(28, 20));
+
+  // Check 4: pixels beyond creeping distance (e.g. x = 35) remain zero
+  EXPECT_FLOAT_EQ(crept(35, 20), 0.0f);
+  EXPECT_FLOAT_EQ(crept(0, 0), 0.0f);
+
+  // Check 5: no abrupt jump at the edge: difference across boundary is small
+  float boundary_diff = std::abs(crept(24, 20) - crept(25, 20));
+  EXPECT_LT(boundary_diff, 0.1f);
+}
+
+TEST(TreeDensityTest, CreepingPreservesOriginalDensityDistribution)
+{
+  glm::ivec2 shape = {32, 32};
+  Array      density(shape, 0.0f);
+
+  // Heterogeneous forest core: left half 0.4, right half 0.9
+  for (int j = 10; j < 22; ++j)
+  {
+    for (int i = 10; i < 16; ++i)
+      density(i, j) = 0.4f;
+    for (int i = 16; i < 22; ++i)
+      density(i, j) = 0.9f;
+  }
+
+  Array crept = creep_forest_density(density, 4.0f, 0.7f);
+
+  for (int j = 10; j < 22; ++j)
+  {
+    for (int i = 10; i < 16; ++i)
+    {
+      EXPECT_FLOAT_EQ(crept(i, j), 0.4f);
+    }
+    for (int i = 16; i < 22; ++i)
+    {
+      EXPECT_FLOAT_EQ(crept(i, j), 0.9f);
+    }
+  }
+}
+
+TEST(TreeDensityTest, CreepingIntensityControlsMagnitude)
+{
+  glm::ivec2 shape = {32, 32};
+  Array      density(shape, 0.0f);
+
+  for (int j = 12; j < 20; ++j)
+    for (int i = 12; i < 20; ++i)
+      density(i, j) = 0.8f;
+
+  Array c_high = creep_forest_density(density, 6.0f, 1.0f);
+  Array c_low  = creep_forest_density(density, 6.0f, 0.2f);
+
+  // Point at distance 2 from the core (x = 21, y = 16)
+  EXPECT_GT(c_high(21, 16), c_low(21, 16));
+
+  // Point at distance 4 from the core (x = 23, y = 16)
+  EXPECT_GT(c_high(23, 16), c_low(23, 16));
+}
+
+TEST(TreeDensityTest, CreepingRespectsExclusionMask)
+{
+  glm::ivec2 shape = {32, 32};
+  Array      density(shape, 0.0f);
+  Array      exclusion(shape, 0.0f);
+
+  // Center forest
+  for (int j = 10; j < 22; ++j)
+    for (int i = 10; i < 22; ++i)
+      density(i, j) = 0.8f;
+
+  // Exclude right side (x >= 22)
+  for (int j = 0; j < 32; ++j)
+    for (int i = 22; i < 32; ++i)
+      exclusion(i, j) = 1.0f;
+
+  Array crept = creep_forest_density(density, 5.0f, 0.7f, &exclusion, 0.5f);
+
+  // Left side creeps
+  EXPECT_GT(crept(9, 16), 0.0f);
+
+  // Excluded right side must remain strictly zero
+  for (int j = 0; j < 32; ++j)
+    for (int i = 22; i < 32; ++i)
+    {
+      EXPECT_FLOAT_EQ(crept(i, j), 0.0f);
+    }
+}
+
+TEST(TreeDensityTest, BuildTreeDensityWithCreepingIntegration)
+{
+  glm::ivec2 shape = {64, 64};
+  Array      hmap(shape, 0.0f);
+  for (int j = 0; j < shape.y; ++j)
+    for (int i = 0; i < shape.x; ++i)
+      hmap(i, j) = static_cast<float>(j) / static_cast<float>(shape.y);
+
+  // Base density without creeping
+  Array d_base = build_tree_density(hmap,
+                                    0.2f, // min_elev
+                                    0.6f, // max_elev
+                                    0.05f,
+                                    0.003f,
+                                    0.005f,
+                                    30.0f,
+                                    90.0f,
+                                    1.0f,
+                                    0.0f,
+                                    0.0f,
+                                    0.0f);
+
+  // Density with gradual vegetation creeping
+  Array d_crept = build_tree_density(hmap,
+                                     0.2f,
+                                     0.6f,
+                                     0.05f,
+                                     0.003f,
+                                     0.005f,
+                                     30.0f,
+                                     90.0f,
+                                     1.0f,
+                                     0.0f,
+                                     0.0f,
+                                     0.0f,
+                                     {},
+                                     1.0f,
+                                     {},
+                                     0.0f,
+                                     0.05f, // creeping_distance
+                                     0.7f); // creeping_intensity
+
+  // Total density with creeping should be greater than base
+  EXPECT_GT(d_crept.sum(), d_base.sum());
+
+  // In the core (midpoint around j = 25), density should be identical
+  EXPECT_NEAR(d_crept(32, 25), d_base(32, 25), 1e-4f);
+}
+
+TEST(ForestSeedingTest, VirtualArrayCreepForestDensity)
+{
+  glm::ivec2 shape = {64, 64};
+  glm::ivec2 tile_shape = {32, 32};
+  int        halo = 8;
+  glm::vec4  bbox = {0.0f, 1.0f, 0.0f, 1.0f};
+
+  VirtualArray va_density(shape, bbox, tile_shape, halo);
+  ComputeMode  cm;
+
+  // Center patch in tile
+  Array arr(shape, 0.0f);
+  for (int j = 24; j < 40; ++j)
+    for (int i = 24; i < 40; ++i)
+      arr(i, j) = 0.8f;
+
+  va_density.from_array(arr, cm);
+
+  VirtualArray va_crept = hmap::va::creep_forest_density(va_density,
+                                                         6.0f,
+                                                         0.8f,
+                                                         nullptr,
+                                                         0.0f,
+                                                         cm);
+
+  Array out_arr = va_crept.to_array(cm);
+
+  // Core preserved
+  EXPECT_FLOAT_EQ(out_arr(32, 32), 0.8f);
+
+  // Crept into margin
+  EXPECT_GT(out_arr(22, 32), 0.0f);
+  EXPECT_GT(out_arr(42, 32), 0.0f);
+}
+
 // --- VirtualArray Seeding Tests
 
 TEST(ForestSeedingTest, VirtualArrayBasicClusterSeeding)
