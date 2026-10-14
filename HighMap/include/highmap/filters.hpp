@@ -29,6 +29,24 @@ struct ComputeMode;
 struct VirtualArray;
 
 /**
+ * @brief Directional pattern mode for distance shaper.
+ */
+enum class DistanceMode : int
+{
+  ASTERISK = 0, ///< Star-shaped pattern with cut-ins between directions.
+  PYRAMID  = 1  ///< Diamond/polyhedral pattern with flat planar facets.
+};
+
+/**
+ * @brief Method used to calculate distance.
+ */
+enum class DistanceMethod : int
+{
+  RT      = 0, ///< Real-time directional slope projection.
+  CLASSIC = 1  ///< Standard Euclidean distance transform.
+};
+
+/**
  * @brief Applies a primitive-based displacement to an array.
  *
  * Adds a scaled primitive pattern (optionally perturbed by noise) to the input
@@ -158,6 +176,56 @@ Array dequantize(const Array  &array,
                  std::uint32_t seed,
                  float         dither_amplitude = 0.01f,
                  int           filtering_iterations = 1);
+
+/**
+ * @brief Generates sloped, stratified terrain profiles from shapes and masks
+ * using directional distance fields.
+ *
+ * Reproduces the behavior of Gaea's Distance node. Can generate multi-directional
+ * slopes, terraced / folded rock formations, and anisotropic skewing.
+ *
+ * @param array          Input heightmap or shape mask.
+ * @param falloff        Slope / distance gradient decay rate.
+ * @param directions     Number of projection directions.
+ * @param skew           Asymmetry / skew strength along orientation angle.
+ * @param angle          Primary orientation angle in degrees.
+ * @param mode           Pattern mode (PYRAMID for flat faces, ASTERISK for star-shaped cuts).
+ * @param method         Distance calculation method (RT or CLASSIC).
+ * @param angular_jitter Random jitter applied to directional angles in [0, 1].
+ * @param falloff_jitter Random variation applied to falloff in [0, 1].
+ * @param threshold      Cutoff elevation threshold for sources.
+ * @param invert_input   If true, inverts the input prior to distance calculation.
+ * @param invert_output  If true, inverts the output distance field.
+ * @param mix_ratio      Blending factor between original input and output in [0, 1].
+ * @param seed           Random seed for stochastic jitter.
+ * @param p_mask         Optional blend mask pointer.
+ * @param p_dx           Optional X displacement array for domain warp.
+ * @param p_dy           Optional Y displacement array for domain warp.
+ * @return               Resulting shaped array.
+ *
+ * **Example**
+ * @include ex_distance_shaper.cpp
+ *
+ * **Result**
+ * @image html ex_distance_shaper.png
+ */
+Array distance_shaper(const Array   &array,
+                      float          falloff = 0.05f,
+                      int            directions = 8,
+                      float          skew = 0.f,
+                      float          angle = 0.f,
+                      DistanceMode   mode = DistanceMode::PYRAMID,
+                      DistanceMethod method = DistanceMethod::RT,
+                      float          angular_jitter = 0.f,
+                      float          falloff_jitter = 0.f,
+                      float          threshold = 0.f,
+                      bool           invert_input = false,
+                      bool           invert_output = false,
+                      float          mix_ratio = 1.f,
+                      std::uint32_t  seed = 0,
+                      const Array   *p_mask = nullptr,
+                      const Array   *p_dx = nullptr,
+                      const Array   *p_dy = nullptr);
 
 /**
  * @brief Apply histogram equalization to the array values.
@@ -2350,6 +2418,26 @@ void directional_blur(Array       &array,
                       const Array &angle,
                       const Array *p_mask,
                       int          steps = 32);
+
+/*! @brief See hmap::distance_shaper */
+Array distance_shaper(const Array   &array,
+                      float          falloff = 0.05f,
+                      int            directions = 8,
+                      float          skew = 0.f,
+                      float          angle = 0.f,
+                      DistanceMode   mode = DistanceMode::PYRAMID,
+                      DistanceMethod method = DistanceMethod::RT,
+                      float          angular_jitter = 0.f,
+                      float          falloff_jitter = 0.f,
+                      float          threshold = 0.f,
+                      bool           invert_input = false,
+                      bool           invert_output = false,
+                      float          mix_ratio = 1.f,
+                      std::uint32_t  seed = 0,
+                      const Array   *p_mask = nullptr,
+                      const Array   *p_dx = nullptr,
+                      const Array   *p_dy = nullptr);
+
 /*! @brief See hmap::expand */
 void expand(Array &array, int ir, int iterations = 1);
 

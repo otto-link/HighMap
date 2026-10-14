@@ -1,0 +1,2 @@
+add_executable(ex_distance_shaper ex_distance_shaper.cpp)
+target_link_libraries(ex_distance_shaper highmap)

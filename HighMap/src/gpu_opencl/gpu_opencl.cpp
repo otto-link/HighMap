@@ -188,6 +188,9 @@ bool init_opencl()
 #include "kernels/filters/directional_blur.cl"
   );
   add(
+#include "kernels/filters/distance_shaper.cl"
+  );
+  add(
 #include "kernels/filters/expand.cl"
   );
   add(
