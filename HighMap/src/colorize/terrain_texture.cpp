@@ -3,12 +3,12 @@
  * this software. */
 #include <algorithm>
 #include <cmath>
-#include <numbers>
 #include <vector>
 
 #include "highmap/array.hpp"
 #include "highmap/colorize.hpp"
 #include "highmap/filters.hpp"
+#include "highmap/gradient.hpp"
 #include "highmap/hydrology.hpp"
 #include "highmap/internal/validation.hpp"
 #include "highmap/local_metrics.hpp"
@@ -17,52 +17,55 @@
 #include "highmap/range.hpp"
 #include "highmap/texture.hpp"
 
+#include <numbers>
+
 namespace hmap
 {
 
 Texture terrain_texture(const Array                &z,
                         const Array                *p_deposition,
                         const TerrainTextureParams &p,
-                        const glm::vec4            &bbox)
+                        const glm::vec4            &bbox,
+                        float                       zmin,
+                        float                       zmax)
 {
   if (!validate_non_empty(z)) return Texture();
 
-  const glm::ivec2 shape = z.shape;
-  const int        nx    = shape.x;
-  const int        ny    = shape.y;
-  const int        n     = nx * ny;
-  const auto       px    = [nx](float frac) { return std::max(1, int(frac * nx)); };
+  // resolve elevation range
+  if (zmin > zmax)
+  {
+    const glm::vec2 z_range = z.range();
+    zmin = z_range.x;
+    zmax = z_range.y;
+  }
 
-  const auto [it_min, it_max] = std::minmax_element(z.vector.begin(), z.vector.end());
-  const float zmin            = *it_min;
-  const float zrange          = std::max(*it_max - zmin, 1e-6f);
+  const glm::ivec2 shape = z.shape;
+  const int        nx = shape.x;
+  const int        ny = shape.y;
+  const int        n = nx * ny;
+
+  // pixel radii computed from a single reference scale (region radius)
+  const int ir_region = std::max(1, int(p.region_radius * float(nx)));
+  const int ir_crest = std::max(1, int(ir_region / 5.f));
+  const int ir_fine = std::max(1, int(ir_region / 20.f));
+  const int ir_smooth = std::max(1, int(ir_region / 25.6f));
+
+  const float zrange = std::max(zmax - zmin, 1e-6f);
 
   // --- Terrain analysis
 
   // slope and fall lines, read from a lightly smoothed surface
   Array zs = z;
-  smooth_cpulse(zs, px(1.f / 512.f));
+  smooth_cpulse(zs, ir_smooth);
 
-  std::vector<float> gx(n), gy(n), slope(n);
+  Array gx, gy;
+  Array slope = gradient_norm(zs, &gx, &gy) * float(nx);
+  gx *= float(nx);
+  gy *= float(nx);
 
-#pragma omp parallel for
-  for (int j = 0; j < ny; ++j)
-    for (int i = 0; i < nx; ++i)
-    {
-      const int   ip = std::min(i + 1, nx - 1), im = std::max(i - 1, 0);
-      const int   jp = std::min(j + 1, ny - 1), jm = std::max(j - 1, 0);
-      const float dx = (zs(ip, j) - zs(im, j)) / float(ip - im) * nx;
-      const float dy = (zs(i, jp) - zs(i, jm)) / float(jp - jm) * nx;
-      const int   k  = j * nx + i;
-
-      gx[k]    = dx;
-      gy[k]    = dy;
-      slope[k] = std::hypot(dx, dy);
-    }
-
-  const Array fine   = topographic_residual(z, px(1.f / 400.f), true);
-  const Array crest  = topographic_residual(z, px(1.f / 100.f), true);
-  const Array region = topographic_residual(z, px(1.f / 20.f), true);
+  const Array fine = topographic_residual(z, ir_fine, true);
+  const Array crest = topographic_residual(z, ir_crest, true);
+  const Array region = topographic_residual(z, ir_region, true);
 
   // drainage on a log scale: 0 on the ridges, 1 in the main river
   Array flow = flow_accumulation_dinf(zs, 0.1f);
@@ -72,7 +75,7 @@ Texture terrain_texture(const Array                &z,
       v = std::log(std::max(v, 1.f)) / lmax;
   }
   Array moisture = flow;
-  smooth_cpulse(moisture, px(1.f / 100.f));
+  smooth_cpulse(moisture, ir_crest);
 
   // deposits relative to the thick ones (among the cells that have any), so a
   // few strong spots do not wash out the rest and sparse maps stay sparse
@@ -81,8 +84,7 @@ Texture terrain_texture(const Array                &z,
   {
     std::vector<float> positive;
     for (float v : p_deposition->vector)
-      if (v > 0.f)
-        positive.push_back(v);
+      if (v > 0.f) positive.push_back(v);
 
     if (!positive.empty())
     {
@@ -100,25 +102,25 @@ Texture terrain_texture(const Array                &z,
   {
     const float k = kw * p.noise_scale;
     Array       a = noise_fbm(NoiseType::PERLIN,
-                              shape,
+                        shape,
                               {k, k},
-                              p.seed + seed_offset,
-                              octaves,
-                              0.f,
-                              0.5f,
-                              2.f,
-                              nullptr,
-                              nullptr,
-                              nullptr,
-                              bbox);
+                        p.seed + seed_offset,
+                        octaves,
+                        0.f,
+                        0.5f,
+                        2.f,
+                        nullptr,
+                        nullptr,
+                        nullptr,
+                        bbox);
     normalize_and_clip(a);
     return a;
   };
 
   const Array n_large = noise(3.f, 0, 4);
-  const Array n_mid   = noise(12.f, 1, 5);
-  const Array n_fine  = noise(64.f, 2, 3);
-  const Array n_rill  = noise(160.f, 3, 2);
+  const Array n_mid = noise(12.f, 1, 5);
+  const Array n_fine = noise(64.f, 2, 3);
+  const Array n_rill = noise(160.f, 3, 2);
   const Array n_grain = noise(320.f, 4, 2);
 
   // --- Fall lines
@@ -128,17 +130,17 @@ Texture terrain_texture(const Array                &z,
   for (int k = 0; k < n; ++k)
   {
     const float h = (z.vector[k] - zmin) / zrange;
-    source[k]     = smoothstep3(0.6f * crest.vector[k] + 0.6f * region.vector[k],
-                                0.05f,
-                                0.35f) *
-                    smoothstep3(h + 0.15f * n_mid.vector[k], 0.3f, 0.75f) *
-                    (0.75f + 0.25f * n_fine.vector[k]);
+    source[k] = smoothstep3(0.6f * crest.vector[k] + 0.6f * region.vector[k],
+                            0.05f,
+                            0.35f) *
+                smoothstep3(h + 0.15f * n_mid.vector[k], 0.3f, 0.75f) *
+                (0.75f + 0.25f * n_fine.vector[k]);
   }
 
-  const float streak_px    = p.streak_length * nx;
+  const float streak_px = p.streak_length * nx;
   const int   streak_steps = std::clamp(int(streak_px), 0, 64);
-  const float streak_step  = streak_steps ? streak_px / streak_steps : 0.f;
-  const int   rill_steps   = std::clamp(nx / 96, 3, 24);
+  const float streak_step = streak_steps ? streak_px / streak_steps : 0.f;
+  const int   rill_steps = std::clamp(nx / 96, 3, 24);
 
   std::vector<float> streak(n), rill(n);
 
@@ -153,14 +155,12 @@ Texture terrain_texture(const Array                &z,
         for (int s = 1; s <= steps; ++s)
         {
           const int   k = int(y + 0.5f) * nx + int(x + 0.5f);
-          const float g = std::hypot(gx[k], gy[k]);
-          if (g < 1e-6f)
-            return;
+          const float g = std::hypot(gx.vector[k], gy.vector[k]);
+          if (g < 1e-6f) return;
 
-          x += step * gx[k] / g;
-          y += step * gy[k] / g;
-          if (x < 0.f || y < 0.f || x > nx - 1.f || y > ny - 1.f)
-            return;
+          x += step * gx.vector[k] / g;
+          y += step * gy.vector[k] / g;
+          if (x < 0.f || y < 0.f || x > nx - 1.f || y > ny - 1.f) return;
 
           visit(s, int(y + 0.5f) * nx + int(x + 0.5f));
         }
@@ -169,7 +169,7 @@ Texture terrain_texture(const Array                &z,
       const int k = j * nx + i;
 
       // fine noise averaged along the fall line: rills and gullies
-      float sum   = n_rill.vector[k];
+      float sum = n_rill.vector[k];
       int   count = 1;
       walk(rill_steps,
            1.f,
@@ -184,7 +184,10 @@ Texture terrain_texture(const Array                &z,
       walk(streak_steps,
            streak_step,
            [&](int s, int kk)
-           { best = std::max(best, source[kk] * (1.f - s / (streak_steps + 1.f))); });
+           {
+             best = std::max(best,
+                             source[kk] * (1.f - s / (streak_steps + 1.f)));
+           });
       streak[k] = best;
     }
 
@@ -192,16 +195,16 @@ Texture terrain_texture(const Array                &z,
 
   Texture out(shape, 4);
 
-  const float cn     = p.color_noise;
+  const float cn = p.color_noise;
   const float two_pi = 2.f * std::numbers::pi_v<float>;
 
 #pragma omp parallel for
   for (int k = 0; k < n; ++k)
   {
-    const float h  = (z.vector[k] - zmin) / zrange;
-    const float s  = slope[k] / p.rock_slope; // 1 where rock takes over
-    const float c  = crest.vector[k];
-    const float r  = region.vector[k];
+    const float h = (z.vector[k] - zmin) / zrange;
+    const float s = slope.vector[k] / p.rock_slope; // 1 where rock takes over
+    const float c = crest.vector[k];
+    const float r = region.vector[k];
     const float nl = n_large.vector[k];
     const float nm = n_mid.vector[k];
     const float nf = n_fine.vector[k];
@@ -226,15 +229,18 @@ Texture terrain_texture(const Array                &z,
                                        0.25f * std::max(c, 0.f),
                                    0.35f,
                                    0.6f);
-    col              = glm::mix(col,
-                   shade_color(p.soil, cn * (0.25f * rl + 0.3f * nm + 0.15f * ng)),
-                   soil);
+    col = glm::mix(
+        col,
+        shade_color(p.soil, cn * (0.25f * rl + 0.3f * nm + 0.15f * ng)),
+        soil);
 
     // sediment along the drainage lines and in crisp deposits
     const float t0 = 0.8f - 0.5f * p.flow_width;
-    float sed = p.flow * smoothstep3(flow.vector[k] + 0.05f * nf, t0, t0 + 0.08f);
-    sed       = std::max(sed,
-                   p.deposition * smoothstep3(deposit[k] + 0.15f * nf, 0.4f, 0.8f));
+    float       sed = p.flow *
+                smoothstep3(flow.vector[k] + 0.05f * nf, t0, t0 + 0.08f);
+    sed = std::max(sed,
+                   p.deposition *
+                       smoothstep3(deposit[k] + 0.15f * nf, 0.4f, 0.8f));
     sed *= 1.f - smoothstep3(s, 0.6f, 1.f);
     col = glm::mix(
         col,
@@ -248,7 +254,7 @@ Texture terrain_texture(const Array                &z,
                                    1.f - edge,
                                    1.f + edge);
     const float band = std::sin(two_pi * (14.f * h + 0.4f * nl + 0.1f * nm));
-    col              = glm::mix(col,
+    col = glm::mix(col,
                    shade_color(p.rock,
                                0.35f * p.strata * band +
                                    cn * (0.2f * rl + 0.3f * nf + 0.15f * ng) +
@@ -261,14 +267,16 @@ Texture terrain_texture(const Array                &z,
                                     0.25f,
                                     0.65f) *
                         smoothstep3(s, 0.15f, 0.4f);
-    col = glm::mix(col,
-                   shade_color(p.ridge, cn * (0.3f * nf + 0.15f * rl + 0.15f * ng)),
-                   spill);
+    col = glm::mix(
+        col,
+        shade_color(p.ridge, cn * (0.3f * nf + 0.15f * rl + 0.15f * ng)),
+        spill);
 
     // snow on high ground, sliding off the steep parts
     const float snow = p.snow_amount *
                        smoothstep3(h - p.snow_line + 0.08f * nm + 0.04f * nf -
-                                       0.15f * std::max(0.f, s - 0.9f) - 0.05f * c,
+                                       0.15f * std::max(0.f, s - 0.9f) -
+                                       0.05f * c,
                                    -0.04f,
                                    0.04f);
     col = glm::mix(col,

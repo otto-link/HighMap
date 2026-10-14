@@ -1,0 +1,2 @@
+add_executable(ex_terrain_texture ex_terrain_texture.cpp)
+target_link_libraries(ex_terrain_texture highmap)

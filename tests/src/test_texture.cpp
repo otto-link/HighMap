@@ -247,6 +247,48 @@ TEST(TextureColorize, BivariateReverseAndNoise)
   EXPECT_NEAR(color.b, 0.f, 1e-5f);
 }
 
+TEST(TextureColorize, TerrainTextureZMinZMax)
+{
+  glm::ivec2 shape = {16, 16};
+  Array      z(shape, 10.f);
+  z(0, 0) = 5.f;
+  z(15, 15) = 15.f;
+
+  TerrainTextureParams params;
+
+  // Default guard values: should recompute zmin = 5, zmax = 15
+  Texture tex_default = terrain_texture(z, nullptr, params);
+  EXPECT_EQ(tex_default.shape, shape);
+  EXPECT_EQ(tex_default.num_channels(), 4);
+
+  // Explicit guard values
+  Texture tex_guard = terrain_texture(z,
+                                      nullptr,
+                                      params,
+                                      glm::vec4(0.f, 0.f, 1.f, 1.f),
+                                      0.f,
+                                      -1.f);
+  EXPECT_EQ(tex_guard.shape, shape);
+  EXPECT_EQ(tex_guard.num_channels(), 4);
+
+  // Verify that default guard and explicit guard produce identical results
+  for (int c = 0; c < 4; ++c)
+    EXPECT_TRUE(assert_almost_equal(tex_default[c], tex_guard[c], 1e-5f));
+
+  // Explicit custom elevation range (zmin <= zmax)
+  Texture tex_custom = terrain_texture(z,
+                                       nullptr,
+                                       params,
+                                       glm::vec4(0.f, 0.f, 1.f, 1.f),
+                                       5.f,
+                                       15.f);
+  EXPECT_EQ(tex_custom.shape, shape);
+  EXPECT_EQ(tex_custom.num_channels(), 4);
+
+  for (int c = 0; c < 4; ++c)
+    EXPECT_TRUE(assert_almost_equal(tex_default[c], tex_custom[c], 1e-5f));
+}
+
 TEST(TextureTransform, BasicTransforms)
 {
   glm::ivec2 shape = {4, 8};

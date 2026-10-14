@@ -104,6 +104,7 @@ struct TerrainTextureParams
   float     color_noise   = 1.f;
   float     detail        = 1.f;
   float     cavity        = 0.6f;
+  float     region_radius = 0.05f;
 };
 
 /**
@@ -511,12 +512,16 @@ Texture mix_normal_map(const Texture          &nmap_base,
  * @param p_deposition Optional deposition array (may be nullptr).
  * @param params       Terrain texturing parameters.
  * @param bbox         Bounding box for coherent noise coordinates.
+ * @param zmin         Minimum elevation to consider (computed from z if zmin > zmax).
+ * @param zmax         Maximum elevation to consider (computed from z if zmin > zmax).
  * @return             4-channel RGBA Texture.
  */
 Texture terrain_texture(const Array                &z,
                         const Array                *p_deposition,
                         const TerrainTextureParams &params,
-                        const glm::vec4            &bbox = glm::vec4(0.f, 0.f, 1.f, 1.f));
+                        const glm::vec4            &bbox = glm::vec4(0.f, 0.f, 1.f, 1.f),
+                        float                       zmin = 0.f,
+                        float                       zmax = -1.f);
 
 } // namespace hmap
 
