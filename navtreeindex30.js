@@ -1,5 +1,14 @@
 var NAVTREEINDEX30 =
 {
+"test__decimate__vw_8cpp.html":[4,0,2,0,18],
+"test__decimate__vw_8cpp.html#a12574f1f3dc7ac44b2bedfb182a081cb":[4,0,2,0,18,2],
+"test__decimate__vw_8cpp.html#a8b48ea5895c2947cf9cf565bd2b3f924":[4,0,2,0,18,1],
+"test__decimate__vw_8cpp.html#abeee74d417a1720aed737e5c86ff0ec8":[4,0,2,0,18,3],
+"test__decimate__vw_8cpp.html#abefdf0c1cabeb22dd1570bfe3c3a3578":[4,0,2,0,18,4],
+"test__decimate__vw_8cpp.html#af6771c6e6f7535a7cfe4ec2fba540217":[4,0,2,0,18,0],
+"test__distance__shaper_8cpp.html":[4,0,2,0,19],
+"test__distance__shaper_8cpp.html#a02a6ee90bd116e5cb827c908e2f7c66b":[4,0,2,0,19,0],
+"test__distance__shaper_8cpp.html#a166d38de49922b954bd4697907785ee7":[4,0,2,0,19,4],
 "test__distance__shaper_8cpp.html#a5e8b1fadae78206b390ed8aeb7508830":[4,0,2,0,19,1],
 "test__distance__shaper_8cpp.html#acba25c88b46c9123e3a5bc6e0deed201":[4,0,2,0,19,3],
 "test__distance__shaper_8cpp.html#adff24c26b8b03dbd6a05471405e92848":[4,0,2,0,19,2],
@@ -240,14 +249,5 @@ var NAVTREEINDEX30 =
 "test__jagged_8cpp.html#a58c970f4028d9de1b284340abeeee329":[4,0,2,0,43,12],
 "test__jagged_8cpp.html#a89982cb8a6bfdf72caf234cdfbfb93ae":[4,0,2,0,43,1],
 "test__jagged_8cpp.html#a8f679925cb7e7518ca6fb4d77ce72457":[4,0,2,0,43,5],
-"test__jagged_8cpp.html#a9da977efd3fd25da8f96ee31e4a88746":[4,0,2,0,43,16],
-"test__jagged_8cpp.html#aa77efa5072a94e95b2ae9d04e6b12e13":[4,0,2,0,43,8],
-"test__jagged_8cpp.html#ab6f38479dd01920a2b39a6d66ba79839":[4,0,2,0,43,3],
-"test__jagged_8cpp.html#abed858f33e095109bba52fcd776adf30":[4,0,2,0,43,14],
-"test__jagged_8cpp.html#ac91cf54ea362750a2b263355c4687194":[4,0,2,0,43,2],
-"test__jagged_8cpp.html#ad0c12fbd79e8e4d7fd2946e956b82415":[4,0,2,0,43,15],
-"test__jagged_8cpp.html#aea977f2046b52f9bde7041126a527d93":[4,0,2,0,43,7],
-"test__jagged_8cpp.html#af7b23b876e49dd6380bba94c0947c682":[4,0,2,0,43,9],
-"test__jagged_8cpp.html#af929aaba50ef27c1f39edc4da05dc294":[4,0,2,0,43,4],
-"test__kd__tree_8cpp.html":[4,0,2,0,44]
+"test__jagged_8cpp.html#a9da977efd3fd25da8f96ee31e4a88746":[4,0,2,0,43,16]
 };

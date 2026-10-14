@@ -34,6 +34,7 @@ var local__metrics_8hpp =
     [ "ruggedness", "local__metrics_8hpp.html#af4ec8b5be149e6749fdf09759daf1e9e", null ],
     [ "rugosity", "local__metrics_8hpp.html#a85e411c67e97deb8459f25d4440546c3", null ],
     [ "topographic_wetness_index", "local__metrics_8hpp.html#af34b234c6d2327f9018f239e12889e3d", null ],
+    [ "topographic_residual", "local__metrics_8hpp.html#a84c7bc9ee3daf338e8227c2248b4695e", null ],
     [ "valley_width", "local__metrics_8hpp.html#ab4d8048b79080012b8e60c270de8137f", null ],
     [ "local_aspect_variance", "local__metrics_8hpp.html#a22adb2fd39544ac3e1c2494a8e6c184d", null ],
     [ "local_max", "local__metrics_8hpp.html#afab20683fccb546cab8ab2b5dc20f3af", null ],

@@ -453,7 +453,22 @@
 <codeline lineno="443"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="444"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="445"><highlight class="normal"></highlight></codeline>
-<codeline lineno="446"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hmap</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="446"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespacehmap_1a813489b177fe9e94a7a7a7a8cb82ce63" kindref="member">normalize_and_clip</ref>(Array<sp/>&amp;array,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>multiplier,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>std)</highlight></codeline>
+<codeline lineno="447"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="448"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="namespacehmap_1ada207723c327adabe73af8554e48e5bd" kindref="member">validate_non_empty</ref>(array))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="449"><highlight class="normal"></highlight></codeline>
+<codeline lineno="450"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>mean<sp/>=<sp/>array.mean();</highlight></codeline>
+<codeline lineno="451"><highlight class="normal"></highlight></codeline>
+<codeline lineno="452"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>sigma<sp/>=<sp/>std;</highlight></codeline>
+<codeline lineno="453"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sigma<sp/>&lt;=<sp/>0.f)<sp/>sigma<sp/>=<sp/>array.std();</highlight></codeline>
+<codeline lineno="454"><highlight class="normal"></highlight></codeline>
+<codeline lineno="455"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>denom<sp/>=<sp/>std::max(multiplier<sp/>*<sp/>sigma,<sp/>1e-12f);</highlight></codeline>
+<codeline lineno="456"><highlight class="normal"></highlight></codeline>
+<codeline lineno="457"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>&amp;v<sp/>:<sp/>array.vector)</highlight></codeline>
+<codeline lineno="458"><highlight class="normal"><sp/><sp/><sp/><sp/>v<sp/>=<sp/>std::<ref refid="namespacehmap_1ae6dfd87b0368629657c3138dbf24cbc4" kindref="member">clamp</ref>((v<sp/>-<sp/>mean)<sp/>/<sp/>denom,<sp/>-1.f,<sp/>1.f);</highlight></codeline>
+<codeline lineno="459"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="460"><highlight class="normal"></highlight></codeline>
+<codeline lineno="461"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hmap</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="HighMap/src/range/range.cpp"/>
   </compounddef>

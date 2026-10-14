@@ -42177,6 +42177,63 @@ The output path consists of:<itemizedlist>
         </inbodydescription>
         <location file="HighMap/src/local_metrics/topographic_wetness_index.cpp" line="16" column="7" bodyfile="HighMap/src/local_metrics/topographic_wetness_index.cpp" bodystart="16" bodyend="40" declfile="HighMap/include/highmap/local_metrics.hpp" declline="281" declcolumn="7"/>
       </memberdef>
+      <memberdef kind="function" id="namespacehmap_1a84c7bc9ee3daf338e8227c2248b4695e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
+        <definition>Array hmap::topographic_residual</definition>
+        <argsstring>(const Array &amp;z, int ir, bool normalize_output=false)</argsstring>
+        <name>topographic_residual</name>
+        <qualifiedname>hmap::topographic_residual</qualifiedname>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>ir</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>normalize_output</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Computes the topographic residual (relief) relative to a smoothed surface. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Subtracts a smoothed version of the elevation (using smooth_cpulse with radius ir) from the input array. Optionally normalizes and clips the output to [-1, 1].</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>z</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input elevation array. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ir</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Radius for smoothing filter. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>normalize_output</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If true, normalizes and clips the residual to [-1, 1]. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> containing the topographic residual. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/src/local_metrics/local_metrics.cpp" line="213" column="7" bodyfile="HighMap/src/local_metrics/local_metrics.cpp" bodystart="213" bodyend="224" declfile="HighMap/include/highmap/local_metrics.hpp" declline="299" declcolumn="7"/>
+      </memberdef>
       <memberdef kind="function" id="namespacehmap_1ab4d8048b79080012b8e60c270de8137f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
         <definition>Array hmap::valley_width</definition>
@@ -42262,7 +42319,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/local_metrics/valley_width.cpp" line="13" column="7" bodyfile="HighMap/src/local_metrics/valley_width.cpp" bodystart="13" bodyend="25" declfile="HighMap/include/highmap/local_metrics.hpp" declline="319" declcolumn="7"/>
+        <location file="HighMap/src/local_metrics/valley_width.cpp" line="13" column="7" bodyfile="HighMap/src/local_metrics/valley_width.cpp" bodystart="13" bodyend="25" declfile="HighMap/include/highmap/local_metrics.hpp" declline="337" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a527cfdcf7f7e2ca0e270875526c9b1ee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -45090,6 +45147,59 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
         </inbodydescription>
         <location file="HighMap/src/math/core.cpp" line="99" column="7" bodyfile="HighMap/src/math/core.cpp" bodystart="99" bodyend="102" declfile="HighMap/include/highmap/math/core.hpp" declline="211" declcolumn="7"/>
       </memberdef>
+      <memberdef kind="function" id="namespacehmap_1a38dbac6548c0d7ca57416e8c3186f072" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float hmap::smoothstep3</definition>
+        <argsstring>(float x, float clamp_min, float clamp_max)</argsstring>
+        <name>smoothstep3</name>
+        <qualifiedname>hmap::smoothstep3</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>clamp_min</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>clamp_max</declname>
+        </param>
+        <briefdescription>
+<para>Cubic smoothstep function with clamping. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input value. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>clamp_min</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Lower clamp bound. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>clamp_max</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Upper clamp bound. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/src/math/core.cpp" line="104" column="7" bodyfile="HighMap/src/math/core.cpp" bodystart="104" bodyend="110" declfile="HighMap/include/highmap/math/core.hpp" declline="220" declcolumn="7"/>
+      </memberdef>
       <memberdef kind="function" id="namespacehmap_1a4c21ef9d4f7d33f2413c7fe391b86253" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
         <definition>float hmap::smoothstep3_lower</definition>
@@ -45117,7 +45227,7 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/core.cpp" line="104" column="7" bodyfile="HighMap/src/math/core.cpp" bodystart="104" bodyend="107" declfile="HighMap/include/highmap/math/core.hpp" declline="218" declcolumn="7"/>
+        <location file="HighMap/src/math/core.cpp" line="112" column="7" bodyfile="HighMap/src/math/core.cpp" bodystart="112" bodyend="115" declfile="HighMap/include/highmap/math/core.hpp" declline="227" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1af23a6099bd3307b408f17d2346ab3d3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -45146,7 +45256,7 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/core.cpp" line="109" column="7" bodyfile="HighMap/src/math/core.cpp" bodystart="109" bodyend="112" declfile="HighMap/include/highmap/math/core.hpp" declline="225" declcolumn="7"/>
+        <location file="HighMap/src/math/core.cpp" line="117" column="7" bodyfile="HighMap/src/math/core.cpp" bodystart="117" bodyend="120" declfile="HighMap/include/highmap/math/core.hpp" declline="234" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a826591db096cb2ca4d836d4c5eeaac02" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -45175,7 +45285,7 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/core.cpp" line="114" column="7" bodyfile="HighMap/src/math/core.cpp" bodystart="114" bodyend="117" declfile="HighMap/include/highmap/math/core.hpp" declline="232" declcolumn="7"/>
+        <location file="HighMap/src/math/core.cpp" line="122" column="7" bodyfile="HighMap/src/math/core.cpp" bodystart="122" bodyend="125" declfile="HighMap/include/highmap/math/core.hpp" declline="241" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ac3a402abb2905ac02f1756c0b36e971c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -45204,7 +45314,7 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/core.cpp" line="119" column="7" bodyfile="HighMap/src/math/core.cpp" bodystart="119" bodyend="122" declfile="HighMap/include/highmap/math/core.hpp" declline="239" declcolumn="7"/>
+        <location file="HighMap/src/math/core.cpp" line="127" column="7" bodyfile="HighMap/src/math/core.cpp" bodystart="127" bodyend="130" declfile="HighMap/include/highmap/math/core.hpp" declline="248" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1aae372587e98d5acb969a89a5f0661019" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -45233,7 +45343,7 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/core.cpp" line="124" column="7" bodyfile="HighMap/src/math/core.cpp" bodystart="124" bodyend="127" declfile="HighMap/include/highmap/math/core.hpp" declline="246" declcolumn="7"/>
+        <location file="HighMap/src/math/core.cpp" line="132" column="7" bodyfile="HighMap/src/math/core.cpp" bodystart="132" bodyend="135" declfile="HighMap/include/highmap/math/core.hpp" declline="255" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ae7d9d43c2cd453af7a6395cbcb2ac3b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -45262,7 +45372,7 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/core.cpp" line="129" column="7" bodyfile="HighMap/src/math/core.cpp" bodystart="129" bodyend="138" declfile="HighMap/include/highmap/math/core.hpp" declline="253" declcolumn="7"/>
+        <location file="HighMap/src/math/core.cpp" line="137" column="7" bodyfile="HighMap/src/math/core.cpp" bodystart="137" bodyend="146" declfile="HighMap/include/highmap/math/core.hpp" declline="262" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a2752dc48a6d7bac9d3798033d1e7b3dd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -45317,7 +45427,7 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/core.cpp" line="140" column="7" bodyfile="HighMap/src/math/core.cpp" bodystart="140" bodyend="145" declfile="HighMap/include/highmap/math/core.hpp" declline="263" declcolumn="7"/>
+        <location file="HighMap/src/math/core.cpp" line="148" column="7" bodyfile="HighMap/src/math/core.cpp" bodystart="148" bodyend="153" declfile="HighMap/include/highmap/math/core.hpp" declline="272" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ab565b6dd40d712a5ebc3170e13a1cceb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -45370,7 +45480,7 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/core.cpp" line="147" column="7" bodyfile="HighMap/src/math/core.cpp" bodystart="147" bodyend="152" declfile="HighMap/include/highmap/math/core.hpp" declline="272" declcolumn="7"/>
+        <location file="HighMap/src/math/core.cpp" line="155" column="7" bodyfile="HighMap/src/math/core.cpp" bodystart="155" bodyend="160" declfile="HighMap/include/highmap/math/core.hpp" declline="281" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a5eaeb43a259dcdf4b0fb4632a559a1d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -45436,7 +45546,7 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/core.cpp" line="154" column="7" bodyfile="HighMap/src/math/core.cpp" bodystart="154" bodyend="165" declfile="HighMap/include/highmap/math/core.hpp" declline="285" declcolumn="7"/>
+        <location file="HighMap/src/math/core.cpp" line="162" column="7" bodyfile="HighMap/src/math/core.cpp" bodystart="162" bodyend="173" declfile="HighMap/include/highmap/math/core.hpp" declline="294" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a0a3ae79b31c4eebc54ae686d5ba558a3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -45501,7 +45611,7 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/core.cpp" line="167" column="7" bodyfile="HighMap/src/math/core.cpp" bodystart="167" bodyend="170" declfile="HighMap/include/highmap/math/core.hpp" declline="295" declcolumn="7"/>
+        <location file="HighMap/src/math/core.cpp" line="175" column="7" bodyfile="HighMap/src/math/core.cpp" bodystart="175" bodyend="178" declfile="HighMap/include/highmap/math/core.hpp" declline="304" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1adce0295b768dd046d1ddcd117cb1b8b4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -45556,7 +45666,7 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/math/core.cpp" line="172" column="7" bodyfile="HighMap/src/math/core.cpp" bodystart="172" bodyend="180" declfile="HighMap/include/highmap/math/core.hpp" declline="305" declcolumn="7"/>
+        <location file="HighMap/src/math/core.cpp" line="180" column="7" bodyfile="HighMap/src/math/core.cpp" bodystart="180" bodyend="188" declfile="HighMap/include/highmap/math/core.hpp" declline="314" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a4ec7654348a03f333c10c005ec8231b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::function&lt; float(float, float)&gt;</type>
@@ -61459,6 +61569,62 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         <inbodydescription>
         </inbodydescription>
         <location file="HighMap/src/range/range.cpp" line="428" column="6" bodyfile="HighMap/src/range/range.cpp" bodystart="428" bodyend="444" declfile="HighMap/include/highmap/range.hpp" declline="460" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehmap_1a813489b177fe9e94a7a7a7a8cb82ce63" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::normalize_and_clip</definition>
+        <argsstring>(Array &amp;array, float multiplier=2.5f, float std=-1.f)</argsstring>
+        <name>normalize_and_clip</name>
+        <qualifiedname>hmap::normalize_and_clip</qualifiedname>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>array</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>multiplier</declname>
+          <defval>2.5<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>std</declname>
+          <defval>-1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <briefdescription>
+<para>Normalize an array around its mean and clip values to [-1, 1]. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Centers the array by subtracting its mean, scales by (multiplier * std), and clamps the result to [-1, 1].</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>array</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input array to be normalized and clipped. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>multiplier</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Standard deviation multiplier (default is 2.5f). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>std</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Standard deviation to use. If &lt;= 0.f (default -1.f), the standard deviation is computed from the array. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/src/range/range.cpp" line="446" column="6" bodyfile="HighMap/src/range/range.cpp" bodystart="446" bodyend="459" declfile="HighMap/include/highmap/range.hpp" declline="473" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a286e4e74e6495802dba7f873c06ccb20" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref></type>

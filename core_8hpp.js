@@ -17,6 +17,7 @@ var core_8hpp =
     [ "r_max", "core_8hpp.html#ab377ce7a4af4de11fdfe14e250c34663", null ],
     [ "sigmoid", "core_8hpp.html#ad0759b7e3cb7455527b9b5b4947720bd", null ],
     [ "smoothstep3", "core_8hpp.html#afe0b1df8525d0478c7433777cadd60a3", null ],
+    [ "smoothstep3", "core_8hpp.html#a38dbac6548c0d7ca57416e8c3186f072", null ],
     [ "smoothstep3_lower", "core_8hpp.html#a4c21ef9d4f7d33f2413c7fe391b86253", null ],
     [ "smoothstep3_upper", "core_8hpp.html#af23a6099bd3307b408f17d2346ab3d3f", null ],
     [ "smoothstep5", "core_8hpp.html#a826591db096cb2ca4d836d4c5eeaac02", null ],

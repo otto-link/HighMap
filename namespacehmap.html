@@ -2227,6 +2227,9 @@ requires requires(const T &amp;<a class="el" href="elevation__from__contours_8cp
 <tr class="memitem:af34b234c6d2327f9018f239e12889e3d" id="r_af34b234c6d2327f9018f239e12889e3d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhmap_1_1Array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#af34b234c6d2327f9018f239e12889e3d">topographic_wetness_index</a> (const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;<a class="el" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, float talus_ref=0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float min_slope=1e-4<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>)</td></tr>
 <tr class="memdesc:af34b234c6d2327f9018f239e12889e3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the Topographic Wetness Index (TWI).  <br /></td></tr>
 <tr class="separator:af34b234c6d2327f9018f239e12889e3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84c7bc9ee3daf338e8227c2248b4695e" id="r_a84c7bc9ee3daf338e8227c2248b4695e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhmap_1_1Array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#a84c7bc9ee3daf338e8227c2248b4695e">topographic_residual</a> (const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;<a class="el" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, int <a class="el" href="sls__deformation_8cpp.html#a108a1d0fcea4288c9e48f5dc4fa0a1b0">ir</a>, bool normalize_output=false)</td></tr>
+<tr class="memdesc:a84c7bc9ee3daf338e8227c2248b4695e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the topographic residual (relief) relative to a smoothed surface.  <br /></td></tr>
+<tr class="separator:a84c7bc9ee3daf338e8227c2248b4695e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4d8048b79080012b8e60c270de8137f" id="r_ab4d8048b79080012b8e60c270de8137f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhmap_1_1Array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#ab4d8048b79080012b8e60c270de8137f">valley_width</a> (const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;<a class="el" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, int <a class="el" href="sls__deformation_8cpp.html#a108a1d0fcea4288c9e48f5dc4fa0a1b0">ir</a>=0, bool ridge_select=false)</td></tr>
 <tr class="memdesc:ab4d8048b79080012b8e60c270de8137f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Measures the valley width by calculating the distance from each point in a concave region to the frontier of that region.  <br /></td></tr>
 <tr class="separator:ab4d8048b79080012b8e60c270de8137f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -2412,6 +2415,9 @@ requires requires(const T &amp;<a class="el" href="elevation__from__contours_8cp
 <tr class="memitem:afe0b1df8525d0478c7433777cadd60a3" id="r_afe0b1df8525d0478c7433777cadd60a3"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#afe0b1df8525d0478c7433777cadd60a3">smoothstep3</a> (float <a class="el" href="kd__tree_8cpp.html#a1f4ec255d3d8677a6cd9d6a9a6eb653b">x</a>)</td></tr>
 <tr class="memdesc:afe0b1df8525d0478c7433777cadd60a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cubic smoothstep function.  <br /></td></tr>
 <tr class="separator:afe0b1df8525d0478c7433777cadd60a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38dbac6548c0d7ca57416e8c3186f072" id="r_a38dbac6548c0d7ca57416e8c3186f072"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#a38dbac6548c0d7ca57416e8c3186f072">smoothstep3</a> (float <a class="el" href="kd__tree_8cpp.html#a1f4ec255d3d8677a6cd9d6a9a6eb653b">x</a>, float <a class="el" href="namespacehmap.html#a2badbebec49b12d0d721970a18eb420d">clamp_min</a>, float <a class="el" href="namespacehmap.html#ae239201a0a4193e1ce78bdf1fce4c151">clamp_max</a>)</td></tr>
+<tr class="memdesc:a38dbac6548c0d7ca57416e8c3186f072"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cubic smoothstep function with clamping.  <br /></td></tr>
+<tr class="separator:a38dbac6548c0d7ca57416e8c3186f072"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c21ef9d4f7d33f2413c7fe391b86253" id="r_a4c21ef9d4f7d33f2413c7fe391b86253"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#a4c21ef9d4f7d33f2413c7fe391b86253">smoothstep3_lower</a> (float <a class="el" href="kd__tree_8cpp.html#a1f4ec255d3d8677a6cd9d6a9a6eb653b">x</a>)</td></tr>
 <tr class="memdesc:a4c21ef9d4f7d33f2413c7fe391b86253"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cubic smoothstep (zero derivative at 0 only).  <br /></td></tr>
 <tr class="separator:a4c21ef9d4f7d33f2413c7fe391b86253"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -2892,6 +2898,9 @@ requires requires(const T &amp;<a class="el" href="elevation__from__contours_8cp
 <tr class="memitem:ac126773f7c7af2364cfb4d7a6922ed96" id="r_ac126773f7c7af2364cfb4d7a6922ed96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#ac126773f7c7af2364cfb4d7a6922ed96">rescale</a> (<a class="el" href="classhmap_1_1Array.html">Array</a> &amp;array, float scaling, float vref=0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>)</td></tr>
 <tr class="memdesc:ac126773f7c7af2364cfb4d7a6922ed96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remap array elements from a starting range to a target range.  <br /></td></tr>
 <tr class="separator:ac126773f7c7af2364cfb4d7a6922ed96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a813489b177fe9e94a7a7a7a8cb82ce63" id="r_a813489b177fe9e94a7a7a7a8cb82ce63"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#a813489b177fe9e94a7a7a7a8cb82ce63">normalize_and_clip</a> (<a class="el" href="classhmap_1_1Array.html">Array</a> &amp;array, float multiplier=2.5<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float std=-1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>)</td></tr>
+<tr class="memdesc:a813489b177fe9e94a7a7a7a8cb82ce63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normalize an array around its mean and clip values to [-1, 1].  <br /></td></tr>
+<tr class="separator:a813489b177fe9e94a7a7a7a8cb82ce63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a286e4e74e6495802dba7f873c06ccb20" id="r_a286e4e74e6495802dba7f873c06ccb20"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhmap_1_1Graph.html">Graph</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#a286e4e74e6495802dba7f873c06ccb20">generate_network_alpha_model</a> (const std::vector&lt; float &gt; &amp;xc, const std::vector&lt; float &gt; &amp;yc, const std::vector&lt; float &gt; &amp;size, glm::vec4 bbox, const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;<a class="el" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, std::uint32_t seed, float alpha=0.7<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, int n_dummy_nodes=2500, float dz_weight=1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, const <a class="el" href="classhmap_1_1Array.html">Array</a> *p_weight=nullptr)</td></tr>
 <tr class="memdesc:a286e4e74e6495802dba7f873c06ccb20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate a large scale road network between "nodes" (or cities) using the alpha model.  <br /></td></tr>
 <tr class="separator:a286e4e74e6495802dba7f873c06ccb20"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -38508,22 +38517,22 @@ requires requires(const T &amp;<a class="el" href="elevation__from__contours_8cp
 <div class="line">                          <span class="keyword">true</span>);</div>
 <div class="line">}</div>
 <div class="ttc" id="anamespacehmap_1_1gpu_html_a7329432a304163cef4fedb8b6bb124c5"><div class="ttname"><a href="namespacehmap_1_1gpu.html#a7329432a304163cef4fedb8b6bb124c5">hmap::gpu::local_metrics</a></div><div class="ttdeci">Array local_metrics(const Array &amp;array, int ir, LocalMetrics metric, MinMaxKernel kernel_type=MinMaxKernel::DISK)</div><div class="ttdoc">Compute a local metric on the input array using a square neighborhood.</div><div class="ttdef"><b>Definition</b> local_metrics_wrapper.cpp:10</div></div>
-<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fa3fb8064f9087e5af79c85dce2c655112"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fa3fb8064f9087e5af79c85dce2c655112">hmap::gpu::LM_LOCAL_MIN</a></div><div class="ttdeci">@ LM_LOCAL_MIN</div><div class="ttdoc">Local minimum value.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:594</div></div>
-<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fa46f15a0ffd71deff0ddbc5599acfff87"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fa46f15a0ffd71deff0ddbc5599acfff87">hmap::gpu::LM_RELATIVE_ELEVATION</a></div><div class="ttdeci">@ LM_RELATIVE_ELEVATION</div><div class="ttdoc">Normalized elevation.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:602</div></div>
-<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fa568c1c82b138902b43e26249e63d8618"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fa568c1c82b138902b43e26249e63d8618">hmap::gpu::LM_RUGGEDNESS</a></div><div class="ttdeci">@ LM_RUGGEDNESS</div><div class="ttdoc">Measure of terrain roughness.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:604</div></div>
-<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fa5a6dccee984676ced1eb1ac2a546761e"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fa5a6dccee984676ced1eb1ac2a546761e">hmap::gpu::LM_LOCAL_RELIEF</a></div><div class="ttdeci">@ LM_LOCAL_RELIEF</div><div class="ttdoc">Diff. between local max &amp; min.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:595</div></div>
-<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fa6302a2239490ba9a2f3cd152d55e50d7"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fa6302a2239490ba9a2f3cd152d55e50d7">hmap::gpu::LM_LOCAL_ASPECT_VARIANCE</a></div><div class="ttdeci">@ LM_LOCAL_ASPECT_VARIANCE</div><div class="ttdoc">Variance of local slope directions.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:591</div></div>
-<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fa64d519d05dec2198a42425ce0c402bff"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fa64d519d05dec2198a42425ce0c402bff">hmap::gpu::LM_LOCAL_Z_SCORE</a></div><div class="ttdeci">@ LM_LOCAL_Z_SCORE</div><div class="ttdoc">Standardized value.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:599</div></div>
-<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fa892abed7945357817b7504339fdcee14"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fa892abed7945357817b7504339fdcee14">hmap::gpu::LM_RUGOSITY_CONCAVE</a></div><div class="ttdeci">@ LM_RUGOSITY_CONCAVE</div><div class="ttdoc">Roughness of concave features.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:605</div></div>
-<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fa8f5a70d0a562337ca689b0ce7ee3fff6"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fa8f5a70d0a562337ca689b0ce7ee3fff6">hmap::gpu::LM_TOPOGRAPHIC_POSITION_INDEX</a></div><div class="ttdeci">@ LM_TOPOGRAPHIC_POSITION_INDEX</div><div class="ttdoc">Topographic index.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:600</div></div>
-<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fa919b512837145887c412526966767a9f"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fa919b512837145887c412526966767a9f">hmap::gpu::LM_LOCAL_MAX</a></div><div class="ttdeci">@ LM_LOCAL_MAX</div><div class="ttdoc">Local maximum value.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:592</div></div>
-<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fa9633368152d1a5c7cabbd67607305162"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fa9633368152d1a5c7cabbd67607305162">hmap::gpu::LM_LOCAL_VARIANCE</a></div><div class="ttdeci">@ LM_LOCAL_VARIANCE</div><div class="ttdoc">Variance of local values.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:596</div></div>
-<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895faa7240132569a9a3cf8a45541d9c041b1"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895faa7240132569a9a3cf8a45541d9c041b1">hmap::gpu::LM_ROUGHNESS</a></div><div class="ttdeci">@ LM_ROUGHNESS</div><div class="ttdoc">Local terrain roughness.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:603</div></div>
-<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fac1321c034ba09831f5b5a040058f9477"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fac1321c034ba09831f5b5a040058f9477">hmap::gpu::LM_RUGOSITY_CONVEX</a></div><div class="ttdeci">@ LM_RUGOSITY_CONVEX</div><div class="ttdoc">Roughness of convex features.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:606</div></div>
-<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fad5818c578f7164c55a879326e4a88b53"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fad5818c578f7164c55a879326e4a88b53">hmap::gpu::LM_LOCAL_MEAN</a></div><div class="ttdeci">@ LM_LOCAL_MEAN</div><div class="ttdoc">Mean of local values.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:597</div></div>
-<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fad5eb4b55090fe7801d15a141769965fd"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fad5eb4b55090fe7801d15a141769965fd">hmap::gpu::LM_TOPOGRAPHIC_WETNESS_INDEX</a></div><div class="ttdeci">@ LM_TOPOGRAPHIC_WETNESS_INDEX</div><div class="ttdoc">Topographic wetness index.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:601</div></div>
-<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fad839ce8cff6bd20c67432d651776b569"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fad839ce8cff6bd20c67432d651776b569">hmap::gpu::LM_LOCAL_MEDIAN_DEVIATION</a></div><div class="ttdeci">@ LM_LOCAL_MEDIAN_DEVIATION</div><div class="ttdoc">Deviation from local median.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:593</div></div>
-<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fafad6a20433412feb877a9e8ebb76633c"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fafad6a20433412feb877a9e8ebb76633c">hmap::gpu::LM_LOCAL_SKEWNESS</a></div><div class="ttdeci">@ LM_LOCAL_SKEWNESS</div><div class="ttdoc">Skewness.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:598</div></div>
+<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fa3fb8064f9087e5af79c85dce2c655112"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fa3fb8064f9087e5af79c85dce2c655112">hmap::gpu::LM_LOCAL_MIN</a></div><div class="ttdeci">@ LM_LOCAL_MIN</div><div class="ttdoc">Local minimum value.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:612</div></div>
+<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fa46f15a0ffd71deff0ddbc5599acfff87"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fa46f15a0ffd71deff0ddbc5599acfff87">hmap::gpu::LM_RELATIVE_ELEVATION</a></div><div class="ttdeci">@ LM_RELATIVE_ELEVATION</div><div class="ttdoc">Normalized elevation.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:620</div></div>
+<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fa568c1c82b138902b43e26249e63d8618"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fa568c1c82b138902b43e26249e63d8618">hmap::gpu::LM_RUGGEDNESS</a></div><div class="ttdeci">@ LM_RUGGEDNESS</div><div class="ttdoc">Measure of terrain roughness.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:622</div></div>
+<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fa5a6dccee984676ced1eb1ac2a546761e"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fa5a6dccee984676ced1eb1ac2a546761e">hmap::gpu::LM_LOCAL_RELIEF</a></div><div class="ttdeci">@ LM_LOCAL_RELIEF</div><div class="ttdoc">Diff. between local max &amp; min.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:613</div></div>
+<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fa6302a2239490ba9a2f3cd152d55e50d7"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fa6302a2239490ba9a2f3cd152d55e50d7">hmap::gpu::LM_LOCAL_ASPECT_VARIANCE</a></div><div class="ttdeci">@ LM_LOCAL_ASPECT_VARIANCE</div><div class="ttdoc">Variance of local slope directions.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:609</div></div>
+<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fa64d519d05dec2198a42425ce0c402bff"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fa64d519d05dec2198a42425ce0c402bff">hmap::gpu::LM_LOCAL_Z_SCORE</a></div><div class="ttdeci">@ LM_LOCAL_Z_SCORE</div><div class="ttdoc">Standardized value.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:617</div></div>
+<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fa892abed7945357817b7504339fdcee14"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fa892abed7945357817b7504339fdcee14">hmap::gpu::LM_RUGOSITY_CONCAVE</a></div><div class="ttdeci">@ LM_RUGOSITY_CONCAVE</div><div class="ttdoc">Roughness of concave features.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:623</div></div>
+<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fa8f5a70d0a562337ca689b0ce7ee3fff6"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fa8f5a70d0a562337ca689b0ce7ee3fff6">hmap::gpu::LM_TOPOGRAPHIC_POSITION_INDEX</a></div><div class="ttdeci">@ LM_TOPOGRAPHIC_POSITION_INDEX</div><div class="ttdoc">Topographic index.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:618</div></div>
+<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fa919b512837145887c412526966767a9f"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fa919b512837145887c412526966767a9f">hmap::gpu::LM_LOCAL_MAX</a></div><div class="ttdeci">@ LM_LOCAL_MAX</div><div class="ttdoc">Local maximum value.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:610</div></div>
+<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fa9633368152d1a5c7cabbd67607305162"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fa9633368152d1a5c7cabbd67607305162">hmap::gpu::LM_LOCAL_VARIANCE</a></div><div class="ttdeci">@ LM_LOCAL_VARIANCE</div><div class="ttdoc">Variance of local values.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:614</div></div>
+<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895faa7240132569a9a3cf8a45541d9c041b1"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895faa7240132569a9a3cf8a45541d9c041b1">hmap::gpu::LM_ROUGHNESS</a></div><div class="ttdeci">@ LM_ROUGHNESS</div><div class="ttdoc">Local terrain roughness.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:621</div></div>
+<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fac1321c034ba09831f5b5a040058f9477"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fac1321c034ba09831f5b5a040058f9477">hmap::gpu::LM_RUGOSITY_CONVEX</a></div><div class="ttdeci">@ LM_RUGOSITY_CONVEX</div><div class="ttdoc">Roughness of convex features.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:624</div></div>
+<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fad5818c578f7164c55a879326e4a88b53"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fad5818c578f7164c55a879326e4a88b53">hmap::gpu::LM_LOCAL_MEAN</a></div><div class="ttdeci">@ LM_LOCAL_MEAN</div><div class="ttdoc">Mean of local values.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:615</div></div>
+<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fad5eb4b55090fe7801d15a141769965fd"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fad5eb4b55090fe7801d15a141769965fd">hmap::gpu::LM_TOPOGRAPHIC_WETNESS_INDEX</a></div><div class="ttdeci">@ LM_TOPOGRAPHIC_WETNESS_INDEX</div><div class="ttdoc">Topographic wetness index.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:619</div></div>
+<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fad839ce8cff6bd20c67432d651776b569"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fad839ce8cff6bd20c67432d651776b569">hmap::gpu::LM_LOCAL_MEDIAN_DEVIATION</a></div><div class="ttdeci">@ LM_LOCAL_MEDIAN_DEVIATION</div><div class="ttdoc">Deviation from local median.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:611</div></div>
+<div class="ttc" id="anamespacehmap_1_1gpu_html_ab0737b29664736928a86f0755493895fafad6a20433412feb877a9e8ebb76633c"><div class="ttname"><a href="namespacehmap_1_1gpu.html#ab0737b29664736928a86f0755493895fafad6a20433412feb877a9e8ebb76633c">hmap::gpu::LM_LOCAL_SKEWNESS</a></div><div class="ttdeci">@ LM_LOCAL_SKEWNESS</div><div class="ttdoc">Skewness.</div><div class="ttdef"><b>Definition</b> local_metrics.hpp:616</div></div>
 </div><!-- fragment --><p><b>Result</b> </p><div class="image">
 <img src="ex_local_metrics.png" alt=""/>
 </div>
@@ -38712,6 +38721,52 @@ requires requires(const T &amp;<a class="el" href="elevation__from__contours_8cp
 <img src="ex_topographic_wetness_index.png" alt=""/>
 </div>
  
+</div>
+</div>
+<a id="a84c7bc9ee3daf338e8227c2248b4695e" name="a84c7bc9ee3daf338e8227c2248b4695e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84c7bc9ee3daf338e8227c2248b4695e">&#9670;&#160;</a></span>topographic_residual()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classhmap_1_1Array.html">Array</a> hmap::topographic_residual </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;&#160;</td>
+          <td class="paramname"><em>z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ir</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>normalize_output</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Computes the topographic residual (relief) relative to a smoothed surface. </p>
+<p>Subtracts a smoothed version of the elevation (using smooth_cpulse with radius ir) from the input array. Optionally normalizes and clips the output to [-1, 1].</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">z</td><td>Input elevation array. </td></tr>
+    <tr><td class="paramname">ir</td><td>Radius for smoothing filter. </td></tr>
+    <tr><td class="paramname">normalize_output</td><td>If true, normalizes and clips the residual to [-1, 1]. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classhmap_1_1Array.html" title="Array class, helper to manipulate 2D float array with &quot;(i, j)&quot; indexing.">Array</a> containing the topographic residual. </dd></dl>
+
 </div>
 </div>
 <a id="ab4d8048b79080012b8e60c270de8137f" name="ab4d8048b79080012b8e60c270de8137f"></a>
@@ -39810,7 +39865,7 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
 </div>
 </div>
 <a id="a413648e2595721d8ba4096357dbb1f84" name="a413648e2595721d8ba4096357dbb1f84"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a413648e2595721d8ba4096357dbb1f84">&#9670;&#160;</a></span>smoothstep3() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a413648e2595721d8ba4096357dbb1f84">&#9670;&#160;</a></span>smoothstep3() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -41279,7 +41334,7 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
 </div>
 </div>
 <a id="afe0b1df8525d0478c7433777cadd60a3" name="afe0b1df8525d0478c7433777cadd60a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe0b1df8525d0478c7433777cadd60a3">&#9670;&#160;</a></span>smoothstep3() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#afe0b1df8525d0478c7433777cadd60a3">&#9670;&#160;</a></span>smoothstep3() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -41298,6 +41353,50 @@ y = v_{\min} + \frac{v_{\max} - v_{\min}}
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">x</td><td>Input value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a38dbac6548c0d7ca57416e8c3186f072" name="a38dbac6548c0d7ca57416e8c3186f072"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38dbac6548c0d7ca57416e8c3186f072">&#9670;&#160;</a></span>smoothstep3() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float hmap::smoothstep3 </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>clamp_min</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>clamp_max</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cubic smoothstep function with clamping. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Input value. </td></tr>
+    <tr><td class="paramname">clamp_min</td><td>Lower clamp bound. </td></tr>
+    <tr><td class="paramname">clamp_max</td><td>Upper clamp bound. </td></tr>
   </table>
   </dd>
 </dl>
@@ -54691,6 +54790,51 @@ off" values that fall below the threshold, which can be useful for filtering out
     <tr><td class="paramname">array</td><td>Input array to be rescaled. </td></tr>
     <tr><td class="paramname">scaling</td><td>Amplitude scaling factor to adjust the range of array elements. </td></tr>
     <tr><td class="paramname">vref</td><td>Reference 'zero' value used to shift the values (default is 0.f). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a813489b177fe9e94a7a7a7a8cb82ce63" name="a813489b177fe9e94a7a7a7a8cb82ce63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a813489b177fe9e94a7a7a7a8cb82ce63">&#9670;&#160;</a></span>normalize_and_clip()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hmap::normalize_and_clip </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classhmap_1_1Array.html">Array</a> &amp;&#160;</td>
+          <td class="paramname"><em>array</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>multiplier</em> = <code>2.5<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>std</em> = <code>-1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Normalize an array around its mean and clip values to [-1, 1]. </p>
+<p>Centers the array by subtracting its mean, scales by (multiplier * std), and clamps the result to [-1, 1].</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">array</td><td>Input array to be normalized and clipped. </td></tr>
+    <tr><td class="paramname">multiplier</td><td>Standard deviation multiplier (default is 2.5f). </td></tr>
+    <tr><td class="paramname">std</td><td>Standard deviation to use. If &lt;= 0.f (default -1.f), the standard deviation is computed from the array. </td></tr>
   </table>
   </dd>
 </dl>

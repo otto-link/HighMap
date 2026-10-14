@@ -7,5 +7,6 @@ var local__metrics_8cpp =
     [ "relative_elevation", "local__metrics_8cpp.html#a941d446cad19c166f4f6c4df857dba65", null ],
     [ "roughness", "local__metrics_8cpp.html#ac65c42efcba153819ca88a01bca23434", null ],
     [ "ruggedness", "local__metrics_8cpp.html#af4ec8b5be149e6749fdf09759daf1e9e", null ],
-    [ "rugosity", "local__metrics_8cpp.html#a85e411c67e97deb8459f25d4440546c3", null ]
+    [ "rugosity", "local__metrics_8cpp.html#a85e411c67e97deb8459f25d4440546c3", null ],
+    [ "topographic_residual", "local__metrics_8cpp.html#a84c7bc9ee3daf338e8227c2248b4695e", null ]
 ];

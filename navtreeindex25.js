@@ -1,5 +1,14 @@
 var NAVTREEINDEX25 =
 {
+"ridge__accentuate_8cpp.html":[4,0,1,1,15,15],
+"ridge__accentuate_8cpp.html#a99a2046c1536aef27a965709811898fc":[4,0,1,1,15,15,0],
+"ridge__accentuate_8cpp.html#ae9761a6d8d3b32eda18f767d10489e73":[4,0,1,1,15,15,1],
+"ridgelines_8cpp.html":[4,0,1,1,2,5],
+"ridgelines_8cpp.html#a4e7db58b8b58def3b862476f18b6005e":[4,0,1,1,2,5,1],
+"ridgelines_8cpp.html#a74f6ef0464e0ec67df5179f49e14e35a":[4,0,1,1,2,5,0],
+"rift_8cpp.html":[4,0,1,1,31,2,12],
+"rift_8cpp.html#a0da433ef9eb80cc11084bd3adbe75051":[4,0,1,1,31,2,12,0],
+"rifts__gpu_8cpp.html":[4,0,1,1,12,25],
 "rifts__gpu_8cpp.html#ace06af8ac4d53033c221b1e0f7462a54":[4,0,1,1,12,25,0],
 "roads_8hpp.html":[4,0,1,0,0,47],
 "roads_8hpp.html#a286e4e74e6495802dba7f873c06ccb20":[4,0,1,0,0,47,0],
@@ -240,14 +249,5 @@ var NAVTREEINDEX25 =
 "stitching__helpers_8cpp.html#ae0a3c73cc23a288fe03bf5ed6ac73c3d":[4,0,1,1,29,4,0],
 "stitching__helpers_8cpp.html#ae6817ca5deb78b7edb959b3ea334b25b":[4,0,1,1,29,4,1],
 "strata_8cpp.html":[4,0,1,1,12,26],
-"strata_8cpp.html#a05cc60e4654cd2f0dbb5021bf7602bb9":[4,0,1,1,12,26,6],
-"strata_8cpp.html#a5b29dc1e29512877770fd208cd40b971":[4,0,1,1,12,26,3],
-"strata_8cpp.html#a740cd2ba7c58126ef27bfcddcb6f00b8":[4,0,1,1,12,26,2],
-"strata_8cpp.html#a7bfb87c4fc0f9f4fe3a043cb18e7f8fa":[4,0,1,1,12,26,5],
-"strata_8cpp.html#a924e3d46ccfbe374d34eeaaacc2f81fe":[4,0,1,1,12,26,1],
-"strata_8cpp.html#ab8f6820b9bd796b3283e763f4d872a51":[4,0,1,1,12,26,4],
-"strata_8cpp.html#acdb08d6ebb8ddb8e5595c11278cf81e0":[4,0,1,1,12,26,0],
-"strata__erosion_8hpp.html":[4,0,1,0,0,1,6],
-"strata__erosion_8hpp.html#a04047f16ece68b32c1c8e68b4780f0df":[4,0,1,0,0,1,6,17],
-"strata__erosion_8hpp.html#a05cc60e4654cd2f0dbb5021bf7602bb9":[4,0,1,0,0,1,6,13]
+"strata_8cpp.html#a05cc60e4654cd2f0dbb5021bf7602bb9":[4,0,1,1,12,26,6]
 };

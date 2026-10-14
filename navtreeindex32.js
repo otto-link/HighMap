@@ -1,5 +1,14 @@
 var NAVTREEINDEX32 =
 {
+"test__remove__endpoints_8cpp.html#a16b5264cad1ba687791ad75f7310b634":[4,0,2,0,65,6],
+"test__remove__endpoints_8cpp.html#a58948a3adb790568927bd008361edbe9":[4,0,2,0,65,1],
+"test__remove__endpoints_8cpp.html#aabab944b488bb1bc90c789ad505eb159":[4,0,2,0,65,5],
+"test__remove__endpoints_8cpp.html#ac9f57d296677787864ecaf57f4462478":[4,0,2,0,65,3],
+"test__remove__endpoints_8cpp.html#ad1edb0afb9fd26c5c8b175c53cda18d9":[4,0,2,0,65,2],
+"test__ridge__accentuate_8cpp.html":[4,0,2,0,66],
+"test__ridge__accentuate_8cpp.html#a5a96fa422c6184739b8d7d525fa98081":[4,0,2,0,66,3],
+"test__ridge__accentuate_8cpp.html#a64851d70409f3b9cf7c82dbda4244a1a":[4,0,2,0,66,0],
+"test__ridge__accentuate_8cpp.html#a702e27a5b5a2514a88d944740744e957":[4,0,2,0,66,4],
 "test__ridge__accentuate_8cpp.html#a8c55e18a56236b474110522fbf4f8b6c":[4,0,2,0,66,6],
 "test__ridge__accentuate_8cpp.html#aa1bb48642942a3cc9495c12f0853d9ca":[4,0,2,0,66,2],
 "test__ridge__accentuate_8cpp.html#ac738e9fd739c21164ef688e02b996388":[4,0,2,0,66,5],
@@ -240,14 +249,5 @@ var NAVTREEINDEX32 =
 "thermal__erosion_8hpp.html#ae57a1e9bd94f218d4be17c9d8be012c3":[4,0,1,0,0,1,7,13],
 "thermal__erosion_8hpp_source.html":[4,0,1,0,0,1,7],
 "thermal__gpu_8cpp.html":[4,0,1,1,12,28],
-"thermal__gpu_8cpp.html#a00b54f4e60a8fbd6ed5213600d598869":[4,0,1,1,12,28,13],
-"thermal__gpu_8cpp.html#a13e5b18eb4ff1cf1f7357a9b29bf9368":[4,0,1,1,12,28,10],
-"thermal__gpu_8cpp.html#a1489150d5e1af976a9f814b9911b3ea0":[4,0,1,1,12,28,17],
-"thermal__gpu_8cpp.html#a2bb49a523386fcb8fc34f27741c520a8":[4,0,1,1,12,28,14],
-"thermal__gpu_8cpp.html#a2ce8ecd08ace98c21dfb354bab5451a2":[4,0,1,1,12,28,1],
-"thermal__gpu_8cpp.html#a36a2eba6d158e44d0ef917d9582987fe":[4,0,1,1,12,28,3],
-"thermal__gpu_8cpp.html#a435a38880a6bcabfb8991d5834a0f786":[4,0,1,1,12,28,15],
-"thermal__gpu_8cpp.html#a4e8be6889c281171b841805b17b42b7f":[4,0,1,1,12,28,0],
-"thermal__gpu_8cpp.html#a525c9818a95840ee8dfaa0c4e0d4f779":[4,0,1,1,12,28,19],
-"thermal__gpu_8cpp.html#a551ff43fadc1798ab22617dfe68f231b":[4,0,1,1,12,28,6]
+"thermal__gpu_8cpp.html#a00b54f4e60a8fbd6ed5213600d598869":[4,0,1,1,12,28,13]
 };
