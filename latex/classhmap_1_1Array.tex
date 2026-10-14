@@ -150,7 +150,7 @@ float \mbox{\hyperlink{classhmap_1_1Array_ac33557899eb50bcf964b2e5a2ad8ddcb}{ptp
 \begin{DoxyCompactList}\small\item\em Return the peak-\/to-\/peak amplitude (i.\+e., the difference between the maximum and minimum values) of the array values. \end{DoxyCompactList}\item 
 glm\+::vec2 \mbox{\hyperlink{classhmap_1_1Array_af74af7737221d6a23fbea9c43d5d8b07}{range}} () const
 \begin{DoxyCompactList}\small\item\em Computes the minimum and maximum values of the array. \end{DoxyCompactList}\item 
-glm\+::vec2 \mbox{\hyperlink{classhmap_1_1Array_abef6971c016bf7dda37715878ffe4802}{range\+\_\+percentile}} (float p\+\_\+low, float p\+\_\+high, size\+\_\+t bins=1024) const
+glm\+::vec2 \mbox{\hyperlink{classhmap_1_1Array_a0f24eccb4dde5f52719455df598c5af3}{range\+\_\+percentile}} (float p\+\_\+low, float p\+\_\+high, size\+\_\+t bins=1024, bool ignore\+\_\+zeros=false) const
 \begin{DoxyCompactList}\small\item\em Computes an approximate percentile range using a histogram. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{classhmap_1_1Array_a8a7e7b8607a67f80828d3718e68ea126}{remapped}} () const
 \begin{DoxyCompactList}\small\item\em Return an array remapped to \mbox{[}0, 1\mbox{]}. \end{DoxyCompactList}\item 
@@ -1400,11 +1400,11 @@ Computes the minimum and maximum values of the array.
 \begin{DoxyReturn}{Returns}
 glm\+::vec2 A vector where x contains the minimum value and y contains the maximum value. 
 \end{DoxyReturn}
-\Hypertarget{classhmap_1_1Array_abef6971c016bf7dda37715878ffe4802}\label{classhmap_1_1Array_abef6971c016bf7dda37715878ffe4802} 
+\Hypertarget{classhmap_1_1Array_a0f24eccb4dde5f52719455df598c5af3}\label{classhmap_1_1Array_a0f24eccb4dde5f52719455df598c5af3} 
 \index{hmap::Array@{hmap::Array}!range\_percentile@{range\_percentile}}
 \index{range\_percentile@{range\_percentile}!hmap::Array@{hmap::Array}}
 \doxysubsubsection{\texorpdfstring{range\_percentile()}{range\_percentile()}}
-{\footnotesize\ttfamily glm\+::vec2 hmap\+::\+Array\+::range\+\_\+percentile (\begin{DoxyParamCaption}\item[{float}]{p\+\_\+low,  }\item[{float}]{p\+\_\+high,  }\item[{size\+\_\+t}]{bins = {\ttfamily 1024} }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily glm\+::vec2 hmap\+::\+Array\+::range\+\_\+percentile (\begin{DoxyParamCaption}\item[{float}]{p\+\_\+low,  }\item[{float}]{p\+\_\+high,  }\item[{size\+\_\+t}]{bins = {\ttfamily 1024},  }\item[{bool}]{ignore\+\_\+zeros = {\ttfamily false} }\end{DoxyParamCaption}) const}
 
 
 
@@ -1418,7 +1418,9 @@ This function estimates the values corresponding to the given lower and upper pe
 \hline
 {\em p\+\_\+high} & Upper percentile in \mbox{[}0, 1\mbox{]} \\
 \hline
-{\em bins} & Number of bins used for the histogram (higher = more precise)\\
+{\em bins} & Number of bins used for the histogram (higher = more precise) \\
+\hline
+{\em ignore\+\_\+zeros} & If true, ignore zero values when building the histogram and counting totals.\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

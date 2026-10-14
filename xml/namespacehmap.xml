@@ -2710,7 +2710,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/array/array_functions.cpp" line="12" column="8" bodyfile="HighMap/src/array/array_functions.cpp" bodystart="12" bodyend="18" declfile="HighMap/include/highmap/array.hpp" declline="1027" declcolumn="8"/>
+        <location file="HighMap/src/array/array_functions.cpp" line="12" column="8" bodyfile="HighMap/src/array/array_functions.cpp" bodystart="12" bodyend="18" declfile="HighMap/include/highmap/array.hpp" declline="1030" declcolumn="8"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1af8950d06447258f6e3fc9daf98e01737" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>size_t</type>
@@ -2741,7 +2741,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/array/array_functions.cpp" line="20" column="8" bodyfile="HighMap/src/array/array_functions.cpp" bodystart="20" bodyend="26" declfile="HighMap/include/highmap/array.hpp" declline="1034" declcolumn="8"/>
+        <location file="HighMap/src/array/array_functions.cpp" line="20" column="8" bodyfile="HighMap/src/array/array_functions.cpp" bodystart="20" bodyend="26" declfile="HighMap/include/highmap/array.hpp" declline="1037" declcolumn="8"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a518f05118e1b9704160a7c3276a2f483" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -2801,7 +2801,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/array/opencv_wrapper.cpp" line="36" column="7" bodyfile="HighMap/src/array/opencv_wrapper.cpp" bodystart="36" bodyend="56" declfile="HighMap/include/highmap/array.hpp" declline="1062" declcolumn="7"/>
+        <location file="HighMap/src/array/opencv_wrapper.cpp" line="36" column="7" bodyfile="HighMap/src/array/opencv_wrapper.cpp" bodystart="36" bodyend="56" declfile="HighMap/include/highmap/array.hpp" declline="1065" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a9c60eb4b1dddad23a27fe2ffc9507a2b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::string</type>
@@ -2815,7 +2815,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/array/opencv_wrapper.cpp" line="58" column="13" bodyfile="HighMap/src/array/opencv_wrapper.cpp" bodystart="58" bodyend="61" declfile="HighMap/include/highmap/array.hpp" declline="1066" declcolumn="13"/>
+        <location file="HighMap/src/array/opencv_wrapper.cpp" line="58" column="13" bodyfile="HighMap/src/array/opencv_wrapper.cpp" bodystart="58" bodyend="61" declfile="HighMap/include/highmap/array.hpp" declline="1069" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a05ee0ea53f1a06ac43741f11e25ec2cc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -2843,7 +2843,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/array.hpp" line="1073" column="25" bodyfile="HighMap/include/highmap/array.hpp" bodystart="1073" bodyend="1081"/>
+        <location file="HighMap/include/highmap/array.hpp" line="1076" column="25" bodyfile="HighMap/include/highmap/array.hpp" bodystart="1076" bodyend="1084"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a8a43091b3356d69271fa6d185f5bdcbe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -2871,7 +2871,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/array.hpp" line="1084" column="25" bodyfile="HighMap/include/highmap/array.hpp" bodystart="1084" bodyend="1092"/>
+        <location file="HighMap/include/highmap/array.hpp" line="1087" column="25" bodyfile="HighMap/include/highmap/array.hpp" bodystart="1087" bodyend="1095"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a6123c18788ae302332416d5d7585fd9f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -9506,7 +9506,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/colorize/terrain_texture.cpp" line="25" column="9" bodyfile="HighMap/src/colorize/terrain_texture.cpp" bodystart="25" bodyend="299" declfile="HighMap/include/highmap/colorize.hpp" declline="519" declcolumn="9"/>
+        <location file="HighMap/src/colorize/terrain_texture.cpp" line="25" column="9" bodyfile="HighMap/src/colorize/terrain_texture.cpp" bodystart="25" bodyend="294" declfile="HighMap/include/highmap/colorize.hpp" declline="519" declcolumn="9"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a2f2ca726f4e41128135e6c77120c66d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; glm::vec3 &gt;</type>

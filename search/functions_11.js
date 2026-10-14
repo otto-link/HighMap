@@ -22,7 +22,7 @@ var searchData=
   ['random_5fvector_19',['random_vector',['../namespacehmap.html#a3e6de5f9e14f11872651af22e5756c32',1,'hmap']]],
   ['randomize_20',['randomize',['../classhmap_1_1Cloud.html#aa6f1b0089949fc2e8ed6e7e3ce465448',1,'hmap::Cloud']]],
   ['range_21',['range',['../classhmap_1_1Array.html#af74af7737221d6a23fbea9c43d5d8b07',1,'hmap::Array::range()'],['../structhmap_1_1VirtualArray.html#a465cc3d634b2d9ffc492705213a18327',1,'hmap::VirtualArray::range()']]],
-  ['range_5fpercentile_22',['range_percentile',['../classhmap_1_1Array.html#abef6971c016bf7dda37715878ffe4802',1,'hmap::Array::range_percentile()'],['../structhmap_1_1VirtualArray.html#a9dfca3fde2a46f13ce166089f869ed94',1,'hmap::VirtualArray::range_percentile()']]],
+  ['range_5fpercentile_22',['range_percentile',['../classhmap_1_1Array.html#a0f24eccb4dde5f52719455df598c5af3',1,'hmap::Array::range_percentile()'],['../structhmap_1_1VirtualArray.html#a9dfca3fde2a46f13ce166089f869ed94',1,'hmap::VirtualArray::range_percentile()']]],
   ['rasterize_5fcapsules_23',['rasterize_capsules',['../classhmap_1_1Path.html#ab22687eef2bfb9e03e0ad25a808c175b',1,'hmap::Path']]],
   ['read_5fto_5farray_24',['read_to_array',['../namespacehmap.html#a09aeebc31234cb19376836a7009054d3',1,'hmap']]],
   ['recast_5fbillow_25',['recast_billow',['../namespacehmap.html#ad2f0b00fee1cff1a2df0049176548ea5',1,'hmap']]],

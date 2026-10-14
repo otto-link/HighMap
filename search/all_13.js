@@ -34,7 +34,7 @@ var searchData=
   ['range_31',['range',['../classhmap_1_1Array.html#af74af7737221d6a23fbea9c43d5d8b07',1,'hmap::Array::range()'],['../structhmap_1_1VirtualArray.html#a465cc3d634b2d9ffc492705213a18327',1,'hmap::VirtualArray::range()']]],
   ['range_2ecpp_32',['range.cpp',['../range_8cpp.html',1,'']]],
   ['range_2ehpp_33',['range.hpp',['../range_8hpp.html',1,'']]],
-  ['range_5fpercentile_34',['range_percentile',['../classhmap_1_1Array.html#abef6971c016bf7dda37715878ffe4802',1,'hmap::Array::range_percentile()'],['../structhmap_1_1VirtualArray.html#a9dfca3fde2a46f13ce166089f869ed94',1,'hmap::VirtualArray::range_percentile()']]],
+  ['range_5fpercentile_34',['range_percentile',['../classhmap_1_1Array.html#a0f24eccb4dde5f52719455df598c5af3',1,'hmap::Array::range_percentile()'],['../structhmap_1_1VirtualArray.html#a9dfca3fde2a46f13ce166089f869ed94',1,'hmap::VirtualArray::range_percentile()']]],
   ['rank_35',['rank',['../hydraulic__mise_8cpp.html#a7103bde565cfac40b7653f88a0d7c7c4',1,'hydraulic_mise.cpp']]],
   ['rasterize_5fcapsules_36',['rasterize_capsules',['../classhmap_1_1Path.html#ab22687eef2bfb9e03e0ad25a808c175b',1,'hmap::Path']]],
   ['ratio_37',['ratio',['../classhmap_1_1WorleyDoubleFunction.html#a88899456b80da0d707ae74964ead8bc0',1,'hmap::WorleyDoubleFunction']]],

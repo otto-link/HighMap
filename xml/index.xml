@@ -80,7 +80,7 @@
     <member refid="classhmap_1_1Array_1a7ce20e5537ab2729aac320d0b27b7fa5" kind="function"><name>print</name></member>
     <member refid="classhmap_1_1Array_1ac33557899eb50bcf964b2e5a2ad8ddcb" kind="function"><name>ptp</name></member>
     <member refid="classhmap_1_1Array_1af74af7737221d6a23fbea9c43d5d8b07" kind="function"><name>range</name></member>
-    <member refid="classhmap_1_1Array_1abef6971c016bf7dda37715878ffe4802" kind="function"><name>range_percentile</name></member>
+    <member refid="classhmap_1_1Array_1a0f24eccb4dde5f52719455df598c5af3" kind="function"><name>range_percentile</name></member>
     <member refid="classhmap_1_1Array_1a8a7e7b8607a67f80828d3718e68ea126" kind="function"><name>remapped</name></member>
     <member refid="classhmap_1_1Array_1a065a69e1a3477f6dd9f8ab88c1af554d" kind="function"><name>resample_to_shape</name></member>
     <member refid="classhmap_1_1Array_1adbd79d599e39db1836e720048c33452f" kind="function"><name>resample_to_shape_bicubic</name></member>

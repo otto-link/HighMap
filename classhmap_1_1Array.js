@@ -64,7 +64,7 @@ var classhmap_1_1Array =
     [ "print", "classhmap_1_1Array.html#a7ce20e5537ab2729aac320d0b27b7fa5", null ],
     [ "ptp", "classhmap_1_1Array.html#ac33557899eb50bcf964b2e5a2ad8ddcb", null ],
     [ "range", "classhmap_1_1Array.html#af74af7737221d6a23fbea9c43d5d8b07", null ],
-    [ "range_percentile", "classhmap_1_1Array.html#abef6971c016bf7dda37715878ffe4802", null ],
+    [ "range_percentile", "classhmap_1_1Array.html#a0f24eccb4dde5f52719455df598c5af3", null ],
     [ "remapped", "classhmap_1_1Array.html#a8a7e7b8607a67f80828d3718e68ea126", null ],
     [ "resample_to_shape", "classhmap_1_1Array.html#a065a69e1a3477f6dd9f8ab88c1af554d", null ],
     [ "resample_to_shape_bicubic", "classhmap_1_1Array.html#adbd79d599e39db1836e720048c33452f", null ],

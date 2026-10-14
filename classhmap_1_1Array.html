@@ -311,9 +311,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af74af7737221d6a23fbea9c43d5d8b07" id="r_af74af7737221d6a23fbea9c43d5d8b07"><td class="memItemLeft" align="right" valign="top">glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhmap_1_1Array.html#af74af7737221d6a23fbea9c43d5d8b07">range</a> () const</td></tr>
 <tr class="memdesc:af74af7737221d6a23fbea9c43d5d8b07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the minimum and maximum values of the array.  <br /></td></tr>
 <tr class="separator:af74af7737221d6a23fbea9c43d5d8b07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abef6971c016bf7dda37715878ffe4802" id="r_abef6971c016bf7dda37715878ffe4802"><td class="memItemLeft" align="right" valign="top">glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhmap_1_1Array.html#abef6971c016bf7dda37715878ffe4802">range_percentile</a> (float p_low, float p_high, size_t bins=1024) const</td></tr>
-<tr class="memdesc:abef6971c016bf7dda37715878ffe4802"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes an approximate percentile range using a histogram.  <br /></td></tr>
-<tr class="separator:abef6971c016bf7dda37715878ffe4802"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f24eccb4dde5f52719455df598c5af3" id="r_a0f24eccb4dde5f52719455df598c5af3"><td class="memItemLeft" align="right" valign="top">glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhmap_1_1Array.html#a0f24eccb4dde5f52719455df598c5af3">range_percentile</a> (float p_low, float p_high, size_t bins=1024, bool ignore_zeros=false) const</td></tr>
+<tr class="memdesc:a0f24eccb4dde5f52719455df598c5af3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes an approximate percentile range using a histogram.  <br /></td></tr>
+<tr class="separator:a0f24eccb4dde5f52719455df598c5af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a7e7b8607a67f80828d3718e68ea126" id="r_a8a7e7b8607a67f80828d3718e68ea126"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhmap_1_1Array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhmap_1_1Array.html#a8a7e7b8607a67f80828d3718e68ea126">remapped</a> () const</td></tr>
 <tr class="memdesc:a8a7e7b8607a67f80828d3718e68ea126"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return an array remapped to [0, 1].  <br /></td></tr>
 <tr class="separator:a8a7e7b8607a67f80828d3718e68ea126"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -2472,8 +2472,8 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a id="abef6971c016bf7dda37715878ffe4802" name="abef6971c016bf7dda37715878ffe4802"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abef6971c016bf7dda37715878ffe4802">&#9670;&#160;</a></span>range_percentile()</h2>
+<a id="a0f24eccb4dde5f52719455df598c5af3" name="a0f24eccb4dde5f52719455df598c5af3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f24eccb4dde5f52719455df598c5af3">&#9670;&#160;</a></span>range_percentile()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2494,7 +2494,13 @@ Friends</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>bins</em> = <code>1024</code>&#160;</td>
+          <td class="paramname"><em>bins</em> = <code>1024</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>ignore_zeros</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2510,7 +2516,8 @@ Friends</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">p_low</td><td>Lower percentile in [0, 1] </td></tr>
     <tr><td class="paramname">p_high</td><td>Upper percentile in [0, 1] </td></tr>
-    <tr><td class="paramname">bins</td><td>Number of bins used for the histogram (higher = more precise)</td></tr>
+    <tr><td class="paramname">bins</td><td>Number of bins used for the histogram (higher = more precise) </td></tr>
+    <tr><td class="paramname">ignore_zeros</td><td>If true, ignore zero values when building the histogram and counting totals.</td></tr>
   </table>
   </dd>
 </dl>
@@ -2634,8 +2641,8 @@ Friends</h2></td></tr>
 <div class="line">                          {z0, z1, z2},</div>
 <div class="line">                          <a class="code hl_enumvalue" href="namespacehmap.html#ac70fe3cbb32e0340d5dd3e15cdcf9369a744ead0b170889e33126895264f1af2c">hmap::Cmap::MAGMA</a>);</div>
 <div class="line">}</div>
-<div class="ttc" id="aclasshmap_1_1Array_html_a065a69e1a3477f6dd9f8ab88c1af554d"><div class="ttname"><a href="classhmap_1_1Array.html#a065a69e1a3477f6dd9f8ab88c1af554d">hmap::Array::resample_to_shape</a></div><div class="ttdeci">Array resample_to_shape(glm::ivec2 new_shape) const</div><div class="ttdoc">Return a resampled array of shape new_shape using bilinear interpolation.</div><div class="ttdef"><b>Definition</b> methods.cpp:385</div></div>
-<div class="ttc" id="aclasshmap_1_1Array_html_adbd79d599e39db1836e720048c33452f"><div class="ttname"><a href="classhmap_1_1Array.html#adbd79d599e39db1836e720048c33452f">hmap::Array::resample_to_shape_bicubic</a></div><div class="ttdeci">Array resample_to_shape_bicubic(glm::ivec2 new_shape) const</div><div class="ttdoc">Return a resampled array of shape new_shape using bicubic interpolation.</div><div class="ttdef"><b>Definition</b> methods.cpp:390</div></div>
+<div class="ttc" id="aclasshmap_1_1Array_html_a065a69e1a3477f6dd9f8ab88c1af554d"><div class="ttname"><a href="classhmap_1_1Array.html#a065a69e1a3477f6dd9f8ab88c1af554d">hmap::Array::resample_to_shape</a></div><div class="ttdeci">Array resample_to_shape(glm::ivec2 new_shape) const</div><div class="ttdoc">Return a resampled array of shape new_shape using bilinear interpolation.</div><div class="ttdef"><b>Definition</b> methods.cpp:424</div></div>
+<div class="ttc" id="aclasshmap_1_1Array_html_adbd79d599e39db1836e720048c33452f"><div class="ttname"><a href="classhmap_1_1Array.html#adbd79d599e39db1836e720048c33452f">hmap::Array::resample_to_shape_bicubic</a></div><div class="ttdeci">Array resample_to_shape_bicubic(glm::ivec2 new_shape) const</div><div class="ttdoc">Return a resampled array of shape new_shape using bicubic interpolation.</div><div class="ttdef"><b>Definition</b> methods.cpp:429</div></div>
 <div class="ttc" id="anamespacehmap_html_ac70fe3cbb32e0340d5dd3e15cdcf9369a744ead0b170889e33126895264f1af2c"><div class="ttname"><a href="namespacehmap.html#ac70fe3cbb32e0340d5dd3e15cdcf9369a744ead0b170889e33126895264f1af2c">hmap::MAGMA</a></div><div class="ttdeci">@ MAGMA</div><div class="ttdef"><b>Definition</b> colormaps.hpp:89</div></div>
 </div><!-- fragment --><p><b>Result</b> </p><div class="image">
 <img src="ex_array_interp.png" alt=""/>
