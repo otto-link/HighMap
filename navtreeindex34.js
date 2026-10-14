@@ -1,5 +1,13 @@
 var NAVTREEINDEX34 =
 {
+"virtual__texture_8inl.html#a4d40066bfc89c4a99adf4b09355ec709":[4,0,1,0,0,14,5,2],
+"virtual__texture_8inl.html#ac8177181b343f820027e9c46cc22f146":[4,0,1,0,0,14,5,1],
+"virtual__texture__storage_8cpp.html":[4,0,1,1,48,2,3],
+"virtual__texture__storage_8hpp.html":[4,0,1,0,0,14,6],
+"virtual__texture__storage_8hpp_source.html":[4,0,1,0,0,14,6],
+"voronoi__shrink_8cpp.html":[4,0,1,1,15,17],
+"voronoi__shrink_8cpp.html#a554b6936e8c62dbed7e739e2445ca55e":[4,0,1,1,15,17,2],
+"voronoi__shrink_8cpp.html#a9fcb56e237c17a1a9d57c025d6aac5d9":[4,0,1,1,15,17,4],
 "voronoi__shrink_8cpp.html#aa50d24313a1c63bd4d8c600694d8e975":[4,0,1,1,15,17,1],
 "voronoi__shrink_8cpp.html#aa51712f5cbff96e7704de3813cfa3435":[4,0,1,1,15,17,0],
 "voronoi__shrink_8cpp.html#aacbd12e3b183582c60c965f4195b7dcd":[4,0,1,1,15,17,3],

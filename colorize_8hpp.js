@@ -13,6 +13,7 @@ var colorize_8hpp =
       [ "NMAP_UNITY", "colorize_8hpp.html#abc952321c99ec11d60b4037e3d27db9ba54fd5928677cd19616ec52d6d59d4c60", null ],
       [ "NMAP_WHITEOUT", "colorize_8hpp.html#abc952321c99ec11d60b4037e3d27db9ba6ba5e07d11326f7567d533f169321e37", null ]
     ] ],
+    [ "shade_color", "colorize_8hpp.html#a54eb8ce4196d73517024dbe2af5af81b", null ],
     [ "apply_hillshade", "colorize_8hpp.html#a76b37b88acf83d6a5b21f1be1b50697e", null ],
     [ "apply_hillshade", "colorize_8hpp.html#aefc8cbe645337bb5b663436c0324f9e2", null ],
     [ "color_adjust", "colorize_8hpp.html#a7634a1bb2505ae11370c431b0b1fd9ea", null ],

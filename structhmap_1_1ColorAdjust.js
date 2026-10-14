@@ -8,6 +8,7 @@ var structhmap_1_1ColorAdjust =
     [ "temperature", "structhmap_1_1ColorAdjust.html#a125d99cf1e7850c167137b493f512a76", null ],
     [ "gamma", "structhmap_1_1ColorAdjust.html#ae2fc513c6d6915e92410bcd7b43e8055", null ],
     [ "dither_amp", "structhmap_1_1ColorAdjust.html#a0d6901dbb470d8b91a91bbd741c95481", null ],
+    [ "shade", "structhmap_1_1ColorAdjust.html#a7c18b47518f06e6651f5905306420c32", null ],
     [ "filmic_tonemap", "structhmap_1_1ColorAdjust.html#abf71052fb9aa59345fff4155d9b33c0d", null ],
     [ "aces_tonemap", "structhmap_1_1ColorAdjust.html#a9205d4724c56c87eb48852cb104db6c5", null ],
     [ "agx_tonemap", "structhmap_1_1ColorAdjust.html#a4c9f3e46e241abba388ee27b20602fe5", null ]

@@ -195,6 +195,7 @@ var namespacehmap_1_1gpu =
     [ "roughness", "namespacehmap_1_1gpu.html#ab7698c2ed65e59a06231e0a84838165c", null ],
     [ "ruggedness", "namespacehmap_1_1gpu.html#a62292cc4bf9f6eb5c7b63b1e26f8cc88", null ],
     [ "rugosity", "namespacehmap_1_1gpu.html#aa5a3e087822525c41f057a51255e2bad", null ],
+    [ "topographic_residual", "namespacehmap_1_1gpu.html#a07fcfc0a3830c0ed3fc30f3c723c81a6", null ],
     [ "valley_width", "namespacehmap_1_1gpu.html#a3816b73c0f933147dc86ee9f8d2dd701", null ],
     [ "local_metrics", "namespacehmap_1_1gpu.html#a7329432a304163cef4fedb8b6bb124c5", null ],
     [ "sparse_max_convolution", "namespacehmap_1_1gpu.html#a0020f712944fdb63ee2894c19eaa27ca", null ],

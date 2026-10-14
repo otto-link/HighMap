@@ -487,6 +487,7 @@ var namespacehmap =
     [ "flatbed_carve", "namespacehmap.html#a5f979c31af1c9ee6ad499882335ca6fb", null ],
     [ "trench", "namespacehmap.html#a2d7b71e9231efc67e4bae209bd7fa84a", null ],
     [ "trench", "namespacehmap.html#ae10d017da6e13ba9d619298709e64917", null ],
+    [ "shade_color", "namespacehmap.html#a54eb8ce4196d73517024dbe2af5af81b", null ],
     [ "apply_hillshade", "namespacehmap.html#a76b37b88acf83d6a5b21f1be1b50697e", null ],
     [ "apply_hillshade", "namespacehmap.html#aefc8cbe645337bb5b663436c0324f9e2", null ],
     [ "color_adjust", "namespacehmap.html#a7634a1bb2505ae11370c431b0b1fd9ea", null ],

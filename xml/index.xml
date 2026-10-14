@@ -294,6 +294,7 @@
     <member refid="structhmap_1_1ColorAdjust_1a125d99cf1e7850c167137b493f512a76" kind="variable"><name>temperature</name></member>
     <member refid="structhmap_1_1ColorAdjust_1ae2fc513c6d6915e92410bcd7b43e8055" kind="variable"><name>gamma</name></member>
     <member refid="structhmap_1_1ColorAdjust_1a0d6901dbb470d8b91a91bbd741c95481" kind="variable"><name>dither_amp</name></member>
+    <member refid="structhmap_1_1ColorAdjust_1a7c18b47518f06e6651f5905306420c32" kind="variable"><name>shade</name></member>
     <member refid="structhmap_1_1ColorAdjust_1abf71052fb9aa59345fff4155d9b33c0d" kind="variable"><name>filmic_tonemap</name></member>
     <member refid="structhmap_1_1ColorAdjust_1a9205d4724c56c87eb48852cb104db6c5" kind="variable"><name>aces_tonemap</name></member>
     <member refid="structhmap_1_1ColorAdjust_1a4c9f3e46e241abba388ee27b20602fe5" kind="variable"><name>agx_tonemap</name></member>
@@ -2006,6 +2007,7 @@
     <member refid="namespacehmap_1a5f979c31af1c9ee6ad499882335ca6fb" kind="function"><name>flatbed_carve</name></member>
     <member refid="namespacehmap_1a2d7b71e9231efc67e4bae209bd7fa84a" kind="function"><name>trench</name></member>
     <member refid="namespacehmap_1ae10d017da6e13ba9d619298709e64917" kind="function"><name>trench</name></member>
+    <member refid="namespacehmap_1a54eb8ce4196d73517024dbe2af5af81b" kind="function"><name>shade_color</name></member>
     <member refid="namespacehmap_1a76b37b88acf83d6a5b21f1be1b50697e" kind="function"><name>apply_hillshade</name></member>
     <member refid="namespacehmap_1aefc8cbe645337bb5b663436c0324f9e2" kind="function"><name>apply_hillshade</name></member>
     <member refid="namespacehmap_1a7634a1bb2505ae11370c431b0b1fd9ea" kind="function"><name>color_adjust</name></member>
@@ -3043,6 +3045,7 @@
     <member refid="namespacehmap_1_1gpu_1ab7698c2ed65e59a06231e0a84838165c" kind="function"><name>roughness</name></member>
     <member refid="namespacehmap_1_1gpu_1a62292cc4bf9f6eb5c7b63b1e26f8cc88" kind="function"><name>ruggedness</name></member>
     <member refid="namespacehmap_1_1gpu_1aa5a3e087822525c41f057a51255e2bad" kind="function"><name>rugosity</name></member>
+    <member refid="namespacehmap_1_1gpu_1a07fcfc0a3830c0ed3fc30f3c723c81a6" kind="function"><name>topographic_residual</name></member>
     <member refid="namespacehmap_1_1gpu_1a3816b73c0f933147dc86ee9f8d2dd701" kind="function"><name>valley_width</name></member>
     <member refid="namespacehmap_1_1gpu_1a7329432a304163cef4fedb8b6bb124c5" kind="function"><name>local_metrics</name></member>
     <member refid="namespacehmap_1_1gpu_1a0020f712944fdb63ee2894c19eaa27ca" kind="function"><name>sparse_max_convolution</name></member>

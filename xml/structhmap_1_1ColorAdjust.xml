@@ -124,6 +124,21 @@
         </inbodydescription>
         <location file="HighMap/include/highmap/colorize.hpp" line="76" column="9" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="76" bodyend="-1"/>
       </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1ColorAdjust_1a7c18b47518f06e6651f5905306420c32" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::ColorAdjust::shade</definition>
+        <argsstring></argsstring>
+        <name>shade</name>
+        <qualifiedname>hmap::ColorAdjust::shade</qualifiedname>
+        <initializer>= 0.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/colorize.hpp" line="77" column="9" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="77" bodyend="-1"/>
+      </memberdef>
       <memberdef kind="variable" id="structhmap_1_1ColorAdjust_1abf71052fb9aa59345fff4155d9b33c0d" prot="public" static="no" mutable="no">
         <type>bool</type>
         <definition>bool hmap::ColorAdjust::filmic_tonemap</definition>
@@ -137,7 +152,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/colorize.hpp" line="77" column="9" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="77" bodyend="-1"/>
+        <location file="HighMap/include/highmap/colorize.hpp" line="78" column="9" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="78" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structhmap_1_1ColorAdjust_1a9205d4724c56c87eb48852cb104db6c5" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -152,7 +167,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/colorize.hpp" line="78" column="9" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="78" bodyend="-1"/>
+        <location file="HighMap/include/highmap/colorize.hpp" line="79" column="9" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="79" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structhmap_1_1ColorAdjust_1a4c9f3e46e241abba388ee27b20602fe5" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -167,14 +182,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/colorize.hpp" line="79" column="9" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="79" bodyend="-1"/>
+        <location file="HighMap/include/highmap/colorize.hpp" line="80" column="9" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="80" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="HighMap/include/highmap/colorize.hpp" line="67" column="1" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="68" bodyend="80"/>
+    <location file="HighMap/include/highmap/colorize.hpp" line="67" column="1" bodyfile="HighMap/include/highmap/colorize.hpp" bodystart="68" bodyend="81"/>
     <listofallmembers>
       <member refid="structhmap_1_1ColorAdjust_1a9205d4724c56c87eb48852cb104db6c5" prot="public" virt="non-virtual"><scope>hmap::ColorAdjust</scope><name>aces_tonemap</name></member>
       <member refid="structhmap_1_1ColorAdjust_1a4c9f3e46e241abba388ee27b20602fe5" prot="public" virt="non-virtual"><scope>hmap::ColorAdjust</scope><name>agx_tonemap</name></member>
@@ -186,6 +201,7 @@
       <member refid="structhmap_1_1ColorAdjust_1ae5f67f58235a3892f9d6eb6fba75e40c" prot="public" virt="non-virtual"><scope>hmap::ColorAdjust</scope><name>in_max</name></member>
       <member refid="structhmap_1_1ColorAdjust_1a093e91b19d2c4fbb10bdae6afd27aa0f" prot="public" virt="non-virtual"><scope>hmap::ColorAdjust</scope><name>in_min</name></member>
       <member refid="structhmap_1_1ColorAdjust_1a22890080427433e2c75ad3f15d3fc2b8" prot="public" virt="non-virtual"><scope>hmap::ColorAdjust</scope><name>saturation</name></member>
+      <member refid="structhmap_1_1ColorAdjust_1a7c18b47518f06e6651f5905306420c32" prot="public" virt="non-virtual"><scope>hmap::ColorAdjust</scope><name>shade</name></member>
       <member refid="structhmap_1_1ColorAdjust_1a125d99cf1e7850c167137b493f512a76" prot="public" virt="non-virtual"><scope>hmap::ColorAdjust</scope><name>temperature</name></member>
     </listofallmembers>
   </compounddef>

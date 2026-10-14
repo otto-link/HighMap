@@ -460,7 +460,7 @@
 <codeline lineno="450"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>mean<sp/>=<sp/>array.mean();</highlight></codeline>
 <codeline lineno="451"><highlight class="normal"></highlight></codeline>
 <codeline lineno="452"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>sigma<sp/>=<sp/>std;</highlight></codeline>
-<codeline lineno="453"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sigma<sp/>&lt;=<sp/>0.f)<sp/>sigma<sp/>=<sp/>array.std();</highlight></codeline>
+<codeline lineno="453"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sigma<sp/>&lt;=<sp/>0.f)<sp/>sigma<sp/>=<sp/>std::sqrt(array.std());</highlight></codeline>
 <codeline lineno="454"><highlight class="normal"></highlight></codeline>
 <codeline lineno="455"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>denom<sp/>=<sp/>std::max(multiplier<sp/>*<sp/>sigma,<sp/>1e-12f);</highlight></codeline>
 <codeline lineno="456"><highlight class="normal"></highlight></codeline>

@@ -20,5 +20,6 @@ var local__metrics__gpu_8cpp =
     [ "roughness", "local__metrics__gpu_8cpp.html#ab7698c2ed65e59a06231e0a84838165c", null ],
     [ "ruggedness", "local__metrics__gpu_8cpp.html#a62292cc4bf9f6eb5c7b63b1e26f8cc88", null ],
     [ "rugosity", "local__metrics__gpu_8cpp.html#aa5a3e087822525c41f057a51255e2bad", null ],
-    [ "topographic_position_index", "local__metrics__gpu_8cpp.html#a74594cae7628bcfb1c038ac6930fe97d", null ]
+    [ "topographic_position_index", "local__metrics__gpu_8cpp.html#a74594cae7628bcfb1c038ac6930fe97d", null ],
+    [ "topographic_residual", "local__metrics__gpu_8cpp.html#a07fcfc0a3830c0ed3fc30f3c723c81a6", null ]
 ];
