@@ -23,8 +23,8 @@ void kernel distance_shaper_rt(read_only image2d_t  in,
 
   float val_orig = read_imagef(in, sampler, g).x;
 
-  float best_val = val_orig;
-  float second_val = -1e20f;
+  float       best_val = val_orig;
+  float       second_val = -1e20f;
   const float max_dist = 1.41421356f * (float)max(nx, ny);
 
   for (int k = 0; k < directions; ++k)
@@ -39,7 +39,8 @@ void kernel distance_shaper_rt(read_only image2d_t  in,
     {
       float2 pos = (float2)(g.x - r * dir.x, g.y - r * dir.y);
 
-      if (pos.x < 0.0f || pos.x >= (float)nx || pos.y < 0.0f || pos.y >= (float)ny)
+      if (pos.x < 0.0f || pos.x >= (float)nx || pos.y < 0.0f ||
+          pos.y >= (float)ny)
       {
         break;
       }
