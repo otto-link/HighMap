@@ -19,7 +19,6 @@ var searchData=
   ['hydraulic_5fschott_5fgpu_2ecpp_16',['hydraulic_schott_gpu.cpp',['../hydraulic__schott__gpu_8cpp.html',1,'']]],
   ['hydraulic_5fstream_2ecpp_17',['hydraulic_stream.cpp',['../hydraulic__stream_8cpp.html',1,'']]],
   ['hydraulic_5fstream_5fgpu_2ecpp_18',['hydraulic_stream_gpu.cpp',['../hydraulic__stream__gpu_8cpp.html',1,'']]],
-  ['hydraulic_5fstream_5fupscale_5famplification_2ecpp_19',['hydraulic_stream_upscale_amplification.cpp',['../hydraulic__stream__upscale__amplification_8cpp.html',1,'']]],
-  ['hydraulic_5fvpipes_5fgpu_2ecpp_20',['hydraulic_vpipes_gpu.cpp',['../hydraulic__vpipes__gpu_8cpp.html',1,'']]],
-  ['hydrology_2ehpp_21',['hydrology.hpp',['../hydrology_2hydrology_8hpp.html',1,'(Global Namespace)'],['../hydrology_8hpp.html',1,'(Global Namespace)']]]
+  ['hydraulic_5fvpipes_5fgpu_2ecpp_19',['hydraulic_vpipes_gpu.cpp',['../hydraulic__vpipes__gpu_8cpp.html',1,'']]],
+  ['hydrology_2ehpp_20',['hydrology.hpp',['../hydrology_2hydrology_8hpp.html',1,'(Global Namespace)'],['../hydrology_8hpp.html',1,'(Global Namespace)']]]
 ];

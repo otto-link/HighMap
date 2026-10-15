@@ -22,7 +22,6 @@ var dir_1bed6a359ba9efb1507bbdcef4bacbaa =
     [ "hydraulic_schott_gpu.cpp", "hydraulic__schott__gpu_8cpp.html", "hydraulic__schott__gpu_8cpp" ],
     [ "hydraulic_stream.cpp", "hydraulic__stream_8cpp.html", "hydraulic__stream_8cpp" ],
     [ "hydraulic_stream_gpu.cpp", "hydraulic__stream__gpu_8cpp.html", "hydraulic__stream__gpu_8cpp" ],
-    [ "hydraulic_stream_upscale_amplification.cpp", "hydraulic__stream__upscale__amplification_8cpp.html", "hydraulic__stream__upscale__amplification_8cpp" ],
     [ "hydraulic_vpipes_gpu.cpp", "hydraulic__vpipes__gpu_8cpp.html", "hydraulic__vpipes__gpu_8cpp" ],
     [ "mudslide.cpp", "mudslide_8cpp.html", "mudslide_8cpp" ],
     [ "rifts_gpu.cpp", "rifts__gpu_8cpp.html", "rifts__gpu_8cpp" ],

@@ -12,6 +12,5 @@ var searchData=
   ['mountain_5fstump_2ecpp_9',['mountain_stump.cpp',['../mountain__stump_8cpp.html',1,'']]],
   ['mountain_5ftibesti_2ecpp_10',['mountain_tibesti.cpp',['../mountain__tibesti_8cpp.html',1,'']]],
   ['mudslide_2ecpp_11',['mudslide.cpp',['../mudslide_8cpp.html',1,'']]],
-  ['multiscale_2ehpp_12',['multiscale.hpp',['../multiscale_8hpp.html',1,'']]],
-  ['multisteps_2ecpp_13',['multisteps.cpp',['../multisteps_8cpp.html',1,'']]]
+  ['multisteps_2ecpp_12',['multisteps.cpp',['../multisteps_8cpp.html',1,'']]]
 ];

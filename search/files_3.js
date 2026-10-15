@@ -24,11 +24,9 @@ var searchData=
   ['distance_5ftransform_2ecpp_21',['distance_transform.cpp',['../distance__transform_8cpp.html',1,'']]],
   ['distance_5ftransform_5fapprox_2ecpp_22',['distance_transform_approx.cpp',['../distance__transform__approx_8cpp.html',1,'']]],
   ['distance_5ftransform_5fjfa_2ecpp_23',['distance_transform_jfa.cpp',['../distance__transform__jfa_8cpp.html',1,'']]],
-  ['downscale_5ftransform_2ecpp_24',['downscale_transform.cpp',['../downscale__transform_8cpp.html',1,'']]],
-  ['downscaling_2ehpp_25',['downscaling.hpp',['../downscaling_8hpp.html',1,'']]],
-  ['drainage_5fbasin_2ecpp_26',['drainage_basin.cpp',['../drainage__basin_8cpp.html',1,'']]],
-  ['drainage_5fbasin_2ehpp_27',['drainage_basin.hpp',['../drainage__basin_8hpp.html',1,'']]],
-  ['drainage_5fbasin_5fcell_5fbased_2ecpp_28',['drainage_basin_cell_based.cpp',['../drainage__basin__cell__based_8cpp.html',1,'']]],
-  ['drainage_5fbasin_5fcell_5fbased_2ehpp_29',['drainage_basin_cell_based.hpp',['../drainage__basin__cell__based_8hpp.html',1,'']]],
-  ['dump_5fvisual_5fcheck_2ecpp_30',['dump_visual_check.cpp',['../dump__visual__check_8cpp.html',1,'']]]
+  ['drainage_5fbasin_2ecpp_24',['drainage_basin.cpp',['../drainage__basin_8cpp.html',1,'']]],
+  ['drainage_5fbasin_2ehpp_25',['drainage_basin.hpp',['../drainage__basin_8hpp.html',1,'']]],
+  ['drainage_5fbasin_5fcell_5fbased_2ecpp_26',['drainage_basin_cell_based.cpp',['../drainage__basin__cell__based_8cpp.html',1,'']]],
+  ['drainage_5fbasin_5fcell_5fbased_2ehpp_27',['drainage_basin_cell_based.hpp',['../drainage__basin__cell__based_8hpp.html',1,'']]],
+  ['dump_5fvisual_5fcheck_2ecpp_28',['dump_visual_check.cpp',['../dump__visual__check_8cpp.html',1,'']]]
 ];

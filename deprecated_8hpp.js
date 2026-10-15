@@ -14,8 +14,6 @@ var deprecated_8hpp =
     [ "hydraulic_stream_log", "deprecated_8hpp.html#ab4ba44ccbb8dbdb8af4ff4e50dd90885", null ],
     [ "hydraulic_stream_log_multiscale", "deprecated_8hpp.html#a0d47acf21b1bf8c1f457f89d50c79f1e", null ],
     [ "hydraulic_stream_log_multiscale", "deprecated_8hpp.html#a362d53a66acb0cf920c3d9f5e7aa2162", null ],
-    [ "hydraulic_stream_upscale_amplification", "deprecated_8hpp.html#a66355f091aa60d97d5a7c7eeb08c51cc", null ],
-    [ "hydraulic_stream_upscale_amplification", "deprecated_8hpp.html#af298a6897a2becf0ae24f3de900081f0", null ],
     [ "conv_erosion", "deprecated_8hpp.html#a453995ce289c0c3dad0f34fe10a54d74", null ],
     [ "hydraulic_musgrave", "deprecated_8hpp.html#a4f8838aa7fe59a353b60e3d03e0d5a8f", null ],
     [ "hydraulic_musgrave", "deprecated_8hpp.html#a7b00e9d4012a7026230454d0d5528760", null ]

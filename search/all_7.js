@@ -142,12 +142,11 @@ var searchData=
   ['from_5fnumpy_139',['from_numpy',['../classhmap_1_1Array.html#a61b4eb10e50548b12cfd0cb2f9eddde1',1,'hmap::Array']]],
   ['from_5fradii_140',['from_radii',['../structhmap_1_1InteractionMatrix.html#a181a06017f7a95bfb1839cd1dc40ac74',1,'hmap::InteractionMatrix']]],
   ['from_5fspecies_141',['from_species',['../structhmap_1_1InteractionMatrix.html#ab5f8f3591c9edeed91e083a4f69db595',1,'hmap::InteractionMatrix']]],
-  ['front_142',['front',['../classhmap_1_1ScatterField.html#ae3eaa626c3d98a542059589c785bed98',1,'hmap::ScatterField::front()'],['../classhmap_1_1ScatterField.html#a6c14d17b251be666bbb20a797210894a',1,'hmap::ScatterField::front() const'],['../classhmap_1_1Cloud.html#a78fbf9591f4e985df41a448c835e8213',1,'hmap::Cloud::front() const'],['../classhmap_1_1Cloud.html#a8cae222f807dfaab9f9bf5d75493da0b',1,'hmap::Cloud::front()'],['../classhmap_1_1CellPath.html#a57da0455ee07fa09d52db9f3cdea232b',1,'hmap::CellPath::front() const'],['../classhmap_1_1CellPath.html#a5df555221e02f580ee1e0266e9ddcbb0',1,'hmap::CellPath::front()']]],
-  ['full_143',['FULL',['../namespacehmap.html#ae84abe9052dcb9c88f3c50716addfe44a335e6fca97d53bfb6cc3a55c566f1dd7',1,'hmap']]],
-  ['function_144',['function',['../classhmap_1_1Function.html#a1f77a2faa84c84fb147f48af0bfbc96e',1,'hmap::Function::Function()'],['../classhmap_1_1Function.html#ae1f9e64626fb671ed37a45d09cf551e8',1,'hmap::Function::Function(HMAP_FCT_XY_TYPE delegate)'],['../classhmap_1_1Function.html',1,'hmap::Function']]],
-  ['functionalities_145',['Library functionalities',['../index.html#autotoc_md19',1,'']]],
-  ['functions_146',['Bivariate functions',['../index.html#autotoc_md13',1,'']]],
-  ['functions_2ecpp_147',['functions.cpp',['../functions_8cpp.html',1,'']]],
-  ['functions_2ehpp_148',['functions.hpp',['../primitives_2functions_8hpp.html',1,'(Global Namespace)'],['../functions_8hpp.html',1,'(Global Namespace)']]],
-  ['fxba_149',['FXBA',['../namespacehmap.html#ac3d35efc6e5b596f508e2b17a5aa871bab8e641a60a539570cba93410908467ee',1,'hmap']]]
+  ['front_142',['front',['../classhmap_1_1Cloud.html#a78fbf9591f4e985df41a448c835e8213',1,'hmap::Cloud::front()'],['../classhmap_1_1ScatterField.html#a6c14d17b251be666bbb20a797210894a',1,'hmap::ScatterField::front() const'],['../classhmap_1_1ScatterField.html#ae3eaa626c3d98a542059589c785bed98',1,'hmap::ScatterField::front()'],['../classhmap_1_1Cloud.html#a8cae222f807dfaab9f9bf5d75493da0b',1,'hmap::Cloud::front()'],['../classhmap_1_1CellPath.html#a57da0455ee07fa09d52db9f3cdea232b',1,'hmap::CellPath::front() const'],['../classhmap_1_1CellPath.html#a5df555221e02f580ee1e0266e9ddcbb0',1,'hmap::CellPath::front()']]],
+  ['function_143',['function',['../classhmap_1_1Function.html#a1f77a2faa84c84fb147f48af0bfbc96e',1,'hmap::Function::Function()'],['../classhmap_1_1Function.html#ae1f9e64626fb671ed37a45d09cf551e8',1,'hmap::Function::Function(HMAP_FCT_XY_TYPE delegate)'],['../classhmap_1_1Function.html',1,'hmap::Function']]],
+  ['functionalities_144',['Library functionalities',['../index.html#autotoc_md19',1,'']]],
+  ['functions_145',['Bivariate functions',['../index.html#autotoc_md13',1,'']]],
+  ['functions_2ecpp_146',['functions.cpp',['../functions_8cpp.html',1,'']]],
+  ['functions_2ehpp_147',['functions.hpp',['../primitives_2functions_8hpp.html',1,'(Global Namespace)'],['../functions_8hpp.html',1,'(Global Namespace)']]],
+  ['fxba_148',['FXBA',['../namespacehmap.html#ac3d35efc6e5b596f508e2b17a5aa871bab8e641a60a539570cba93410908467ee',1,'hmap']]]
 ];

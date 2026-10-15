@@ -77,7 +77,6 @@ var annotated_dup =
       [ "PerlinHalfFunction", "classhmap_1_1PerlinHalfFunction.html", "classhmap_1_1PerlinHalfFunction" ],
       [ "PerlinMixFunction", "classhmap_1_1PerlinMixFunction.html", "classhmap_1_1PerlinMixFunction" ],
       [ "Point", "classhmap_1_1Point.html", "classhmap_1_1Point" ],
-      [ "PyramidDecomposition", "classhmap_1_1PyramidDecomposition.html", "classhmap_1_1PyramidDecomposition" ],
       [ "QuadSurfaceFunction", "classhmap_1_1QuadSurfaceFunction.html", "classhmap_1_1QuadSurfaceFunction" ],
       [ "RamTileStorage", "classhmap_1_1RamTileStorage.html", "classhmap_1_1RamTileStorage" ],
       [ "Recorder", "structhmap_1_1Recorder.html", "structhmap_1_1Recorder" ],

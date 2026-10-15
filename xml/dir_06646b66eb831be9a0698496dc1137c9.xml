@@ -11,7 +11,6 @@
     <innerdir refid="dir_82014d7f7e4330eda10391193d6d8c10">HighMap/include/highmap/internal</innerdir>
     <innerdir refid="dir_cc5c1c65f818109bfd526b4de6dcbb6a">HighMap/include/highmap/interpolate</innerdir>
     <innerdir refid="dir_54d64179416f8528bc5b7858e675b945">HighMap/include/highmap/math</innerdir>
-    <innerdir refid="dir_0bbe76a3bf266ee6a809b4127139d936">HighMap/include/highmap/multiscale</innerdir>
     <innerdir refid="dir_e47ebac3a1b43abbbafa1ff9f643dddd">HighMap/include/highmap/opencl</innerdir>
     <innerdir refid="dir_1a98231a3a7703aece9d92406c51e7de">HighMap/include/highmap/primitives</innerdir>
     <innerdir refid="dir_64a28c59655295f371c641b2d2bb4eb7">HighMap/include/highmap/rocks</innerdir>
@@ -42,7 +41,6 @@
     <innerfile refid="logger_8hpp">logger.hpp</innerfile>
     <innerfile refid="math_8hpp">math.hpp</innerfile>
     <innerfile refid="morphology_8hpp">morphology.hpp</innerfile>
-    <innerfile refid="multiscale_8hpp">multiscale.hpp</innerfile>
     <innerfile refid="openmp_8hpp">openmp.hpp</innerfile>
     <innerfile refid="operator_8hpp">operator.hpp</innerfile>
     <innerfile refid="particles_8hpp">particles.hpp</innerfile>

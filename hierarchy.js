@@ -106,7 +106,6 @@ var hierarchy =
     [ "hmap::PdfSampler", "classhmap_1_1PdfSampler.html", null ],
     [ "hmap::gpu::McDonaldParams::PhysicalParams", "structhmap_1_1gpu_1_1McDonaldParams_1_1PhysicalParams.html", null ],
     [ "hmap::Point", "classhmap_1_1Point.html", null ],
-    [ "hmap::PyramidDecomposition", "classhmap_1_1PyramidDecomposition.html", null ],
     [ "hmap::Recorder", "structhmap_1_1Recorder.html", null ],
     [ "hmap::RockDistribution", "structhmap_1_1RockDistribution.html", null ],
     [ "hmap::RockSeedingOptions", "structhmap_1_1RockSeedingOptions.html", null ],

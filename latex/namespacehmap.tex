@@ -146,8 +146,6 @@ class \mbox{\hyperlink{classhmap_1_1PerlinMixFunction}{Perlin\+Mix\+Function}}
 \begin{DoxyCompactList}\small\item\em Perlin \textquotesingle{}mix\textquotesingle{} (x, y) function class. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classhmap_1_1Point}{Point}}
 \begin{DoxyCompactList}\small\item\em A class to represent and manipulate 2D points that can carry a value. \end{DoxyCompactList}\item 
-class \mbox{\hyperlink{classhmap_1_1PyramidDecomposition}{Pyramid\+Decomposition}}
-\begin{DoxyCompactList}\small\item\em Pyramid decomposition class, to handle low-\/pass pyramids (like Laplacian pyramid). \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classhmap_1_1QuadSurfaceFunction}{Quad\+Surface\+Function}}
 \begin{DoxyCompactList}\small\item\em Quadratic surface function defined by four corner values. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classhmap_1_1RamTileStorage}{Ram\+Tile\+Storage}}
@@ -516,11 +514,6 @@ enum \mbox{\hyperlink{namespacehmap_a321149eda3417aa485a010c31267818c}{Morpholog
 , \mbox{\hyperlink{namespacehmap_a321149eda3417aa485a010c31267818caa6a0098d7d9f4eaae196f3f721464806}{MO\+\_\+\+OPENING\+\_\+\+BY\+\_\+\+RECONSTRUCTION}}
  \}
 \begin{DoxyCompactList}\small\item\em Types of base morphology operators. \end{DoxyCompactList}\item 
-enum \mbox{\hyperlink{namespacehmap_ae84abe9052dcb9c88f3c50716addfe44}{pyramid\+\_\+transform\+\_\+support}} \+: int \{ \mbox{\hyperlink{namespacehmap_ae84abe9052dcb9c88f3c50716addfe44a335e6fca97d53bfb6cc3a55c566f1dd7}{FULL}}
-, \mbox{\hyperlink{namespacehmap_ae84abe9052dcb9c88f3c50716addfe44ab02b262c560a970e4f082d4edee376fb}{LOWPASS\+\_\+\+ONLY}}
-, \mbox{\hyperlink{namespacehmap_ae84abe9052dcb9c88f3c50716addfe44a23fde294eee1dbe59e1c6bb2bc0d5132}{HIGHPASS\+\_\+\+ONLY}}
- \}
-\begin{DoxyCompactList}\small\item\em Define on which part of the pyramid component the transform function should be applied. \end{DoxyCompactList}\item 
 enum \mbox{\hyperlink{namespacehmap_a8e3756915e28aa80cec2190043cc8c2f}{Voronoi\+Return\+Type}} \+: int \{ \newline
 \mbox{\hyperlink{namespacehmap_a8e3756915e28aa80cec2190043cc8c2fa3e5996ed4314058911435c50bc95e1c2}{F1\+\_\+\+SQUARED}}
 , \mbox{\hyperlink{namespacehmap_a8e3756915e28aa80cec2190043cc8c2faaf0f73f1150aae0a8affdab8b5f38eca}{F2\+\_\+\+SQUARED}}
@@ -789,10 +782,6 @@ void \mbox{\hyperlink{namespacehmap_a0d47acf21b1bf8c1f457f89d50c79f1e}{hydraulic
 \begin{DoxyCompactList}\small\item\em Multiscale stream-\/power hydraulic erosion cascade. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespacehmap_a362d53a66acb0cf920c3d9f5e7aa2162}{hydraulic\+\_\+stream\+\_\+log\+\_\+multiscale}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}, float c\+\_\+erosion, float talus\+\_\+ref, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+mask, int levels=3, int deposition\+\_\+ir=32, float deposition\+\_\+scale\+\_\+ratio=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float gradient\+\_\+power=0.\+8\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float gradient\+\_\+scaling\+\_\+ratio=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, int gradient\+\_\+prefilter\+\_\+ir=16, float saturation\+\_\+ratio=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+bedrock=nullptr, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+moisture\+\_\+map=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+erosion\+\_\+map=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+deposition\+\_\+map=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+flow\+\_\+map=nullptr, float \mbox{\hyperlink{namespacehmap_ad5894053c042e2076fbbc7003bf69451}{mix}}=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float \mbox{\hyperlink{namespacehmap_a19148ad2a95f7ad5b05161e9a0f0f732}{warp}}=0.\+35\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, std\+::uint32\+\_\+t seed=1)
 \begin{DoxyCompactList}\small\item\em This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{namespacehmap_a66355f091aa60d97d5a7c7eeb08c51cc}{hydraulic\+\_\+stream\+\_\+upscale\+\_\+amplification}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}, float c\+\_\+erosion, float talus\+\_\+ref, int upscaling\+\_\+levels=1, float persistence=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, int \mbox{\hyperlink{sls__deformation_8cpp_a108a1d0fcea4288c9e48f5dc4fa0a1b0}{ir}}=1, float clipping\+\_\+ratio=10.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
-\begin{DoxyCompactList}\small\item\em Applies hydraulic erosion with upscaling amplification. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{namespacehmap_af298a6897a2becf0ae24f3de900081f0}{hydraulic\+\_\+stream\+\_\+upscale\+\_\+amplification}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+mask, float c\+\_\+erosion, float talus\+\_\+ref, int upscaling\+\_\+levels=1, float persistence=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, int \mbox{\hyperlink{sls__deformation_8cpp_a108a1d0fcea4288c9e48f5dc4fa0a1b0}{ir}}=1, float clipping\+\_\+ratio=10.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
-\begin{DoxyCompactList}\small\item\em Applies hydraulic erosion with upscaling amplification, with a post-\/processing intensity mask. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespacehmap_aa8c5cbc750a368764e2a26409c2427a5}{depression\+\_\+filling}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}, int iterations=1000, float epsilon=1e-\/4\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, bool outflow\+\_\+left=true, bool outflow\+\_\+right=true, bool outflow\+\_\+bottom=true, bool outflow\+\_\+top=true)
 \begin{DoxyCompactList}\small\item\em Fill the depressions of the heightmap using the Planchon-\/\+Darboux algorithm. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespacehmap_aeb94e692639d1644e7a6d2809fb5681f}{depression\+\_\+filling\+\_\+priority\+\_\+flood}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}, bool apply\+\_\+post\+\_\+filter=false, bool outflow\+\_\+left=true, bool outflow\+\_\+right=true, bool outflow\+\_\+bottom=true, bool outflow\+\_\+top=true)
@@ -1771,12 +1760,6 @@ void \mbox{\hyperlink{namespacehmap_adff494af7c8bf4db7f3e6fddd3261793}{flood\+\_
 \begin{DoxyCompactList}\small\item\em Computes the skeleton of a binary image using the Zhang-\/\+Suen skeletonization algorithm. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a0df2e693c1919b3f59ee98df040ff489}{morphological\+\_\+operators}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int \mbox{\hyperlink{sls__deformation_8cpp_a108a1d0fcea4288c9e48f5dc4fa0a1b0}{ir}}, \mbox{\hyperlink{namespacehmap_a321149eda3417aa485a010c31267818c}{Morphology\+Operation}} operation, \mbox{\hyperlink{namespacehmap_a2ff2761f87976a24c39df7b6509576f1}{Min\+Max\+Kernel}} kernel\+\_\+type=\mbox{\hyperlink{namespacehmap_a2ff2761f87976a24c39df7b6509576f1a290d4b81f4e2b47d86fd1b0170e9aab7}{Min\+Max\+Kernel\+::\+DISK}})
 \begin{DoxyCompactList}\small\item\em Apply a morphological operation to the input array using a square kernel. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{namespacehmap_a1fb8077215c98a741e0de5366c2f7ca3}{downscale\+\_\+transform}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float kc, std\+::function$<$ void(\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&\mbox{\hyperlink{kd__tree_8cpp_a1f4ec255d3d8677a6cd9d6a9a6eb653b}{x}})$>$ unary\+\_\+op, bool apply\+\_\+prefiltering=false)
-\begin{DoxyCompactList}\small\item\em Applies a downscaling transformation to a 2D array using Fourier-\/based filtering. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{namespacehmap_a669a4f9586f3df4b018e321048c9bc7d}{downscale\+\_\+transform\+\_\+multi}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, std\+::vector$<$ float $>$ kc\+\_\+list, std\+::function$<$ void(\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&\mbox{\hyperlink{kd__tree_8cpp_a1f4ec255d3d8677a6cd9d6a9a6eb653b}{x}}, const int current\+\_\+index)$>$ unary\+\_\+op, bool apply\+\_\+prefiltering=false)
-\item 
-void \mbox{\hyperlink{namespacehmap_a868ae7c781d7e72af7b1416898a2f891}{upscale\+\_\+amplification}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int upscaling\+\_\+levels, float persistence, std\+::function$<$ void(\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&\mbox{\hyperlink{kd__tree_8cpp_a1f4ec255d3d8677a6cd9d6a9a6eb653b}{x}}, float current\+\_\+scaling)$>$ unary\+\_\+op)
-\begin{DoxyCompactList}\small\item\em Applies an upscaling amplification process to an array, followed by a unary operation. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{namespacehmap_a8eb3b37f9c2d4832fa1e0645bc69ac22}{init\+\_\+openmp}} (int num\+\_\+threads=-\/1)
 \item 
 void \mbox{\hyperlink{namespacehmap_afaefd4e8848d0155162b24a1a67f9479}{log\+\_\+openmp\+\_\+info}} ()
@@ -3429,30 +3412,6 @@ MO\+\_\+\+CLOSING\+\_\+\+BY\+\_\+\+RECONSTRUCTION&\\
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{MO\_OPENING\_BY\_RECONSTRUCTION@{MO\_OPENING\_BY\_RECONSTRUCTION}!hmap@{hmap}}\index{hmap@{hmap}!MO\_OPENING\_BY\_RECONSTRUCTION@{MO\_OPENING\_BY\_RECONSTRUCTION}}}\Hypertarget{namespacehmap_a321149eda3417aa485a010c31267818caa6a0098d7d9f4eaae196f3f721464806}\label{namespacehmap_a321149eda3417aa485a010c31267818caa6a0098d7d9f4eaae196f3f721464806} 
 MO\+\_\+\+OPENING\+\_\+\+BY\+\_\+\+RECONSTRUCTION&\\
-\hline
-
-\end{DoxyEnumFields}
-\Hypertarget{namespacehmap_ae84abe9052dcb9c88f3c50716addfe44}\label{namespacehmap_ae84abe9052dcb9c88f3c50716addfe44} 
-\index{hmap@{hmap}!pyramid\_transform\_support@{pyramid\_transform\_support}}
-\index{pyramid\_transform\_support@{pyramid\_transform\_support}!hmap@{hmap}}
-\doxysubsubsection{\texorpdfstring{pyramid\_transform\_support}{pyramid\_transform\_support}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{namespacehmap_ae84abe9052dcb9c88f3c50716addfe44}{hmap\+::pyramid\+\_\+transform\+\_\+support}} \+: int}
-
-
-
-Define on which part of the pyramid component the transform function should be applied. 
-
-\begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{FULL@{FULL}!hmap@{hmap}}\index{hmap@{hmap}!FULL@{FULL}}}\Hypertarget{namespacehmap_ae84abe9052dcb9c88f3c50716addfe44a335e6fca97d53bfb6cc3a55c566f1dd7}\label{namespacehmap_ae84abe9052dcb9c88f3c50716addfe44a335e6fca97d53bfb6cc3a55c566f1dd7} 
-FULL&Complete field (sum of low and high pass) \\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{LOWPASS\_ONLY@{LOWPASS\_ONLY}!hmap@{hmap}}\index{hmap@{hmap}!LOWPASS\_ONLY@{LOWPASS\_ONLY}}}\Hypertarget{namespacehmap_ae84abe9052dcb9c88f3c50716addfe44ab02b262c560a970e4f082d4edee376fb}\label{namespacehmap_ae84abe9052dcb9c88f3c50716addfe44ab02b262c560a970e4f082d4edee376fb} 
-LOWPASS\+\_\+\+ONLY&Low pass component only. \\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{HIGHPASS\_ONLY@{HIGHPASS\_ONLY}!hmap@{hmap}}\index{hmap@{hmap}!HIGHPASS\_ONLY@{HIGHPASS\_ONLY}}}\Hypertarget{namespacehmap_ae84abe9052dcb9c88f3c50716addfe44a23fde294eee1dbe59e1c6bb2bc0d5132}\label{namespacehmap_ae84abe9052dcb9c88f3c50716addfe44a23fde294eee1dbe59e1c6bb2bc0d5132} 
-HIGHPASS\+\_\+\+ONLY&High pass component only. \\
 \hline
 
 \end{DoxyEnumFields}
@@ -8171,171 +8130,7 @@ Runs stream-\/power erosion over a geometric resolution ladder (coarsest first, 
 
 This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
 
-\Hypertarget{namespacehmap_a66355f091aa60d97d5a7c7eeb08c51cc}\label{namespacehmap_a66355f091aa60d97d5a7c7eeb08c51cc} 
-\index{hmap@{hmap}!hydraulic\_stream\_upscale\_amplification@{hydraulic\_stream\_upscale\_amplification}}
-\index{hydraulic\_stream\_upscale\_amplification@{hydraulic\_stream\_upscale\_amplification}!hmap@{hmap}}
-\doxysubsubsection{\texorpdfstring{hydraulic\_stream\_upscale\_amplification()}{hydraulic\_stream\_upscale\_amplification()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily void hmap\+::hydraulic\+\_\+stream\+\_\+upscale\+\_\+amplification (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{z,  }\item[{float}]{c\+\_\+erosion,  }\item[{float}]{talus\+\_\+ref,  }\item[{int}]{upscaling\+\_\+levels = {\ttfamily 1},  }\item[{float}]{persistence = {\ttfamily 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{int}]{ir = {\ttfamily 1},  }\item[{float}]{clipping\+\_\+ratio = {\ttfamily 10.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}} }\end{DoxyParamCaption})}
-
-
-
-Applies hydraulic erosion with upscaling amplification. 
-
-This function progressively upscales the input array {\ttfamily z} by powers of 2 and applies hydraulic erosion based on flow accumulation at each level of upscaling. After all upscaling levels are processed, the array is resampled back to its original resolution using bilinear interpolation.
-
-
-\begin{DoxyParams}{Parameters}
-{\em z} & Input array representing elevation data. \\
-\hline
-{\em c\+\_\+erosion} & Erosion coefficient. \\
-\hline
-{\em talus\+\_\+ref} & Reference talus used to locally define the flow-\/partition exponent. Smaller values lead to thinner flow streams. \\
-\hline
-{\em upscaling\+\_\+levels} & Number of upscaling levels to apply. The function will resample the array at each level. \\
-\hline
-{\em persistence} & A scaling factor applied at each level to adjust the impact of the unary operation. Higher persistence values will amplify the effects at each level. \\
-\hline
-{\em ir} & Kernel radius. If {\ttfamily ir \texorpdfstring{$>$}{>} 1}, a cone kernel is used to carve channel flow erosion. \\
-\hline
-{\em clipping\+\_\+ratio} & Flow accumulation clipping ratio.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyNote}{Note}
-The function first applies upscaling using bicubic resampling, performs hydraulic erosion at each level, and finally resamples the array back to its initial resolution using bilinear interpolation.
-\end{DoxyNote}
-{\bfseries{Example}} 
-\begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{highmap_8hpp}{highmap.hpp}}"{}}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{void})}
-\DoxyCodeLine{\{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_1_1log_a2b618829e9c711302f726a3ec3f4ff49}{hmap::log::warn}}(}
-\DoxyCodeLine{\ \ \ \ \ \ \textcolor{stringliteral}{"{}hydraulic\_stream\_upscale\_amplification\ is\ deprecated\ and\ will\ be\ "{}}}
-\DoxyCodeLine{\ \ \ \ \ \ \textcolor{stringliteral}{"{}removed\ at\ some\ point."{}});}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ glm::ivec2\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}\ =\ \{256,\ 256\};}
-\DoxyCodeLine{\ \ glm::vec2\ \ res\ =\ \{2.f,\ 2.f\};}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ seed\ =\ 1;}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}\ =\ \mbox{\hyperlink{namespacehmap_a7d699a468a18be16c70654958ee13b41}{hmap::noise\_fbm}}(\mbox{\hyperlink{namespacehmap_ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581}{hmap::NoiseType::PERLIN}},\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ res,\ seed);}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{hmap::remap}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}});}
-\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ z0\ =\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}};}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{float}\ c\_erosion\ =\ 0.05f;}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{float}\ talus\_ref\ =\ 5.f\ /\ (float)\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}.x;}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ z1\ =\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}};}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a8a85dd8e3a7211f2c2440038d6a10ce8}{hmap::hydraulic\_stream}}(z1,\ c\_erosion,\ talus\_ref);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ z2\ =\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}};}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ upscaling\_levels\ =\ 2;}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a66355f091aa60d97d5a7c7eeb08c51cc}{hmap::hydraulic\_stream\_upscale\_amplification}}(z2,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c\_erosion,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ talus\_ref,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ upscaling\_levels);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ z3\ =\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}};}
-\DoxyCodeLine{\ \ upscaling\_levels\ =\ 3;}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{float}\ persistence\ =\ 0.75f;\ \textcolor{comment}{//\ decrease\ ratio\ of\ erosion\ coeff\ at\ each\ level}}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a66355f091aa60d97d5a7c7eeb08c51cc}{hmap::hydraulic\_stream\_upscale\_amplification}}(z3,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c\_erosion,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ talus\_ref,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ upscaling\_levels,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ persistence);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_ac2452e568959bc21c9b7b09202e5977a}{hmap::export\_banner\_png}}(\textcolor{stringliteral}{"{}ex\_hydraulic\_stream\_upscale\_amplification.png"{}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{z0,\ z1,\ z2,\ z3\},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a6d093dbf3088c52a8acee413942545d9}{hmap::Cmap::TERRAIN}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{true});}
-\DoxyCodeLine{\}}
-
-\end{DoxyCodeInclude}
-
-
-{\bfseries{Result}}  \Hypertarget{namespacehmap_af298a6897a2becf0ae24f3de900081f0}\label{namespacehmap_af298a6897a2becf0ae24f3de900081f0} 
-\index{hmap@{hmap}!hydraulic\_stream\_upscale\_amplification@{hydraulic\_stream\_upscale\_amplification}}
-\index{hydraulic\_stream\_upscale\_amplification@{hydraulic\_stream\_upscale\_amplification}!hmap@{hmap}}
-\doxysubsubsection{\texorpdfstring{hydraulic\_stream\_upscale\_amplification()}{hydraulic\_stream\_upscale\_amplification()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily void hmap\+::hydraulic\+\_\+stream\+\_\+upscale\+\_\+amplification (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{z,  }\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+mask,  }\item[{float}]{c\+\_\+erosion,  }\item[{float}]{talus\+\_\+ref,  }\item[{int}]{upscaling\+\_\+levels = {\ttfamily 1},  }\item[{float}]{persistence = {\ttfamily 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{int}]{ir = {\ttfamily 1},  }\item[{float}]{clipping\+\_\+ratio = {\ttfamily 10.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}} }\end{DoxyParamCaption})}
-
-
-
-Applies hydraulic erosion with upscaling amplification, with a post-\/processing intensity mask. 
-
-Similar to the overloaded version, this function progressively upscales the input array {\ttfamily z} and applies hydraulic erosion. Additionally, an intensity mask {\ttfamily p\+\_\+mask} is applied as a post-\/processing step.
-
-
-\begin{DoxyParams}{Parameters}
-{\em z} & Input array representing elevation data. \\
-\hline
-{\em p\+\_\+mask} & Intensity mask, expected in \mbox{[}0, 1\mbox{]}, which is applied as a post-\/processing step. \\
-\hline
-{\em c\+\_\+erosion} & Erosion coefficient. \\
-\hline
-{\em talus\+\_\+ref} & Reference talus used to locally define the flow-\/partition exponent. Smaller values lead to thinner flow streams. \\
-\hline
-{\em upscaling\+\_\+levels} & Number of upscaling levels to apply. The function will resample the array at each level. \\
-\hline
-{\em persistence} & A scaling factor applied at each level to adjust the impact of the unary operation. Higher persistence values will amplify the effects at each level. \\
-\hline
-{\em ir} & Kernel radius. If {\ttfamily ir \texorpdfstring{$>$}{>} 1}, a cone kernel is used to carve channel flow erosion. \\
-\hline
-{\em clipping\+\_\+ratio} & Flow accumulation clipping ratio.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyNote}{Note}
-This version of the function applies an additional intensity mask as part of the upscaling amplification process.
-\end{DoxyNote}
-{\bfseries{Example}} 
-\begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{highmap_8hpp}{highmap.hpp}}"{}}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{void})}
-\DoxyCodeLine{\{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_1_1log_a2b618829e9c711302f726a3ec3f4ff49}{hmap::log::warn}}(}
-\DoxyCodeLine{\ \ \ \ \ \ \textcolor{stringliteral}{"{}hydraulic\_stream\_upscale\_amplification\ is\ deprecated\ and\ will\ be\ "{}}}
-\DoxyCodeLine{\ \ \ \ \ \ \textcolor{stringliteral}{"{}removed\ at\ some\ point."{}});}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ glm::ivec2\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}\ =\ \{256,\ 256\};}
-\DoxyCodeLine{\ \ glm::vec2\ \ res\ =\ \{2.f,\ 2.f\};}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ seed\ =\ 1;}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}\ =\ \mbox{\hyperlink{namespacehmap_a7d699a468a18be16c70654958ee13b41}{hmap::noise\_fbm}}(\mbox{\hyperlink{namespacehmap_ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581}{hmap::NoiseType::PERLIN}},\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ res,\ seed);}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{hmap::remap}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}});}
-\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ z0\ =\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}};}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{float}\ c\_erosion\ =\ 0.05f;}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{float}\ talus\_ref\ =\ 5.f\ /\ (float)\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}.x;}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ z1\ =\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}};}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a8a85dd8e3a7211f2c2440038d6a10ce8}{hmap::hydraulic\_stream}}(z1,\ c\_erosion,\ talus\_ref);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ z2\ =\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}};}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ upscaling\_levels\ =\ 2;}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a66355f091aa60d97d5a7c7eeb08c51cc}{hmap::hydraulic\_stream\_upscale\_amplification}}(z2,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c\_erosion,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ talus\_ref,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ upscaling\_levels);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ z3\ =\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}};}
-\DoxyCodeLine{\ \ upscaling\_levels\ =\ 3;}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{float}\ persistence\ =\ 0.75f;\ \textcolor{comment}{//\ decrease\ ratio\ of\ erosion\ coeff\ at\ each\ level}}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a66355f091aa60d97d5a7c7eeb08c51cc}{hmap::hydraulic\_stream\_upscale\_amplification}}(z3,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ c\_erosion,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ talus\_ref,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ upscaling\_levels,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ persistence);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_ac2452e568959bc21c9b7b09202e5977a}{hmap::export\_banner\_png}}(\textcolor{stringliteral}{"{}ex\_hydraulic\_stream\_upscale\_amplification.png"{}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{z0,\ z1,\ z2,\ z3\},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a6d093dbf3088c52a8acee413942545d9}{hmap::Cmap::TERRAIN}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{true});}
-\DoxyCodeLine{\}}
-
-\end{DoxyCodeInclude}
-
-
-{\bfseries{Result}}  \Hypertarget{namespacehmap_aa8c5cbc750a368764e2a26409c2427a5}\label{namespacehmap_aa8c5cbc750a368764e2a26409c2427a5} 
+\Hypertarget{namespacehmap_aa8c5cbc750a368764e2a26409c2427a5}\label{namespacehmap_aa8c5cbc750a368764e2a26409c2427a5} 
 \index{hmap@{hmap}!depression\_filling@{depression\_filling}}
 \index{depression\_filling@{depression\_filling}!hmap@{hmap}}
 \doxysubsubsection{\texorpdfstring{depression\_filling()}{depression\_filling()}}
@@ -27159,121 +26954,6 @@ Dispatches to the selected morphological operator (e.\+g. erosion, dilation, ope
 \begin{DoxyReturn}{Returns}
 \doxylink{classhmap_1_1Array}{Array} Resulting array after applying the operation. 
 \end{DoxyReturn}
-\Hypertarget{namespacehmap_a1fb8077215c98a741e0de5366c2f7ca3}\label{namespacehmap_a1fb8077215c98a741e0de5366c2f7ca3} 
-\index{hmap@{hmap}!downscale\_transform@{downscale\_transform}}
-\index{downscale\_transform@{downscale\_transform}!hmap@{hmap}}
-\doxysubsubsection{\texorpdfstring{downscale\_transform()}{downscale\_transform()}}
-{\footnotesize\ttfamily void hmap\+::downscale\+\_\+transform (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{float}]{kc,  }\item[{std\+::function$<$ void(\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&\mbox{\hyperlink{kd__tree_8cpp_a1f4ec255d3d8677a6cd9d6a9a6eb653b}{x}})$>$}]{unary\+\_\+op,  }\item[{bool}]{apply\+\_\+prefiltering = {\ttfamily false} }\end{DoxyParamCaption})}
-
-
-
-Applies a downscaling transformation to a 2D array using Fourier-\/based filtering. 
-
-This function performs a series of operations on a 2D array to isolate and transform its low-\/frequency components. It uses a Fourier transform for filtering, downscales the array for efficient processing, applies a user-\/defined unary operation, and then restores the transformed low-\/frequency content to the original resolution.
-
-
-\begin{DoxyParams}{Parameters}
-{\em array} & A reference to the input 2D array to be transformed. The array may be resized internally. \\
-\hline
-{\em kc} & The cutoff wavenumber for isolating low-\/frequency components during filtering. \\
-\hline
-{\em unary\+\_\+op} & A user-\/defined function that applies a transformation to the downscaled array.\\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyItemize}
-\item The function ensures that the input array is square for Fourier operations by resampling it if necessary.
-\item A smooth low-\/pass filter is applied in the frequency domain, and the filtered array is downscaled to a coarse resolution.
-\item The user-\/defined transformation ({\ttfamily unary\+\_\+op}) is applied to the downscaled array.
-\item The transformed low-\/frequency content is upsampled and reintegrated into the original array.
-\item If the input array was not square, the final result is resampled back to its original shape.
-\item {\bfseries{Example}} 
-\begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{highmap_8hpp}{highmap.hpp}}"{}}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{void})}
-\DoxyCodeLine{\{}
-\DoxyCodeLine{\ \ glm::vec2\ kw\ =\ \{2.f,\ 2.f\};}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ seed\ =\ 2;}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ z128\ =\ \mbox{\hyperlink{namespacehmap_a7d699a468a18be16c70654958ee13b41}{hmap::noise\_fbm}}(\mbox{\hyperlink{namespacehmap_ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581}{hmap::NoiseType::PERLIN}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{128,\ 128\},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ kw,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seed);}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ z256\ =\ \mbox{\hyperlink{namespacehmap_a7d699a468a18be16c70654958ee13b41}{hmap::noise\_fbm}}(\mbox{\hyperlink{namespacehmap_ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581}{hmap::NoiseType::PERLIN}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{256,\ 256\},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ kw,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seed);}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ z512\ =\ \mbox{\hyperlink{namespacehmap_a7d699a468a18be16c70654958ee13b41}{hmap::noise\_fbm}}(\mbox{\hyperlink{namespacehmap_ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581}{hmap::NoiseType::PERLIN}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{512,\ 512\},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ kw,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seed);}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ z1024\ =\ \mbox{\hyperlink{namespacehmap_a7d699a468a18be16c70654958ee13b41}{hmap::noise\_fbm}}(\mbox{\hyperlink{namespacehmap_ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581}{hmap::NoiseType::PERLIN}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{1024,\ 1024\},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ kw,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seed);}
-\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ \ \ \ \ \ \ \ z0\ =\ z1024;\ \textcolor{comment}{//\ keep\ for\ reference}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{float}\ kc\ =\ 64.f;}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ lambda\ =\ [](\mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ \&\mbox{\hyperlink{kd__tree_8cpp_a1f4ec255d3d8677a6cd9d6a9a6eb653b}{x}})}
-\DoxyCodeLine{\ \ \{\ \mbox{\hyperlink{namespacehmap_a5d8b448836d569c0f72b668ca1268ef9}{hmap::hydraulic\_stream\_log}}(\mbox{\hyperlink{kd__tree_8cpp_a1f4ec255d3d8677a6cd9d6a9a6eb653b}{x}},\ 0.1f,\ 0.001f);\ \};}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ apply\ the\ erosion\ to\ each\ array\ with\ different\ resolutions}}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ (results\ should\ be\ the\ same)}}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a1fb8077215c98a741e0de5366c2f7ca3}{hmap::downscale\_transform}}(z128,\ kc,\ lambda);}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a1fb8077215c98a741e0de5366c2f7ca3}{hmap::downscale\_transform}}(z256,\ kc,\ lambda);}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a1fb8077215c98a741e0de5366c2f7ca3}{hmap::downscale\_transform}}(z512,\ kc,\ lambda);}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a1fb8077215c98a741e0de5366c2f7ca3}{hmap::downscale\_transform}}(z1024,\ kc,\ lambda);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ interpolation\ in\ finer\ resolution\ to\ generate\ a\ single\ output\ image}}
-\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ z1\ =\ z128.\mbox{\hyperlink{classhmap_1_1Array_a065a69e1a3477f6dd9f8ab88c1af554d}{resample\_to\_shape}}(\{1024,\ 1024\});}
-\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ z2\ =\ z256.\mbox{\hyperlink{classhmap_1_1Array_a065a69e1a3477f6dd9f8ab88c1af554d}{resample\_to\_shape}}(\{1024,\ 1024\});}
-\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ z3\ =\ z512.\mbox{\hyperlink{classhmap_1_1Array_a065a69e1a3477f6dd9f8ab88c1af554d}{resample\_to\_shape}}(\{1024,\ 1024\});}
-\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ z4\ =\ z1024.\mbox{\hyperlink{classhmap_1_1Array_a065a69e1a3477f6dd9f8ab88c1af554d}{resample\_to\_shape}}(\{1024,\ 1024\});}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_ac2452e568959bc21c9b7b09202e5977a}{hmap::export\_banner\_png}}(\textcolor{stringliteral}{"{}ex\_downscale\_transform.png"{}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{z0,\ z1,\ z2,\ z3,\ z4\},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a6d093dbf3088c52a8acee413942545d9}{hmap::Cmap::TERRAIN}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{true});}
-\DoxyCodeLine{\}}
-
-\end{DoxyCodeInclude}
-
-\end{DoxyItemize}
-
-{\bfseries{Result}}  \Hypertarget{namespacehmap_a669a4f9586f3df4b018e321048c9bc7d}\label{namespacehmap_a669a4f9586f3df4b018e321048c9bc7d} 
-\index{hmap@{hmap}!downscale\_transform\_multi@{downscale\_transform\_multi}}
-\index{downscale\_transform\_multi@{downscale\_transform\_multi}!hmap@{hmap}}
-\doxysubsubsection{\texorpdfstring{downscale\_transform\_multi()}{downscale\_transform\_multi()}}
-{\footnotesize\ttfamily void hmap\+::downscale\+\_\+transform\+\_\+multi (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{std\+::vector$<$ float $>$}]{kc\+\_\+list,  }\item[{std\+::function$<$ void(\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&\mbox{\hyperlink{kd__tree_8cpp_a1f4ec255d3d8677a6cd9d6a9a6eb653b}{x}}, const int current\+\_\+index)$>$}]{unary\+\_\+op,  }\item[{bool}]{apply\+\_\+prefiltering = {\ttfamily false} }\end{DoxyParamCaption})}
-
-\Hypertarget{namespacehmap_a868ae7c781d7e72af7b1416898a2f891}\label{namespacehmap_a868ae7c781d7e72af7b1416898a2f891} 
-\index{hmap@{hmap}!upscale\_amplification@{upscale\_amplification}}
-\index{upscale\_amplification@{upscale\_amplification}!hmap@{hmap}}
-\doxysubsubsection{\texorpdfstring{upscale\_amplification()}{upscale\_amplification()}}
-{\footnotesize\ttfamily void hmap\+::upscale\+\_\+amplification (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{array,  }\item[{int}]{upscaling\+\_\+levels,  }\item[{float}]{persistence,  }\item[{std\+::function$<$ void(\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&\mbox{\hyperlink{kd__tree_8cpp_a1f4ec255d3d8677a6cd9d6a9a6eb653b}{x}}, float current\+\_\+scaling)$>$}]{unary\+\_\+op }\end{DoxyParamCaption})}
-
-
-
-Applies an upscaling amplification process to an array, followed by a unary operation. 
-
-This function progressively upscales the given array by powers of 2 (starting from the initial shape), performs a user-\/defined unary operation on the upscaled array at each level, and finally returns the array to its original resolution using bilinear interpolation.
-
-
-\begin{DoxyParams}{Parameters}
-{\em array} & A reference to the array that will be upscaled and processed. \\
-\hline
-{\em upscaling\+\_\+levels} & The number of upscaling levels to apply. The function will resample the array for each level. \\
-\hline
-{\em persistence} & A scaling factor applied at each level to adjust the impact of the unary operation. Higher persistence values will amplify the effects at each level. \\
-\hline
-{\em unary\+\_\+op} & A user-\/defined unary operation to apply to the array at each upscaling level. The operation takes a reference to the array.\\
-\hline
-\end{DoxyParams}
-\begin{DoxyNote}{Note}
-The function first applies bicubic resampling to upscale the array, then applies the user-\/provided {\ttfamily unary\+\_\+op} at each upscaling level. After all levels are processed, the array is resampled back to its initial shape using bilinear interpolation. 
-\end{DoxyNote}
 \Hypertarget{namespacehmap_a8eb3b37f9c2d4832fa1e0645bc69ac22}\label{namespacehmap_a8eb3b37f9c2d4832fa1e0645bc69ac22} 
 \index{hmap@{hmap}!init\_openmp@{init\_openmp}}
 \index{init\_openmp@{init\_openmp}!hmap@{hmap}}

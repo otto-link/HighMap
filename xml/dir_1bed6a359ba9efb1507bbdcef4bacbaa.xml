@@ -24,7 +24,6 @@
     <innerfile refid="hydraulic__schott__gpu_8cpp">hydraulic_schott_gpu.cpp</innerfile>
     <innerfile refid="hydraulic__stream_8cpp">hydraulic_stream.cpp</innerfile>
     <innerfile refid="hydraulic__stream__gpu_8cpp">hydraulic_stream_gpu.cpp</innerfile>
-    <innerfile refid="hydraulic__stream__upscale__amplification_8cpp">hydraulic_stream_upscale_amplification.cpp</innerfile>
     <innerfile refid="hydraulic__vpipes__gpu_8cpp">hydraulic_vpipes_gpu.cpp</innerfile>
     <innerfile refid="mudslide_8cpp">mudslide.cpp</innerfile>
     <innerfile refid="rifts__gpu_8cpp">rifts_gpu.cpp</innerfile>

@@ -83,7 +83,6 @@ var namespacehmap =
     [ "PerlinHalfFunction", "classhmap_1_1PerlinHalfFunction.html", "classhmap_1_1PerlinHalfFunction" ],
     [ "PerlinMixFunction", "classhmap_1_1PerlinMixFunction.html", "classhmap_1_1PerlinMixFunction" ],
     [ "Point", "classhmap_1_1Point.html", "classhmap_1_1Point" ],
-    [ "PyramidDecomposition", "classhmap_1_1PyramidDecomposition.html", "classhmap_1_1PyramidDecomposition" ],
     [ "QuadSurfaceFunction", "classhmap_1_1QuadSurfaceFunction.html", "classhmap_1_1QuadSurfaceFunction" ],
     [ "RamTileStorage", "classhmap_1_1RamTileStorage.html", "classhmap_1_1RamTileStorage" ],
     [ "Recorder", "structhmap_1_1Recorder.html", "structhmap_1_1Recorder" ],
@@ -364,11 +363,6 @@ var namespacehmap =
       [ "MO_CLOSING_BY_RECONSTRUCTION", "namespacehmap.html#a321149eda3417aa485a010c31267818cae6ea35f492be86e8686ddcf0440aebba", null ],
       [ "MO_OPENING_BY_RECONSTRUCTION", "namespacehmap.html#a321149eda3417aa485a010c31267818caa6a0098d7d9f4eaae196f3f721464806", null ]
     ] ],
-    [ "pyramid_transform_support", "namespacehmap.html#ae84abe9052dcb9c88f3c50716addfe44", [
-      [ "FULL", "namespacehmap.html#ae84abe9052dcb9c88f3c50716addfe44a335e6fca97d53bfb6cc3a55c566f1dd7", null ],
-      [ "LOWPASS_ONLY", "namespacehmap.html#ae84abe9052dcb9c88f3c50716addfe44ab02b262c560a970e4f082d4edee376fb", null ],
-      [ "HIGHPASS_ONLY", "namespacehmap.html#ae84abe9052dcb9c88f3c50716addfe44a23fde294eee1dbe59e1c6bb2bc0d5132", null ]
-    ] ],
     [ "VoronoiReturnType", "namespacehmap.html#a8e3756915e28aa80cec2190043cc8c2f", [
       [ "F1_SQUARED", "namespacehmap.html#a8e3756915e28aa80cec2190043cc8c2fa3e5996ed4314058911435c50bc95e1c2", null ],
       [ "F2_SQUARED", "namespacehmap.html#a8e3756915e28aa80cec2190043cc8c2faaf0f73f1150aae0a8affdab8b5f38eca", null ],
@@ -530,8 +524,6 @@ var namespacehmap =
     [ "hydraulic_stream_log", "namespacehmap.html#ab4ba44ccbb8dbdb8af4ff4e50dd90885", null ],
     [ "hydraulic_stream_log_multiscale", "namespacehmap.html#a0d47acf21b1bf8c1f457f89d50c79f1e", null ],
     [ "hydraulic_stream_log_multiscale", "namespacehmap.html#a362d53a66acb0cf920c3d9f5e7aa2162", null ],
-    [ "hydraulic_stream_upscale_amplification", "namespacehmap.html#a66355f091aa60d97d5a7c7eeb08c51cc", null ],
-    [ "hydraulic_stream_upscale_amplification", "namespacehmap.html#af298a6897a2becf0ae24f3de900081f0", null ],
     [ "depression_filling", "namespacehmap.html#aa8c5cbc750a368764e2a26409c2427a5", null ],
     [ "depression_filling_priority_flood", "namespacehmap.html#aeb94e692639d1644e7a6d2809fb5681f", null ],
     [ "erosion_maps", "namespacehmap.html#af91e2b8638aab2c4357ce37812b8a99c", null ],
@@ -1020,9 +1012,6 @@ var namespacehmap =
     [ "signed_distance_transform", "namespacehmap.html#ad4ab7bb38b3ea37fa912190251c1ed76", null ],
     [ "skeleton", "namespacehmap.html#a11ddd5ab1aa625db9419d9b65c0eaa64", null ],
     [ "morphological_operators", "namespacehmap.html#a0df2e693c1919b3f59ee98df040ff489", null ],
-    [ "downscale_transform", "namespacehmap.html#a1fb8077215c98a741e0de5366c2f7ca3", null ],
-    [ "downscale_transform_multi", "namespacehmap.html#a669a4f9586f3df4b018e321048c9bc7d", null ],
-    [ "upscale_amplification", "namespacehmap.html#a868ae7c781d7e72af7b1416898a2f891", null ],
     [ "init_openmp", "namespacehmap.html#a8eb3b37f9c2d4832fa1e0645bc69ac22", null ],
     [ "log_openmp_info", "namespacehmap.html#afaefd4e8848d0155162b24a1a67f9479", null ],
     [ "add_kernel", "namespacehmap.html#ae51dda5e070b01ad1a85b44d986f5003", null ],

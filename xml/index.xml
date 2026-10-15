@@ -1080,18 +1080,6 @@
     <member refid="classhmap_1_1Point_1a8db4bb3b9fc4a56e95aed9d6dfd77ef7" kind="function"><name>set_value_from_array</name></member>
     <member refid="classhmap_1_1Point_1a856f16a579a6d40be94a17a2fa5fd7ad" kind="friend"><name>operator*</name></member>
   </compound>
-  <compound refid="classhmap_1_1PyramidDecomposition" kind="class"><name>hmap::PyramidDecomposition</name>
-    <member refid="classhmap_1_1PyramidDecomposition_1ac3688f38d739c9eed21b4d32b49648bc" kind="variable"><name>nlevels</name></member>
-    <member refid="classhmap_1_1PyramidDecomposition_1ac711ffdbd5c38eb1f028106ceed16075" kind="variable"><name>residual</name></member>
-    <member refid="classhmap_1_1PyramidDecomposition_1ae28c747403f67117823f3bf6ad1b931f" kind="variable"><name>components</name></member>
-    <member refid="classhmap_1_1PyramidDecomposition_1ab7684296d0993168de59ca6938d30cd2" kind="variable"><name>low_pass_filter_function</name></member>
-    <member refid="classhmap_1_1PyramidDecomposition_1a260a2bb87e7077a29036bc967ccfa6dc" kind="variable"><name>p_array</name></member>
-    <member refid="classhmap_1_1PyramidDecomposition_1a802f02d09f6a5073d9ecd523f5a0624c" kind="function"><name>PyramidDecomposition</name></member>
-    <member refid="classhmap_1_1PyramidDecomposition_1a620e9d62b2613f30c23b3d87b766d0bc" kind="function"><name>decompose</name></member>
-    <member refid="classhmap_1_1PyramidDecomposition_1ac666baf987922967aec5fc7bb86acedf" kind="function"><name>reconstruct</name></member>
-    <member refid="classhmap_1_1PyramidDecomposition_1aefa4ee30147d004b1398e4dca1edb637" kind="function"><name>to_png</name></member>
-    <member refid="classhmap_1_1PyramidDecomposition_1aa23f39a63086657fffda6cb5ca1842a5" kind="function"><name>transform</name></member>
-  </compound>
   <compound refid="classhmap_1_1QuadSurfaceFunction" kind="class"><name>hmap::QuadSurfaceFunction</name>
     <member refid="classhmap_1_1QuadSurfaceFunction_1addf076e019756240d02b7b44ddb6296a" kind="variable"><name>c00</name></member>
     <member refid="classhmap_1_1QuadSurfaceFunction_1aa28379363663e36a50ab216d4b9434a4" kind="variable"><name>c10</name></member>
@@ -1685,23 +1673,23 @@
     <member refid="classhmap_1_1XyControlFunction_1acfe5c441363f35d36a13084fb56c6dca" kind="function"><name>MinimumImpl</name></member>
     <member refid="classhmap_1_1XyControlFunction_1ab32abc0861325b3ea6f547b938a9225d" kind="function"><name>MaximumImpl</name></member>
   </compound>
-  <compound refid="namespace_0d216" kind="namespace"><name>@216</name>
+  <compound refid="namespace_0d211" kind="namespace"><name>@211</name>
   </compound>
-  <compound refid="namespace_0d420" kind="namespace"><name>@420</name>
+  <compound refid="namespace_0d412" kind="namespace"><name>@412</name>
   </compound>
-  <compound refid="namespace_0d431" kind="namespace"><name>@431</name>
+  <compound refid="namespace_0d423" kind="namespace"><name>@423</name>
   </compound>
-  <compound refid="namespace_0d441" kind="namespace"><name>@441</name>
+  <compound refid="namespace_0d433" kind="namespace"><name>@433</name>
   </compound>
-  <compound refid="namespace_0d460" kind="namespace"><name>@460</name>
+  <compound refid="namespace_0d452" kind="namespace"><name>@452</name>
   </compound>
-  <compound refid="namespace_0d467" kind="namespace"><name>@467</name>
+  <compound refid="namespace_0d459" kind="namespace"><name>@459</name>
   </compound>
-  <compound refid="namespace_0d480" kind="namespace"><name>@480</name>
+  <compound refid="namespace_0d472" kind="namespace"><name>@472</name>
   </compound>
-  <compound refid="namespace_0d491" kind="namespace"><name>@491</name>
+  <compound refid="namespace_0d483" kind="namespace"><name>@483</name>
   </compound>
-  <compound refid="namespace_0d495" kind="namespace"><name>@495</name>
+  <compound refid="namespace_0d487" kind="namespace"><name>@487</name>
   </compound>
   <compound refid="namespacehmap" kind="namespace"><name>hmap</name>
     <member refid="namespacehmap_1a5101273ec456f5267dddc3e22dae223b" kind="enum"><name>StampingBlendMethod</name></member>
@@ -1911,10 +1899,6 @@
     <member refid="namespacehmap_1a321149eda3417aa485a010c31267818ca1f833f1ccefa8fd3387d614d6092688e" kind="enumvalue"><name>MO_LAPLACIAN</name></member>
     <member refid="namespacehmap_1a321149eda3417aa485a010c31267818cae6ea35f492be86e8686ddcf0440aebba" kind="enumvalue"><name>MO_CLOSING_BY_RECONSTRUCTION</name></member>
     <member refid="namespacehmap_1a321149eda3417aa485a010c31267818caa6a0098d7d9f4eaae196f3f721464806" kind="enumvalue"><name>MO_OPENING_BY_RECONSTRUCTION</name></member>
-    <member refid="namespacehmap_1ae84abe9052dcb9c88f3c50716addfe44" kind="enum"><name>pyramid_transform_support</name></member>
-    <member refid="namespacehmap_1ae84abe9052dcb9c88f3c50716addfe44a335e6fca97d53bfb6cc3a55c566f1dd7" kind="enumvalue"><name>FULL</name></member>
-    <member refid="namespacehmap_1ae84abe9052dcb9c88f3c50716addfe44ab02b262c560a970e4f082d4edee376fb" kind="enumvalue"><name>LOWPASS_ONLY</name></member>
-    <member refid="namespacehmap_1ae84abe9052dcb9c88f3c50716addfe44a23fde294eee1dbe59e1c6bb2bc0d5132" kind="enumvalue"><name>HIGHPASS_ONLY</name></member>
     <member refid="namespacehmap_1a8e3756915e28aa80cec2190043cc8c2f" kind="enum"><name>VoronoiReturnType</name></member>
     <member refid="namespacehmap_1a8e3756915e28aa80cec2190043cc8c2fa3e5996ed4314058911435c50bc95e1c2" kind="enumvalue"><name>F1_SQUARED</name></member>
     <member refid="namespacehmap_1a8e3756915e28aa80cec2190043cc8c2faaf0f73f1150aae0a8affdab8b5f38eca" kind="enumvalue"><name>F2_SQUARED</name></member>
@@ -2075,8 +2059,6 @@
     <member refid="namespacehmap_1ab4ba44ccbb8dbdb8af4ff4e50dd90885" kind="function"><name>hydraulic_stream_log</name></member>
     <member refid="namespacehmap_1a0d47acf21b1bf8c1f457f89d50c79f1e" kind="function"><name>hydraulic_stream_log_multiscale</name></member>
     <member refid="namespacehmap_1a362d53a66acb0cf920c3d9f5e7aa2162" kind="function"><name>hydraulic_stream_log_multiscale</name></member>
-    <member refid="namespacehmap_1a66355f091aa60d97d5a7c7eeb08c51cc" kind="function"><name>hydraulic_stream_upscale_amplification</name></member>
-    <member refid="namespacehmap_1af298a6897a2becf0ae24f3de900081f0" kind="function"><name>hydraulic_stream_upscale_amplification</name></member>
     <member refid="namespacehmap_1aa8c5cbc750a368764e2a26409c2427a5" kind="function"><name>depression_filling</name></member>
     <member refid="namespacehmap_1aeb94e692639d1644e7a6d2809fb5681f" kind="function"><name>depression_filling_priority_flood</name></member>
     <member refid="namespacehmap_1af91e2b8638aab2c4357ce37812b8a99c" kind="function"><name>erosion_maps</name></member>
@@ -2565,9 +2547,6 @@
     <member refid="namespacehmap_1ad4ab7bb38b3ea37fa912190251c1ed76" kind="function"><name>signed_distance_transform</name></member>
     <member refid="namespacehmap_1a11ddd5ab1aa625db9419d9b65c0eaa64" kind="function"><name>skeleton</name></member>
     <member refid="namespacehmap_1a0df2e693c1919b3f59ee98df040ff489" kind="function"><name>morphological_operators</name></member>
-    <member refid="namespacehmap_1a1fb8077215c98a741e0de5366c2f7ca3" kind="function"><name>downscale_transform</name></member>
-    <member refid="namespacehmap_1a669a4f9586f3df4b018e321048c9bc7d" kind="function"><name>downscale_transform_multi</name></member>
-    <member refid="namespacehmap_1a868ae7c781d7e72af7b1416898a2f891" kind="function"><name>upscale_amplification</name></member>
     <member refid="namespacehmap_1a8eb3b37f9c2d4832fa1e0645bc69ac22" kind="function"><name>init_openmp</name></member>
     <member refid="namespacehmap_1afaefd4e8848d0155162b24a1a67f9479" kind="function"><name>log_openmp_info</name></member>
     <member refid="namespacehmap_1ae51dda5e070b01ad1a85b44d986f5003" kind="function"><name>add_kernel</name></member>
@@ -2856,28 +2835,28 @@
     <member refid="namespacehmap_1ac1fdc0ac0b6e1024faeaddcd30ebe2fe" kind="function"><name>reindex_vector</name></member>
     <member refid="namespacehmap_1a5cca080874e8af74fa03a3f0f0d2f307" kind="function"><name>reindex_vector</name></member>
   </compound>
+  <compound refid="namespacehmap_1_1_0d124" kind="namespace"><name>hmap::@124</name>
+  </compound>
   <compound refid="namespacehmap_1_1_0d128" kind="namespace"><name>hmap::@128</name>
   </compound>
-  <compound refid="namespacehmap_1_1_0d132" kind="namespace"><name>hmap::@132</name>
+  <compound refid="namespacehmap_1_1_0d139" kind="namespace"><name>hmap::@139</name>
   </compound>
-  <compound refid="namespacehmap_1_1_0d143" kind="namespace"><name>hmap::@143</name>
+  <compound refid="namespacehmap_1_1_0d169" kind="namespace"><name>hmap::@169</name>
+    <member refid="namespacehmap_1_1_0d169_1a14dd02407470afc415e4eb3cdd94092e" kind="enum"><name></name></member>
   </compound>
-  <compound refid="namespacehmap_1_1_0d173" kind="namespace"><name>hmap::@173</name>
-    <member refid="namespacehmap_1_1_0d173_1aa32e7742727e2edd47cae6060754165f" kind="enum"><name></name></member>
+  <compound refid="namespacehmap_1_1_0d197" kind="namespace"><name>hmap::@197</name>
   </compound>
-  <compound refid="namespacehmap_1_1_0d202" kind="namespace"><name>hmap::@202</name>
+  <compound refid="namespacehmap_1_1_0d245" kind="namespace"><name>hmap::@245</name>
   </compound>
-  <compound refid="namespacehmap_1_1_0d250" kind="namespace"><name>hmap::@250</name>
+  <compound refid="namespacehmap_1_1_0d248" kind="namespace"><name>hmap::@248</name>
   </compound>
-  <compound refid="namespacehmap_1_1_0d253" kind="namespace"><name>hmap::@253</name>
+  <compound refid="namespacehmap_1_1_0d270" kind="namespace"><name>hmap::@270</name>
   </compound>
-  <compound refid="namespacehmap_1_1_0d275" kind="namespace"><name>hmap::@275</name>
+  <compound refid="namespacehmap_1_1_0d377" kind="namespace"><name>hmap::@377</name>
+  </compound>
+  <compound refid="namespacehmap_1_1_0d382" kind="namespace"><name>hmap::@382</name>
   </compound>
   <compound refid="namespacehmap_1_1_0d385" kind="namespace"><name>hmap::@385</name>
-  </compound>
-  <compound refid="namespacehmap_1_1_0d390" kind="namespace"><name>hmap::@390</name>
-  </compound>
-  <compound refid="namespacehmap_1_1_0d393" kind="namespace"><name>hmap::@393</name>
   </compound>
   <compound refid="namespacehmap_1_1gpu" kind="namespace"><name>hmap::gpu</name>
     <member refid="namespacehmap_1_1gpu_1ab0737b29664736928a86f0755493895f" kind="enum"><name>LocalMetrics</name></member>
@@ -3388,14 +3367,6 @@
   </compound>
   <compound refid="morphology_8hpp" kind="file"><name>morphology.hpp</name>
   </compound>
-  <compound refid="multiscale_8hpp" kind="file"><name>multiscale.hpp</name>
-  </compound>
-  <compound refid="downscaling_8hpp" kind="file"><name>downscaling.hpp</name>
-  </compound>
-  <compound refid="pyramid_8hpp" kind="file"><name>pyramid.hpp</name>
-  </compound>
-  <compound refid="upscaling_8hpp" kind="file"><name>upscaling.hpp</name>
-  </compound>
   <compound refid="gpu__opencl_8hpp" kind="file"><name>gpu_opencl.hpp</name>
   </compound>
   <compound refid="openmp_8hpp" kind="file"><name>openmp.hpp</name>
@@ -3676,8 +3647,6 @@
   <compound refid="hydraulic__stream_8cpp" kind="file"><name>hydraulic_stream.cpp</name>
   </compound>
   <compound refid="hydraulic__stream__gpu_8cpp" kind="file"><name>hydraulic_stream_gpu.cpp</name>
-  </compound>
-  <compound refid="hydraulic__stream__upscale__amplification_8cpp" kind="file"><name>hydraulic_stream_upscale_amplification.cpp</name>
   </compound>
   <compound refid="hydraulic__vpipes__gpu_8cpp" kind="file"><name>hydraulic_vpipes_gpu.cpp</name>
   </compound>
@@ -3960,12 +3929,6 @@
   <compound refid="signed__curvature__from__distance_8cpp" kind="file"><name>signed_curvature_from_distance.cpp</name>
   </compound>
   <compound refid="wrapper_8cpp" kind="file"><name>wrapper.cpp</name>
-  </compound>
-  <compound refid="downscale__transform_8cpp" kind="file"><name>downscale_transform.cpp</name>
-  </compound>
-  <compound refid="pyramid__decomposition_8cpp" kind="file"><name>pyramid_decomposition.cpp</name>
-  </compound>
-  <compound refid="upscale__amplification_8cpp" kind="file"><name>upscale_amplification.cpp</name>
   </compound>
   <compound refid="openmp_8cpp" kind="file"><name>openmp.cpp</name>
   </compound>
@@ -5221,10 +5184,6 @@
   <compound refid="dir_3fff8e57683f346a5b9ac4f0c61c9931" kind="dir"><name>HighMap/src/math</name>
   </compound>
   <compound refid="dir_6e375fef8169f9dfb42b397d57678e79" kind="dir"><name>HighMap/src/morphology</name>
-  </compound>
-  <compound refid="dir_0bbe76a3bf266ee6a809b4127139d936" kind="dir"><name>HighMap/include/highmap/multiscale</name>
-  </compound>
-  <compound refid="dir_8ec6da466271af6faf10594ea35abcfe" kind="dir"><name>HighMap/src/multiscale</name>
   </compound>
   <compound refid="dir_e47ebac3a1b43abbbafa1ff9f643dddd" kind="dir"><name>HighMap/include/highmap/opencl</name>
   </compound>

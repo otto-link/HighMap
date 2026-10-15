@@ -648,7 +648,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/conv_erosion.cpp" line="179" column="6" bodyfile="HighMap/src/erosion/conv_erosion.cpp" bodystart="179" bodyend="304" declfile="HighMap/include/highmap/erosion/deprecated.hpp" declline="533" declcolumn="6"/>
+        <location file="HighMap/src/erosion/conv_erosion.cpp" line="179" column="6" bodyfile="HighMap/src/erosion/conv_erosion.cpp" bodystart="179" bodyend="304" declfile="HighMap/include/highmap/erosion/deprecated.hpp" declline="447" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a4f8838aa7fe59a353b60e3d03e0d5a8f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -725,7 +725,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/hydraulic_musgrave_gpu.cpp" line="21" column="6" bodyfile="HighMap/src/erosion/hydraulic_musgrave_gpu.cpp" bodystart="21" bodyend="78" declfile="HighMap/include/highmap/erosion/deprecated.hpp" declline="559" declcolumn="6"/>
+        <location file="HighMap/src/erosion/hydraulic_musgrave_gpu.cpp" line="21" column="6" bodyfile="HighMap/src/erosion/hydraulic_musgrave_gpu.cpp" bodystart="21" bodyend="78" declfile="HighMap/include/highmap/erosion/deprecated.hpp" declline="473" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a7b00e9d4012a7026230454d0d5528760" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -774,7 +774,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/hydraulic_musgrave_gpu.cpp" line="80" column="6" bodyfile="HighMap/src/erosion/hydraulic_musgrave_gpu.cpp" bodystart="80" bodyend="99" declfile="HighMap/include/highmap/erosion/deprecated.hpp" declline="571" declcolumn="6"/>
+        <location file="HighMap/src/erosion/hydraulic_musgrave_gpu.cpp" line="80" column="6" bodyfile="HighMap/src/erosion/hydraulic_musgrave_gpu.cpp" bodystart="80" bodyend="99" declfile="HighMap/include/highmap/erosion/deprecated.hpp" declline="485" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a8497e2fce595293ea07e68eac1e5bce2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
