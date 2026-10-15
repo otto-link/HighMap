@@ -1587,7 +1587,7 @@
 <codeline lineno="1056"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1057"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(params.extrapolate_border)</highlight></codeline>
 <codeline lineno="1058"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="1059"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1a1e4edcaea744a4a364839905693ee9e3" kindref="member">extrapolate_borders</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>);</highlight></codeline>
+<codeline lineno="1059"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1a1e4edcaea744a4a364839905693ee9e3" kindref="member">extrapolate_borders</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>1,<sp/>0.9f);</highlight></codeline>
 <codeline lineno="1060"><highlight class="normal"></highlight></codeline>
 <codeline lineno="1061"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(p_bedrock)</highlight></codeline>
 <codeline lineno="1062"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
