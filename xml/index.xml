@@ -3204,6 +3204,7 @@
     <member refid="namespacehmap_1_1va_1a050c3c7ecc102d86f566bf55b3a72c51" kind="function"><name>flow_fixing_mst_paths</name></member>
     <member refid="namespacehmap_1_1va_1a79c8b1b0f1447fcb8f94f6e2cec8788b" kind="function"><name>flow_fixing_mst_triangulated</name></member>
     <member refid="namespacehmap_1_1va_1ae0522b3668ec88bf0a3d8ad785a6185e" kind="function"><name>flow_stream</name></member>
+    <member refid="namespacehmap_1_1va_1abfb98fdd47bd2a66e694c03765bf74af" kind="function"><name>seed_rock_field</name></member>
     <member refid="namespacehmap_1_1va_1afa19680ed9583277c2fb76daa95bfa96" kind="function"><name>find_cut_path_dijkstra</name></member>
     <member refid="namespacehmap_1_1va_1a996f3a9161ae2f85e2ef1d257dd43349" kind="function"><name>find_path_dijkstra</name></member>
     <member refid="namespacehmap_1_1va_1ac5a99fc7607556be58fb75ae10125940" kind="function"><name>generate_terrain_tri_mesh_from_heightmap_random</name></member>
@@ -4879,6 +4880,9 @@
     <member refid="test__rocks_8cpp_1a10109344018968a046003d30547de2b8" kind="function"><name>TEST</name></member>
     <member refid="test__rocks_8cpp_1aaee64c8193c76b9fbc7926d2a74f0d49" kind="function"><name>TEST</name></member>
     <member refid="test__rocks_8cpp_1a6cc2a4abab66b43f5810a43c08ee3e2e" kind="function"><name>TEST</name></member>
+    <member refid="test__rocks_8cpp_1a071d79ff948044546ce591b23bd65a64" kind="function"><name>TEST</name></member>
+    <member refid="test__rocks_8cpp_1a8e78cd996de4971ac52b38308c1b16b3" kind="function"><name>TEST</name></member>
+    <member refid="test__rocks_8cpp_1abecc7fc211ff58a2feedb20828323962" kind="function"><name>TEST</name></member>
     <member refid="test__rocks_8cpp_1a39bc8b1ea85e0af3975f202ba68d12dc" kind="function"><name>TEST</name></member>
     <member refid="test__rocks_8cpp_1afa77a04c20fe18ada6619e9943fd7d14" kind="function"><name>TEST</name></member>
     <member refid="test__rocks_8cpp_1a31b61d7f8f500a68581a8808925f9051" kind="function"><name>TEST</name></member>

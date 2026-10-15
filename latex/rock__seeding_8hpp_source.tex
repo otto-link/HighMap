@@ -17,27 +17,39 @@
 \DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{array_8hpp}{highmap/array.hpp}}"{}}}
 \DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{rock__distribution_8hpp}{highmap/rocks/rock\_distribution.hpp}}"{}}}
 \DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{rock__field_8hpp}{highmap/rocks/rock\_field.hpp}}"{}}}
-\DoxyCodeLine{00020\ }
-\DoxyCodeLine{00021\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacehmap}{hmap}}}
-\DoxyCodeLine{00022\ \{}
-\DoxyCodeLine{00023\ }
-\DoxyCodeLine{00028\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structhmap_1_1RockSeedingOptions}{RockSeedingOptions}}}
-\DoxyCodeLine{00029\ \{}
-\DoxyCodeLine{00030\ \ \ glm::vec4\ \mbox{\hyperlink{structhmap_1_1RockSeedingOptions_ab48864f0884c810944cb621ef1dca52b}{bbox}}\ =\ \{0.f,\ 1.f,\ 0.f,\ 1.f\};\ }
-\DoxyCodeLine{00031\ \ \ uint32\_t\ \ \mbox{\hyperlink{structhmap_1_1RockSeedingOptions_abd5f9bec8368c3669a6803a84a8d3720}{seed}}\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{00032\ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \mbox{\hyperlink{structhmap_1_1RockSeedingOptions_abecc375b17d2457502038b70f96128c3}{exclusion\_threshold}}\ =\ 0.f;\ \ \ }
-\DoxyCodeLine{00033\ \ \ \mbox{\hyperlink{structhmap_1_1RockDistribution}{RockDistribution}}\ \mbox{\hyperlink{structhmap_1_1RockSeedingOptions_aca6ad1d77615f1daa14f51938ac5971d}{distribution}}\ =\ \{\};\ \ \ \ }
-\DoxyCodeLine{00034\ \};}
-\DoxyCodeLine{00035\ }
-\DoxyCodeLine{00036\ \textcolor{comment}{//\ ============================================================================}}
-\DoxyCodeLine{00037\ \textcolor{comment}{//\ \ Rock\ Seeding\ Functions\ (Alphabetically\ Sorted)}}
-\DoxyCodeLine{00038\ \textcolor{comment}{//\ ============================================================================}}
-\DoxyCodeLine{00039\ }
-\DoxyCodeLine{00050\ RockField\ \mbox{\hyperlink{namespacehmap_a8c78151d9fea71bfaebb14a378e8ad81}{seed\_rock\_field}}(\textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rock\_count,}
-\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \ \ \ \ \ \ \&density,}
-\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \ \ \ \ \ \ \&exclusion\ =\ \{\},}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ RockSeedingOptions\ \&options\ =\ \{\});}
-\DoxyCodeLine{00054\ }
-\DoxyCodeLine{00055\ \}\ \textcolor{comment}{//\ namespace\ hmap}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{virtual__array_2virtual__array_8hpp}{highmap/virtual\_array/virtual\_array.hpp}}"{}}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacehmap}{hmap}}}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structhmap_1_1RockSeedingOptions}{RockSeedingOptions}}}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00031\ \ \ glm::vec4\ \mbox{\hyperlink{structhmap_1_1RockSeedingOptions_ab48864f0884c810944cb621ef1dca52b}{bbox}}\ =\ \{0.f,\ 1.f,\ 0.f,\ 1.f\};\ }
+\DoxyCodeLine{00032\ \ \ uint32\_t\ \ \mbox{\hyperlink{structhmap_1_1RockSeedingOptions_abd5f9bec8368c3669a6803a84a8d3720}{seed}}\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \mbox{\hyperlink{structhmap_1_1RockSeedingOptions_abecc375b17d2457502038b70f96128c3}{exclusion\_threshold}}\ =\ 0.f;\ \ \ }
+\DoxyCodeLine{00034\ \ \ \mbox{\hyperlink{structhmap_1_1RockDistribution}{RockDistribution}}\ \mbox{\hyperlink{structhmap_1_1RockSeedingOptions_aca6ad1d77615f1daa14f51938ac5971d}{distribution}}\ =\ \{\};\ \ \ \ }
+\DoxyCodeLine{00035\ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ ============================================================================}}
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ \ Rock\ Seeding\ Functions\ (Alphabetically\ Sorted)}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ ============================================================================}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00051\ RockField\ \mbox{\hyperlink{namespacehmap_a8c78151d9fea71bfaebb14a378e8ad81}{seed\_rock\_field}}(\textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rock\_count,}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \ \ \ \ \ \ \&density,}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \ \ \ \ \ \ \&exclusion\ =\ \{\},}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ RockSeedingOptions\ \&options\ =\ \{\});}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \}\ \textcolor{comment}{//\ namespace\ hmap}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacehmap_1_1va}{hmap::va}}}
+\DoxyCodeLine{00059\ \{}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00072\ RockField\ \mbox{\hyperlink{namespacehmap_1_1va_abfb98fdd47bd2a66e694c03765bf74af}{seed\_rock\_field}}(\textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rock\_count,}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ VirtualArray\ \ \ \ \ \ \ \&density,}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ VirtualArray\ \ \ \ \ \ \ \&exclusion\ =\ \{\},}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ RockSeedingOptions\ \&options\ =\ \{\},}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ ComputeMode\ \ \ \ \ \ \ \ \&cm\ =\ \{\});}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \}\ \textcolor{comment}{//\ namespace\ hmap::va}}
 
 \end{DoxyCode}

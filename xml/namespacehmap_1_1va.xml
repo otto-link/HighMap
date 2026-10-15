@@ -369,7 +369,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/flora/forest_seeding.cpp" line="519" column="8" bodyfile="HighMap/src/flora/forest_seeding.cpp" bodystart="519" bodyend="623" declfile="HighMap/include/highmap/flora/forest_seeding.hpp" declline="160" declcolumn="8"/>
+        <location file="HighMap/src/flora/forest_seeding.cpp" line="519" column="8" bodyfile="HighMap/src/flora/forest_seeding.cpp" bodystart="519" bodyend="621" declfile="HighMap/include/highmap/flora/forest_seeding.hpp" declline="160" declcolumn="8"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1va_1ae8000dce23f7622c2ba67910124bc353" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structhmap_1_1VirtualArray" kindref="compound">VirtualArray</ref></type>
@@ -805,6 +805,88 @@
         <inbodydescription>
         </inbodydescription>
         <location file="HighMap/src/hydrology/flow_stream.cpp" line="240" column="6" bodyfile="HighMap/src/hydrology/flow_stream.cpp" bodystart="240" bodyend="262" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1447" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehmap_1_1va_1abfb98fdd47bd2a66e694c03765bf74af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhmap_1_1RockField" kindref="compound">RockField</ref></type>
+        <definition>RockField hmap::va::seed_rock_field</definition>
+        <argsstring>(size_t rock_count, const VirtualArray &amp;density, const VirtualArray &amp;exclusion={}, const RockSeedingOptions &amp;options={}, const ComputeMode &amp;cm={})</argsstring>
+        <name>seed_rock_field</name>
+        <qualifiedname>hmap::va::seed_rock_field</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>rock_count</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structhmap_1_1VirtualArray" kindref="compound">VirtualArray</ref> &amp;</type>
+          <declname>density</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structhmap_1_1VirtualArray" kindref="compound">VirtualArray</ref> &amp;</type>
+          <declname>exclusion</declname>
+          <defval>{}</defval>
+        </param>
+        <param>
+          <type>const <ref refid="structhmap_1_1RockSeedingOptions" kindref="compound">RockSeedingOptions</ref> &amp;</type>
+          <declname>options</declname>
+          <defval>{}</defval>
+        </param>
+        <param>
+          <type>const <ref refid="structhmap_1_1ComputeMode" kindref="compound">ComputeMode</ref> &amp;</type>
+          <declname>cm</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+<para>Seeds a general rock/boulder field across a tiled <ref refid="structhmap_1_1VirtualArray" kindref="compound">VirtualArray</ref> domain using inverse density transform sampling and bounding-box-aware tile merging. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rock_count</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Target number of rocks. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>density</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Spatial probability density map <ref refid="structhmap_1_1VirtualArray" kindref="compound">VirtualArray</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>exclusion</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optional exclusion map <ref refid="structhmap_1_1VirtualArray" kindref="compound">VirtualArray</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>options</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Seeding options. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cm</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Virtual array compute mode. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classhmap_1_1RockField" kindref="compound">RockField</ref> Sampled rock field. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/src/rocks/rock_seeding.cpp" line="58" column="11" bodyfile="HighMap/src/rocks/rock_seeding.cpp" bodystart="58" bodyend="153" declfile="HighMap/include/highmap/rocks/rock_seeding.hpp" declline="72" declcolumn="11"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1va_1afa19680ed9583277c2fb76daa95bfa96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Path" kindref="compound">Path</ref></type>

@@ -229,7 +229,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="tests/src/test_virtual_array.cpp" line="383" column="1" bodyfile="tests/src/test_virtual_array.cpp" bodystart="383" bodyend="448"/>
+        <location file="tests/src/test_virtual_array.cpp" line="383" column="1" bodyfile="tests/src/test_virtual_array.cpp" bodystart="383" bodyend="443"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -665,26 +665,21 @@
 <codeline lineno="426"><highlight class="normal"><sp/><sp/>std::vector&lt;float&gt;<sp/>tile_sums_excl;</highlight></codeline>
 <codeline lineno="427"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>total_inner_sum_excl<sp/>=<sp/>0.f;</highlight></codeline>
 <codeline lineno="428"><highlight class="normal"></highlight></codeline>
-<codeline lineno="429"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a37e8c8ed7997432da123d8989639c8a5" kindref="member">sum_per_tile</ref>(va,</highlight></codeline>
-<codeline lineno="430"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tile_sums_excl,</highlight></codeline>
-<codeline lineno="431"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;total_inner_sum_excl,</highlight></codeline>
-<codeline lineno="432"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;exclusion,</highlight></codeline>
-<codeline lineno="433"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.5f,</highlight></codeline>
-<codeline lineno="434"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cm);</highlight></codeline>
-<codeline lineno="435"><highlight class="normal"></highlight></codeline>
-<codeline lineno="436"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Total<sp/>inner<sp/>sum<sp/>should<sp/>be<sp/>half:<sp/>64<sp/>*<sp/>32<sp/>*<sp/>1.0f<sp/>=<sp/>2048.0f</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="437"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(total_inner_sum_excl,<sp/>64.f<sp/>*<sp/>32.f,<sp/>1e-4f);</highlight></codeline>
-<codeline lineno="438"><highlight class="normal"></highlight></codeline>
-<codeline lineno="439"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Bottom<sp/>row<sp/>tiles<sp/>have<sp/>full<sp/>inner<sp/>contribution<sp/>plus<sp/>halo</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="440"><highlight class="normal"><sp/><sp/>EXPECT_GT(tile_sums_excl[0],<sp/>0.f);</highlight></codeline>
-<codeline lineno="441"><highlight class="normal"><sp/><sp/>EXPECT_GT(tile_sums_excl[1],<sp/>0.f);</highlight></codeline>
-<codeline lineno="442"><highlight class="normal"></highlight></codeline>
-<codeline lineno="443"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Top<sp/>row<sp/>tiles<sp/>(ty<sp/>=<sp/>1)<sp/>overlap<sp/>with<sp/>non-excluded<sp/>row<sp/>in<sp/>halo<sp/>(halo<sp/>=<sp/>4),</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="444"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>but<sp/>if<sp/>we<sp/>exclude<sp/>row<sp/>32<sp/>-<sp/>halo<sp/>onwards,<sp/>top<sp/>tiles<sp/>would<sp/>be<sp/>completely<sp/>0.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="445"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>that<sp/>top<sp/>row<sp/>tiles<sp/>have<sp/>strictly<sp/>smaller<sp/>sum<sp/>than<sp/>bottom<sp/>row<sp/>tiles.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="446"><highlight class="normal"><sp/><sp/>EXPECT_LT(tile_sums_excl[2],<sp/>tile_sums_excl[0]);</highlight></codeline>
-<codeline lineno="447"><highlight class="normal"><sp/><sp/>EXPECT_LT(tile_sums_excl[3],<sp/>tile_sums_excl[1]);</highlight></codeline>
-<codeline lineno="448"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="429"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a37e8c8ed7997432da123d8989639c8a5" kindref="member">sum_per_tile</ref>(va,<sp/>tile_sums_excl,<sp/>&amp;total_inner_sum_excl,<sp/>&amp;exclusion,<sp/>0.5f,<sp/>cm);</highlight></codeline>
+<codeline lineno="430"><highlight class="normal"></highlight></codeline>
+<codeline lineno="431"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Total<sp/>inner<sp/>sum<sp/>should<sp/>be<sp/>half:<sp/>64<sp/>*<sp/>32<sp/>*<sp/>1.0f<sp/>=<sp/>2048.0f</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="432"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(total_inner_sum_excl,<sp/>64.f<sp/>*<sp/>32.f,<sp/>1e-4f);</highlight></codeline>
+<codeline lineno="433"><highlight class="normal"></highlight></codeline>
+<codeline lineno="434"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Bottom<sp/>row<sp/>tiles<sp/>have<sp/>full<sp/>inner<sp/>contribution<sp/>plus<sp/>halo</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="435"><highlight class="normal"><sp/><sp/>EXPECT_GT(tile_sums_excl[0],<sp/>0.f);</highlight></codeline>
+<codeline lineno="436"><highlight class="normal"><sp/><sp/>EXPECT_GT(tile_sums_excl[1],<sp/>0.f);</highlight></codeline>
+<codeline lineno="437"><highlight class="normal"></highlight></codeline>
+<codeline lineno="438"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Top<sp/>row<sp/>tiles<sp/>(ty<sp/>=<sp/>1)<sp/>overlap<sp/>with<sp/>non-excluded<sp/>row<sp/>in<sp/>halo<sp/>(halo<sp/>=<sp/>4),</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="439"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>but<sp/>if<sp/>we<sp/>exclude<sp/>row<sp/>32<sp/>-<sp/>halo<sp/>onwards,<sp/>top<sp/>tiles<sp/>would<sp/>be<sp/>completely<sp/>0.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="440"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>that<sp/>top<sp/>row<sp/>tiles<sp/>have<sp/>strictly<sp/>smaller<sp/>sum<sp/>than<sp/>bottom<sp/>row<sp/>tiles.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="441"><highlight class="normal"><sp/><sp/>EXPECT_LT(tile_sums_excl[2],<sp/>tile_sums_excl[0]);</highlight></codeline>
+<codeline lineno="442"><highlight class="normal"><sp/><sp/>EXPECT_LT(tile_sums_excl[3],<sp/>tile_sums_excl[1]);</highlight></codeline>
+<codeline lineno="443"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="tests/src/test_virtual_array.cpp"/>
   </compounddef>

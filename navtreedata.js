@@ -111,18 +111,18 @@ var NAVTREEINDEX =
 "namespacehmap.html#aba758c4143b6e499ec6f4385467a6d77aeebf5714b383e3b3be100ceba46d8fe5",
 "namespacehmap.html#ae9761a6d8d3b32eda18f767d10489e73",
 "namespacehmap_1_1gpu.html#aa50d24313a1c63bd4d8c600694d8e975",
-"non__parameteric__sampling_8cpp.html",
-"primitives_2functions_8hpp.html#aa87cc983d6988499edca8311c09edd9a",
-"rock__simulation_8hpp.html",
-"string__utils_8cpp.html#a0a506d871b395e49e6175499dfa1e903",
-"structhmap_1_1Mat.html#a4f148a4aa0f08e0bd0c4959b8fcc9aa5",
-"structhmap_1_1SpeciesLookup.html#a53a65231e6afe2a5714426ba3d1339bf",
-"structhmap_1_1VirtualArray.html#af3c6671195e6953ad46ae65a64fe88bd",
-"test__cloud_8cpp.html#afbb5b1c88e88a97044e5571bce02ddb0",
-"test__interpolate1d_8cpp.html#af095df6477094eaef27d12d988c81dc0",
-"test__range_8cpp.html#afc158c04af64e9151205dce18b851df6",
-"thermal__erosion_8hpp.html#a00b54f4e60a8fbd6ed5213600d598869",
-"virtual__array_8inl.html#ab533899554e393dbefccf9a5602faa39"
+"noise__functions_8cpp.html#a0139c2cbbb516591c54fe8a743dc139d",
+"primitives_2functions_8hpp.html#aa7a5c39d07988b3dc0aaba918618ed93",
+"rock__simulation_8cpp.html",
+"strata__plates_8cpp.html",
+"structhmap_1_1Mat.html#a429366c8daa4495b65f288f3527f2022",
+"structhmap_1_1SpeciesLookup.html",
+"structhmap_1_1VirtualArray.html#aeff83280c1e81978b24909637bf728a1",
+"test__cloud_8cpp.html#ad774353608c512a2d6b5161b3e297a9d",
+"test__interpolate1d_8cpp.html",
+"test__range_8cpp.html#aeca5c022eb65a5e8b60217ff38e2436b",
+"texture__transform_8cpp.html#a7d27d0392fb6850a212bee00cb58700c",
+"virtual__array_8hpp_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
