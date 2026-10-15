@@ -296,9 +296,6 @@ bool init_opencl()
 #include "kernels/transform/advection_particle.cl"
   );
   add(
-#include "kernels/transform/advection_warp.cl"
-  );
-  add(
 #include "kernels/transform/blend_poisson_bf.cl"
   );
   add(

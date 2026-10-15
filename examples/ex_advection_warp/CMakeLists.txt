@@ -1,2 +1,0 @@
-add_executable(ex_advection_warp ex_advection_warp.cpp)
-target_link_libraries(ex_advection_warp highmap)
