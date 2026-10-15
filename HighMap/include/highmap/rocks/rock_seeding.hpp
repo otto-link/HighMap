@@ -17,6 +17,7 @@
 #include "highmap/array.hpp"
 #include "highmap/rocks/rock_distribution.hpp"
 #include "highmap/rocks/rock_field.hpp"
+#include "highmap/virtual_array/virtual_array.hpp"
 
 namespace hmap
 {
@@ -53,3 +54,25 @@ RockField seed_rock_field(size_t                    rock_count,
                           const RockSeedingOptions &options = {});
 
 } // namespace hmap
+
+namespace hmap::va
+{
+
+/**
+ * @brief Seeds a general rock/boulder field across a tiled VirtualArray domain
+ * using inverse density transform sampling and bounding-box-aware tile merging.
+ *
+ * @param  rock_count Target number of rocks.
+ * @param  density    Spatial probability density map VirtualArray.
+ * @param  exclusion  Optional exclusion map VirtualArray.
+ * @param  options    Seeding options.
+ * @param  cm         Virtual array compute mode.
+ * @return            RockField Sampled rock field.
+ */
+RockField seed_rock_field(size_t                    rock_count,
+                          const VirtualArray       &density,
+                          const VirtualArray       &exclusion = {},
+                          const RockSeedingOptions &options = {},
+                          const ComputeMode        &cm = {});
+
+} // namespace hmap::va

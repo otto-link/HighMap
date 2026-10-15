@@ -123,6 +123,106 @@ TEST(RockFieldTest, Seeding)
   EXPECT_LE(field.size(), 50u);
 }
 
+TEST(RockFieldTest, VirtualArraySeeding)
+{
+  glm::ivec2 shape = {64, 64};
+  glm::ivec2 tile_shape = {32, 32};
+  int        halo = 4;
+  glm::vec4  bbox = {0.0f, 100.0f, 0.0f, 100.0f};
+
+  VirtualArray density(shape, bbox, tile_shape, halo);
+  ComputeMode  cm;
+  density.fill(1.0f, cm);
+
+  VirtualArray exclusion;
+
+  RockSeedingOptions options;
+  options.seed = 42;
+  options.bbox = bbox;
+  options.distribution = RockDistribution(1u, 0.5f, 2.0f, 2.0f);
+
+  size_t target_count = 60;
+
+  RockField field = hmap::va::seed_rock_field(target_count,
+                                              density,
+                                              exclusion,
+                                              options,
+                                              cm);
+
+  EXPECT_GT(field.size(), 0u);
+  EXPECT_LE(field.size(), target_count);
+
+  for (const auto &rock : field)
+  {
+    EXPECT_GE(rock.position.x, 0.0f);
+    EXPECT_LE(rock.position.x, 100.0f);
+    EXPECT_GE(rock.position.y, 0.0f);
+    EXPECT_LE(rock.position.y, 100.0f);
+    EXPECT_GE(rock.radius, 0.5f);
+    EXPECT_LE(rock.radius, 2.0f);
+  }
+}
+
+TEST(RockFieldTest, VirtualArrayExclusionMask)
+{
+  glm::ivec2 shape = {64, 64};
+  glm::ivec2 tile_shape = {32, 32};
+  int        halo = 4;
+  glm::vec4  bbox = {0.0f, 1.0f, 0.0f, 1.0f};
+
+  VirtualArray density(shape, bbox, tile_shape, halo);
+  VirtualArray exclusion(shape, bbox, tile_shape, halo);
+  ComputeMode  cm;
+  density.fill(1.0f, cm);
+  exclusion.fill(0.0f, cm);
+
+  // Exclude top half (y >= 0.5)
+  Array excl_array(shape, 0.0f);
+  for (int j = 32; j < 64; ++j)
+  {
+    for (int i = 0; i < 64; ++i)
+    {
+      excl_array(i, j) = 1.0f;
+    }
+  }
+  exclusion.from_array(excl_array, cm);
+
+  RockSeedingOptions options;
+  options.seed = 123;
+  options.bbox = bbox;
+  options.exclusion_threshold = 0.5f;
+
+  RockField field = hmap::va::seed_rock_field(60,
+                                              density,
+                                              exclusion,
+                                              options,
+                                              cm);
+
+  EXPECT_GT(field.size(), 0u);
+
+  for (const auto &rock : field)
+  {
+    EXPECT_LT(rock.position.y, 0.55f);
+  }
+}
+
+TEST(RockFieldTest, VirtualArrayEmptyAndZeroDensity)
+{
+  VirtualArray empty_va;
+  ComputeMode  cm;
+
+  RockField f1 = hmap::va::seed_rock_field(50, empty_va);
+  EXPECT_EQ(f1.size(), 0u);
+
+  glm::ivec2   shape = {32, 32};
+  glm::ivec2   tile_shape = {16, 16};
+  VirtualArray zero_density(shape, {0.f, 1.f, 0.f, 1.f}, tile_shape, 2);
+  zero_density.fill(0.0f, cm);
+
+  RockField f2 = hmap::va::seed_rock_field(50, zero_density);
+  EXPECT_EQ(f2.size(), 0u);
+}
+
 // --- Rock Simulation GPU Tests
 
 TEST(RockSimulationTest, DownhillMotionAndFrictionRest)

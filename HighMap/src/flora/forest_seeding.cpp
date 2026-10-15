@@ -550,8 +550,7 @@ Forest seed_forest_clusters(size_t                      species_count,
   glm::ivec2 num_tiles = density.get_max_tiles();
   int        total_tiles = num_tiles.x * num_tiles.y;
 
-  if (total_tiles == 0)
-    return Forest();
+  if (total_tiles == 0) return Forest();
 
   // --- Compute Density Sums per Tile and Global Inner Sum
 
@@ -567,8 +566,7 @@ Forest seed_forest_clusters(size_t                      species_count,
                options.exclusion_threshold,
                cm);
 
-  if (total_inner_sum <= 1e-7f)
-    return Forest();
+  if (total_inner_sum <= 1e-7f) return Forest();
 
   // --- Generate Sub-Forests per Tile
 

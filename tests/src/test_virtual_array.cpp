@@ -426,12 +426,7 @@ TEST(VirtualArrayTest, SumPerTile)
   std::vector<float> tile_sums_excl;
   float              total_inner_sum_excl = 0.f;
 
-  sum_per_tile(va,
-               tile_sums_excl,
-               &total_inner_sum_excl,
-               &exclusion,
-               0.5f,
-               cm);
+  sum_per_tile(va, tile_sums_excl, &total_inner_sum_excl, &exclusion, 0.5f, cm);
 
   // Total inner sum should be half: 64 * 32 * 1.0f = 2048.0f
   EXPECT_NEAR(total_inner_sum_excl, 64.f * 32.f, 1e-4f);

@@ -549,7 +549,8 @@ void sum_per_tile(const VirtualArray &va,
     if (p_exclusion_mask->shape != va.shape ||
         p_exclusion_mask->tile_shape != va.tile_shape)
     {
-      hmap::log::warn("Exclusion VirtualArray shape mismatch with VirtualArray");
+      hmap::log::warn(
+          "Exclusion VirtualArray shape mismatch with VirtualArray");
       return;
     }
   }
