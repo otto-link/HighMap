@@ -633,7 +633,7 @@ std::vector<Array> advection_particle_multiscale(
             delta_coarse,
             z.shape,
             warp,
-            seed + static_cast<std::uint32_t>(i * 37 + f * 17));
+            seed + static_cast<std::uint32_t>(i * 37));
 
         current_fields[f] += std::clamp(mix, 0.f, 1.f) * delta_full;
         clamp(current_fields[f], 0.f, 1.f);
