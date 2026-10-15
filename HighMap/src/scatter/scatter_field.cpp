@@ -655,30 +655,57 @@ void ScatterField::resolve_collisions(size_t iterations,
     if (iter % step_freq == 0 || edges.empty())
     {
       edges.clear();
+
       if (items.size() >= 3)
       {
         std::vector<double> coords;
         coords.reserve(2 * items.size());
-        for (const auto &item : items)
+
+        for (size_t k = 0; k < items.size(); ++k)
         {
-          coords.push_back(static_cast<double>(item.position.x));
-          coords.push_back(static_cast<double>(item.position.y));
+          double px = static_cast<double>(items[k].position.x);
+          double py = static_cast<double>(items[k].position.y);
+
+          if (!std::isfinite(px)) px = 0.0;
+          if (!std::isfinite(py)) py = 0.0;
+
+          // Add a minute deterministic perturbation (~1e-7) based on index to
+          // prevent identical coordinates from degenerating Delaunator's hull
+          double jitter_angle = static_cast<double>(k) * 2.399963229728653; // golden angle
+          px += 1e-7 * std::cos(jitter_angle);
+          py += 1e-7 * std::sin(jitter_angle);
+
+          coords.push_back(px);
+          coords.push_back(py);
         }
 
-        delaunator::Delaunator d(coords);
-        const auto            &tri = d.triangles;
-        const auto            &halfedges = d.halfedges;
-
-        for (size_t e = 0; e < tri.size(); ++e)
+        try
         {
-          int opposite = static_cast<int>(halfedges[e]);
-          if (static_cast<int>(e) > opposite || opposite == -1)
+          delaunator::Delaunator d(coords);
+          const auto            &tri = d.triangles;
+          const auto            &halfedges = d.halfedges;
+
+          for (size_t e = 0; e < tri.size(); ++e)
           {
-            size_t next_e = (e % 3 == 2) ? e - 2 : e + 1;
-            size_t u = tri[e];
-            size_t v = tri[next_e];
-            edges.emplace_back(u, v);
+            size_t opposite = halfedges[e];
+
+            if (e > opposite || opposite == delaunator::INVALID_INDEX)
+            {
+              size_t next_e = (e % 3 == 2) ? e - 2 : e + 1;
+              size_t u = tri[e];
+              size_t v = tri[next_e];
+
+              if (u < items.size() && v < items.size())
+              {
+                edges.emplace_back(u, v);
+              }
+            }
           }
+        }
+        catch (const std::exception &)
+        {
+          // Delaunator failed (e.g. collinear points); exit triangulation gracefully
+          break;
         }
       }
       else
@@ -753,44 +780,75 @@ void ScatterField::resolve_collisions(const ScatterField &other,
     if (iter % step_freq == 0 || cross_edges.empty())
     {
       cross_edges.clear();
+
       if (total_n >= 3)
       {
         std::vector<double> coords;
         coords.reserve(2 * total_n);
-        for (const auto &item : items)
+
+        for (size_t k = 0; k < n_self; ++k)
         {
-          coords.push_back(static_cast<double>(item.position.x));
-          coords.push_back(static_cast<double>(item.position.y));
-        }
-        for (const auto &item : other)
-        {
-          coords.push_back(static_cast<double>(item.position.x));
-          coords.push_back(static_cast<double>(item.position.y));
+          double px = static_cast<double>(items[k].position.x);
+          double py = static_cast<double>(items[k].position.y);
+
+          if (!std::isfinite(px)) px = 0.0;
+          if (!std::isfinite(py)) py = 0.0;
+
+          double jitter_angle = static_cast<double>(k) * 2.399963229728653;
+          px += 1e-7 * std::cos(jitter_angle);
+          py += 1e-7 * std::sin(jitter_angle);
+
+          coords.push_back(px);
+          coords.push_back(py);
         }
 
-        delaunator::Delaunator d(coords);
-        const auto            &tri = d.triangles;
-        const auto            &halfedges = d.halfedges;
-
-        for (size_t e = 0; e < tri.size(); ++e)
+        for (size_t k = 0; k < n_other; ++k)
         {
-          int opposite = static_cast<int>(halfedges[e]);
-          if (static_cast<int>(e) > opposite || opposite == -1)
+          double px = static_cast<double>(other[k].position.x);
+          double py = static_cast<double>(other[k].position.y);
+
+          if (!std::isfinite(px)) px = 0.0;
+          if (!std::isfinite(py)) py = 0.0;
+
+          double jitter_angle = static_cast<double>(k + n_self) * 2.399963229728653;
+          px += 1e-7 * std::cos(jitter_angle);
+          py += 1e-7 * std::sin(jitter_angle);
+
+          coords.push_back(px);
+          coords.push_back(py);
+        }
+
+        try
+        {
+          delaunator::Delaunator d(coords);
+          const auto            &tri = d.triangles;
+          const auto            &halfedges = d.halfedges;
+
+          for (size_t e = 0; e < tri.size(); ++e)
           {
-            size_t next_e = (e % 3 == 2) ? e - 2 : e + 1;
-            size_t u = tri[e];
-            size_t v = tri[next_e];
+            size_t opposite = halfedges[e];
 
-            // identify edges connecting self (< n_self) and other (>= n_self)
-            if (u < n_self && v >= n_self)
+            if (e > opposite || opposite == delaunator::INVALID_INDEX)
             {
-              cross_edges.emplace_back(u, v - n_self);
-            }
-            else if (v < n_self && u >= n_self)
-            {
-              cross_edges.emplace_back(v, u - n_self);
+              size_t next_e = (e % 3 == 2) ? e - 2 : e + 1;
+              size_t u = tri[e];
+              size_t v = tri[next_e];
+
+              // identify edges connecting self (< n_self) and other (>= n_self)
+              if (u < n_self && v >= n_self && (v - n_self) < n_other)
+              {
+                cross_edges.emplace_back(u, v - n_self);
+              }
+              else if (v < n_self && u >= n_self && (u - n_self) < n_other)
+              {
+                cross_edges.emplace_back(v, u - n_self);
+              }
             }
           }
+        }
+        catch (const std::exception &)
+        {
+          break;
         }
       }
       else
