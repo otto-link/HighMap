@@ -2218,6 +2218,8 @@ std\+::string \mbox{\hyperlink{namespacehmap_af8dc7ce1ae44750316d846345854c408}{
 \item 
 void \mbox{\hyperlink{namespacehmap_a4f31242a99ef8fd6e098eb319438eca4}{copy\+\_\+data}} (const \mbox{\hyperlink{structhmap_1_1VirtualArray}{Virtual\+Array}} \&src, \mbox{\hyperlink{structhmap_1_1VirtualArray}{Virtual\+Array}} \&dst, const \mbox{\hyperlink{structhmap_1_1ComputeMode}{Compute\+Mode}} \&cm)
 \item 
+void \mbox{\hyperlink{namespacehmap_a37e8c8ed7997432da123d8989639c8a5}{sum\+\_\+per\+\_\+tile}} (const \mbox{\hyperlink{structhmap_1_1VirtualArray}{Virtual\+Array}} \&va, std\+::vector$<$ float $>$ \&tile\+\_\+sums, float \texorpdfstring{$\ast$}{*}p\+\_\+total\+\_\+inner\+\_\+sum=nullptr, const \mbox{\hyperlink{structhmap_1_1VirtualArray}{Virtual\+Array}} \texorpdfstring{$\ast$}{*}p\+\_\+exclusion\+\_\+mask=nullptr, float exclusion\+\_\+threshold=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, const \mbox{\hyperlink{structhmap_1_1ComputeMode}{Compute\+Mode}} \&cm=\{\})
+\item 
 {\footnotesize template$<$std\+::size\+\_\+t N, typename T , std\+::size\+\_\+t... Is$>$ }\\auto \mbox{\hyperlink{namespacehmap_abc392f1014a9b32b8d2c760b58940e06}{unpack\+\_\+impl}} (const std\+::vector$<$ T \texorpdfstring{$\ast$}{*} $>$ \&v, std\+::index\+\_\+sequence$<$ Is... $>$)
 \item 
 {\footnotesize template$<$std\+::size\+\_\+t N, typename T $>$ }\\auto \mbox{\hyperlink{namespacehmap_a5b780b7b211653ed8a279ab553e7651f}{unpack}} (const std\+::vector$<$ T \texorpdfstring{$\ast$}{*} $>$ \&v)
@@ -37341,6 +37343,12 @@ The resulting order is not guaranteed to be preserved.
 \index{copy\_data@{copy\_data}!hmap@{hmap}}
 \doxysubsubsection{\texorpdfstring{copy\_data()}{copy\_data()}}
 {\footnotesize\ttfamily void hmap\+::copy\+\_\+data (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structhmap_1_1VirtualArray}{Virtual\+Array}} \&}]{src,  }\item[{\mbox{\hyperlink{structhmap_1_1VirtualArray}{Virtual\+Array}} \&}]{dst,  }\item[{const \mbox{\hyperlink{structhmap_1_1ComputeMode}{Compute\+Mode}} \&}]{cm }\end{DoxyParamCaption})}
+
+\Hypertarget{namespacehmap_a37e8c8ed7997432da123d8989639c8a5}\label{namespacehmap_a37e8c8ed7997432da123d8989639c8a5} 
+\index{hmap@{hmap}!sum\_per\_tile@{sum\_per\_tile}}
+\index{sum\_per\_tile@{sum\_per\_tile}!hmap@{hmap}}
+\doxysubsubsection{\texorpdfstring{sum\_per\_tile()}{sum\_per\_tile()}}
+{\footnotesize\ttfamily void hmap\+::sum\+\_\+per\+\_\+tile (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structhmap_1_1VirtualArray}{Virtual\+Array}} \&}]{va,  }\item[{std\+::vector$<$ float $>$ \&}]{tile\+\_\+sums,  }\item[{float \texorpdfstring{$\ast$}{*}}]{p\+\_\+total\+\_\+inner\+\_\+sum = {\ttfamily nullptr},  }\item[{const \mbox{\hyperlink{structhmap_1_1VirtualArray}{Virtual\+Array}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+exclusion\+\_\+mask = {\ttfamily nullptr},  }\item[{float}]{exclusion\+\_\+threshold = {\ttfamily 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{const \mbox{\hyperlink{structhmap_1_1ComputeMode}{Compute\+Mode}} \&}]{cm = {\ttfamily \{\}} }\end{DoxyParamCaption})}
 
 \Hypertarget{namespacehmap_abc392f1014a9b32b8d2c760b58940e06}\label{namespacehmap_abc392f1014a9b32b8d2c760b58940e06} 
 \index{hmap@{hmap}!unpack\_impl@{unpack\_impl}}

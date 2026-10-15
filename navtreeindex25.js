@@ -1,5 +1,6 @@
 var NAVTREEINDEX25 =
 {
+"rock__simulation_8hpp.html":[4,0,1,0,0,11,4],
 "rock__simulation_8hpp.html#a1b7abfd2113a5f98687a0c5c576ab110":[4,0,1,0,0,11,4,1],
 "rock__simulation_8hpp.html#aa7f9658e594e28641d9c4a3d136c06eb":[4,0,1,0,0,11,4,2],
 "rock__simulation_8hpp_source.html":[4,0,1,0,0,11,4],
@@ -248,6 +249,5 @@ var NAVTREEINDEX25 =
 "strata__erosion_8hpp_source.html":[4,0,1,0,0,1,6],
 "strata__plates_8cpp.html":[4,0,1,1,12,26],
 "strata__plates_8cpp.html#a9c033bf30ba815949b8d0fb01ab15eea":[4,0,1,1,12,26,0],
-"string__utils_8cpp.html":[4,0,1,1,45,0],
-"string__utils_8cpp.html#a0a506d871b395e49e6175499dfa1e903":[4,0,1,1,45,0,1]
+"string__utils_8cpp.html":[4,0,1,1,45,0]
 };

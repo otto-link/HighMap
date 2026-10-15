@@ -70900,6 +70900,48 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </inbodydescription>
         <location file="HighMap/src/virtual_array/array/virtual_array.cpp" line="503" column="6" bodyfile="HighMap/src/virtual_array/array/virtual_array.cpp" bodystart="503" bodyend="514" declfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" declline="180" declcolumn="6"/>
       </memberdef>
+      <memberdef kind="function" id="namespacehmap_1a37e8c8ed7997432da123d8989639c8a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::sum_per_tile</definition>
+        <argsstring>(const VirtualArray &amp;va, std::vector&lt; float &gt; &amp;tile_sums, float *p_total_inner_sum=nullptr, const VirtualArray *p_exclusion_mask=nullptr, float exclusion_threshold=0.f, const ComputeMode &amp;cm={})</argsstring>
+        <name>sum_per_tile</name>
+        <qualifiedname>hmap::sum_per_tile</qualifiedname>
+        <param>
+          <type>const <ref refid="structhmap_1_1VirtualArray" kindref="compound">VirtualArray</ref> &amp;</type>
+          <declname>va</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; float &gt; &amp;</type>
+          <declname>tile_sums</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>p_total_inner_sum</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type>const <ref refid="structhmap_1_1VirtualArray" kindref="compound">VirtualArray</ref> *</type>
+          <declname>p_exclusion_mask</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>exclusion_threshold</declname>
+          <defval>0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <param>
+          <type>const <ref refid="structhmap_1_1ComputeMode" kindref="compound">ComputeMode</ref> &amp;</type>
+          <declname>cm</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/src/virtual_array/array/virtual_array.cpp" line="516" column="6" bodyfile="HighMap/src/virtual_array/array/virtual_array.cpp" bodystart="516" bodyend="615" declfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" declline="184" declcolumn="6"/>
+      </memberdef>
       <memberdef kind="function" id="namespacehmap_1abc392f1014a9b32b8d2c760b58940e06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
@@ -70934,7 +70976,7 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="186" column="6" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="186" bodyend="190"/>
+        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="193" column="6" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="193" bodyend="197"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a5b780b7b211653ed8a279ab553e7651f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -70962,7 +71004,7 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="192" column="20" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="192" bodyend="195"/>
+        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="199" column="20" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="199" bodyend="202"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1af66b37de86e8de6261ab902110b118a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1VirtualTexture" kindref="compound">VirtualTexture</ref></type>

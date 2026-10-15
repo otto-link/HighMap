@@ -3224,6 +3224,8 @@ requires requires(const T &amp;<a class="el" href="elevation__from__contours_8cp
 <tr class="separator:af8dc7ce1ae44750316d846345854c408"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f31242a99ef8fd6e098eb319438eca4" id="r_a4f31242a99ef8fd6e098eb319438eca4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#a4f31242a99ef8fd6e098eb319438eca4">copy_data</a> (const <a class="el" href="structhmap_1_1VirtualArray.html">VirtualArray</a> &amp;src, <a class="el" href="structhmap_1_1VirtualArray.html">VirtualArray</a> &amp;dst, const <a class="el" href="structhmap_1_1ComputeMode.html">ComputeMode</a> &amp;cm)</td></tr>
 <tr class="separator:a4f31242a99ef8fd6e098eb319438eca4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37e8c8ed7997432da123d8989639c8a5" id="r_a37e8c8ed7997432da123d8989639c8a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#a37e8c8ed7997432da123d8989639c8a5">sum_per_tile</a> (const <a class="el" href="structhmap_1_1VirtualArray.html">VirtualArray</a> &amp;va, std::vector&lt; float &gt; &amp;tile_sums, float *p_total_inner_sum=nullptr, const <a class="el" href="structhmap_1_1VirtualArray.html">VirtualArray</a> *p_exclusion_mask=nullptr, float exclusion_threshold=0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, const <a class="el" href="structhmap_1_1ComputeMode.html">ComputeMode</a> &amp;cm={})</td></tr>
+<tr class="separator:a37e8c8ed7997432da123d8989639c8a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc392f1014a9b32b8d2c760b58940e06" id="r_abc392f1014a9b32b8d2c760b58940e06"><td class="memTemplParams" colspan="2">template&lt;std::size_t N, typename T , std::size_t... Is&gt; </td></tr>
 <tr class="memitem:abc392f1014a9b32b8d2c760b58940e06"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacehmap.html#abc392f1014a9b32b8d2c760b58940e06">unpack_impl</a> (const std::vector&lt; T * &gt; &amp;v, std::index_sequence&lt; Is... &gt;)</td></tr>
 <tr class="separator:abc392f1014a9b32b8d2c760b58940e06"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -62552,6 +62554,58 @@ The resulting order is not guaranteed to be preserved. </dd></dl>
           <td></td>
           <td class="paramtype">const <a class="el" href="structhmap_1_1ComputeMode.html">ComputeMode</a> &amp;&#160;</td>
           <td class="paramname"><em>cm</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a37e8c8ed7997432da123d8989639c8a5" name="a37e8c8ed7997432da123d8989639c8a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37e8c8ed7997432da123d8989639c8a5">&#9670;&#160;</a></span>sum_per_tile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hmap::sum_per_tile </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structhmap_1_1VirtualArray.html">VirtualArray</a> &amp;&#160;</td>
+          <td class="paramname"><em>va</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; float &gt; &amp;&#160;</td>
+          <td class="paramname"><em>tile_sums</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>p_total_inner_sum</em> = <code>nullptr</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structhmap_1_1VirtualArray.html">VirtualArray</a> *&#160;</td>
+          <td class="paramname"><em>p_exclusion_mask</em> = <code>nullptr</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>exclusion_threshold</em> = <code>0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structhmap_1_1ComputeMode.html">ComputeMode</a> &amp;&#160;</td>
+          <td class="paramname"><em>cm</em> = <code>{}</code>&#160;</td>
         </tr>
         <tr>
           <td></td>

@@ -180,19 +180,26 @@
 \DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structhmap_1_1VirtualArray}{VirtualArray}}\ \ \ \ \ \ \ \&dst,}
 \DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structhmap_1_1ComputeMode}{ComputeMode}}\ \ \&cm);}
 \DoxyCodeLine{00183\ }
-\DoxyCodeLine{00184\ \textcolor{comment}{//\ unpack\ vectors\ helper}}
-\DoxyCodeLine{00185\ \textcolor{keyword}{template}\ <std::size\_t\ N,\ \textcolor{keyword}{typename}\ T,\ std::size\_t...\ Is>}
-\DoxyCodeLine{00186\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespacehmap_abc392f1014a9b32b8d2c760b58940e06}{unpack\_impl}}(\textcolor{keyword}{const}\ std::vector<T\ *>\ \&v,\ std::index\_sequence<Is...>)}
-\DoxyCodeLine{00187\ \{}
-\DoxyCodeLine{00188\ \ \ assert(v.size()\ >=\ N);}
-\DoxyCodeLine{00189\ \ \ \textcolor{keywordflow}{return}\ std::make\_tuple(v[Is]...);}
-\DoxyCodeLine{00190\ \}}
-\DoxyCodeLine{00191\ }
-\DoxyCodeLine{00192\ \textcolor{keyword}{template}\ <std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ T>\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespacehmap_a5b780b7b211653ed8a279ab553e7651f}{unpack}}(\textcolor{keyword}{const}\ std::vector<T\ *>\ \&v)}
-\DoxyCodeLine{00193\ \{}
-\DoxyCodeLine{00194\ \ \ \textcolor{keywordflow}{return}\ unpack\_impl<N>(v,\ std::make\_index\_sequence<N>\{\});}
-\DoxyCodeLine{00195\ \}}
-\DoxyCodeLine{00196\ }
-\DoxyCodeLine{00197\ \}\ \textcolor{comment}{//\ namespace\ hmap}}
+\DoxyCodeLine{00184\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacehmap_a37e8c8ed7997432da123d8989639c8a5}{sum\_per\_tile}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structhmap_1_1VirtualArray}{VirtualArray}}\ \&va,}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<float>\ \&tile\_sums,}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ *p\_total\_inner\_sum\ =\ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structhmap_1_1VirtualArray}{VirtualArray}}\ *p\_exclusion\_mask\ =\ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ exclusion\_threshold\ =\ 0.f,}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structhmap_1_1ComputeMode}{ComputeMode}}\ \ \&cm\ =\ \{\});}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \textcolor{comment}{//\ unpack\ vectors\ helper}}
+\DoxyCodeLine{00192\ \textcolor{keyword}{template}\ <std::size\_t\ N,\ \textcolor{keyword}{typename}\ T,\ std::size\_t...\ Is>}
+\DoxyCodeLine{00193\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespacehmap_abc392f1014a9b32b8d2c760b58940e06}{unpack\_impl}}(\textcolor{keyword}{const}\ std::vector<T\ *>\ \&v,\ std::index\_sequence<Is...>)}
+\DoxyCodeLine{00194\ \{}
+\DoxyCodeLine{00195\ \ \ assert(v.size()\ >=\ N);}
+\DoxyCodeLine{00196\ \ \ \textcolor{keywordflow}{return}\ std::make\_tuple(v[Is]...);}
+\DoxyCodeLine{00197\ \}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \textcolor{keyword}{template}\ <std::\textcolor{keywordtype}{size\_t}\ N,\ \textcolor{keyword}{typename}\ T>\ \textcolor{keyword}{auto}\ \mbox{\hyperlink{namespacehmap_a5b780b7b211653ed8a279ab553e7651f}{unpack}}(\textcolor{keyword}{const}\ std::vector<T\ *>\ \&v)}
+\DoxyCodeLine{00200\ \{}
+\DoxyCodeLine{00201\ \ \ \textcolor{keywordflow}{return}\ unpack\_impl<N>(v,\ std::make\_index\_sequence<N>\{\});}
+\DoxyCodeLine{00202\ \}}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \}\ \textcolor{comment}{//\ namespace\ hmap}}
 
 \end{DoxyCode}

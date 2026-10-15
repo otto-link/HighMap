@@ -1241,6 +1241,7 @@ var namespacehmap =
     [ "make_storage", "namespacehmap.html#a43075b5f93cea5525adb69b8d6990683", null ],
     [ "to_string", "namespacehmap.html#af8dc7ce1ae44750316d846345854c408", null ],
     [ "copy_data", "namespacehmap.html#a4f31242a99ef8fd6e098eb319438eca4", null ],
+    [ "sum_per_tile", "namespacehmap.html#a37e8c8ed7997432da123d8989639c8a5", null ],
     [ "unpack_impl", "namespacehmap.html#abc392f1014a9b32b8d2c760b58940e06", null ],
     [ "unpack", "namespacehmap.html#a5b780b7b211653ed8a279ab553e7651f", null ],
     [ "convert_texture_channels", "namespacehmap.html#af66b37de86e8de6261ab902110b118a0", null ],

@@ -2776,6 +2776,7 @@
     <member refid="namespacehmap_1a43075b5f93cea5525adb69b8d6990683" kind="function"><name>make_storage</name></member>
     <member refid="namespacehmap_1af8dc7ce1ae44750316d846345854c408" kind="function"><name>to_string</name></member>
     <member refid="namespacehmap_1a4f31242a99ef8fd6e098eb319438eca4" kind="function"><name>copy_data</name></member>
+    <member refid="namespacehmap_1a37e8c8ed7997432da123d8989639c8a5" kind="function"><name>sum_per_tile</name></member>
     <member refid="namespacehmap_1abc392f1014a9b32b8d2c760b58940e06" kind="function"><name>unpack_impl</name></member>
     <member refid="namespacehmap_1a5b780b7b211653ed8a279ab553e7651f" kind="function"><name>unpack</name></member>
     <member refid="namespacehmap_1af66b37de86e8de6261ab902110b118a0" kind="function"><name>convert_texture_channels</name></member>
@@ -5069,6 +5070,7 @@
     <member refid="test__virtual__array_8cpp_1ab3e3f4d1f882feed7201bde39825551b" kind="function"><name>TEST</name></member>
     <member refid="test__virtual__array_8cpp_1ae76e6b32b142c69a3df66a2aa697737d" kind="function"><name>TEST</name></member>
     <member refid="test__virtual__array_8cpp_1a47da2db1583289bfe375c1af2f180533" kind="function"><name>TEST</name></member>
+    <member refid="test__virtual__array_8cpp_1a85e09af473a5daab3a35c261463a3de2" kind="function"><name>TEST</name></member>
   </compound>
   <compound refid="test__virtual__texture_8cpp" kind="file"><name>test_virtual_texture.cpp</name>
     <member refid="test__virtual__texture_8cpp_1a6a684795a5cdb9182ffc190ed1b3ae12" kind="function"><name>TEST</name></member>

@@ -19,6 +19,7 @@ var virtual__array_2virtual__array_8hpp =
     ] ],
     [ "to_string", "virtual__array_2virtual__array_8hpp.html#af8dc7ce1ae44750316d846345854c408", null ],
     [ "copy_data", "virtual__array_2virtual__array_8hpp.html#a4f31242a99ef8fd6e098eb319438eca4", null ],
+    [ "sum_per_tile", "virtual__array_2virtual__array_8hpp.html#a37e8c8ed7997432da123d8989639c8a5", null ],
     [ "unpack_impl", "virtual__array_2virtual__array_8hpp.html#abc392f1014a9b32b8d2c760b58940e06", null ],
     [ "unpack", "virtual__array_2virtual__array_8hpp.html#a5b780b7b211653ed8a279ab553e7651f", null ]
 ];
