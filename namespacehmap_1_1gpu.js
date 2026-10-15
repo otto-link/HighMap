@@ -284,8 +284,6 @@ var namespacehmap_1_1gpu =
     [ "advection_particle_multiscale", "namespacehmap_1_1gpu.html#a997f0f2bc5a6fb586648e5eb42f819c3", null ],
     [ "advection_particle_multiscale", "namespacehmap_1_1gpu.html#aa3c12bf577a1f1f48812e811146ed743", null ],
     [ "advection_particle_multiscale", "namespacehmap_1_1gpu.html#ad6c7808daa55d0a20d36357c7276d46a", null ],
-    [ "advection_warp", "namespacehmap_1_1gpu.html#a6e5f495c359df88d1185220ab1cc8c23", null ],
-    [ "advection_warp", "namespacehmap_1_1gpu.html#a0c43413a89b330fc5f4051112d6a2a85", null ],
     [ "rotate", "namespacehmap_1_1gpu.html#aab128e15988875b5d350d6f156612aa5", null ],
     [ "warp", "namespacehmap_1_1gpu.html#a99659d06f84b0e92e6731f28ca28937c", null ],
     [ "compute_particle_path", "namespacehmap_1_1gpu.html#a23b30113ce94eb8de610c6784f5a9cd5", null ],

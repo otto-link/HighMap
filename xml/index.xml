@@ -1686,21 +1686,21 @@
   </compound>
   <compound refid="namespace_0d216" kind="namespace"><name>@216</name>
   </compound>
-  <compound refid="namespace_0d421" kind="namespace"><name>@421</name>
+  <compound refid="namespace_0d420" kind="namespace"><name>@420</name>
   </compound>
-  <compound refid="namespace_0d432" kind="namespace"><name>@432</name>
+  <compound refid="namespace_0d431" kind="namespace"><name>@431</name>
   </compound>
-  <compound refid="namespace_0d442" kind="namespace"><name>@442</name>
+  <compound refid="namespace_0d441" kind="namespace"><name>@441</name>
   </compound>
-  <compound refid="namespace_0d461" kind="namespace"><name>@461</name>
+  <compound refid="namespace_0d460" kind="namespace"><name>@460</name>
   </compound>
-  <compound refid="namespace_0d468" kind="namespace"><name>@468</name>
+  <compound refid="namespace_0d467" kind="namespace"><name>@467</name>
   </compound>
-  <compound refid="namespace_0d481" kind="namespace"><name>@481</name>
+  <compound refid="namespace_0d480" kind="namespace"><name>@480</name>
   </compound>
-  <compound refid="namespace_0d492" kind="namespace"><name>@492</name>
+  <compound refid="namespace_0d491" kind="namespace"><name>@491</name>
   </compound>
-  <compound refid="namespace_0d496" kind="namespace"><name>@496</name>
+  <compound refid="namespace_0d495" kind="namespace"><name>@495</name>
   </compound>
   <compound refid="namespacehmap" kind="namespace"><name>hmap</name>
     <member refid="namespacehmap_1a5101273ec456f5267dddc3e22dae223b" kind="enum"><name>StampingBlendMethod</name></member>
@@ -3160,8 +3160,6 @@
     <member refid="namespacehmap_1_1gpu_1a997f0f2bc5a6fb586648e5eb42f819c3" kind="function"><name>advection_particle_multiscale</name></member>
     <member refid="namespacehmap_1_1gpu_1aa3c12bf577a1f1f48812e811146ed743" kind="function"><name>advection_particle_multiscale</name></member>
     <member refid="namespacehmap_1_1gpu_1ad6c7808daa55d0a20d36357c7276d46a" kind="function"><name>advection_particle_multiscale</name></member>
-    <member refid="namespacehmap_1_1gpu_1a6e5f495c359df88d1185220ab1cc8c23" kind="function"><name>advection_warp</name></member>
-    <member refid="namespacehmap_1_1gpu_1a0c43413a89b330fc5f4051112d6a2a85" kind="function"><name>advection_warp</name></member>
     <member refid="namespacehmap_1_1gpu_1aab128e15988875b5d350d6f156612aa5" kind="function"><name>rotate</name></member>
     <member refid="namespacehmap_1_1gpu_1a99659d06f84b0e92e6731f28ca28937c" kind="function"><name>warp</name></member>
     <member refid="namespacehmap_1_1gpu_1a23b30113ce94eb8de610c6784f5a9cd5" kind="function"><name>compute_particle_path</name></member>
@@ -4130,8 +4128,6 @@
   <compound refid="terrain__tri__mesh_8cpp" kind="file"><name>terrain_tri_mesh.cpp</name>
   </compound>
   <compound refid="advection__particle__gpu_8cpp" kind="file"><name>advection_particle_gpu.cpp</name>
-  </compound>
-  <compound refid="advection__warp__gpu_8cpp" kind="file"><name>advection_warp_gpu.cpp</name>
   </compound>
   <compound refid="texture__transform_8cpp" kind="file"><name>texture_transform.cpp</name>
   </compound>

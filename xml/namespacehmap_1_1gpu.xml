@@ -15262,7 +15262,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/gpu_opencl/gpu_opencl.cpp" line="32" column="6" bodyfile="HighMap/src/gpu_opencl/gpu_opencl.cpp" bodystart="32" bodyend="347" declfile="HighMap/include/highmap/opencl/gpu_opencl.hpp" declline="30" declcolumn="6"/>
+        <location file="HighMap/src/gpu_opencl/gpu_opencl.cpp" line="32" column="6" bodyfile="HighMap/src/gpu_opencl/gpu_opencl.cpp" bodystart="32" bodyend="344" declfile="HighMap/include/highmap/opencl/gpu_opencl.hpp" declline="30" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a74065aacafa262b29b0207950f9150c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -24911,173 +24911,6 @@ This function leverages an OpenCL kernel to compute the GavoroNoise values on th
         </inbodydescription>
         <location file="HighMap/src/transform/advection_particle_gpu.cpp" line="707" column="9" bodyfile="HighMap/src/transform/advection_particle_gpu.cpp" bodystart="707" bodyend="747" declfile="HighMap/include/highmap/transform.hpp" declline="798" declcolumn="9"/>
       </memberdef>
-      <memberdef kind="function" id="namespacehmap_1_1gpu_1a6e5f495c359df88d1185220ab1cc8c23" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
-        <definition>Array hmap::gpu::advection_warp</definition>
-        <argsstring>(const Array &amp;z, const Array &amp;advected_field, float advection_length=0.1f, float value_persistence=0.9f, const Array *p_mask=nullptr)</argsstring>
-        <name>advection_warp</name>
-        <qualifiedname>hmap::gpu::advection_warp</qualifiedname>
-        <param>
-          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
-          <declname>z</declname>
-        </param>
-        <param>
-          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
-          <declname>advected_field</declname>
-        </param>
-        <param>
-          <type>float</type>
-          <declname>advection_length</declname>
-          <defval>0.1<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
-        </param>
-        <param>
-          <type>float</type>
-          <declname>value_persistence</declname>
-          <defval>0.9<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
-        </param>
-        <param>
-          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
-          <declname>p_mask</declname>
-          <defval>nullptr</defval>
-        </param>
-        <briefdescription>
-<para>Performs 2D field advection based on the gradient of a heightmap using a warp-based technic (simplified approach). </para>
-        </briefdescription>
-        <detaileddescription>
-<para>This function computes the X and Y gradients of the given heightmap <computeroutput>z</computeroutput> and uses them as flow directions to advect the input <computeroutput>advected_field</computeroutput>. The result is a new field where values have been displaced according to the gradient direction and the specified advection parameters.</para>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>z</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The heightmap (or scalar field) used to compute advection directions. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>advected_field</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The field to be advected along the gradient of <computeroutput>z</computeroutput>. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>advection_length</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The step length used for advection; larger values produce stronger displacement. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>value_persistence</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>The persistence factor applied to the advected values, typically in the range [0, 1]; controls how much of the original value is preserved. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>p_mask</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Optional pointer to a mask array; if provided, advection is applied only where the mask is nonzero.</para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-<simplesect kind="return"><para>A new <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> representing the advected version of <computeroutput>advected_field</computeroutput>.</para>
-</simplesect>
-<bold>Example</bold> <programlisting filename="ex_advection_warp.cpp"><codeline><highlight class="preprocessor">#include<sp/>&quot;<ref refid="highmap_8hpp" kindref="compound">highmap.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="main_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
-<codeline><highlight class="normal">{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1_1gpu_1adb8336ed4d83c15500872185dee45d50" kindref="member">hmap::gpu::init_opencl</ref>();</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>glm::ivec2<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref><sp/>=<sp/>{256,<sp/>256};</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>glm::vec2<sp/><sp/>res<sp/>=<sp/>{2.f,<sp/>2.f};</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref><sp/>=<sp/><ref refid="namespacehmap_1a7d699a468a18be16c70654958ee13b41" kindref="member">hmap::noise_fbm</ref>(<ref refid="namespacehmap_1ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581" kindref="member">hmap::NoiseType::PERLIN</ref>,<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>res,<sp/>seed);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a262e6495cb2d02598f36a2b46114b2b4" kindref="member">hmap::remap</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>);</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>advection_length<sp/>=<sp/>0.05f;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>value_persistence<sp/>=<sp/>0.96f;</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>za<sp/>=<sp/><ref refid="namespacehmap_1_1gpu_1a6e5f495c359df88d1185220ab1cc8c23" kindref="member">hmap::gpu::advection_warp</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>advection_length,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_persistence);</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>advect<sp/>another<sp/>field<sp/>based<sp/>on<sp/>the<sp/>elevation</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/><ref refid="sls__deformation_8cpp_1a76f11d9a0a47b94f72c2d0e77fb32240" kindref="member">n</ref><sp/>=<sp/><ref refid="namespacehmap_1a7d699a468a18be16c70654958ee13b41" kindref="member">hmap::noise_fbm</ref>(<ref refid="namespacehmap_1ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581" kindref="member">hmap::NoiseType::PERLIN</ref>,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{32.f,<sp/>32.f},</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed);</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>zb<sp/>=<sp/><ref refid="namespacehmap_1_1gpu_1a6e5f495c359df88d1185220ab1cc8c23" kindref="member">hmap::gpu::advection_warp</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="sls__deformation_8cpp_1a76f11d9a0a47b94f72c2d0e77fb32240" kindref="member">n</ref>,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>advection_length,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value_persistence);</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1ac2452e568959bc21c9b7b09202e5977a" kindref="member">hmap::export_banner_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_advection_warp.png&quot;</highlight><highlight class="normal">,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>za,<sp/>zb},</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369a6d093dbf3088c52a8acee413942545d9" kindref="member">hmap::Cmap::TERRAIN</ref>,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
-<codeline><highlight class="normal">}</highlight></codeline>
-</programlisting></para>
-<para><bold>Result</bold> <image type="html" name="ex_advection_warp.png"></image>
- </para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="HighMap/src/transform/advection_warp_gpu.cpp" line="59" column="7" bodyfile="HighMap/src/transform/advection_warp_gpu.cpp" bodystart="59" bodyend="79" declfile="HighMap/include/highmap/transform.hpp" declline="845" declcolumn="7"/>
-      </memberdef>
-      <memberdef kind="function" id="namespacehmap_1_1gpu_1a0c43413a89b330fc5f4051112d6a2a85" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
-        <definition>Array hmap::gpu::advection_warp</definition>
-        <argsstring>(const Array &amp;z, const Array &amp;advected_field, const Array &amp;dx, const Array &amp;dy, float advection_length=0.1f, float value_persistence=0.9f, const Array *p_mask=nullptr)</argsstring>
-        <name>advection_warp</name>
-        <qualifiedname>hmap::gpu::advection_warp</qualifiedname>
-        <param>
-          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
-          <declname>z</declname>
-        </param>
-        <param>
-          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
-          <declname>advected_field</declname>
-        </param>
-        <param>
-          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
-          <declname>dx</declname>
-        </param>
-        <param>
-          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
-          <declname>dy</declname>
-        </param>
-        <param>
-          <type>float</type>
-          <declname>advection_length</declname>
-          <defval>0.1<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
-        </param>
-        <param>
-          <type>float</type>
-          <declname>value_persistence</declname>
-          <defval>0.9<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
-        </param>
-        <param>
-          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
-          <declname>p_mask</declname>
-          <defval>nullptr</defval>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="HighMap/src/transform/advection_warp_gpu.cpp" line="16" column="7" bodyfile="HighMap/src/transform/advection_warp_gpu.cpp" bodystart="16" bodyend="57" declfile="HighMap/include/highmap/transform.hpp" declline="851" declcolumn="7"/>
-      </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1aab128e15988875b5d350d6f156612aa5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void hmap::gpu::rotate</definition>
@@ -25104,7 +24937,7 @@ This function leverages an OpenCL kernel to compute the GavoroNoise values on th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/transform/transform_gpu.cpp" line="16" column="6" bodyfile="HighMap/src/transform/transform_gpu.cpp" bodystart="16" bodyend="30" declfile="HighMap/include/highmap/transform.hpp" declline="860" declcolumn="6"/>
+        <location file="HighMap/src/transform/transform_gpu.cpp" line="16" column="6" bodyfile="HighMap/src/transform/transform_gpu.cpp" bodystart="16" bodyend="30" declfile="HighMap/include/highmap/transform.hpp" declline="816" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a99659d06f84b0e92e6731f28ca28937c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -25131,7 +24964,7 @@ This function leverages an OpenCL kernel to compute the GavoroNoise values on th
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/transform/warp_gpu.cpp" line="16" column="6" bodyfile="HighMap/src/transform/warp_gpu.cpp" bodystart="16" bodyend="65" declfile="HighMap/include/highmap/transform.hpp" declline="863" declcolumn="6"/>
+        <location file="HighMap/src/transform/warp_gpu.cpp" line="16" column="6" bodyfile="HighMap/src/transform/warp_gpu.cpp" bodystart="16" bodyend="65" declfile="HighMap/include/highmap/transform.hpp" declline="819" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a23b30113ce94eb8de610c6784f5a9cd5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; glm::ivec2 &gt;</type>
