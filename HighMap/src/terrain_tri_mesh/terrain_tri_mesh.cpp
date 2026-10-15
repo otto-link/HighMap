@@ -161,7 +161,7 @@ void TerrainTriMesh::compute_gradients()
 
   // Normalize
 #pragma omp parallel for schedule(static)
-  for (size_t i = 0; i < points.size(); ++i)
+  for (int i = 0; i < int(points.size()); ++i)
   {
     if (weight_sum[i] > 1e-12f)
     {
@@ -686,7 +686,7 @@ void TerrainTriMesh::relax_xy(float lambda, int iterations, bool preserve_chull)
     std::vector<glm::vec3> new_points = this->points;
 
 #pragma omp parallel for schedule(static)
-    for (size_t i = 0; i < this->points.size(); ++i)
+    for (int i = 0; i < int(this->points.size()); ++i)
     {
       const auto &nbrs = this->neighbors.adjacency[i];
       if (nbrs.empty()) continue;
@@ -730,7 +730,7 @@ void TerrainTriMesh::relax_xyz(float lambda,
     std::vector<glm::vec3> buffer(this->points.size());
 
 #pragma omp parallel for schedule(static)
-    for (size_t i = 0; i < this->points.size(); ++i)
+    for (int i = 0; i < int(this->points.size()); ++i)
     {
       const auto &nbrs = this->neighbors.adjacency[i];
 
@@ -811,7 +811,7 @@ void TerrainTriMesh::slope_limiter(const std::vector<float> &max_slope,
     std::vector<glm::vec3> buffer(this->points.size());
 
 #pragma omp parallel for schedule(static)
-    for (size_t i = 0; i < this->points.size(); ++i)
+    for (int i = 0; i < int(this->points.size()); ++i)
     {
       const auto      &nbrs = this->neighbors.adjacency[i];
       const glm::vec3 &pi = this->points[i];
@@ -1031,7 +1031,7 @@ std::vector<float> cubic_pulse(const TerrainTriMesh &mesh)
   std::vector<float> values(pts.size(), 0.f);
 
 #pragma omp parallel for schedule(static)
-  for (size_t i = 0; i < pts.size(); ++i)
+  for (int i = 0; i < int(pts.size()); ++i)
   {
     const auto &p = pts[i];
     float       r = std::hypot(p.x - xc, p.y - yc) / rc;
