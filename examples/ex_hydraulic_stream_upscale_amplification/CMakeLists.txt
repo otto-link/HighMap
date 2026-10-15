@@ -1,2 +1,0 @@
-add_executable(ex_hydraulic_stream_upscale_amplification ex_hydraulic_stream_upscale_amplification.cpp)
-target_link_libraries(ex_hydraulic_stream_upscale_amplification highmap)

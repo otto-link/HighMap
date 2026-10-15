@@ -36,7 +36,6 @@
 #include "highmap/logger.hpp"
 #include "highmap/math.hpp"
 #include "highmap/morphology.hpp"
-#include "highmap/multiscale.hpp"
 #include "highmap/opencl/gpu_opencl.hpp"
 #include "highmap/openmp.hpp"
 #include "highmap/operator.hpp"
