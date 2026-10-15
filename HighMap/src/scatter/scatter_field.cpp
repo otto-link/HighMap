@@ -478,8 +478,8 @@ void ScatterField::prune_density(const Array     &density_mask,
 
   auto is_in_bbox = [](const glm::vec3 &position, const glm::vec4 &b) -> bool
   {
-    return position.x >= b.x && position.x <= b.y &&
-           position.y >= b.z && position.y <= b.w;
+    return position.x >= b.x && position.x <= b.y && position.y >= b.z &&
+           position.y <= b.w;
   };
 
   // --- Identify Items Inside and Outside the Bounding Box
@@ -523,7 +523,7 @@ void ScatterField::prune_density(const Array     &density_mask,
 
   // --- Sample Local Density for Items Inside Bounding Box
 
-  auto density_fct = make_xy_function_from_array(density_mask, bbox);
+  auto         density_fct = make_xy_function_from_array(density_mask, bbox);
   const size_t nb_inside = inside_indices.size();
 
   std::vector<float> sampled_densities(nb_inside);
@@ -720,7 +720,8 @@ void ScatterField::resolve_collisions(size_t iterations,
 
           // Add a minute deterministic perturbation (~1e-7) based on index to
           // prevent identical coordinates from degenerating Delaunator's hull
-          double jitter_angle = static_cast<double>(k) * 2.399963229728653; // golden angle
+          double jitter_angle = static_cast<double>(k) *
+                                2.399963229728653; // golden angle
           px += 1e-7 * std::cos(jitter_angle);
           py += 1e-7 * std::sin(jitter_angle);
 
@@ -753,7 +754,8 @@ void ScatterField::resolve_collisions(size_t iterations,
         }
         catch (const std::exception &)
         {
-          // Delaunator failed (e.g. collinear points); exit triangulation gracefully
+          // Delaunator failed (e.g. collinear points); exit triangulation
+          // gracefully
           break;
         }
       }
@@ -859,7 +861,8 @@ void ScatterField::resolve_collisions(const ScatterField &other,
           if (!std::isfinite(px)) px = 0.0;
           if (!std::isfinite(py)) py = 0.0;
 
-          double jitter_angle = static_cast<double>(k + n_self) * 2.399963229728653;
+          double jitter_angle = static_cast<double>(k + n_self) *
+                                2.399963229728653;
           px += 1e-7 * std::cos(jitter_angle);
           py += 1e-7 * std::sin(jitter_angle);
 
