@@ -23,10 +23,10 @@ int main(void)
   int iterations = 4;
 
   hmap::Array tex_singlescale = hmap::gpu::advection_particle(z,
-                                                             tex,
-                                                             iterations,
-                                                             nparticles,
-                                                             seed);
+                                                              tex,
+                                                              iterations,
+                                                              nparticles,
+                                                              seed);
 
   // 2. Multiscale particle advection
   std::vector<int> steps_per_level = {4, 2, 1};

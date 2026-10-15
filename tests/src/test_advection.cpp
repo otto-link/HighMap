@@ -139,9 +139,9 @@ TEST(Advection, Multiscale)
     }
   }
 
-  std::uint32_t seed = 42;
+  std::uint32_t    seed = 42;
   std::vector<int> steps_per_level = {2, 1};
-  float particles_ratio = 0.1f;
+  float            particles_ratio = 0.1f;
 
   // 1. Single field multiscale
   Array out_single = gpu::advection_particle_multiscale(z,
@@ -177,4 +177,3 @@ TEST(Advection, Multiscale)
     EXPECT_LE(out_multi[1].vector[i], 1.f);
   }
 }
-

@@ -13,9 +13,18 @@ int main(void)
   hmap::remap(z);
 
   // Generate a multi-channel RGB texture (color bands or procedural pattern)
-  hmap::Array r = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, {16.f, 16.f}, seed + 1);
-  hmap::Array g = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, {16.f, 16.f}, seed + 2);
-  hmap::Array b = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, {16.f, 16.f}, seed + 3);
+  hmap::Array r = hmap::noise_fbm(hmap::NoiseType::PERLIN,
+                                  shape,
+                                  {16.f, 16.f},
+                                  seed + 1);
+  hmap::Array g = hmap::noise_fbm(hmap::NoiseType::PERLIN,
+                                  shape,
+                                  {16.f, 16.f},
+                                  seed + 2);
+  hmap::Array b = hmap::noise_fbm(hmap::NoiseType::PERLIN,
+                                  shape,
+                                  {16.f, 16.f},
+                                  seed + 3);
 
   hmap::remap(r);
   hmap::remap(g);
@@ -27,12 +36,11 @@ int main(void)
   int nparticles = 30000;
   int iterations = 4;
 
-  hmap::Texture tex_advected = hmap::gpu::advection_particle(
-      z,
-      tex,
-      iterations,
-      nparticles,
-      seed);
+  hmap::Texture tex_advected = hmap::gpu::advection_particle(z,
+                                                             tex,
+                                                             iterations,
+                                                             nparticles,
+                                                             seed);
 
   // 2. Multiscale texture advection
   std::vector<int> steps_per_level = {4, 2, 1};

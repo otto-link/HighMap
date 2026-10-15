@@ -56,19 +56,19 @@ Array advection_particle(const Array  &z,
 }
 
 std::vector<Array> advection_particle(
-    const Array                    &z,
+    const Array                      &z,
     const std::vector<const Array *> &advected_fields,
-    int                             iterations,
-    int                             nparticles,
-    std::uint32_t                   seed,
-    bool                            reverse,
-    bool                            post_filter,
-    float                           post_filter_sigma,
-    float                           advection_length,
-    float                           value_persistence,
-    float                           inertia,
-    const Array                    *p_advection_mask,
-    const Array                    *p_mask)
+    int                               iterations,
+    int                               nparticles,
+    std::uint32_t                     seed,
+    bool                              reverse,
+    bool                              post_filter,
+    float                             post_filter_sigma,
+    float                             advection_length,
+    float                             value_persistence,
+    float                             inertia,
+    const Array                      *p_advection_mask,
+    const Array                      *p_mask)
 {
   if (!validate_non_empty(z)) return {};
 
@@ -163,18 +163,18 @@ Array advection_particle(const Array  &z,
 }
 
 std::vector<Array> advection_particle(
-    const Array                    &z,
+    const Array                      &z,
     const std::vector<const Array *> &advected_fields,
-    int                             nparticles,
-    std::uint32_t                   seed,
-    bool                            reverse,
-    bool                            post_filter,
-    float                           post_filter_sigma,
-    float                           advection_length,
-    float                           value_persistence,
-    float                           inertia,
-    const Array                    *p_advection_mask,
-    const Array                    *p_mask)
+    int                               nparticles,
+    std::uint32_t                     seed,
+    bool                              reverse,
+    bool                              post_filter,
+    float                             post_filter_sigma,
+    float                             advection_length,
+    float                             value_persistence,
+    float                             inertia,
+    const Array                      *p_advection_mask,
+    const Array                      *p_mask)
 {
   if (!validate_non_empty(z)) return {};
 
@@ -228,19 +228,19 @@ std::vector<Array> advection_particle(const Array              &z,
                             p_mask);
 }
 
-Texture advection_particle(const Array  &z,
+Texture advection_particle(const Array   &z,
                            const Texture &texture,
-                           int           iterations,
-                           int           nparticles,
-                           std::uint32_t seed,
-                           bool          reverse,
-                           bool          post_filter,
-                           float         post_filter_sigma,
-                           float         advection_length,
-                           float         value_persistence,
-                           float         inertia,
-                           const Array  *p_advection_mask,
-                           const Array  *p_mask)
+                           int            iterations,
+                           int            nparticles,
+                           std::uint32_t  seed,
+                           bool           reverse,
+                           bool           post_filter,
+                           float          post_filter_sigma,
+                           float          advection_length,
+                           float          value_persistence,
+                           float          inertia,
+                           const Array   *p_advection_mask,
+                           const Array   *p_mask)
 {
   if (!validate_non_empty(z)) return Texture();
 
@@ -266,18 +266,18 @@ Texture advection_particle(const Array  &z,
   return Texture(channels_out);
 }
 
-Texture advection_particle(const Array  &z,
+Texture advection_particle(const Array   &z,
                            const Texture &texture,
-                           int           nparticles,
-                           std::uint32_t seed,
-                           bool          reverse,
-                           bool          post_filter,
-                           float         post_filter_sigma,
-                           float         advection_length,
-                           float         value_persistence,
-                           float         inertia,
-                           const Array  *p_advection_mask,
-                           const Array  *p_mask)
+                           int            nparticles,
+                           std::uint32_t  seed,
+                           bool           reverse,
+                           bool           post_filter,
+                           float          post_filter_sigma,
+                           float          advection_length,
+                           float          value_persistence,
+                           float          inertia,
+                           const Array   *p_advection_mask,
+                           const Array   *p_mask)
 {
   if (!validate_non_empty(z)) return Texture();
 
@@ -336,19 +336,19 @@ Array advection_particle(const Array  &dx,
 }
 
 std::vector<Array> advection_particle(
-    const Array                    &dx,
-    const Array                    &dy,
+    const Array                      &dx,
+    const Array                      &dy,
     const std::vector<const Array *> &advected_fields,
-    int                             nparticles,
-    std::uint32_t                   seed,
-    bool                            reverse,
-    bool                            post_filter,
-    float                           post_filter_sigma,
-    float                           advection_length,
-    float                           value_persistence,
-    float                           inertia,
-    const Array                    *p_advection_mask,
-    const Array                    *p_mask)
+    int                               nparticles,
+    std::uint32_t                     seed,
+    bool                              reverse,
+    bool                              post_filter,
+    float                             post_filter_sigma,
+    float                             advection_length,
+    float                             value_persistence,
+    float                             inertia,
+    const Array                      *p_advection_mask,
+    const Array                      *p_mask)
 {
   if (!validate_non_empty(dx) || !validate_same_shape(dx, dy)) return {};
   if (!validate_non_empty(advected_fields, "advected_fields")) return {};
@@ -527,21 +527,21 @@ Array advection_particle_multiscale(const Array            &z,
 }
 
 std::vector<Array> advection_particle_multiscale(
-    const Array                    &z,
+    const Array                      &z,
     const std::vector<const Array *> &advected_fields,
-    std::uint32_t                   seed,
-    const std::vector<int>         &steps_per_level,
-    float                           particles_ratio,
-    float                           advection_length,
-    float                           value_persistence,
-    float                           inertia,
-    float                           mix,
-    float                           warp,
-    bool                            reverse,
-    bool                            post_filter,
-    float                           post_filter_sigma,
-    const Array                    *p_advection_mask,
-    const Array                    *p_mask)
+    std::uint32_t                     seed,
+    const std::vector<int>           &steps_per_level,
+    float                             particles_ratio,
+    float                             advection_length,
+    float                             value_persistence,
+    float                             inertia,
+    float                             mix,
+    float                             warp,
+    bool                              reverse,
+    bool                              post_filter,
+    float                             post_filter_sigma,
+    const Array                      *p_advection_mask,
+    const Array                      *p_mask)
 {
   if (!validate_non_empty(z)) return {};
   if (!validate_non_empty(advected_fields, "advected_fields")) return {};
@@ -551,11 +551,10 @@ std::vector<Array> advection_particle_multiscale(
     if (!p_field || !validate_same_shape(z, *p_field)) return {};
   }
 
-  if (p_advection_mask && !validate_same_shape(z, *p_advection_mask))
-    return {};
+  if (p_advection_mask && !validate_same_shape(z, *p_advection_mask)) return {};
   if (p_mask && !validate_same_shape(z, *p_mask)) return {};
 
-  int nlevels = static_cast<int>(steps_per_level.size());
+  int                nlevels = static_cast<int>(steps_per_level.size());
   std::vector<Array> current_fields;
   current_fields.reserve(advected_fields.size());
   for (const auto *p_field : advected_fields)
@@ -610,20 +609,20 @@ std::vector<Array> advection_particle_multiscale(
 
       std::uint32_t level_seed = seed + static_cast<std::uint32_t>(i * 1000);
 
-      std::vector<Array> fields_coarse_out =
-          advection_particle(z_coarse,
-                             fields_coarse,
-                             level_iterations,
-                             level_particles,
-                             level_seed,
-                             reverse,
-                             post_filter,
-                             post_filter_sigma,
-                             advection_length,
-                             value_persistence,
-                             inertia,
-                             p_lvl_advection_mask,
-                             p_lvl_mask);
+      std::vector<Array> fields_coarse_out = advection_particle(
+          z_coarse,
+          fields_coarse,
+          level_iterations,
+          level_particles,
+          level_seed,
+          reverse,
+          post_filter,
+          post_filter_sigma,
+          advection_length,
+          value_persistence,
+          inertia,
+          p_lvl_advection_mask,
+          p_lvl_mask);
 
       // Compute displacement delta and upsample smoothly to full resolution
       for (size_t f = 0; f < current_fields.size(); ++f)

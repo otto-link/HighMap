@@ -87,8 +87,12 @@ Texture terrain_texture(const Array                &z,
     // reference scale: 90th percentile among active deposits
     // (ignoring zero cells)
     const float ref = p_deposition->range_percentile(0.f, 0.9f, 1024, true).y;
-    deposit = *p_deposition / std::max(ref, 1e-6f);
-    clamp(deposit, 0.f, 1.f);
+
+    if (ref > 1e-6f)
+    {
+      deposit = *p_deposition / ref;
+      clamp(deposit, 0.f, 1.f);
+    }
   }
 
   // --- Noise
