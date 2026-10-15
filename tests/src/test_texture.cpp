@@ -287,6 +287,35 @@ TEST(TextureColorize, TerrainTextureZMinZMax)
 
   for (int c = 0; c < 4; ++c)
     EXPECT_TRUE(assert_almost_equal(tex_default[c], tex_custom[c], 1e-5f));
+
+  // Invalid custom noise shape should fail validation and return empty Texture
+  Array   wrong_noise(glm::ivec2(8, 8), 0.5f);
+  Texture tex_invalid = terrain_texture(z,
+                                        nullptr,
+                                        params,
+                                        glm::vec4(0.f, 0.f, 1.f, 1.f),
+                                        0.f,
+                                        -1.f,
+                                        &wrong_noise);
+  EXPECT_TRUE(tex_invalid.is_empty());
+
+  // Custom noise bypassing procedural noise
+  Array   custom_noise(shape, 0.5f);
+  Texture tex_custom_noise = terrain_texture(z,
+                                             nullptr,
+                                             params,
+                                             glm::vec4(0.f, 0.f, 1.f, 1.f),
+                                             0.f,
+                                             -1.f,
+                                             &custom_noise);
+  EXPECT_EQ(tex_custom_noise.shape, shape);
+  EXPECT_EQ(tex_custom_noise.num_channels(), 4);
+
+  // Deactivated color noise (color_noise <= 0)
+  params.color_noise = 0.f;
+  Texture tex_no_color_noise = terrain_texture(z, nullptr, params);
+  EXPECT_EQ(tex_no_color_noise.shape, shape);
+  EXPECT_EQ(tex_no_color_noise.num_channels(), 4);
 }
 
 TEST(TextureTransform, BasicTransforms)

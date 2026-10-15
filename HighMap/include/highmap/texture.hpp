@@ -100,6 +100,14 @@ public:
   explicit Texture(const std::string &fname, bool flip_j = false);
 
   /**
+   * @brief Check whether the texture is empty (no channels or zero area).
+   */
+  bool is_empty() const
+  {
+    return channels.empty() || shape.x <= 0 || shape.y <= 0;
+  }
+
+  /**
    * @brief Get the number of channels.
    */
   int num_channels() const

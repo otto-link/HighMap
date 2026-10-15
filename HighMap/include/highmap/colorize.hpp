@@ -514,6 +514,7 @@ Texture mix_normal_map(const Texture          &nmap_base,
  * @param bbox         Bounding box for coherent noise coordinates.
  * @param zmin         Minimum elevation to consider (computed from z if zmin > zmax).
  * @param zmax         Maximum elevation to consider (computed from z if zmin > zmax).
+ * @param p_noise      Optional custom noise array (bypasses procedural noise if provided).
  * @return             4-channel RGBA Texture.
  */
 Texture terrain_texture(const Array                &z,
@@ -521,7 +522,8 @@ Texture terrain_texture(const Array                &z,
                         const TerrainTextureParams &params,
                         const glm::vec4            &bbox = glm::vec4(0.f, 0.f, 1.f, 1.f),
                         float                       zmin = 0.f,
-                        float                       zmax = -1.f);
+                        float                       zmax = -1.f,
+                        const Array                *p_noise = nullptr);
 
 } // namespace hmap
 

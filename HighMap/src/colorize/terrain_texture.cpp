@@ -27,9 +27,11 @@ Texture terrain_texture(const Array                &z,
                         const TerrainTextureParams &p,
                         const glm::vec4            &bbox,
                         float                       zmin,
-                        float                       zmax)
+                        float                       zmax,
+                        const Array                *p_noise)
 {
   if (!validate_non_empty(z)) return Texture();
+  if (p_noise && !validate_same_shape(z, *p_noise)) return Texture();
 
   // resolve elevation range
   if (zmin > zmax)
@@ -96,30 +98,55 @@ Texture terrain_texture(const Array                &z,
 
   // --- Noise
 
-  const auto noise = [&](float kw, int seed_offset, int octaves)
-  {
-    const float k = kw * p.noise_scale;
-    Array       a = noise_fbm(NoiseType::PERLIN,
-                        shape,
-                              {k, k},
-                        p.seed + seed_offset,
-                        octaves,
-                        0.f,
-                        0.5f,
-                        2.f,
-                        nullptr,
-                        nullptr,
-                        nullptr,
-                        bbox);
-    normalize_and_clip(a);
-    return a;
-  };
+  Array n_large;
+  Array n_mid;
+  Array n_fine;
+  Array n_rill;
+  Array n_grain;
 
-  const Array n_large = noise(3.f, 0, 4);
-  const Array n_mid = noise(12.f, 1, 5);
-  const Array n_fine = noise(64.f, 2, 3);
-  const Array n_rill = noise(160.f, 3, 2);
-  const Array n_grain = noise(320.f, 4, 2);
+  if (p_noise)
+  {
+    n_large = *p_noise;
+    n_mid = *p_noise;
+    n_fine = *p_noise;
+    n_rill = *p_noise;
+    n_grain = *p_noise;
+  }
+  else if (p.color_noise <= 0.f)
+  {
+    n_large = Array(shape, 0.f);
+    n_mid = Array(shape, 0.f);
+    n_fine = Array(shape, 0.f);
+    n_rill = Array(shape, 0.f);
+    n_grain = Array(shape, 0.f);
+  }
+  else
+  {
+    const auto noise = [&](float kw, int seed_offset, int octaves)
+    {
+      const float k = kw * p.noise_scale;
+      Array       a = noise_fbm(NoiseType::PERLIN,
+                          shape,
+                                {k, k},
+                          p.seed + seed_offset,
+                          octaves,
+                          0.f,
+                          0.5f,
+                          2.f,
+                          nullptr,
+                          nullptr,
+                          nullptr,
+                          bbox);
+      normalize_and_clip(a);
+      return a;
+    };
+
+    n_large = noise(3.f, 0, 4);
+    n_mid = noise(12.f, 1, 5);
+    n_fine = noise(64.f, 2, 3);
+    n_rill = noise(160.f, 3, 2);
+    n_grain = noise(320.f, 4, 2);
+  }
 
   // --- Fall lines
 
