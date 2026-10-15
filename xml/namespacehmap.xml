@@ -61672,7 +61672,7 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/scatter/scatter_field.cpp" line="1555" column="14" bodyfile="HighMap/src/scatter/scatter_field.cpp" bodystart="1555" bodyend="1588" declfile="HighMap/include/highmap/scatter/scatter_field.hpp" declline="481" declcolumn="14"/>
+        <location file="HighMap/src/scatter/scatter_field.cpp" line="1604" column="14" bodyfile="HighMap/src/scatter/scatter_field.cpp" bodystart="1604" bodyend="1637" declfile="HighMap/include/highmap/scatter/scatter_field.hpp" declline="481" declcolumn="14"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a09487a4f97ee60322dc0b237309896ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1ScatterField" kindref="compound">ScatterField</ref></type>
@@ -61728,7 +61728,7 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/scatter/scatter_field.cpp" line="1590" column="14" bodyfile="HighMap/src/scatter/scatter_field.cpp" bodystart="1590" bodyend="1660" declfile="HighMap/include/highmap/scatter/scatter_field.hpp" declline="497" declcolumn="14"/>
+        <location file="HighMap/src/scatter/scatter_field.cpp" line="1639" column="14" bodyfile="HighMap/src/scatter/scatter_field.cpp" bodystart="1639" bodyend="1709" declfile="HighMap/include/highmap/scatter/scatter_field.hpp" declline="497" declcolumn="14"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a765d17781b2ffdf138be2c869fe4b24c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -61849,7 +61849,7 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/scatter/scatter_field.cpp" line="1662" column="7" bodyfile="HighMap/src/scatter/scatter_field.cpp" bodystart="1662" bodyend="1678" declfile="HighMap/include/highmap/scatter/scatter_field.hpp" declline="517" declcolumn="7"/>
+        <location file="HighMap/src/scatter/scatter_field.cpp" line="1711" column="7" bodyfile="HighMap/src/scatter/scatter_field.cpp" bodystart="1711" bodyend="1727" declfile="HighMap/include/highmap/scatter/scatter_field.hpp" declline="517" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a61e1b066b8da6d1227758bbb40510548" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1ScatterField" kindref="compound">ScatterField</ref></type>
@@ -73819,7 +73819,7 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/scatter/scatter_field.cpp" line="1387" column="16" bodyfile="HighMap/src/scatter/scatter_field.cpp" bodystart="1387" bodyend="1475"/>
+        <location file="HighMap/src/scatter/scatter_field.cpp" line="1436" column="16" bodyfile="HighMap/src/scatter/scatter_field.cpp" bodystart="1436" bodyend="1524"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1aed9491c87a175e07ff614dfa3ad8b4f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Point" kindref="compound">Point</ref></type>

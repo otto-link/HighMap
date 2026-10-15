@@ -70,12 +70,25 @@
 <codeline lineno="60"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>oss.str();</highlight></codeline>
 <codeline lineno="61"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="62"><highlight class="normal"></highlight></codeline>
-<codeline lineno="63"><highlight class="normal">std::string<sp/>TileRegion::key_as_string()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="63"><highlight class="normal">glm::vec4<sp/>TileRegion::inner_bbox()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
 <codeline lineno="64"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::to_string(this-&gt;key.tx)<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;_&quot;</highlight><highlight class="normal"><sp/>+<sp/>std::to_string(this-&gt;key.ty);</highlight></codeline>
-<codeline lineno="66"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>dx<sp/>=<sp/>(bbox.y<sp/>-<sp/>bbox.x)<sp/>/<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.x);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>dy<sp/>=<sp/>(bbox.w<sp/>-<sp/>bbox.z)<sp/>/<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.y);</highlight></codeline>
 <codeline lineno="67"><highlight class="normal"></highlight></codeline>
-<codeline lineno="68"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hmap</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>inner_x1<sp/>=<sp/>bbox.x<sp/>+<sp/>float(halo.x)<sp/>*<sp/>dx;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>inner_x2<sp/>=<sp/>bbox.y<sp/>-<sp/>float(halo.y)<sp/>*<sp/>dx;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>inner_y1<sp/>=<sp/>bbox.z<sp/>+<sp/>float(halo.z)<sp/>*<sp/>dy;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>inner_y2<sp/>=<sp/>bbox.w<sp/>-<sp/>float(halo.w)<sp/>*<sp/>dy;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{inner_x1,<sp/>inner_x2,<sp/>inner_y1,<sp/>inner_y2};</highlight></codeline>
+<codeline lineno="74"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal">std::string<sp/>TileRegion::key_as_string()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="77"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::to_string(this-&gt;key.tx)<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;_&quot;</highlight><highlight class="normal"><sp/>+<sp/>std::to_string(this-&gt;key.ty);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>hmap</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="HighMap/src/virtual_array/storage/tile_region.cpp"/>
   </compounddef>

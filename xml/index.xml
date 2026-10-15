@@ -1457,8 +1457,9 @@
     <member refid="structhmap_1_1TileRegion_1a8cd8079c9aebcf4bdf1075a34297680f" kind="function"><name>TileRegion</name></member>
     <member refid="structhmap_1_1TileRegion_1a2160f3e52bb07aebad44bf689d5fe690" kind="function"><name>cell_center</name></member>
     <member refid="structhmap_1_1TileRegion_1a773fcee90fae6c3950a9fa5617de2f62" kind="function"><name>cell_corner</name></member>
-    <member refid="structhmap_1_1TileRegion_1ae00731982da2e860d89cbdaec916a080" kind="function"><name>key_as_string</name></member>
     <member refid="structhmap_1_1TileRegion_1adfd726429cd45259258bdddb714e2414" kind="function"><name>info_string</name></member>
+    <member refid="structhmap_1_1TileRegion_1a4754b0823d3ef2d7b97ffb37735084c4" kind="function"><name>inner_bbox</name></member>
+    <member refid="structhmap_1_1TileRegion_1ae00731982da2e860d89cbdaec916a080" kind="function"><name>key_as_string</name></member>
   </compound>
   <compound refid="classhmap_1_1TileStorage" kind="class"><name>hmap::TileStorage</name>
     <member refid="classhmap_1_1TileStorage_1a125f3395811a46b8b104eda9736b6b23" kind="function"><name>~TileStorage</name></member>
@@ -4913,6 +4914,7 @@
     <member refid="test__scatter_8cpp_1aebc98e370d16fefb32f77e9ed24333a7" kind="function"><name>TEST</name></member>
     <member refid="test__scatter_8cpp_1a752d30bcea4166613c49cda409d1325a" kind="function"><name>TEST</name></member>
     <member refid="test__scatter_8cpp_1ad18bee6778a01424ed8c83f8a93361aa" kind="function"><name>TEST</name></member>
+    <member refid="test__scatter_8cpp_1a2dc8089d9712a3c6b5e0a3f5f813ce89" kind="function"><name>TEST</name></member>
     <member refid="test__scatter_8cpp_1aec72490efa4fea9b3c923e326d1f8b35" kind="function"><name>TEST</name></member>
     <member refid="test__scatter_8cpp_1a15e0628e45008db82560492dc0951b11" kind="function"><name>TEST</name></member>
     <member refid="test__scatter_8cpp_1aaa18fa374b32ea1e0cd167c86c2e33ac" kind="function"><name>TEST</name></member>
@@ -5066,6 +5068,7 @@
     <member refid="test__virtual__array_8cpp_1a1540243cd16ca9c2c8ebb80b18faed93" kind="function"><name>TEST</name></member>
     <member refid="test__virtual__array_8cpp_1a0e20498ec6f66a213e1a70fb48a718e3" kind="function"><name>TEST</name></member>
     <member refid="test__virtual__array_8cpp_1a827cabf7e8656be3382f111d10450155" kind="function"><name>TEST</name></member>
+    <member refid="test__virtual__array_8cpp_1a17c4e14f43fad91242762b2bea53b983" kind="function"><name>TEST</name></member>
     <member refid="test__virtual__array_8cpp_1a100abf1a4b010a5425124a8b16c67202" kind="function"><name>TEST</name></member>
     <member refid="test__virtual__array_8cpp_1a29e2d78cef5fb8c3c5ea7dbf1352a7e4" kind="function"><name>TEST</name></member>
     <member refid="test__virtual__array_8cpp_1ac6568d87890e413db75c5b6ad407b77e" kind="function"><name>TEST</name></member>
