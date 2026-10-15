@@ -1056,7 +1056,7 @@ void hydraulic_mise(Array            &z,
 
   if (params.extrapolate_border)
   {
-    extrapolate_borders(z);
+    extrapolate_borders(z, 1, 0.9f);
 
     if (p_bedrock)
     {
