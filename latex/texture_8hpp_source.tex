@@ -41,62 +41,67 @@
 \DoxyCodeLine{00093\ }
 \DoxyCodeLine{00100\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classhmap_1_1Texture_a649f727ad9179105abf080f3c041268a}{Texture}}(\textcolor{keyword}{const}\ std::string\ \&fname,\ \textcolor{keywordtype}{bool}\ flip\_j\ =\ \textcolor{keyword}{false});}
 \DoxyCodeLine{00101\ }
-\DoxyCodeLine{00105\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classhmap_1_1Texture_a3d94e8bea60fdb4d2cd505f67f60e2c4}{num\_channels}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00105\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classhmap_1_1Texture_af2319e8977c56256c0b23a9f821ec1ad}{is\_empty}}()\textcolor{keyword}{\ const}}
 \DoxyCodeLine{00106\ \textcolor{keyword}{\ \ }\{}
-\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(\mbox{\hyperlink{classhmap_1_1Texture_aa47eecec5ca81b281c39164e5a4b562f}{channels}}.size());}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classhmap_1_1Texture_aa47eecec5ca81b281c39164e5a4b562f}{channels}}.empty()\ ||\ \mbox{\hyperlink{classhmap_1_1Texture_ad84007785575c1d7eca558afed9785cf}{shape}}.x\ <=\ 0\ ||\ \mbox{\hyperlink{classhmap_1_1Texture_ad84007785575c1d7eca558afed9785cf}{shape}}.y\ <=\ 0;}
 \DoxyCodeLine{00108\ \ \ \}}
 \DoxyCodeLine{00109\ }
-\DoxyCodeLine{00113\ \ \ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \&\mbox{\hyperlink{classhmap_1_1Texture_a5e8d228882d1f989a7e630c2d400f364}{operator[]}}(\textcolor{keywordtype}{size\_t}\ idx)}
-\DoxyCodeLine{00114\ \ \ \{}
-\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classhmap_1_1Texture_aa47eecec5ca81b281c39164e5a4b562f}{channels}}[idx];}
+\DoxyCodeLine{00113\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classhmap_1_1Texture_a3d94e8bea60fdb4d2cd505f67f60e2c4}{num\_channels}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00114\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(\mbox{\hyperlink{classhmap_1_1Texture_aa47eecec5ca81b281c39164e5a4b562f}{channels}}.size());}
 \DoxyCodeLine{00116\ \ \ \}}
-\DoxyCodeLine{00117\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \&\mbox{\hyperlink{classhmap_1_1Texture_a7e68630c4908e71e9cfb91e3e891d472}{operator[]}}(\textcolor{keywordtype}{size\_t}\ idx)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00118\ \textcolor{keyword}{\ \ }\{}
-\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classhmap_1_1Texture_aa47eecec5ca81b281c39164e5a4b562f}{channels}}[idx];}
-\DoxyCodeLine{00120\ \ \ \}}
-\DoxyCodeLine{00121\ }
-\DoxyCodeLine{00125\ \ \ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \&\mbox{\hyperlink{classhmap_1_1Texture_ad7f67eaa2de1d4b138d79f15f6ff283e}{channel}}(\textcolor{keywordtype}{size\_t}\ idx)}
-\DoxyCodeLine{00126\ \ \ \{}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00121\ \ \ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \&\mbox{\hyperlink{classhmap_1_1Texture_a5e8d228882d1f989a7e630c2d400f364}{operator[]}}(\textcolor{keywordtype}{size\_t}\ idx)}
+\DoxyCodeLine{00122\ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classhmap_1_1Texture_aa47eecec5ca81b281c39164e5a4b562f}{channels}}[idx];}
+\DoxyCodeLine{00124\ \ \ \}}
+\DoxyCodeLine{00125\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \&\mbox{\hyperlink{classhmap_1_1Texture_a7e68630c4908e71e9cfb91e3e891d472}{operator[]}}(\textcolor{keywordtype}{size\_t}\ idx)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00126\ \textcolor{keyword}{\ \ }\{}
 \DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classhmap_1_1Texture_aa47eecec5ca81b281c39164e5a4b562f}{channels}}[idx];}
 \DoxyCodeLine{00128\ \ \ \}}
-\DoxyCodeLine{00129\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \&\mbox{\hyperlink{classhmap_1_1Texture_a907ddf6d54e316a96bc75598f7dd16e4}{channel}}(\textcolor{keywordtype}{size\_t}\ idx)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00130\ \textcolor{keyword}{\ \ }\{}
-\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classhmap_1_1Texture_aa47eecec5ca81b281c39164e5a4b562f}{channels}}[idx];}
-\DoxyCodeLine{00132\ \ \ \}}
-\DoxyCodeLine{00133\ }
-\DoxyCodeLine{00137\ \ \ \textcolor{keywordtype}{float}\ \&\mbox{\hyperlink{classhmap_1_1Texture_a762179c98db93ae9fba519cdb47abd34}{operator()}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}},\ \textcolor{keywordtype}{int}\ c)}
-\DoxyCodeLine{00138\ \ \ \{}
-\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classhmap_1_1Texture_aa47eecec5ca81b281c39164e5a4b562f}{channels}}[c](\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}});}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00133\ \ \ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \&\mbox{\hyperlink{classhmap_1_1Texture_ad7f67eaa2de1d4b138d79f15f6ff283e}{channel}}(\textcolor{keywordtype}{size\_t}\ idx)}
+\DoxyCodeLine{00134\ \ \ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classhmap_1_1Texture_aa47eecec5ca81b281c39164e5a4b562f}{channels}}[idx];}
+\DoxyCodeLine{00136\ \ \ \}}
+\DoxyCodeLine{00137\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \&\mbox{\hyperlink{classhmap_1_1Texture_a907ddf6d54e316a96bc75598f7dd16e4}{channel}}(\textcolor{keywordtype}{size\_t}\ idx)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00138\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classhmap_1_1Texture_aa47eecec5ca81b281c39164e5a4b562f}{channels}}[idx];}
 \DoxyCodeLine{00140\ \ \ \}}
 \DoxyCodeLine{00141\ }
-\DoxyCodeLine{00145\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \&\mbox{\hyperlink{classhmap_1_1Texture_aa6a9a50b9d7135cc6d22302e2bf3a102}{operator()}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}},\ \textcolor{keywordtype}{int}\ c)\textcolor{keyword}{\ const}}
-\DoxyCodeLine{00146\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00145\ \ \ \textcolor{keywordtype}{float}\ \&\mbox{\hyperlink{classhmap_1_1Texture_a762179c98db93ae9fba519cdb47abd34}{operator()}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}},\ \textcolor{keywordtype}{int}\ c)}
+\DoxyCodeLine{00146\ \ \ \{}
 \DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classhmap_1_1Texture_aa47eecec5ca81b281c39164e5a4b562f}{channels}}[c](\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}});}
 \DoxyCodeLine{00148\ \ \ \}}
 \DoxyCodeLine{00149\ }
-\DoxyCodeLine{00153\ \ \ glm::vec3\ \mbox{\hyperlink{classhmap_1_1Texture_a5454cbbe9d86f4ccb736502bc775e33d}{get\_pixel3}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}})\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00154\ }
-\DoxyCodeLine{00158\ \ \ glm::vec4\ \mbox{\hyperlink{classhmap_1_1Texture_acd4d81876db435e5cb80787df9201479}{get\_pixel4}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}})\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00159\ }
-\DoxyCodeLine{00163\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1Texture_ad365293739f8d3e1db8bc6c6321a53d1}{set\_pixel}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}},\ \textcolor{keyword}{const}\ glm::vec3\ \&color);}
-\DoxyCodeLine{00164\ }
-\DoxyCodeLine{00168\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1Texture_ad365293739f8d3e1db8bc6c6321a53d1}{set\_pixel}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}},\ \textcolor{keyword}{const}\ glm::vec4\ \&color);}
-\DoxyCodeLine{00169\ }
-\DoxyCodeLine{00173\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1Texture_a85b55025bed0bf39d40426964a609692}{max}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00174\ }
-\DoxyCodeLine{00178\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1Texture_a088a66adf2c1770d3d00585c1c708bc9}{min}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00179\ }
-\DoxyCodeLine{00183\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1Texture_a9778d2fd3b28c79252617f43a85bd60f}{remap}}(\textcolor{keywordtype}{float}\ vmin\ =\ 0.f,\ \textcolor{keywordtype}{float}\ vmax\ =\ 1.f);}
-\DoxyCodeLine{00184\ }
-\DoxyCodeLine{00188\ \ \ \mbox{\hyperlink{classhmap_1_1Texture}{Texture}}\ \mbox{\hyperlink{classhmap_1_1Texture_a8d6e6aba938934dd88a569475585e768}{resample\_to\_shape}}(glm::ivec2\ new\_shape\_xy)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00189\ }
-\DoxyCodeLine{00193\ \ \ cv::Mat\ \mbox{\hyperlink{classhmap_1_1Texture_a0ded9de3bc7ee46e5d7fd6c09582c433}{to\_cv\_mat}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00194\ }
-\DoxyCodeLine{00198\ \ \ std::vector<uint8\_t>\ \mbox{\hyperlink{classhmap_1_1Texture_a755ac2f60209a9eee3d57534accc880e}{to\_img\_8bit}}(\textcolor{keywordtype}{bool}\ flip\_y\ =\ \textcolor{keyword}{false})\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00199\ }
-\DoxyCodeLine{00203\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1Texture_a8459decef6432076cc6f307d8719f012}{to\_png}}(\textcolor{keyword}{const}\ std::string\ \&fname,\ \textcolor{keywordtype}{int}\ depth\ =\ CV\_8U)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00204\ \};}
-\DoxyCodeLine{00205\ }
-\DoxyCodeLine{00206\ \}\ \textcolor{comment}{//\ namespace\ hmap}}
+\DoxyCodeLine{00153\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \&\mbox{\hyperlink{classhmap_1_1Texture_aa6a9a50b9d7135cc6d22302e2bf3a102}{operator()}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}},\ \textcolor{keywordtype}{int}\ c)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00154\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classhmap_1_1Texture_aa47eecec5ca81b281c39164e5a4b562f}{channels}}[c](\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}});}
+\DoxyCodeLine{00156\ \ \ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00161\ \ \ glm::vec3\ \mbox{\hyperlink{classhmap_1_1Texture_a5454cbbe9d86f4ccb736502bc775e33d}{get\_pixel3}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00166\ \ \ glm::vec4\ \mbox{\hyperlink{classhmap_1_1Texture_acd4d81876db435e5cb80787df9201479}{get\_pixel4}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00171\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1Texture_ad365293739f8d3e1db8bc6c6321a53d1}{set\_pixel}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}},\ \textcolor{keyword}{const}\ glm::vec3\ \&color);}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00176\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1Texture_ad365293739f8d3e1db8bc6c6321a53d1}{set\_pixel}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}},\ \textcolor{keyword}{const}\ glm::vec4\ \&color);}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00181\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1Texture_a85b55025bed0bf39d40426964a609692}{max}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00186\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1Texture_a088a66adf2c1770d3d00585c1c708bc9}{min}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00191\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1Texture_a9778d2fd3b28c79252617f43a85bd60f}{remap}}(\textcolor{keywordtype}{float}\ vmin\ =\ 0.f,\ \textcolor{keywordtype}{float}\ vmax\ =\ 1.f);}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00196\ \ \ \mbox{\hyperlink{classhmap_1_1Texture}{Texture}}\ \mbox{\hyperlink{classhmap_1_1Texture_a8d6e6aba938934dd88a569475585e768}{resample\_to\_shape}}(glm::ivec2\ new\_shape\_xy)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00201\ \ \ cv::Mat\ \mbox{\hyperlink{classhmap_1_1Texture_a0ded9de3bc7ee46e5d7fd6c09582c433}{to\_cv\_mat}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00206\ \ \ std::vector<uint8\_t>\ \mbox{\hyperlink{classhmap_1_1Texture_a755ac2f60209a9eee3d57534accc880e}{to\_img\_8bit}}(\textcolor{keywordtype}{bool}\ flip\_y\ =\ \textcolor{keyword}{false})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00211\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1Texture_a8459decef6432076cc6f307d8719f012}{to\_png}}(\textcolor{keyword}{const}\ std::string\ \&fname,\ \textcolor{keywordtype}{int}\ depth\ =\ CV\_8U)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00212\ \};}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \}\ \textcolor{comment}{//\ namespace\ hmap}}
 
 \end{DoxyCode}

@@ -294,6 +294,21 @@
         </inbodydescription>
         <location file="HighMap/include/highmap/texture.hpp" line="100" column="12" bodyfile="HighMap/src/tensor/texture.cpp" bodystart="74" bodyend="109"/>
       </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Texture_1af2319e8977c56256c0b23a9f821ec1ad" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool hmap::Texture::is_empty</definition>
+        <argsstring>() const</argsstring>
+        <name>is_empty</name>
+        <qualifiedname>hmap::Texture::is_empty</qualifiedname>
+        <briefdescription>
+<para>Check whether the texture is empty (no channels or zero area). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/texture.hpp" line="105" column="8" bodyfile="HighMap/include/highmap/texture.hpp" bodystart="105" bodyend="108"/>
+      </memberdef>
       <memberdef kind="function" id="classhmap_1_1Texture_1a3d94e8bea60fdb4d2cd505f67f60e2c4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
         <definition>int hmap::Texture::num_channels</definition>
@@ -307,7 +322,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/texture.hpp" line="105" column="7" bodyfile="HighMap/include/highmap/texture.hpp" bodystart="105" bodyend="108"/>
+        <location file="HighMap/include/highmap/texture.hpp" line="113" column="7" bodyfile="HighMap/include/highmap/texture.hpp" bodystart="113" bodyend="116"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Texture_1a5e8d228882d1f989a7e630c2d400f364" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
@@ -326,7 +341,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/texture.hpp" line="113" column="9" bodyfile="HighMap/include/highmap/texture.hpp" bodystart="113" bodyend="116"/>
+        <location file="HighMap/include/highmap/texture.hpp" line="121" column="9" bodyfile="HighMap/include/highmap/texture.hpp" bodystart="121" bodyend="124"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Texture_1a7e68630c4908e71e9cfb91e3e891d472" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
@@ -344,7 +359,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/texture.hpp" line="117" column="15" bodyfile="HighMap/include/highmap/texture.hpp" bodystart="117" bodyend="120"/>
+        <location file="HighMap/include/highmap/texture.hpp" line="125" column="15" bodyfile="HighMap/include/highmap/texture.hpp" bodystart="125" bodyend="128"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Texture_1ad7f67eaa2de1d4b138d79f15f6ff283e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
@@ -363,7 +378,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/texture.hpp" line="125" column="9" bodyfile="HighMap/include/highmap/texture.hpp" bodystart="125" bodyend="128"/>
+        <location file="HighMap/include/highmap/texture.hpp" line="133" column="9" bodyfile="HighMap/include/highmap/texture.hpp" bodystart="133" bodyend="136"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Texture_1a907ddf6d54e316a96bc75598f7dd16e4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
@@ -381,7 +396,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/texture.hpp" line="129" column="15" bodyfile="HighMap/include/highmap/texture.hpp" bodystart="129" bodyend="132"/>
+        <location file="HighMap/include/highmap/texture.hpp" line="137" column="15" bodyfile="HighMap/include/highmap/texture.hpp" bodystart="137" bodyend="140"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Texture_1a762179c98db93ae9fba519cdb47abd34" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>float &amp;</type>
@@ -408,7 +423,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/texture.hpp" line="137" column="9" bodyfile="HighMap/include/highmap/texture.hpp" bodystart="137" bodyend="140"/>
+        <location file="HighMap/include/highmap/texture.hpp" line="145" column="9" bodyfile="HighMap/include/highmap/texture.hpp" bodystart="145" bodyend="148"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Texture_1aa6a9a50b9d7135cc6d22302e2bf3a102" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>const float &amp;</type>
@@ -435,7 +450,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/texture.hpp" line="145" column="15" bodyfile="HighMap/include/highmap/texture.hpp" bodystart="145" bodyend="148"/>
+        <location file="HighMap/include/highmap/texture.hpp" line="153" column="15" bodyfile="HighMap/include/highmap/texture.hpp" bodystart="153" bodyend="156"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Texture_1a5454cbbe9d86f4ccb736502bc775e33d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>glm::vec3</type>
@@ -458,7 +473,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/texture.hpp" line="153" column="13" bodyfile="HighMap/src/tensor/texture.cpp" bodystart="111" bodyend="119"/>
+        <location file="HighMap/include/highmap/texture.hpp" line="161" column="13" bodyfile="HighMap/src/tensor/texture.cpp" bodystart="111" bodyend="119"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Texture_1acd4d81876db435e5cb80787df9201479" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>glm::vec4</type>
@@ -481,7 +496,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/texture.hpp" line="158" column="13" bodyfile="HighMap/src/tensor/texture.cpp" bodystart="121" bodyend="132"/>
+        <location file="HighMap/include/highmap/texture.hpp" line="166" column="13" bodyfile="HighMap/src/tensor/texture.cpp" bodystart="121" bodyend="132"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Texture_1ad365293739f8d3e1db8bc6c6321a53d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -508,7 +523,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/texture.hpp" line="163" column="8" bodyfile="HighMap/src/tensor/texture.cpp" bodystart="134" bodyend="144"/>
+        <location file="HighMap/include/highmap/texture.hpp" line="171" column="8" bodyfile="HighMap/src/tensor/texture.cpp" bodystart="134" bodyend="144"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Texture_1a8b1a7812cf2936646b1369252c5bad8e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -535,7 +550,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/texture.hpp" line="168" column="8" bodyfile="HighMap/src/tensor/texture.cpp" bodystart="146" bodyend="157"/>
+        <location file="HighMap/include/highmap/texture.hpp" line="176" column="8" bodyfile="HighMap/src/tensor/texture.cpp" bodystart="146" bodyend="157"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Texture_1a85b55025bed0bf39d40426964a609692" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -550,7 +565,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/texture.hpp" line="173" column="9" bodyfile="HighMap/src/tensor/texture.cpp" bodystart="159" bodyend="168"/>
+        <location file="HighMap/include/highmap/texture.hpp" line="181" column="9" bodyfile="HighMap/src/tensor/texture.cpp" bodystart="159" bodyend="168"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Texture_1a088a66adf2c1770d3d00585c1c708bc9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -565,7 +580,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/texture.hpp" line="178" column="9" bodyfile="HighMap/src/tensor/texture.cpp" bodystart="170" bodyend="179"/>
+        <location file="HighMap/include/highmap/texture.hpp" line="186" column="9" bodyfile="HighMap/src/tensor/texture.cpp" bodystart="170" bodyend="179"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Texture_1a9778d2fd3b28c79252617f43a85bd60f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -590,7 +605,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/texture.hpp" line="183" column="8" bodyfile="HighMap/src/tensor/texture.cpp" bodystart="181" bodyend="205"/>
+        <location file="HighMap/include/highmap/texture.hpp" line="191" column="8" bodyfile="HighMap/src/tensor/texture.cpp" bodystart="181" bodyend="205"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Texture_1a8d6e6aba938934dd88a569475585e768" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Texture" kindref="compound">Texture</ref></type>
@@ -609,7 +624,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/texture.hpp" line="188" column="11" bodyfile="HighMap/src/tensor/texture.cpp" bodystart="207" bodyend="220"/>
+        <location file="HighMap/include/highmap/texture.hpp" line="196" column="11" bodyfile="HighMap/src/tensor/texture.cpp" bodystart="207" bodyend="220"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Texture_1a0ded9de3bc7ee46e5d7fd6c09582c433" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>cv::Mat</type>
@@ -624,7 +639,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/texture.hpp" line="193" column="11" bodyfile="HighMap/src/tensor/texture.cpp" bodystart="222" bodyend="254"/>
+        <location file="HighMap/include/highmap/texture.hpp" line="201" column="11" bodyfile="HighMap/src/tensor/texture.cpp" bodystart="222" bodyend="254"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Texture_1a755ac2f60209a9eee3d57534accc880e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; uint8_t &gt;</type>
@@ -644,7 +659,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/texture.hpp" line="198" column="15" bodyfile="HighMap/src/tensor/texture.cpp" bodystart="267" bodyend="293"/>
+        <location file="HighMap/include/highmap/texture.hpp" line="206" column="15" bodyfile="HighMap/src/tensor/texture.cpp" bodystart="267" bodyend="293"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Texture_1a8459decef6432076cc6f307d8719f012" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -668,7 +683,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/texture.hpp" line="203" column="8" bodyfile="HighMap/src/tensor/texture.cpp" bodystart="256" bodyend="265"/>
+        <location file="HighMap/include/highmap/texture.hpp" line="211" column="8" bodyfile="HighMap/src/tensor/texture.cpp" bodystart="256" bodyend="265"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -702,13 +717,14 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="HighMap/include/highmap/texture.hpp" line="36" column="1" bodyfile="HighMap/include/highmap/texture.hpp" bodystart="37" bodyend="204"/>
+    <location file="HighMap/include/highmap/texture.hpp" line="36" column="1" bodyfile="HighMap/include/highmap/texture.hpp" bodystart="37" bodyend="212"/>
     <listofallmembers>
       <member refid="classhmap_1_1Texture_1ad7f67eaa2de1d4b138d79f15f6ff283e" prot="public" virt="non-virtual"><scope>hmap::Texture</scope><name>channel</name></member>
       <member refid="classhmap_1_1Texture_1a907ddf6d54e316a96bc75598f7dd16e4" prot="public" virt="non-virtual"><scope>hmap::Texture</scope><name>channel</name></member>
       <member refid="classhmap_1_1Texture_1aa47eecec5ca81b281c39164e5a4b562f" prot="public" virt="non-virtual"><scope>hmap::Texture</scope><name>channels</name></member>
       <member refid="classhmap_1_1Texture_1a5454cbbe9d86f4ccb736502bc775e33d" prot="public" virt="non-virtual"><scope>hmap::Texture</scope><name>get_pixel3</name></member>
       <member refid="classhmap_1_1Texture_1acd4d81876db435e5cb80787df9201479" prot="public" virt="non-virtual"><scope>hmap::Texture</scope><name>get_pixel4</name></member>
+      <member refid="classhmap_1_1Texture_1af2319e8977c56256c0b23a9f821ec1ad" prot="public" virt="non-virtual"><scope>hmap::Texture</scope><name>is_empty</name></member>
       <member refid="classhmap_1_1Texture_1a85b55025bed0bf39d40426964a609692" prot="public" virt="non-virtual"><scope>hmap::Texture</scope><name>max</name></member>
       <member refid="classhmap_1_1Texture_1a088a66adf2c1770d3d00585c1c708bc9" prot="public" virt="non-virtual"><scope>hmap::Texture</scope><name>min</name></member>
       <member refid="classhmap_1_1Texture_1a3d94e8bea60fdb4d2cd505f67f60e2c4" prot="public" virt="non-virtual"><scope>hmap::Texture</scope><name>num_channels</name></member>

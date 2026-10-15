@@ -8,6 +8,7 @@ var classhmap_1_1Texture =
     [ "Texture", "classhmap_1_1Texture.html#a1d19a3058884b5b558ffe5935f332fa1", null ],
     [ "Texture", "classhmap_1_1Texture.html#ad7e34921e905d4597e667ee46698edbd", null ],
     [ "Texture", "classhmap_1_1Texture.html#aef0d682fe80479076a61381c628be028", null ],
+    [ "is_empty", "classhmap_1_1Texture.html#af2319e8977c56256c0b23a9f821ec1ad", null ],
     [ "num_channels", "classhmap_1_1Texture.html#a3d94e8bea60fdb4d2cd505f67f60e2c4", null ],
     [ "operator[]", "classhmap_1_1Texture.html#a5e8d228882d1f989a7e630c2d400f364", null ],
     [ "operator[]", "classhmap_1_1Texture.html#a7e68630c4908e71e9cfb91e3e891d472", null ],

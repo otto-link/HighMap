@@ -9413,10 +9413,10 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </inbodydescription>
         <location file="HighMap/src/colorize/colorize.cpp" line="721" column="9" bodyfile="HighMap/src/colorize/colorize.cpp" bodystart="721" bodyend="812" declfile="HighMap/include/highmap/colorize.hpp" declline="500" declcolumn="9"/>
       </memberdef>
-      <memberdef kind="function" id="namespacehmap_1ae04b3bcf72c7925f3d56c5dae29ec9bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespacehmap_1ab5360dca8a2e541c6d715bba73be7759" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Texture" kindref="compound">Texture</ref></type>
         <definition>Texture hmap::terrain_texture</definition>
-        <argsstring>(const Array &amp;z, const Array *p_deposition, const TerrainTextureParams &amp;params, const glm::vec4 &amp;bbox=glm::vec4(0.f, 0.f, 1.f, 1.f), float zmin=0.f, float zmax=-1.f)</argsstring>
+        <argsstring>(const Array &amp;z, const Array *p_deposition, const TerrainTextureParams &amp;params, const glm::vec4 &amp;bbox=glm::vec4(0.f, 0.f, 1.f, 1.f), float zmin=0.f, float zmax=-1.f, const Array *p_noise=nullptr)</argsstring>
         <name>terrain_texture</name>
         <qualifiedname>hmap::terrain_texture</qualifiedname>
         <param>
@@ -9445,6 +9445,11 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
           <type>float</type>
           <declname>zmax</declname>
           <defval>-1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
+          <declname>p_noise</declname>
+          <defval>nullptr</defval>
         </param>
         <briefdescription>
 <para>Generate a procedural terrain texture from elevation and surface analysis. </para>
@@ -9499,6 +9504,14 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
 <para>Maximum elevation to consider (computed from z if zmin &gt; zmax). </para>
 </parameterdescription>
 </parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_noise</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optional custom noise array (bypasses procedural noise if provided). </para>
+</parameterdescription>
+</parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>4-channel RGBA <ref refid="classhmap_1_1Texture" kindref="compound">Texture</ref>. </para>
 </simplesect>
@@ -9506,7 +9519,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/colorize/terrain_texture.cpp" line="25" column="9" bodyfile="HighMap/src/colorize/terrain_texture.cpp" bodystart="25" bodyend="305" declfile="HighMap/include/highmap/colorize.hpp" declline="519" declcolumn="9"/>
+        <location file="HighMap/src/colorize/terrain_texture.cpp" line="25" column="9" bodyfile="HighMap/src/colorize/terrain_texture.cpp" bodystart="25" bodyend="332" declfile="HighMap/include/highmap/colorize.hpp" declline="520" declcolumn="9"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a2f2ca726f4e41128135e6c77120c66d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; glm::vec3 &gt;</type>

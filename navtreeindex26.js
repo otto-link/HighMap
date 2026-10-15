@@ -1,5 +1,7 @@
 var NAVTREEINDEX26 =
 {
+"stamping_8cpp.html":[4,0,1,1,2,7],
+"stamping_8cpp.html#ae7ea4f9f968fc3a4aa706ea3b9cc1f0a":[4,0,1,1,2,7,0],
 "statistics_8cpp.html":[4,0,1,1,41,3],
 "statistics_8cpp.html#aec6ff7b54fb5d02804aa8de94bcd4caa":[4,0,1,1,41,3,0],
 "statistics_8hpp.html":[4,0,1,0,0,54],
@@ -247,7 +249,5 @@ var NAVTREEINDEX26 =
 "structhmap_1_1ImageWriterConfig.html#ab6e00e3fe5dc9baa354785c317cea9b8":[3,0,0,42,4],
 "structhmap_1_1ImageWriterConfig.html#ab6e00e3fe5dc9baa354785c317cea9b8":[2,0,0,43,4],
 "structhmap_1_1ImageWriterConfig.html#ac758f750850b5f064a647b14e8505232":[2,0,0,43,6],
-"structhmap_1_1ImageWriterConfig.html#ac758f750850b5f064a647b14e8505232":[3,0,0,42,6],
-"structhmap_1_1ImageWriterConfig.html#ad2e35b1e4db0b40a483108bff4189a86":[3,0,0,42,7],
-"structhmap_1_1ImageWriterConfig.html#ad2e35b1e4db0b40a483108bff4189a86":[2,0,0,43,7]
+"structhmap_1_1ImageWriterConfig.html#ac758f750850b5f064a647b14e8505232":[3,0,0,42,6]
 };
