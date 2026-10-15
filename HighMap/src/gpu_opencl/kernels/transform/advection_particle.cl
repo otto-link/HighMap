@@ -101,46 +101,12 @@ void kernel advection_particle(global float *field,
     if (has_advection_mask > 0)
       if (advection_mask[idx] == 0) break;
 
-    if (true)
+    for (int f = 0; f < num_f; ++f)
     {
-      for (int f = 0; f < num_f; ++f)
-      {
-        val[f] = lerp(field[f * stride + idx], val[f], value_persistence);
-        out[f * stride + idx] += val[f];
-      }
-      count[idx] += 1.f;
+      val[f] = lerp(field[f * stride + idx], val[f], value_persistence);
+      out[f * stride + idx] += val[f];
     }
-    else
-    {
-      int ir = 2;
-      if (g.x < ir || g.x > nx - 1 - ir || g.y < ir || g.y > ny - 1 - ir) break;
-
-      for (int f = 0; f < num_f; ++f)
-      {
-        val[f] = lerp(field[f * stride + idx], val[f], value_persistence);
-      }
-
-      float sum = 0.f;
-      for (int p = -ir; p < ir; ++p)
-        for (int q = -ir; q < ir; ++q)
-        {
-          float w = sqrt((float)(ir - abs(p)) * (ir - abs(q)));
-          sum += w;
-        }
-
-      for (int p = -ir; p < ir; ++p)
-        for (int q = -ir; q < ir; ++q)
-        {
-          float w = sqrt((float)(ir - abs(p)) * (ir - abs(q))) / sum;
-          int2  gd = (int2)(g.x + p, g.y + q);
-          int   out_idx = linear_index_g(gd, nx);
-          for (int f = 0; f < num_f; ++f)
-          {
-            out[f * stride + out_idx] += val[f] * w;
-          }
-          count[out_idx] += w;
-        }
-    }
+    count[idx] += 1.f;
   }
 }
 )""

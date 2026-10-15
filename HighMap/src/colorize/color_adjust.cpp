@@ -109,8 +109,7 @@ void color_adjust(Array      &r,
       c.b *= 1.0f - param.temperature;
 
       // shade
-      if (param.shade != 0.0f)
-        c = shade_color(c, param.shade);
+      if (param.shade != 0.0f) c = shade_color(c, param.shade);
 
       // gamma
       c = glm::pow(c, glm::vec3(inv_gamma));

@@ -1,0 +1,2 @@
+add_executable(ex_texture_advection_particle ex_texture_advection_particle.cpp)
+target_link_libraries(ex_texture_advection_particle highmap)

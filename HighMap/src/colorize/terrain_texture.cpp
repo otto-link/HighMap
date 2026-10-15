@@ -121,23 +121,26 @@ Texture terrain_texture(const Array                &z,
   // --- Fall lines
 
   // bare high crests: their colour runs down the slopes below them
-  std::vector<float> source(n);
-  for (int k = 0; k < n; ++k)
-  {
-    const float h = (z.vector[k] - zmin) / zrange;
-    source[k] = smoothstep3(0.6f * crest.vector[k] + 0.6f * region.vector[k],
-                            0.05f,
-                            0.35f) *
-                smoothstep3(h + 0.15f * n_mid.vector[k], 0.3f, 0.75f) *
-                (0.75f + 0.25f * n_fine.vector[k]);
-  }
+  Array source(shape);
+
+#pragma omp parallel for
+  for (int j = 0; j < ny; ++j)
+    for (int i = 0; i < nx; ++i)
+    {
+      const float h = (z(i, j) - zmin) / zrange;
+      source(i, j) = smoothstep3(0.6f * crest(i, j) + 0.6f * region(i, j),
+                                 0.05f,
+                                 0.35f) *
+                     smoothstep3(h + 0.15f * n_mid(i, j), 0.3f, 0.75f) *
+                     (0.75f + 0.25f * n_fine(i, j));
+    }
 
   const float streak_px = p.streak_length * nx;
   const int   streak_steps = std::clamp(int(streak_px), 0, nx);
   const float streak_step = streak_steps ? streak_px / streak_steps : 0.f;
   const int   rill_steps = std::clamp(nx / 96, 3, 24);
 
-  std::vector<float> streak(n), rill(n);
+  Array streak(shape), rill(shape);
 
 #pragma omp parallel for
   for (int j = 0; j < ny; ++j)
@@ -149,41 +152,40 @@ Texture terrain_texture(const Array                &z,
         float x = (float)i, y = (float)j;
         for (int s = 1; s <= steps; ++s)
         {
-          const int   k = int(y + 0.5f) * nx + int(x + 0.5f);
-          const float g = std::hypot(gx.vector[k], gy.vector[k]);
+          const int   cx = int(x + 0.5f);
+          const int   cy = int(y + 0.5f);
+          const float g = std::hypot(gx(cx, cy), gy(cx, cy));
           if (g < 1e-6f) return;
 
-          x += step * gx.vector[k] / g;
-          y += step * gy.vector[k] / g;
+          x += step * gx(cx, cy) / g;
+          y += step * gy(cx, cy) / g;
           if (x < 0.f || y < 0.f || x > nx - 1.f || y > ny - 1.f) return;
 
-          visit(s, int(y + 0.5f) * nx + int(x + 0.5f));
+          visit(s, int(x + 0.5f), int(y + 0.5f));
         }
       };
 
-      const int k = j * nx + i;
-
       // fine noise averaged along the fall line: rills and gullies
-      float sum = n_rill.vector[k];
+      float sum = n_rill(i, j);
       int   count = 1;
       walk(rill_steps,
            1.f,
-           [&](int, int kk)
+           [&](int, int ci, int cj)
            {
-             sum += n_rill.vector[kk];
+             sum += n_rill(ci, cj);
              ++count;
            });
-      rill[k] = std::clamp(sum / std::sqrt((float)count), -1.f, 1.f);
+      rill(i, j) = std::clamp(sum / std::sqrt((float)count), -1.f, 1.f);
 
-      float best = source[k];
+      float best = source(i, j);
       walk(streak_steps,
            streak_step,
-           [&](int s, int kk)
+           [&](int s, int ci, int cj)
            {
              best = std::max(best,
-                             source[kk] * (1.f - s / (streak_steps + 1.f)));
+                             source(ci, cj) * (1.f - s / (streak_steps + 1.f)));
            });
-      streak[k] = best;
+      streak(i, j) = best;
     }
 
   // --- Colours
@@ -204,7 +206,7 @@ Texture terrain_texture(const Array                &z,
     const float nm = n_mid.vector[k];
     const float nf = n_fine.vector[k];
     const float ng = n_grain.vector[k];
-    const float rl = rill[k];
+    const float rl = rill.vector[k];
 
     // grass: lush where water gathers, dry on high convex ground; a narrow,
     // noisy transition keeps the patches crisp
@@ -258,7 +260,8 @@ Texture terrain_texture(const Array                &z,
 
     // ridge colour spilling down the slopes
     const float spill = p.streaks *
-                        smoothstep3(streak[k] * (0.75f + 0.25f * (1.f + nf)),
+                        smoothstep3(streak.vector[k] *
+                                        (0.75f + 0.25f * (1.f + nf)),
                                     0.25f,
                                     0.65f) *
                         smoothstep3(s, 0.15f, 0.4f);

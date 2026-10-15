@@ -1,0 +1,2 @@
+add_executable(ex_advection_particle_multiscale ex_advection_particle_multiscale.cpp)
+target_link_libraries(ex_advection_particle_multiscale highmap)

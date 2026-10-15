@@ -123,3 +123,58 @@ TEST(Advection, MultiField)
                                                               inertia);
   EXPECT_EQ(out_multi_many.size(), 2);
 }
+
+TEST(Advection, Multiscale)
+{
+  Array z = helper_generate_array();
+
+  Array f1(z.shape);
+  Array f2(z.shape);
+  for (int j = 0; j < z.shape.x; ++j)
+  {
+    for (int i = 0; i < z.shape.y; ++i)
+    {
+      f1(i, j) = (i % 4 == 0) ? 1.f : 0.f;
+      f2(i, j) = (j % 4 == 0) ? 0.9f : 0.1f;
+    }
+  }
+
+  std::uint32_t seed = 42;
+  std::vector<int> steps_per_level = {2, 1};
+  float particles_ratio = 0.1f;
+
+  // 1. Single field multiscale
+  Array out_single = gpu::advection_particle_multiscale(z,
+                                                        f1,
+                                                        seed,
+                                                        steps_per_level,
+                                                        particles_ratio);
+
+  EXPECT_EQ(out_single.shape, z.shape);
+  EXPECT_FALSE(out_single.vector.empty());
+
+  // 2. Multi-field multiscale
+  std::vector<Array> fields = {f1, f2};
+  std::vector<Array> out_multi = gpu::advection_particle_multiscale(
+      z,
+      fields,
+      seed,
+      steps_per_level,
+      particles_ratio);
+
+  EXPECT_EQ(out_multi.size(), 2);
+  EXPECT_EQ(out_multi[0].shape, z.shape);
+  EXPECT_EQ(out_multi[1].shape, z.shape);
+
+  // Check sanity: values should be non-empty and within bounds [0, 1]
+  for (int i = 0; i < z.shape.x * z.shape.y; ++i)
+  {
+    EXPECT_GE(out_single.vector[i], 0.f);
+    EXPECT_LE(out_single.vector[i], 1.f);
+    EXPECT_GE(out_multi[0].vector[i], 0.f);
+    EXPECT_LE(out_multi[0].vector[i], 1.f);
+    EXPECT_GE(out_multi[1].vector[i], 0.f);
+    EXPECT_LE(out_multi[1].vector[i], 1.f);
+  }
+}
+
