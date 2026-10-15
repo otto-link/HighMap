@@ -40,8 +40,8 @@ Texture terrain_texture(const Array                &z,
   }
 
   const glm::ivec2 shape = z.shape;
-  const int        nx    = shape.x;
-  const int        ny    = shape.y;
+  const int        nx = shape.x;
+  const int        ny = shape.y;
 
   // pixel radii computed from a single reference scale (region radius)
   const int ir_region = std::max(1, int(p.region_radius * float(nx)));
@@ -195,101 +195,105 @@ Texture terrain_texture(const Array                &z,
 
   Texture out(shape, 4);
 
-  const float cn     = p.color_noise;
+  const float cn = p.color_noise;
   const float two_pi = 2.f * std::numbers::pi_v<float>;
+  const float flow_width = 0.8f - 0.5f * p.flow_width;
 
 #pragma omp parallel for
   for (int j = 0; j < ny; ++j)
     for (int i = 0; i < nx; ++i)
     {
-      const float h  = (z(i, j) - zmin) / zrange;
-      const float s  = slope(i, j) / p.rock_slope; // 1 where rock takes over
-      const float c  = crest(i, j);
-      const float r  = region(i, j);
+      const float h = (z(i, j) - zmin) / zrange;
+      const float s = slope(i, j) / p.rock_slope; // 1 where rock takes over
+      const float c = crest(i, j);
+      const float r = region(i, j);
       const float nl = n_large(i, j);
       const float nm = n_mid(i, j);
       const float nf = n_fine(i, j);
       const float ng = n_grain(i, j);
       const float rl = rill(i, j);
 
-      // grass: lush where water gathers, dry on high convex ground; a narrow,
-      // noisy transition keeps the patches crisp
-      const float wet = 0.5f + 0.6f * moisture(i, j) - 0.35f * r - 0.2f * c +
-                        0.15f * nl;
-      const float dry = smoothstep3(1.f - wet + 0.35f * (h - 0.4f) + 0.12f * nm +
-                                        0.08f * nf,
-                                    0.42f,
-                                    0.58f);
-      glm::vec3   col = glm::mix(
-          shade_color(p.grass, cn * (0.3f * nm + 0.3f * nf + 0.2f * ng)),
-          shade_color(p.dry, cn * (0.3f * nm + 0.3f * nf + 0.2f * ng)),
-          dry);
+      // --- Grass & dry grass
 
-      // soil on moderate slopes and bare bumps
-      const float soil = smoothstep3(s + 0.2f * nm + 0.1f * nf +
-                                         0.25f * std::max(c, 0.f),
-                                     0.35f,
-                                     0.6f);
-      col = glm::mix(
-          col,
-          shade_color(p.soil, cn * (0.25f * rl + 0.3f * nm + 0.15f * ng)),
-          soil);
+      const float wet_val = 0.5f + 0.6f * moisture(i, j) - 0.35f * r -
+                            0.2f * c + 0.15f * nl;
+      const float dry_val = 1.f - wet_val + 0.35f * (h - 0.4f) + 0.12f * nm +
+                            0.08f * nf;
+      const float dry_mask = smoothstep3(dry_val, 0.42f, 0.58f);
 
-      // sediment along the drainage lines and in crisp deposits
-      const float t0 = 0.8f - 0.5f * p.flow_width;
-      float       sed = p.flow *
-                  smoothstep3(flow(i, j) + 0.05f * nf, t0, t0 + 0.08f);
-      sed = std::max(sed,
-                     p.deposition *
-                         smoothstep3(deposit(i, j) + 0.15f * nf, 0.4f, 0.8f));
-      sed *= 1.f - smoothstep3(s, 0.6f, 1.f);
-      col = glm::mix(
-          col,
-          shade_color(p.sediment, cn * (0.4f * nf + 0.2f * nm + 0.2f * ng)),
-          sed);
+      const float     grass_sh = cn * (0.3f * nm + 0.3f * nf + 0.2f * ng);
+      const glm::vec3 c_grass = shade_color(p.grass, grass_sh);
+      const glm::vec3 c_dry = shade_color(p.dry, grass_sh);
 
-      // rock on steep ground: ragged edges, strata, a hint of rills
+      glm::vec3 col = glm::mix(c_grass, c_dry, dry_mask);
+
+      // --- Soil
+
+      const float soil_val = s + 0.2f * nm + 0.1f * nf +
+                             0.25f * std::max(c, 0.f);
+      const float soil_mask = smoothstep3(soil_val, 0.35f, 0.6f);
+      const float soil_sh = cn * (0.25f * rl + 0.3f * nm + 0.15f * ng);
+
+      col = glm::mix(col, shade_color(p.soil, soil_sh), soil_mask);
+
+      // --- Sediment
+
+      const float flow_mask = smoothstep3(flow(i, j) + 0.05f * nf,
+                                          flow_width,
+                                          flow_width + 0.08f);
+      const float dep_mask = smoothstep3(deposit(i, j) + 0.15f * nf,
+                                         0.4f,
+                                         0.8f);
+
+      float sed_mask = std::max(p.flow * flow_mask, p.deposition * dep_mask);
+      sed_mask *= 1.f - smoothstep3(s, 0.6f, 1.f);
+
+      const float sed_sh = cn * (0.4f * nf + 0.2f * nm + 0.2f * ng);
+      col = glm::mix(col, shade_color(p.sediment, sed_sh), sed_mask);
+
+      // --- Rock & strata
+
       const float edge = p.rock_edge;
-      const float rock = smoothstep3(s + 0.25f * nm + 0.1f * nf +
-                                         0.3f * std::max(c, 0.f) * h,
-                                     1.f - edge,
-                                     1.f + edge);
+      const float rock_val = s + 0.25f * nm + 0.1f * nf +
+                             0.3f * std::max(c, 0.f) * h;
+      const float rock_mask = smoothstep3(rock_val, 1.f - edge, 1.f + edge);
+
       const float band = std::sin(two_pi * (14.f * h + 0.4f * nl + 0.1f * nm));
-      col = glm::mix(col,
-                     shade_color(p.rock,
-                                 0.35f * p.strata * band +
-                                     cn * (0.2f * rl + 0.3f * nf + 0.15f * ng) +
-                                     0.25f * c),
-                     rock);
+      const float rock_sh = 0.35f * p.strata * band +
+                            cn * (0.2f * rl + 0.3f * nf + 0.15f * ng) +
+                            0.25f * c;
 
-      // ridge colour spilling down the slopes
-      const float spill = p.streaks *
-                          smoothstep3(streak(i, j) *
-                                          (0.75f + 0.25f * (1.f + nf)),
-                                      0.25f,
-                                      0.65f) *
-                          smoothstep3(s, 0.15f, 0.4f);
-      col = glm::mix(
-          col,
-          shade_color(p.ridge, cn * (0.3f * nf + 0.15f * rl + 0.15f * ng)),
-          spill);
+      col = glm::mix(col, shade_color(p.rock, rock_sh), rock_mask);
 
-      // snow on high ground, sliding off the steep parts
-      const float snow = p.snow_amount *
-                         smoothstep3(h - p.snow_line + 0.08f * nm + 0.04f * nf -
-                                         0.15f * std::max(0.f, s - 0.9f) -
-                                         0.05f * c,
-                                     -0.04f,
-                                     0.04f);
-      col = glm::mix(col,
-                     shade_color(p.snow, 0.15f * nf - 0.3f * std::max(-c, 0.f)),
-                     snow);
+      // --- Ridge streaks
 
-      // relief: dark gullies, crisp detail, grain, then a slow warm / cool drift
-      col *= 1.f - p.cavity * 0.35f * std::clamp(-0.7f * c - 0.4f * r, 0.f, 1.f);
+      const float streak_val = streak(i, j) * (0.75f + 0.25f * (1.f + nf));
+      const float streak_mask = smoothstep3(streak_val, 0.25f, 0.65f);
+      const float slope_gate = smoothstep3(s, 0.15f, 0.4f);
+      const float spill_mask = p.streaks * streak_mask * slope_gate;
+
+      const float ridge_sh = cn * (0.3f * nf + 0.15f * rl + 0.15f * ng);
+      col = glm::mix(col, shade_color(p.ridge, ridge_sh), spill_mask);
+
+      // --- Snow
+
+      const float snow_val = h - p.snow_line + 0.08f * nm + 0.04f * nf -
+                             0.15f * std::max(0.f, s - 0.9f) - 0.05f * c;
+      const float snow_mask = p.snow_amount *
+                              smoothstep3(snow_val, -0.04f, 0.04f);
+      const float snow_sh = 0.15f * nf - 0.3f * std::max(-c, 0.f);
+
+      col = glm::mix(col, shade_color(p.snow, snow_sh), snow_mask);
+
+      // --- Micro-relief & ambient shading
+
+      const float cavity_factor = std::clamp(-0.7f * c - 0.4f * r, 0.f, 1.f);
+      col *= 1.f - p.cavity * 0.35f * cavity_factor;
       col *= 1.f + p.detail * 0.22f * fine(i, j);
       col *= 1.f + cn * (0.05f * nm + 0.06f * nf + 0.05f * ng);
       col += cn * 0.015f * nl * glm::vec3(1.f, 0.6f, 0.1f);
+
+      // --- Output RGBA
 
       out(i, j, 0) = std::clamp(col.r, 0.f, 1.f);
       out(i, j, 1) = std::clamp(col.g, 0.f, 1.f);
