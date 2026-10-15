@@ -197,6 +197,67 @@ TEST(ScatterFieldTest, PruneCollisionsAgainstOtherField)
   EXPECT_EQ(rocks.size(), 2u);
 }
 
+TEST(ScatterFieldTest, PruneDensityTileable)
+{
+  ScatterField field;
+
+  // 100 items inside bbox [0, 1] x [0, 1]
+  for (int i = 0; i < 100; ++i)
+  {
+    field.push_back(ScatterItem(0.5f, 0.5f, 0.f, 0u, 1.0f));
+  }
+
+  // 50 items outside bbox (in [2, 3] x [2, 3])
+  for (int i = 0; i < 50; ++i)
+  {
+    field.push_back(ScatterItem(2.5f, 2.5f, 0.f, 1u, 1.0f));
+  }
+
+  Array     mask({10, 10}, 0.5f);
+  glm::vec4 tile_bbox{0.f, 1.f, 0.f, 1.f};
+
+  // ratio 1.0 -> all inside kept, outside also kept
+  field.prune_density(mask, 1.0f, 42, tile_bbox);
+  EXPECT_EQ(field.size(), 150u);
+
+  // ratio 0.0 -> all inside pruned, all outside untouched (50 kept)
+  field.prune_density(mask, 0.0f, 42, tile_bbox);
+  EXPECT_EQ(field.size(), 50u);
+  for (const auto &item : field)
+  {
+    EXPECT_EQ(item.class_id, 1u);
+    EXPECT_FLOAT_EQ(item.position.x, 2.5f);
+  }
+
+  // Add 100 items inside bbox again
+  for (int i = 0; i < 100; ++i)
+  {
+    field.push_back(ScatterItem(0.5f, 0.5f, 0.f, 0u, 1.0f));
+  }
+
+  // ratio 0.5 inside bbox -> ~50 kept inside, 50 outside kept untouched
+  field.prune_density(mask, 0.5f, 42, tile_bbox);
+
+  size_t count_inside = 0;
+  size_t count_outside = 0;
+  for (const auto &item : field)
+  {
+    if (item.position.x >= tile_bbox.x && item.position.x <= tile_bbox.y &&
+        item.position.y >= tile_bbox.z && item.position.y <= tile_bbox.w)
+    {
+      ++count_inside;
+    }
+    else
+    {
+      ++count_outside;
+    }
+  }
+
+  EXPECT_EQ(count_outside, 50u);
+  EXPECT_GT(count_inside, 35u);
+  EXPECT_LT(count_inside, 65u);
+}
+
 TEST(ScatterFieldTest, SetElevationFromTerrain)
 {
   Array elevation(glm::ivec2(3, 3), 0.f);
