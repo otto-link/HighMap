@@ -551,70 +551,24 @@ Forest seed_forest_clusters(size_t                      species_count,
   int        total_tiles = num_tiles.x * num_tiles.y;
 
   if (total_tiles == 0)
-  {
     return Forest();
-  }
 
   // --- Compute Density Sums per Tile and Global Inner Sum
 
-  std::vector<float> tile_full_sums(total_tiles, 0.f);
-  float              total_inner_sum = 0.f;
-
   const VirtualArray *p_exclusion_va = has_exclusion ? &exclusion : nullptr;
 
-  hmap::for_each_tile(
-      {&density, p_exclusion_va},
-      {},
-      [&](const std::vector<const Array *> &p_arrays_in,
-          std::vector<Array *> &,
-          const TileRegion &region)
-      {
-        const auto [p_density_tile, p_exclusion_tile] = unpack<2>(p_arrays_in);
+  std::vector<float> tile_full_sums;
+  float              total_inner_sum = 0.f;
 
-        int tile_index = region.key.ty * num_tiles.x + region.key.tx;
-
-        float tile_full_sum = 0.f;
-        float tile_inner_sum = 0.f;
-
-        const glm::ivec4 &halo = region.halo;
-        int               shape_x = region.shape.x;
-        int               shape_y = region.shape.y;
-
-        for (int j = 0; j < shape_y; ++j)
-        {
-          bool is_inner_y = (j >= halo.z && j < shape_y - halo.w);
-
-          for (int i = 0; i < shape_x; ++i)
-          {
-            float d_val = (*p_density_tile)(i, j);
-
-            if (p_exclusion_tile &&
-                (*p_exclusion_tile)(i, j) > options.exclusion_threshold)
-            {
-              d_val = 0.0f;
-            }
-
-            if (d_val > 0.0f)
-            {
-              tile_full_sum += d_val;
-
-              if (is_inner_y && i >= halo.x && i < shape_x - halo.y)
-              {
-                tile_inner_sum += d_val;
-              }
-            }
-          }
-        }
-
-        tile_full_sums[tile_index] = tile_full_sum;
-        total_inner_sum += tile_inner_sum;
-      },
-      cm);
+  sum_per_tile(density,
+               tile_full_sums,
+               &total_inner_sum,
+               p_exclusion_va,
+               options.exclusion_threshold,
+               cm);
 
   if (total_inner_sum <= 1e-7f)
-  {
     return Forest();
-  }
 
   // --- Generate Sub-Forests per Tile
 

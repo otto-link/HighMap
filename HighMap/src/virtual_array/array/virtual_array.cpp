@@ -513,4 +513,105 @@ void copy_data(const VirtualArray &src,
       cm);
 }
 
+void sum_per_tile(const VirtualArray &va,
+                  std::vector<float> &tile_sums,
+                  float              *p_total_inner_sum,
+                  const VirtualArray *p_exclusion_mask,
+                  float               exclusion_threshold,
+                  const ComputeMode  &cm)
+{
+  // --- Check valid input
+
+  glm::ivec2 num_tiles = va.get_max_tiles();
+  int        total_tiles = num_tiles.x * num_tiles.y;
+
+  tile_sums.assign(total_tiles, 0.f);
+
+  if (p_total_inner_sum)
+  {
+    *p_total_inner_sum = 0.f;
+  }
+
+  if (va.empty() || total_tiles == 0)
+  {
+    return;
+  }
+
+  // --- Validate exclusion mask if present
+
+  bool has_exclusion = (p_exclusion_mask != nullptr) &&
+                       (p_exclusion_mask->storage != nullptr) &&
+                       (p_exclusion_mask->shape.x > 0 &&
+                        p_exclusion_mask->shape.y > 0);
+
+  if (has_exclusion)
+  {
+    if (p_exclusion_mask->shape != va.shape ||
+        p_exclusion_mask->tile_shape != va.tile_shape)
+    {
+      hmap::log::warn("Exclusion VirtualArray shape mismatch with VirtualArray");
+      return;
+    }
+  }
+
+  const VirtualArray *p_excl_va = has_exclusion ? p_exclusion_mask : nullptr;
+
+  float total_inner_sum = 0.f;
+
+  // --- Compute sums per tile
+
+  hmap::for_each_tile(
+      {&va, p_excl_va},
+      {},
+      [&](const std::vector<const Array *> &p_arrays_in,
+          std::vector<Array *> &,
+          const TileRegion &region)
+      {
+        const auto [p_tile, p_excl_tile] = unpack<2>(p_arrays_in);
+
+        int tile_index = region.key.ty * num_tiles.x + region.key.tx;
+
+        float tile_full_sum = 0.f;
+        float tile_inner_sum = 0.f;
+
+        const glm::ivec4 &halo = region.halo;
+        int               shape_x = region.shape.x;
+        int               shape_y = region.shape.y;
+
+        for (int j = 0; j < shape_y; ++j)
+        {
+          bool is_inner_y = (j >= halo.z && j < shape_y - halo.w);
+
+          for (int i = 0; i < shape_x; ++i)
+          {
+            float val = (*p_tile)(i, j);
+
+            if (p_excl_tile && (*p_excl_tile)(i, j) > exclusion_threshold)
+            {
+              val = 0.0f;
+            }
+
+            if (val > 0.0f)
+            {
+              tile_full_sum += val;
+
+              if (is_inner_y && i >= halo.x && i < shape_x - halo.y)
+              {
+                tile_inner_sum += val;
+              }
+            }
+          }
+        }
+
+        tile_sums[tile_index] = tile_full_sum;
+        total_inner_sum += tile_inner_sum;
+      },
+      cm);
+
+  if (p_total_inner_sum)
+  {
+    *p_total_inner_sum = total_inner_sum;
+  }
+}
+
 } // namespace hmap

@@ -181,6 +181,13 @@ void copy_data(const VirtualArray &src,
                VirtualArray       &dst,
                const ComputeMode  &cm);
 
+void sum_per_tile(const VirtualArray &va,
+                  std::vector<float> &tile_sums,
+                  float              *p_total_inner_sum = nullptr,
+                  const VirtualArray *p_exclusion_mask = nullptr,
+                  float               exclusion_threshold = 0.f,
+                  const ComputeMode  &cm = {});
+
 // unpack vectors helper
 template <std::size_t N, typename T, std::size_t... Is>
 auto unpack_impl(const std::vector<T *> &v, std::index_sequence<Is...>)

@@ -379,3 +379,70 @@ TEST(VirtualArrayTest, SyncOverlapBuffersOperations)
     va.storage->release_tile(r1);
   }
 }
+
+TEST(VirtualArrayTest, SumPerTile)
+{
+  glm::ivec2   shape{64, 64};
+  glm::ivec2   tile_shape{32, 32};
+  int          halo = 4;
+  VirtualArray va(shape, tile_shape, halo, StorageMode::VA_RAM);
+  ComputeMode  cm{.mode = ForEachMode::VA_SEQUENTIAL};
+
+  // Fill with 1.0f
+  va.fill(1.0f, cm);
+
+  std::vector<float> tile_sums;
+  float              total_inner_sum = 0.f;
+
+  sum_per_tile(va, tile_sums, &total_inner_sum, nullptr, 0.f, cm);
+
+  // va has 2x2 tiles = 4 tiles total
+  EXPECT_EQ(tile_sums.size(), 4u);
+
+  // Total inner sum should equal 64 * 64 * 1.0f = 4096.0f
+  EXPECT_NEAR(total_inner_sum, 64.f * 64.f, 1e-4f);
+
+  // Each tile has shape 32 + 2 * halo (or boundary halo)
+  for (float sum : tile_sums)
+  {
+    EXPECT_GT(sum, 0.f);
+  }
+
+  // Test with exclusion mask
+  VirtualArray exclusion(shape, tile_shape, halo, StorageMode::VA_RAM);
+  exclusion.fill(0.0f, cm);
+
+  // Exclude top half
+  Array excl_array(shape, 0.0f);
+  for (int j = 32; j < 64; ++j)
+  {
+    for (int i = 0; i < 64; ++i)
+    {
+      excl_array(i, j) = 1.0f;
+    }
+  }
+  exclusion.from_array(excl_array, cm);
+
+  std::vector<float> tile_sums_excl;
+  float              total_inner_sum_excl = 0.f;
+
+  sum_per_tile(va,
+               tile_sums_excl,
+               &total_inner_sum_excl,
+               &exclusion,
+               0.5f,
+               cm);
+
+  // Total inner sum should be half: 64 * 32 * 1.0f = 2048.0f
+  EXPECT_NEAR(total_inner_sum_excl, 64.f * 32.f, 1e-4f);
+
+  // Bottom row tiles have full inner contribution plus halo
+  EXPECT_GT(tile_sums_excl[0], 0.f);
+  EXPECT_GT(tile_sums_excl[1], 0.f);
+
+  // Top row tiles (ty = 1) overlap with non-excluded row in halo (halo = 4),
+  // but if we exclude row 32 - halo onwards, top tiles would be completely 0.
+  // Check that top row tiles have strictly smaller sum than bottom row tiles.
+  EXPECT_LT(tile_sums_excl[2], tile_sums_excl[0]);
+  EXPECT_LT(tile_sums_excl[3], tile_sums_excl[1]);
+}
