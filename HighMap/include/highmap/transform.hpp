@@ -569,19 +569,19 @@ Array advection_particle(const Array  &z,
 
 /// @overload
 std::vector<Array> advection_particle(
-    const Array                    &z,
+    const Array                      &z,
     const std::vector<const Array *> &advected_fields,
-    int                             iterations,
-    int                             nparticles,
-    std::uint32_t                   seed,
-    bool                            reverse = false,
-    bool                            post_filter = true,
-    float                           post_filter_sigma = 0.125f,
-    float                           advection_length = 0.1f,
-    float                           value_persistence = 0.99f,
-    float                           inertia = 0.f,
-    const Array                    *p_advection_mask = nullptr,
-    const Array                    *p_mask = nullptr);
+    int                               iterations,
+    int                               nparticles,
+    std::uint32_t                     seed,
+    bool                              reverse = false,
+    bool                              post_filter = true,
+    float                             post_filter_sigma = 0.125f,
+    float                             advection_length = 0.1f,
+    float                             value_persistence = 0.99f,
+    float                             inertia = 0.f,
+    const Array                      *p_advection_mask = nullptr,
+    const Array                      *p_mask = nullptr);
 
 /// @overload
 std::vector<Array> advection_particle(const Array              &z,
@@ -614,18 +614,18 @@ Array advection_particle(const Array  &z,
 
 /// @overload
 std::vector<Array> advection_particle(
-    const Array                    &z,
+    const Array                      &z,
     const std::vector<const Array *> &advected_fields,
-    int                             nparticles,
-    std::uint32_t                   seed,
-    bool                            reverse = false,
-    bool                            post_filter = true,
-    float                           post_filter_sigma = 0.125f,
-    float                           advection_length = 0.1f,
-    float                           value_persistence = 0.99f,
-    float                           inertia = 0.f,
-    const Array                    *p_advection_mask = nullptr,
-    const Array                    *p_mask = nullptr);
+    int                               nparticles,
+    std::uint32_t                     seed,
+    bool                              reverse = false,
+    bool                              post_filter = true,
+    float                             post_filter_sigma = 0.125f,
+    float                             advection_length = 0.1f,
+    float                             value_persistence = 0.99f,
+    float                             inertia = 0.f,
+    const Array                      *p_advection_mask = nullptr,
+    const Array                      *p_mask = nullptr);
 
 /// @overload
 std::vector<Array> advection_particle(const Array              &z,
@@ -658,19 +658,19 @@ Array advection_particle(const Array  &dx,
 
 /// @overload
 std::vector<Array> advection_particle(
-    const Array                    &dx,
-    const Array                    &dy,
+    const Array                      &dx,
+    const Array                      &dy,
     const std::vector<const Array *> &advected_fields,
-    int                             nparticles,
-    std::uint32_t                   seed,
-    bool                            reverse = false,
-    bool                            post_filter = true,
-    float                           post_filter_sigma = 0.125f,
-    float                           advection_length = 0.1f,
-    float                           value_persistence = 0.99f,
-    float                           inertia = 0.f,
-    const Array                    *p_advection_mask = nullptr,
-    const Array                    *p_mask = nullptr);
+    int                               nparticles,
+    std::uint32_t                     seed,
+    bool                              reverse = false,
+    bool                              post_filter = true,
+    float                             post_filter_sigma = 0.125f,
+    float                             advection_length = 0.1f,
+    float                             value_persistence = 0.99f,
+    float                             inertia = 0.f,
+    const Array                      *p_advection_mask = nullptr,
+    const Array                      *p_mask = nullptr);
 
 /// @overload
 std::vector<Array> advection_particle(const Array              &dx,
@@ -688,40 +688,40 @@ std::vector<Array> advection_particle(const Array              &dx,
                                       const Array *p_mask = nullptr);
 
 /// @overload
-Texture advection_particle(const Array  &z,
+Texture advection_particle(const Array   &z,
                            const Texture &texture,
-                           int           iterations,
-                           int           nparticles,
-                           std::uint32_t seed,
-                           bool          reverse = false,
-                           bool          post_filter = true,
-                           float         post_filter_sigma = 0.125f,
-                           float         advection_length = 0.1f,
-                           float         value_persistence = 0.99f,
-                           float         inertia = 0.f,
-                           const Array  *p_advection_mask = nullptr,
-                           const Array  *p_mask = nullptr);
+                           int            iterations,
+                           int            nparticles,
+                           std::uint32_t  seed,
+                           bool           reverse = false,
+                           bool           post_filter = true,
+                           float          post_filter_sigma = 0.125f,
+                           float          advection_length = 0.1f,
+                           float          value_persistence = 0.99f,
+                           float          inertia = 0.f,
+                           const Array   *p_advection_mask = nullptr,
+                           const Array   *p_mask = nullptr);
 
 /// @overload
-Texture advection_particle(const Array  &z,
+Texture advection_particle(const Array   &z,
                            const Texture &texture,
-                           int           nparticles,
-                           std::uint32_t seed,
-                           bool          reverse = false,
-                           bool          post_filter = true,
-                           float         post_filter_sigma = 0.125f,
-                           float         advection_length = 0.1f,
-                           float         value_persistence = 0.99f,
-                           float         inertia = 0.f,
-                           const Array  *p_advection_mask = nullptr,
-                           const Array  *p_mask = nullptr);
+                           int            nparticles,
+                           std::uint32_t  seed,
+                           bool           reverse = false,
+                           bool           post_filter = true,
+                           float          post_filter_sigma = 0.125f,
+                           float          advection_length = 0.1f,
+                           float          value_persistence = 0.99f,
+                           float          inertia = 0.f,
+                           const Array   *p_advection_mask = nullptr,
+                           const Array   *p_mask = nullptr);
 
 /**
  * @brief Performs multiscale particle-based advection on a scalar field.
  *
- * This function advects particles through a gradient field derived from the input
- * heightmap @p z across a geometric hierarchy of resolution levels, applying
- * coarse-to-fine delta upsampling with optional domain warping.
+ * This function advects particles through a gradient field derived from the
+ * input heightmap @p z across a geometric hierarchy of resolution levels,
+ * applying coarse-to-fine delta upsampling with optional domain warping.
  *
  * @param  z                 Input scalar field defining the base flow.
  * @param  advected_field    The scalar field whose values are transported.
@@ -729,9 +729,11 @@ Texture advection_particle(const Array  &z,
  * @param  steps_per_level   Number of particle steps / iterations per level.
  * @param  particles_ratio   Ratio of particles relative to grid cells.
  * @param  advection_length  Maximum advection step length per iteration.
- * @param  value_persistence Controls how much of the advected value is preserved.
+ * @param  value_persistence Controls how much of the advected value is
+ *                           preserved.
  * @param  inertia           Momentum factor for particle velocity.
- * @param  mix               Blend factor for coarse advection deltas into the field.
+ * @param  mix               Blend factor for coarse advection deltas into the
+ *                           field.
  * @param  warp              Domain warp amplitude during delta upsampling.
  * @param  reverse           If true, reverses the advection direction.
  * @param  post_filter       If true, applies Laplace smoothing post-filter.
@@ -760,21 +762,21 @@ Array advection_particle_multiscale(
 
 /// @overload
 std::vector<Array> advection_particle_multiscale(
-    const Array                    &z,
+    const Array                      &z,
     const std::vector<const Array *> &advected_fields,
-    std::uint32_t                   seed,
-    const std::vector<int>         &steps_per_level = {4, 2, 1},
-    float                           particles_ratio = 0.5f,
-    float                           advection_length = 0.1f,
-    float                           value_persistence = 0.99f,
-    float                           inertia = 0.f,
-    float                           mix = 1.f,
-    float                           warp = 0.f,
-    bool                            reverse = false,
-    bool                            post_filter = true,
-    float                           post_filter_sigma = 0.125f,
-    const Array                    *p_advection_mask = nullptr,
-    const Array                    *p_mask = nullptr);
+    std::uint32_t                     seed,
+    const std::vector<int>           &steps_per_level = {4, 2, 1},
+    float                             particles_ratio = 0.5f,
+    float                             advection_length = 0.1f,
+    float                             value_persistence = 0.99f,
+    float                             inertia = 0.f,
+    float                             mix = 1.f,
+    float                             warp = 0.f,
+    bool                              reverse = false,
+    bool                              post_filter = true,
+    float                             post_filter_sigma = 0.125f,
+    const Array                      *p_advection_mask = nullptr,
+    const Array                      *p_mask = nullptr);
 
 /// @overload
 std::vector<Array> advection_particle_multiscale(

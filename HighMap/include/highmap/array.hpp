@@ -736,16 +736,16 @@ public:
    * accumulating counts. The result is an approximation whose precision depends
    * on the number of bins.
    *
-   * @param  p_low  Lower percentile in [0, 1]
+   * @param  p_low        Lower percentile in [0, 1]
    * @param  p_high       Upper percentile in [0, 1]
    * @param  bins         Number of bins used for the histogram (higher = more
    *                      precise)
    * @param  ignore_zeros If true, ignore zero values when building the
    *                      histogram and counting totals.
    *
-   * @return              glm::vec2 A vector where x contains the approximated lower
-   *                      percentile value and y contains the approximated upper
-   *                      percentile value
+   * @return              glm::vec2 A vector where x contains the approximated
+   *                      lower percentile value and y contains the approximated
+   *                      upper percentile value
    */
   glm::vec2 range_percentile(float  p_low,
                              float  p_high,
