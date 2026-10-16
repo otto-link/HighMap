@@ -476,29 +476,66 @@ void ScatterField::prune_density(const Array     &density_mask,
 {
   if (!validate_non_empty(density_mask) || items.empty()) return;
 
+  auto is_in_bbox = [](const glm::vec3 &position, const glm::vec4 &b) -> bool
+  {
+    return position.x >= b.x && position.x <= b.y && position.y >= b.z &&
+           position.y <= b.w;
+  };
+
+  // --- Identify Items Inside and Outside the Bounding Box
+
+  std::vector<size_t> inside_indices;
+  inside_indices.reserve(items.size());
+
+  for (size_t i = 0; i < items.size(); ++i)
+  {
+    if (is_in_bbox(items[i].position, bbox))
+    {
+      inside_indices.push_back(i);
+    }
+  }
+
+  if (inside_indices.empty()) return;
+
   float r_target = std::clamp(target_ratio, 0.0f, 1.0f);
+
   if (r_target <= 1e-6f)
   {
-    items.clear();
+    std::vector<ScatterItem> retained;
+    retained.reserve(items.size() - inside_indices.size());
+
+    for (size_t i = 0; i < items.size(); ++i)
+    {
+      if (!is_in_bbox(items[i].position, bbox))
+      {
+        retained.push_back(items[i]);
+      }
+    }
+
+    items = std::move(retained);
     return;
   }
+
   if (r_target >= 1.0f - 1e-6f)
   {
     return;
   }
 
-  // --- Sample Local Density at Item Positions
+  // --- Sample Local Density for Items Inside Bounding Box
 
-  auto density_fct = make_xy_function_from_array(density_mask, bbox);
-  std::vector<float> sampled_densities(items.size());
-  for (size_t i = 0; i < items.size(); ++i)
+  auto         density_fct = make_xy_function_from_array(density_mask, bbox);
+  const size_t nb_inside = inside_indices.size();
+
+  std::vector<float> sampled_densities(nb_inside);
+  for (size_t k = 0; k < nb_inside; ++k)
   {
-    sampled_densities[i] = std::max(
+    size_t idx = inside_indices[k];
+    sampled_densities[k] = std::max(
         0.0f,
-        density_fct(items[i].position.x, items[i].position.y));
+        density_fct(items[idx].position.x, items[idx].position.y));
   }
 
-  // --- Remap Acceptance Probabilities to Match Target Keep Ratio
+  // --- Remap Acceptance Probabilities to Match Target Keep Ratio Inside Bbox
 
   float low = -1.0f;
   float high = 1.0f;
@@ -508,11 +545,13 @@ void ScatterField::prune_density(const Array     &density_mask,
   {
     float mid = 0.5f * (low + high);
     float sum_p = 0.0f;
+
     for (float d : sampled_densities)
     {
       sum_p += std::clamp(d + mid, 0.0f, 1.0f);
     }
-    float expected_ratio = sum_p / static_cast<float>(items.size());
+
+    float expected_ratio = sum_p / static_cast<float>(nb_inside);
 
     if (expected_ratio < r_target)
     {
@@ -522,22 +561,32 @@ void ScatterField::prune_density(const Array     &density_mask,
     {
       high = mid;
     }
+
     c_best = mid;
   }
 
-  // --- Perform Density-Modulated Pruning
+  // --- Perform Density-Modulated Pruning for Items Inside Bbox
 
   std::mt19937                          gen(seed);
   std::uniform_real_distribution<float> dis(0.0f, 1.0f);
 
   std::vector<ScatterItem> retained;
-  retained.reserve(
-      static_cast<size_t>(std::ceil(r_target * float(items.size()))));
+  retained.reserve(items.size() - nb_inside +
+                   static_cast<size_t>(std::ceil(r_target * float(nb_inside))));
 
+  size_t k = 0;
   for (size_t i = 0; i < items.size(); ++i)
   {
-    float p_accept = std::clamp(sampled_densities[i] + c_best, 0.0f, 1.0f);
-    if (dis(gen) <= p_accept)
+    if (k < nb_inside && inside_indices[k] == i)
+    {
+      float p_accept = std::clamp(sampled_densities[k] + c_best, 0.0f, 1.0f);
+      if (dis(gen) <= p_accept)
+      {
+        retained.push_back(items[i]);
+      }
+      ++k;
+    }
+    else
     {
       retained.push_back(items[i]);
     }
@@ -671,7 +720,8 @@ void ScatterField::resolve_collisions(size_t iterations,
 
           // Add a minute deterministic perturbation (~1e-7) based on index to
           // prevent identical coordinates from degenerating Delaunator's hull
-          double jitter_angle = static_cast<double>(k) * 2.399963229728653; // golden angle
+          double jitter_angle = static_cast<double>(k) *
+                                2.399963229728653; // golden angle
           px += 1e-7 * std::cos(jitter_angle);
           py += 1e-7 * std::sin(jitter_angle);
 
@@ -704,7 +754,8 @@ void ScatterField::resolve_collisions(size_t iterations,
         }
         catch (const std::exception &)
         {
-          // Delaunator failed (e.g. collinear points); exit triangulation gracefully
+          // Delaunator failed (e.g. collinear points); exit triangulation
+          // gracefully
           break;
         }
       }
@@ -810,7 +861,8 @@ void ScatterField::resolve_collisions(const ScatterField &other,
           if (!std::isfinite(px)) px = 0.0;
           if (!std::isfinite(py)) py = 0.0;
 
-          double jitter_angle = static_cast<double>(k + n_self) * 2.399963229728653;
+          double jitter_angle = static_cast<double>(k + n_self) *
+                                2.399963229728653;
           px += 1e-7 * std::cos(jitter_angle);
           py += 1e-7 * std::sin(jitter_angle);
 

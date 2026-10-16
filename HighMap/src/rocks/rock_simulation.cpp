@@ -236,8 +236,8 @@ RockField simulate_rock_trajectories(const RockField &rocks,
     float     r = pos_rad[i * 4 + 3];
     uint32_t  cid = status_class[i * 2 + 1];
 
-    if (!std::isfinite(pos.x) || !std::isfinite(pos.y) || !std::isfinite(pos.z) ||
-        !std::isfinite(r) || r <= 0.0f)
+    if (!std::isfinite(pos.x) || !std::isfinite(pos.y) ||
+        !std::isfinite(pos.z) || !std::isfinite(r) || r <= 0.0f)
     {
       if (options.respawn_out_of_bounds)
       {

@@ -60,6 +60,19 @@ std::string TileRegion::info_string(int indent) const
   return oss.str();
 }
 
+glm::vec4 TileRegion::inner_bbox() const
+{
+  const float dx = (bbox.y - bbox.x) / float(shape.x);
+  const float dy = (bbox.w - bbox.z) / float(shape.y);
+
+  float inner_x1 = bbox.x + float(halo.x) * dx;
+  float inner_x2 = bbox.y - float(halo.y) * dx;
+  float inner_y1 = bbox.z + float(halo.z) * dy;
+  float inner_y2 = bbox.w - float(halo.w) * dy;
+
+  return {inner_x1, inner_x2, inner_y1, inner_y2};
+}
+
 std::string TileRegion::key_as_string() const
 {
   return std::to_string(this->key.tx) + "_" + std::to_string(this->key.ty);

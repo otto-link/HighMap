@@ -70,6 +70,31 @@ TEST(VirtualArrayTest, TileCoordinateMapping)
   EXPECT_EQ(r_at.key.ty, 0);
 }
 
+TEST(VirtualArrayTest, TileRegionInnerBbox)
+{
+  glm::ivec2   shape{64, 64};
+  glm::vec4    bbox{0.f, 64.f, 0.f, 64.f};
+  glm::ivec2   tile_shape{32, 32};
+  int          halo = 4;
+  VirtualArray va(shape, bbox, tile_shape, halo, StorageMode::VA_RAM);
+
+  // Tile (0, 0): inner x in [0, 32], inner y in [0, 32]
+  TileRegion r00 = va.tile_region_from_tile_coords(0, 0);
+  glm::vec4  inner00 = r00.inner_bbox();
+  EXPECT_NEAR(inner00.x, 0.f, 1e-5f);
+  EXPECT_NEAR(inner00.y, 32.f, 1e-5f);
+  EXPECT_NEAR(inner00.z, 0.f, 1e-5f);
+  EXPECT_NEAR(inner00.w, 32.f, 1e-5f);
+
+  // Tile (1, 1): inner x in [32, 64], inner y in [32, 64]
+  TileRegion r11 = va.tile_region_from_tile_coords(1, 1);
+  glm::vec4  inner11 = r11.inner_bbox();
+  EXPECT_NEAR(inner11.x, 32.f, 1e-5f);
+  EXPECT_NEAR(inner11.y, 64.f, 1e-5f);
+  EXPECT_NEAR(inner11.z, 32.f, 1e-5f);
+  EXPECT_NEAR(inner11.w, 64.f, 1e-5f);
+}
+
 TEST(VirtualArrayTest, CellGetSet)
 {
   glm::ivec2   shape{32, 32};

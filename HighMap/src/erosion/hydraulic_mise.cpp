@@ -16,6 +16,7 @@
 #include <vector>
 
 #include "highmap/array.hpp"
+#include "highmap/boundary.hpp"
 #include "highmap/erosion/erosion_parameters.hpp"
 #include "highmap/erosion/hydraulic_erosion.hpp"
 #include "highmap/internal/validation.hpp"
@@ -127,40 +128,6 @@ Field downsample_area(const float *src,
                   }
                 });
   return dst;
-}
-
-void extrapolate_border_impl(std::vector<float> &z,
-                             int                 nx,
-                             int                 ny,
-                             float               zmin,
-                             float               zmax,
-                             const uint8_t      *outlet,
-                             const float        *bedrock,
-                             std::vector<float> *delta)
-{
-  if (nx < 3 || ny < 3) return;
-  auto set = [&](int x, int y, int x1, int y1, int x2, int y2)
-  {
-    const size_t i = (size_t)y * nx + x;
-    if (outlet && outlet[i]) return;
-    float v = std::min(
-        zmax,
-        std::max(zmin,
-                 2.f * z[(size_t)y1 * nx + x1] - z[(size_t)y2 * nx + x2]));
-    if (bedrock) v = std::max(v, std::min(bedrock[i], z[i]));
-    if (delta && delta->size() == z.size()) (*delta)[i] += v - z[i];
-    z[i] = v;
-  };
-  for (int y = 0; y < ny; ++y)
-  {
-    set(0, y, 1, y, 2, y);
-    set(nx - 1, y, nx - 2, y, nx - 3, y);
-  }
-  for (int x = 0; x < nx; ++x)
-  {
-    set(x, 0, x, 1, x, 2);
-    set(x, ny - 1, x, ny - 2, x, ny - 3);
-  }
 }
 
 uint32_t float_key(float f)
@@ -1088,15 +1055,14 @@ void hydraulic_mise(Array            &z,
                              std::min(z0.vector[i], p_bedrock_ptr[i]));
 
   if (params.extrapolate_border)
-    extrapolate_border_impl(
-        z.vector,
-        nx,
-        ny,
-        zfloor,
-        *std::max_element(z0.vector.begin(), z0.vector.end()),
-        p_outlet_ptr,
-        p_bedrock_ptr,
-        nullptr);
+  {
+    extrapolate_borders(z);
+
+    if (p_bedrock)
+    {
+      z = maximum(z, *p_bedrock);
+    }
+  }
 
   if (p_sediment)
   {
