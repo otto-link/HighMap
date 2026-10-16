@@ -1,5 +1,7 @@
 var NAVTREEINDEX26 =
 {
+"strata__erosion_8hpp.html#aec782e6aba3f4cfbbd97aafa46cc700b":[4,0,1,0,0,1,6,5],
+"strata__erosion_8hpp_source.html":[4,0,1,0,0,1,6],
 "strata__plates_8cpp.html":[4,0,1,1,12,26],
 "strata__plates_8cpp.html#a9c033bf30ba815949b8d0fb01ab15eea":[4,0,1,1,12,26,0],
 "string__utils_8cpp.html":[4,0,1,1,45,0],
@@ -247,7 +249,5 @@ var NAVTREEINDEX26 =
 "structhmap_1_1LruTileEntry.html#a64f43e9e8cd9c2a013deacda2409e26f":[3,0,0,52,0],
 "structhmap_1_1Mat.html":[3,0,0,54],
 "structhmap_1_1Mat.html":[2,0,0,55],
-"structhmap_1_1Mat.html#a1ab58820a1efbf5e7c2f7ee1d51dd7c0":[3,0,0,54,8],
-"structhmap_1_1Mat.html#a1ab58820a1efbf5e7c2f7ee1d51dd7c0":[2,0,0,55,8],
-"structhmap_1_1Mat.html#a429366c8daa4495b65f288f3527f2022":[3,0,0,54,3]
+"structhmap_1_1Mat.html#a1ab58820a1efbf5e7c2f7ee1d51dd7c0":[3,0,0,54,8]
 };
