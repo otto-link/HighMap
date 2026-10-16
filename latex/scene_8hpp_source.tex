@@ -15,22 +15,24 @@
 \DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{forest_8hpp}{highmap/flora/forest.hpp}}"{}}}
 \DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{cloud_8hpp}{highmap/geometry/cloud.hpp}}"{}}}
 \DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{path_8hpp}{highmap/geometry/path.hpp}}"{}}}
-\DoxyCodeLine{00024\ }
-\DoxyCodeLine{00025\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacehmap}{hmap}}}
-\DoxyCodeLine{00026\ \{}
-\DoxyCodeLine{00027\ }
-\DoxyCodeLine{00061\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacehmap_ab7e1d2a21a220c996c8d560a05c95b59}{export\_usd}}(\textcolor{keyword}{const}\ std::string\ \ \ \ \ \ \ \ \&fname,}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \ \ \ \ \ \ \&elevation\ =\ \{\},}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Forest\ \ \ \ \ \ \ \ \ \ \ \ \ \&forest\ =\ \{\},}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<Cloud>\ \&clouds\ =\ \{\},}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<Path>\ \ \&paths\ =\ \{\},}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacehmap_ac81a92060b89699c4eb9826495d87250}{MeshType}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mesh\_type\ =\ \mbox{\hyperlink{namespacehmap_ac81a92060b89699c4eb9826495d87250a68dced9d7f19cbd741feae05ad17ca14}{MeshType::TRI}},}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ elevation\_scaling\ =\ 0.2f,}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \ \ \ \ \ \ \ \&texture\_fname\ =\ \textcolor{stringliteral}{"{}"{}},}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \ \ \ \ \ \ \ \&normal\_map\_fname\ =\ \textcolor{stringliteral}{"{}"{}},}
-\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ max\_error\ =\ 5e-\/4f,}
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fit\_boundaries\ =\ \textcolor{keyword}{false});}
-\DoxyCodeLine{00072\ }
-\DoxyCodeLine{00073\ \}\ \textcolor{comment}{//\ namespace\ hmap}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{rock__field_8hpp}{highmap/rocks/rock\_field.hpp}}"{}}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacehmap}{hmap}}}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00066\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacehmap_a565d90964be3bdc0d95aedb80288ce57}{export\_usd}}(\textcolor{keyword}{const}\ std::string\ \ \ \ \ \ \ \ \ \ \ \ \ \ \&fname,}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&elevation\ =\ \{\},}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<Forest>\ \ \ \ \ \ \&forests\ =\ \{\},}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<RockField>\ \ \ \&rock\_fields\ =\ \{\},}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<Cloud>\ \ \ \ \ \ \ \&clouds\ =\ \{\},}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<Path>\ \ \ \ \ \ \ \ \&paths\ =\ \{\},}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacehmap_ac81a92060b89699c4eb9826495d87250}{MeshType}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mesh\_type\ =\ \mbox{\hyperlink{namespacehmap_ac81a92060b89699c4eb9826495d87250a68dced9d7f19cbd741feae05ad17ca14}{MeshType::TRI}},}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ elevation\_scaling\ =\ 0.2f,}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \ \ \ \ \ \ \ \ \ \ \ \ \ \&texture\_fname\ =\ \textcolor{stringliteral}{"{}"{}},}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \ \ \ \ \ \ \ \ \ \ \ \ \ \&normal\_map\_fname\ =\ \textcolor{stringliteral}{"{}"{}},}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ max\_error\ =\ 5e-\/4f,}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fit\_boundaries\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \}\ \textcolor{comment}{//\ namespace\ hmap}}
 
 \end{DoxyCode}

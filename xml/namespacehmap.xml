@@ -15221,10 +15221,10 @@ Each tile is extracted using slicing, adjusted for overlap if specified, and the
         </inbodydescription>
         <location file="HighMap/src/export/read_to_array.cpp" line="15" column="7" bodyfile="HighMap/src/export/read_to_array.cpp" bodystart="15" bodyend="28" declfile="HighMap/include/highmap/export/image.hpp" declline="350" declcolumn="7"/>
       </memberdef>
-      <memberdef kind="function" id="namespacehmap_1ab7e1d2a21a220c996c8d560a05c95b59" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespacehmap_1a565d90964be3bdc0d95aedb80288ce57" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
         <definition>bool hmap::export_usd</definition>
-        <argsstring>(const std::string &amp;fname, const Array &amp;elevation={}, const Forest &amp;forest={}, const std::vector&lt; Cloud &gt; &amp;clouds={}, const std::vector&lt; Path &gt; &amp;paths={}, MeshType mesh_type=MeshType::TRI, float elevation_scaling=0.2f, const std::string &amp;texture_fname=&quot;&quot;, const std::string &amp;normal_map_fname=&quot;&quot;, float max_error=5e-4f, bool fit_boundaries=false)</argsstring>
+        <argsstring>(const std::string &amp;fname, const Array &amp;elevation={}, const std::vector&lt; Forest &gt; &amp;forests={}, const std::vector&lt; RockField &gt; &amp;rock_fields={}, const std::vector&lt; Cloud &gt; &amp;clouds={}, const std::vector&lt; Path &gt; &amp;paths={}, MeshType mesh_type=MeshType::TRI, float elevation_scaling=0.2f, const std::string &amp;texture_fname=&quot;&quot;, const std::string &amp;normal_map_fname=&quot;&quot;, float max_error=5e-4f, bool fit_boundaries=false)</argsstring>
         <name>export_usd</name>
         <qualifiedname>hmap::export_usd</qualifiedname>
         <param>
@@ -15237,8 +15237,13 @@ Each tile is extracted using slicing, adjusted for overlap if specified, and the
           <defval>{}</defval>
         </param>
         <param>
-          <type>const <ref refid="classhmap_1_1Forest" kindref="compound">Forest</ref> &amp;</type>
-          <declname>forest</declname>
+          <type>const std::vector&lt; <ref refid="classhmap_1_1Forest" kindref="compound">Forest</ref> &gt; &amp;</type>
+          <declname>forests</declname>
+          <defval>{}</defval>
+        </param>
+        <param>
+          <type>const std::vector&lt; <ref refid="classhmap_1_1RockField" kindref="compound">RockField</ref> &gt; &amp;</type>
+          <declname>rock_fields</declname>
           <defval>{}</defval>
         </param>
         <param>
@@ -15282,12 +15287,13 @@ Each tile is extracted using slicing, adjusted for overlap if specified, and the
           <defval>false</defval>
         </param>
         <briefdescription>
-<para>Exports a composite scene (terrain, forest, clouds, and paths) to Universal Scene Description (USD). </para>
+<para>Exports a composite scene (terrain, forests, rock fields, clouds, and paths) to Universal Scene Description (USD). </para>
         </briefdescription>
         <detaileddescription>
 <para>Generates a USD stage (.usda, .usdc, or .usdz) containing:<itemizedlist>
 <listitem><para>Optional terrain mesh from <computeroutput>elevation</computeroutput> (with optional UV coordinates and elevation scaling)</para>
-</listitem><listitem><para>Optional point collections from <computeroutput>forest</computeroutput> grouped by species as UsdGeomPoints with tree radii (widths)</para>
+</listitem><listitem><para>Optional point collections from <computeroutput>forests</computeroutput> grouped by species as UsdGeomPoints with tree radii (widths)</para>
+</listitem><listitem><para>Optional point collections from <computeroutput>rock_fields</computeroutput> grouped by class as UsdGeomPoints with rock radii (widths)</para>
 </listitem><listitem><para>Optional point collections from <computeroutput>clouds</computeroutput> as UsdGeomPoints</para>
 </listitem><listitem><para>Optional polylines/splines from <computeroutput>paths</computeroutput> as UsdGeomBasisCurves</para>
 </listitem></itemizedlist>
@@ -15310,10 +15316,18 @@ Each tile is extracted using slicing, adjusted for overlap if specified, and the
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername>forest</parametername>
+<parametername>forests</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>Optional <ref refid="classhmap_1_1Forest" kindref="compound">Forest</ref> container whose trees are exported as points. </para>
+<para>Optional vector of <ref refid="classhmap_1_1Forest" kindref="compound">Forest</ref> containers whose trees are exported as points. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rock_fields</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optional vector of <ref refid="classhmap_1_1RockField" kindref="compound">RockField</ref> containers whose rocks are exported as points. </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -15423,8 +15437,9 @@ Each tile is extracted using slicing, adjusted for overlap if specified, and the
 <codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>---<sp/>Export<sp/>composite<sp/>scenes<sp/>to<sp/>USD<sp/>formats</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Exporting<sp/>to<sp/>scene.usda<sp/>(ASCII<sp/>USD)...\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1ab7e1d2a21a220c996c8d560a05c95b59" kindref="member">hmap::export_usd</ref>(</highlight><highlight class="stringliteral">&quot;scene.usda&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a565d90964be3bdc0d95aedb80288ce57" kindref="member">hmap::export_usd</ref>(</highlight><highlight class="stringliteral">&quot;scene.usda&quot;</highlight><highlight class="normal">,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>terrain,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{},</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{},</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>clouds,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>paths,</highlight></codeline>
@@ -15432,8 +15447,9 @@ Each tile is extracted using slicing, adjusted for overlap if specified, and the
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.25f);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Exporting<sp/>to<sp/>scene.usdc<sp/>(Binary<sp/>Crate<sp/>USD)...\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1ab7e1d2a21a220c996c8d560a05c95b59" kindref="member">hmap::export_usd</ref>(</highlight><highlight class="stringliteral">&quot;scene.usdc&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a565d90964be3bdc0d95aedb80288ce57" kindref="member">hmap::export_usd</ref>(</highlight><highlight class="stringliteral">&quot;scene.usdc&quot;</highlight><highlight class="normal">,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>terrain,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{},</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{},</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>clouds,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>paths,</highlight></codeline>
@@ -15441,8 +15457,9 @@ Each tile is extracted using slicing, adjusted for overlap if specified, and the
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.25f);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Exporting<sp/>to<sp/>scene_opt.usda<sp/>(Delaunay<sp/>optimized<sp/>terrain)...\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1ab7e1d2a21a220c996c8d560a05c95b59" kindref="member">hmap::export_usd</ref>(</highlight><highlight class="stringliteral">&quot;scene_opt.usda&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a565d90964be3bdc0d95aedb80288ce57" kindref="member">hmap::export_usd</ref>(</highlight><highlight class="stringliteral">&quot;scene_opt.usda&quot;</highlight><highlight class="normal">,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>terrain,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{},</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{},</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>clouds,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>paths,</highlight></codeline>
@@ -15459,7 +15476,7 @@ Each tile is extracted using slicing, adjusted for overlap if specified, and the
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/export/export_usd.cpp" line="285" column="6" bodyfile="HighMap/src/export/export_usd.cpp" bodystart="285" bodyend="376" declfile="HighMap/include/highmap/export/scene.hpp" declline="61" declcolumn="6"/>
+        <location file="HighMap/src/export/export_usd.cpp" line="345" column="6" bodyfile="HighMap/src/export/export_usd.cpp" bodystart="345" bodyend="470" declfile="HighMap/include/highmap/export/scene.hpp" declline="66" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a34efdecd3db27a30c06537acda6d9457" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>

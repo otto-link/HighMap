@@ -1,5 +1,6 @@
 var test__export__usd_8cpp =
 [
     [ "TEST", "test__export__usd_8cpp.html#aee00fe35f2b7d808a0a9d8a92e7d6f82", null ],
-    [ "TEST", "test__export__usd_8cpp.html#a76a38dc58e04a5c60bc71e91cd4305db", null ]
+    [ "TEST", "test__export__usd_8cpp.html#a76a38dc58e04a5c60bc71e91cd4305db", null ],
+    [ "TEST", "test__export__usd_8cpp.html#a3f6f0c86a312641a1e93a04c6b74f9ba", null ]
 ];
