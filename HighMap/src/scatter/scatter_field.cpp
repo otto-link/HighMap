@@ -34,6 +34,7 @@
 #include "point_sampler/relaxation.hpp"
 
 #include "highmap/array.hpp"
+#include "highmap/export/asset.hpp"
 #include "highmap/functions.hpp"
 #include "highmap/geometry/cloud.hpp"
 #include "highmap/geometry/point.hpp"
@@ -1547,6 +1548,39 @@ std::vector<uint8_t> ScatterField::to_img_8bit(glm::ivec2   shape,
   std::vector<uint8_t> buffer(rgb.total() * rgb.elemSize());
   std::memcpy(buffer.data(), rgb.data, buffer.size());
   return buffer;
+}
+
+void ScatterField::to_ply(const std::string &fname) const
+{
+  if (items.empty()) return;
+
+  std::vector<float> x;
+  std::vector<float> y;
+  std::vector<float> z;
+  std::vector<float> radius;
+  std::vector<float> class_id;
+
+  x.reserve(items.size());
+  y.reserve(items.size());
+  z.reserve(items.size());
+  radius.reserve(items.size());
+  class_id.reserve(items.size());
+
+  for (const auto &item : items)
+  {
+    x.push_back(item.position.x);
+    y.push_back(item.position.y);
+    z.push_back(item.position.z);
+    radius.push_back(item.radius);
+    class_id.push_back(static_cast<float>(item.class_id));
+  }
+
+  std::map<std::string, std::vector<float>> custom_fields = {
+      {"radius", std::move(radius)},
+      {"class", std::move(class_id)},
+  };
+
+  export_points_to_ply(fname, x, y, z, custom_fields);
 }
 
 void ScatterField::to_png(const std::string &fname,

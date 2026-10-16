@@ -1,4 +1,5 @@
 #include <cmath>
+#include <filesystem>
 #include <fstream>
 #include <vector>
 
@@ -801,4 +802,41 @@ TEST(ScatterFieldTest, ToImg8bit)
     }
   }
   EXPECT_TRUE(has_non_bg);
+}
+
+TEST(ScatterFieldTest, ToPly)
+{
+  ScatterField field;
+  field.push_back(ScatterItem(0.2f, 0.3f, 0.4f, 1u, 0.05f));
+  field.push_back(ScatterItem(0.6f, 0.7f, 0.8f, 2u, 0.08f));
+
+  std::string fname = "test_scatter_field.ply";
+  field.to_ply(fname);
+
+  EXPECT_TRUE(std::filesystem::exists(fname));
+
+  std::ifstream file(fname);
+  EXPECT_TRUE(file.is_open());
+
+  std::string line;
+  bool        has_header_magic = false;
+  bool        has_vertex_element = false;
+  bool        has_radius_prop = false;
+  bool        has_class_prop = false;
+
+  while (std::getline(file, line))
+  {
+    if (line == "ply") has_header_magic = true;
+    if (line == "element vertex 2") has_vertex_element = true;
+    if (line == "property float radius") has_radius_prop = true;
+    if (line == "property float class") has_class_prop = true;
+    if (line == "end_header") break;
+  }
+
+  EXPECT_TRUE(has_header_magic);
+  EXPECT_TRUE(has_vertex_element);
+  EXPECT_TRUE(has_radius_prop);
+  EXPECT_TRUE(has_class_prop);
+
+  std::filesystem::remove(fname);
 }

@@ -443,6 +443,12 @@ public:
                                    bool         flip_y = false) const;
 
   /**
+   * @brief Exports the items to a PLY file with radius and class as custom parameters.
+   * @param fname Output file path.
+   */
+  void to_ply(const std::string &fname) const;
+
+  /**
    * @brief Exports a visual representation of the scatter field as a PNG image.
    *
    * @param fname      Output PNG file path.
