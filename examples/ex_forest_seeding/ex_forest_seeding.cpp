@@ -165,7 +165,8 @@ int main(void)
 
   hmap::export_usd("scene_forest.usdc",
                    z,
-                   forest_thinned_soft_core,
+                   {forest_thinned_soft_core},
+                   {},
                    {},
                    {},
                    hmap::MeshType::TRI_OPTIMIZED,

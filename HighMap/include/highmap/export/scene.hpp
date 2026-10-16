@@ -21,27 +21,32 @@
 #include "highmap/flora/forest.hpp"
 #include "highmap/geometry/cloud.hpp"
 #include "highmap/geometry/path.hpp"
+#include "highmap/rocks/rock_field.hpp"
 
 namespace hmap
 {
 
 /**
- * @brief Exports a composite scene (terrain, forest, clouds, and paths) to
+ * @brief Exports a composite scene (terrain, forests, rock fields, clouds, and paths) to
  * Universal Scene Description (USD).
  *
  * Generates a USD stage (.usda, .usdc, or .usdz) containing:
  * - Optional terrain mesh from `elevation` (with optional UV coordinates and
  * elevation scaling)
- * - Optional point collections from `forest` grouped by species as
+ * - Optional point collections from `forests` grouped by species as
  * UsdGeomPoints with tree radii (widths)
+ * - Optional point collections from `rock_fields` grouped by class as
+ * UsdGeomPoints with rock radii (widths)
  * - Optional point collections from `clouds` as UsdGeomPoints
  * - Optional polylines/splines from `paths` as UsdGeomBasisCurves
  *
  * @param  fname             Output file name (.usda, .usdc, or .usdz).
  * @param  elevation         Optional heightmap array representing terrain
  *                           elevation.
- * @param  forest            Optional Forest container whose trees are exported
- *                           as points.
+ * @param  forests           Optional vector of Forest containers whose trees
+ *                           are exported as points.
+ * @param  rock_fields       Optional vector of RockField containers whose rocks
+ *                           are exported as points.
  * @param  clouds            Optional vector of Cloud objects to export as
  *                           points primitives.
  * @param  paths             Optional vector of Path objects to export as curve
@@ -58,16 +63,17 @@ namespace hmap
  * **Example**
  * @include ex_export_usd.cpp
  */
-bool export_usd(const std::string        &fname,
-                const Array              &elevation = {},
-                const Forest             &forest = {},
-                const std::vector<Cloud> &clouds = {},
-                const std::vector<Path>  &paths = {},
-                MeshType                  mesh_type = MeshType::TRI,
-                float                     elevation_scaling = 0.2f,
-                const std::string        &texture_fname = "",
-                const std::string        &normal_map_fname = "",
-                float                     max_error = 5e-4f,
-                bool                      fit_boundaries = false);
+bool export_usd(const std::string              &fname,
+                const Array                    &elevation = {},
+                const std::vector<Forest>      &forests = {},
+                const std::vector<RockField>   &rock_fields = {},
+                const std::vector<Cloud>       &clouds = {},
+                const std::vector<Path>        &paths = {},
+                MeshType                        mesh_type = MeshType::TRI,
+                float                           elevation_scaling = 0.2f,
+                const std::string              &texture_fname = "",
+                const std::string              &normal_map_fname = "",
+                float                           max_error = 5e-4f,
+                bool                            fit_boundaries = false);
 
 } // namespace hmap

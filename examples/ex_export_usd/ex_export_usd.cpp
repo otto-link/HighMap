@@ -41,6 +41,7 @@ int main(void)
   hmap::export_usd("scene.usda",
                    terrain,
                    {},
+                   {},
                    clouds,
                    paths,
                    hmap::MeshType::TRI,
@@ -50,6 +51,7 @@ int main(void)
   hmap::export_usd("scene.usdc",
                    terrain,
                    {},
+                   {},
                    clouds,
                    paths,
                    hmap::MeshType::TRI,
@@ -58,6 +60,7 @@ int main(void)
   std::cout << "Exporting to scene_opt.usda (Delaunay optimized terrain)...\n";
   hmap::export_usd("scene_opt.usda",
                    terrain,
+                   {},
                    {},
                    clouds,
                    paths,

@@ -33,6 +33,7 @@ TEST(ExportUsd, BasicExport)
   bool ok_usda = hmap::export_usd(temp_usda.string(),
                                   terrain,
                                   {},
+                                  {},
                                   clouds,
                                   paths);
   EXPECT_TRUE(ok_usda);
@@ -42,6 +43,7 @@ TEST(ExportUsd, BasicExport)
   // Export USDC (Binary Crate)
   bool ok_usdc = hmap::export_usd(temp_usdc.string(),
                                   terrain,
+                                  {},
                                   {},
                                   clouds,
                                   paths);
@@ -54,6 +56,7 @@ TEST(ExportUsd, BasicExport)
                                    "test_highmap_opt.usda";
   bool ok_opt = hmap::export_usd(temp_opt.string(),
                                  terrain,
+                                 {},
                                  {},
                                  clouds,
                                  paths,
@@ -91,13 +94,13 @@ TEST(ExportUsd, ForestExport)
                                     "test_highmap_forest.usdc";
 
   // Export USDA (ASCII)
-  bool ok_usda = hmap::export_usd(temp_usda.string(), terrain, forest);
+  bool ok_usda = hmap::export_usd(temp_usda.string(), terrain, {forest});
   EXPECT_TRUE(ok_usda);
   EXPECT_TRUE(std::filesystem::exists(temp_usda));
   EXPECT_GT(std::filesystem::file_size(temp_usda), 0u);
 
   // Export USDC (Binary Crate)
-  bool ok_usdc = hmap::export_usd(temp_usdc.string(), terrain, forest);
+  bool ok_usdc = hmap::export_usd(temp_usdc.string(), terrain, {forest});
   EXPECT_TRUE(ok_usdc);
   EXPECT_TRUE(std::filesystem::exists(temp_usdc));
   EXPECT_GT(std::filesystem::file_size(temp_usdc), 0u);
@@ -108,7 +111,7 @@ TEST(ExportUsd, ForestExport)
       "test_highmap_forest_standalone.usda";
   bool ok_standalone = hmap::export_usd(temp_usda_standalone.string(),
                                         {},
-                                        forest);
+                                        {forest});
   EXPECT_TRUE(ok_standalone);
   EXPECT_TRUE(std::filesystem::exists(temp_usda_standalone));
   EXPECT_GT(std::filesystem::file_size(temp_usda_standalone), 0u);
@@ -117,4 +120,50 @@ TEST(ExportUsd, ForestExport)
   std::filesystem::remove(temp_usda);
   std::filesystem::remove(temp_usdc);
   std::filesystem::remove(temp_usda_standalone);
+}
+
+TEST(ExportUsd, RockFieldExport)
+{
+  glm::ivec2  shape = {32, 32};
+  hmap::Array terrain = hmap::noise(hmap::NoiseType::SIMPLEX2,
+                                    shape,
+                                    {2.f, 2.f},
+                                    1);
+  hmap::remap(terrain);
+
+  // Create rock field with multiple classes and radii
+  std::vector<hmap::Rock> rocks = {
+      hmap::Rock({0.15f, 0.25f, 0.35f}, 0, 0.02f),
+      hmap::Rock({0.55f, 0.65f, 0.75f}, 0, 0.04f),
+      hmap::Rock({0.35f, 0.45f, 0.55f}, 1, 0.01f),
+      hmap::Rock({0.75f, 0.05f, 0.15f}, 2, 0.06f),
+  };
+  hmap::RockField rock_field(rocks);
+
+  std::filesystem::path temp_usda = std::filesystem::temp_directory_path() /
+                                    "test_highmap_rock_field.usda";
+  std::filesystem::path temp_usdc = std::filesystem::temp_directory_path() /
+                                    "test_highmap_rock_field.usdc";
+
+  // Export USDA (ASCII)
+  bool ok_usda = hmap::export_usd(temp_usda.string(),
+                                  terrain,
+                                  {},
+                                  {rock_field});
+  EXPECT_TRUE(ok_usda);
+  EXPECT_TRUE(std::filesystem::exists(temp_usda));
+  EXPECT_GT(std::filesystem::file_size(temp_usda), 0u);
+
+  // Export USDC (Binary Crate)
+  bool ok_usdc = hmap::export_usd(temp_usdc.string(),
+                                  terrain,
+                                  {},
+                                  {rock_field});
+  EXPECT_TRUE(ok_usdc);
+  EXPECT_TRUE(std::filesystem::exists(temp_usdc));
+  EXPECT_GT(std::filesystem::file_size(temp_usdc), 0u);
+
+  // Clean up
+  std::filesystem::remove(temp_usda);
+  std::filesystem::remove(temp_usdc);
 }

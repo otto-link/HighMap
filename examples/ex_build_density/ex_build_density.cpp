@@ -46,6 +46,7 @@ int main(void)
   hmap::export_usd("scene.usdc",
                    z,
                    {},
+                   {},
                    {cloud},
                    {},
                    hmap::MeshType::TRI,

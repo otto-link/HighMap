@@ -23,6 +23,7 @@
 #include "highmap/internal/validation.hpp"
 #include "highmap/logger.hpp"
 #include "highmap/operator.hpp"
+#include "highmap/rocks/rock_field.hpp"
 #include "highmap/scatter/scatter_item.hpp"
 
 #include "core/animatable.hh"
@@ -73,6 +74,8 @@ lightusd::GeomBasisCurves build_usd_curves(const Path &path,
 
 std::vector<lightusd::GeomPoints> build_usd_forest_points(
     const Forest &forest,
+    size_t        forest_idx,
+    size_t        num_forests,
     float         elevation_scaling,
     float         x_max,
     float         y_max)
@@ -83,7 +86,15 @@ std::vector<lightusd::GeomPoints> build_usd_forest_points(
   for (uint32_t class_id : class_ids)
   {
     lightusd::GeomPoints points_prim;
-    points_prim.name = "Forest_Class_" + std::to_string(class_id);
+    if (num_forests > 1)
+    {
+      points_prim.name = "Forest_" + std::to_string(forest_idx) + "_Class_" +
+                         std::to_string(class_id);
+    }
+    else
+    {
+      points_prim.name = "Forest_Class_" + std::to_string(class_id);
+    }
 
     std::vector<lightusd::value::point3f> pts;
     std::vector<float>                    widths;
@@ -108,6 +119,55 @@ std::vector<lightusd::GeomPoints> build_usd_forest_points(
   }
 
   return species_prims;
+}
+
+std::vector<lightusd::GeomPoints> build_usd_rock_field_points(
+    const RockField &rock_field,
+    size_t           field_idx,
+    size_t           num_fields,
+    float            elevation_scaling,
+    float            x_max,
+    float            y_max)
+{
+  std::vector<lightusd::GeomPoints> class_prims;
+  std::vector<uint32_t>             class_ids = rock_field.get_class_ids();
+
+  for (uint32_t class_id : class_ids)
+  {
+    lightusd::GeomPoints points_prim;
+    if (num_fields > 1)
+    {
+      points_prim.name = "RockField_" + std::to_string(field_idx) + "_Class_" +
+                         std::to_string(class_id);
+    }
+    else
+    {
+      points_prim.name = "RockField_Class_" + std::to_string(class_id);
+    }
+
+    std::vector<lightusd::value::point3f> pts;
+    std::vector<float>                    widths;
+
+    for (const auto &rock : rock_field)
+    {
+      if (rock.class_id == class_id)
+      {
+        pts.push_back({(1.f - rock.position.y) * y_max,
+                       elevation_scaling * rock.position.z,
+                       rock.position.x * x_max});
+        widths.push_back(2.f * rock.radius);
+      }
+    }
+
+    if (!pts.empty())
+    {
+      points_prim.points.set_value(pts);
+      points_prim.widths.set_value(widths);
+      class_prims.push_back(std::move(points_prim));
+    }
+  }
+
+  return class_prims;
 }
 
 lightusd::GeomPoints build_usd_points(const Cloud &cloud,
@@ -282,25 +342,36 @@ bool save_usd_stage(const std::string &fname, lightusd::Stage &stage)
 
 } // namespace
 
-bool export_usd(const std::string        &fname,
-                const Array              &elevation,
-                const Forest             &forest,
-                const std::vector<Cloud> &clouds,
-                const std::vector<Path>  &paths,
-                MeshType                  mesh_type,
-                float                     elevation_scaling,
-                const std::string        &texture_fname,
-                const std::string        &normal_map_fname,
-                float                     max_error,
-                bool                      fit_boundaries)
+bool export_usd(const std::string            &fname,
+                const Array                  &elevation,
+                const std::vector<Forest>    &forests,
+                const std::vector<RockField> &rock_fields,
+                const std::vector<Cloud>     &clouds,
+                const std::vector<Path>      &paths,
+                MeshType                      mesh_type,
+                float                         elevation_scaling,
+                const std::string            &texture_fname,
+                const std::string            &normal_map_fname,
+                float                         max_error,
+                bool                          fit_boundaries)
 {
   bool has_elevation = (elevation.shape.x > 0 && elevation.shape.y > 0 &&
                         !elevation.vector.empty());
-  bool has_forest = !forest.empty();
+
+  bool has_forests = std::any_of(forests.begin(),
+                                 forests.end(),
+                                 [](const Forest &f) { return !f.empty(); });
+
+  bool has_rock_fields = std::any_of(rock_fields.begin(),
+                                     rock_fields.end(),
+                                     [](const RockField &rf)
+                                     { return !rf.empty(); });
+
   bool has_clouds = !clouds.empty();
   bool has_paths = !paths.empty();
 
-  if (!has_elevation && !has_forest && !has_clouds && !has_paths)
+  if (!has_elevation && !has_forests && !has_rock_fields && !has_clouds &&
+      !has_paths)
   {
     hmap::log::warn("USD export skipped: no geometry to export");
     return false;
@@ -332,15 +403,38 @@ bool export_usd(const std::string        &fname,
   }
 
   // --- Forest points by species
-  if (has_forest)
+  for (size_t i = 0; i < forests.size(); ++i)
   {
-    auto forest_prims = build_usd_forest_points(forest,
-                                                elevation_scaling,
-                                                x_max,
-                                                y_max);
-    for (auto &prim : forest_prims)
+    if (!forests[i].empty())
     {
-      stage.add_root_prim(lightusd::Prim(prim));
+      auto forest_prims = build_usd_forest_points(forests[i],
+                                                  i,
+                                                  forests.size(),
+                                                  elevation_scaling,
+                                                  x_max,
+                                                  y_max);
+      for (auto &prim : forest_prims)
+      {
+        stage.add_root_prim(lightusd::Prim(prim));
+      }
+    }
+  }
+
+  // --- Rock fields points by class
+  for (size_t i = 0; i < rock_fields.size(); ++i)
+  {
+    if (!rock_fields[i].empty())
+    {
+      auto rock_prims = build_usd_rock_field_points(rock_fields[i],
+                                                    i,
+                                                    rock_fields.size(),
+                                                    elevation_scaling,
+                                                    x_max,
+                                                    y_max);
+      for (auto &prim : rock_prims)
+      {
+        stage.add_root_prim(lightusd::Prim(prim));
+      }
     }
   }
 
