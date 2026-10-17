@@ -7782,7 +7782,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/carving/trench.cpp" line="463" column="6" bodyfile="HighMap/src/carving/trench.cpp" bodystart="463" bodyend="509" declfile="HighMap/include/highmap/carving.hpp" declline="223" declcolumn="6"/>
+        <location file="HighMap/src/carving/trench.cpp" line="513" column="6" bodyfile="HighMap/src/carving/trench.cpp" bodystart="513" bodyend="559" declfile="HighMap/include/highmap/carving.hpp" declline="223" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ae10d017da6e13ba9d619298709e64917" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -7898,7 +7898,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/carving/trench.cpp" line="250" column="6" bodyfile="HighMap/src/carving/trench.cpp" bodystart="250" bodyend="461" declfile="HighMap/include/highmap/carving.hpp" declline="246" declcolumn="6"/>
+        <location file="HighMap/src/carving/trench.cpp" line="299" column="6" bodyfile="HighMap/src/carving/trench.cpp" bodystart="299" bodyend="511" declfile="HighMap/include/highmap/carving.hpp" declline="246" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a54eb8ce4196d73517024dbe2af5af81b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>glm::vec3</type>
