@@ -48,13 +48,32 @@ std::vector<PreprocessedPath> preprocess_paths(
     bool                         enable_width_curvature_scaling,
     float                        curvature_radius_min)
 {
-  std::vector<PreprocessedPath> prep_paths;
-  prep_paths.reserve(paths.size());
+  std::vector<Path> sorted_paths;
+  sorted_paths.reserve(paths.size());
 
-  for (const auto &path : paths)
+  for (const auto &p : paths)
   {
-    if (path.empty()) continue;
+    if (!p.empty()) sorted_paths.push_back(p);
+  }
 
+  // sort by total cumulative length (longest paths first, shorter paths last)
+  // so trunk streams are processed before tributaries and avoid zero-width trenches
+  std::stable_sort(sorted_paths.begin(),
+                   sorted_paths.end(),
+                   [](const Path &a, const Path &b)
+                   {
+                     auto ca = a.get_cumulative_distance();
+                     auto cb = b.get_cumulative_distance();
+                     float la = ca.empty() ? 0.f : ca.back();
+                     float lb = cb.empty() ? 0.f : cb.back();
+                     return la > lb;
+                   });
+
+  std::vector<PreprocessedPath> prep_paths;
+  prep_paths.reserve(sorted_paths.size());
+
+  for (const auto &path : sorted_paths)
+  {
     PreprocessedPath pp;
     pp.path = path;
     size_t npts = pp.path.size();

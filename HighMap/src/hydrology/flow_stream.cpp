@@ -96,10 +96,6 @@ Path flow_stream(const Array             &z,
   {
     weights = Array(shape, 1.0f);
 
-    float z_min = z.min();
-    float z_max = z.max();
-    float z_range = std::max(1e-4f, z_max - z_min);
-
     for (const auto &stream : existing_streams)
     {
       if (stream.empty()) continue;

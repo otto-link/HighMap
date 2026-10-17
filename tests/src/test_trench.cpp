@@ -309,3 +309,52 @@ TEST(TrenchCarving, VirtualArrayVsArrayComparisonMultiTile)
   std::cout << "[DEBUG] MultiTile max_diff = " << max_diff << std::endl;
   EXPECT_NEAR(max_diff, 0.f, 1e-5f);
 }
+
+TEST(TrenchCarving, PathReorderingByLengthDescending)
+{
+  glm::ivec2  shape = {64, 64};
+  hmap::Array z1(shape, 1.f);
+  hmap::Array z2(shape, 1.f);
+
+  // trunk path: long path crossing the domain from (0.1, 0.5) to (0.9, 0.5)
+  hmap::Path trunk;
+  trunk.emplace_back(0.1f, 0.5f, 0.f);
+  trunk.emplace_back(0.5f, 0.5f, 0.f);
+  trunk.emplace_back(0.9f, 0.5f, 0.f);
+
+  // tributary: shorter path ending on trunk at (0.5, 0.5)
+  hmap::Path tributary;
+  tributary.emplace_back(0.5f, 0.2f, 0.f);
+  tributary.emplace_back(0.5f, 0.5f, 0.f);
+
+  // pass order: [tributary, trunk]
+  std::vector<hmap::Path> paths_short_first = {tributary, trunk};
+  // pass order: [trunk, tributary]
+  std::vector<hmap::Path> paths_long_first = {trunk, tributary};
+
+  hmap::trench(z1,
+               paths_short_first,
+               0.1f,
+               /* enable_width_depth_scaling */ false,
+               /* enable_width_distance_scaling */ true);
+
+  hmap::trench(z2,
+               paths_long_first,
+               0.1f,
+               /* enable_width_depth_scaling */ false,
+               /* enable_width_distance_scaling */ true);
+
+  // regardless of input order, trench should produce identical results because
+  // paths are reordered by cumulative length descending
+  for (int j = 0; j < shape.y; ++j)
+  {
+    for (int i = 0; i < shape.x; ++i)
+    {
+      EXPECT_NEAR(z1(i, j), z2(i, j), 1e-6f);
+    }
+  }
+
+  // tributary terminal width should be non-zero at junction (0.5, 0.5)
+  EXPECT_LT(z1(32, 32), 0.5f);
+}
+
