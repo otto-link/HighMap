@@ -225,7 +225,8 @@ void find_path_dijkstra(const Array      &z,
                         float             elevation_ratio = 0.1f,
                         float             distance_exponent = 2.f,
                         float             upward_penalization = 0.1f,
-                        const Array      *p_mask_nogo = nullptr);
+                        const Array      *p_mask_nogo = nullptr,
+                        const Array      *p_node_weights = nullptr);
 
 void find_path_dijkstra(const Array                   &z,
                         glm::ivec2                     ij_start,
@@ -234,8 +235,9 @@ void find_path_dijkstra(const Array                   &z,
                         std::vector<std::vector<int>> &j_path_list,
                         float                          elevation_ratio = 0.1f,
                         float                          distance_exponent = 2.f,
-                        float        upward_penalization = 0.1f,
-                        const Array *p_mask_nogo = nullptr);
+                        float                          upward_penalization = 0.1f,
+                        const Array                   *p_mask_nogo = nullptr,
+                        const Array                   *p_node_weights = nullptr);
 
 /**
  * @brief Overload of find_path_dijkstra returning a vector of grid indices.
@@ -247,16 +249,19 @@ void find_path_dijkstra(const Array                   &z,
  * @param  distance_exponent   Exponent applied to distance cost.
  * @param  upward_penalization Penalty factor for uphill moves.
  * @param  p_mask_nogo         Optional obstacle mask.
+ * @param  p_node_weights      Optional node/cell cost multiplier weights.
  *
  * @return                     Vector of 2D grid indices forming the path.
  */
-std::vector<glm::ivec2> find_path_dijkstra(const Array &z,
-                                           glm::ivec2   ij_start,
-                                           glm::ivec2   ij_end,
-                                           float        elevation_ratio = 0.1f,
-                                           float        distance_exponent = 2.f,
-                                           float upward_penalization = 0.1f,
-                                           const Array *p_mask_nogo = nullptr);
+std::vector<glm::ivec2> find_path_dijkstra(
+    const Array &z,
+    glm::ivec2   ij_start,
+    glm::ivec2   ij_end,
+    float        elevation_ratio = 0.1f,
+    float        distance_exponent = 2.f,
+    float        upward_penalization = 0.1f,
+    const Array *p_mask_nogo = nullptr,
+    const Array *p_node_weights = nullptr);
 
 /**
  * @brief Overload of find_path_dijkstra returning a Path mapped to a bounding
@@ -270,6 +275,7 @@ std::vector<glm::ivec2> find_path_dijkstra(const Array &z,
  * @param  distance_exponent   Exponent applied to distance cost.
  * @param  upward_penalization Penalty factor for uphill moves.
  * @param  p_mask_nogo         Optional obstacle mask.
+ * @param  p_node_weights      Optional node/cell cost multiplier weights.
  *
  * @return                     Path with coordinates and sampled elevation
  *                             values.
@@ -281,7 +287,8 @@ Path find_path_dijkstra(const Array &z,
                         float        elevation_ratio = 0.1f,
                         float        distance_exponent = 2.f,
                         float        upward_penalization = 0.1f,
-                        const Array *p_mask_nogo = nullptr);
+                        const Array *p_mask_nogo = nullptr,
+                        const Array *p_node_weights = nullptr);
 
 /**
  * @brief Compute a path between two points using iterative midpoint refinement.

@@ -685,6 +685,10 @@ Array flow_fixing_mst_triangulated(
  *                             (default: 100.0).
  * @param  existing_streams    Existing flow streams to favor merging with
  *                             (default: {}).
+ * @param  valley_radius       Radius around existing stream cells to apply
+ *                             depression (default: 2).
+ * @param  valley_factor       Attenuation factor per distance unit in valley
+ *                             depression (default: 0.35).
  * @return                     A Path object representing the optimal flow path
  *                             with normalized x and y coordinates and
  *                             corresponding elevations.
@@ -705,7 +709,9 @@ Path flow_stream(const Array             &z,
                  const float              elevation_ratio = 0.5f,
                  const float              distance_exponent = 2.f,
                  const float              upward_penalization = 100.f,
-                 const std::vector<Path> &existing_streams = {});
+                 const std::vector<Path> &existing_streams = {},
+                 const int                valley_radius = 2,
+                 const float              valley_factor = 0.35f);
 
 /**
  * @brief Computes the optimal flow path from a starting vertex to the boundary
@@ -723,6 +729,10 @@ Path flow_stream(const Array             &z,
  *                             (default: false).
  * @param  existing_streams    Existing flow streams to favor merging with
  *                             (default: {}).
+ * @param  valley_radius       Radius around existing stream cells to apply
+ *                             attraction (default: 0.02).
+ * @param  valley_factor       Attenuation factor per distance unit in valley
+ *                             attraction (default: 0.35).
  * @return                     A Path object representing the optimal flow path.
  */
 Path flow_stream(const TerrainTriMesh    &mesh,
@@ -731,7 +741,9 @@ Path flow_stream(const TerrainTriMesh    &mesh,
                  float                    distance_exponent = 2.f,
                  float                    upward_penalization = 100.f,
                  bool                     favor_domain_center = false,
-                 const std::vector<Path> &existing_streams = {});
+                 const std::vector<Path> &existing_streams = {},
+                 float                    valley_radius = 0.02f,
+                 float                    valley_factor = 0.35f);
 
 /**
  * @brief Computes the optimal flow path from starting 2D coordinates to the
@@ -749,6 +761,10 @@ Path flow_stream(const TerrainTriMesh    &mesh,
  *                             (default: false).
  * @param  existing_streams    Existing flow streams to favor merging with
  *                             (default: {}).
+ * @param  valley_radius       Radius around existing stream cells to apply
+ *                             attraction (default: 0.02).
+ * @param  valley_factor       Attenuation factor per distance unit in valley
+ *                             attraction (default: 0.35).
  * @return                     A Path object representing the optimal flow path.
  */
 Path flow_stream(const TerrainTriMesh    &mesh,
@@ -757,7 +773,9 @@ Path flow_stream(const TerrainTriMesh    &mesh,
                  float                    distance_exponent = 2.f,
                  float                    upward_penalization = 100.f,
                  bool                     favor_domain_center = false,
-                 const std::vector<Path> &existing_streams = {});
+                 const std::vector<Path> &existing_streams = {},
+                 float                    valley_radius = 0.02f,
+                 float                    valley_factor = 0.35f);
 
 /**
  * @brief Generates a 2D array representing a riverbed based on a specified
@@ -1452,6 +1470,10 @@ VirtualArray flow_fixing_mst_triangulated(
  *                              (default: false).
  * @param  existing_streams     Existing flow streams to favor merging with
  *                              (default: {}).
+ * @param  valley_radius        Radius around existing stream cells to apply
+ *                              attraction (default: 0.02).
+ * @param  valley_factor        Attenuation factor per distance unit in valley
+ *                              attraction (default: 0.35).
  * @return                      A Path object representing the optimal flow
  *                              path.
  */
@@ -1464,6 +1486,8 @@ Path flow_stream(const ComputeMode       &cm,
                  float                    distance_exponent = 2.f,
                  float                    upward_penalization = 100.f,
                  bool                     favor_domain_center = false,
-                 const std::vector<Path> &existing_streams = {});
+                 const std::vector<Path> &existing_streams = {},
+                 float                    valley_radius = 0.02f,
+                 float                    valley_factor = 0.35f);
 
 } // namespace hmap::va

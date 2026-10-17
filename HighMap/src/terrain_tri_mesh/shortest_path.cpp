@@ -100,6 +100,12 @@ TerrainTriMesh::ShortestPathResult TerrainTriMesh::compute_shortest_paths(
         edge_cost += config.domain_center_weight * penalty;
       }
 
+      if (!config.vertex_cost_multipliers.empty() &&
+          nb_idx < config.vertex_cost_multipliers.size())
+      {
+        edge_cost *= config.vertex_cost_multipliers[nb_idx];
+      }
+
       float new_dist = dist + edge_cost;
 
       if (new_dist < result.distance[nb_idx])

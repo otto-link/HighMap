@@ -31,10 +31,12 @@ void find_path_dijkstra(const Array                   &z,
                         float                          elevation_ratio,
                         float                          distance_exponent,
                         float                          upward_penalization,
-                        const Array                   *p_mask_nogo)
+                        const Array                   *p_mask_nogo,
+                        const Array                   *p_node_weights)
 {
   if (!validate_non_empty(z)) return;
   if (p_mask_nogo && !validate_same_shape(z, *p_mask_nogo)) return;
+  if (p_node_weights && !validate_same_shape(z, *p_node_weights)) return;
 
   // https://math.stackexchange.com/questions/3088292
 
@@ -44,39 +46,37 @@ void find_path_dijkstra(const Array                   &z,
   const auto  &neighbors = neighborhood::MOORE_8;
   const size_t nb = neighbors.size();
 
-  // working queue and arrays
-  std::vector<int>   queue_i;
-  std::vector<int>   queue_j;
-  std::vector<float> queue_d; // distance
-  queue_i.reserve(shape.x * shape.y);
-  queue_j.reserve(shape.x * shape.y);
-  queue_d.reserve(shape.x * shape.y);
-
+  // working arrays
   Mat<float> distance(shape);
-  Mat<int>   mask(shape);
-  Mat<int>   next_idx_i(shape);
-  Mat<int>   next_idx_j(shape);
+  for (int j = 0; j < shape.y; ++j)
+    for (int i = 0; i < shape.x; ++i)
+      distance(i, j) = std::numeric_limits<float>::infinity();
+
+  Mat<int> next_idx_i(shape);
+  Mat<int> next_idx_j(shape);
+
+  // min-priority queue: stores (distance, packed_cell_index)
+  using QueueElement = std::pair<float, int>;
+  std::priority_queue<QueueElement,
+                      std::vector<QueueElement>,
+                      std::greater<QueueElement>>
+      queue;
 
   // --- Dijkstra's algorithm
 
-  queue_i.push_back(ij_start.x);
-  queue_j.push_back(ij_start.y);
-  queue_d.push_back(0.f);
-  mask(ij_start.x, ij_start.y) = true;
+  int start_idx = ij_start.y * shape.x + ij_start.x;
+  distance(ij_start.x, ij_start.y) = 0.f;
+  queue.emplace(0.f, start_idx);
 
-  while (queue_i.size() > 0)
+  while (!queue.empty())
   {
-    // next cell == min distance value
-    int kmin = std::distance(queue_d.begin(),
-                             std::min_element(queue_d.begin(), queue_d.end()));
+    auto [curr_dist, idx] = queue.top();
+    queue.pop();
 
-    int i = queue_i[kmin];
-    int j = queue_j[kmin];
-    mask(i, j) = false;
+    int i = idx % shape.x;
+    int j = idx / shape.x;
 
-    queue_i.erase(queue_i.begin() + kmin);
-    queue_j.erase(queue_j.begin() + kmin);
-    queue_d.erase(queue_d.begin() + kmin);
+    if (curr_dist > distance(i, j)) continue;
 
     // loop over neighbors
     for (size_t k = 0; k < nb; k++)
@@ -86,37 +86,35 @@ void find_path_dijkstra(const Array                   &z,
 
       if ((p >= 0) and (p < shape.x) and (q >= 0) and (q < shape.y))
       {
-        // previous cumulative value
-        float dist = distance(i, j);
-
         // elevation difference contribution (weighted for diagonal
         // directions to avoid artifacts)
         float dz = (z(i, j) - z(p, q)) * neighbors[k].distance;
         if (dz < 0.f) dz *= upward_penalization;
         dz = std::abs(dz);
 
-        dist += (1.f - elevation_ratio) * std::pow(dz, distance_exponent);
+        float edge_cost = (1.f - elevation_ratio) *
+                          std::pow(dz, distance_exponent);
 
-        // absolute elevation contribution (puts the emphasize on
+        // absolute elevation contribution (puts the emphasis on
         // going downslope rather than upslope)
-        dist += elevation_ratio *
-                std::max(0.f, neighbors[k].distance * (z(p, q) - z(i, j)));
+        edge_cost += elevation_ratio *
+                     std::max(0.f, neighbors[k].distance * (z(p, q) - z(i, j)));
 
-        if (p_mask_nogo) dist += 1e5f * (*p_mask_nogo)(p, q);
+        if (p_mask_nogo) edge_cost += 1e5f * (*p_mask_nogo)(p, q);
 
-        if (distance(p, q) == 0.f)
-          if ((mask(p, q) == 0) or (dist < distance(p, q)))
-          {
-            distance(p, q) = dist;
+        if (p_node_weights) edge_cost *= (*p_node_weights)(p, q);
 
-            mask(p, q) = true;
-            queue_i.push_back(p);
-            queue_j.push_back(q);
-            queue_d.push_back(dist);
+        float new_dist = curr_dist + edge_cost;
 
-            next_idx_i(p, q) = i;
-            next_idx_j(p, q) = j;
-          }
+        if (new_dist < distance(p, q))
+        {
+          distance(p, q) = new_dist;
+
+          next_idx_i(p, q) = i;
+          next_idx_j(p, q) = j;
+
+          queue.emplace(new_dist, q * shape.x + p);
+        }
       }
     }
   }
@@ -133,20 +131,25 @@ void find_path_dijkstra(const Array                   &z,
 
     std::vector<int> i_path, j_path;
 
-    while ((ic != ij_start.x) or (jc != ij_start.y))
+    if (distance(ic, jc) < std::numeric_limits<float>::infinity())
     {
+      while ((ic != ij_start.x) or (jc != ij_start.y))
+      {
+        i_path.push_back(ic);
+        j_path.push_back(jc);
+
+        int prev_i = next_idx_i(ic, jc);
+        int prev_j = next_idx_j(ic, jc);
+        ic = prev_i;
+        jc = prev_j;
+      }
+
       i_path.push_back(ic);
       j_path.push_back(jc);
 
-      ic = next_idx_i(ic, jc);
-      jc = next_idx_j(ic, jc);
+      std::reverse(i_path.begin(), i_path.end());
+      std::reverse(j_path.begin(), j_path.end());
     }
-
-    i_path.push_back(ic);
-    j_path.push_back(jc);
-
-    std::reverse(i_path.begin(), i_path.end());
-    std::reverse(j_path.begin(), j_path.end());
 
     i_path_list.push_back(i_path);
     j_path_list.push_back(j_path);
@@ -161,7 +164,8 @@ void find_path_dijkstra(const Array      &z,
                         float             elevation_ratio,
                         float             distance_exponent,
                         float             upward_penalization,
-                        const Array      *p_mask_nogo)
+                        const Array      *p_mask_nogo,
+                        const Array      *p_node_weights)
 {
   std::vector<std::vector<int>> i_path_list = {i_path};
   std::vector<std::vector<int>> j_path_list = {j_path};
@@ -174,7 +178,8 @@ void find_path_dijkstra(const Array      &z,
                      elevation_ratio,
                      distance_exponent,
                      upward_penalization,
-                     p_mask_nogo);
+                     p_mask_nogo,
+                     p_node_weights);
 
   i_path = i_path_list[0];
   j_path = j_path_list[0];
@@ -186,7 +191,8 @@ std::vector<glm::ivec2> find_path_dijkstra(const Array &z,
                                            float        elevation_ratio,
                                            float        distance_exponent,
                                            float        upward_penalization,
-                                           const Array *p_mask_nogo)
+                                           const Array *p_mask_nogo,
+                                           const Array *p_node_weights)
 {
   std::vector<int> ip, jp;
   find_path_dijkstra(z,
@@ -197,7 +203,8 @@ std::vector<glm::ivec2> find_path_dijkstra(const Array &z,
                      elevation_ratio,
                      distance_exponent,
                      upward_penalization,
-                     p_mask_nogo);
+                     p_mask_nogo,
+                     p_node_weights);
 
   std::vector<glm::ivec2> path;
   path.reserve(ip.size());
@@ -214,7 +221,8 @@ Path find_path_dijkstra(const Array &z,
                         float        elevation_ratio,
                         float        distance_exponent,
                         float        upward_penalization,
-                        const Array *p_mask_nogo)
+                        const Array *p_mask_nogo,
+                        const Array *p_node_weights)
 {
   if (!validate_non_empty(z)) return Path();
 
@@ -227,7 +235,8 @@ Path find_path_dijkstra(const Array &z,
                      elevation_ratio,
                      distance_exponent,
                      upward_penalization,
-                     p_mask_nogo);
+                     p_mask_nogo,
+                     p_node_weights);
 
   std::vector<Point> points;
   points.reserve(ip.size());

@@ -28,7 +28,9 @@ Path flow_stream(const Array             &z,
                  const float              elevation_ratio,
                  const float              distance_exponent,
                  const float              upward_penalization,
-                 const std::vector<Path> &existing_streams)
+                 const std::vector<Path> &existing_streams,
+                 const int                valley_radius,
+                 const float              valley_factor)
 {
   if (!validate_non_empty(z)) return Path();
 
@@ -84,23 +86,22 @@ Path flow_stream(const Array             &z,
     }
   }
 
-  // if favoring existing streams, adjust effective elevation along streams
-  // to attract new flow paths into existing beds
-  Array z_work = z;
+  // if favoring existing streams, compute node cost multipliers directly
+  // to attract new flow paths into existing riverbeds without modifying z
+  Array  weights;
+  Array *p_weights = nullptr;
 
   if (!existing_streams.empty())
   {
+    weights = Array(shape, 1.0f);
+
     float z_min = z.min();
     float z_max = z.max();
     float z_range = std::max(1e-4f, z_max - z_min);
-    float base_depression = 0.15f * z_range;
 
     for (const auto &stream : existing_streams)
     {
       if (stream.empty()) continue;
-
-      // propagate monotonic downstream depression along stream
-      float curr_dep = base_depression;
 
       for (size_t k = 0; k < stream.size(); ++k)
       {
@@ -113,26 +114,30 @@ Path flow_stream(const Array             &z,
             0,
             shape.y - 1);
 
-        // widen the valley (radius 2) so approaching paths feel the gradient
-        for (int di = -2; di <= 2; ++di)
+        auto stamp_attraction = [&](int ci, int cj)
         {
-          for (int dj = -2; dj <= 2; ++dj)
+          for (int di = -valley_radius; di <= valley_radius; ++di)
           {
-            int ci = pi + di;
-            int cj = pj + dj;
-
-            if (ci >= 0 && ci < shape.x && cj >= 0 && cj < shape.y)
+            for (int dj = -valley_radius; dj <= valley_radius; ++dj)
             {
-              float d = std::sqrt(static_cast<float>(di * di + dj * dj));
-              if (d <= 2.f)
+              int ni = ci + di;
+              int nj = cj + dj;
+
+              if (ni >= 0 && ni < shape.x && nj >= 0 && nj < shape.y)
               {
-                float factor = 1.f - 0.35f * d;
-                z_work(ci, cj) = std::min(z_work(ci, cj),
-                                          z(ci, cj) - curr_dep * factor);
+                float d = std::sqrt(static_cast<float>(di * di + dj * dj));
+                if (d <= static_cast<float>(valley_radius))
+                {
+                  float falloff = std::max(0.f, 1.f - valley_factor * d);
+                  float w = std::max(0.01f, 1.f - 0.9f * falloff);
+                  weights(ni, nj) = std::min(weights(ni, nj), w);
+                }
               }
             }
           }
-        }
+        };
+
+        stamp_attraction(pi, pj);
 
         if (k + 1 < stream.size())
         {
@@ -161,59 +166,42 @@ Path flow_stream(const Array             &z,
                 0,
                 shape.y - 1);
 
-            for (int rdi = -2; rdi <= 2; ++rdi)
-            {
-              for (int rdj = -2; rdj <= 2; ++rdj)
-              {
-                int ni = ci + rdi;
-                int nj = cj + rdj;
-
-                if (ni >= 0 && ni < shape.x && nj >= 0 && nj < shape.y)
-                {
-                  float d = std::sqrt(
-                      static_cast<float>(rdi * rdi + rdj * rdj));
-                  if (d <= 2.f)
-                  {
-                    float factor = 1.f - 0.35f * d;
-                    z_work(ni, nj) = std::min(z_work(ni, nj),
-                                              z(ni, nj) - curr_dep * factor);
-                  }
-                }
-              }
-            }
+            stamp_attraction(ci, cj);
           }
         }
-
-        // downstream points are progressively deeper
-        curr_dep += 0.002f * z_range;
       }
     }
+
+    p_weights = &weights;
   }
 
   std::vector<std::vector<int>> i_path_list;
   std::vector<std::vector<int>> j_path_list;
 
-  find_path_dijkstra(z_work,
+  find_path_dijkstra(z,
                      ij_start,
                      ij_exits,
                      i_path_list,
                      j_path_list,
                      elevation_ratio,
                      distance_exponent,
-                     upward_penalization);
+                     upward_penalization,
+                     nullptr,
+                     p_weights);
 
-  // keep the path with the minimum upward cumulated elevation
-  size_t       kmin = 0;
-  float        dz_cum_min = std::numeric_limits<float>::max();
-  const Array &z_eval = existing_streams.empty() ? z : z_work;
+  // keep the path with the minimum upward cumulated elevation on z
+  size_t kmin = 0;
+  float  dz_cum_min = std::numeric_limits<float>::max();
 
   for (size_t k = 0; k < i_path_list.size(); k++)
   {
+    if (i_path_list[k].empty()) continue;
+
     float dz_cum = 0.f;
     for (size_t r = 0; r < i_path_list[k].size() - 1; r++)
     {
-      float dz = z_eval(i_path_list[k][r + 1], j_path_list[k][r + 1]) -
-                 z_eval(i_path_list[k][r], j_path_list[k][r]);
+      float dz = z(i_path_list[k][r + 1], j_path_list[k][r + 1]) -
+                 z(i_path_list[k][r], j_path_list[k][r]);
       if (dz > 0.f) dz_cum += dz;
     }
 
@@ -223,6 +211,8 @@ Path flow_stream(const Array             &z,
       kmin = k;
     }
   }
+
+  if (i_path_list.empty() || i_path_list[kmin].empty()) return Path();
 
   // output as a Path object (assuming a unit square bounding box)
   size_t             npts = i_path_list[kmin].size();
@@ -246,7 +236,9 @@ Path flow_stream(const TerrainTriMesh    &mesh,
                  float                    distance_exponent,
                  float                    upward_penalization,
                  bool                     favor_domain_center,
-                 const std::vector<Path> &existing_streams)
+                 const std::vector<Path> &existing_streams,
+                 float                    valley_radius,
+                 float                    valley_factor)
 {
   if (mesh.size() == 0) return Path();
 
@@ -275,7 +267,9 @@ Path flow_stream(const TerrainTriMesh    &mesh,
                      distance_exponent,
                      upward_penalization,
                      favor_domain_center,
-                     existing_streams);
+                     existing_streams,
+                     valley_radius,
+                     valley_factor);
 }
 
 Path flow_stream(const TerrainTriMesh    &mesh,
@@ -284,7 +278,9 @@ Path flow_stream(const TerrainTriMesh    &mesh,
                  float                    distance_exponent,
                  float                    upward_penalization,
                  bool                     favor_domain_center,
-                 const std::vector<Path> &existing_streams)
+                 const std::vector<Path> &existing_streams,
+                 float                    valley_radius,
+                 float                    valley_factor)
 {
   if (mesh.size() == 0 || start_vertex_index >= mesh.size()) return Path();
 
@@ -353,37 +349,34 @@ Path flow_stream(const TerrainTriMesh    &mesh,
     exits = convex_hull;
   }
 
-  // if favoring existing streams, adjust mesh vertex heights along existing
-  // streams
-  TerrainTriMesh mesh_work = mesh;
+  // --- Compute shortest paths using TerrainTriMesh hydrological metric
+
+  TerrainTriMesh::MeshPathCostConfig config;
+  config.metric = TerrainTriMesh::MeshPathCostConfig::Metric::HYDROLOGICAL;
+  config.elevation_ratio = elevation_ratio;
+  config.distance_exponent = distance_exponent;
+  config.upward_penalization = upward_penalization;
+  config.domain_center_weight = favor_domain_center ? 1.f : 0.f;
 
   if (!existing_streams.empty())
   {
-    std::vector<glm::vec3> pts_work = points;
-    float                  z_min = std::numeric_limits<float>::max();
-    float                  z_max = std::numeric_limits<float>::lowest();
+    config.vertex_cost_multipliers.assign(points.size(), 1.0f);
 
-    for (const auto &p : points)
-    {
-      z_min = std::min(z_min, p.z);
-      z_max = std::max(z_max, p.z);
-    }
-
-    float z_range = std::max(1e-4f, z_max - z_min);
-    float depression = 0.05f * z_range;
+    float thresh = valley_radius;
+    float thresh2 = thresh * thresh;
 
     for (const auto &stream : existing_streams)
     {
       if (stream.empty()) continue;
 
-      for (size_t i = 0; i < pts_work.size(); ++i)
+      for (size_t i = 0; i < points.size(); ++i)
       {
         float min_d2 = std::numeric_limits<float>::max();
 
         for (size_t k = 0; k < stream.size(); ++k)
         {
-          float dx = pts_work[i].x - stream[k].x;
-          float dy = pts_work[i].y - stream[k].y;
+          float dx = points[i].x - stream[k].x;
+          float dy = points[i].y - stream[k].y;
           float d2 = dx * dx + dy * dy;
 
           if (d2 < min_d2) min_d2 = d2;
@@ -396,43 +389,35 @@ Path flow_stream(const TerrainTriMesh    &mesh,
 
             if (seg_len2 > 1e-12f)
             {
-              float t = ((pts_work[i].x - stream[k].x) * sx +
-                         (pts_work[i].y - stream[k].y) * sy) /
+              float t = ((points[i].x - stream[k].x) * sx +
+                         (points[i].y - stream[k].y) * sy) /
                         seg_len2;
               t = std::clamp(t, 0.f, 1.f);
               float px = stream[k].x + t * sx;
               float py = stream[k].y + t * sy;
-              float dist2 = (pts_work[i].x - px) * (pts_work[i].x - px) +
-                            (pts_work[i].y - py) * (pts_work[i].y - py);
+              float dist2 = (points[i].x - px) * (points[i].x - px) +
+                            (points[i].y - py) * (points[i].y - py);
 
               if (dist2 < min_d2) min_d2 = dist2;
             }
           }
         }
 
-        // if vertex is within proximity of stream (approx 2% domain width)
-        float thresh = 0.02f;
-        if (min_d2 < thresh * thresh)
+        if (min_d2 < thresh2)
         {
-          float w = 1.f - std::sqrt(min_d2) / thresh;
-          pts_work[i].z -= depression * w;
+          float d = std::sqrt(min_d2);
+          float falloff = std::max(0.f,
+                                   1.f - (d / thresh) * valley_factor * 2.f);
+          float w = std::max(0.01f, 1.f - 0.9f * falloff);
+          config.vertex_cost_multipliers[i] = std::min(
+              config.vertex_cost_multipliers[i],
+              w);
         }
       }
     }
-
-    mesh_work.get_points() = pts_work;
   }
 
-  // --- Compute shortest paths using TerrainTriMesh hydrological metric
-
-  TerrainTriMesh::MeshPathCostConfig config;
-  config.metric = TerrainTriMesh::MeshPathCostConfig::Metric::HYDROLOGICAL;
-  config.elevation_ratio = elevation_ratio;
-  config.distance_exponent = distance_exponent;
-  config.upward_penalization = upward_penalization;
-  config.domain_center_weight = favor_domain_center ? 1.f : 0.f;
-
-  TerrainTriMesh::ShortestPathResult result = mesh_work.compute_shortest_paths(
+  TerrainTriMesh::ShortestPathResult result = mesh.compute_shortest_paths(
       start_vertex_index,
       config);
 
@@ -443,22 +428,18 @@ Path flow_stream(const TerrainTriMesh    &mesh,
 
   for (size_t exit_idx : exits)
   {
-    std::vector<size_t> path_indices = mesh_work.reconstruct_path(
-        start_vertex_index,
-        exit_idx,
-        result);
+    std::vector<size_t> path_indices = mesh.reconstruct_path(start_vertex_index,
+                                                             exit_idx,
+                                                             result);
 
     if (path_indices.empty()) continue;
 
-    // compute cumulative upward elevation along the path (using evaluated
-    // points)
-    const auto &eval_points = mesh_work.get_points();
-    float       cum_upward = 0.f;
+    // compute cumulative upward elevation along the path
+    float cum_upward = 0.f;
 
     for (size_t i = 0; i < path_indices.size() - 1; ++i)
     {
-      float dz = eval_points[path_indices[i + 1]].z -
-                 eval_points[path_indices[i]].z;
+      float dz = points[path_indices[i + 1]].z - points[path_indices[i]].z;
 
       if (dz > 0.f) cum_upward += dz;
     }
@@ -498,7 +479,9 @@ Path flow_stream(const ComputeMode       &cm,
                  float                    distance_exponent,
                  float                    upward_penalization,
                  bool                     favor_domain_center,
-                 const std::vector<Path> &existing_streams)
+                 const std::vector<Path> &existing_streams,
+                 float                    valley_radius,
+                 float                    valley_factor)
 {
   TerrainTriMesh mesh = va::generate_terrain_tri_mesh_from_heightmap_random(
       cm,
@@ -512,7 +495,9 @@ Path flow_stream(const ComputeMode       &cm,
                      distance_exponent,
                      upward_penalization,
                      favor_domain_center,
-                     existing_streams);
+                     existing_streams,
+                     valley_radius,
+                     valley_factor);
 }
 
 } // namespace hmap::va
