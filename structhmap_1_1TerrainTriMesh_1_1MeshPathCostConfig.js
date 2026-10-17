@@ -10,5 +10,6 @@ var structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig =
     [ "elevation_ratio", "structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig.html#a9c91dda4b33f7152939aafa0ca77ab4d", null ],
     [ "distance_exponent", "structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig.html#a51a7a21b3029516eb39be45b2d8b15f1", null ],
     [ "upward_penalization", "structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig.html#a1232bf5b364db44d55bf012e29066c3d", null ],
-    [ "domain_center_weight", "structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig.html#a9ac96f45efe81174ad5f2af359b2c9a8", null ]
+    [ "domain_center_weight", "structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig.html#a9ac96f45efe81174ad5f2af359b2c9a8", null ],
+    [ "vertex_cost_multipliers", "structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig.html#a1561cc505f3a15c4b819bb1a13f0bd83", null ]
 ];

@@ -148,13 +148,41 @@ e_{dist} $</formula> is <ref refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCost
         </inbodydescription>
         <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="166" column="11" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="166" bodyend="-1"/>
       </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_1a1561cc505f3a15c4b819bb1a13f0bd83" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt;float&gt; hmap::TerrainTriMesh::MeshPathCostConfig::vertex_cost_multipliers</definition>
+        <argsstring></argsstring>
+        <name>vertex_cost_multipliers</name>
+        <qualifiedname>hmap::TerrainTriMesh::MeshPathCostConfig::vertex_cost_multipliers</qualifiedname>
+        <initializer>= {}</initializer>
+        <briefdescription>
+<para>Optional per-vertex cost multipliers applied to incoming edge costs. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="171" column="17" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="171" bodyend="171"/>
+      </memberdef>
     </sectiondef>
     <briefdescription>
 <para>Configuration for shortest-path edge costs and heuristics. </para>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="104" column="3" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="105" bodyend="167"/>
+    <collaborationgraph>
+      <node id="1">
+        <label>hmap::TerrainTriMesh::MeshPathCostConfig</label>
+        <link refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>vertex_cost_multipliers</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>std::vector&lt; float &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="104" column="3" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="105" bodyend="172"/>
     <listofallmembers>
       <member refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_1a51a7a21b3029516eb39be45b2d8b15f1" prot="public" virt="non-virtual"><scope>hmap::TerrainTriMesh::MeshPathCostConfig</scope><name>distance_exponent</name></member>
       <member refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_1a9ac96f45efe81174ad5f2af359b2c9a8" prot="public" virt="non-virtual"><scope>hmap::TerrainTriMesh::MeshPathCostConfig</scope><name>domain_center_weight</name></member>
@@ -163,6 +191,7 @@ e_{dist} $</formula> is <ref refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCost
       <member refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_1a273ae8b085bc1309827cb47afdc2ea9a" prot="public" virt="non-virtual"><scope>hmap::TerrainTriMesh::MeshPathCostConfig</scope><name>Metric</name></member>
       <member refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_1aa2e00e48af26fe6bbd9c8513e95c929e" prot="public" virt="non-virtual"><scope>hmap::TerrainTriMesh::MeshPathCostConfig</scope><name>metric</name></member>
       <member refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_1a1232bf5b364db44d55bf012e29066c3d" prot="public" virt="non-virtual"><scope>hmap::TerrainTriMesh::MeshPathCostConfig</scope><name>upward_penalization</name></member>
+      <member refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_1a1561cc505f3a15c4b819bb1a13f0bd83" prot="public" virt="non-virtual"><scope>hmap::TerrainTriMesh::MeshPathCostConfig</scope><name>vertex_cost_multipliers</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

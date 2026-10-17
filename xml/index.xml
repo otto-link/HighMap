@@ -826,6 +826,7 @@
     <member refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_1a51a7a21b3029516eb39be45b2d8b15f1" kind="variable"><name>distance_exponent</name></member>
     <member refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_1a1232bf5b364db44d55bf012e29066c3d" kind="variable"><name>upward_penalization</name></member>
     <member refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_1a9ac96f45efe81174ad5f2af359b2c9a8" kind="variable"><name>domain_center_weight</name></member>
+    <member refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_1a1561cc505f3a15c4b819bb1a13f0bd83" kind="variable"><name>vertex_cost_multipliers</name></member>
   </compound>
   <compound refid="structhmap_1_1MiseParams" kind="struct"><name>hmap::MiseParams</name>
     <member refid="structhmap_1_1MiseParams_1a022506912199ad2fe033d6277097ba95" kind="variable"><name>strength</name></member>
@@ -2392,9 +2393,9 @@
     <member refid="namespacehmap_1a397d5d081862e6eca1551acfe0198624" kind="function"><name>flow_fixing_mst_paths</name></member>
     <member refid="namespacehmap_1ab0fe57b3afd4499d08c362d8acd5f6f9" kind="function"><name>flow_fixing_mst_paths</name></member>
     <member refid="namespacehmap_1a5fbbe4a3db33c7783faa794c3051ddb4" kind="function"><name>flow_fixing_mst_triangulated</name></member>
-    <member refid="namespacehmap_1ada1af89f3e34eb4ceb13e176a1b819c2" kind="function"><name>flow_stream</name></member>
-    <member refid="namespacehmap_1ae0d87f762b7f25f717cebc3ccf2ca667" kind="function"><name>flow_stream</name></member>
-    <member refid="namespacehmap_1ab41c1a4c6149f555e6b18860946327b2" kind="function"><name>flow_stream</name></member>
+    <member refid="namespacehmap_1ae77188f3668f0b48ba3be10f18d72930" kind="function"><name>flow_stream</name></member>
+    <member refid="namespacehmap_1a3d1096567ff6860a24234523c6ba75ce" kind="function"><name>flow_stream</name></member>
+    <member refid="namespacehmap_1aa12f5f683cdbf4068ce715f84a895c39" kind="function"><name>flow_stream</name></member>
     <member refid="namespacehmap_1a30d55fae5c75a1c45a005a3f9a9467eb" kind="function"><name>generate_riverbed</name></member>
     <member refid="namespacehmap_1a64fbc0261e13ea842762efd3ac6bcc53" kind="function"><name>merge_water_depths</name></member>
     <member refid="namespacehmap_1a78419f7981186b40c4a2d04456e4e63f" kind="function"><name>snow_melting_map</name></member>
@@ -2749,10 +2750,10 @@
     <member refid="namespacehmap_1ad1515214ffa088f61ffc374b68d670f8" kind="function"><name>find_cut_path_dijkstra</name></member>
     <member refid="namespacehmap_1a2c463175bb90319f83de452c2b55ac2b" kind="function"><name>find_cut_path_midpoint</name></member>
     <member refid="namespacehmap_1a3e877482c194619d1bf1dc398766fe66" kind="function"><name>find_cut_path_multiscale</name></member>
-    <member refid="namespacehmap_1a812ed2264582321318f8f731d621f7bb" kind="function"><name>find_path_dijkstra</name></member>
-    <member refid="namespacehmap_1abe9f271f1c9b55a7bf910020da4023a0" kind="function"><name>find_path_dijkstra</name></member>
-    <member refid="namespacehmap_1add63dbb83ccbeb2509ace508f4c391ea" kind="function"><name>find_path_dijkstra</name></member>
-    <member refid="namespacehmap_1aa4fe84200d088c3bc24637ebc369c0cc" kind="function"><name>find_path_dijkstra</name></member>
+    <member refid="namespacehmap_1ada562827a55a9d58e5fda3aee355eb2c" kind="function"><name>find_path_dijkstra</name></member>
+    <member refid="namespacehmap_1a2a890c5d4fc9c8f55ed89b881c380617" kind="function"><name>find_path_dijkstra</name></member>
+    <member refid="namespacehmap_1abc177c4e25817f2a86f3814bbc634055" kind="function"><name>find_path_dijkstra</name></member>
+    <member refid="namespacehmap_1a3a59b180b92f9ddfea9b868bc3228648" kind="function"><name>find_path_dijkstra</name></member>
     <member refid="namespacehmap_1a6ade30d7f5f6b02e1640bea9c83d05e3" kind="function"><name>find_path_midpoint</name></member>
     <member refid="namespacehmap_1a33015bc241088e037e8391af53e4d505" kind="function"><name>find_path_midpoint</name></member>
     <member refid="namespacehmap_1ae465d3491106270fa271f3b5e33f7fed" kind="function"><name>find_path_midpoint</name></member>
@@ -3247,7 +3248,7 @@
     <member refid="namespacehmap_1_1va_1ae8000dce23f7622c2ba67910124bc353" kind="function"><name>flooding_lake_system</name></member>
     <member refid="namespacehmap_1_1va_1a050c3c7ecc102d86f566bf55b3a72c51" kind="function"><name>flow_fixing_mst_paths</name></member>
     <member refid="namespacehmap_1_1va_1a79c8b1b0f1447fcb8f94f6e2cec8788b" kind="function"><name>flow_fixing_mst_triangulated</name></member>
-    <member refid="namespacehmap_1_1va_1a08c36b568fb373531e8c7775809824ce" kind="function"><name>flow_stream</name></member>
+    <member refid="namespacehmap_1_1va_1ae96791c923c72b30f564cce4169f02e0" kind="function"><name>flow_stream</name></member>
     <member refid="namespacehmap_1_1va_1abfb98fdd47bd2a66e694c03765bf74af" kind="function"><name>seed_rock_field</name></member>
     <member refid="namespacehmap_1_1va_1afa19680ed9583277c2fb76daa95bfa96" kind="function"><name>find_cut_path_dijkstra</name></member>
     <member refid="namespacehmap_1_1va_1a996f3a9161ae2f85e2ef1d257dd43349" kind="function"><name>find_path_dijkstra</name></member>

@@ -11542,7 +11542,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/coastal_fetch.cpp" line="17" column="7" bodyfile="HighMap/src/hydrology/coastal_fetch.cpp" bodystart="17" bodyend="44" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1120" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/coastal_fetch.cpp" line="17" column="7" bodyfile="HighMap/src/hydrology/coastal_fetch.cpp" bodystart="17" bodyend="44" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1138" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1ad20345f6e15426e0b6a150a1fd9e4bfa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -11672,7 +11672,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/coastal_fetch.cpp" line="46" column="7" bodyfile="HighMap/src/hydrology/coastal_fetch.cpp" bodystart="46" bodyend="78" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1154" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/coastal_fetch.cpp" line="46" column="7" bodyfile="HighMap/src/hydrology/coastal_fetch.cpp" bodystart="46" bodyend="78" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1172" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a1ac328bd9a69f8737550a131d3f9c516" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -11728,7 +11728,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_accumulation_from_velocity_field.cpp" line="16" column="7" bodyfile="HighMap/src/hydrology/flow_accumulation_from_velocity_field.cpp" bodystart="16" bodyend="46" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1173" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/flow_accumulation_from_velocity_field.cpp" line="16" column="7" bodyfile="HighMap/src/hydrology/flow_accumulation_from_velocity_field.cpp" bodystart="16" bodyend="46" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1191" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1ae164e4dd12c68718bb1cc85ee2b2aad1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -11767,7 +11767,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_accumulation_stochastic_gpu.cpp" line="19" column="7" bodyfile="HighMap/src/hydrology/flow_accumulation_stochastic_gpu.cpp" bodystart="19" bodyend="73" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1181" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/flow_accumulation_stochastic_gpu.cpp" line="19" column="7" bodyfile="HighMap/src/hydrology/flow_accumulation_stochastic_gpu.cpp" bodystart="19" bodyend="73" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1199" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1af794a4c54c3766ca86b7e4a06346ab91" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -11786,7 +11786,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_accumulation_d8_gpu.cpp" line="16" column="7" bodyfile="HighMap/src/hydrology/flow_accumulation_d8_gpu.cpp" bodystart="16" bodyend="32" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1188" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/flow_accumulation_d8_gpu.cpp" line="16" column="7" bodyfile="HighMap/src/hydrology/flow_accumulation_d8_gpu.cpp" bodystart="16" bodyend="32" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1206" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1aea15be4e56a0076b7cafb4435bf5b155" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -11983,7 +11983,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_simulation.cpp" line="34" column="7" bodyfile="HighMap/src/hydrology/flow_simulation.cpp" bodystart="34" bodyend="203" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1219" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/flow_simulation.cpp" line="34" column="7" bodyfile="HighMap/src/hydrology/flow_simulation.cpp" bodystart="34" bodyend="203" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1237" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1ab4a0a4e3cea15b07f864be30c7f1e44d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -12128,7 +12128,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_simulation.cpp" line="205" column="7" bodyfile="HighMap/src/hydrology/flow_simulation.cpp" bodystart="205" bodyend="281" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1252" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/flow_simulation.cpp" line="205" column="7" bodyfile="HighMap/src/hydrology/flow_simulation.cpp" bodystart="205" bodyend="281" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1270" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a129b54789c706428d04afd91d5eb8ae6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -12216,7 +12216,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/generate_riverbed_gpu.cpp" line="20" column="7" bodyfile="HighMap/src/hydrology/generate_riverbed_gpu.cpp" bodystart="20" bodyend="90" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1264" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/generate_riverbed_gpu.cpp" line="20" column="7" bodyfile="HighMap/src/hydrology/generate_riverbed_gpu.cpp" bodystart="20" bodyend="90" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1282" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1ab2b13ab0053ffacaf2d2da56a59f1781" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -12493,7 +12493,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/snow_simulation.cpp" line="90" column="7" bodyfile="HighMap/src/hydrology/snow_simulation.cpp" bodystart="90" bodyend="211" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1314" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/snow_simulation.cpp" line="90" column="7" bodyfile="HighMap/src/hydrology/snow_simulation.cpp" bodystart="90" bodyend="211" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1332" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a687d85d20bee065ffabeecea9124f432" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -12593,7 +12593,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/water_depth.cpp" line="369" column="6" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="369" bodyend="411" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1345" declcolumn="6"/>
+        <location file="HighMap/src/hydrology/water_depth.cpp" line="369" column="6" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="369" bodyend="411" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1363" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a4b9ba3dd7bc6c093329b262fd4ca8f6c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -12621,7 +12621,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/water_depth.cpp" line="438" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="438" bodyend="468" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1353" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/water_depth.cpp" line="438" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="438" bodyend="468" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1371" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a703eaf095338c94f1b6589a5b8a650fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -12659,7 +12659,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/water_depth.cpp" line="413" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="413" bodyend="436" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1358" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/water_depth.cpp" line="413" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="413" bodyend="436" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1376" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1ac6263cc13b02f77fddd917b8fe4f2662" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>

@@ -9,6 +9,16 @@ Configuration for shortest-\/path edge costs and heuristics.
 
 {\ttfamily \#include $<$terrain\+\_\+tri\+\_\+mesh.\+hpp$>$}
 
+
+
+Collaboration diagram for hmap\+::Terrain\+Tri\+Mesh\+::Mesh\+Path\+Cost\+Config\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=259pt]{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig__coll__graph}
+\end{center}
+\end{figure}
 \doxysubsubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
@@ -31,7 +41,9 @@ float \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a51a7a
 float \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a1232bf5b364db44d55bf012e29066c3d}{upward\+\_\+penalization}} = 100.\+0f
 \begin{DoxyCompactList}\small\item\em Penalty multiplier for uphill steps in HYDROLOGICAL mode. \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a9ac96f45efe81174ad5f2af359b2c9a8}{domain\+\_\+center\+\_\+weight}} = 0.\+0f
-\begin{DoxyCompactList}\small\item\em Additional penalty favoring paths passing through the center of the domain. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Additional penalty favoring paths passing through the center of the domain. \end{DoxyCompactList}\item 
+std\+::vector$<$ float $>$ \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a1561cc505f3a15c4b819bb1a13f0bd83}{vertex\+\_\+cost\+\_\+multipliers}} = \{\}
+\begin{DoxyCompactList}\small\item\em Optional per-\/vertex cost multipliers applied to incoming edge costs. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -127,7 +139,17 @@ Penalty multiplier for uphill steps in HYDROLOGICAL mode.
 
 Additional penalty favoring paths passing through the center of the domain. 
 
-Adds $ w_{center} \cdot (1 - 2 \cdot d_{border}) $ to the edge cost. 
+Adds $ w_{center} \cdot (1 - 2 \cdot d_{border}) $ to the edge cost. \Hypertarget{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a1561cc505f3a15c4b819bb1a13f0bd83}\label{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a1561cc505f3a15c4b819bb1a13f0bd83} 
+\index{hmap::TerrainTriMesh::MeshPathCostConfig@{hmap::TerrainTriMesh::MeshPathCostConfig}!vertex\_cost\_multipliers@{vertex\_cost\_multipliers}}
+\index{vertex\_cost\_multipliers@{vertex\_cost\_multipliers}!hmap::TerrainTriMesh::MeshPathCostConfig@{hmap::TerrainTriMesh::MeshPathCostConfig}}
+\doxysubsubsection{\texorpdfstring{vertex\_cost\_multipliers}{vertex\_cost\_multipliers}}
+{\footnotesize\ttfamily std\+::vector$<$float$>$ hmap\+::\+Terrain\+Tri\+Mesh\+::\+Mesh\+Path\+Cost\+Config\+::vertex\+\_\+cost\+\_\+multipliers = \{\}}
+
+
+
+Optional per-\/vertex cost multipliers applied to incoming edge costs. 
+
+
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

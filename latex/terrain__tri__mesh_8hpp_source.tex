@@ -109,187 +109,189 @@
 \DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a1232bf5b364db44d55bf012e29066c3d}{upward\_penalization}}\ =\ 100.0f;}
 \DoxyCodeLine{00158\ }
 \DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a9ac96f45efe81174ad5f2af359b2c9a8}{domain\_center\_weight}}\ =\ 0.0f;}
-\DoxyCodeLine{00167\ \ \ \};}
-\DoxyCodeLine{00168\ }
-\DoxyCodeLine{00169\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00171\ \ \ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_aae004ef70561e4d1e601f214ff109a1f}{TerrainTriMesh}}()\ =\ \textcolor{keywordflow}{default};}
-\DoxyCodeLine{00172\ }
-\DoxyCodeLine{00174\ \ \ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_aae004ef70561e4d1e601f214ff109a1f}{TerrainTriMesh}}(\textcolor{keyword}{const}\ std::vector<glm::vec3>\ \&ref\_points);}
-\DoxyCodeLine{00175\ }
-\DoxyCodeLine{00177\ \ \ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_aae004ef70561e4d1e601f214ff109a1f}{TerrainTriMesh}}(\textcolor{keyword}{const}\ std::vector<float>\ \&\mbox{\hyperlink{kd__tree_8cpp_a1f4ec255d3d8677a6cd9d6a9a6eb653b}{x}},}
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<float>\ \&\mbox{\hyperlink{kd__tree_8cpp_ad6f02b2c4d57d479201316e67c3103d3}{y}},}
-\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<float>\ \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}});}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00171\ \ \ \ \ std::vector<float>\ \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_a1561cc505f3a15c4b819bb1a13f0bd83}{vertex\_cost\_multipliers}}\ =\ \{\};}
+\DoxyCodeLine{00172\ \ \ \};}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00176\ \ \ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_aae004ef70561e4d1e601f214ff109a1f}{TerrainTriMesh}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00179\ \ \ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_aae004ef70561e4d1e601f214ff109a1f}{TerrainTriMesh}}(\textcolor{keyword}{const}\ std::vector<glm::vec3>\ \&ref\_points);}
 \DoxyCodeLine{00180\ }
-\DoxyCodeLine{00182\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a2b764615c2ac8424ffe60469d7b68970}{triangulate\_delaunay}}();}
-\DoxyCodeLine{00183\ }
-\DoxyCodeLine{00185\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a9e62681c4e433aa980191f176ced7423}{compute\_neighbors}}();}
-\DoxyCodeLine{00186\ }
-\DoxyCodeLine{00188\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_aed32b7cd40a0e0bba5dd777a67fe692f}{compute\_gradients}}();}
-\DoxyCodeLine{00189\ }
-\DoxyCodeLine{00191\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a6974ff34df6b5184f513a17641591dd3}{relax\_xy}}(\textcolor{keywordtype}{float}\ lambda\ =\ 0.5f,}
-\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ iterations\ =\ 1,}
-\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ preserve\_chull\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00182\ \ \ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_aae004ef70561e4d1e601f214ff109a1f}{TerrainTriMesh}}(\textcolor{keyword}{const}\ std::vector<float>\ \&\mbox{\hyperlink{kd__tree_8cpp_a1f4ec255d3d8677a6cd9d6a9a6eb653b}{x}},}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<float>\ \&\mbox{\hyperlink{kd__tree_8cpp_ad6f02b2c4d57d479201316e67c3103d3}{y}},}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<float>\ \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}});}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00187\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a2b764615c2ac8424ffe60469d7b68970}{triangulate\_delaunay}}();}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00190\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a9e62681c4e433aa980191f176ced7423}{compute\_neighbors}}();}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00193\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_aed32b7cd40a0e0bba5dd777a67fe692f}{compute\_gradients}}();}
 \DoxyCodeLine{00194\ }
-\DoxyCodeLine{00196\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_ac5aa5f772fdcbb71c7a393b92c828b4d}{relax\_xyz}}(\textcolor{keywordtype}{float}\ lambda\ =\ 0.5f,}
-\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ iterations\ =\ 1,}
-\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ preserve\_chull\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00196\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a6974ff34df6b5184f513a17641591dd3}{relax\_xy}}(\textcolor{keywordtype}{float}\ lambda\ =\ 0.5f,}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ iterations\ =\ 1,}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ preserve\_chull\ =\ \textcolor{keyword}{true});}
 \DoxyCodeLine{00199\ }
-\DoxyCodeLine{00201\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_aa3788669edfb1f96c24b6ec24096b570}{relax\_xyz\_taubin}}(\textcolor{keywordtype}{float}\ lambda\ =\ 0.5f,}
-\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ mu\ =\ -\/0.55f,}
-\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ iterations\ =\ 1,}
-\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ preserve\_chull\ =\ \textcolor{keyword}{true});}
-\DoxyCodeLine{00205\ }
-\DoxyCodeLine{00207\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_af46c5c65cea973438ba11a2a8fae5135}{remap\_z}}(\textcolor{keywordtype}{float}\ vmin\ =\ 0.f,\ \textcolor{keywordtype}{float}\ vmax\ =\ 1.f);}
-\DoxyCodeLine{00208\ }
-\DoxyCodeLine{00210\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a294e7c2d93fad24a25300028fe3937b3}{slope\_limiter}}(\textcolor{keywordtype}{float}\ max\_slope,\ \textcolor{keywordtype}{int}\ iterations\ =\ 10,\ \textcolor{keywordtype}{float}\ sigma\ =\ 0.1f);}
-\DoxyCodeLine{00211\ }
-\DoxyCodeLine{00213\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a294e7c2d93fad24a25300028fe3937b3}{slope\_limiter}}(\textcolor{keyword}{const}\ std::vector<float>\ \&max\_slope,}
-\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ iterations\ =\ 10,}
-\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sigma\ =\ 0.1f);}
+\DoxyCodeLine{00201\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_ac5aa5f772fdcbb71c7a393b92c828b4d}{relax\_xyz}}(\textcolor{keywordtype}{float}\ lambda\ =\ 0.5f,}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ iterations\ =\ 1,}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ preserve\_chull\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00206\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_aa3788669edfb1f96c24b6ec24096b570}{relax\_xyz\_taubin}}(\textcolor{keywordtype}{float}\ lambda\ =\ 0.5f,}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ mu\ =\ -\/0.55f,}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ iterations\ =\ 1,}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ preserve\_chull\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00212\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_af46c5c65cea973438ba11a2a8fae5135}{remap\_z}}(\textcolor{keywordtype}{float}\ vmin\ =\ 0.f,\ \textcolor{keywordtype}{float}\ vmax\ =\ 1.f);}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00215\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a294e7c2d93fad24a25300028fe3937b3}{slope\_limiter}}(\textcolor{keywordtype}{float}\ max\_slope,\ \textcolor{keywordtype}{int}\ iterations\ =\ 10,\ \textcolor{keywordtype}{float}\ sigma\ =\ 0.1f);}
 \DoxyCodeLine{00216\ }
-\DoxyCodeLine{00218\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a8fa381ce42de945e2aff8944e2061def}{subdivise}}();}
-\DoxyCodeLine{00219\ }
-\DoxyCodeLine{00221\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a3da697b9cfb9dc0c8b6ff8f5759021c4}{barycentric}}(\textcolor{keyword}{const}\ glm::vec2\ \&p,}
-\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sls__deformation_8cpp_a4ebb6d9fc740933a0f821517ed9af3e3}{i0}},}
-\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sls__deformation_8cpp_ac1148b6c7c73300331ae93335f42241d}{i1}},}
-\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ i2,}
-\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \&w0,}
-\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \&w1,}
-\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \&w2)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00228\ }
-\DoxyCodeLine{00230\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_ae5d88ed0cc61c8606bed76faabb77e11}{find\_triangle}}(\textcolor{keyword}{const}\ glm::vec2\ \&p,}
-\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ start\_tri\ =\ 0,}
-\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ linear\_search\ =\ \textcolor{keyword}{false})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00218\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a294e7c2d93fad24a25300028fe3937b3}{slope\_limiter}}(\textcolor{keyword}{const}\ std::vector<float>\ \&max\_slope,}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ iterations\ =\ 10,}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sigma\ =\ 0.1f);}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00223\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a8fa381ce42de945e2aff8944e2061def}{subdivise}}();}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00226\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a3da697b9cfb9dc0c8b6ff8f5759021c4}{barycentric}}(\textcolor{keyword}{const}\ glm::vec2\ \&p,}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sls__deformation_8cpp_a4ebb6d9fc740933a0f821517ed9af3e3}{i0}},}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sls__deformation_8cpp_ac1148b6c7c73300331ae93335f42241d}{i1}},}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ i2,}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \&w0,}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \&w1,}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \&w2)\ \textcolor{keyword}{const};}
 \DoxyCodeLine{00233\ }
-\DoxyCodeLine{00235\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a402e4d126734c83cc388c35736a35a6a}{neighbor\_triangle}}(\textcolor{keywordtype}{int}\ tri\_index,\ \textcolor{keywordtype}{int}\ edge\_index)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00236\ }
-\DoxyCodeLine{00238\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_ad5e0b4845eb75accda1f0348cbdfaf36}{interpolate\_z\_linear}}(\textcolor{keyword}{const}\ glm::vec2\ \&p,}
-\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \&last\_tri,}
-\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ fill\_value\ =\ 0.f)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00235\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_ae5d88ed0cc61c8606bed76faabb77e11}{find\_triangle}}(\textcolor{keyword}{const}\ glm::vec2\ \&p,}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ start\_tri\ =\ 0,}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ linear\_search\ =\ \textcolor{keyword}{false})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00240\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a402e4d126734c83cc388c35736a35a6a}{neighbor\_triangle}}(\textcolor{keywordtype}{int}\ tri\_index,\ \textcolor{keywordtype}{int}\ edge\_index)\ \textcolor{keyword}{const};}
 \DoxyCodeLine{00241\ }
-\DoxyCodeLine{00243\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a33b6043ea3e799f78bbc3417ae6b854e}{interpolate\_z\_linear\_gradient}}(\textcolor{keyword}{const}\ glm::vec2\ \&p,}
-\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \&last\_tri,}
-\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ fill\_value\ =\ 0.f,}
-\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ gradient\_scaling\ =\ 1.f)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00247\ }
-\DoxyCodeLine{00249\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a4a0a37653662a43fbe6ed9465ab39a82}{interpolate\_z\_nearest}}(\textcolor{keyword}{const}\ glm::vec2\ \&p)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00250\ }
-\DoxyCodeLine{00252\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_ad5966bc7d2b1181b936b34715940b3d8}{interpolate\_z\_nearest\_approx}}(\textcolor{keyword}{const}\ glm::vec2\ \&p,}
-\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \&last\_tri,}
-\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ fill\_value\ =\ 0.f)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00243\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_ad5e0b4845eb75accda1f0348cbdfaf36}{interpolate\_z\_linear}}(\textcolor{keyword}{const}\ glm::vec2\ \&p,}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \&last\_tri,}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ fill\_value\ =\ 0.f)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00248\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a33b6043ea3e799f78bbc3417ae6b854e}{interpolate\_z\_linear\_gradient}}(\textcolor{keyword}{const}\ glm::vec2\ \&p,}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \&last\_tri,}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ fill\_value\ =\ 0.f,}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ gradient\_scaling\ =\ 1.f)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00254\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a4a0a37653662a43fbe6ed9465ab39a82}{interpolate\_z\_nearest}}(\textcolor{keyword}{const}\ glm::vec2\ \&p)\ \textcolor{keyword}{const};}
 \DoxyCodeLine{00255\ }
-\DoxyCodeLine{00257\ \ \ \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1BoundingBox}{BoundingBox}}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_abe70758d6b941cbca110db0ac66f167c}{get\_bbox}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00258\ }
-\DoxyCodeLine{00260\ \ \ glm::vec2\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_afccd515255b6a315d9e519ce611f3be8}{get\_range\_z}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00261\ }
-\DoxyCodeLine{00263\ \ \ glm::vec3\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_af8810b7e06234e2da4dc91cccbce5c28}{get\_reference\_lengths}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00264\ }
-\DoxyCodeLine{00266\ \ \ std::vector<float>\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_aa9304abfd5841779b867001630112f75}{get\_vertex\_areas}}(\textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacehmap_a3d6212896d8cd828bd5bd827d24a0344}{normalized}})\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00267\ }
-\DoxyCodeLine{00269\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a3e9d39039a00946a48cac2b9afea937c}{get\_reference\_area\_xy}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00270\ }
-\DoxyCodeLine{00272\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a11aca8515dbf3f60d71d0debf5f4308f}{get\_reference\_area}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00273\ }
-\DoxyCodeLine{00275\ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a9dc6c3e9a3a765e3cd16f1f490da636a}{size}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00276\ }
-\DoxyCodeLine{00278\ \ \ \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1ShortestPathResult}{ShortestPathResult}}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a572d32bcabab1879831bcfc490bf5532}{compute\_shortest\_paths\_to\_hull}}(}
-\DoxyCodeLine{00279\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ use\_delta\_z\ =\ \textcolor{keyword}{false},}
-\DoxyCodeLine{00280\ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ elevation\_weight\ =\ 1.f)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00257\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_ad5966bc7d2b1181b936b34715940b3d8}{interpolate\_z\_nearest\_approx}}(\textcolor{keyword}{const}\ glm::vec2\ \&p,}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \&last\_tri,}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ fill\_value\ =\ 0.f)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00262\ \ \ \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1BoundingBox}{BoundingBox}}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_abe70758d6b941cbca110db0ac66f167c}{get\_bbox}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00265\ \ \ glm::vec2\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_afccd515255b6a315d9e519ce611f3be8}{get\_range\_z}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00268\ \ \ glm::vec3\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_af8810b7e06234e2da4dc91cccbce5c28}{get\_reference\_lengths}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00271\ \ \ std::vector<float>\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_aa9304abfd5841779b867001630112f75}{get\_vertex\_areas}}(\textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacehmap_a3d6212896d8cd828bd5bd827d24a0344}{normalized}})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00274\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a3e9d39039a00946a48cac2b9afea937c}{get\_reference\_area\_xy}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00277\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a11aca8515dbf3f60d71d0debf5f4308f}{get\_reference\_area}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00280\ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a9dc6c3e9a3a765e3cd16f1f490da636a}{size}}()\ \textcolor{keyword}{const};}
 \DoxyCodeLine{00281\ }
-\DoxyCodeLine{00283\ \ \ \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1ShortestPathResult}{ShortestPathResult}}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a0ba71147927a2addb0e22a310691b8c3}{compute\_shortest\_paths}}(}
-\DoxyCodeLine{00284\ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<std::pair<size\_t,\ float>>\ \&sources,}
-\DoxyCodeLine{00285\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig}{MeshPathCostConfig}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&config)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00283\ \ \ \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1ShortestPathResult}{ShortestPathResult}}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a572d32bcabab1879831bcfc490bf5532}{compute\_shortest\_paths\_to\_hull}}(}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ use\_delta\_z\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ elevation\_weight\ =\ 1.f)\ \textcolor{keyword}{const};}
 \DoxyCodeLine{00286\ }
 \DoxyCodeLine{00288\ \ \ \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1ShortestPathResult}{ShortestPathResult}}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a0ba71147927a2addb0e22a310691b8c3}{compute\_shortest\_paths}}(}
-\DoxyCodeLine{00289\ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ start,}
-\DoxyCodeLine{00290\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig}{MeshPathCostConfig}}\ \&config)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<std::pair<size\_t,\ float>>\ \&sources,}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig}{MeshPathCostConfig}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&config)\ \textcolor{keyword}{const};}
 \DoxyCodeLine{00291\ }
 \DoxyCodeLine{00293\ \ \ \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1ShortestPathResult}{ShortestPathResult}}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a0ba71147927a2addb0e22a310691b8c3}{compute\_shortest\_paths}}(}
-\DoxyCodeLine{00294\ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ start,}
-\DoxyCodeLine{00295\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ use\_delta\_z\ =\ \textcolor{keyword}{false},}
-\DoxyCodeLine{00296\ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ elevation\_weight\ =\ 1.f,}
-\DoxyCodeLine{00297\ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ domain\_center\_weight\ =\ 0.f)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00298\ }
-\DoxyCodeLine{00301\ \ \ std::vector<size\_t>\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_af0bc9d9d006e47ca2c0246cd98482e83}{shortest\_path}}(\textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ start,}
-\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end,}
-\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig}{MeshPathCostConfig}}\ \&config)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00304\ }
-\DoxyCodeLine{00306\ \ \ std::vector<size\_t>\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_af0bc9d9d006e47ca2c0246cd98482e83}{shortest\_path}}(\textcolor{keywordtype}{size\_t}\ start,}
-\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ end,}
-\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ use\_delta\_z\ =\ \textcolor{keyword}{false},}
-\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ elevation\_weight\ =\ 1.f,}
-\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ domain\_center\_weight\ =\ 0.f)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00311\ }
-\DoxyCodeLine{00314\ \ \ std::vector<size\_t>\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a517bba7785f15c38e91a5a4742122968}{reconstruct\_path}}(\textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ start,}
-\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end,}
-\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1ShortestPathResult}{ShortestPathResult}}\ \&result)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00317\ }
-\DoxyCodeLine{00319\ \ \ std::vector<size\_t>\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_ad7c875682dd45ac1626bdfe6046fc5ca}{path\_to\_hull}}(\textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ start,}
-\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1ShortestPathResult}{ShortestPathResult}}\ \&result)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00321\ }
-\DoxyCodeLine{00323\ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_adcf186f3884969d2b85db0b2186b8d34}{pick\_mesh\_boundary\_vertex}}(\mbox{\hyperlink{namespacehmap_a1ba9d4ce7afe3309f8ae8e617f7154ee}{DomainBoundary}}\ boundary,}
-\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::uint32\_t\ \ seed\ =\ 0,}
-\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ favor\_boundary\_center\ =\ \textcolor{keyword}{true},}
-\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ favor\_lower\_elevation\ =\ \textcolor{keyword}{true},}
-\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ favor\_sinks\ =\ \textcolor{keyword}{true})\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00328\ }
-\DoxyCodeLine{00330\ \ \ \textcolor{keyword}{const}\ std::vector<glm::vec3>\ \&\mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a9702d210cd3c967a066eb5ae6919476b}{get\_points}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00331\ }
-\DoxyCodeLine{00333\ \ \ std::vector<glm::vec3>\ \&\mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a9702d210cd3c967a066eb5ae6919476b}{get\_points}}();}
-\DoxyCodeLine{00334\ }
-\DoxyCodeLine{00336\ \ \ \textcolor{keyword}{const}\ std::vector<Triangle>\ \&\mbox{\hyperlink{classhmap_1_1TerrainTriMesh_af3fc2aebc71077496e7d794005032887}{get\_triangles}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00337\ }
-\DoxyCodeLine{00339\ \ \ \textcolor{keyword}{const}\ std::vector<size\_t>\ \&\mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a023c617be776b6643ceccf8dd2ca22ec}{get\_convex\_hull}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00340\ }
-\DoxyCodeLine{00342\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1NeighborData}{NeighborData}}\ \&\mbox{\hyperlink{classhmap_1_1TerrainTriMesh_adab683cb7235023ccd24630f401f6755}{get\_neighbors}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00343\ }
-\DoxyCodeLine{00345\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_aff20c6cfb3730b3c55d6d1c803057bd3}{export\_obj}}(\textcolor{keyword}{const}\ std::string\ \&filepath)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00346\ }
-\DoxyCodeLine{00348\ \ \ std::string\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a20fa4640aa9133749e4089022836215a}{info\_string}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00349\ }
-\DoxyCodeLine{00351\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a5af9d302226d00078fba8f9e40183935}{print\_info}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00352\ }
-\DoxyCodeLine{00354\ \ \ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_ad6de466d12b0ab91718c494164087224}{to\_array}}(\textcolor{keyword}{const}\ glm::ivec2\ \ \ \ \ \ \ \ \ \&\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},}
-\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<float>\ \&\mbox{\hyperlink{sls__deformation_8cpp_aa3f9c59d276fad4520b1bf5012a8140f}{values}}\ =\ \{\},}
-\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ glm::vec4\ \ \ \ \ \ \ \ \ \ \&bbox\ =\ \{0.f,\ 1.f,\ 0.f,\ 1.f\})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ start,}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig}{MeshPathCostConfig}}\ \&config)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00298\ \ \ \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1ShortestPathResult}{ShortestPathResult}}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a0ba71147927a2addb0e22a310691b8c3}{compute\_shortest\_paths}}(}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ start,}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ use\_delta\_z\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ elevation\_weight\ =\ 1.f,}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ domain\_center\_weight\ =\ 0.f)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00306\ \ \ std::vector<size\_t>\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_af0bc9d9d006e47ca2c0246cd98482e83}{shortest\_path}}(\textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ start,}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end,}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig}{MeshPathCostConfig}}\ \&config)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00311\ \ \ std::vector<size\_t>\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_af0bc9d9d006e47ca2c0246cd98482e83}{shortest\_path}}(\textcolor{keywordtype}{size\_t}\ start,}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ end,}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ use\_delta\_z\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ elevation\_weight\ =\ 1.f,}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ domain\_center\_weight\ =\ 0.f)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00319\ \ \ std::vector<size\_t>\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a517bba7785f15c38e91a5a4742122968}{reconstruct\_path}}(\textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ start,}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end,}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1ShortestPathResult}{ShortestPathResult}}\ \&result)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00324\ \ \ std::vector<size\_t>\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_ad7c875682dd45ac1626bdfe6046fc5ca}{path\_to\_hull}}(\textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ start,}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1ShortestPathResult}{ShortestPathResult}}\ \&result)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00328\ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_adcf186f3884969d2b85db0b2186b8d34}{pick\_mesh\_boundary\_vertex}}(\mbox{\hyperlink{namespacehmap_a1ba9d4ce7afe3309f8ae8e617f7154ee}{DomainBoundary}}\ boundary,}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::uint32\_t\ \ seed\ =\ 0,}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ favor\_boundary\_center\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ favor\_lower\_elevation\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ favor\_sinks\ =\ \textcolor{keyword}{true})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00335\ \ \ \textcolor{keyword}{const}\ std::vector<glm::vec3>\ \&\mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a9702d210cd3c967a066eb5ae6919476b}{get\_points}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00338\ \ \ std::vector<glm::vec3>\ \&\mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a9702d210cd3c967a066eb5ae6919476b}{get\_points}}();}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00341\ \ \ \textcolor{keyword}{const}\ std::vector<Triangle>\ \&\mbox{\hyperlink{classhmap_1_1TerrainTriMesh_af3fc2aebc71077496e7d794005032887}{get\_triangles}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00344\ \ \ \textcolor{keyword}{const}\ std::vector<size\_t>\ \&\mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a023c617be776b6643ceccf8dd2ca22ec}{get\_convex\_hull}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00347\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structhmap_1_1TerrainTriMesh_1_1NeighborData}{NeighborData}}\ \&\mbox{\hyperlink{classhmap_1_1TerrainTriMesh_adab683cb7235023ccd24630f401f6755}{get\_neighbors}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00350\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_aff20c6cfb3730b3c55d6d1c803057bd3}{export\_obj}}(\textcolor{keyword}{const}\ std::string\ \&filepath)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00353\ \ \ std::string\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a20fa4640aa9133749e4089022836215a}{info\_string}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00356\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a5af9d302226d00078fba8f9e40183935}{print\_info}}()\ \textcolor{keyword}{const};}
 \DoxyCodeLine{00357\ }
-\DoxyCodeLine{00359\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a634da24b2586bfade4d89f53de17706e}{to\_csv}}(\textcolor{keyword}{const}\ std::string\ \&fname)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00360\ }
-\DoxyCodeLine{00361\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00362\ \ \ std::vector<glm::vec3>\ points;}
-\DoxyCodeLine{00363\ \ \ std::vector<Triangle>\ \ triangles;}
-\DoxyCodeLine{00364\ \ \ std::vector<size\_t>\ \ \ \ halfedges;}
-\DoxyCodeLine{00365\ \ \ std::vector<size\_t>\ \ \ \ convex\_hull;}
-\DoxyCodeLine{00366\ \ \ NeighborData\ \ \ \ \ \ \ \ \ \ \ neighbors;}
-\DoxyCodeLine{00367\ \ \ std::vector<glm::vec2>\ gradients;}
-\DoxyCodeLine{00368\ }
-\DoxyCodeLine{00369\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00370\ \ \ glm::vec2\ to\_xy(\textcolor{keyword}{const}\ glm::vec3\ \&p)\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00371\ \};}
-\DoxyCodeLine{00372\ }
-\DoxyCodeLine{00374\ std::vector<float>\ \mbox{\hyperlink{namespacehmap_a38c0a582a98d48f73f49f12ebf1b78f9}{cubic\_pulse}}(\textcolor{keyword}{const}\ TerrainTriMesh\ \&mesh);}
-\DoxyCodeLine{00375\ }
-\DoxyCodeLine{00377\ TerrainTriMesh\ \mbox{\hyperlink{namespacehmap_af9fdabd692817be603ff5c44e68ea619}{generate\_terrain\_tri\_mesh\_from\_heightmap}}(\textcolor{keyword}{const}\ Array\ \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},}
-\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ max\_error,}
-\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ max\_triangles\ =\ 0,}
-\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ max\_points\ =\ 0);}
-\DoxyCodeLine{00381\ }
-\DoxyCodeLine{00383\ TerrainTriMesh\ \mbox{\hyperlink{namespacehmap_a5078af3eb73fb47ab1aad6cc872ab29a}{generate\_terrain\_tri\_mesh\_from\_heightmap\_random}}(}
-\DoxyCodeLine{00384\ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},}
-\DoxyCodeLine{00385\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ control\_points\_count,}
-\DoxyCodeLine{00386\ \ \ \ \ std::uint32\_t\ seed);}
-\DoxyCodeLine{00387\ }
-\DoxyCodeLine{00388\ \}\ \textcolor{comment}{//\ namespace\ hmap}}
-\DoxyCodeLine{00389\ }
-\DoxyCodeLine{00390\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacehmap_1_1va}{hmap::va}}}
-\DoxyCodeLine{00391\ \{}
+\DoxyCodeLine{00359\ \ \ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_ad6de466d12b0ab91718c494164087224}{to\_array}}(\textcolor{keyword}{const}\ glm::ivec2\ \ \ \ \ \ \ \ \ \&\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::vector<float>\ \&\mbox{\hyperlink{sls__deformation_8cpp_aa3f9c59d276fad4520b1bf5012a8140f}{values}}\ =\ \{\},}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ glm::vec4\ \ \ \ \ \ \ \ \ \ \&bbox\ =\ \{0.f,\ 1.f,\ 0.f,\ 1.f\})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00364\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classhmap_1_1TerrainTriMesh_a634da24b2586bfade4d89f53de17706e}{to\_csv}}(\textcolor{keyword}{const}\ std::string\ \&fname)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00366\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00367\ \ \ std::vector<glm::vec3>\ points;}
+\DoxyCodeLine{00368\ \ \ std::vector<Triangle>\ \ triangles;}
+\DoxyCodeLine{00369\ \ \ std::vector<size\_t>\ \ \ \ halfedges;}
+\DoxyCodeLine{00370\ \ \ std::vector<size\_t>\ \ \ \ convex\_hull;}
+\DoxyCodeLine{00371\ \ \ NeighborData\ \ \ \ \ \ \ \ \ \ \ neighbors;}
+\DoxyCodeLine{00372\ \ \ std::vector<glm::vec2>\ gradients;}
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00374\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00375\ \ \ glm::vec2\ to\_xy(\textcolor{keyword}{const}\ glm::vec3\ \&p)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00376\ \};}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00379\ std::vector<float>\ \mbox{\hyperlink{namespacehmap_a38c0a582a98d48f73f49f12ebf1b78f9}{cubic\_pulse}}(\textcolor{keyword}{const}\ TerrainTriMesh\ \&mesh);}
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00382\ TerrainTriMesh\ \mbox{\hyperlink{namespacehmap_af9fdabd692817be603ff5c44e68ea619}{generate\_terrain\_tri\_mesh\_from\_heightmap}}(\textcolor{keyword}{const}\ Array\ \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ max\_error,}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ max\_triangles\ =\ 0,}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ max\_points\ =\ 0);}
+\DoxyCodeLine{00386\ }
+\DoxyCodeLine{00388\ TerrainTriMesh\ \mbox{\hyperlink{namespacehmap_a5078af3eb73fb47ab1aad6cc872ab29a}{generate\_terrain\_tri\_mesh\_from\_heightmap\_random}}(}
+\DoxyCodeLine{00389\ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},}
+\DoxyCodeLine{00390\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ control\_points\_count,}
+\DoxyCodeLine{00391\ \ \ \ \ std::uint32\_t\ seed);}
 \DoxyCodeLine{00392\ }
-\DoxyCodeLine{00394\ TerrainTriMesh\ \mbox{\hyperlink{namespacehmap_1_1va_ac5a99fc7607556be58fb75ae10125940}{generate\_terrain\_tri\_mesh\_from\_heightmap\_random}}(}
-\DoxyCodeLine{00395\ \ \ \ \ \textcolor{keyword}{const}\ ComputeMode\ \ \&cm,}
-\DoxyCodeLine{00396\ \ \ \ \ \textcolor{keyword}{const}\ VirtualArray\ \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},}
-\DoxyCodeLine{00397\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ control\_points\_count,}
-\DoxyCodeLine{00398\ \ \ \ \ std::uint32\_t\ \ \ \ \ \ \ seed);}
-\DoxyCodeLine{00399\ }
-\DoxyCodeLine{00400\ \}\ \textcolor{comment}{//\ namespace\ hmap::va}}
+\DoxyCodeLine{00393\ \}\ \textcolor{comment}{//\ namespace\ hmap}}
+\DoxyCodeLine{00394\ }
+\DoxyCodeLine{00395\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacehmap_1_1va}{hmap::va}}}
+\DoxyCodeLine{00396\ \{}
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00399\ TerrainTriMesh\ \mbox{\hyperlink{namespacehmap_1_1va_ac5a99fc7607556be58fb75ae10125940}{generate\_terrain\_tri\_mesh\_from\_heightmap\_random}}(}
+\DoxyCodeLine{00400\ \ \ \ \ \textcolor{keyword}{const}\ ComputeMode\ \ \&cm,}
+\DoxyCodeLine{00401\ \ \ \ \ \textcolor{keyword}{const}\ VirtualArray\ \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},}
+\DoxyCodeLine{00402\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ control\_points\_count,}
+\DoxyCodeLine{00403\ \ \ \ \ std::uint32\_t\ \ \ \ \ \ \ seed);}
+\DoxyCodeLine{00404\ }
+\DoxyCodeLine{00405\ \}\ \textcolor{comment}{//\ namespace\ hmap::va}}
 
 \end{DoxyCode}

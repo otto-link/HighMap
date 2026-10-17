@@ -2001,15 +2001,15 @@ Functions</h2></td></tr>
 <tr class="memitem:a5fbbe4a3db33c7783faa794c3051ddb4" id="r_a5fbbe4a3db33c7783faa794c3051ddb4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhmap_1_1Array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#a5fbbe4a3db33c7783faa794c3051ddb4">flow_fixing_mst_triangulated</a> (const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;<a class="el" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, size_t control_points_count=2048, std::uint32_t seed=0, float riverbed_talus=0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float elevation_ratio=0.95<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float distance_exponent=2.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float upward_penalization=0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float minimum_depth=1e-4<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float merging_distance=8.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, <a class="el" href="namespacehmap.html#a2affc745bc33b7555352665745741f90">RadialProfile</a> radial_profile=<a class="el" href="namespacehmap.html#a2affc745bc33b7555352665745741f90acedc11502bd1441e893fdc5a699b6d59">RadialProfile::RP_SMOOTHSTEP_UPPER</a>, float radial_profile_parameter=2.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, const <a class="el" href="classhmap_1_1Array.html">Array</a> *p_noise_r=nullptr)</td></tr>
 <tr class="memdesc:a5fbbe4a3db33c7783faa794c3051ddb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resolves flow sinks on a heightmap by computing an MST on a triangular mesh and carving the resulting river paths with trenching.  <br /></td></tr>
 <tr class="separator:a5fbbe4a3db33c7783faa794c3051ddb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada1af89f3e34eb4ceb13e176a1b819c2" id="r_ada1af89f3e34eb4ceb13e176a1b819c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhmap_1_1Path.html">Path</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#ada1af89f3e34eb4ceb13e176a1b819c2">flow_stream</a> (const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;<a class="el" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, const glm::ivec2 ij_start, const float elevation_ratio=0.5<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, const float distance_exponent=2.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, const float upward_penalization=100.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, const std::vector&lt; <a class="el" href="classhmap_1_1Path.html">Path</a> &gt; &amp;existing_streams={})</td></tr>
-<tr class="memdesc:ada1af89f3e34eb4ceb13e176a1b819c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the optimal flow path from a starting point to the boundary of a given elevation array.  <br /></td></tr>
-<tr class="separator:ada1af89f3e34eb4ceb13e176a1b819c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0d87f762b7f25f717cebc3ccf2ca667" id="r_ae0d87f762b7f25f717cebc3ccf2ca667"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhmap_1_1Path.html">Path</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#ae0d87f762b7f25f717cebc3ccf2ca667">flow_stream</a> (const <a class="el" href="classhmap_1_1TerrainTriMesh.html">TerrainTriMesh</a> &amp;mesh, size_t start_vertex_index, float elevation_ratio=0.5<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float distance_exponent=2.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float upward_penalization=100.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, bool favor_domain_center=false, const std::vector&lt; <a class="el" href="classhmap_1_1Path.html">Path</a> &gt; &amp;existing_streams={})</td></tr>
-<tr class="memdesc:ae0d87f762b7f25f717cebc3ccf2ca667"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the optimal flow path from a starting vertex to the boundary of a terrain triangular mesh.  <br /></td></tr>
-<tr class="separator:ae0d87f762b7f25f717cebc3ccf2ca667"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab41c1a4c6149f555e6b18860946327b2" id="r_ab41c1a4c6149f555e6b18860946327b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhmap_1_1Path.html">Path</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#ab41c1a4c6149f555e6b18860946327b2">flow_stream</a> (const <a class="el" href="classhmap_1_1TerrainTriMesh.html">TerrainTriMesh</a> &amp;mesh, glm::vec2 xy_start, float elevation_ratio=0.5<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float distance_exponent=2.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float upward_penalization=100.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, bool favor_domain_center=false, const std::vector&lt; <a class="el" href="classhmap_1_1Path.html">Path</a> &gt; &amp;existing_streams={})</td></tr>
-<tr class="memdesc:ab41c1a4c6149f555e6b18860946327b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the optimal flow path from starting 2D coordinates to the boundary of a terrain triangular mesh.  <br /></td></tr>
-<tr class="separator:ab41c1a4c6149f555e6b18860946327b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae77188f3668f0b48ba3be10f18d72930" id="r_ae77188f3668f0b48ba3be10f18d72930"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhmap_1_1Path.html">Path</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#ae77188f3668f0b48ba3be10f18d72930">flow_stream</a> (const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;<a class="el" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, const glm::ivec2 ij_start, const float elevation_ratio=0.5<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, const float distance_exponent=2.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, const float upward_penalization=100.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, const std::vector&lt; <a class="el" href="classhmap_1_1Path.html">Path</a> &gt; &amp;existing_streams={}, const int valley_radius=2, const float valley_factor=0.35<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>)</td></tr>
+<tr class="memdesc:ae77188f3668f0b48ba3be10f18d72930"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the optimal flow path from a starting point to the boundary of a given elevation array.  <br /></td></tr>
+<tr class="separator:ae77188f3668f0b48ba3be10f18d72930"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d1096567ff6860a24234523c6ba75ce" id="r_a3d1096567ff6860a24234523c6ba75ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhmap_1_1Path.html">Path</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#a3d1096567ff6860a24234523c6ba75ce">flow_stream</a> (const <a class="el" href="classhmap_1_1TerrainTriMesh.html">TerrainTriMesh</a> &amp;mesh, size_t start_vertex_index, float elevation_ratio=0.5<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float distance_exponent=2.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float upward_penalization=100.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, bool favor_domain_center=false, const std::vector&lt; <a class="el" href="classhmap_1_1Path.html">Path</a> &gt; &amp;existing_streams={}, float valley_radius=0.02<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float valley_factor=0.35<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>)</td></tr>
+<tr class="memdesc:a3d1096567ff6860a24234523c6ba75ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the optimal flow path from a starting vertex to the boundary of a terrain triangular mesh.  <br /></td></tr>
+<tr class="separator:a3d1096567ff6860a24234523c6ba75ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa12f5f683cdbf4068ce715f84a895c39" id="r_aa12f5f683cdbf4068ce715f84a895c39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhmap_1_1Path.html">Path</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#aa12f5f683cdbf4068ce715f84a895c39">flow_stream</a> (const <a class="el" href="classhmap_1_1TerrainTriMesh.html">TerrainTriMesh</a> &amp;mesh, glm::vec2 xy_start, float elevation_ratio=0.5<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float distance_exponent=2.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float upward_penalization=100.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, bool favor_domain_center=false, const std::vector&lt; <a class="el" href="classhmap_1_1Path.html">Path</a> &gt; &amp;existing_streams={}, float valley_radius=0.02<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float valley_factor=0.35<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>)</td></tr>
+<tr class="memdesc:aa12f5f683cdbf4068ce715f84a895c39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the optimal flow path from starting 2D coordinates to the boundary of a terrain triangular mesh.  <br /></td></tr>
+<tr class="separator:aa12f5f683cdbf4068ce715f84a895c39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30d55fae5c75a1c45a005a3f9a9467eb" id="r_a30d55fae5c75a1c45a005a3f9a9467eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhmap_1_1Array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#a30d55fae5c75a1c45a005a3f9a9467eb">generate_riverbed</a> (const <a class="el" href="classhmap_1_1Path.html">Path</a> &amp;<a class="el" href="trench_8cpp.html#aea4bb978a006652d3ff42b927337913d">path</a>, glm::ivec2 <a class="el" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>, glm::vec4 bbox={0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, 1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, 0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, 1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>}, bool bezier_smoothing=false, float depth_start=0.01<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float depth_end=1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float slope_start=64.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float slope_end=32.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float shape_exponent_start=1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float shape_exponent_end=10.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float k_smoothing=0.5<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, int post_filter_ir=0, <a class="el" href="classhmap_1_1Array.html">Array</a> *p_noise_x=nullptr, <a class="el" href="classhmap_1_1Array.html">Array</a> *p_noise_y=nullptr, <a class="el" href="classhmap_1_1Array.html">Array</a> *p_noise_r=nullptr)</td></tr>
 <tr class="memdesc:a30d55fae5c75a1c45a005a3f9a9467eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates a 2D array representing a riverbed based on a specified path.  <br /></td></tr>
 <tr class="separator:a30d55fae5c75a1c45a005a3f9a9467eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -3058,17 +3058,17 @@ requires requires(const T &amp;<a class="el" href="elevation__from__contours_8cp
 <tr class="memitem:a3e877482c194619d1bf1dc398766fe66" id="r_a3e877482c194619d1bf1dc398766fe66"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhmap_1_1Path.html">Path</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#a3e877482c194619d1bf1dc398766fe66">find_cut_path_multiscale</a> (const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;<a class="el" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, <a class="el" href="namespacehmap.html#a1ba9d4ce7afe3309f8ae8e617f7154ee">DomainBoundary</a> start, <a class="el" href="namespacehmap.html#a1ba9d4ce7afe3309f8ae8e617f7154ee">DomainBoundary</a> end, int n_levels=3, int corridor_radius=4, float corridor_decay=1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float dijk_elevation_ratio=0.9<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float dijk_distance_exponent=2.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float dijk_upward_penalization=100.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, std::uint32_t seed=0, bool favor_boundary_center=true, bool favor_lower_elevation=true, bool favor_sinks=true, bool use_astar=false, bool smooth_path=false)</td></tr>
 <tr class="memdesc:a3e877482c194619d1bf1dc398766fe66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find a fast coarse-to-fine multiscale cut path between two domain boundaries.  <br /></td></tr>
 <tr class="separator:a3e877482c194619d1bf1dc398766fe66"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a812ed2264582321318f8f731d621f7bb" id="r_a812ed2264582321318f8f731d621f7bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#a812ed2264582321318f8f731d621f7bb">find_path_dijkstra</a> (const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;<a class="el" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, glm::ivec2 ij_start, glm::ivec2 ij_end, std::vector&lt; int &gt; &amp;i_path, std::vector&lt; int &gt; &amp;j_path, float elevation_ratio=0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float distance_exponent=2.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float upward_penalization=0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, const <a class="el" href="classhmap_1_1Array.html">Array</a> *p_mask_nogo=nullptr)</td></tr>
-<tr class="memdesc:a812ed2264582321318f8f731d621f7bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the path with the lowest elevation and elevation difference between two points in a 2D array using Dijkstra's algorithm.  <br /></td></tr>
-<tr class="separator:a812ed2264582321318f8f731d621f7bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe9f271f1c9b55a7bf910020da4023a0" id="r_abe9f271f1c9b55a7bf910020da4023a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#abe9f271f1c9b55a7bf910020da4023a0">find_path_dijkstra</a> (const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;<a class="el" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, glm::ivec2 ij_start, std::vector&lt; glm::ivec2 &gt; ij_end_list, std::vector&lt; std::vector&lt; int &gt; &gt; &amp;i_path_list, std::vector&lt; std::vector&lt; int &gt; &gt; &amp;j_path_list, float elevation_ratio=0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float distance_exponent=2.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float upward_penalization=0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, const <a class="el" href="classhmap_1_1Array.html">Array</a> *p_mask_nogo=nullptr)</td></tr>
-<tr class="separator:abe9f271f1c9b55a7bf910020da4023a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add63dbb83ccbeb2509ace508f4c391ea" id="r_add63dbb83ccbeb2509ace508f4c391ea"><td class="memItemLeft" align="right" valign="top">std::vector&lt; glm::ivec2 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#add63dbb83ccbeb2509ace508f4c391ea">find_path_dijkstra</a> (const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;<a class="el" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, glm::ivec2 ij_start, glm::ivec2 ij_end, float elevation_ratio=0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float distance_exponent=2.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float upward_penalization=0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, const <a class="el" href="classhmap_1_1Array.html">Array</a> *p_mask_nogo=nullptr)</td></tr>
-<tr class="memdesc:add63dbb83ccbeb2509ace508f4c391ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload of find_path_dijkstra returning a vector of grid indices.  <br /></td></tr>
-<tr class="separator:add63dbb83ccbeb2509ace508f4c391ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4fe84200d088c3bc24637ebc369c0cc" id="r_aa4fe84200d088c3bc24637ebc369c0cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhmap_1_1Path.html">Path</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#aa4fe84200d088c3bc24637ebc369c0cc">find_path_dijkstra</a> (const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;<a class="el" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, glm::ivec2 ij_start, glm::ivec2 ij_end, glm::vec4 bbox, float elevation_ratio=0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float distance_exponent=2.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float upward_penalization=0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, const <a class="el" href="classhmap_1_1Array.html">Array</a> *p_mask_nogo=nullptr)</td></tr>
-<tr class="memdesc:aa4fe84200d088c3bc24637ebc369c0cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload of find_path_dijkstra returning a <a class="el" href="classhmap_1_1Path.html" title="Represents an ordered set of points in 2D, forming a polyline (open or closed).">Path</a> mapped to a bounding box with point values holding sampled terrain elevations.  <br /></td></tr>
-<tr class="separator:aa4fe84200d088c3bc24637ebc369c0cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada562827a55a9d58e5fda3aee355eb2c" id="r_ada562827a55a9d58e5fda3aee355eb2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#ada562827a55a9d58e5fda3aee355eb2c">find_path_dijkstra</a> (const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;<a class="el" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, glm::ivec2 ij_start, glm::ivec2 ij_end, std::vector&lt; int &gt; &amp;i_path, std::vector&lt; int &gt; &amp;j_path, float elevation_ratio=0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float distance_exponent=2.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float upward_penalization=0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, const <a class="el" href="classhmap_1_1Array.html">Array</a> *p_mask_nogo=nullptr, const <a class="el" href="classhmap_1_1Array.html">Array</a> *p_node_weights=nullptr)</td></tr>
+<tr class="memdesc:ada562827a55a9d58e5fda3aee355eb2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the path with the lowest elevation and elevation difference between two points in a 2D array using Dijkstra's algorithm.  <br /></td></tr>
+<tr class="separator:ada562827a55a9d58e5fda3aee355eb2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a890c5d4fc9c8f55ed89b881c380617" id="r_a2a890c5d4fc9c8f55ed89b881c380617"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#a2a890c5d4fc9c8f55ed89b881c380617">find_path_dijkstra</a> (const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;<a class="el" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, glm::ivec2 ij_start, std::vector&lt; glm::ivec2 &gt; ij_end_list, std::vector&lt; std::vector&lt; int &gt; &gt; &amp;i_path_list, std::vector&lt; std::vector&lt; int &gt; &gt; &amp;j_path_list, float elevation_ratio=0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float distance_exponent=2.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float upward_penalization=0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, const <a class="el" href="classhmap_1_1Array.html">Array</a> *p_mask_nogo=nullptr, const <a class="el" href="classhmap_1_1Array.html">Array</a> *p_node_weights=nullptr)</td></tr>
+<tr class="separator:a2a890c5d4fc9c8f55ed89b881c380617"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc177c4e25817f2a86f3814bbc634055" id="r_abc177c4e25817f2a86f3814bbc634055"><td class="memItemLeft" align="right" valign="top">std::vector&lt; glm::ivec2 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#abc177c4e25817f2a86f3814bbc634055">find_path_dijkstra</a> (const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;<a class="el" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, glm::ivec2 ij_start, glm::ivec2 ij_end, float elevation_ratio=0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float distance_exponent=2.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float upward_penalization=0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, const <a class="el" href="classhmap_1_1Array.html">Array</a> *p_mask_nogo=nullptr, const <a class="el" href="classhmap_1_1Array.html">Array</a> *p_node_weights=nullptr)</td></tr>
+<tr class="memdesc:abc177c4e25817f2a86f3814bbc634055"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload of find_path_dijkstra returning a vector of grid indices.  <br /></td></tr>
+<tr class="separator:abc177c4e25817f2a86f3814bbc634055"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a59b180b92f9ddfea9b868bc3228648" id="r_a3a59b180b92f9ddfea9b868bc3228648"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhmap_1_1Path.html">Path</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#a3a59b180b92f9ddfea9b868bc3228648">find_path_dijkstra</a> (const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;<a class="el" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, glm::ivec2 ij_start, glm::ivec2 ij_end, glm::vec4 bbox, float elevation_ratio=0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float distance_exponent=2.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float upward_penalization=0.1<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, const <a class="el" href="classhmap_1_1Array.html">Array</a> *p_mask_nogo=nullptr, const <a class="el" href="classhmap_1_1Array.html">Array</a> *p_node_weights=nullptr)</td></tr>
+<tr class="memdesc:a3a59b180b92f9ddfea9b868bc3228648"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload of find_path_dijkstra returning a <a class="el" href="classhmap_1_1Path.html" title="Represents an ordered set of points in 2D, forming a polyline (open or closed).">Path</a> mapped to a bounding box with point values holding sampled terrain elevations.  <br /></td></tr>
+<tr class="separator:a3a59b180b92f9ddfea9b868bc3228648"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ade30d7f5f6b02e1640bea9c83d05e3" id="r_a6ade30d7f5f6b02e1640bea9c83d05e3"><td class="memItemLeft" align="right" valign="top">std::vector&lt; glm::ivec2 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#a6ade30d7f5f6b02e1640bea9c83d05e3">find_path_midpoint</a> (const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;<a class="el" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, glm::ivec2 ij_start, glm::ivec2 ij_end, float offset_ratio=0.2<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, int max_it=0, int steps=16)</td></tr>
 <tr class="memdesc:a6ade30d7f5f6b02e1640bea9c83d05e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute a path between two points using iterative midpoint refinement.  <br /></td></tr>
 <tr class="separator:a6ade30d7f5f6b02e1640bea9c83d05e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -8377,7 +8377,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
 <div class="line">  <a class="code hl_function" href="namespacehmap.html#a262e6495cb2d02598f36a2b46114b2b4">hmap::remap</a>(<a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>);</div>
 <div class="line"> </div>
 <div class="line">  glm::ivec2 ij_start(100, 128);</div>
-<div class="line">  <a class="code hl_class" href="classhmap_1_1Path.html">hmap::Path</a> <a class="code hl_variable" href="trench_8cpp.html#aea4bb978a006652d3ff42b927337913d">path</a> = <a class="code hl_function" href="namespacehmap.html#ada1af89f3e34eb4ceb13e176a1b819c2">hmap::flow_stream</a>(<a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, ij_start);</div>
+<div class="line">  <a class="code hl_class" href="classhmap_1_1Path.html">hmap::Path</a> <a class="code hl_variable" href="trench_8cpp.html#aea4bb978a006652d3ff42b927337913d">path</a> = <a class="code hl_function" href="namespacehmap.html#ae77188f3668f0b48ba3be10f18d72930">hmap::flow_stream</a>(<a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, ij_start);</div>
 <div class="line"> </div>
 <div class="line">  glm::vec4 bbox(0.f, 1.f, 0.f, 1.f);</div>
 <div class="line"> </div>
@@ -8407,7 +8407,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
 <div class="line"> </div>
 <div class="line">  <span class="comment">// multiple streams merging into existing streams</span></div>
 <div class="line">  glm::ivec2 ij_start2(128, 180);</div>
-<div class="line">  <a class="code hl_class" href="classhmap_1_1Path.html">hmap::Path</a> path2 = <a class="code hl_function" href="namespacehmap.html#ada1af89f3e34eb4ceb13e176a1b819c2">hmap::flow_stream</a>(<a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, ij_start2, 0.5f, 2.f, 100.f, {<a class="code hl_variable" href="trench_8cpp.html#aea4bb978a006652d3ff42b927337913d">path</a>});</div>
+<div class="line">  <a class="code hl_class" href="classhmap_1_1Path.html">hmap::Path</a> path2 = <a class="code hl_function" href="namespacehmap.html#ae77188f3668f0b48ba3be10f18d72930">hmap::flow_stream</a>(<a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, ij_start2, 0.5f, 2.f, 100.f, {<a class="code hl_variable" href="trench_8cpp.html#aea4bb978a006652d3ff42b927337913d">path</a>});</div>
 <div class="line"> </div>
 <div class="line">  <a class="code hl_class" href="classhmap_1_1Array.html">hmap::Array</a> zd2 = <a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>;</div>
 <div class="line">  <a class="code hl_function" href="namespacehmap.html#aa0407e8bf3d06ffb4d8d1e97809d3665">hmap::dig_river</a>(zd2,</div>
@@ -8430,7 +8430,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
 <div class="line">}</div>
 <div class="ttc" id="aclasshmap_1_1Array_html_ab2c7afe05160d85b0997d733cbb7d286"><div class="ttname"><a href="classhmap_1_1Array.html#ab2c7afe05160d85b0997d733cbb7d286">hmap::Array::to_png_grayscale</a></div><div class="ttdeci">void to_png_grayscale(const std::string &amp;fname, int depth=CV_8U, float vmin=0.f, float vmax=0.f) const</div><div class="ttdoc">Export the array as a grayscale PNG image file with specified bit depth.</div><div class="ttdef"><b>Definition</b> io.cpp:145</div></div>
 <div class="ttc" id="anamespacehmap_html_aa0407e8bf3d06ffb4d8d1e97809d3665"><div class="ttname"><a href="namespacehmap.html#aa0407e8bf3d06ffb4d8d1e97809d3665">hmap::dig_river</a></div><div class="ttdeci">void dig_river(Array &amp;z, const std::vector&lt; Path &gt; &amp;path_list, float riverbank_talus, int river_width=0, int merging_width=0, float depth=0.f, float riverbed_talus=0.f, float noise_ratio=0.9f, std::uint32_t seed=0, Array *p_mask=nullptr)</div><div class="ttdoc">Modifies the elevation array to carve a river along a specified path.</div><div class="ttdef"><b>Definition</b> dig_river.cpp:22</div></div>
-<div class="ttc" id="anamespacehmap_html_ada1af89f3e34eb4ceb13e176a1b819c2"><div class="ttname"><a href="namespacehmap.html#ada1af89f3e34eb4ceb13e176a1b819c2">hmap::flow_stream</a></div><div class="ttdeci">Path flow_stream(const Array &amp;z, const glm::ivec2 ij_start, const float elevation_ratio=0.5f, const float distance_exponent=2.f, const float upward_penalization=100.f, const std::vector&lt; Path &gt; &amp;existing_streams={})</div><div class="ttdoc">Computes the optimal flow path from a starting point to the boundary of a given elevation array.</div><div class="ttdef"><b>Definition</b> flow_stream.cpp:26</div></div>
+<div class="ttc" id="anamespacehmap_html_ae77188f3668f0b48ba3be10f18d72930"><div class="ttname"><a href="namespacehmap.html#ae77188f3668f0b48ba3be10f18d72930">hmap::flow_stream</a></div><div class="ttdeci">Path flow_stream(const Array &amp;z, const glm::ivec2 ij_start, const float elevation_ratio=0.5f, const float distance_exponent=2.f, const float upward_penalization=100.f, const std::vector&lt; Path &gt; &amp;existing_streams={}, const int valley_radius=2, const float valley_factor=0.35f)</div><div class="ttdoc">Computes the optimal flow path from a starting point to the boundary of a given elevation array.</div><div class="ttdef"><b>Definition</b> flow_stream.cpp:26</div></div>
 </div><!-- fragment --><p><b>Result</b> </p><div class="image">
 <img src="ex_flow_stream.png" alt=""/>
 </div>
@@ -33479,8 +33479,8 @@ Transport for Terrain Erosion Simulation" (N. McDonald, G. Cordonnier), <a href=
 
 </div>
 </div>
-<a id="ada1af89f3e34eb4ceb13e176a1b819c2" name="ada1af89f3e34eb4ceb13e176a1b819c2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada1af89f3e34eb4ceb13e176a1b819c2">&#9670;&#160;</a></span>flow_stream() <span class="overload">[1/3]</span></h2>
+<a id="ae77188f3668f0b48ba3be10f18d72930" name="ae77188f3668f0b48ba3be10f18d72930"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae77188f3668f0b48ba3be10f18d72930">&#9670;&#160;</a></span>flow_stream() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -33519,7 +33519,19 @@ Transport for Terrain Erosion Simulation" (N. McDonald, G. Cordonnier), <a href=
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const std::vector&lt; <a class="el" href="classhmap_1_1Path.html">Path</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>existing_streams</em> = <code>{}</code>&#160;</td>
+          <td class="paramname"><em>existing_streams</em> = <code>{}</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>valley_radius</em> = <code>2</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>valley_factor</em> = <code>0.35<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a></code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -33539,6 +33551,8 @@ Transport for Terrain Erosion Simulation" (N. McDonald, G. Cordonnier), <a href=
     <tr><td class="paramname">distance_exponent</td><td>Exponent for the distance term in the cost function (default: 2.0). </td></tr>
     <tr><td class="paramname">upward_penalization</td><td>Penalty factor for upward elevation changes (default: 100.0). </td></tr>
     <tr><td class="paramname">existing_streams</td><td>Existing flow streams to favor merging with (default: {}). </td></tr>
+    <tr><td class="paramname">valley_radius</td><td>Radius around existing stream cells to apply depression (default: 2). </td></tr>
+    <tr><td class="paramname">valley_factor</td><td>Attenuation factor per distance unit in valley depression (default: 0.35). </td></tr>
   </table>
   </dd>
 </dl>
@@ -33560,7 +33574,7 @@ Transport for Terrain Erosion Simulation" (N. McDonald, G. Cordonnier), <a href=
 <div class="line">  <a class="code hl_function" href="namespacehmap.html#a262e6495cb2d02598f36a2b46114b2b4">hmap::remap</a>(<a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>);</div>
 <div class="line"> </div>
 <div class="line">  glm::ivec2 ij_start(100, 128);</div>
-<div class="line">  <a class="code hl_class" href="classhmap_1_1Path.html">hmap::Path</a> <a class="code hl_variable" href="trench_8cpp.html#aea4bb978a006652d3ff42b927337913d">path</a> = <a class="code hl_function" href="namespacehmap.html#ada1af89f3e34eb4ceb13e176a1b819c2">hmap::flow_stream</a>(<a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, ij_start);</div>
+<div class="line">  <a class="code hl_class" href="classhmap_1_1Path.html">hmap::Path</a> <a class="code hl_variable" href="trench_8cpp.html#aea4bb978a006652d3ff42b927337913d">path</a> = <a class="code hl_function" href="namespacehmap.html#ae77188f3668f0b48ba3be10f18d72930">hmap::flow_stream</a>(<a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, ij_start);</div>
 <div class="line"> </div>
 <div class="line">  glm::vec4 bbox(0.f, 1.f, 0.f, 1.f);</div>
 <div class="line"> </div>
@@ -33590,7 +33604,7 @@ Transport for Terrain Erosion Simulation" (N. McDonald, G. Cordonnier), <a href=
 <div class="line"> </div>
 <div class="line">  <span class="comment">// multiple streams merging into existing streams</span></div>
 <div class="line">  glm::ivec2 ij_start2(128, 180);</div>
-<div class="line">  <a class="code hl_class" href="classhmap_1_1Path.html">hmap::Path</a> path2 = <a class="code hl_function" href="namespacehmap.html#ada1af89f3e34eb4ceb13e176a1b819c2">hmap::flow_stream</a>(<a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, ij_start2, 0.5f, 2.f, 100.f, {<a class="code hl_variable" href="trench_8cpp.html#aea4bb978a006652d3ff42b927337913d">path</a>});</div>
+<div class="line">  <a class="code hl_class" href="classhmap_1_1Path.html">hmap::Path</a> path2 = <a class="code hl_function" href="namespacehmap.html#ae77188f3668f0b48ba3be10f18d72930">hmap::flow_stream</a>(<a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, ij_start2, 0.5f, 2.f, 100.f, {<a class="code hl_variable" href="trench_8cpp.html#aea4bb978a006652d3ff42b927337913d">path</a>});</div>
 <div class="line"> </div>
 <div class="line">  <a class="code hl_class" href="classhmap_1_1Array.html">hmap::Array</a> zd2 = <a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>;</div>
 <div class="line">  <a class="code hl_function" href="namespacehmap.html#aa0407e8bf3d06ffb4d8d1e97809d3665">hmap::dig_river</a>(zd2,</div>
@@ -33617,8 +33631,8 @@ Transport for Terrain Erosion Simulation" (N. McDonald, G. Cordonnier), <a href=
  
 </div>
 </div>
-<a id="ae0d87f762b7f25f717cebc3ccf2ca667" name="ae0d87f762b7f25f717cebc3ccf2ca667"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae0d87f762b7f25f717cebc3ccf2ca667">&#9670;&#160;</a></span>flow_stream() <span class="overload">[2/3]</span></h2>
+<a id="a3d1096567ff6860a24234523c6ba75ce" name="a3d1096567ff6860a24234523c6ba75ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d1096567ff6860a24234523c6ba75ce">&#9670;&#160;</a></span>flow_stream() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -33663,7 +33677,19 @@ Transport for Terrain Erosion Simulation" (N. McDonald, G. Cordonnier), <a href=
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const std::vector&lt; <a class="el" href="classhmap_1_1Path.html">Path</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>existing_streams</em> = <code>{}</code>&#160;</td>
+          <td class="paramname"><em>existing_streams</em> = <code>{}</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>valley_radius</em> = <code>0.02<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>valley_factor</em> = <code>0.35<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a></code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -33683,6 +33709,8 @@ Transport for Terrain Erosion Simulation" (N. McDonald, G. Cordonnier), <a href=
     <tr><td class="paramname">upward_penalization</td><td>Penalty factor for upward elevation changes (default: 100.0). </td></tr>
     <tr><td class="paramname">favor_domain_center</td><td>Favor passing through the center of the domain (default: false). </td></tr>
     <tr><td class="paramname">existing_streams</td><td>Existing flow streams to favor merging with (default: {}). </td></tr>
+    <tr><td class="paramname">valley_radius</td><td>Radius around existing stream cells to apply attraction (default: 0.02). </td></tr>
+    <tr><td class="paramname">valley_factor</td><td>Attenuation factor per distance unit in valley attraction (default: 0.35). </td></tr>
   </table>
   </dd>
 </dl>
@@ -33690,8 +33718,8 @@ Transport for Terrain Erosion Simulation" (N. McDonald, G. Cordonnier), <a href=
 
 </div>
 </div>
-<a id="ab41c1a4c6149f555e6b18860946327b2" name="ab41c1a4c6149f555e6b18860946327b2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab41c1a4c6149f555e6b18860946327b2">&#9670;&#160;</a></span>flow_stream() <span class="overload">[3/3]</span></h2>
+<a id="aa12f5f683cdbf4068ce715f84a895c39" name="aa12f5f683cdbf4068ce715f84a895c39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa12f5f683cdbf4068ce715f84a895c39">&#9670;&#160;</a></span>flow_stream() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -33736,7 +33764,19 @@ Transport for Terrain Erosion Simulation" (N. McDonald, G. Cordonnier), <a href=
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const std::vector&lt; <a class="el" href="classhmap_1_1Path.html">Path</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>existing_streams</em> = <code>{}</code>&#160;</td>
+          <td class="paramname"><em>existing_streams</em> = <code>{}</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>valley_radius</em> = <code>0.02<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>valley_factor</em> = <code>0.35<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a></code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -33756,6 +33796,8 @@ Transport for Terrain Erosion Simulation" (N. McDonald, G. Cordonnier), <a href=
     <tr><td class="paramname">upward_penalization</td><td>Penalty factor for upward elevation changes (default: 100.0). </td></tr>
     <tr><td class="paramname">favor_domain_center</td><td>Favor passing through the center of the domain (default: false). </td></tr>
     <tr><td class="paramname">existing_streams</td><td>Existing flow streams to favor merging with (default: {}). </td></tr>
+    <tr><td class="paramname">valley_radius</td><td>Radius around existing stream cells to apply attraction (default: 0.02). </td></tr>
+    <tr><td class="paramname">valley_factor</td><td>Attenuation factor per distance unit in valley attraction (default: 0.35). </td></tr>
   </table>
   </dd>
 </dl>
@@ -57750,8 +57792,8 @@ off" values that fall below the threshold, which can be useful for filtering out
 
 </div>
 </div>
-<a id="a812ed2264582321318f8f731d621f7bb" name="a812ed2264582321318f8f731d621f7bb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a812ed2264582321318f8f731d621f7bb">&#9670;&#160;</a></span>find_path_dijkstra() <span class="overload">[1/4]</span></h2>
+<a id="ada562827a55a9d58e5fda3aee355eb2c" name="ada562827a55a9d58e5fda3aee355eb2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada562827a55a9d58e5fda3aee355eb2c">&#9670;&#160;</a></span>find_path_dijkstra() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -57808,7 +57850,13 @@ off" values that fall below the threshold, which can be useful for filtering out
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="classhmap_1_1Array.html">Array</a> *&#160;</td>
-          <td class="paramname"><em>p_mask_nogo</em> = <code>nullptr</code>&#160;</td>
+          <td class="paramname"><em>p_mask_nogo</em> = <code>nullptr</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classhmap_1_1Array.html">Array</a> *&#160;</td>
+          <td class="paramname"><em>p_node_weights</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -57853,19 +57901,19 @@ off" values that fall below the threshold, which can be useful for filtering out
 <div class="line">  glm::vec4  bbox = {0.f, 1.f, 0.f, 1.f};</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">// default parameters</span></div>
-<div class="line">  <a class="code hl_class" href="classhmap_1_1Path.html">hmap::Path</a>  path1 = <a class="code hl_function" href="namespacehmap.html#a812ed2264582321318f8f731d621f7bb">hmap::find_path_dijkstra</a>(<a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, ij_start, ij_end, bbox);</div>
+<div class="line">  <a class="code hl_class" href="classhmap_1_1Path.html">hmap::Path</a>  path1 = <a class="code hl_function" href="namespacehmap.html#ada562827a55a9d58e5fda3aee355eb2c">hmap::find_path_dijkstra</a>(<a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, ij_start, ij_end, bbox);</div>
 <div class="line">  <a class="code hl_class" href="classhmap_1_1Array.html">hmap::Array</a> w1 = path1.<a class="code hl_function" href="classhmap_1_1Path.html#a4d1e1e63fea24bf8f23bc3343f8b746e">to_array</a>(<a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>);</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">// set &quot;elevation_ratio&quot; to 1.f to find the path with the lowest</span></div>
 <div class="line">  <span class="comment">// cumulative elevation</span></div>
-<div class="line">  <a class="code hl_class" href="classhmap_1_1Path.html">hmap::Path</a>  path2 = <a class="code hl_function" href="namespacehmap.html#a812ed2264582321318f8f731d621f7bb">hmap::find_path_dijkstra</a>(<a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, ij_start, ij_end, bbox, 1.f);</div>
+<div class="line">  <a class="code hl_class" href="classhmap_1_1Path.html">hmap::Path</a>  path2 = <a class="code hl_function" href="namespacehmap.html#ada562827a55a9d58e5fda3aee355eb2c">hmap::find_path_dijkstra</a>(<a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, ij_start, ij_end, bbox, 1.f);</div>
 <div class="line">  <a class="code hl_class" href="classhmap_1_1Array.html">hmap::Array</a> w2 = path2.<a class="code hl_function" href="classhmap_1_1Path.html#a4d1e1e63fea24bf8f23bc3343f8b746e">to_array</a>(<a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>);</div>
 <div class="line"> </div>
 <div class="line">  <a class="code hl_function" href="namespacehmap.html#ac2452e568959bc21c9b7b09202e5977a">hmap::export_banner_png</a>(<span class="stringliteral">&quot;ex_find_path_dijkstra.png&quot;</span>,</div>
 <div class="line">                          {<a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, w1, w2},</div>
 <div class="line">                          <a class="code hl_enumvalue" href="namespacehmap.html#ac70fe3cbb32e0340d5dd3e15cdcf9369a6d093dbf3088c52a8acee413942545d9">hmap::Cmap::TERRAIN</a>);</div>
 <div class="line">}</div>
-<div class="ttc" id="anamespacehmap_html_a812ed2264582321318f8f731d621f7bb"><div class="ttname"><a href="namespacehmap.html#a812ed2264582321318f8f731d621f7bb">hmap::find_path_dijkstra</a></div><div class="ttdeci">void find_path_dijkstra(const Array &amp;z, glm::ivec2 ij_start, glm::ivec2 ij_end, std::vector&lt; int &gt; &amp;i_path, std::vector&lt; int &gt; &amp;j_path, float elevation_ratio=0.1f, float distance_exponent=2.f, float upward_penalization=0.1f, const Array *p_mask_nogo=nullptr)</div><div class="ttdoc">Finds the path with the lowest elevation and elevation difference between two points in a 2D array us...</div><div class="ttdef"><b>Definition</b> dijsktra.cpp:156</div></div>
+<div class="ttc" id="anamespacehmap_html_ada562827a55a9d58e5fda3aee355eb2c"><div class="ttname"><a href="namespacehmap.html#ada562827a55a9d58e5fda3aee355eb2c">hmap::find_path_dijkstra</a></div><div class="ttdeci">void find_path_dijkstra(const Array &amp;z, glm::ivec2 ij_start, glm::ivec2 ij_end, std::vector&lt; int &gt; &amp;i_path, std::vector&lt; int &gt; &amp;j_path, float elevation_ratio=0.1f, float distance_exponent=2.f, float upward_penalization=0.1f, const Array *p_mask_nogo=nullptr, const Array *p_node_weights=nullptr)</div><div class="ttdoc">Finds the path with the lowest elevation and elevation difference between two points in a 2D array us...</div><div class="ttdef"><b>Definition</b> dijsktra.cpp:159</div></div>
 </div><!-- fragment --><p><b>Result</b> </p><div class="image">
 <img src="ex_find_path_dijkstra0.png" alt=""/>
 </div>
@@ -57878,8 +57926,8 @@ off" values that fall below the threshold, which can be useful for filtering out
  
 </div>
 </div>
-<a id="abe9f271f1c9b55a7bf910020da4023a0" name="abe9f271f1c9b55a7bf910020da4023a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abe9f271f1c9b55a7bf910020da4023a0">&#9670;&#160;</a></span>find_path_dijkstra() <span class="overload">[2/4]</span></h2>
+<a id="a2a890c5d4fc9c8f55ed89b881c380617" name="a2a890c5d4fc9c8f55ed89b881c380617"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a890c5d4fc9c8f55ed89b881c380617">&#9670;&#160;</a></span>find_path_dijkstra() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -57936,7 +57984,13 @@ off" values that fall below the threshold, which can be useful for filtering out
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="classhmap_1_1Array.html">Array</a> *&#160;</td>
-          <td class="paramname"><em>p_mask_nogo</em> = <code>nullptr</code>&#160;</td>
+          <td class="paramname"><em>p_mask_nogo</em> = <code>nullptr</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classhmap_1_1Array.html">Array</a> *&#160;</td>
+          <td class="paramname"><em>p_node_weights</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -57948,8 +58002,8 @@ off" values that fall below the threshold, which can be useful for filtering out
 
 </div>
 </div>
-<a id="add63dbb83ccbeb2509ace508f4c391ea" name="add63dbb83ccbeb2509ace508f4c391ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add63dbb83ccbeb2509ace508f4c391ea">&#9670;&#160;</a></span>find_path_dijkstra() <span class="overload">[3/4]</span></h2>
+<a id="abc177c4e25817f2a86f3814bbc634055" name="abc177c4e25817f2a86f3814bbc634055"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc177c4e25817f2a86f3814bbc634055">&#9670;&#160;</a></span>find_path_dijkstra() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -57994,7 +58048,13 @@ off" values that fall below the threshold, which can be useful for filtering out
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="classhmap_1_1Array.html">Array</a> *&#160;</td>
-          <td class="paramname"><em>p_mask_nogo</em> = <code>nullptr</code>&#160;</td>
+          <td class="paramname"><em>p_mask_nogo</em> = <code>nullptr</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classhmap_1_1Array.html">Array</a> *&#160;</td>
+          <td class="paramname"><em>p_node_weights</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -58013,7 +58073,8 @@ off" values that fall below the threshold, which can be useful for filtering out
     <tr><td class="paramname">elevation_ratio</td><td>Weight of absolute elevation in cost. </td></tr>
     <tr><td class="paramname">distance_exponent</td><td>Exponent applied to distance cost. </td></tr>
     <tr><td class="paramname">upward_penalization</td><td>Penalty factor for uphill moves. </td></tr>
-    <tr><td class="paramname">p_mask_nogo</td><td>Optional obstacle mask.</td></tr>
+    <tr><td class="paramname">p_mask_nogo</td><td>Optional obstacle mask. </td></tr>
+    <tr><td class="paramname">p_node_weights</td><td>Optional node/cell cost multiplier weights.</td></tr>
   </table>
   </dd>
 </dl>
@@ -58021,8 +58082,8 @@ off" values that fall below the threshold, which can be useful for filtering out
 
 </div>
 </div>
-<a id="aa4fe84200d088c3bc24637ebc369c0cc" name="aa4fe84200d088c3bc24637ebc369c0cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa4fe84200d088c3bc24637ebc369c0cc">&#9670;&#160;</a></span>find_path_dijkstra() <span class="overload">[4/4]</span></h2>
+<a id="a3a59b180b92f9ddfea9b868bc3228648" name="a3a59b180b92f9ddfea9b868bc3228648"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a59b180b92f9ddfea9b868bc3228648">&#9670;&#160;</a></span>find_path_dijkstra() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -58073,7 +58134,13 @@ off" values that fall below the threshold, which can be useful for filtering out
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="classhmap_1_1Array.html">Array</a> *&#160;</td>
-          <td class="paramname"><em>p_mask_nogo</em> = <code>nullptr</code>&#160;</td>
+          <td class="paramname"><em>p_mask_nogo</em> = <code>nullptr</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classhmap_1_1Array.html">Array</a> *&#160;</td>
+          <td class="paramname"><em>p_node_weights</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -58093,7 +58160,8 @@ off" values that fall below the threshold, which can be useful for filtering out
     <tr><td class="paramname">elevation_ratio</td><td>Weight of absolute elevation in cost. </td></tr>
     <tr><td class="paramname">distance_exponent</td><td>Exponent applied to distance cost. </td></tr>
     <tr><td class="paramname">upward_penalization</td><td>Penalty factor for uphill moves. </td></tr>
-    <tr><td class="paramname">p_mask_nogo</td><td>Optional obstacle mask.</td></tr>
+    <tr><td class="paramname">p_mask_nogo</td><td>Optional obstacle mask. </td></tr>
+    <tr><td class="paramname">p_node_weights</td><td>Optional node/cell cost multiplier weights.</td></tr>
   </table>
   </dd>
 </dl>
@@ -58515,7 +58583,7 @@ off" values that fall below the threshold, which can be useful for filtering out
 <div class="line">  <span class="comment">// --- 1. find_path_dijkstra (full-resolution Dijkstra)</span></div>
 <div class="line"> </div>
 <div class="line">  <a class="code hl_function" href="classhmap_1_1Timer.html#ae9248cf01bfd4d8f680a6c7d5b80f45b">hmap::Timer::Start</a>(<span class="stringliteral">&quot;find_path_dijkstra&quot;</span>);</div>
-<div class="line">  <a class="code hl_class" href="classhmap_1_1Path.html">hmap::Path</a> path_dijk = <a class="code hl_function" href="namespacehmap.html#a812ed2264582321318f8f731d621f7bb">hmap::find_path_dijkstra</a>(<a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>,</div>
+<div class="line">  <a class="code hl_class" href="classhmap_1_1Path.html">hmap::Path</a> path_dijk = <a class="code hl_function" href="namespacehmap.html#ada562827a55a9d58e5fda3aee355eb2c">hmap::find_path_dijkstra</a>(<a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>,</div>
 <div class="line">                                                  ij_start,</div>
 <div class="line">                                                  ij_end,</div>
 <div class="line">                                                  bbox,</div>
