@@ -44,6 +44,7 @@ std::vector<PreprocessedPath> preprocess_paths(
     float                        shift_ramp_end_ratio,
     ElevationLongitudinalProfile longitudinal_profile,
     float                        min_slope,
+    bool                         enable_width_distance_scaling,
     bool                         enable_width_curvature_scaling,
     float                        curvature_radius_min)
 {
@@ -184,6 +185,54 @@ std::vector<PreprocessedPath> preprocess_paths(
       }
     }
 
+    // --- Adjust distance scaling at confluences with existing trunk paths
+    if (enable_width_distance_scaling && !prep_paths.empty() && npts > 1)
+    {
+      const auto &end_pt = pp.path.back();
+      float       min_d2 = std::numeric_limits<float>::max();
+      float       best_target_arc = 1.f;
+
+      for (const auto &prior_pp : prep_paths)
+      {
+        if (prior_pp.path.size() <= 1) continue;
+
+        for (size_t j = 0; j + 1 < prior_pp.path.size(); ++j)
+        {
+          float sx = prior_pp.path[j + 1].x - prior_pp.path[j].x;
+          float sy = prior_pp.path[j + 1].y - prior_pp.path[j].y;
+          float seg_len2 = sx * sx + sy * sy;
+
+          if (seg_len2 > 1e-12f)
+          {
+            float t = ((end_pt.x - prior_pp.path[j].x) * sx +
+                       (end_pt.y - prior_pp.path[j].y) * sy) /
+                      seg_len2;
+            t = std::clamp(t, 0.f, 1.f);
+            float px = prior_pp.path[j].x + t * sx;
+            float py = prior_pp.path[j].y + t * sy;
+            float d2 = (end_pt.x - px) * (end_pt.x - px) +
+                       (end_pt.y - py) * (end_pt.y - py);
+
+            if (d2 < min_d2)
+            {
+              min_d2 = d2;
+              best_target_arc = (1.f - t) * prior_pp.arc_length[j] +
+                                t * prior_pp.arc_length[j + 1];
+            }
+          }
+        }
+      }
+
+      // If endpoint touches an existing path segment (within 2e-3 distance),
+      // rescale the tributary's arc length so its terminal width matches the trunk.
+      constexpr float junction_dist_thresh = 0.002f;
+      if (min_d2 < junction_dist_thresh * junction_dist_thresh)
+      {
+        for (size_t k = 0; k < npts; ++k)
+          pp.arc_length[k] *= best_target_arc;
+      }
+    }
+
     prep_paths.push_back(std::move(pp));
   }
 
@@ -282,6 +331,7 @@ void trench(Array                       &z,
                                      shift_ramp_end_ratio,
                                      longitudinal_profile,
                                      min_slope,
+                                     enable_width_distance_scaling,
                                      enable_width_curvature_scaling,
                                      curvature_radius_min);
   if (prep_paths.empty()) return;
