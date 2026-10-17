@@ -7,5 +7,6 @@ var searchData=
   ['jagged_2ecpp_4',['jagged.cpp',['../jagged_8cpp.html',1,'']]],
   ['jagged_5ffbm_5',['jagged_fbm',['../namespacehmap_1_1gpu.html#a5d3c1cb0bc15a5b6ae88855b941c063a',1,'hmap::gpu::jagged_fbm(const Array &amp;array, glm::vec2 kw, float amp=0.1f, std::uint32_t seed=0, int octaves=8, float persistence=0.5f, float lacunarity=2.f, bool switch_kx_ky=false, glm::vec2 jitter={0.5f, 0.5f}, float gamma=1.f, float angle=0.f, const Array *p_mask=nullptr, const Array *p_noise_x=nullptr, const Array *p_noise_y=nullptr, glm::vec4 bbox={0.f, 1.f, 0.f, 1.f})'],['../namespacehmap_1_1gpu.html#a1c01a503d8ce74b81d25b27c88849722',1,'hmap::gpu::jagged_fbm(const Array &amp;array, float kw, float amp=0.1f, std::uint32_t seed=0, int octaves=8, float persistence=0.5f, float lacunarity=2.f, bool switch_kx_ky=false, glm::vec2 jitter={0.5f, 0.5f}, float gamma=1.f, float angle=0.f, const Array *p_mask=nullptr, const Array *p_noise_x=nullptr, const Array *p_noise_y=nullptr, glm::vec4 bbox={0.f, 1.f, 0.f, 1.f})']]],
   ['jaggedtest_6',['JaggedTest',['../classJaggedTest.html',1,'']]],
-  ['jet_7',['JET',['../namespacehmap.html#ac70fe3cbb32e0340d5dd3e15cdcf9369a65146260717d07e4773aec50520b9ced',1,'hmap']]]
+  ['jet_7',['JET',['../namespacehmap.html#ac70fe3cbb32e0340d5dd3e15cdcf9369a65146260717d07e4773aec50520b9ced',1,'hmap']]],
+  ['jitter_8',['jitter',['../structhmap_1_1PoiGenerationOptions.html#aa488292ec1d131cfc8f12eabde6bfab1',1,'hmap::PoiGenerationOptions']]]
 ];

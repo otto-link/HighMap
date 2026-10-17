@@ -59,6 +59,7 @@ var dir_171063ca2b6d8df6d9147a9ad3041fe6 =
     [ "test_path_scale.cpp", "test__path__scale_8cpp.html", "test__path__scale_8cpp" ],
     [ "test_path_squiggle.cpp", "test__path__squiggle_8cpp.html", "test__path__squiggle_8cpp" ],
     [ "test_pdf_sampler.cpp", "test__pdf__sampler_8cpp.html", "test__pdf__sampler_8cpp" ],
+    [ "test_poi.cpp", "test__poi_8cpp.html", "test__poi_8cpp" ],
     [ "test_point.cpp", "test__point_8cpp.html", "test__point_8cpp" ],
     [ "test_quad_surface.cpp", "test__quad__surface_8cpp.html", "test__quad__surface_8cpp" ],
     [ "test_quilting.cpp", "test__quilting_8cpp.html", "test__quilting_8cpp" ],

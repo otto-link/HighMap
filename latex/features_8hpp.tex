@@ -2,29 +2,13 @@
 \hypertarget{features_8hpp}{}\label{features_8hpp}\index{HighMap/include/highmap/features.hpp@{HighMap/include/highmap/features.hpp}}
 
 
-Header file defining a collection of functions for terrain analysis and feature extraction from heightmaps.  
+Umbrella header for terrain feature extraction, landform classification, and terrain-\/aware points of interest.  
 
 
-\doxysubsubsection*{Namespaces}
-\begin{DoxyCompactItemize}
-\item 
-namespace \mbox{\hyperlink{namespacehmap}{hmap}}
-\end{DoxyCompactItemize}
-\doxysubsubsection*{Functions}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a34efdecd3db27a30c06537acda6d9457}{hmap\+::connected\+\_\+components}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float surface\+\_\+threshold=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float background\+\_\+value=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, std\+::map$<$ float, float $>$ \texorpdfstring{$\ast$}{*}p\+\_\+surfaces=nullptr, std\+::map$<$ float, std\+::array$<$ float, 2 $>$ $>$ \texorpdfstring{$\ast$}{*}p\+\_\+centroids=nullptr)
-\begin{DoxyCompactList}\small\item\em Identifies and labels connected components within a binary or labeled array, with optional filtering by size. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_aa60fa2d3f02d1e064b520fa1623200d0}{hmap\+::geomorphons}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int irmin, int irmax, float epsilon)
-\begin{DoxyCompactList}\small\item\em Classifies terrain into geomorphological features based on the geomorphons method. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_ab79c564a249c41caec3367b3d82ebdbf}{hmap\+::kmeans\+\_\+clustering2}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array1, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array2, int nclusters, std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Array}{Array}} $>$ \texorpdfstring{$\ast$}{*}p\+\_\+scoring=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+aggregate\+\_\+scoring=nullptr, glm\+::vec2 weights=\{1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}, std\+::uint32\+\_\+t seed=1)
-\begin{DoxyCompactList}\small\item\em Performs k-\/means clustering on two input arrays, grouping similar data points into clusters. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_ab1bbddddf9ab88025a85668b66d68bdf}{hmap\+::kmeans\+\_\+clustering3}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array1, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array2, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array3, int nclusters, std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Array}{Array}} $>$ \texorpdfstring{$\ast$}{*}p\+\_\+scoring=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+aggregate\+\_\+scoring=nullptr, glm\+::vec3 weights=\{1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}, std\+::uint32\+\_\+t seed=1)
-\begin{DoxyCompactList}\small\item\em Performs k-\/means clustering on three input arrays, providing more detailed cluster analysis by considering an additional dimension. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Header file defining a collection of functions for terrain analysis and feature extraction from heightmaps. 
+Umbrella header for terrain feature extraction, landform classification, and terrain-\/aware points of interest. 
 
 \begin{DoxyAuthor}{Author}
 Otto Link (\href{mailto:otto.link.bv@gmail.com}{\texttt{ otto.\+link.\+bv@gmail.\+com}}) 

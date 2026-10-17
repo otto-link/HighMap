@@ -544,7 +544,7 @@
 <codeline lineno="534"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="535"><highlight class="normal"></highlight></codeline>
 <codeline lineno="536"><highlight class="normal">std::vector&lt;Point&gt;::iterator<sp/>Cloud::erase(</highlight></codeline>
-<codeline lineno="537"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Point&gt;::const_iterator<sp/>pos)</highlight></codeline>
+<codeline lineno="537"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Point&gt;::const_iterator<sp/><ref refid="poi_8cpp_1a6f4c30bf2e24353492937851cb470208" kindref="member">pos</ref>)</highlight></codeline>
 <codeline lineno="538"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="539"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="kd__tree_8cpp_1a7cbf926513672593ee7214c43a06e057" kindref="member">points</ref>.erase(pos);</highlight></codeline>
 <codeline lineno="540"><highlight class="normal">}</highlight></codeline>
@@ -567,14 +567,14 @@
 <codeline lineno="557"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="558"><highlight class="normal"></highlight></codeline>
 <codeline lineno="559"><highlight class="normal">std::vector&lt;Point&gt;::iterator<sp/>Cloud::insert(</highlight></codeline>
-<codeline lineno="560"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Point&gt;::const_iterator<sp/>pos,</highlight></codeline>
+<codeline lineno="560"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Point&gt;::const_iterator<sp/><ref refid="poi_8cpp_1a6f4c30bf2e24353492937851cb470208" kindref="member">pos</ref>,</highlight></codeline>
 <codeline lineno="561"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Point<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;value)</highlight></codeline>
 <codeline lineno="562"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="563"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="kd__tree_8cpp_1a7cbf926513672593ee7214c43a06e057" kindref="member">points</ref>.insert(pos,<sp/>value);</highlight></codeline>
 <codeline lineno="564"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="565"><highlight class="normal"></highlight></codeline>
 <codeline lineno="566"><highlight class="normal">std::vector&lt;Point&gt;::iterator<sp/>Cloud::insert(</highlight></codeline>
-<codeline lineno="567"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Point&gt;::const_iterator<sp/>pos,</highlight></codeline>
+<codeline lineno="567"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;Point&gt;::const_iterator<sp/><ref refid="poi_8cpp_1a6f4c30bf2e24353492937851cb470208" kindref="member">pos</ref>,</highlight></codeline>
 <codeline lineno="568"><highlight class="normal"><sp/><sp/><sp/><sp/>Point<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;&amp;value)</highlight></codeline>
 <codeline lineno="569"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="570"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="kd__tree_8cpp_1a7cbf926513672593ee7214c43a06e057" kindref="member">points</ref>.insert(pos,<sp/>std::move(value));</highlight></codeline>

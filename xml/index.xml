@@ -66,6 +66,7 @@
     <member refid="classhmap_1_1Array_1a7ef7005c4ca95be75c82bded5165634c" kind="function"><name>get_sizeof</name></member>
     <member refid="classhmap_1_1Array_1ae47cb152f3e887d17160519afd589ee2" kind="function"><name>get_value_bicubic_at</name></member>
     <member refid="classhmap_1_1Array_1a12eb51c18154e3e452afe9743636085f" kind="function"><name>get_value_bilinear_at</name></member>
+    <member refid="classhmap_1_1Array_1a6cb4f654e45395b07f7541f588664bc2" kind="function"><name>get_value_bilinear</name></member>
     <member refid="classhmap_1_1Array_1afff00e67eea65de385d7cd2e9ea4d189" kind="function"><name>get_value_nearest</name></member>
     <member refid="classhmap_1_1Array_1a65336e3091ee64a91b3ecce8c01c837b" kind="function"><name>get_vector</name></member>
     <member refid="classhmap_1_1Array_1a0a68f43a6e0cf3a2b0392a161ea18339" kind="function"><name>infos</name></member>
@@ -1056,6 +1057,18 @@
     <member refid="structhmap_1_1gpu_1_1McDonaldParams_1_1PhysicalParams_1a6957f3c429e254be4d008b04377c9f8c" kind="variable"><name>suspension_rate</name></member>
     <member refid="structhmap_1_1gpu_1_1McDonaldParams_1_1PhysicalParams_1a2aff26c3de97c9ef7bbf97ee07c72203" kind="variable"><name>exit_slope</name></member>
   </compound>
+  <compound refid="structhmap_1_1PoiGenerationOptions" kind="struct"><name>hmap::PoiGenerationOptions</name>
+    <member refid="structhmap_1_1PoiGenerationOptions_1a4a45da9f7a9133406b90de3e9ab2dfa5" kind="variable"><name>scale_radius</name></member>
+    <member refid="structhmap_1_1PoiGenerationOptions_1ab073c0dfaee027ff684bfbe1d93b48df" kind="variable"><name>prominence</name></member>
+    <member refid="structhmap_1_1PoiGenerationOptions_1ab3d1c00b9a3863a7bc65f8dffcd13192" kind="variable"><name>threshold</name></member>
+    <member refid="structhmap_1_1PoiGenerationOptions_1a73c3febddef10e89b7b64ade41da0643" kind="variable"><name>min_distance</name></member>
+    <member refid="structhmap_1_1PoiGenerationOptions_1abc8b76f36b0cfffff661b0c60da41c85" kind="variable"><name>max_points</name></member>
+    <member refid="structhmap_1_1PoiGenerationOptions_1a020d35a64ca1d7e39a196a75d9ed7a63" kind="variable"><name>border_margin</name></member>
+    <member refid="structhmap_1_1PoiGenerationOptions_1afbd6a278dd2b261653676ee7fd35e8a4" kind="variable"><name>seed</name></member>
+    <member refid="structhmap_1_1PoiGenerationOptions_1aa488292ec1d131cfc8f12eabde6bfab1" kind="variable"><name>jitter</name></member>
+    <member refid="structhmap_1_1PoiGenerationOptions_1a445411d91a15f36d8fb7edc81c91b13e" kind="variable"><name>p_mask</name></member>
+    <member refid="structhmap_1_1PoiGenerationOptions_1affb1fa86633ea1d324e9a571bc04edeb" kind="variable"><name>bbox</name></member>
+  </compound>
   <compound refid="classhmap_1_1Point" kind="class"><name>hmap::Point</name>
     <member refid="classhmap_1_1Point_1ac0d4eaf8062b8f11638db83e08198e48" kind="variable"><name>x</name></member>
     <member refid="classhmap_1_1Point_1aa045aed7ca12dffe13ba8f2db730a9bf" kind="variable"><name>y</name></member>
@@ -1079,6 +1092,14 @@
     <member refid="classhmap_1_1Point_1a1d6b271be3199f81755ade9e4a110255" kind="function"><name>print</name></member>
     <member refid="classhmap_1_1Point_1a8db4bb3b9fc4a56e95aed9d6dfd77ef7" kind="function"><name>set_value_from_array</name></member>
     <member refid="classhmap_1_1Point_1a856f16a579a6d40be94a17a2fa5fd7ad" kind="friend"><name>operator*</name></member>
+  </compound>
+  <compound refid="structhmap_1_1PointOfInterest" kind="struct"><name>hmap::PointOfInterest</name>
+    <member refid="structhmap_1_1PointOfInterest_1a7a4955625ad519be4d0072984552ed60" kind="variable"><name>position</name></member>
+    <member refid="structhmap_1_1PointOfInterest_1a28da68e23f1f6a0d7807bbd392f81555" kind="variable"><name>score</name></member>
+    <member refid="structhmap_1_1PointOfInterest_1aec44c1484804a70b37aafa3581a65b9f" kind="variable"><name>elevation</name></member>
+    <member refid="structhmap_1_1PointOfInterest_1afa3e1b7b4d54ae7e73d9167eacd48589" kind="variable"><name>slope</name></member>
+    <member refid="structhmap_1_1PointOfInterest_1a15c6c48b35856d881f6347a8e08f6acc" kind="variable"><name>aspect</name></member>
+    <member refid="structhmap_1_1PointOfInterest_1a0eeafbeaa78b2a4c6cef90e59702f48b" kind="variable"><name>type</name></member>
   </compound>
   <compound refid="classhmap_1_1QuadSurfaceFunction" kind="class"><name>hmap::QuadSurfaceFunction</name>
     <member refid="classhmap_1_1QuadSurfaceFunction_1addf076e019756240d02b7b44ddb6296a" kind="variable"><name>c00</name></member>
@@ -1675,23 +1696,25 @@
     <member refid="classhmap_1_1XyControlFunction_1acfe5c441363f35d36a13084fb56c6dca" kind="function"><name>MinimumImpl</name></member>
     <member refid="classhmap_1_1XyControlFunction_1ab32abc0861325b3ea6f547b938a9225d" kind="function"><name>MaximumImpl</name></member>
   </compound>
-  <compound refid="namespace_0d211" kind="namespace"><name>@211</name>
+  <compound refid="namespace_0d214" kind="namespace"><name>@214</name>
   </compound>
-  <compound refid="namespace_0d412" kind="namespace"><name>@412</name>
+  <compound refid="namespace_0d415" kind="namespace"><name>@415</name>
   </compound>
-  <compound refid="namespace_0d423" kind="namespace"><name>@423</name>
+  <compound refid="namespace_0d426" kind="namespace"><name>@426</name>
   </compound>
-  <compound refid="namespace_0d433" kind="namespace"><name>@433</name>
+  <compound refid="namespace_0d436" kind="namespace"><name>@436</name>
   </compound>
-  <compound refid="namespace_0d452" kind="namespace"><name>@452</name>
+  <compound refid="namespace_0d455" kind="namespace"><name>@455</name>
   </compound>
-  <compound refid="namespace_0d459" kind="namespace"><name>@459</name>
+  <compound refid="namespace_0d462" kind="namespace"><name>@462</name>
   </compound>
-  <compound refid="namespace_0d472" kind="namespace"><name>@472</name>
+  <compound refid="namespace_0d473" kind="namespace"><name>@473</name>
   </compound>
-  <compound refid="namespace_0d483" kind="namespace"><name>@483</name>
+  <compound refid="namespace_0d476" kind="namespace"><name>@476</name>
   </compound>
   <compound refid="namespace_0d487" kind="namespace"><name>@487</name>
+  </compound>
+  <compound refid="namespace_0d491" kind="namespace"><name>@491</name>
   </compound>
   <compound refid="namespacehmap" kind="namespace"><name>hmap</name>
     <member refid="namespacehmap_1a5101273ec456f5267dddc3e22dae223b" kind="enum"><name>StampingBlendMethod</name></member>
@@ -1784,6 +1807,18 @@
     <member refid="namespacehmap_1a451ad02eb796f23b2f68e062e8de9875ac49f280a5ad551ccc77be0b01a2f386a" kind="enumvalue"><name>FLOAT16</name></member>
     <member refid="namespacehmap_1a451ad02eb796f23b2f68e062e8de9875a48d8f1a723d44ff4a87db1bb6c551c62" kind="enumvalue"><name>UINT16</name></member>
     <member refid="namespacehmap_1a451ad02eb796f23b2f68e062e8de9875aecfc091ed2a607335524c8389cfa41b5" kind="enumvalue"><name>UINT8</name></member>
+    <member refid="namespacehmap_1ade234d7bb6c23c67317077ab7a9082ca" kind="enum"><name>PoiType</name></member>
+    <member refid="namespacehmap_1ade234d7bb6c23c67317077ab7a9082caa72baef04098f035e8a320b03ad197818" kind="enumvalue"><name>CUSTOM</name></member>
+    <member refid="namespacehmap_1ade234d7bb6c23c67317077ab7a9082caa41f27b32d69234c1f651f7b678c2ea21" kind="enumvalue"><name>APEX</name></member>
+    <member refid="namespacehmap_1ade234d7bb6c23c67317077ab7a9082caa6091f77137cf4570917f3f4d30585bb1" kind="enumvalue"><name>SINK</name></member>
+    <member refid="namespacehmap_1ade234d7bb6c23c67317077ab7a9082caabac95dd5ea9567ece3563f9a7ae503d7" kind="enumvalue"><name>SADDLE</name></member>
+    <member refid="namespacehmap_1ade234d7bb6c23c67317077ab7a9082caa729ef3b0198a30fc445b80eed5bc745c" kind="enumvalue"><name>RIDGE</name></member>
+    <member refid="namespacehmap_1ade234d7bb6c23c67317077ab7a9082caa4e89332934c40ecd6b609da1b347da68" kind="enumvalue"><name>VALLEY</name></member>
+    <member refid="namespacehmap_1ade234d7bb6c23c67317077ab7a9082caa411a12d6909d39f170df55847b55db9d" kind="enumvalue"><name>CLIFF</name></member>
+    <member refid="namespacehmap_1ade234d7bb6c23c67317077ab7a9082caa35ebc37b4c82e43d9db872fa2693f0ed" kind="enumvalue"><name>PLATEAU</name></member>
+    <member refid="namespacehmap_1ade234d7bb6c23c67317077ab7a9082caa0e68ed6c5537a2cda30ab084e8eaa064" kind="enumvalue"><name>FLAT_LOWLAND</name></member>
+    <member refid="namespacehmap_1ade234d7bb6c23c67317077ab7a9082caa78c92c39b75832ba14c029fd28e841a2" kind="enumvalue"><name>VIEWPOINT</name></member>
+    <member refid="namespacehmap_1ade234d7bb6c23c67317077ab7a9082caa3683c44a873aff7a8305b2ac92cb1765" kind="enumvalue"><name>SETTLEMENT_CANDIDATE</name></member>
     <member refid="namespacehmap_1a17cbec9c3162ef357a9418351d66fcfd" kind="enum"><name>DistanceMode</name></member>
     <member refid="namespacehmap_1a17cbec9c3162ef357a9418351d66fcfda71ad0fa6a6a3e480ec3446bce7073e63" kind="enumvalue"><name>ASTERISK</name></member>
     <member refid="namespacehmap_1a17cbec9c3162ef357a9418351d66fcfdacd996d3184761601a0e44e587a012d4f" kind="enumvalue"><name>PYRAMID</name></member>
@@ -2091,6 +2126,11 @@
     <member refid="namespacehmap_1a91708f107a53c4b8ef68bb1d0291c73f" kind="function"><name>export_tiled</name></member>
     <member refid="namespacehmap_1a09aeebc31234cb19376836a7009054d3" kind="function"><name>read_to_array</name></member>
     <member refid="namespacehmap_1a565d90964be3bdc0d95aedb80288ce57" kind="function"><name>export_usd</name></member>
+    <member refid="namespacehmap_1a736f36f2a5809dc934724defa8a52f92" kind="function"><name>compute_poi_suitability_field</name></member>
+    <member refid="namespacehmap_1a25da67b2f53f904c1bcb1aabee636ed2" kind="function"><name>generate_points_of_interest_cloud</name></member>
+    <member refid="namespacehmap_1ae048ea03ae80ee1b35e74a3a2e2e9df0" kind="function"><name>generate_points_of_interest</name></member>
+    <member refid="namespacehmap_1acae064279d93d8ed9372556a6f441204" kind="function"><name>generate_points_of_interest_positions</name></member>
+    <member refid="namespacehmap_1a0a46857466438108ccff5d02caa285ab" kind="function"><name>generate_points_from_score_field</name></member>
     <member refid="namespacehmap_1a34efdecd3db27a30c06537acda6d9457" kind="function"><name>connected_components</name></member>
     <member refid="namespacehmap_1aa60fa2d3f02d1e064b520fa1623200d0" kind="function"><name>geomorphons</name></member>
     <member refid="namespacehmap_1ab79c564a249c41caec3367b3d82ebdbf" kind="function"><name>kmeans_clustering2</name></member>
@@ -2352,9 +2392,9 @@
     <member refid="namespacehmap_1a397d5d081862e6eca1551acfe0198624" kind="function"><name>flow_fixing_mst_paths</name></member>
     <member refid="namespacehmap_1ab0fe57b3afd4499d08c362d8acd5f6f9" kind="function"><name>flow_fixing_mst_paths</name></member>
     <member refid="namespacehmap_1a5fbbe4a3db33c7783faa794c3051ddb4" kind="function"><name>flow_fixing_mst_triangulated</name></member>
-    <member refid="namespacehmap_1a948b4703486f175cd2681bd9bc7b5a88" kind="function"><name>flow_stream</name></member>
-    <member refid="namespacehmap_1ac46adb5c67650ea6660a4edfc8d213c3" kind="function"><name>flow_stream</name></member>
-    <member refid="namespacehmap_1a5420856e4ed4060e782414c4bb97e63e" kind="function"><name>flow_stream</name></member>
+    <member refid="namespacehmap_1ada1af89f3e34eb4ceb13e176a1b819c2" kind="function"><name>flow_stream</name></member>
+    <member refid="namespacehmap_1ae0d87f762b7f25f717cebc3ccf2ca667" kind="function"><name>flow_stream</name></member>
+    <member refid="namespacehmap_1ab41c1a4c6149f555e6b18860946327b2" kind="function"><name>flow_stream</name></member>
     <member refid="namespacehmap_1a30d55fae5c75a1c45a005a3f9a9467eb" kind="function"><name>generate_riverbed</name></member>
     <member refid="namespacehmap_1a64fbc0261e13ea842762efd3ac6bcc53" kind="function"><name>merge_water_depths</name></member>
     <member refid="namespacehmap_1a78419f7981186b40c4a2d04456e4e63f" kind="function"><name>snow_melting_map</name></member>
@@ -2838,28 +2878,30 @@
     <member refid="namespacehmap_1ac1fdc0ac0b6e1024faeaddcd30ebe2fe" kind="function"><name>reindex_vector</name></member>
     <member refid="namespacehmap_1a5cca080874e8af74fa03a3f0f0d2f307" kind="function"><name>reindex_vector</name></member>
   </compound>
-  <compound refid="namespacehmap_1_1_0d124" kind="namespace"><name>hmap::@124</name>
+  <compound refid="namespacehmap_1_1_0d126" kind="namespace"><name>hmap::@126</name>
   </compound>
-  <compound refid="namespacehmap_1_1_0d128" kind="namespace"><name>hmap::@128</name>
+  <compound refid="namespacehmap_1_1_0d130" kind="namespace"><name>hmap::@130</name>
   </compound>
-  <compound refid="namespacehmap_1_1_0d139" kind="namespace"><name>hmap::@139</name>
+  <compound refid="namespacehmap_1_1_0d141" kind="namespace"><name>hmap::@141</name>
   </compound>
-  <compound refid="namespacehmap_1_1_0d169" kind="namespace"><name>hmap::@169</name>
-    <member refid="namespacehmap_1_1_0d169_1a14dd02407470afc415e4eb3cdd94092e" kind="enum"><name></name></member>
+  <compound refid="namespacehmap_1_1_0d171" kind="namespace"><name>hmap::@171</name>
+    <member refid="namespacehmap_1_1_0d171_1a942faa0a8b27bbd5181b13dd886a17e1" kind="enum"><name></name></member>
   </compound>
-  <compound refid="namespacehmap_1_1_0d197" kind="namespace"><name>hmap::@197</name>
+  <compound refid="namespacehmap_1_1_0d199" kind="namespace"><name>hmap::@199</name>
   </compound>
-  <compound refid="namespacehmap_1_1_0d245" kind="namespace"><name>hmap::@245</name>
+  <compound refid="namespacehmap_1_1_0d208" kind="namespace"><name>hmap::@208</name>
   </compound>
   <compound refid="namespacehmap_1_1_0d248" kind="namespace"><name>hmap::@248</name>
   </compound>
-  <compound refid="namespacehmap_1_1_0d270" kind="namespace"><name>hmap::@270</name>
+  <compound refid="namespacehmap_1_1_0d251" kind="namespace"><name>hmap::@251</name>
   </compound>
-  <compound refid="namespacehmap_1_1_0d377" kind="namespace"><name>hmap::@377</name>
+  <compound refid="namespacehmap_1_1_0d273" kind="namespace"><name>hmap::@273</name>
   </compound>
-  <compound refid="namespacehmap_1_1_0d382" kind="namespace"><name>hmap::@382</name>
+  <compound refid="namespacehmap_1_1_0d380" kind="namespace"><name>hmap::@380</name>
   </compound>
   <compound refid="namespacehmap_1_1_0d385" kind="namespace"><name>hmap::@385</name>
+  </compound>
+  <compound refid="namespacehmap_1_1_0d388" kind="namespace"><name>hmap::@388</name>
   </compound>
   <compound refid="namespacehmap_1_1gpu" kind="namespace"><name>hmap::gpu</name>
     <member refid="namespacehmap_1_1gpu_1ab0737b29664736928a86f0755493895f" kind="enum"><name>LocalMetrics</name></member>
@@ -3205,7 +3247,7 @@
     <member refid="namespacehmap_1_1va_1ae8000dce23f7622c2ba67910124bc353" kind="function"><name>flooding_lake_system</name></member>
     <member refid="namespacehmap_1_1va_1a050c3c7ecc102d86f566bf55b3a72c51" kind="function"><name>flow_fixing_mst_paths</name></member>
     <member refid="namespacehmap_1_1va_1a79c8b1b0f1447fcb8f94f6e2cec8788b" kind="function"><name>flow_fixing_mst_triangulated</name></member>
-    <member refid="namespacehmap_1_1va_1ae0522b3668ec88bf0a3d8ad785a6185e" kind="function"><name>flow_stream</name></member>
+    <member refid="namespacehmap_1_1va_1a08c36b568fb373531e8c7775809824ce" kind="function"><name>flow_stream</name></member>
     <member refid="namespacehmap_1_1va_1abfb98fdd47bd2a66e694c03765bf74af" kind="function"><name>seed_rock_field</name></member>
     <member refid="namespacehmap_1_1va_1afa19680ed9583277c2fb76daa95bfa96" kind="function"><name>find_cut_path_dijkstra</name></member>
     <member refid="namespacehmap_1_1va_1a996f3a9161ae2f85e2ef1d257dd43349" kind="function"><name>find_path_dijkstra</name></member>
@@ -3276,6 +3318,10 @@
   <compound refid="scene_8hpp" kind="file"><name>scene.hpp</name>
   </compound>
   <compound refid="features_8hpp" kind="file"><name>features.hpp</name>
+  </compound>
+  <compound refid="poi_8hpp" kind="file"><name>poi.hpp</name>
+  </compound>
+  <compound refid="terrain__features_8hpp" kind="file"><name>terrain_features.hpp</name>
   </compound>
   <compound refid="filters_8hpp" kind="file"><name>filters.hpp</name>
   </compound>
@@ -3707,6 +3753,12 @@
   <compound refid="geomorphons_8cpp" kind="file"><name>geomorphons.cpp</name>
   </compound>
   <compound refid="kmeans__clustering_8cpp" kind="file"><name>kmeans_clustering.cpp</name>
+  </compound>
+  <compound refid="poi_8cpp" kind="file"><name>poi.cpp</name>
+    <member refid="poi_8cpp_1aadd40965c292ca97cefb7ef32ef9f779" kind="variable"><name>coord</name></member>
+    <member refid="poi_8cpp_1a6f4c30bf2e24353492937851cb470208" kind="variable"><name>pos</name></member>
+    <member refid="poi_8cpp_1a8c5cd9b525ee73a24b1d9d8e34982d1c" kind="variable"><name>score</name></member>
+    <member refid="poi_8cpp_1a6ee3ae7e4bede6d65a3a2f26ac5750fc" kind="variable"><name>prominence</name></member>
   </compound>
   <compound refid="bilateral__filter_8cpp" kind="file"><name>bilateral_filter.cpp</name>
   </compound>
@@ -4465,6 +4517,8 @@
     <member refid="test__flow__stream_8cpp_1a2e549057559ff7720b74b461d973ed6c" kind="function"><name>TEST</name></member>
     <member refid="test__flow__stream_8cpp_1a1291587bb42b21da07316833e2d0238d" kind="function"><name>TEST</name></member>
     <member refid="test__flow__stream_8cpp_1abb5efc0e838d0f6637e7a01b4108bc5a" kind="function"><name>TEST</name></member>
+    <member refid="test__flow__stream_8cpp_1a580af1db483cd1c52c32b50e760d131b" kind="function"><name>TEST</name></member>
+    <member refid="test__flow__stream_8cpp_1a55c1ace83ca08ee78f95ff0f4f43fb5c" kind="function"><name>TEST</name></member>
   </compound>
   <compound refid="test__fold__periodic_8cpp" kind="file"><name>test_fold_periodic.cpp</name>
     <member refid="test__fold__periodic_8cpp_1a0b09ca0b954c7d3624e0457ec0282027" kind="function"><name>TEST</name></member>
@@ -4764,6 +4818,15 @@
     <member refid="test__pdf__sampler_8cpp_1aff4fe8d821989fb5529287c15bbb899b" kind="function"><name>TEST</name></member>
     <member refid="test__pdf__sampler_8cpp_1a1de5f1f85ed03f9be6492beb77653c77" kind="function"><name>TEST</name></member>
     <member refid="test__pdf__sampler_8cpp_1a91f61ed1f968f9dcba50bbda9d758410" kind="function"><name>TEST</name></member>
+  </compound>
+  <compound refid="test__poi_8cpp" kind="file"><name>test_poi.cpp</name>
+    <member refid="test__poi_8cpp_1ae78944c143eb9f0395c769876c5f050a" kind="function"><name>TEST</name></member>
+    <member refid="test__poi_8cpp_1abf37eee186ed13f410ee95f572a441c8" kind="function"><name>TEST</name></member>
+    <member refid="test__poi_8cpp_1a12fee0981ecaaf54419bdb609ab02b77" kind="function"><name>TEST</name></member>
+    <member refid="test__poi_8cpp_1a5eb15bf795f425cf190c983ece52f6a8" kind="function"><name>TEST</name></member>
+    <member refid="test__poi_8cpp_1acc090897692f5bc99105676d365f42e1" kind="function"><name>TEST</name></member>
+    <member refid="test__poi_8cpp_1ad92fdadb692a5c66b972929e8859d053" kind="function"><name>TEST</name></member>
+    <member refid="test__poi_8cpp_1aff12394a52fe80b20ca275c2e9fa84a3" kind="function"><name>TEST</name></member>
   </compound>
   <compound refid="test__point_8cpp" kind="file"><name>test_point.cpp</name>
     <member refid="test__point_8cpp_1aaea08d40b276c0525347d2adcdc9cf9e" kind="variable"><name>eps</name></member>
@@ -5148,6 +5211,8 @@
   <compound refid="dir_07f2faa4e22ffdd0f0e180fc1afb0d60" kind="dir"><name>HighMap/include/highmap/export</name>
   </compound>
   <compound refid="dir_3bc85fd9086f4b2a437782af9c422553" kind="dir"><name>HighMap/src/export</name>
+  </compound>
+  <compound refid="dir_0d4f851cc771b6338f6480385c8c76aa" kind="dir"><name>HighMap/include/highmap/features</name>
   </compound>
   <compound refid="dir_7ea3d0e8e962d2de34184481d2ce5fca" kind="dir"><name>HighMap/src/features</name>
   </compound>

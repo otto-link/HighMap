@@ -96,40 +96,16 @@ $(document).ready(function(){initNavTree('features_8hpp.html',''); initResizable
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#namespaces">Namespaces</a> &#124;
-<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">features.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Header file defining a collection of functions for terrain analysis and feature extraction from heightmaps.  
+<p>Umbrella header for terrain feature extraction, landform classification, and terrain-aware points of interest.  
 <a href="#details">More...</a></p>
 
 <p><a href="features_8hpp_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr class="memitem:namespacehmap" id="r_namespacehmap"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html">hmap</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a34efdecd3db27a30c06537acda6d9457" id="r_a34efdecd3db27a30c06537acda6d9457"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhmap_1_1Array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#a34efdecd3db27a30c06537acda6d9457">hmap::connected_components</a> (const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;array, float surface_threshold=0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float background_value=0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, std::map&lt; float, float &gt; *p_surfaces=nullptr, std::map&lt; float, std::array&lt; float, 2 &gt; &gt; *p_centroids=nullptr)</td></tr>
-<tr class="memdesc:a34efdecd3db27a30c06537acda6d9457"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifies and labels connected components within a binary or labeled array, with optional filtering by size.  <br /></td></tr>
-<tr class="separator:a34efdecd3db27a30c06537acda6d9457"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa60fa2d3f02d1e064b520fa1623200d0" id="r_aa60fa2d3f02d1e064b520fa1623200d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhmap_1_1Array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#aa60fa2d3f02d1e064b520fa1623200d0">hmap::geomorphons</a> (const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;array, int irmin, int irmax, float epsilon)</td></tr>
-<tr class="memdesc:aa60fa2d3f02d1e064b520fa1623200d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Classifies terrain into geomorphological features based on the geomorphons method.  <br /></td></tr>
-<tr class="separator:aa60fa2d3f02d1e064b520fa1623200d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab79c564a249c41caec3367b3d82ebdbf" id="r_ab79c564a249c41caec3367b3d82ebdbf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhmap_1_1Array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#ab79c564a249c41caec3367b3d82ebdbf">hmap::kmeans_clustering2</a> (const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;array1, const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;array2, int nclusters, std::vector&lt; <a class="el" href="classhmap_1_1Array.html">Array</a> &gt; *p_scoring=nullptr, <a class="el" href="classhmap_1_1Array.html">Array</a> *p_aggregate_scoring=nullptr, glm::vec2 weights={1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, 1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>}, std::uint32_t seed=1)</td></tr>
-<tr class="memdesc:ab79c564a249c41caec3367b3d82ebdbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs k-means clustering on two input arrays, grouping similar data points into clusters.  <br /></td></tr>
-<tr class="separator:ab79c564a249c41caec3367b3d82ebdbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1bbddddf9ab88025a85668b66d68bdf" id="r_ab1bbddddf9ab88025a85668b66d68bdf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classhmap_1_1Array.html">Array</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#ab1bbddddf9ab88025a85668b66d68bdf">hmap::kmeans_clustering3</a> (const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;array1, const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;array2, const <a class="el" href="classhmap_1_1Array.html">Array</a> &amp;array3, int nclusters, std::vector&lt; <a class="el" href="classhmap_1_1Array.html">Array</a> &gt; *p_scoring=nullptr, <a class="el" href="classhmap_1_1Array.html">Array</a> *p_aggregate_scoring=nullptr, glm::vec3 weights={1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, 1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, 1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>}, std::uint32_t seed=1)</td></tr>
-<tr class="memdesc:ab1bbddddf9ab88025a85668b66d68bdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs k-means clustering on three input arrays, providing more detailed cluster analysis by considering an additional dimension.  <br /></td></tr>
-<tr class="separator:ab1bbddddf9ab88025a85668b66d68bdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Header file defining a collection of functions for terrain analysis and feature extraction from heightmaps. </p>
+<div class="textblock"><p>Umbrella header for terrain feature extraction, landform classification, and terrain-aware points of interest. </p>
 <dl class="section author"><dt>Author</dt><dd>Otto Link (<a href="#" onclick="location.href='mai'+'lto:'+'ott'+'o.'+'lin'+'k.'+'bv@'+'gm'+'ail'+'.c'+'om'; return false;">otto.<span class="obfuscator">.nosp@m.</span>link<span class="obfuscator">.nosp@m.</span>.bv@g<span class="obfuscator">.nosp@m.</span>mail<span class="obfuscator">.nosp@m.</span>.com</a>) </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2023 Otto Link </dd></dl>
 </div></div><!-- contents -->

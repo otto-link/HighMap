@@ -8,5 +8,7 @@ var searchData=
   ['perlinhalffunction_5',['PerlinHalfFunction',['../classhmap_1_1PerlinHalfFunction.html',1,'hmap']]],
   ['perlinmixfunction_6',['PerlinMixFunction',['../classhmap_1_1PerlinMixFunction.html',1,'hmap']]],
   ['physicalparams_7',['PhysicalParams',['../structhmap_1_1gpu_1_1McDonaldParams_1_1PhysicalParams.html',1,'hmap::gpu::McDonaldParams']]],
-  ['point_8',['Point',['../classhmap_1_1Point.html',1,'hmap']]]
+  ['poigenerationoptions_8',['PoiGenerationOptions',['../structhmap_1_1PoiGenerationOptions.html',1,'hmap']]],
+  ['point_9',['Point',['../classhmap_1_1Point.html',1,'hmap']]],
+  ['pointofinterest_10',['PointOfInterest',['../structhmap_1_1PointOfInterest.html',1,'hmap']]]
 ];

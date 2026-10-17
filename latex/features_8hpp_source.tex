@@ -7,43 +7,8 @@
 \DoxyCodeLine{00003\ \textcolor{comment}{\ \ \ this\ software.\ */}}
 \DoxyCodeLine{00004\ }
 \DoxyCodeLine{00013\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <array>}}
-\DoxyCodeLine{00015\ }
-\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{array_8hpp}{highmap/array.hpp}}"{}}}
-\DoxyCodeLine{00017\ }
-\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ HMAP\_PACK8(a,\ b,\ c,\ d,\ e,\ f,\ g,\ h)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00042\ \textcolor{preprocessor}{\ \ ((a\ <<\ 15)\ +\ (b\ <<\ 13)\ +\ (c\ <<\ 11)\ +\ (d\ <<\ 9)\ +\ (e\ <<\ 7)\ +\ (f\ <<\ 5)\ +\ \ \ \ \ \ \ \ \(\backslash\)}}
-\DoxyCodeLine{00043\ \textcolor{preprocessor}{\ \ \ (g\ <<\ 3)\ +\ (h\ <<\ 1))}}
-\DoxyCodeLine{00044\ }
-\DoxyCodeLine{00045\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacehmap}{hmap}}}
-\DoxyCodeLine{00046\ \{}
-\DoxyCodeLine{00047\ }
-\DoxyCodeLine{00085\ Array\ \mbox{\hyperlink{namespacehmap_a34efdecd3db27a30c06537acda6d9457}{connected\_components}}(}
-\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&array,}
-\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ surface\_threshold\ =\ 0.f,}
-\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ background\_value\ =\ 0.f,}
-\DoxyCodeLine{00089\ \ \ \ \ std::map<float,\ float>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *p\_surfaces\ =\ \textcolor{keyword}{nullptr},}
-\DoxyCodeLine{00090\ \ \ \ \ std::map<\textcolor{keywordtype}{float},\ std::array<float,\ 2>>\ *p\_centroids\ =\ \textcolor{keyword}{nullptr});}
-\DoxyCodeLine{00091\ }
-\DoxyCodeLine{00123\ Array\ \mbox{\hyperlink{namespacehmap_aa60fa2d3f02d1e064b520fa1623200d0}{geomorphons}}(\textcolor{keyword}{const}\ Array\ \&array,\ \textcolor{keywordtype}{int}\ irmin,\ \textcolor{keywordtype}{int}\ irmax,\ \textcolor{keywordtype}{float}\ epsilon);}
-\DoxyCodeLine{00124\ }
-\DoxyCodeLine{00176\ Array\ \mbox{\hyperlink{namespacehmap_ab79c564a249c41caec3367b3d82ebdbf}{kmeans\_clustering2}}(\textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \&array1,}
-\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \&array2,}
-\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nclusters,}
-\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Array>\ *p\_scoring\ =\ \textcolor{keyword}{nullptr},}
-\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Array\ \ \ \ \ \ \ \ \ \ \ \ \ \ *p\_aggregate\_scoring\ =\ \textcolor{keyword}{nullptr},}
-\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec2\ \ \ \ \ \ \ \ \ \ \ weights\ =\ \{1.f,\ 1.f\},}
-\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::uint32\_t\ \ \ \ \ \ \ seed\ =\ 1);}
-\DoxyCodeLine{00183\ }
-\DoxyCodeLine{00228\ Array\ \mbox{\hyperlink{namespacehmap_ab1bbddddf9ab88025a85668b66d68bdf}{kmeans\_clustering3}}(\textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \&array1,}
-\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \&array2,}
-\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \&array3,}
-\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nclusters,}
-\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Array>\ *p\_scoring\ =\ \textcolor{keyword}{nullptr},}
-\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Array\ \ \ \ \ \ \ \ \ \ \ \ \ \ *p\_aggregate\_scoring\ =\ \textcolor{keyword}{nullptr},}
-\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec3\ \ \ \ \ \ \ \ \ \ \ weights\ =\ \{1.f,\ 1.f,\ 1.f\},}
-\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::uint32\_t\ \ \ \ \ \ \ seed\ =\ 1);}
-\DoxyCodeLine{00236\ }
-\DoxyCodeLine{00237\ \}\ \textcolor{comment}{//\ namespace\ hmap}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{poi_8hpp}{highmap/features/poi.hpp}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{terrain__features_8hpp}{highmap/features/terrain\_features.hpp}}"{}}}
 
 \end{DoxyCode}

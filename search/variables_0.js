@@ -13,7 +13,8 @@ var searchData=
   ['arc_5flength_10',['arc_length',['../trench_8cpp.html#a02ba8309c3319a0684ce77d8f6f1b1bd',1,'trench.cpp']]],
   ['area_11',['area',['../hydraulic__mise_8cpp.html#aaf398867f4e5a34468f33eb7755c55a6',1,'hydraulic_mise.cpp']]],
   ['area_5fexp_12',['area_exp',['../structhmap_1_1MiseParams.html#a356f5adb117f44de2077df80a0b7aef7',1,'hmap::MiseParams']]],
-  ['atoms_13',['atoms',['../terrain__super__resolution_8cpp.html#a05b733b6b75a1345ff19f790eeb6b697',1,'terrain_super_resolution.cpp']]],
-  ['atoms_5fhr_14',['atoms_hr',['../terrain__super__resolution_8cpp.html#a8f124990bd3d5f11ab18503b6290b615',1,'terrain_super_resolution.cpp']]],
-  ['atoms_5flr_15',['atoms_lr',['../terrain__super__resolution_8cpp.html#a4063376968c41ea74dc3ad64db090e1e',1,'terrain_super_resolution.cpp']]]
+  ['aspect_13',['aspect',['../structhmap_1_1PointOfInterest.html#a15c6c48b35856d881f6347a8e08f6acc',1,'hmap::PointOfInterest']]],
+  ['atoms_14',['atoms',['../terrain__super__resolution_8cpp.html#a05b733b6b75a1345ff19f790eeb6b697',1,'terrain_super_resolution.cpp']]],
+  ['atoms_5fhr_15',['atoms_hr',['../terrain__super__resolution_8cpp.html#a8f124990bd3d5f11ab18503b6290b615',1,'terrain_super_resolution.cpp']]],
+  ['atoms_5flr_16',['atoms_lr',['../terrain__super__resolution_8cpp.html#a4063376968c41ea74dc3ad64db090e1e',1,'terrain_super_resolution.cpp']]]
 ];

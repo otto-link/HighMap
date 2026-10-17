@@ -425,9 +425,9 @@
 <codeline lineno="415"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
 <codeline lineno="416"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>tile<sp/>relative<sp/>position</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="417"><highlight class="normal"><sp/><sp/>glm::vec2<sp/>size<sp/>=<sp/>{this-&gt;bbox.y<sp/>-<sp/>this-&gt;bbox.x,<sp/>this-&gt;bbox.w<sp/>-<sp/>this-&gt;bbox.z};</highlight></codeline>
-<codeline lineno="418"><highlight class="normal"><sp/><sp/>glm::vec2<sp/>pos<sp/>=<sp/>{(region.bbox.x<sp/>-<sp/>this-&gt;bbox.x)<sp/>/<sp/>size.x,</highlight></codeline>
+<codeline lineno="418"><highlight class="normal"><sp/><sp/>glm::vec2<sp/><ref refid="poi_8cpp_1a6f4c30bf2e24353492937851cb470208" kindref="member">pos</ref><sp/>=<sp/>{(region.bbox.x<sp/>-<sp/>this-&gt;bbox.x)<sp/>/<sp/>size.x,</highlight></codeline>
 <codeline lineno="419"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(region.bbox.z<sp/>-<sp/>this-&gt;bbox.z)<sp/>/<sp/>size.y};</highlight></codeline>
-<codeline lineno="420"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>pos;</highlight></codeline>
+<codeline lineno="420"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="poi_8cpp_1a6f4c30bf2e24353492937851cb470208" kindref="member">pos</ref>;</highlight></codeline>
 <codeline lineno="421"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="422"><highlight class="normal"></highlight></codeline>
 <codeline lineno="423"><highlight class="normal">glm::ivec2<sp/>VirtualArray::tile_region_global_indices(</highlight></codeline>

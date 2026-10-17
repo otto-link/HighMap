@@ -5,6 +5,7 @@
     <innerfile refid="connected__components_8cpp">connected_components.cpp</innerfile>
     <innerfile refid="geomorphons_8cpp">geomorphons.cpp</innerfile>
     <innerfile refid="kmeans__clustering_8cpp">kmeans_clustering.cpp</innerfile>
+    <innerfile refid="poi_8cpp">poi.cpp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

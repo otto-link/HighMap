@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structhmap_1_1PointOfInterest" kind="struct" language="C++" prot="public">
+    <compoundname>hmap::PointOfInterest</compoundname>
+    <includes refid="poi_8hpp" local="no">poi.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structhmap_1_1PointOfInterest_1a7a4955625ad519be4d0072984552ed60" prot="public" static="no" mutable="no">
+        <type>glm::vec2</type>
+        <definition>glm::vec2 hmap::PointOfInterest::position</definition>
+        <argsstring></argsstring>
+        <name>position</name>
+        <qualifiedname>hmap::PointOfInterest::position</qualifiedname>
+        <initializer>= {0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</initializer>
+        <briefdescription>
+<para>Coordinates in domain or normalized units. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/features/poi.hpp" line="53" column="13" bodyfile="HighMap/include/highmap/features/poi.hpp" bodystart="53" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1PointOfInterest_1a28da68e23f1f6a0d7807bbd392f81555" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::PointOfInterest::score</definition>
+        <argsstring></argsstring>
+        <name>score</name>
+        <qualifiedname>hmap::PointOfInterest::score</qualifiedname>
+        <initializer>= 0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+<para>Suitability or feature score in [0, 1]. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/features/poi.hpp" line="54" column="11" bodyfile="HighMap/include/highmap/features/poi.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1PointOfInterest_1aec44c1484804a70b37aafa3581a65b9f" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::PointOfInterest::elevation</definition>
+        <argsstring></argsstring>
+        <name>elevation</name>
+        <qualifiedname>hmap::PointOfInterest::elevation</qualifiedname>
+        <initializer>= 0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+<para>Terrain elevation at point. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/features/poi.hpp" line="55" column="11" bodyfile="HighMap/include/highmap/features/poi.hpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1PointOfInterest_1afa3e1b7b4d54ae7e73d9167eacd48589" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::PointOfInterest::slope</definition>
+        <argsstring></argsstring>
+        <name>slope</name>
+        <qualifiedname>hmap::PointOfInterest::slope</qualifiedname>
+        <initializer>= 0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+<para>Slope magnitude / talus. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/features/poi.hpp" line="56" column="11" bodyfile="HighMap/include/highmap/features/poi.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1PointOfInterest_1a15c6c48b35856d881f6347a8e08f6acc" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::PointOfInterest::aspect</definition>
+        <argsstring></argsstring>
+        <name>aspect</name>
+        <qualifiedname>hmap::PointOfInterest::aspect</qualifiedname>
+        <initializer>= 0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+<para>Aspect angle in radians [-π, π]. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/features/poi.hpp" line="57" column="11" bodyfile="HighMap/include/highmap/features/poi.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1PointOfInterest_1a0eeafbeaa78b2a4c6cef90e59702f48b" prot="public" static="no" mutable="no">
+        <type><ref refid="namespacehmap_1ade234d7bb6c23c67317077ab7a9082ca" kindref="member">PoiType</ref></type>
+        <definition>PoiType hmap::PointOfInterest::type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <qualifiedname>hmap::PointOfInterest::type</qualifiedname>
+        <initializer>= <ref refid="namespacehmap_1ade234d7bb6c23c67317077ab7a9082caa72baef04098f035e8a320b03ad197818" kindref="member">PoiType::CUSTOM</ref></initializer>
+        <briefdescription>
+<para><ref refid="classhmap_1_1Point" kindref="compound">Point</ref> type classification. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/features/poi.hpp" line="58" column="11" bodyfile="HighMap/include/highmap/features/poi.hpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Represents a terrain-aware point of interest with physical descriptors. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="HighMap/include/highmap/features/poi.hpp" line="51" column="1" bodyfile="HighMap/include/highmap/features/poi.hpp" bodystart="52" bodyend="59"/>
+    <listofallmembers>
+      <member refid="structhmap_1_1PointOfInterest_1a15c6c48b35856d881f6347a8e08f6acc" prot="public" virt="non-virtual"><scope>hmap::PointOfInterest</scope><name>aspect</name></member>
+      <member refid="structhmap_1_1PointOfInterest_1aec44c1484804a70b37aafa3581a65b9f" prot="public" virt="non-virtual"><scope>hmap::PointOfInterest</scope><name>elevation</name></member>
+      <member refid="structhmap_1_1PointOfInterest_1a7a4955625ad519be4d0072984552ed60" prot="public" virt="non-virtual"><scope>hmap::PointOfInterest</scope><name>position</name></member>
+      <member refid="structhmap_1_1PointOfInterest_1a28da68e23f1f6a0d7807bbd392f81555" prot="public" virt="non-virtual"><scope>hmap::PointOfInterest</scope><name>score</name></member>
+      <member refid="structhmap_1_1PointOfInterest_1afa3e1b7b4d54ae7e73d9167eacd48589" prot="public" virt="non-virtual"><scope>hmap::PointOfInterest</scope><name>slope</name></member>
+      <member refid="structhmap_1_1PointOfInterest_1a0eeafbeaa78b2a4c6cef90e59702f48b" prot="public" virt="non-virtual"><scope>hmap::PointOfInterest</scope><name>type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

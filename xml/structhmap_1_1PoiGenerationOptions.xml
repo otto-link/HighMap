@@ -1,0 +1,206 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="structhmap_1_1PoiGenerationOptions" kind="struct" language="C++" prot="public">
+    <compoundname>hmap::PoiGenerationOptions</compoundname>
+    <includes refid="poi_8hpp" local="no">poi.hpp</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structhmap_1_1PoiGenerationOptions_1a4a45da9f7a9133406b90de3e9ab2dfa5" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hmap::PoiGenerationOptions::scale_radius</definition>
+        <argsstring></argsstring>
+        <name>scale_radius</name>
+        <qualifiedname>hmap::PoiGenerationOptions::scale_radius</qualifiedname>
+        <initializer>= 8</initializer>
+        <briefdescription>
+<para>Neighborhood radius for local metrics. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/features/poi.hpp" line="67" column="7" bodyfile="HighMap/include/highmap/features/poi.hpp" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1PoiGenerationOptions_1ab073c0dfaee027ff684bfbe1d93b48df" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::PoiGenerationOptions::prominence</definition>
+        <argsstring></argsstring>
+        <name>prominence</name>
+        <qualifiedname>hmap::PoiGenerationOptions::prominence</qualifiedname>
+        <initializer>= 0.05<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+<para>Minimum elevation prominence over neighborhood. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/features/poi.hpp" line="68" column="9" bodyfile="HighMap/include/highmap/features/poi.hpp" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1PoiGenerationOptions_1ab3d1c00b9a3863a7bc65f8dffcd13192" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::PoiGenerationOptions::threshold</definition>
+        <argsstring></argsstring>
+        <name>threshold</name>
+        <qualifiedname>hmap::PoiGenerationOptions::threshold</qualifiedname>
+        <initializer>= 0.5<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+<para>Score / suitability acceptance threshold in [0, 1]. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/features/poi.hpp" line="69" column="9" bodyfile="HighMap/include/highmap/features/poi.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1PoiGenerationOptions_1a73c3febddef10e89b7b64ade41da0643" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::PoiGenerationOptions::min_distance</definition>
+        <argsstring></argsstring>
+        <name>min_distance</name>
+        <qualifiedname>hmap::PoiGenerationOptions::min_distance</qualifiedname>
+        <initializer>= 0.05<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+<para>Minimum Euclidean separation distance between points. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/features/poi.hpp" line="70" column="9" bodyfile="HighMap/include/highmap/features/poi.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1PoiGenerationOptions_1abc8b76f36b0cfffff661b0c60da41c85" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t hmap::PoiGenerationOptions::max_points</definition>
+        <argsstring></argsstring>
+        <name>max_points</name>
+        <qualifiedname>hmap::PoiGenerationOptions::max_points</qualifiedname>
+        <initializer>= 50</initializer>
+        <briefdescription>
+<para>Maximum number of points to generate. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/features/poi.hpp" line="71" column="10" bodyfile="HighMap/include/highmap/features/poi.hpp" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1PoiGenerationOptions_1a020d35a64ca1d7e39a196a75d9ed7a63" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::PoiGenerationOptions::border_margin</definition>
+        <argsstring></argsstring>
+        <name>border_margin</name>
+        <qualifiedname>hmap::PoiGenerationOptions::border_margin</qualifiedname>
+        <initializer>= 0.02<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
+        <briefdescription>
+<para>Exclusion margin near bounding box edges. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/features/poi.hpp" line="72" column="9" bodyfile="HighMap/include/highmap/features/poi.hpp" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1PoiGenerationOptions_1afbd6a278dd2b261653676ee7fd35e8a4" prot="public" static="no" mutable="no">
+        <type>std::uint32_t</type>
+        <definition>std::uint32_t hmap::PoiGenerationOptions::seed</definition>
+        <argsstring></argsstring>
+        <name>seed</name>
+        <qualifiedname>hmap::PoiGenerationOptions::seed</qualifiedname>
+        <initializer>= 1337</initializer>
+        <briefdescription>
+<para>PRNG seed for deterministic generation and jitter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/features/poi.hpp" line="73" column="17" bodyfile="HighMap/include/highmap/features/poi.hpp" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1PoiGenerationOptions_1aa488292ec1d131cfc8f12eabde6bfab1" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float hmap::PoiGenerationOptions::jitter</definition>
+        <argsstring></argsstring>
+        <name>jitter</name>
+        <qualifiedname>hmap::PoiGenerationOptions::jitter</qualifiedname>
+        <initializer>= 0.0f</initializer>
+        <briefdescription>
+<para>Stochastic displacement ratio in [0, 1]. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/features/poi.hpp" line="74" column="9" bodyfile="HighMap/include/highmap/features/poi.hpp" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1PoiGenerationOptions_1a445411d91a15f36d8fb7edc81c91b13e" prot="public" static="no" mutable="no">
+        <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
+        <definition>const Array* hmap::PoiGenerationOptions::p_mask</definition>
+        <argsstring></argsstring>
+        <name>p_mask</name>
+        <qualifiedname>hmap::PoiGenerationOptions::p_mask</qualifiedname>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+<para>Optional exclusion / region-of-interest mask. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/features/poi.hpp" line="75" column="15" bodyfile="HighMap/include/highmap/features/poi.hpp" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhmap_1_1PoiGenerationOptions_1affb1fa86633ea1d324e9a571bc04edeb" prot="public" static="no" mutable="no">
+        <type>glm::vec4</type>
+        <definition>glm::vec4 hmap::PoiGenerationOptions::bbox</definition>
+        <argsstring></argsstring>
+        <name>bbox</name>
+        <qualifiedname>hmap::PoiGenerationOptions::bbox</qualifiedname>
+        <initializer>= {0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</initializer>
+        <briefdescription>
+<para>Domain bounding box {xmin, xmax, ymin, ymax}. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/features/poi.hpp" line="76" column="13" bodyfile="HighMap/include/highmap/features/poi.hpp" bodystart="76" bodyend="76"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Configuration parameters for procedural point-of-interest generation. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>hmap::Array</label>
+        <link refid="classhmap_1_1Array"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>vector</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>hmap::PoiGenerationOptions</label>
+        <link refid="structhmap_1_1PoiGenerationOptions"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>p_mask</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>std::vector&lt; float &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="HighMap/include/highmap/features/poi.hpp" line="65" column="1" bodyfile="HighMap/include/highmap/features/poi.hpp" bodystart="66" bodyend="77"/>
+    <listofallmembers>
+      <member refid="structhmap_1_1PoiGenerationOptions_1affb1fa86633ea1d324e9a571bc04edeb" prot="public" virt="non-virtual"><scope>hmap::PoiGenerationOptions</scope><name>bbox</name></member>
+      <member refid="structhmap_1_1PoiGenerationOptions_1a020d35a64ca1d7e39a196a75d9ed7a63" prot="public" virt="non-virtual"><scope>hmap::PoiGenerationOptions</scope><name>border_margin</name></member>
+      <member refid="structhmap_1_1PoiGenerationOptions_1aa488292ec1d131cfc8f12eabde6bfab1" prot="public" virt="non-virtual"><scope>hmap::PoiGenerationOptions</scope><name>jitter</name></member>
+      <member refid="structhmap_1_1PoiGenerationOptions_1abc8b76f36b0cfffff661b0c60da41c85" prot="public" virt="non-virtual"><scope>hmap::PoiGenerationOptions</scope><name>max_points</name></member>
+      <member refid="structhmap_1_1PoiGenerationOptions_1a73c3febddef10e89b7b64ade41da0643" prot="public" virt="non-virtual"><scope>hmap::PoiGenerationOptions</scope><name>min_distance</name></member>
+      <member refid="structhmap_1_1PoiGenerationOptions_1a445411d91a15f36d8fb7edc81c91b13e" prot="public" virt="non-virtual"><scope>hmap::PoiGenerationOptions</scope><name>p_mask</name></member>
+      <member refid="structhmap_1_1PoiGenerationOptions_1ab073c0dfaee027ff684bfbe1d93b48df" prot="public" virt="non-virtual"><scope>hmap::PoiGenerationOptions</scope><name>prominence</name></member>
+      <member refid="structhmap_1_1PoiGenerationOptions_1a4a45da9f7a9133406b90de3e9ab2dfa5" prot="public" virt="non-virtual"><scope>hmap::PoiGenerationOptions</scope><name>scale_radius</name></member>
+      <member refid="structhmap_1_1PoiGenerationOptions_1afbd6a278dd2b261653676ee7fd35e8a4" prot="public" virt="non-virtual"><scope>hmap::PoiGenerationOptions</scope><name>seed</name></member>
+      <member refid="structhmap_1_1PoiGenerationOptions_1ab3d1c00b9a3863a7bc65f8dffcd13192" prot="public" virt="non-virtual"><scope>hmap::PoiGenerationOptions</scope><name>threshold</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

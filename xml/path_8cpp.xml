@@ -512,7 +512,7 @@
 <codeline lineno="502"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Point<sp/>&amp;p0<sp/>=<sp/>pts[k<sp/>-<sp/>1];</highlight></codeline>
 <codeline lineno="503"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Point<sp/>&amp;p1<sp/>=<sp/>pts[k];</highlight></codeline>
 <codeline lineno="504"><highlight class="normal"></highlight></codeline>
-<codeline lineno="505"><highlight class="normal"><sp/><sp/>glm::vec2<sp/>pos<sp/>=<sp/>{(1.f<sp/>-<sp/>r)<sp/>*<sp/>p0.x<sp/>+<sp/>r<sp/>*<sp/>p1.x,<sp/>(1.f<sp/>-<sp/>r)<sp/>*<sp/>p0.y<sp/>+<sp/>r<sp/>*<sp/>p1.y};</highlight></codeline>
+<codeline lineno="505"><highlight class="normal"><sp/><sp/>glm::vec2<sp/><ref refid="poi_8cpp_1a6f4c30bf2e24353492937851cb470208" kindref="member">pos</ref><sp/>=<sp/>{(1.f<sp/>-<sp/>r)<sp/>*<sp/>p0.x<sp/>+<sp/>r<sp/>*<sp/>p1.x,<sp/>(1.f<sp/>-<sp/>r)<sp/>*<sp/>p0.y<sp/>+<sp/>r<sp/>*<sp/>p1.y};</highlight></codeline>
 <codeline lineno="506"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>value<sp/>=<sp/><ref refid="namespacehmap_1ac14815cf025b7430d31d08125a5c6f0d" kindref="member">lerp</ref>(p0.v,<sp/>p1.v,<sp/>r);</highlight></codeline>
 <codeline lineno="507"><highlight class="normal"></highlight></codeline>
 <codeline lineno="508"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(p_tangent)</highlight></codeline>
@@ -523,7 +523,7 @@
 <codeline lineno="513"><highlight class="normal"><sp/><sp/><sp/><sp/>*p_tangent<sp/>=<sp/>dn<sp/>&gt;<sp/>0.f<sp/>?<sp/>glm::vec2(ddx<sp/>/<sp/>dn,<sp/>ddy<sp/>/<sp/>dn)<sp/>:<sp/>glm::vec2(1.f,<sp/>0.f);</highlight></codeline>
 <codeline lineno="514"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="515"><highlight class="normal"></highlight></codeline>
-<codeline lineno="516"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>glm::vec3(pos.x,<sp/>pos.y,<sp/>value);</highlight></codeline>
+<codeline lineno="516"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>glm::vec3(<ref refid="poi_8cpp_1a6f4c30bf2e24353492937851cb470208" kindref="member">pos</ref>.x,<sp/><ref refid="poi_8cpp_1a6f4c30bf2e24353492937851cb470208" kindref="member">pos</ref>.y,<sp/>value);</highlight></codeline>
 <codeline lineno="517"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="518"><highlight class="normal"></highlight></codeline>
 <codeline lineno="519"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classhmap_1_1Path_1aeb2890d2ffbbf4291baf255c621095de" kindref="member">Path::set_closed</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>new_value)</highlight></codeline>

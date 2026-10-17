@@ -17,12 +17,13 @@ var searchData=
   ['color_5fnoise_14',['color_noise',['../structhmap_1_1TerrainTextureParams.html#a1d76653911df13820b77e662d82f2a7b',1,'hmap::TerrainTextureParams']]],
   ['competition_5ffactor_15',['competition_factor',['../structhmap_1_1Species.html#a71647d386d74d6444b1c6bd69a7664c4',1,'hmap::Species']]],
   ['compression_16',['compression',['../structhmap_1_1ImageWriterConfig.html#ab6e00e3fe5dc9baa354785c317cea9b8',1,'hmap::ImageWriterConfig']]],
-  ['config_17',['config',['../structhmap_1_1BigTiffWriter_1_1Impl.html#a8bf913a264952038398bca582e956847',1,'hmap::BigTiffWriter::Impl::config'],['../structhmap_1_1OpenCVWriter_1_1Impl.html#ac849629dde1ec2d35b849704685027ef',1,'hmap::OpenCVWriter::Impl::config'],['../structhmap_1_1OpenEXRWriter_1_1Impl.html#aa052a4d977058befcbafdee5746321c5',1,'hmap::OpenEXRWriter::Impl::config']]],
+  ['config_17',['config',['../structhmap_1_1OpenCVWriter_1_1Impl.html#ac849629dde1ec2d35b849704685027ef',1,'hmap::OpenCVWriter::Impl::config'],['../structhmap_1_1OpenEXRWriter_1_1Impl.html#aa052a4d977058befcbafdee5746321c5',1,'hmap::OpenEXRWriter::Impl::config'],['../structhmap_1_1BigTiffWriter_1_1Impl.html#a8bf913a264952038398bca582e956847',1,'hmap::BigTiffWriter::Impl::config']]],
   ['contour_5fof_18',['contour_of',['../elevation__from__contours_8cpp.html#a76484755dc39e22e7979cd1c93dc5bcc',1,'elevation_from_contours.cpp']]],
   ['contrast_19',['contrast',['../structhmap_1_1ColorAdjust.html#a9d4b1c3d2a6af81d3d5c61491782a74d',1,'hmap::ColorAdjust']]],
-  ['count_20',['count',['../structhmap_1_1AssertResults.html#a4c628df3519b0272201adac2607573a9',1,'hmap::AssertResults::count'],['../hydraulic__mise_8cpp.html#a76d971a3c552bc58ba9f0d5fceae9806',1,'count:&#160;hydraulic_mise.cpp'],['../kd__tree_8cpp.html#a76d971a3c552bc58ba9f0d5fceae9806',1,'count:&#160;kd_tree.cpp']]],
-  ['crit_5fslope_21',['crit_slope',['../structhmap_1_1gpu_1_1McDonaldParams_1_1PhysicalParams.html#a0263976fe02450aa64b248927d359582',1,'hmap::gpu::McDonaldParams::PhysicalParams::crit_slope'],['../structhmap_1_1gpu_1_1McDonaldParams.html#a15250e4ae46007787eadad79bad7f2d0',1,'hmap::gpu::McDonaldParams::crit_slope']]],
-  ['curv_5fradius_22',['curv_radius',['../trench_8cpp.html#ab51a5df7f9149f5f22bb650f750dbdc5',1,'trench.cpp']]],
-  ['curv_5fshape_5ffactor_23',['curv_shape_factor',['../trench_8cpp.html#a8c751c9485587d7136a5b3ed735b09b3',1,'trench.cpp']]],
-  ['curvature_24',['curvature',['../trench_8cpp.html#a2a8b34df1e011428d61871e56e0b76ef',1,'trench.cpp']]]
+  ['coord_20',['coord',['../poi_8cpp.html#aadd40965c292ca97cefb7ef32ef9f779',1,'poi.cpp']]],
+  ['count_21',['count',['../structhmap_1_1AssertResults.html#a4c628df3519b0272201adac2607573a9',1,'hmap::AssertResults::count'],['../kd__tree_8cpp.html#a76d971a3c552bc58ba9f0d5fceae9806',1,'count:&#160;kd_tree.cpp'],['../hydraulic__mise_8cpp.html#a76d971a3c552bc58ba9f0d5fceae9806',1,'count:&#160;hydraulic_mise.cpp']]],
+  ['crit_5fslope_22',['crit_slope',['../structhmap_1_1gpu_1_1McDonaldParams_1_1PhysicalParams.html#a0263976fe02450aa64b248927d359582',1,'hmap::gpu::McDonaldParams::PhysicalParams::crit_slope'],['../structhmap_1_1gpu_1_1McDonaldParams.html#a15250e4ae46007787eadad79bad7f2d0',1,'hmap::gpu::McDonaldParams::crit_slope']]],
+  ['curv_5fradius_23',['curv_radius',['../trench_8cpp.html#ab51a5df7f9149f5f22bb650f750dbdc5',1,'trench.cpp']]],
+  ['curv_5fshape_5ffactor_24',['curv_shape_factor',['../trench_8cpp.html#a8c751c9485587d7136a5b3ed735b09b3',1,'trench.cpp']]],
+  ['curvature_25',['curvature',['../trench_8cpp.html#a2a8b34df1e011428d61871e56e0b76ef',1,'trench.cpp']]]
 ];

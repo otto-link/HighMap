@@ -1,0 +1,92 @@
+\doxysection{poi.\+hpp}
+\hypertarget{poi_8hpp_source}{}\label{poi_8hpp_source}\index{HighMap/include/highmap/features/poi.hpp@{HighMap/include/highmap/features/poi.hpp}}
+\mbox{\hyperlink{poi_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ Copyright\ (c)\ 2026\ Otto\ Link.\ Distributed\ under\ the\ terms\ of\ the\ GNU\ General}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ \ \ Public\ License.\ The\ full\ license\ is\ in\ the\ file\ LICENSE,\ distributed\ with}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ \ this\ software.\ */}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <glm/glm.hpp>}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{array_8hpp}{highmap/array.hpp}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{cloud_8hpp}{highmap/geometry/cloud.hpp}}"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacehmap}{hmap}}}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082ca}{PoiType}}\ :\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \ \ \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa72baef04098f035e8a320b03ad197818}{CUSTOM}}\ =\ 0,\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00034\ \ \ \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa41f27b32d69234c1f651f7b678c2ea21}{APEX}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa6091f77137cf4570917f3f4d30585bb1}{SINK}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082caabac95dd5ea9567ece3563f9a7ae503d7}{SADDLE}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa729ef3b0198a30fc445b80eed5bc745c}{RIDGE}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa4e89332934c40ecd6b609da1b347da68}{VALLEY}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa411a12d6909d39f170df55847b55db9d}{CLIFF}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa35ebc37b4c82e43d9db872fa2693f0ed}{PLATEAU}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa0e68ed6c5537a2cda30ab084e8eaa064}{FLAT\_LOWLAND}},\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa78c92c39b75832ba14c029fd28e841a2}{VIEWPOINT}},\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa3683c44a873aff7a8305b2ac92cb1765}{SETTLEMENT\_CANDIDATE}},\ }
+\DoxyCodeLine{00044\ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structhmap_1_1PointOfInterest}{PointOfInterest}}}
+\DoxyCodeLine{00052\ \{}
+\DoxyCodeLine{00053\ \ \ glm::vec2\ \mbox{\hyperlink{structhmap_1_1PointOfInterest_a7a4955625ad519be4d0072984552ed60}{position}}\ =\ \{0.f,\ 0.f\};\ }
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordtype}{float}\ \ \ \mbox{\hyperlink{structhmap_1_1PointOfInterest_a28da68e23f1f6a0d7807bbd392f81555}{score}}\ =\ 0.f;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00055\ \ \ \textcolor{keywordtype}{float}\ \ \ \mbox{\hyperlink{structhmap_1_1PointOfInterest_aec44c1484804a70b37aafa3581a65b9f}{elevation}}\ =\ 0.f;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00056\ \ \ \textcolor{keywordtype}{float}\ \ \ \mbox{\hyperlink{structhmap_1_1PointOfInterest_afa3e1b7b4d54ae7e73d9167eacd48589}{slope}}\ =\ 0.f;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00057\ \ \ \textcolor{keywordtype}{float}\ \ \ \mbox{\hyperlink{structhmap_1_1PointOfInterest_a15c6c48b35856d881f6347a8e08f6acc}{aspect}}\ =\ 0.f;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00058\ \ \ \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082ca}{PoiType}}\ \mbox{\hyperlink{structhmap_1_1PointOfInterest_a0eeafbeaa78b2a4c6cef90e59702f48b}{type}}\ =\ \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa72baef04098f035e8a320b03ad197818}{PoiType::CUSTOM}};\ \ }
+\DoxyCodeLine{00059\ \};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structhmap_1_1PoiGenerationOptions}{PoiGenerationOptions}}}
+\DoxyCodeLine{00066\ \{}
+\DoxyCodeLine{00067\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structhmap_1_1PoiGenerationOptions_a4a45da9f7a9133406b90de3e9ab2dfa5}{scale\_radius}}\ =\ 8;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00068\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhmap_1_1PoiGenerationOptions_ab073c0dfaee027ff684bfbe1d93b48df}{prominence}}\ =\ 0.05f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00069\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhmap_1_1PoiGenerationOptions_ab3d1c00b9a3863a7bc65f8dffcd13192}{threshold}}\ =\ 0.5f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00070\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhmap_1_1PoiGenerationOptions_a73c3febddef10e89b7b64ade41da0643}{min\_distance}}\ =\ 0.05f;\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00071\ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structhmap_1_1PoiGenerationOptions_abc8b76f36b0cfffff661b0c60da41c85}{max\_points}}\ =\ 50;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhmap_1_1PoiGenerationOptions_a020d35a64ca1d7e39a196a75d9ed7a63}{border\_margin}}\ =\ 0.02f;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00073\ \ \ std::uint32\_t\ \mbox{\hyperlink{structhmap_1_1PoiGenerationOptions_afbd6a278dd2b261653676ee7fd35e8a4}{seed}}\ =\ 1337;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structhmap_1_1PoiGenerationOptions_aa488292ec1d131cfc8f12eabde6bfab1}{jitter}}\ =\ 0.0f;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00075\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classhmap_1_1Array}{Array}}\ *\mbox{\hyperlink{structhmap_1_1PoiGenerationOptions_a445411d91a15f36d8fb7edc81c91b13e}{p\_mask}}\ =\ \textcolor{keyword}{nullptr};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00076\ \ \ glm::vec4\ \mbox{\hyperlink{structhmap_1_1PoiGenerationOptions_affb1fa86633ea1d324e9a571bc04edeb}{bbox}}\ =\ \{0.f,\ 1.f,\ 0.f,\ 1.f\};\ }
+\DoxyCodeLine{00077\ \};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{comment}{//\ ============================================================================}}
+\DoxyCodeLine{00080\ \textcolor{comment}{//\ \ POI\ Functions\ (Alphabetically\ Sorted)}}
+\DoxyCodeLine{00081\ \textcolor{comment}{//\ ============================================================================}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00093\ Array\ \mbox{\hyperlink{namespacehmap_a736f36f2a5809dc934724defa8a52f92}{compute\_poi\_suitability\_field}}(\textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&heightmap,}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082ca}{PoiType}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sls__deformation_8cpp_a36387b1e626d3e21e0c6d597db18ecac}{type}},}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ PoiGenerationOptions\ \&options);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00106\ Cloud\ \mbox{\hyperlink{namespacehmap_a25da67b2f53f904c1bcb1aabee636ed2}{generate\_points\_of\_interest\_cloud}}(\textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&heightmap,}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082ca}{PoiType}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sls__deformation_8cpp_a36387b1e626d3e21e0c6d597db18ecac}{type}},}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ PoiGenerationOptions\ \&options);}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00119\ std::vector<PointOfInterest>\ \mbox{\hyperlink{namespacehmap_ae048ea03ae80ee1b35e74a3a2e2e9df0}{generate\_points\_of\_interest}}(}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&heightmap,}
+\DoxyCodeLine{00121\ \ \ \ \ \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082ca}{PoiType}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sls__deformation_8cpp_a36387b1e626d3e21e0c6d597db18ecac}{type}},}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{const}\ PoiGenerationOptions\ \&options);}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00132\ std::vector<glm::vec2>\ \mbox{\hyperlink{namespacehmap_acae064279d93d8ed9372556a6f441204}{generate\_points\_of\_interest\_positions}}(}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&heightmap,}
+\DoxyCodeLine{00134\ \ \ \ \ \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082ca}{PoiType}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sls__deformation_8cpp_a36387b1e626d3e21e0c6d597db18ecac}{type}},}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keyword}{const}\ PoiGenerationOptions\ \&options);}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00149\ std::vector<PointOfInterest>\ \mbox{\hyperlink{namespacehmap_a0a46857466438108ccff5d02caa285ab}{generate\_points\_from\_score\_field}}(}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&score\_field,}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&heightmap,}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{const}\ PoiGenerationOptions\ \&options,}
+\DoxyCodeLine{00153\ \ \ \ \ \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082ca}{PoiType}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sls__deformation_8cpp_a36387b1e626d3e21e0c6d597db18ecac}{type}}\ =\ \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa72baef04098f035e8a320b03ad197818}{PoiType::CUSTOM}});}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \}\ \textcolor{comment}{//\ namespace\ hmap}}
+
+\end{DoxyCode}

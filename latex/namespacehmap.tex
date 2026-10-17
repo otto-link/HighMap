@@ -144,8 +144,12 @@ class \mbox{\hyperlink{classhmap_1_1PerlinHalfFunction}{Perlin\+Half\+Function}}
 \begin{DoxyCompactList}\small\item\em Perlin \textquotesingle{}half\textquotesingle{} (x, y) function class. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classhmap_1_1PerlinMixFunction}{Perlin\+Mix\+Function}}
 \begin{DoxyCompactList}\small\item\em Perlin \textquotesingle{}mix\textquotesingle{} (x, y) function class. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structhmap_1_1PoiGenerationOptions}{Poi\+Generation\+Options}}
+\begin{DoxyCompactList}\small\item\em Configuration parameters for procedural point-\/of-\/interest generation. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classhmap_1_1Point}{Point}}
 \begin{DoxyCompactList}\small\item\em A class to represent and manipulate 2D points that can carry a value. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structhmap_1_1PointOfInterest}{Point\+Of\+Interest}}
+\begin{DoxyCompactList}\small\item\em Represents a terrain-\/aware point of interest with physical descriptors. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classhmap_1_1QuadSurfaceFunction}{Quad\+Surface\+Function}}
 \begin{DoxyCompactList}\small\item\em Quadratic surface function defined by four corner values. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{classhmap_1_1RamTileStorage}{Ram\+Tile\+Storage}}
@@ -357,6 +361,22 @@ enum class \mbox{\hyperlink{namespacehmap_a451ad02eb796f23b2f68e062e8de9875}{Ima
 , \mbox{\hyperlink{namespacehmap_a451ad02eb796f23b2f68e062e8de9875aecfc091ed2a607335524c8389cfa41b5}{UINT8}}
  \}
 \item 
+enum class \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082ca}{Poi\+Type}} \+: int \{ \newline
+\mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa72baef04098f035e8a320b03ad197818}{CUSTOM}} = 0
+, \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa41f27b32d69234c1f651f7b678c2ea21}{APEX}}
+, \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa6091f77137cf4570917f3f4d30585bb1}{SINK}}
+, \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082caabac95dd5ea9567ece3563f9a7ae503d7}{SADDLE}}
+, \newline
+\mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa729ef3b0198a30fc445b80eed5bc745c}{RIDGE}}
+, \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa4e89332934c40ecd6b609da1b347da68}{VALLEY}}
+, \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa411a12d6909d39f170df55847b55db9d}{CLIFF}}
+, \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa35ebc37b4c82e43d9db872fa2693f0ed}{PLATEAU}}
+, \newline
+\mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa0e68ed6c5537a2cda30ab084e8eaa064}{FLAT\+\_\+\+LOWLAND}}
+, \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa78c92c39b75832ba14c029fd28e841a2}{VIEWPOINT}}
+, \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa3683c44a873aff7a8305b2ac92cb1765}{SETTLEMENT\+\_\+\+CANDIDATE}}
+ \}
+\begin{DoxyCompactList}\small\item\em Classification types for terrain-\/aware points of interest. \end{DoxyCompactList}\item 
 enum class \mbox{\hyperlink{namespacehmap_a17cbec9c3162ef357a9418351d66fcfd}{Distance\+Mode}} \+: int \{ \mbox{\hyperlink{namespacehmap_a17cbec9c3162ef357a9418351d66fcfda71ad0fa6a6a3e480ec3446bce7073e63}{ASTERISK}} = 0
 , \mbox{\hyperlink{namespacehmap_a17cbec9c3162ef357a9418351d66fcfdacd996d3184761601a0e44e587a012d4f}{PYRAMID}} = 1
  \}
@@ -842,6 +862,16 @@ void \mbox{\hyperlink{namespacehmap_a91708f107a53c4b8ef68bb1d0291c73f}{export\+\
 \begin{DoxyCompactList}\small\item\em Reads an image file and converts it to a 2D array. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{namespacehmap_a565d90964be3bdc0d95aedb80288ce57}{export\+\_\+usd}} (const std\+::string \&fname, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&elevation=\{\}, const std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Forest}{Forest}} $>$ \&forests=\{\}, const std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1RockField}{Rock\+Field}} $>$ \&rock\+\_\+fields=\{\}, const std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Cloud}{Cloud}} $>$ \&clouds=\{\}, const std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Path}{Path}} $>$ \&paths=\{\}, \mbox{\hyperlink{namespacehmap_ac81a92060b89699c4eb9826495d87250}{Mesh\+Type}} mesh\+\_\+type=\mbox{\hyperlink{namespacehmap_ac81a92060b89699c4eb9826495d87250a68dced9d7f19cbd741feae05ad17ca14}{Mesh\+Type\+::\+TRI}}, float elevation\+\_\+scaling=0.\+2\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, const std\+::string \&texture\+\_\+fname="{}"{}, const std\+::string \&normal\+\_\+map\+\_\+fname="{}"{}, float max\+\_\+error=5e-\/4\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, bool fit\+\_\+boundaries=false)
 \begin{DoxyCompactList}\small\item\em Exports a composite scene (terrain, forests, rock fields, clouds, and paths) to Universal Scene Description (USD). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a736f36f2a5809dc934724defa8a52f92}{compute\+\_\+poi\+\_\+suitability\+\_\+field}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&heightmap, \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082ca}{Poi\+Type}} \mbox{\hyperlink{sls__deformation_8cpp_a36387b1e626d3e21e0c6d597db18ecac}{type}}, const \mbox{\hyperlink{structhmap_1_1PoiGenerationOptions}{Poi\+Generation\+Options}} \&options)
+\begin{DoxyCompactList}\small\item\em Computes a normalized suitability/score field in \mbox{[}0, 1\mbox{]} for a given terrain feature type. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhmap_1_1Cloud}{Cloud}} \mbox{\hyperlink{namespacehmap_a25da67b2f53f904c1bcb1aabee636ed2}{generate\+\_\+points\+\_\+of\+\_\+interest\+\_\+cloud}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&heightmap, \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082ca}{Poi\+Type}} \mbox{\hyperlink{sls__deformation_8cpp_a36387b1e626d3e21e0c6d597db18ecac}{type}}, const \mbox{\hyperlink{structhmap_1_1PoiGenerationOptions}{Poi\+Generation\+Options}} \&options)
+\begin{DoxyCompactList}\small\item\em Generates a \doxylink{classhmap_1_1Cloud}{Cloud} of points of interest from a heightmap. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{structhmap_1_1PointOfInterest}{Point\+Of\+Interest}} $>$ \mbox{\hyperlink{namespacehmap_ae048ea03ae80ee1b35e74a3a2e2e9df0}{generate\+\_\+points\+\_\+of\+\_\+interest}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&heightmap, \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082ca}{Poi\+Type}} \mbox{\hyperlink{sls__deformation_8cpp_a36387b1e626d3e21e0c6d597db18ecac}{type}}, const \mbox{\hyperlink{structhmap_1_1PoiGenerationOptions}{Poi\+Generation\+Options}} \&options)
+\begin{DoxyCompactList}\small\item\em Generates a list of \doxylink{structhmap_1_1PointOfInterest}{Point\+Of\+Interest} objects from a heightmap. \end{DoxyCompactList}\item 
+std\+::vector$<$ glm\+::vec2 $>$ \mbox{\hyperlink{namespacehmap_acae064279d93d8ed9372556a6f441204}{generate\+\_\+points\+\_\+of\+\_\+interest\+\_\+positions}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&heightmap, \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082ca}{Poi\+Type}} \mbox{\hyperlink{sls__deformation_8cpp_a36387b1e626d3e21e0c6d597db18ecac}{type}}, const \mbox{\hyperlink{structhmap_1_1PoiGenerationOptions}{Poi\+Generation\+Options}} \&options)
+\begin{DoxyCompactList}\small\item\em Generates 2D positions of points of interest from a heightmap. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{structhmap_1_1PointOfInterest}{Point\+Of\+Interest}} $>$ \mbox{\hyperlink{namespacehmap_a0a46857466438108ccff5d02caa285ab}{generate\+\_\+points\+\_\+from\+\_\+score\+\_\+field}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&score\+\_\+field, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&heightmap, const \mbox{\hyperlink{structhmap_1_1PoiGenerationOptions}{Poi\+Generation\+Options}} \&options, \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082ca}{Poi\+Type}} \mbox{\hyperlink{sls__deformation_8cpp_a36387b1e626d3e21e0c6d597db18ecac}{type}}=\mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa72baef04098f035e8a320b03ad197818}{Poi\+Type\+::\+CUSTOM}})
+\begin{DoxyCompactList}\small\item\em Generates a list of \doxylink{structhmap_1_1PointOfInterest}{Point\+Of\+Interest} objects from a precomputed score field. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a34efdecd3db27a30c06537acda6d9457}{connected\+\_\+components}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, float surface\+\_\+threshold=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float background\+\_\+value=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, std\+::map$<$ float, float $>$ \texorpdfstring{$\ast$}{*}p\+\_\+surfaces=nullptr, std\+::map$<$ float, std\+::array$<$ float, 2 $>$ $>$ \texorpdfstring{$\ast$}{*}p\+\_\+centroids=nullptr)
 \begin{DoxyCompactList}\small\item\em Identifies and labels connected components within a binary or labeled array, with optional filtering by size. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_aa60fa2d3f02d1e064b520fa1623200d0}{geomorphons}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, int irmin, int irmax, float epsilon)
@@ -849,7 +879,7 @@ bool \mbox{\hyperlink{namespacehmap_a565d90964be3bdc0d95aedb80288ce57}{export\+\
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_ab79c564a249c41caec3367b3d82ebdbf}{kmeans\+\_\+clustering2}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array1, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array2, int nclusters, std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Array}{Array}} $>$ \texorpdfstring{$\ast$}{*}p\+\_\+scoring=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+aggregate\+\_\+scoring=nullptr, glm\+::vec2 weights=\{1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}, std\+::uint32\+\_\+t seed=1)
 \begin{DoxyCompactList}\small\item\em Performs k-\/means clustering on two input arrays, grouping similar data points into clusters. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_ab1bbddddf9ab88025a85668b66d68bdf}{kmeans\+\_\+clustering3}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array1, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array2, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array3, int nclusters, std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Array}{Array}} $>$ \texorpdfstring{$\ast$}{*}p\+\_\+scoring=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+aggregate\+\_\+scoring=nullptr, glm\+::vec3 weights=\{1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}, std\+::uint32\+\_\+t seed=1)
-\begin{DoxyCompactList}\small\item\em Performs k-\/means clustering on three input arrays, providing more detailed cluster analysis by considering an additional dimension. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Performs k-\/means clustering on three input arrays. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_ae3ecf5f88476c5d49978a130f8cab2f3}{bulkify}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}, const \mbox{\hyperlink{namespacehmap_a55542a66f890ef9ecf5f82af2c23a0cf}{Primitive\+Type}} \&primitive\+\_\+type, float amp=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+x=nullptr, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+y=nullptr, glm\+::vec2 center=\{0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}, glm\+::vec4 bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\})
 \begin{DoxyCompactList}\small\item\em Applies a primitive-\/based displacement to an array. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespacehmap_a3db5616398edb199912cfc2972c2ec55}{canyonize}} (\mbox{\hyperlink{classhmap_1_1Array}{Array}} \&array, std\+::uint32\+\_\+t seed=0, int nlevels=6, float convex\+\_\+ratio=3.\+0f, float gamma\+\_\+convex=3.\+0f, float gamma\+\_\+concave=0.\+3\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float clamp\+\_\+min\+\_\+val=-\/std\+::numeric\+\_\+limits$<$ float $>$\+::infinity(), float k\+\_\+smooth=0.\+1\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float noise\+\_\+ratio=0.\+2\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise=nullptr, float vmin=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float vmax=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
@@ -1364,11 +1394,11 @@ std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Path}{Path}} $>$ \mbox{\hyperlink
 \begin{DoxyCompactList}\small\item\em Computes river flow paths resolving depressions via Minimum Spanning Tree (MST) on a triangular mesh generated from a heightmap. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a5fbbe4a3db33c7783faa794c3051ddb4}{flow\+\_\+fixing\+\_\+mst\+\_\+triangulated}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}, size\+\_\+t control\+\_\+points\+\_\+count=2048, std\+::uint32\+\_\+t seed=0, float riverbed\+\_\+talus=0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float elevation\+\_\+ratio=0.\+95\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float distance\+\_\+exponent=2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float upward\+\_\+penalization=0.\+1\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float minimum\+\_\+depth=1e-\/4\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float merging\+\_\+distance=8.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, \mbox{\hyperlink{namespacehmap_a2affc745bc33b7555352665745741f90}{Radial\+Profile}} radial\+\_\+profile=\mbox{\hyperlink{namespacehmap_a2affc745bc33b7555352665745741f90acedc11502bd1441e893fdc5a699b6d59}{Radial\+Profile\+::\+RP\+\_\+\+SMOOTHSTEP\+\_\+\+UPPER}}, float radial\+\_\+profile\+\_\+parameter=2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+r=nullptr)
 \begin{DoxyCompactList}\small\item\em Resolves flow sinks on a heightmap by computing an MST on a triangular mesh and carving the resulting river paths with trenching. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classhmap_1_1Path}{Path}} \mbox{\hyperlink{namespacehmap_a948b4703486f175cd2681bd9bc7b5a88}{flow\+\_\+stream}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}, const glm\+::ivec2 ij\+\_\+start, const float elevation\+\_\+ratio=0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, const float distance\+\_\+exponent=2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, const float upward\+\_\+penalization=100.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+\mbox{\hyperlink{classhmap_1_1Path}{Path}} \mbox{\hyperlink{namespacehmap_ada1af89f3e34eb4ceb13e176a1b819c2}{flow\+\_\+stream}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}, const glm\+::ivec2 ij\+\_\+start, const float elevation\+\_\+ratio=0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, const float distance\+\_\+exponent=2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, const float upward\+\_\+penalization=100.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, const std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Path}{Path}} $>$ \&existing\+\_\+streams=\{\})
 \begin{DoxyCompactList}\small\item\em Computes the optimal flow path from a starting point to the boundary of a given elevation array. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classhmap_1_1Path}{Path}} \mbox{\hyperlink{namespacehmap_ac46adb5c67650ea6660a4edfc8d213c3}{flow\+\_\+stream}} (const \mbox{\hyperlink{classhmap_1_1TerrainTriMesh}{Terrain\+Tri\+Mesh}} \&mesh, size\+\_\+t start\+\_\+vertex\+\_\+index, float elevation\+\_\+ratio=0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float distance\+\_\+exponent=2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float upward\+\_\+penalization=100.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, bool favor\+\_\+domain\+\_\+center=false)
+\mbox{\hyperlink{classhmap_1_1Path}{Path}} \mbox{\hyperlink{namespacehmap_ae0d87f762b7f25f717cebc3ccf2ca667}{flow\+\_\+stream}} (const \mbox{\hyperlink{classhmap_1_1TerrainTriMesh}{Terrain\+Tri\+Mesh}} \&mesh, size\+\_\+t start\+\_\+vertex\+\_\+index, float elevation\+\_\+ratio=0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float distance\+\_\+exponent=2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float upward\+\_\+penalization=100.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, bool favor\+\_\+domain\+\_\+center=false, const std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Path}{Path}} $>$ \&existing\+\_\+streams=\{\})
 \begin{DoxyCompactList}\small\item\em Computes the optimal flow path from a starting vertex to the boundary of a terrain triangular mesh. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classhmap_1_1Path}{Path}} \mbox{\hyperlink{namespacehmap_a5420856e4ed4060e782414c4bb97e63e}{flow\+\_\+stream}} (const \mbox{\hyperlink{classhmap_1_1TerrainTriMesh}{Terrain\+Tri\+Mesh}} \&mesh, glm\+::vec2 xy\+\_\+start, float elevation\+\_\+ratio=0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float distance\+\_\+exponent=2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float upward\+\_\+penalization=100.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, bool favor\+\_\+domain\+\_\+center=false)
+\mbox{\hyperlink{classhmap_1_1Path}{Path}} \mbox{\hyperlink{namespacehmap_ab41c1a4c6149f555e6b18860946327b2}{flow\+\_\+stream}} (const \mbox{\hyperlink{classhmap_1_1TerrainTriMesh}{Terrain\+Tri\+Mesh}} \&mesh, glm\+::vec2 xy\+\_\+start, float elevation\+\_\+ratio=0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float distance\+\_\+exponent=2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float upward\+\_\+penalization=100.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, bool favor\+\_\+domain\+\_\+center=false, const std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Path}{Path}} $>$ \&existing\+\_\+streams=\{\})
 \begin{DoxyCompactList}\small\item\em Computes the optimal flow path from starting 2D coordinates to the boundary of a terrain triangular mesh. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhmap_1_1Array}{Array}} \mbox{\hyperlink{namespacehmap_a30d55fae5c75a1c45a005a3f9a9467eb}{generate\+\_\+riverbed}} (const \mbox{\hyperlink{classhmap_1_1Path}{Path}} \&\mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}, glm\+::ivec2 \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}, glm\+::vec4 bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}, bool bezier\+\_\+smoothing=false, float depth\+\_\+start=0.\+01\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float depth\+\_\+end=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float slope\+\_\+start=64.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float slope\+\_\+end=32.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float shape\+\_\+exponent\+\_\+start=1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float shape\+\_\+exponent\+\_\+end=10.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float k\+\_\+smoothing=0.\+5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, int post\+\_\+filter\+\_\+ir=0, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+x=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+y=nullptr, \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+noise\+\_\+r=nullptr)
 \begin{DoxyCompactList}\small\item\em Generates a 2D array representing a riverbed based on a specified path. \end{DoxyCompactList}\item 
@@ -2801,6 +2831,62 @@ UINT16&\\
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{UINT8@{UINT8}!hmap@{hmap}}\index{hmap@{hmap}!UINT8@{UINT8}}}\Hypertarget{namespacehmap_a451ad02eb796f23b2f68e062e8de9875aecfc091ed2a607335524c8389cfa41b5}\label{namespacehmap_a451ad02eb796f23b2f68e062e8de9875aecfc091ed2a607335524c8389cfa41b5} 
 UINT8&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{namespacehmap_ade234d7bb6c23c67317077ab7a9082ca}\label{namespacehmap_ade234d7bb6c23c67317077ab7a9082ca} 
+\index{hmap@{hmap}!PoiType@{PoiType}}
+\index{PoiType@{PoiType}!hmap@{hmap}}
+\doxysubsubsection{\texorpdfstring{PoiType}{PoiType}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082ca}{hmap\+::\+Poi\+Type}} \+: int\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Classification types for terrain-\/aware points of interest. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CUSTOM@{CUSTOM}!hmap@{hmap}}\index{hmap@{hmap}!CUSTOM@{CUSTOM}}}\Hypertarget{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa72baef04098f035e8a320b03ad197818}\label{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa72baef04098f035e8a320b03ad197818} 
+CUSTOM&Custom or unclassified score field. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{APEX@{APEX}!hmap@{hmap}}\index{hmap@{hmap}!APEX@{APEX}}}\Hypertarget{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa41f27b32d69234c1f651f7b678c2ea21}\label{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa41f27b32d69234c1f651f7b678c2ea21} 
+APEX&Local summits / peaks. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SINK@{SINK}!hmap@{hmap}}\index{hmap@{hmap}!SINK@{SINK}}}\Hypertarget{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa6091f77137cf4570917f3f4d30585bb1}\label{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa6091f77137cf4570917f3f4d30585bb1} 
+SINK&Depressions / pits / sinkholes. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SADDLE@{SADDLE}!hmap@{hmap}}\index{hmap@{hmap}!SADDLE@{SADDLE}}}\Hypertarget{namespacehmap_ade234d7bb6c23c67317077ab7a9082caabac95dd5ea9567ece3563f9a7ae503d7}\label{namespacehmap_ade234d7bb6c23c67317077ab7a9082caabac95dd5ea9567ece3563f9a7ae503d7} 
+SADDLE&Col / pass / saddle points. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RIDGE@{RIDGE}!hmap@{hmap}}\index{hmap@{hmap}!RIDGE@{RIDGE}}}\Hypertarget{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa729ef3b0198a30fc445b80eed5bc745c}\label{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa729ef3b0198a30fc445b80eed5bc745c} 
+RIDGE&Elongated high terrain. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VALLEY@{VALLEY}!hmap@{hmap}}\index{hmap@{hmap}!VALLEY@{VALLEY}}}\Hypertarget{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa4e89332934c40ecd6b609da1b347da68}\label{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa4e89332934c40ecd6b609da1b347da68} 
+VALLEY&Elongated low terrain. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CLIFF@{CLIFF}!hmap@{hmap}}\index{hmap@{hmap}!CLIFF@{CLIFF}}}\Hypertarget{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa411a12d6909d39f170df55847b55db9d}\label{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa411a12d6909d39f170df55847b55db9d} 
+CLIFF&High slope / drop-\/offs. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLATEAU@{PLATEAU}!hmap@{hmap}}\index{hmap@{hmap}!PLATEAU@{PLATEAU}}}\Hypertarget{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa35ebc37b4c82e43d9db872fa2693f0ed}\label{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa35ebc37b4c82e43d9db872fa2693f0ed} 
+PLATEAU&Elevated flat areas. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FLAT\_LOWLAND@{FLAT\_LOWLAND}!hmap@{hmap}}\index{hmap@{hmap}!FLAT\_LOWLAND@{FLAT\_LOWLAND}}}\Hypertarget{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa0e68ed6c5537a2cda30ab084e8eaa064}\label{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa0e68ed6c5537a2cda30ab084e8eaa064} 
+FLAT\+\_\+\+LOWLAND&Low flat areas / plains. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VIEWPOINT@{VIEWPOINT}!hmap@{hmap}}\index{hmap@{hmap}!VIEWPOINT@{VIEWPOINT}}}\Hypertarget{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa78c92c39b75832ba14c029fd28e841a2}\label{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa78c92c39b75832ba14c029fd28e841a2} 
+VIEWPOINT&High elevation + high prominence / openness. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SETTLEMENT\_CANDIDATE@{SETTLEMENT\_CANDIDATE}!hmap@{hmap}}\index{hmap@{hmap}!SETTLEMENT\_CANDIDATE@{SETTLEMENT\_CANDIDATE}}}\Hypertarget{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa3683c44a873aff7a8305b2ac92cb1765}\label{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa3683c44a873aff7a8305b2ac92cb1765} 
+SETTLEMENT\+\_\+\+CANDIDATE&Flat enough, accessible, good relief. \\
 \hline
 
 \end{DoxyEnumFields}
@@ -5989,7 +6075,7 @@ This function adjusts the elevation values in the input array {\ttfamily z} to s
 \DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{hmap::remap}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}});}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ glm::ivec2\ ij\_start(100,\ 128);}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}\ =\ \mbox{\hyperlink{namespacehmap_a948b4703486f175cd2681bd9bc7b5a88}{hmap::flow\_stream}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ ij\_start);}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}\ =\ \mbox{\hyperlink{namespacehmap_ada1af89f3e34eb4ceb13e176a1b819c2}{hmap::flow\_stream}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ ij\_start);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ glm::vec4\ bbox(0.f,\ 1.f,\ 0.f,\ 1.f);}
 \DoxyCodeLine{}
@@ -6017,9 +6103,9 @@ This function adjusts the elevation values in the input array {\ttfamily z} to s
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seed,}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mask);}
 \DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ multiple\ streams}}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ multiple\ streams\ merging\ into\ existing\ streams}}
 \DoxyCodeLine{\ \ glm::ivec2\ ij\_start2(128,\ 180);}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ path2\ =\ \mbox{\hyperlink{namespacehmap_a948b4703486f175cd2681bd9bc7b5a88}{hmap::flow\_stream}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ ij\_start2);}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ path2\ =\ \mbox{\hyperlink{namespacehmap_ada1af89f3e34eb4ceb13e176a1b819c2}{hmap::flow\_stream}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ ij\_start2,\ 0.5f,\ 2.f,\ 100.f,\ \{\mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}\});}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ zd2\ =\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}};}
 \DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_aa0407e8bf3d06ffb4d8d1e97809d3665}{hmap::dig\_river}}(zd2,}
@@ -9631,7 +9717,119 @@ Generates a USD stage (.usda, .usdc, or .usdz) containing\+:
 \DoxyCodeLine{\}}
 
 \end{DoxyCodeInclude}
- \Hypertarget{namespacehmap_a34efdecd3db27a30c06537acda6d9457}\label{namespacehmap_a34efdecd3db27a30c06537acda6d9457} 
+ \Hypertarget{namespacehmap_a736f36f2a5809dc934724defa8a52f92}\label{namespacehmap_a736f36f2a5809dc934724defa8a52f92} 
+\index{hmap@{hmap}!compute\_poi\_suitability\_field@{compute\_poi\_suitability\_field}}
+\index{compute\_poi\_suitability\_field@{compute\_poi\_suitability\_field}!hmap@{hmap}}
+\doxysubsubsection{\texorpdfstring{compute\_poi\_suitability\_field()}{compute\_poi\_suitability\_field()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Array}{Array}} hmap\+::compute\+\_\+poi\+\_\+suitability\+\_\+field (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{heightmap,  }\item[{\mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082ca}{Poi\+Type}}}]{type,  }\item[{const \mbox{\hyperlink{structhmap_1_1PoiGenerationOptions}{Poi\+Generation\+Options}} \&}]{options }\end{DoxyParamCaption})}
+
+
+
+Computes a normalized suitability/score field in \mbox{[}0, 1\mbox{]} for a given terrain feature type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em heightmap} & Input terrain heightmap array. \\
+\hline
+{\em type} & Target point of interest type. \\
+\hline
+{\em options} & Generation options controlling neighborhood scale and parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{classhmap_1_1Array}{Array} Suitability field in \mbox{[}0, 1\mbox{]}. 
+\end{DoxyReturn}
+\Hypertarget{namespacehmap_a25da67b2f53f904c1bcb1aabee636ed2}\label{namespacehmap_a25da67b2f53f904c1bcb1aabee636ed2} 
+\index{hmap@{hmap}!generate\_points\_of\_interest\_cloud@{generate\_points\_of\_interest\_cloud}}
+\index{generate\_points\_of\_interest\_cloud@{generate\_points\_of\_interest\_cloud}!hmap@{hmap}}
+\doxysubsubsection{\texorpdfstring{generate\_points\_of\_interest\_cloud()}{generate\_points\_of\_interest\_cloud()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Cloud}{Cloud}} hmap\+::generate\+\_\+points\+\_\+of\+\_\+interest\+\_\+cloud (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{heightmap,  }\item[{\mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082ca}{Poi\+Type}}}]{type,  }\item[{const \mbox{\hyperlink{structhmap_1_1PoiGenerationOptions}{Poi\+Generation\+Options}} \&}]{options }\end{DoxyParamCaption})}
+
+
+
+Generates a \doxylink{classhmap_1_1Cloud}{Cloud} of points of interest from a heightmap. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em heightmap} & Input terrain heightmap array. \\
+\hline
+{\em type} & Target point of interest type. \\
+\hline
+{\em options} & Generation options. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{classhmap_1_1Cloud}{Cloud} \doxylink{classhmap_1_1Point}{Point} cloud carrying the score as the point value. 
+\end{DoxyReturn}
+\Hypertarget{namespacehmap_ae048ea03ae80ee1b35e74a3a2e2e9df0}\label{namespacehmap_ae048ea03ae80ee1b35e74a3a2e2e9df0} 
+\index{hmap@{hmap}!generate\_points\_of\_interest@{generate\_points\_of\_interest}}
+\index{generate\_points\_of\_interest@{generate\_points\_of\_interest}!hmap@{hmap}}
+\doxysubsubsection{\texorpdfstring{generate\_points\_of\_interest()}{generate\_points\_of\_interest()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{structhmap_1_1PointOfInterest}{Point\+Of\+Interest}} $>$ hmap\+::generate\+\_\+points\+\_\+of\+\_\+interest (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{heightmap,  }\item[{\mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082ca}{Poi\+Type}}}]{type,  }\item[{const \mbox{\hyperlink{structhmap_1_1PoiGenerationOptions}{Poi\+Generation\+Options}} \&}]{options }\end{DoxyParamCaption})}
+
+
+
+Generates a list of \doxylink{structhmap_1_1PointOfInterest}{Point\+Of\+Interest} objects from a heightmap. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em heightmap} & Input terrain heightmap array. \\
+\hline
+{\em type} & Target point of interest type. \\
+\hline
+{\em options} & Generation options. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$\+Point\+Of\+Interest$>$ List of extracted points of interest. 
+\end{DoxyReturn}
+\Hypertarget{namespacehmap_acae064279d93d8ed9372556a6f441204}\label{namespacehmap_acae064279d93d8ed9372556a6f441204} 
+\index{hmap@{hmap}!generate\_points\_of\_interest\_positions@{generate\_points\_of\_interest\_positions}}
+\index{generate\_points\_of\_interest\_positions@{generate\_points\_of\_interest\_positions}!hmap@{hmap}}
+\doxysubsubsection{\texorpdfstring{generate\_points\_of\_interest\_positions()}{generate\_points\_of\_interest\_positions()}}
+{\footnotesize\ttfamily std\+::vector$<$ glm\+::vec2 $>$ hmap\+::generate\+\_\+points\+\_\+of\+\_\+interest\+\_\+positions (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{heightmap,  }\item[{\mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082ca}{Poi\+Type}}}]{type,  }\item[{const \mbox{\hyperlink{structhmap_1_1PoiGenerationOptions}{Poi\+Generation\+Options}} \&}]{options }\end{DoxyParamCaption})}
+
+
+
+Generates 2D positions of points of interest from a heightmap. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em heightmap} & Input terrain heightmap array. \\
+\hline
+{\em type} & Target point of interest type. \\
+\hline
+{\em options} & Generation options. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$glm\+::vec2$>$ List of 2D positions. 
+\end{DoxyReturn}
+\Hypertarget{namespacehmap_a0a46857466438108ccff5d02caa285ab}\label{namespacehmap_a0a46857466438108ccff5d02caa285ab} 
+\index{hmap@{hmap}!generate\_points\_from\_score\_field@{generate\_points\_from\_score\_field}}
+\index{generate\_points\_from\_score\_field@{generate\_points\_from\_score\_field}!hmap@{hmap}}
+\doxysubsubsection{\texorpdfstring{generate\_points\_from\_score\_field()}{generate\_points\_from\_score\_field()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{structhmap_1_1PointOfInterest}{Point\+Of\+Interest}} $>$ hmap\+::generate\+\_\+points\+\_\+from\+\_\+score\+\_\+field (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{score\+\_\+field,  }\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{heightmap,  }\item[{const \mbox{\hyperlink{structhmap_1_1PoiGenerationOptions}{Poi\+Generation\+Options}} \&}]{options,  }\item[{\mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082ca}{Poi\+Type}}}]{type = {\ttfamily \mbox{\hyperlink{namespacehmap_ade234d7bb6c23c67317077ab7a9082caa72baef04098f035e8a320b03ad197818}{Poi\+Type\+::\+CUSTOM}}} }\end{DoxyParamCaption})}
+
+
+
+Generates a list of \doxylink{structhmap_1_1PointOfInterest}{Point\+Of\+Interest} objects from a precomputed score field. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em score\+\_\+field} & Precomputed suitability / score field in \mbox{[}0, 1\mbox{]}. \\
+\hline
+{\em heightmap} & Input terrain heightmap used to sample elevation, slope, and aspect. \\
+\hline
+{\em options} & Generation options. \\
+\hline
+{\em type} & Optional classification type to assign to the points. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$\+Point\+Of\+Interest$>$ List of extracted points of interest. 
+\end{DoxyReturn}
+\Hypertarget{namespacehmap_a34efdecd3db27a30c06537acda6d9457}\label{namespacehmap_a34efdecd3db27a30c06537acda6d9457} 
 \index{hmap@{hmap}!connected\_components@{connected\_components}}
 \index{connected\_components@{connected\_components}!hmap@{hmap}}
 \doxysubsubsection{\texorpdfstring{connected\_components()}{connected\_components()}}
@@ -9641,71 +9839,7 @@ Generates a USD stage (.usda, .usdc, or .usdz) containing\+:
 
 Identifies and labels connected components within a binary or labeled array, with optional filtering by size. 
 
-Connected-\/component labeling is a technique used to identify clusters of connected pixels (or components) in an array. This function can be used in image processing and spatial analysis to isolate regions of interest, such as detecting distinct objects or areas within a heightmap.
-
-{\bfseries{Usage}}
-\begin{DoxyItemize}
-\item Use this function to label distinct features within an array, such as individual water bodies, forest patches, or elevation features.
-\item Apply the surface threshold to filter out small, insignificant components that might be noise or irrelevant.
-\end{DoxyItemize}
-
-
-\begin{DoxyParams}{Parameters}
-{\em array} & The input array where connected components are to be identified. \\
-\hline
-{\em surface\+\_\+threshold} & The minimum number of pixels a component must have to be retained. Components smaller than this threshold will be removed. The default value is 0 (no filtering). \\
-\hline
-{\em background\+\_\+value} & The value used to represent background pixels, which are not part of any component. Default is 0. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-\doxylink{classhmap_1_1Array}{Array} An array with labeled connected components, where each component is assigned a unique identifier.
-\end{DoxyReturn}
-{\bfseries{Example}} 
-\begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{highmap_8hpp}{highmap.hpp}}"{}}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{void})}
-\DoxyCodeLine{\{}
-\DoxyCodeLine{\ \ glm::ivec2\ \ \ \ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}\ =\ \{256,\ 256\};}
-\DoxyCodeLine{\ \ glm::vec2\ \ \ \ \ res\ =\ \{4.f,\ 4.f\};}
-\DoxyCodeLine{\ \ std::uint32\_t\ seed\ =\ 5;}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}\ =\ \mbox{\hyperlink{namespacehmap_a0f94056bb01fb9798ce72d3c4b1be4d2}{hmap::noise}}(\mbox{\hyperlink{namespacehmap_ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581}{hmap::NoiseType::PERLIN}},\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ res,\ seed);}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a2badbebec49b12d0d721970a18eb420d}{hmap::clamp\_min}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ 0.f);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ Basic\ usage}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ labels\ =\ \mbox{\hyperlink{namespacehmap_a34efdecd3db27a30c06537acda6d9457}{hmap::connected\_components}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}});}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ unique\ labels}}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_1_1log_a6480b435f3a81f37c203245b752fb5c7}{hmap::log::trace}}(\textcolor{stringliteral}{"{}Labels"{}});}
-\DoxyCodeLine{\ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ \&v\ :\ labels.unique\_values())}
-\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{namespacehmap}{hmap}}::log::\mbox{\hyperlink{namespacehmap_1_1log_a6480b435f3a81f37c203245b752fb5c7}{trace}}(\textcolor{stringliteral}{"{}\ -\/\ \{\}"{}},\ v);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ Secondary\ outputs}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ std::map<float,\ float>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ surfaces;}
-\DoxyCodeLine{\ \ std::map<float,\ std::array<float,\ 2>>\ centroids;}
-\DoxyCodeLine{\ \ \textcolor{keyword}{auto}\ dummy\ =\ \mbox{\hyperlink{namespacehmap_a34efdecd3db27a30c06537acda6d9457}{hmap::connected\_components}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ 0.f,\ 0.f,\ \&surfaces,\ \&centroids);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ centroids\ of\ each\ components\ in\ index\ (i,\ j)\ scale}}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_1_1log_a6480b435f3a81f37c203245b752fb5c7}{hmap::log::trace}}(\textcolor{stringliteral}{"{}Centroids"{}});}
-\DoxyCodeLine{\ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \&[k,\ v]\ :\ centroids)}
-\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{namespacehmap}{hmap}}::log::\mbox{\hyperlink{namespacehmap_1_1log_a6480b435f3a81f37c203245b752fb5c7}{trace}}(\textcolor{stringliteral}{"{}\ -\/\ \{\}\ \{\}\ \{\}"{}},\ k,\ v[0],\ v[1]);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ Plots}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}.to\_png(\textcolor{stringliteral}{"{}ex\_connected\_components0.png"{}},\ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369afd0b9cd53cbae62c25ef686ba527d143}{hmap::Cmap::INFERNO}});}
-\DoxyCodeLine{\ \ labels.\mbox{\hyperlink{classhmap_1_1Array_a9ff7b2c0be8f2b5dd9fc33085cd647d1}{to\_png}}(\textcolor{stringliteral}{"{}ex\_connected\_components1.png"{}},\ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369ae91cb25d4df330517ac69b5f0f2c3e0c}{hmap::Cmap::NIPY\_SPECTRAL}});}
-\DoxyCodeLine{\}}
-
-\end{DoxyCodeInclude}
-
-
-{\bfseries{Result}}  
-
-See unit tests\+: \doxylink{test__connected__components_8cpp}{test\+\_\+connected\+\_\+components.\+cpp} \Hypertarget{namespacehmap_aa60fa2d3f02d1e064b520fa1623200d0}\label{namespacehmap_aa60fa2d3f02d1e064b520fa1623200d0} 
+\Hypertarget{namespacehmap_aa60fa2d3f02d1e064b520fa1623200d0}\label{namespacehmap_aa60fa2d3f02d1e064b520fa1623200d0} 
 \index{hmap@{hmap}!geomorphons@{geomorphons}}
 \index{geomorphons@{geomorphons}!hmap@{hmap}}
 \doxysubsubsection{\texorpdfstring{geomorphons()}{geomorphons()}}
@@ -9715,56 +9849,7 @@ See unit tests\+: \doxylink{test__connected__components_8cpp}{test\+\_\+connecte
 
 Classifies terrain into geomorphological features based on the geomorphons method. 
 
-The geomorphons method classifies each point in a terrain into one of several landform types (e.\+g., ridge, valley, plain) based on the surrounding topography. This classification is useful for automated landform mapping and terrain analysis.
-
-{\bfseries{Usage}}
-\begin{DoxyItemize}
-\item Use this function to automatically categorize terrain into different geomorphological units.
-\item Useful in large-\/scale landform mapping and environmental modeling.
-\end{DoxyItemize}
-
-
-\begin{DoxyParams}{Parameters}
-{\em array} & The input array representing the terrain elevation data. \\
-\hline
-{\em irmin} & The minimum radius (in pixels) for considering the surrounding area during classification. \\
-\hline
-{\em irmax} & The maximum radius (in pixels) for considering the surrounding area during classification. \\
-\hline
-{\em epsilon} & The slope tolerance that defines \textquotesingle{}flat\textquotesingle{} regions, affecting the classification. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-\doxylink{classhmap_1_1Array}{Array} An output array with each pixel classified into a geomorphological feature.
-\end{DoxyReturn}
-{\bfseries{Example}} 
-\begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{highmap_8hpp}{highmap.hpp}}"{}}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{void})}
-\DoxyCodeLine{\{}
-\DoxyCodeLine{\ \ glm::ivec2\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}\ =\ \{256,\ 256\};}
-\DoxyCodeLine{\ \ glm::vec2\ \ res\ =\ \{4.f,\ 4.f\};}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ seed\ =\ 1;}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}\ =\ \mbox{\hyperlink{namespacehmap_a7d699a468a18be16c70654958ee13b41}{hmap::noise\_fbm}}(\mbox{\hyperlink{namespacehmap_ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581}{hmap::NoiseType::PERLIN}},\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ res,\ seed);}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{hmap::remap}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}});}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a374c6a8ff3d27e854a254139435c5d8d}{hmap::clamp\_min\_smooth}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ 0.3f,\ 0.1f);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ irmin\ =\ 1;}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ irmax\ =\ 4;}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{float}\ epsilon\ =\ 0.001f;}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ labels\ =\ \mbox{\hyperlink{namespacehmap_aa60fa2d3f02d1e064b520fa1623200d0}{hmap::geomorphons}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ irmin,\ irmax,\ epsilon);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}.to\_png(\textcolor{stringliteral}{"{}ex\_geomorphons0.png"{}},\ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a6d093dbf3088c52a8acee413942545d9}{hmap::Cmap::TERRAIN}});}
-\DoxyCodeLine{\ \ labels.\mbox{\hyperlink{classhmap_1_1Array_a9ff7b2c0be8f2b5dd9fc33085cd647d1}{to\_png}}(\textcolor{stringliteral}{"{}ex\_geomorphons1.png"{}},\ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369ae91cb25d4df330517ac69b5f0f2c3e0c}{hmap::Cmap::NIPY\_SPECTRAL}});}
-\DoxyCodeLine{\}}
-
-\end{DoxyCodeInclude}
-
-
-{\bfseries{Result}}   \Hypertarget{namespacehmap_ab79c564a249c41caec3367b3d82ebdbf}\label{namespacehmap_ab79c564a249c41caec3367b3d82ebdbf} 
+\Hypertarget{namespacehmap_ab79c564a249c41caec3367b3d82ebdbf}\label{namespacehmap_ab79c564a249c41caec3367b3d82ebdbf} 
 \index{hmap@{hmap}!kmeans\_clustering2@{kmeans\_clustering2}}
 \index{kmeans\_clustering2@{kmeans\_clustering2}!hmap@{hmap}}
 \doxysubsubsection{\texorpdfstring{kmeans\_clustering2()}{kmeans\_clustering2()}}
@@ -9774,107 +9859,7 @@ The geomorphons method classifies each point in a terrain into one of several la
 
 Performs k-\/means clustering on two input arrays, grouping similar data points into clusters. 
 
-K-\/means clustering is a popular unsupervised learning algorithm used to partition data into clusters. This function applies k-\/means clustering to two arrays, which might represent different terrain attributes or environmental variables.
-
-{\bfseries{Usage}}\+:
-\begin{DoxyItemize}
-\item Use this function to identify regions with similar characteristics based on multiple terrain features.
-\item Useful in ecological modeling, land cover classification, and resource management.
-\end{DoxyItemize}
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em array1} & The first input array for clustering, typically representing one attribute of the terrain. \\
-\hline
-\mbox{\texttt{ in}}  & {\em array2} & The second input array for clustering, representing another attribute. \\
-\hline
-\mbox{\texttt{ in}}  & {\em nclusters} & The number of clusters (k) to be formed. \\
-\hline
-\mbox{\texttt{ out}}  & {\em p\+\_\+scoring} & (optional) A pointer to a vector of arrays where the clustering scores will be stored. Pass nullptr if scoring is not required. \\
-\hline
-\mbox{\texttt{ out}}  & {\em p\+\_\+aggregate\+\_\+scoring} & (optional) A pointer to an array where the aggregate score across all clusters will be stored. Pass nullptr if not required. \\
-\hline
-\mbox{\texttt{ in}}  & {\em weights} & A vector of two floats representing the weight given to {\ttfamily array1} and {\ttfamily array2}. The default weights are \{1.\+f, 1.\+f\}. \\
-\hline
-\mbox{\texttt{ in}}  & {\em seed} & A seed value for random number generation, ensuring reproducibility of the clustering results. The default value is 1. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-\doxylink{classhmap_1_1Array}{Array} An array representing the clustered data, with each pixel assigned to a cluster.
-
-An \doxylink{classhmap_1_1Array}{Array} containing the clustered data resulting from the k-\/means algorithm.
-\end{DoxyReturn}
-{\bfseries{Example}} 
-\begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{highmap_8hpp}{highmap.hpp}}"{}}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{void})}
-\DoxyCodeLine{\{}
-\DoxyCodeLine{\ \ glm::ivec2\ \ \ \ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}\ =\ \{256,\ 256\};}
-\DoxyCodeLine{\ \ glm::vec2\ \ \ \ \ res\ =\ \{4.f,\ 4.f\};}
-\DoxyCodeLine{\ \ std::uint32\_t\ seed\ =\ 5;}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}\ =\ \mbox{\hyperlink{namespacehmap_a7d699a468a18be16c70654958ee13b41}{hmap::noise\_fbm}}(\mbox{\hyperlink{namespacehmap_ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581}{hmap::NoiseType::PERLIN}},\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ res,\ seed);}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ dz\ =\ \mbox{\hyperlink{namespacehmap_a618fb6d396a832c3dd1f053bfd27eed4}{hmap::gradient\_talus}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}});}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ normalize\ data\ to\ balance\ their\ respective\ weights\ during\ the}}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ clustering}}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{hmap::remap}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}});}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{hmap::remap}}(dz);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ build\ up\ 4\ clusters\ based\ the\ elevation\ and\ the\ local\ talus}}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ (to\ get\ fot\ instance\ for\ types\ of\ land:\ high-\/altitude\ flat,}}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ high-\/altitude\ steep,\ low-\/altitude\ flat,\ low-\/altitude\ steep)}}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ nclusters\ =\ 4;}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ labels4\ =\ \mbox{\hyperlink{namespacehmap_ab79c564a249c41caec3367b3d82ebdbf}{hmap::kmeans\_clustering2}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ dz,\ nclusters);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ (optional)\ continuous\ scoring\ can\ also\ be\ retrieved\ for\ each\ cluster}}
-\DoxyCodeLine{\ \ std::vector<hmap::Array>\ scoring4;}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ aggregate\_scoring4;}
-\DoxyCodeLine{\ \ labels4\ =\ \mbox{\hyperlink{namespacehmap_ab79c564a249c41caec3367b3d82ebdbf}{hmap::kmeans\_clustering2}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dz,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nclusters,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&scoring4,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&aggregate\_scoring4);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ add\ some\ data\ mimicking\ some\ moisture\ increasing\ from\ west\ to\ east}}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ moisture\ =\ \mbox{\hyperlink{namespacehmap_a04e7abe100708990e2464cc5df2ccafa}{hmap::slope}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ 0.f,\ 1.f);}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{hmap::remap}}(moisture);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ build\ up\ 6\ clusters\ (cloud\ be\ biomes)\ based\ on\ dry/wet\ combined}}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ with\ elevation/slope\ criteria}}
-\DoxyCodeLine{\ \ nclusters\ =\ 6;}
-\DoxyCodeLine{\ \ std::vector<hmap::Array>\ scoring6;}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ labels6\ =\ \mbox{\hyperlink{namespacehmap_ab1bbddddf9ab88025a85668b66d68bdf}{hmap::kmeans\_clustering3}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dz,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ moisture,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nclusters,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&scoring6);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}.to\_png(\textcolor{stringliteral}{"{}ex\_kmeans\_clustering0.png"{}},\ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369afd0b9cd53cbae62c25ef686ba527d143}{hmap::Cmap::INFERNO}});}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ labels4.\mbox{\hyperlink{classhmap_1_1Array_a9ff7b2c0be8f2b5dd9fc33085cd647d1}{to\_png}}(\textcolor{stringliteral}{"{}ex\_kmeans\_clustering1.png"{}},\ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a65146260717d07e4773aec50520b9ced}{hmap::Cmap::JET}});}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_ac2452e568959bc21c9b7b09202e5977a}{hmap::export\_banner\_png}}(\textcolor{stringliteral}{"{}ex\_kmeans\_clustering2.png"{}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scoring4,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369ae91cb25d4df330517ac69b5f0f2c3e0c}{hmap::Cmap::NIPY\_SPECTRAL}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false});}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ aggregate\_scoring4.\mbox{\hyperlink{classhmap_1_1Array_a9ff7b2c0be8f2b5dd9fc33085cd647d1}{to\_png}}(\textcolor{stringliteral}{"{}ex\_kmeans\_clustering3.png"{}},\ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a65146260717d07e4773aec50520b9ced}{hmap::Cmap::JET}});}
-\DoxyCodeLine{\ \ aggregate\_scoring4.\mbox{\hyperlink{classhmap_1_1Array_a0a68f43a6e0cf3a2b0392a161ea18339}{infos}}();}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ labels6.\mbox{\hyperlink{classhmap_1_1Array_a9ff7b2c0be8f2b5dd9fc33085cd647d1}{to\_png}}(\textcolor{stringliteral}{"{}ex\_kmeans\_clustering4.png"{}},\ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a65146260717d07e4773aec50520b9ced}{hmap::Cmap::JET}});}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_ac2452e568959bc21c9b7b09202e5977a}{hmap::export\_banner\_png}}(\textcolor{stringliteral}{"{}ex\_kmeans\_clustering5.png"{}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scoring6,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369ae91cb25d4df330517ac69b5f0f2c3e0c}{hmap::Cmap::NIPY\_SPECTRAL}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false});}
-\DoxyCodeLine{\}}
-
-\end{DoxyCodeInclude}
-
-
-{\bfseries{Result}}       \Hypertarget{namespacehmap_ab1bbddddf9ab88025a85668b66d68bdf}\label{namespacehmap_ab1bbddddf9ab88025a85668b66d68bdf} 
+\Hypertarget{namespacehmap_ab1bbddddf9ab88025a85668b66d68bdf}\label{namespacehmap_ab1bbddddf9ab88025a85668b66d68bdf} 
 \index{hmap@{hmap}!kmeans\_clustering3@{kmeans\_clustering3}}
 \index{kmeans\_clustering3@{kmeans\_clustering3}!hmap@{hmap}}
 \doxysubsubsection{\texorpdfstring{kmeans\_clustering3()}{kmeans\_clustering3()}}
@@ -9882,109 +9867,9 @@ An \doxylink{classhmap_1_1Array}{Array} containing the clustered data resulting 
 
 
 
-Performs k-\/means clustering on three input arrays, providing more detailed cluster analysis by considering an additional dimension. 
+Performs k-\/means clustering on three input arrays. 
 
-This version of k-\/means clustering includes a third array, enabling more complex clustering based on three terrain attributes or environmental variables.
-
-{\bfseries{Usage}}
-\begin{DoxyItemize}
-\item Apply this function to analyze the relationships between three different terrain attributes, revealing complex patterns.
-\item Useful in multi-\/dimensional environmental modeling and resource management.
-\end{DoxyItemize}
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em array1} & The first input array for clustering. \\
-\hline
-\mbox{\texttt{ in}}  & {\em array2} & The second input array for clustering. \\
-\hline
-\mbox{\texttt{ in}}  & {\em array3} & The third input array for clustering. \\
-\hline
-\mbox{\texttt{ in}}  & {\em nclusters} & The number of clusters (k) to be formed. \\
-\hline
-\mbox{\texttt{ out}}  & {\em p\+\_\+scoring} & (optional) A pointer to a vector of arrays where the clustering scores will be stored. Pass nullptr if scoring is not required. \\
-\hline
-\mbox{\texttt{ out}}  & {\em p\+\_\+aggregate\+\_\+scoring} & (optional) A pointer to an array where the aggregate score across all clusters will be stored. Pass nullptr if not required. \\
-\hline
-\mbox{\texttt{ in}}  & {\em weights} & A vector of three floats representing the weight given to {\ttfamily array1}, {\ttfamily array2}, and {\ttfamily array3}. The default weights are \{1.\+f, 1.\+f, 1.\+f\}. \\
-\hline
-\mbox{\texttt{ in}}  & {\em seed} & A seed value for random number generation, ensuring reproducibility of the clustering results. The default value is 1. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-\doxylink{classhmap_1_1Array}{Array} An array representing the clustered data, with each pixel assigned to a cluster.
-\end{DoxyReturn}
-{\bfseries{Example}} 
-\begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{highmap_8hpp}{highmap.hpp}}"{}}}
-\DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{void})}
-\DoxyCodeLine{\{}
-\DoxyCodeLine{\ \ glm::ivec2\ \ \ \ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}}\ =\ \{256,\ 256\};}
-\DoxyCodeLine{\ \ glm::vec2\ \ \ \ \ res\ =\ \{4.f,\ 4.f\};}
-\DoxyCodeLine{\ \ std::uint32\_t\ seed\ =\ 5;}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}\ =\ \mbox{\hyperlink{namespacehmap_a7d699a468a18be16c70654958ee13b41}{hmap::noise\_fbm}}(\mbox{\hyperlink{namespacehmap_ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581}{hmap::NoiseType::PERLIN}},\ \mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ res,\ seed);}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ dz\ =\ \mbox{\hyperlink{namespacehmap_a618fb6d396a832c3dd1f053bfd27eed4}{hmap::gradient\_talus}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}});}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ normalize\ data\ to\ balance\ their\ respective\ weights\ during\ the}}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ clustering}}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{hmap::remap}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}});}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{hmap::remap}}(dz);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ build\ up\ 4\ clusters\ based\ the\ elevation\ and\ the\ local\ talus}}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ (to\ get\ fot\ instance\ for\ types\ of\ land:\ high-\/altitude\ flat,}}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ high-\/altitude\ steep,\ low-\/altitude\ flat,\ low-\/altitude\ steep)}}
-\DoxyCodeLine{\ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ nclusters\ =\ 4;}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ labels4\ =\ \mbox{\hyperlink{namespacehmap_ab79c564a249c41caec3367b3d82ebdbf}{hmap::kmeans\_clustering2}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ dz,\ nclusters);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ (optional)\ continuous\ scoring\ can\ also\ be\ retrieved\ for\ each\ cluster}}
-\DoxyCodeLine{\ \ std::vector<hmap::Array>\ scoring4;}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ aggregate\_scoring4;}
-\DoxyCodeLine{\ \ labels4\ =\ \mbox{\hyperlink{namespacehmap_ab79c564a249c41caec3367b3d82ebdbf}{hmap::kmeans\_clustering2}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dz,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nclusters,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&scoring4,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&aggregate\_scoring4);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ -\/-\/-\/\ add\ some\ data\ mimicking\ some\ moisture\ increasing\ from\ west\ to\ east}}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ moisture\ =\ \mbox{\hyperlink{namespacehmap_a04e7abe100708990e2464cc5df2ccafa}{hmap::slope}}(\mbox{\hyperlink{elevation__from__contours_8cpp_af339e609a44f3516574ffecaf5245fa3}{shape}},\ 0.f,\ 1.f);}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{hmap::remap}}(moisture);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ build\ up\ 6\ clusters\ (cloud\ be\ biomes)\ based\ on\ dry/wet\ combined}}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ with\ elevation/slope\ criteria}}
-\DoxyCodeLine{\ \ nclusters\ =\ 6;}
-\DoxyCodeLine{\ \ std::vector<hmap::Array>\ scoring6;}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ labels6\ =\ \mbox{\hyperlink{namespacehmap_ab1bbddddf9ab88025a85668b66d68bdf}{hmap::kmeans\_clustering3}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dz,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ moisture,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nclusters,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&scoring6);}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}}.to\_png(\textcolor{stringliteral}{"{}ex\_kmeans\_clustering0.png"{}},\ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369afd0b9cd53cbae62c25ef686ba527d143}{hmap::Cmap::INFERNO}});}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ labels4.\mbox{\hyperlink{classhmap_1_1Array_a9ff7b2c0be8f2b5dd9fc33085cd647d1}{to\_png}}(\textcolor{stringliteral}{"{}ex\_kmeans\_clustering1.png"{}},\ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a65146260717d07e4773aec50520b9ced}{hmap::Cmap::JET}});}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_ac2452e568959bc21c9b7b09202e5977a}{hmap::export\_banner\_png}}(\textcolor{stringliteral}{"{}ex\_kmeans\_clustering2.png"{}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scoring4,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369ae91cb25d4df330517ac69b5f0f2c3e0c}{hmap::Cmap::NIPY\_SPECTRAL}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false});}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ aggregate\_scoring4.\mbox{\hyperlink{classhmap_1_1Array_a9ff7b2c0be8f2b5dd9fc33085cd647d1}{to\_png}}(\textcolor{stringliteral}{"{}ex\_kmeans\_clustering3.png"{}},\ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a65146260717d07e4773aec50520b9ced}{hmap::Cmap::JET}});}
-\DoxyCodeLine{\ \ aggregate\_scoring4.\mbox{\hyperlink{classhmap_1_1Array_a0a68f43a6e0cf3a2b0392a161ea18339}{infos}}();}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ labels6.\mbox{\hyperlink{classhmap_1_1Array_a9ff7b2c0be8f2b5dd9fc33085cd647d1}{to\_png}}(\textcolor{stringliteral}{"{}ex\_kmeans\_clustering4.png"{}},\ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369a65146260717d07e4773aec50520b9ced}{hmap::Cmap::JET}});}
-\DoxyCodeLine{}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_ac2452e568959bc21c9b7b09202e5977a}{hmap::export\_banner\_png}}(\textcolor{stringliteral}{"{}ex\_kmeans\_clustering5.png"{}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scoring6,}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacehmap_ac70fe3cbb32e0340d5dd3e15cdcf9369ae91cb25d4df330517ac69b5f0f2c3e0c}{hmap::Cmap::NIPY\_SPECTRAL}},}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{false});}
-\DoxyCodeLine{\}}
-
-\end{DoxyCodeInclude}
-
-
-{\bfseries{Result}}       \Hypertarget{namespacehmap_ae3ecf5f88476c5d49978a130f8cab2f3}\label{namespacehmap_ae3ecf5f88476c5d49978a130f8cab2f3} 
+\Hypertarget{namespacehmap_ae3ecf5f88476c5d49978a130f8cab2f3}\label{namespacehmap_ae3ecf5f88476c5d49978a130f8cab2f3} 
 \index{hmap@{hmap}!bulkify@{bulkify}}
 \index{bulkify@{bulkify}!hmap@{hmap}}
 \doxysubsubsection{\texorpdfstring{bulkify()}{bulkify()}}
@@ -20419,11 +20304,11 @@ Resolves flow sinks on a heightmap by computing an MST on a triangular mesh and 
 \begin{DoxyReturn}{Returns}
 Carved elevation array with unbroken flow paths. 
 \end{DoxyReturn}
-\Hypertarget{namespacehmap_a948b4703486f175cd2681bd9bc7b5a88}\label{namespacehmap_a948b4703486f175cd2681bd9bc7b5a88} 
+\Hypertarget{namespacehmap_ada1af89f3e34eb4ceb13e176a1b819c2}\label{namespacehmap_ada1af89f3e34eb4ceb13e176a1b819c2} 
 \index{hmap@{hmap}!flow\_stream@{flow\_stream}}
 \index{flow\_stream@{flow\_stream}!hmap@{hmap}}
 \doxysubsubsection{\texorpdfstring{flow\_stream()}{flow\_stream()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Path}{Path}} hmap\+::flow\+\_\+stream (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{z,  }\item[{const glm\+::ivec2}]{ij\+\_\+start,  }\item[{const float}]{elevation\+\_\+ratio = {\ttfamily 0.5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{const float}]{distance\+\_\+exponent = {\ttfamily 2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{const float}]{upward\+\_\+penalization = {\ttfamily 100.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Path}{Path}} hmap\+::flow\+\_\+stream (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{z,  }\item[{const glm\+::ivec2}]{ij\+\_\+start,  }\item[{const float}]{elevation\+\_\+ratio = {\ttfamily 0.5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{const float}]{distance\+\_\+exponent = {\ttfamily 2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{const float}]{upward\+\_\+penalization = {\ttfamily 100.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Path}{Path}} $>$ \&}]{existing\+\_\+streams = {\ttfamily \{\}} }\end{DoxyParamCaption})}
 
 
 
@@ -20442,6 +20327,8 @@ This function finds the flow path on a grid represented by the input array {\ttf
 {\em distance\+\_\+exponent} & Exponent for the distance term in the cost function (default\+: 2.\+0). \\
 \hline
 {\em upward\+\_\+penalization} & Penalty factor for upward elevation changes (default\+: 100.\+0). \\
+\hline
+{\em existing\+\_\+streams} & Existing flow streams to favor merging with (default\+: \{\}). \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -20468,7 +20355,7 @@ The output path consists of\+:
 \DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_a262e6495cb2d02598f36a2b46114b2b4}{hmap::remap}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}});}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ glm::ivec2\ ij\_start(100,\ 128);}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}\ =\ \mbox{\hyperlink{namespacehmap_a948b4703486f175cd2681bd9bc7b5a88}{hmap::flow\_stream}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ ij\_start);}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ \mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}\ =\ \mbox{\hyperlink{namespacehmap_ada1af89f3e34eb4ceb13e176a1b819c2}{hmap::flow\_stream}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ ij\_start);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ glm::vec4\ bbox(0.f,\ 1.f,\ 0.f,\ 1.f);}
 \DoxyCodeLine{}
@@ -20496,9 +20383,9 @@ The output path consists of\+:
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ seed,}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mask);}
 \DoxyCodeLine{}
-\DoxyCodeLine{\ \ \textcolor{comment}{//\ multiple\ streams}}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ multiple\ streams\ merging\ into\ existing\ streams}}
 \DoxyCodeLine{\ \ glm::ivec2\ ij\_start2(128,\ 180);}
-\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ path2\ =\ \mbox{\hyperlink{namespacehmap_a948b4703486f175cd2681bd9bc7b5a88}{hmap::flow\_stream}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ ij\_start2);}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Path}{hmap::Path}}\ path2\ =\ \mbox{\hyperlink{namespacehmap_ada1af89f3e34eb4ceb13e176a1b819c2}{hmap::flow\_stream}}(\mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}},\ ij\_start2,\ 0.5f,\ 2.f,\ 100.f,\ \{\mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}}\});}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \mbox{\hyperlink{classhmap_1_1Array}{hmap::Array}}\ zd2\ =\ \mbox{\hyperlink{hydraulic__mise_8cpp_aa14e04bff7de9e968e46a953f71f29f3}{z}};}
 \DoxyCodeLine{\ \ \mbox{\hyperlink{namespacehmap_aa0407e8bf3d06ffb4d8d1e97809d3665}{hmap::dig\_river}}(zd2,}
@@ -20523,11 +20410,11 @@ The output path consists of\+:
 \end{DoxyCodeInclude}
 
 
-{\bfseries{Result}}  \Hypertarget{namespacehmap_ac46adb5c67650ea6660a4edfc8d213c3}\label{namespacehmap_ac46adb5c67650ea6660a4edfc8d213c3} 
+{\bfseries{Result}}  \Hypertarget{namespacehmap_ae0d87f762b7f25f717cebc3ccf2ca667}\label{namespacehmap_ae0d87f762b7f25f717cebc3ccf2ca667} 
 \index{hmap@{hmap}!flow\_stream@{flow\_stream}}
 \index{flow\_stream@{flow\_stream}!hmap@{hmap}}
 \doxysubsubsection{\texorpdfstring{flow\_stream()}{flow\_stream()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Path}{Path}} hmap\+::flow\+\_\+stream (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1TerrainTriMesh}{Terrain\+Tri\+Mesh}} \&}]{mesh,  }\item[{size\+\_\+t}]{start\+\_\+vertex\+\_\+index,  }\item[{float}]{elevation\+\_\+ratio = {\ttfamily 0.5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{float}]{distance\+\_\+exponent = {\ttfamily 2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{float}]{upward\+\_\+penalization = {\ttfamily 100.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{bool}]{favor\+\_\+domain\+\_\+center = {\ttfamily false} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Path}{Path}} hmap\+::flow\+\_\+stream (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1TerrainTriMesh}{Terrain\+Tri\+Mesh}} \&}]{mesh,  }\item[{size\+\_\+t}]{start\+\_\+vertex\+\_\+index,  }\item[{float}]{elevation\+\_\+ratio = {\ttfamily 0.5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{float}]{distance\+\_\+exponent = {\ttfamily 2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{float}]{upward\+\_\+penalization = {\ttfamily 100.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{bool}]{favor\+\_\+domain\+\_\+center = {\ttfamily false},  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Path}{Path}} $>$ \&}]{existing\+\_\+streams = {\ttfamily \{\}} }\end{DoxyParamCaption})}
 
 
 
@@ -20547,15 +20434,17 @@ Computes the optimal flow path from a starting vertex to the boundary of a terra
 \hline
 {\em favor\+\_\+domain\+\_\+center} & Favor passing through the center of the domain (default\+: false). \\
 \hline
+{\em existing\+\_\+streams} & Existing flow streams to favor merging with (default\+: \{\}). \\
+\hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A \doxylink{classhmap_1_1Path}{Path} object representing the optimal flow path. 
 \end{DoxyReturn}
-\Hypertarget{namespacehmap_a5420856e4ed4060e782414c4bb97e63e}\label{namespacehmap_a5420856e4ed4060e782414c4bb97e63e} 
+\Hypertarget{namespacehmap_ab41c1a4c6149f555e6b18860946327b2}\label{namespacehmap_ab41c1a4c6149f555e6b18860946327b2} 
 \index{hmap@{hmap}!flow\_stream@{flow\_stream}}
 \index{flow\_stream@{flow\_stream}!hmap@{hmap}}
 \doxysubsubsection{\texorpdfstring{flow\_stream()}{flow\_stream()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Path}{Path}} hmap\+::flow\+\_\+stream (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1TerrainTriMesh}{Terrain\+Tri\+Mesh}} \&}]{mesh,  }\item[{glm\+::vec2}]{xy\+\_\+start,  }\item[{float}]{elevation\+\_\+ratio = {\ttfamily 0.5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{float}]{distance\+\_\+exponent = {\ttfamily 2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{float}]{upward\+\_\+penalization = {\ttfamily 100.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{bool}]{favor\+\_\+domain\+\_\+center = {\ttfamily false} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{classhmap_1_1Path}{Path}} hmap\+::flow\+\_\+stream (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhmap_1_1TerrainTriMesh}{Terrain\+Tri\+Mesh}} \&}]{mesh,  }\item[{glm\+::vec2}]{xy\+\_\+start,  }\item[{float}]{elevation\+\_\+ratio = {\ttfamily 0.5\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{float}]{distance\+\_\+exponent = {\ttfamily 2.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{float}]{upward\+\_\+penalization = {\ttfamily 100.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{bool}]{favor\+\_\+domain\+\_\+center = {\ttfamily false},  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classhmap_1_1Path}{Path}} $>$ \&}]{existing\+\_\+streams = {\ttfamily \{\}} }\end{DoxyParamCaption})}
 
 
 
@@ -20574,6 +20463,8 @@ Computes the optimal flow path from starting 2D coordinates to the boundary of a
 {\em upward\+\_\+penalization} & Penalty factor for upward elevation changes (default\+: 100.\+0). \\
 \hline
 {\em favor\+\_\+domain\+\_\+center} & Favor passing through the center of the domain (default\+: false). \\
+\hline
+{\em existing\+\_\+streams} & Existing flow streams to favor merging with (default\+: \{\}). \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -37460,10 +37351,10 @@ Colorize a scalar field into a \doxylink{classhmap_1_1VirtualTexture}{Virtual\+T
 \DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}}\ =\ 0;\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}}\ <\ region.shape.y;\ ++\mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}})}
 \DoxyCodeLine{\ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ 0;\ \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}}\ <\ region.shape.x;\ ++\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}})}
 \DoxyCodeLine{\ \ \ \ \ \ \{}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ glm::vec2\ pos\ =\ region.cell\_center(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}});}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ R(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}})\ =\ pos.x;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ glm::vec2\ \mbox{\hyperlink{poi_8cpp_a6f4c30bf2e24353492937851cb470208}{pos}}\ =\ region.cell\_center(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ R(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}})\ =\ \mbox{\hyperlink{poi_8cpp_a6f4c30bf2e24353492937851cb470208}{pos}}.x;}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ G(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}})\ =\ 0.f;}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ B(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}})\ =\ pos.y;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ B(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}})\ =\ \mbox{\hyperlink{poi_8cpp_a6f4c30bf2e24353492937851cb470208}{pos}}.y;}
 \DoxyCodeLine{\ \ \ \ \ \ \}}
 \DoxyCodeLine{\ \ \};}
 \DoxyCodeLine{}
@@ -37495,10 +37386,10 @@ Colorize a scalar field into a \doxylink{classhmap_1_1VirtualTexture}{Virtual\+T
 \DoxyCodeLine{\ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ fill\_pixel\ =}
 \DoxyCodeLine{\ \ \ \ \ \ [](std::vector<float>\ \&px,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structhmap_1_1TileRegion}{hmap::TileRegion}}\ \&region)}
 \DoxyCodeLine{\ \ \{}
-\DoxyCodeLine{\ \ \ \ glm::vec2\ pos\ =\ region.cell\_center(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}});}
-\DoxyCodeLine{\ \ \ \ px[0]\ =\ pos.x;}
+\DoxyCodeLine{\ \ \ \ glm::vec2\ \mbox{\hyperlink{poi_8cpp_a6f4c30bf2e24353492937851cb470208}{pos}}\ =\ region.cell\_center(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}});}
+\DoxyCodeLine{\ \ \ \ px[0]\ =\ \mbox{\hyperlink{poi_8cpp_a6f4c30bf2e24353492937851cb470208}{pos}}.x;}
 \DoxyCodeLine{\ \ \ \ px[1]\ =\ 0.f;}
-\DoxyCodeLine{\ \ \ \ px[2]\ =\ pos.y;}
+\DoxyCodeLine{\ \ \ \ px[2]\ =\ \mbox{\hyperlink{poi_8cpp_a6f4c30bf2e24353492937851cb470208}{pos}}.y;}
 \DoxyCodeLine{\ \ \ \ px[3]\ =\ 1.f;}
 \DoxyCodeLine{\ \ \};}
 \DoxyCodeLine{}
@@ -37706,10 +37597,10 @@ Colorize a scalar field into a \doxylink{classhmap_1_1VirtualTexture}{Virtual\+T
 \DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}}\ =\ 0;\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}}\ <\ region.shape.y;\ ++\mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}})}
 \DoxyCodeLine{\ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ 0;\ \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}}\ <\ region.shape.x;\ ++\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}})}
 \DoxyCodeLine{\ \ \ \ \ \ \{}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ glm::vec2\ pos\ =\ region.cell\_center(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}});}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ R(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}})\ =\ pos.x;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ glm::vec2\ \mbox{\hyperlink{poi_8cpp_a6f4c30bf2e24353492937851cb470208}{pos}}\ =\ region.cell\_center(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ R(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}})\ =\ \mbox{\hyperlink{poi_8cpp_a6f4c30bf2e24353492937851cb470208}{pos}}.x;}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ G(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}})\ =\ 0.f;}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ B(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}})\ =\ pos.y;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ B(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}})\ =\ \mbox{\hyperlink{poi_8cpp_a6f4c30bf2e24353492937851cb470208}{pos}}.y;}
 \DoxyCodeLine{\ \ \ \ \ \ \}}
 \DoxyCodeLine{\ \ \};}
 \DoxyCodeLine{}
@@ -37741,10 +37632,10 @@ Colorize a scalar field into a \doxylink{classhmap_1_1VirtualTexture}{Virtual\+T
 \DoxyCodeLine{\ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ fill\_pixel\ =}
 \DoxyCodeLine{\ \ \ \ \ \ [](std::vector<float>\ \&px,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structhmap_1_1TileRegion}{hmap::TileRegion}}\ \&region)}
 \DoxyCodeLine{\ \ \{}
-\DoxyCodeLine{\ \ \ \ glm::vec2\ pos\ =\ region.cell\_center(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}});}
-\DoxyCodeLine{\ \ \ \ px[0]\ =\ pos.x;}
+\DoxyCodeLine{\ \ \ \ glm::vec2\ \mbox{\hyperlink{poi_8cpp_a6f4c30bf2e24353492937851cb470208}{pos}}\ =\ region.cell\_center(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}});}
+\DoxyCodeLine{\ \ \ \ px[0]\ =\ \mbox{\hyperlink{poi_8cpp_a6f4c30bf2e24353492937851cb470208}{pos}}.x;}
 \DoxyCodeLine{\ \ \ \ px[1]\ =\ 0.f;}
-\DoxyCodeLine{\ \ \ \ px[2]\ =\ pos.y;}
+\DoxyCodeLine{\ \ \ \ px[2]\ =\ \mbox{\hyperlink{poi_8cpp_a6f4c30bf2e24353492937851cb470208}{pos}}.y;}
 \DoxyCodeLine{\ \ \ \ px[3]\ =\ 1.f;}
 \DoxyCodeLine{\ \ \};}
 \DoxyCodeLine{}
@@ -38006,10 +37897,10 @@ Mix two virtual textures into an output virtual texture.
 \DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}}\ =\ 0;\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}}\ <\ region.shape.y;\ ++\mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}})}
 \DoxyCodeLine{\ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}}\ =\ 0;\ \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}}\ <\ region.shape.x;\ ++\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}})}
 \DoxyCodeLine{\ \ \ \ \ \ \{}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ glm::vec2\ pos\ =\ region.cell\_center(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}});}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ R(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}})\ =\ pos.x;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ glm::vec2\ \mbox{\hyperlink{poi_8cpp_a6f4c30bf2e24353492937851cb470208}{pos}}\ =\ region.cell\_center(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ R(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}})\ =\ \mbox{\hyperlink{poi_8cpp_a6f4c30bf2e24353492937851cb470208}{pos}}.x;}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ G(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}})\ =\ 0.f;}
-\DoxyCodeLine{\ \ \ \ \ \ \ \ B(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}})\ =\ pos.y;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ B(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}})\ =\ \mbox{\hyperlink{poi_8cpp_a6f4c30bf2e24353492937851cb470208}{pos}}.y;}
 \DoxyCodeLine{\ \ \ \ \ \ \}}
 \DoxyCodeLine{\ \ \};}
 \DoxyCodeLine{}
@@ -38041,10 +37932,10 @@ Mix two virtual textures into an output virtual texture.
 \DoxyCodeLine{\ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ fill\_pixel\ =}
 \DoxyCodeLine{\ \ \ \ \ \ [](std::vector<float>\ \&px,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structhmap_1_1TileRegion}{hmap::TileRegion}}\ \&region)}
 \DoxyCodeLine{\ \ \{}
-\DoxyCodeLine{\ \ \ \ glm::vec2\ pos\ =\ region.cell\_center(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}});}
-\DoxyCodeLine{\ \ \ \ px[0]\ =\ pos.x;}
+\DoxyCodeLine{\ \ \ \ glm::vec2\ \mbox{\hyperlink{poi_8cpp_a6f4c30bf2e24353492937851cb470208}{pos}}\ =\ region.cell\_center(\mbox{\hyperlink{sls__deformation_8cpp_acb559820d9ca11295b4500f179ef6392}{i}},\ \mbox{\hyperlink{sls__deformation_8cpp_a37d972ae0b47b9099e30983131d31916}{j}});}
+\DoxyCodeLine{\ \ \ \ px[0]\ =\ \mbox{\hyperlink{poi_8cpp_a6f4c30bf2e24353492937851cb470208}{pos}}.x;}
 \DoxyCodeLine{\ \ \ \ px[1]\ =\ 0.f;}
-\DoxyCodeLine{\ \ \ \ px[2]\ =\ pos.y;}
+\DoxyCodeLine{\ \ \ \ px[2]\ =\ \mbox{\hyperlink{poi_8cpp_a6f4c30bf2e24353492937851cb470208}{pos}}.y;}
 \DoxyCodeLine{\ \ \ \ px[3]\ =\ 1.f;}
 \DoxyCodeLine{\ \ \};}
 \DoxyCodeLine{}

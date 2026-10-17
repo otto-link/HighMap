@@ -8,7 +8,8 @@ var searchData=
   ['fbx_5',['FBX',['../namespacehmap.html#ac3d35efc6e5b596f508e2b17a5aa871ba006b1f81b483f6b3e26dd4a4668ee6dc',1,'hmap']]],
   ['fdm_5fd8_6',['FDM_D8',['../namespacehmap.html#a0c714c7fa78e9384806de52a5d039f2fab1d0e0d533e11bd2532fd9e2f1802894',1,'hmap']]],
   ['fdm_5fpriority_5fflood_7',['FDM_PRIORITY_FLOOD',['../namespacehmap.html#a0c714c7fa78e9384806de52a5d039f2faaf8f41c39c71902022e1aec12f10d372',1,'hmap']]],
-  ['float16_8',['FLOAT16',['../namespacehmap.html#a451ad02eb796f23b2f68e062e8de9875ac49f280a5ad551ccc77be0b01a2f386a',1,'hmap']]],
-  ['float32_9',['FLOAT32',['../namespacehmap.html#a451ad02eb796f23b2f68e062e8de9875a967d280b5c16d95f2947647dd2ca6cc2',1,'hmap']]],
-  ['fxba_10',['FXBA',['../namespacehmap.html#ac3d35efc6e5b596f508e2b17a5aa871bab8e641a60a539570cba93410908467ee',1,'hmap']]]
+  ['flat_5flowland_8',['FLAT_LOWLAND',['../namespacehmap.html#ade234d7bb6c23c67317077ab7a9082caa0e68ed6c5537a2cda30ab084e8eaa064',1,'hmap']]],
+  ['float16_9',['FLOAT16',['../namespacehmap.html#a451ad02eb796f23b2f68e062e8de9875ac49f280a5ad551ccc77be0b01a2f386a',1,'hmap']]],
+  ['float32_10',['FLOAT32',['../namespacehmap.html#a451ad02eb796f23b2f68e062e8de9875a967d280b5c16d95f2947647dd2ca6cc2',1,'hmap']]],
+  ['fxba_11',['FXBA',['../namespacehmap.html#ac3d35efc6e5b596f508e2b17a5aa871bab8e641a60a539570cba93410908467ee',1,'hmap']]]
 ];
