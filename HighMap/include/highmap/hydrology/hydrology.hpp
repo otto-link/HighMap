@@ -689,6 +689,8 @@ Array flow_fixing_mst_triangulated(
  *                             depression (default: 2).
  * @param  valley_factor       Attenuation factor per distance unit in valley
  *                             depression (default: 0.35).
+ * @param  truncate_at_intersection Truncate path at first intersection with an
+ *                             existing stream (default: false).
  * @return                     A Path object representing the optimal flow path
  *                             with normalized x and y coordinates and
  *                             corresponding elevations.
@@ -711,7 +713,8 @@ Path flow_stream(const Array             &z,
                  const float              upward_penalization = 100.f,
                  const std::vector<Path> &existing_streams = {},
                  const int                valley_radius = 2,
-                 const float              valley_factor = 0.35f);
+                 const float              valley_factor = 0.35f,
+                 const bool               truncate_at_intersection = false);
 
 /**
  * @brief Computes the optimal flow path from a starting vertex to the boundary
@@ -733,6 +736,8 @@ Path flow_stream(const Array             &z,
  *                             attraction (default: 0.02).
  * @param  valley_factor       Attenuation factor per distance unit in valley
  *                             attraction (default: 0.35).
+ * @param  truncate_at_intersection Truncate path at first intersection with an
+ *                             existing stream (default: false).
  * @return                     A Path object representing the optimal flow path.
  */
 Path flow_stream(const TerrainTriMesh    &mesh,
@@ -743,7 +748,8 @@ Path flow_stream(const TerrainTriMesh    &mesh,
                  bool                     favor_domain_center = false,
                  const std::vector<Path> &existing_streams = {},
                  float                    valley_radius = 0.02f,
-                 float                    valley_factor = 0.35f);
+                 float                    valley_factor = 0.35f,
+                 bool                     truncate_at_intersection = false);
 
 /**
  * @brief Computes the optimal flow path from starting 2D coordinates to the
@@ -765,6 +771,8 @@ Path flow_stream(const TerrainTriMesh    &mesh,
  *                             attraction (default: 0.02).
  * @param  valley_factor       Attenuation factor per distance unit in valley
  *                             attraction (default: 0.35).
+ * @param  truncate_at_intersection Truncate path at first intersection with an
+ *                             existing stream (default: false).
  * @return                     A Path object representing the optimal flow path.
  */
 Path flow_stream(const TerrainTriMesh    &mesh,
@@ -775,7 +783,8 @@ Path flow_stream(const TerrainTriMesh    &mesh,
                  bool                     favor_domain_center = false,
                  const std::vector<Path> &existing_streams = {},
                  float                    valley_radius = 0.02f,
-                 float                    valley_factor = 0.35f);
+                 float                    valley_factor = 0.35f,
+                 bool                     truncate_at_intersection = false);
 
 /**
  * @brief Generates a 2D array representing a riverbed based on a specified
@@ -1474,6 +1483,8 @@ VirtualArray flow_fixing_mst_triangulated(
  *                              attraction (default: 0.02).
  * @param  valley_factor        Attenuation factor per distance unit in valley
  *                              attraction (default: 0.35).
+ * @param  truncate_at_intersection Truncate path at first intersection with an
+ *                              existing stream (default: false).
  * @return                      A Path object representing the optimal flow
  *                              path.
  */
@@ -1488,6 +1499,7 @@ Path flow_stream(const ComputeMode       &cm,
                  bool                     favor_domain_center = false,
                  const std::vector<Path> &existing_streams = {},
                  float                    valley_radius = 0.02f,
-                 float                    valley_factor = 0.35f);
+                 float                    valley_factor = 0.35f,
+                 bool                     truncate_at_intersection = false);
 
 } // namespace hmap::va

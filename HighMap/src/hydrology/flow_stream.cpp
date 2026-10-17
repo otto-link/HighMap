@@ -30,7 +30,8 @@ Path flow_stream(const Array             &z,
                  const float              upward_penalization,
                  const std::vector<Path> &existing_streams,
                  const int                valley_radius,
-                 const float              valley_factor)
+                 const float              valley_factor,
+                 const bool               truncate_at_intersection)
 {
   if (!validate_non_empty(z)) return Path();
 
@@ -227,6 +228,9 @@ Path flow_stream(const Array             &z,
 
   Path path(x, y, v);
 
+  if (truncate_at_intersection && !existing_streams.empty())
+    path = truncate_at_first_intersection(path, existing_streams);
+
   return path;
 }
 
@@ -238,7 +242,8 @@ Path flow_stream(const TerrainTriMesh    &mesh,
                  bool                     favor_domain_center,
                  const std::vector<Path> &existing_streams,
                  float                    valley_radius,
-                 float                    valley_factor)
+                 float                    valley_factor,
+                 bool                     truncate_at_intersection)
 {
   if (mesh.size() == 0) return Path();
 
@@ -269,7 +274,8 @@ Path flow_stream(const TerrainTriMesh    &mesh,
                      favor_domain_center,
                      existing_streams,
                      valley_radius,
-                     valley_factor);
+                     valley_factor,
+                     truncate_at_intersection);
 }
 
 Path flow_stream(const TerrainTriMesh    &mesh,
@@ -280,7 +286,8 @@ Path flow_stream(const TerrainTriMesh    &mesh,
                  bool                     favor_domain_center,
                  const std::vector<Path> &existing_streams,
                  float                    valley_radius,
-                 float                    valley_factor)
+                 float                    valley_factor,
+                 bool                     truncate_at_intersection)
 {
   if (mesh.size() == 0 || start_vertex_index >= mesh.size()) return Path();
 
@@ -462,7 +469,12 @@ Path flow_stream(const TerrainTriMesh    &mesh,
     path_points.emplace_back(p.x, p.y, p.z);
   }
 
-  return Path(path_points);
+  Path path(path_points);
+
+  if (truncate_at_intersection && !existing_streams.empty())
+    path = truncate_at_first_intersection(path, existing_streams);
+
+  return path;
 }
 
 } // namespace hmap
@@ -481,7 +493,8 @@ Path flow_stream(const ComputeMode       &cm,
                  bool                     favor_domain_center,
                  const std::vector<Path> &existing_streams,
                  float                    valley_radius,
-                 float                    valley_factor)
+                 float                    valley_factor,
+                 bool                     truncate_at_intersection)
 {
   TerrainTriMesh mesh = va::generate_terrain_tri_mesh_from_heightmap_random(
       cm,
@@ -497,7 +510,8 @@ Path flow_stream(const ComputeMode       &cm,
                      favor_domain_center,
                      existing_streams,
                      valley_radius,
-                     valley_factor);
+                     valley_factor,
+                     truncate_at_intersection);
 }
 
 } // namespace hmap::va

@@ -609,4 +609,37 @@ Path smooth(const Path &path,
   return new_path;
 }
 
+Path truncate_at_first_intersection(const Path              &path,
+                                    const std::vector<Path> &existing_paths)
+{
+  if (path.size() <= 1 || existing_paths.empty()) return path;
+
+  Path result = path;
+
+  for (size_t i = 0; i + 1 < result.size(); ++i)
+  {
+    for (const auto &existing_path : existing_paths)
+    {
+      if (existing_path.size() <= 1) continue;
+
+      for (size_t j = 0; j + 1 < existing_path.size(); ++j)
+      {
+        auto inter = segment_intersection(result[i],
+                                          result[i + 1],
+                                          existing_path[j],
+                                          existing_path[j + 1]);
+
+        if (inter)
+        {
+          result.erase(result.begin() + i + 1, result.end());
+          result.push_back(*inter);
+          return result;
+        }
+      }
+    }
+  }
+
+  return result;
+}
+
 } // namespace hmap

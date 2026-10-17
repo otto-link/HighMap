@@ -185,3 +185,27 @@ TEST(FlowStreamMesh, FavorExistingStreams)
   EXPECT_NEAR(end1.x, end_favored.x, 1e-3f);
   EXPECT_NEAR(end1.y, end_favored.y, 1e-3f);
 }
+
+TEST(FlowStream, TruncateAtIntersection)
+{
+  glm::ivec2  shape = {64, 64};
+  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::PERLIN,
+                                  shape,
+                                  {2.f, 2.f},
+                                  42);
+  hmap::remap(z);
+
+  // straight horizontal line across the domain
+  hmap::Path existing(
+      {hmap::Point(0.1f, 0.5f, 0.5f), hmap::Point(0.9f, 0.5f, 0.1f)});
+
+  // query path that crosses it vertically
+  hmap::Path path(
+      {hmap::Point(0.5f, 0.1f, 0.8f), hmap::Point(0.5f, 0.9f, 0.2f)});
+
+  hmap::Path truncated = hmap::truncate_at_first_intersection(path, {existing});
+
+  ASSERT_EQ(truncated.size(), 2u);
+  EXPECT_NEAR(truncated[1].x, 0.5f, 1e-4f);
+  EXPECT_NEAR(truncated[1].y, 0.5f, 1e-4f);
+}
