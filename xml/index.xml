@@ -5096,6 +5096,7 @@
     <member refid="test__trench_8cpp_1a49797dd3cc0d866769b5bb03a0d180ea" kind="function"><name>TEST</name></member>
     <member refid="test__trench_8cpp_1afb46402ffdee51ae9fea46cadb0fcb5e" kind="function"><name>TEST</name></member>
     <member refid="test__trench_8cpp_1ac5337e547957c9eabcdfa92f48d719c3" kind="function"><name>TEST</name></member>
+    <member refid="test__trench_8cpp_1ae62c40bf7e99fc61fc3c9372a175b852" kind="function"><name>TEST</name></member>
   </compound>
   <compound refid="test__validation_8cpp" kind="file"><name>test_validation.cpp</name>
     <member refid="test__validation_8cpp_1ab53fd57a6e29d01f502892b248a0941e" kind="function"><name>TEST</name></member>

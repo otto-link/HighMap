@@ -856,7 +856,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_stream.cpp" line="485" column="6" bodyfile="HighMap/src/hydrology/flow_stream.cpp" bodystart="485" bodyend="515" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1491" declcolumn="6"/>
+        <location file="HighMap/src/hydrology/flow_stream.cpp" line="481" column="6" bodyfile="HighMap/src/hydrology/flow_stream.cpp" bodystart="481" bodyend="511" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1491" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1va_1abfb98fdd47bd2a66e694c03765bf74af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1RockField" kindref="compound">RockField</ref></type>

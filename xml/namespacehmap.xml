@@ -7782,7 +7782,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/carving/trench.cpp" line="513" column="6" bodyfile="HighMap/src/carving/trench.cpp" bodystart="513" bodyend="559" declfile="HighMap/include/highmap/carving.hpp" declline="223" declcolumn="6"/>
+        <location file="HighMap/src/carving/trench.cpp" line="532" column="6" bodyfile="HighMap/src/carving/trench.cpp" bodystart="532" bodyend="578" declfile="HighMap/include/highmap/carving.hpp" declline="223" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ae10d017da6e13ba9d619298709e64917" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -7898,7 +7898,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/carving/trench.cpp" line="299" column="6" bodyfile="HighMap/src/carving/trench.cpp" bodystart="299" bodyend="511" declfile="HighMap/include/highmap/carving.hpp" declline="246" declcolumn="6"/>
+        <location file="HighMap/src/carving/trench.cpp" line="318" column="6" bodyfile="HighMap/src/carving/trench.cpp" bodystart="318" bodyend="530" declfile="HighMap/include/highmap/carving.hpp" declline="246" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a54eb8ce4196d73517024dbe2af5af81b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>glm::vec3</type>
@@ -36587,7 +36587,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_stream.cpp" line="26" column="6" bodyfile="HighMap/src/hydrology/flow_stream.cpp" bodystart="26" bodyend="235" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="709" declcolumn="6"/>
+        <location file="HighMap/src/hydrology/flow_stream.cpp" line="26" column="6" bodyfile="HighMap/src/hydrology/flow_stream.cpp" bodystart="26" bodyend="231" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="709" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a73c8de9d1feb25ccd5400352662c19dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Path" kindref="compound">Path</ref></type>
@@ -36734,7 +36734,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_stream.cpp" line="281" column="6" bodyfile="HighMap/src/hydrology/flow_stream.cpp" bodystart="281" bodyend="478" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="743" declcolumn="6"/>
+        <location file="HighMap/src/hydrology/flow_stream.cpp" line="277" column="6" bodyfile="HighMap/src/hydrology/flow_stream.cpp" bodystart="277" bodyend="474" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="743" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a8ec1a8c4669cf56b6f9213102e719d3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Path" kindref="compound">Path</ref></type>
@@ -36881,7 +36881,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_stream.cpp" line="237" column="6" bodyfile="HighMap/src/hydrology/flow_stream.cpp" bodystart="237" bodyend="279" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="778" declcolumn="6"/>
+        <location file="HighMap/src/hydrology/flow_stream.cpp" line="233" column="6" bodyfile="HighMap/src/hydrology/flow_stream.cpp" bodystart="233" bodyend="275" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="778" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a30d55fae5c75a1c45a005a3f9a9467eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>

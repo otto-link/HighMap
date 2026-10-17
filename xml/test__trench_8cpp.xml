@@ -117,6 +117,25 @@
         </inbodydescription>
         <location file="tests/src/test_trench.cpp" line="229" column="1" bodyfile="tests/src/test_trench.cpp" bodystart="229" bodyend="311"/>
       </memberdef>
+      <memberdef kind="function" id="test__trench_8cpp_1ae62c40bf7e99fc61fc3c9372a175b852" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TEST</definition>
+        <argsstring>(TrenchCarving, PathReorderingByLengthDescending)</argsstring>
+        <name>TEST</name>
+        <param>
+          <type>TrenchCarving</type>
+        </param>
+        <param>
+          <type>PathReorderingByLengthDescending</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="tests/src/test_trench.cpp" line="313" column="1" bodyfile="tests/src/test_trench.cpp" bodystart="313" bodyend="359"/>
+      </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
@@ -434,6 +453,55 @@
 <codeline lineno="309"><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;[DEBUG]<sp/>MultiTile<sp/>max_diff<sp/>=<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>max_diff<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
 <codeline lineno="310"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(max_diff,<sp/>0.f,<sp/>1e-5f);</highlight></codeline>
 <codeline lineno="311"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"></highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><ref refid="test__trench_8cpp_1a6f1ebaff5ccf5322d22efd283efff6ca" kindref="member">TEST</ref>(TrenchCarving,<sp/>PathReorderingByLengthDescending)</highlight></codeline>
+<codeline lineno="314"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/>glm::ivec2<sp/><sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref><sp/>=<sp/>{64,<sp/>64};</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>z1(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>1.f);</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>z2(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>1.f);</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"></highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>trunk<sp/>path:<sp/>long<sp/>path<sp/>crossing<sp/>the<sp/>domain<sp/>from<sp/>(0.1,<sp/>0.5)<sp/>to<sp/>(0.9,<sp/>0.5)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>trunk;</highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/>trunk.<ref refid="classhmap_1_1Cloud_1af8a784f76736b7ec459fbfa1bf7618d7" kindref="member">emplace_back</ref>(0.1f,<sp/>0.5f,<sp/>0.f);</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/>trunk.<ref refid="classhmap_1_1Cloud_1af8a784f76736b7ec459fbfa1bf7618d7" kindref="member">emplace_back</ref>(0.5f,<sp/>0.5f,<sp/>0.f);</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/>trunk.<ref refid="classhmap_1_1Cloud_1af8a784f76736b7ec459fbfa1bf7618d7" kindref="member">emplace_back</ref>(0.9f,<sp/>0.5f,<sp/>0.f);</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"></highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>tributary:<sp/>shorter<sp/>path<sp/>ending<sp/>on<sp/>trunk<sp/>at<sp/>(0.5,<sp/>0.5)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>tributary;</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/>tributary.<ref refid="classhmap_1_1Cloud_1af8a784f76736b7ec459fbfa1bf7618d7" kindref="member">emplace_back</ref>(0.5f,<sp/>0.2f,<sp/>0.f);</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/>tributary.<ref refid="classhmap_1_1Cloud_1af8a784f76736b7ec459fbfa1bf7618d7" kindref="member">emplace_back</ref>(0.5f,<sp/>0.5f,<sp/>0.f);</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"></highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>pass<sp/>order:<sp/>[tributary,<sp/>trunk]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/>std::vector&lt;hmap::Path&gt;<sp/>paths_short_first<sp/>=<sp/>{tributary,<sp/>trunk};</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>pass<sp/>order:<sp/>[trunk,<sp/>tributary]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/>std::vector&lt;hmap::Path&gt;<sp/>paths_long_first<sp/>=<sp/>{trunk,<sp/>tributary};</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"></highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a2d7b71e9231efc67e4bae209bd7fa84a" kindref="member">hmap::trench</ref>(z1,</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>paths_short_first,</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.1f,</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>enable_width_depth_scaling<sp/>*/</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>enable_width_distance_scaling<sp/>*/</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"></highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a2d7b71e9231efc67e4bae209bd7fa84a" kindref="member">hmap::trench</ref>(z2,</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>paths_long_first,</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.1f,</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>enable_width_depth_scaling<sp/>*/</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>enable_width_distance_scaling<sp/>*/</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"></highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>regardless<sp/>of<sp/>input<sp/>order,<sp/>trench<sp/>should<sp/>produce<sp/>identical<sp/>results<sp/>because</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>paths<sp/>are<sp/>reordered<sp/>by<sp/>cumulative<sp/>length<sp/>descending</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="sls__deformation_8cpp_1a37d972ae0b47b9099e30983131d31916" kindref="member">j</ref><sp/>=<sp/>0;<sp/><ref refid="sls__deformation_8cpp_1a37d972ae0b47b9099e30983131d31916" kindref="member">j</ref><sp/>&lt;<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.y;<sp/>++<ref refid="sls__deformation_8cpp_1a37d972ae0b47b9099e30983131d31916" kindref="member">j</ref>)</highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="sls__deformation_8cpp_1acb559820d9ca11295b4500f179ef6392" kindref="member">i</ref><sp/>=<sp/>0;<sp/><ref refid="sls__deformation_8cpp_1acb559820d9ca11295b4500f179ef6392" kindref="member">i</ref><sp/>&lt;<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.x;<sp/>++<ref refid="sls__deformation_8cpp_1acb559820d9ca11295b4500f179ef6392" kindref="member">i</ref>)</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>EXPECT_NEAR(z1(<ref refid="sls__deformation_8cpp_1acb559820d9ca11295b4500f179ef6392" kindref="member">i</ref>,<sp/><ref refid="sls__deformation_8cpp_1a37d972ae0b47b9099e30983131d31916" kindref="member">j</ref>),<sp/>z2(<ref refid="sls__deformation_8cpp_1acb559820d9ca11295b4500f179ef6392" kindref="member">i</ref>,<sp/><ref refid="sls__deformation_8cpp_1a37d972ae0b47b9099e30983131d31916" kindref="member">j</ref>),<sp/>1e-6f);</highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"></highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>tributary<sp/>terminal<sp/>width<sp/>should<sp/>be<sp/>non-zero<sp/>at<sp/>junction<sp/>(0.5,<sp/>0.5)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/>EXPECT_LT(z1(32,<sp/>32),<sp/>0.5f);</highlight></codeline>
+<codeline lineno="359"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="tests/src/test_trench.cpp"/>
   </compounddef>
