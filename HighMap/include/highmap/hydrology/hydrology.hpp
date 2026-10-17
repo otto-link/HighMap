@@ -683,6 +683,8 @@ Array flow_fixing_mst_triangulated(
  *                             function (default: 2.0).
  * @param  upward_penalization Penalty factor for upward elevation changes
  *                             (default: 100.0).
+ * @param  existing_streams    Existing flow streams to favor merging with
+ *                             (default: {}).
  * @return                     A Path object representing the optimal flow path
  *                             with normalized x and y coordinates and
  *                             corresponding elevations.
@@ -698,11 +700,12 @@ Array flow_fixing_mst_triangulated(
  * **Result**
  * @image html ex_flow_stream.png
  */
-Path flow_stream(const Array     &z,
-                 const glm::ivec2 ij_start,
-                 const float      elevation_ratio = 0.5f,
-                 const float      distance_exponent = 2.f,
-                 const float      upward_penalization = 100.f);
+Path flow_stream(const Array             &z,
+                 const glm::ivec2         ij_start,
+                 const float              elevation_ratio = 0.5f,
+                 const float              distance_exponent = 2.f,
+                 const float              upward_penalization = 100.f,
+                 const std::vector<Path> &existing_streams = {});
 
 /**
  * @brief Computes the optimal flow path from a starting vertex to the boundary
@@ -718,14 +721,17 @@ Path flow_stream(const Array     &z,
  *                             (default: 100.0).
  * @param  favor_domain_center Favor passing through the center of the domain
  *                             (default: false).
+ * @param  existing_streams    Existing flow streams to favor merging with
+ *                             (default: {}).
  * @return                     A Path object representing the optimal flow path.
  */
-Path flow_stream(const TerrainTriMesh &mesh,
-                 size_t                start_vertex_index,
-                 float                 elevation_ratio = 0.5f,
-                 float                 distance_exponent = 2.f,
-                 float                 upward_penalization = 100.f,
-                 bool                  favor_domain_center = false);
+Path flow_stream(const TerrainTriMesh    &mesh,
+                 size_t                   start_vertex_index,
+                 float                    elevation_ratio = 0.5f,
+                 float                    distance_exponent = 2.f,
+                 float                    upward_penalization = 100.f,
+                 bool                     favor_domain_center = false,
+                 const std::vector<Path> &existing_streams = {});
 
 /**
  * @brief Computes the optimal flow path from starting 2D coordinates to the
@@ -741,14 +747,17 @@ Path flow_stream(const TerrainTriMesh &mesh,
  *                             (default: 100.0).
  * @param  favor_domain_center Favor passing through the center of the domain
  *                             (default: false).
+ * @param  existing_streams    Existing flow streams to favor merging with
+ *                             (default: {}).
  * @return                     A Path object representing the optimal flow path.
  */
-Path flow_stream(const TerrainTriMesh &mesh,
-                 glm::vec2             xy_start,
-                 float                 elevation_ratio = 0.5f,
-                 float                 distance_exponent = 2.f,
-                 float                 upward_penalization = 100.f,
-                 bool                  favor_domain_center = false);
+Path flow_stream(const TerrainTriMesh    &mesh,
+                 glm::vec2                xy_start,
+                 float                    elevation_ratio = 0.5f,
+                 float                    distance_exponent = 2.f,
+                 float                    upward_penalization = 100.f,
+                 bool                     favor_domain_center = false,
+                 const std::vector<Path> &existing_streams = {});
 
 /**
  * @brief Generates a 2D array representing a riverbed based on a specified
@@ -1441,17 +1450,20 @@ VirtualArray flow_fixing_mst_triangulated(
  *                              (default: 100.0).
  * @param  favor_domain_center  Favor passing through the center of the domain
  *                              (default: false).
+ * @param  existing_streams     Existing flow streams to favor merging with
+ *                              (default: {}).
  * @return                      A Path object representing the optimal flow
  *                              path.
  */
-Path flow_stream(const ComputeMode  &cm,
-                 const VirtualArray &z,
-                 glm::vec2           start,
-                 std::uint32_t       seed = 0,
-                 size_t              control_points_count = 2048,
-                 float               elevation_ratio = 0.5f,
-                 float               distance_exponent = 2.f,
-                 float               upward_penalization = 100.f,
-                 bool                favor_domain_center = false);
+Path flow_stream(const ComputeMode       &cm,
+                 const VirtualArray      &z,
+                 glm::vec2                start,
+                 std::uint32_t            seed = 0,
+                 size_t                   control_points_count = 2048,
+                 float                    elevation_ratio = 0.5f,
+                 float                    distance_exponent = 2.f,
+                 float                    upward_penalization = 100.f,
+                 bool                     favor_domain_center = false,
+                 const std::vector<Path> &existing_streams = {});
 
 } // namespace hmap::va

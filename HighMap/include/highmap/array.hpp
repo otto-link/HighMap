@@ -576,6 +576,20 @@ public:
   float get_value_bilinear_at(int i, int j, float u, float v) const;
 
   /**
+   * @brief Retrieves the value at the location (x, y) within a bounded domain
+   * using bilinear interpolation.
+   *
+   * @param  x    Coordinate along the x-axis.
+   * @param  y    Coordinate along the y-axis.
+   * @param  bbox Bounding box defining the domain of the array {xmin, xmax,
+   *              ymin, ymax}.
+   * @return      float The bilinearly interpolated value at (x, y).
+   */
+  float get_value_bilinear(float     x,
+                           float     y,
+                           glm::vec4 bbox = {0.f, 1.f, 0.f, 1.f}) const;
+
+  /**
    * @brief Retrieves the nearest value at the location (x, y) within a bounded
    * domain.
    *

@@ -105,3 +105,83 @@ TEST(FlowStreamVirtualArray, StreamOnVirtualArray)
     EXPECT_LE(pt.y, 1.f);
   }
 }
+
+TEST(FlowStreamArray, FavorExistingStreams)
+{
+  glm::ivec2  shape = {128, 128};
+  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::PERLIN,
+                                  shape,
+                                  {2.f, 2.f},
+                                  123);
+  hmap::remap(z);
+
+  // generate first stream
+  glm::ivec2 ij_start1(50, 64);
+  hmap::Path stream1 = hmap::flow_stream(z, ij_start1);
+
+  ASSERT_GE(stream1.size(), 2u);
+
+  // start stream2 near stream1 (offset by 1 grid cell)
+  size_t     mid_idx = stream1.size() / 2;
+  glm::ivec2 ij_start2(
+      std::clamp(
+          static_cast<int>(std::round(stream1[mid_idx].x * (shape.x - 1.f))) +
+              1,
+          0,
+          shape.x - 1),
+      std::clamp(
+          static_cast<int>(std::round(stream1[mid_idx].y * (shape.y - 1.f))) +
+              1,
+          0,
+          shape.y - 1));
+
+  hmap::Path stream2_independent = hmap::flow_stream(z, ij_start2);
+  ASSERT_GE(stream2_independent.size(), 2u);
+
+  // generate second stream with favoring existing streams
+  hmap::Path stream2_favored = hmap::flow_stream(z,
+                                                 ij_start2,
+                                                 0.5f,
+                                                 2.f,
+                                                 100.f,
+                                                 {stream1});
+
+  ASSERT_GE(stream2_favored.size(), 2u);
+
+  // end point of favored stream should match the exit point of stream1
+  const auto &end1 = stream1[stream1.size() - 1];
+  const auto &end_favored = stream2_favored[stream2_favored.size() - 1];
+
+  EXPECT_NEAR(end1.x, end_favored.x, 1e-4f);
+  EXPECT_NEAR(end1.y, end_favored.y, 1e-4f);
+}
+
+TEST(FlowStreamMesh, FavorExistingStreams)
+{
+  glm::ivec2  shape = {64, 64};
+  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::PERLIN,
+                                  shape,
+                                  {2.f, 2.f},
+                                  42);
+  hmap::remap(z);
+
+  hmap::TerrainTriMesh mesh =
+      hmap::generate_terrain_tri_mesh_from_heightmap_random(z, 512, 42);
+
+  glm::vec2  start1(0.4f, 0.5f);
+  hmap::Path stream1 = hmap::flow_stream(mesh, start1);
+
+  ASSERT_GE(stream1.size(), 2u);
+
+  glm::vec2  start2(0.45f, 0.55f);
+  hmap::Path stream2_favored =
+      hmap::flow_stream(mesh, start2, 0.5f, 2.f, 100.f, false, {stream1});
+
+  ASSERT_GE(stream2_favored.size(), 2u);
+
+  const auto &end1 = stream1[stream1.size() - 1];
+  const auto &end_favored = stream2_favored[stream2_favored.size() - 1];
+
+  EXPECT_NEAR(end1.x, end_favored.x, 1e-3f);
+  EXPECT_NEAR(end1.y, end_favored.y, 1e-3f);
+}

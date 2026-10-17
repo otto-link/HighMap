@@ -38,9 +38,9 @@ int main(void)
                   seed,
                   &mask);
 
-  // multiple streams
+  // multiple streams merging into existing streams
   glm::ivec2 ij_start2(128, 180);
-  hmap::Path path2 = hmap::flow_stream(z, ij_start2);
+  hmap::Path path2 = hmap::flow_stream(z, ij_start2, 0.5f, 2.f, 100.f, {path});
 
   hmap::Array zd2 = z;
   hmap::dig_river(zd2,
