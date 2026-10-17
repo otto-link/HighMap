@@ -428,7 +428,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flooding.cpp" line="215" column="14" bodyfile="HighMap/src/hydrology/flooding.cpp" bodystart="215" bodyend="246" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1398" declcolumn="14"/>
+        <location file="HighMap/src/hydrology/flooding.cpp" line="215" column="14" bodyfile="HighMap/src/hydrology/flooding.cpp" bodystart="215" bodyend="246" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1407" declcolumn="14"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1va_1a050c3c7ecc102d86f566bf55b3a72c51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; <ref refid="classhmap_1_1Path" kindref="compound">Path</ref> &gt;</type>
@@ -594,7 +594,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1063" column="13" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1063" bodyend="1085" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1429" declcolumn="13"/>
+        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1063" column="13" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1063" bodyend="1085" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1438" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1va_1a79c8b1b0f1447fcb8f94f6e2cec8788b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structhmap_1_1VirtualArray" kindref="compound">VirtualArray</ref></type>
@@ -671,12 +671,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1087" column="14" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1087" bodyend="1153" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1439" declcolumn="14"/>
+        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1087" column="14" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1087" bodyend="1153" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1448" declcolumn="14"/>
       </memberdef>
-      <memberdef kind="function" id="namespacehmap_1_1va_1ae96791c923c72b30f564cce4169f02e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespacehmap_1_1va_1ae1f6f9589633a460dabd6bb44473d4fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Path" kindref="compound">Path</ref></type>
         <definition>Path hmap::va::flow_stream</definition>
-        <argsstring>(const ComputeMode &amp;cm, const VirtualArray &amp;z, glm::vec2 start, std::uint32_t seed=0, size_t control_points_count=2048, float elevation_ratio=0.5f, float distance_exponent=2.f, float upward_penalization=100.f, bool favor_domain_center=false, const std::vector&lt; Path &gt; &amp;existing_streams={}, float valley_radius=0.02f, float valley_factor=0.35f)</argsstring>
+        <argsstring>(const ComputeMode &amp;cm, const VirtualArray &amp;z, glm::vec2 start, std::uint32_t seed=0, size_t control_points_count=2048, float elevation_ratio=0.5f, float distance_exponent=2.f, float upward_penalization=100.f, bool favor_domain_center=false, const std::vector&lt; Path &gt; &amp;existing_streams={}, float valley_radius=0.02f, float valley_factor=0.35f, bool truncate_at_intersection=false)</argsstring>
         <name>flow_stream</name>
         <qualifiedname>hmap::va::flow_stream</qualifiedname>
         <param>
@@ -735,6 +735,11 @@
           <type>float</type>
           <declname>valley_factor</declname>
           <defval>0.35<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>truncate_at_intersection</declname>
+          <defval>false</defval>
         </param>
         <briefdescription>
 <para>Computes the optimal flow path from starting 2D coordinates across a <ref refid="structhmap_1_1VirtualArray" kindref="compound">VirtualArray</ref> using an intermediate random terrain triangular mesh. </para>
@@ -836,6 +841,14 @@
 <para>Attenuation factor per distance unit in valley attraction (default: 0.35). </para>
 </parameterdescription>
 </parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>truncate_at_intersection</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Truncate path at first intersection with an existing stream (default: false). </para>
+</parameterdescription>
+</parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>A <ref refid="classhmap_1_1Path" kindref="compound">Path</ref> object representing the optimal flow path. </para>
 </simplesect>
@@ -843,7 +856,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_stream.cpp" line="473" column="6" bodyfile="HighMap/src/hydrology/flow_stream.cpp" bodystart="473" bodyend="501" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1480" declcolumn="6"/>
+        <location file="HighMap/src/hydrology/flow_stream.cpp" line="485" column="6" bodyfile="HighMap/src/hydrology/flow_stream.cpp" bodystart="485" bodyend="515" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1491" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1va_1abfb98fdd47bd2a66e694c03765bf74af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1RockField" kindref="compound">RockField</ref></type>

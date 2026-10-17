@@ -1,5 +1,8 @@
 var NAVTREEINDEX25 =
 {
+"recast__cliff_8cpp.html#ac8564a71cc206eae6be027a41b41e7a9":[4,0,1,1,15,13,4],
+"recast__cliff_8cpp.html#ad12ee181c391dfb5475dddc9df9a2b0d":[4,0,1,1,15,13,5],
+"recurve_8cpp.html":[4,0,1,1,15,14],
 "recurve_8cpp.html#a2e4283dd5da8add89788c5023c73042c":[4,0,1,1,15,14,12],
 "recurve_8cpp.html#a516835426429688c59f7a02a8abbb174":[4,0,1,1,15,14,9],
 "recurve_8cpp.html#a69137ab0da4a3b15979b7ede32dfab19":[4,0,1,1,15,14,4],
@@ -246,8 +249,5 @@ var NAVTREEINDEX25 =
 "species_8hpp.html":[4,0,1,0,0,4,3],
 "species_8hpp_source.html":[4,0,1,0,0,4,3],
 "spectral__equalizer_8cpp.html":[4,0,1,1,15,16],
-"spectral__equalizer_8cpp.html#a302ad3eae3f0a06441915c2b97d56641":[4,0,1,1,15,16,0],
-"spectral__equalizer_8cpp.html#ae94d740e0c470e8b8732bbb3a2498de4":[4,0,1,1,15,16,1],
-"stamping_8cpp.html":[4,0,1,1,2,7],
-"stamping_8cpp.html#ae7ea4f9f968fc3a4aa706ea3b9cc1f0a":[4,0,1,1,2,7,0]
+"spectral__equalizer_8cpp.html#a302ad3eae3f0a06441915c2b97d56641":[4,0,1,1,15,16,0]
 };

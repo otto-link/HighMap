@@ -14,5 +14,6 @@ var path__functions_8cpp =
     [ "remove_geometric_loops", "path__functions_8cpp.html#a650c6eaf8bd10356a77c7c1f9ef9af3c", null ],
     [ "scale", "path__functions_8cpp.html#a4fcd1f7314f074c73a593197b1999080", null ],
     [ "scale", "path__functions_8cpp.html#aadd11cd9dde165414f778005ed69bc78", null ],
-    [ "smooth", "path__functions_8cpp.html#ad81052648d6008d2b7b4a5a36a2d7830", null ]
+    [ "smooth", "path__functions_8cpp.html#ad81052648d6008d2b7b4a5a36a2d7830", null ],
+    [ "truncate_at_first_intersection", "path__functions_8cpp.html#ad2bc7ea79ab4f1ec8e0e3b276291deaf", null ]
 ];

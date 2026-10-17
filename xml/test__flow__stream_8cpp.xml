@@ -117,6 +117,25 @@
         </inbodydescription>
         <location file="tests/src/test_flow_stream.cpp" line="159" column="1" bodyfile="tests/src/test_flow_stream.cpp" bodystart="159" bodyend="187"/>
       </memberdef>
+      <memberdef kind="function" id="test__flow__stream_8cpp_1a740cdd7bb37ed749725e5575df07d5bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TEST</definition>
+        <argsstring>(FlowStream, TruncateAtIntersection)</argsstring>
+        <name>TEST</name>
+        <param>
+          <type>FlowStream</type>
+        </param>
+        <param>
+          <type>TruncateAtIntersection</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="tests/src/test_flow_stream.cpp" line="189" column="1" bodyfile="tests/src/test_flow_stream.cpp" bodystart="189" bodyend="211"/>
+      </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
@@ -142,7 +161,7 @@
 <codeline lineno="17"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1TerrainTriMesh" kindref="compound">hmap::TerrainTriMesh</ref><sp/>mesh(pts);</highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight></codeline>
 <codeline lineno="19"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>start<sp/>from<sp/>top-left<sp/>(vertex<sp/>1)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref><sp/>=<sp/><ref refid="namespacehmap_1ae77188f3668f0b48ba3be10f18d72930" kindref="member">hmap::flow_stream</ref>(mesh,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">(1));</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref><sp/>=<sp/><ref refid="namespacehmap_1a4cbd6dd7622a26e446901e1608cc3a87" kindref="member">hmap::flow_stream</ref>(mesh,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">(1));</highlight></codeline>
 <codeline lineno="21"><highlight class="normal"></highlight></codeline>
 <codeline lineno="22"><highlight class="normal"><sp/><sp/>EXPECT_GE(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.size(),<sp/>2u);</highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
@@ -163,7 +182,7 @@
 <codeline lineno="38"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1TerrainTriMesh" kindref="compound">hmap::TerrainTriMesh</ref><sp/>mesh(pts);</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight></codeline>
 <codeline lineno="40"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>start<sp/>near<sp/>(0.05,<sp/>0.95)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref><sp/>=<sp/><ref refid="namespacehmap_1ae77188f3668f0b48ba3be10f18d72930" kindref="member">hmap::flow_stream</ref>(mesh,<sp/>glm::vec2(0.05f,<sp/>0.95f));</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref><sp/>=<sp/><ref refid="namespacehmap_1a4cbd6dd7622a26e446901e1608cc3a87" kindref="member">hmap::flow_stream</ref>(mesh,<sp/>glm::vec2(0.05f,<sp/>0.95f));</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>
 <codeline lineno="43"><highlight class="normal"><sp/><sp/>EXPECT_GE(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.size(),<sp/>2u);</highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight></codeline>
@@ -183,7 +202,7 @@
 <codeline lineno="58"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1TerrainTriMesh" kindref="compound">hmap::TerrainTriMesh</ref><sp/>mesh<sp/>=</highlight></codeline>
 <codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1a5078af3eb73fb47ab1aad6cc872ab29a" kindref="member">hmap::generate_terrain_tri_mesh_from_heightmap_random</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>256,<sp/>42);</highlight></codeline>
 <codeline lineno="60"><highlight class="normal"></highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref><sp/>=<sp/><ref refid="namespacehmap_1ae77188f3668f0b48ba3be10f18d72930" kindref="member">hmap::flow_stream</ref>(mesh,<sp/>glm::vec2(0.5f,<sp/>0.5f));</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref><sp/>=<sp/><ref refid="namespacehmap_1a4cbd6dd7622a26e446901e1608cc3a87" kindref="member">hmap::flow_stream</ref>(mesh,<sp/>glm::vec2(0.5f,<sp/>0.5f));</highlight></codeline>
 <codeline lineno="62"><highlight class="normal"></highlight></codeline>
 <codeline lineno="63"><highlight class="normal"><sp/><sp/>EXPECT_GE(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.size(),<sp/>2u);</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"></highlight></codeline>
@@ -213,7 +232,7 @@
 <codeline lineno="88"><highlight class="normal"><sp/><sp/><ref refid="structhmap_1_1VirtualArray" kindref="compound">hmap::VirtualArray</ref><sp/>z_va(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>tile_shape,<sp/>halo,<sp/><ref refid="namespacehmap_1ad21b93a34c88a47d6b54f3a4d5b65e6eae10df7db812e0abe9bc94fc28ae907ce" kindref="member">hmap::StorageMode::VA_RAM</ref>);</highlight></codeline>
 <codeline lineno="89"><highlight class="normal"><sp/><sp/>z_va.from_array(z_arr,<sp/>cm);</highlight></codeline>
 <codeline lineno="90"><highlight class="normal"></highlight></codeline>
-<codeline lineno="91"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref><sp/>=<sp/><ref refid="namespacehmap_1_1va_1ae96791c923c72b30f564cce4169f02e0" kindref="member">hmap::va::flow_stream</ref>(cm,</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref><sp/>=<sp/><ref refid="namespacehmap_1_1va_1ae1f6f9589633a460dabd6bb44473d4fe" kindref="member">hmap::va::flow_stream</ref>(cm,</highlight></codeline>
 <codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>z_va,</highlight></codeline>
 <codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glm::vec2(0.4f,<sp/>0.6f),</highlight></codeline>
 <codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>42,</highlight></codeline>
@@ -242,7 +261,7 @@
 <codeline lineno="117"><highlight class="normal"></highlight></codeline>
 <codeline lineno="118"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>generate<sp/>first<sp/>stream</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="119"><highlight class="normal"><sp/><sp/>glm::ivec2<sp/>ij_start1(50,<sp/>64);</highlight></codeline>
-<codeline lineno="120"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>stream1<sp/>=<sp/><ref refid="namespacehmap_1ae77188f3668f0b48ba3be10f18d72930" kindref="member">hmap::flow_stream</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>ij_start1);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>stream1<sp/>=<sp/><ref refid="namespacehmap_1a4cbd6dd7622a26e446901e1608cc3a87" kindref="member">hmap::flow_stream</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>ij_start1);</highlight></codeline>
 <codeline lineno="121"><highlight class="normal"></highlight></codeline>
 <codeline lineno="122"><highlight class="normal"><sp/><sp/>ASSERT_GE(stream1.<ref refid="classhmap_1_1Cloud_1adc675e8b2769a94b4c23bf7e69348f84" kindref="member">size</ref>(),<sp/>2u);</highlight></codeline>
 <codeline lineno="123"><highlight class="normal"></highlight></codeline>
@@ -260,11 +279,11 @@
 <codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0,</highlight></codeline>
 <codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.y<sp/>-<sp/>1));</highlight></codeline>
 <codeline lineno="137"><highlight class="normal"></highlight></codeline>
-<codeline lineno="138"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>stream2_independent<sp/>=<sp/><ref refid="namespacehmap_1ae77188f3668f0b48ba3be10f18d72930" kindref="member">hmap::flow_stream</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>ij_start2);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>stream2_independent<sp/>=<sp/><ref refid="namespacehmap_1a4cbd6dd7622a26e446901e1608cc3a87" kindref="member">hmap::flow_stream</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>ij_start2);</highlight></codeline>
 <codeline lineno="139"><highlight class="normal"><sp/><sp/>ASSERT_GE(stream2_independent.<ref refid="classhmap_1_1Cloud_1adc675e8b2769a94b4c23bf7e69348f84" kindref="member">size</ref>(),<sp/>2u);</highlight></codeline>
 <codeline lineno="140"><highlight class="normal"></highlight></codeline>
 <codeline lineno="141"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>generate<sp/>second<sp/>stream<sp/>with<sp/>favoring<sp/>existing<sp/>streams</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="142"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>stream2_favored<sp/>=<sp/><ref refid="namespacehmap_1ae77188f3668f0b48ba3be10f18d72930" kindref="member">hmap::flow_stream</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>stream2_favored<sp/>=<sp/><ref refid="namespacehmap_1a4cbd6dd7622a26e446901e1608cc3a87" kindref="member">hmap::flow_stream</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,</highlight></codeline>
 <codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ij_start2,</highlight></codeline>
 <codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.5f,</highlight></codeline>
 <codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2.f,</highlight></codeline>
@@ -294,13 +313,13 @@
 <codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1a5078af3eb73fb47ab1aad6cc872ab29a" kindref="member">hmap::generate_terrain_tri_mesh_from_heightmap_random</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>512,<sp/>42);</highlight></codeline>
 <codeline lineno="170"><highlight class="normal"></highlight></codeline>
 <codeline lineno="171"><highlight class="normal"><sp/><sp/>glm::vec2<sp/><sp/>start1(0.4f,<sp/>0.5f);</highlight></codeline>
-<codeline lineno="172"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>stream1<sp/>=<sp/><ref refid="namespacehmap_1ae77188f3668f0b48ba3be10f18d72930" kindref="member">hmap::flow_stream</ref>(mesh,<sp/>start1);</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>stream1<sp/>=<sp/><ref refid="namespacehmap_1a4cbd6dd7622a26e446901e1608cc3a87" kindref="member">hmap::flow_stream</ref>(mesh,<sp/>start1);</highlight></codeline>
 <codeline lineno="173"><highlight class="normal"></highlight></codeline>
 <codeline lineno="174"><highlight class="normal"><sp/><sp/>ASSERT_GE(stream1.<ref refid="classhmap_1_1Cloud_1adc675e8b2769a94b4c23bf7e69348f84" kindref="member">size</ref>(),<sp/>2u);</highlight></codeline>
 <codeline lineno="175"><highlight class="normal"></highlight></codeline>
 <codeline lineno="176"><highlight class="normal"><sp/><sp/>glm::vec2<sp/><sp/>start2(0.45f,<sp/>0.55f);</highlight></codeline>
 <codeline lineno="177"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>stream2_favored<sp/>=</highlight></codeline>
-<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1ae77188f3668f0b48ba3be10f18d72930" kindref="member">hmap::flow_stream</ref>(mesh,<sp/>start2,<sp/>0.5f,<sp/>2.f,<sp/>100.f,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/>{stream1});</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1a4cbd6dd7622a26e446901e1608cc3a87" kindref="member">hmap::flow_stream</ref>(mesh,<sp/>start2,<sp/>0.5f,<sp/>2.f,<sp/>100.f,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/>{stream1});</highlight></codeline>
 <codeline lineno="179"><highlight class="normal"></highlight></codeline>
 <codeline lineno="180"><highlight class="normal"><sp/><sp/>ASSERT_GE(stream2_favored.<ref refid="classhmap_1_1Cloud_1adc675e8b2769a94b4c23bf7e69348f84" kindref="member">size</ref>(),<sp/>2u);</highlight></codeline>
 <codeline lineno="181"><highlight class="normal"></highlight></codeline>
@@ -310,6 +329,30 @@
 <codeline lineno="185"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(end1.x,<sp/>end_favored.x,<sp/>1e-3f);</highlight></codeline>
 <codeline lineno="186"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(end1.y,<sp/>end_favored.y,<sp/>1e-3f);</highlight></codeline>
 <codeline lineno="187"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><ref refid="test__flow__stream_8cpp_1afbd4cfcd9a4ad587be7003f17852132d" kindref="member">TEST</ref>(FlowStream,<sp/>TruncateAtIntersection)</highlight></codeline>
+<codeline lineno="190"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/>glm::ivec2<sp/><sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref><sp/>=<sp/>{64,<sp/>64};</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref><sp/>=<sp/><ref refid="namespacehmap_1a7d699a468a18be16c70654958ee13b41" kindref="member">hmap::noise_fbm</ref>(<ref refid="namespacehmap_1ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581" kindref="member">hmap::NoiseType::PERLIN</ref>,</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{2.f,<sp/>2.f},</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>42);</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a262e6495cb2d02598f36a2b46114b2b4" kindref="member">hmap::remap</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>);</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>straight<sp/>horizontal<sp/>line<sp/>across<sp/>the<sp/>domain</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>existing(</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{<ref refid="classhmap_1_1Point" kindref="compound">hmap::Point</ref>(0.1f,<sp/>0.5f,<sp/>0.5f),<sp/><ref refid="classhmap_1_1Point" kindref="compound">hmap::Point</ref>(0.9f,<sp/>0.5f,<sp/>0.1f)});</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>query<sp/>path<sp/>that<sp/>crosses<sp/>it<sp/>vertically</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>(</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{<ref refid="classhmap_1_1Point" kindref="compound">hmap::Point</ref>(0.5f,<sp/>0.1f,<sp/>0.8f),<sp/><ref refid="classhmap_1_1Point" kindref="compound">hmap::Point</ref>(0.5f,<sp/>0.9f,<sp/>0.2f)});</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>truncated<sp/>=<sp/><ref refid="namespacehmap_1ad2bc7ea79ab4f1ec8e0e3b276291deaf" kindref="member">hmap::truncate_at_first_intersection</ref>(<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>,<sp/>{existing});</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/>ASSERT_EQ(truncated.size(),<sp/>2u);</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(truncated[1].<ref refid="kd__tree_8cpp_1a1f4ec255d3d8677a6cd9d6a9a6eb653b" kindref="member">x</ref>,<sp/>0.5f,<sp/>1e-4f);</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(truncated[1].<ref refid="kd__tree_8cpp_1ad6f02b2c4d57d479201316e67c3103d3" kindref="member">y</ref>,<sp/>0.5f,<sp/>1e-4f);</highlight></codeline>
+<codeline lineno="211"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="tests/src/test_flow_stream.cpp"/>
   </compounddef>

@@ -17,6 +17,7 @@ var path_8hpp =
     [ "smooth", "path_8hpp.html#ad81052648d6008d2b7b4a5a36a2d7830", null ],
     [ "squiggle", "path_8hpp.html#a23b54b32669c529a26f86b884ffca28b", null ],
     [ "squiggle_branches", "path_8hpp.html#a65e5e7e89af68f858de5181d86a42d9a", null ],
+    [ "truncate_at_first_intersection", "path_8hpp.html#ad2bc7ea79ab4f1ec8e0e3b276291deaf", null ],
     [ "assert_start_end_points", "path_8hpp.html#a5944fc905be512784a9caceb527703d4", null ],
     [ "chamfer_distance", "path_8hpp.html#aba24d09d6f4a3eab8c1522536088f39e", null ],
     [ "has_duplicates", "path_8hpp.html#adb224131a9c75491b105b67801e0fe20", null ]

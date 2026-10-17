@@ -2296,6 +2296,7 @@
     <member refid="namespacehmap_1ad81052648d6008d2b7b4a5a36a2d7830" kind="function"><name>smooth</name></member>
     <member refid="namespacehmap_1a23b54b32669c529a26f86b884ffca28b" kind="function"><name>squiggle</name></member>
     <member refid="namespacehmap_1a65e5e7e89af68f858de5181d86a42d9a" kind="function"><name>squiggle_branches</name></member>
+    <member refid="namespacehmap_1ad2bc7ea79ab4f1ec8e0e3b276291deaf" kind="function"><name>truncate_at_first_intersection</name></member>
     <member refid="namespacehmap_1a5944fc905be512784a9caceb527703d4" kind="function"><name>assert_start_end_points</name></member>
     <member refid="namespacehmap_1aba24d09d6f4a3eab8c1522536088f39e" kind="function"><name>chamfer_distance</name></member>
     <member refid="namespacehmap_1adb224131a9c75491b105b67801e0fe20" kind="function"><name>has_duplicates</name></member>
@@ -2393,9 +2394,9 @@
     <member refid="namespacehmap_1a397d5d081862e6eca1551acfe0198624" kind="function"><name>flow_fixing_mst_paths</name></member>
     <member refid="namespacehmap_1ab0fe57b3afd4499d08c362d8acd5f6f9" kind="function"><name>flow_fixing_mst_paths</name></member>
     <member refid="namespacehmap_1a5fbbe4a3db33c7783faa794c3051ddb4" kind="function"><name>flow_fixing_mst_triangulated</name></member>
-    <member refid="namespacehmap_1ae77188f3668f0b48ba3be10f18d72930" kind="function"><name>flow_stream</name></member>
-    <member refid="namespacehmap_1a3d1096567ff6860a24234523c6ba75ce" kind="function"><name>flow_stream</name></member>
-    <member refid="namespacehmap_1aa12f5f683cdbf4068ce715f84a895c39" kind="function"><name>flow_stream</name></member>
+    <member refid="namespacehmap_1a4cbd6dd7622a26e446901e1608cc3a87" kind="function"><name>flow_stream</name></member>
+    <member refid="namespacehmap_1a73c8de9d1feb25ccd5400352662c19dc" kind="function"><name>flow_stream</name></member>
+    <member refid="namespacehmap_1a8ec1a8c4669cf56b6f9213102e719d3f" kind="function"><name>flow_stream</name></member>
     <member refid="namespacehmap_1a30d55fae5c75a1c45a005a3f9a9467eb" kind="function"><name>generate_riverbed</name></member>
     <member refid="namespacehmap_1a64fbc0261e13ea842762efd3ac6bcc53" kind="function"><name>merge_water_depths</name></member>
     <member refid="namespacehmap_1a78419f7981186b40c4a2d04456e4e63f" kind="function"><name>snow_melting_map</name></member>
@@ -3248,7 +3249,7 @@
     <member refid="namespacehmap_1_1va_1ae8000dce23f7622c2ba67910124bc353" kind="function"><name>flooding_lake_system</name></member>
     <member refid="namespacehmap_1_1va_1a050c3c7ecc102d86f566bf55b3a72c51" kind="function"><name>flow_fixing_mst_paths</name></member>
     <member refid="namespacehmap_1_1va_1a79c8b1b0f1447fcb8f94f6e2cec8788b" kind="function"><name>flow_fixing_mst_triangulated</name></member>
-    <member refid="namespacehmap_1_1va_1ae96791c923c72b30f564cce4169f02e0" kind="function"><name>flow_stream</name></member>
+    <member refid="namespacehmap_1_1va_1ae1f6f9589633a460dabd6bb44473d4fe" kind="function"><name>flow_stream</name></member>
     <member refid="namespacehmap_1_1va_1abfb98fdd47bd2a66e694c03765bf74af" kind="function"><name>seed_rock_field</name></member>
     <member refid="namespacehmap_1_1va_1afa19680ed9583277c2fb76daa95bfa96" kind="function"><name>find_cut_path_dijkstra</name></member>
     <member refid="namespacehmap_1_1va_1a996f3a9161ae2f85e2ef1d257dd43349" kind="function"><name>find_path_dijkstra</name></member>
@@ -4520,6 +4521,7 @@
     <member refid="test__flow__stream_8cpp_1abb5efc0e838d0f6637e7a01b4108bc5a" kind="function"><name>TEST</name></member>
     <member refid="test__flow__stream_8cpp_1a580af1db483cd1c52c32b50e760d131b" kind="function"><name>TEST</name></member>
     <member refid="test__flow__stream_8cpp_1a55c1ace83ca08ee78f95ff0f4f43fb5c" kind="function"><name>TEST</name></member>
+    <member refid="test__flow__stream_8cpp_1a740cdd7bb37ed749725e5575df07d5bb" kind="function"><name>TEST</name></member>
   </compound>
   <compound refid="test__fold__periodic_8cpp" kind="file"><name>test_fold_periodic.cpp</name>
     <member refid="test__fold__periodic_8cpp_1a0b09ca0b954c7d3624e0457ec0282027" kind="function"><name>TEST</name></member>

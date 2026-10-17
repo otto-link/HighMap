@@ -237,19 +237,23 @@
 \DoxyCodeLine{00914\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Array\ \ *p\_mask\ =\ \textcolor{keyword}{nullptr},}
 \DoxyCodeLine{00915\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ glm::vec4\ \ \ \ \ bbox\ =\ \{0.f,\ 1.f,\ 0.f,\ 1.f\});}
 \DoxyCodeLine{00916\ }
-\DoxyCodeLine{00917\ \textcolor{comment}{//\ ==========================================================================}}
-\DoxyCodeLine{00918\ \textcolor{comment}{//\ \ Verification\ Functions}}
-\DoxyCodeLine{00919\ \textcolor{comment}{//\ ==========================================================================}}
-\DoxyCodeLine{00920\ }
-\DoxyCodeLine{00932\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacehmap_a5944fc905be512784a9caceb527703d4}{assert\_start\_end\_points}}(\textcolor{keyword}{const}\ Path\ \&path1,}
-\DoxyCodeLine{00933\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Path\ \&path2,}
-\DoxyCodeLine{00934\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ tol\ =\ 1e-\/6f,}
-\DoxyCodeLine{00935\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ verbose\ =\ \textcolor{keyword}{false});}
-\DoxyCodeLine{00936\ }
-\DoxyCodeLine{00943\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacehmap_aba24d09d6f4a3eab8c1522536088f39e}{chamfer\_distance}}(\textcolor{keyword}{const}\ Path\ \&a,\ \textcolor{keyword}{const}\ Path\ \&b);}
-\DoxyCodeLine{00944\ }
-\DoxyCodeLine{00954\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacehmap_a248e8293399d0a3ae57265562aecd659}{has\_duplicates}}(\textcolor{keyword}{const}\ Path\ \&\mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}},\ \textcolor{keywordtype}{float}\ tol\ =\ 1e-\/6f);}
-\DoxyCodeLine{00955\ }
-\DoxyCodeLine{00956\ \}\ \textcolor{comment}{//\ namespace\ hmap}}
+\DoxyCodeLine{00927\ Path\ \mbox{\hyperlink{namespacehmap_ad2bc7ea79ab4f1ec8e0e3b276291deaf}{truncate\_at\_first\_intersection}}(}
+\DoxyCodeLine{00928\ \ \ \ \ \textcolor{keyword}{const}\ Path\ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}},}
+\DoxyCodeLine{00929\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<Path>\ \&existing\_paths);}
+\DoxyCodeLine{00930\ }
+\DoxyCodeLine{00931\ \textcolor{comment}{//\ ==========================================================================}}
+\DoxyCodeLine{00932\ \textcolor{comment}{//\ \ Verification\ Functions}}
+\DoxyCodeLine{00933\ \textcolor{comment}{//\ ==========================================================================}}
+\DoxyCodeLine{00934\ }
+\DoxyCodeLine{00946\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacehmap_a5944fc905be512784a9caceb527703d4}{assert\_start\_end\_points}}(\textcolor{keyword}{const}\ Path\ \&path1,}
+\DoxyCodeLine{00947\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Path\ \&path2,}
+\DoxyCodeLine{00948\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ tol\ =\ 1e-\/6f,}
+\DoxyCodeLine{00949\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ verbose\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00950\ }
+\DoxyCodeLine{00957\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{namespacehmap_aba24d09d6f4a3eab8c1522536088f39e}{chamfer\_distance}}(\textcolor{keyword}{const}\ Path\ \&a,\ \textcolor{keyword}{const}\ Path\ \&b);}
+\DoxyCodeLine{00958\ }
+\DoxyCodeLine{00968\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacehmap_a248e8293399d0a3ae57265562aecd659}{has\_duplicates}}(\textcolor{keyword}{const}\ Path\ \&\mbox{\hyperlink{trench_8cpp_aea4bb978a006652d3ff42b927337913d}{path}},\ \textcolor{keywordtype}{float}\ tol\ =\ 1e-\/6f);}
+\DoxyCodeLine{00969\ }
+\DoxyCodeLine{00970\ \}\ \textcolor{comment}{//\ namespace\ hmap}}
 
 \end{DoxyCode}
