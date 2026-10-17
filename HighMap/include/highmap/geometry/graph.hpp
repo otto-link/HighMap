@@ -128,6 +128,29 @@ public:
   void clear_edges() noexcept;
 
   /**
+   * @brief Compute the distance to the downstream outlet for each node in the
+   * graph.
+   *
+   * Flow direction is inferred from node elevation values (stored in `v`),
+   * directing flow from higher to lower elevation. Outlets (sinks / terminal
+   * nodes) have distance 0.
+   *
+   * @return Vector containing the downstream distance to outlet for each node.
+   */
+  std::vector<float> compute_distance_to_outlet() const;
+
+  /**
+   * @brief Compute the Strahler stream order for each node in the graph.
+   *
+   * Flow direction is inferred from node elevation values (stored in `v`),
+   * directing flow from higher to lower elevation. Headwater leaves start with
+   * order 1 and orders increase at confluent junctions.
+   *
+   * @return Vector containing the Strahler order for each node index.
+   */
+  std::vector<int> compute_strahler_order() const;
+
+  /**
    * @brief Get the degree (number of incident edges) of node `u`.
    * @param  u Node index.
    * @return   Degree of node `u`.

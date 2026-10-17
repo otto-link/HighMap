@@ -14,6 +14,7 @@
 #include "highmap/carving.hpp"
 #include "highmap/geometry/bvh.hpp"
 #include "highmap/geometry/cloud.hpp"
+#include "highmap/geometry/graph.hpp"
 #include "highmap/geometry/grids.hpp"
 #include "highmap/geometry/path.hpp"
 #include "highmap/geometry/point.hpp"
@@ -57,13 +58,14 @@ std::vector<PreprocessedPath> preprocess_paths(
   }
 
   // sort by total cumulative length (longest paths first, shorter paths last)
-  // so trunk streams are processed before tributaries and avoid zero-width trenches
+  // so trunk streams are processed before tributaries and avoid zero-width
+  // trenches
   std::stable_sort(sorted_paths.begin(),
                    sorted_paths.end(),
                    [](const Path &a, const Path &b)
                    {
-                     auto ca = a.get_cumulative_distance();
-                     auto cb = b.get_cumulative_distance();
+                     auto  ca = a.get_cumulative_distance();
+                     auto  cb = b.get_cumulative_distance();
                      float la = ca.empty() ? 0.f : ca.back();
                      float lb = cb.empty() ? 0.f : cb.back();
                      return la > lb;
@@ -243,7 +245,8 @@ std::vector<PreprocessedPath> preprocess_paths(
       }
 
       // If endpoint touches an existing path segment (within 2e-3 distance),
-      // rescale the tributary's arc length so its terminal width matches the trunk.
+      // rescale the tributary's arc length so its terminal width matches the
+      // trunk.
       constexpr float junction_dist_thresh = 0.002f;
       if (min_d2 < junction_dist_thresh * junction_dist_thresh)
       {
@@ -575,6 +578,155 @@ void trench(Array                       &z,
          p_bending_mask,
          tile_size,
          bbox);
+}
+
+void trench(Array                       &z,
+            const Graph                 &graph,
+            float                        width,
+            float                        width_exponent,
+            bool                         enable_width_depth_scaling,
+            RadialProfile                radial_profile,
+            float                        radial_profile_parameter,
+            ElevationLongitudinalProfile longitudinal_profile,
+            float                        elevation_shift,
+            float                        min_slope,
+            const Array                 *p_noise_r,
+            Array                       *p_bending_mask,
+            int                          tile_size,
+            glm::vec4                    bbox)
+{
+  if (graph.empty() || graph.num_edges() == 0) return;
+
+  const size_t n = graph.size();
+
+  // compute downstream distance to outlet for all nodes
+  std::vector<float> dist_to_outlet = graph.compute_distance_to_outlet();
+
+  // extract directed downstream edges and identify root nodes (in_degree == 0)
+  std::vector<std::vector<int>> downstream_adj(n);
+  std::vector<int>              in_degree(n, 0);
+
+  for (const auto &edge : graph.get_edges())
+  {
+    int u = edge.u;
+    int v = edge.v;
+
+    if (u < 0 || static_cast<size_t>(u) >= n || v < 0 ||
+        static_cast<size_t>(v) >= n || u == v)
+      continue;
+
+    float vu = graph[u].v;
+    float vv = graph[v].v;
+
+    int from = u;
+    int to = v;
+
+    if (vu < vv || (vu == vv && u > v))
+    {
+      from = v;
+      to = u;
+    }
+
+    downstream_adj[from].push_back(to);
+    in_degree[to]++;
+  }
+
+  // identify the outlet for each node and maximum distance to outlet per
+  // drainage tree
+  std::vector<int>   outlet_of(n, -1);
+  std::vector<float> max_tree_dist(n, 0.f);
+
+  for (size_t i = 0; i < n; ++i)
+  {
+    size_t curr = i;
+    while (!downstream_adj[curr].empty())
+    {
+      // follow the downstream path with minimal distance to outlet
+      float  min_d = std::numeric_limits<float>::max();
+      size_t best_next = curr;
+
+      for (int nxt : downstream_adj[curr])
+      {
+        if (dist_to_outlet[nxt] < min_d)
+        {
+          min_d = dist_to_outlet[nxt];
+          best_next = static_cast<size_t>(nxt);
+        }
+      }
+
+      if (best_next == curr) break;
+      curr = best_next;
+    }
+
+    outlet_of[i] = static_cast<int>(curr);
+    max_tree_dist[curr] = std::max(max_tree_dist[curr], dist_to_outlet[i]);
+  }
+
+  // scale node widths from 0 at upstream roots to width at outlet
+  std::vector<float> node_width(n, 0.f);
+
+  for (size_t i = 0; i < n; ++i)
+  {
+    // headwater root nodes with no incoming flow start with zero width
+    if (in_degree[i] == 0)
+    {
+      node_width[i] = 0.f;
+      continue;
+    }
+
+    int   outlet = outlet_of[i];
+    float max_d = (outlet >= 0) ? max_tree_dist[outlet] : 0.f;
+
+    if (max_d > 1e-6f)
+    {
+      float norm = 1.f - (dist_to_outlet[i] / max_d);
+      node_width[i] = width *
+                      std::pow(std::clamp(norm, 0.f, 1.f), width_exponent);
+    }
+    else
+    {
+      node_width[i] = width;
+    }
+  }
+
+  // carve each directed edge segment
+  for (size_t from = 0; from < n; ++from)
+  {
+    for (int to : downstream_adj[from])
+    {
+      float w_up = node_width[from];
+      float w_down = node_width[to];
+
+      // if both ends have zero width, no carving needed
+      if (w_up <= 0.f && w_down <= 0.f) continue;
+
+      float seg_width = std::max(w_up, w_down);
+      Path  seg_path({graph[from], graph[to]});
+
+      trench(z,
+             seg_path,
+             seg_width,
+             enable_width_depth_scaling,
+             false, // enable_width_distance_scaling hardcoded to false for
+                    // graph edges
+             false,
+             1.f,
+             0.5f,
+             2.f,
+             radial_profile,
+             radial_profile_parameter,
+             longitudinal_profile,
+             elevation_shift,
+             0.f,
+             0.f,
+             min_slope,
+             8,
+             p_noise_r,
+             p_bending_mask,
+             tile_size,
+             bbox);
+    }
+  }
 }
 
 } // namespace hmap

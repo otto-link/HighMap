@@ -100,6 +100,237 @@ void Graph::clear_edges() noexcept
   this->adj_list.clear();
 }
 
+std::vector<float> Graph::compute_distance_to_outlet() const
+{
+  const size_t       n = this->size();
+  std::vector<float> dist(n, 0.f);
+
+  if (n == 0) return dist;
+
+  // build directed downstream graph: edge u -> v if elevation(u) > elevation(v)
+  // or tie-broken by node index
+  std::vector<std::vector<int>> downstream_neighbors(n);
+  std::vector<int>              in_degree(n, 0);
+
+  for (const auto &edge : this->edge_list)
+  {
+    int u = edge.u;
+    int v = edge.v;
+
+    if (u < 0 || static_cast<size_t>(u) >= n || v < 0 ||
+        static_cast<size_t>(v) >= n || u == v)
+      continue;
+
+    float vu = this->points[u].v;
+    float vv = this->points[v].v;
+
+    int from = u;
+    int to = v;
+
+    if (vu < vv || (vu == vv && u > v))
+    {
+      from = v;
+      to = u;
+    }
+
+    downstream_neighbors[from].push_back(to);
+    in_degree[to]++;
+  }
+
+  // Kahn's algorithm: topological sort from upstream headwaters to downstream
+  // outlets
+  std::queue<int>  q;
+  std::vector<int> in_deg_remaining = in_degree;
+
+  for (size_t i = 0; i < n; ++i)
+  {
+    if (in_deg_remaining[i] == 0) q.push(static_cast<int>(i));
+  }
+
+  std::vector<int> topo_order;
+  topo_order.reserve(n);
+
+  while (!q.empty())
+  {
+    int u = q.front();
+    q.pop();
+    topo_order.push_back(u);
+
+    for (int v : downstream_neighbors[u])
+    {
+      in_deg_remaining[v]--;
+      if (in_deg_remaining[v] == 0) q.push(v);
+    }
+  }
+
+  // if any cycle existed (e.g. flat elevations), append remaining nodes
+  if (topo_order.size() < n)
+  {
+    std::vector<bool> visited(n, false);
+    for (int u : topo_order)
+      visited[u] = true;
+
+    for (size_t i = 0; i < n; ++i)
+      if (!visited[i]) topo_order.push_back(static_cast<int>(i));
+  }
+
+  // propagate distances to outlet in reverse topological order (from outlets to
+  // headwaters)
+  for (auto it = topo_order.rbegin(); it != topo_order.rend(); ++it)
+  {
+    int u = *it;
+
+    if (downstream_neighbors[u].empty())
+    {
+      dist[u] = 0.f;
+      continue;
+    }
+
+    float min_d = std::numeric_limits<float>::max();
+
+    for (int v : downstream_neighbors[u])
+    {
+      float edge_len = glm::distance(
+          glm::vec2(this->points[u].x, this->points[u].y),
+          glm::vec2(this->points[v].x, this->points[v].y));
+      float candidate_d = dist[v] + edge_len;
+
+      if (candidate_d < min_d)
+      {
+        min_d = candidate_d;
+      }
+    }
+
+    dist[u] = (min_d < std::numeric_limits<float>::max()) ? min_d : 0.f;
+  }
+
+  return dist;
+}
+
+std::vector<int> Graph::compute_strahler_order() const
+{
+  const size_t     n = this->size();
+  std::vector<int> order(n, 1);
+
+  if (n == 0) return order;
+
+  // build directed downstream graph: edge u -> v if elevation(u) > elevation(v)
+  // or tie-broken by node index
+  std::vector<std::vector<int>> children(
+      n); // upstream contributors to each node
+  std::vector<int> out_degree(n, 0);
+  std::vector<int> in_degree(n, 0);
+
+  for (const auto &edge : this->edge_list)
+  {
+    int u = edge.u;
+    int v = edge.v;
+
+    if (u < 0 || static_cast<size_t>(u) >= n || v < 0 ||
+        static_cast<size_t>(v) >= n || u == v)
+      continue;
+
+    float vu = this->points[u].v;
+    float vv = this->points[v].v;
+
+    int from = u;
+    int to = v;
+
+    if (vu < vv || (vu == vv && u > v))
+    {
+      from = v;
+      to = u;
+    }
+
+    // from flows into to
+    children[to].push_back(from);
+    out_degree[from]++;
+    in_degree[to]++;
+  }
+
+  // Kahn's algorithm: start with upstream sources (nodes with no incoming
+  // upstream flow)
+  std::queue<int>  q;
+  std::vector<int> in_deg_remaining = in_degree;
+
+  for (size_t i = 0; i < n; ++i)
+  {
+    if (in_deg_remaining[i] == 0) q.push(static_cast<int>(i));
+  }
+
+  std::vector<int> topo_order;
+  topo_order.reserve(n);
+
+  // keep map of downstream receiver edges for reverse propagation
+  std::vector<std::vector<int>> downstream_neighbors(n);
+
+  for (size_t i = 0; i < n; ++i)
+  {
+    for (int child : children[i])
+      downstream_neighbors[child].push_back(static_cast<int>(i));
+  }
+
+  while (!q.empty())
+  {
+    int u = q.front();
+    q.pop();
+    topo_order.push_back(u);
+
+    for (int v : downstream_neighbors[u])
+    {
+      in_deg_remaining[v]--;
+      if (in_deg_remaining[v] == 0) q.push(v);
+    }
+  }
+
+  // if any cycle existed (e.g. flat elevations), append remaining nodes
+  if (topo_order.size() < n)
+  {
+    std::vector<bool> visited(n, false);
+    for (int u : topo_order)
+      visited[u] = true;
+
+    for (size_t i = 0; i < n; ++i)
+      if (!visited[i]) topo_order.push_back(static_cast<int>(i));
+  }
+
+  // evaluate Strahler stream order in topological order (upstream to
+  // downstream)
+  for (int i : topo_order)
+  {
+    if (children[i].empty())
+    {
+      order[i] = 1;
+      continue;
+    }
+
+    int max_child_order = 0;
+    int count_max = 0;
+
+    for (int child : children[i])
+    {
+      int child_order = order[child];
+
+      if (child_order > max_child_order)
+      {
+        max_child_order = child_order;
+        count_max = 1;
+      }
+      else if (child_order == max_child_order)
+      {
+        count_max++;
+      }
+    }
+
+    if (count_max > 1)
+      order[i] = max_child_order + 1;
+    else
+      order[i] = max_child_order;
+  }
+
+  return order;
+}
+
 size_t Graph::degree(int u) const
 {
   if (u < 0 || static_cast<size_t>(u) >= this->adj_list.size()) return 0;

@@ -358,3 +358,55 @@ TEST(TrenchCarving, PathReorderingByLengthDescending)
   EXPECT_LT(z1(32, 32), 0.5f);
 }
 
+TEST(TrenchCarving, GraphFlowNetworkWithOutletDistanceScaling)
+{
+  glm::ivec2  shape = {64, 64};
+  hmap::Array z(shape, 1.0f);
+
+  // create Y junction graph with endpoints placed on grid coordinates
+  // (x = i / 64, y = j / 64)
+  int i_root0 = 13;
+  int j_root0 = 51;
+  int i_root1 = 51;
+  int j_root1 = 51;
+  int i_conf = 32;
+  int j_conf = 32;
+  int i_mouth = 32;
+  int j_mouth = 13;
+
+  hmap::Graph g;
+  g.push_back(hmap::Point(float(i_root0) / 64.f,
+                          float(j_root0) / 64.f,
+                          1.0f)); // 0: branch 1 head
+  g.push_back(hmap::Point(float(i_root1) / 64.f,
+                          float(j_root1) / 64.f,
+                          1.0f)); // 1: branch 2 head
+  g.push_back(hmap::Point(float(i_conf) / 64.f,
+                          float(j_conf) / 64.f,
+                          0.5f)); // 2: confluence
+  g.push_back(hmap::Point(float(i_mouth) / 64.f,
+                          float(j_mouth) / 64.f,
+                          0.1f)); // 3: trunk mouth
+
+  g.add_edge(0, 2);
+  g.add_edge(1, 2);
+  g.add_edge(2, 3);
+
+  float target_width = 0.08f;
+  float width_exponent = 1.0f;
+
+  hmap::trench(z,
+               g,
+               target_width,
+               width_exponent,
+               /* enable_width_depth_scaling */ false);
+
+  // mouth (outlet) is carved
+  EXPECT_LT(z(i_mouth, j_mouth), 1.0f);
+
+  // mouth at outlet should have full width incision:
+  // at lateral offset 0.035 (~2 cells) from mouth center (32, 13), it should be
+  // carved
+  int i_mouth_offset = i_mouth + static_cast<int>(std::round(0.035f * 64.f));
+  EXPECT_LT(z(i_mouth_offset, j_mouth), 1.0f);
+}

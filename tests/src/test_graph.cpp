@@ -143,3 +143,60 @@ TEST(GraphTest, EdgeCoordinatesAndLengths)
   EXPECT_FLOAT_EQ(y_pairs[1], 4.f);
   EXPECT_FLOAT_EQ(lengths[0], 5.f);
 }
+
+TEST(GraphTest, DistanceToOutlet)
+{
+  // Y-junction:
+  // Node 0 (headwater 1, elev 1.0) -> Node 2 (junction, elev 0.5)
+  // Node 1 (headwater 2, elev 1.0) -> Node 2 (junction, elev 0.5)
+  // Node 2 (junction, elev 0.5)    -> Node 3 (outlet, elev 0.0)
+  Graph g;
+  g.push_back(Point(0.5f, 0.9f, 1.0f)); // 0
+  g.push_back(Point(0.9f, 0.5f, 1.0f)); // 1
+  g.push_back(Point(0.5f, 0.5f, 0.5f)); // 2
+  g.push_back(Point(0.5f, 0.1f, 0.0f)); // 3
+
+  g.add_edge(0, 2);
+  g.add_edge(1, 2);
+  g.add_edge(2, 3);
+
+  std::vector<float> dist = g.compute_distance_to_outlet();
+  ASSERT_EQ(dist.size(), 4u);
+
+  // outlet has distance 0
+  EXPECT_FLOAT_EQ(dist[3], 0.0f);
+
+  // node 2 is 0.4 from outlet
+  EXPECT_NEAR(dist[2], 0.4f, 1e-5f);
+
+  // node 0 is 0.4 from node 2, so 0.8 from outlet
+  EXPECT_NEAR(dist[0], 0.8f, 1e-5f);
+
+  // node 1 is 0.4 from node 2, so 0.8 from outlet
+  EXPECT_NEAR(dist[1], 0.8f, 1e-5f);
+}
+
+TEST(GraphTest, StrahlerOrder)
+{
+  // Y-junction:
+  // Node 0 (headwater 1, elev 1.0) -> Node 2 (junction, elev 0.5)
+  // Node 1 (headwater 2, elev 1.0) -> Node 2 (junction, elev 0.5)
+  // Node 2 (junction, elev 0.5)    -> Node 3 (outlet, elev 0.0)
+  Graph g;
+  g.push_back(Point(0.0f, 1.0f, 1.0f)); // 0
+  g.push_back(Point(1.0f, 1.0f, 1.0f)); // 1
+  g.push_back(Point(0.5f, 0.5f, 0.5f)); // 2
+  g.push_back(Point(0.5f, 0.0f, 0.0f)); // 3
+
+  g.add_edge(0, 2);
+  g.add_edge(1, 2);
+  g.add_edge(2, 3);
+
+  std::vector<int> strahler = g.compute_strahler_order();
+  ASSERT_EQ(strahler.size(), 4u);
+
+  EXPECT_EQ(strahler[0], 1);
+  EXPECT_EQ(strahler[1], 1);
+  EXPECT_EQ(strahler[2], 2); // 1 + 1 confluent -> order 2
+  EXPECT_EQ(strahler[3], 2); // single order 2 branch entering -> order 2
+}

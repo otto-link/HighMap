@@ -35,6 +35,7 @@
 namespace hmap
 {
 
+class Graph;
 class TerrainTriMesh;
 
 /**
@@ -847,6 +848,20 @@ Array generate_riverbed(const Path &path,
                         Array      *p_noise_x = nullptr,
                         Array      *p_noise_y = nullptr,
                         Array      *p_noise_r = nullptr);
+
+/**
+ * @brief Convert a collection of hydrology flow paths into a connected Graph.
+ *
+ * Path points within `snap_tolerance` Euclidean distance are welded into
+ * shared nodes, connecting tributaries and main river channels while preserving
+ * only the active river network (avoiding dense background meshes).
+ *
+ * @param  paths          Vector of flow paths.
+ * @param  snap_tolerance Spatial distance tolerance for snapping vertices.
+ * @return                Connected Graph containing only the river network.
+ */
+Graph hydrology_paths_to_graph(const std::vector<Path> &paths,
+                               float                    snap_tolerance = 1e-4f);
 
 /**
  * @brief Merge two water depth fields.

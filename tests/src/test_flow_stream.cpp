@@ -209,3 +209,29 @@ TEST(FlowStream, TruncateAtIntersection)
   EXPECT_NEAR(truncated[1].x, 0.5f, 1e-4f);
   EXPECT_NEAR(truncated[1].y, 0.5f, 1e-4f);
 }
+
+TEST(FlowStream, HydrologyPathsToGraph)
+{
+  // two intersecting streams
+  hmap::Path stream1({hmap::Point(0.1f, 0.5f, 1.0f),
+                      hmap::Point(0.5f, 0.5f, 0.5f),
+                      hmap::Point(0.9f, 0.5f, 0.1f)});
+
+  // stream 2 joins stream 1 at (0.5, 0.5)
+  hmap::Path stream2(
+      {hmap::Point(0.5f, 0.9f, 0.8f), hmap::Point(0.5f, 0.5f, 0.5f)});
+
+  hmap::Graph g = hmap::hydrology_paths_to_graph({stream1, stream2}, 1e-3f);
+
+  // 4 unique vertices: (0.1, 0.5), (0.5, 0.5), (0.9, 0.5), (0.5, 0.9)
+  EXPECT_EQ(g.size(), 4u);
+  EXPECT_EQ(g.num_edges(), 3u);
+
+  // compute Strahler order on the resulting graph
+  std::vector<int> orders = g.compute_strahler_order();
+  ASSERT_EQ(orders.size(), 4u);
+
+  // outlet has minimum elevation (0.1) and should receive the combined flow
+  int max_order = *std::max_element(orders.begin(), orders.end());
+  EXPECT_EQ(max_order, 2);
+}
