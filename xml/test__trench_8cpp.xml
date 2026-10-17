@@ -136,6 +136,25 @@
         </inbodydescription>
         <location file="tests/src/test_trench.cpp" line="313" column="1" bodyfile="tests/src/test_trench.cpp" bodystart="313" bodyend="359"/>
       </memberdef>
+      <memberdef kind="function" id="test__trench_8cpp_1a3d3ced51a118a187849871c9973f06a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TEST</definition>
+        <argsstring>(TrenchCarving, GraphFlowNetworkWithOutletDistanceScaling)</argsstring>
+        <name>TEST</name>
+        <param>
+          <type>TrenchCarving</type>
+        </param>
+        <param>
+          <type>GraphFlowNetworkWithOutletDistanceScaling</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="tests/src/test_trench.cpp" line="361" column="1" bodyfile="tests/src/test_trench.cpp" bodystart="361" bodyend="412"/>
+      </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
@@ -502,6 +521,58 @@
 <codeline lineno="358"><highlight class="normal"><sp/><sp/>EXPECT_LT(z1(32,<sp/>32),<sp/>0.5f);</highlight></codeline>
 <codeline lineno="359"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="360"><highlight class="normal"></highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><ref refid="test__trench_8cpp_1a6f1ebaff5ccf5322d22efd283efff6ca" kindref="member">TEST</ref>(TrenchCarving,<sp/>GraphFlowNetworkWithOutletDistanceScaling)</highlight></codeline>
+<codeline lineno="362"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/>glm::ivec2<sp/><sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref><sp/>=<sp/>{64,<sp/>64};</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>1.0f);</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"></highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>create<sp/>Y<sp/>junction<sp/>graph<sp/>with<sp/>endpoints<sp/>placed<sp/>on<sp/>grid<sp/>coordinates</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="367"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>(x<sp/>=<sp/>i<sp/>/<sp/>64,<sp/>y<sp/>=<sp/>j<sp/>/<sp/>64)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="368"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i_root0<sp/>=<sp/>13;</highlight></codeline>
+<codeline lineno="369"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j_root0<sp/>=<sp/>51;</highlight></codeline>
+<codeline lineno="370"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i_root1<sp/>=<sp/>51;</highlight></codeline>
+<codeline lineno="371"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j_root1<sp/>=<sp/>51;</highlight></codeline>
+<codeline lineno="372"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i_conf<sp/>=<sp/>32;</highlight></codeline>
+<codeline lineno="373"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j_conf<sp/>=<sp/>32;</highlight></codeline>
+<codeline lineno="374"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i_mouth<sp/>=<sp/>32;</highlight></codeline>
+<codeline lineno="375"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j_mouth<sp/>=<sp/>13;</highlight></codeline>
+<codeline lineno="376"><highlight class="normal"></highlight></codeline>
+<codeline lineno="377"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Graph" kindref="compound">hmap::Graph</ref><sp/>g;</highlight></codeline>
+<codeline lineno="378"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Cloud_1ac9ab31444357a0a0c3922b4d16ccef7f" kindref="member">push_back</ref>(<ref refid="classhmap_1_1Point" kindref="compound">hmap::Point</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">(i_root0)<sp/>/<sp/>64.f,</highlight></codeline>
+<codeline lineno="379"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">(j_root0)<sp/>/<sp/>64.f,</highlight></codeline>
+<codeline lineno="380"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1.0f));<sp/></highlight><highlight class="comment">//<sp/>0:<sp/>branch<sp/>1<sp/>head</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="381"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Cloud_1ac9ab31444357a0a0c3922b4d16ccef7f" kindref="member">push_back</ref>(<ref refid="classhmap_1_1Point" kindref="compound">hmap::Point</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">(i_root1)<sp/>/<sp/>64.f,</highlight></codeline>
+<codeline lineno="382"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">(j_root1)<sp/>/<sp/>64.f,</highlight></codeline>
+<codeline lineno="383"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1.0f));<sp/></highlight><highlight class="comment">//<sp/>1:<sp/>branch<sp/>2<sp/>head</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="384"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Cloud_1ac9ab31444357a0a0c3922b4d16ccef7f" kindref="member">push_back</ref>(<ref refid="classhmap_1_1Point" kindref="compound">hmap::Point</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">(i_conf)<sp/>/<sp/>64.f,</highlight></codeline>
+<codeline lineno="385"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">(j_conf)<sp/>/<sp/>64.f,</highlight></codeline>
+<codeline lineno="386"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.5f));<sp/></highlight><highlight class="comment">//<sp/>2:<sp/>confluence</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="387"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Cloud_1ac9ab31444357a0a0c3922b4d16ccef7f" kindref="member">push_back</ref>(<ref refid="classhmap_1_1Point" kindref="compound">hmap::Point</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">(i_mouth)<sp/>/<sp/>64.f,</highlight></codeline>
+<codeline lineno="388"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">(j_mouth)<sp/>/<sp/>64.f,</highlight></codeline>
+<codeline lineno="389"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.1f));<sp/></highlight><highlight class="comment">//<sp/>3:<sp/>trunk<sp/>mouth</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="390"><highlight class="normal"></highlight></codeline>
+<codeline lineno="391"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Graph_1a85e17398e3cd9215ef189f8bbc03f73f" kindref="member">add_edge</ref>(0,<sp/>2);</highlight></codeline>
+<codeline lineno="392"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Graph_1a85e17398e3cd9215ef189f8bbc03f73f" kindref="member">add_edge</ref>(1,<sp/>2);</highlight></codeline>
+<codeline lineno="393"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Graph_1a85e17398e3cd9215ef189f8bbc03f73f" kindref="member">add_edge</ref>(2,<sp/>3);</highlight></codeline>
+<codeline lineno="394"><highlight class="normal"></highlight></codeline>
+<codeline lineno="395"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>target_width<sp/>=<sp/>0.08f;</highlight></codeline>
+<codeline lineno="396"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>width_exponent<sp/>=<sp/>1.0f;</highlight></codeline>
+<codeline lineno="397"><highlight class="normal"></highlight></codeline>
+<codeline lineno="398"><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a2d7b71e9231efc67e4bae209bd7fa84a" kindref="member">hmap::trench</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,</highlight></codeline>
+<codeline lineno="399"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>g,</highlight></codeline>
+<codeline lineno="400"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>target_width,</highlight></codeline>
+<codeline lineno="401"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>width_exponent,</highlight></codeline>
+<codeline lineno="402"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>enable_width_depth_scaling<sp/>*/</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="403"><highlight class="normal"></highlight></codeline>
+<codeline lineno="404"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>mouth<sp/>(outlet)<sp/>is<sp/>carved</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="405"><highlight class="normal"><sp/><sp/>EXPECT_LT(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>(i_mouth,<sp/>j_mouth),<sp/>1.0f);</highlight></codeline>
+<codeline lineno="406"><highlight class="normal"></highlight></codeline>
+<codeline lineno="407"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>mouth<sp/>at<sp/>outlet<sp/>should<sp/>have<sp/>full<sp/>width<sp/>incision:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="408"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>at<sp/>lateral<sp/>offset<sp/>0.035<sp/>(~2<sp/>cells)<sp/>from<sp/>mouth<sp/>center<sp/>(32,<sp/>13),<sp/>it<sp/>should<sp/>be</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="409"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>carved</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="410"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i_mouth_offset<sp/>=<sp/>i_mouth<sp/>+<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(std::round(0.035f<sp/>*<sp/>64.f));</highlight></codeline>
+<codeline lineno="411"><highlight class="normal"><sp/><sp/>EXPECT_LT(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>(i_mouth_offset,<sp/>j_mouth),<sp/>1.0f);</highlight></codeline>
+<codeline lineno="412"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="tests/src/test_trench.cpp"/>
   </compounddef>

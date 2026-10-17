@@ -2,6 +2,7 @@ var trench_8cpp =
 [
     [ "trench", "trench_8cpp.html#ae10d017da6e13ba9d619298709e64917", null ],
     [ "trench", "trench_8cpp.html#a2d7b71e9231efc67e4bae209bd7fa84a", null ],
+    [ "trench", "trench_8cpp.html#a731047666a064859cbdc311b482e8f4d", null ],
     [ "path", "trench_8cpp.html#aea4bb978a006652d3ff42b927337913d", null ],
     [ "arc_length", "trench_8cpp.html#a02ba8309c3319a0684ce77d8f6f1b1bd", null ],
     [ "curvature", "trench_8cpp.html#a2a8b34df1e011428d61871e56e0b76ef", null ],

@@ -343,7 +343,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/carving.hpp" line="14" column="1" bodyfile="HighMap/include/highmap/carving.hpp" bodystart="15" bodyend="20"/>
+        <location file="HighMap/include/highmap/carving.hpp" line="16" column="1" bodyfile="HighMap/include/highmap/carving.hpp" bodystart="17" bodyend="22"/>
       </memberdef>
       <memberdef kind="enum" id="namespacehmap_1ad3b2ee0d951dd1116cc489ab96600c0f" prot="public" static="no" strong="no">
         <type>int</type>
@@ -6982,7 +6982,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/carving/dig_path.cpp" line="19" column="6" bodyfile="HighMap/src/carving/dig_path.cpp" bodystart="19" bodyend="70" declfile="HighMap/include/highmap/carving.hpp" declline="61" declcolumn="6"/>
+        <location file="HighMap/src/carving/dig_path.cpp" line="19" column="6" bodyfile="HighMap/src/carving/dig_path.cpp" bodystart="19" bodyend="70" declfile="HighMap/include/highmap/carving.hpp" declline="63" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1aa0407e8bf3d06ffb4d8d1e97809d3665" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -7104,61 +7104,77 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
 <codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="main_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
 <codeline><highlight class="normal">{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>glm::ivec2<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref><sp/>=<sp/>{256,<sp/>256};</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>glm::vec2<sp/><sp/>kw<sp/>=<sp/>{4.f,<sp/>4.f};</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>shape<sp/>=<sp/>{1024,<sp/>1024};</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>glm::vec2<sp/>kw<sp/>=<sp/>{4.f,<sp/>4.f};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref><sp/>=<sp/><ref refid="namespacehmap_1a7d699a468a18be16c70654958ee13b41" kindref="member">hmap::noise_fbm</ref>(<ref refid="namespacehmap_1ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581" kindref="member">hmap::NoiseType::PERLIN</ref>,<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>kw,<sp/>seed);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>base<sp/>terrain<sp/>with<sp/>Perlin<sp/>noise</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref><sp/>=<sp/>0.2f<sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1a7d699a468a18be16c70654958ee13b41" kindref="member">hmap::noise_fbm</ref>(<ref refid="namespacehmap_1ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581" kindref="member">hmap::NoiseType::PERLIN</ref>,<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>kw,<sp/>seed);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref><sp/>=<sp/><ref refid="namespacehmap_1ae3ecf5f88476c5d49978a130f8cab2f3" kindref="member">hmap::bulkify</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/><ref refid="namespacehmap_1a55542a66f890ef9ecf5f82af2c23a0cfad8c75d88dbfd854dbcedfaf3a4b9c65c" kindref="member">hmap::PrimitiveType::PRIM_SMOOTH_COSINE</ref>,<sp/>1.f);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a262e6495cb2d02598f36a2b46114b2b4" kindref="member">hmap::remap</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>glm::ivec2<sp/>ij_start(100,<sp/>128);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref><sp/>=<sp/><ref refid="namespacehmap_1a4cbd6dd7622a26e446901e1608cc3a87" kindref="member">hmap::flow_stream</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>ij_start);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>generate<sp/>triangular<sp/>terrain<sp/>mesh<sp/>from<sp/>heightmap</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>max_error<sp/>=<sp/>1e-2f;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1TerrainTriMesh" kindref="compound">hmap::TerrainTriMesh</ref><sp/>mesh<sp/>=<sp/><ref refid="namespacehmap_1af9fdabd692817be603ff5c44e68ea619" kindref="member">hmap::generate_terrain_tri_mesh_from_heightmap</ref>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>max_error);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>glm::vec4<sp/>bbox(0.f,<sp/>1.f,<sp/>0.f,<sp/>1.f);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>multiple<sp/>starting<sp/>points<sp/>across<sp/>the<sp/>slopes<sp/>of<sp/>the<sp/>valley<sp/>head</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>std::vector&lt;glm::vec2&gt;<sp/>start_points<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{100.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.x<sp/>-<sp/>1),<sp/>200.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.y<sp/>-<sp/>1)},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{155.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.x<sp/>-<sp/>1),<sp/>210.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.y<sp/>-<sp/>1)},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{100.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.x<sp/>-<sp/>1),<sp/>80.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.y<sp/>-<sp/>1)},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{80.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.x<sp/>-<sp/>1),<sp/>100.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.y<sp/>-<sp/>1)},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{70.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.x<sp/>-<sp/>1),<sp/>124.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.y<sp/>-<sp/>1)},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{70.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.x<sp/>-<sp/>1),<sp/>150.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.y<sp/>-<sp/>1)},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{60.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.x<sp/>-<sp/>1),<sp/>170.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.y<sp/>-<sp/>1)},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{175.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.x<sp/>-<sp/>1),<sp/>160.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.y<sp/>-<sp/>1)}};</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>zv(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.<ref refid="classhmap_1_1Path_1a4d1e1e63fea24bf8f23bc3343f8b746e" kindref="member">to_array</ref>(zv,<sp/>bbox);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>std::vector&lt;hmap::Path&gt;<sp/>streams;</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>zd1<sp/>=<sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;start<sp/>:<sp/>start_points)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>stream<sp/>=<sp/><ref refid="namespacehmap_1a4cbd6dd7622a26e446901e1608cc3a87" kindref="member">hmap::flow_stream</ref>(mesh,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>start,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.95f,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2.f,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>100.f,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>streams,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.02f,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.4f,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>riverbank_talus<sp/>=<sp/>1.f<sp/>/<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.x;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>river_width<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merging_width<sp/>=<sp/>4;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>depth<sp/>=<sp/>0.01f;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>riverbed_talus<sp/>=<sp/>0.2<sp/>/<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.x;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>noise_ratio<sp/>=<sp/>0.9f;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>mask;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!stream.<ref refid="classhmap_1_1Cloud_1a89f21637cf9c4857bf65ad6a6009eff9" kindref="member">empty</ref>())<sp/>streams.push_back(stream);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1aa0407e8bf3d06ffb4d8d1e97809d3665" kindref="member">hmap::dig_river</ref>(zd1,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>},</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>riverbank_talus,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>river_width,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merging_width,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>depth,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>riverbed_talus,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>noise_ratio,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;mask);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>convert<sp/>merged<sp/>streams<sp/>into<sp/>a<sp/>connected<sp/>Graph</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Graph" kindref="compound">hmap::Graph</ref><sp/>stream_graph<sp/>=<sp/><ref refid="namespacehmap_1a0cb5cc8e5f2cb010a50bda6c17dfb12d" kindref="member">hmap::hydrology_paths_to_graph</ref>(streams,<sp/>1e-3f);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>multiple<sp/>streams<sp/>merging<sp/>into<sp/>existing<sp/>streams</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>glm::ivec2<sp/>ij_start2(128,<sp/>180);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>path2<sp/>=<sp/><ref refid="namespacehmap_1a4cbd6dd7622a26e446901e1608cc3a87" kindref="member">hmap::flow_stream</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>ij_start2,<sp/>0.5f,<sp/>2.f,<sp/>100.f,<sp/>{<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>});</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>visualize<sp/>graph<sp/>on<sp/>an<sp/>empty<sp/>grid</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>glm::vec4<sp/><sp/><sp/>bbox(0.f,<sp/>1.f,<sp/>0.f,<sp/>1.f);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>z_graph(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>0.f);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>stream_graph.<ref refid="classhmap_1_1Graph_1a5d27935b935d6d788a934bc0e4f4082f" kindref="member">to_array</ref>(z_graph,<sp/>bbox,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>zd2<sp/>=<sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1aa0407e8bf3d06ffb4d8d1e97809d3665" kindref="member">hmap::dig_river</ref>(zd2,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>,<sp/>path2},</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>riverbank_talus,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>river_width,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merging_width,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>depth,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>riverbed_talus,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>noise_ratio,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;mask);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>carve<sp/>consistent<sp/>river<sp/>network<sp/>with<sp/>trench<sp/>evolving<sp/>width<sp/>downstream</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>z_trenched<sp/>=<sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>base_width<sp/>=<sp/>0.02f;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>width_exponent<sp/>=<sp/>1.f;</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>zd2.<ref refid="classhmap_1_1Array_1ab2c7afe05160d85b0997d733cbb7d286" kindref="member">to_png_grayscale</ref>(</highlight><highlight class="stringliteral">&quot;out.png&quot;</highlight><highlight class="normal">,<sp/>CV_16U);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a2d7b71e9231efc67e4bae209bd7fa84a" kindref="member">hmap::trench</ref>(z_trenched,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stream_graph,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>base_width,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>width_exponent,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>enable_width_depth_scaling<sp/>*/</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1a2affc745bc33b7555352665745741f90acedc11502bd1441e893fdc5a699b6d59" kindref="member">hmap::RadialProfile::RP_SMOOTHSTEP_UPPER</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2.f,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1a22e54d4ecd4b37d658c1d9ac9531377daf9b3bb1e76572464d8a6a413d9f12cef" kindref="member">hmap::ElevationLongitudinalProfile::ELP_DECREASING</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-0.05f);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1ac2452e568959bc21c9b7b09202e5977a" kindref="member">hmap::export_banner_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_flow_stream.png&quot;</highlight><highlight class="normal">,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>zv,<sp/>zd1,<sp/>zd2,<sp/>mask},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>z_graph,<sp/>z_trenched},</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369a65146260717d07e4773aec50520b9ced" kindref="member">hmap::Cmap::JET</ref>,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
@@ -7168,7 +7184,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/carving/dig_river.cpp" line="22" column="6" bodyfile="HighMap/src/carving/dig_river.cpp" bodystart="22" bodyend="90" declfile="HighMap/include/highmap/carving.hpp" declline="100" declcolumn="6"/>
+        <location file="HighMap/src/carving/dig_river.cpp" line="22" column="6" bodyfile="HighMap/src/carving/dig_river.cpp" bodystart="22" bodyend="90" declfile="HighMap/include/highmap/carving.hpp" declline="102" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ada12e6cab4577326964d00fac3aa1077" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -7229,7 +7245,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/carving/dig_river.cpp" line="92" column="6" bodyfile="HighMap/src/carving/dig_river.cpp" bodystart="92" bodyend="115" declfile="HighMap/include/highmap/carving.hpp" declline="111" declcolumn="6"/>
+        <location file="HighMap/src/carving/dig_river.cpp" line="92" column="6" bodyfile="HighMap/src/carving/dig_river.cpp" bodystart="92" bodyend="115" declfile="HighMap/include/highmap/carving.hpp" declline="113" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a5f979c31af1c9ee6ad499882335ca6fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -7479,7 +7495,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/carving/flatbed_carve.cpp" line="120" column="6" bodyfile="HighMap/src/carving/flatbed_carve.cpp" bodystart="120" bodyend="157" declfile="HighMap/include/highmap/carving.hpp" declline="149" declcolumn="6"/>
+        <location file="HighMap/src/carving/flatbed_carve.cpp" line="120" column="6" bodyfile="HighMap/src/carving/flatbed_carve.cpp" bodystart="120" bodyend="157" declfile="HighMap/include/highmap/carving.hpp" declline="151" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a2d7b71e9231efc67e4bae209bd7fa84a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -7782,7 +7798,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/carving/trench.cpp" line="532" column="6" bodyfile="HighMap/src/carving/trench.cpp" bodystart="532" bodyend="578" declfile="HighMap/include/highmap/carving.hpp" declline="223" declcolumn="6"/>
+        <location file="HighMap/src/carving/trench.cpp" line="535" column="6" bodyfile="HighMap/src/carving/trench.cpp" bodystart="535" bodyend="581" declfile="HighMap/include/highmap/carving.hpp" declline="225" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ae10d017da6e13ba9d619298709e64917" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -7898,7 +7914,206 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/carving/trench.cpp" line="318" column="6" bodyfile="HighMap/src/carving/trench.cpp" bodystart="318" bodyend="530" declfile="HighMap/include/highmap/carving.hpp" declline="246" declcolumn="6"/>
+        <location file="HighMap/src/carving/trench.cpp" line="321" column="6" bodyfile="HighMap/src/carving/trench.cpp" bodystart="321" bodyend="533" declfile="HighMap/include/highmap/carving.hpp" declline="248" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehmap_1a731047666a064859cbdc311b482e8f4d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::trench</definition>
+        <argsstring>(Array &amp;z, const Graph &amp;graph, float width, float width_exponent=0.5f, bool enable_width_depth_scaling=true, RadialProfile radial_profile=RadialProfile::RP_SMOOTHSTEP_UPPER, float radial_profile_parameter=2.f, ElevationLongitudinalProfile longitudinal_profile=ElevationLongitudinalProfile::ELP_DECREASING, float elevation_shift=-0.05f, float min_slope=0.001f, const Array *p_noise_r=nullptr, Array *p_bending_mask=nullptr, int tile_size=32, glm::vec4 bbox={0.f, 1.f, 0.f, 1.f})</argsstring>
+        <name>trench</name>
+        <qualifiedname>hmap::trench</qualifiedname>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref> &amp;</type>
+          <declname>graph</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>width_exponent</declname>
+          <defval>0.5<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>enable_width_depth_scaling</declname>
+          <defval>true</defval>
+        </param>
+        <param>
+          <type><ref refid="namespacehmap_1a2affc745bc33b7555352665745741f90" kindref="member">RadialProfile</ref></type>
+          <declname>radial_profile</declname>
+          <defval><ref refid="namespacehmap_1a2affc745bc33b7555352665745741f90acedc11502bd1441e893fdc5a699b6d59" kindref="member">RadialProfile::RP_SMOOTHSTEP_UPPER</ref></defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>radial_profile_parameter</declname>
+          <defval>2.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <param>
+          <type><ref refid="namespacehmap_1a22e54d4ecd4b37d658c1d9ac9531377d" kindref="member">ElevationLongitudinalProfile</ref></type>
+          <declname>longitudinal_profile</declname>
+          <defval><ref refid="namespacehmap_1a22e54d4ecd4b37d658c1d9ac9531377daf9b3bb1e76572464d8a6a413d9f12cef" kindref="member">ElevationLongitudinalProfile::ELP_DECREASING</ref></defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>elevation_shift</declname>
+          <defval>-0.05<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>min_slope</declname>
+          <defval>0.001<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <param>
+          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
+          <declname>p_noise_r</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref> *</type>
+          <declname>p_bending_mask</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>tile_size</declname>
+          <defval>32</defval>
+        </param>
+        <param>
+          <type>glm::vec4</type>
+          <declname>bbox</declname>
+          <defval>{0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</defval>
+        </param>
+        <briefdescription>
+<para>Carves river channels for an entire flow network represented by a <ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Each channel segment evolves its width downstream according to its distance to the outlet in each drainage tree, scaling smoothly from 0 at the upstream roots up to <computeroutput>width</computeroutput> at the outlet:</para>
+<para><computeroutput>w = width * (1 - d_outlet / max_d_outlet)^width_exponent</computeroutput></para>
+<para>When <computeroutput>enable_width_distance_scaling</computeroutput> is enabled, width also interpolates continuously along each edge between its upstream and downstream node widths.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="inout">z</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Target heightmap to carve in-place. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">graph</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input flow network <ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">width</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Target river width at the <ref refid="hydraulic__mise_8cpp_1a04ae352a41e6a2fb1296b478e5881a66" kindref="member">outlet(s)</ref>. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">width_exponent</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Scaling exponent for width with distance to outlet (default: 0.5). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">enable_width_depth_scaling</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Modulate width according to depth. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">radial_profile</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Transverse cross-section profile. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">radial_profile_parameter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Shaping parameter for radial profile. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">longitudinal_profile</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Downhill elevation monotonicity mode. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">elevation_shift</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Depth of trench incision. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">min_slope</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Minimum downstream slope. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">p_noise_r</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optional noise array for radial perturbation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">p_bending_mask</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optional blending mask. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">tile_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Spatial tile partition size. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">bbox</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Domain bounding box. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/src/carving/trench.cpp" line="583" column="6" bodyfile="HighMap/src/carving/trench.cpp" bodystart="583" bodyend="730" declfile="HighMap/include/highmap/carving.hpp" declline="298" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a54eb8ce4196d73517024dbe2af5af81b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>glm::vec3</type>
@@ -34121,7 +34336,7 @@ See unit tests: <ref refid="test__gradient_8cpp" kindref="compound">test_gradien
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/basin_id.cpp" line="15" column="7" bodyfile="HighMap/src/hydrology/basin_id.cpp" bodystart="15" bodyend="52" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="59" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/basin_id.cpp" line="15" column="7" bodyfile="HighMap/src/hydrology/basin_id.cpp" bodystart="15" bodyend="52" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="60" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a70e5aa1009c3de1d301e0a8994dd8b03" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -34256,7 +34471,7 @@ See unit tests: <ref refid="test__gradient_8cpp" kindref="compound">test_gradien
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/carve_riverbed.cpp" line="18" column="7" bodyfile="HighMap/src/hydrology/carve_riverbed.cpp" bodystart="18" bodyend="57" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="88" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/carve_riverbed.cpp" line="18" column="7" bodyfile="HighMap/src/hydrology/carve_riverbed.cpp" bodystart="18" bodyend="57" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="89" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a2e0533063a77bfc047472d1d85f3f63c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -34288,7 +34503,7 @@ See unit tests: <ref refid="test__gradient_8cpp" kindref="compound">test_gradien
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_accumulation_d8.cpp" line="26" column="7" bodyfile="HighMap/src/hydrology/flow_accumulation_d8.cpp" bodystart="26" bodyend="48" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="113" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/flow_accumulation_d8.cpp" line="26" column="7" bodyfile="HighMap/src/hydrology/flow_accumulation_d8.cpp" bodystart="26" bodyend="48" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="114" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a05b9777b63947937181d7b7406e4b50d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -34342,7 +34557,7 @@ See unit tests: <ref refid="test__gradient_8cpp" kindref="compound">test_gradien
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/find_flow_sinks.cpp" line="17" column="6" bodyfile="HighMap/src/hydrology/find_flow_sinks.cpp" bodystart="17" bodyend="38" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="126" declcolumn="6"/>
+        <location file="HighMap/src/hydrology/find_flow_sinks.cpp" line="17" column="6" bodyfile="HighMap/src/hydrology/find_flow_sinks.cpp" bodystart="17" bodyend="38" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="127" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ae42a874864d2d8f1a7b580f428395c01" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -34414,7 +34629,7 @@ See unit tests: <ref refid="test__gradient_8cpp" kindref="compound">test_gradien
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/find_flow_sinks.cpp" line="40" column="6" bodyfile="HighMap/src/hydrology/find_flow_sinks.cpp" bodystart="40" bodyend="68" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="142" declcolumn="6"/>
+        <location file="HighMap/src/hydrology/find_flow_sinks.cpp" line="40" column="6" bodyfile="HighMap/src/hydrology/find_flow_sinks.cpp" bodystart="40" bodyend="68" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="143" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1add95813f31b18511fc6eeb672c3a056c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; glm::ivec2 &gt;</type>
@@ -34446,7 +34661,7 @@ See unit tests: <ref refid="test__gradient_8cpp" kindref="compound">test_gradien
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/find_flow_sinks.cpp" line="70" column="13" bodyfile="HighMap/src/hydrology/find_flow_sinks.cpp" bodystart="70" bodyend="96" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="155" declcolumn="13"/>
+        <location file="HighMap/src/hydrology/find_flow_sinks.cpp" line="70" column="13" bodyfile="HighMap/src/hydrology/find_flow_sinks.cpp" bodystart="70" bodyend="96" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="156" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a823804201f4a5d9d2f2ada14120a6c8c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; glm::ivec2 &gt;</type>
@@ -34478,7 +34693,7 @@ See unit tests: <ref refid="test__gradient_8cpp" kindref="compound">test_gradien
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/find_flow_sinks.cpp" line="98" column="13" bodyfile="HighMap/src/hydrology/find_flow_sinks.cpp" bodystart="98" bodyend="139" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="166" declcolumn="13"/>
+        <location file="HighMap/src/hydrology/find_flow_sinks.cpp" line="98" column="13" bodyfile="HighMap/src/hydrology/find_flow_sinks.cpp" bodystart="98" bodyend="139" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="167" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a2318944325d02f3969aa7fa58b500278" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -34567,7 +34782,7 @@ See unit tests: <ref refid="test__gradient_8cpp" kindref="compound">test_gradien
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flooding.cpp" line="23" column="7" bodyfile="HighMap/src/hydrology/flooding.cpp" bodystart="23" bodyend="33" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="184" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/flooding.cpp" line="23" column="7" bodyfile="HighMap/src/hydrology/flooding.cpp" bodystart="23" bodyend="33" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="185" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a2b57b45ea7a8a48b43443aa4d1dddbe8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -34708,7 +34923,7 @@ See unit tests: <ref refid="test__gradient_8cpp" kindref="compound">test_gradien
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flooding.cpp" line="35" column="7" bodyfile="HighMap/src/hydrology/flooding.cpp" bodystart="35" bodyend="117" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="206" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/flooding.cpp" line="35" column="7" bodyfile="HighMap/src/hydrology/flooding.cpp" bodystart="35" bodyend="117" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="207" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1add3e6744c96ed203d611ceecf65d343e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -34822,7 +35037,7 @@ See unit tests: <ref refid="test__gradient_8cpp" kindref="compound">test_gradien
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flooding.cpp" line="119" column="7" bodyfile="HighMap/src/hydrology/flooding.cpp" bodystart="119" bodyend="159" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="231" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/flooding.cpp" line="119" column="7" bodyfile="HighMap/src/hydrology/flooding.cpp" bodystart="119" bodyend="159" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="232" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ab6d1b3c418405a0174462f6ea40a665f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -34936,7 +35151,7 @@ See unit tests: <ref refid="test__gradient_8cpp" kindref="compound">test_gradien
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flooding.cpp" line="161" column="7" bodyfile="HighMap/src/hydrology/flooding.cpp" bodystart="161" bodyend="182" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="253" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/flooding.cpp" line="161" column="7" bodyfile="HighMap/src/hydrology/flooding.cpp" bodystart="161" bodyend="182" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="254" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a3624c1660e60d16a87c90222606f7050" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -35002,7 +35217,7 @@ See unit tests: <ref refid="test__gradient_8cpp" kindref="compound">test_gradien
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flooding.cpp" line="184" column="7" bodyfile="HighMap/src/hydrology/flooding.cpp" bodystart="184" bodyend="208" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="285" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/flooding.cpp" line="184" column="7" bodyfile="HighMap/src/hydrology/flooding.cpp" bodystart="184" bodyend="208" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="286" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a27b43e17baebd07ebb43808ca0dceb42" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -35055,7 +35270,7 @@ See unit tests: <ref refid="test__gradient_8cpp" kindref="compound">test_gradien
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_accumulation_d8.cpp" line="50" column="7" bodyfile="HighMap/src/hydrology/flow_accumulation_d8.cpp" bodystart="50" bodyend="100" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="309" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/flow_accumulation_d8.cpp" line="50" column="7" bodyfile="HighMap/src/hydrology/flow_accumulation_d8.cpp" bodystart="50" bodyend="100" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="310" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1aa774e7d04ba3c90c4d76dedfd8f76245" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -35203,7 +35418,7 @@ Transport for Terrain Erosion Simulation&quot; (N. McDonald, G. Cordonnier), <ul
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_accumulation_stochastic.cpp" line="43" column="7" bodyfile="HighMap/src/hydrology/flow_accumulation_stochastic.cpp" bodystart="43" bodyend="129" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="347" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/flow_accumulation_stochastic.cpp" line="43" column="7" bodyfile="HighMap/src/hydrology/flow_accumulation_stochastic.cpp" bodystart="43" bodyend="129" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="348" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a58ba4910af868f70849f343e0c73adf3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -35289,7 +35504,7 @@ Transport for Terrain Erosion Simulation&quot; (N. McDonald, G. Cordonnier), <ul
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_accumulation_dinf.cpp" line="27" column="7" bodyfile="HighMap/src/hydrology/flow_accumulation_dinf.cpp" bodystart="27" bodyend="98" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="380" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/flow_accumulation_dinf.cpp" line="27" column="7" bodyfile="HighMap/src/hydrology/flow_accumulation_dinf.cpp" bodystart="27" bodyend="98" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="381" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a9a75c558c8576802e0661ca9cabc7475" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -35439,7 +35654,7 @@ Transport for Terrain Erosion Simulation&quot; (N. McDonald, G. Cordonnier), <ul
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_accumulation_dinf.cpp" line="100" column="7" bodyfile="HighMap/src/hydrology/flow_accumulation_dinf.cpp" bodystart="100" bodyend="134" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="414" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/flow_accumulation_dinf.cpp" line="100" column="7" bodyfile="HighMap/src/hydrology/flow_accumulation_dinf.cpp" bodystart="100" bodyend="134" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="415" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1af8f580c9d50a07585257569bd1160891" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -35474,7 +35689,7 @@ Transport for Terrain Erosion Simulation&quot; (N. McDonald, G. Cordonnier), <ul
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_accumulation_d8.cpp" line="102" column="7" bodyfile="HighMap/src/hydrology/flow_accumulation_d8.cpp" bodystart="102" bodyend="134" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="439" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/flow_accumulation_d8.cpp" line="102" column="7" bodyfile="HighMap/src/hydrology/flow_accumulation_d8.cpp" bodystart="102" bodyend="134" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="440" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a819fc20190d598c4664d442ee824fc96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &gt;</type>
@@ -35518,7 +35733,7 @@ Transport for Terrain Erosion Simulation&quot; (N. McDonald, G. Cordonnier), <ul
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_accumulation_dinf.cpp" line="136" column="13" bodyfile="HighMap/src/hydrology/flow_accumulation_dinf.cpp" bodystart="136" bodyend="179" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="458" declcolumn="13"/>
+        <location file="HighMap/src/hydrology/flow_accumulation_dinf.cpp" line="136" column="13" bodyfile="HighMap/src/hydrology/flow_accumulation_dinf.cpp" bodystart="136" bodyend="179" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="459" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1aa84fc9cbd0704c16abf21ef12c9c5fad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; float &gt;</type>
@@ -35540,7 +35755,7 @@ Transport for Terrain Erosion Simulation&quot; (N. McDonald, G. Cordonnier), <ul
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_accumulation_dinf.cpp" line="181" column="13" bodyfile="HighMap/src/hydrology/flow_accumulation_dinf.cpp" bodystart="181" bodyend="238" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="460" declcolumn="13"/>
+        <location file="HighMap/src/hydrology/flow_accumulation_dinf.cpp" line="181" column="13" bodyfile="HighMap/src/hydrology/flow_accumulation_dinf.cpp" bodystart="181" bodyend="238" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="461" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ad1d77ab375dfcca54183bbb687c82e9d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -35563,7 +35778,7 @@ Transport for Terrain Erosion Simulation&quot; (N. McDonald, G. Cordonnier), <ul
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_accumulation_dinf.cpp" line="240" column="7" bodyfile="HighMap/src/hydrology/flow_accumulation_dinf.cpp" bodystart="240" bodyend="289" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="466" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/flow_accumulation_dinf.cpp" line="240" column="7" bodyfile="HighMap/src/hydrology/flow_accumulation_dinf.cpp" bodystart="240" bodyend="289" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="467" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ab4a40ce8de82f97aeaa1dea7a36f94c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -35611,7 +35826,7 @@ Transport for Terrain Erosion Simulation&quot; (N. McDonald, G. Cordonnier), <ul
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_fixing.cpp" line="28" column="7" bodyfile="HighMap/src/hydrology/flow_fixing.cpp" bodystart="28" bodyend="289" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="468" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/flow_fixing.cpp" line="28" column="7" bodyfile="HighMap/src/hydrology/flow_fixing.cpp" bodystart="28" bodyend="289" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="469" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a62e937a8e394092689481bb392bc15cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -35789,7 +36004,7 @@ Transport for Terrain Erosion Simulation&quot; (N. McDonald, G. Cordonnier), <ul
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_fixing.cpp" line="291" column="7" bodyfile="HighMap/src/hydrology/flow_fixing.cpp" bodystart="291" bodyend="367" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="509" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/flow_fixing.cpp" line="291" column="7" bodyfile="HighMap/src/hydrology/flow_fixing.cpp" bodystart="291" bodyend="367" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="510" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a20cb460ecf96e4608610b5ab9fe8f1b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -35987,7 +36202,7 @@ Transport for Terrain Erosion Simulation&quot; (N. McDonald, G. Cordonnier), <ul
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="37" column="7" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="37" bodyend="616" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="556" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="37" column="7" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="37" bodyend="616" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="557" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a397d5d081862e6eca1551acfe0198624" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; <ref refid="classhmap_1_1Path" kindref="compound">Path</ref> &gt;</type>
@@ -36084,7 +36299,7 @@ Transport for Terrain Erosion Simulation&quot; (N. McDonald, G. Cordonnier), <ul
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="618" column="13" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="618" bodyend="980" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="594" declcolumn="13"/>
+        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="618" column="13" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="618" bodyend="980" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="595" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ab0fe57b3afd4499d08c362d8acd5f6f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; <ref refid="classhmap_1_1Path" kindref="compound">Path</ref> &gt;</type>
@@ -36207,7 +36422,7 @@ Transport for Terrain Erosion Simulation&quot; (N. McDonald, G. Cordonnier), <ul
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="982" column="13" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="982" bodyend="1004" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="620" declcolumn="13"/>
+        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="982" column="13" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="982" bodyend="1004" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="621" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a5fbbe4a3db33c7783faa794c3051ddb4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -36381,7 +36596,7 @@ Transport for Terrain Erosion Simulation&quot; (N. McDonald, G. Cordonnier), <ul
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1006" column="7" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1006" bodyend="1056" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="654" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1006" column="7" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1006" bodyend="1056" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="655" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a4cbd6dd7622a26e446901e1608cc3a87" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Path" kindref="compound">Path</ref></type>
@@ -36523,61 +36738,77 @@ The output path consists of:<itemizedlist>
 <codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="main_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
 <codeline><highlight class="normal">{</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>glm::ivec2<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref><sp/>=<sp/>{256,<sp/>256};</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>glm::vec2<sp/><sp/>kw<sp/>=<sp/>{4.f,<sp/>4.f};</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>shape<sp/>=<sp/>{1024,<sp/>1024};</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>glm::vec2<sp/>kw<sp/>=<sp/>{4.f,<sp/>4.f};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed<sp/>=<sp/>1;</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref><sp/>=<sp/><ref refid="namespacehmap_1a7d699a468a18be16c70654958ee13b41" kindref="member">hmap::noise_fbm</ref>(<ref refid="namespacehmap_1ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581" kindref="member">hmap::NoiseType::PERLIN</ref>,<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>kw,<sp/>seed);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>base<sp/>terrain<sp/>with<sp/>Perlin<sp/>noise</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref><sp/>=<sp/>0.2f<sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1a7d699a468a18be16c70654958ee13b41" kindref="member">hmap::noise_fbm</ref>(<ref refid="namespacehmap_1ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581" kindref="member">hmap::NoiseType::PERLIN</ref>,<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>kw,<sp/>seed);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref><sp/>=<sp/><ref refid="namespacehmap_1ae3ecf5f88476c5d49978a130f8cab2f3" kindref="member">hmap::bulkify</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/><ref refid="namespacehmap_1a55542a66f890ef9ecf5f82af2c23a0cfad8c75d88dbfd854dbcedfaf3a4b9c65c" kindref="member">hmap::PrimitiveType::PRIM_SMOOTH_COSINE</ref>,<sp/>1.f);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a262e6495cb2d02598f36a2b46114b2b4" kindref="member">hmap::remap</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>glm::ivec2<sp/>ij_start(100,<sp/>128);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref><sp/>=<sp/><ref refid="namespacehmap_1a4cbd6dd7622a26e446901e1608cc3a87" kindref="member">hmap::flow_stream</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>ij_start);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>generate<sp/>triangular<sp/>terrain<sp/>mesh<sp/>from<sp/>heightmap</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>max_error<sp/>=<sp/>1e-2f;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1TerrainTriMesh" kindref="compound">hmap::TerrainTriMesh</ref><sp/>mesh<sp/>=<sp/><ref refid="namespacehmap_1af9fdabd692817be603ff5c44e68ea619" kindref="member">hmap::generate_terrain_tri_mesh_from_heightmap</ref>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>max_error);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>glm::vec4<sp/>bbox(0.f,<sp/>1.f,<sp/>0.f,<sp/>1.f);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>multiple<sp/>starting<sp/>points<sp/>across<sp/>the<sp/>slopes<sp/>of<sp/>the<sp/>valley<sp/>head</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>std::vector&lt;glm::vec2&gt;<sp/>start_points<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{100.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.x<sp/>-<sp/>1),<sp/>200.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.y<sp/>-<sp/>1)},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{155.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.x<sp/>-<sp/>1),<sp/>210.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.y<sp/>-<sp/>1)},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{100.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.x<sp/>-<sp/>1),<sp/>80.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.y<sp/>-<sp/>1)},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{80.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.x<sp/>-<sp/>1),<sp/>100.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.y<sp/>-<sp/>1)},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{70.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.x<sp/>-<sp/>1),<sp/>124.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.y<sp/>-<sp/>1)},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{70.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.x<sp/>-<sp/>1),<sp/>150.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.y<sp/>-<sp/>1)},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{60.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.x<sp/>-<sp/>1),<sp/>170.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.y<sp/>-<sp/>1)},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{175.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.x<sp/>-<sp/>1),<sp/>160.f<sp/>/<sp/>float(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.y<sp/>-<sp/>1)}};</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>zv(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>.<ref refid="classhmap_1_1Path_1a4d1e1e63fea24bf8f23bc3343f8b746e" kindref="member">to_array</ref>(zv,<sp/>bbox);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>std::vector&lt;hmap::Path&gt;<sp/>streams;</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>zd1<sp/>=<sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;start<sp/>:<sp/>start_points)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>stream<sp/>=<sp/><ref refid="namespacehmap_1a4cbd6dd7622a26e446901e1608cc3a87" kindref="member">hmap::flow_stream</ref>(mesh,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>start,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.95f,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2.f,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>100.f,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>streams,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.02f,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.4f,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>riverbank_talus<sp/>=<sp/>1.f<sp/>/<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.x;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>river_width<sp/>=<sp/>1;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merging_width<sp/>=<sp/>4;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>depth<sp/>=<sp/>0.01f;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>riverbed_talus<sp/>=<sp/>0.2<sp/>/<sp/><ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>.x;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>noise_ratio<sp/>=<sp/>0.9f;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>mask;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!stream.<ref refid="classhmap_1_1Cloud_1a89f21637cf9c4857bf65ad6a6009eff9" kindref="member">empty</ref>())<sp/>streams.push_back(stream);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1aa0407e8bf3d06ffb4d8d1e97809d3665" kindref="member">hmap::dig_river</ref>(zd1,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>},</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>riverbank_talus,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>river_width,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merging_width,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>depth,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>riverbed_talus,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>noise_ratio,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;mask);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>convert<sp/>merged<sp/>streams<sp/>into<sp/>a<sp/>connected<sp/>Graph</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Graph" kindref="compound">hmap::Graph</ref><sp/>stream_graph<sp/>=<sp/><ref refid="namespacehmap_1a0cb5cc8e5f2cb010a50bda6c17dfb12d" kindref="member">hmap::hydrology_paths_to_graph</ref>(streams,<sp/>1e-3f);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>multiple<sp/>streams<sp/>merging<sp/>into<sp/>existing<sp/>streams</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>glm::ivec2<sp/>ij_start2(128,<sp/>180);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>path2<sp/>=<sp/><ref refid="namespacehmap_1a4cbd6dd7622a26e446901e1608cc3a87" kindref="member">hmap::flow_stream</ref>(<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>ij_start2,<sp/>0.5f,<sp/>2.f,<sp/>100.f,<sp/>{<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>});</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>visualize<sp/>graph<sp/>on<sp/>an<sp/>empty<sp/>grid</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>glm::vec4<sp/><sp/><sp/>bbox(0.f,<sp/>1.f,<sp/>0.f,<sp/>1.f);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>z_graph(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>0.f);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>stream_graph.<ref refid="classhmap_1_1Graph_1a5d27935b935d6d788a934bc0e4f4082f" kindref="member">to_array</ref>(z_graph,<sp/>bbox,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>zd2<sp/>=<sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>;</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1aa0407e8bf3d06ffb4d8d1e97809d3665" kindref="member">hmap::dig_river</ref>(zd2,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<ref refid="trench_8cpp_1aea4bb978a006652d3ff42b927337913d" kindref="member">path</ref>,<sp/>path2},</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>riverbank_talus,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>river_width,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>merging_width,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>depth,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>riverbed_talus,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>noise_ratio,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>seed,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;mask);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>carve<sp/>consistent<sp/>river<sp/>network<sp/>with<sp/>trench<sp/>evolving<sp/>width<sp/>downstream</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>z_trenched<sp/>=<sp/><ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>base_width<sp/>=<sp/>0.02f;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>width_exponent<sp/>=<sp/>1.f;</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>zd2.<ref refid="classhmap_1_1Array_1ab2c7afe05160d85b0997d733cbb7d286" kindref="member">to_png_grayscale</ref>(</highlight><highlight class="stringliteral">&quot;out.png&quot;</highlight><highlight class="normal">,<sp/>CV_16U);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1a2d7b71e9231efc67e4bae209bd7fa84a" kindref="member">hmap::trench</ref>(z_trenched,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stream_graph,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>base_width,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>width_exponent,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>enable_width_depth_scaling<sp/>*/</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1a2affc745bc33b7555352665745741f90acedc11502bd1441e893fdc5a699b6d59" kindref="member">hmap::RadialProfile::RP_SMOOTHSTEP_UPPER</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2.f,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1a22e54d4ecd4b37d658c1d9ac9531377daf9b3bb1e76572464d8a6a413d9f12cef" kindref="member">hmap::ElevationLongitudinalProfile::ELP_DECREASING</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-0.05f);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1ac2452e568959bc21c9b7b09202e5977a" kindref="member">hmap::export_banner_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_flow_stream.png&quot;</highlight><highlight class="normal">,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>zv,<sp/>zd1,<sp/>zd2,<sp/>mask},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<ref refid="hydraulic__mise_8cpp_1aa14e04bff7de9e968e46a953f71f29f3" kindref="member">z</ref>,<sp/>z_graph,<sp/>z_trenched},</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369a65146260717d07e4773aec50520b9ced" kindref="member">hmap::Cmap::JET</ref>,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
@@ -36587,7 +36818,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_stream.cpp" line="26" column="6" bodyfile="HighMap/src/hydrology/flow_stream.cpp" bodystart="26" bodyend="231" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="709" declcolumn="6"/>
+        <location file="HighMap/src/hydrology/flow_stream.cpp" line="26" column="6" bodyfile="HighMap/src/hydrology/flow_stream.cpp" bodystart="26" bodyend="231" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="710" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a73c8de9d1feb25ccd5400352662c19dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Path" kindref="compound">Path</ref></type>
@@ -36734,7 +36965,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_stream.cpp" line="277" column="6" bodyfile="HighMap/src/hydrology/flow_stream.cpp" bodystart="277" bodyend="474" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="743" declcolumn="6"/>
+        <location file="HighMap/src/hydrology/flow_stream.cpp" line="277" column="6" bodyfile="HighMap/src/hydrology/flow_stream.cpp" bodystart="277" bodyend="474" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="744" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a8ec1a8c4669cf56b6f9213102e719d3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Path" kindref="compound">Path</ref></type>
@@ -36881,7 +37112,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_stream.cpp" line="233" column="6" bodyfile="HighMap/src/hydrology/flow_stream.cpp" bodystart="233" bodyend="275" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="778" declcolumn="6"/>
+        <location file="HighMap/src/hydrology/flow_stream.cpp" line="233" column="6" bodyfile="HighMap/src/hydrology/flow_stream.cpp" bodystart="233" bodyend="275" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="779" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a30d55fae5c75a1c45a005a3f9a9467eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -37136,7 +37367,52 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/generate_riverbed.cpp" line="20" column="7" bodyfile="HighMap/src/hydrology/generate_riverbed.cpp" bodystart="20" bodyend="89" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="835" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/generate_riverbed.cpp" line="20" column="7" bodyfile="HighMap/src/hydrology/generate_riverbed.cpp" bodystart="20" bodyend="89" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="836" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehmap_1a0cb5cc8e5f2cb010a50bda6c17dfb12d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref></type>
+        <definition>Graph hmap::hydrology_paths_to_graph</definition>
+        <argsstring>(const std::vector&lt; Path &gt; &amp;paths, float snap_tolerance=1e-4f)</argsstring>
+        <name>hydrology_paths_to_graph</name>
+        <qualifiedname>hmap::hydrology_paths_to_graph</qualifiedname>
+        <param>
+          <type>const std::vector&lt; <ref refid="classhmap_1_1Path" kindref="compound">Path</ref> &gt; &amp;</type>
+          <declname>paths</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>snap_tolerance</declname>
+          <defval>1e-4<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <briefdescription>
+<para>Convert a collection of hydrology flow paths into a connected <ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><ref refid="classhmap_1_1Path" kindref="compound">Path</ref> points within <computeroutput>snap_tolerance</computeroutput> Euclidean distance are welded into shared nodes, connecting tributaries and main river channels while preserving only the active river network (avoiding dense background meshes).</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>paths</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Vector of flow paths. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>snap_tolerance</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Spatial distance tolerance for snapping vertices. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Connected <ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref> containing only the river network. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/src/hydrology/hydrology_paths_to_graph.cpp" line="22" column="7" bodyfile="HighMap/src/hydrology/hydrology_paths_to_graph.cpp" bodystart="22" bodyend="156" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="863" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a64fbc0261e13ea842762efd3ac6bcc53" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -37193,7 +37469,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/water_depth.cpp" line="29" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="29" bodyend="44" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="861" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/water_depth.cpp" line="29" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="29" bodyend="44" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="876" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a78419f7981186b40c4a2d04456e4e63f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -37384,7 +37660,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/snow_simulation.cpp" line="27" column="7" bodyfile="HighMap/src/hydrology/snow_simulation.cpp" bodystart="27" bodyend="83" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="890" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/snow_simulation.cpp" line="27" column="7" bodyfile="HighMap/src/hydrology/snow_simulation.cpp" bodystart="27" bodyend="83" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="905" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a3a5454dd7547ce6b9d995be17a2ac410" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -37494,7 +37770,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/water_depth.cpp" line="77" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="77" bodyend="97" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="937" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/water_depth.cpp" line="77" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="77" bodyend="97" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="952" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a3aebd62906b90ccfde11140e13b0853f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -37593,7 +37869,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/water_depth.cpp" line="46" column="6" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="46" bodyend="75" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="967" declcolumn="6"/>
+        <location file="HighMap/src/hydrology/water_depth.cpp" line="46" column="6" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="46" bodyend="75" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="982" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a136f042ce2ad8c14033f4d839f56265d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -37684,7 +37960,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/water_depth.cpp" line="99" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="99" bodyend="241" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1007" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/water_depth.cpp" line="99" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="99" bodyend="241" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1022" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1afad09b723c82dd7f0a0f7365e74b1edf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -37775,7 +38051,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/water_depth.cpp" line="243" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="243" bodyend="302" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1045" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/water_depth.cpp" line="243" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="243" bodyend="302" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1060" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ab562e00b361d918c52dd5860fc88ae06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -37861,7 +38137,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/water_depth.cpp" line="304" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="304" bodyend="334" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1071" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/water_depth.cpp" line="304" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="304" bodyend="334" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1086" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ad39c72e2b4c07d3013f7b0143c31137c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -37916,7 +38192,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/water_depth.cpp" line="336" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="336" bodyend="343" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1091" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/water_depth.cpp" line="336" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="336" bodyend="343" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1106" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1abc5928f49e530927c8fb61a9afea3274" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -37995,7 +38271,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/water_depth.cpp" line="345" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="345" bodyend="362" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1115" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/water_depth.cpp" line="345" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="345" bodyend="362" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1130" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a67eae4546cbed6a804eaddcde9350e1c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::filesystem::path</type>

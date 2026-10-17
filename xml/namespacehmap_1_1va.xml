@@ -428,7 +428,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flooding.cpp" line="215" column="14" bodyfile="HighMap/src/hydrology/flooding.cpp" bodystart="215" bodyend="246" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1407" declcolumn="14"/>
+        <location file="HighMap/src/hydrology/flooding.cpp" line="215" column="14" bodyfile="HighMap/src/hydrology/flooding.cpp" bodystart="215" bodyend="246" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1422" declcolumn="14"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1va_1a050c3c7ecc102d86f566bf55b3a72c51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; <ref refid="classhmap_1_1Path" kindref="compound">Path</ref> &gt;</type>
@@ -594,7 +594,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1063" column="13" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1063" bodyend="1085" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1438" declcolumn="13"/>
+        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1063" column="13" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1063" bodyend="1085" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1453" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1va_1a79c8b1b0f1447fcb8f94f6e2cec8788b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structhmap_1_1VirtualArray" kindref="compound">VirtualArray</ref></type>
@@ -671,7 +671,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1087" column="14" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1087" bodyend="1153" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1448" declcolumn="14"/>
+        <location file="HighMap/src/hydrology/flow_fixing_mst.cpp" line="1087" column="14" bodyfile="HighMap/src/hydrology/flow_fixing_mst.cpp" bodystart="1087" bodyend="1153" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1463" declcolumn="14"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1va_1ae1f6f9589633a460dabd6bb44473d4fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Path" kindref="compound">Path</ref></type>
@@ -856,7 +856,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_stream.cpp" line="481" column="6" bodyfile="HighMap/src/hydrology/flow_stream.cpp" bodystart="481" bodyend="511" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1491" declcolumn="6"/>
+        <location file="HighMap/src/hydrology/flow_stream.cpp" line="481" column="6" bodyfile="HighMap/src/hydrology/flow_stream.cpp" bodystart="481" bodyend="511" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1506" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1va_1abfb98fdd47bd2a66e694c03765bf74af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1RockField" kindref="compound">RockField</ref></type>

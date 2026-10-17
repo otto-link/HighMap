@@ -136,6 +136,25 @@
         </inbodydescription>
         <location file="tests/src/test_flow_stream.cpp" line="189" column="1" bodyfile="tests/src/test_flow_stream.cpp" bodystart="189" bodyend="211"/>
       </memberdef>
+      <memberdef kind="function" id="test__flow__stream_8cpp_1a3f62e8ee9ea281ffb5ab8b1f1164bb3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TEST</definition>
+        <argsstring>(FlowStream, HydrologyPathsToGraph)</argsstring>
+        <name>TEST</name>
+        <param>
+          <type>FlowStream</type>
+        </param>
+        <param>
+          <type>HydrologyPathsToGraph</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="tests/src/test_flow_stream.cpp" line="213" column="1" bodyfile="tests/src/test_flow_stream.cpp" bodystart="213" bodyend="237"/>
+      </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
@@ -353,6 +372,32 @@
 <codeline lineno="209"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(truncated[1].<ref refid="kd__tree_8cpp_1a1f4ec255d3d8677a6cd9d6a9a6eb653b" kindref="member">x</ref>,<sp/>0.5f,<sp/>1e-4f);</highlight></codeline>
 <codeline lineno="210"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(truncated[1].<ref refid="kd__tree_8cpp_1ad6f02b2c4d57d479201316e67c3103d3" kindref="member">y</ref>,<sp/>0.5f,<sp/>1e-4f);</highlight></codeline>
 <codeline lineno="211"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"></highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><ref refid="test__flow__stream_8cpp_1afbd4cfcd9a4ad587be7003f17852132d" kindref="member">TEST</ref>(FlowStream,<sp/>HydrologyPathsToGraph)</highlight></codeline>
+<codeline lineno="214"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>two<sp/>intersecting<sp/>streams</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>stream1({<ref refid="classhmap_1_1Point" kindref="compound">hmap::Point</ref>(0.1f,<sp/>0.5f,<sp/>1.0f),</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhmap_1_1Point" kindref="compound">hmap::Point</ref>(0.5f,<sp/>0.5f,<sp/>0.5f),</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classhmap_1_1Point" kindref="compound">hmap::Point</ref>(0.9f,<sp/>0.5f,<sp/>0.1f)});</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>stream<sp/>2<sp/>joins<sp/>stream<sp/>1<sp/>at<sp/>(0.5,<sp/>0.5)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Path" kindref="compound">hmap::Path</ref><sp/>stream2(</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{<ref refid="classhmap_1_1Point" kindref="compound">hmap::Point</ref>(0.5f,<sp/>0.9f,<sp/>0.8f),<sp/><ref refid="classhmap_1_1Point" kindref="compound">hmap::Point</ref>(0.5f,<sp/>0.5f,<sp/>0.5f)});</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Graph" kindref="compound">hmap::Graph</ref><sp/>g<sp/>=<sp/><ref refid="namespacehmap_1a0cb5cc8e5f2cb010a50bda6c17dfb12d" kindref="member">hmap::hydrology_paths_to_graph</ref>({stream1,<sp/>stream2},<sp/>1e-3f);</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>4<sp/>unique<sp/>vertices:<sp/>(0.1,<sp/>0.5),<sp/>(0.5,<sp/>0.5),<sp/>(0.9,<sp/>0.5),<sp/>(0.5,<sp/>0.9)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/>EXPECT_EQ(g.size(),<sp/>4u);</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/>EXPECT_EQ(g.num_edges(),<sp/>3u);</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>compute<sp/>Strahler<sp/>order<sp/>on<sp/>the<sp/>resulting<sp/>graph</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/>std::vector&lt;int&gt;<sp/>orders<sp/>=<sp/>g.compute_strahler_order();</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/>ASSERT_EQ(orders.size(),<sp/>4u);</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"></highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>outlet<sp/>has<sp/>minimum<sp/>elevation<sp/>(0.1)<sp/>and<sp/>should<sp/>receive<sp/>the<sp/>combined<sp/>flow</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>max_order<sp/>=<sp/>*std::max_element(orders.begin(),<sp/>orders.end());</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/>EXPECT_EQ(max_order,<sp/>2);</highlight></codeline>
+<codeline lineno="237"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="tests/src/test_flow_stream.cpp"/>
   </compounddef>

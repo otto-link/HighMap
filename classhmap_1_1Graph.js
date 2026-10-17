@@ -9,6 +9,8 @@ var classhmap_1_1Graph =
     [ "add_edge", "classhmap_1_1Graph.html#a26f1ed2af21da89bd7ed3d999bcb48b2", null ],
     [ "add_edge", "classhmap_1_1Graph.html#afe8d4e58ca035b43ed891556dd7cdd2c", null ],
     [ "clear_edges", "classhmap_1_1Graph.html#ad191d0d38350b42a95a9ecb58652ffd9", null ],
+    [ "compute_distance_to_outlet", "classhmap_1_1Graph.html#a54a9c0555a9d6056771ec940cbea37cd", null ],
+    [ "compute_strahler_order", "classhmap_1_1Graph.html#acd7202cfee0df9d971c0420542a94beb", null ],
     [ "degree", "classhmap_1_1Graph.html#aa47c8285e9c489fe7794d60eb19a3c7c", null ],
     [ "dijkstra", "classhmap_1_1Graph.html#aec94f282ad2c0633edaf14ee782ff3a7", null ],
     [ "empty_edges", "classhmap_1_1Graph.html#a452a1e8102c63bbb4988d9d4c2690287", null ],

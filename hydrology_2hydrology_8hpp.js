@@ -30,6 +30,7 @@ var hydrology_2hydrology_8hpp =
     [ "flow_stream", "hydrology_2hydrology_8hpp.html#a73c8de9d1feb25ccd5400352662c19dc", null ],
     [ "flow_stream", "hydrology_2hydrology_8hpp.html#a8ec1a8c4669cf56b6f9213102e719d3f", null ],
     [ "generate_riverbed", "hydrology_2hydrology_8hpp.html#a30d55fae5c75a1c45a005a3f9a9467eb", null ],
+    [ "hydrology_paths_to_graph", "hydrology_2hydrology_8hpp.html#a0cb5cc8e5f2cb010a50bda6c17dfb12d", null ],
     [ "merge_water_depths", "hydrology_2hydrology_8hpp.html#a64fbc0261e13ea842762efd3ac6bcc53", null ],
     [ "snow_melting_map", "hydrology_2hydrology_8hpp.html#a78419f7981186b40c4a2d04456e4e63f", null ],
     [ "water_depth_from_mask", "hydrology_2hydrology_8hpp.html#a3a5454dd7547ce6b9d995be17a2ac410", null ],

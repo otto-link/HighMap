@@ -98,6 +98,44 @@
         </inbodydescription>
         <location file="tests/src/test_graph.cpp" line="124" column="1" bodyfile="tests/src/test_graph.cpp" bodystart="124" bodyend="145"/>
       </memberdef>
+      <memberdef kind="function" id="test__graph_8cpp_1ab0f9281bd865e5bc60a6115d4971a80e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TEST</definition>
+        <argsstring>(GraphTest, DistanceToOutlet)</argsstring>
+        <name>TEST</name>
+        <param>
+          <type>GraphTest</type>
+        </param>
+        <param>
+          <type>DistanceToOutlet</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="tests/src/test_graph.cpp" line="147" column="1" bodyfile="tests/src/test_graph.cpp" bodystart="147" bodyend="177"/>
+      </memberdef>
+      <memberdef kind="function" id="test__graph_8cpp_1ac5ed5bb5b69420f7dad47a80903142bd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TEST</definition>
+        <argsstring>(GraphTest, StrahlerOrder)</argsstring>
+        <name>TEST</name>
+        <param>
+          <type>GraphTest</type>
+        </param>
+        <param>
+          <type>StrahlerOrder</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="tests/src/test_graph.cpp" line="179" column="1" bodyfile="tests/src/test_graph.cpp" bodystart="179" bodyend="202"/>
+      </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
@@ -249,6 +287,63 @@
 <codeline lineno="143"><highlight class="normal"><sp/><sp/>EXPECT_FLOAT_EQ(y_pairs[1],<sp/>4.f);</highlight></codeline>
 <codeline lineno="144"><highlight class="normal"><sp/><sp/>EXPECT_FLOAT_EQ(lengths[0],<sp/>5.f);</highlight></codeline>
 <codeline lineno="145"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><ref refid="test__graph_8cpp_1ac20850ac7ca37af017fd4133bb14b8d0" kindref="member">TEST</ref>(GraphTest,<sp/>DistanceToOutlet)</highlight></codeline>
+<codeline lineno="148"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Y-junction:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Node<sp/>0<sp/>(headwater<sp/>1,<sp/>elev<sp/>1.0)<sp/>-&gt;<sp/>Node<sp/>2<sp/>(junction,<sp/>elev<sp/>0.5)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Node<sp/>1<sp/>(headwater<sp/>2,<sp/>elev<sp/>1.0)<sp/>-&gt;<sp/>Node<sp/>2<sp/>(junction,<sp/>elev<sp/>0.5)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Node<sp/>2<sp/>(junction,<sp/>elev<sp/>0.5)<sp/><sp/><sp/><sp/>-&gt;<sp/>Node<sp/>3<sp/>(outlet,<sp/>elev<sp/>0.0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref><sp/>g;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Cloud_1ac9ab31444357a0a0c3922b4d16ccef7f" kindref="member">push_back</ref>(<ref refid="classhmap_1_1Point" kindref="compound">Point</ref>(0.5f,<sp/>0.9f,<sp/>1.0f));<sp/></highlight><highlight class="comment">//<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Cloud_1ac9ab31444357a0a0c3922b4d16ccef7f" kindref="member">push_back</ref>(<ref refid="classhmap_1_1Point" kindref="compound">Point</ref>(0.9f,<sp/>0.5f,<sp/>1.0f));<sp/></highlight><highlight class="comment">//<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Cloud_1ac9ab31444357a0a0c3922b4d16ccef7f" kindref="member">push_back</ref>(<ref refid="classhmap_1_1Point" kindref="compound">Point</ref>(0.5f,<sp/>0.5f,<sp/>0.5f));<sp/></highlight><highlight class="comment">//<sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Cloud_1ac9ab31444357a0a0c3922b4d16ccef7f" kindref="member">push_back</ref>(<ref refid="classhmap_1_1Point" kindref="compound">Point</ref>(0.5f,<sp/>0.1f,<sp/>0.0f));<sp/></highlight><highlight class="comment">//<sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Graph_1a85e17398e3cd9215ef189f8bbc03f73f" kindref="member">add_edge</ref>(0,<sp/>2);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Graph_1a85e17398e3cd9215ef189f8bbc03f73f" kindref="member">add_edge</ref>(1,<sp/>2);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Graph_1a85e17398e3cd9215ef189f8bbc03f73f" kindref="member">add_edge</ref>(2,<sp/>3);</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/>std::vector&lt;float&gt;<sp/>dist<sp/>=<sp/>g.<ref refid="classhmap_1_1Graph_1a54a9c0555a9d6056771ec940cbea37cd" kindref="member">compute_distance_to_outlet</ref>();</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/>ASSERT_EQ(dist.size(),<sp/>4u);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>outlet<sp/>has<sp/>distance<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/>EXPECT_FLOAT_EQ(dist[3],<sp/>0.0f);</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>node<sp/>2<sp/>is<sp/>0.4<sp/>from<sp/>outlet</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(dist[2],<sp/>0.4f,<sp/>1e-5f);</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>node<sp/>0<sp/>is<sp/>0.4<sp/>from<sp/>node<sp/>2,<sp/>so<sp/>0.8<sp/>from<sp/>outlet</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(dist[0],<sp/>0.8f,<sp/>1e-5f);</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>node<sp/>1<sp/>is<sp/>0.4<sp/>from<sp/>node<sp/>2,<sp/>so<sp/>0.8<sp/>from<sp/>outlet</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/>EXPECT_NEAR(dist[1],<sp/>0.8f,<sp/>1e-5f);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><ref refid="test__graph_8cpp_1ac20850ac7ca37af017fd4133bb14b8d0" kindref="member">TEST</ref>(GraphTest,<sp/>StrahlerOrder)</highlight></codeline>
+<codeline lineno="180"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Y-junction:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Node<sp/>0<sp/>(headwater<sp/>1,<sp/>elev<sp/>1.0)<sp/>-&gt;<sp/>Node<sp/>2<sp/>(junction,<sp/>elev<sp/>0.5)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Node<sp/>1<sp/>(headwater<sp/>2,<sp/>elev<sp/>1.0)<sp/>-&gt;<sp/>Node<sp/>2<sp/>(junction,<sp/>elev<sp/>0.5)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Node<sp/>2<sp/>(junction,<sp/>elev<sp/>0.5)<sp/><sp/><sp/><sp/>-&gt;<sp/>Node<sp/>3<sp/>(outlet,<sp/>elev<sp/>0.0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref><sp/>g;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Cloud_1ac9ab31444357a0a0c3922b4d16ccef7f" kindref="member">push_back</ref>(<ref refid="classhmap_1_1Point" kindref="compound">Point</ref>(0.0f,<sp/>1.0f,<sp/>1.0f));<sp/></highlight><highlight class="comment">//<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Cloud_1ac9ab31444357a0a0c3922b4d16ccef7f" kindref="member">push_back</ref>(<ref refid="classhmap_1_1Point" kindref="compound">Point</ref>(1.0f,<sp/>1.0f,<sp/>1.0f));<sp/></highlight><highlight class="comment">//<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Cloud_1ac9ab31444357a0a0c3922b4d16ccef7f" kindref="member">push_back</ref>(<ref refid="classhmap_1_1Point" kindref="compound">Point</ref>(0.5f,<sp/>0.5f,<sp/>0.5f));<sp/></highlight><highlight class="comment">//<sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Cloud_1ac9ab31444357a0a0c3922b4d16ccef7f" kindref="member">push_back</ref>(<ref refid="classhmap_1_1Point" kindref="compound">Point</ref>(0.5f,<sp/>0.0f,<sp/>0.0f));<sp/></highlight><highlight class="comment">//<sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Graph_1a85e17398e3cd9215ef189f8bbc03f73f" kindref="member">add_edge</ref>(0,<sp/>2);</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Graph_1a85e17398e3cd9215ef189f8bbc03f73f" kindref="member">add_edge</ref>(1,<sp/>2);</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/>g.<ref refid="classhmap_1_1Graph_1a85e17398e3cd9215ef189f8bbc03f73f" kindref="member">add_edge</ref>(2,<sp/>3);</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/>std::vector&lt;int&gt;<sp/>strahler<sp/>=<sp/>g.<ref refid="classhmap_1_1Graph_1acd7202cfee0df9d971c0420542a94beb" kindref="member">compute_strahler_order</ref>();</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/>ASSERT_EQ(strahler.size(),<sp/>4u);</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/>EXPECT_EQ(strahler[0],<sp/>1);</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/>EXPECT_EQ(strahler[1],<sp/>1);</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/>EXPECT_EQ(strahler[2],<sp/>2);<sp/></highlight><highlight class="comment">//<sp/>1<sp/>+<sp/>1<sp/>confluent<sp/>-&gt;<sp/>order<sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/>EXPECT_EQ(strahler[3],<sp/>2);<sp/></highlight><highlight class="comment">//<sp/>single<sp/>order<sp/>2<sp/>branch<sp/>entering<sp/>-&gt;<sp/>order<sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="tests/src/test_graph.cpp"/>
   </compounddef>

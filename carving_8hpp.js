@@ -11,5 +11,6 @@ var carving_8hpp =
     [ "dig_river", "carving_8hpp.html#ada12e6cab4577326964d00fac3aa1077", null ],
     [ "flatbed_carve", "carving_8hpp.html#a5f979c31af1c9ee6ad499882335ca6fb", null ],
     [ "trench", "carving_8hpp.html#a2d7b71e9231efc67e4bae209bd7fa84a", null ],
-    [ "trench", "carving_8hpp.html#ae10d017da6e13ba9d619298709e64917", null ]
+    [ "trench", "carving_8hpp.html#ae10d017da6e13ba9d619298709e64917", null ],
+    [ "trench", "carving_8hpp.html#a731047666a064859cbdc311b482e8f4d", null ]
 ];

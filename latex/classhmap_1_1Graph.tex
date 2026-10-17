@@ -50,6 +50,10 @@ void \mbox{\hyperlink{classhmap_1_1Graph_afe8d4e58ca035b43ed891556dd7cdd2c}{add\
 \begin{DoxyCompactList}\small\item\em Add an edge with default geometric distance weight. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classhmap_1_1Graph_ad191d0d38350b42a95a9ecb58652ffd9}{clear\+\_\+edges}} () noexcept
 \begin{DoxyCompactList}\small\item\em Clear all edges from the graph. \end{DoxyCompactList}\item 
+std\+::vector$<$ float $>$ \mbox{\hyperlink{classhmap_1_1Graph_a54a9c0555a9d6056771ec940cbea37cd}{compute\+\_\+distance\+\_\+to\+\_\+outlet}} () const
+\begin{DoxyCompactList}\small\item\em Compute the distance to the downstream outlet for each node in the graph. \end{DoxyCompactList}\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{classhmap_1_1Graph_acd7202cfee0df9d971c0420542a94beb}{compute\+\_\+strahler\+\_\+order}} () const
+\begin{DoxyCompactList}\small\item\em Compute the Strahler stream order for each node in the graph. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classhmap_1_1Graph_aa47c8285e9c489fe7794d60eb19a3c7c}{degree}} (int u) const
 \begin{DoxyCompactList}\small\item\em Get the degree (number of incident edges) of node {\ttfamily u}. \end{DoxyCompactList}\item 
 std\+::vector$<$ int $>$ \mbox{\hyperlink{classhmap_1_1Graph_aec94f282ad2c0633edaf14ee782ff3a7}{dijkstra}} (int source\+\_\+point\+\_\+index, int target\+\_\+point\+\_\+index) const
@@ -413,6 +417,36 @@ Add an edge with default geometric distance weight.
 
 Clear all edges from the graph. 
 
+\Hypertarget{classhmap_1_1Graph_a54a9c0555a9d6056771ec940cbea37cd}\label{classhmap_1_1Graph_a54a9c0555a9d6056771ec940cbea37cd} 
+\index{hmap::Graph@{hmap::Graph}!compute\_distance\_to\_outlet@{compute\_distance\_to\_outlet}}
+\index{compute\_distance\_to\_outlet@{compute\_distance\_to\_outlet}!hmap::Graph@{hmap::Graph}}
+\doxysubsubsection{\texorpdfstring{compute\_distance\_to\_outlet()}{compute\_distance\_to\_outlet()}}
+{\footnotesize\ttfamily std\+::vector$<$ float $>$ hmap\+::\+Graph\+::compute\+\_\+distance\+\_\+to\+\_\+outlet (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Compute the distance to the downstream outlet for each node in the graph. 
+
+Flow direction is inferred from node elevation values (stored in {\ttfamily v}), directing flow from higher to lower elevation. Outlets (sinks / terminal nodes) have distance 0.
+
+\begin{DoxyReturn}{Returns}
+Vector containing the downstream distance to outlet for each node. 
+\end{DoxyReturn}
+\Hypertarget{classhmap_1_1Graph_acd7202cfee0df9d971c0420542a94beb}\label{classhmap_1_1Graph_acd7202cfee0df9d971c0420542a94beb} 
+\index{hmap::Graph@{hmap::Graph}!compute\_strahler\_order@{compute\_strahler\_order}}
+\index{compute\_strahler\_order@{compute\_strahler\_order}!hmap::Graph@{hmap::Graph}}
+\doxysubsubsection{\texorpdfstring{compute\_strahler\_order()}{compute\_strahler\_order()}}
+{\footnotesize\ttfamily std\+::vector$<$ int $>$ hmap\+::\+Graph\+::compute\+\_\+strahler\+\_\+order (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Compute the Strahler stream order for each node in the graph. 
+
+Flow direction is inferred from node elevation values (stored in {\ttfamily v}), directing flow from higher to lower elevation. Headwater leaves start with order 1 and orders increase at confluent junctions.
+
+\begin{DoxyReturn}{Returns}
+Vector containing the Strahler order for each node index. 
+\end{DoxyReturn}
 \Hypertarget{classhmap_1_1Graph_aa47c8285e9c489fe7794d60eb19a3c7c}\label{classhmap_1_1Graph_aa47c8285e9c489fe7794d60eb19a3c7c} 
 \index{hmap::Graph@{hmap::Graph}!degree@{degree}}
 \index{degree@{degree}!hmap::Graph@{hmap::Graph}}
