@@ -8,28 +8,31 @@ int main(void)
   int       seed = 1;
 
   // base terrain with Perlin noise
-  hmap::Array z = 0.2f *
-                  hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, kw, seed);
-  z = hmap::bulkify(z, hmap::PrimitiveType::PRIM_SMOOTH_COSINE, 1.f);
+  hmap::Array z = hmap::noise_fbm(hmap::NoiseType::PERLIN, shape, kw, seed);
+  // z = hmap::bulkify(z, hmap::PrimitiveType::PRIM_SMOOTH_COSINE, 1.f);
+
+  z += hmap::circus(shape);
 
   hmap::remap(z);
 
   // generate triangular terrain mesh from heightmap
-  float                max_error = 1e-2f;
-  hmap::TerrainTriMesh mesh = hmap::generate_terrain_tri_mesh_from_heightmap(
-      z,
-      max_error);
+  hmap::TerrainTriMesh mesh =
+      hmap::generate_terrain_tri_mesh_from_heightmap_random(z, 2 * 4096, seed);
 
   // multiple starting points across the slopes of the valley head
   std::vector<glm::vec2> start_points = {
-      {100.f / float(shape.x - 1), 200.f / float(shape.y - 1)},
-      {155.f / float(shape.x - 1), 210.f / float(shape.y - 1)},
-      {100.f / float(shape.x - 1), 80.f / float(shape.y - 1)},
-      {80.f / float(shape.x - 1), 100.f / float(shape.y - 1)},
-      {70.f / float(shape.x - 1), 124.f / float(shape.y - 1)},
-      {70.f / float(shape.x - 1), 150.f / float(shape.y - 1)},
-      {60.f / float(shape.x - 1), 170.f / float(shape.y - 1)},
-      {175.f / float(shape.x - 1), 160.f / float(shape.y - 1)}};
+      {0.39f, 0.78f},
+      {0.39f, 0.31f},
+      {0.31f, 0.39f},
+      {0.35f, 0.43f},
+      {0.27f, 0.49f},
+      {0.27f, 0.59f},
+      {0.24f, 0.67f},
+      {0.69f, 0.63f},
+      {0.61f, 0.82f},
+      {0.40f, 0.45f},
+      {0.50f, 0.70f},
+  };
 
   std::vector<hmap::Path> streams;
 
@@ -52,6 +55,9 @@ int main(void)
   // convert merged streams into a connected Graph
   hmap::Graph stream_graph = hmap::hydrology_paths_to_graph(streams, 1e-3f);
 
+  // enforce strict monotonic downflow along all stream branches
+  stream_graph.enforce_downhill_elevation(0.01f);
+
   // visualize graph on an empty grid
   glm::vec4   bbox(0.f, 1.f, 0.f, 1.f);
   hmap::Array z_graph(shape, 0.f);
@@ -59,21 +65,33 @@ int main(void)
 
   // carve consistent river network with trench evolving width downstream
   hmap::Array z_trenched = z;
-  float       base_width = 0.02f;
+  float       base_width = 0.05f;
   float       width_exponent = 1.f;
+
+  std::vector<float> rel_widths = stream_graph.compute_relative_widths(
+      width_exponent);
 
   hmap::trench(z_trenched,
                stream_graph,
+               rel_widths,
                base_width,
-               width_exponent,
-               /* enable_width_depth_scaling */ true,
+               /* enable_width_depth_scaling */ false,
                hmap::RadialProfile::RP_SMOOTHSTEP_UPPER,
                2.f,
                hmap::ElevationLongitudinalProfile::ELP_DECREASING,
-               -0.05f);
+               -0.1f);
+
+  hmap::Array zc(shape);
+
+  for (int j = 0; j < shape.y - 1; ++j)
+    for (int i = 0; i < shape.x - 1; ++i)
+    {
+      float zg = z_graph(i, j);
+      zc(i, j) = zg > 0.f ? zg - 0.05f : z(i, j);
+    }
 
   hmap::export_banner_png("ex_flow_stream.png",
-                          {z, z_graph, z_trenched},
+                          {z, z_graph, z_trenched, zc},
                           hmap::Cmap::JET,
                           true);
 }

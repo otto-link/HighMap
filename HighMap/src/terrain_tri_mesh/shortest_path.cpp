@@ -75,7 +75,8 @@ TerrainTriMesh::ShortestPathResult TerrainTriMesh::compute_shortest_paths(
       case MeshPathCostConfig::Metric::SYMMETRIC_Z:
       {
         float dz = points[v].z - points[nb_idx].z;
-        edge_cost = std::abs(dz) + config.elevation_weight * (points[v].z - min_z);
+        edge_cost = std::abs(dz) +
+                    config.elevation_weight * (points[v].z - min_z);
         break;
       }
 

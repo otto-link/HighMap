@@ -207,6 +207,102 @@ std::vector<float> Graph::compute_distance_to_outlet() const
   return dist;
 }
 
+std::vector<float> Graph::compute_relative_widths(float exponent) const
+{
+  const size_t       n = this->size();
+  std::vector<float> rel_widths(n, 0.f);
+
+  if (n == 0 || this->edge_list.empty()) return rel_widths;
+
+  // compute downstream distance to outlet for all nodes
+  std::vector<float> dist_to_outlet = this->compute_distance_to_outlet();
+
+  // extract directed downstream edges and identify root nodes (in_degree == 0)
+  std::vector<std::vector<int>> downstream_adj(n);
+  std::vector<int>              in_degree(n, 0);
+
+  for (const auto &edge : this->edge_list)
+  {
+    int u = edge.u;
+    int v = edge.v;
+
+    if (u < 0 || static_cast<size_t>(u) >= n || v < 0 ||
+        static_cast<size_t>(v) >= n || u == v)
+      continue;
+
+    float vu = this->points[u].v;
+    float vv = this->points[v].v;
+
+    int from = u;
+    int to = v;
+
+    if (vu < vv || (vu == vv && u > v))
+    {
+      from = v;
+      to = u;
+    }
+
+    downstream_adj[from].push_back(to);
+    in_degree[to]++;
+  }
+
+  // identify the outlet for each node and maximum distance to outlet per
+  // drainage tree
+  std::vector<int>   outlet_of(n, -1);
+  std::vector<float> max_tree_dist(n, 0.f);
+
+  for (size_t i = 0; i < n; ++i)
+  {
+    size_t curr = i;
+    while (!downstream_adj[curr].empty())
+    {
+      float  min_d = std::numeric_limits<float>::max();
+      size_t best_next = curr;
+
+      for (int nxt : downstream_adj[curr])
+      {
+        if (dist_to_outlet[nxt] < min_d)
+        {
+          min_d = dist_to_outlet[nxt];
+          best_next = static_cast<size_t>(nxt);
+        }
+      }
+
+      if (best_next == curr) break;
+      curr = best_next;
+    }
+
+    outlet_of[i] = static_cast<int>(curr);
+    max_tree_dist[curr] = std::max(max_tree_dist[curr], dist_to_outlet[i]);
+  }
+
+  // compute relative width ratio
+  for (size_t i = 0; i < n; ++i)
+  {
+    // headwater root nodes with no incoming flow start with zero width
+    if (in_degree[i] == 0)
+    {
+      rel_widths[i] = 0.f;
+      continue;
+    }
+
+    int   outlet = outlet_of[i];
+    float max_d = (outlet >= 0) ? max_tree_dist[outlet] : 0.f;
+
+    if (max_d > 1e-6f)
+    {
+      float norm = 1.f - (dist_to_outlet[i] / max_d);
+      rel_widths[i] = std::pow(std::clamp(norm, 0.f, 1.f), exponent);
+    }
+    else
+    {
+      rel_widths[i] = 1.f;
+    }
+  }
+
+  return rel_widths;
+}
+
 std::vector<int> Graph::compute_strahler_order() const
 {
   const size_t     n = this->size();
@@ -331,7 +427,96 @@ std::vector<int> Graph::compute_strahler_order() const
   return order;
 }
 
+void Graph::enforce_downhill_elevation(float min_slope)
+{
+  const size_t n = this->size();
+  if (n == 0 || this->edge_list.empty()) return;
+
+  // determine directed downstream edges from initial elevations
+  std::vector<std::vector<int>> downstream_neighbors(n);
+  std::vector<int>              in_degree(n, 0);
+
+  for (const auto &edge : this->edge_list)
+  {
+    int u = edge.u;
+    int v = edge.v;
+
+    if (u < 0 || static_cast<size_t>(u) >= n || v < 0 ||
+        static_cast<size_t>(v) >= n || u == v)
+      continue;
+
+    float vu = this->points[u].v;
+    float vv = this->points[v].v;
+
+    int from = u;
+    int to = v;
+
+    if (vu < vv || (vu == vv && u > v))
+    {
+      from = v;
+      to = u;
+    }
+
+    downstream_neighbors[from].push_back(to);
+    in_degree[to]++;
+  }
+
+  // Kahn's algorithm: topological sort from upstream headwaters to downstream
+  // outlets
+  std::queue<int>  q;
+  std::vector<int> in_deg_remaining = in_degree;
+
+  for (size_t i = 0; i < n; ++i)
+  {
+    if (in_deg_remaining[i] == 0) q.push(static_cast<int>(i));
+  }
+
+  std::vector<int> topo_order;
+  topo_order.reserve(n);
+
+  while (!q.empty())
+  {
+    int u = q.front();
+    q.pop();
+    topo_order.push_back(u);
+
+    for (int v : downstream_neighbors[u])
+    {
+      in_deg_remaining[v]--;
+      if (in_deg_remaining[v] == 0) q.push(v);
+    }
+  }
+
+  // if any cycle existed, append remaining nodes
+  if (topo_order.size() < n)
+  {
+    std::vector<bool> visited(n, false);
+    for (int u : topo_order)
+      visited[u] = true;
+
+    for (size_t i = 0; i < n; ++i)
+      if (!visited[i]) topo_order.push_back(static_cast<int>(i));
+  }
+
+  // propagate downstream elevations in topological order
+  for (int u : topo_order)
+  {
+    float zu = this->points[u].v;
+
+    for (int v : downstream_neighbors[u])
+    {
+      float edge_len = glm::distance(
+          glm::vec2(this->points[u].x, this->points[u].y),
+          glm::vec2(this->points[v].x, this->points[v].y));
+      float dz_min = min_slope * edge_len;
+
+      this->points[v].v = std::min(this->points[v].v, zu - dz_min);
+    }
+  }
+}
+
 size_t Graph::degree(int u) const
+
 {
   if (u < 0 || static_cast<size_t>(u) >= this->adj_list.size()) return 0;
   return this->adj_list[u].size();

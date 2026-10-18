@@ -218,23 +218,59 @@ void trench(Array                   &z,
 
 /**
  * @brief Carves river channels for an entire flow network represented by a
- * Graph.
+ * Graph with per-node relative widths.
  *
- * Each channel segment evolves its width downstream according to its distance
- * to the outlet in each drainage tree, scaling smoothly from 0 at the upstream
- * roots up to @p width at the outlet:
+ * Each node in the graph provides a relative width ratio in [0, 1] (scaled by
+ * @p width to obtain the node's channel width). Along each edge between node
+ * `u` and node `v`, width is linearly interpolated as a function of the
+ * projection parameter `t`:
  *
- * `w = width * (1 - d_outlet / max_d_outlet)^width_exponent`
- *
- * When @p enable_width_distance_scaling is enabled, width also interpolates
- * continuously along each edge between its upstream and downstream node widths.
+ * `w(t) = width * ((1 - t) * r_u + t * r_v)`
  *
  * @param[in,out] z                          Target heightmap to carve in-place.
  * @param[in]     graph                      Input flow network Graph.
- * @param[in]     width                      Target river width at the
- *                                           outlet(s).
+ * @param[in]     relative_widths            Relative width ratio in [0, 1] per
+ *                                           graph node.
+ * @param[in]     width                      Maximum base width.
+ * @param[in]     enable_width_depth_scaling Modulate width according to depth.
+ * @param[in]     radial_profile             Transverse cross-section profile.
+ * @param[in]     radial_profile_parameter   Shaping parameter for radial
+ *                                           profile.
+ * @param[in]     longitudinal_profile       Downhill elevation monotonicity
+ *                                           mode.
+ * @param[in]     elevation_shift            Depth of trench incision.
+ * @param[in]     min_slope                  Minimum downstream slope.
+ * @param[in]     p_noise_r                  Optional noise array for radial
+ *                                           perturbation.
+ * @param[out]    p_bending_mask             Optional blending mask.
+ * @param[in]     tile_size                  Spatial tile partition size.
+ * @param[in]     bbox                       Domain bounding box.
+ */
+void trench(Array                       &z,
+            const Graph                 &graph,
+            const std::vector<float>    &relative_widths,
+            float                        width,
+            bool                         enable_width_depth_scaling = true,
+            RadialProfile radial_profile = RadialProfile::RP_SMOOTHSTEP_UPPER,
+            float         radial_profile_parameter = 2.f,
+            ElevationLongitudinalProfile longitudinal_profile =
+                ElevationLongitudinalProfile::ELP_DECREASING,
+            float        elevation_shift = -0.05f,
+            float        min_slope = 0.001f,
+            const Array *p_noise_r = nullptr,
+            Array       *p_bending_mask = nullptr,
+            int          tile_size = 32,
+            glm::vec4    bbox = {0.f, 1.f, 0.f, 1.f});
+
+/**
+ * @brief Carves river channels for an entire flow network represented by a
+ * Graph, computing relative widths from distance to outlet.
+ *
+ * @param[in,out] z                          Target heightmap to carve in-place.
+ * @param[in]     graph                      Input flow network Graph.
+ * @param[in]     width                      Target river width at the outlet(s).
  * @param[in]     width_exponent             Scaling exponent for width with
- *                                           distance to outlet (default: 0.5).
+ *                                           distance to outlet (default: 1.0).
  * @param[in]     enable_width_depth_scaling Modulate width according to depth.
  * @param[in]     radial_profile             Transverse cross-section profile.
  * @param[in]     radial_profile_parameter   Shaping parameter for radial
@@ -252,7 +288,7 @@ void trench(Array                   &z,
 void trench(Array        &z,
             const Graph  &graph,
             float         width,
-            float         width_exponent = 0.5f,
+            float         width_exponent = 1.0f,
             bool          enable_width_depth_scaling = true,
             RadialProfile radial_profile = RadialProfile::RP_SMOOTHSTEP_UPPER,
             float         radial_profile_parameter = 2.f,
