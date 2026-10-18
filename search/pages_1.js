@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['c_0',['HighMap library (C++)',['../index.html',1,'']]]
+  ['bibliography_0',['Bibliography',['../citelist.html',1,'']]]
 ];

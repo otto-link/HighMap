@@ -1,0 +1,75 @@
+\chapter{Architecture Overview}
+\hypertarget{md_docs_2content_2dev_2architecture}{}\label{md_docs_2content_2dev_2architecture}\index{Architecture Overview@{Architecture Overview}}
+\label{md_docs_2content_2dev_2architecture_autotoc_md1}%
+\Hypertarget{md_docs_2content_2dev_2architecture_autotoc_md1}%
+ This document describes the architectural layout of the High\+Map codebase, its module hierarchy, and core design principles.\hypertarget{md_docs_2content_2dev_2architecture_autotoc_md2}{}\doxysection{\texorpdfstring{1. Module Hierarchy}{1. Module Hierarchy}}\label{md_docs_2content_2dev_2architecture_autotoc_md2}
+The codebase is organized into layered modules with unidirectional dependencies. Higher layers depend on foundational storage and mathematical abstractions, while core containers remain independent of domain-\/specific algorithms.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Asset\ \&\ Scene\ Export\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ \ (export/,\ image,\ scene,\ mesh\ generators,\ 3D\ file\ formats)\ \ \ \ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Domain\ Applications\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ \ (erosion/,\ hydrology/,\ flora/,\ rocks/,\ carving,\ roads)\ \ \ \ \ \ \ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Array\ Processing\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ \ (filters,\ transform,\ morphology,\ blending,\ synthesis)\ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Core\ Data\ Structures\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ \ (Array,\ HeightMap,\ VirtualArray,\ Point,\ Cloud,\ Path,\ Graph)\ \ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+\DoxyCodeLine{|\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Foundational\ Math\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}
+\DoxyCodeLine{|\ \ (algebra,\ functions,\ random,\ geometry,\ coordinate\ frames)\ \ \ \ |}
+\DoxyCodeLine{+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2content_2dev_2architecture_autotoc_md3}{}\doxysection{\texorpdfstring{2. Layers}{2. Layers}}\label{md_docs_2content_2dev_2architecture_autotoc_md3}
+\hypertarget{md_docs_2content_2dev_2architecture_autotoc_md4}{}\doxysubsection{\texorpdfstring{Foundational Math}{Foundational Math}}\label{md_docs_2content_2dev_2architecture_autotoc_md4}
+Provides mathematical primitives and analytical functions\+:
+\begin{DoxyItemize}
+\item Vector and matrix types (using GLM).
+\item Coordinate systems and transformation frames ({\ttfamily \doxylink{coord__frame_8hpp}{coord\+\_\+frame.\+hpp}}).
+\item Bivariate continuous functions ({\ttfamily functions.\+hpp}, {\ttfamily \doxylink{algebra_8hpp}{algebra.\+hpp}}).
+\item Deterministic random sampling and noise kernels ({\ttfamily random.\+hpp}, {\ttfamily \doxylink{kernels_8hpp}{kernels.\+hpp}}).
+\end{DoxyItemize}\hypertarget{md_docs_2content_2dev_2architecture_autotoc_md5}{}\doxysubsection{\texorpdfstring{Core Data Structures}{Core Data Structures}}\label{md_docs_2content_2dev_2architecture_autotoc_md5}
+Defines data containers without coupling to specific simulation or processing logic\+:
+\begin{DoxyItemize}
+\item {\ttfamily Array}\+: 2D contiguous row-\/major floating-\/point buffer.
+\item {\ttfamily Height\+Map}\+: Tiled multi-\/buffer representation for concurrent block computation.
+\item {\ttfamily Virtual\+Array}\+: Out-\/of-\/core tiled raster supporting memory-\/mapped disk storage and distributed tile processing with halo exchange.
+\item Geometric primitives\+: {\ttfamily Point}, {\ttfamily Edge}, {\ttfamily Cloud}, {\ttfamily Path}, {\ttfamily Graph}.
+\item Entity scattering container\+: {\ttfamily Scatter\+Field} and {\ttfamily Scatter\+Item}.
+\end{DoxyItemize}\hypertarget{md_docs_2content_2dev_2architecture_autotoc_md6}{}\doxysubsection{\texorpdfstring{Array Processing}{Array Processing}}\label{md_docs_2content_2dev_2architecture_autotoc_md6}
+Implements functional and in-\/place transformations operating on raster data\+:
+\begin{DoxyItemize}
+\item {\ttfamily \doxylink{filters_8hpp}{filters.\+hpp}}\+: Spatial convolution, bilateral filtering, domain transformations.
+\item {\ttfamily \doxylink{morphology_8hpp}{morphology.\+hpp}}\+: Dilation, erosion, opening, closing, distance transforms.
+\item {\ttfamily \doxylink{synthesis_8hpp}{synthesis.\+hpp}} \& {\ttfamily \doxylink{blending_8hpp}{blending.\+hpp}}\+: Procedural surface construction, layer combination operators.
+\item {\ttfamily \doxylink{transform_8hpp}{transform.\+hpp}}\+: Resampling, rotations, cropping, coordinate remapping.
+\end{DoxyItemize}\hypertarget{md_docs_2content_2dev_2architecture_autotoc_md7}{}\doxysubsection{\texorpdfstring{Domain Simulations}{Domain Simulations}}\label{md_docs_2content_2dev_2architecture_autotoc_md7}
+Encapsulates specialized physical, biological, and geomorphological models\+:
+\begin{DoxyItemize}
+\item {\ttfamily erosion/}\+: Hydraulic erosion, sediment transport, and thermal talus diffusion.
+\item {\ttfamily hydrology/}\+: Watershed segmentation, depression filling, flow accumulation, and river graph routing.
+\item {\ttfamily flora/}\+: Botanical descriptors ({\ttfamily Species}), multi-\/species competition, canopy dynamics ({\ttfamily Forest}).
+\item {\ttfamily rocks/}\+: Geomorphological rock distributions, talus sorting, and Pareto power-\/law radius sampling ({\ttfamily Rock\+Field}).
+\item {\ttfamily \doxylink{carving_8hpp}{carving.\+hpp}} \& {\ttfamily \doxylink{roads_8hpp}{roads.\+hpp}}\+: Terrain cutting, path-\/guided grading, and slope alignment.
+\end{DoxyItemize}\hypertarget{md_docs_2content_2dev_2architecture_autotoc_md8}{}\doxysubsection{\texorpdfstring{Export \& I/O}{Export \& I/O}}\label{md_docs_2content_2dev_2architecture_autotoc_md8}
+Converts internal representations into exchange formats\+:
+\begin{DoxyItemize}
+\item Raster images\+: 8-\/bit, 16-\/bit, and 32-\/bit floating-\/point images via Open\+CV, Open\+EXR, and Big\+TIFF writers.
+\item 3D representations\+: Triangular meshes ({\ttfamily Terrain\+Tri\+Mesh}), heightfield point clouds, USD / gl\+TF scenes.
+\end{DoxyItemize}\hypertarget{md_docs_2content_2dev_2architecture_autotoc_md9}{}\doxysection{\texorpdfstring{3. Design Principles}{3. Design Principles}}\label{md_docs_2content_2dev_2architecture_autotoc_md9}
+\hypertarget{md_docs_2content_2dev_2architecture_autotoc_md10}{}\doxysubsection{\texorpdfstring{Contiguous Storage and Explicit Memory Control}{Contiguous Storage and Explicit Memory Control}}\label{md_docs_2content_2dev_2architecture_autotoc_md10}
+Core buffers ({\ttfamily Array}) rely on dense, contiguous allocations in row-\/major order. Iteration order throughout the codebase prioritizes cache coherence (\$y\$ outer loop, \$x\$ inner loop).\hypertarget{md_docs_2content_2dev_2architecture_autotoc_md11}{}\doxysubsection{\texorpdfstring{Separation of Storage and Algorithm}{Separation of Storage and Algorithm}}\label{md_docs_2content_2dev_2architecture_autotoc_md11}
+Algorithms accept references or views to data buffers rather than binding to specific container subclasses. For large terrains, algorithms execute through tiled abstractions ({\ttfamily Height\+Map} or {\ttfamily Virtual\+Array}) with explicit boundary halo policies.\hypertarget{md_docs_2content_2dev_2architecture_autotoc_md12}{}\doxysubsection{\texorpdfstring{Stateless Processing Functions}{Stateless Processing Functions}}\label{md_docs_2content_2dev_2architecture_autotoc_md12}
+Image processing, filtering, and synthesis algorithms are implemented primarily as free functions operating on inputs and producing outputs or modifying referenced buffers in-\/place, avoiding hidden state.\hypertarget{md_docs_2content_2dev_2architecture_autotoc_md13}{}\doxysubsection{\texorpdfstring{Deterministic Seeding}{Deterministic Seeding}}\label{md_docs_2content_2dev_2architecture_autotoc_md13}
+All stochastic procedures (noise generators, scattering passes, Monte Carlo simulations) accept explicit integer seeds to ensure reproducibility across runs.\hypertarget{md_docs_2content_2dev_2architecture_autotoc_md14}{}\doxysection{\texorpdfstring{4. Subsystem Deep Dives}{4. Subsystem Deep Dives}}\label{md_docs_2content_2dev_2architecture_autotoc_md14}
+Detailed architectural descriptions of specific subsystems\+:
+
+
+\begin{DoxyItemize}
+\item \doxysectlink{md_docs_2content_2dev_2scatter__field}{Scatter Architecture}{0}\+: Detailed specification of {\ttfamily Scatter\+Field}, the unified instance model, and specializations {\ttfamily Forest} and {\ttfamily Rock\+Field}. 
+\end{DoxyItemize}

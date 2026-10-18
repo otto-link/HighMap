@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="scatter__field_8md" kind="file" language="Markdown">
+    <compoundname>scatter_field.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>Scatter<sp/>Architecture:<sp/>ScatterField,<sp/>Forest,<sp/>and<sp/>RockField</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>document<sp/>details<sp/>the<sp/>uniform<sp/>scattering<sp/>architecture<sp/>in<sp/>HighMap,<sp/>describing<sp/>the<sp/>relationship<sp/>between<sp/>the<sp/>base<sp/>`ScatterField`<sp/>container<sp/>and<sp/>its<sp/>domain-specific<sp/>specializations:<sp/>`Forest`<sp/>and<sp/>`RockField`.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>1.<sp/>Class<sp/>and<sp/>Dependency<sp/>Diagram</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>architecture<sp/>decouples<sp/>lightweight<sp/>instance<sp/>storage<sp/>from<sp/>domain<sp/>descriptors<sp/>and<sp/>simulation<sp/>algorithms.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```mermaid</highlight></codeline>
+<codeline><highlight class="normal">classDiagram</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>direction<sp/>TB</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>class<sp/>ScatterItem<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+glm::vec3<sp/>position</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+uint32_t<sp/>class_id</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+float<sp/>radius</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>class<sp/>ScatterField<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#std::vector~ScatterItem~<sp/>items</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+size()<sp/>size_t</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+get_items()<sp/>vector~ScatterItem~</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+filter_by_class(class_id)<sp/>ScatterField</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+get_class_ids()<sp/>vector~uint32_t~</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+prune_collisions(min_distance_factor)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+densify(target_count,<sp/>seed)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+to_density_map(shape)<sp/>Array</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+set_elevation_from_terrain(terrain)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+to_heightmap(shape,<sp/>shape_type,<sp/>...)<sp/>Array</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>class<sp/>Tree<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;typedef<sp/>ScatterItem&gt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>class<sp/>Species<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+uint32_t<sp/>id</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+string<sp/>name</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+float<sp/>radius</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+float<sp/>weight</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+float<sp/>radius_min</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+float<sp/>radius_max</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+float<sp/>competition_factor</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>class<sp/>Forest<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+get_trees()<sp/>vector~Tree~</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+filter_by_species(species_id)<sp/>Forest</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>class<sp/>Rock<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;typedef<sp/>ScatterItem&gt;&gt;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>class<sp/>RockDistribution<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+uint32_t<sp/>class_id</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+string<sp/>name</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+float<sp/>radius_min</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+float<sp/>radius_max</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+float<sp/>power_law_alpha</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+float<sp/>embed_ratio</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>class<sp/>RockField<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+get_rocks()<sp/>vector~Rock~</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+filter_by_material(class_id)<sp/>RockField</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ScatterItem<sp/>&lt;|--<sp/>Tree<sp/>:<sp/>alias</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ScatterItem<sp/>&lt;|--<sp/>Rock<sp/>:<sp/>alias</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ScatterField<sp/>&quot;1&quot;<sp/>o--<sp/>&quot;*&quot;<sp/>ScatterItem<sp/>:<sp/>contains</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ScatterField<sp/>&lt;|--<sp/>Forest<sp/>:<sp/>inherits</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ScatterField<sp/>&lt;|--<sp/>RockField<sp/>:<sp/>inherits</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Forest<sp/>..&gt;<sp/>Species<sp/>:<sp/>configured<sp/>by</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>RockField<sp/>..&gt;<sp/>RockDistribution<sp/>:<sp/>configured<sp/>by</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>2.<sp/>Design<sp/>Principles</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Uniform<sp/>Instance<sp/>Representation</highlight></codeline>
+<codeline><highlight class="normal">All<sp/>discrete<sp/>spatial<sp/>entities<sp/>inherit<sp/>a<sp/>minimal<sp/>three-attribute<sp/>representation:</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`position`<sp/>(`glm::vec3`):<sp/>3D<sp/>spatial<sp/>coordinate<sp/>($x,<sp/>y$<sp/>ground<sp/>position<sp/>and<sp/>elevation<sp/>$z$).</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`class_id`<sp/>(`uint32_t`):<sp/>Integer<sp/>category<sp/>identifier<sp/>mapping<sp/>to<sp/>a<sp/>biological<sp/>species,<sp/>rock<sp/>material,<sp/>or<sp/>mesh<sp/>asset.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`radius`<sp/>(`float`):<sp/>Characteristic<sp/>collision<sp/>or<sp/>influence<sp/>radius.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">`Tree`<sp/>and<sp/>`Rock`<sp/>are<sp/>type<sp/>aliases<sp/>of<sp/>`ScatterItem`<sp/>(`using<sp/>Tree<sp/>=<sp/>ScatterItem;`,<sp/>`using<sp/>Rock<sp/>=<sp/>ScatterItem;`).</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Inheritance<sp/>and<sp/>Reuse</highlight></codeline>
+<codeline><highlight class="normal">`ScatterField`<sp/>provides<sp/>generic<sp/>spatial<sp/>queries<sp/>and<sp/>transforms<sp/>common<sp/>to<sp/>any<sp/>scattered<sp/>entity:</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**Spatial<sp/>queries**:<sp/>Bounding<sp/>box<sp/>evaluation,<sp/>point<sp/>queries,<sp/>class-based<sp/>filtering<sp/>(`filter_by_class`).</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**Spatial<sp/>organization**:<sp/>Delaunay<sp/>triangulation<sp/>densification<sp/>(`densify`),<sp/>spatial<sp/>collision<sp/>pruning<sp/>(`prune_collisions`).</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**Raster<sp/>integration**:<sp/>Elevation<sp/>snapping<sp/>(`set_elevation_from_terrain`),<sp/>rasterization<sp/>into<sp/>density<sp/>maps<sp/>(`to_density_map`),<sp/>and<sp/>stamp-based<sp/>heightmap<sp/>rasterization<sp/>(`to_heightmap`).</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Both<sp/>`Forest`<sp/>and<sp/>`RockField`<sp/>publicly<sp/>inherit<sp/>from<sp/>`ScatterField`.<sp/>They<sp/>inherit<sp/>the<sp/>full<sp/>suite<sp/>of<sp/>spatial<sp/>operations<sp/>without<sp/>duplicating<sp/>spatial<sp/>indexing<sp/>or<sp/>container<sp/>logic.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Descriptor<sp/>Separation</highlight></codeline>
+<codeline><highlight class="normal">Instance<sp/>containers<sp/>store<sp/>only<sp/>per-instance<sp/>spatial<sp/>state<sp/>(`position`,<sp/>`class_id`,<sp/>`radius`).<sp/>Metadata<sp/>and<sp/>physical<sp/>parameters<sp/>are<sp/>separated<sp/>into<sp/>lightweight<sp/>descriptor<sp/>structures:</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`Species`:<sp/>Biological<sp/>traits<sp/>(growth<sp/>limits,<sp/>relative<sp/>seeding<sp/>weight,<sp/>shade/canopy<sp/>competition<sp/>factors).</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`RockDistribution`:<sp/>Geomorphological<sp/>parameters<sp/>(Pareto<sp/>power-law<sp/>exponent<sp/>$\alpha$,<sp/>minimum/maximum<sp/>radius,<sp/>embed<sp/>ratio).</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Simulation<sp/>algorithms<sp/>take<sp/>instance<sp/>fields<sp/>alongside<sp/>descriptor<sp/>arrays.<sp/>This<sp/>keeps<sp/>memory<sp/>footprint<sp/>minimal<sp/>when<sp/>storing<sp/>millions<sp/>of<sp/>scattered<sp/>entities.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>3.<sp/>Subsystem<sp/>Connections</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Flora<sp/>Subsystem<sp/>(`Forest`)</highlight></codeline>
+<codeline><highlight class="normal">`Forest`<sp/>models<sp/>vegetation<sp/>and<sp/>tree<sp/>distributions.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**Seeding**:<sp/>`seed_forest_density`<sp/>and<sp/>`seed_forest_species`<sp/>populate<sp/>`Forest`<sp/>instances<sp/>using<sp/>environmental<sp/>suitability<sp/>rasters<sp/>(slope,<sp/>elevation,<sp/>moisture)<sp/>and<sp/>species<sp/>weights.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**Simulation**:<sp/>Biological<sp/>competition<sp/>is<sp/>simulated<sp/>via<sp/>`grow_forest_competition`<sp/>and<sp/>`simulate_forest_cycle`,<sp/>which<sp/>iterate<sp/>through<sp/>the<sp/>`Tree`<sp/>instances<sp/>and<sp/>adjust<sp/>radii<sp/>or<sp/>eliminate<sp/>suppressed<sp/>individuals<sp/>based<sp/>on<sp/>canopy<sp/>overlap.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Rocks<sp/>Subsystem<sp/>(`RockField`)</highlight></codeline>
+<codeline><highlight class="normal">`RockField`<sp/>models<sp/>talus<sp/>slopes,<sp/>scree<sp/>fields,<sp/>and<sp/>boulder<sp/>deposits.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**Seeding**:<sp/>`seed_rocks_talus`<sp/>and<sp/>`seed_rocks_distribution`<sp/>generate<sp/>rocks<sp/>following<sp/>Pareto<sp/>power-law<sp/>distributions,<sp/>where<sp/>small<sp/>rocks<sp/>outnumber<sp/>large<sp/>boulders<sp/>according<sp/>to<sp/>`power_law_alpha`.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**Simulation**:<sp/>Geomorphological<sp/>sorting<sp/>via<sp/>`simulate_rock_sorting`<sp/>sorts<sp/>items<sp/>downslope<sp/>according<sp/>to<sp/>gravitational<sp/>energy<sp/>and<sp/>substrate<sp/>friction,<sp/>adjusting<sp/>spatial<sp/>distribution<sp/>based<sp/>on<sp/>terrain<sp/>gradient.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>4.<sp/>Converting<sp/>to<sp/>Raster<sp/>Fields</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">A<sp/>`ScatterField`<sp/>(and<sp/>by<sp/>extension<sp/>`Forest`<sp/>or<sp/>`RockField`)<sp/>can<sp/>be<sp/>rasterized<sp/>back<sp/>into<sp/>the<sp/>elevation<sp/>domain:</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`to_density_map`:<sp/>Generates<sp/>a<sp/>continuous<sp/>`Array`<sp/>indicating<sp/>entity<sp/>density<sp/>per<sp/>cell.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`to_heightmap`:<sp/>Splats<sp/>discrete<sp/>geometric<sp/>profiles<sp/>(disks,<sp/>cones,<sp/>pyramids,<sp/>smooth<sp/>domes)<sp/>onto<sp/>an<sp/>existing<sp/>`Array`<sp/>using<sp/>maximum<sp/>or<sp/>additive<sp/>blending.</highlight></codeline>
+    </programlisting>
+    <location file="docs/content/dev/scatter_field.md"/>
+  </compounddef>
+</doxygen>

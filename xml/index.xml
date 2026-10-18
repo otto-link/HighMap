@@ -3261,6 +3261,14 @@
   </compound>
   <compound refid="namespacetesting" kind="namespace"><name>testing</name>
   </compound>
+  <compound refid="architecture_8md" kind="file"><name>architecture.md</name>
+  </compound>
+  <compound refid="scatter__field_8md" kind="file"><name>scatter_field.md</name>
+  </compound>
+  <compound refid="core__concepts_8md" kind="file"><name>core_concepts.md</name>
+  </compound>
+  <compound refid="quickstart_8md" kind="file"><name>quickstart.md</name>
+  </compound>
   <compound refid="index_8md" kind="file"><name>index.md</name>
   </compound>
   <compound refid="highmap_8hpp" kind="file"><name>highmap.hpp</name>
@@ -5178,6 +5186,16 @@
     <member refid="test__voronoi__shrink_8cpp_1ac6729f80008450dbad5c61c06098c378" kind="function"><name>TEST_F</name></member>
     <member refid="test__voronoi__shrink_8cpp_1ab4955b2cbfeecc823b61b55453de198a" kind="function"><name>TEST_F</name></member>
   </compound>
+  <compound refid="md_docs_2content_2dev_2architecture" kind="page"><name>md_docs_2content_2dev_2architecture</name>
+  </compound>
+  <compound refid="md_docs_2content_2dev_2scatter__field" kind="page"><name>md_docs_2content_2dev_2scatter__field</name>
+  </compound>
+  <compound refid="md_docs_2content_2getting__started_2core__concepts" kind="page"><name>md_docs_2content_2getting__started_2core__concepts</name>
+  </compound>
+  <compound refid="md_docs_2content_2getting__started_2quickstart" kind="page"><name>md_docs_2content_2getting__started_2quickstart</name>
+  </compound>
+  <compound refid="md_docs_2index" kind="page"><name>md_docs_2index</name>
+  </compound>
   <compound refid="citelist" kind="page"><name>citelist</name>
   </compound>
   <compound refid="dir_b24d7152b88e4fbbd4bf82e02a8f62ac" kind="dir"><name>HighMap/src/algebra</name>
@@ -5202,6 +5220,8 @@
   </compound>
   <compound refid="dir_716c466597bbd6fb04d72c2db497087e" kind="dir"><name>HighMap/src/colormaps</name>
   </compound>
+  <compound refid="dir_247a15da11132a6edfa007479dbc0be0" kind="dir"><name>docs/content</name>
+  </compound>
   <compound refid="dir_a3b6977f82fd9ece9b90f544f9c42189" kind="dir"><name>HighMap/src/convolve</name>
   </compound>
   <compound refid="dir_c47bda7571ba81902ddb6f1ce6dfce1f" kind="dir"><name>HighMap/src/coord_frame</name>
@@ -5211,6 +5231,8 @@
   <compound refid="dir_4b50d38dbb9a706f2e01389671935eb1" kind="dir"><name>HighMap/include/highmap/dbg</name>
   </compound>
   <compound refid="dir_5f43446d41190ada4a3bc5ff90a05cbf" kind="dir"><name>HighMap/src/dbg</name>
+  </compound>
+  <compound refid="dir_dfd657a00bd9de6295e83c988ccb3712" kind="dir"><name>docs/content/dev</name>
   </compound>
   <compound refid="dir_49e56c817e5e54854c35e136979f97ca" kind="dir"><name>docs</name>
   </compound>
@@ -5241,6 +5263,8 @@
   <compound refid="dir_e3886812acc4a770a1eeec0ffad797b7" kind="dir"><name>HighMap/include/highmap/geometry</name>
   </compound>
   <compound refid="dir_180bcd2bac99fc5b4a48aa19ac3c5b63" kind="dir"><name>HighMap/src/geometry</name>
+  </compound>
+  <compound refid="dir_8791e9a415571ac353c66d020163d01f" kind="dir"><name>docs/content/getting_started</name>
   </compound>
   <compound refid="dir_3c4172100491f31b556c8f9a4d709dfc" kind="dir"><name>HighMap/src/gpu_opencl</name>
   </compound>
@@ -5337,7 +5361,5 @@
   <compound refid="dir_f3face59d46858be97e2b2d179788010" kind="dir"><name>HighMap/src/virtual_array</name>
   </compound>
   <compound refid="ex_mixbox_8cpp-example" kind="example"><name>ex_mixbox.cpp</name>
-  </compound>
-  <compound refid="indexpage" kind="page"><name>index</name>
   </compound>
 </doxygenindex>

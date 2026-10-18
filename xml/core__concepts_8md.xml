@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="core__concepts_8md" kind="file" language="Markdown">
+    <compoundname>core_concepts.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>Core<sp/>Concepts</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>page<sp/>describes<sp/>the<sp/>primary<sp/>data<sp/>structures<sp/>and<sp/>representations<sp/>used<sp/>in<sp/>HighMap.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>1.<sp/>Elevation<sp/>Representations</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">HighMap<sp/>provides<sp/>three<sp/>main<sp/>structures<sp/>for<sp/>2D<sp/>height<sp/>data:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>Structure<sp/>|<sp/>Type<sp/>|<sp/>Description<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>:---<sp/>|<sp/>:---<sp/>|<sp/>:---<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`Array`<sp/>|<sp/>`hmap::Array`<sp/>|<sp/>In-memory<sp/>2D<sp/>array<sp/>of<sp/>floats<sp/>with<sp/>contiguous<sp/>storage.<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`HeightMap`<sp/>|<sp/>`hmap::HeightMap`<sp/>|<sp/>Tiled<sp/>2D<sp/>array<sp/>designed<sp/>for<sp/>parallel<sp/>computation.<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>`VirtualArray`<sp/>|<sp/>`hmap::VirtualArray`<sp/>|<sp/>Tiled<sp/>structure<sp/>supporting<sp/>disk<sp/>and<sp/>RAM<sp/>storage<sp/>for<sp/>large<sp/>grids.<sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Array</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">`Array`<sp/>is<sp/>the<sp/>basic<sp/>container<sp/>for<sp/>2D<sp/>elevation<sp/>fields.<sp/>Data<sp/>is<sp/>stored<sp/>in<sp/>row-major<sp/>order.<sp/>It<sp/>supports<sp/>arithmetic<sp/>operators,<sp/>statistical<sp/>queries,<sp/>slicing,<sp/>and<sp/>filtering.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```cpp</highlight></codeline>
+<codeline><highlight class="normal">hmap::Array<sp/>z({512,<sp/>512});</highlight></codeline>
+<codeline><highlight class="normal">z<sp/>=<sp/>1.0f;</highlight></codeline>
+<codeline><highlight class="normal">float<sp/>val<sp/>=<sp/>z(i,<sp/>j);</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>2.<sp/>Bivariate<sp/>Functions</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Continuous<sp/>functions<sp/>deriving<sp/>from<sp/>`hmap::Function`<sp/>represent<sp/>mathematical<sp/>surfaces<sp/>$f(x,<sp/>y)$<sp/>independently<sp/>of<sp/>resolution:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>`hmap::NoiseFunction`:<sp/>Perlin,<sp/>Simplex,<sp/>and<sp/>cellular<sp/>noise<sp/>generators.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`hmap::FbmFunction`:<sp/>Multi-octave<sp/>fractal<sp/>noise.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`hmap::FieldFunction`:<sp/>Distance<sp/>fields<sp/>and<sp/>geometric<sp/>functions.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>3.<sp/>Geometric<sp/>Primitives</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Geometric<sp/>entities<sp/>represent<sp/>vector<sp/>features<sp/>and<sp/>integrate<sp/>with<sp/>height<sp/>arrays:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>`hmap::Point`<sp/>/<sp/>`hmap::Cloud`:<sp/>Individual<sp/>points<sp/>and<sp/>point<sp/>clouds.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`hmap::Edge`<sp/>/<sp/>`hmap::Path`:<sp/>Segments<sp/>and<sp/>ordered<sp/>sequences<sp/>of<sp/>points.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`hmap::Graph`:<sp/>Node<sp/>and<sp/>edge<sp/>graphs<sp/>used<sp/>for<sp/>networks<sp/>such<sp/>as<sp/>rivers<sp/>and<sp/>roads.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>4.<sp/>Scattering</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>scattering<sp/>system<sp/>handles<sp/>the<sp/>distribution<sp/>of<sp/>discrete<sp/>objects<sp/>over<sp/>a<sp/>terrain:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>`hmap::ScatterItem`:<sp/>Basic<sp/>element<sp/>storing<sp/>a<sp/>3D<sp/>position,<sp/>an<sp/>integer<sp/>class<sp/>identifier,<sp/>and<sp/>a<sp/>radius.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`hmap::ScatterField`:<sp/>Container<sp/>providing<sp/>spatial<sp/>operations<sp/>(collision<sp/>pruning,<sp/>density<sp/>maps,<sp/>elevation<sp/>projection).</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`hmap::Forest`:<sp/>Scattering<sp/>container<sp/>for<sp/>vegetation<sp/>and<sp/>growth<sp/>models.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`hmap::RockField`:<sp/>Scattering<sp/>container<sp/>for<sp/>rock<sp/>and<sp/>debris<sp/>placement.</highlight></codeline>
+    </programlisting>
+    <location file="docs/content/getting_started/core_concepts.md"/>
+  </compounddef>
+</doxygen>

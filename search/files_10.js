@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['quilting_2ecpp_0',['quilting.cpp',['../quilting_8cpp.html',1,'']]]
+  ['quickstart_2emd_0',['quickstart.md',['../quickstart_8md.html',1,'']]],
+  ['quilting_2ecpp_1',['quilting.cpp',['../quilting_8cpp.html',1,'']]]
 ];

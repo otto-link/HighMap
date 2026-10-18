@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="md_docs_2index" kind="page">
+    <compoundname>md_docs_2index</compoundname>
+    <title>HighMap Documentation</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="md_docs_2index_1autotoc_md36"/> HighMap is a C++ library for procedural generation, simulation, and analysis of 2D heightmaps and terrain assets.</para>
+<para>A heightmap is a two-dimensional grid of elevation values. Each cell corresponds to a spatial position, with values typically normalized to $[0, 1]$ or expressed in world elevation units.</para>
+<para><image type="html" name="dem_example_rendered.png">Heightmap and 3D rendering.</image>
+ <image type="latex" name="dem_example_rendered.png">Heightmap and 3D rendering.</image>
+ <image type="rtf" name="dem_example_rendered.png">Heightmap and 3D rendering.</image>
+ <image type="docbook" name="dem_example_rendered.png">Heightmap and 3D rendering.</image>
+ <image type="xml" name="dem_example_rendered.png">Heightmap and 3D rendering.</image>
+</para>
+<sect1 id="md_docs_2index_1autotoc_md37">
+<title>Documentation</title>
+<sect2 id="md_docs_2index_1autotoc_md38">
+<title>Getting Started</title>
+<para>Documentation for new users:</para>
+<para><itemizedlist>
+<listitem><para><ref refid="md_docs_2content_2getting__started_2quickstart" kindref="compound">Quickstart</ref>: Minimal working example, CMake integration, and common operations.</para>
+</listitem><listitem><para><ref refid="md_docs_2content_2getting__started_2core__concepts" kindref="compound">Core Concepts</ref>: Elevation data structures (<computeroutput>Array</computeroutput>, <computeroutput>HeightMap</computeroutput>, <computeroutput>VirtualArray</computeroutput>), bivariate functions, vector primitives, and entity scattering.</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="md_docs_2index_1autotoc_md39">
+<title>Developer Documentation</title>
+<para>Documentation on codebase architecture and design:</para>
+<para><itemizedlist>
+<listitem><para><ref refid="md_docs_2content_2dev_2architecture" kindref="compound">Architecture Overview</ref>: Module hierarchy, layered subsystem design, and architectural principles.</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+</sect1>
+<sect1 id="md_docs_2index_1autotoc_md40">
+<title>Installation</title>
+<para>For build prerequisites and installation instructions, refer to the repository README: <ulink url="https://github.com/otto-link/HighMap">https://github.com/otto-link/HighMap</ulink> </para>
+</sect1>
+    </detaileddescription>
+    <location file="docs/index.md"/>
+  </compounddef>
+</doxygen>

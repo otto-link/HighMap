@@ -1,0 +1,120 @@
+\chapter{Scatter Architecture\+: Scatter\+Field, Forest, and Rock\+Field}
+\hypertarget{md_docs_2content_2dev_2scatter__field}{}\label{md_docs_2content_2dev_2scatter__field}\index{Scatter Architecture: ScatterField, Forest, and RockField@{Scatter Architecture: ScatterField, Forest, and RockField}}
+\label{md_docs_2content_2dev_2scatter__field_autotoc_md15}%
+\Hypertarget{md_docs_2content_2dev_2scatter__field_autotoc_md15}%
+ This document details the uniform scattering architecture in High\+Map, describing the relationship between the base {\ttfamily Scatter\+Field} container and its domain-\/specific specializations\+: {\ttfamily Forest} and {\ttfamily Rock\+Field}.\hypertarget{md_docs_2content_2dev_2scatter__field_autotoc_md16}{}\doxysection{\texorpdfstring{1. Class and Dependency Diagram}{1. Class and Dependency Diagram}}\label{md_docs_2content_2dev_2scatter__field_autotoc_md16}
+The architecture decouples lightweight instance storage from domain descriptors and simulation algorithms.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{classDiagram}
+\DoxyCodeLine{\ \ \ \ direction\ TB}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ class\ ScatterItem\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +glm::vec3\ position}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +uint32\_t\ class\_id}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +float\ radius}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ class\ ScatterField\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \#std::vector\string~ScatterItem\string~\ items}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +size()\ size\_t}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +get\_items()\ vector\string~ScatterItem\string~}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +filter\_by\_class(class\_id)\ ScatterField}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +get\_class\_ids()\ vector\string~uint32\_t\string~}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +prune\_collisions(min\_distance\_factor)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +densify(target\_count,\ seed)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +to\_density\_map(shape)\ Array}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +set\_elevation\_from\_terrain(terrain)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +to\_heightmap(shape,\ shape\_type,\ ...)\ Array}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ class\ Tree\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ <<typedef\ ScatterItem>>}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ class\ Species\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +uint32\_t\ id}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +string\ name}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +float\ radius}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +float\ weight}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +float\ radius\_min}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +float\ radius\_max}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +float\ competition\_factor}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ class\ Forest\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +get\_trees()\ vector\string~Tree\string~}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +filter\_by\_species(species\_id)\ Forest}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ class\ Rock\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ <<typedef\ ScatterItem>>}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ class\ RockDistribution\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +uint32\_t\ class\_id}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +string\ name}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +float\ radius\_min}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +float\ radius\_max}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +float\ power\_law\_alpha}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +float\ embed\_ratio}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ class\ RockField\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +get\_rocks()\ vector\string~Rock\string~}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ +filter\_by\_material(class\_id)\ RockField}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ ScatterItem\ <|-\/-\/\ Tree\ :\ alias}
+\DoxyCodeLine{\ \ \ \ ScatterItem\ <|-\/-\/\ Rock\ :\ alias}
+\DoxyCodeLine{\ \ \ \ ScatterField\ "{}1"{}\ o-\/-\/\ "{}*"{}\ ScatterItem\ :\ contains}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ ScatterField\ <|-\/-\/\ Forest\ :\ inherits}
+\DoxyCodeLine{\ \ \ \ ScatterField\ <|-\/-\/\ RockField\ :\ inherits}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ Forest\ ..>\ Species\ :\ configured\ by}
+\DoxyCodeLine{\ \ \ \ RockField\ ..>\ RockDistribution\ :\ configured\ by}
+
+\end{DoxyCode}
+\hypertarget{md_docs_2content_2dev_2scatter__field_autotoc_md17}{}\doxysection{\texorpdfstring{2. Design Principles}{2. Design Principles}}\label{md_docs_2content_2dev_2scatter__field_autotoc_md17}
+\hypertarget{md_docs_2content_2dev_2scatter__field_autotoc_md18}{}\doxysubsection{\texorpdfstring{Uniform Instance Representation}{Uniform Instance Representation}}\label{md_docs_2content_2dev_2scatter__field_autotoc_md18}
+All discrete spatial entities inherit a minimal three-\/attribute representation\+:
+\begin{DoxyItemize}
+\item {\ttfamily position} ({\ttfamily glm\+::vec3})\+: 3D spatial coordinate (\$x, y\$ ground position and elevation \$z\$).
+\item {\ttfamily class\+\_\+id} ({\ttfamily uint32\+\_\+t})\+: Integer category identifier mapping to a biological species, rock material, or mesh asset.
+\item {\ttfamily radius} ({\ttfamily float})\+: Characteristic collision or influence radius.
+\end{DoxyItemize}
+
+{\ttfamily Tree} and {\ttfamily Rock} are type aliases of {\ttfamily Scatter\+Item} ({\ttfamily using Tree = Scatter\+Item;}, {\ttfamily using Rock = Scatter\+Item;}).\hypertarget{md_docs_2content_2dev_2scatter__field_autotoc_md19}{}\doxysubsection{\texorpdfstring{Inheritance and Reuse}{Inheritance and Reuse}}\label{md_docs_2content_2dev_2scatter__field_autotoc_md19}
+{\ttfamily Scatter\+Field} provides generic spatial queries and transforms common to any scattered entity\+:
+\begin{DoxyItemize}
+\item {\bfseries{Spatial queries}}\+: Bounding box evaluation, point queries, class-\/based filtering ({\ttfamily filter\+\_\+by\+\_\+class}).
+\item {\bfseries{Spatial organization}}\+: Delaunay triangulation densification ({\ttfamily densify}), spatial collision pruning ({\ttfamily prune\+\_\+collisions}).
+\item {\bfseries{Raster integration}}\+: Elevation snapping ({\ttfamily set\+\_\+elevation\+\_\+from\+\_\+terrain}), rasterization into density maps ({\ttfamily to\+\_\+density\+\_\+map}), and stamp-\/based heightmap rasterization ({\ttfamily to\+\_\+heightmap}).
+\end{DoxyItemize}
+
+Both {\ttfamily Forest} and {\ttfamily Rock\+Field} publicly inherit from {\ttfamily Scatter\+Field}. They inherit the full suite of spatial operations without duplicating spatial indexing or container logic.\hypertarget{md_docs_2content_2dev_2scatter__field_autotoc_md20}{}\doxysubsection{\texorpdfstring{Descriptor Separation}{Descriptor Separation}}\label{md_docs_2content_2dev_2scatter__field_autotoc_md20}
+Instance containers store only per-\/instance spatial state ({\ttfamily position}, {\ttfamily class\+\_\+id}, {\ttfamily radius}). Metadata and physical parameters are separated into lightweight descriptor structures\+:
+\begin{DoxyItemize}
+\item {\ttfamily Species}\+: Biological traits (growth limits, relative seeding weight, shade/canopy competition factors).
+\item {\ttfamily Rock\+Distribution}\+: Geomorphological parameters (Pareto power-\/law exponent \$\textbackslash{}alpha\$, minimum/maximum radius, embed ratio).
+\end{DoxyItemize}
+
+Simulation algorithms take instance fields alongside descriptor arrays. This keeps memory footprint minimal when storing millions of scattered entities.\hypertarget{md_docs_2content_2dev_2scatter__field_autotoc_md21}{}\doxysection{\texorpdfstring{3. Subsystem Connections}{3. Subsystem Connections}}\label{md_docs_2content_2dev_2scatter__field_autotoc_md21}
+\hypertarget{md_docs_2content_2dev_2scatter__field_autotoc_md22}{}\doxysubsection{\texorpdfstring{Flora Subsystem ($<$tt$>$\+Forest$<$/tt$>$)}{Flora Subsystem (<tt>Forest</tt>)}}\label{md_docs_2content_2dev_2scatter__field_autotoc_md22}
+{\ttfamily Forest} models vegetation and tree distributions.
+\begin{DoxyItemize}
+\item {\bfseries{Seeding}}\+: {\ttfamily seed\+\_\+forest\+\_\+density} and {\ttfamily seed\+\_\+forest\+\_\+species} populate {\ttfamily Forest} instances using environmental suitability rasters (slope, elevation, moisture) and species weights.
+\item {\bfseries{Simulation}}\+: Biological competition is simulated via {\ttfamily grow\+\_\+forest\+\_\+competition} and {\ttfamily simulate\+\_\+forest\+\_\+cycle}, which iterate through the {\ttfamily Tree} instances and adjust radii or eliminate suppressed individuals based on canopy overlap.
+\end{DoxyItemize}\hypertarget{md_docs_2content_2dev_2scatter__field_autotoc_md23}{}\doxysubsection{\texorpdfstring{Rocks Subsystem ($<$tt$>$\+Rock\+Field$<$/tt$>$)}{Rocks Subsystem (<tt>RockField</tt>)}}\label{md_docs_2content_2dev_2scatter__field_autotoc_md23}
+{\ttfamily Rock\+Field} models talus slopes, scree fields, and boulder deposits.
+\begin{DoxyItemize}
+\item {\bfseries{Seeding}}\+: {\ttfamily seed\+\_\+rocks\+\_\+talus} and {\ttfamily seed\+\_\+rocks\+\_\+distribution} generate rocks following Pareto power-\/law distributions, where small rocks outnumber large boulders according to {\ttfamily power\+\_\+law\+\_\+alpha}.
+\item {\bfseries{Simulation}}\+: Geomorphological sorting via {\ttfamily simulate\+\_\+rock\+\_\+sorting} sorts items downslope according to gravitational energy and substrate friction, adjusting spatial distribution based on terrain gradient.
+\end{DoxyItemize}\hypertarget{md_docs_2content_2dev_2scatter__field_autotoc_md24}{}\doxysection{\texorpdfstring{4. Converting to Raster Fields}{4. Converting to Raster Fields}}\label{md_docs_2content_2dev_2scatter__field_autotoc_md24}
+A {\ttfamily Scatter\+Field} (and by extension {\ttfamily Forest} or {\ttfamily Rock\+Field}) can be rasterized back into the elevation domain\+:
+\begin{DoxyItemize}
+\item {\ttfamily to\+\_\+density\+\_\+map}\+: Generates a continuous {\ttfamily Array} indicating entity density per cell.
+\item {\ttfamily to\+\_\+heightmap}\+: Splats discrete geometric profiles (disks, cones, pyramids, smooth domes) onto an existing {\ttfamily Array} using maximum or additive blending. 
+\end{DoxyItemize}

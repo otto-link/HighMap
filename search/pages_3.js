@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['library_20c_0',['HighMap library (C++)',['../index.html',1,'']]]
+  ['documentation_0',['HighMap Documentation',['../md_docs_2index.html',1,'']]]
 ];

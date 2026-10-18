@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="quickstart_8md" kind="file" language="Markdown">
+    <compoundname>quickstart.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>Quickstart</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>guide<sp/>shows<sp/>how<sp/>to<sp/>generate<sp/>and<sp/>export<sp/>a<sp/>heightmap<sp/>using<sp/>HighMap.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>1.<sp/>Example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>following<sp/>program<sp/>generates<sp/>a<sp/>2D<sp/>elevation<sp/>grid<sp/>using<sp/>Perlin<sp/>fractal<sp/>Brownian<sp/>motion<sp/>(fBm),<sp/>remaps<sp/>its<sp/>values<sp/>to<sp/>the<sp/>interval<sp/>$[0,<sp/>1]$,<sp/>and<sp/>writes<sp/>the<sp/>result<sp/>to<sp/>a<sp/>16-bit<sp/>PNG<sp/>file.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```cpp</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&lt;iostream&gt;</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;highmap.hpp&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">int<sp/>main()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>glm::ivec2<sp/>shape<sp/>=<sp/>{512,<sp/>512};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>glm::vec2<sp/>res<sp/>=<sp/>{4.0f,<sp/>4.0f};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>int<sp/>seed<sp/>=<sp/>42;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>//<sp/>Generate<sp/>elevation<sp/>data</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>hmap::Array<sp/>z<sp/>=<sp/>hmap::noise_fbm(hmap::NoiseType::PERLIN,<sp/>shape,<sp/>res,<sp/>seed);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/>&quot;min:<sp/>&quot;<sp/>&lt;&lt;<sp/>z.min()<sp/>&lt;&lt;<sp/>&quot;\n&quot;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/>&quot;max:<sp/>&quot;<sp/>&lt;&lt;<sp/>z.max()<sp/>&lt;&lt;<sp/>&quot;\n&quot;;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>//<sp/>Remap<sp/>elevation<sp/>values<sp/>to<sp/>[0,<sp/>1]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>z.remap(0.0f,<sp/>1.0f);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>//<sp/>Export<sp/>to<sp/>image</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>hmap::ImageWriterConfig<sp/>config;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>config.data_type<sp/>=<sp/>hmap::ImageDataType::UINT16;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>hmap::export_image(z,<sp/>&quot;terrain.png&quot;,<sp/>config);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>return<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>2.<sp/>CMake<sp/>Integration</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Link<sp/>against<sp/>HighMap<sp/>using<sp/>CMake:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```cmake</highlight></codeline>
+<codeline><highlight class="normal">cmake_minimum_required(VERSION<sp/>3.20)</highlight></codeline>
+<codeline><highlight class="normal">project(my_project<sp/>CXX)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">set(CMAKE_CXX_STANDARD<sp/>20)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">find_package(HighMap<sp/>REQUIRED)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">add_executable(my_project<sp/>main.cpp)</highlight></codeline>
+<codeline><highlight class="normal">target_link_libraries(my_project<sp/>PRIVATE<sp/>HighMap::HighMap)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>3.<sp/>Basic<sp/>Operations</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Common<sp/>operations<sp/>on<sp/>an<sp/>`Array`:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**Smoothing**:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>```cpp</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>z<sp/>=<sp/>hmap::smooth(z,<sp/>3);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**Clamping**:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>```cpp</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>z.clamp(0.0f,<sp/>1.0f);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**Blending**:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>```cpp</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>hmap::Array<sp/>overlay<sp/>=<sp/>hmap::noise_fbm(hmap::NoiseType::PERLIN,<sp/>shape,<sp/>{8.f,<sp/>8.f},<sp/>101);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>z<sp/>=<sp/>hmap::blend_max(z,<sp/>overlay<sp/>*<sp/>0.5f);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>4.<sp/>Next<sp/>Steps</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>[Core<sp/>Concepts](core_concepts.md)</highlight></codeline>
+    </programlisting>
+    <location file="docs/content/getting_started/quickstart.md"/>
+  </compounddef>
+</doxygen>

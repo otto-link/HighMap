@@ -25,29 +25,56 @@
 var NAVTREE =
 [
   [ "HighMap library (C++)", "index.html", [
-    [ "HighMap library documentation!", "index.html#autotoc_md1", [
-      [ "Heightmaps?", "index.html#autotoc_md2", null ],
-      [ "Getting started", "index.html#autotoc_md3", [
-        [ "Sources and installation", "index.html#autotoc_md4", null ],
-        [ "Basic principle and data structure", "index.html#autotoc_md5", null ],
-        [ "Uniform Scatter Design", "index.html#autotoc_md6", [
-          [ "Design Principles", "index.html#autotoc_md7", null ]
-        ] ],
-        [ "\"Array\" - Elementary Data Structure for Building Heightmaps", "index.html#autotoc_md8", null ],
-        [ "Example usage", "index.html#autotoc_md9", [
-          [ "Generate classical coherent noises (Perlin, Simplex, fractal layering, etc...)", "index.html#autotoc_md10", null ],
-          [ "Filters", "index.html#autotoc_md11", null ],
-          [ "Physical processes", "index.html#autotoc_md12", null ],
-          [ "Bivariate functions", "index.html#autotoc_md13", null ]
-        ] ],
-        [ "Exporting", "index.html#autotoc_md14", [
-          [ "Image formats (png, tiff, exr...)", "index.html#autotoc_md15", null ],
-          [ "Numpy binary file", "index.html#autotoc_md16", null ],
-          [ "Raw binary file", "index.html#autotoc_md17", null ],
-          [ "Asset export (3D mesh and texture)", "index.html#autotoc_md18", null ]
-        ] ]
+    [ "Architecture Overview", "md_docs_2content_2dev_2architecture.html", [
+      [ "1. Module Hierarchy", "md_docs_2content_2dev_2architecture.html#autotoc_md2", null ],
+      [ "2. Layers", "md_docs_2content_2dev_2architecture.html#autotoc_md3", [
+        [ "Foundational Math", "md_docs_2content_2dev_2architecture.html#autotoc_md4", null ],
+        [ "Core Data Structures", "md_docs_2content_2dev_2architecture.html#autotoc_md5", null ],
+        [ "Array Processing", "md_docs_2content_2dev_2architecture.html#autotoc_md6", null ],
+        [ "Domain Simulations", "md_docs_2content_2dev_2architecture.html#autotoc_md7", null ],
+        [ "Export & I/O", "md_docs_2content_2dev_2architecture.html#autotoc_md8", null ]
       ] ],
-      [ "Library functionalities", "index.html#autotoc_md19", null ]
+      [ "3. Design Principles", "md_docs_2content_2dev_2architecture.html#autotoc_md9", [
+        [ "Contiguous Storage and Explicit Memory Control", "md_docs_2content_2dev_2architecture.html#autotoc_md10", null ],
+        [ "Separation of Storage and Algorithm", "md_docs_2content_2dev_2architecture.html#autotoc_md11", null ],
+        [ "Stateless Processing Functions", "md_docs_2content_2dev_2architecture.html#autotoc_md12", null ],
+        [ "Deterministic Seeding", "md_docs_2content_2dev_2architecture.html#autotoc_md13", null ]
+      ] ],
+      [ "4. Subsystem Deep Dives", "md_docs_2content_2dev_2architecture.html#autotoc_md14", null ]
+    ] ],
+    [ "Scatter Architecture: ScatterField, Forest, and RockField", "md_docs_2content_2dev_2scatter__field.html", [
+      [ "1. Class and Dependency Diagram", "md_docs_2content_2dev_2scatter__field.html#autotoc_md16", null ],
+      [ "2. Design Principles", "md_docs_2content_2dev_2scatter__field.html#autotoc_md17", [
+        [ "Uniform Instance Representation", "md_docs_2content_2dev_2scatter__field.html#autotoc_md18", null ],
+        [ "Inheritance and Reuse", "md_docs_2content_2dev_2scatter__field.html#autotoc_md19", null ],
+        [ "Descriptor Separation", "md_docs_2content_2dev_2scatter__field.html#autotoc_md20", null ]
+      ] ],
+      [ "3. Subsystem Connections", "md_docs_2content_2dev_2scatter__field.html#autotoc_md21", [
+        [ "Flora Subsystem (<tt>Forest</tt>)", "md_docs_2content_2dev_2scatter__field.html#autotoc_md22", null ],
+        [ "Rocks Subsystem (<tt>RockField</tt>)", "md_docs_2content_2dev_2scatter__field.html#autotoc_md23", null ]
+      ] ],
+      [ "4. Converting to Raster Fields", "md_docs_2content_2dev_2scatter__field.html#autotoc_md24", null ]
+    ] ],
+    [ "Core Concepts", "md_docs_2content_2getting__started_2core__concepts.html", [
+      [ "1. Elevation Representations", "md_docs_2content_2getting__started_2core__concepts.html#autotoc_md26", [
+        [ "Array", "md_docs_2content_2getting__started_2core__concepts.html#autotoc_md27", null ]
+      ] ],
+      [ "2. Bivariate Functions", "md_docs_2content_2getting__started_2core__concepts.html#autotoc_md28", null ],
+      [ "3. Geometric Primitives", "md_docs_2content_2getting__started_2core__concepts.html#autotoc_md29", null ],
+      [ "4. Scattering", "md_docs_2content_2getting__started_2core__concepts.html#autotoc_md30", null ]
+    ] ],
+    [ "Quickstart", "md_docs_2content_2getting__started_2quickstart.html", [
+      [ "1. Example", "md_docs_2content_2getting__started_2quickstart.html#autotoc_md32", null ],
+      [ "2. CMake Integration", "md_docs_2content_2getting__started_2quickstart.html#autotoc_md33", null ],
+      [ "3. Basic Operations", "md_docs_2content_2getting__started_2quickstart.html#autotoc_md34", null ],
+      [ "4. Next Steps", "md_docs_2content_2getting__started_2quickstart.html#autotoc_md35", null ]
+    ] ],
+    [ "HighMap Documentation", "md_docs_2index.html", [
+      [ "Documentation", "md_docs_2index.html#autotoc_md37", [
+        [ "Getting Started", "md_docs_2index.html#autotoc_md38", null ],
+        [ "Developer Documentation", "md_docs_2index.html#autotoc_md39", null ]
+      ] ],
+      [ "Installation", "md_docs_2index.html#autotoc_md40", null ]
     ] ],
     [ "Bibliography", "citelist.html", null ],
     [ "Namespaces", "namespaces.html", [
@@ -99,30 +126,30 @@ var NAVTREEINDEX =
 "classhmap_1_1TileStorage.html#a6058caeb55d8e5f1a7d86e6ba1d89047",
 "coherent__noise_8hpp.html#a276491994a12f644f93824128677fdac",
 "deprecated_8hpp.html#a2074cabb598086fe29f52247bfadceb9",
-"fill__array_8cpp.html",
-"filters_8hpp.html#afac304e88619a3d6fb35f7ff959368dd",
-"generate__terrain__tri__mesh__from__heightmap_8cpp.html",
-"hydraulic__mise_8cpp.html#aca83790abf7dd42cf3e835653762d804",
-"interpolate__heightmap__virtual__array_8cpp.html",
-"math_2array_8hpp.html#aa8f3fda9e1dd32c7b8011c7f2b9cbc55",
-"namespacehmap.html#a1025088e008bb5709c8f88bc025ab1cb",
-"namespacehmap.html#a414c6fe47e8dadbab8ad532a0538be40",
-"namespacehmap.html#a813489b177fe9e94a7a7a7a8cb82ce63",
-"namespacehmap.html#ab9926efb5c9c3859a0407b8fb9dbe4f7",
-"namespacehmap.html#ae392bc0ed44e2a201a9e42e28305debf",
-"namespacehmap_1_1gpu.html#a8a89eb3b3dcbdd39e57abc1770420bf1",
-"namespacemembers_r.html",
-"points_8cpp.html#a30122e874f6a99af65954458cc9e4de9",
-"recast__cliff_8cpp.html#a7823b65dfcfd71114c29df7efd6d98ba",
-"species_8hpp_source.html",
-"structhmap_1_1ImageWriterConfig.html#ab6e00e3fe5dc9baa354785c317cea9b8",
-"structhmap_1_1RockSimulationOptions.html#a5e1a008ba3ae541aadda13693d9339da",
-"structhmap_1_1TileRegion.html#a773fcee90fae6c3950a9fa5617de2f62",
-"test__array__io_8cpp.html#a3ac0e5185515dc6944bb3d639261fdea",
-"test__flow__fixing_8cpp.html#aa86d061a27567f4108f6dc475e9698fe",
-"test__path__fractalize_8cpp.html#a8df47b271fb10860f52f3c07c6f2cbbe",
-"test__smooth__cpulse_8cpp.html#ab4798cfd31d1559e1c6565aed8832da7",
-"transform_8hpp.html#aa6e0ddb5fd3b76e1ba7f18d8c4a45549"
+"features_8hpp_source.html",
+"filters_8hpp.html#af3c4a498eabdcccc53e6ad750e069e79",
+"generate__riverbed_8cpp.html#a30d55fae5c75a1c45a005a3f9a9467eb",
+"hydraulic__mise_8cpp.html#abf130fcd985b61918da6234c9d89b5be",
+"island__chain_8cpp.html#a1b24d28eff3fda2f950daa821441760c",
+"math_8cpp.html",
+"namespacehmap.html#a0aa2c50266e16cf5af077e4e3f77bd8f",
+"namespacehmap.html#a3bad25b24d9ae0e07e692c546bc3480d",
+"namespacehmap.html#a772bd6b8b78d944382991f3064c1f4e1",
+"namespacehmap.html#ab6f7c0ceeef247a339b3f3047dec0271",
+"namespacehmap.html#ade234d7bb6c23c67317077ab7a9082caa6091f77137cf4570917f3f4d30585bb1",
+"namespacehmap_1_1gpu.html#a76cfd96b971a288964561449d83e21aa",
+"namespacemembers_func_l.html",
+"point__sampling_8hpp.html#a208e935aeb1a6e615dd9dd067afe0a62",
+"range_8hpp.html#ae5d25f542f8033210b1744c281235220",
+"sls__deformation_8cpp.html#a37d972ae0b47b9099e30983131d31916",
+"structhmap_1_1IVec2Eq.html#abb48599c0b275d1455a8bf47d8057a72",
+"structhmap_1_1RockDistribution.html#ab59561c0e5dcb0ab07bfcd63556cc33b",
+"structhmap_1_1TileKey.html#a0c2bad93215283eb8baedc5cbc2fa2f1",
+"terrain__tri__mesh_8hpp.html#a5078af3eb73fb47ab1aad6cc872ab29a",
+"test__flood__fill_8cpp.html#ad9ba8d26da07e3cd18141b5e54d65c6f",
+"test__math__histogram_8cpp.html#abf29905673b12ebd94badcbe16e5999a",
+"test__skeleton_8cpp.html#a279899cf812a3888839d45ad2ae4d9fb",
+"transform_8hpp.html#a5ee665a5cb2f8e4779b9de4162c41217"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

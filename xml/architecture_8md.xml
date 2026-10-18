@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="architecture_8md" kind="file" language="Markdown">
+    <compoundname>architecture.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>Architecture<sp/>Overview</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>document<sp/>describes<sp/>the<sp/>architectural<sp/>layout<sp/>of<sp/>the<sp/>HighMap<sp/>codebase,<sp/>its<sp/>module<sp/>hierarchy,<sp/>and<sp/>core<sp/>design<sp/>principles.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>1.<sp/>Module<sp/>Hierarchy</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>codebase<sp/>is<sp/>organized<sp/>into<sp/>layered<sp/>modules<sp/>with<sp/>unidirectional<sp/>dependencies.<sp/>Higher<sp/>layers<sp/>depend<sp/>on<sp/>foundational<sp/>storage<sp/>and<sp/>mathematical<sp/>abstractions,<sp/>while<sp/>core<sp/>containers<sp/>remain<sp/>independent<sp/>of<sp/>domain-specific<sp/>algorithms.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```text</highlight></codeline>
+<codeline><highlight class="normal">+---------------------------------------------------------------+</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Asset<sp/>&amp;<sp/>Scene<sp/>Export<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>(export/,<sp/>image,<sp/>scene,<sp/>mesh<sp/>generators,<sp/>3D<sp/>file<sp/>formats)<sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">+---------------------------------------------------------------+</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Domain<sp/>Applications<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>(erosion/,<sp/>hydrology/,<sp/>flora/,<sp/>rocks/,<sp/>carving,<sp/>roads)<sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">+---------------------------------------------------------------+</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Array<sp/>Processing<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>(filters,<sp/>transform,<sp/>morphology,<sp/>blending,<sp/>synthesis)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">+---------------------------------------------------------------+</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Core<sp/>Data<sp/>Structures<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>(Array,<sp/>HeightMap,<sp/>VirtualArray,<sp/>Point,<sp/>Cloud,<sp/>Path,<sp/>Graph)<sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">+---------------------------------------------------------------+</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Foundational<sp/>Math<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>(algebra,<sp/>functions,<sp/>random,<sp/>geometry,<sp/>coordinate<sp/>frames)<sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">+---------------------------------------------------------------+</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>2.<sp/>Layers</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Foundational<sp/>Math</highlight></codeline>
+<codeline><highlight class="normal">Provides<sp/>mathematical<sp/>primitives<sp/>and<sp/>analytical<sp/>functions:</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Vector<sp/>and<sp/>matrix<sp/>types<sp/>(using<sp/>GLM).</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Coordinate<sp/>systems<sp/>and<sp/>transformation<sp/>frames<sp/>(`coord_frame.hpp`).</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Bivariate<sp/>continuous<sp/>functions<sp/>(`functions.hpp`,<sp/>`algebra.hpp`).</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Deterministic<sp/>random<sp/>sampling<sp/>and<sp/>noise<sp/>kernels<sp/>(`random.hpp`,<sp/>`kernels.hpp`).</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Core<sp/>Data<sp/>Structures</highlight></codeline>
+<codeline><highlight class="normal">Defines<sp/>data<sp/>containers<sp/>without<sp/>coupling<sp/>to<sp/>specific<sp/>simulation<sp/>or<sp/>processing<sp/>logic:</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`Array`:<sp/>2D<sp/>contiguous<sp/>row-major<sp/>floating-point<sp/>buffer.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`HeightMap`:<sp/>Tiled<sp/>multi-buffer<sp/>representation<sp/>for<sp/>concurrent<sp/>block<sp/>computation.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`VirtualArray`:<sp/>Out-of-core<sp/>tiled<sp/>raster<sp/>supporting<sp/>memory-mapped<sp/>disk<sp/>storage<sp/>and<sp/>distributed<sp/>tile<sp/>processing<sp/>with<sp/>halo<sp/>exchange.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Geometric<sp/>primitives:<sp/>`Point`,<sp/>`Edge`,<sp/>`Cloud`,<sp/>`Path`,<sp/>`Graph`.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Entity<sp/>scattering<sp/>container:<sp/>`ScatterField`<sp/>and<sp/>`ScatterItem`.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Array<sp/>Processing</highlight></codeline>
+<codeline><highlight class="normal">Implements<sp/>functional<sp/>and<sp/>in-place<sp/>transformations<sp/>operating<sp/>on<sp/>raster<sp/>data:</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`filters.hpp`:<sp/>Spatial<sp/>convolution,<sp/>bilateral<sp/>filtering,<sp/>domain<sp/>transformations.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`morphology.hpp`:<sp/>Dilation,<sp/>erosion,<sp/>opening,<sp/>closing,<sp/>distance<sp/>transforms.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`synthesis.hpp`<sp/>&amp;<sp/>`blending.hpp`:<sp/>Procedural<sp/>surface<sp/>construction,<sp/>layer<sp/>combination<sp/>operators.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`transform.hpp`:<sp/>Resampling,<sp/>rotations,<sp/>cropping,<sp/>coordinate<sp/>remapping.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Domain<sp/>Simulations</highlight></codeline>
+<codeline><highlight class="normal">Encapsulates<sp/>specialized<sp/>physical,<sp/>biological,<sp/>and<sp/>geomorphological<sp/>models:</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`erosion/`:<sp/>Hydraulic<sp/>erosion,<sp/>sediment<sp/>transport,<sp/>and<sp/>thermal<sp/>talus<sp/>diffusion.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`hydrology/`:<sp/>Watershed<sp/>segmentation,<sp/>depression<sp/>filling,<sp/>flow<sp/>accumulation,<sp/>and<sp/>river<sp/>graph<sp/>routing.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`flora/`:<sp/>Botanical<sp/>descriptors<sp/>(`Species`),<sp/>multi-species<sp/>competition,<sp/>canopy<sp/>dynamics<sp/>(`Forest`).</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`rocks/`:<sp/>Geomorphological<sp/>rock<sp/>distributions,<sp/>talus<sp/>sorting,<sp/>and<sp/>Pareto<sp/>power-law<sp/>radius<sp/>sampling<sp/>(`RockField`).</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`carving.hpp`<sp/>&amp;<sp/>`roads.hpp`:<sp/>Terrain<sp/>cutting,<sp/>path-guided<sp/>grading,<sp/>and<sp/>slope<sp/>alignment.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Export<sp/>&amp;<sp/>I/O</highlight></codeline>
+<codeline><highlight class="normal">Converts<sp/>internal<sp/>representations<sp/>into<sp/>exchange<sp/>formats:</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Raster<sp/>images:<sp/>8-bit,<sp/>16-bit,<sp/>and<sp/>32-bit<sp/>floating-point<sp/>images<sp/>via<sp/>OpenCV,<sp/>OpenEXR,<sp/>and<sp/>BigTIFF<sp/>writers.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>3D<sp/>representations:<sp/>Triangular<sp/>meshes<sp/>(`TerrainTriMesh`),<sp/>heightfield<sp/>point<sp/>clouds,<sp/>USD<sp/>/<sp/>glTF<sp/>scenes.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>3.<sp/>Design<sp/>Principles</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Contiguous<sp/>Storage<sp/>and<sp/>Explicit<sp/>Memory<sp/>Control</highlight></codeline>
+<codeline><highlight class="normal">Core<sp/>buffers<sp/>(`Array`)<sp/>rely<sp/>on<sp/>dense,<sp/>contiguous<sp/>allocations<sp/>in<sp/>row-major<sp/>order.<sp/>Iteration<sp/>order<sp/>throughout<sp/>the<sp/>codebase<sp/>prioritizes<sp/>cache<sp/>coherence<sp/>($y$<sp/>outer<sp/>loop,<sp/>$x$<sp/>inner<sp/>loop).</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Separation<sp/>of<sp/>Storage<sp/>and<sp/>Algorithm</highlight></codeline>
+<codeline><highlight class="normal">Algorithms<sp/>accept<sp/>references<sp/>or<sp/>views<sp/>to<sp/>data<sp/>buffers<sp/>rather<sp/>than<sp/>binding<sp/>to<sp/>specific<sp/>container<sp/>subclasses.<sp/>For<sp/>large<sp/>terrains,<sp/>algorithms<sp/>execute<sp/>through<sp/>tiled<sp/>abstractions<sp/>(`HeightMap`<sp/>or<sp/>`VirtualArray`)<sp/>with<sp/>explicit<sp/>boundary<sp/>halo<sp/>policies.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Stateless<sp/>Processing<sp/>Functions</highlight></codeline>
+<codeline><highlight class="normal">Image<sp/>processing,<sp/>filtering,<sp/>and<sp/>synthesis<sp/>algorithms<sp/>are<sp/>implemented<sp/>primarily<sp/>as<sp/>free<sp/>functions<sp/>operating<sp/>on<sp/>inputs<sp/>and<sp/>producing<sp/>outputs<sp/>or<sp/>modifying<sp/>referenced<sp/>buffers<sp/>in-place,<sp/>avoiding<sp/>hidden<sp/>state.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Deterministic<sp/>Seeding</highlight></codeline>
+<codeline><highlight class="normal">All<sp/>stochastic<sp/>procedures<sp/>(noise<sp/>generators,<sp/>scattering<sp/>passes,<sp/>Monte<sp/>Carlo<sp/>simulations)<sp/>accept<sp/>explicit<sp/>integer<sp/>seeds<sp/>to<sp/>ensure<sp/>reproducibility<sp/>across<sp/>runs.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>4.<sp/>Subsystem<sp/>Deep<sp/>Dives</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Detailed<sp/>architectural<sp/>descriptions<sp/>of<sp/>specific<sp/>subsystems:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>[Scatter<sp/>Architecture](scatter_field.md):<sp/>Detailed<sp/>specification<sp/>of<sp/>`ScatterField`,<sp/>the<sp/>unified<sp/>instance<sp/>model,<sp/>and<sp/>specializations<sp/>`Forest`<sp/>and<sp/>`RockField`.</highlight></codeline>
+    </programlisting>
+    <location file="docs/content/dev/architecture.md"/>
+  </compounddef>
+</doxygen>

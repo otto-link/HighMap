@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="md_docs_2content_2dev_2architecture" kind="page">
+    <compoundname>md_docs_2content_2dev_2architecture</compoundname>
+    <title>Architecture Overview</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="md_docs_2content_2dev_2architecture_1autotoc_md1"/> This document describes the architectural layout of the HighMap codebase, its module hierarchy, and core design principles.</para>
+<sect1 id="md_docs_2content_2dev_2architecture_1autotoc_md2">
+<title>1. Module Hierarchy</title>
+<para>The codebase is organized into layered modules with unidirectional dependencies. Higher layers depend on foundational storage and mathematical abstractions, while core containers remain independent of domain-specific algorithms.</para>
+<para><programlisting filename=".text"><codeline><highlight class="normal">+---------------------------------------------------------------+</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Asset<sp/>&amp;<sp/>Scene<sp/>Export<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>(export/,<sp/>image,<sp/>scene,<sp/>mesh<sp/>generators,<sp/>3D<sp/>file<sp/>formats)<sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">+---------------------------------------------------------------+</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Domain<sp/>Applications<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>(erosion/,<sp/>hydrology/,<sp/>flora/,<sp/>rocks/,<sp/>carving,<sp/>roads)<sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">+---------------------------------------------------------------+</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Array<sp/>Processing<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>(filters,<sp/>transform,<sp/>morphology,<sp/>blending,<sp/>synthesis)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">+---------------------------------------------------------------+</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Core<sp/>Data<sp/>Structures<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>(Array,<sp/>HeightMap,<sp/>VirtualArray,<sp/>Point,<sp/>Cloud,<sp/>Path,<sp/>Graph)<sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">+---------------------------------------------------------------+</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Foundational<sp/>Math<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>(algebra,<sp/>functions,<sp/>random,<sp/>geometry,<sp/>coordinate<sp/>frames)<sp/><sp/><sp/><sp/>|</highlight></codeline>
+<codeline><highlight class="normal">+---------------------------------------------------------------+</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="md_docs_2content_2dev_2architecture_1autotoc_md3">
+<title>2. Layers</title>
+<sect2 id="md_docs_2content_2dev_2architecture_1autotoc_md4">
+<title>Foundational Math</title>
+<para>Provides mathematical primitives and analytical functions:<itemizedlist>
+<listitem><para>Vector and matrix types (using GLM).</para>
+</listitem><listitem><para>Coordinate systems and transformation frames (<computeroutput><ref refid="coord__frame_8hpp" kindref="compound">coord_frame.hpp</ref></computeroutput>).</para>
+</listitem><listitem><para>Bivariate continuous functions (<computeroutput>functions.hpp</computeroutput>, <computeroutput><ref refid="algebra_8hpp" kindref="compound">algebra.hpp</ref></computeroutput>).</para>
+</listitem><listitem><para>Deterministic random sampling and noise kernels (<computeroutput>random.hpp</computeroutput>, <computeroutput><ref refid="kernels_8hpp" kindref="compound">kernels.hpp</ref></computeroutput>).</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="md_docs_2content_2dev_2architecture_1autotoc_md5">
+<title>Core Data Structures</title>
+<para>Defines data containers without coupling to specific simulation or processing logic:<itemizedlist>
+<listitem><para><computeroutput>Array</computeroutput>: 2D contiguous row-major floating-point buffer.</para>
+</listitem><listitem><para><computeroutput>HeightMap</computeroutput>: Tiled multi-buffer representation for concurrent block computation.</para>
+</listitem><listitem><para><computeroutput>VirtualArray</computeroutput>: Out-of-core tiled raster supporting memory-mapped disk storage and distributed tile processing with halo exchange.</para>
+</listitem><listitem><para>Geometric primitives: <computeroutput>Point</computeroutput>, <computeroutput>Edge</computeroutput>, <computeroutput>Cloud</computeroutput>, <computeroutput>Path</computeroutput>, <computeroutput>Graph</computeroutput>.</para>
+</listitem><listitem><para>Entity scattering container: <computeroutput>ScatterField</computeroutput> and <computeroutput>ScatterItem</computeroutput>.</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="md_docs_2content_2dev_2architecture_1autotoc_md6">
+<title>Array Processing</title>
+<para>Implements functional and in-place transformations operating on raster data:<itemizedlist>
+<listitem><para><computeroutput><ref refid="filters_8hpp" kindref="compound">filters.hpp</ref></computeroutput>: Spatial convolution, bilateral filtering, domain transformations.</para>
+</listitem><listitem><para><computeroutput><ref refid="morphology_8hpp" kindref="compound">morphology.hpp</ref></computeroutput>: Dilation, erosion, opening, closing, distance transforms.</para>
+</listitem><listitem><para><computeroutput><ref refid="synthesis_8hpp" kindref="compound">synthesis.hpp</ref></computeroutput> &amp; <computeroutput><ref refid="blending_8hpp" kindref="compound">blending.hpp</ref></computeroutput>: Procedural surface construction, layer combination operators.</para>
+</listitem><listitem><para><computeroutput><ref refid="transform_8hpp" kindref="compound">transform.hpp</ref></computeroutput>: Resampling, rotations, cropping, coordinate remapping.</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="md_docs_2content_2dev_2architecture_1autotoc_md7">
+<title>Domain Simulations</title>
+<para>Encapsulates specialized physical, biological, and geomorphological models:<itemizedlist>
+<listitem><para><computeroutput>erosion/</computeroutput>: Hydraulic erosion, sediment transport, and thermal talus diffusion.</para>
+</listitem><listitem><para><computeroutput>hydrology/</computeroutput>: Watershed segmentation, depression filling, flow accumulation, and river graph routing.</para>
+</listitem><listitem><para><computeroutput>flora/</computeroutput>: Botanical descriptors (<computeroutput>Species</computeroutput>), multi-species competition, canopy dynamics (<computeroutput>Forest</computeroutput>).</para>
+</listitem><listitem><para><computeroutput>rocks/</computeroutput>: Geomorphological rock distributions, talus sorting, and Pareto power-law radius sampling (<computeroutput>RockField</computeroutput>).</para>
+</listitem><listitem><para><computeroutput><ref refid="carving_8hpp" kindref="compound">carving.hpp</ref></computeroutput> &amp; <computeroutput><ref refid="roads_8hpp" kindref="compound">roads.hpp</ref></computeroutput>: Terrain cutting, path-guided grading, and slope alignment.</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="md_docs_2content_2dev_2architecture_1autotoc_md8">
+<title>Export &amp; I/O</title>
+<para>Converts internal representations into exchange formats:<itemizedlist>
+<listitem><para>Raster images: 8-bit, 16-bit, and 32-bit floating-point images via OpenCV, OpenEXR, and BigTIFF writers.</para>
+</listitem><listitem><para>3D representations: Triangular meshes (<computeroutput>TerrainTriMesh</computeroutput>), heightfield point clouds, USD / glTF scenes.</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+</sect1>
+<sect1 id="md_docs_2content_2dev_2architecture_1autotoc_md9">
+<title>3. Design Principles</title>
+<sect2 id="md_docs_2content_2dev_2architecture_1autotoc_md10">
+<title>Contiguous Storage and Explicit Memory Control</title>
+<para>Core buffers (<computeroutput>Array</computeroutput>) rely on dense, contiguous allocations in row-major order. Iteration order throughout the codebase prioritizes cache coherence ($y$ outer loop, $x$ inner loop).</para>
+</sect2>
+<sect2 id="md_docs_2content_2dev_2architecture_1autotoc_md11">
+<title>Separation of Storage and Algorithm</title>
+<para>Algorithms accept references or views to data buffers rather than binding to specific container subclasses. For large terrains, algorithms execute through tiled abstractions (<computeroutput>HeightMap</computeroutput> or <computeroutput>VirtualArray</computeroutput>) with explicit boundary halo policies.</para>
+</sect2>
+<sect2 id="md_docs_2content_2dev_2architecture_1autotoc_md12">
+<title>Stateless Processing Functions</title>
+<para>Image processing, filtering, and synthesis algorithms are implemented primarily as free functions operating on inputs and producing outputs or modifying referenced buffers in-place, avoiding hidden state.</para>
+</sect2>
+<sect2 id="md_docs_2content_2dev_2architecture_1autotoc_md13">
+<title>Deterministic Seeding</title>
+<para>All stochastic procedures (noise generators, scattering passes, Monte Carlo simulations) accept explicit integer seeds to ensure reproducibility across runs.</para>
+</sect2>
+</sect1>
+<sect1 id="md_docs_2content_2dev_2architecture_1autotoc_md14">
+<title>4. Subsystem Deep Dives</title>
+<para>Detailed architectural descriptions of specific subsystems:</para>
+<para><itemizedlist>
+<listitem><para><ref refid="md_docs_2content_2dev_2scatter__field" kindref="compound">Scatter Architecture</ref>: Detailed specification of <computeroutput>ScatterField</computeroutput>, the unified instance model, and specializations <computeroutput>Forest</computeroutput> and <computeroutput>RockField</computeroutput>. </para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="docs/content/dev/architecture.md"/>
+  </compounddef>
+</doxygen>

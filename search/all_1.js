@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['_5f3ds_0',['_3DS',['../namespacehmap.html#ac3d35efc6e5b596f508e2b17a5aa871baf10b3b024fd2327370b4c8c45f6ae310',1,'hmap']]],
-  ['_5f3mf_1',['_3MF',['../namespacehmap.html#ac3d35efc6e5b596f508e2b17a5aa871ba2c204df8ef8fa0dc1eb38995cad3bc0f',1,'hmap']]]
+  ['2_20bivariate_20functions_0',['2. Bivariate Functions',['../md_docs_2content_2getting__started_2core__concepts.html#autotoc_md28',1,'']]],
+  ['2_20cmake_20integration_1',['2. CMake Integration',['../md_docs_2content_2getting__started_2quickstart.html#autotoc_md33',1,'']]],
+  ['2_20design_20principles_2',['2. Design Principles',['../md_docs_2content_2dev_2scatter__field.html#autotoc_md17',1,'']]],
+  ['2_20layers_3',['2. Layers',['../md_docs_2content_2dev_2architecture.html#autotoc_md3',1,'']]]
 ];
