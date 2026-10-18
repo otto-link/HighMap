@@ -162,7 +162,7 @@ e_{dist} $</formula> is <ref refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCost
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="171" column="17" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="171" bodyend="171"/>
+        <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="172" column="17" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="172" bodyend="172"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -182,7 +182,7 @@ e_{dist} $</formula> is <ref refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCost
         <label>std::vector&lt; float &gt;</label>
       </node>
     </collaborationgraph>
-    <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="104" column="3" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="105" bodyend="172"/>
+    <location file="HighMap/include/highmap/terrain_tri_mesh.hpp" line="104" column="3" bodyfile="HighMap/include/highmap/terrain_tri_mesh.hpp" bodystart="105" bodyend="173"/>
     <listofallmembers>
       <member refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_1a51a7a21b3029516eb39be45b2d8b15f1" prot="public" virt="non-virtual"><scope>hmap::TerrainTriMesh::MeshPathCostConfig</scope><name>distance_exponent</name></member>
       <member refid="structhmap_1_1TerrainTriMesh_1_1MeshPathCostConfig_1a9ac96f45efe81174ad5f2af359b2c9a8" prot="public" virt="non-virtual"><scope>hmap::TerrainTriMesh::MeshPathCostConfig</scope><name>domain_center_weight</name></member>

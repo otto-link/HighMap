@@ -30150,7 +30150,7 @@ See unit tests: <ref refid="test__splines_8cpp" kindref="compound">test_splines.
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/geometry/path_verification.cpp" line="17" column="6" bodyfile="HighMap/src/geometry/path_verification.cpp" bodystart="17" bodyend="41" declfile="HighMap/include/highmap/geometry/path.hpp" declline="946" declcolumn="6"/>
+        <location file="HighMap/src/geometry/path_verification.cpp" line="17" column="6" bodyfile="HighMap/src/geometry/path_verification.cpp" bodystart="17" bodyend="41" declfile="HighMap/include/highmap/geometry/path.hpp" declline="945" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1aba24d09d6f4a3eab8c1522536088f39e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -30191,7 +30191,7 @@ See unit tests: <ref refid="test__splines_8cpp" kindref="compound">test_splines.
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/geometry/path_verification.cpp" line="43" column="7" bodyfile="HighMap/src/geometry/path_verification.cpp" bodystart="43" bodyend="64" declfile="HighMap/include/highmap/geometry/path.hpp" declline="957" declcolumn="7"/>
+        <location file="HighMap/src/geometry/path_verification.cpp" line="43" column="7" bodyfile="HighMap/src/geometry/path_verification.cpp" bodystart="43" bodyend="64" declfile="HighMap/include/highmap/geometry/path.hpp" declline="956" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1adb224131a9c75491b105b67801e0fe20" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -30237,7 +30237,7 @@ See unit tests: <ref refid="test__splines_8cpp" kindref="compound">test_splines.
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/geometry/path_verification.cpp" line="66" column="6" bodyfile="HighMap/src/geometry/path_verification.cpp" bodystart="66" bodyend="80" declfile="HighMap/include/highmap/geometry/path.hpp" declline="968" declcolumn="6"/>
+        <location file="HighMap/src/geometry/path_verification.cpp" line="66" column="6" bodyfile="HighMap/src/geometry/path_verification.cpp" bodystart="66" bodyend="80" declfile="HighMap/include/highmap/geometry/path.hpp" declline="967" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1aac71bb6c14edc17967957f7918acdbdd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -36555,7 +36555,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_stream.cpp" line="26" column="6" bodyfile="HighMap/src/hydrology/flow_stream.cpp" bodystart="26" bodyend="231" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="710" declcolumn="6"/>
+        <location file="HighMap/src/hydrology/flow_stream.cpp" line="26" column="6" bodyfile="HighMap/src/hydrology/flow_stream.cpp" bodystart="26" bodyend="231" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="711" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a73c8de9d1feb25ccd5400352662c19dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Path" kindref="compound">Path</ref></type>
@@ -36702,7 +36702,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_stream.cpp" line="277" column="6" bodyfile="HighMap/src/hydrology/flow_stream.cpp" bodystart="277" bodyend="474" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="744" declcolumn="6"/>
+        <location file="HighMap/src/hydrology/flow_stream.cpp" line="277" column="6" bodyfile="HighMap/src/hydrology/flow_stream.cpp" bodystart="277" bodyend="474" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="746" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a8ec1a8c4669cf56b6f9213102e719d3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Path" kindref="compound">Path</ref></type>
@@ -36849,7 +36849,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/flow_stream.cpp" line="233" column="6" bodyfile="HighMap/src/hydrology/flow_stream.cpp" bodystart="233" bodyend="275" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="779" declcolumn="6"/>
+        <location file="HighMap/src/hydrology/flow_stream.cpp" line="233" column="6" bodyfile="HighMap/src/hydrology/flow_stream.cpp" bodystart="233" bodyend="275" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="782" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a30d55fae5c75a1c45a005a3f9a9467eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -37104,7 +37104,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/generate_riverbed.cpp" line="20" column="7" bodyfile="HighMap/src/hydrology/generate_riverbed.cpp" bodystart="20" bodyend="89" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="836" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/generate_riverbed.cpp" line="20" column="7" bodyfile="HighMap/src/hydrology/generate_riverbed.cpp" bodystart="20" bodyend="89" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="839" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a0cb5cc8e5f2cb010a50bda6c17dfb12d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref></type>
@@ -37149,7 +37149,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/hydrology_paths_to_graph.cpp" line="22" column="7" bodyfile="HighMap/src/hydrology/hydrology_paths_to_graph.cpp" bodystart="22" bodyend="156" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="863" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/hydrology_paths_to_graph.cpp" line="22" column="7" bodyfile="HighMap/src/hydrology/hydrology_paths_to_graph.cpp" bodystart="22" bodyend="156" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="866" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a64fbc0261e13ea842762efd3ac6bcc53" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -37206,7 +37206,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/water_depth.cpp" line="29" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="29" bodyend="44" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="876" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/water_depth.cpp" line="29" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="29" bodyend="44" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="879" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a78419f7981186b40c4a2d04456e4e63f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -37397,7 +37397,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/snow_simulation.cpp" line="27" column="7" bodyfile="HighMap/src/hydrology/snow_simulation.cpp" bodystart="27" bodyend="83" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="905" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/snow_simulation.cpp" line="27" column="7" bodyfile="HighMap/src/hydrology/snow_simulation.cpp" bodystart="27" bodyend="83" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="908" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a3a5454dd7547ce6b9d995be17a2ac410" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -37507,7 +37507,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/water_depth.cpp" line="77" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="77" bodyend="97" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="952" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/water_depth.cpp" line="77" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="77" bodyend="97" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="955" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a3aebd62906b90ccfde11140e13b0853f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -37606,7 +37606,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/water_depth.cpp" line="46" column="6" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="46" bodyend="75" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="982" declcolumn="6"/>
+        <location file="HighMap/src/hydrology/water_depth.cpp" line="46" column="6" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="46" bodyend="75" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="985" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a136f042ce2ad8c14033f4d839f56265d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -37697,7 +37697,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/water_depth.cpp" line="99" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="99" bodyend="241" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1022" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/water_depth.cpp" line="99" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="99" bodyend="241" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1025" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1afad09b723c82dd7f0a0f7365e74b1edf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -37788,7 +37788,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/water_depth.cpp" line="243" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="243" bodyend="302" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1060" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/water_depth.cpp" line="243" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="243" bodyend="302" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1063" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ab562e00b361d918c52dd5860fc88ae06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -37874,7 +37874,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/water_depth.cpp" line="304" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="304" bodyend="334" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1086" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/water_depth.cpp" line="304" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="304" bodyend="334" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1089" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ad39c72e2b4c07d3013f7b0143c31137c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -37929,7 +37929,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/water_depth.cpp" line="336" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="336" bodyend="343" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1106" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/water_depth.cpp" line="336" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="336" bodyend="343" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1109" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1abc5928f49e530927c8fb61a9afea3274" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -38008,7 +38008,7 @@ The output path consists of:<itemizedlist>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/hydrology/water_depth.cpp" line="345" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="345" bodyend="362" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1130" declcolumn="7"/>
+        <location file="HighMap/src/hydrology/water_depth.cpp" line="345" column="7" bodyfile="HighMap/src/hydrology/water_depth.cpp" bodystart="345" bodyend="362" declfile="HighMap/include/highmap/hydrology/hydrology.hpp" declline="1133" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a67eae4546cbed6a804eaddcde9350e1c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::filesystem::path</type>
@@ -61869,7 +61869,7 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/scatter/scatter_field.cpp" line="1641" column="14" bodyfile="HighMap/src/scatter/scatter_field.cpp" bodystart="1641" bodyend="1674" declfile="HighMap/include/highmap/scatter/scatter_field.hpp" declline="487" declcolumn="14"/>
+        <location file="HighMap/src/scatter/scatter_field.cpp" line="1641" column="14" bodyfile="HighMap/src/scatter/scatter_field.cpp" bodystart="1641" bodyend="1674" declfile="HighMap/include/highmap/scatter/scatter_field.hpp" declline="488" declcolumn="14"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a09487a4f97ee60322dc0b237309896ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1ScatterField" kindref="compound">ScatterField</ref></type>
@@ -61925,7 +61925,7 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/scatter/scatter_field.cpp" line="1676" column="14" bodyfile="HighMap/src/scatter/scatter_field.cpp" bodystart="1676" bodyend="1746" declfile="HighMap/include/highmap/scatter/scatter_field.hpp" declline="503" declcolumn="14"/>
+        <location file="HighMap/src/scatter/scatter_field.cpp" line="1676" column="14" bodyfile="HighMap/src/scatter/scatter_field.cpp" bodystart="1676" bodyend="1746" declfile="HighMap/include/highmap/scatter/scatter_field.hpp" declline="504" declcolumn="14"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a765d17781b2ffdf138be2c869fe4b24c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -62046,7 +62046,7 @@ See unit tests: <ref refid="test__remap_8cpp" kindref="compound">test_remap.cpp<
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/scatter/scatter_field.cpp" line="1748" column="7" bodyfile="HighMap/src/scatter/scatter_field.cpp" bodystart="1748" bodyend="1764" declfile="HighMap/include/highmap/scatter/scatter_field.hpp" declline="523" declcolumn="7"/>
+        <location file="HighMap/src/scatter/scatter_field.cpp" line="1748" column="7" bodyfile="HighMap/src/scatter/scatter_field.cpp" bodystart="1748" bodyend="1764" declfile="HighMap/include/highmap/scatter/scatter_field.hpp" declline="524" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a61e1b066b8da6d1227758bbb40510548" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1ScatterField" kindref="compound">ScatterField</ref></type>
@@ -68675,7 +68675,7 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" line="1018" column="13" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="1018" bodyend="1046" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="379" declcolumn="13"/>
+        <location file="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" line="1018" column="13" bodyfile="HighMap/src/terrain_tri_mesh/terrain_tri_mesh.cpp" bodystart="1018" bodyend="1046" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="380" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1af9fdabd692817be603ff5c44e68ea619" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1TerrainTriMesh" kindref="compound">TerrainTriMesh</ref></type>
@@ -68708,7 +68708,7 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" line="21" column="16" bodyfile="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" bodystart="21" bodyend="49" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="382" declcolumn="16"/>
+        <location file="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" line="21" column="16" bodyfile="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" bodystart="21" bodyend="49" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="383" declcolumn="16"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a5078af3eb73fb47ab1aad6cc872ab29a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1TerrainTriMesh" kindref="compound">TerrainTriMesh</ref></type>
@@ -68735,7 +68735,7 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" line="51" column="16" bodyfile="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" bodystart="51" bodyend="69" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="388" declcolumn="16"/>
+        <location file="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" line="51" column="16" bodyfile="HighMap/src/terrain_tri_mesh/generate_terrain_tri_mesh_from_heightmap.cpp" bodystart="51" bodyend="69" declfile="HighMap/include/highmap/terrain_tri_mesh.hpp" declline="389" declcolumn="16"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a19dec938e688ef4b73cf27ff3934043b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>

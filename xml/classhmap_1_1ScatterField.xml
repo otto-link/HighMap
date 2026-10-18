@@ -20,7 +20,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/scatter/scatter_field.hpp" line="471" column="15" bodyfile="HighMap/include/highmap/scatter/scatter_field.hpp" bodystart="471" bodyend="471"/>
+        <location file="HighMap/include/highmap/scatter/scatter_field.hpp" line="472" column="15" bodyfile="HighMap/include/highmap/scatter/scatter_field.hpp" bodystart="472" bodyend="472"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -1578,7 +1578,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/scatter/scatter_field.hpp" line="449" column="8" bodyfile="HighMap/src/scatter/scatter_field.cpp" bodystart="1553" bodyend="1584"/>
+        <location file="HighMap/include/highmap/scatter/scatter_field.hpp" line="450" column="8" bodyfile="HighMap/src/scatter/scatter_field.cpp" bodystart="1553" bodyend="1584"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1ScatterField_1a4e1e40d95eaecfff34f524bb44e2cb74" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1645,7 +1645,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/scatter/scatter_field.hpp" line="459" column="8" bodyfile="HighMap/src/scatter/scatter_field.cpp" bodystart="1586" bodyend="1594"/>
+        <location file="HighMap/include/highmap/scatter/scatter_field.hpp" line="460" column="8" bodyfile="HighMap/src/scatter/scatter_field.cpp" bodystart="1586" bodyend="1594"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1ScatterField_1aece4b7ce3a6d09279928b0468fb55efb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type>std::string</type>
@@ -1665,7 +1665,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/scatter/scatter_field.hpp" line="468" column="23" bodyfile="HighMap/src/scatter/scatter_field.cpp" bodystart="1596" bodyend="1635"/>
+        <location file="HighMap/include/highmap/scatter/scatter_field.hpp" line="469" column="23" bodyfile="HighMap/src/scatter/scatter_field.cpp" bodystart="1596" bodyend="1635"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -1710,7 +1710,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="HighMap/include/highmap/scatter/scatter_field.hpp" line="43" column="1" bodyfile="HighMap/include/highmap/scatter/scatter_field.hpp" bodystart="44" bodyend="472"/>
+    <location file="HighMap/include/highmap/scatter/scatter_field.hpp" line="43" column="1" bodyfile="HighMap/include/highmap/scatter/scatter_field.hpp" bodystart="44" bodyend="473"/>
     <listofallmembers>
       <member refid="classhmap_1_1ScatterField_1a9a88b00b0685cb1f9e05ac3f473225cd" prot="public" virt="non-virtual"><scope>hmap::ScatterField</scope><name>at</name></member>
       <member refid="classhmap_1_1ScatterField_1a4eaa960005fa7b6168df87b7ae3191b8" prot="public" virt="non-virtual"><scope>hmap::ScatterField</scope><name>at</name></member>
