@@ -7,8 +7,6 @@ var carving_8hpp =
       [ "ELP_INCREASING", "carving_8hpp.html#a22e54d4ecd4b37d658c1d9ac9531377dab5d3567f29e73ff4a65b0ac46f55d1a3", null ]
     ] ],
     [ "dig_path", "carving_8hpp.html#a3a29e127d53bc5b547af422da36da1cc", null ],
-    [ "dig_river", "carving_8hpp.html#aa0407e8bf3d06ffb4d8d1e97809d3665", null ],
-    [ "dig_river", "carving_8hpp.html#ada12e6cab4577326964d00fac3aa1077", null ],
     [ "flatbed_carve", "carving_8hpp.html#a5f979c31af1c9ee6ad499882335ca6fb", null ],
     [ "trench", "carving_8hpp.html#a2d7b71e9231efc67e4bae209bd7fa84a", null ],
     [ "trench", "carving_8hpp.html#ae10d017da6e13ba9d619298709e64917", null ],

@@ -3,7 +3,6 @@
   <compounddef id="dir_f8eb721606e4259556b93247b998bbbb" kind="dir">
     <compoundname>HighMap/src/carving</compoundname>
     <innerfile refid="dig__path_8cpp">dig_path.cpp</innerfile>
-    <innerfile refid="dig__river_8cpp">dig_river.cpp</innerfile>
     <innerfile refid="flatbed__carve_8cpp">flatbed_carve.cpp</innerfile>
     <innerfile refid="trench_8cpp">trench.cpp</innerfile>
     <briefdescription>
