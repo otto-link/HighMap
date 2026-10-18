@@ -269,7 +269,7 @@ var searchData=
   ['stitching_5fhelpers_2ecpp_266',['stitching_helpers.cpp',['../stitching__helpers_8cpp.html',1,'']]],
   ['stl_267',['STL',['../namespacehmap.html#ac3d35efc6e5b596f508e2b17a5aa871ba255d4f7c6ccaff8e1dbba731b721c118',1,'hmap']]],
   ['stlb_268',['STLB',['../namespacehmap.html#ac3d35efc6e5b596f508e2b17a5aa871bac692212c784096efd35f54c700a039f6',1,'hmap']]],
-  ['stop_269',['stop',['../structhmap_1_1Recorder.html#aba9c05c56a1c5a769f12467684735add',1,'hmap::Recorder::stop()'],['../classhmap_1_1Timer.html#a6054c197a10338a1bd48299be29593b5',1,'hmap::Timer::Stop()']]],
+  ['stop_269',['stop',['../classhmap_1_1Timer.html#a6054c197a10338a1bd48299be29593b5',1,'hmap::Timer::Stop()'],['../structhmap_1_1Recorder.html#aba9c05c56a1c5a769f12467684735add',1,'hmap::Recorder::stop()']]],
   ['storage_270',['storage',['../structhmap_1_1VirtualArray.html#ac46202fbde3f529ab290f38e73b529d6',1,'hmap::VirtualArray']]],
   ['storage_20and_20algorithm_271',['Separation of Storage and Algorithm',['../md_docs_2content_2dev_2architecture.html#autotoc_md11',1,'']]],
   ['storage_20and_20explicit_20memory_20control_272',['Contiguous Storage and Explicit Memory Control',['../md_docs_2content_2dev_2architecture.html#autotoc_md10',1,'']]],

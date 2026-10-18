@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/graph.hpp" line="333" column="32" bodyfile="HighMap/include/highmap/geometry/graph.hpp" bodystart="333" bodyend="-1"/>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="359" column="32" bodyfile="HighMap/include/highmap/geometry/graph.hpp" bodystart="359" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classhmap_1_1Graph_1afcec6d2b7b82ec49ab7ee9b89d81d041" prot="private" static="no" mutable="no">
         <type>std::vector&lt; std::vector&lt; <ref refid="structhmap_1_1Neighbor" kindref="compound">Neighbor</ref> &gt; &gt;</type>
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/graph.hpp" line="334" column="15" bodyfile="HighMap/include/highmap/geometry/graph.hpp" bodystart="334" bodyend="-1"/>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="360" column="15" bodyfile="HighMap/include/highmap/geometry/graph.hpp" bodystart="360" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-static-attrib">
@@ -48,7 +48,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/graph.hpp" line="336" column="28" bodyfile="HighMap/include/highmap/geometry/graph.hpp" bodystart="336" bodyend="-1"/>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="362" column="28" bodyfile="HighMap/include/highmap/geometry/graph.hpp" bodystart="362" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -364,6 +364,40 @@
         </inbodydescription>
         <location file="HighMap/include/highmap/geometry/graph.hpp" line="140" column="15" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="103" bodyend="208"/>
       </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Graph_1a8bd325cd601128ea8e4008b97934f389" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; float &gt;</type>
+        <definition>std::vector&lt; float &gt; hmap::Graph::compute_relative_widths</definition>
+        <argsstring>(float exponent=1.0f) const</argsstring>
+        <name>compute_relative_widths</name>
+        <qualifiedname>hmap::Graph::compute_relative_widths</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>exponent</declname>
+          <defval>1.0f</defval>
+        </param>
+        <briefdescription>
+<para>Compute relative channel width ratio in [0, 1] for each node in the graph. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Scaling smoothly from 0 at the upstream headwater roots up to 1 at the downstream outlets:</para>
+<para><computeroutput>r = (1 - d_outlet / max_d_outlet)^exponent</computeroutput></para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>exponent</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Scaling exponent applied to normalized distance to outlet. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Vector containing relative width ratio in [0, 1] per node. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="154" column="15" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="210" bodyend="304"/>
+      </memberdef>
       <memberdef kind="function" id="classhmap_1_1Graph_1acd7202cfee0df9d971c0420542a94beb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; int &gt;</type>
         <definition>std::vector&lt; int &gt; hmap::Graph::compute_strahler_order</definition>
@@ -381,7 +415,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/graph.hpp" line="151" column="15" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="210" bodyend="332"/>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="165" column="15" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="306" bodyend="428"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Graph_1aa47c8285e9c489fe7794d60eb19a3c7c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>size_t</type>
@@ -412,7 +446,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/graph.hpp" line="158" column="10" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="334" bodyend="338"/>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="172" column="10" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="518" bodyend="523"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Graph_1aec94f282ad2c0633edaf14ee782ff3a7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; int &gt;</type>
@@ -480,7 +514,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/graph.hpp" line="172" column="15" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="340" bodyend="401"/>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="186" column="15" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="525" bodyend="586"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Graph_1a452a1e8102c63bbb4988d9d4c2690287" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>bool</type>
@@ -498,7 +532,39 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/graph.hpp" line="179" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="403" bodyend="406"/>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="193" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="588" bodyend="591"/>
+      </memberdef>
+      <memberdef kind="function" id="classhmap_1_1Graph_1a231644afacc52964b79dfe909963b818" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void hmap::Graph::enforce_downhill_elevation</definition>
+        <argsstring>(float min_slope=0.001f)</argsstring>
+        <name>enforce_downhill_elevation</name>
+        <qualifiedname>hmap::Graph::enforce_downhill_elevation</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>min_slope</declname>
+          <defval>0.001<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
+        </param>
+        <briefdescription>
+<para>Enforce monotonic downhill elevations on all graph nodes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Traverses nodes from upstream headwaters to downstream outlets in topological order, ensuring each downstream node satisfies:</para>
+<para><computeroutput>v_downstream &lt;= v_upstream - min_slope * edge_length</computeroutput></para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>min_slope</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Minimum downhill slope along each directed edge. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="205" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="430" bodyend="516"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Graph_1a8ce4c44596c11ae0bbd651ad78967ca5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="structhmap_1_1Edge" kindref="compound">Edge</ref></type>
@@ -529,7 +595,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/graph.hpp" line="186" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="408" bodyend="412"/>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="212" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="593" bodyend="597"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Graph_1ae2948bc10a491b6b36dbe5140d1231ea" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -560,7 +626,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/graph.hpp" line="193" column="9" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="414" bodyend="423"/>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="219" column="9" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="599" bodyend="608"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Graph_1a018064b7d9f27f1c4af7bb9bc6f56357" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; float &gt;</type>
@@ -578,7 +644,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/graph.hpp" line="199" column="15" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="425" bodyend="439"/>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="225" column="15" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="610" bodyend="624"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Graph_1a62793a11ad97333cace3aa81c39d65b1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; float &gt;</type>
@@ -596,7 +662,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/graph.hpp" line="205" column="15" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="441" bodyend="455"/>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="231" column="15" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="626" bodyend="640"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Graph_1a7b1a701b472365f39736aef20e2ce1cc" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>const std::vector&lt; <ref refid="structhmap_1_1Edge" kindref="compound">Edge</ref> &gt; &amp;</type>
@@ -614,7 +680,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/graph.hpp" line="211" column="21" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="457" bodyend="460"/>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="237" column="21" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="642" bodyend="645"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Graph_1a03ec3725fe8c6bb78149118fad041d43" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; float &gt;</type>
@@ -632,7 +698,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/graph.hpp" line="217" column="15" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="462" bodyend="469"/>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="243" column="15" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="647" bodyend="654"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Graph_1ae9b2fd0dd4c63e88a2ecec9e4abec04c" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>size_t</type>
@@ -650,7 +716,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/graph.hpp" line="223" column="10" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="471" bodyend="474"/>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="249" column="10" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="656" bodyend="659"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Graph_1a8b18f90110d46fb650b73d8410856c1c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref></type>
@@ -686,7 +752,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/graph.hpp" line="232" column="9" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="476" bodyend="524"/>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="258" column="9" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="661" bodyend="709"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Graph_1a83be20f4cc52c15ed7773d81cf304c2f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>const std::vector&lt; <ref refid="structhmap_1_1Neighbor" kindref="compound">Neighbor</ref> &gt; &amp;</type>
@@ -717,7 +783,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/graph.hpp" line="239" column="21" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="526" bodyend="531"/>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="265" column="21" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="711" bodyend="716"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Graph_1a99a6f2b1940db4c49cbf51dcb592a198" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>size_t</type>
@@ -735,7 +801,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/graph.hpp" line="245" column="10" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="533" bodyend="536"/>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="271" column="10" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="718" bodyend="721"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Graph_1a3c549606a34f49273461999caf5c5ecd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -750,7 +816,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/graph.hpp" line="250" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="538" bodyend="559"/>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="276" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="723" bodyend="744"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Graph_1a9342d61be778e7fd8525334b5e3b4e00" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Graph" kindref="compound">Graph</ref></type>
@@ -768,7 +834,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/graph.hpp" line="256" column="9" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="561" bodyend="592"/>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="282" column="9" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="746" bodyend="777"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Graph_1af9dd5d2b3ff699e1e064f4d189d74d55" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -809,7 +875,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/graph.hpp" line="263" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="594" bodyend="612"/>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="289" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="779" bodyend="797"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Graph_1a531127f7513c688936bd83e852f1c741" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -862,7 +928,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/graph.hpp" line="271" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="614" bodyend="625"/>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="297" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="799" bodyend="810"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Graph_1a5d27935b935d6d788a934bc0e4f4082f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -916,7 +982,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/graph.hpp" line="279" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="627" bodyend="649"/>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="305" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="812" bodyend="834"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Graph_1a72b12f0c404bb6e1cb22790b5f4fb44b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1020,7 +1086,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/graph.hpp" line="293" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="651" bodyend="691"/>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="319" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="836" bodyend="876"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Graph_1ab107e8c114939acd9fdd55ab427d5d51" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -1102,7 +1168,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/graph.hpp" line="311" column="9" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="693" bodyend="741"/>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="337" column="9" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="878" bodyend="926"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Graph_1a7b092be3bef180b012ab3d68bbe793e1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1143,7 +1209,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/graph.hpp" line="322" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="743" bodyend="755"/>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="348" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="928" bodyend="940"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1Graph_1a10acc9e91285887d95ab12a42f2d1869" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -1185,7 +1251,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/graph.hpp" line="330" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="757" bodyend="764"/>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="356" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="942" bodyend="949"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -1205,7 +1271,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/geometry/graph.hpp" line="338" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="55" bodyend="58"/>
+        <location file="HighMap/include/highmap/geometry/graph.hpp" line="364" column="8" bodyfile="HighMap/src/geometry/graph.cpp" bodystart="55" bodyend="58"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -1272,7 +1338,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="HighMap/include/highmap/geometry/graph.hpp" line="69" column="1" bodyfile="HighMap/include/highmap/geometry/graph.hpp" bodystart="70" bodyend="339"/>
+    <location file="HighMap/include/highmap/geometry/graph.hpp" line="69" column="1" bodyfile="HighMap/include/highmap/geometry/graph.hpp" bodystart="70" bodyend="365"/>
     <listofallmembers>
       <member refid="classhmap_1_1Graph_1a85e17398e3cd9215ef189f8bbc03f73f" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>add_edge</name></member>
       <member refid="classhmap_1_1Graph_1a400cfa9a067f45b6f06d90503ec5a71f" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>add_edge</name></member>
@@ -1299,6 +1365,7 @@
       <member refid="classhmap_1_1Cloud_1aaa3aebf8afba3cddb605df797a3e8ff1" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>Cloud</name></member>
       <member refid="classhmap_1_1Cloud_1af62bc19e589d351a4f21a7177bde5456" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>Cloud</name></member>
       <member refid="classhmap_1_1Graph_1a54a9c0555a9d6056771ec940cbea37cd" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>compute_distance_to_outlet</name></member>
+      <member refid="classhmap_1_1Graph_1a8bd325cd601128ea8e4008b97934f389" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>compute_relative_widths</name></member>
       <member refid="classhmap_1_1Graph_1acd7202cfee0df9d971c0420542a94beb" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>compute_strahler_order</name></member>
       <member refid="classhmap_1_1Cloud_1a53b1754ac6bc551b18d80a0dc9c3f76f" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>data</name></member>
       <member refid="classhmap_1_1Cloud_1ae6111341e9a207c3446d7e4024abd5f5" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>data</name></member>
@@ -1311,6 +1378,7 @@
       <member refid="classhmap_1_1Graph_1a9e53b1959c1fc970779afb9e646424ca" prot="private" virt="non-virtual"><scope>hmap::Graph</scope><name>empty_neighbors</name></member>
       <member refid="classhmap_1_1Cloud_1a142e0d65c2fac2a04834e8d07372eb87" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>end</name></member>
       <member refid="classhmap_1_1Cloud_1adce6ad1fcde7423b475721ad66d824e2" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>end</name></member>
+      <member refid="classhmap_1_1Graph_1a231644afacc52964b79dfe909963b818" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>enforce_downhill_elevation</name></member>
       <member refid="classhmap_1_1Graph_1a94870e9bc6ba4d18ab47b2539d929486" prot="private" virt="non-virtual"><scope>hmap::Graph</scope><name>ensure_adj_capacity</name></member>
       <member refid="classhmap_1_1Cloud_1af93934b0c344c81d0260680988643d32" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>erase</name></member>
       <member refid="classhmap_1_1Cloud_1a9ac3c2b9b492c973236e1d693506a75a" prot="public" virt="non-virtual"><scope>hmap::Graph</scope><name>erase</name></member>

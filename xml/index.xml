@@ -596,10 +596,12 @@
     <member refid="classhmap_1_1Graph_1afe8d4e58ca035b43ed891556dd7cdd2c" kind="function"><name>add_edge</name></member>
     <member refid="classhmap_1_1Graph_1ad191d0d38350b42a95a9ecb58652ffd9" kind="function"><name>clear_edges</name></member>
     <member refid="classhmap_1_1Graph_1a54a9c0555a9d6056771ec940cbea37cd" kind="function"><name>compute_distance_to_outlet</name></member>
+    <member refid="classhmap_1_1Graph_1a8bd325cd601128ea8e4008b97934f389" kind="function"><name>compute_relative_widths</name></member>
     <member refid="classhmap_1_1Graph_1acd7202cfee0df9d971c0420542a94beb" kind="function"><name>compute_strahler_order</name></member>
     <member refid="classhmap_1_1Graph_1aa47c8285e9c489fe7794d60eb19a3c7c" kind="function"><name>degree</name></member>
     <member refid="classhmap_1_1Graph_1aec94f282ad2c0633edaf14ee782ff3a7" kind="function"><name>dijkstra</name></member>
     <member refid="classhmap_1_1Graph_1a452a1e8102c63bbb4988d9d4c2690287" kind="function"><name>empty_edges</name></member>
+    <member refid="classhmap_1_1Graph_1a231644afacc52964b79dfe909963b818" kind="function"><name>enforce_downhill_elevation</name></member>
     <member refid="classhmap_1_1Graph_1a8ce4c44596c11ae0bbd651ad78967ca5" kind="function"><name>get_edge</name></member>
     <member refid="classhmap_1_1Graph_1ae2948bc10a491b6b36dbe5140d1231ea" kind="function"><name>get_edge_length</name></member>
     <member refid="classhmap_1_1Graph_1a018064b7d9f27f1c4af7bb9bc6f56357" kind="function"><name>get_edge_x_pairs</name></member>
@@ -2055,7 +2057,8 @@
     <member refid="namespacehmap_1a5f979c31af1c9ee6ad499882335ca6fb" kind="function"><name>flatbed_carve</name></member>
     <member refid="namespacehmap_1a2d7b71e9231efc67e4bae209bd7fa84a" kind="function"><name>trench</name></member>
     <member refid="namespacehmap_1ae10d017da6e13ba9d619298709e64917" kind="function"><name>trench</name></member>
-    <member refid="namespacehmap_1a731047666a064859cbdc311b482e8f4d" kind="function"><name>trench</name></member>
+    <member refid="namespacehmap_1a6629d7932feda7b2c5c1cc7e33da66bd" kind="function"><name>trench</name></member>
+    <member refid="namespacehmap_1ac812451135eef116e28dfb44b5ec7a8d" kind="function"><name>trench</name></member>
     <member refid="namespacehmap_1a54eb8ce4196d73517024dbe2af5af81b" kind="function"><name>shade_color</name></member>
     <member refid="namespacehmap_1a76b37b88acf83d6a5b21f1be1b50697e" kind="function"><name>apply_hillshade</name></member>
     <member refid="namespacehmap_1aefc8cbe645337bb5b663436c0324f9e2" kind="function"><name>apply_hillshade</name></member>
@@ -4609,6 +4612,7 @@
     <member refid="test__graph_8cpp_1acae7b4a868c7ef61b6affc5623dc5814" kind="function"><name>TEST</name></member>
     <member refid="test__graph_8cpp_1ab0f9281bd865e5bc60a6115d4971a80e" kind="function"><name>TEST</name></member>
     <member refid="test__graph_8cpp_1ac5ed5bb5b69420f7dad47a80903142bd" kind="function"><name>TEST</name></member>
+    <member refid="test__graph_8cpp_1ad253afab5caaa309f1909b17d9ecb755" kind="function"><name>TEST</name></member>
   </compound>
   <compound refid="test__grids_8cpp" kind="file"><name>test_grids.cpp</name>
     <member refid="test__grids_8cpp_1a6a740a6a66a5f44d8f94a658161450dc" kind="function"><name>TEST</name></member>

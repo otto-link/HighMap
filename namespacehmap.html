@@ -1000,9 +1000,12 @@ Functions</h2></td></tr>
 <tr class="separator:a2d7b71e9231efc67e4bae209bd7fa84a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae10d017da6e13ba9d619298709e64917" id="r_ae10d017da6e13ba9d619298709e64917"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#ae10d017da6e13ba9d619298709e64917">trench</a> (<a class="el" href="classhmap_1_1Array.html">Array</a> &amp;<a class="el" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, const std::vector&lt; <a class="el" href="classhmap_1_1Path.html">Path</a> &gt; &amp;paths, float width, bool enable_width_depth_scaling=true, bool enable_width_distance_scaling=true, bool enable_width_curvature_scaling=false, float curvature_radius_min=1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float curv_width_ratio_min=0.5<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float curv_width_ratio_max=2.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, <a class="el" href="namespacehmap.html#a2affc745bc33b7555352665745741f90">RadialProfile</a> radial_profile=<a class="el" href="namespacehmap.html#a2affc745bc33b7555352665745741f90acedc11502bd1441e893fdc5a699b6d59">RadialProfile::RP_SMOOTHSTEP_UPPER</a>, float radial_profile_parameter=2.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, <a class="el" href="namespacehmap.html#a22e54d4ecd4b37d658c1d9ac9531377d">ElevationLongitudinalProfile</a> longitudinal_profile=<a class="el" href="namespacehmap.html#a22e54d4ecd4b37d658c1d9ac9531377daf9b3bb1e76572464d8a6a413d9f12cef">ElevationLongitudinalProfile::ELP_DECREASING</a>, float elevation_shift=-0.05<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float shift_ramp_start_ratio=0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float shift_ramp_end_ratio=0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float min_slope=0.001<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, size_t k_neighbors=8, const <a class="el" href="classhmap_1_1Array.html">Array</a> *p_noise_r=nullptr, <a class="el" href="classhmap_1_1Array.html">Array</a> *p_bending_mask=nullptr, int tile_size=32, glm::vec4 bbox={0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, 1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, 0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, 1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>})</td></tr>
 <tr class="separator:ae10d017da6e13ba9d619298709e64917"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a731047666a064859cbdc311b482e8f4d" id="r_a731047666a064859cbdc311b482e8f4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#a731047666a064859cbdc311b482e8f4d">trench</a> (<a class="el" href="classhmap_1_1Array.html">Array</a> &amp;<a class="el" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, const <a class="el" href="classhmap_1_1Graph.html">Graph</a> &amp;graph, float width, float width_exponent=0.5<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, bool enable_width_depth_scaling=true, <a class="el" href="namespacehmap.html#a2affc745bc33b7555352665745741f90">RadialProfile</a> radial_profile=<a class="el" href="namespacehmap.html#a2affc745bc33b7555352665745741f90acedc11502bd1441e893fdc5a699b6d59">RadialProfile::RP_SMOOTHSTEP_UPPER</a>, float radial_profile_parameter=2.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, <a class="el" href="namespacehmap.html#a22e54d4ecd4b37d658c1d9ac9531377d">ElevationLongitudinalProfile</a> longitudinal_profile=<a class="el" href="namespacehmap.html#a22e54d4ecd4b37d658c1d9ac9531377daf9b3bb1e76572464d8a6a413d9f12cef">ElevationLongitudinalProfile::ELP_DECREASING</a>, float elevation_shift=-0.05<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float min_slope=0.001<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, const <a class="el" href="classhmap_1_1Array.html">Array</a> *p_noise_r=nullptr, <a class="el" href="classhmap_1_1Array.html">Array</a> *p_bending_mask=nullptr, int tile_size=32, glm::vec4 bbox={0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, 1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, 0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, 1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>})</td></tr>
-<tr class="memdesc:a731047666a064859cbdc311b482e8f4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Carves river channels for an entire flow network represented by a <a class="el" href="classhmap_1_1Graph.html" title="Graph class, to manipulate graphs in 2D.">Graph</a>.  <br /></td></tr>
-<tr class="separator:a731047666a064859cbdc311b482e8f4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6629d7932feda7b2c5c1cc7e33da66bd" id="r_a6629d7932feda7b2c5c1cc7e33da66bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#a6629d7932feda7b2c5c1cc7e33da66bd">trench</a> (<a class="el" href="classhmap_1_1Array.html">Array</a> &amp;<a class="el" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, const <a class="el" href="classhmap_1_1Graph.html">Graph</a> &amp;graph, const std::vector&lt; float &gt; &amp;relative_widths, float width, bool enable_width_depth_scaling=true, <a class="el" href="namespacehmap.html#a2affc745bc33b7555352665745741f90">RadialProfile</a> radial_profile=<a class="el" href="namespacehmap.html#a2affc745bc33b7555352665745741f90acedc11502bd1441e893fdc5a699b6d59">RadialProfile::RP_SMOOTHSTEP_UPPER</a>, float radial_profile_parameter=2.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, <a class="el" href="namespacehmap.html#a22e54d4ecd4b37d658c1d9ac9531377d">ElevationLongitudinalProfile</a> longitudinal_profile=<a class="el" href="namespacehmap.html#a22e54d4ecd4b37d658c1d9ac9531377daf9b3bb1e76572464d8a6a413d9f12cef">ElevationLongitudinalProfile::ELP_DECREASING</a>, float elevation_shift=-0.05<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float min_slope=0.001<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, const <a class="el" href="classhmap_1_1Array.html">Array</a> *p_noise_r=nullptr, <a class="el" href="classhmap_1_1Array.html">Array</a> *p_bending_mask=nullptr, int tile_size=32, glm::vec4 bbox={0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, 1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, 0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, 1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>})</td></tr>
+<tr class="memdesc:a6629d7932feda7b2c5c1cc7e33da66bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Carves river channels for an entire flow network represented by a <a class="el" href="classhmap_1_1Graph.html" title="Graph class, to manipulate graphs in 2D.">Graph</a> with per-node relative widths.  <br /></td></tr>
+<tr class="separator:a6629d7932feda7b2c5c1cc7e33da66bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac812451135eef116e28dfb44b5ec7a8d" id="r_ac812451135eef116e28dfb44b5ec7a8d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#ac812451135eef116e28dfb44b5ec7a8d">trench</a> (<a class="el" href="classhmap_1_1Array.html">Array</a> &amp;<a class="el" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, const <a class="el" href="classhmap_1_1Graph.html">Graph</a> &amp;graph, float width, float width_exponent=1.0f, bool enable_width_depth_scaling=true, <a class="el" href="namespacehmap.html#a2affc745bc33b7555352665745741f90">RadialProfile</a> radial_profile=<a class="el" href="namespacehmap.html#a2affc745bc33b7555352665745741f90acedc11502bd1441e893fdc5a699b6d59">RadialProfile::RP_SMOOTHSTEP_UPPER</a>, float radial_profile_parameter=2.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, <a class="el" href="namespacehmap.html#a22e54d4ecd4b37d658c1d9ac9531377d">ElevationLongitudinalProfile</a> longitudinal_profile=<a class="el" href="namespacehmap.html#a22e54d4ecd4b37d658c1d9ac9531377daf9b3bb1e76572464d8a6a413d9f12cef">ElevationLongitudinalProfile::ELP_DECREASING</a>, float elevation_shift=-0.05<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, float min_slope=0.001<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, const <a class="el" href="classhmap_1_1Array.html">Array</a> *p_noise_r=nullptr, <a class="el" href="classhmap_1_1Array.html">Array</a> *p_bending_mask=nullptr, int tile_size=32, glm::vec4 bbox={0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, 1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, 0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>, 1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>})</td></tr>
+<tr class="memdesc:ac812451135eef116e28dfb44b5ec7a8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Carves river channels for an entire flow network represented by a <a class="el" href="classhmap_1_1Graph.html" title="Graph class, to manipulate graphs in 2D.">Graph</a>, computing relative widths from distance to outlet.  <br /></td></tr>
+<tr class="separator:ac812451135eef116e28dfb44b5ec7a8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54eb8ce4196d73517024dbe2af5af81b" id="r_a54eb8ce4196d73517024dbe2af5af81b"><td class="memItemLeft" align="right" valign="top">glm::vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#a54eb8ce4196d73517024dbe2af5af81b">shade_color</a> (const glm::vec3 &amp;color, float <a class="el" href="elevation__from__contours_8cpp.html#a305c809f0e63e80705b5138b76dc0cc2">t</a>)</td></tr>
 <tr class="memdesc:a54eb8ce4196d73517024dbe2af5af81b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adjust color by shading parameter t clamped to [0, 1].  <br /></td></tr>
 <tr class="separator:a54eb8ce4196d73517024dbe2af5af81b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -8469,7 +8472,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
 </div>
 </div>
 <a id="a2d7b71e9231efc67e4bae209bd7fa84a" name="a2d7b71e9231efc67e4bae209bd7fa84a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2d7b71e9231efc67e4bae209bd7fa84a">&#9670;&#160;</a></span>trench() <span class="overload">[1/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d7b71e9231efc67e4bae209bd7fa84a">&#9670;&#160;</a></span>trench() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -8693,7 +8696,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
 </div>
 </div>
 <a id="ae10d017da6e13ba9d619298709e64917" name="ae10d017da6e13ba9d619298709e64917"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae10d017da6e13ba9d619298709e64917">&#9670;&#160;</a></span>trench() <span class="overload">[2/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae10d017da6e13ba9d619298709e64917">&#9670;&#160;</a></span>trench() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -8834,8 +8837,8 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
 
 </div>
 </div>
-<a id="a731047666a064859cbdc311b482e8f4d" name="a731047666a064859cbdc311b482e8f4d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a731047666a064859cbdc311b482e8f4d">&#9670;&#160;</a></span>trench() <span class="overload">[3/3]</span></h2>
+<a id="a6629d7932feda7b2c5c1cc7e33da66bd" name="a6629d7932feda7b2c5c1cc7e33da66bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6629d7932feda7b2c5c1cc7e33da66bd">&#9670;&#160;</a></span>trench() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -8855,14 +8858,14 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>width</em>, </td>
+          <td class="paramtype">const std::vector&lt; float &gt; &amp;&#160;</td>
+          <td class="paramname"><em>relative_widths</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>width_exponent</em> = <code>0.5<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a></code>, </td>
+          <td class="paramname"><em>width</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -8932,16 +8935,136 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
       </table>
 </div><div class="memdoc">
 
-<p>Carves river channels for an entire flow network represented by a <a class="el" href="classhmap_1_1Graph.html" title="Graph class, to manipulate graphs in 2D.">Graph</a>. </p>
-<p>Each channel segment evolves its width downstream according to its distance to the outlet in each drainage tree, scaling smoothly from 0 at the upstream roots up to <code>width</code> at the outlet:</p>
-<p><code>w = width * (1 - d_outlet / max_d_outlet)^width_exponent</code></p>
-<p>When <code>enable_width_distance_scaling</code> is enabled, width also interpolates continuously along each edge between its upstream and downstream node widths.</p>
+<p>Carves river channels for an entire flow network represented by a <a class="el" href="classhmap_1_1Graph.html" title="Graph class, to manipulate graphs in 2D.">Graph</a> with per-node relative widths. </p>
+<p>Each node in the graph provides a relative width ratio in [0, 1] (scaled by <code>width</code> to obtain the node's channel width). Along each edge between node <code>u</code> and node <code>v</code>, width is linearly interpolated as a function of the projection parameter <code>t</code>:</p>
+<p><code>w(t) = width * ((1 - t) * r_u + t * r_v)</code></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">z</td><td>Target heightmap to carve in-place. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">graph</td><td>Input flow network <a class="el" href="classhmap_1_1Graph.html" title="Graph class, to manipulate graphs in 2D.">Graph</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">relative_widths</td><td>Relative width ratio in [0, 1] per graph node. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">width</td><td>Maximum base width. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">enable_width_depth_scaling</td><td>Modulate width according to depth. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">radial_profile</td><td>Transverse cross-section profile. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">radial_profile_parameter</td><td>Shaping parameter for radial profile. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">longitudinal_profile</td><td>Downhill elevation monotonicity mode. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">elevation_shift</td><td>Depth of trench incision. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">min_slope</td><td>Minimum downstream slope. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">p_noise_r</td><td>Optional noise array for radial perturbation. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">p_bending_mask</td><td>Optional blending mask. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">tile_size</td><td>Spatial tile partition size. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bbox</td><td>Domain bounding box. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac812451135eef116e28dfb44b5ec7a8d" name="ac812451135eef116e28dfb44b5ec7a8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac812451135eef116e28dfb44b5ec7a8d">&#9670;&#160;</a></span>trench() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void hmap::trench </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classhmap_1_1Array.html">Array</a> &amp;&#160;</td>
+          <td class="paramname"><em>z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classhmap_1_1Graph.html">Graph</a> &amp;&#160;</td>
+          <td class="paramname"><em>graph</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>width_exponent</em> = <code>1.0f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enable_width_depth_scaling</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacehmap.html#a2affc745bc33b7555352665745741f90">RadialProfile</a>&#160;</td>
+          <td class="paramname"><em>radial_profile</em> = <code><a class="el" href="namespacehmap.html#a2affc745bc33b7555352665745741f90acedc11502bd1441e893fdc5a699b6d59">RadialProfile::RP_SMOOTHSTEP_UPPER</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>radial_profile_parameter</em> = <code>2.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacehmap.html#a22e54d4ecd4b37d658c1d9ac9531377d">ElevationLongitudinalProfile</a>&#160;</td>
+          <td class="paramname"><em>longitudinal_profile</em> = <code><a class="el" href="namespacehmap.html#a22e54d4ecd4b37d658c1d9ac9531377daf9b3bb1e76572464d8a6a413d9f12cef">ElevationLongitudinalProfile::ELP_DECREASING</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>elevation_shift</em> = <code>-0.05<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>min_slope</em> = <code>0.001<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classhmap_1_1Array.html">Array</a> *&#160;</td>
+          <td class="paramname"><em>p_noise_r</em> = <code>nullptr</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classhmap_1_1Array.html">Array</a> *&#160;</td>
+          <td class="paramname"><em>p_bending_mask</em> = <code>nullptr</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tile_size</em> = <code>32</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">glm::vec4&#160;</td>
+          <td class="paramname"><em>bbox</em> = <code>{0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>,&#160;1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>,&#160;0.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>,&#160;1.<a class="el" href="distance__transform_8cpp.html#abcb9259cf91bfd25e92a72cdf18c285e">f</a>}</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Carves river channels for an entire flow network represented by a <a class="el" href="classhmap_1_1Graph.html" title="Graph class, to manipulate graphs in 2D.">Graph</a>, computing relative widths from distance to outlet. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">z</td><td>Target heightmap to carve in-place. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">graph</td><td>Input flow network <a class="el" href="classhmap_1_1Graph.html" title="Graph class, to manipulate graphs in 2D.">Graph</a>. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">width</td><td>Target river width at the <a class="el" href="hydraulic__mise_8cpp.html#a04ae352a41e6a2fb1296b478e5881a66">outlet(s)</a>. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">width_exponent</td><td>Scaling exponent for width with distance to outlet (default: 0.5). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">width_exponent</td><td>Scaling exponent for width with distance to outlet (default: 1.0). </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">enable_width_depth_scaling</td><td>Modulate width according to depth. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">radial_profile</td><td>Transverse cross-section profile. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">radial_profile_parameter</td><td>Shaping parameter for radial profile. </td></tr>
@@ -33510,28 +33633,31 @@ Transport for Terrain Erosion Simulation" (N. McDonald, G. Cordonnier), <a href=
 <div class="line">  <span class="keywordtype">int</span>       seed = 1;</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">// base terrain with Perlin noise</span></div>
-<div class="line">  <a class="code hl_class" href="classhmap_1_1Array.html">hmap::Array</a> <a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a> = 0.2f *</div>
-<div class="line">                  <a class="code hl_function" href="namespacehmap.html#a7d699a468a18be16c70654958ee13b41">hmap::noise_fbm</a>(<a class="code hl_enumvalue" href="namespacehmap.html#ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581">hmap::NoiseType::PERLIN</a>, <a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>, kw, seed);</div>
-<div class="line">  <a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a> = <a class="code hl_function" href="namespacehmap.html#ae3ecf5f88476c5d49978a130f8cab2f3">hmap::bulkify</a>(<a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, <a class="code hl_enumvalue" href="namespacehmap.html#a55542a66f890ef9ecf5f82af2c23a0cfad8c75d88dbfd854dbcedfaf3a4b9c65c">hmap::PrimitiveType::PRIM_SMOOTH_COSINE</a>, 1.f);</div>
+<div class="line">  <a class="code hl_class" href="classhmap_1_1Array.html">hmap::Array</a> <a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a> = <a class="code hl_function" href="namespacehmap.html#a7d699a468a18be16c70654958ee13b41">hmap::noise_fbm</a>(<a class="code hl_enumvalue" href="namespacehmap.html#ab8197c4c7a85dacb616fee7a7d0df195a87c6abee9c8e2441859223b28e9b4581">hmap::NoiseType::PERLIN</a>, <a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>, kw, seed);</div>
+<div class="line">  <span class="comment">// z = hmap::bulkify(z, hmap::PrimitiveType::PRIM_SMOOTH_COSINE, 1.f);</span></div>
+<div class="line"> </div>
+<div class="line">  <a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a> += <a class="code hl_function" href="namespacehmap.html#aeeb81bcbca7fdd49fafe7090a9abc765">hmap::circus</a>(<a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>);</div>
 <div class="line"> </div>
 <div class="line">  <a class="code hl_function" href="namespacehmap.html#a262e6495cb2d02598f36a2b46114b2b4">hmap::remap</a>(<a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>);</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">// generate triangular terrain mesh from heightmap</span></div>
-<div class="line">  <span class="keywordtype">float</span>                max_error = 1e-2f;</div>
-<div class="line">  <a class="code hl_class" href="classhmap_1_1TerrainTriMesh.html">hmap::TerrainTriMesh</a> mesh = <a class="code hl_function" href="namespacehmap.html#af9fdabd692817be603ff5c44e68ea619">hmap::generate_terrain_tri_mesh_from_heightmap</a>(</div>
-<div class="line">      <a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>,</div>
-<div class="line">      max_error);</div>
+<div class="line">  <a class="code hl_class" href="classhmap_1_1TerrainTriMesh.html">hmap::TerrainTriMesh</a> mesh =</div>
+<div class="line">      <a class="code hl_function" href="namespacehmap.html#a5078af3eb73fb47ab1aad6cc872ab29a">hmap::generate_terrain_tri_mesh_from_heightmap_random</a>(<a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, 2 * 4096, seed);</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">// multiple starting points across the slopes of the valley head</span></div>
 <div class="line">  std::vector&lt;glm::vec2&gt; start_points = {</div>
-<div class="line">      {100.f / float(<a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>.x - 1), 200.f / float(<a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>.y - 1)},</div>
-<div class="line">      {155.f / float(<a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>.x - 1), 210.f / float(<a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>.y - 1)},</div>
-<div class="line">      {100.f / float(<a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>.x - 1), 80.f / float(<a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>.y - 1)},</div>
-<div class="line">      {80.f / float(<a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>.x - 1), 100.f / float(<a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>.y - 1)},</div>
-<div class="line">      {70.f / float(<a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>.x - 1), 124.f / float(<a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>.y - 1)},</div>
-<div class="line">      {70.f / float(<a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>.x - 1), 150.f / float(<a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>.y - 1)},</div>
-<div class="line">      {60.f / float(<a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>.x - 1), 170.f / float(<a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>.y - 1)},</div>
-<div class="line">      {175.f / float(<a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>.x - 1), 160.f / float(<a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>.y - 1)}};</div>
+<div class="line">      {0.39f, 0.78f},</div>
+<div class="line">      {0.39f, 0.31f},</div>
+<div class="line">      {0.31f, 0.39f},</div>
+<div class="line">      {0.35f, 0.43f},</div>
+<div class="line">      {0.27f, 0.49f},</div>
+<div class="line">      {0.27f, 0.59f},</div>
+<div class="line">      {0.24f, 0.67f},</div>
+<div class="line">      {0.69f, 0.63f},</div>
+<div class="line">      {0.61f, 0.82f},</div>
+<div class="line">      {0.40f, 0.45f},</div>
+<div class="line">      {0.50f, 0.70f},</div>
+<div class="line">  };</div>
 <div class="line"> </div>
 <div class="line">  std::vector&lt;hmap::Path&gt; streams;</div>
 <div class="line"> </div>
@@ -33554,6 +33680,9 @@ Transport for Terrain Erosion Simulation" (N. McDonald, G. Cordonnier), <a href=
 <div class="line">  <span class="comment">// convert merged streams into a connected Graph</span></div>
 <div class="line">  <a class="code hl_class" href="classhmap_1_1Graph.html">hmap::Graph</a> stream_graph = <a class="code hl_function" href="namespacehmap.html#a0cb5cc8e5f2cb010a50bda6c17dfb12d">hmap::hydrology_paths_to_graph</a>(streams, 1e-3f);</div>
 <div class="line"> </div>
+<div class="line">  <span class="comment">// enforce strict monotonic downflow along all stream branches</span></div>
+<div class="line">  stream_graph.<a class="code hl_function" href="classhmap_1_1Graph.html#a231644afacc52964b79dfe909963b818">enforce_downhill_elevation</a>(0.01f);</div>
+<div class="line"> </div>
 <div class="line">  <span class="comment">// visualize graph on an empty grid</span></div>
 <div class="line">  glm::vec4   bbox(0.f, 1.f, 0.f, 1.f);</div>
 <div class="line">  <a class="code hl_class" href="classhmap_1_1Array.html">hmap::Array</a> z_graph(<a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>, 0.f);</div>
@@ -33561,34 +33690,48 @@ Transport for Terrain Erosion Simulation" (N. McDonald, G. Cordonnier), <a href=
 <div class="line"> </div>
 <div class="line">  <span class="comment">// carve consistent river network with trench evolving width downstream</span></div>
 <div class="line">  <a class="code hl_class" href="classhmap_1_1Array.html">hmap::Array</a> z_trenched = <a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>;</div>
-<div class="line">  <span class="keywordtype">float</span>       base_width = 0.02f;</div>
+<div class="line">  <span class="keywordtype">float</span>       base_width = 0.05f;</div>
 <div class="line">  <span class="keywordtype">float</span>       width_exponent = 1.f;</div>
+<div class="line"> </div>
+<div class="line">  std::vector&lt;float&gt; rel_widths = stream_graph.<a class="code hl_function" href="classhmap_1_1Graph.html#a8bd325cd601128ea8e4008b97934f389">compute_relative_widths</a>(</div>
+<div class="line">      width_exponent);</div>
 <div class="line"> </div>
 <div class="line">  <a class="code hl_function" href="namespacehmap.html#a2d7b71e9231efc67e4bae209bd7fa84a">hmap::trench</a>(z_trenched,</div>
 <div class="line">               stream_graph,</div>
+<div class="line">               rel_widths,</div>
 <div class="line">               base_width,</div>
-<div class="line">               width_exponent,</div>
-<div class="line">               <span class="comment">/* enable_width_depth_scaling */</span> <span class="keyword">true</span>,</div>
+<div class="line">               <span class="comment">/* enable_width_depth_scaling */</span> <span class="keyword">false</span>,</div>
 <div class="line">               <a class="code hl_enumvalue" href="namespacehmap.html#a2affc745bc33b7555352665745741f90acedc11502bd1441e893fdc5a699b6d59">hmap::RadialProfile::RP_SMOOTHSTEP_UPPER</a>,</div>
 <div class="line">               2.f,</div>
 <div class="line">               <a class="code hl_enumvalue" href="namespacehmap.html#a22e54d4ecd4b37d658c1d9ac9531377daf9b3bb1e76572464d8a6a413d9f12cef">hmap::ElevationLongitudinalProfile::ELP_DECREASING</a>,</div>
-<div class="line">               -0.05f);</div>
+<div class="line">               -0.1f);</div>
+<div class="line"> </div>
+<div class="line">  <a class="code hl_class" href="classhmap_1_1Array.html">hmap::Array</a> zc(<a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>);</div>
+<div class="line"> </div>
+<div class="line">  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> <a class="code hl_variable" href="sls__deformation_8cpp.html#a37d972ae0b47b9099e30983131d31916">j</a> = 0; <a class="code hl_variable" href="sls__deformation_8cpp.html#a37d972ae0b47b9099e30983131d31916">j</a> &lt; <a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>.y - 1; ++<a class="code hl_variable" href="sls__deformation_8cpp.html#a37d972ae0b47b9099e30983131d31916">j</a>)</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> <a class="code hl_variable" href="sls__deformation_8cpp.html#acb559820d9ca11295b4500f179ef6392">i</a> = 0; <a class="code hl_variable" href="sls__deformation_8cpp.html#acb559820d9ca11295b4500f179ef6392">i</a> &lt; <a class="code hl_variable" href="elevation__from__contours_8cpp.html#af339e609a44f3516574ffecaf5245fa3">shape</a>.x - 1; ++<a class="code hl_variable" href="sls__deformation_8cpp.html#acb559820d9ca11295b4500f179ef6392">i</a>)</div>
+<div class="line">    {</div>
+<div class="line">      <span class="keywordtype">float</span> zg = z_graph(<a class="code hl_variable" href="sls__deformation_8cpp.html#acb559820d9ca11295b4500f179ef6392">i</a>, <a class="code hl_variable" href="sls__deformation_8cpp.html#a37d972ae0b47b9099e30983131d31916">j</a>);</div>
+<div class="line">      zc(<a class="code hl_variable" href="sls__deformation_8cpp.html#acb559820d9ca11295b4500f179ef6392">i</a>, <a class="code hl_variable" href="sls__deformation_8cpp.html#a37d972ae0b47b9099e30983131d31916">j</a>) = zg &gt; 0.f ? zg - 0.05f : <a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>(<a class="code hl_variable" href="sls__deformation_8cpp.html#acb559820d9ca11295b4500f179ef6392">i</a>, <a class="code hl_variable" href="sls__deformation_8cpp.html#a37d972ae0b47b9099e30983131d31916">j</a>);</div>
+<div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">  <a class="code hl_function" href="namespacehmap.html#ac2452e568959bc21c9b7b09202e5977a">hmap::export_banner_png</a>(<span class="stringliteral">&quot;ex_flow_stream.png&quot;</span>,</div>
-<div class="line">                          {<a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, z_graph, z_trenched},</div>
+<div class="line">                          {<a class="code hl_variable" href="hydraulic__mise_8cpp.html#aa14e04bff7de9e968e46a953f71f29f3">z</a>, z_graph, z_trenched, zc},</div>
 <div class="line">                          <a class="code hl_enumvalue" href="namespacehmap.html#ac70fe3cbb32e0340d5dd3e15cdcf9369a65146260717d07e4773aec50520b9ced">hmap::Cmap::JET</a>,</div>
 <div class="line">                          <span class="keyword">true</span>);</div>
 <div class="line">}</div>
 <div class="ttc" id="aclasshmap_1_1Cloud_html_a89f21637cf9c4857bf65ad6a6009eff9"><div class="ttname"><a href="classhmap_1_1Cloud.html#a89f21637cf9c4857bf65ad6a6009eff9">hmap::Cloud::empty</a></div><div class="ttdeci">bool empty() const</div><div class="ttdoc">Check whether the cloud has no points.</div><div class="ttdef"><b>Definition</b> cloud.cpp:521</div></div>
 <div class="ttc" id="aclasshmap_1_1Graph_html"><div class="ttname"><a href="classhmap_1_1Graph.html">hmap::Graph</a></div><div class="ttdoc">Graph class, to manipulate graphs in 2D.</div><div class="ttdef"><b>Definition</b> graph.hpp:70</div></div>
-<div class="ttc" id="aclasshmap_1_1Graph_html_a5d27935b935d6d788a934bc0e4f4082f"><div class="ttname"><a href="classhmap_1_1Graph.html#a5d27935b935d6d788a934bc0e4f4082f">hmap::Graph::to_array</a></div><div class="ttdeci">void to_array(Array &amp;array, glm::vec4 bbox, bool color_by_edge_weight=true) const</div><div class="ttdoc">Project the graph to an array and optionally color by edge weight.</div><div class="ttdef"><b>Definition</b> graph.cpp:627</div></div>
+<div class="ttc" id="aclasshmap_1_1Graph_html_a231644afacc52964b79dfe909963b818"><div class="ttname"><a href="classhmap_1_1Graph.html#a231644afacc52964b79dfe909963b818">hmap::Graph::enforce_downhill_elevation</a></div><div class="ttdeci">void enforce_downhill_elevation(float min_slope=0.001f)</div><div class="ttdoc">Enforce monotonic downhill elevations on all graph nodes.</div><div class="ttdef"><b>Definition</b> graph.cpp:430</div></div>
+<div class="ttc" id="aclasshmap_1_1Graph_html_a5d27935b935d6d788a934bc0e4f4082f"><div class="ttname"><a href="classhmap_1_1Graph.html#a5d27935b935d6d788a934bc0e4f4082f">hmap::Graph::to_array</a></div><div class="ttdeci">void to_array(Array &amp;array, glm::vec4 bbox, bool color_by_edge_weight=true) const</div><div class="ttdoc">Project the graph to an array and optionally color by edge weight.</div><div class="ttdef"><b>Definition</b> graph.cpp:812</div></div>
+<div class="ttc" id="aclasshmap_1_1Graph_html_a8bd325cd601128ea8e4008b97934f389"><div class="ttname"><a href="classhmap_1_1Graph.html#a8bd325cd601128ea8e4008b97934f389">hmap::Graph::compute_relative_widths</a></div><div class="ttdeci">std::vector&lt; float &gt; compute_relative_widths(float exponent=1.0f) const</div><div class="ttdoc">Compute relative channel width ratio in [0, 1] for each node in the graph.</div><div class="ttdef"><b>Definition</b> graph.cpp:210</div></div>
 <div class="ttc" id="aclasshmap_1_1TerrainTriMesh_html"><div class="ttname"><a href="classhmap_1_1TerrainTriMesh.html">hmap::TerrainTriMesh</a></div><div class="ttdoc">Triangle mesh representation of a terrain surface.</div><div class="ttdef"><b>Definition</b> terrain_tri_mesh.hpp:30</div></div>
 <div class="ttc" id="anamespacehmap_html_a0cb5cc8e5f2cb010a50bda6c17dfb12d"><div class="ttname"><a href="namespacehmap.html#a0cb5cc8e5f2cb010a50bda6c17dfb12d">hmap::hydrology_paths_to_graph</a></div><div class="ttdeci">Graph hydrology_paths_to_graph(const std::vector&lt; Path &gt; &amp;paths, float snap_tolerance=1e-4f)</div><div class="ttdoc">Convert a collection of hydrology flow paths into a connected Graph.</div><div class="ttdef"><b>Definition</b> hydrology_paths_to_graph.cpp:22</div></div>
 <div class="ttc" id="anamespacehmap_html_a22e54d4ecd4b37d658c1d9ac9531377daf9b3bb1e76572464d8a6a413d9f12cef"><div class="ttname"><a href="namespacehmap.html#a22e54d4ecd4b37d658c1d9ac9531377daf9b3bb1e76572464d8a6a413d9f12cef">hmap::ELP_DECREASING</a></div><div class="ttdeci">@ ELP_DECREASING</div><div class="ttdef"><b>Definition</b> carving.hpp:20</div></div>
 <div class="ttc" id="anamespacehmap_html_a2affc745bc33b7555352665745741f90acedc11502bd1441e893fdc5a699b6d59"><div class="ttname"><a href="namespacehmap.html#a2affc745bc33b7555352665745741f90acedc11502bd1441e893fdc5a699b6d59">hmap::RP_SMOOTHSTEP_UPPER</a></div><div class="ttdeci">@ RP_SMOOTHSTEP_UPPER</div><div class="ttdef"><b>Definition</b> profiles.hpp:56</div></div>
 <div class="ttc" id="anamespacehmap_html_a4cbd6dd7622a26e446901e1608cc3a87"><div class="ttname"><a href="namespacehmap.html#a4cbd6dd7622a26e446901e1608cc3a87">hmap::flow_stream</a></div><div class="ttdeci">Path flow_stream(const Array &amp;z, const glm::ivec2 ij_start, const float elevation_ratio=0.5f, const float distance_exponent=2.f, const float upward_penalization=100.f, const std::vector&lt; Path &gt; &amp;existing_streams={}, const int valley_radius=2, const float valley_factor=0.35f, const bool truncate_at_intersection=false)</div><div class="ttdoc">Computes the optimal flow path from a starting point to the boundary of a given elevation array.</div><div class="ttdef"><b>Definition</b> flow_stream.cpp:26</div></div>
-<div class="ttc" id="anamespacehmap_html_a55542a66f890ef9ecf5f82af2c23a0cfad8c75d88dbfd854dbcedfaf3a4b9c65c"><div class="ttname"><a href="namespacehmap.html#a55542a66f890ef9ecf5f82af2c23a0cfad8c75d88dbfd854dbcedfaf3a4b9c65c">hmap::PRIM_SMOOTH_COSINE</a></div><div class="ttdeci">@ PRIM_SMOOTH_COSINE</div><div class="ttdef"><b>Definition</b> functions.hpp:29</div></div>
-<div class="ttc" id="anamespacehmap_html_af9fdabd692817be603ff5c44e68ea619"><div class="ttname"><a href="namespacehmap.html#af9fdabd692817be603ff5c44e68ea619">hmap::generate_terrain_tri_mesh_from_heightmap</a></div><div class="ttdeci">TerrainTriMesh generate_terrain_tri_mesh_from_heightmap(const Array &amp;z, float max_error, int max_triangles=0, int max_points=0)</div><div class="ttdoc">Generate a terrain mesh from a heightmap.</div><div class="ttdef"><b>Definition</b> generate_terrain_tri_mesh_from_heightmap.cpp:21</div></div>
+<div class="ttc" id="anamespacehmap_html_a5078af3eb73fb47ab1aad6cc872ab29a"><div class="ttname"><a href="namespacehmap.html#a5078af3eb73fb47ab1aad6cc872ab29a">hmap::generate_terrain_tri_mesh_from_heightmap_random</a></div><div class="ttdeci">TerrainTriMesh generate_terrain_tri_mesh_from_heightmap_random(const Array &amp;z, int control_points_count, std::uint32_t seed)</div><div class="ttdoc">Generate a random terrain mesh from a heightmap.</div><div class="ttdef"><b>Definition</b> generate_terrain_tri_mesh_from_heightmap.cpp:51</div></div>
+<div class="ttc" id="anamespacehmap_html_aeeb81bcbca7fdd49fafe7090a9abc765"><div class="ttname"><a href="namespacehmap.html#aeeb81bcbca7fdd49fafe7090a9abc765">hmap::circus</a></div><div class="ttdeci">Array circus(glm::ivec2 shape, float radius=0.4f, float angle=0.f, float exit_width=0.35f, float exit_depth=0.f, float center_depth=0.1f, float ridge_height=1.f, float ridge_width=0.15f, float outer_falloff=2.f, const Array *p_noise_r=nullptr, glm::vec2 center={0.5f, 0.5f}, glm::vec4 bbox={0.f, 1.f, 0.f, 1.f}, Array *p_mask=nullptr)</div><div class="ttdoc">Generate a procedural circus (glacial cirque / amphitheatre basin) heightmap.</div><div class="ttdef"><b>Definition</b> circus.cpp:17</div></div>
 </div><!-- fragment --><p><b>Result</b> </p><div class="image">
 <img src="ex_flow_stream.png" alt=""/>
 </div>
@@ -51696,7 +51839,6 @@ template&lt;typename Fn &gt; </div>
 <div class="line"> </div>
 <div class="line">  <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
-<div class="ttc" id="anamespacehmap_html_aeeb81bcbca7fdd49fafe7090a9abc765"><div class="ttname"><a href="namespacehmap.html#aeeb81bcbca7fdd49fafe7090a9abc765">hmap::circus</a></div><div class="ttdeci">Array circus(glm::ivec2 shape, float radius=0.4f, float angle=0.f, float exit_width=0.35f, float exit_depth=0.f, float center_depth=0.1f, float ridge_height=1.f, float ridge_width=0.15f, float outer_falloff=2.f, const Array *p_noise_r=nullptr, glm::vec2 center={0.5f, 0.5f}, glm::vec4 bbox={0.f, 1.f, 0.f, 1.f}, Array *p_mask=nullptr)</div><div class="ttdoc">Generate a procedural circus (glacial cirque / amphitheatre basin) heightmap.</div><div class="ttdef"><b>Definition</b> circus.cpp:17</div></div>
 </div><!-- fragment --><p><b>Result</b> </p><div class="image">
 <img src="ex_circus.png" alt=""/>
 </div>

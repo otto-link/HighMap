@@ -52,6 +52,8 @@ void \mbox{\hyperlink{classhmap_1_1Graph_ad191d0d38350b42a95a9ecb58652ffd9}{clea
 \begin{DoxyCompactList}\small\item\em Clear all edges from the graph. \end{DoxyCompactList}\item 
 std\+::vector$<$ float $>$ \mbox{\hyperlink{classhmap_1_1Graph_a54a9c0555a9d6056771ec940cbea37cd}{compute\+\_\+distance\+\_\+to\+\_\+outlet}} () const
 \begin{DoxyCompactList}\small\item\em Compute the distance to the downstream outlet for each node in the graph. \end{DoxyCompactList}\item 
+std\+::vector$<$ float $>$ \mbox{\hyperlink{classhmap_1_1Graph_a8bd325cd601128ea8e4008b97934f389}{compute\+\_\+relative\+\_\+widths}} (float exponent=1.\+0f) const
+\begin{DoxyCompactList}\small\item\em Compute relative channel width ratio in \mbox{[}0, 1\mbox{]} for each node in the graph. \end{DoxyCompactList}\item 
 std\+::vector$<$ int $>$ \mbox{\hyperlink{classhmap_1_1Graph_acd7202cfee0df9d971c0420542a94beb}{compute\+\_\+strahler\+\_\+order}} () const
 \begin{DoxyCompactList}\small\item\em Compute the Strahler stream order for each node in the graph. \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classhmap_1_1Graph_aa47c8285e9c489fe7794d60eb19a3c7c}{degree}} (int u) const
@@ -60,6 +62,8 @@ std\+::vector$<$ int $>$ \mbox{\hyperlink{classhmap_1_1Graph_aec94f282ad2c0633ed
 \begin{DoxyCompactList}\small\item\em Return the shortest route between two points using Dijkstra\textquotesingle{}s algorithm. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classhmap_1_1Graph_a452a1e8102c63bbb4988d9d4c2690287}{empty\+\_\+edges}} () const noexcept
 \begin{DoxyCompactList}\small\item\em Check whether the graph has no edges. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1Graph_a231644afacc52964b79dfe909963b818}{enforce\+\_\+downhill\+\_\+elevation}} (float min\+\_\+slope=0.\+001\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}})
+\begin{DoxyCompactList}\small\item\em Enforce monotonic downhill elevations on all graph nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{structhmap_1_1Edge}{Edge}} \mbox{\hyperlink{classhmap_1_1Graph_a8ce4c44596c11ae0bbd651ad78967ca5}{get\+\_\+edge}} (size\+\_\+t k) const
 \begin{DoxyCompactList}\small\item\em Get an edge by index. \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{classhmap_1_1Graph_ae2948bc10a491b6b36dbe5140d1231ea}{get\+\_\+edge\+\_\+length}} (size\+\_\+t k) const
@@ -432,6 +436,28 @@ Flow direction is inferred from node elevation values (stored in {\ttfamily v}),
 \begin{DoxyReturn}{Returns}
 Vector containing the downstream distance to outlet for each node. 
 \end{DoxyReturn}
+\Hypertarget{classhmap_1_1Graph_a8bd325cd601128ea8e4008b97934f389}\label{classhmap_1_1Graph_a8bd325cd601128ea8e4008b97934f389} 
+\index{hmap::Graph@{hmap::Graph}!compute\_relative\_widths@{compute\_relative\_widths}}
+\index{compute\_relative\_widths@{compute\_relative\_widths}!hmap::Graph@{hmap::Graph}}
+\doxysubsubsection{\texorpdfstring{compute\_relative\_widths()}{compute\_relative\_widths()}}
+{\footnotesize\ttfamily std\+::vector$<$ float $>$ hmap\+::\+Graph\+::compute\+\_\+relative\+\_\+widths (\begin{DoxyParamCaption}\item[{float}]{exponent = {\ttfamily 1.0f} }\end{DoxyParamCaption}) const}
+
+
+
+Compute relative channel width ratio in \mbox{[}0, 1\mbox{]} for each node in the graph. 
+
+Scaling smoothly from 0 at the upstream headwater roots up to 1 at the downstream outlets\+:
+
+{\ttfamily r = (1 -\/ d\+\_\+outlet / max\+\_\+d\+\_\+outlet)\texorpdfstring{$^\wedge$}{\string^}exponent}
+
+
+\begin{DoxyParams}{Parameters}
+{\em exponent} & Scaling exponent applied to normalized distance to outlet. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector containing relative width ratio in \mbox{[}0, 1\mbox{]} per node. 
+\end{DoxyReturn}
 \Hypertarget{classhmap_1_1Graph_acd7202cfee0df9d971c0420542a94beb}\label{classhmap_1_1Graph_acd7202cfee0df9d971c0420542a94beb} 
 \index{hmap::Graph@{hmap::Graph}!compute\_strahler\_order@{compute\_strahler\_order}}
 \index{compute\_strahler\_order@{compute\_strahler\_order}!hmap::Graph@{hmap::Graph}}
@@ -527,6 +553,25 @@ Check whether the graph has no edges.
 \begin{DoxyReturn}{Returns}
 True if no edges, false otherwise. 
 \end{DoxyReturn}
+\Hypertarget{classhmap_1_1Graph_a231644afacc52964b79dfe909963b818}\label{classhmap_1_1Graph_a231644afacc52964b79dfe909963b818} 
+\index{hmap::Graph@{hmap::Graph}!enforce\_downhill\_elevation@{enforce\_downhill\_elevation}}
+\index{enforce\_downhill\_elevation@{enforce\_downhill\_elevation}!hmap::Graph@{hmap::Graph}}
+\doxysubsubsection{\texorpdfstring{enforce\_downhill\_elevation()}{enforce\_downhill\_elevation()}}
+{\footnotesize\ttfamily void hmap\+::\+Graph\+::enforce\+\_\+downhill\+\_\+elevation (\begin{DoxyParamCaption}\item[{float}]{min\+\_\+slope = {\ttfamily 0.001\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}} }\end{DoxyParamCaption})}
+
+
+
+Enforce monotonic downhill elevations on all graph nodes. 
+
+Traverses nodes from upstream headwaters to downstream outlets in topological order, ensuring each downstream node satisfies\+:
+
+{\ttfamily v\+\_\+downstream \texorpdfstring{$<$}{<}= v\+\_\+upstream -\/ min\+\_\+slope \texorpdfstring{$\ast$}{*} edge\+\_\+length}
+
+
+\begin{DoxyParams}{Parameters}
+{\em min\+\_\+slope} & Minimum downhill slope along each directed edge. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{classhmap_1_1Graph_a8ce4c44596c11ae0bbd651ad78967ca5}\label{classhmap_1_1Graph_a8ce4c44596c11ae0bbd651ad78967ca5} 
 \index{hmap::Graph@{hmap::Graph}!get\_edge@{get\_edge}}
 \index{get\_edge@{get\_edge}!hmap::Graph@{hmap::Graph}}
