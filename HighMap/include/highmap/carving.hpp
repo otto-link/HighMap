@@ -70,58 +70,6 @@ void dig_path(Array    &z,
               float     depth = 0.f);
 
 /**
- * @brief Modifies the elevation array to carve a river along a specified path.
- *
- * This function adjusts the elevation values in the input array `z` to simulate
- * a river along the provided `path`. It incorporates parameters for riverbed
- * and riverbank slopes, noise effects, and merging behavior to create a
- * realistic river profile.
- *
- * @param z               The input 2D array representing the elevation map.
- *                        This array will be modified in place.
- * @param path            The path along which the river is to be carved,
- *                        represented as a sequence of points, with coordinates
- *                        with respect to a unit-square.
- * @param riverbank_talus The slope of the riverbank, controlling how steep the
- *                        river's edges are.
- * @param merging_ir      The merging radius, specifying how far the effects of
- *                        multiple rivers combine.
- * @param riverbed_talus  The slope of the riverbed, controlling how steep the
- *                        riverbed is (default: 0.0).
- * @param noise_ratio     The proportion of random noise applied to the river's
- *                        shape for realism (default: 0.9).
- * @param seed            The seed for the random noise generator, ensuring
- *                        reproducibility (default: 0).
- *
- * **Example**
- * @include ex_flow_stream.cpp
- *
- * **Result**
- * @image html ex_flow_stream.png
- */
-void dig_river(Array                   &z,
-               const std::vector<Path> &path_list,
-               float                    riverbank_talus,
-               int                      river_width = 0,
-               int                      merging_width = 0,
-               float                    depth = 0.f,
-               float                    riverbed_talus = 0.f,
-               float                    noise_ratio = 0.9f,
-               std::uint32_t            seed = 0,
-               Array                   *p_mask = nullptr);
-
-void dig_river(Array        &z,
-               const Path   &path,
-               float         riverbank_talus,
-               int           river_width = 0,
-               int           merging_width = 0,
-               float         depth = 0.f,
-               float         riverbed_talus = 0.f,
-               float         noise_ratio = 0.9f,
-               std::uint32_t seed = 0,
-               Array        *p_mask = nullptr);
-
-/**
  * @brief Blends a flatbed carve into an existing heightmap.
  *
  * Carves and blends a flatbed shape along a path into the provided array, using
@@ -269,7 +217,8 @@ void trench(Array                   &z,
             glm::vec4    bbox = {0.f, 1.f, 0.f, 1.f});
 
 /**
- * @brief Carves river channels for an entire flow network represented by a Graph.
+ * @brief Carves river channels for an entire flow network represented by a
+ * Graph.
  *
  * Each channel segment evolves its width downstream according to its distance
  * to the outlet in each drainage tree, scaling smoothly from 0 at the upstream
@@ -280,35 +229,40 @@ void trench(Array                   &z,
  * When @p enable_width_distance_scaling is enabled, width also interpolates
  * continuously along each edge between its upstream and downstream node widths.
  *
- * @param[in,out] z                            Target heightmap to carve in-place.
- * @param[in]     graph                        Input flow network Graph.
- * @param[in]     width                        Target river width at the outlet(s).
- * @param[in]     width_exponent               Scaling exponent for width with distance to outlet (default: 0.5).
- * @param[in]     enable_width_depth_scaling   Modulate width according to depth.
- * @param[in]     radial_profile               Transverse cross-section profile.
- * @param[in]     radial_profile_parameter     Shaping parameter for radial profile.
- * @param[in]     longitudinal_profile         Downhill elevation monotonicity mode.
- * @param[in]     elevation_shift              Depth of trench incision.
- * @param[in]     min_slope                    Minimum downstream slope.
- * @param[in]     p_noise_r                    Optional noise array for radial perturbation.
- * @param[out]    p_bending_mask               Optional blending mask.
- * @param[in]     tile_size                    Spatial tile partition size.
- * @param[in]     bbox                         Domain bounding box.
+ * @param[in,out] z                          Target heightmap to carve in-place.
+ * @param[in]     graph                      Input flow network Graph.
+ * @param[in]     width                      Target river width at the
+ *                                           outlet(s).
+ * @param[in]     width_exponent             Scaling exponent for width with
+ *                                           distance to outlet (default: 0.5).
+ * @param[in]     enable_width_depth_scaling Modulate width according to depth.
+ * @param[in]     radial_profile             Transverse cross-section profile.
+ * @param[in]     radial_profile_parameter   Shaping parameter for radial
+ *                                           profile.
+ * @param[in]     longitudinal_profile       Downhill elevation monotonicity
+ *                                           mode.
+ * @param[in]     elevation_shift            Depth of trench incision.
+ * @param[in]     min_slope                  Minimum downstream slope.
+ * @param[in]     p_noise_r                  Optional noise array for radial
+ *                                           perturbation.
+ * @param[out]    p_bending_mask             Optional blending mask.
+ * @param[in]     tile_size                  Spatial tile partition size.
+ * @param[in]     bbox                       Domain bounding box.
  */
-void trench(Array                       &z,
-            const Graph                 &graph,
-            float                        width,
-            float                        width_exponent = 0.5f,
-            bool                         enable_width_depth_scaling = true,
-            RadialProfile                radial_profile = RadialProfile::RP_SMOOTHSTEP_UPPER,
-            float                        radial_profile_parameter = 2.f,
+void trench(Array        &z,
+            const Graph  &graph,
+            float         width,
+            float         width_exponent = 0.5f,
+            bool          enable_width_depth_scaling = true,
+            RadialProfile radial_profile = RadialProfile::RP_SMOOTHSTEP_UPPER,
+            float         radial_profile_parameter = 2.f,
             ElevationLongitudinalProfile longitudinal_profile =
                 ElevationLongitudinalProfile::ELP_DECREASING,
-            float                        elevation_shift = -0.05f,
-            float                        min_slope = 0.001f,
-            const Array                 *p_noise_r = nullptr,
-            Array                       *p_bending_mask = nullptr,
-            int                          tile_size = 32,
-            glm::vec4                    bbox = {0.f, 1.f, 0.f, 1.f});
+            float        elevation_shift = -0.05f,
+            float        min_slope = 0.001f,
+            const Array *p_noise_r = nullptr,
+            Array       *p_bending_mask = nullptr,
+            int          tile_size = 32,
+            glm::vec4    bbox = {0.f, 1.f, 0.f, 1.f});
 
 } // namespace hmap
