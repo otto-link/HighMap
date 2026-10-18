@@ -166,7 +166,8 @@ public:
     float domain_center_weight = 0.0f;
 
     /**
-     * @brief Optional per-vertex cost multipliers applied to incoming edge costs.
+     * @brief Optional per-vertex cost multipliers applied to incoming edge
+     * costs.
      */
     std::vector<float> vertex_cost_multipliers = {};
   };

@@ -235,9 +235,9 @@ void find_path_dijkstra(const Array                   &z,
                         std::vector<std::vector<int>> &j_path_list,
                         float                          elevation_ratio = 0.1f,
                         float                          distance_exponent = 2.f,
-                        float                          upward_penalization = 0.1f,
-                        const Array                   *p_mask_nogo = nullptr,
-                        const Array                   *p_node_weights = nullptr);
+                        float        upward_penalization = 0.1f,
+                        const Array *p_mask_nogo = nullptr,
+                        const Array *p_node_weights = nullptr);
 
 /**
  * @brief Overload of find_path_dijkstra returning a vector of grid indices.

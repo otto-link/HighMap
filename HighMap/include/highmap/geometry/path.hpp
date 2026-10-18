@@ -919,14 +919,13 @@ std::vector<Path> squiggle_branches(const Path   &path,
  * set of existing paths. The intersection point is included as the new end
  * point.
  *
- * @param  path             The input path to be truncated.
- * @param  existing_paths   Collection of already existing paths.
- * @return                  Truncated path, or copy of the original path if no
- *                          intersection is found.
+ * @param  path           The input path to be truncated.
+ * @param  existing_paths Collection of already existing paths.
+ * @return                Truncated path, or copy of the original path if no
+ *                        intersection is found.
  */
-Path truncate_at_first_intersection(
-    const Path              &path,
-    const std::vector<Path> &existing_paths);
+Path truncate_at_first_intersection(const Path              &path,
+                                    const std::vector<Path> &existing_paths);
 
 // ==========================================================================
 //  Verification Functions
