@@ -79,3 +79,7 @@ See the `examples` folder.
 
 This project includes code from external open-source projects.
 See [THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md).
+
+## CPU profiling
+
+Optional Tracy instrumentation is described in [the profiling guide](docs/profiling.md).

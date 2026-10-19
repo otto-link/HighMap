@@ -11,6 +11,7 @@
 #include <utility>
 #include <vector>
 
+#include "highmap/profiling.hpp"
 #include "highmap/array.hpp"
 #include "highmap/internal/validation.hpp"
 #include "highmap/math/core.hpp"
@@ -110,6 +111,7 @@ void VirtualArray::fill(float value, const ComputeMode &cm)
 
 void VirtualArray::from_array(const Array &array, const ComputeMode &cm)
 {
+  HMAP_PROFILE_ZONE("HighMap::VirtualArray::from_array");
   if (!validate_non_empty(array)) return;
 
   auto lambda = [&array, this](Array &tile, const TileRegion &region)
@@ -144,6 +146,7 @@ void VirtualArray::from_array(const Array &array, const ComputeMode &cm)
 void VirtualArray::from_array_bilinear(const Array       &array,
                                        const ComputeMode &cm)
 {
+  HMAP_PROFILE_ZONE("HighMap::VirtualArray::from_array_bilinear");
   if (!validate_non_empty(array)) return;
 
   auto lambda = [&array, this](Array &tile, const TileRegion &region)
@@ -185,6 +188,7 @@ void VirtualArray::from_array_bilinear(const Array       &array,
 
 void VirtualArray::from_array_bicubic(const Array &array, const ComputeMode &cm)
 {
+  HMAP_PROFILE_ZONE("HighMap::VirtualArray::from_array_bicubic");
   if (!validate_non_empty(array)) return;
 
   auto lambda = [&array, this](Array &tile, const TileRegion &region)
@@ -431,6 +435,7 @@ glm::ivec2 VirtualArray::tile_region_global_indices(
 Array VirtualArray::to_array(const glm::ivec2  &array_shape,
                              const ComputeMode &cm) const
 {
+  HMAP_PROFILE_ZONE("HighMap::VirtualArray::to_array");
   if (!validate_shape(array_shape)) return Array();
 
   Array array(array_shape);

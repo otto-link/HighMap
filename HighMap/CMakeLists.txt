@@ -12,6 +12,13 @@ file(GLOB_RECURSE SOURCES ${PROJECT_SOURCE_DIR}/src/*.cpp)
 
 add_library(${PROJECT_NAME} STATIC ${SOURCES})
 
+if(HIGHMAP_ENABLE_TRACY)
+  find_package(Tracy CONFIG REQUIRED)
+  # Public because the tile dispatcher is instantiated by library consumers.
+  target_link_libraries(${PROJECT_NAME} PUBLIC Tracy::TracyClient)
+  target_compile_definitions(${PROJECT_NAME} PUBLIC HIGHMAP_ENABLE_TRACY)
+endif()
+
 target_include_directories(
   ${PROJECT_NAME}
   PUBLIC ${PROJECT_SOURCE_DIR}/include

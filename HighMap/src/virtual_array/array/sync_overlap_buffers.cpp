@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <memory>
 
+#include "highmap/profiling.hpp"
 #include "highmap/array.hpp"
 #include "highmap/logger.hpp"
 #include "highmap/math/core.hpp"
@@ -16,6 +17,7 @@ namespace hmap
 
 void VirtualArray::sync_overlap_buffers(SyncOperation op)
 {
+  HMAP_PROFILE_ZONE("HighMap::VirtualArray::sync_overlap_buffers");
   if (this->storage->max_live_tiles() < 2)
   {
     hmap::log::error(

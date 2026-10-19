@@ -11,6 +11,7 @@
 #include "hmm/src/heightmap.h"
 #include "hmm/src/triangulator.h"
 
+#include "highmap/profiling.hpp"
 #include "highmap/algebra.hpp"
 #include "highmap/array.hpp"
 #include "highmap/export/asset.hpp"
@@ -36,6 +37,7 @@ void helper_build_mesh_masked(aiMesh      *p_mesh,
                               float        elevation_scaling,
                               bool         fit_boundaries)
 {
+  HMAP_PROFILE_ZONE("HighMap::export_asset.mesh_masked");
   float x_max = fit_boundaries
                     ? 1.f
                     : (array.shape.x > 0 ? 1.f - 1.f / (float)array.shape.x
@@ -130,6 +132,7 @@ void helper_build_mesh(aiMesh      *p_mesh,
                        float        max_error,
                        bool         fit_boundaries)
 {
+  HMAP_PROFILE_ZONE("HighMap::export_asset.mesh");
   float x_max = fit_boundaries
                     ? 1.f
                     : (array.shape.x > 0 ? 1.f - 1.f / (float)array.shape.x
@@ -206,7 +209,10 @@ void helper_build_mesh(aiMesh      *p_mesh,
     const int max_points = 0;
 
     hmap::log::trace("remeshing (Delaunay)");
-    tri.Run(max_error, max_triangles, max_points);
+    {
+      HMAP_PROFILE_ZONE("HighMap::export_asset.triangulate");
+      tri.Run(max_error, max_triangles, max_points);
+    }
 
     auto points = tri.Points(elevation_scaling);
     auto triangles = tri.Triangles();
@@ -321,10 +327,11 @@ bool export_asset(const std::string &fname,
   std::string format_extension = "." + asset_export_format_as_string.at(
                                            export_format)[2];
 
-  aiReturn err = exporter.Export(p_scene,
-                                 format_id,
-                                 fname + format_extension,
-                                 0);
+  aiReturn err;
+  {
+    HMAP_PROFILE_ZONE("HighMap::export_asset.write");
+    err = exporter.Export(p_scene, format_id, fname + format_extension, 0);
+  }
 
   delete p_scene;
 
@@ -398,10 +405,11 @@ bool export_asset(const std::string &fname,
   std::string format_extension = "." + asset_export_format_as_string.at(
                                            export_format)[2];
 
-  aiReturn err = exporter.Export(p_scene,
-                                 format_id,
-                                 fname + format_extension,
-                                 0);
+  aiReturn err;
+  {
+    HMAP_PROFILE_ZONE("HighMap::export_asset.write");
+    err = exporter.Export(p_scene, format_id, fname + format_extension, 0);
+  }
 
   delete p_scene;
 

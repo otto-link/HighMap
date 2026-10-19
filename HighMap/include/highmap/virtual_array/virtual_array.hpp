@@ -12,6 +12,7 @@
 #include <thread>
 
 #include "highmap/array.hpp"
+#include "highmap/profiling.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/logger.hpp"
 #include "highmap/math/core.hpp"

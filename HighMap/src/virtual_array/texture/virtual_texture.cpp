@@ -8,6 +8,7 @@
 #include <string>
 #include <vector>
 
+#include "highmap/profiling.hpp"
 #include "highmap/array.hpp"
 #include "highmap/internal/validation.hpp"
 #include "highmap/logger.hpp"
@@ -138,6 +139,7 @@ void VirtualTexture::fill(int c, float value, const ComputeMode &cm)
 void VirtualTexture::from_arrays(const std::vector<const Array *> &p_arrays,
                                  const ComputeMode                &cm)
 {
+  HMAP_PROFILE_ZONE("HighMap::VirtualTexture::from_arrays");
   if (!validate_non_empty(p_arrays, "Array pointer list")) return;
 
   const int nch = this->channels();
@@ -163,6 +165,7 @@ std::vector<uint8_t> VirtualTexture::to_img_8bit(const glm::ivec2  &img_shape,
                                                  const ComputeMode &cm,
                                                  bool flip_y) const
 {
+  HMAP_PROFILE_ZONE("HighMap::VirtualTexture::to_img_8bit");
   const int nch = this->channels();
 
   if (nch != 3 && nch != 4)
@@ -228,6 +231,7 @@ std::vector<float> VirtualTexture::to_raw(const ComputeMode &cm, bool flip_y)
 Texture VirtualTexture::to_texture(const glm::ivec2  &img_shape,
                                    const ComputeMode &cm) const
 {
+  HMAP_PROFILE_ZONE("HighMap::VirtualTexture::to_texture");
   if (!validate_shape(img_shape)) return Texture();
 
   const int nch = this->channels();
