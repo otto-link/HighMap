@@ -133,4 +133,3 @@ if(TARGET lightusd_static)
   target_include_directories(lightusd_static PUBLIC ${lightusd_SOURCE_DIR}/src)
   target_compile_definitions(lightusd_static PRIVATE XXH_NO_INLINE_HINTS=1)
 endif()
-

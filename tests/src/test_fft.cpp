@@ -1,5 +1,6 @@
 #include "highmap/array.hpp"
 #include "highmap/dbg/assert.hpp"
+#include "highmap/filters.hpp"
 #include "highmap/kernels.hpp"
 #include "highmap/math/convolve.hpp"
 #include "highmap/math/fft.hpp"
@@ -110,6 +111,37 @@ TEST(FFTTest, Convolve2D_FFT_LargeKernel)
     for (int i = 0; i < shape.x; ++i)
     {
       EXPECT_NEAR(out_fft(i, j), out_spatial(i, j), 1e-3f);
+    }
+  }
+}
+
+TEST(FFTTest, ExpandSoftFFT_Impulse)
+{
+  glm::ivec2 shape(32, 32);
+  Array      a(shape, 0.0f);
+  a(16, 16) = 5.0f;
+
+  int   ir = 4;
+  Array kernel = cubic_pulse(glm::ivec2(2 * ir + 1, 2 * ir + 1));
+
+  Array expanded = a;
+  expand_soft_fft(expanded, kernel, 10.0f);
+
+  // Soft maximum at center should be close to 5.0f
+  EXPECT_NEAR(expanded(16, 16), 5.0f, 0.1f);
+
+  // Neighbors should decrease roughly with distance from center
+  EXPECT_LT(expanded(16 + 1, 16), expanded(16, 16));
+  EXPECT_GT(expanded(16 + 1, 16), 0.0f);
+
+  // Constant field should be exactly invariant
+  Array flat(shape, 2.5f);
+  expand_soft_fft(flat, kernel, 10.0f);
+  for (int j = 0; j < shape.y; ++j)
+  {
+    for (int i = 0; i < shape.x; ++i)
+    {
+      EXPECT_NEAR(flat(i, j), 2.5f, 1e-4f);
     }
   }
 }

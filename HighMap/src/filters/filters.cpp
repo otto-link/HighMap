@@ -22,6 +22,7 @@
 #include "highmap/math/array.hpp"
 #include "highmap/math/convolve.hpp"
 #include "highmap/math/core.hpp"
+#include "highmap/math/fft.hpp"
 #include "highmap/math/profiles.hpp"
 #include "highmap/operator.hpp"
 #include "highmap/primitives/random.hpp"
@@ -156,6 +157,56 @@ void expand_directional(Array       &array,
                                          aspect_ratio,
                                          anisotropy);
   expand(array, kernel, p_mask);
+}
+
+void expand_soft_fft(Array       &array,
+                     const Array &kernel,
+                     float        p,
+                     const Array *p_mask)
+{
+  if (!validate_non_empty(array)) return;
+  if (!validate_non_empty(kernel)) return;
+  if (p_mask && !validate_same_shape(array, *p_mask)) return;
+  if (p <= 0.f) return;
+
+  apply_with_mask(array,
+                  p_mask,
+                  [&](Array &a)
+                  {
+                    const float m = a.max();
+
+                    // A(x, y) = exp(p * (f(x, y) - m)) to prevent numerical
+                    // overflow
+                    Array exp_a(a.shape);
+                    for (size_t i = 0; i < a.vector.size(); ++i)
+                    {
+                      exp_a.vector[i] = std::exp(p * (a.vector[i] - m));
+                    }
+
+                    // Cost c(i, j) = 1 - kernel(i, j)
+                    // K(i, j) = exp(-p * c(i, j)) = exp(p * (kernel(i, j) - 1))
+                    Array exp_k(kernel.shape);
+                    for (size_t i = 0; i < kernel.vector.size(); ++i)
+                    {
+                      const float cost = 1.f - kernel.vector[i];
+                      exp_k.vector[i] = std::exp(-p * cost);
+                    }
+
+                    // (A * K)(x, y) via FFT
+                    Array conv = convolve2d_fft(exp_a, exp_k);
+
+                    // Subtract partition function offset (1 / p) * log(sum(K))
+                    // so that soft-max of a constant field f0 equals f0
+                    const float log_sum_k = std::log(
+                        std::max(exp_k.sum(), 1e-30f));
+                    const float inv_p = 1.f / p;
+
+                    for (size_t i = 0; i < a.vector.size(); ++i)
+                    {
+                      const float val = std::max(conv.vector[i], 1e-30f);
+                      a.vector[i] = m + inv_p * (std::log(val) - log_sum_k);
+                    }
+                  });
 }
 
 void fold(Array &array, int iterations, float k)

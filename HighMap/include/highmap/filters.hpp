@@ -359,6 +359,28 @@ void expand_directional(Array       &array,
                         const Array *p_mask = nullptr);
 
 /**
+ * @brief Soft maximum morphological dilation (expansion) using FFT convolution.
+ *
+ * Approximates morphological dilation with a kernel / structuring element
+ * \(w(i, j)\) (such as `cubic_pulse`) where the cost is \(c(i, j) = 1 - w(i,
+ * j)\), using a smooth soft-maximum approximation via FFT:
+ * \[
+ * g_p(x,y) = \frac{1}{p}\log\left[ (A * K)(x,y) \right]
+ * \] where \(A(x,y) = e^{p f(x,y)}\) and \(K(i,j) = e^{-p (1 - w(i,j))}\).
+ *
+ * @param array  Input array modified in-place.
+ * @param kernel Expansion kernel \(w(i, j)\) with values in [0, 1] (same as in
+ *               `expand`).
+ * @param p      Sharpness parameter \(p > 0\). Larger values approach the hard
+ *               maximum.
+ * @param p_mask Optional mask with values in [0, 1].
+ */
+void expand_soft_fft(Array       &array,
+                     const Array &kernel,
+                     float        p = 10.f,
+                     const Array *p_mask = nullptr);
+
+/**
  * @brief Expand heights outward from a masked region with a talus slope limit.
  *
  * Starting from the non-zero cells of `mask`, heights are propagated outward

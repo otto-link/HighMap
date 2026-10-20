@@ -298,7 +298,6 @@ void single_array_compute(const TileAccess &access, Func &&func, int stride = 1)
   }
 }
 
-
 template <typename Func>
 void for_each_cell(VirtualArray &va, Func &&func, const ComputeMode &cm)
 {
