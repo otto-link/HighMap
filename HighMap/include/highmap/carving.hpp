@@ -246,11 +246,11 @@ void trench(Array                   &z,
  * @param[in]     tile_size                  Spatial tile partition size.
  * @param[in]     bbox                       Domain bounding box.
  */
-void trench(Array                       &z,
-            const Graph                 &graph,
-            const std::vector<float>    &relative_widths,
-            float                        width,
-            bool                         enable_width_depth_scaling = true,
+void trench(Array                    &z,
+            const Graph              &graph,
+            const std::vector<float> &relative_widths,
+            float                     width,
+            bool                      enable_width_depth_scaling = true,
             RadialProfile radial_profile = RadialProfile::RP_SMOOTHSTEP_UPPER,
             float         radial_profile_parameter = 2.f,
             ElevationLongitudinalProfile longitudinal_profile =
@@ -268,7 +268,8 @@ void trench(Array                       &z,
  *
  * @param[in,out] z                          Target heightmap to carve in-place.
  * @param[in]     graph                      Input flow network Graph.
- * @param[in]     width                      Target river width at the outlet(s).
+ * @param[in]     width                      Target river width at the
+ *                                           outlet(s).
  * @param[in]     width_exponent             Scaling exponent for width with
  *                                           distance to outlet (default: 1.0).
  * @param[in]     enable_width_depth_scaling Modulate width according to depth.

@@ -3,11 +3,11 @@
  * this software. */
 #include <algorithm>
 
-#include "highmap/profiling.hpp"
 #include "highmap/array.hpp"
 #include "highmap/erosion/deprecated.hpp"
 #include "highmap/filters.hpp"
 #include "highmap/internal/validation.hpp"
+#include "highmap/profiling.hpp"
 #include "highmap/range.hpp"
 
 namespace hmap
@@ -16,8 +16,7 @@ namespace hmap
 void hydraulic_blur(Array &z, float vmax, float radius, float k_smoothing)
 {
   HMAP_PROFILE_ZONE("HighMap::hydraulic_blur");
-  if (!validate_non_empty(z))
-    return;
+  if (!validate_non_empty(z)) return;
 
   int ir = std::max(1, (int)(radius * z.shape.x));
 

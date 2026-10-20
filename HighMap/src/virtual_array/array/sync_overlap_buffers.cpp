@@ -4,10 +4,10 @@
 #include <algorithm>
 #include <memory>
 
-#include "highmap/profiling.hpp"
 #include "highmap/array.hpp"
 #include "highmap/logger.hpp"
 #include "highmap/math/core.hpp"
+#include "highmap/profiling.hpp"
 #include "highmap/virtual_array/tile_region.hpp"
 #include "highmap/virtual_array/tile_storage.hpp"
 #include "highmap/virtual_array/virtual_array.hpp"

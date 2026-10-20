@@ -11,10 +11,10 @@
 #include <utility>
 #include <vector>
 
-#include "highmap/profiling.hpp"
 #include "highmap/array.hpp"
 #include "highmap/internal/validation.hpp"
 #include "highmap/math/core.hpp"
+#include "highmap/profiling.hpp"
 #include "highmap/virtual_array/tile_region.hpp"
 #include "highmap/virtual_array/tile_storage.hpp"
 #include "highmap/virtual_array/virtual_array.hpp"

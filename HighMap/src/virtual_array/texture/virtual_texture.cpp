@@ -8,10 +8,10 @@
 #include <string>
 #include <vector>
 
-#include "highmap/profiling.hpp"
 #include "highmap/array.hpp"
 #include "highmap/internal/validation.hpp"
 #include "highmap/logger.hpp"
+#include "highmap/profiling.hpp"
 #include "highmap/texture.hpp"
 #include "highmap/virtual_array/tile_storage.hpp"
 #include "highmap/virtual_array/virtual_array.hpp"
