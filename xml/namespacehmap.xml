@@ -2433,7 +2433,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="28" column="1" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="29" bodyend="37"/>
+        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="29" column="1" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="30" bodyend="38"/>
       </memberdef>
       <memberdef kind="enum" id="namespacehmap_1ae383414b46ae8992e621c407f09ce7c5" prot="public" static="no" strong="no">
         <type>int</type>
@@ -2473,7 +2473,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="39" column="1" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="40" bodyend="45"/>
+        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="40" column="1" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="41" bodyend="46"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="typedef">
@@ -2665,7 +2665,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="60" column="17" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="60" bodyend="64"/>
+        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="61" column="17" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="61" bodyend="65"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="func">
@@ -8044,7 +8044,7 @@ f_\text{blend} = \frac{\sum_i f_i^{\alpha+1}}{\sum_i f_i^\alpha}
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/carving/trench.cpp" line="831" column="6" bodyfile="HighMap/src/carving/trench.cpp" bodystart="831" bodyend="863" declfile="HighMap/include/highmap/carving.hpp" declline="288" declcolumn="6"/>
+        <location file="HighMap/src/carving/trench.cpp" line="831" column="6" bodyfile="HighMap/src/carving/trench.cpp" bodystart="831" bodyend="863" declfile="HighMap/include/highmap/carving.hpp" declline="289" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a54eb8ce4196d73517024dbe2af5af81b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>glm::vec3</type>
@@ -11116,7 +11116,7 @@ additional_depth)</computeroutput>.</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/erosion/hydraulic_blur.cpp" line="15" column="6" bodyfile="HighMap/src/erosion/hydraulic_blur.cpp" bodystart="15" bodyend="31" declfile="HighMap/include/highmap/erosion/deprecated.hpp" declline="142" declcolumn="6"/>
+        <location file="HighMap/src/erosion/hydraulic_blur.cpp" line="16" column="6" bodyfile="HighMap/src/erosion/hydraulic_blur.cpp" bodystart="16" bodyend="42" declfile="HighMap/include/highmap/erosion/deprecated.hpp" declline="142" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a7b2c04c0b2cd0da363d2382f5a753a81" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -14121,7 +14121,7 @@ additional_depth)</computeroutput>.</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/export/export_asset.cpp" line="262" column="6" bodyfile="HighMap/src/export/export_asset.cpp" bodystart="262" bodyend="338" declfile="HighMap/include/highmap/export/asset.hpp" declline="158" declcolumn="6"/>
+        <location file="HighMap/src/export/export_asset.cpp" line="268" column="6" bodyfile="HighMap/src/export/export_asset.cpp" bodystart="268" bodyend="345" declfile="HighMap/include/highmap/export/asset.hpp" declline="158" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a4f0b91aff70b29e8173cf4189a59bcad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -14172,7 +14172,7 @@ additional_depth)</computeroutput>.</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/export/export_asset.cpp" line="340" column="6" bodyfile="HighMap/src/export/export_asset.cpp" bodystart="340" bodyend="417" declfile="HighMap/include/highmap/export/asset.hpp" declline="168" declcolumn="6"/>
+        <location file="HighMap/src/export/export_asset.cpp" line="347" column="6" bodyfile="HighMap/src/export/export_asset.cpp" bodystart="347" bodyend="425" declfile="HighMap/include/highmap/export/asset.hpp" declline="168" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1ae01b5471d28a8f4a9104e2ffea4484a9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -71317,7 +71317,7 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="47" column="20" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="47" bodyend="58"/>
+        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="48" column="20" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="48" bodyend="59"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a4f31242a99ef8fd6e098eb319438eca4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -71343,7 +71343,7 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/virtual_array/array/virtual_array.cpp" line="503" column="6" bodyfile="HighMap/src/virtual_array/array/virtual_array.cpp" bodystart="503" bodyend="514" declfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" declline="180" declcolumn="6"/>
+        <location file="HighMap/src/virtual_array/array/virtual_array.cpp" line="508" column="6" bodyfile="HighMap/src/virtual_array/array/virtual_array.cpp" bodystart="508" bodyend="519" declfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" declline="181" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a37e8c8ed7997432da123d8989639c8a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -71385,7 +71385,7 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/virtual_array/array/virtual_array.cpp" line="516" column="6" bodyfile="HighMap/src/virtual_array/array/virtual_array.cpp" bodystart="516" bodyend="616" declfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" declline="184" declcolumn="6"/>
+        <location file="HighMap/src/virtual_array/array/virtual_array.cpp" line="521" column="6" bodyfile="HighMap/src/virtual_array/array/virtual_array.cpp" bodystart="521" bodyend="621" declfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" declline="185" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1abc392f1014a9b32b8d2c760b58940e06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -71421,7 +71421,7 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="193" column="6" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="193" bodyend="197"/>
+        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="194" column="6" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="194" bodyend="198"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a5b780b7b211653ed8a279ab553e7651f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -71449,7 +71449,7 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="199" column="20" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="199" bodyend="202"/>
+        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="200" column="20" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="200" bodyend="203"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1af66b37de86e8de6261ab902110b118a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1VirtualTexture" kindref="compound">VirtualTexture</ref></type>
@@ -73673,7 +73673,7 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/export/export_asset.cpp" line="33" column="6" bodyfile="HighMap/src/export/export_asset.cpp" bodystart="33" bodyend="124"/>
+        <location file="HighMap/src/export/export_asset.cpp" line="34" column="6" bodyfile="HighMap/src/export/export_asset.cpp" bodystart="34" bodyend="126"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1aec2b0c4bc7a299e0506e3568715c38a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -73711,7 +73711,7 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/export/export_asset.cpp" line="126" column="6" bodyfile="HighMap/src/export/export_asset.cpp" bodystart="126" bodyend="260"/>
+        <location file="HighMap/src/export/export_asset.cpp" line="128" column="6" bodyfile="HighMap/src/export/export_asset.cpp" bodystart="128" bodyend="266"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a5635a383951e6438d8baa2cb1150f5e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Texture" kindref="compound">Texture</ref></type>

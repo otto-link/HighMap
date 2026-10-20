@@ -26,5 +26,7 @@ var searchData=
   ['primitives_2ehpp_23',['primitives.hpp',['../primitives_8hpp.html',1,'']]],
   ['primitives_5fgpu_2ecpp_24',['primitives_gpu.cpp',['../primitives__gpu_8cpp.html',1,'']]],
   ['print_5farray_2ecpp_25',['print_array.cpp',['../print__array_8cpp.html',1,'']]],
-  ['profiles_2ehpp_26',['profiles.hpp',['../profiles_8hpp.html',1,'']]]
+  ['profiles_2ehpp_26',['profiles.hpp',['../profiles_8hpp.html',1,'']]],
+  ['profiling_2ehpp_27',['profiling.hpp',['../profiling_8hpp.html',1,'']]],
+  ['profiling_2emd_28',['profiling.md',['../profiling_8md.html',1,'']]]
 ];

@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="profiling_8md" kind="file" language="Markdown">
+    <compoundname>profiling.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>Optional<sp/>Tracy<sp/>CPU<sp/>profiling</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">`HIGHMAP_ENABLE_TRACY`<sp/>defaults<sp/>to<sp/>`OFF`;<sp/>normal<sp/>builds<sp/>do<sp/>not<sp/>require<sp/>Tracy.</highlight></codeline>
+<codeline><highlight class="normal">To<sp/>enable<sp/>it,<sp/>install<sp/>a<sp/>Tracy<sp/>client<sp/>built<sp/>with<sp/>`TRACY_ENABLE=ON`,<sp/>then<sp/>configure</highlight></codeline>
+<codeline><highlight class="normal">with<sp/>`-DHIGHMAP_ENABLE_TRACY=ON<sp/>-DTracy_DIR=/path/to/lib/cmake/Tracy`.</highlight></codeline>
+<codeline><highlight class="normal">Use<sp/>matching<sp/>client<sp/>and<sp/>capture/profiler<sp/>versions.<sp/>On-demand<sp/>clients<sp/>are<sp/>supported.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>`highmap`<sp/>CMake<sp/>target<sp/>publicly<sp/>propagates<sp/>both<sp/>the<sp/>client<sp/>target<sp/>and</highlight></codeline>
+<codeline><highlight class="normal">`HIGHMAP_ENABLE_TRACY`,<sp/>so<sp/>consumers<sp/>instantiate<sp/>the<sp/>public<sp/>tile<sp/>templates<sp/>with</highlight></codeline>
+<codeline><highlight class="normal">the<sp/>same<sp/>instrumentation<sp/>as<sp/>the<sp/>library.<sp/>Do<sp/>not<sp/>manually<sp/>enable<sp/>the<sp/>macro<sp/>in</highlight></codeline>
+<codeline><highlight class="normal">only<sp/>some<sp/>translation<sp/>units.<sp/>Link<sp/>a<sp/>single<sp/>client<sp/>into<sp/>the<sp/>final<sp/>executable.</highlight></codeline>
+<codeline><highlight class="normal">Disabled<sp/>hooks<sp/>discard<sp/>metadata<sp/>expressions;<sp/>enabled<sp/>metadata<sp/>is<sp/>evaluated<sp/>only</highlight></codeline>
+<codeline><highlight class="normal">while<sp/>connected.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Zones<sp/>cover<sp/>VirtualArray<sp/>conversion/write-back,<sp/>overlap<sp/>synchronization,</highlight></codeline>
+<codeline><highlight class="normal">VirtualTexture<sp/>conversion,<sp/>shared<sp/>tiled<sp/>and<sp/>full-array<sp/>dispatch,<sp/>HydraulicBlur</highlight></codeline>
+<codeline><highlight class="normal">stages<sp/>and<sp/>asset<sp/>mesh<sp/>generation/export.<sp/>Tile<sp/>dispatch<sp/>separates<sp/>storage<sp/>acquire,</highlight></codeline>
+<codeline><highlight class="normal">callback<sp/>and<sp/>release;<sp/>full-array<sp/>dispatch<sp/>separates<sp/>gather,<sp/>callback<sp/>and<sp/>scatter.</highlight></codeline>
+<codeline><highlight class="normal">The<sp/>downscaled<sp/>scatter<sp/>includes<sp/>high-frequency<sp/>reconstruction.<sp/>No<sp/>per-cell<sp/>zones</highlight></codeline>
+<codeline><highlight class="normal">are<sp/>emitted.<sp/>Many<sp/>small<sp/>tiles<sp/>can<sp/>still<sp/>generate<sp/>substantial<sp/>capture<sp/>traffic.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">These<sp/>are<sp/>CPU<sp/>durations,<sp/>including<sp/>any<sp/>synchronous<sp/>library<sp/>work<sp/>and<sp/>waits.</highlight></codeline>
+<codeline><highlight class="normal">They<sp/>are<sp/>not<sp/>GPU<sp/>kernel/transfer<sp/>timing<sp/>or<sp/>allocation<sp/>tracking.<sp/>Nested<sp/>times</highlight></codeline>
+<codeline><highlight class="normal">include<sp/>their<sp/>children.<sp/>Distributed<sp/>tile<sp/>zones<sp/>run<sp/>on<sp/>worker<sp/>threads,<sp/>so<sp/>their</highlight></codeline>
+<codeline><highlight class="normal">sum<sp/>is<sp/>not<sp/>dispatch<sp/>wall<sp/>time.<sp/>Conversion<sp/>callbacks<sp/>also<sp/>appear<sp/>as<sp/>tile<sp/>algorithms;</highlight></codeline>
+<codeline><highlight class="normal">interpret<sp/>them<sp/>using<sp/>the<sp/>enclosing<sp/>conversion<sp/>zone<sp/>and<sp/>thread<sp/>context.</highlight></codeline>
+    </programlisting>
+    <location file="docs/profiling.md"/>
+  </compounddef>
+</doxygen>

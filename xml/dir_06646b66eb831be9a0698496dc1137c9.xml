@@ -46,6 +46,7 @@
     <innerfile refid="operator_8hpp">operator.hpp</innerfile>
     <innerfile refid="particles_8hpp">particles.hpp</innerfile>
     <innerfile refid="primitives_8hpp">primitives.hpp</innerfile>
+    <innerfile refid="profiling_8hpp">profiling.hpp</innerfile>
     <innerfile refid="random_8hpp">random.hpp</innerfile>
     <innerfile refid="range_8hpp">range.hpp</innerfile>
     <innerfile refid="roads_8hpp">roads.hpp</innerfile>
