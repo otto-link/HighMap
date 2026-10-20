@@ -15,4 +15,5 @@
 #include "highmap/math/convolve.hpp"
 #include "highmap/math/core.hpp"
 #include "highmap/math/distance_functions.hpp"
+#include "highmap/math/fft.hpp"
 #include "highmap/math/profiles.hpp"
