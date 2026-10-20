@@ -444,8 +444,7 @@ var namespacehmap =
     [ "ForEachMode", "namespacehmap.html#ae383414b46ae8992e621c407f09ce7c5", [
       [ "VA_SEQUENTIAL", "namespacehmap.html#ae383414b46ae8992e621c407f09ce7c5ad610a3b158cd10452fc144bda389aa19", null ],
       [ "VA_DISTRIBUTED", "namespacehmap.html#ae383414b46ae8992e621c407f09ce7c5a5356cbfe824240ce4bd458109890b9d5", null ],
-      [ "VA_SINGLE_ARRAY", "namespacehmap.html#ae383414b46ae8992e621c407f09ce7c5afd32b1bf1363b0e44143bda30f00cffa", null ],
-      [ "VA_SINGLE_ARRAY_DOWNSCALED", "namespacehmap.html#ae383414b46ae8992e621c407f09ce7c5a3c2aed0c2a4eb46f0bd37dc7741b17c8", null ]
+      [ "VA_SINGLE_ARRAY", "namespacehmap.html#ae383414b46ae8992e621c407f09ce7c5afd32b1bf1363b0e44143bda30f00cffa", null ]
     ] ],
     [ "to_csv", "namespacehmap.html#af3cb67926262ec806d4d64c2755b1ddd", null ],
     [ "adjust", "namespacehmap.html#adc5300323fa35e021fd83b8b048ef3b1", null ],

@@ -850,7 +850,6 @@ Enumerations</h2></td></tr>
 <tr class="memitem:ae383414b46ae8992e621c407f09ce7c5" id="r_ae383414b46ae8992e621c407f09ce7c5"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehmap.html#ae383414b46ae8992e621c407f09ce7c5">ForEachMode</a> : int { <a class="el" href="namespacehmap.html#ae383414b46ae8992e621c407f09ce7c5ad610a3b158cd10452fc144bda389aa19">VA_SEQUENTIAL</a>
 , <a class="el" href="namespacehmap.html#ae383414b46ae8992e621c407f09ce7c5a5356cbfe824240ce4bd458109890b9d5">VA_DISTRIBUTED</a>
 , <a class="el" href="namespacehmap.html#ae383414b46ae8992e621c407f09ce7c5afd32b1bf1363b0e44143bda30f00cffa">VA_SINGLE_ARRAY</a>
-, <a class="el" href="namespacehmap.html#ae383414b46ae8992e621c407f09ce7c5a3c2aed0c2a4eb46f0bd37dc7741b17c8">VA_SINGLE_ARRAY_DOWNSCALED</a>
  }</td></tr>
 <tr class="separator:ae383414b46ae8992e621c407f09ce7c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -4580,7 +4579,6 @@ requires requires(const T &amp;<a class="el" href="elevation__from__contours_8cp
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ae383414b46ae8992e621c407f09ce7c5ad610a3b158cd10452fc144bda389aa19" name="ae383414b46ae8992e621c407f09ce7c5ad610a3b158cd10452fc144bda389aa19"></a>VA_SEQUENTIAL&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ae383414b46ae8992e621c407f09ce7c5a5356cbfe824240ce4bd458109890b9d5" name="ae383414b46ae8992e621c407f09ce7c5a5356cbfe824240ce4bd458109890b9d5"></a>VA_DISTRIBUTED&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ae383414b46ae8992e621c407f09ce7c5afd32b1bf1363b0e44143bda30f00cffa" name="ae383414b46ae8992e621c407f09ce7c5afd32b1bf1363b0e44143bda30f00cffa"></a>VA_SINGLE_ARRAY&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ae383414b46ae8992e621c407f09ce7c5a3c2aed0c2a4eb46f0bd37dc7741b17c8" name="ae383414b46ae8992e621c407f09ce7c5a3c2aed0c2a4eb46f0bd37dc7741b17c8"></a>VA_SINGLE_ARRAY_DOWNSCALED&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -13645,7 +13643,6 @@ additional_depth)</code>.</li>
 <div class="line">    <span class="keyword">const</span> <span class="keyword">auto</span> foreach_mode = <a class="code hl_enumvalue" href="namespacehmap.html#ae383414b46ae8992e621c407f09ce7c5a5356cbfe824240ce4bd458109890b9d5">hmap::ForEachMode::VA_DISTRIBUTED</a>;</div>
 <div class="line">    <span class="comment">// const auto foreach_mode = hmap::ForEachMode::VA_SEQUENTIAL;</span></div>
 <div class="line">    <span class="comment">// const auto foreach_mode = hmap::ForEachMode::VA_SINGLE_ARRAY;</span></div>
-<div class="line">    <span class="comment">// const auto foreach_mode = hmap::ForEachMode::VA_SINGLE_ARRAY_DOWNSCALED;</span></div>
 <div class="line"> </div>
 <div class="line">    <span class="keyword">const</span> <a class="code hl_struct" href="structhmap_1_1ComputeMode.html">hmap::ComputeMode</a> cm{.<a class="code hl_variable" href="structhmap_1_1ComputeMode.html#a88f263de26dea2af6e22e2d4f5f02cab">mode</a> = foreach_mode,</div>
 <div class="line">                               .trim_storage = <span class="keyword">true</span>,</div>
@@ -13687,9 +13684,9 @@ additional_depth)</code>.</li>
 <div class="ttc" id="anamespacehmap_html_ad21b93a34c88a47d6b54f3a4d5b65e6ea671262171ccce9633cc42db046ea63d4"><div class="ttname"><a href="namespacehmap.html#ad21b93a34c88a47d6b54f3a4d5b65e6ea671262171ccce9633cc42db046ea63d4">hmap::VA_DISK_LRU</a></div><div class="ttdeci">@ VA_DISK_LRU</div><div class="ttdef"><b>Definition</b> tile_storage.hpp:32</div></div>
 <div class="ttc" id="anamespacehmap_html_ada51d6f53d06fa3a592223e5f6137e03"><div class="ttname"><a href="namespacehmap.html#ada51d6f53d06fa3a592223e5f6137e03">hmap::hydraulic_saleve</a></div><div class="ttdeci">void hydraulic_saleve(TerrainTriMesh &amp;mesh, const std::vector&lt; float &gt; &amp;erodibility, const std::vector&lt; float &gt; &amp;max_slope, float m_exp=0.8f, float uplift_rate=1.f, float tolerance=1e-3f, int max_iterations=200, float noise_strength=0.f, std::uint32_t seed=0, bool enable_post_slope_limiter=false, float post_slope_limit=0.f, bool enable_post_smoothing=false)</div><div class="ttdoc">Perform hydraulic erosion on a triangulated terrain mesh.</div><div class="ttdef"><b>Definition</b> hydraulic_saleve.cpp:27</div></div>
 <div class="ttc" id="anamespacehmap_html_ae383414b46ae8992e621c407f09ce7c5a5356cbfe824240ce4bd458109890b9d5"><div class="ttname"><a href="namespacehmap.html#ae383414b46ae8992e621c407f09ce7c5a5356cbfe824240ce4bd458109890b9d5">hmap::VA_DISTRIBUTED</a></div><div class="ttdeci">@ VA_DISTRIBUTED</div><div class="ttdef"><b>Definition</b> virtual_array.hpp:43</div></div>
-<div class="ttc" id="astructhmap_1_1ComputeMode_html"><div class="ttname"><a href="structhmap_1_1ComputeMode.html">hmap::ComputeMode</a></div><div class="ttdef"><b>Definition</b> virtual_array.hpp:68</div></div>
-<div class="ttc" id="astructhmap_1_1ComputeMode_html_a88f263de26dea2af6e22e2d4f5f02cab"><div class="ttname"><a href="structhmap_1_1ComputeMode.html#a88f263de26dea2af6e22e2d4f5f02cab">hmap::ComputeMode::mode</a></div><div class="ttdeci">ForEachMode mode</div><div class="ttdef"><b>Definition</b> virtual_array.hpp:69</div></div>
-<div class="ttc" id="astructhmap_1_1VirtualArray_html"><div class="ttname"><a href="structhmap_1_1VirtualArray.html">hmap::VirtualArray</a></div><div class="ttdef"><b>Definition</b> virtual_array.hpp:80</div></div>
+<div class="ttc" id="astructhmap_1_1ComputeMode_html"><div class="ttname"><a href="structhmap_1_1ComputeMode.html">hmap::ComputeMode</a></div><div class="ttdef"><b>Definition</b> virtual_array.hpp:64</div></div>
+<div class="ttc" id="astructhmap_1_1ComputeMode_html_a88f263de26dea2af6e22e2d4f5f02cab"><div class="ttname"><a href="structhmap_1_1ComputeMode.html#a88f263de26dea2af6e22e2d4f5f02cab">hmap::ComputeMode::mode</a></div><div class="ttdeci">ForEachMode mode</div><div class="ttdef"><b>Definition</b> virtual_array.hpp:65</div></div>
+<div class="ttc" id="astructhmap_1_1VirtualArray_html"><div class="ttname"><a href="structhmap_1_1VirtualArray.html">hmap::VirtualArray</a></div><div class="ttdef"><b>Definition</b> virtual_array.hpp:75</div></div>
 <div class="ttc" id="atimer_8hpp_html"><div class="ttname"><a href="timer_8hpp.html">timer.hpp</a></div></div>
 </div><!-- fragment --><p><b>Result</b> </p><div class="image">
 <img src="ex_hydraulic_saleve.png" alt=""/>
@@ -13957,7 +13954,6 @@ additional_depth)</code>.</li>
 <div class="line">    <span class="keyword">const</span> <span class="keyword">auto</span> foreach_mode = <a class="code hl_enumvalue" href="namespacehmap.html#ae383414b46ae8992e621c407f09ce7c5a5356cbfe824240ce4bd458109890b9d5">hmap::ForEachMode::VA_DISTRIBUTED</a>;</div>
 <div class="line">    <span class="comment">// const auto foreach_mode = hmap::ForEachMode::VA_SEQUENTIAL;</span></div>
 <div class="line">    <span class="comment">// const auto foreach_mode = hmap::ForEachMode::VA_SINGLE_ARRAY;</span></div>
-<div class="line">    <span class="comment">// const auto foreach_mode = hmap::ForEachMode::VA_SINGLE_ARRAY_DOWNSCALED;</span></div>
 <div class="line"> </div>
 <div class="line">    <span class="keyword">const</span> <a class="code hl_struct" href="structhmap_1_1ComputeMode.html">hmap::ComputeMode</a> cm{.<a class="code hl_variable" href="structhmap_1_1ComputeMode.html#a88f263de26dea2af6e22e2d4f5f02cab">mode</a> = foreach_mode,</div>
 <div class="line">                               .trim_storage = <span class="keyword">true</span>,</div>

@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="69" column="15" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="69" bodyend="-1"/>
+        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="65" column="15" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="65" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structhmap_1_1ComputeMode_1ae57651b6dc8b188e4781cf3aa6735253" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -32,7 +32,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="70" column="15" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="70" bodyend="-1"/>
+        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="66" column="15" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="66" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structhmap_1_1ComputeMode_1a764bfa4551a94b2006d2f76f7f1739ae" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -47,31 +47,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="71" column="15" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="71" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="structhmap_1_1ComputeMode_1a5a23331035fb8f7e50e22a6e8663ba25" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float hmap::ComputeMode::k_cutoff</definition>
-        <argsstring></argsstring>
-        <name>k_cutoff</name>
-        <qualifiedname>hmap::ComputeMode::k_cutoff</qualifiedname>
-        <initializer>= 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="72" column="15" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="72" bodyend="-1"/>
+        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="67" column="15" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="67" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="67" column="1" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="68" bodyend="73"/>
+    <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="63" column="1" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="64" bodyend="68"/>
     <listofallmembers>
-      <member refid="structhmap_1_1ComputeMode_1a5a23331035fb8f7e50e22a6e8663ba25" prot="public" virt="non-virtual"><scope>hmap::ComputeMode</scope><name>k_cutoff</name></member>
       <member refid="structhmap_1_1ComputeMode_1a88f263de26dea2af6e22e2d4f5f02cab" prot="public" virt="non-virtual"><scope>hmap::ComputeMode</scope><name>mode</name></member>
       <member refid="structhmap_1_1ComputeMode_1a764bfa4551a94b2006d2f76f7f1739ae" prot="public" virt="non-virtual"><scope>hmap::ComputeMode</scope><name>stride</name></member>
       <member refid="structhmap_1_1ComputeMode_1ae57651b6dc8b188e4781cf3aa6735253" prot="public" virt="non-virtual"><scope>hmap::ComputeMode</scope><name>trim_storage</name></member>

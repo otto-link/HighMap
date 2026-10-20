@@ -22,8 +22,6 @@ struct \mbox{\hyperlink{structTileAccess}{Tile\+Access}}
 \item 
 {\footnotesize template$<$typename Func $>$ }\\void \mbox{\hyperlink{virtual__array_8inl_ab916b187ca06389f5c0f50a8ad7bcd07}{single\+\_\+array\+\_\+compute}} (const \mbox{\hyperlink{structTileAccess}{Tile\+Access}} \&access, Func \&\&func, int stride=1)
 \item 
-{\footnotesize template$<$typename Func $>$ }\\void \mbox{\hyperlink{virtual__array_8inl_ac79305b18fad1867b4aefd408fbef2ff}{single\+\_\+array\+\_\+downscaled\+\_\+compute}} (const \mbox{\hyperlink{structTileAccess}{Tile\+Access}} \&access, Func \&\&func, float kc)
-\item 
 {\footnotesize template$<$typename Func $>$ }\\void \mbox{\hyperlink{virtual__array_8inl_a54eec3c94e3409f3990876e68a581322}{for\+\_\+each\+\_\+cell}} (Virtual\+Array \&va, Func \&\&func, const Compute\+Mode \&cm)
 \end{DoxyCompactItemize}
 
@@ -77,13 +75,6 @@ void distributed\+\_\+tile\+\_\+loop (\begin{DoxyParamCaption}\item[{const Virtu
 \doxysubsubsection{\texorpdfstring{single\_array\_compute()}{single\_array\_compute()}}
 {\footnotesize\ttfamily template$<$typename Func $>$ \\
 void single\+\_\+array\+\_\+compute (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structTileAccess}{Tile\+Access}} \&}]{access,  }\item[{Func \&\&}]{func,  }\item[{int}]{stride = {\ttfamily 1} }\end{DoxyParamCaption})}
-
-\Hypertarget{virtual__array_8inl_ac79305b18fad1867b4aefd408fbef2ff}\label{virtual__array_8inl_ac79305b18fad1867b4aefd408fbef2ff} 
-\index{virtual\_array.inl@{virtual\_array.inl}!single\_array\_downscaled\_compute@{single\_array\_downscaled\_compute}}
-\index{single\_array\_downscaled\_compute@{single\_array\_downscaled\_compute}!virtual\_array.inl@{virtual\_array.inl}}
-\doxysubsubsection{\texorpdfstring{single\_array\_downscaled\_compute()}{single\_array\_downscaled\_compute()}}
-{\footnotesize\ttfamily template$<$typename Func $>$ \\
-void single\+\_\+array\+\_\+downscaled\+\_\+compute (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structTileAccess}{Tile\+Access}} \&}]{access,  }\item[{Func \&\&}]{func,  }\item[{float}]{kc }\end{DoxyParamCaption})}
 
 \Hypertarget{virtual__array_8inl_a54eec3c94e3409f3990876e68a581322}\label{virtual__array_8inl_a54eec3c94e3409f3990876e68a581322} 
 \index{virtual\_array.inl@{virtual\_array.inl}!for\_each\_cell@{for\_each\_cell}}

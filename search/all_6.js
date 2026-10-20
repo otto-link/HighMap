@@ -38,7 +38,7 @@ var searchData=
   ['biquad_5fpulse_5fy_35',['biquad_pulse_y',['../namespacehmap.html#aeffedc90714bfcfed6a5f18d780b1094',1,'hmap']]],
   ['biquadfunction_36',['biquadfunction',['../classhmap_1_1BiquadFunction.html',1,'hmap::BiquadFunction'],['../classhmap_1_1BiquadFunction.html#a833dc567076ad412bbe56c72d5e2b154',1,'hmap::BiquadFunction::BiquadFunction()']]],
   ['bivariate_20functions_37',['2. Bivariate Functions',['../md_docs_2content_2getting__started_2core__concepts.html#autotoc_md28',1,'']]],
-  ['biweight_38',['biweight',['../namespacehmap.html#a4b6f135c6e81d313ca54ae1efac5f2c9a77e92279e9a89de241e361bd74b8803a',1,'hmap::BIWEIGHT'],['../namespacehmap.html#a44931abadbb5fea3bba9dd59540cf9cb',1,'hmap::biweight(glm::ivec2 shape)']]],
+  ['biweight_38',['biweight',['../namespacehmap.html#a44931abadbb5fea3bba9dd59540cf9cb',1,'hmap::biweight(glm::ivec2 shape)'],['../namespacehmap.html#a4b6f135c6e81d313ca54ae1efac5f2c9a77e92279e9a89de241e361bd74b8803a',1,'hmap::BIWEIGHT']]],
   ['blackman_39',['blackman',['../namespacehmap.html#abc5852a4cae426341235d60a04964fc1',1,'hmap']]],
   ['blend_5fexclusion_40',['blend_exclusion',['../namespacehmap.html#aafb76d7961d1655fdc07422982357588',1,'hmap']]],
   ['blend_5fgradients_41',['blend_gradients',['../namespacehmap_1_1gpu.html#a3a43696b1d6b8f0d966f9f05e5085edf',1,'hmap::gpu::blend_gradients()'],['../namespacehmap.html#af91a60a9fcbed7e38f53df57631a5298',1,'hmap::blend_gradients(const Array &amp;array1, const Array &amp;array2, int ir=4)']]],

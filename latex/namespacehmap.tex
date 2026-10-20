@@ -610,7 +610,6 @@ enum class \mbox{\hyperlink{namespacehmap_a2ebe9b34048adbbb55abe1182603a1f8}{Syn
 enum \mbox{\hyperlink{namespacehmap_ae383414b46ae8992e621c407f09ce7c5}{For\+Each\+Mode}} \+: int \{ \mbox{\hyperlink{namespacehmap_ae383414b46ae8992e621c407f09ce7c5ad610a3b158cd10452fc144bda389aa19}{VA\+\_\+\+SEQUENTIAL}}
 , \mbox{\hyperlink{namespacehmap_ae383414b46ae8992e621c407f09ce7c5a5356cbfe824240ce4bd458109890b9d5}{VA\+\_\+\+DISTRIBUTED}}
 , \mbox{\hyperlink{namespacehmap_ae383414b46ae8992e621c407f09ce7c5afd32b1bf1363b0e44143bda30f00cffa}{VA\+\_\+\+SINGLE\+\_\+\+ARRAY}}
-, \mbox{\hyperlink{namespacehmap_ae383414b46ae8992e621c407f09ce7c5a3c2aed0c2a4eb46f0bd37dc7741b17c8}{VA\+\_\+\+SINGLE\+\_\+\+ARRAY\+\_\+\+DOWNSCALED}}
  \}
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Functions}
@@ -3792,10 +3791,6 @@ VA\+\_\+\+DISTRIBUTED&\\
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{VA\_SINGLE\_ARRAY@{VA\_SINGLE\_ARRAY}!hmap@{hmap}}\index{hmap@{hmap}!VA\_SINGLE\_ARRAY@{VA\_SINGLE\_ARRAY}}}\Hypertarget{namespacehmap_ae383414b46ae8992e621c407f09ce7c5afd32b1bf1363b0e44143bda30f00cffa}\label{namespacehmap_ae383414b46ae8992e621c407f09ce7c5afd32b1bf1363b0e44143bda30f00cffa} 
 VA\+\_\+\+SINGLE\+\_\+\+ARRAY&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{VA\_SINGLE\_ARRAY\_DOWNSCALED@{VA\_SINGLE\_ARRAY\_DOWNSCALED}!hmap@{hmap}}\index{hmap@{hmap}!VA\_SINGLE\_ARRAY\_DOWNSCALED@{VA\_SINGLE\_ARRAY\_DOWNSCALED}}}\Hypertarget{namespacehmap_ae383414b46ae8992e621c407f09ce7c5a3c2aed0c2a4eb46f0bd37dc7741b17c8}\label{namespacehmap_ae383414b46ae8992e621c407f09ce7c5a3c2aed0c2a4eb46f0bd37dc7741b17c8} 
-VA\+\_\+\+SINGLE\+\_\+\+ARRAY\+\_\+\+DOWNSCALED&\\
 \hline
 
 \end{DoxyEnumFields}
@@ -8737,7 +8732,6 @@ Iteratively updates elevations using a drainage model with uplift, slope constra
 \DoxyCodeLine{\ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ foreach\_mode\ =\ \mbox{\hyperlink{namespacehmap_ae383414b46ae8992e621c407f09ce7c5a5356cbfe824240ce4bd458109890b9d5}{hmap::ForEachMode::VA\_DISTRIBUTED}};}
 \DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ const\ auto\ foreach\_mode\ =\ hmap::ForEachMode::VA\_SEQUENTIAL;}}
 \DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ const\ auto\ foreach\_mode\ =\ hmap::ForEachMode::VA\_SINGLE\_ARRAY;}}
-\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ const\ auto\ foreach\_mode\ =\ hmap::ForEachMode::VA\_SINGLE\_ARRAY\_DOWNSCALED;}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structhmap_1_1ComputeMode}{hmap::ComputeMode}}\ cm\{.\mbox{\hyperlink{structhmap_1_1ComputeMode_a88f263de26dea2af6e22e2d4f5f02cab}{mode}}\ =\ foreach\_mode,}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .trim\_storage\ =\ \textcolor{keyword}{true},}
@@ -8931,7 +8925,6 @@ Eroded heightmap.
 \DoxyCodeLine{\ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{auto}\ foreach\_mode\ =\ \mbox{\hyperlink{namespacehmap_ae383414b46ae8992e621c407f09ce7c5a5356cbfe824240ce4bd458109890b9d5}{hmap::ForEachMode::VA\_DISTRIBUTED}};}
 \DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ const\ auto\ foreach\_mode\ =\ hmap::ForEachMode::VA\_SEQUENTIAL;}}
 \DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ const\ auto\ foreach\_mode\ =\ hmap::ForEachMode::VA\_SINGLE\_ARRAY;}}
-\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ const\ auto\ foreach\_mode\ =\ hmap::ForEachMode::VA\_SINGLE\_ARRAY\_DOWNSCALED;}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structhmap_1_1ComputeMode}{hmap::ComputeMode}}\ cm\{.\mbox{\hyperlink{structhmap_1_1ComputeMode_a88f263de26dea2af6e22e2d4f5f02cab}{mode}}\ =\ foreach\_mode,}
 \DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .trim\_storage\ =\ \textcolor{keyword}{true},}

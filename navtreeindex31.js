@@ -1,8 +1,5 @@
 var NAVTREEINDEX31 =
 {
-"test__fill__talus_8cpp.html#a0bca07af047d5bef3d5efd2ac01b934f":[9,0,2,0,27,3],
-"test__fill__talus_8cpp.html#a1bdba2da485936ec4ac2cc0e73f54baf":[9,0,2,0,27,1],
-"test__fill__talus_8cpp.html#a99dca05ff93c7b5d78d8a5096c275b76":[9,0,2,0,27,0],
 "test__fill__talus_8cpp.html#afd0c8055ddae8fc4aae66adcaab1bc3b":[9,0,2,0,27,2],
 "test__flood__fill_8cpp.html":[9,0,2,0,28],
 "test__flood__fill_8cpp.html#a20f96a8cb0e702aa9a198c71309cd464":[9,0,2,0,28,0],
@@ -249,5 +246,8 @@ var NAVTREEINDEX31 =
 "test__math_8cpp.html#aadf625b04e18f699126571a15974e05e":[9,0,2,0,49,23],
 "test__math_8cpp.html#ac568d9a8b2c08f494ba8b190e012265b":[9,0,2,0,49,29],
 "test__math_8cpp.html#acfb7f4dd3f09c800e0de77c35d470db6":[9,0,2,0,49,10],
-"test__math_8cpp.html#ad407fc2f663f38212b448afd60501371":[9,0,2,0,49,27]
+"test__math_8cpp.html#ad407fc2f663f38212b448afd60501371":[9,0,2,0,49,27],
+"test__math_8cpp.html#ad884c7c3377439372e80442a8a1ee859":[9,0,2,0,49,30],
+"test__math_8cpp.html#ade0af126985b67ea09aa9df742aed632":[9,0,2,0,49,25],
+"test__math_8cpp.html#ade25ce2f4a6533591505a2de483dc46c":[9,0,2,0,49,6]
 };

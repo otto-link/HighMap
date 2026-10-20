@@ -2460,20 +2460,13 @@
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
-        <enumvalue id="namespacehmap_1ae383414b46ae8992e621c407f09ce7c5a3c2aed0c2a4eb46f0bd37dc7741b17c8" prot="public">
-          <name>VA_SINGLE_ARRAY_DOWNSCALED</name>
-          <briefdescription>
-          </briefdescription>
-          <detaileddescription>
-          </detaileddescription>
-        </enumvalue>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="40" column="1" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="41" bodyend="46"/>
+        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="40" column="1" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="41" bodyend="45"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="typedef">
@@ -2657,15 +2650,14 @@
         <initializer>= {
     {&quot;Distributed&quot;, <ref refid="namespacehmap_1ae383414b46ae8992e621c407f09ce7c5a5356cbfe824240ce4bd458109890b9d5" kindref="member">ForEachMode::VA_DISTRIBUTED</ref>},
     {&quot;Sequential&quot;, <ref refid="namespacehmap_1ae383414b46ae8992e621c407f09ce7c5ad610a3b158cd10452fc144bda389aa19" kindref="member">ForEachMode::VA_SEQUENTIAL</ref>},
-    {&quot;Single array&quot;, <ref refid="namespacehmap_1ae383414b46ae8992e621c407f09ce7c5afd32b1bf1363b0e44143bda30f00cffa" kindref="member">ForEachMode::VA_SINGLE_ARRAY</ref>},
-    {&quot;Single array downscaled&quot;, <ref refid="namespacehmap_1ae383414b46ae8992e621c407f09ce7c5a3c2aed0c2a4eb46f0bd37dc7741b17c8" kindref="member">ForEachMode::VA_SINGLE_ARRAY_DOWNSCALED</ref>}}</initializer>
+    {&quot;Single array&quot;, <ref refid="namespacehmap_1ae383414b46ae8992e621c407f09ce7c5afd32b1bf1363b0e44143bda30f00cffa" kindref="member">ForEachMode::VA_SINGLE_ARRAY</ref>}}</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="61" column="17" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="61" bodyend="65"/>
+        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="58" column="17" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="58" bodyend="61"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="func">
@@ -13468,7 +13460,6 @@ additional_depth)</computeroutput>.</para>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>foreach_mode<sp/>=<sp/><ref refid="namespacehmap_1ae383414b46ae8992e621c407f09ce7c5a5356cbfe824240ce4bd458109890b9d5" kindref="member">hmap::ForEachMode::VA_DISTRIBUTED</ref>;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>const<sp/>auto<sp/>foreach_mode<sp/>=<sp/>hmap::ForEachMode::VA_SEQUENTIAL;</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>const<sp/>auto<sp/>foreach_mode<sp/>=<sp/>hmap::ForEachMode::VA_SINGLE_ARRAY;</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>const<sp/>auto<sp/>foreach_mode<sp/>=<sp/>hmap::ForEachMode::VA_SINGLE_ARRAY_DOWNSCALED;</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structhmap_1_1ComputeMode" kindref="compound">hmap::ComputeMode</ref><sp/>cm{.<ref refid="structhmap_1_1ComputeMode_1a88f263de26dea2af6e22e2d4f5f02cab" kindref="member">mode</ref><sp/>=<sp/>foreach_mode,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.trim_storage<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">,</highlight></codeline>
@@ -13837,7 +13828,6 @@ additional_depth)</computeroutput>.</para>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>foreach_mode<sp/>=<sp/><ref refid="namespacehmap_1ae383414b46ae8992e621c407f09ce7c5a5356cbfe824240ce4bd458109890b9d5" kindref="member">hmap::ForEachMode::VA_DISTRIBUTED</ref>;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>const<sp/>auto<sp/>foreach_mode<sp/>=<sp/>hmap::ForEachMode::VA_SEQUENTIAL;</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>const<sp/>auto<sp/>foreach_mode<sp/>=<sp/>hmap::ForEachMode::VA_SINGLE_ARRAY;</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>const<sp/>auto<sp/>foreach_mode<sp/>=<sp/>hmap::ForEachMode::VA_SINGLE_ARRAY_DOWNSCALED;</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structhmap_1_1ComputeMode" kindref="compound">hmap::ComputeMode</ref><sp/>cm{.<ref refid="structhmap_1_1ComputeMode_1a88f263de26dea2af6e22e2d4f5f02cab" kindref="member">mode</ref><sp/>=<sp/>foreach_mode,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.trim_storage<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">,</highlight></codeline>
@@ -71317,7 +71307,7 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="48" column="20" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="48" bodyend="59"/>
+        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="47" column="20" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="47" bodyend="56"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a4f31242a99ef8fd6e098eb319438eca4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -71343,7 +71333,7 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/virtual_array/array/virtual_array.cpp" line="508" column="6" bodyfile="HighMap/src/virtual_array/array/virtual_array.cpp" bodystart="508" bodyend="519" declfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" declline="181" declcolumn="6"/>
+        <location file="HighMap/src/virtual_array/array/virtual_array.cpp" line="508" column="6" bodyfile="HighMap/src/virtual_array/array/virtual_array.cpp" bodystart="508" bodyend="519" declfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" declline="176" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a37e8c8ed7997432da123d8989639c8a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -71385,7 +71375,7 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/virtual_array/array/virtual_array.cpp" line="521" column="6" bodyfile="HighMap/src/virtual_array/array/virtual_array.cpp" bodystart="521" bodyend="621" declfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" declline="185" declcolumn="6"/>
+        <location file="HighMap/src/virtual_array/array/virtual_array.cpp" line="521" column="6" bodyfile="HighMap/src/virtual_array/array/virtual_array.cpp" bodystart="521" bodyend="621" declfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" declline="180" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1abc392f1014a9b32b8d2c760b58940e06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -71421,7 +71411,7 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="194" column="6" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="194" bodyend="198"/>
+        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="189" column="6" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="189" bodyend="193"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1a5b780b7b211653ed8a279ab553e7651f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -71449,7 +71439,7 @@ See unit tests: <ref refid="test__variance_8cpp" kindref="compound">test_varianc
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="200" column="20" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="200" bodyend="203"/>
+        <location file="HighMap/include/highmap/virtual_array/virtual_array.hpp" line="195" column="20" bodyfile="HighMap/include/highmap/virtual_array/virtual_array.hpp" bodystart="195" bodyend="198"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1af66b37de86e8de6261ab902110b118a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1VirtualTexture" kindref="compound">VirtualTexture</ref></type>
