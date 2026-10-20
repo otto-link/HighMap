@@ -35,5 +35,5 @@ var searchData=
   ['forest_5fseeding_2ehpp_32',['forest_seeding.hpp',['../forest__seeding_8hpp.html',1,'']]],
   ['format_5fraw_2ecpp_33',['format_raw.cpp',['../format__raw_8cpp.html',1,'']]],
   ['functions_2ecpp_34',['functions.cpp',['../functions_8cpp.html',1,'']]],
-  ['functions_2ehpp_35',['functions.hpp',['../functions_8hpp.html',1,'(Global Namespace)'],['../primitives_2functions_8hpp.html',1,'(Global Namespace)']]]
+  ['functions_2ehpp_35',['functions.hpp',['../primitives_2functions_8hpp.html',1,'(Global Namespace)'],['../functions_8hpp.html',1,'(Global Namespace)']]]
 ];
