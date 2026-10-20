@@ -140,6 +140,20 @@ public:
   std::vector<float> compute_distance_to_outlet() const;
 
   /**
+   * @brief Compute relative channel width ratio in [0, 1] for each node in the
+   * graph.
+   *
+   * Scaling smoothly from 0 at the upstream headwater roots up to 1 at the
+   * downstream outlets:
+   *
+   * `r = (1 - d_outlet / max_d_outlet)^exponent`
+   *
+   * @param  exponent Scaling exponent applied to normalized distance to outlet.
+   * @return          Vector containing relative width ratio in [0, 1] per node.
+   */
+  std::vector<float> compute_relative_widths(float exponent = 1.0f) const;
+
+  /**
    * @brief Compute the Strahler stream order for each node in the graph.
    *
    * Flow direction is inferred from node elevation values (stored in `v`),
@@ -177,6 +191,18 @@ public:
    * @return True if no edges, false otherwise.
    */
   bool empty_edges() const noexcept;
+
+  /**
+   * @brief Enforce monotonic downhill elevations on all graph nodes.
+   *
+   * Traverses nodes from upstream headwaters to downstream outlets in
+   * topological order, ensuring each downstream node satisfies:
+   *
+   * `v_downstream <= v_upstream - min_slope * edge_length`
+   *
+   * @param min_slope Minimum downhill slope along each directed edge.
+   */
+  void enforce_downhill_elevation(float min_slope = 0.001f);
 
   /**
    * @brief Get an edge by index.

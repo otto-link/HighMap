@@ -582,8 +582,8 @@ void trench(Array                       &z,
 
 void trench(Array                       &z,
             const Graph                 &graph,
+            const std::vector<float>    &relative_widths,
             float                        width,
-            float                        width_exponent,
             bool                         enable_width_depth_scaling,
             RadialProfile                radial_profile,
             float                        radial_profile_parameter,
@@ -595,18 +595,48 @@ void trench(Array                       &z,
             int                          tile_size,
             glm::vec4                    bbox)
 {
+  if (!validate_non_empty(z)) return;
+  if (p_noise_r && !validate_same_shape(z, *p_noise_r)) return;
   if (graph.empty() || graph.num_edges() == 0) return;
 
   const size_t n = graph.size();
+  const auto  &edges = graph.get_edges();
 
-  // compute downstream distance to outlet for all nodes
-  std::vector<float> dist_to_outlet = graph.compute_distance_to_outlet();
+  // Find maximum relative width
+  float max_rel_width = 0.f;
+  for (size_t i = 0; i < n; ++i)
+  {
+    float rw = (i < relative_widths.size()) ? relative_widths[i] : 1.f;
+    if (rw > max_rel_width) max_rel_width = rw;
+  }
 
-  // extract directed downstream edges and identify root nodes (in_degree == 0)
-  std::vector<std::vector<int>> downstream_adj(n);
-  std::vector<int>              in_degree(n, 0);
+  if (max_rel_width <= 0.f || width <= 0.f) return;
 
-  for (const auto &edge : graph.get_edges())
+  float max_effective_width = width * max_rel_width;
+  if (p_noise_r)
+  {
+    max_effective_width = std::max(0.f,
+                                   max_effective_width *
+                                       (1.f + p_noise_r->max()));
+  }
+
+  if (max_effective_width <= 0.f) return;
+
+  const glm::ivec2 &shape = z.shape;
+  auto              profile_fct = get_radial_profile_function(radial_profile,
+                                                 radial_profile_parameter);
+
+  float dx = (bbox.y - bbox.x) / float(shape.x);
+  float dy = (bbox.w - bbox.z) / float(shape.y);
+
+  Array blending_mask;
+  if (p_bending_mask) blending_mask = Array(shape);
+
+  // Build segments for all directed edges (oriented downstream)
+  std::vector<Segment2D> all_segments;
+  all_segments.reserve(edges.size());
+
+  for (const auto &edge : edges)
   {
     int u = edge.u;
     int v = edge.v;
@@ -627,106 +657,209 @@ void trench(Array                       &z,
       to = u;
     }
 
-    downstream_adj[from].push_back(to);
-    in_degree[to]++;
+    float r0 = (static_cast<size_t>(from) < relative_widths.size())
+                   ? relative_widths[from]
+                   : 1.f;
+    float r1 = (static_cast<size_t>(to) < relative_widths.size())
+                   ? relative_widths[to]
+                   : 1.f;
+
+    if (r0 <= 0.f && r1 <= 0.f) continue;
+
+    const auto &p0 = graph[from];
+    const auto &p1 = graph[to];
+
+    float seg_len = glm::distance(glm::vec2(p0.x, p0.y), glm::vec2(p1.x, p1.y));
+    float dz_min = min_slope * seg_len;
+
+    float z0 = p0.v + elevation_shift;
+    float z1 = p1.v + elevation_shift;
+
+    switch (longitudinal_profile)
+    {
+    case ElevationLongitudinalProfile::ELP_FLAT: z1 = z0; break;
+
+    case ElevationLongitudinalProfile::ELP_DECREASING:
+      z1 = std::min(z1, z0 - dz_min);
+      break;
+
+    case ElevationLongitudinalProfile::ELP_INCREASING:
+      z1 = std::max(z1, z0 + dz_min);
+      break;
+
+    case ElevationLongitudinalProfile::ELP_UNCHANGED: break;
+    }
+
+    Segment2D seg;
+    seg.p0 = glm::vec2(p0.x, p0.y);
+    seg.p1 = glm::vec2(p1.x, p1.y);
+    seg.v0 = z0;
+    seg.v1 = z1;
+    seg.s0 = r0; // relative width at start node
+    seg.s1 = r1; // relative width at end node
+    seg.k0 = static_cast<size_t>(from);
+    seg.k1 = static_cast<size_t>(to);
+    seg.path_index = 0;
+    seg.id = static_cast<uint32_t>(all_segments.size());
+    seg.d = seg.p1 - seg.p0;
+    float len_sq = seg.d.x * seg.d.x + seg.d.y * seg.d.y;
+    seg.inv_len_sq = (len_sq > 1e-12f) ? (1.f / len_sq) : 0.f;
+
+    all_segments.push_back(seg);
   }
 
-  // identify the outlet for each node and maximum distance to outlet per
-  // drainage tree
-  std::vector<int>   outlet_of(n, -1);
-  std::vector<float> max_tree_dist(n, 0.f);
+  if (all_segments.empty()) return;
 
-  for (size_t i = 0; i < n; ++i)
+  // Build BVH2D over all edge segments
+  BVH2D bvh(all_segments, max_effective_width);
+
+  AABB2D domain_aabb(bbox.x, bbox.z, bbox.y, bbox.w);
+  if (!bvh.root_bbox().overlaps(domain_aabb)) return;
+
+  int actual_tile_size = std::max(1, tile_size);
+  int num_tiles_x = (shape.x + actual_tile_size - 1) / actual_tile_size;
+  int num_tiles_y = (shape.y + actual_tile_size - 1) / actual_tile_size;
+  int total_tiles = num_tiles_x * num_tiles_y;
+
+  std::vector<std::vector<uint32_t>> tile_segments(total_tiles);
+
+#pragma omp parallel for schedule(static)
+  for (int tile_idx = 0; tile_idx < total_tiles; ++tile_idx)
   {
-    size_t curr = i;
-    while (!downstream_adj[curr].empty())
-    {
-      // follow the downstream path with minimal distance to outlet
-      float  min_d = std::numeric_limits<float>::max();
-      size_t best_next = curr;
+    int tx = tile_idx % num_tiles_x;
+    int ty = tile_idx / num_tiles_x;
 
-      for (int nxt : downstream_adj[curr])
+    float tile_xmin = bbox.x + float(tx * actual_tile_size) * dx;
+    float tile_xmax = bbox.x +
+                      float(std::min((tx + 1) * actual_tile_size, shape.x)) *
+                          dx;
+    float tile_ymin = bbox.z + float(ty * actual_tile_size) * dy;
+    float tile_ymax = bbox.z +
+                      float(std::min((ty + 1) * actual_tile_size, shape.y)) *
+                          dy;
+
+    AABB2D tile_box(tile_xmin, tile_ymin, tile_xmax, tile_ymax);
+    bvh.query_box(tile_box, tile_segments[tile_idx]);
+  }
+
+  std::vector<float> xg, yg;
+  grid_xy_vector(xg, yg, shape, bbox, false);
+
+#pragma omp parallel for schedule(dynamic, 8)
+  for (int tile_idx = 0; tile_idx < total_tiles; ++tile_idx)
+  {
+    const auto &segs = tile_segments[tile_idx];
+    if (segs.empty()) continue;
+
+    int tx = tile_idx % num_tiles_x;
+    int ty = tile_idx / num_tiles_x;
+
+    int i_start = tx * actual_tile_size;
+    int i_end = std::min(i_start + actual_tile_size, shape.x);
+    int j_start = ty * actual_tile_size;
+    int j_end = std::min(j_start + actual_tile_size, shape.y);
+
+    for (int j = j_start; j < j_end; ++j)
+    {
+      float y = yg[j];
+
+      for (int i = i_start; i < i_end; ++i)
       {
-        if (dist_to_outlet[nxt] < min_d)
+        float x = xg[i];
+
+        float best_r = 1.0f;
+        float best_zref = 0.f;
+        bool  found = false;
+
+        float dr = p_noise_r ? (*p_noise_r)(i, j) : 0.f;
+
+        for (uint32_t seg_idx : segs)
         {
-          min_d = dist_to_outlet[nxt];
-          best_next = static_cast<size_t>(nxt);
+          const auto &seg = all_segments[seg_idx];
+          float       qx = x - seg.p0.x;
+          float       qy = y - seg.p0.y;
+
+          float t = std::clamp((qx * seg.d.x + qy * seg.d.y) * seg.inv_len_sq,
+                               0.f,
+                               1.f);
+
+          float proj_x = seg.p0.x + t * seg.d.x;
+          float proj_y = seg.p0.y + t * seg.d.y;
+
+          float d_sq = (x - proj_x) * (x - proj_x) +
+                       (y - proj_y) * (y - proj_y);
+
+          float rel_w = (1.f - t) * seg.s0 + t * seg.s1;
+          float effective_width = std::max(0.f, width * rel_w * (1.f + dr));
+
+          if (enable_width_depth_scaling && std::abs(elevation_shift) > 1e-6f)
+          {
+            float zref_cand = (1.f - t) * seg.v0 + t * seg.v1;
+            float dz = std::abs((z(i, j) - zref_cand) / elevation_shift);
+            effective_width *= std::clamp(dz, 0.f, 1.f);
+          }
+
+          if (effective_width <= 0.f ||
+              d_sq > effective_width * effective_width)
+          {
+            continue;
+          }
+
+          float r = std::sqrt(d_sq) / effective_width;
+
+          if (r < best_r)
+          {
+            best_r = r;
+            best_zref = (1.f - t) * seg.v0 + t * seg.v1;
+            found = true;
+          }
+        }
+
+        if (found && best_r >= 0.f && best_r <= 1.f)
+        {
+          float t = profile_fct(best_r);
+          z(i, j) = lerp(best_zref, z(i, j), t);
+          if (p_bending_mask) blending_mask(i, j) = 1.f - t;
         }
       }
-
-      if (best_next == curr) break;
-      curr = best_next;
-    }
-
-    outlet_of[i] = static_cast<int>(curr);
-    max_tree_dist[curr] = std::max(max_tree_dist[curr], dist_to_outlet[i]);
-  }
-
-  // scale node widths from 0 at upstream roots to width at outlet
-  std::vector<float> node_width(n, 0.f);
-
-  for (size_t i = 0; i < n; ++i)
-  {
-    // headwater root nodes with no incoming flow start with zero width
-    if (in_degree[i] == 0)
-    {
-      node_width[i] = 0.f;
-      continue;
-    }
-
-    int   outlet = outlet_of[i];
-    float max_d = (outlet >= 0) ? max_tree_dist[outlet] : 0.f;
-
-    if (max_d > 1e-6f)
-    {
-      float norm = 1.f - (dist_to_outlet[i] / max_d);
-      node_width[i] = width *
-                      std::pow(std::clamp(norm, 0.f, 1.f), width_exponent);
-    }
-    else
-    {
-      node_width[i] = width;
     }
   }
 
-  // carve each directed edge segment
-  for (size_t from = 0; from < n; ++from)
-  {
-    for (int to : downstream_adj[from])
-    {
-      float w_up = node_width[from];
-      float w_down = node_width[to];
+  if (p_bending_mask) *p_bending_mask = std::move(blending_mask);
+}
 
-      // if both ends have zero width, no carving needed
-      if (w_up <= 0.f && w_down <= 0.f) continue;
+void trench(Array                       &z,
+            const Graph                 &graph,
+            float                        width,
+            float                        width_exponent,
+            bool                         enable_width_depth_scaling,
+            RadialProfile                radial_profile,
+            float                        radial_profile_parameter,
+            ElevationLongitudinalProfile longitudinal_profile,
+            float                        elevation_shift,
+            float                        min_slope,
+            const Array                 *p_noise_r,
+            Array                       *p_bending_mask,
+            int                          tile_size,
+            glm::vec4                    bbox)
+{
+  std::vector<float> relative_widths = graph.compute_relative_widths(
+      width_exponent);
 
-      float seg_width = std::max(w_up, w_down);
-      Path  seg_path({graph[from], graph[to]});
-
-      trench(z,
-             seg_path,
-             seg_width,
-             enable_width_depth_scaling,
-             false, // enable_width_distance_scaling hardcoded to false for
-                    // graph edges
-             false,
-             1.f,
-             0.5f,
-             2.f,
-             radial_profile,
-             radial_profile_parameter,
-             longitudinal_profile,
-             elevation_shift,
-             0.f,
-             0.f,
-             min_slope,
-             8,
-             p_noise_r,
-             p_bending_mask,
-             tile_size,
-             bbox);
-    }
-  }
+  trench(z,
+         graph,
+         relative_widths,
+         width,
+         enable_width_depth_scaling,
+         radial_profile,
+         radial_profile_parameter,
+         longitudinal_profile,
+         elevation_shift,
+         min_slope,
+         p_noise_r,
+         p_bending_mask,
+         tile_size,
+         bbox);
 }
 
 } // namespace hmap

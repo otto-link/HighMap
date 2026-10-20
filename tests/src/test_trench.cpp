@@ -392,13 +392,22 @@ TEST(TrenchCarving, GraphFlowNetworkWithOutletDistanceScaling)
   g.add_edge(1, 2);
   g.add_edge(2, 3);
 
-  float target_width = 0.08f;
-  float width_exponent = 1.0f;
+  // test compute_relative_widths
+  std::vector<float> rel_w = g.compute_relative_widths(1.0f);
+  ASSERT_EQ(rel_w.size(), 4u);
+  EXPECT_FLOAT_EQ(rel_w[0], 0.f);
+  EXPECT_FLOAT_EQ(rel_w[1], 0.f);
+  EXPECT_GT(rel_w[2], 0.f);
+  EXPECT_LT(rel_w[2], 1.f);
+  EXPECT_FLOAT_EQ(rel_w[3], 1.f);
 
+  float target_width = 0.08f;
+
+  // carve with explicit relative_widths
   hmap::trench(z,
                g,
+               rel_w,
                target_width,
-               width_exponent,
                /* enable_width_depth_scaling */ false);
 
   // mouth (outlet) is carved

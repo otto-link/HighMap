@@ -675,26 +675,27 @@ Array flow_fixing_mst_triangulated(
  * the boundary, minimizing upward elevation penalties while accounting for
  * distance and elevation factors.
  *
- * @param  z                   The input 2D array representing elevation values.
- * @param  ij_start            The starting point as a 2D vector of indices (i,
- *                             j) within the array.
- * @param  elevation_ratio     Weight for elevation difference in the cost
- *                             function (default: 0.5).
- * @param  distance_exponent   Exponent for the distance term in the cost
- *                             function (default: 2.0).
- * @param  upward_penalization Penalty factor for upward elevation changes
- *                             (default: 100.0).
- * @param  existing_streams    Existing flow streams to favor merging with
- *                             (default: {}).
- * @param  valley_radius       Radius around existing stream cells to apply
- *                             depression (default: 2).
- * @param  valley_factor       Attenuation factor per distance unit in valley
- *                             depression (default: 0.35).
+ * @param  z                        The input 2D array representing elevation
+ *                                  values.
+ * @param  ij_start                 The starting point as a 2D vector of indices
+ *                                  (i, j) within the array.
+ * @param  elevation_ratio          Weight for elevation difference in the cost
+ *                                  function (default: 0.5).
+ * @param  distance_exponent        Exponent for the distance term in the cost
+ *                                  function (default: 2.0).
+ * @param  upward_penalization      Penalty factor for upward elevation changes
+ *                                  (default: 100.0).
+ * @param  existing_streams         Existing flow streams to favor merging with
+ *                                  (default: {}).
+ * @param  valley_radius            Radius around existing stream cells to apply
+ *                                  depression (default: 2).
+ * @param  valley_factor            Attenuation factor per distance unit in
+ *                                  valley depression (default: 0.35).
  * @param  truncate_at_intersection Truncate path at first intersection with an
- *                             existing stream (default: false).
- * @return                     A Path object representing the optimal flow path
- *                             with normalized x and y coordinates and
- *                             corresponding elevations.
+ *                                  existing stream (default: false).
+ * @return                          A Path object representing the optimal flow
+ *                                  path with normalized x and y coordinates and
+ *                                  corresponding elevations.
  *
  * The output path consists of:
  * - Normalized x-coordinates along the path.
@@ -721,25 +722,26 @@ Path flow_stream(const Array             &z,
  * @brief Computes the optimal flow path from a starting vertex to the boundary
  * of a terrain triangular mesh.
  *
- * @param  mesh                Input triangular terrain mesh.
- * @param  start_vertex_index  Index of the starting vertex.
- * @param  elevation_ratio     Weight for elevation difference in the cost
- *                             function (default: 0.5).
- * @param  distance_exponent   Exponent for the distance/elevation term
- *                             (default: 2.0).
- * @param  upward_penalization Penalty factor for upward elevation changes
- *                             (default: 100.0).
- * @param  favor_domain_center Favor passing through the center of the domain
- *                             (default: false).
- * @param  existing_streams    Existing flow streams to favor merging with
- *                             (default: {}).
- * @param  valley_radius       Radius around existing stream cells to apply
- *                             attraction (default: 0.02).
- * @param  valley_factor       Attenuation factor per distance unit in valley
- *                             attraction (default: 0.35).
+ * @param  mesh                     Input triangular terrain mesh.
+ * @param  start_vertex_index       Index of the starting vertex.
+ * @param  elevation_ratio          Weight for elevation difference in the cost
+ *                                  function (default: 0.5).
+ * @param  distance_exponent        Exponent for the distance/elevation term
+ *                                  (default: 2.0).
+ * @param  upward_penalization      Penalty factor for upward elevation changes
+ *                                  (default: 100.0).
+ * @param  favor_domain_center      Favor passing through the center of the
+ *                                  domain (default: false).
+ * @param  existing_streams         Existing flow streams to favor merging with
+ *                                  (default: {}).
+ * @param  valley_radius            Radius around existing stream cells to apply
+ *                                  attraction (default: 0.02).
+ * @param  valley_factor            Attenuation factor per distance unit in
+ *                                  valley attraction (default: 0.35).
  * @param  truncate_at_intersection Truncate path at first intersection with an
- *                             existing stream (default: false).
- * @return                     A Path object representing the optimal flow path.
+ *                                  existing stream (default: false).
+ * @return                          A Path object representing the optimal flow
+ *                                  path.
  */
 Path flow_stream(const TerrainTriMesh    &mesh,
                  size_t                   start_vertex_index,
@@ -756,25 +758,26 @@ Path flow_stream(const TerrainTriMesh    &mesh,
  * @brief Computes the optimal flow path from starting 2D coordinates to the
  * boundary of a terrain triangular mesh.
  *
- * @param  mesh                Input triangular terrain mesh.
- * @param  xy_start            Starting coordinates (x, y) in [0, 1].
- * @param  elevation_ratio     Weight for elevation difference in the cost
- *                             function (default: 0.5).
- * @param  distance_exponent   Exponent for the distance/elevation term
- *                             (default: 2.0).
- * @param  upward_penalization Penalty factor for upward elevation changes
- *                             (default: 100.0).
- * @param  favor_domain_center Favor passing through the center of the domain
- *                             (default: false).
- * @param  existing_streams    Existing flow streams to favor merging with
- *                             (default: {}).
- * @param  valley_radius       Radius around existing stream cells to apply
- *                             attraction (default: 0.02).
- * @param  valley_factor       Attenuation factor per distance unit in valley
- *                             attraction (default: 0.35).
+ * @param  mesh                     Input triangular terrain mesh.
+ * @param  xy_start                 Starting coordinates (x, y) in [0, 1].
+ * @param  elevation_ratio          Weight for elevation difference in the cost
+ *                                  function (default: 0.5).
+ * @param  distance_exponent        Exponent for the distance/elevation term
+ *                                  (default: 2.0).
+ * @param  upward_penalization      Penalty factor for upward elevation changes
+ *                                  (default: 100.0).
+ * @param  favor_domain_center      Favor passing through the center of the
+ *                                  domain (default: false).
+ * @param  existing_streams         Existing flow streams to favor merging with
+ *                                  (default: {}).
+ * @param  valley_radius            Radius around existing stream cells to apply
+ *                                  attraction (default: 0.02).
+ * @param  valley_factor            Attenuation factor per distance unit in
+ *                                  valley attraction (default: 0.35).
  * @param  truncate_at_intersection Truncate path at first intersection with an
- *                             existing stream (default: false).
- * @return                     A Path object representing the optimal flow path.
+ *                                  existing stream (default: false).
+ * @return                          A Path object representing the optimal flow
+ *                                  path.
  */
 Path flow_stream(const TerrainTriMesh    &mesh,
                  glm::vec2                xy_start,
@@ -852,9 +855,9 @@ Array generate_riverbed(const Path &path,
 /**
  * @brief Convert a collection of hydrology flow paths into a connected Graph.
  *
- * Path points within `snap_tolerance` Euclidean distance are welded into
- * shared nodes, connecting tributaries and main river channels while preserving
- * only the active river network (avoiding dense background meshes).
+ * Path points within `snap_tolerance` Euclidean distance are welded into shared
+ * nodes, connecting tributaries and main river channels while preserving only
+ * the active river network (avoiding dense background meshes).
  *
  * @param  paths          Vector of flow paths.
  * @param  snap_tolerance Spatial distance tolerance for snapping vertices.
@@ -1479,29 +1482,30 @@ VirtualArray flow_fixing_mst_triangulated(
  * @brief Computes the optimal flow path from starting 2D coordinates across a
  * VirtualArray using an intermediate random terrain triangular mesh.
  *
- * @param  cm                   Compute mode configuration.
- * @param  z                    Heightmap VirtualArray.
- * @param  start                Start coordinates (x, y) in [0, 1].
- * @param  seed                 Random seed for mesh point generation.
- * @param  control_points_count Number of control points sampled for the mesh.
- * @param  elevation_ratio      Weight for elevation difference in the cost
- *                              function (default: 0.5).
- * @param  distance_exponent    Exponent for the distance/elevation term
- *                              (default: 2.0).
- * @param  upward_penalization  Penalty factor for upward elevation changes
- *                              (default: 100.0).
- * @param  favor_domain_center  Favor passing through the center of the domain
- *                              (default: false).
- * @param  existing_streams     Existing flow streams to favor merging with
- *                              (default: {}).
- * @param  valley_radius        Radius around existing stream cells to apply
- *                              attraction (default: 0.02).
- * @param  valley_factor        Attenuation factor per distance unit in valley
- *                              attraction (default: 0.35).
+ * @param  cm                       Compute mode configuration.
+ * @param  z                        Heightmap VirtualArray.
+ * @param  start                    Start coordinates (x, y) in [0, 1].
+ * @param  seed                     Random seed for mesh point generation.
+ * @param  control_points_count     Number of control points sampled for the
+ *                                  mesh.
+ * @param  elevation_ratio          Weight for elevation difference in the cost
+ *                                  function (default: 0.5).
+ * @param  distance_exponent        Exponent for the distance/elevation term
+ *                                  (default: 2.0).
+ * @param  upward_penalization      Penalty factor for upward elevation changes
+ *                                  (default: 100.0).
+ * @param  favor_domain_center      Favor passing through the center of the
+ *                                  domain (default: false).
+ * @param  existing_streams         Existing flow streams to favor merging with
+ *                                  (default: {}).
+ * @param  valley_radius            Radius around existing stream cells to apply
+ *                                  attraction (default: 0.02).
+ * @param  valley_factor            Attenuation factor per distance unit in
+ *                                  valley attraction (default: 0.35).
  * @param  truncate_at_intersection Truncate path at first intersection with an
- *                              existing stream (default: false).
- * @return                      A Path object representing the optimal flow
- *                              path.
+ *                                  existing stream (default: false).
+ * @return                          A Path object representing the optimal flow
+ *                                  path.
  */
 Path flow_stream(const ComputeMode       &cm,
                  const VirtualArray      &z,

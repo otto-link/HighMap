@@ -200,3 +200,53 @@ TEST(GraphTest, StrahlerOrder)
   EXPECT_EQ(strahler[2], 2); // 1 + 1 confluent -> order 2
   EXPECT_EQ(strahler[3], 2); // single order 2 branch entering -> order 2
 }
+
+TEST(GraphTest, EnforceDownhillElevation)
+{
+  // Test with flat spots / uphill anomalies:
+  // Node 0 (headwater 1, elev 1.0) -> Node 2 (junction, elev 0.5) -> Node 3
+  // (outlet, elev 0.52 - slight uphill error) Node 1 (headwater 2, elev 0.8) ->
+  // Node 2 (junction, elev 0.5)
+  Graph g;
+  g.push_back(Point(0.0f, 1.0f, 1.0f)); // 0: (0, 1) elev 1.0
+  g.push_back(Point(1.0f, 1.0f, 0.8f)); // 1: (1, 1) elev 0.8
+  g.push_back(Point(0.5f, 0.5f, 0.5f)); // 2: (0.5, 0.5) elev 0.5
+  g.push_back(Point(
+      0.5f,
+      0.0f,
+      0.52f)); // 3: (0.5, 0.0) elev 0.52 (small anomaly relative to junction)
+
+  // In graph construction from stream paths, edges are directed from path order
+  // or downstream flow Here 0 -> 2, 1 -> 2, and 2 -> 3
+  g.add_edge(0, 2);
+  g.add_edge(1, 2);
+  // Edge 2-3 has u=2, v=3. Since v2=0.5 and v3=0.52, if based solely on initial
+  // v, 3 would flow to 2! But with 0.48 for node 3 and a flat spot v=0.5 at
+  // junction: Suppose node 2 is flat with node 0 (elev 1.0):
+  Graph g2;
+  g2.push_back(Point(0.0f, 1.0f, 1.0f)); // 0: elev 1.0
+  g2.push_back(Point(1.0f, 1.0f, 1.0f)); // 1: elev 1.0
+  g2.push_back(Point(0.5f, 0.5f, 1.0f)); // 2: flat spot (elev 1.0)
+  g2.push_back(Point(0.5f, 0.0f, 0.2f)); // 3: outlet (elev 0.2)
+
+  g2.add_edge(0, 2);
+  g2.add_edge(1, 2);
+  g2.add_edge(2, 3);
+
+  float min_slope = 0.1f;
+  g2.enforce_downhill_elevation(min_slope);
+
+  // node 0 initial elevation is 1.0
+  EXPECT_FLOAT_EQ(g2[0].v, 1.0f);
+  EXPECT_FLOAT_EQ(g2[1].v, 1.0f);
+
+  // node 2 should be decreased below 1.0
+  float dist_02 = std::sqrt(0.5f * 0.5f + 0.5f * 0.5f);
+  EXPECT_LE(g2[2].v, 1.0f - min_slope * dist_02);
+  EXPECT_LT(g2[2].v, 1.0f);
+
+  // node 3 should be strictly lower than node 2
+  float dist_23 = 0.5f;
+  EXPECT_LE(g2[3].v, g2[2].v - min_slope * dist_23);
+  EXPECT_LT(g2[3].v, g2[2].v);
+}

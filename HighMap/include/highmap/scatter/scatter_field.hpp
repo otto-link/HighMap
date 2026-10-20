@@ -443,7 +443,8 @@ public:
                                    bool         flip_y = false) const;
 
   /**
-   * @brief Exports the items to a PLY file with radius and class as custom parameters.
+   * @brief Exports the items to a PLY file with radius and class as custom
+   * parameters.
    * @param fname Output file path.
    */
   void to_ply(const std::string &fname) const;

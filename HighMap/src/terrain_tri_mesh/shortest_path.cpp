@@ -28,6 +28,12 @@ TerrainTriMesh::ShortestPathResult TerrainTriMesh::compute_shortest_paths(
 
   const size_t n = points.size();
 
+  float min_z = 0.f;
+  if (config.metric == MeshPathCostConfig::Metric::SYMMETRIC_Z)
+  {
+    min_z = this->get_range_z().x;
+  }
+
   result.distance.assign(n, std::numeric_limits<float>::infinity());
   result.parent.assign(n, INVALID);
 
@@ -69,7 +75,8 @@ TerrainTriMesh::ShortestPathResult TerrainTriMesh::compute_shortest_paths(
       case MeshPathCostConfig::Metric::SYMMETRIC_Z:
       {
         float dz = points[v].z - points[nb_idx].z;
-        edge_cost = std::abs(dz) + config.elevation_weight * points[v].z;
+        edge_cost = std::abs(dz) +
+                    config.elevation_weight * (points[v].z - min_z);
         break;
       }
 
