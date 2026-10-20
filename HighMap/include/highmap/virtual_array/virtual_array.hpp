@@ -39,9 +39,9 @@ enum class SyncOperation
 
 enum ForEachMode : int
 {
-  VA_SEQUENTIAL,   // tile-by-tile, single thread
-  VA_DISTRIBUTED,  // tile-by-tile, multi-threaded
-  VA_SINGLE_ARRAY  // full array materialized at once
+  VA_SEQUENTIAL,  // tile-by-tile, single thread
+  VA_DISTRIBUTED, // tile-by-tile, multi-threaded
+  VA_SINGLE_ARRAY // full array materialized at once
 };
 
 inline std::string to_string(ForEachMode m)
