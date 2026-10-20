@@ -39,10 +39,9 @@ enum class SyncOperation
 
 enum ForEachMode : int
 {
-  VA_SEQUENTIAL,             // tile-by-tile, single thread
-  VA_DISTRIBUTED,            // tile-by-tile, multi-threaded
-  VA_SINGLE_ARRAY,           // full array materialized at once
-  VA_SINGLE_ARRAY_DOWNSCALED // full array materialized at once
+  VA_SEQUENTIAL,   // tile-by-tile, single thread
+  VA_DISTRIBUTED,  // tile-by-tile, multi-threaded
+  VA_SINGLE_ARRAY  // full array materialized at once
 };
 
 inline std::string to_string(ForEachMode m)
@@ -52,8 +51,6 @@ inline std::string to_string(ForEachMode m)
   case ForEachMode::VA_SEQUENTIAL: return "VA_SEQUENTIAL";
   case ForEachMode::VA_DISTRIBUTED: return "VA_DISTRIBUTED";
   case ForEachMode::VA_SINGLE_ARRAY: return "VA_SINGLE_ARRAY";
-  case ForEachMode::VA_SINGLE_ARRAY_DOWNSCALED:
-    return "VA_SINGLE_ARRAY_DOWNSCALED";
   }
   return "UNKNOWN";
 }
@@ -61,15 +58,13 @@ inline std::string to_string(ForEachMode m)
 static std::map<std::string, int> for_each_mode_as_string = {
     {"Distributed", ForEachMode::VA_DISTRIBUTED},
     {"Sequential", ForEachMode::VA_SEQUENTIAL},
-    {"Single array", ForEachMode::VA_SINGLE_ARRAY},
-    {"Single array downscaled", ForEachMode::VA_SINGLE_ARRAY_DOWNSCALED}};
+    {"Single array", ForEachMode::VA_SINGLE_ARRAY}};
 
 struct ComputeMode
 {
   ForEachMode mode = ForEachMode::VA_SEQUENTIAL;
   bool        trim_storage = false;
   int         stride = 1;
-  float       k_cutoff = 1.f; // freq. cut-off ratio in ]0, 1]
 };
 
 // =====================================

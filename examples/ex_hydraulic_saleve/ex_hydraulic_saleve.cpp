@@ -108,7 +108,6 @@ int main(void)
     const auto foreach_mode = hmap::ForEachMode::VA_DISTRIBUTED;
     // const auto foreach_mode = hmap::ForEachMode::VA_SEQUENTIAL;
     // const auto foreach_mode = hmap::ForEachMode::VA_SINGLE_ARRAY;
-    // const auto foreach_mode = hmap::ForEachMode::VA_SINGLE_ARRAY_DOWNSCALED;
 
     const hmap::ComputeMode cm{.mode = foreach_mode,
                                .trim_storage = true,

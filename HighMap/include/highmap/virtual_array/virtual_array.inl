@@ -105,9 +105,6 @@ void for_each_tile(const TileAccess &access, Func &&func, const ComputeMode &cm)
   case ForEachMode::VA_SINGLE_ARRAY:
     single_array_compute(access, func, cm.stride);
     break;
-  case ForEachMode::VA_SINGLE_ARRAY_DOWNSCALED:
-    single_array_downscaled_compute(access, func, cm.k_cutoff);
-    break;
   }
 
   if (cm.trim_storage)
@@ -301,93 +298,6 @@ void single_array_compute(const TileAccess &access, Func &&func, int stride = 1)
   }
 }
 
-template <typename Func>
-void single_array_downscaled_compute(const TileAccess &access,
-                                     Func            &&func,
-                                     float             kc)
-{
-  HMAP_PROFILE_ZONE("HighMap::single_array_downscaled");
-  const VirtualArray *ref_va = access.ref_va();
-  if (!ref_va) return;
-
-  // create temporary arrays
-  std::vector<Array> arrays_in;
-  std::vector<Array> arrays_out;
-  arrays_in.reserve(access.inputs.size());
-  arrays_out.reserve(access.outputs.size());
-
-  // force a CPU mode for data gathering operations
-  const ComputeMode cm_local = {.mode = ForEachMode::VA_DISTRIBUTED,
-                                .trim_storage = false};
-
-  glm::ivec2 shape_wrk = ref_va->shape;
-
-  if (kc != 1.f)
-  {
-    int nx = std::max(2, int(ref_va->shape.x * kc));
-    int ny = std::max(2, int(ref_va->shape.y * kc));
-    shape_wrk = glm::ivec2(nx, ny);
-  }
-
-  {
-    HMAP_PROFILE_ZONE("HighMap::single_array.gather");
-    // project
-    for (auto *va : access.inputs)
-      arrays_in.push_back(
-          va ? va->to_array(cm_local).resample_to_shape(shape_wrk) : Array());
-
-    for (auto *va : access.outputs)
-      // TODO remove to_array(), left for retor-fit but misusage
-      arrays_out.push_back(
-          va ? va->to_array(cm_local).resample_to_shape(shape_wrk) : Array());
-  }
-  // create pointer vector for user func
-  std::vector<const Array *> in_tiles;
-  std::vector<Array *>       out_tiles;
-  in_tiles.reserve(access.inputs.size());
-  out_tiles.reserve(access.outputs.size());
-
-  for (size_t i = 0; i < access.inputs.size(); ++i)
-    in_tiles.push_back(access.inputs[i] ? &arrays_in[i] : nullptr);
-
-  for (size_t i = 0; i < access.outputs.size(); ++i)
-    out_tiles.push_back(access.outputs[i] ? &arrays_out[i] : nullptr);
-
-  // call user operation
-  const TileRegion va_region = TileRegion(TileKey(),
-                                          ref_va->bbox,
-                                          shape_wrk,
-                                          {0, 0, 0, 0});
-
-  {
-    HMAP_PROFILE_ZONE("HighMap::single_array.algorithm");
-    func(in_tiles, out_tiles, va_region);
-  }
-
-  {
-    HMAP_PROFILE_ZONE("HighMap::single_array.scatter");
-    // copy back to VirtualArrays (only outputs do not need to update const
-    // inputs)
-    for (size_t i = 0; i < access.outputs.size(); ++i)
-      if (access.outputs[i])
-      {
-        // resample to initial shape and add higher frequency
-        Array out_full = access.outputs[i]->to_array(cm_local);
-        Array out_low_pass = out_full.resample_to_shape(shape_wrk)
-                                 .resample_to_shape_bicubic(ref_va->shape);
-
-        // resample coarse result and use it to replace the initial
-        // low-frequency content
-        arrays_out[i] = arrays_out[i].resample_to_shape_bicubic(ref_va->shape);
-
-        // TODO add post-filter
-        // laplace(arrays_out[i]);
-
-        access.outputs[i]->from_array(arrays_out[i] + (out_full - out_low_pass),
-                                      cm_local);
-      }
-  }
-}
 
 template <typename Func>
 void for_each_cell(VirtualArray &va, Func &&func, const ComputeMode &cm)
