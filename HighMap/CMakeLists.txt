@@ -52,6 +52,7 @@ target_link_libraries(
     clwrapper
     ${OpenCL_LIBRARIES}
     lightusd_static
+    pocketfft::pocketfft
     OpenEXR::OpenEXR
     TIFF::TIFF
     nlohmann_json::nlohmann_json
