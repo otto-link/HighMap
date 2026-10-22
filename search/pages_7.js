@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['profiling_0',['Optional Tracy CPU profiling',['../md_docs_2profiling.html',1,'']]]
+  ['highmap_20documentation_0',['HighMap Documentation',['../md_docs_2index.html',1,'']]]
 ];

@@ -104,7 +104,15 @@
 <title>4. Subsystem Deep Dives</title>
 <para>Detailed architectural descriptions of specific subsystems:</para>
 <para><itemizedlist>
-<listitem><para><ref refid="md_docs_2content_2dev_2scatter__field" kindref="compound">Scatter Architecture</ref>: Detailed specification of <computeroutput>ScatterField</computeroutput>, the unified instance model, and specializations <computeroutput>Forest</computeroutput> and <computeroutput>RockField</computeroutput>. </para>
+<listitem><para><ref refid="md_docs_2content_2dev_2scatter__field" kindref="compound">Scatter Architecture</ref>: Detailed specification of <computeroutput>ScatterField</computeroutput>, the unified instance model, and specializations <computeroutput>Forest</computeroutput> and <computeroutput>RockField</computeroutput>.</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md_docs_2content_2dev_2architecture_1autotoc_md15">
+<title>5. Investigations and Benchmarks</title>
+<para>Explorations, trial-and-error evaluations, and algorithmic benchmarks:</para>
+<para><itemizedlist>
+<listitem><para><ref refid="md_docs_2content_2dev_2investigations_2fft__convolution__and__morphology" kindref="compound">FFT vs. GPU Convolution &amp; Morphology</ref>: Experimental evaluation of Fourier-domain convolution and soft-max morphology against spatial GPU implementations. </para>
 </listitem></itemizedlist>
 </para>
 </sect1>

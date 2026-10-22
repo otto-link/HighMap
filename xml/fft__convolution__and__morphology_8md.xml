@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="fft__convolution__and__morphology_8md" kind="file" language="Markdown">
+    <compoundname>fft_convolution_and_morphology.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>FFT<sp/>vs.<sp/>GPU<sp/>Convolution<sp/>and<sp/>Morphological<sp/>Expansion</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>document<sp/>records<sp/>the<sp/>experimental<sp/>evaluation<sp/>of<sp/>2D<sp/>Fast<sp/>Fourier<sp/>Transform<sp/>(FFT)<sp/>algorithms<sp/>as<sp/>potential<sp/>alternatives<sp/>to<sp/>spatial<sp/>GPU<sp/>implementations<sp/>for<sp/>convolution<sp/>and<sp/>morphological<sp/>operations.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Related<sp/>issue:<sp/>[#528](https://github.com/ottolink-dev/HighMap/issues/528).</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>1.<sp/>Context<sp/>and<sp/>Motivation</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Spatial<sp/>filtering<sp/>on<sp/>large<sp/>kernels<sp/>can<sp/>become<sp/>computationally<sp/>demanding<sp/>with<sp/>direct<sp/>convolution,<sp/>which<sp/>scales<sp/>with<sp/>the<sp/>kernel<sp/>area<sp/>$\mathcal{O}(K^2)$.<sp/>In<sp/>contrast,<sp/>frequency-domain<sp/>convolution<sp/>via<sp/>FFT<sp/>operates<sp/>in<sp/>$\mathcal{O}(N<sp/>\log<sp/>N)$<sp/>independent<sp/>of<sp/>kernel<sp/>radius:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">$$f<sp/>*<sp/>g<sp/>=<sp/>\mathcal{F}^{-1}\{\mathcal{F}\{f\}<sp/>\cdot<sp/>\mathcal{F}\{g\}\}$$</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Similarly,<sp/>morphological<sp/>expansion<sp/>(dilation<sp/>/<sp/>maximum<sp/>filter)<sp/>can<sp/>theoretically<sp/>be<sp/>approximated<sp/>in<sp/>the<sp/>Fourier<sp/>domain<sp/>via<sp/>a<sp/>soft-max<sp/>formulation:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">$$\max_i<sp/>x_i<sp/>\approx<sp/>\frac{1}{\beta}<sp/>\ln<sp/>\sum_i<sp/>e^{\beta<sp/>x_i}$$</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">which<sp/>can<sp/>be<sp/>evaluated<sp/>using<sp/>FFT<sp/>convolutions<sp/>of<sp/>exponentiated<sp/>fields.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Two<sp/>experiments<sp/>were<sp/>conducted<sp/>to<sp/>evaluate<sp/>whether<sp/>FFT-based<sp/>methods<sp/>provide<sp/>performance<sp/>or<sp/>scaling<sp/>advantages<sp/>over<sp/>existing<sp/>GPU<sp/>implementations:</highlight></codeline>
+<codeline><highlight class="normal">1.<sp/>FFT<sp/>2D<sp/>convolution<sp/>(`convolve2d_fft`)<sp/>vs.<sp/>GPU<sp/>separable<sp/>convolution<sp/>(`smooth_cpulse`).</highlight></codeline>
+<codeline><highlight class="normal">2.<sp/>FFT<sp/>soft-max<sp/>morphological<sp/>expansion<sp/>(`expand_soft_fft`)<sp/>vs.<sp/>GPU<sp/>morphological<sp/>expansion<sp/>(`expand`).</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>2.<sp/>Experiment<sp/>1:<sp/>2D<sp/>Convolution</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Comparison<sp/>of<sp/>`convolve2d_fft`<sp/>against<sp/>`smooth_cpulse`<sp/>across<sp/>various<sp/>mesh<sp/>resolutions<sp/>and<sp/>filter<sp/>radii.<sp/>Execution<sp/>times<sp/>are<sp/>in<sp/>milliseconds<sp/>(ms).</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>Mesh<sp/>size<sp/>|<sp/>Radius<sp/>|<sp/>Kernel<sp/>size<sp/>|<sp/>FFT<sp/>convolution<sp/>(ms)<sp/>|<sp/>GPU<sp/>separable<sp/>(ms)<sp/>|<sp/>FFT<sp/>/<sp/>GPU<sp/>ratio<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|---|---|---|---|---|---|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>128×128<sp/>|<sp/>8<sp/>|<sp/>17×17<sp/>|<sp/>4.99<sp/>|<sp/>0.43<sp/>|<sp/>11.53×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>128×128<sp/>|<sp/>16<sp/>|<sp/>33×33<sp/>|<sp/>12.73<sp/>|<sp/>0.62<sp/>|<sp/>20.39×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>128×128<sp/>|<sp/>32<sp/>|<sp/>65×65<sp/>|<sp/>12.81<sp/>|<sp/>0.59<sp/>|<sp/>21.54×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>128×128<sp/>|<sp/>64<sp/>|<sp/>129×129<sp/>|<sp/>17.76<sp/>|<sp/>0.93<sp/>|<sp/>19.17×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>128×128<sp/>|<sp/>128<sp/>|<sp/>257×257<sp/>|<sp/>13.26<sp/>|<sp/>0.89<sp/>|<sp/>14.91×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>256×256<sp/>|<sp/>8<sp/>|<sp/>17×17<sp/>|<sp/>6.53<sp/>|<sp/>0.96<sp/>|<sp/>6.82×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>256×256<sp/>|<sp/>16<sp/>|<sp/>33×33<sp/>|<sp/>6.71<sp/>|<sp/>1.05<sp/>|<sp/>6.40×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>256×256<sp/>|<sp/>32<sp/>|<sp/>65×65<sp/>|<sp/>6.48<sp/>|<sp/>1.19<sp/>|<sp/>5.46×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>256×256<sp/>|<sp/>64<sp/>|<sp/>129×129<sp/>|<sp/>10.54<sp/>|<sp/>1.50<sp/>|<sp/>7.04×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>256×256<sp/>|<sp/>128<sp/>|<sp/>257×257<sp/>|<sp/>17.54<sp/>|<sp/>2.06<sp/>|<sp/>8.51×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>512×512<sp/>|<sp/>8<sp/>|<sp/>17×17<sp/>|<sp/>10.59<sp/>|<sp/>2.68<sp/>|<sp/>3.95×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>512×512<sp/>|<sp/>16<sp/>|<sp/>33×33<sp/>|<sp/>9.21<sp/>|<sp/>2.94<sp/>|<sp/>3.13×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>512×512<sp/>|<sp/>32<sp/>|<sp/>65×65<sp/>|<sp/>10.86<sp/>|<sp/>3.55<sp/>|<sp/>3.06×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>512×512<sp/>|<sp/>64<sp/>|<sp/>129×129<sp/>|<sp/>15.48<sp/>|<sp/>4.74<sp/>|<sp/>3.27×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>512×512<sp/>|<sp/>128<sp/>|<sp/>257×257<sp/>|<sp/>33.06<sp/>|<sp/>7.68<sp/>|<sp/>4.31×<sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Findings</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>FFT<sp/>implementation<sp/>is<sp/>consistently<sp/>slower<sp/>across<sp/>all<sp/>tested<sp/>configurations,<sp/>with<sp/>a<sp/>performance<sp/>penalty<sp/>ranging<sp/>from<sp/>$3\times$<sp/>to<sp/>$22\times$.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">While<sp/>the<sp/>performance<sp/>gap<sp/>narrows<sp/>as<sp/>the<sp/>mesh<sp/>size<sp/>increases,<sp/>the<sp/>GPU<sp/>separable<sp/>convolution<sp/>remains<sp/>significantly<sp/>faster<sp/>even<sp/>at<sp/>$512\times512$.<sp/>For<sp/>separable<sp/>filters<sp/>(such<sp/>as<sp/>standard<sp/>smooth<sp/>pulses<sp/>and<sp/>Gaussian-like<sp/>kernels),<sp/>the<sp/>$\mathcal{O}(2K)$<sp/>complexity<sp/>of<sp/>separable<sp/>passes<sp/>combined<sp/>with<sp/>GPU<sp/>memory<sp/>bandwidth<sp/>efficiency<sp/>outperforms<sp/>the<sp/>forward<sp/>and<sp/>inverse<sp/>FFT<sp/>transform<sp/>pipeline.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Conclusion:<sp/>FFT-based<sp/>convolution<sp/>does<sp/>not<sp/>provide<sp/>a<sp/>performance<sp/>advantage<sp/>over<sp/>the<sp/>existing<sp/>GPU<sp/>separable<sp/>convolution.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>3.<sp/>Experiment<sp/>2:<sp/>Morphological<sp/>Expansion</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Comparison<sp/>of<sp/>GPU<sp/>morphological<sp/>expansion<sp/>(`expand`)<sp/>against<sp/>FFT<sp/>soft-max<sp/>expansion<sp/>(`expand_soft_fft`).<sp/>Execution<sp/>times<sp/>are<sp/>in<sp/>milliseconds<sp/>(ms).</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>Mesh<sp/>size<sp/>|<sp/>Radius<sp/>|<sp/>Kernel<sp/>size<sp/>|<sp/>GPU<sp/>expand<sp/>(ms)<sp/>|<sp/>Soft-max<sp/>FFT<sp/>(ms)<sp/>|<sp/>GPU<sp/>/<sp/>FFT<sp/>ratio<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|---|---|---|---|---|---|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>128×128<sp/>|<sp/>8<sp/>|<sp/>17×17<sp/>|<sp/>0.47<sp/>|<sp/>5.25<sp/>|<sp/>0.09×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>128×128<sp/>|<sp/>16<sp/>|<sp/>33×33<sp/>|<sp/>1.06<sp/>|<sp/>5.15<sp/>|<sp/>0.21×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>128×128<sp/>|<sp/>32<sp/>|<sp/>65×65<sp/>|<sp/>2.82<sp/>|<sp/>6.68<sp/>|<sp/>0.42×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>128×128<sp/>|<sp/>64<sp/>|<sp/>129×129<sp/>|<sp/>10.05<sp/>|<sp/>8.17<sp/>|<sp/>1.23×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>128×128<sp/>|<sp/>128<sp/>|<sp/>257×257<sp/>|<sp/>36.68<sp/>|<sp/>11.97<sp/>|<sp/>3.06×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>256×256<sp/>|<sp/>8<sp/>|<sp/>17×17<sp/>|<sp/>1.27<sp/>|<sp/>6.43<sp/>|<sp/>0.20×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>256×256<sp/>|<sp/>16<sp/>|<sp/>33×33<sp/>|<sp/>3.14<sp/>|<sp/>7.61<sp/>|<sp/>0.41×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>256×256<sp/>|<sp/>32<sp/>|<sp/>65×65<sp/>|<sp/>9.97<sp/>|<sp/>18.51<sp/>|<sp/>0.54×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>256×256<sp/>|<sp/>64<sp/>|<sp/>129×129<sp/>|<sp/>37.03<sp/>|<sp/>9.02<sp/>|<sp/>4.11×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>256×256<sp/>|<sp/>128<sp/>|<sp/>257×257<sp/>|<sp/>144.48<sp/>|<sp/>15.02<sp/>|<sp/>9.62×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>512×512<sp/>|<sp/>8<sp/>|<sp/>17×17<sp/>|<sp/>3.27<sp/>|<sp/>14.95<sp/>|<sp/>0.22×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>512×512<sp/>|<sp/>16<sp/>|<sp/>33×33<sp/>|<sp/>7.02<sp/>|<sp/>14.72<sp/>|<sp/>0.48×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>512×512<sp/>|<sp/>32<sp/>|<sp/>65×65<sp/>|<sp/>21.71<sp/>|<sp/>20.79<sp/>|<sp/>1.04×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>512×512<sp/>|<sp/>64<sp/>|<sp/>129×129<sp/>|<sp/>86.06<sp/>|<sp/>17.83<sp/>|<sp/>4.83×<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>512×512<sp/>|<sp/>128<sp/>|<sp/>257×257<sp/>|<sp/>337.00<sp/>|<sp/>31.38<sp/>|<sp/>10.74×<sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Findings</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>FFT<sp/>soft-max<sp/>implementation<sp/>achieves<sp/>a<sp/>substantial<sp/>computational<sp/>speedup<sp/>for<sp/>large<sp/>radii,<sp/>reaching<sp/>up<sp/>to<sp/>$10.74\times$<sp/>faster<sp/>than<sp/>direct<sp/>GPU<sp/>expansion<sp/>at<sp/>radius<sp/>128<sp/>on<sp/>$512\times512$.<sp/>Direct<sp/>spatial<sp/>expansion<sp/>scales<sp/>non-linearly<sp/>with<sp/>radius<sp/>because<sp/>morphological<sp/>operations<sp/>are<sp/>generally<sp/>non-separable<sp/>in<sp/>2D.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">However,<sp/>the<sp/>soft-max<sp/>approximation<sp/>introduces<sp/>major<sp/>quality<sp/>deficiencies:</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>The<sp/>smooth<sp/>exponential<sp/>soft-max<sp/>does<sp/>not<sp/>reproduce<sp/>the<sp/>sharp<sp/>plateau<sp/>and<sp/>boundary<sp/>characteristics<sp/>of<sp/>an<sp/>exact<sp/>morphological<sp/>dilation.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Tuning<sp/>the<sp/>sharpness<sp/>parameter<sp/>$\beta$<sp/>leads<sp/>to<sp/>numerical<sp/>overflow<sp/>or<sp/>underflow<sp/>issues<sp/>in<sp/>floating-point<sp/>ranges<sp/>without<sp/>fully<sp/>matching<sp/>the<sp/>discrete<sp/>maximum.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>For<sp/>small<sp/>and<sp/>moderate<sp/>radii,<sp/>the<sp/>constant<sp/>overhead<sp/>of<sp/>FFT<sp/>transforms<sp/>outweighs<sp/>any<sp/>scaling<sp/>benefit.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Conclusion:<sp/>FFT<sp/>soft-max<sp/>expansion<sp/>is<sp/>computationally<sp/>faster<sp/>for<sp/>very<sp/>large<sp/>radii,<sp/>but<sp/>the<sp/>loss<sp/>of<sp/>output<sp/>accuracy<sp/>and<sp/>fidelity<sp/>makes<sp/>it<sp/>unsuitable<sp/>as<sp/>a<sp/>replacement<sp/>for<sp/>morphological<sp/>operations.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>4.<sp/>Overall<sp/>Decision</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Neither<sp/>FFT<sp/>approach<sp/>is<sp/>adopted<sp/>into<sp/>the<sp/>production<sp/>pipeline:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**Convolution**:<sp/>Retain<sp/>the<sp/>GPU<sp/>separable<sp/>implementation<sp/>(`smooth_cpulse`).</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**Morphological<sp/>Expansion**:<sp/>Retain<sp/>the<sp/>GPU<sp/>spatial<sp/>implementation<sp/>(`expand`).</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Re-evaluating<sp/>FFT-based<sp/>approximations<sp/>would<sp/>only<sp/>be<sp/>justified<sp/>if<sp/>an<sp/>alternative<sp/>formulation<sp/>eliminates<sp/>soft-max<sp/>approximation<sp/>error<sp/>without<sp/>sacrificing<sp/>execution<sp/>speed.</highlight></codeline>
+    </programlisting>
+    <location file="docs/content/dev/investigations/fft_convolution_and_morphology.md"/>
+  </compounddef>
+</doxygen>

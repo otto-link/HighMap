@@ -90,6 +90,12 @@
 <codeline><highlight class="normal">Detailed<sp/>architectural<sp/>descriptions<sp/>of<sp/>specific<sp/>subsystems:</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">-<sp/>[Scatter<sp/>Architecture](scatter_field.md):<sp/>Detailed<sp/>specification<sp/>of<sp/>`ScatterField`,<sp/>the<sp/>unified<sp/>instance<sp/>model,<sp/>and<sp/>specializations<sp/>`Forest`<sp/>and<sp/>`RockField`.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>5.<sp/>Investigations<sp/>and<sp/>Benchmarks</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Explorations,<sp/>trial-and-error<sp/>evaluations,<sp/>and<sp/>algorithmic<sp/>benchmarks:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>[FFT<sp/>vs.<sp/>GPU<sp/>Convolution<sp/>&amp;<sp/>Morphology](investigations/fft_convolution_and_morphology.md):<sp/>Experimental<sp/>evaluation<sp/>of<sp/>Fourier-domain<sp/>convolution<sp/>and<sp/>soft-max<sp/>morphology<sp/>against<sp/>spatial<sp/>GPU<sp/>implementations.</highlight></codeline>
     </programlisting>
     <location file="docs/content/dev/architecture.md"/>
   </compounddef>

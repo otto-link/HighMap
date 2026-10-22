@@ -26,9 +26,11 @@
 <codeline></codeline>
 <codeline><highlight class="normal">###<sp/>Developer<sp/>Documentation</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">Documentation<sp/>on<sp/>codebase<sp/>architecture<sp/>and<sp/>design:</highlight></codeline>
+<codeline><highlight class="normal">Documentation<sp/>on<sp/>codebase<sp/>architecture,<sp/>design,<sp/>and<sp/>experimental<sp/>research:</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">-<sp/>[Architecture<sp/>Overview](content/dev/architecture.md):<sp/>Module<sp/>hierarchy,<sp/>layered<sp/>subsystem<sp/>design,<sp/>and<sp/>architectural<sp/>principles.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Investigations<sp/>&amp;<sp/>Benchmarks:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>[FFT<sp/>vs.<sp/>GPU<sp/>Convolution<sp/>&amp;<sp/>Morphology](content/dev/investigations/fft_convolution_and_morphology.md):<sp/>Performance<sp/>and<sp/>fidelity<sp/>evaluation<sp/>of<sp/>2D<sp/>FFT<sp/>alternatives<sp/>to<sp/>spatial<sp/>GPU<sp/>operations.</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">##<sp/>Installation</highlight></codeline>
 <codeline></codeline>

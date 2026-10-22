@@ -3264,6 +3264,8 @@
   </compound>
   <compound refid="architecture_8md" kind="file"><name>architecture.md</name>
   </compound>
+  <compound refid="fft__convolution__and__morphology_8md" kind="file"><name>fft_convolution_and_morphology.md</name>
+  </compound>
   <compound refid="scatter__field_8md" kind="file"><name>scatter_field.md</name>
   </compound>
   <compound refid="core__concepts_8md" kind="file"><name>core_concepts.md</name>
@@ -5194,6 +5196,8 @@
   </compound>
   <compound refid="md_docs_2content_2dev_2architecture" kind="page"><name>md_docs_2content_2dev_2architecture</name>
   </compound>
+  <compound refid="md_docs_2content_2dev_2investigations_2fft__convolution__and__morphology" kind="page"><name>md_docs_2content_2dev_2investigations_2fft__convolution__and__morphology</name>
+  </compound>
   <compound refid="md_docs_2content_2dev_2scatter__field" kind="page"><name>md_docs_2content_2dev_2scatter__field</name>
   </compound>
   <compound refid="md_docs_2content_2getting__started_2core__concepts" kind="page"><name>md_docs_2content_2getting__started_2core__concepts</name>
@@ -5293,6 +5297,8 @@
   <compound refid="dir_cc5c1c65f818109bfd526b4de6dcbb6a" kind="dir"><name>HighMap/include/highmap/interpolate</name>
   </compound>
   <compound refid="dir_935215972bef69986a81fe4c59c9ece4" kind="dir"><name>HighMap/src/interpolate</name>
+  </compound>
+  <compound refid="dir_e12db1c7f649d9cb7a5c62d600a081da" kind="dir"><name>docs/content/dev/investigations</name>
   </compound>
   <compound refid="dir_d28e56f0bcd00353ff35f2c577e0eb78" kind="dir"><name>HighMap/src/kernels</name>
   </compound>

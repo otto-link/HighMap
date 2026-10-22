@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tracy_20cpu_20profiling_0',['Optional Tracy CPU profiling',['../md_docs_2profiling.html',1,'']]]
+  ['quickstart_0',['Quickstart',['../md_docs_2content_2getting__started_2quickstart.html',1,'']]]
 ];

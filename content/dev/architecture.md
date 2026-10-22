@@ -81,3 +81,9 @@ All stochastic procedures (noise generators, scattering passes, Monte Carlo simu
 Detailed architectural descriptions of specific subsystems:
 
 - [Scatter Architecture](scatter_field.md): Detailed specification of `ScatterField`, the unified instance model, and specializations `Forest` and `RockField`.
+
+## 5. Investigations and Benchmarks
+
+Explorations, trial-and-error evaluations, and algorithmic benchmarks:
+
+- [FFT vs. GPU Convolution & Morphology](investigations/fft_convolution_and_morphology.md): Experimental evaluation of Fourier-domain convolution and soft-max morphology against spatial GPU implementations.

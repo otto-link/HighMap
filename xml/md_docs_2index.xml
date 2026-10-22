@@ -6,7 +6,7 @@
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para><anchor id="md_docs_2index_1autotoc_md36"/> HighMap is a C++ library for procedural generation, simulation, and analysis of 2D heightmaps and terrain assets.</para>
+<para><anchor id="md_docs_2index_1autotoc_md44"/> HighMap is a C++ library for procedural generation, simulation, and analysis of 2D heightmaps and terrain assets.</para>
 <para>A heightmap is a two-dimensional grid of elevation values. Each cell corresponds to a spatial position, with values typically normalized to $[0, 1]$ or expressed in world elevation units.</para>
 <para><image type="html" name="dem_example_rendered.png">Heightmap and 3D rendering.</image>
  <image type="latex" name="dem_example_rendered.png">Heightmap and 3D rendering.</image>
@@ -14,9 +14,9 @@
  <image type="docbook" name="dem_example_rendered.png">Heightmap and 3D rendering.</image>
  <image type="xml" name="dem_example_rendered.png">Heightmap and 3D rendering.</image>
 </para>
-<sect1 id="md_docs_2index_1autotoc_md37">
+<sect1 id="md_docs_2index_1autotoc_md45">
 <title>Documentation</title>
-<sect2 id="md_docs_2index_1autotoc_md38">
+<sect2 id="md_docs_2index_1autotoc_md46">
 <title>Getting Started</title>
 <para>Documentation for new users:</para>
 <para><itemizedlist>
@@ -25,16 +25,20 @@
 </listitem></itemizedlist>
 </para>
 </sect2>
-<sect2 id="md_docs_2index_1autotoc_md39">
+<sect2 id="md_docs_2index_1autotoc_md47">
 <title>Developer Documentation</title>
-<para>Documentation on codebase architecture and design:</para>
+<para>Documentation on codebase architecture, design, and experimental research:</para>
 <para><itemizedlist>
 <listitem><para><ref refid="md_docs_2content_2dev_2architecture" kindref="compound">Architecture Overview</ref>: Module hierarchy, layered subsystem design, and architectural principles.</para>
+</listitem><listitem><para>Investigations &amp; Benchmarks:<itemizedlist>
+<listitem><para><ref refid="md_docs_2content_2dev_2investigations_2fft__convolution__and__morphology" kindref="compound">FFT vs. GPU Convolution &amp; Morphology</ref>: Performance and fidelity evaluation of 2D FFT alternatives to spatial GPU operations.</para>
+</listitem></itemizedlist>
+</para>
 </listitem></itemizedlist>
 </para>
 </sect2>
 </sect1>
-<sect1 id="md_docs_2index_1autotoc_md40">
+<sect1 id="md_docs_2index_1autotoc_md48">
 <title>Installation</title>
 <para>For build prerequisites and installation instructions, refer to the repository README: <ulink url="https://github.com/otto-link/HighMap">https://github.com/otto-link/HighMap</ulink> </para>
 </sect1>
