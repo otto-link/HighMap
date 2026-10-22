@@ -17,9 +17,11 @@ Documentation for new users:
 
 ### Developer Documentation
 
-Documentation on codebase architecture and design:
+Documentation on codebase architecture, design, and experimental research:
 
 - [Architecture Overview](content/dev/architecture.md): Module hierarchy, layered subsystem design, and architectural principles.
+- Investigations & Benchmarks:
+  - [FFT vs. GPU Convolution & Morphology](content/dev/investigations/fft_convolution_and_morphology.md): Performance and fidelity evaluation of 2D FFT alternatives to spatial GPU operations.
 
 ## Installation
 
