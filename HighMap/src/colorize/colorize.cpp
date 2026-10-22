@@ -138,13 +138,17 @@ Texture colorize(const Array &array,
   // lambda function to apply colormap
   auto apply_colormap = [&](float value) -> glm::vec3
   {
+    if (!std::isfinite(value)) return colormap_colors.front();
+
+    value = std::clamp(value, 0.f, static_cast<float>(nc - 1));
+
     int   q = static_cast<int>(value);
-    float t = value - q;
+    float t = value - static_cast<float>(q);
 
     if (q < nc - 1)
       return (1.f - t) * colormap_colors[q] + t * colormap_colors[q + 1];
-    else
-      return colormap_colors[q];
+
+    return colormap_colors[q];
   };
 
   // process each pixel

@@ -34,7 +34,8 @@ bool init_opencl()
 {
   if (!clwrapper::DeviceManager::get_instance().is_ready())
   {
-    hmap::log::error("OpenCL initialization failed: no ready device available.");
+    hmap::log::error(
+        "OpenCL initialization failed: no ready device available.");
     return false;
   }
 

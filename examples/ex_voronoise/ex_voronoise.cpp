@@ -15,8 +15,6 @@ int main(void)
 
   hmap::Array zfbm = hmap::gpu::voronoise_fbm(shape, kw, 1.f, 0.3f, seed);
 
-  zfbm.infos();
-
   hmap::export_banner_png("ex_voronoise.png",
                           {z00, z10, z01, z11, zfbm},
                           hmap::Cmap::JET);
