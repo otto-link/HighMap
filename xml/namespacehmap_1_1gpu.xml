@@ -15262,7 +15262,7 @@ This is an overloaded member function, provided for convenience. It differs from
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/src/gpu_opencl/gpu_opencl.cpp" line="33" column="6" bodyfile="HighMap/src/gpu_opencl/gpu_opencl.cpp" bodystart="33" bodyend="349" declfile="HighMap/include/highmap/opencl/gpu_opencl.hpp" declline="30" declcolumn="6"/>
+        <location file="HighMap/src/gpu_opencl/gpu_opencl.cpp" line="33" column="6" bodyfile="HighMap/src/gpu_opencl/gpu_opencl.cpp" bodystart="33" bodyend="350" declfile="HighMap/include/highmap/opencl/gpu_opencl.hpp" declline="30" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="namespacehmap_1_1gpu_1a74065aacafa262b29b0207950f9150c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classhmap_1_1Array" kindref="compound">Array</ref></type>
@@ -18187,8 +18187,6 @@ This function leverages an OpenCL kernel to compute the GavoroNoise values on th
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>zfbm<sp/>=<sp/><ref refid="namespacehmap_1_1gpu_1a4c3ab48c662d829874773ab04722b871" kindref="member">hmap::gpu::voronoise_fbm</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>kw,<sp/>1.f,<sp/>0.3f,<sp/>seed);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>zfbm.<ref refid="classhmap_1_1Array_1a0a68f43a6e0cf3a2b0392a161ea18339" kindref="member">infos</ref>();</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1ac2452e568959bc21c9b7b09202e5977a" kindref="member">hmap::export_banner_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_voronoise.png&quot;</highlight><highlight class="normal">,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{z00,<sp/>z10,<sp/>z01,<sp/>z11,<sp/>zfbm},</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespacehmap_1ac70fe3cbb32e0340d5dd3e15cdcf9369a65146260717d07e4773aec50520b9ced" kindref="member">hmap::Cmap::JET</ref>);</highlight></codeline>
@@ -18375,8 +18373,6 @@ This function leverages an OpenCL kernel to compute the GavoroNoise values on th
 <codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>z11<sp/>=<sp/><ref refid="namespacehmap_1_1gpu_1a59c0b78123e3e99e9503ed31880fa889" kindref="member">hmap::gpu::voronoise</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>kw,<sp/>1.f,<sp/>1.f,<sp/>seed);</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">hmap::Array</ref><sp/>zfbm<sp/>=<sp/><ref refid="namespacehmap_1_1gpu_1a4c3ab48c662d829874773ab04722b871" kindref="member">hmap::gpu::voronoise_fbm</ref>(<ref refid="elevation__from__contours_8cpp_1af339e609a44f3516574ffecaf5245fa3" kindref="member">shape</ref>,<sp/>kw,<sp/>1.f,<sp/>0.3f,<sp/>seed);</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/>zfbm.<ref refid="classhmap_1_1Array_1a0a68f43a6e0cf3a2b0392a161ea18339" kindref="member">infos</ref>();</highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><ref refid="namespacehmap_1ac2452e568959bc21c9b7b09202e5977a" kindref="member">hmap::export_banner_png</ref>(</highlight><highlight class="stringliteral">&quot;ex_voronoise.png&quot;</highlight><highlight class="normal">,</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{z00,<sp/>z10,<sp/>z01,<sp/>z11,<sp/>zfbm},</highlight></codeline>
