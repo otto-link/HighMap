@@ -164,7 +164,6 @@ void RockField::apply_slope_sorting(const Array     &slope,
   }
 }
 
-
 void RockField::simulate_physics(const Array                 &elevation,
                                  const Array                 *p_friction_map,
                                  const RockSimulationOptions &options)

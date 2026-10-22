@@ -9,6 +9,7 @@
 #include "cl_wrapper/run.hpp"
 
 #include "highmap/array.hpp"
+#include "highmap/logger.hpp"
 #include "highmap/opencl/gpu_opencl.hpp"
 
 namespace hmap::gpu
@@ -31,7 +32,11 @@ void helper_bind_optional_buffer(clwrapper::Run    &run,
 
 bool init_opencl()
 {
-  if (!clwrapper::DeviceManager::get_instance().is_ready()) return false;
+  if (!clwrapper::DeviceManager::get_instance().is_ready())
+  {
+    hmap::log::error("OpenCL initialization failed: no ready device available.");
+    return false;
+  }
 
   auto &km = clwrapper::KernelManager::get_instance();
   km.clear_sources();
