@@ -96,7 +96,7 @@ TEST(RockFieldTest, InterstitialPacking)
   glm::vec4 bbox = {0.f, 1.f, 0.f, 1.f};
 
   // 1. Pack without density (uniform)
-  field.pack_interstitial_rocks(20, {}, 0.01f, 0.02f, 1u, 42, bbox);
+  field.pack_interstitial(20, {}, 0.01f, 0.02f, 1u, 42, bbox);
 
   EXPECT_GT(field.size(), original_count);
   EXPECT_EQ(field[0].radius, 0.1f);
@@ -105,7 +105,7 @@ TEST(RockFieldTest, InterstitialPacking)
   // 2. Pack with density map
   Array  density({32, 32}, 1.0f);
   size_t count_before_density = field.size();
-  field.pack_interstitial_rocks(20, density, 0.005f, 0.01f, 2u, 101, bbox);
+  field.pack_interstitial(20, density, 0.005f, 0.01f, 2u, 101, bbox);
   EXPECT_GT(field.size(), count_before_density);
 }
 

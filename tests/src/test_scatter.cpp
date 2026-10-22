@@ -146,6 +146,30 @@ TEST(ScatterFieldTest, FilterByClassAndBbox)
   EXPECT_TRUE(float_eq(bbox.w, 3.f));
 }
 
+TEST(ScatterFieldTest, PackInterstitial)
+{
+  ScatterField field;
+  // Place two large items
+  field.push_back(ScatterItem(glm::vec3(0.2f, 0.5f, 0.f), 0u, 0.1f));
+  field.push_back(ScatterItem(glm::vec3(0.8f, 0.5f, 0.f), 0u, 0.1f));
+
+  size_t    original_count = field.size();
+  glm::vec4 bbox = {0.f, 1.f, 0.f, 1.f};
+
+  // 1. Pack without density (uniform)
+  field.pack_interstitial(20, {}, 0.01f, 0.02f, 1u, 42, bbox);
+
+  EXPECT_GT(field.size(), original_count);
+  EXPECT_EQ(field[0].radius, 0.1f);
+  EXPECT_EQ(field[1].radius, 0.1f);
+
+  // 2. Pack with density map
+  Array  density({32, 32}, 1.0f);
+  size_t count_before_density = field.size();
+  field.pack_interstitial(20, density, 0.005f, 0.01f, 2u, 101, bbox);
+  EXPECT_GT(field.size(), count_before_density);
+}
+
 TEST(ScatterFieldTest, PruneCollisions)
 {
   ScatterField field;

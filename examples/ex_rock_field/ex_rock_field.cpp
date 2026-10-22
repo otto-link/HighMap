@@ -59,13 +59,13 @@ int main(void)
   // --- 5. Interstitial Pebble Packing
 
   // pack fine gravel / interstitial stones (new class_id = 1) in the voids
-  rocks.pack_interstitial_rocks(500,
-                                density,
-                                0.0005f,
-                                0.0015f,
-                                1u,
-                                1337,
-                                options.bbox);
+  rocks.pack_interstitial(500,
+                          density,
+                          0.0005f,
+                          0.0015f,
+                          1u,
+                          1337,
+                          options.bbox);
 
   // --- 6. Prune Collisions and Project Elevation
 

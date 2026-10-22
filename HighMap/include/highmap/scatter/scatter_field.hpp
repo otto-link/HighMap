@@ -241,6 +241,27 @@ public:
   void perturb_positions(float dx, float dy = 0.0f, uint32_t seed = 0);
 
   /**
+   * @brief Packs smaller interstitial items in the voids between existing
+   * larger items without displacing existing items.
+   *
+   * @param count    Target number of items to pack.
+   * @param density  Optional 2D spatial probability density array for candidate
+   *                 sampling.
+   * @param r_min    Minimum interstitial item radius.
+   * @param r_max    Maximum interstitial item radius.
+   * @param class_id Class identifier for the packed items.
+   * @param seed     Random seed for candidate sampling.
+   * @param bbox     Domain bounding box {xmin, xmax, ymin, ymax}.
+   */
+  void pack_interstitial(size_t           count,
+                         const Array     &density = {},
+                         float            r_min = 5e-4f,
+                         float            r_max = 2e-3f,
+                         uint32_t         class_id = 0,
+                         uint32_t         seed = 0,
+                         const glm::vec4 &bbox = {0.f, 1.f, 0.f, 1.f});
+
+  /**
    * @brief Resolves overlapping items by discarding smaller items in collision.
    */
   void prune_collisions();

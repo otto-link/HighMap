@@ -123,26 +123,6 @@ public:
                            float            sorting_strength = 1.0f,
                            const glm::vec4 &bbox = {0.f, 1.f, 0.f, 1.f});
 
-  /**
-   * @brief Packs smaller interstitial pebbles/stones in the voids between
-   * existing larger rocks without displacing the existing rocks.
-   *
-   * @param count    Target number of small rocks to pack.
-   * @param density  Optional 2D spatial probability density array for candidate
-   *                 sampling.
-   * @param r_min    Minimum interstitial rock radius.
-   * @param r_max    Maximum interstitial rock radius.
-   * @param class_id Class identifier for the packed stones.
-   * @param seed     Random seed for candidate sampling.
-   * @param bbox     Domain bounding box {xmin, xmax, ymin, ymax}.
-   */
-  void pack_interstitial_rocks(size_t           count,
-                               const Array     &density = {},
-                               float            r_min = 5e-4f,
-                               float            r_max = 2e-3f,
-                               uint32_t         class_id = 0,
-                               uint32_t         seed = 0,
-                               const glm::vec4 &bbox = {0.f, 1.f, 0.f, 1.f});
 
   /**
    * @brief Simulates physical movement (sliding, rolling, bouncing, and
