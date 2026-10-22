@@ -359,113 +359,6 @@
         </inbodydescription>
         <location file="HighMap/include/highmap/rocks/rock_field.hpp" line="122" column="8" bodyfile="HighMap/src/rocks/rock_field.cpp" bodystart="119" bodyend="165"/>
       </memberdef>
-      <memberdef kind="function" id="classhmap_1_1RockField_1a67d09afd48bf1c368efeffceafc7e974" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void hmap::RockField::pack_interstitial_rocks</definition>
-        <argsstring>(size_t count, const Array &amp;density={}, float r_min=5e-4f, float r_max=2e-3f, uint32_t class_id=0, uint32_t seed=0, const glm::vec4 &amp;bbox={0.f, 1.f, 0.f, 1.f})</argsstring>
-        <name>pack_interstitial_rocks</name>
-        <qualifiedname>hmap::RockField::pack_interstitial_rocks</qualifiedname>
-        <param>
-          <type>size_t</type>
-          <declname>count</declname>
-        </param>
-        <param>
-          <type>const <ref refid="classhmap_1_1Array" kindref="compound">Array</ref> &amp;</type>
-          <declname>density</declname>
-          <defval>{}</defval>
-        </param>
-        <param>
-          <type>float</type>
-          <declname>r_min</declname>
-          <defval>5e-4<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
-        </param>
-        <param>
-          <type>float</type>
-          <declname>r_max</declname>
-          <defval>2e-3<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref></defval>
-        </param>
-        <param>
-          <type>uint32_t</type>
-          <declname>class_id</declname>
-          <defval>0</defval>
-        </param>
-        <param>
-          <type>uint32_t</type>
-          <declname>seed</declname>
-          <defval>0</defval>
-        </param>
-        <param>
-          <type>const glm::vec4 &amp;</type>
-          <declname>bbox</declname>
-          <defval>{0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 0.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>, 1.<ref refid="distance__transform_8cpp_1abcb9259cf91bfd25e92a72cdf18c285e" kindref="member">f</ref>}</defval>
-        </param>
-        <briefdescription>
-<para>Packs smaller interstitial pebbles/stones in the voids between existing larger rocks without displacing the existing rocks. </para>
-        </briefdescription>
-        <detaileddescription>
-<para><parameterlist kind="param"><parameteritem>
-<parameternamelist>
-<parametername>count</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Target number of small rocks to pack. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>density</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Optional 2D spatial probability density array for candidate sampling. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>r_min</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Minimum interstitial rock radius. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>r_max</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Maximum interstitial rock radius. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>class_id</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Class identifier for the packed stones. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>seed</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Random seed for candidate sampling. </para>
-</parameterdescription>
-</parameteritem>
-<parameteritem>
-<parameternamelist>
-<parametername>bbox</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Domain bounding box {xmin, xmax, ymin, ymax}. </para>
-</parameterdescription>
-</parameteritem>
-</parameterlist>
-</para>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="HighMap/include/highmap/rocks/rock_field.hpp" line="139" column="8" bodyfile="HighMap/src/rocks/rock_field.cpp" bodystart="167" bodyend="296"/>
-      </memberdef>
       <memberdef kind="function" id="classhmap_1_1RockField_1ac16a000a470cd7e8cffb007eee3afc68" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void hmap::RockField::simulate_physics</definition>
@@ -519,7 +412,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/rocks/rock_field.hpp" line="155" column="8" bodyfile="HighMap/src/rocks/rock_field.cpp" bodystart="298" bodyend="303"/>
+        <location file="HighMap/include/highmap/rocks/rock_field.hpp" line="135" column="8" bodyfile="HighMap/src/rocks/rock_field.cpp" bodystart="168" bodyend="173"/>
       </memberdef>
       <memberdef kind="function" id="classhmap_1_1RockField_1ab05996c590e4e7037dd3583da7c9359a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
         <type>std::string</type>
@@ -538,7 +431,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="HighMap/include/highmap/rocks/rock_field.hpp" line="163" column="15" bodyfile="HighMap/src/rocks/rock_field.cpp" bodystart="305" bodyend="344"/>
+        <location file="HighMap/include/highmap/rocks/rock_field.hpp" line="143" column="15" bodyfile="HighMap/src/rocks/rock_field.cpp" bodystart="175" bodyend="214"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -583,7 +476,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="HighMap/include/highmap/rocks/rock_field.hpp" line="31" column="1" bodyfile="HighMap/include/highmap/rocks/rock_field.hpp" bodystart="32" bodyend="164"/>
+    <location file="HighMap/include/highmap/rocks/rock_field.hpp" line="31" column="1" bodyfile="HighMap/include/highmap/rocks/rock_field.hpp" bodystart="32" bodyend="144"/>
     <listofallmembers>
       <member refid="classhmap_1_1RockField_1a78e864f7a4907e3e3766fc6d4571a880" prot="public" virt="non-virtual"><scope>hmap::RockField</scope><name>apply_power_law_distribution</name></member>
       <member refid="classhmap_1_1RockField_1abb9120a9ba5a3185602732a31966b748" prot="public" virt="non-virtual"><scope>hmap::RockField</scope><name>apply_power_law_distribution</name></member>
@@ -617,7 +510,7 @@
       <member refid="classhmap_1_1ScatterField_1aeb89e13a2a22fc06a08bc02e0fdcaa61" prot="protected" virt="non-virtual"><scope>hmap::RockField</scope><name>items</name></member>
       <member refid="classhmap_1_1ScatterField_1a45a0d931bdd6b41c8460710a473b5b6a" prot="public" virt="non-virtual"><scope>hmap::RockField</scope><name>operator[]</name></member>
       <member refid="classhmap_1_1ScatterField_1aba0c37d045d2414ba58e3f1a70bfe2ea" prot="public" virt="non-virtual"><scope>hmap::RockField</scope><name>operator[]</name></member>
-      <member refid="classhmap_1_1RockField_1a67d09afd48bf1c368efeffceafc7e974" prot="public" virt="non-virtual"><scope>hmap::RockField</scope><name>pack_interstitial_rocks</name></member>
+      <member refid="classhmap_1_1ScatterField_1add5cb2d398e0c6b5b69d6946439436dc" prot="public" virt="non-virtual"><scope>hmap::RockField</scope><name>pack_interstitial</name></member>
       <member refid="classhmap_1_1ScatterField_1a8b4d33715bbae66a08b9581bd93e0903" prot="public" virt="non-virtual"><scope>hmap::RockField</scope><name>perturb_positions</name></member>
       <member refid="classhmap_1_1ScatterField_1a2c5b4cc3f66be3ac58dbbb4d0fc9ffdd" prot="public" virt="non-virtual"><scope>hmap::RockField</scope><name>prune_collisions</name></member>
       <member refid="classhmap_1_1ScatterField_1ae2eb863c4cd700836a85b4cf09f04a35" prot="public" virt="non-virtual"><scope>hmap::RockField</scope><name>prune_collisions</name></member>

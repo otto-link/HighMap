@@ -415,7 +415,7 @@
 <codeline lineno="96"><highlight class="normal"><sp/><sp/>glm::vec4<sp/>bbox<sp/>=<sp/>{0.f,<sp/>1.f,<sp/>0.f,<sp/>1.f};</highlight></codeline>
 <codeline lineno="97"><highlight class="normal"></highlight></codeline>
 <codeline lineno="98"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>1.<sp/>Pack<sp/>without<sp/>density<sp/>(uniform)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/>field.<ref refid="classhmap_1_1RockField_1a67d09afd48bf1c368efeffceafc7e974" kindref="member">pack_interstitial_rocks</ref>(20,<sp/>{},<sp/>0.01f,<sp/>0.02f,<sp/>1u,<sp/>42,<sp/>bbox);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/>field.<ref refid="classhmap_1_1ScatterField_1add5cb2d398e0c6b5b69d6946439436dc" kindref="member">pack_interstitial</ref>(20,<sp/>{},<sp/>0.01f,<sp/>0.02f,<sp/>1u,<sp/>42,<sp/>bbox);</highlight></codeline>
 <codeline lineno="100"><highlight class="normal"></highlight></codeline>
 <codeline lineno="101"><highlight class="normal"><sp/><sp/>EXPECT_GT(field.<ref refid="classhmap_1_1ScatterField_1aa80bb3a0f7545eb41a468b6ac4d1f84e" kindref="member">size</ref>(),<sp/>original_count);</highlight></codeline>
 <codeline lineno="102"><highlight class="normal"><sp/><sp/>EXPECT_EQ(field[0].radius,<sp/>0.1f);</highlight></codeline>
@@ -424,7 +424,7 @@
 <codeline lineno="105"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>2.<sp/>Pack<sp/>with<sp/>density<sp/>map</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="106"><highlight class="normal"><sp/><sp/><ref refid="classhmap_1_1Array" kindref="compound">Array</ref><sp/><sp/>density({32,<sp/>32},<sp/>1.0f);</highlight></codeline>
 <codeline lineno="107"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>count_before_density<sp/>=<sp/>field.<ref refid="classhmap_1_1ScatterField_1aa80bb3a0f7545eb41a468b6ac4d1f84e" kindref="member">size</ref>();</highlight></codeline>
-<codeline lineno="108"><highlight class="normal"><sp/><sp/>field.<ref refid="classhmap_1_1RockField_1a67d09afd48bf1c368efeffceafc7e974" kindref="member">pack_interstitial_rocks</ref>(20,<sp/>density,<sp/>0.005f,<sp/>0.01f,<sp/>2u,<sp/>101,<sp/>bbox);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/>field.<ref refid="classhmap_1_1ScatterField_1add5cb2d398e0c6b5b69d6946439436dc" kindref="member">pack_interstitial</ref>(20,<sp/>density,<sp/>0.005f,<sp/>0.01f,<sp/>2u,<sp/>101,<sp/>bbox);</highlight></codeline>
 <codeline lineno="109"><highlight class="normal"><sp/><sp/>EXPECT_GT(field.<ref refid="classhmap_1_1ScatterField_1aa80bb3a0f7545eb41a468b6ac4d1f84e" kindref="member">size</ref>(),<sp/>count_before_density);</highlight></codeline>
 <codeline lineno="110"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="111"><highlight class="normal"></highlight></codeline>

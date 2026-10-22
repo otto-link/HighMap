@@ -50,8 +50,6 @@ void \mbox{\hyperlink{classhmap_1_1RockField_abb9120a9ba5a3185602732a31966b748}{
 \begin{DoxyCompactList}\small\item\em Applies a power-\/law radius distribution according to a \doxylink{structhmap_1_1RockDistribution}{Rock\+Distribution} definition. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classhmap_1_1RockField_ad169e4acbe84618e48fdd741e6f764d6}{apply\+\_\+slope\+\_\+sorting}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&\mbox{\hyperlink{namespacehmap_a04e7abe100708990e2464cc5df2ccafa}{slope}}, float sorting\+\_\+strength=1.\+0f, const glm\+::vec4 \&bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\})
 \begin{DoxyCompactList}\small\item\em Simulates gravitational slope sorting (scree/talus dynamics). \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classhmap_1_1RockField_a67d09afd48bf1c368efeffceafc7e974}{pack\+\_\+interstitial\+\_\+rocks}} (size\+\_\+t \mbox{\hyperlink{hydraulic__mise_8cpp_a76d971a3c552bc58ba9f0d5fceae9806}{count}}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&density=\{\}, float \mbox{\hyperlink{namespacehmap_ad1eb8e81ef31a0e0bc7a5bd093c3aefc}{r\+\_\+min}}=5e-\/4\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float \mbox{\hyperlink{namespacehmap_aa8f3fda9e1dd32c7b8011c7f2b9cbc55}{r\+\_\+max}}=2e-\/3\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, uint32\+\_\+t class\+\_\+id=0, uint32\+\_\+t seed=0, const glm\+::vec4 \&bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\})
-\begin{DoxyCompactList}\small\item\em Packs smaller interstitial pebbles/stones in the voids between existing larger rocks without displacing the existing rocks. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classhmap_1_1RockField_ac16a000a470cd7e8cffb007eee3afc68}{simulate\+\_\+physics}} (const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&elevation, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \texorpdfstring{$\ast$}{*}p\+\_\+friction\+\_\+map=nullptr, const \mbox{\hyperlink{structhmap_1_1RockSimulationOptions}{Rock\+Simulation\+Options}} \&options=\{\})
 \begin{DoxyCompactList}\small\item\em Simulates physical movement (sliding, rolling, bouncing, and inter-\/rock collision avoidance) for this \doxylink{classhmap_1_1RockField}{Rock\+Field} across terrain on GPU. \end{DoxyCompactList}\item 
 std\+::string \mbox{\hyperlink{classhmap_1_1RockField_ab05996c590e4e7037dd3583da7c9359a}{to\+\_\+string}} () const override
@@ -135,6 +133,8 @@ std\+::vector$<$ float $>$ \mbox{\hyperlink{classhmap_1_1ScatterField_a9866c13b2
 \begin{DoxyCompactList}\small\item\em Extracts the z-\/coordinate (elevation) of all items. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classhmap_1_1ScatterField_a8b4d33715bbae66a08b9581bd93e0903}{perturb\+\_\+positions}} (float dx, float dy=0.\+0f, uint32\+\_\+t seed=0)
 \begin{DoxyCompactList}\small\item\em Slightly perturbs the 2D (x, y) coordinates of scatter items. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classhmap_1_1ScatterField_add5cb2d398e0c6b5b69d6946439436dc}{pack\+\_\+interstitial}} (size\+\_\+t \mbox{\hyperlink{hydraulic__mise_8cpp_a76d971a3c552bc58ba9f0d5fceae9806}{count}}, const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&density=\{\}, float \mbox{\hyperlink{namespacehmap_ad1eb8e81ef31a0e0bc7a5bd093c3aefc}{r\+\_\+min}}=5e-\/4\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, float \mbox{\hyperlink{namespacehmap_aa8f3fda9e1dd32c7b8011c7f2b9cbc55}{r\+\_\+max}}=2e-\/3\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, uint32\+\_\+t class\+\_\+id=0, uint32\+\_\+t seed=0, const glm\+::vec4 \&bbox=\{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}, 1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\})
+\begin{DoxyCompactList}\small\item\em Packs smaller interstitial items in the voids between existing larger items without displacing existing items. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classhmap_1_1ScatterField_a2c5b4cc3f66be3ac58dbbb4d0fc9ffdd}{prune\+\_\+collisions}} ()
 \begin{DoxyCompactList}\small\item\em Resolves overlapping items by discarding smaller items in collision. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classhmap_1_1ScatterField_ae2eb863c4cd700836a85b4cf09f04a35}{prune\+\_\+collisions}} (const \mbox{\hyperlink{classhmap_1_1ScatterField}{Scatter\+Field}} \&other)
@@ -328,33 +328,6 @@ On natural scree and talus slopes, larger boulders carry more momentum and roll 
 {\em slope} & 2D slope gradient array (e.\+g., from {\ttfamily gradient\+\_\+magnitude} or {\ttfamily slope}). \\
 \hline
 {\em sorting\+\_\+strength} & Strength factor in \mbox{[}0, 1\mbox{]} governing the correlation between slope and rock size. \\
-\hline
-{\em bbox} & Domain bounding box \{xmin, xmax, ymin, ymax\}. \\
-\hline
-\end{DoxyParams}
-\Hypertarget{classhmap_1_1RockField_a67d09afd48bf1c368efeffceafc7e974}\label{classhmap_1_1RockField_a67d09afd48bf1c368efeffceafc7e974} 
-\index{hmap::RockField@{hmap::RockField}!pack\_interstitial\_rocks@{pack\_interstitial\_rocks}}
-\index{pack\_interstitial\_rocks@{pack\_interstitial\_rocks}!hmap::RockField@{hmap::RockField}}
-\doxysubsubsection{\texorpdfstring{pack\_interstitial\_rocks()}{pack\_interstitial\_rocks()}}
-{\footnotesize\ttfamily void hmap\+::\+Rock\+Field\+::pack\+\_\+interstitial\+\_\+rocks (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{count,  }\item[{const \mbox{\hyperlink{classhmap_1_1Array}{Array}} \&}]{density = {\ttfamily \{\}},  }\item[{float}]{r\+\_\+min = {\ttfamily 5e-\/4\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{float}]{r\+\_\+max = {\ttfamily 2e-\/3\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}},  }\item[{uint32\+\_\+t}]{class\+\_\+id = {\ttfamily 0},  }\item[{uint32\+\_\+t}]{seed = {\ttfamily 0},  }\item[{const glm\+::vec4 \&}]{bbox = {\ttfamily \{0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}},~1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}},~0.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}},~1.\mbox{\hyperlink{distance__transform_8cpp_abcb9259cf91bfd25e92a72cdf18c285e}{f}}\}} }\end{DoxyParamCaption})}
-
-
-
-Packs smaller interstitial pebbles/stones in the voids between existing larger rocks without displacing the existing rocks. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em count} & Target number of small rocks to pack. \\
-\hline
-{\em density} & Optional 2D spatial probability density array for candidate sampling. \\
-\hline
-{\em r\+\_\+min} & Minimum interstitial rock radius. \\
-\hline
-{\em r\+\_\+max} & Maximum interstitial rock radius. \\
-\hline
-{\em class\+\_\+id} & Class identifier for the packed stones. \\
-\hline
-{\em seed} & Random seed for candidate sampling. \\
 \hline
 {\em bbox} & Domain bounding box \{xmin, xmax, ymin, ymax\}. \\
 \hline

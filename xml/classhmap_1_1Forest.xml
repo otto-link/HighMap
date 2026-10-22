@@ -333,6 +333,7 @@
       <member refid="classhmap_1_1ScatterField_1aeb89e13a2a22fc06a08bc02e0fdcaa61" prot="protected" virt="non-virtual"><scope>hmap::Forest</scope><name>items</name></member>
       <member refid="classhmap_1_1ScatterField_1a45a0d931bdd6b41c8460710a473b5b6a" prot="public" virt="non-virtual"><scope>hmap::Forest</scope><name>operator[]</name></member>
       <member refid="classhmap_1_1ScatterField_1aba0c37d045d2414ba58e3f1a70bfe2ea" prot="public" virt="non-virtual"><scope>hmap::Forest</scope><name>operator[]</name></member>
+      <member refid="classhmap_1_1ScatterField_1add5cb2d398e0c6b5b69d6946439436dc" prot="public" virt="non-virtual"><scope>hmap::Forest</scope><name>pack_interstitial</name></member>
       <member refid="classhmap_1_1ScatterField_1a8b4d33715bbae66a08b9581bd93e0903" prot="public" virt="non-virtual"><scope>hmap::Forest</scope><name>perturb_positions</name></member>
       <member refid="classhmap_1_1ScatterField_1a2c5b4cc3f66be3ac58dbbb4d0fc9ffdd" prot="public" virt="non-virtual"><scope>hmap::Forest</scope><name>prune_collisions</name></member>
       <member refid="classhmap_1_1ScatterField_1ae2eb863c4cd700836a85b4cf09f04a35" prot="public" virt="non-virtual"><scope>hmap::Forest</scope><name>prune_collisions</name></member>
